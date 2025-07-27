@@ -8,7 +8,6 @@
 	roundend_category = "revolutionaries" // if by some miracle revolutionaries without revolution happen
 	antagpanel_category = "Revolution"
 	job_rank = ROLE_REV
-	antag_moodlet = /datum/mood_event/revolution
 	antag_hud_type = ANTAG_HUD_REV
 	antag_hud_name = "rev"
 	var/datum/team/revolution/rev_team
@@ -50,7 +49,7 @@
 	. = ..()
 
 /datum/antagonist/rev/greet()
-	to_chat(owner, "<span class='userdanger'>You are now a revolutionary! Help your cause. Do not harm your fellow freedom fighters. You can identify your comrades by the red \"R\" icons, and your leaders by the blue \"R\" icons. Help them kill the heads to win the revolution!</span>")
+	to_chat(owner, span_userdanger("You are now a revolutionary! Help your cause. Do not harm your fellow freedom fighters. You can identify your comrades by the red \"R\" icons, and your leaders by the blue \"R\" icons. Help them kill the heads to win the revolution!"))
 	owner.announce_objectives()
 
 /datum/antagonist/rev/create_team(datum/team/revolution/new_team)
@@ -89,11 +88,11 @@
 	new_revhead.silent = TRUE
 	old_owner.add_antag_datum(new_revhead,old_team)
 	new_revhead.silent = FALSE
-	to_chat(old_owner, "<span class='userdanger'>You have proved your devotion to revolution! You are a head revolutionary now!</span>")
+	to_chat(old_owner, span_userdanger("You have proved your devotion to revolution! You are a head revolutionary now!"))
 
 /datum/antagonist/rev/get_admin_commands()
 	. = ..()
-	.["Promote"] = CALLBACK(src,.proc/admin_promote)
+	.["Promote"] = CALLBACK(src, PROC_REF(admin_promote))
 
 /datum/antagonist/rev/proc/admin_promote(mob/admin)
 	var/datum/mind/O = owner
@@ -108,21 +107,21 @@
 	new_owner.add_antag_datum(src)
 	message_admins("[key_name_admin(admin)] has head-rev'ed [key_name_admin(new_owner)].")
 	log_admin("[key_name(admin)] has head-rev'ed [key_name(new_owner)].")
-	to_chat(new_owner.current, "<span class='userdanger'>You are a member of the revolutionaries' leadership now!</span>")
+	to_chat(new_owner.current, span_userdanger("You are a member of the revolutionaries' leadership now!"))
 
 /datum/antagonist/rev/head/get_admin_commands()
 	. = ..()
 	. -= "Promote"
-	.["Take flash"] = CALLBACK(src,.proc/admin_take_flash)
-	.["Give flash"] = CALLBACK(src,.proc/admin_give_flash)
-	.["Repair flash"] = CALLBACK(src,.proc/admin_repair_flash)
-	.["Demote"] = CALLBACK(src,.proc/admin_demote)
+	.["Take flash"] = CALLBACK(src, PROC_REF(admin_take_flash))
+	.["Give flash"] = CALLBACK(src, PROC_REF(admin_give_flash))
+	.["Repair flash"] = CALLBACK(src, PROC_REF(admin_repair_flash))
+	.["Demote"] = CALLBACK(src, PROC_REF(admin_demote))
 
 /datum/antagonist/rev/head/proc/admin_take_flash(mob/admin)
 	var/list/L = owner.current.get_contents()
 	var/obj/item/assembly/flash/handheld/flash = locate() in L
 	if (!flash)
-		to_chat(admin, "<span class='danger'>Deleting flash failed!</span>")
+		to_chat(admin, span_danger("Deleting flash failed!"))
 		return
 	qdel(flash)
 
@@ -143,7 +142,7 @@
 	var/list/L = owner.current.get_contents()
 	var/obj/item/assembly/flash/handheld/flash = locate() in L
 	if (!flash)
-		to_chat(admin, "<span class='danger'>Repairing flash failed!</span>")
+		to_chat(admin, span_danger("Repairing flash failed!"))
 	else
 		flash.burnt_out = FALSE
 		flash.update_icon()
@@ -203,7 +202,7 @@
 	new_rev.silent = TRUE
 	old_owner.add_antag_datum(new_rev,old_team)
 	new_rev.silent = FALSE
-	to_chat(old_owner, "<span class='userdanger'>Revolution has been disappointed of your leader traits! You are a regular revolutionary now!</span>")
+	to_chat(old_owner, span_userdanger("Revolution has been disappointed of your leader traits! You are a regular revolutionary now!"))
 
 /// Checks if the revolution succeeded, and lets them know.
 /datum/antagonist/rev/proc/announce_victorious()
@@ -222,11 +221,11 @@
 		return
 
 	if(ishuman(owner.current))
-		owner.current.visible_message("<span class='deconversion_message'>[owner.current] looks like [owner.current.p_theyve()] just remembered [owner.current.p_their()] real allegiance!</span>", null, null, null, owner.current)
+		owner.current.visible_message(span_deconversion_message("[owner.current] looks like [owner.current.p_theyve()] just remembered [owner.current.p_their()] real allegiance!"), null, null, null, owner.current)
 		to_chat(owner, "<span class ='deconversion_message bold'>You are no longer a brainwashed revolutionary! Your memory is hazy from the time you were a rebel...the only thing you remember is the name of the one who brainwashed you....</span>")
 	else if(issilicon(owner.current))
-		owner.current.visible_message("<span class='deconversion_message'>The frame beeps contentedly, purging the hostile memory engram from the MMI before initalizing it.</span>", null, null, null, owner.current)
-		to_chat(owner, "<span class='userdanger'>The frame's firmware detects and deletes your neural reprogramming! You remember nothing but the name of the one who flashed you.</span>")
+		owner.current.visible_message(span_deconversion_message("The frame beeps contentedly, purging the hostile memory engram from the MMI before initalizing it."), null, null, null, owner.current)
+		to_chat(owner, span_userdanger("The frame's firmware detects and deletes your neural reprogramming! You remember nothing but the name of the one who flashed you."))
 
 /datum/antagonist/rev/head/farewell()
 	if (announce_victorious())
@@ -234,13 +233,13 @@
 
 	if((ishuman(owner.current)))
 		if(owner.current.stat != DEAD)
-			owner.current.visible_message("<span class='deconversion_message'>[owner.current] looks like [owner.current.p_theyve()] just remembered [owner.current.p_their()] real allegiance!</span>", null, null, null, owner.current)
+			owner.current.visible_message(span_deconversion_message("[owner.current] looks like [owner.current.p_theyve()] just remembered [owner.current.p_their()] real allegiance!"), null, null, null, owner.current)
 			to_chat(owner, "<span class ='deconversion_message bold'>You have given up your cause of overthrowing the command staff. You are no longer a Head Revolutionary.</span>")
 		else
 			to_chat(owner, "<span class ='deconversion_message bold'>The sweet release of death. You are no longer a Head Revolutionary.</span>")
 	else if(issilicon(owner.current))
-		owner.current.visible_message("<span class='deconversion_message'>The frame beeps contentedly, suppressing the disloyal personality traits from the MMI before initalizing it.</span>", null, null, null, owner.current)
-		to_chat(owner, "<span class='userdanger'>The frame's firmware detects and suppresses your unwanted personality traits! You feel more content with the leadership around these parts.</span>")
+		owner.current.visible_message(span_deconversion_message("The frame beeps contentedly, suppressing the disloyal personality traits from the MMI before initalizing it."), null, null, null, owner.current)
+		to_chat(owner, span_userdanger("The frame's firmware detects and suppresses your unwanted personality traits! You feel more content with the leadership around these parts."))
 
 //blunt trauma deconversions call this through species.dm spec_attacked_by()
 /datum/antagonist/rev/proc/remove_revolutionary(borged, deconverter)
@@ -315,7 +314,7 @@
 		var/datum/antagonist/rev/R = M.has_antag_datum(/datum/antagonist/rev)
 		R.objectives |= objectives
 
-	addtimer(CALLBACK(src,.proc/update_objectives),HEAD_UPDATE_PERIOD,TIMER_UNIQUE)
+	addtimer(CALLBACK(src, PROC_REF(update_objectives)),HEAD_UPDATE_PERIOD,TIMER_UNIQUE)
 
 /datum/team/revolution/proc/head_revolutionaries()
 	. = list()
@@ -347,7 +346,7 @@
 				var/datum/antagonist/rev/rev = new_leader.has_antag_datum(/datum/antagonist/rev)
 				rev.promote()
 
-	addtimer(CALLBACK(src,.proc/update_heads),HEAD_UPDATE_PERIOD,TIMER_UNIQUE)
+	addtimer(CALLBACK(src, PROC_REF(update_heads)),HEAD_UPDATE_PERIOD,TIMER_UNIQUE)
 
 /datum/team/revolution/proc/save_members()
 	ex_headrevs = get_antag_minds(/datum/antagonist/rev/head, TRUE)
@@ -499,7 +498,7 @@
 			var/target = (head in targets)
 			head_text += "<li>"
 			if(target)
-				head_text += "<span class='redtext'>Target</span>"
+				head_text += span_redtext("Target")
 			head_text += "[printplayer(head, 1)]</li>"
 		head_text += "</ul><br>"
 		result += head_text
@@ -528,14 +527,14 @@
 	for(var/datum/mind/N in SSjob.get_living_heads())
 		var/mob/M = N.current
 		if(M)
-			heads_report += "<tr><td><a href='?_src_=holder;[HrefToken()];adminplayeropts=[REF(M)]'>[M.real_name]</a>[M.client ? "" : " <i>(No Client)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
-			heads_report += "<td><A href='?priv_msg=[M.ckey]'>PM</A></td>"
-			heads_report += "<td><A href='?_src_=holder;[HrefToken()];adminplayerobservefollow=[REF(M)]'>FLW</a></td>"
+			heads_report += "<tr><td><a href='byond://?_src_=holder;[HrefToken()];adminplayeropts=[REF(M)]'>[M.real_name]</a>[M.client ? "" : " <i>(No Client)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
+			heads_report += "<td><A href='byond://?priv_msg=[M.ckey]'>PM</A></td>"
+			heads_report += "<td><A href='byond://?_src_=holder;[HrefToken()];adminplayerobservefollow=[REF(M)]'>FLW</a></td>"
 			var/turf/mob_loc = get_turf(M)
 			heads_report += "<td>[mob_loc.loc]</td></tr>"
 		else
-			heads_report += "<tr><td><a href='?_src_=vars;[HrefToken()];Vars=[REF(N)]'>[N.name]([N.key])</a><i>Head body destroyed!</i></td>"
-			heads_report += "<td><A href='?priv_msg=[N.key]'>PM</A></td></tr>"
+			heads_report += "<tr><td><a href='byond://?_src_=vars;[HrefToken()];Vars=[REF(N)]'>[N.name]([N.key])</a><i>Head body destroyed!</i></td>"
+			heads_report += "<td><A href='byond://?priv_msg=[N.key]'>PM</A></td></tr>"
 	heads_report += "</table>"
 	return common_part + heads_report
 

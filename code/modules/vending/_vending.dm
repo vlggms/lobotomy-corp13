@@ -302,8 +302,6 @@ GLOBAL_LIST_EMPTY(vending_products)
  * * startempty - should we set vending_product record amount from the product list (so it's prefilled at roundstart)
  */
 /obj/machinery/vending/proc/build_inventory(list/productlist, list/recordlist, start_empty = FALSE)
-	default_price = round(initial(default_price) * SSeconomy.inflation_value())
-	extra_price = round(initial(extra_price) * SSeconomy.inflation_value())
 	for(var/typepath in productlist)
 		var/amount = productlist[typepath]
 		if(isnull(amount))
@@ -425,6 +423,8 @@ GLOBAL_LIST_EMPTY(vending_products)
 /obj/machinery/vending/screwdriver_act(mob/living/user, obj/item/I)
 	if(..())
 		return TRUE
+	if(resistance_flags & INDESTRUCTIBLE)
+		return FALSE
 	if(anchored)
 		default_deconstruction_screwdriver(user, icon_state, icon_state, I)
 		cut_overlays()
@@ -495,8 +495,12 @@ GLOBAL_LIST_EMPTY(vending_products)
 					tilt(user)
 				if(91 to 100)
 					tilt(user, crit=TRUE)
+				else
+					// do nothing
 
 /obj/machinery/vending/proc/freebie(mob/fatty, freebies)
+	if(resistance_flags & INDESTRUCTIBLE)
+		return
 	visible_message("<span class='notice'>[src] yields [freebies > 1 ? "several free goodies" : "a free goody"]!</span>")
 
 	for(var/i in 1 to freebies)
@@ -515,6 +519,8 @@ GLOBAL_LIST_EMPTY(vending_products)
 
 ///Tilts ontop of the atom supplied, if crit is true some extra shit can happen. Returns TRUE if it dealt damage to something.
 /obj/machinery/vending/proc/tilt(atom/fatty, crit=FALSE)
+	if(resistance_flags & INDESTRUCTIBLE)
+		return
 	visible_message("<span class='danger'>[src] tips over!</span>")
 	tilted = TRUE
 	layer = ABOVE_MOB_LAYER
@@ -1021,7 +1027,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	/// where the money is sent
 	var/datum/bank_account/private_a
 	/// max number of items that the custom vendor can hold
-	var/max_loaded_items = 20
+	var/max_loaded_items = 1000 //incresed from 20 to 1000. let people store E.G.O. dammit
 	/// Base64 cache of custom icons.
 	var/list/base64_cache = list()
 
@@ -1054,19 +1060,21 @@ GLOBAL_LIST_EMPTY(vending_products)
 			var/base64
 			var/price = 0
 			for(var/obj/T in contents)
-				if(T.name == O)
+				if(format_text(T.name) == O)
 					price = T.custom_price
 					if(!base64)
 						if(base64_cache[T.type])
 							base64 = base64_cache[T.type]
 						else
-							base64 = icon2base64(icon(T.icon, T.icon_state))
+							base64 = icon2base64(getFlatIcon(T, no_anim=TRUE))
 							base64_cache[T.type] = base64
 					break
 			var/list/data = list(
 				name = O,
 				price = price,
-				img = base64
+				img = base64,
+				amount = vending_machine_input[O],
+				colorable = FALSE
 			)
 			.["vending_machine_input"] += list(data)
 
@@ -1098,7 +1106,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 				return
 			var/datum/bank_account/account = C.registered_account
 			for(var/obj/O in contents)
-				if(O.name == N)
+				if(format_text(O.name) == N)
 					S = O
 					break
 			if(S)

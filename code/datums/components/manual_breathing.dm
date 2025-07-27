@@ -20,20 +20,20 @@
 	if(L)
 		START_PROCESSING(SSdcs, src)
 		last_breath = world.time
-		to_chat(C, "<span class='notice'>You suddenly realize you're breathing manually.</span>")
+		to_chat(C, span_notice("You suddenly realize you're breathing manually."))
 
 /datum/component/manual_breathing/Destroy(force, silent)
 	L = null
 	STOP_PROCESSING(SSdcs, src)
-	to_chat(parent, "<span class='notice'>You revert back to automatic breathing.</span>")
+	to_chat(parent, span_notice("You revert back to automatic breathing."))
 	return ..()
 
 /datum/component/manual_breathing/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_MOB_EMOTE, .proc/check_emote)
-	RegisterSignal(parent, COMSIG_CARBON_GAIN_ORGAN, .proc/check_added_organ)
-	RegisterSignal(parent, COMSIG_CARBON_LOSE_ORGAN, .proc/check_removed_organ)
-	RegisterSignal(parent, COMSIG_LIVING_REVIVE, .proc/restart)
-	RegisterSignal(parent, COMSIG_LIVING_DEATH, .proc/pause)
+	RegisterSignal(parent, COMSIG_MOB_EMOTE, PROC_REF(check_emote))
+	RegisterSignal(parent, COMSIG_CARBON_GAIN_ORGAN, PROC_REF(check_added_organ))
+	RegisterSignal(parent, COMSIG_CARBON_LOSE_ORGAN, PROC_REF(check_removed_organ))
+	RegisterSignal(parent, COMSIG_LIVING_REVIVE, PROC_REF(restart))
+	RegisterSignal(parent, COMSIG_LIVING_DEATH, PROC_REF(pause))
 
 /datum/component/manual_breathing/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_MOB_EMOTE)
@@ -58,14 +58,14 @@
 	var/next_text = initial(next_breath_type.key)
 	if(world.time > (last_breath + check_every + grace_period))
 		if(!warn_dying)
-			to_chat(C, "<span class='userdanger'>You begin to suffocate, you need to [next_text]!</span>")
+			to_chat(C, span_userdanger("You begin to suffocate, you need to [next_text]!"))
 			warn_dying = TRUE
 
 		L.applyOrganDamage(damage_rate)
 		C.losebreath += 0.8
 	else if(world.time > (last_breath + check_every))
 		if(!warn_grace)
-			to_chat(C, "<span class='danger'>You feel a need to [next_text]!</span>")
+			to_chat(C, span_danger("You feel a need to [next_text]!"))
 			warn_grace = TRUE
 
 /datum/component/manual_breathing/proc/check_added_organ(mob/who_cares, obj/item/organ/O)

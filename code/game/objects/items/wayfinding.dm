@@ -236,7 +236,7 @@
 	deltimer(expression_timer)
 	add_overlay(type)
 	if(duration)
-		expression_timer = addtimer(CALLBACK(src, .proc/set_expression, "happy"), duration, TIMER_STOPPABLE)
+		expression_timer = addtimer(CALLBACK(src, PROC_REF(set_expression), "happy"), duration, TIMER_STOPPABLE)
 
 /obj/machinery/pinpointer_dispenser/point_at(A)
 	. = ..()

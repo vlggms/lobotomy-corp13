@@ -24,7 +24,7 @@
 
 /datum/reagent/consumable/tegu/milkshake
 	name = "Milkshake"
-	description = "Milkshake! makes you crave a truck burger 'n' heap of fries."
+	description = "Milkshake! Makes you crave a truck burger 'n' heap of fries."
 	color = "#DFDFDF" // rgb: 223, 223, 223
 	taste_description = "sweet and sugary milk"
 	glass_icon_state = "milkshake"

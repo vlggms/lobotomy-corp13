@@ -33,7 +33,7 @@
 		if(G.summoner && locate(/obj/effect/proc_holder/spell/aoe_turf/timestop) in G.summoner.mind.spell_list) //It would only make sense that a person's stand would also be immune.
 			immune[G] = TRUE
 	if(start)
-		INVOKE_ASYNC(src, .proc/timestop)
+		INVOKE_ASYNC(src, PROC_REF(timestop))
 
 /obj/effect/timestop/Destroy()
 	qdel(chronofield)
@@ -79,6 +79,9 @@
 		if(M.anti_magic_check(check_anti_magic, check_holy))
 			immune[A] = TRUE
 			return
+		if(M.status_flags & GODMODE)		//Why were you ever able to timestop godmodded things?
+			immune[A] = TRUE
+			return FALSE
 	var/frozen = TRUE
 	if(isliving(A))
 		freeze_mob(A)
@@ -100,8 +103,8 @@
 	A.move_resist = INFINITY
 	global_frozen_atoms[A] = src
 	into_the_negative_zone(A)
-	RegisterSignal(A, COMSIG_MOVABLE_PRE_MOVE, .proc/unfreeze_atom)
-	RegisterSignal(A, COMSIG_ITEM_PICKUP, .proc/unfreeze_atom)
+	RegisterSignal(A, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(unfreeze_atom))
+	RegisterSignal(A, COMSIG_ITEM_PICKUP, PROC_REF(unfreeze_atom))
 
 	return TRUE
 
@@ -184,7 +187,7 @@
 	L.Stun(20, ignore_canstun = TRUE)
 	ADD_TRAIT(L, TRAIT_MUTE, TIMESTOP_TRAIT)
 	walk(L, 0) //stops them mid pathing even if they're stunimmune
-	if(isanimal(L))
+	if(isanimal(L) && !(L.status_flags & GODMODE))
 		var/mob/living/simple_animal/S = L
 		S.toggle_ai(AI_OFF)
 	if(ishostile(L))
@@ -195,7 +198,7 @@
 	L.AdjustStun(-20, ignore_canstun = TRUE)
 	REMOVE_TRAIT(L, TRAIT_MUTE, TIMESTOP_TRAIT)
 	frozen_mobs -= L
-	if(isanimal(L))
+	if(isanimal(L) && !(L.status_flags & GODMODE))
 		var/mob/living/simple_animal/S = L
 		S.toggle_ai(initial(S.AIStatus))
 

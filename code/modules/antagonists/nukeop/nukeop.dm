@@ -5,7 +5,6 @@
 	job_rank = ROLE_OPERATIVE
 	antag_hud_type = ANTAG_HUD_OPS
 	antag_hud_name = "synd"
-	antag_moodlet = /datum/mood_event/focused
 	show_to_ghosts = TRUE
 	hijack_speed = 2 //If you can't take out the station, take the shuttle instead.
 	var/datum/team/nuclear/nuke_team
@@ -34,7 +33,7 @@
 
 /datum/antagonist/nukeop/greet()
 	owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/ops.ogg',100,0, use_reverb = FALSE)
-	to_chat(owner, "<span class='notice'>You are a [nuke_team ? nuke_team.syndicate_name : "syndicate"] agent!</span>")
+	to_chat(owner, span_notice("You are a [nuke_team ? nuke_team.syndicate_name : "syndicate"] agent!"))
 	owner.announce_objectives()
 
 /datum/antagonist/nukeop/on_gain()
@@ -139,8 +138,8 @@
 
 /datum/antagonist/nukeop/get_admin_commands()
 	. = ..()
-	.["Send to base"] = CALLBACK(src,.proc/admin_send_to_base)
-	.["Tell code"] = CALLBACK(src,.proc/admin_tell_code)
+	.["Send to base"] = CALLBACK(src, PROC_REF(admin_send_to_base))
+	.["Tell code"] = CALLBACK(src, PROC_REF(admin_tell_code))
 
 /datum/antagonist/nukeop/proc/admin_send_to_base(mob/admin)
 	owner.current.forceMove(pick(GLOB.nukeop_start))
@@ -155,7 +154,7 @@
 		antag_memory += "<B>Syndicate Nuclear Bomb Code</B>: [code]<br>"
 		to_chat(owner.current, "The nuclear authorization code is: <B>[code]</B>")
 	else
-		to_chat(admin, "<span class='danger'>No valid nuke found!</span>")
+		to_chat(admin, span_danger("No valid nuke found!"))
 
 /datum/antagonist/nukeop/leader
 	name = "Nuclear Operative Leader"
@@ -198,7 +197,7 @@
 			H.put_in_hands(dukinuki, TRUE)
 		nuke_team.war_button = dukinuki
 	owner.announce_objectives()
-	addtimer(CALLBACK(src, .proc/nuketeam_name_assign), 1)
+	addtimer(CALLBACK(src, PROC_REF(nuketeam_name_assign)), 1)
 
 
 /datum/antagonist/nukeop/leader/proc/nuketeam_name_assign()
@@ -400,17 +399,17 @@
 		while(!isturf(disk_loc))
 			if(ismob(disk_loc))
 				var/mob/M = disk_loc
-				disk_report += "carried by <a href='?_src_=holder;[HrefToken()];adminplayeropts=[REF(M)]'>[M.real_name]</a> "
+				disk_report += "carried by <a href='byond://?_src_=holder;[HrefToken()];adminplayeropts=[REF(M)]'>[M.real_name]</a> "
 			if(isobj(disk_loc))
 				var/obj/O = disk_loc
 				disk_report += "in \a [O.name] "
 			disk_loc = disk_loc.loc
-		disk_report += "in [disk_loc.loc] at ([disk_loc.x], [disk_loc.y], [disk_loc.z])</td><td><a href='?_src_=holder;[HrefToken()];adminplayerobservefollow=[REF(N)]'>FLW</a></td></tr>"
+		disk_report += "in [disk_loc.loc] at ([disk_loc.x], [disk_loc.y], [disk_loc.z])</td><td><a href='byond://?_src_=holder;[HrefToken()];adminplayerobservefollow=[REF(N)]'>FLW</a></td></tr>"
 	disk_report += "</table>"
 	var/common_part = ..()
 	var/challenge_report
 	if(!QDELETED(war_button))
-		challenge_report += "<b>War not declared.</b> <a href='?_src_=holder;[HrefToken()];force_war=[REF(war_button)]'>\[Force war\]</a>"
+		challenge_report += "<b>War not declared.</b> <a href='byond://?_src_=holder;[HrefToken()];force_war=[REF(war_button)]'>\[Force war\]</a>"
 	return common_part + disk_report + challenge_report
 
 /datum/team/nuclear/is_gamemode_hero()

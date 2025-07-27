@@ -24,7 +24,7 @@
 	name = "Sith Sacred Texts (Vol. 2)"
 	martialname = "Sith Starter Secrets"
 	desc = "This book seems to crackle with electric malevolence. It depicts an old robed weirdo flinging pods at a peculiar green midget and fighting with an energy sword."
-	greet = "<span class='sciradio'>You have learned some of the ancient mysteries of the Sith! You can now move objects with the power of the Dark Side and deflect projectiles with energy swords.</span>"
+	greet = span_sciradio("You have learned some of the ancient mysteries of the Sith! You can now move objects with the power of the Dark Side and deflect projectiles with energy swords.")
 	icon_state ="bookcharge"
 	remarks = list("Oh, I'm afraid the force lightning will be quite operational when security arrives...","UNNNNNNNLIMITED POWAH!!!", "Let the hate flow through me...", "GooOood... GOOooOod...", "All is proceeding exactly as I have foreseen.", "The Dark Side is a pathway to many abilities some consider to be... unnatural...", "They will pay the price for their lack of vision...", "Execute Order 66...", "It seems it is me who is mistaken about a great. Many. Things.", "This space station is nothing compared to the power of the Dark Side...", "The tragedy of Darth Plaguis the Wise is not a tale the Jedi would tell me...", "Only now, at the end, do I understand.")
 
@@ -64,7 +64,7 @@
 	if(!.)
 		return
 	owner = H
-	RegisterSignal(H, COMSIG_MOB_ATTACK_RANGED, .proc/on_ranged_attack)
+	RegisterSignal(H, COMSIG_MOB_ATTACK_RANGED, PROC_REF(on_ranged_attack))
 
 
 /datum/martial_art/starter_sith/on_remove(mob/living/carbon/human/H)
@@ -95,7 +95,7 @@
 	if(prob(final_block_chance))
 		spark_system.start()
 		playsound(src, pick('sound/weapons/blade1.ogg'), 75, TRUE)
-		owner.visible_message("<span class='danger'>[owner] deflects [attack_text] with [src]!</span>")
+		owner.visible_message(span_danger("[owner] deflects [attack_text] with [src]!"))
 		return TRUE
 	return FALSE
 
@@ -117,7 +117,7 @@
 	if(isliving(user))
 		var/mob/living/L = user
 		L.electrocute_act(5,"Force Lightning",1,SHOCK_NOSTUN) //Snappy zappy.
-	to_chat(user,"<span class='warning'>In a flash of lightning, [src] suddenly crumbles to dust! No! The sacred texts!</span>")
+	to_chat(user,span_warning("In a flash of lightning, [src] suddenly crumbles to dust! No! The sacred texts!"))
 	playsound(src,'sound/magic/lightningbolt.ogg', 30, TRUE)
 	new /obj/effect/decal/cleanable/ash(get_turf(src))
 	qdel(src)
@@ -171,33 +171,33 @@
 
 /obj/effect/proc_holder/spell/targeted/force_lightning/cast(list/targets, mob/user = usr)
 	if(user.incapacitated())
-		to_chat(user, "<span class='warning'>You're in no condition to use [src]!</span>")
+		to_chat(user, span_warning("You're in no condition to use [src]!"))
 		return
 
 	var/mob/living/L
 	if(isliving(user))
 		L = user
 		if(!L.get_bodypart(BODY_ZONE_R_ARM) && !L.get_bodypart(BODY_ZONE_R_ARM))
-			to_chat(user, "<span class='warning'>You need at least one hand to use [src]!</span>")
+			to_chat(user, span_warning("You need at least one hand to use [src]!"))
 			return
 
 		if(iscarbon(user))
 			var/mob/living/carbon/C = user
 			if(C.handcuffed)
-				to_chat(user, "<span class='warning'>You can't use [src] while handcuffed!</span>")
+				to_chat(user, span_warning("You can't use [src] while handcuffed!"))
 				return
 
 	existing_targets = list()
 	existing_targets += user
 
 	if(!targets.len)
-		to_chat(user, "<span class='warning'>No target found in range!</span>")
+		to_chat(user, span_warning("No target found in range!"))
 		return
 	spark_setup()
 	user.say(pick("It's treason then!", "So be it... Jedi.", "NO. NO. NO... <i>YOU</i> WILL DIE!!", "You underestimate the power of the Dark Side!", "My hate has made me powerful...","I AM THE SENATE!!", "If you will not be turned... you will be destroyed!!", "You will pay the price for your lack of vision!!", "Young fool, only now, at the end, do you understand.", "Your feeble skills are no match for the power of the Dark Side!", "POWAAHHH!!", "UNNNNLIMITEDDDD POWAHHHH!!", "And now, young Skywalker, you will die."))
 	var/mob/living/target = targets[1]
 	if(get_dist(user,target)>range)
-		to_chat(user, "<span class='warning'>[target.p_theyre(TRUE)] too far away!</span>")
+		to_chat(user, span_warning("[target.p_theyre(TRUE)] too far away!"))
 		return
 
 	playsound(get_turf(user), 'sound/magic/lightningbolt.ogg', 50, TRUE)
@@ -231,16 +231,16 @@
 			S.spark_system.start()
 			playsound(S, pick('sound/weapons/blade1.ogg'), 75, TRUE)
 			if(prob(final_block_chance * FORCELIGHTNING_REFLECT_MULTIPLIER)) //This is a % of your final block chance; on a success we reflect instead of just deflect.
-				current.visible_message("<span class='warning'>[current] reflects the [src] with [S] back at [origin]!</span>", "<span class='userdanger'>You reflect the [src] with [S] back at [origin]!</span>")
+				current.visible_message(span_warning("[current] reflects the [src] with [S] back at [origin]!"), span_userdanger("You reflect the [src] with [S] back at [origin]!"))
 				existing_targets -= origin //So we can always reflect back at the source.
 				Bolt(current,origin,bolt_energy,bounces,bolt_range, user)
 				return
 			else
-				current.visible_message("<span class='warning'>[current] deflects the [src] with [S], remaining unharmed!</span>", "<span class='userdanger'>You deflect the [src] with [S], remaining unharmed!</span>")
+				current.visible_message(span_warning("[current] deflects the [src] with [S], remaining unharmed!"), span_userdanger("You deflect the [src] with [S], remaining unharmed!"))
 				return
 
 	if(current.anti_magic_check())
-		current.visible_message("<span class='warning'>[current] absorbs the [src], remaining unharmed!</span>", "<span class='userdanger'>You absorb the [src], remaining unharmed!</span>")
+		current.visible_message(span_warning("[current] absorbs the [src], remaining unharmed!"), span_userdanger("You absorb the [src], remaining unharmed!"))
 	else
 		current.electrocute_act(bolt_energy,"Force Lightning",1,bolt_flags)
 		if(!iscarbon(current)) //So we affect borgs and simple mobs properly.

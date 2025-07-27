@@ -243,29 +243,6 @@
 	// Squash the plant on slip.
 	G.squash(C)
 
-/datum/plant_gene/trait/slip
-	// Makes plant slippery, unless it has a grown-type trash. Then the trash gets slippery.
-	// Applies other trait effects (teleporting, etc) to the target by on_slip.
-	name = "Slippery Skin"
-	rate = 1.6
-	examine_line = "<span class='info'>It has a very slippery skin.</span>"
-
-/datum/plant_gene/trait/slip/on_new(obj/item/food/grown/G, newloc)
-	..()
-	if(istype(G) && ispath(G.trash_type, /obj/item/grown))
-		return
-	var/obj/item/seeds/seed = G.seed
-	var/stun_len = seed.potency * rate
-
-	if(!istype(G, /obj/item/grown/bananapeel) && (!G.reagents || !G.reagents.has_reagent(/datum/reagent/lube)))
-		stun_len /= 3
-
-	G.AddComponent(/datum/component/slippery, min(stun_len,140), NONE, CALLBACK(src, .proc/handle_slip, G))
-
-/datum/plant_gene/trait/slip/proc/handle_slip(obj/item/food/grown/G, mob/M)
-	for(var/datum/plant_gene/trait/T in G.seed.genes)
-		T.on_slip(G, M)
-
 /datum/plant_gene/trait/cell_charge
 	// Cell recharging trait. Charges all mob's power cells to (potency*rate)% mark when eaten.
 	// Generates sparks on squash.
@@ -366,32 +343,6 @@
 	//gay tide station pride
 	name = "Pink Bioluminescence"
 	glow_color = "#FFB3DA"
-
-
-
-/datum/plant_gene/trait/teleport
-	// Makes plant teleport people when squashed or slipped on.
-	// Teleport radius is calculated as max(round(potency*rate), 1)
-	name = "Bluespace Activity"
-	rate = 0.1
-
-/datum/plant_gene/trait/teleport/on_squash(obj/item/food/grown/G, atom/target)
-	if(isliving(target))
-		var/teleport_radius = max(round(G.seed.potency / 10), 1)
-		var/turf/T = get_turf(target)
-		new /obj/effect/decal/cleanable/molten_object(T) //Leave a pile of goo behind for dramatic effect...
-		do_teleport(target, T, teleport_radius, channel = TELEPORT_CHANNEL_BLUESPACE)
-
-/datum/plant_gene/trait/teleport/on_slip(obj/item/food/grown/G, mob/living/carbon/C)
-	var/teleport_radius = max(round(G.seed.potency / 10), 1)
-	var/turf/T = get_turf(C)
-	to_chat(C, "<span class='warning'>You slip through spacetime!</span>")
-	do_teleport(C, T, teleport_radius, channel = TELEPORT_CHANNEL_BLUESPACE)
-	if(prob(50))
-		do_teleport(G, T, teleport_radius, channel = TELEPORT_CHANNEL_BLUESPACE)
-	else
-		new /obj/effect/decal/cleanable/molten_object(T) //Leave a pile of goo behind for dramatic effect...
-		qdel(G)
 
 /**
  * A plant trait that causes the plant's capacity to double.

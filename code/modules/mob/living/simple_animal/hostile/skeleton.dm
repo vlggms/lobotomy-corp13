@@ -23,6 +23,7 @@
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
 	attack_sound = 'sound/hallucinations/growl1.ogg'
+	attack_vis_effect = ATTACK_EFFECT_CLAW
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	unsuitable_atmos_damage = 10
 	robust_searching = 1
@@ -30,7 +31,7 @@
 	faction = list("skeleton")
 	see_in_dark = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-	deathmessage = "collapses into a pile of bones!"
+	death_message = "collapses into a pile of bones!"
 	del_on_death = 1
 	loot = list(/obj/effect/decal/remains/human)
 
@@ -47,7 +48,7 @@
 	weather_immunities = list("snow")
 	melee_damage_lower = 17
 	melee_damage_upper = 20
-	deathmessage = "collapses into a pile of bones, its gear falling to the floor!"
+	death_message = "collapses into a pile of bones, its gear falling to the floor!"
 	loot = list(/obj/effect/decal/remains/human,
 				/obj/item/spear,
 				/obj/item/clothing/shoes/winterboots,
@@ -70,7 +71,7 @@
 	obj_damage = 50
 	melee_damage_lower = 25
 	melee_damage_upper = 30
-	deathmessage = "collapses into a pile of bones, its gear clanging as it hits the ground!"
+	death_message = "collapses into a pile of bones, its gear clanging as it hits the ground!"
 	loot = list(/obj/effect/decal/remains/human,
 				/obj/item/clothing/suit/armor/riot/chaplain,
 				/obj/item/clothing/head/helmet/chaplain,
@@ -98,10 +99,7 @@
 	melee_damage_lower = 15
 	melee_damage_upper = 20
 	light_color = LIGHT_COLOR_PURPLE
-	attack_verb_continuous = "slashes"
-	attack_verb_simple = "slash"
-	attack_sound = 'sound/hallucinations/growl1.ogg'
-	deathmessage = "collapses into a pile of bones, their suit dissolving among the plasma!"
+	death_message = "collapses into a pile of bones, their suit dissolving among the plasma!"
 	loot = list(/obj/effect/decal/remains/plasma)
 
 /mob/living/simple_animal/hostile/skeleton/plasmaminer/jackhammer
@@ -117,6 +115,7 @@
 	attack_verb_continuous = "blasts"
 	attack_verb_simple = "blast"
 	attack_sound = 'sound/weapons/sonic_jackhammer.ogg'
+	attack_vis_effect = null // jackhammer moment
 	loot = list(/obj/effect/decal/remains/plasma, /obj/item/pickaxe/drill/jackhammer)
 
 /mob/living/simple_animal/hostile/skeleton/plasmaminer/Initialize()

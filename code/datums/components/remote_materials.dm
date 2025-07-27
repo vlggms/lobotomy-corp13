@@ -26,12 +26,12 @@ handles linking back and forth.
 	src.allow_standalone = allow_standalone
 	src.mat_container_flags = mat_container_flags
 
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, .proc/OnAttackBy)
-	RegisterSignal(parent, COMSIG_ATOM_TOOL_ACT(TOOL_MULTITOOL), .proc/OnMultitool)
+	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(OnAttackBy))
+	RegisterSignal(parent, COMSIG_ATOM_TOOL_ACT(TOOL_MULTITOOL), PROC_REF(OnMultitool))
 
 	var/turf/T = get_turf(parent)
 	if (force_connect || (mapload && is_station_level(T.z)))
-		addtimer(CALLBACK(src, .proc/LateInitialize))
+		addtimer(CALLBACK(src, PROC_REF(LateInitialize)))
 	else if (allow_standalone)
 		_MakeLocal()
 
@@ -103,7 +103,7 @@ handles linking back and forth.
 	var/obj/item/multitool/M = I
 	if (!QDELETED(M.buffer) && istype(M.buffer, /obj/machinery/ore_silo))
 		if (silo == M.buffer)
-			to_chat(user, "<span class='warning'>[parent] is already connected to [silo]!</span>")
+			to_chat(user, span_warning("[parent] is already connected to [silo]!"))
 			return COMPONENT_BLOCK_TOOL_ATTACK
 		if (silo)
 			silo.connected -= src
@@ -115,7 +115,7 @@ handles linking back and forth.
 		silo.connected += src
 		silo.updateUsrDialog()
 		mat_container = silo.GetComponent(/datum/component/material_container)
-		to_chat(user, "<span class='notice'>You connect [parent] to [silo] from the multitool's buffer.</span>")
+		to_chat(user, span_notice("You connect [parent] to [silo] from the multitool's buffer."))
 		return COMPONENT_BLOCK_TOOL_ATTACK
 
 /datum/component/remote_materials/proc/on_hold()

@@ -24,7 +24,7 @@
 	var/check = FALSE
 	if(ismob(target))
 		var/mob/living/mobster = target
-		if(!mobster.mob_biotypes & MOB_ROBOTIC)
+		if(!(mobster.mob_biotypes & MOB_ROBOTIC))
 			return FALSE
 		else
 			check = TRUE
@@ -171,7 +171,14 @@
 	var/list/edge_turfs = list()
 	var/list/turfs = list()
 	var/turf/centre
-	var/static/list/blacklisted_turfs = typecacheof(list(/turf/open/indestructible,/turf/closed/indestructible,/turf/open/space,/turf/open/lava,/turf/open/chasm))
+	/// Static blacklist of turfs we can't spread to.
+	var/static/list/blacklisted_turfs = typecacheof(list(
+		/turf/open/indestructible,
+		/turf/closed/indestructible,
+		/turf/open/space,
+		/turf/open/lava,
+		/turf/open/chasm,
+	))
 	var/spread_per_sec = 6
 
 

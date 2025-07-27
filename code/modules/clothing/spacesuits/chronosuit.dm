@@ -75,8 +75,8 @@
 	switch(severity)
 		if(1)
 			if(activated && user && ishuman(user) && (user.wear_suit == src))
-				to_chat(user, "<span class='danger'>E:FATAL:RAM_READ_FAIL\nE:FATAL:STACK_EMPTY\nE:FATAL:READ_NULL_POINT\nE:FATAL:PWR_BUS_OVERLOAD</span>")
-				to_chat(user, "<span class='userdanger'>An electromagnetic pulse disrupts your [name] and violently tears you out of time-bluespace!</span>")
+				to_chat(user, span_danger("E:FATAL:RAM_READ_FAIL\nE:FATAL:STACK_EMPTY\nE:FATAL:READ_NULL_POINT\nE:FATAL:PWR_BUS_OVERLOAD"))
+				to_chat(user, span_userdanger("An electromagnetic pulse disrupts your [name] and violently tears you out of time-bluespace!"))
 				user.emote("scream")
 			deactivate(1, 1)
 
@@ -128,7 +128,7 @@
 		for(var/exposed_item in exposed)
 			var/obj/item/exposed_I = exposed_item
 			if(exposed_I && !(exposed_I.type in chronosafe_items) && user.dropItemToGround(exposed_I))
-				to_chat(user, "<span class='notice'>Your [exposed_I.name] got left behind.</span>")
+				to_chat(user, span_notice("Your [exposed_I.name] got left behind."))
 
 		user.extinguish_mob()
 
@@ -141,12 +141,12 @@
 		user.Stun(INFINITY)
 
 		animate(user, color = "#00ccee", time = 3)
-		phase_timer_id = addtimer(CALLBACK(src, .proc/phase_2, user, to_turf, phase_in_ds), 3, TIMER_STOPPABLE)
+		phase_timer_id = addtimer(CALLBACK(src, PROC_REF(phase_2), user, to_turf, phase_in_ds), 3, TIMER_STOPPABLE)
 
 /obj/item/clothing/suit/space/chronos/proc/phase_2(mob/living/carbon/human/user, turf/to_turf, phase_in_ds)
 	if(teleporting && activated && user)
 		animate(user, color = list(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,1, 1,1,1,0), time = 2)
-		phase_timer_id = addtimer(CALLBACK(src, .proc/phase_3, user, to_turf, phase_in_ds), 2, TIMER_STOPPABLE)
+		phase_timer_id = addtimer(CALLBACK(src, PROC_REF(phase_3), user, to_turf, phase_in_ds), 2, TIMER_STOPPABLE)
 	else
 		finish_chronowalk(user, to_turf)
 
@@ -154,14 +154,14 @@
 	if(teleporting && activated && user)
 		user.forceMove(to_turf)
 		animate(user, color = "#00ccee", time = phase_in_ds)
-		phase_timer_id = addtimer(CALLBACK(src, .proc/phase_4, user, to_turf), phase_in_ds, TIMER_STOPPABLE)
+		phase_timer_id = addtimer(CALLBACK(src, PROC_REF(phase_4), user, to_turf), phase_in_ds, TIMER_STOPPABLE)
 	else
 		finish_chronowalk(user, to_turf)
 
 /obj/item/clothing/suit/space/chronos/proc/phase_4(mob/living/carbon/human/user, turf/to_turf)
 	if(teleporting && activated && user)
 		animate(user, color = "#ffffff", time = 3)
-		phase_timer_id = addtimer(CALLBACK(src, .proc/finish_chronowalk, user, to_turf), 3, TIMER_STOPPABLE)
+		phase_timer_id = addtimer(CALLBACK(src, PROC_REF(finish_chronowalk), user, to_turf), 3, TIMER_STOPPABLE)
 	else
 		finish_chronowalk(user, to_turf)
 

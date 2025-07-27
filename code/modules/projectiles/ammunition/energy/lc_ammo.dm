@@ -19,3 +19,25 @@
 	fire_sound = 'sound/weapons/rabbitgun.ogg'
 	select_name = "pale"
 	select_icon_name = "disable"
+
+/obj/item/ammo_casing/energy/laser/red/shotgun
+	pellets = 3
+	variance = 16
+
+/obj/item/ammo_casing/energy/laser/red/beam
+	projectile_type = /obj/projectile/beam/laser/red
+
+/obj/item/ammo_casing/energy/laser/red/heavy
+	projectile_type = /obj/projectile/beam/laser/heavylaser/red
+	fire_sound = 'sound/weapons/lasercannonfire.ogg'
+
+/obj/item/ammo_casing/energy/laser/red/iff
+	projectile_type = /obj/projectile/beam/laser/iff
+
+
+/obj/item/ammo_casing/energy/laser/white/iff
+	projectile_type = /obj/projectile/beam/laser/iff/white
+
+
+/obj/item/ammo_casing/energy/laser/black/iff
+	projectile_type = /obj/projectile/beam/laser/iff/black

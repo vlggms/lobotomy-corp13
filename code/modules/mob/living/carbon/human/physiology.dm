@@ -28,11 +28,14 @@
 
 	var/hunger_mod = 1		//% of hunger rate taken per tick.
 
-	var/work_success_mod = 1 // %dditive Modifier to the success rate of works
+	var/work_success_mod = 1 // Multiplicative modifier to the success rate of works
 	var/instinct_success_mod = 0 // Additive Modifier to the success rate of Instinct works
 	var/insight_success_mod = 0 // Additive Modifier to the success rate of Insight works
 	var/attachment_success_mod = 0 // Additive Modifier to the success rate of Attachment works
 	var/repression_success_mod = 0 // Additive Modifier to the success rate of Repression works
+
+	var/work_speed_mod = 1 // this is the number that workspeed is divided by.
+	var/fear_mod = 0 // plus or minus agent level used for fear calculations
 
 /datum/physiology/New()
 	armor = new

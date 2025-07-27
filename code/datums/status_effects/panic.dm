@@ -16,7 +16,6 @@
 	. = ..()
 	owner.cut_overlay(mutable_appearance('icons/effects/32x64.dmi', "panicked", -ABOVE_MOB_LAYER))
 
-
 /datum/status_effect/panicked_lvl_0
 	id = "calm"
 	status_type = STATUS_EFFECT_UNIQUE
@@ -30,7 +29,6 @@
 /datum/status_effect/panicked_lvl_0/on_remove()
 	. = ..()
 	owner.cut_overlay(mutable_appearance('icons/effects/32x64.dmi', "calm", -ABOVE_MOB_LAYER))
-
 
 /datum/status_effect/panicked_lvl_1
 	id = "nervous"
@@ -46,7 +44,6 @@
 	. = ..()
 	owner.cut_overlay(mutable_appearance('icons/effects/32x64.dmi', "nervous", -ABOVE_MOB_LAYER))
 
-
 /datum/status_effect/panicked_lvl_2
 	id = "terrified"
 	status_type = STATUS_EFFECT_UNIQUE
@@ -60,7 +57,6 @@
 /datum/status_effect/panicked_lvl_2/on_remove()
 	. = ..()
 	owner.cut_overlay(mutable_appearance('icons/effects/32x64.dmi', "terrified", -ABOVE_MOB_LAYER))
-
 
 /datum/status_effect/panicked_lvl_3
 	id = "hopeless"
@@ -76,7 +72,6 @@
 	. = ..()
 	owner.cut_overlay(mutable_appearance('icons/effects/32x64.dmi', "hopeless", -ABOVE_MOB_LAYER))
 
-
 /datum/status_effect/panicked_lvl_4
 	id = "overwhelmed"
 	status_type = STATUS_EFFECT_UNIQUE
@@ -91,7 +86,6 @@
 	. = ..()
 	owner.cut_overlay(mutable_appearance('icons/effects/32x64.dmi', "overwhelmed", -ABOVE_MOB_LAYER))
 
-
 /datum/status_effect/panicked_lvl_5
 	id = "reverence"
 	status_type = STATUS_EFFECT_UNIQUE
@@ -105,7 +99,6 @@
 /datum/status_effect/panicked_lvl_5/on_remove()
 	. = ..()
 	owner.cut_overlay(mutable_appearance('icons/effects/32x64.dmi', "reverence", -ABOVE_MOB_LAYER))
-
 
 /datum/status_effect/panicked_type
 	id = "panic_state_base"
@@ -122,8 +115,8 @@
 	owner.cut_overlay(mutable_appearance('icons/effects/effects.dmi', icon, -ABOVE_MOB_LAYER))
 
 /datum/status_effect/panicked_type/be_replaced()
-	. = ..()
 	owner.cut_overlay(mutable_appearance('icons/effects/effects.dmi', icon, -ABOVE_MOB_LAYER))
+	return ..()
 
 /datum/status_effect/panicked_type/murder
 	icon = "murder"

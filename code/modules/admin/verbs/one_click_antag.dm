@@ -14,16 +14,16 @@
 /datum/admins/proc/one_click_antag()
 
 	var/dat = {"
-		<a href='?src=[REF(src)];[HrefToken()];makeAntag=traitors'>Make Traitors</a><br>
-		<a href='?src=[REF(src)];[HrefToken()];makeAntag=changelings'>Make Changelings</a><br>
-		<a href='?src=[REF(src)];[HrefToken()];makeAntag=revs'>Make Revs</a><br>
-		<a href='?src=[REF(src)];[HrefToken()];makeAntag=cult'>Make Cult</a><br>
-		<a href='?src=[REF(src)];[HrefToken()];makeAntag=blob'>Make Blob</a><br>
-		<a href='?src=[REF(src)];[HrefToken()];makeAntag=wizard'>Make Wizard (Requires Ghosts)</a><br>
-		<a href='?src=[REF(src)];[HrefToken()];makeAntag=nukeops'>Make Nuke Team (Requires Ghosts)</a><br>
-		<a href='?src=[REF(src)];[HrefToken()];makeAntag=centcom'>Make CentCom Response Team (Requires Ghosts)</a><br>
-		<a href='?src=[REF(src)];[HrefToken()];makeAntag=abductors'>Make Abductor Team (Requires Ghosts)</a><br>
-		<a href='?src=[REF(src)];[HrefToken()];makeAntag=revenant'>Make Revenant (Requires Ghost)</a><br>
+		<a href='byond://?src=[REF(src)];[HrefToken()];makeAntag=traitors'>Make Traitors</a><br>
+		<a href='byond://?src=[REF(src)];[HrefToken()];makeAntag=changelings'>Make Changelings</a><br>
+		<a href='byond://?src=[REF(src)];[HrefToken()];makeAntag=revs'>Make Revs</a><br>
+		<a href='byond://?src=[REF(src)];[HrefToken()];makeAntag=cult'>Make Cult</a><br>
+		<a href='byond://?src=[REF(src)];[HrefToken()];makeAntag=blob'>Make Blob</a><br>
+		<a href='byond://?src=[REF(src)];[HrefToken()];makeAntag=wizard'>Make Wizard (Requires Ghosts)</a><br>
+		<a href='byond://?src=[REF(src)];[HrefToken()];makeAntag=nukeops'>Make Nuke Team (Requires Ghosts)</a><br>
+		<a href='byond://?src=[REF(src)];[HrefToken()];makeAntag=centcom'>Make CentCom Response Team (Requires Ghosts)</a><br>
+		<a href='byond://?src=[REF(src)];[HrefToken()];makeAntag=abductors'>Make Abductor Team (Requires Ghosts)</a><br>
+		<a href='byond://?src=[REF(src)];[HrefToken()];makeAntag=revenant'>Make Revenant (Requires Ghost)</a><br>
 		"}
 
 	var/datum/browser/popup = new(usr, "oneclickantag", "Quick-Create Antagonist", 400, 400)
@@ -314,9 +314,9 @@
 		ertemplate = new /datum/ert/centcom_official
 
 	var/list/settings = list(
-		"preview_callback" = CALLBACK(src, .proc/makeERTPreviewIcon),
+		"preview_callback" = CALLBACK(src, PROC_REF(makeERTPreviewIcon)),
 		"mainsettings" = list(
-		"template" = list("desc" = "Template", "callback" = CALLBACK(src, .proc/makeERTTemplateModified), "type" = "datum", "path" = "/datum/ert", "subtypesonly" = TRUE, "value" = ertemplate.type),
+		"template" = list("desc" = "Template", "callback" = CALLBACK(src, PROC_REF(makeERTTemplateModified)), "type" = "datum", "path" = "/datum/ert", "subtypesonly" = TRUE, "value" = ertemplate.type),
 		"teamsize" = list("desc" = "Team Size", "type" = "number", "value" = ertemplate.teamsize),
 		"mission" = list("desc" = "Mission", "type" = "string", "value" = ertemplate.mission),
 		"polldesc" = list("desc" = "Ghost poll description", "type" = "string", "value" = ertemplate.polldesc),
@@ -396,7 +396,7 @@
 				var/mob/dead/observer/potential_leader = i
 				candidate_living_exps[potential_leader] = potential_leader.client?.get_exp_living(TRUE)
 
-			candidate_living_exps = sortList(candidate_living_exps, cmp=/proc/cmp_numeric_dsc)
+			candidate_living_exps = sortList(candidate_living_exps, cmp=GLOBAL_PROC_REF(cmp_numeric_dsc))
 			if(candidate_living_exps.len > ERT_EXPERIENCED_LEADER_CHOOSE_TOP)
 				candidate_living_exps = candidate_living_exps.Cut(ERT_EXPERIENCED_LEADER_CHOOSE_TOP+1) // pick from the top ERT_EXPERIENCED_LEADER_CHOOSE_TOP contenders in playtime
 			earmarked_leader = pick(candidate_living_exps)
@@ -417,7 +417,7 @@
 			chosen_candidate.client.prefs.copy_to(ert_operative)
 			ert_operative.key = chosen_candidate.key
 
-			if(ertemplate.enforce_human || !ert_operative.dna.species.changesource_flags & ERT_SPAWN) // Don't want any exploding plasmemes
+			if(ertemplate.enforce_human || !(ert_operative.dna.species.changesource_flags & ERT_SPAWN)) // Don't want any exploding plasmemes
 				ert_operative.set_species(/datum/species/human)
 
 			//Give antag datum

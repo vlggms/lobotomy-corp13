@@ -18,7 +18,7 @@
 	var/scrubbing = SCRUBBING //0 = siphoning, 1 = scrubbing
 
 	var/filter_types = list(/datum/gas/carbon_dioxide)
-	var/volume_rate = 400
+	var/volume_rate = 200
 	var/widenet = 0 //is this scrubber acting on the 3x3 area around it.
 	var/list/turf/adjacent_turfs = list()
 
@@ -136,20 +136,20 @@
 	check_turfs()
 	..()
 
-/obj/machinery/atmospherics/components/unary/vent_scrubber/process_atmos(delta_time)
+/obj/machinery/atmospherics/components/unary/vent_scrubber/process_atmos()
 	..()
 	if(welded || !is_operational)
 		return FALSE
 	if(!nodes[1] || !on)
 		on = FALSE
 		return FALSE
-	scrub(loc, delta_time)
+	scrub(loc)
 	if(widenet)
 		for(var/turf/tile in adjacent_turfs)
-			scrub(tile, delta_time)
+			scrub(tile)
 	return TRUE
 
-/obj/machinery/atmospherics/components/unary/vent_scrubber/proc/scrub(turf/tile, delta_time = 0.5)
+/obj/machinery/atmospherics/components/unary/vent_scrubber/proc/scrub(turf/tile)
 	if(!istype(tile))
 		return FALSE
 	var/datum/gas_mixture/environment = tile.return_air()
@@ -161,7 +161,7 @@
 
 	if(scrubbing & SCRUBBING)
 		if(length(env_gases & filter_types))
-			var/transfer_moles = min(1, volume_rate * delta_time / environment.volume)*environment.total_moles()
+			var/transfer_moles = min(1, volume_rate / environment.volume) * environment.total_moles()
 
 			//Take a gas sample
 			var/datum/gas_mixture/removed = tile.remove_air(transfer_moles)
@@ -191,7 +191,7 @@
 
 	else //Just siphoning all air
 
-		var/transfer_moles = environment.total_moles() * (volume_rate * delta_time / environment.volume)
+		var/transfer_moles = environment.total_moles() * (volume_rate / environment.volume)
 
 		var/datum/gas_mixture/removed = tile.remove_air(transfer_moles)
 
@@ -269,13 +269,13 @@
 	..()
 	if(!I.tool_start_check(user, amount=0))
 		return TRUE
-	to_chat(user, "<span class='notice'>Now welding the scrubber.</span>")
+	to_chat(user, span_notice("Now welding the scrubber."))
 	if(I.use_tool(src, user, 20, volume=50))
 		if(!welded)
-			user.visible_message("<span class='notice'>[user] welds the scrubber shut.</span>","<span class='notice'>You weld the scrubber shut.</span>", "<span class='hear'>You hear welding.</span>")
+			user.visible_message(span_notice("[user] welds the scrubber shut."),span_notice("You weld the scrubber shut."), span_hear("You hear welding."))
 			welded = TRUE
 		else
-			user.visible_message("<span class='notice'>[user] unwelds the scrubber.</span>", "<span class='notice'>You unweld the scrubber.</span>", "<span class='hear'>You hear welding.</span>")
+			user.visible_message(span_notice("[user] unwelds the scrubber."), span_notice("You unweld the scrubber."), span_hear("You hear welding."))
 			welded = FALSE
 		update_icon()
 		pipe_vision_img = image(src, loc, layer = ABOVE_HUD_LAYER, dir = dir)
@@ -287,7 +287,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/can_unwrench(mob/user)
 	. = ..()
 	if(. && on && is_operational)
-		to_chat(user, "<span class='warning'>You cannot unwrench [src], turn it off first!</span>")
+		to_chat(user, span_warning("You cannot unwrench [src], turn it off first!"))
 		return FALSE
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/examine(mob/user)
@@ -301,7 +301,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/attack_alien(mob/user)
 	if(!welded || !(do_after(user, 20, target = src)))
 		return
-	user.visible_message("<span class='warning'>[user] furiously claws at [src]!</span>", "<span class='notice'>You manage to clear away the stuff blocking the scrubber.</span>", "<span class='hear'>You hear loud scraping noises.</span>")
+	user.visible_message(span_warning("[user] furiously claws at [src]!"), span_notice("You manage to clear away the stuff blocking the scrubber."), span_hear("You hear loud scraping noises."))
 	welded = FALSE
 	update_icon()
 	pipe_vision_img = image(src, loc, layer = ABOVE_HUD_LAYER, dir = dir)

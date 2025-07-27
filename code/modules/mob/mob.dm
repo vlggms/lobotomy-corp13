@@ -37,6 +37,8 @@
 	qdel(hud_used)
 	QDEL_LIST(client_colours)
 	ghostize()
+	for(var/action in actions)
+		QDEL_NULL(action)
 	return ..()
 
 
@@ -455,8 +457,8 @@
 		if(isnull(client.recent_examines[A]) || client.recent_examines[A] < world.time)
 			result = A.examine(src)
 			client.recent_examines[A] = world.time + EXAMINE_MORE_TIME // set the value to when the examine cooldown ends
-			RegisterSignal(A, COMSIG_PARENT_QDELETING, .proc/clear_from_recent_examines, override=TRUE) // to flush the value if deleted early
-			addtimer(CALLBACK(src, .proc/clear_from_recent_examines, A), EXAMINE_MORE_TIME)
+			RegisterSignal(A, COMSIG_PARENT_QDELETING, PROC_REF(clear_from_recent_examines), override=TRUE) // to flush the value if deleted early
+			addtimer(CALLBACK(src, PROC_REF(clear_from_recent_examines), A), EXAMINE_MORE_TIME)
 			handle_eye_contact(A)
 		else
 			result = A.examine_more(src)
@@ -515,7 +517,7 @@
 	/// our current intent, so we can go back to it after touching
 	var/previous_intent = a_intent
 	a_intent = INTENT_HELP
-	INVOKE_ASYNC(examined_thing, /atom/proc/attack_hand, src)
+	INVOKE_ASYNC(examined_thing, TYPE_PROC_REF(/atom, attack_hand), src)
 	a_intent = previous_intent
 	return TRUE
 
@@ -548,11 +550,11 @@
 	// check to see if their face is blocked or, if not, a signal blocks it
 	if(examined_mob.is_face_visible() && SEND_SIGNAL(src, COMSIG_MOB_EYECONTACT, examined_mob, TRUE) != COMSIG_BLOCK_EYECONTACT)
 		var/msg = "<span class='smallnotice'>You make eye contact with [examined_mob].</span>"
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, src, msg), 3) // so the examine signal has time to fire and this will print after
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), src, msg), 3) // so the examine signal has time to fire and this will print after
 
 	if(is_face_visible() && SEND_SIGNAL(examined_mob, COMSIG_MOB_EYECONTACT, src, FALSE) != COMSIG_BLOCK_EYECONTACT)
 		var/msg = "<span class='smallnotice'>[src] makes eye contact with you.</span>"
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, examined_mob, msg), 3)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), examined_mob, msg), 3)
 
 /**
  * Point at an atom
@@ -699,10 +701,16 @@
 		to_chat(usr, "<span class='boldnotice'>You must be dead to use this!</span>")
 		return
 
+	if(length(GLOB.clients) > 30 && LAZYLEN(SSlobotomy_corp.current_ordeals))
+		var/list/ordeal_names = list()
+		for(var/datum/ordeal/O in SSlobotomy_corp.current_ordeals)
+			ordeal_names += O.name
+		to_chat(usr, span_boldnotice("You may not respawn while ordeal[length(ordeal_names) > 1 ? "s" : ""] [length(ordeal_names) > 1 ? "are" : "is"] in progress! Currently running ordeal[length(ordeal_names) > 1 ? "s" : ""]: [english_list(ordeal_names)]."))
+		return
+
 	if(mind)
-		var/timediff = world.time - mind.last_death
-		if(timediff < CONFIG_GET(number/respawn_delay))
-			to_chat(usr, "<span class='boldnotice'>You must wait for [round((CONFIG_GET(number/respawn_delay) - timediff)/10)] more seconds before respawning!</span>")
+		if(mind.respawn_cooldown > world.time)
+			to_chat(usr, "<span class='boldnotice'>You must wait for [round((mind.respawn_cooldown - world.time)/10)] more seconds before respawning!</span>")
 			return
 
 	log_game("[key_name(usr)] respawned.")

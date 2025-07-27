@@ -122,12 +122,12 @@
 			if(0 to 200)
 				fail_tick += (2*(fail_chance))
 				M.rad_act(40)
-				to_chat(M, "<span class='userdanger'>Your [name] feels warmer.</span>")
+				to_chat(M, span_userdanger("Your [name] feels warmer."))
 			if(201 to INFINITY)
 				SSobj.processing.Remove(src)
 				M.rad_act(80)
 				reactor_overloaded = TRUE
-				to_chat(M, "<span class='userdanger'>Your [name]'s reactor overloads!</span>")
+				to_chat(M, span_userdanger("Your [name]'s reactor overloads!"))
 
 /obj/item/gun/energy/e_gun/nuclear/emp_act(severity)
 	. = ..()
@@ -147,22 +147,3 @@
 				. += "[icon_state]_fail_1"
 			if(151 to INFINITY)
 				. += "[icon_state]_fail_2"
-
-/obj/item/gun/energy/e_gun/rabbit
-	name = "R-Corporation Lawnmower 3000"
-	desc = "An energy gun produced specifically to suppress threats within Lobotomy Corporation, it has four firing modes to switch between."
-	icon_state = "rabbit"
-	cell_type = /obj/item/stock_parts/cell/infinite
-	ammo_type = list(
-		/obj/item/ammo_casing/energy/laser/red,
-		/obj/item/ammo_casing/energy/laser/white,
-		/obj/item/ammo_casing/energy/laser/black,
-		/obj/item/ammo_casing/energy/laser/pale
-		)
-	can_charge = FALSE
-	weapon_weight = WEAPON_HEAVY // No dual wielding
-	pin = /obj/item/firing_pin/implant/mindshield
-
-/obj/item/gun/energy/e_gun/rabbit/Initialize()
-	. = ..()
-	AddComponent(/datum/component/automatic_fire, 0.16 SECONDS)

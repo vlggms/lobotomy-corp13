@@ -38,7 +38,7 @@
 	minbodytemp = 0
 	maxbodytemp = 1200
 
-	deathmessage = "is hacked into pieces!"
+	death_message = "is hacked into pieces!"
 	loot = list(/obj/item/stack/sheet/mineral/wood)
 	gold_core_spawnable = HOSTILE_SPAWN
 	del_on_death = 1
@@ -67,8 +67,8 @@
 		var/mob/living/carbon/C = target
 		if(prob(15))
 			C.Paralyze(60)
-			C.visible_message("<span class='danger'>\The [src] knocks down \the [C]!</span>", \
-					"<span class='userdanger'>\The [src] knocks you down!</span>")
+			C.visible_message(span_danger("\The [src] knocks down \the [C]!"), \
+					span_userdanger("\The [src] knocks you down!"))
 
 /mob/living/simple_animal/hostile/tree/add_cell_sample()
 	AddElement(/datum/element/swabable, CELL_LINE_TABLE_PINE, CELL_VIRUS_TABLE_GENERIC_MOB, 1, 5)
@@ -94,7 +94,7 @@
 /mob/living/simple_animal/hostile/tree/festivus/attack_hand(mob/living/carbon/human/M)
 	. = ..()
 	if(M.a_intent == "help")
-		visible_message("<span class='warning'>[src] crackles with static electricity!</span>")
+		visible_message(span_warning("[src] crackles with static electricity!"))
 		for(var/obj/item/stock_parts/cell/C in range(2, get_turf(src)))
 			C.give(75)
 		for(var/mob/living/silicon/robot/R in range(2, get_turf(src)))

@@ -12,7 +12,7 @@
 /datum/smite/berforate/effect(client/user, mob/living/target)
 	. = ..()
 	if (!iscarbon(target))
-		to_chat(user, "<span class='warning'>This must be used on a carbon mob.</span>", confidential = TRUE)
+		to_chat(user, span_warning("This must be used on a carbon mob."), confidential = TRUE)
 		return
 
 	var/repetitions
@@ -46,7 +46,7 @@
 			var/shots_this_limb = 0
 			for (var/_iter_turf in shuffle(open_adj_turfs))
 				var/turf/iter_turf = _iter_turf
-				addtimer(CALLBACK(GLOBAL_PROC, .proc/firing_squad, dude, iter_turf, limb.body_zone, wound_bonuses[wound_bonus_rep], damage), delay_counter)
+				addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(firing_squad), dude, iter_turf, limb.body_zone, wound_bonuses[wound_bonus_rep], damage), delay_counter)
 				delay_counter += delay_per_shot
 				shots_this_limb += 1
 				if (shots_this_limb > shots_per_limb_per_rep)

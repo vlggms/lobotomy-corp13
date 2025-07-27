@@ -1,5 +1,5 @@
 /// How often the sensor data is updated
-#define SENSORS_UPDATE_PERIOD	10 SECONDS //How often the sensor data updates.
+#define SENSORS_UPDATE_PERIOD	5 SECONDS //How often the sensor data updates.
 /// The job sorting ID associated with otherwise unknown jobs
 #define UNKNOWN_JOB_ID			81
 
@@ -35,12 +35,20 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		// 00: Manager
 		"Manager" = 00,
 		"Extraction Officer" = 01,
-		"Records Officer" = 01,
+		"Records Officer" = 02,
+		"Sephirah" = 03,
 		// 10-19: Security
+		//Either Captain or Department head depending on the map
 		"Agent Captain" = 10,
-		"Veteran Agent" = 11,
-		"Senior Agent" = 12,
-		"Agent" = 13,
+		"Department Head" = 10,
+
+		"Department Captain" = 11,
+		"Agent Lieutenant" = 11,
+
+		"Veteran Agent" = 12,
+		"Senior Agent" = 13,
+		"Agent" = 14,
+		"Agent Intern" = 15,
 		// 20-29: Medbay
 		"Chief Medical Officer" = 20,
 		"Chemist" = 21,
@@ -79,6 +87,8 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		// Misc Lobotomy Corp roles; 150 - 159
 		"Arbiter" = 150,
 
+
+
 		// Tegustation Syndicate roles; 160 - 199
 		"Syndicate Overlord" = 160,
 		"Syndicate Mastermind" = 161,
@@ -102,7 +112,28 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		"Emergency Response Team Commander" = 220,
 		"Security Response Officer" = 221,
 		"Engineer Response Officer" = 222,
-		"Medical Response Officer" = 223
+		"Medical Response Officer" = 223,
+
+		// 350-410 : R-Corp
+		"Ground Commander" = 350,
+		"Lieutenant Commander" = 360,
+		"Operations Officer" = 361,
+		//Ravens
+		"Raven Team Captain" = 370,
+		"R-Corp Scout Raven" = 371,
+		"R-Corp Support Raven" = 372,
+		//Reindeer
+		"Reindeer Team Captain" = 380,
+		"R-Corp Berserker Reindeer" = 381,
+		"R-Corp Medical Reindeer" = 382,
+		//Rabbits
+		"Rhino Team Captain" = 390,
+		"R-Corp Gunner Rhino" = 391,
+		"R-Corp Hammer Rhino" = 392,
+		//Rabbits
+		"Rabbit Team Captain" = 400,
+		"R-Corp Suppressive Rabbit" = 401,
+		"R-Corp Assault Rabbit" = 402
 	)
 
 /datum/crewmonitor/ui_interact(mob/user, datum/tgui/ui)
@@ -189,7 +220,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		// ID and id-related data
 		var/obj/item/card/id/id_card = tracked_living_mob.get_idcard(hand_first = FALSE)
 		if (id_card)
-			if(!istype(SSlobotomy_corp.core_suppression, /datum/suppression/information))
+			if(!GetCoreSuppression(/datum/suppression/information))
 				entry["name"] = id_card.registered_name
 				entry["assignment"] = id_card.assignment
 				entry["ijob"] = jobs[id_card.GetJobName()] // Tegu edit - Alt job titles
@@ -207,6 +238,8 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 				"brutedam" = round(tracked_living_mob.getBruteLoss(), 1),
 				"sandam" = round(tracked_living_mob.getSanityLoss(), 1)
 			)
+			entry["maxhp"] = round(tracked_living_mob.maxHealth)
+			entry["maxsp"] = round(tracked_living_mob.maxSanity)
 
 		// Location
 		if (sensor_mode >= SENSOR_COORDS)

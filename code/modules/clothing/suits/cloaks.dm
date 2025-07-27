@@ -19,6 +19,10 @@
 	desc = "Worn by Securistan, ruling the station with an iron fist."
 	icon_state = "hoscloak"
 
+/obj/item/clothing/neck/cloak/hos/agent
+	name = "agent captain's cloak"
+	desc = "A sign of exceptional agent captains."
+
 /obj/item/clothing/neck/cloak/qm
 	name = "quartermaster's cloak"
 	desc = "Worn by Cargonia, supplying the station with the necessary tools for survival."
@@ -176,9 +180,6 @@
 	name = "legendary veteran's cloak"
 	desc = "Worn by the wisest of veteran employees, this legendary cloak is only attainable by maintaining a living employment agreement with Nanotrasen for over <b>five thousand hours</b>. This status symbol represents a being is better than you in nearly every quantifiable way, simple as that."
 	icon_state = "playercloak"
-
-/obj/item/clothing/neck/cloak/skill_reward/playing/check_wearable(mob/user)
-	return user.client?.get_exp_living(TRUE) >= PLAYTIME_VETERAN
 
 /obj/item/clothing/neck/cloak/arbiter
 	name = "arbiter's cloak"

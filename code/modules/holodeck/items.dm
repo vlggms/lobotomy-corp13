@@ -102,11 +102,17 @@
 	icon_state = "hoop"
 	anchored = TRUE
 	density = TRUE
+	var/chaosdunking = FALSE //Prevent multiple cutscenes from popping up
 
 /obj/structure/holohoop/attackby(obj/item/W as obj, mob/user as mob, params)
 	if(get_dist(src,user)<2)
 		if(user.transferItemToLoc(W, drop_location()))
 			visible_message("<span class='warning'>[user] dunks [W] into \the [src]!</span>")
+			if(istype(W, /obj/item/ego_weapon/chaosdunk))
+				if(chaosdunking)
+					return
+				chaosdunking = TRUE
+				ChaosDunk()
 
 /obj/structure/holohoop/attack_hand(mob/user)
 	. = ..()
@@ -136,7 +142,15 @@
 	else
 		return ..()
 
+/obj/structure/holohoop/proc/ChaosDunk()
+	show_global_blurb(50, "Chaos Dunk")
+	Explode()
+	Cinematic(CINEMATIC_CHAOS_DUNK, world)
 
+/obj/structure/holohoop/proc/Explode()
+	set waitfor = FALSE
+	sleep(30)
+	explosion(src, 20, 20)
 
 //
 // Machines

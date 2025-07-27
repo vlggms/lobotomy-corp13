@@ -8,7 +8,9 @@
 
 /obj/projectile/bullet/a50ae
 	name = ".50AE bullet"
-	damage = 60
+	damage = 70
+	paralyze = 300
+	knockdown = 80
 
 // .38 (Detective's Gun)
 
@@ -117,3 +119,8 @@
 	ricochet_auto_aim_range = 6
 	ricochet_incidence_leeway = 80
 	ricochet_decay_chance = 1
+
+// Atelier revolver
+
+/obj/projectile/bullet/a357/atelier
+	damage = 80

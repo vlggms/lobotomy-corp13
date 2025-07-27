@@ -39,7 +39,7 @@
 		buckled_mob.pixel_y = buckled_mob.base_pixel_y
 		if(buckled_mob.client)
 			buckled_mob.client.view_size.resetToDefault()
-	anchored = FALSE
+	anchored = initial(anchored)
 	. = ..()
 	STOP_PROCESSING(SSfastprocess, src)
 
@@ -142,7 +142,7 @@
 /obj/machinery/manned_turret/proc/volley(mob/user)
 	target_turf = get_turf(target)
 	for(var/i in 1 to number_of_shots)
-		addtimer(CALLBACK(src, /obj/machinery/manned_turret/.proc/fire_helper, user), i*rate_of_fire)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/machinery/manned_turret, fire_helper), user), i*rate_of_fire)
 
 /obj/machinery/manned_turret/proc/fire_helper(mob/user)
 	if(user.incapacitated() || !(user in buckled_mobs))
@@ -198,7 +198,7 @@
 /obj/item/gun_control/CanItemAutoclick()
 	return TRUE
 
-/obj/item/gun_control/attack_obj(obj/O, mob/living/user)
+/obj/item/gun_control/attack_obj(obj/O, mob/living/user, params)
 	user.changeNext_move(CLICK_CD_MELEE)
 	O.attacked_by(src, user)
 

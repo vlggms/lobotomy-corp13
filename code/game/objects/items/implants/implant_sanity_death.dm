@@ -12,7 +12,7 @@
 	// and the process of activating destroys the body, so let the other
 	// signal handlers at least finish. Also, the "delayed explosion"
 	// uses sleeps, which is bad for signal handlers to do.
-	INVOKE_ASYNC(src, .proc/activate)
+	INVOKE_ASYNC(src, PROC_REF(activate))
 
 /obj/item/implant/sanity_death/get_data()
 	var/dat = {"<b>Implant Specifications:</b><BR>
@@ -34,7 +34,7 @@
 /obj/item/implant/sanity_death/implant(mob/living/target, mob/user, silent = FALSE, force = FALSE)
 	. = ..()
 	if(.)
-		RegisterSignal(target, COMSIG_HUMAN_INSANE, .proc/on_sanity_loss)
+		RegisterSignal(target, COMSIG_HUMAN_INSANE, PROC_REF(on_sanity_loss))
 
 /obj/item/implant/sanity_death/proc/timed_explosion()
 	if(!ishuman(imp_in))

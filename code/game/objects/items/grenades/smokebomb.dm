@@ -11,12 +11,12 @@
 	inhand_icon_state = "smoke"
 	slot_flags = ITEM_SLOT_BELT
 	///It's extremely important to keep this list up to date. It helps to generate the insightful description of the smokebomb
-	var/static/list/bruh_moment = list("Dank", "Hip", "Lit", "Based", "Robust", "Bruh", "Nyagger")
+	var/static/list/bruh_moment = list("Dank", "Hip", "Lit", "Based", "Robust", "Bruh", "Hoagie Down")
 
 ///Here we generate the extremely insightful description.
 /obj/item/grenade/smokebomb/Initialize()
 	. = ..()
-	desc = "The word '[pick(bruh_moment)]' is scribbled on it in crayon."
+	desc = "Scribbled on it in crayon is the phrase: '[pick(bruh_moment)]'."
 
 ///Here we generate some smoke and also damage blobs??? for some reason. Honestly not sure why we do that.
 /obj/item/grenade/smokebomb/detonate(mob/living/lanced_by)
@@ -29,5 +29,5 @@
 	qdel(smoke) //And deleted again. Sad really.
 	for(var/obj/structure/blob/B in view(8,src))
 		var/damage = round(30/(get_dist(B,src)+1))
-		B.take_damage(damage, BURN, MELEE, 0)
+		B.take_damage(damage, BURN, 0)
 	qdel(src)

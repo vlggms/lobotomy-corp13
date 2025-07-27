@@ -1,5 +1,16 @@
 #define ABNORMALITY_DELAY 180 SECONDS
 
+/*
+* The system was coded as a proof of concept long ago, and might need a good rework.
+* Ideally, you should have a certain amount of abnormalities per their threat level.
+* For example, an "ideal" composition would be close to this:
+* ZAYIN: 2
+* TETH: 4
+* HE: 6
+* WAW: 8
+* ALEPH: 4
+*/
+
 SUBSYSTEM_DEF(abnormality_queue)
 	name = "Abnormality Queue"
 	flags = SS_KEEP_TIMING | SS_BACKGROUND
@@ -11,32 +22,44 @@ SUBSYSTEM_DEF(abnormality_queue)
 	/// The abnormality that will spawn on the next fire.
 	var/mob/living/simple_animal/hostile/abnormality/queued_abnormality
 	/// The subsystem will pick abnormalities of these threat levels.
-	var/list/available_levels = list(ZAYIN_LEVEL, TETH_LEVEL)
+	var/list/available_levels = list(ZAYIN_LEVEL)
 	/// An associative list of potential abnormalities.
 	var/list/possible_abnormalities = list(ZAYIN_LEVEL = list(), TETH_LEVEL = list(), HE_LEVEL = list(), WAW_LEVEL = list(), ALEPH_LEVEL = list())
 	/// Amount of abnormality room spawners at the round-start.
 	var/rooms_start = 0
-	/// Amount of times postspawn() proc has been called. Kept separate from times_fired because admins love to call fire() manually
+	/// Amount of times PostSpawn() proc has been called. Kept separate from times_fired because admins love to call fire() manually
 	var/spawned_abnos = 0
+	/// When an abnormality spawns, the time it spawned is here. Purelly used for sephirahs TGUI console
+	var/previous_abno_spawn = 0
 	// I am using this all because default subsystem waiting and next_fire is done in a very... interesting way.
 	/// World time at which new abnormality will be spawned
 	var/next_abno_spawn = INFINITY
-	/// Wait time for next abno spawn
-	var/next_abno_spawn_time = 4 MINUTES
+	/// Wait time for next abno spawn; This time is further affected by amount of abnos in facility
+	var/next_abno_spawn_time = 6 MINUTES
 	/// Tracks if the current pick is forced
 	var/fucked_it_lets_rolled = FALSE
+	/// Due to Managers not passing the Litmus Test, divine approval is now necessary for red roll
+	var/hardcore_roll_enabled = FALSE
+
+	/// Contains all suppression agents, clears itself of agents that are without a body.
+	var/list/active_suppression_agents = list()
+	/// the % values of when we give the agents in active_suppression_agents +10 attributes
+	var/list/abnormality_milestones = list(0.15, 0.29, 0.44, 0.59, 0.69, 0.79, 1000000)
+	/// How far we currently are along the chain of milestones
+	var/current_milestone = 1
 
 /datum/controller/subsystem/abnormality_queue/Initialize(timeofday)
-	var/list/all_abnos = subtypesof(/mob/living/simple_animal/hostile/abnormality)
-	for(var/i in all_abnos)
-		var/mob/living/simple_animal/hostile/abnormality/abno = i
-		if(initial(abno.can_spawn))
-			possible_abnormalities[initial(abno.threat_level)] += abno
-	if(LAZYLEN(possible_abnormalities))
-		pick_abno()
-	rooms_start = GLOB.abnormality_room_spawners.len
-	next_abno_spawn_time -= min(30, rooms_start * 0.05) MINUTES // 20 rooms will decrease wait time by 1 minute
-	..()
+	rooms_start = length(GLOB.abnormality_room_spawners)
+	if(!rooms_start)
+		flags |= SS_NO_FIRE
+		return ..() // Sleepy time
+
+	if(SSmaptype.chosen_trait == FACILITY_TRAIT_ABNO_BLITZ)
+		next_abno_spawn_time/=2
+
+	RegisterSignal(SSdcs, COMSIG_GLOB_ORDEAL_END, PROC_REF(OnOrdealEnd))
+	next_abno_spawn_time -= min(2, rooms_start * 0.05) MINUTES // 20 rooms will decrease wait time by 1 Minute
+	return ..()
 
 /datum/controller/subsystem/abnormality_queue/fire()
 	if(world.time >= next_abno_spawn)
@@ -44,87 +67,147 @@ SUBSYSTEM_DEF(abnormality_queue)
 
 /datum/controller/subsystem/abnormality_queue/proc/SpawnAbno()
 	// Earlier in the game, abnormalities will spawn faster and then slow down a bit
-	next_abno_spawn = world.time + next_abno_spawn_time + ((min(16, spawned_abnos) - 4) * 6) SECONDS
-	// HE enabled, ZAYIN disabled
-	if(spawned_abnos > rooms_start * 0.2)
-		if(ZAYIN_LEVEL in available_levels)
-			available_levels -= ZAYIN_LEVEL
-		if(!(HE_LEVEL in available_levels) && spawned_abnos <= rooms_start * 0.75)
-			available_levels += HE_LEVEL
-	// WAW enabled, TETH disabled
-	if(spawned_abnos > rooms_start * 0.4)
-		if(TETH_LEVEL in available_levels)
-			available_levels -= TETH_LEVEL
-		if(!(WAW_LEVEL in available_levels))
-			available_levels += WAW_LEVEL
-	// ALEPH enabled
-	if(spawned_abnos > rooms_start * 0.6)
-		if(!(ALEPH_LEVEL in available_levels))
-			available_levels += ALEPH_LEVEL
+	previous_abno_spawn = world.time
+	next_abno_spawn = world.time + next_abno_spawn_time + ((min(16, spawned_abnos) - 6) * 9) SECONDS
 
-	// HE getting disabled conditionally
-	if(spawned_abnos > rooms_start * 0.75)
-		if(LAZYLEN(possible_abnormalities[WAW_LEVEL]) || LAZYLEN(possible_abnormalities[ALEPH_LEVEL])) // HE abnos are gone if there are WAW and ALEPHs
-			available_levels -= HE_LEVEL
-		else // Otherwise, if we run out of ALEPHs and WAWs, HEs are back on the menu
-			available_levels |= HE_LEVEL
-
-	if(!ispath(queued_abnormality) && LAZYLEN(possible_abnormalities))
-		pick_abno()
-
-	if(!LAZYLEN(GLOB.abnormality_room_spawners))
+	if(!length(GLOB.abnormality_room_spawners))
 		return
 
 	var/obj/effect/spawner/abnormality_room/choice = pick(GLOB.abnormality_room_spawners)
-
 	if(istype(choice) && ispath(queued_abnormality))
-		addtimer(CALLBACK(choice, .obj/effect/spawner/abnormality_room/proc/SpawnRoom))
+		choice.SpawnRoom()
 
 	if(fucked_it_lets_rolled)
-		for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.abnormality_queue_consoles)
+		for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.lobotomy_devices)
 			Q.ChangeLock(FALSE)
 		fucked_it_lets_rolled = FALSE
 
-/datum/controller/subsystem/abnormality_queue/proc/postspawn()
-	if(queued_abnormality)
-		possible_abnormalities[initial(queued_abnormality.threat_level)] -= queued_abnormality
-		for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.abnormality_queue_consoles)
-			Q.audible_message("<span class='notice'>[initial(queued_abnormality.name)] has arrived at the facility!</span>")
-			playsound(get_turf(Q), 'sound/machines/dun_don_alert.ogg', 50, TRUE)
-			Q.updateUsrDialog()
-		queued_abnormality = null
-		spawned_abnos++
-		pick_abno()
+	SelectAvailableLevels()
 
-/datum/controller/subsystem/abnormality_queue/proc/pick_abno()
-	var/list/picking_abno = list()
-	picking_abnormalities = list()
-	for(var/lev in available_levels)
-		if(!LAZYLEN(possible_abnormalities[lev]))
-			continue
-		picking_abno |= possible_abnormalities[lev]
-	for(var/i = 1 to 3)
-		if(!LAZYLEN(picking_abno))
-			break
-		var/chosen_abno = pick(picking_abno)
-		picking_abnormalities += chosen_abno
-		picking_abno -= chosen_abno
-	if(!LAZYLEN(picking_abnormalities))
+// Abno level selection
+/datum/controller/subsystem/abnormality_queue/proc/SelectAvailableLevels()
+
+	//For the blitz gamemode, only pick Waw and Aleph enemies. There should only be 80+ agents here
+	if(SSmaptype.chosen_trait == FACILITY_TRAIT_ABNO_BLITZ)
+		if(spawned_abnos >= rooms_start * 0.5)
+			available_levels = list(WAW_LEVEL, ALEPH_LEVEL)
+		else
+			available_levels = list(WAW_LEVEL)
+
+		// Roll the abnos from available levels
+		if(!ispath(queued_abnormality) && length(possible_abnormalities))
+			PickAbno()
+
+		return	//And return
+
+
+	// ALEPH and WAW
+	if(spawned_abnos >= rooms_start * 0.75)
+		if(spawned_abnos >= rooms_start - 2) // Last two picks will always be ALEPHs
+			available_levels = list(ALEPH_LEVEL)
+		else
+			available_levels = list(WAW_LEVEL, ALEPH_LEVEL)
+
+	// WAW only
+	else if(spawned_abnos >= rooms_start * 0.63)
+		available_levels = list(WAW_LEVEL)
+
+	// WAW and HE
+	else if(spawned_abnos >= rooms_start * 0.5)
+		available_levels = list(WAW_LEVEL, HE_LEVEL)
+
+	// HE only
+	else if(spawned_abnos >= rooms_start * 0.37)
+		available_levels = list(HE_LEVEL)
+
+	// HE and TETH
+	else if(spawned_abnos >= rooms_start * 0.25)
+		available_levels = list(HE_LEVEL, TETH_LEVEL)
+
+	// TETH only
+	else if(spawned_abnos >= 2) // Always exactly two ZAYINs
+		available_levels = list(TETH_LEVEL)
+
+	// Roll the abnos from available levels
+	if(!ispath(queued_abnormality) && length(possible_abnormalities))
+		PickAbno()
+
+/datum/controller/subsystem/abnormality_queue/proc/PostSpawn()
+	if(!queued_abnormality)
 		return
+
+	if(possible_abnormalities[initial(queued_abnormality.threat_level)][queued_abnormality] <= 0)
+		stack_trace("Queued abnormality had no weight!?")
+	possible_abnormalities[initial(queued_abnormality.threat_level)] -= queued_abnormality
+	for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.lobotomy_devices)
+		Q.audible_message("<span class='announce'>[initial(queued_abnormality.name)] has arrived at the facility!</span>")
+		playsound(get_turf(Q), 'sound/machines/dun_don_alert.ogg', 50, TRUE)
+		Q.updateUsrDialog()
+	queued_abnormality = null
+	spawned_abnos++
+
+	if((spawned_abnos / rooms_start) < abnormality_milestones[current_milestone])
+		return
+
+	current_milestone += 1
+	for(var/mob/living/carbon/human/person as anything in active_suppression_agents)
+		if(!istype(person) || QDELETED(person)) // gibbed or cryo'd, we no longer care about them
+			active_suppression_agents -= person
+			continue
+
+		person.adjust_all_attribute_levels(10)
+		to_chat(person, span_notice("You feel stronger than before."))
+
+/datum/controller/subsystem/abnormality_queue/proc/PickAbno()
+	if(!length(available_levels))
+		return FALSE
+	/// List of threat levels that we will pick
+	var/list/picking_levels = list()
+	for(var/threat in available_levels)
+		if(!length(possible_abnormalities[threat]))
+			continue
+		picking_levels |= threat
+	if(!length(picking_levels))
+		return FALSE
+
+	// There we select the abnormalities
+	picking_abnormalities = list()
+	var/pick_count = GetFacilityUpgradeValue(UPGRADE_ABNO_QUEUE_COUNT)
+	var/list/picked_levs = list()
+	for(var/i = 1 to pick_count)
+		if(!length(possible_abnormalities))
+			break
+		var/lev = pick(picking_levels)
+		// If we have more options to fill and we have multiple available levels - force them in.
+		// This prevents situations where you have WAW and HE available, but only get HE abnos.
+		if((lev in picked_levs) && length(picking_levels) > 1 && prob(((i + 1) / pick_count) * 100))
+			picking_levels -= lev
+			// And pick again
+			lev = pick(picking_levels)
+		picked_levs |= lev
+		if(!length(possible_abnormalities[lev] - picking_abnormalities))
+			continue
+		var/chosen_abno = PickWeightRealNumber(possible_abnormalities[lev] - picking_abnormalities)
+		picking_abnormalities += chosen_abno
+	if(!length(picking_abnormalities))
+		return FALSE
 	queued_abnormality = pick(picking_abnormalities)
+	return TRUE
 
 /datum/controller/subsystem/abnormality_queue/proc/HandleStartingAbnormalities()
-	var/player_count = GLOB.clients.len
+	var/player_count = length(GLOB.clients)
 	var/i
-	for(i=1 to round(clamp(player_count, 6, 30) / 6))
+	for(i=1 to round(clamp(player_count, 5, 30) / 5))
+		sleep(15 SECONDS) // Allows manager to select abnormalities if he is fast enough.
 		SpawnAbno()
-		sleep(10 SECONDS) // Allows manager to select abnormalities if he is fast enough.
 	message_admins("[i] round-start abnormalities have been spawned.")
+	for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.lobotomy_devices)
+		Q.audible_message("<span class='announce'>All the initial Abnormalities have arrived. Have a nice day Manager.</span>")
 	return
 
 /datum/controller/subsystem/abnormality_queue/proc/AnnounceLock()
 	fucked_it_lets_rolled = TRUE
-	for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.abnormality_queue_consoles)
+	for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.lobotomy_devices)
 		Q.ChangeLock(TRUE)
 	return
 
@@ -136,8 +219,31 @@ SUBSYSTEM_DEF(abnormality_queue)
 	var/list/picking_abno = list()
 
 	for(var/level in available_levels)
-		if(!LAZYLEN(possible_abnormalities[level]))
+		if(!length(possible_abnormalities[level]))
 			continue
 		picking_abno |= possible_abnormalities[level]
 
-	return pick(picking_abno)
+	return pickweight(picking_abno)
+
+// Spawns abnos faster if you lack abnos of that level
+/datum/controller/subsystem/abnormality_queue/proc/OnOrdealEnd(datum/source, datum/ordeal/O = null)
+	SIGNAL_HANDLER
+	if(!istype(O))
+		return
+	if(O.level > 3 || O.level < 1)
+		return
+	var/level_threat = O.level + 2 // Dusk will equal to ALEPH here
+	// Already in there, oops
+	if(level_threat in available_levels)
+		return
+	for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.lobotomy_devices)
+		Q.audible_message("<span class='announce'>Due to [O.name] finishing early, additional abnormalities will be extracted soon.</span>")
+	INVOKE_ASYNC(src, PROC_REF(SpawnOrdealAbnos), level_threat)
+
+/datum/controller/subsystem/abnormality_queue/proc/SpawnOrdealAbnos(level_threat = 1)
+	// Spawn stuff until we reach the desired threat level, or spawn too many things
+	for(var/i = 1 to 4)
+		SpawnAbno()
+		sleep(30 SECONDS)
+		if(level_threat in available_levels)
+			break

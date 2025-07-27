@@ -62,7 +62,7 @@
 				M.losebreath += 2
 				M.emote("gasp")
 			if(prob(base_message_chance))
-				to_chat(M, "<span class='userwarning'>[pick("You feel a dull pain in your chest.", "You try to breathe, but can't inhale air!", "Your lungs feel empty!")]</span>")
+				to_chat(M, span_userdanger("[pick("You feel a dull pain in your chest.", "You try to breathe, but can't inhale air!", "Your lungs feel empty!")]"))
 			if(regenerate_blood && M.blood_volume < BLOOD_VOLUME_MAX_LETHAL) // It won't really kill you, but you will feel bad.
 				M.blood_volume += 2
 		if(3, 4)
@@ -72,7 +72,7 @@
 				M.blood_volume += 1
 		if(1, 2)
 			if(prob(base_message_chance))
-				to_chat(M, "<span class='notice'>[pick("Your lungs feel great.", "You realize you haven't been breathing.", "You don't feel the need to breathe.")]</span>")
+				to_chat(M, span_notice("[pick("Your lungs feel great.", "You realize you haven't been breathing.", "You don't feel the need to breathe.")]"))
 	return
 
 /datum/symptom/fake_oxygen/on_stage_change(datum/disease/advance/A)
@@ -135,9 +135,9 @@
 	visibility_flags = NONE
 	stage1 = list("You feel happy!")
 	stage2 = list("You are twitching from happiness!")
-	stage3 = list("<span class='danger'>You feel like your arm is  going to fall off!</span>", "<span class='danger'>Your skin twitches.</span>", "<span class='danger'>You could really go for some bananium right now!</span>")
-	stage4 = list("<span class='danger'>You hear circus sounds everywhere.</span>", "<span class='danger'>Your feel like your head is about to explode!</span>")
-	stage5 = list("<span class='danger'>H... O... N... K...</span>")
+	stage3 = list(span_danger("You feel like your arm is  going to fall off!"), span_danger("Your skin twitches."), span_danger("You could really go for some bananium right now!"))
+	stage4 = list(span_danger("You hear circus sounds everywhere."), span_danger("Your feel like your head is about to explode!"))
+	stage5 = list(span_danger("H... O... N... K..."))
 	new_form = /mob/living/simple_animal/hostile/retaliate/clown
 
 /datum/disease/transformation/clown_mutant/do_disease_transformation(mob/living/affected_mob)
@@ -193,14 +193,14 @@
 				affected_mob.reagents.add_reagent_list(list(/datum/reagent/drug/happiness = 3))
 				affected_mob.say(pick("Urgh...", "Heh-he...", "Ho-nk..."))
 			if (prob(5))
-				to_chat(affected_mob, "<span class='danger'>You feel a stabbing pain in your head.</span>")
+				to_chat(affected_mob, span_danger("You feel a stabbing pain in your head."))
 				affected_mob.Unconscious(20)
 		if(4)
 			if (prob(30))
-				to_chat(affected_mob, "<span class='danger'>The pain is unbearable!</span>")
+				to_chat(affected_mob, span_danger("The pain is unbearable!"))
 				affected_mob.emote("cry")
 			if (prob(20))
-				to_chat(affected_mob, "<span class='danger'>Your skin begins to shift, hurting like hell!</span>")
+				to_chat(affected_mob, span_danger("Your skin begins to shift, hurting like hell!"))
 				affected_mob.emote("scream")
 				affected_mob.Jitter(4)
 			if (prob(10))

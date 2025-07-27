@@ -1,0 +1,958 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"al" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/sofa/left{
+	dir = 4
+	},
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/floor/holofloor/carpet,
+/area/city/backstreets_room)
+"am" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10;
+	color = "#2e1f0e"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"au" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood{
+	dir = 7
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"ax" = (
+/obj/structure/table/wood/fancy/red,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"cv" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#2e1f0e";
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"cM" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"dV" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"eg" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"fY" = (
+/obj/item/flashlight/lantern/jade{
+	pixel_y = 4;
+	pixel_x = 16;
+	layer = 3.3;
+	anchored = 1;
+	light_on = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"fZ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"jZ" = (
+/obj/structure/table/wood,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/red,
+/area/city/backstreets_room)
+"mg" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood{
+	dir = 7
+	},
+/mob/living/simple_animal/hostile/humanoid/fixer/flame{
+	return_to_origin = 1
+	},
+/obj/item/gps/mining{
+	anchored = 1;
+	gpstag = "Flaming Signal";
+	alpha = 10
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"pV" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#2e1f0e";
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"qG" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/mob/living/simple_animal/hostile/ordeal/amber_bug{
+	name = "carnivorous worm"
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"qW" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/holofloor/carpet,
+/area/city/backstreets_room)
+"qY" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"ra" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#2e1f0e"
+	},
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"rh" = (
+/obj/structure/window/paperframe,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"rO" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/red,
+/area/city/backstreets_room)
+"so" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/sofa/right{
+	dir = 8
+	},
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/floor/holofloor/carpet,
+/area/city/backstreets_room)
+"vS" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/sofa/left{
+	dir = 8
+	},
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/floor/holofloor/carpet,
+/area/city/backstreets_room)
+"wa" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"wc" = (
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"wD" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/pew/left,
+/turf/open/floor/carpet/red,
+/area/city/backstreets_room)
+"wL" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/mug/tea,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/red,
+/area/city/backstreets_room)
+"wP" = (
+/obj/structure/table/wood,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/cratespawn,
+/turf/open/floor/holofloor/carpet,
+/area/city/backstreets_room)
+"xh" = (
+/obj/structure/plaque{
+	pixel_x = 32
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/holofloor/carpet,
+/area/city/backstreets_room)
+"xo" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood/corner,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"yn" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5;
+	color = "#2e1f0e"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"Ab" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#2e1f0e";
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"AX" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/fluff/drake_statue,
+/turf/open/floor/holofloor/carpet,
+/area/city/backstreets_room)
+"Ci" = (
+/obj/item/flashlight/lantern/jade{
+	pixel_x = -16;
+	pixel_y = 4;
+	layer = 3.3;
+	anchored = 1;
+	light_on = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"DM" = (
+/obj/item/kirbyplants{
+	icon_state = "plant-10";
+	anchored = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"DY" = (
+/obj/structure/table/wood,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/lootcrate/money,
+/obj/structure/lootcrate/liu,
+/turf/open/floor/holofloor/carpet,
+/area/city/backstreets_room)
+"Eo" = (
+/turf/closed/indestructible/wood,
+/area/city/backstreets_room)
+"Ez" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"EX" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#2e1f0e";
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"Gc" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"GV" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#2e1f0e";
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"GX" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"IK" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6;
+	color = "#2e1f0e"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"Ki" = (
+/obj/structure/table/wood/fancy/red,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/spawner/lootdrop/three_course_meal,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"KM" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#2e1f0e";
+	dir = 1
+	},
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"KZ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/ordeal/amber_bug{
+	name = "carnivorous worm"
+	},
+/turf/open/floor/holofloor/carpet,
+/area/city/backstreets_room)
+"LY" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/mob/living/simple_animal/hostile/ordeal/amber_bug{
+	name = "carnivorous worm"
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Ml" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/sofa/right{
+	dir = 4
+	},
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/floor/holofloor/carpet,
+/area/city/backstreets_room)
+"MD" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/floor/holofloor/carpet,
+/area/city/backstreets_room)
+"Oj" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"OU" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/ordeal/amber_bug{
+	name = "carnivorous worm"
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Pn" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/mob/living/simple_animal/hostile/ordeal/amber_bug{
+	name = "carnivorous worm"
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Pu" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/pew/right,
+/turf/open/floor/carpet/red,
+/area/city/backstreets_room)
+"PJ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/ordeal/amber_bug{
+	name = "carnivorous worm"
+	},
+/turf/open/floor/carpet/red,
+/area/city/backstreets_room)
+"PZ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Qa" = (
+/obj/structure/table/wood,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/lootcrate/money,
+/turf/open/floor/holofloor/carpet,
+/area/city/backstreets_room)
+"QW" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#2e1f0e"
+	},
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"Rd" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Rn" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"TB" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/mob/living/simple_animal/hostile/ordeal/amber_bug{
+	name = "carnivorous worm"
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Uf" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Vu" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#2e1f0e"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"Vy" = (
+/obj/structure/table/wood/fancy/red,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/spawner/lootdrop/three_course_meal,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"VA" = (
+/obj/structure/table/wood/fancy/red,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Ws" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"XI" = (
+/obj/structure/plaque{
+	pixel_x = -32
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/holofloor/carpet,
+/area/city/backstreets_room)
+"Zt" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/mob/living/simple_animal/hostile/ordeal/amber_bug{
+	name = "carnivorous worm"
+	},
+/turf/open/floor/carpet/red,
+/area/city/backstreets_room)
+"Zw" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9;
+	color = "#2e1f0e"
+	},
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"ZG" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/pew,
+/turf/open/floor/carpet/red,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+Eo
+Eo
+Eo
+Eo
+Eo
+Eo
+Eo
+Eo
+Eo
+Eo
+Eo
+Eo
+Eo
+Eo
+Eo
+Eo
+Eo
+Eo
+Eo
+Eo
+"}
+(2,1,1) = {"
+Eo
+MD
+XI
+qW
+qW
+qW
+XI
+qW
+qW
+al
+Ml
+qW
+XI
+qW
+qW
+qW
+qW
+XI
+MD
+Eo
+"}
+(3,1,1) = {"
+Eo
+qW
+Rd
+Gc
+Gc
+Gc
+Gc
+Gc
+VA
+VA
+Ki
+VA
+Gc
+Gc
+Gc
+Gc
+Gc
+dV
+qW
+Eo
+"}
+(4,1,1) = {"
+Eo
+qW
+Rn
+Oj
+fY
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
+fY
+Oj
+au
+qW
+Eo
+"}
+(5,1,1) = {"
+Eo
+qW
+Rn
+Oj
+rh
+rh
+OU
+OU
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
+rh
+rh
+Oj
+au
+qW
+Eo
+"}
+(6,1,1) = {"
+Eo
+AX
+Rn
+Oj
+rh
+rh
+OU
+OU
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
+rh
+rh
+Oj
+au
+qW
+Eo
+"}
+(7,1,1) = {"
+Eo
+qW
+Rn
+Oj
+Oj
+Ci
+DM
+Oj
+Oj
+Oj
+Oj
+Oj
+DM
+Oj
+Ci
+Oj
+Oj
+au
+qW
+Eo
+"}
+(8,1,1) = {"
+Eo
+wP
+Rn
+Oj
+xo
+fZ
+fZ
+Zw
+pV
+Ab
+pV
+am
+Oj
+Oj
+Oj
+Oj
+Oj
+au
+qW
+Eo
+"}
+(9,1,1) = {"
+Eo
+Qa
+Rn
+Oj
+au
+wD
+jZ
+KM
+wa
+Ws
+wa
+QW
+fZ
+fZ
+fZ
+fZ
+TB
+LY
+KZ
+KZ
+"}
+(10,1,1) = {"
+Eo
+DY
+Rn
+cM
+mg
+ZG
+wL
+EX
+wa
+qY
+wa
+ra
+rO
+rO
+rO
+rO
+PJ
+Zt
+PJ
+PJ
+"}
+(11,1,1) = {"
+Eo
+DY
+Rn
+cM
+au
+ZG
+wL
+EX
+wc
+qY
+GX
+Vu
+rO
+rO
+rO
+rO
+PJ
+Zt
+PJ
+PJ
+"}
+(12,1,1) = {"
+Eo
+Qa
+Rn
+Oj
+au
+Pu
+jZ
+KM
+wa
+Ez
+wa
+ra
+Gc
+Gc
+Gc
+Gc
+Pn
+qG
+KZ
+KZ
+"}
+(13,1,1) = {"
+Eo
+wP
+Rn
+Oj
+PZ
+Gc
+Gc
+yn
+cv
+GV
+cv
+IK
+Oj
+Oj
+Oj
+Oj
+Oj
+au
+qW
+Eo
+"}
+(14,1,1) = {"
+Eo
+qW
+Rn
+Oj
+Oj
+fY
+DM
+Oj
+Oj
+Oj
+Oj
+Oj
+DM
+Oj
+fY
+Oj
+Oj
+au
+qW
+Eo
+"}
+(15,1,1) = {"
+Eo
+AX
+Rn
+Oj
+rh
+rh
+OU
+OU
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
+rh
+rh
+Oj
+au
+qW
+Eo
+"}
+(16,1,1) = {"
+Eo
+qW
+Rn
+Oj
+rh
+rh
+OU
+OU
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
+rh
+rh
+Oj
+au
+qW
+Eo
+"}
+(17,1,1) = {"
+Eo
+qW
+Rn
+Oj
+Ci
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
+Oj
+Ci
+Oj
+au
+qW
+Eo
+"}
+(18,1,1) = {"
+Eo
+qW
+Uf
+fZ
+fZ
+fZ
+fZ
+fZ
+ax
+Vy
+ax
+ax
+fZ
+fZ
+fZ
+fZ
+fZ
+eg
+qW
+Eo
+"}
+(19,1,1) = {"
+Eo
+MD
+xh
+qW
+qW
+qW
+xh
+qW
+qW
+so
+vS
+qW
+xh
+qW
+qW
+qW
+qW
+xh
+MD
+Eo
+"}
+(20,1,1) = {"
+Eo
+Eo
+Eo
+Eo
+Eo
+Eo
+Eo
+Eo
+Eo
+Eo
+Eo
+Eo
+Eo
+Eo
+Eo
+Eo
+Eo
+Eo
+Eo
+Eo
+"}

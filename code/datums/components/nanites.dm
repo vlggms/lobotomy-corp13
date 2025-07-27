@@ -42,31 +42,31 @@
 			cloud_sync()
 
 /datum/component/nanites/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_HAS_NANITES, .proc/confirm_nanites)
-	RegisterSignal(parent, COMSIG_NANITE_IS_STEALTHY, .proc/check_stealth)
-	RegisterSignal(parent, COMSIG_NANITE_DELETE, .proc/delete_nanites)
-	RegisterSignal(parent, COMSIG_NANITE_UI_DATA, .proc/nanite_ui_data)
-	RegisterSignal(parent, COMSIG_NANITE_GET_PROGRAMS, .proc/get_programs)
-	RegisterSignal(parent, COMSIG_NANITE_SET_VOLUME, .proc/set_volume)
-	RegisterSignal(parent, COMSIG_NANITE_ADJUST_VOLUME, .proc/adjust_nanites)
-	RegisterSignal(parent, COMSIG_NANITE_SET_MAX_VOLUME, .proc/set_max_volume)
-	RegisterSignal(parent, COMSIG_NANITE_SET_CLOUD, .proc/set_cloud)
-	RegisterSignal(parent, COMSIG_NANITE_SET_CLOUD_SYNC, .proc/set_cloud_sync)
-	RegisterSignal(parent, COMSIG_NANITE_SET_SAFETY, .proc/set_safety)
-	RegisterSignal(parent, COMSIG_NANITE_SET_REGEN, .proc/set_regen)
-	RegisterSignal(parent, COMSIG_NANITE_ADD_PROGRAM, .proc/add_program)
-	RegisterSignal(parent, COMSIG_NANITE_SCAN, .proc/nanite_scan)
-	RegisterSignal(parent, COMSIG_NANITE_SYNC, .proc/sync)
+	RegisterSignal(parent, COMSIG_HAS_NANITES, PROC_REF(confirm_nanites))
+	RegisterSignal(parent, COMSIG_NANITE_IS_STEALTHY, PROC_REF(check_stealth))
+	RegisterSignal(parent, COMSIG_NANITE_DELETE, PROC_REF(delete_nanites))
+	RegisterSignal(parent, COMSIG_NANITE_UI_DATA, PROC_REF(nanite_ui_data))
+	RegisterSignal(parent, COMSIG_NANITE_GET_PROGRAMS, PROC_REF(get_programs))
+	RegisterSignal(parent, COMSIG_NANITE_SET_VOLUME, PROC_REF(set_volume))
+	RegisterSignal(parent, COMSIG_NANITE_ADJUST_VOLUME, PROC_REF(adjust_nanites))
+	RegisterSignal(parent, COMSIG_NANITE_SET_MAX_VOLUME, PROC_REF(set_max_volume))
+	RegisterSignal(parent, COMSIG_NANITE_SET_CLOUD, PROC_REF(set_cloud))
+	RegisterSignal(parent, COMSIG_NANITE_SET_CLOUD_SYNC, PROC_REF(set_cloud_sync))
+	RegisterSignal(parent, COMSIG_NANITE_SET_SAFETY, PROC_REF(set_safety))
+	RegisterSignal(parent, COMSIG_NANITE_SET_REGEN, PROC_REF(set_regen))
+	RegisterSignal(parent, COMSIG_NANITE_ADD_PROGRAM, PROC_REF(add_program))
+	RegisterSignal(parent, COMSIG_NANITE_SCAN, PROC_REF(nanite_scan))
+	RegisterSignal(parent, COMSIG_NANITE_SYNC, PROC_REF(sync))
 
 	if(isliving(parent))
-		RegisterSignal(parent, COMSIG_ATOM_EMP_ACT, .proc/on_emp)
-		RegisterSignal(parent, COMSIG_LIVING_DEATH, .proc/on_death)
-		RegisterSignal(parent, COMSIG_MOB_ALLOWED, .proc/check_access)
-		RegisterSignal(parent, COMSIG_LIVING_ELECTROCUTE_ACT, .proc/on_shock)
-		RegisterSignal(parent, COMSIG_LIVING_MINOR_SHOCK, .proc/on_minor_shock)
-		RegisterSignal(parent, COMSIG_SPECIES_GAIN, .proc/check_viable_biotype)
-		RegisterSignal(parent, COMSIG_NANITE_SIGNAL, .proc/receive_signal)
-		RegisterSignal(parent, COMSIG_NANITE_COMM_SIGNAL, .proc/receive_comm_signal)
+		RegisterSignal(parent, COMSIG_ATOM_EMP_ACT, PROC_REF(on_emp))
+		RegisterSignal(parent, COMSIG_LIVING_DEATH, PROC_REF(on_death))
+		RegisterSignal(parent, COMSIG_MOB_ALLOWED, PROC_REF(check_access))
+		RegisterSignal(parent, COMSIG_LIVING_ELECTROCUTE_ACT, PROC_REF(on_shock))
+		RegisterSignal(parent, COMSIG_LIVING_MINOR_SHOCK, PROC_REF(on_minor_shock))
+		RegisterSignal(parent, COMSIG_SPECIES_GAIN, PROC_REF(check_viable_biotype))
+		RegisterSignal(parent, COMSIG_NANITE_SIGNAL, PROC_REF(receive_signal))
+		RegisterSignal(parent, COMSIG_NANITE_COMM_SIGNAL, PROC_REF(receive_comm_signal))
 
 /datum/component/nanites/UnregisterFromParent()
 	UnregisterSignal(parent, list(COMSIG_HAS_NANITES,
@@ -212,20 +212,20 @@
 		if(0 to NANITE_EXCESS_MINOR) //Minor excess amount, the extra nanites are quietly expelled without visible effects
 			return
 		if((NANITE_EXCESS_MINOR + 0.1) to NANITE_EXCESS_VOMIT) //Enough nanites getting rejected at once to be visible to the naked eye
-			host_mob.visible_message("<span class='warning'>A grainy grey slurry starts oozing out of [host_mob].</span>", "<span class='warning'>A grainy grey slurry starts oozing out of your skin.</span>", null, 4);
+			host_mob.visible_message(span_warning("A grainy grey slurry starts oozing out of [host_mob]."), span_warning("A grainy grey slurry starts oozing out of your skin."), null, 4);
 		if((NANITE_EXCESS_VOMIT + 0.1) to NANITE_EXCESS_BURST) //Nanites getting rejected in massive amounts, but still enough to make a semi-orderly exit through vomit
 			if(iscarbon(host_mob))
 				var/mob/living/carbon/C = host_mob
-				host_mob.visible_message("<span class='warning'>[host_mob] vomits a grainy grey slurry!</span>", "<span class='warning'>You suddenly vomit a metallic-tasting grainy grey slurry!</span>", null);
+				host_mob.visible_message(span_warning("[host_mob] vomits a grainy grey slurry!"), span_warning("You suddenly vomit a metallic-tasting grainy grey slurry!"), null);
 				C.vomit(0, FALSE, TRUE, FLOOR(excess / 100, 1), FALSE, VOMIT_NANITE, FALSE, TRUE, 0)
 			else
-				host_mob.visible_message("<span class='warning'>A metallic grey slurry bursts out of [host_mob]'s skin!</span>", "<span class='userdanger'>A metallic grey slurry violently bursts out of your skin!</span>", null);
+				host_mob.visible_message(span_warning("A metallic grey slurry bursts out of [host_mob]'s skin!"), span_userdanger("A metallic grey slurry violently bursts out of your skin!"), null);
 				if(isturf(host_mob.drop_location()))
 					var/turf/T = host_mob.drop_location()
 					T.add_vomit_floor(host_mob, VOMIT_NANITE, 0)
 		if((NANITE_EXCESS_BURST + 0.1) to INFINITY) //Way too many nanites, they just leave through the closest exit before they harm/poison the host
-			host_mob.visible_message("<span class='warning'>A torrent of metallic grey slurry violently bursts out of [host_mob]'s face and floods out of [host_mob.p_their()] skin!</span>",
-								"<span class='userdanger'>A torrent of metallic grey slurry violently bursts out of your eyes, ears, and mouth, and floods out of your skin!</span>");
+			host_mob.visible_message(span_warning("A torrent of metallic grey slurry violently bursts out of [host_mob]'s face and floods out of [host_mob.p_their()] skin!"),
+								span_userdanger("A torrent of metallic grey slurry violently bursts out of your eyes, ears, and mouth, and floods out of your skin!"));
 
 			host_mob.blind_eyes(15) //nanites coming out of your eyes
 			host_mob.Paralyze(120)
@@ -397,24 +397,24 @@
 
 	if(!full_scan)
 		if(!stealth)
-			to_chat(user, "<span class='notice'><b>Nanites Detected</b></span>")
-			to_chat(user, "<span class='notice'>Saturation: [nanite_volume]/[max_nanites]</span>")
+			to_chat(user, span_notice("<b>Nanites Detected</b>"))
+			to_chat(user, span_notice("Saturation: [nanite_volume]/[max_nanites]"))
 			return TRUE
 	else
-		to_chat(user, "<span class='info'>NANITES DETECTED</span>")
-		to_chat(user, "<span class='info'>================</span>")
-		to_chat(user, "<span class='info'>Saturation: [nanite_volume]/[max_nanites]</span>")
-		to_chat(user, "<span class='info'>Safety Threshold: [safety_threshold]</span>")
-		to_chat(user, "<span class='info'>Cloud ID: [cloud_id ? cloud_id : "None"]</span>")
-		to_chat(user, "<span class='info'>Cloud Sync: [cloud_active ? "Active" : "Disabled"]</span>")
-		to_chat(user, "<span class='info'>================</span>")
-		to_chat(user, "<span class='info'>Program List:</span>")
+		to_chat(user, span_info("NANITES DETECTED"))
+		to_chat(user, span_info("================"))
+		to_chat(user, span_info("Saturation: [nanite_volume]/[max_nanites]"))
+		to_chat(user, span_info("Safety Threshold: [safety_threshold]"))
+		to_chat(user, span_info("Cloud ID: [cloud_id ? cloud_id : "None"]"))
+		to_chat(user, span_info("Cloud Sync: [cloud_active ? "Active" : "Disabled"]"))
+		to_chat(user, span_info("================"))
+		to_chat(user, span_info("Program List:"))
 		if(!diagnostics)
-			to_chat(user, "<span class='alert'>Nanite debugging disabled.</span>")
+			to_chat(user, span_alert("Nanite debugging disabled."))
 		else
 			for(var/X in programs)
 				var/datum/nanite_program/NP = X
-				to_chat(user, "<span class='info'><b>[NP.name]</b> | [NP.activated ? "Active" : "Inactive"]</span>")
+				to_chat(user, span_info("<b>[NP.name]</b> | [NP.activated ? "Active" : "Inactive"]"))
 		return TRUE
 
 /datum/component/nanites/proc/nanite_ui_data(datum/source, list/data, scan_level)

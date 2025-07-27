@@ -37,8 +37,8 @@
 	see_in_dark = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	del_on_death = TRUE
-	deathmessage = "screams in agony as it sublimates into a sulfurous smoke."
-	deathsound = 'sound/magic/demon_dies.ogg'
+	death_message = "screams in agony as it sublimates into a sulfurous smoke."
+	death_sound = 'sound/magic/demon_dies.ogg'
 	var/playstyle_string = "<span class='big bold'>You are an imp,</span><B> a mischievous creature from hell. You are the lowest rank on the hellish totem pole \
 							Though you are not obligated to help, perhaps by aiding a higher ranking devil, you might just get a promotion. However, you are incapable	\
 							of intentionally harming a fellow devil.</B>"
@@ -107,7 +107,7 @@
 	if(istype(loc, /obj/effect/dummy/phased_mob))
 		bloodspell.phased = TRUE
 	if(bloodpool)
-		bloodpool.RegisterSignal(src, list(COMSIG_LIVING_AFTERPHASEIN,COMSIG_PARENT_QDELETING), /obj/effect/dummy/phased_mob/.proc/deleteself)
+		bloodpool.RegisterSignal(src, list(COMSIG_LIVING_AFTERPHASEIN,COMSIG_PARENT_QDELETING), TYPE_PROC_REF(/obj/effect/dummy/phased_mob, deleteself))
 
 /mob/living/simple_animal/hostile/imp/slaughter/CtrlShiftClickOn(atom/A)
 	if(!isliving(A))
@@ -154,7 +154,7 @@
 /mob/living/simple_animal/hostile/imp/slaughter/phasein()
 	. = ..()
 	add_movespeed_modifier(/datum/movespeed_modifier/slaughter)
-	addtimer(CALLBACK(src, .proc/remove_movespeed_modifier, /datum/movespeed_modifier/slaughter), 6 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+	addtimer(CALLBACK(src, PROC_REF(remove_movespeed_modifier), /datum/movespeed_modifier/slaughter), 6 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 
 //The loot from killing a slaughter demon - can be consumed to allow the user to blood crawl
 /obj/item/organ/heart/demon
@@ -210,12 +210,13 @@
 	attack_verb_simple = "wildly tickle"
 
 	attack_sound = 'sound/items/bikehorn.ogg'
+	attack_vis_effect = null
 	feast_sound = 'sound/spookoween/scary_horn2.ogg'
-	deathsound = 'sound/misc/sadtrombone.ogg'
+	death_sound = 'sound/misc/sadtrombone.ogg'
 
 	icon_state = "bowmon"
 	icon_living = "bowmon"
-	deathmessage = "fades out, as all of its friends are released from its \
+	death_message = "fades out, as all of its friends are released from its \
 		prison of hugs."
 	loot = list(/mob/living/simple_animal/pet/cat/kitten{name = "Laughter"})
 
@@ -276,7 +277,7 @@
 /mob/living/simple_animal/hostile/imp/slaughter/laughter/bloodcrawl_swallow(mob/living/victim)
 	// Keep their corpse so rescue is possible
 	consumed_mobs += victim
-	RegisterSignal(victim, COMSIG_MOB_STATCHANGE, .proc/on_victim_statchange)
+	RegisterSignal(victim, COMSIG_MOB_STATCHANGE, PROC_REF(on_victim_statchange))
 
 /* Handle signal from a consumed mob changing stat.
  *

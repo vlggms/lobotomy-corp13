@@ -7,11 +7,11 @@
 /datum/component/stationloving/Initialize(inform_admins = FALSE, allow_death = FALSE)
 	if(!ismovable(parent))
 		return COMPONENT_INCOMPATIBLE
-	RegisterSignal(parent, list(COMSIG_MOVABLE_Z_CHANGED), .proc/check_in_bounds)
-	RegisterSignal(parent, list(COMSIG_MOVABLE_SECLUDED_LOCATION), .proc/relocate)
-	RegisterSignal(parent, list(COMSIG_PARENT_PREQDELETED), .proc/check_deletion)
-	RegisterSignal(parent, list(COMSIG_ITEM_IMBUE_SOUL), .proc/check_soul_imbue)
-	RegisterSignal(parent, list(COMSIG_ITEM_MARK_RETRIEVAL), .proc/check_mark_retrieval)
+	RegisterSignal(parent, list(COMSIG_MOVABLE_Z_CHANGED), PROC_REF(check_in_bounds))
+	RegisterSignal(parent, list(COMSIG_MOVABLE_SECLUDED_LOCATION), PROC_REF(relocate))
+	RegisterSignal(parent, list(COMSIG_PARENT_PREQDELETED), PROC_REF(check_deletion))
+	RegisterSignal(parent, list(COMSIG_ITEM_IMBUE_SOUL), PROC_REF(check_soul_imbue))
+	RegisterSignal(parent, list(COMSIG_ITEM_MARK_RETRIEVAL), PROC_REF(check_mark_retrieval))
 	src.inform_admins = inform_admins
 	src.allow_death = allow_death
 	check_in_bounds() // Just in case something is being created outside of station/centcom
@@ -37,7 +37,7 @@
 	var/atom/movable/AM = parent
 	playsound(AM, 'sound/machines/synth_no.ogg', 5, TRUE) //hey dumbass, you failed at your MOST IMPORTANT JOB, maybe you should check your chat log to see what could have caused that strange buzzing noise
 	AM.forceMove(targetturf)
-	to_chat(get(parent, /mob), "<span class='danger'>You can't help but feel that you just lost something back there...</span>")
+	to_chat(get(parent, /mob), span_danger("You can't help but feel that you just lost something back there..."))
 	// move the disc, so ghosts remain orbiting it even if it's "destroyed"
 	return targetturf
 

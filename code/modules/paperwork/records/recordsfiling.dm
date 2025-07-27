@@ -111,3 +111,49 @@
 		virgin = FALSE
 	return ..()
 
+
+/*
+ * Lore Cabinet
+ */
+
+/obj/structure/filingcabinet/lore
+	name = "template supplimentary information cabinet"
+	icon_state = "employmentcabinet"
+	var/virgin = TRUE
+	var/list/infotype = /obj/item/paper/fluff/lore/zayin
+
+/obj/structure/filingcabinet/lore/interact(mob/user)
+	if(virgin)
+		fillCurrent()
+		virgin = FALSE
+	return ..()
+
+/obj/structure/filingcabinet/lore/proc/fillCurrent()
+	for(var/sheet in subtypesof(infotype))
+		new sheet(src)
+
+
+//Zayin
+/obj/structure/filingcabinet/lore/zayin
+	name = "zayin supplimentary information cabinet"
+	infotype = /obj/item/paper/fluff/lore/zayin
+
+//Teth
+/obj/structure/filingcabinet/lore/teth
+	name = "teth supplimentary information cabinet"
+	infotype = /obj/item/paper/fluff/lore/teth
+
+//He
+/obj/structure/filingcabinet/lore/he
+	name = "he supplimentary information cabinet"
+	infotype = /obj/item/paper/fluff/lore/he
+
+//Waw
+/obj/structure/filingcabinet/lore/waw
+	name = "waw supplimentary information cabinet"
+	infotype = /obj/item/paper/fluff/lore/waw
+
+//Aleph
+/obj/structure/filingcabinet/lore/aleph
+	name = "aleph supplimentary information cabinet"
+	infotype = /obj/item/paper/fluff/lore/aleph

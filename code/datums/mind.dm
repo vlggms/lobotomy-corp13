@@ -61,6 +61,8 @@
 
 	var/last_death = 0
 
+	var/respawn_cooldown = 0
+
 	var/force_escaped = FALSE  // Set by Into The Sunset command of the shuttle manipulator
 
 	var/list/learned_recipes //List of learned recipe TYPES.
@@ -137,7 +139,7 @@
 	transfer_antag_huds(hud_to_transfer)				//inherit the antag HUD
 	transfer_actions(new_character)
 	transfer_martial_arts(new_character)
-	RegisterSignal(new_character, COMSIG_LIVING_DEATH, .proc/set_death_time)
+	RegisterSignal(new_character, COMSIG_LIVING_DEATH, PROC_REF(set_death_time))
 	if(active || force_key_move)
 		new_character.key = key		//now transfer the key to link the client to our new body
 	if(new_character.client)
@@ -226,10 +228,15 @@
 	msg += "</span>"
 	to_chat(user, msg)
 
-/datum/mind/proc/set_death_time()
+/datum/mind/proc/set_death_time(mob/living/L, gibbed)
 	SIGNAL_HANDLER
 
 	last_death = world.time
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = L
+		if(H.sanity_lost)
+			return
+	respawn_cooldown = world.time + CONFIG_GET(number/respawn_delay)
 
 /datum/mind/proc/store_memory(new_text)
 	var/newlength = length_char(memory) + length_char(new_text)
@@ -265,7 +272,7 @@
 	var/datum/team/antag_team = A.get_team()
 	if(antag_team)
 		antag_team.add_member(src)
-	INVOKE_ASYNC(A, /datum/antagonist.proc/on_gain)
+	INVOKE_ASYNC(A, TYPE_PROC_REF(/datum/antagonist, on_gain))
 	log_game("[key_name(src)] has gained antag datum [A.name]([A.type])")
 	return A
 
@@ -764,7 +771,7 @@
 				continue
 		S.charge_counter = delay
 		S.updateButtonIcon()
-		INVOKE_ASYNC(S, /obj/effect/proc_holder/spell.proc/start_recharge)
+		INVOKE_ASYNC(S, TYPE_PROC_REF(/obj/effect/proc_holder/spell, start_recharge))
 
 /datum/mind/proc/get_ghost(even_if_they_cant_reenter, ghosts_with_clients)
 	for(var/mob/dead/observer/G in (ghosts_with_clients ? GLOB.player_list : GLOB.dead_mob_list))

@@ -368,11 +368,13 @@
 /*
 	Vault Airlocks
 */
+//Edited to LC13
 
 /obj/machinery/door/airlock/vault
 	name = "vault door"
 	icon = 'icons/obj/doors/airlocks/vault/vault.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/vault/overlays.dmi'
+	note_overlay_file = 'icons/obj/doors/airlocks/vault/overlays.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_vault
 	explosion_block = 2
 	normal_integrity = 400 // reverse engieneerd: 400 * 1.5 (sec lvl 6) = 600 = original
@@ -565,3 +567,32 @@
 
 /obj/machinery/door/airlock/glass_large/narsie_act()
 	return
+
+//////////////////////////////////
+/*
+	LC13 Airlocks
+*/
+//One day ill replace this with a structure similar to the necropolis gate. -IP
+/obj/machinery/door/airlock/snowqueen
+	name = "Snow Queen's Gate"
+	desc = "Are you ready for what lies ahead?"
+	icon = 'icons/obj/doors/snowqueendoor.dmi'
+	overlays_file = VV_NULL
+	opacity = TRUE
+	plane = 0
+	assemblytype = null
+	glass = TRUE
+	bound_width = 128
+	aiControlDisabled = AI_WIRE_DISABLED
+	hackProof = TRUE
+	autoclose = TRUE
+	resistance_flags = INDESTRUCTIBLE
+	doorOpen = 'sound/effects/stonedoor_openclose.ogg'
+	doorClose = 'sound/effects/stonedoor_openclose.ogg'
+
+/obj/machinery/door/airlock/snowqueen/bumpopen(mob/living/L)
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = L
+		if(get_dir(src, L) == dir)
+			if(locate(/obj/item/ego_weapon/shield/ice_sword) in H.GetAllContents())
+				return ..() //Only open once they pick up the swor

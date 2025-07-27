@@ -57,7 +57,7 @@
 	else if(istype(old_headgear, /obj/item/clothing/mask/chameleon/drone))
 		new_headgear = new /obj/item/clothing/head/chameleon/drone()
 	else
-		to_chat(owner, "<span class='warning'>You shouldn't be able to toggle a camogear helmetmask if you're not wearing it.</span>")
+		to_chat(owner, span_warning("You shouldn't be able to toggle a camogear helmetmask if you're not wearing it."))
 	if(new_headgear)
 		// Force drop the item in the headslot, even though
 		// it's has TRAIT_NODROP
@@ -84,7 +84,7 @@
 		for(var/path in subtypesof(/datum/outfit/job))
 			var/datum/outfit/O = path
 			standard_outfit_options[initial(O.name)] = path
-		sortTim(standard_outfit_options, /proc/cmp_text_asc)
+		sortTim(standard_outfit_options, GLOBAL_PROC_REF(cmp_text_asc))
 	outfit_options = standard_outfit_options
 
 /datum/action/chameleon_outfit/Trigger()
@@ -181,7 +181,7 @@
 /datum/action/item_action/chameleon/change/proc/select_look(mob/user)
 	var/obj/item/picked_item
 	var/picked_name
-	picked_name = input("Select [chameleon_name] to change into", "Chameleon [chameleon_name]", picked_name) as null|anything in sortList(chameleon_list, /proc/cmp_typepaths_asc)
+	picked_name = input("Select [chameleon_name] to change into", "Chameleon [chameleon_name]", picked_name) as null|anything in sortList(chameleon_list, GLOBAL_PROC_REF(cmp_typepaths_asc))
 	if(!picked_name)
 		return
 	picked_item = chameleon_list[picked_name]
@@ -491,7 +491,7 @@
 
 /obj/item/clothing/mask/chameleon/attack_self(mob/user)
 	voice_change = !voice_change
-	to_chat(user, "<span class='notice'>The voice changer is now [voice_change ? "on" : "off"]!</span>")
+	to_chat(user, span_notice("The voice changer is now [voice_change ? "on" : "off"]!"))
 
 
 /obj/item/clothing/mask/chameleon/drone
@@ -510,7 +510,7 @@
 	randomise_action.UpdateButtonIcon()
 
 /obj/item/clothing/mask/chameleon/drone/attack_self(mob/user)
-	to_chat(user, "<span class='notice'>[src] does not have a voice changer.</span>")
+	to_chat(user, span_notice("[src] does not have a voice changer."))
 
 /obj/item/clothing/shoes/chameleon
 	name = "black shoes"

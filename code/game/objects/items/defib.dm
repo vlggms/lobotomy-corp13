@@ -1,5 +1,5 @@
 //backpack item
-#define HALFWAYCRITDEATH ((HEALTH_THRESHOLD_CRIT + HEALTH_THRESHOLD_DEAD) * 0.5)
+#define HALFWAYCRITDEATH(THE_MOB) ((THE_MOB.crit_threshold + THE_MOB.death_threshold) * 0.5)
 
 /obj/item/defibrillator
 	name = "defibrillator"
@@ -222,7 +222,7 @@
 			return FALSE
 
 /obj/item/defibrillator/proc/cooldowncheck(mob/user)
-		addtimer(CALLBACK(src, .proc/finish_charging), cooldown_duration)
+		addtimer(CALLBACK(src, PROC_REF(finish_charging)), cooldown_duration)
 
 /obj/item/defibrillator/proc/finish_charging()
 	if(cell)
@@ -333,7 +333,7 @@
 	. = ..()
 	if(!req_defib)
 		return
-	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/check_range)
+	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(check_range))
 
 /obj/item/shockpaddles/Moved()
 	. = ..()
@@ -372,8 +372,8 @@
 /obj/item/shockpaddles/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NO_STORAGE_INSERT, GENERIC_ITEM_TRAIT) //stops shockpaddles from being inserted in BoH
-	RegisterSignal(src, COMSIG_TWOHANDED_WIELD, .proc/on_wield)
-	RegisterSignal(src, COMSIG_TWOHANDED_UNWIELD, .proc/on_unwield)
+	RegisterSignal(src, COMSIG_TWOHANDED_WIELD, PROC_REF(on_wield))
+	RegisterSignal(src, COMSIG_TWOHANDED_UNWIELD, PROC_REF(on_unwield))
 	if(!req_defib)
 		return //If it doesn't need a defib, just say it exists
 	if (!loc || !istype(loc, /obj/item/defibrillator)) //To avoid weird issues from admin spawns
@@ -597,15 +597,15 @@
 					var/total_burn = H.getFireLoss()
 
 					//If the body has been fixed so that they would not be in crit when defibbed, give them oxyloss to put them back into crit
-					if (H.health > HALFWAYCRITDEATH)
-						H.adjustOxyLoss(H.health - HALFWAYCRITDEATH, 0)
+					if (H.health > HALFWAYCRITDEATH(H))
+						H.adjustOxyLoss(H.health - HALFWAYCRITDEATH(H), 0)
 					else
 						var/overall_damage = total_brute + total_burn + H.getToxLoss() + H.getOxyLoss()
 						var/mobhealth = H.health
-						H.adjustOxyLoss((mobhealth - HALFWAYCRITDEATH) * (H.getOxyLoss() / overall_damage), 0)
-						H.adjustToxLoss((mobhealth - HALFWAYCRITDEATH) * (H.getToxLoss() / overall_damage), 0)
-						H.adjustFireLoss((mobhealth - HALFWAYCRITDEATH) * (total_burn / overall_damage), 0)
-						H.adjustBruteLoss((mobhealth - HALFWAYCRITDEATH) * (total_brute / overall_damage), 0)
+						H.adjustOxyLoss((mobhealth - HALFWAYCRITDEATH(H)) * (H.getOxyLoss() / overall_damage), 0)
+						H.adjustToxLoss((mobhealth - HALFWAYCRITDEATH(H)) * (H.getToxLoss() / overall_damage), 0)
+						H.adjustFireLoss((mobhealth - HALFWAYCRITDEATH(H)) * (total_burn / overall_damage), 0)
+						H.adjustBruteLoss((mobhealth - HALFWAYCRITDEATH(H)) * (total_brute / overall_damage), 0)
 					H.updatehealth() // Previous "adjust" procs don't update health, so we do it manually.
 					user.visible_message("<span class='notice'>[req_defib ? "[defib]" : "[src]"] pings: Resuscitation successful.</span>")
 					playsound(src, 'sound/machines/defib_success.ogg', 50, FALSE)
@@ -615,7 +615,6 @@
 					H.emote("gasp")
 					H.Jitter(100)
 					SEND_SIGNAL(H, COMSIG_LIVING_MINOR_SHOCK)
-					SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "saved_life", /datum/mood_event/saved_life)
 					log_combat(user, H, "revived", defib)
 				if(req_defib)
 					defib.deductcharge(revivecost)

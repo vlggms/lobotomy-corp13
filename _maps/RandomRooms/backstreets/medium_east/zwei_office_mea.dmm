@@ -1,0 +1,154 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/chair/comfy{
+	dir = 8
+	},
+/turf/open/floor/carpet/blue,
+/area/city/backstreets_room)
+"l" = (
+/mob/living/simple_animal/hostile/ordeal/indigo_dawn,
+/turf/open/floor/carpet/blue,
+/area/city/backstreets_room)
+"o" = (
+/obj/structure/lootcrate/zwei,
+/turf/open/floor/carpet/blue,
+/area/city/backstreets_room)
+"s" = (
+/obj/effect/mob_spawn/human/corpse,
+/turf/open/floor/carpet/blue,
+/area/city/backstreets_room)
+"t" = (
+/mob/living/simple_animal/hostile/ordeal/indigo_noon,
+/mob/living/simple_animal/hostile/ordeal/indigo_noon,
+/turf/open/floor/carpet/blue,
+/area/city/backstreets_room)
+"v" = (
+/mob/living/simple_animal/hostile/ordeal/indigo_noon,
+/turf/open/floor/carpet/blue,
+/area/city/backstreets_room)
+"x" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"A" = (
+/obj/structure/reagent_dispensers/water_cooler,
+/turf/open/floor/carpet/blue,
+/area/city/backstreets_room)
+"H" = (
+/obj/machinery/door/airlock/command,
+/turf/open/floor/carpet/blue,
+/area/city/backstreets_room)
+"K" = (
+/obj/machinery/light/dim{
+	dir = 8
+	},
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"P" = (
+/turf/open/floor/carpet/blue,
+/area/city/backstreets_room)
+"Q" = (
+/mob/living/simple_animal/hostile/ordeal/indigo_noon,
+/obj/structure/filingcabinet,
+/turf/open/floor/carpet/blue,
+/area/city/backstreets_room)
+"S" = (
+/obj/structure/rack,
+/obj/item/clothing/head/zwei,
+/obj/item/clothing/gloves/color/black,
+/obj/item/clothing/suit/armor/ego_gear/city/zweijunior,
+/turf/open/floor/carpet/blue,
+/area/city/backstreets_room)
+"T" = (
+/obj/machinery/light/dim,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"U" = (
+/obj/item/kirbyplants/random{
+	pixel_y = 10
+	},
+/turf/open/floor/carpet/blue,
+/area/city/backstreets_room)
+"W" = (
+/obj/machinery/light/dim{
+	dir = 1
+	},
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"Y" = (
+/mob/living/simple_animal/hostile/ordeal/indigo_dawn,
+/obj/effect/mob_spawn/human/corpse,
+/turf/open/floor/carpet/blue,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+x
+H
+H
+x
+x
+x
+x
+H
+H
+x
+"}
+(2,1,1) = {"
+x
+P
+P
+U
+A
+A
+U
+P
+P
+x
+"}
+(3,1,1) = {"
+T
+Q
+v
+Y
+l
+Y
+v
+v
+P
+W
+"}
+(4,1,1) = {"
+x
+S
+o
+v
+s
+P
+t
+o
+S
+x
+"}
+(5,1,1) = {"
+x
+S
+o
+a
+a
+a
+a
+o
+S
+x
+"}
+(6,1,1) = {"
+x
+x
+x
+K
+x
+x
+K
+x
+x
+x
+"}

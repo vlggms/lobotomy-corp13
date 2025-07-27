@@ -120,6 +120,8 @@
 	tick_interval = 2 SECONDS
 	var/mob/living/carbon/carbon_owner
 	var/mob/living/carbon/human/human_owner
+	/// Whether we listen to apply damage signal or not
+	var/remove_on_damage = FALSE
 
 /datum/status_effect/incapacitating/sleeping/on_creation(mob/living/new_owner)
 	. = ..()
@@ -141,11 +143,12 @@
 	if(!HAS_TRAIT(owner, TRAIT_SLEEPIMMUNE))
 		ADD_TRAIT(owner, TRAIT_KNOCKEDOUT, TRAIT_STATUS_EFFECT(id))
 		tick_interval = -1
-	RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_SLEEPIMMUNE), .proc/on_owner_insomniac)
-	RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_SLEEPIMMUNE), .proc/on_owner_sleepy)
+	RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_SLEEPIMMUNE), PROC_REF(on_owner_insomniac))
+	RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_SLEEPIMMUNE), PROC_REF(on_owner_sleepy))
+	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMGE, PROC_REF(on_owner_damage))
 
 /datum/status_effect/incapacitating/sleeping/on_remove()
-	UnregisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_SLEEPIMMUNE), SIGNAL_REMOVETRAIT(TRAIT_SLEEPIMMUNE)))
+	UnregisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_SLEEPIMMUNE), SIGNAL_REMOVETRAIT(TRAIT_SLEEPIMMUNE), COMSIG_MOB_APPLY_DAMGE))
 	if(!HAS_TRAIT(owner, TRAIT_SLEEPIMMUNE))
 		REMOVE_TRAIT(owner, TRAIT_KNOCKEDOUT, TRAIT_STATUS_EFFECT(id))
 		tick_interval = initial(tick_interval)
@@ -162,6 +165,13 @@
 	SIGNAL_HANDLER
 	ADD_TRAIT(owner, TRAIT_KNOCKEDOUT, TRAIT_STATUS_EFFECT(id))
 	tick_interval = initial(tick_interval)
+
+/datum/status_effect/incapacitating/sleeping/proc/on_owner_damage(datum/source, damage, damagetype, def_zone)
+	if(!remove_on_damage)
+		return
+	if(damage < 5)
+		return
+	QDEL_NULL(src)
 
 /datum/status_effect/incapacitating/sleeping/tick()
 	if(owner.maxHealth)
@@ -380,7 +390,7 @@
 
 /datum/status_effect/eldritch/on_apply()
 	if(owner.mob_size >= MOB_SIZE_HUMAN)
-		RegisterSignal(owner,COMSIG_ATOM_UPDATE_OVERLAYS,.proc/update_owner_underlay)
+		RegisterSignal(owner,COMSIG_ATOM_UPDATE_OVERLAYS, PROC_REF(update_owner_underlay))
 		owner.update_icon()
 		return TRUE
 	return FALSE
@@ -668,7 +678,7 @@
 /datum/status_effect/trance/on_apply()
 	if(!iscarbon(owner))
 		return FALSE
-	RegisterSignal(owner, COMSIG_MOVABLE_HEAR, .proc/hypnotize)
+	RegisterSignal(owner, COMSIG_MOVABLE_HEAR, PROC_REF(hypnotize))
 	ADD_TRAIT(owner, TRAIT_MUTE, "trance")
 	owner.add_client_colour(/datum/client_colour/monochrome/trance)
 	owner.visible_message("[stun ? "<span class='warning'>[owner] stands still as [owner.p_their()] eyes seem to focus on a distant point.</span>" : ""]", \
@@ -700,8 +710,8 @@
 	// The brain trauma itself does its own set of logging, but this is the only place the source of the hypnosis phrase can be found.
 	C.log_message("has been hypnotised by the phrase '[hearing_args[HEARING_RAW_MESSAGE]]' spoken by [key_name(hearing_speaker)]", LOG_ATTACK)
 	hearing_speaker.log_message("has hypnotised [key_name(C)] with the phrase '[hearing_args[HEARING_RAW_MESSAGE]]'", LOG_ATTACK, log_globally = FALSE)
-	addtimer(CALLBACK(C, /mob/living/carbon.proc/gain_trauma, /datum/brain_trauma/hypnosis, TRAUMA_RESILIENCE_SURGERY, hearing_args[HEARING_RAW_MESSAGE]), 10)
-	addtimer(CALLBACK(C, /mob/living.proc/Stun, 60, TRUE, TRUE), 15) //Take some time to think about it
+	addtimer(CALLBACK(C, TYPE_PROC_REF(/mob/living/carbon, gain_trauma), /datum/brain_trauma/hypnosis, TRAUMA_RESILIENCE_SURGERY, hearing_args[HEARING_RAW_MESSAGE]), 10)
+	addtimer(CALLBACK(C, TYPE_PROC_REF(/mob/living, Stun), 60, TRUE, TRUE), 15) //Take some time to think about it
 	qdel(src)
 
 /datum/status_effect/spasms
@@ -968,3 +978,404 @@
 /datum/status_effect/cloudstruck/Destroy()
 	. = ..()
 	QDEL_NULL(mob_overlay)
+
+
+//~~~LC13 General Debuffs~~~
+#define MOB_HALFSPEED /datum/movespeed_modifier/qliphothoverload
+/datum/status_effect/qliphothoverload
+	id = "qliphoth intervention field"
+	duration = 15 SECONDS
+	alert_type = null
+	status_type = STATUS_EFFECT_REFRESH
+	var/statuseffectvisual
+
+/datum/status_effect/qliphothoverload/on_apply()
+	. = ..()
+	owner.add_movespeed_modifier(MOB_HALFSPEED)
+
+	var/mutable_appearance/effectvisual = mutable_appearance('icons/obj/clockwork_objects.dmi', "vanguard")
+	effectvisual.pixel_x = -owner.pixel_x
+	effectvisual.pixel_y = -owner.pixel_y
+	statuseffectvisual = effectvisual
+	owner.add_overlay(statuseffectvisual)
+
+/datum/status_effect/qliphothoverload/on_remove()
+	owner.remove_movespeed_modifier(MOB_HALFSPEED)
+
+	owner.cut_overlay(statuseffectvisual)
+	return ..()
+
+#define MOB_QUARTERSPEED /datum/movespeed_modifier/bloodhold
+/datum/status_effect/bloodhold
+	id = "bloodhold"
+	duration = 8 SECONDS
+	alert_type = null
+	status_type = STATUS_EFFECT_REFRESH
+	var/statuseffectvisual
+
+/datum/status_effect/bloodhold/on_apply()
+	. = ..()
+	owner.add_movespeed_modifier(MOB_QUARTERSPEED)
+	to_chat(owner, "<span class='warning'>You are slowed down as your own blood resists your movement!</span>")
+	var/mutable_appearance/effectvisual = mutable_appearance('icons/obj/clockwork_objects.dmi', "hateful_manacles")
+	effectvisual.pixel_x = -owner.pixel_x
+	effectvisual.pixel_y = -owner.pixel_y
+	statuseffectvisual = effectvisual
+	owner.add_overlay(statuseffectvisual)
+
+/datum/status_effect/bloodhold/on_remove()
+	owner.remove_movespeed_modifier(MOB_QUARTERSPEED)
+
+	owner.cut_overlay(statuseffectvisual)
+	return ..()
+
+//update_stamina() is move_to_delay = (initial(move_to_delay) + (staminaloss * 0.06))
+// 100 stamina damage equals 6 additional move_to_delay. So 167*0.06 = 10.02
+
+/datum/status_effect/rend_red
+	id = "rend red armor"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 60 //6 seconds
+	alert_type = null
+
+/datum/status_effect/rend_red/on_apply()
+	. = ..()
+	if(!isanimal(owner))
+		qdel(src)
+		return
+	var/mob/living/simple_animal/M = owner
+	M.AddModifier(/datum/dc_change/rend/red)
+//20% damage increase. Hitting any abnormality that has a negative value will cause this
+//to be a buff to their healing.
+
+/datum/status_effect/rend_red/on_remove()
+	. = ..()
+	if(isanimal(owner))
+		var/mob/living/simple_animal/M = owner
+		M.RemoveModifier(/datum/dc_change/rend/red)
+
+
+//White Damage Debuff
+/datum/status_effect/rend_white
+	id = "rend white armor"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 50 //5 seconds since it's melee-ish
+	alert_type = null
+
+/datum/status_effect/rend_white/on_apply()
+	. = ..()
+	if(!isanimal(owner))
+		qdel(src)
+		return
+	var/mob/living/simple_animal/M = owner
+	M.AddModifier(/datum/dc_change/rend/white)
+
+/datum/status_effect/rend_white/on_remove()
+	. = ..()
+	if(isanimal(owner))
+		var/mob/living/simple_animal/M = owner
+		M.RemoveModifier(/datum/dc_change/rend/white)
+
+//Black Damage Debuff
+
+/datum/status_effect/rend_black
+	id = "rend black armor"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 50 //5 seconds since it's melee-ish
+	alert_type = null
+
+/datum/status_effect/rend_black/on_apply()
+	. = ..()
+	if(!isanimal(owner))
+		qdel(src)
+		return
+	var/mob/living/simple_animal/M = owner
+	M.AddModifier(/datum/dc_change/rend/black)
+
+/datum/status_effect/rend_black/on_remove()
+	. = ..()
+	if(isanimal(owner))
+		var/mob/living/simple_animal/M = owner
+		M.RemoveModifier(/datum/dc_change/rend/black)
+
+#undef MOB_HALFSPEED
+
+#define STATUS_EFFECT_LCBURN /datum/status_effect/stacking/lc_burn // Deals true damage every 5 sec, can't be applied to godmode (contained abos)
+/datum/status_effect/stacking/lc_burn
+	id = "lc_burn"
+	alert_type = /atom/movable/screen/alert/status_effect/lc_burn
+	max_stacks = 50
+	tick_interval = 5 SECONDS
+	consumed_on_threshold = FALSE
+	var/new_stack = FALSE
+	var/safety = TRUE
+
+/atom/movable/screen/alert/status_effect/lc_burn
+	name = "Burning"
+	desc = "You're on fire!!"
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "lc_burn"
+
+/datum/status_effect/stacking/lc_burn/can_have_status()
+	return (owner.stat != DEAD || !(owner.status_flags & GODMODE))
+
+/datum/status_effect/stacking/lc_burn/add_stacks(stacks_added)
+	..()
+	Update_Burn_Overlay(owner)
+	new_stack = TRUE
+
+//Deals true damage
+/datum/status_effect/stacking/lc_burn/tick()
+	if(!can_have_status())
+		qdel(src)
+	to_chat(owner, "<span class='warning'>The flame consumes you!!</span>")
+	owner.playsound_local(owner, 'sound/effects/burn.ogg', 50, TRUE)
+	if(ishuman(owner))
+		owner.apply_damage(stacks, BURN, null, owner.run_armor_check(null, BURN))
+	else
+		owner.apply_damage(stacks*4, BURN, null, owner.run_armor_check(null, BURN)) // x4 on non humans (Average burn stack is 20. 80/5 sec, extra 16 pure dps)
+
+	//Deletes itself after 2 tick if no new burn stack was given
+	if(safety)
+		if(new_stack)
+			stacks = round(stacks/2)
+			new_stack = FALSE
+			Update_Burn_Overlay(owner)
+		else
+			qdel(src)
+
+//Update burn appearance
+/datum/status_effect/stacking/lc_burn/proc/Update_Burn_Overlay(mob/living/owner)
+	if(stacks && !(owner.on_fire) && ishuman(owner))
+		if(stacks >= 15)
+			owner.cut_overlay(mutable_appearance('icons/mob/OnFire.dmi', "Generic_mob_burning", -FIRE_LAYER))
+			owner.cut_overlay(mutable_appearance('icons/mob/OnFire.dmi', "Standing", -FIRE_LAYER))
+			owner.add_overlay(mutable_appearance('icons/mob/OnFire.dmi', "Standing", -FIRE_LAYER))
+		else
+			owner.cut_overlay(mutable_appearance('icons/mob/OnFire.dmi', "Standing", -FIRE_LAYER))
+			owner.cut_overlay(mutable_appearance('icons/mob/OnFire.dmi', "Generic_mob_burning", -FIRE_LAYER))
+			owner.add_overlay(mutable_appearance('icons/mob/OnFire.dmi', "Generic_mob_burning", -FIRE_LAYER))
+
+/datum/status_effect/stacking/lc_burn/on_remove()
+	if(!(owner.on_fire) && ishuman(owner))
+		owner.cut_overlay(mutable_appearance('icons/mob/OnFire.dmi', "Generic_mob_burning", -FIRE_LAYER))
+		owner.cut_overlay(mutable_appearance('icons/mob/OnFire.dmi', "Standing", -FIRE_LAYER))
+	..()
+
+//Mob Proc
+/mob/living/proc/apply_lc_burn(stacks)
+	var/datum/status_effect/stacking/lc_burn/B = src.has_status_effect(/datum/status_effect/stacking/lc_burn)
+	if(!B)
+		src.apply_status_effect(/datum/status_effect/stacking/lc_burn, stacks)
+	else
+		B.add_stacks(stacks)
+
+#define STATUS_EFFECT_LCBLEED /datum/status_effect/stacking/lc_bleed // Deals true damage every 5 sec, can't be applied to godmode (contained abos)
+/datum/status_effect/stacking/lc_bleed
+	id = "lc_bleed"
+	alert_type = /atom/movable/screen/alert/status_effect/lc_bleed
+	max_stacks = 50
+	tick_interval = 5 SECONDS
+	consumed_on_threshold = FALSE
+	var/new_stack = FALSE
+	var/safety = TRUE
+	var/bleed_cooldown = 20
+	var/bleed_time
+
+/atom/movable/screen/alert/status_effect/lc_bleed
+	name = "Bleeding"
+	desc = "You're currently bleeding!!"
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "lc_bleed"
+
+//Bleed Damage Stuff
+/datum/status_effect/stacking/lc_bleed/on_apply()
+	. = ..()
+	RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(Moved))
+	owner.playsound_local(owner, 'sound/effects/bleed_apply.ogg', 25, TRUE)
+
+//Deals true damage
+/datum/status_effect/stacking/lc_bleed/proc/Moved(mob/user, atom/new_location)
+	SIGNAL_HANDLER
+	if (world.time - bleed_time < bleed_cooldown)
+		return
+	bleed_time = world.time
+	if(!can_have_status())
+		qdel(src)
+	to_chat(owner, "<span class='warning'>Your organs bleed due to your movement!!</span>")
+	owner.playsound_local(owner, 'sound/effects/bleed.ogg', 25, TRUE)
+	if(stacks >= 5)
+		var/obj/effect/decal/cleanable/blood/B = locate() in get_turf(owner)
+		if(!B)
+			B = new /obj/effect/decal/cleanable/blood(get_turf(owner))
+			B.bloodiness = 100
+	if(ishuman(owner))
+		owner.adjustBruteLoss(max(0, stacks))
+	else
+		owner.adjustBruteLoss(stacks*4) // x4 on non humans
+	new /obj/effect/temp_visual/damage_effect/bleed(get_turf(owner))
+	stacks = round(stacks/2)
+	if(stacks == 0)
+		qdel(src)
+
+
+/datum/status_effect/stacking/lc_bleed/on_remove()
+	UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)
+	return ..()
+
+/datum/status_effect/stacking/lc_bleed/can_have_status()
+	return (owner.stat != DEAD || !(owner.status_flags & GODMODE))
+
+/datum/status_effect/stacking/lc_bleed/add_stacks(stacks_added)
+	..()
+	new_stack = TRUE
+
+// The Stack Decaying
+/datum/status_effect/stacking/lc_bleed/tick()
+	if(safety)
+		if(new_stack)
+			new_stack = FALSE
+		else
+			qdel(src)
+
+//Mob Proc
+/mob/living/proc/apply_lc_bleed(stacks)
+	var/datum/status_effect/stacking/lc_bleed/B = src.has_status_effect(/datum/status_effect/stacking/lc_bleed)
+	if(!B)
+		src.apply_status_effect(/datum/status_effect/stacking/lc_bleed, stacks)
+	else
+		B.add_stacks(stacks)
+
+/datum/status_effect/display/dyscrasone_withdrawl
+	id = "dyscrasone_withdrawl"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 15 SECONDS
+	alert_type = null
+	display_name = "sadface_all_stats"
+
+/datum/status_effect/display/dyscrasone_withdrawl/on_apply()
+	. = ..()
+	var/mob/living/carbon/human/L = owner
+	L.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -25)
+	L.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -25)
+	L.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -25)
+	L.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -25)
+
+/datum/status_effect/display/dyscrasone_withdrawl/on_remove()
+	var/mob/living/carbon/human/L = owner
+	L.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 25)
+	L.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 25)
+	L.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 25)
+	L.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 25)
+	return ..()
+
+/datum/status_effect/stacking/pallid_noise
+	id = "pallidnoise"
+	status_type = STATUS_EFFECT_MULTIPLE
+	duration = 15 SECONDS//15 seconds per stack, a bit over a minute when maxed out
+	tick_interval = 10
+	max_stacks = 5
+	stacks = 1
+	on_remove_on_mob_delete = TRUE
+	alert_type = /atom/movable/screen/alert/status_effect/pallid_noise
+	consumed_on_threshold = FALSE
+
+/atom/movable/screen/alert/status_effect/pallid_noise
+	name = "Pallid Noise"
+	desc = "Hideous noises reverberate through your own head, all speaking a language you don't understand, yet do."
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "pallid_noise"
+
+/datum/status_effect/stacking/pallid_noise/tick()//TODO:change this to golden apple's life tick for less lag
+	if(!ishuman(owner))
+		owner.apply_damage(stacks * 5, WHITE_DAMAGE, null, owner.run_armor_check(null, WHITE_DAMAGE))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjustSanityLoss(stacks * stacks)//sanity damage is the # of stacks squared
+
+/datum/status_effect/healing_block
+	id = "healing_block_base"
+	status_type = STATUS_EFFECT_REFRESH
+	alert_type = null
+
+/datum/status_effect/healing_block/on_apply()
+	if(!HAS_TRAIT(owner, TRAIT_PHYSICAL_HEALING_BLOCKED))
+		ADD_TRAIT(owner, TRAIT_PHYSICAL_HEALING_BLOCKED, STATUS_EFFECT_TRAIT)
+	if(ishuman(owner) && !HAS_TRAIT(owner, TRAIT_SANITY_HEALING_BLOCKED))
+		ADD_TRAIT(owner, TRAIT_SANITY_HEALING_BLOCKED, STATUS_EFFECT_TRAIT)
+	return TRUE
+
+/datum/status_effect/healing_block/on_remove()
+	if(locate(/datum/status_effect/healing_block) in owner.status_effects)
+		return
+	REMOVE_TRAIT(owner, TRAIT_PHYSICAL_HEALING_BLOCKED, STATUS_EFFECT_TRAIT)
+	if(ishuman(owner))
+		REMOVE_TRAIT(owner, TRAIT_SANITY_HEALING_BLOCKED, STATUS_EFFECT_TRAIT)
+
+// Tremor
+/datum/status_effect/stacking/lc_tremor
+	id = "lc_tremor"
+	alert_type = /atom/movable/screen/alert/status_effect/lc_tremor
+	max_stacks = 50
+	tick_interval = 10 SECONDS
+	consumed_on_threshold = FALSE
+	var/new_stack = TRUE
+
+/atom/movable/screen/alert/status_effect/lc_tremor
+	name = "Tremor"
+	desc = "You're unsteady on your feet, and move a bit slower."
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "tremor"
+
+//Slowdown on stack, prepares tremor burst
+/datum/status_effect/stacking/lc_tremor/on_apply()
+	. = ..()
+	owner.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/tremor, multiplicative_slowdown = stacks * 0.4)
+
+/datum/status_effect/stacking/lc_tremor/on_remove()
+	owner.remove_movespeed_modifier(/datum/movespeed_modifier/tremor)
+	return ..()
+
+/datum/status_effect/stacking/lc_tremor/add_stacks(stacks)
+	. = ..()
+	owner.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/tremor, multiplicative_slowdown = stacks * 0.4)
+
+/datum/status_effect/stacking/lc_tremor/can_have_status()
+	return (owner.stat != DEAD || !(owner.status_flags & GODMODE))
+
+// The Stack Decaying
+/datum/status_effect/stacking/lc_tremor/tick()
+	if(new_stack)
+		new_stack = FALSE
+	else
+		qdel(src)
+
+/datum/status_effect/stacking/lc_tremor/proc/TremorBurst()
+	new /obj/effect/temp_visual/weapon_stun/tremorburst(get_turf(owner))
+	playsound(owner, 'sound/effects/tremorburst.ogg', 50, FALSE)
+	if(ishuman(owner))
+		owner.Knockdown(stacks)
+		qdel(src)
+		return
+	owner.adjustBruteLoss(5 * stacks)
+	qdel(src)
+
+//Mob Proc
+/mob/living/proc/apply_lc_tremor(stacks, tremorburst)
+	var/datum/status_effect/stacking/lc_tremor/T = src.has_status_effect(/datum/status_effect/stacking/lc_tremor)
+	if(!T)
+		src.apply_status_effect(/datum/status_effect/stacking/lc_tremor, stacks)
+		new /obj/effect/temp_visual/damage_effect/tremor(get_turf(src))
+		return
+
+	if(T.stacks < tremorburst)
+		T.add_stacks(stacks)
+		new /obj/effect/temp_visual/damage_effect/tremor(get_turf(src))
+		T.new_stack = TRUE
+		return
+	T.TremorBurst()
+
+
+/datum/movespeed_modifier/tremor
+	multiplicative_slowdown = 0
+	variable = TRUE

@@ -18,7 +18,7 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 		IF YOU ADD MORE ICON CRAP TO THIS
 		ENSURE YOU ALSO ADD THE NEW VARS TO CHAMELEON ITEM_ACTION'S update_item() PROC (/datum/action/item_action/chameleon/change/proc/update_item())
 		WASHING MASHINE'S dye_item() PROC (/obj/item/proc/dye_item())
-		AND ALSO TO THE CHANGELING PROFILE DISGUISE SYSTEMS (/datum/changelingprofile / /datum/antagonist/changeling/proc/create_profile() / /proc/changeling_transform())
+		AND ALSO TO THE CHANGELING PROFILE DISGUISE SYSTEMS (/datum/changelingprofile / /datum/antagonist/changeling/proc/create_profile() / GLOBAL_PROC_REF(changeling_transform)())
 
 		!!!!!!!!!!!!!!! IMPORTANT !!!!!!!!!!!!!!	*/
 
@@ -41,7 +41,7 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 		IF YOU ADD MORE ICON CRAP TO THIS
 		ENSURE YOU ALSO ADD THE NEW VARS TO CHAMELEON ITEM_ACTION'S update_item() PROC (/datum/action/item_action/chameleon/change/proc/update_item())
 		WASHING MASHINE'S dye_item() PROC (/obj/item/proc/dye_item())
-		AND ALSO TO THE CHANGELING PROFILE DISGUISE SYSTEMS (/datum/changelingprofile / /datum/antagonist/changeling/proc/create_profile() / /proc/changeling_transform())
+		AND ALSO TO THE CHANGELING PROFILE DISGUISE SYSTEMS (/datum/changelingprofile / /datum/antagonist/changeling/proc/create_profile() / GLOBAL_PROC_REF(changeling_transform)())
 
 		!!!!!!!!!!!!!!! IMPORTANT !!!!!!!!!!!!!!	*/
 
@@ -140,6 +140,8 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	var/mob/thrownby = null
 	///Items can by default thrown up to 10 tiles by TK users
 	tk_throw_range = 10
+	///What action is performed when throwing the item "i.e. flick"
+	var/throw_verb
 
 	///the icon to indicate this object is being dragged
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
@@ -192,6 +194,19 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 
 	var/canMouseDown = FALSE
 
+	///No item attack animation, only person tilt.
+	var/run_item_attack_animation = TRUE
+
+	/// Whether it sweeps in an arc or not.
+	var/swingstyle = WEAPONSWING_NONE
+	/// What Color its swing animation is
+	var/swingcolor
+
+	/// How many deciseconds between attacks, times ten.
+	var/attack_speed = 1
+	/// A multiplier added to force through various means. Used primarily for weapon upgrades.
+	var/force_multiplier = 1
+
 /obj/item/Initialize()
 
 	if(attack_verb_continuous)
@@ -214,6 +229,8 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 			hitsound = 'sound/items/welder.ogg'
 		if(damtype in list(BRUTE, RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE))
 			hitsound = "swing_hit"
+	if(swingstyle > WEAPONSWING_NONE)
+		GetSwingColor()
 
 /obj/item/Destroy()
 	item_flags &= ~DROPDEL	//prevent reqdels
@@ -341,6 +358,11 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 /obj/item/ui_act(action, list/params)
 	add_fingerprint(usr)
 	return ..()
+
+/obj/item/attack(mob/M, mob/user)
+	. = ..()
+	if(attack_speed && attack_speed != 1)
+		user.changeNext_move(CLICK_CD_MELEE * attack_speed)
 
 /obj/item/attack_hand(mob/user)
 	. = ..()
@@ -613,8 +635,6 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	else
 		M.take_bodypart_damage(7)
 
-	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "eye_stab", /datum/mood_event/eye_stab)
-
 	log_combat(user, M, "attacked", "[src.name]", "(INTENT: [uppertext(user.a_intent)])")
 
 	var/obj/item/organ/eyes/eyes = M.getorganslot(ORGAN_SLOT_EYES)
@@ -677,7 +697,7 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	if(HAS_TRAIT(src, TRAIT_NODROP))
 		return
 	thrownby = thrower
-	callback = CALLBACK(src, .proc/after_throw, callback) //replace their callback with our own
+	callback = CALLBACK(src, PROC_REF(after_throw), callback) //replace their callback with our own
 	. = ..(target, range, speed, thrower, spin, diagonals_first, callback, force, gentle, quickstart = quickstart)
 
 
@@ -838,7 +858,7 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	if((item_flags & IN_INVENTORY || item_flags & IN_STORAGE) && usr.client.prefs.enable_tips && !QDELETED(src))
 		var/timedelay = usr.client.prefs.tip_delay/100
 		var/user = usr
-		tip_timer = addtimer(CALLBACK(src, .proc/openTip, location, control, params, user), timedelay, TIMER_STOPPABLE)//timer takes delay in deciseconds, but the pref is in milliseconds. dividing by 100 converts it.
+		tip_timer = addtimer(CALLBACK(src, PROC_REF(openTip), location, control, params, user), timedelay, TIMER_STOPPABLE)//timer takes delay in deciseconds, but the pref is in milliseconds. dividing by 100 converts it.
 
 /obj/item/MouseExited()
 	deltimer(tip_timer)//delete any in-progress timer if the mouse is moved off the item before it finishes
@@ -869,7 +889,7 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 
 	if(delay)
 		// Create a callback with checks that would be called every tick by do_after.
-		var/datum/callback/tool_check = CALLBACK(src, .proc/tool_check_callback, user, amount, extra_checks)
+		var/datum/callback/tool_check = CALLBACK(src, PROC_REF(tool_check_callback), user, amount, extra_checks)
 
 		if(ismob(target))
 			if(!do_mob(user, target, delay, extra_checks=tool_check))
@@ -1046,7 +1066,7 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
  */
 /obj/item/proc/on_accidental_consumption(mob/living/carbon/victim, mob/living/carbon/user, obj/item/source_item, discover_after = TRUE)
 	if(get_sharpness() && force >= 5) //if we've got something sharp with a decent force (ie, not plastic)
-		INVOKE_ASYNC(victim, /mob.proc/emote, "scream")
+		INVOKE_ASYNC(victim, TYPE_PROC_REF(/mob, emote), "scream")
 		victim.visible_message("<span class='warning'>[victim] looks like [victim.p_theyve()] just bit something they shouldn't have!</span>", \
 							"<span class='boldwarning'>OH GOD! Was that a crunch? That didn't feel good at all!!</span>")
 
@@ -1122,3 +1142,51 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	if(ismob(loc))
 		var/mob/mob_loc = loc
 		mob_loc.regenerate_icons()
+
+/obj/item/Topic(href, list/href_list)
+	if(href_list["examine"])
+		var/mob/user = get_mob_by_ckey(href_list["examine"])
+		user.examinate(src)
+		return
+	. = ..()
+
+/**
+ * * An interrupt for offering an item to other people, called mainly from [/mob/living/carbon/proc/give], in case you want to run your own offer behavior instead.
+ *
+ * * Return TRUE if you want to interrupt the offer.
+ *
+ * * Arguments:
+ * * offerer - the person offering the item
+ */
+/obj/item/proc/on_offered(mob/living/carbon/offerer)
+	if(SEND_SIGNAL(src, COMSIG_ITEM_OFFERING, offerer) & COMPONENT_OFFER_INTERRUPT)
+		return TRUE
+
+/**
+ * * An interrupt for someone trying to accept an offered item, called mainly from [/mob/living/carbon/proc/take], in case you want to run your own take behavior instead.
+ *
+ * * Return TRUE if you want to interrupt the taking.
+ *
+ * * Arguments:
+ * * offerer - the person offering the item
+ * * taker - the person trying to accept the offer
+ */
+/obj/item/proc/on_offer_taken(mob/living/carbon/offerer, mob/living/carbon/taker)
+	if(SEND_SIGNAL(src, COMSIG_ITEM_OFFER_TAKEN, offerer, taker) & COMPONENT_OFFER_INTERRUPT)
+		return TRUE
+
+/obj/item/proc/MiddleClickAction(atom/target, mob/living/user)
+	SHOULD_CALL_PARENT(TRUE)
+	if(SEND_SIGNAL(src, COMSIG_ITEM_MIDDLE_CLICK_ACTION, target, user) & COMPONENT_CANCEL_MIDDLE_CLICK_ACTION)
+		return TRUE
+
+/**
+ * * Sets the Swing Color of an item, typically by calling GetAverageColor.
+*/
+/obj/item/proc/GetSwingColor()
+	// If we had a default and got washed or something, then we return to that.
+	if(initial(swingcolor) && !color)
+		swingcolor = initial(swingcolor)
+		return
+	// Otherwise we find what our current icon's average is.
+	swingcolor = GetAverageColor(src)

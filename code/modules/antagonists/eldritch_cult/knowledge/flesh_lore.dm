@@ -55,7 +55,7 @@
 	var/datum/antagonist/heretic/master = user.mind.has_antag_datum(/datum/antagonist/heretic)
 	heretic_monster.set_owner(master)
 	atoms -= humie
-	RegisterSignal(humie,COMSIG_LIVING_DEATH,.proc/remove_ghoul)
+	RegisterSignal(humie,COMSIG_LIVING_DEATH, PROC_REF(remove_ghoul))
 	ghouls += humie
 
 /datum/eldritch_knowledge/flesh_ghoul/proc/remove_ghoul(datum/source)
@@ -87,22 +87,22 @@
 	human_target.grab_ghost()
 
 	if(!human_target.mind || !human_target.client)
-		to_chat(user, "<span class='warning'>There is no soul connected to this body...</span>")
+		to_chat(user, span_warning("There is no soul connected to this body..."))
 		return
 
 	if(HAS_TRAIT(human_target, TRAIT_HUSK))
-		to_chat(user, "<span class='warning'>You cannot revive a dead ghoul!</span>")
+		to_chat(user, span_warning("You cannot revive a dead ghoul!"))
 		return
 
 	if(LAZYLEN(spooky_scaries) >= ghoul_amt)
-		to_chat(user, "<span class='warning'>Your patron cannot support more ghouls on this plane!</span>")
+		to_chat(user, span_warning("Your patron cannot support more ghouls on this plane!"))
 		return
 
 	LAZYADD(spooky_scaries, human_target)
 	log_game("[key_name_admin(human_target)] has become a ghoul, their master is [user.real_name]")
 	//we change it to true only after we know they passed all the checks
 	. = TRUE
-	RegisterSignal(human_target,COMSIG_LIVING_DEATH,.proc/remove_ghoul)
+	RegisterSignal(human_target,COMSIG_LIVING_DEATH, PROC_REF(remove_ghoul))
 	human_target.revive(full_heal = TRUE, admin_revive = TRUE)
 	human_target.setMaxHealth(25)
 	human_target.health = 25

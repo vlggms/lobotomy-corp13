@@ -30,7 +30,7 @@
 	///Use this to temporarely stop random movement or to if you write special movement code for animals.
 	var/stop_automated_movement = 0
 	///Does the mob wander around when idle?
-	var/wander = 1
+	var/wander = FALSE
 	///When set to 1 this stops the animal from moving when someone is pulling it.
 	var/stop_automated_movement_when_pulled = 1
 
@@ -82,15 +82,20 @@
 	var/armour_penetration = 0
 	///Damage type of a simple mob's melee attack, should it do damage.
 	var/melee_damage_type = RED_DAMAGE
-	///Armor type that is checked when attacking someone
-	var/armortype = RED_DAMAGE
-	/// 1 for full damage , 0 for none , -1 for 1:1 heal from that source.
-	var/list/damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+	/// 1 for full damage , 0 for none , -1 for 1:1 heal from that source., Starts as a list and becomes a datum post Initialize()
+	var/datum/dam_coeff/damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+	/// The unmodified values for the dam_coeff datum
+	var/datum/dam_coeff/unmodified_damage_coeff_datum
+	/// The list of all modifiers to the current DC datum
+	var/list/damage_mods = list()
 	///Attacking verb in present continuous tense.
 	var/attack_verb_continuous = "attacks"
 	///Attacking verb in present simple tense.
 	var/attack_verb_simple = "attack"
-	var/attack_sound = null
+	/// Sound played when the critter attacks.
+	var/attack_sound
+	/// Override for the visual attack effect shown on 'do_attack_animation()'.
+	var/attack_vis_effect
 	///Attacking, but without damage, verb in present continuous tense.
 	var/friendly_verb_continuous = "nuzzles"
 	///Attacking, but without damage, verb in present simple tense.
@@ -124,7 +129,6 @@
 	var/list/loot = list()
 	///Causes mob to be deleted on death, useful for mobs that spawn lootable corpses.
 	var/del_on_death = 0
-	var/deathmessage = ""
 
 	var/allow_movement_on_non_turfs = FALSE
 
@@ -169,10 +173,26 @@
 	///Generic flags
 	var/simple_mob_flags = NONE
 
-	/// Used for making mobs show a heart emoji and give a mood boost when pet.
+	/// Used for making mobs show a heart emoji when pet.
 	var/pet_bonus = FALSE
 	/// A string for an emote used when pet_bonus == true for the mob being pet.
 	var/pet_bonus_emote = ""
+
+	var/occupied_tiles_left = 0
+	var/occupied_tiles_right = 0
+	var/occupied_tiles_down = 0
+	var/occupied_tiles_up = 0
+	var/occupied_tiles_left_current = 0
+	var/occupied_tiles_right_current = 0
+	var/occupied_tiles_down_current = 0
+	var/occupied_tiles_up_current = 0
+	var/list/projectile_blockers = null
+	var/list/offsets_pixel_x = list("south" = 0, "north" = 0, "west" = 0, "east" = 0)
+	var/list/offsets_pixel_y = list("south" = 0, "north" = 0, "west" = 0, "east" = 0)
+	var/should_projectile_blockers_change_orientation = FALSE
+
+	//If they should get they city faction in City gamemodes
+	var/city_faction = TRUE
 
 /mob/living/simple_animal/Initialize()
 	. = ..()
@@ -200,19 +220,127 @@
 		emote_see = string_list(emote_hear)
 	if(atmos_requirements)
 		atmos_requirements = string_assoc_list(atmos_requirements)
-	if(damage_coeff)
-		damage_coeff = string_assoc_list(damage_coeff)
+	if (islist(damage_coeff))
+		unmodified_damage_coeff_datum = makeDamCoeff(damage_coeff)
+		damage_coeff = makeDamCoeff(damage_coeff)
+	else if (!damage_coeff)
+		damage_coeff = makeDamCoeff()
+		unmodified_damage_coeff_datum = makeDamCoeff()
+	else if (!istype(damage_coeff, /datum/dam_coeff))
+		stack_trace("Invalid type [damage_coeff.type] found in .damage_coeff during /simple_animal Initialize()")
 	if(footstep_type)
 		AddComponent(/datum/component/footstep, footstep_type)
 	if(!unsuitable_cold_damage)
 		unsuitable_cold_damage = unsuitable_atmos_damage
 	if(!unsuitable_heat_damage)
 		unsuitable_heat_damage = unsuitable_atmos_damage
+	//LC13 Check, it's here to give everything nightvision on Rcorp.
+	if(IsCombatMap())
+		var/obj/effect/proc_holder/spell/targeted/night_vision/bloodspell = new
+		AddSpell(bloodspell)
+	//LC13 Check. If it's the citymap, they all gain a faction
+	if(SSmaptype.maptype in SSmaptype.citymaps)
+		if(city_faction)
+			faction += "city"
+	if(occupied_tiles_down > 0 || occupied_tiles_up > 0 || occupied_tiles_left > 0 || occupied_tiles_right > 0)
+		occupied_tiles_left_current = occupied_tiles_left
+		occupied_tiles_right_current = occupied_tiles_right
+		occupied_tiles_down_current = occupied_tiles_down
+		occupied_tiles_up_current = occupied_tiles_up
+		projectile_blockers = list()
+		for(var/i in (x - occupied_tiles_left) to (x + occupied_tiles_right))
+			for(var/j in (y - occupied_tiles_down) to (y + occupied_tiles_up))
+				if(i == x && j == y)
+					continue
+				projectile_blockers += new /mob/living/simple_animal/projectile_blocker_dummy(locate(i, j, z), src)
+		RegisterSignal(src, COMSIG_ATOM_DIR_CHANGE, PROC_REF(OnDirChange))
+
+	if(damage_coeff.getCoeff(FIRE) == 1) // LC13 burn armor calculator. Looks at red armor, and ignores up to 50% of armor. deals full damage to mobs weak to red
+		var/red_mod = damage_coeff.getCoeff(RED_DAMAGE)
+		switch(red_mod)
+			if(-INFINITY to 0)
+				red_mod = red_mod
+			if(0.001 to 0.5)
+				red_mod = red_mod * 1.5
+			if(0.5 to 1)
+				red_mod = (((1 - red_mod) / 2) + red_mod) // 50% armor ignore
+		ChangeResistances(list(FIRE = red_mod))
+
+/mob/living/simple_animal/proc/SetOccupiedTiles(down = 0, up = 0, left = 0, right = 0)
+	occupied_tiles_down = down
+	occupied_tiles_up = up
+	occupied_tiles_left = left
+	occupied_tiles_right = right
+	occupied_tiles_down_current = down
+	occupied_tiles_up_current = up
+	occupied_tiles_left_current = left
+	occupied_tiles_right_current = right
+	var/amount_needed = (down + up + 1) * (left + right + 1) - 1
+	if(!projectile_blockers)
+		projectile_blockers = list()
+		RegisterSignal(src, COMSIG_ATOM_DIR_CHANGE, PROC_REF(OnDirChange))
+	if(amount_needed > projectile_blockers.len)
+		for(var/i in (projectile_blockers.len + 1) to amount_needed)
+			projectile_blockers += new /mob/living/simple_animal/projectile_blocker_dummy(get_turf(src), src)
+	else if(amount_needed < projectile_blockers.len)
+		for(var/i in (amount_needed + 1) to projectile_blockers.len)
+			qdel(projectile_blockers[1])
+			projectile_blockers.Cut(1, 2)
+	var/current_element = 1
+	for(var/i in (-occupied_tiles_left) to occupied_tiles_right)
+		for(var/j in (-occupied_tiles_down) to occupied_tiles_up)
+			if(i == 0 && j == 0)
+				continue
+			var/mob/living/simple_animal/projectile_blocker_dummy/pbd = projectile_blockers[current_element]
+			pbd.offset_x = i
+			pbd.offset_y = j
+			++current_element
+	setDir(dir)
 
 /mob/living/simple_animal/Life()
 	. = ..()
 	if(staminaloss > 0)
 		adjustStaminaLoss(-stamina_recovery, FALSE, TRUE)
+
+/mob/living/simple_animal/proc/OnDirChange(atom/thing, dir, newdir)
+	SIGNAL_HANDLER
+	pixel_x = offsets_pixel_x[dir2text(newdir)]
+	base_pixel_x = pixel_x
+	pixel_y = offsets_pixel_y[dir2text(newdir)]
+	base_pixel_y = pixel_y
+	if(should_projectile_blockers_change_orientation)
+		for(var/mob/living/simple_animal/projectile_blocker_dummy/D in projectile_blockers)
+			var/turf/T
+			switch(newdir)
+				if(SOUTH)
+					occupied_tiles_left_current = occupied_tiles_left
+					occupied_tiles_right_current = occupied_tiles_right
+					occupied_tiles_down_current = occupied_tiles_down
+					occupied_tiles_up_current = occupied_tiles_up
+					T = locate(x + D.offset_x, y + D.offset_y, z)
+				if(NORTH)
+					occupied_tiles_left_current = occupied_tiles_right
+					occupied_tiles_right_current = occupied_tiles_left
+					occupied_tiles_down_current = occupied_tiles_up
+					occupied_tiles_up_current = occupied_tiles_down
+					T = locate(x - D.offset_x, y - D.offset_y, z)
+				if(WEST)
+					occupied_tiles_left_current = occupied_tiles_down
+					occupied_tiles_right_current = occupied_tiles_up
+					occupied_tiles_down_current = occupied_tiles_right
+					occupied_tiles_up_current = occupied_tiles_left
+					T = locate(x + D.offset_y, y - D.offset_x, z)
+				if(EAST)
+					occupied_tiles_left_current = occupied_tiles_up
+					occupied_tiles_right_current = occupied_tiles_down
+					occupied_tiles_down_current = occupied_tiles_left
+					occupied_tiles_up_current = occupied_tiles_right
+					T = locate(x - D.offset_y, y + D.offset_x, z)
+			D.doMove(T)
+
+/mob/living/simple_animal/onTransitZ(old_z, new_z)
+	. = ..()
+	Moved()
 
 /mob/living/simple_animal/Destroy()
 	GLOB.simple_animals[AIStatus] -= src
@@ -227,6 +355,8 @@
 	if (T && AIStatus == AI_Z_OFF)
 		SSidlenpcpool.idle_mobs_by_zlevel[T.z] -= src
 
+	if(projectile_blockers)
+		QDEL_LIST(projectile_blockers)
 	return ..()
 
 /mob/living/simple_animal/vv_edit_var(var_name, var_value)
@@ -243,9 +373,9 @@
 	if(!is_type_in_list(O, food_type))
 		return ..()
 	if(stat == DEAD)
-		to_chat(user, "<span class='warning'>[src] is dead!</span>")
+		to_chat(user, span_warning("[src] is dead!"))
 		return
-	user.visible_message("<span class='notice'>[user] hand-feeds [O] to [src].</span>", "<span class='notice'>You hand-feed [O] to [src].</span>")
+	user.visible_message(span_notice("[user] hand-feeds [O] to [src]."), span_notice("You hand-feed [O] to [src]."))
 	qdel(O)
 	if(tame)
 		return
@@ -262,7 +392,7 @@
 /mob/living/simple_animal/examine(mob/user)
 	. = ..()
 	if(stat == DEAD)
-		. += "<span class='deadsay'>Upon closer examination, [p_they()] appear[p_s()] to be dead.</span>"
+		. += span_deadsay("Upon closer examination, [p_they()] appear[p_s()] to be dead.")
 
 
 /mob/living/simple_animal/update_stat()
@@ -449,12 +579,6 @@
 		verb_say = pick(speak_emote)
 	return ..()
 
-
-/mob/living/simple_animal/emote(act, m_type=1, message = null, intentional = FALSE)
-	if(stat)
-		return FALSE
-	return ..()
-
 /mob/living/simple_animal/proc/set_varspeed(var_value)
 	speed = var_value
 	update_simplemob_varspeed()
@@ -470,7 +594,7 @@
 	. += "Health: [round((health / maxHealth) * 100)]%"
 
 /mob/living/simple_animal/proc/drop_loot()
-	if(loot.len)
+	if(loot?.len)
 		for(var/i in loot)
 			new i(loc)
 
@@ -481,9 +605,6 @@
 	drop_loot()
 	if(dextrous)
 		drop_all_held_items()
-	if(!gibbed)
-		if(deathsound || deathmessage || !del_on_death)
-			emote("deathgasp")
 	if(del_on_death)
 		..()
 		//Prevent infinite loops if the mob Destroy() is overridden in such
@@ -706,13 +827,6 @@
 	if (pulledby || shouldwakeup)
 		toggle_ai(AI_ON)
 
-/mob/living/simple_animal/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
-	. = ..()
-	if(!ckey && !stat)//Not unconscious
-		if(AIStatus == AI_IDLE)
-			toggle_ai(AI_ON)
-
-
 /mob/living/simple_animal/onTransitZ(old_z, new_z)
 	..()
 	if (AIStatus == AI_Z_OFF)
@@ -729,7 +843,7 @@
 	return relaydrive(user, direction)
 
 /mob/living/simple_animal/deadchat_plays(mode = ANARCHY_MODE, cooldown = 12 SECONDS)
-	. = AddComponent(/datum/component/deadchat_control/cardinal_movement, mode, list(), cooldown, CALLBACK(src, .proc/stop_deadchat_plays))
+	. = AddComponent(/datum/component/deadchat_control/cardinal_movement, mode, list(), cooldown, CALLBACK(src, PROC_REF(stop_deadchat_plays)))
 
 	if(. == COMPONENT_INCOMPATIBLE)
 		return
@@ -738,3 +852,10 @@
 
 /mob/living/simple_animal/proc/stop_deadchat_plays()
 	stop_automated_movement = FALSE
+
+// -- LC13 THINGS --
+
+/mob/living/simple_animal/proc/IsCombatMap() //Is it currently a combat gamemode? Used to check for a few interactions, like if somethings can teleport.
+	if(SSmaptype.maptype in SSmaptype.combatmaps)
+		return TRUE
+	return FALSE

@@ -2,13 +2,13 @@
 /mob/living/carbon/register_init_signals()
 	. = ..()
 
-	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_NOBREATH), .proc/on_nobreath_trait_gain)
-	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_NOMETABOLISM), .proc/on_nometabolism_trait_gain)
+	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_NOBREATH), PROC_REF(on_nobreath_trait_gain))
+	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_NOMETABOLISM), PROC_REF(on_nometabolism_trait_gain))
 
 /**
  * On gain of TRAIT_NOBREATH
  *
- * This will clear all alerts and moods related to breathing.
+ * This will clear all alerts related to breathing.
  */
 /mob/living/carbon/proc/on_nobreath_trait_gain(datum/source)
 	SIGNAL_HANDLER
@@ -23,13 +23,10 @@
 	clear_alert("not_enough_nitro")
 	clear_alert("too_much_co2")
 	clear_alert("not_enough_co2")
-	SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "chemical_euphoria")
-	SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "smell")
-	SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "suffocation")
 /**
  * On gain of TRAIT_NOMETABOLISM
  *
- * This will clear all moods related to addictions and stop metabolization.
+ * This will clear all addictions and stop metabolization.
  */
 /mob/living/carbon/proc/on_nometabolism_trait_gain(datum/source)
 	SIGNAL_HANDLER

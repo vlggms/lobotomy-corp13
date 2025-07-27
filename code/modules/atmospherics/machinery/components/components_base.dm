@@ -26,7 +26,7 @@
 	. = ..()
 
 	if(hide)
-		RegisterSignal(src, COMSIG_OBJ_HIDE, .proc/hide_pipe)
+		RegisterSignal(src, COMSIG_OBJ_HIDE, PROC_REF(hide_pipe))
 
 // Iconnery
 
@@ -82,19 +82,26 @@
 	..()
 	update_parents()
 
-/obj/machinery/atmospherics/components/build_network()
+/obj/machinery/atmospherics/components/get_rebuild_targets()
+	var/list/to_return = list()
 	for(var/i in 1 to device_type)
-		if(!parents[i])
-			parents[i] = new /datum/pipeline()
-			var/datum/pipeline/P = parents[i]
-			P.build_pipeline(src)
+		if(parents[i])
+			continue
+		parents[i] = new /datum/pipeline()
+		to_return += parents[i]
+	return to_return
 
 /obj/machinery/atmospherics/components/proc/nullifyPipenet(datum/pipeline/reference)
 	if(!reference)
 		CRASH("nullifyPipenet(null) called by [type] on [COORD(src)]")
-	var/i = parents.Find(reference)
-	reference.other_airs -= airs[i]
+
+	for (var/i in 1 to parents.len)
+		if (parents[i] == reference)
+			reference.other_airs -= airs[i] // Disconnects from the pipeline side
+			parents[i] = null // Disconnects from the machinery side.
+
 	reference.other_atmosmch -= src
+
 	/**
 	 *  We explicitly qdel pipeline when this particular pipeline
 	 *  is projected to have no member and cause GC problems.
@@ -104,10 +111,8 @@
 	 */
 	if(!length(reference.other_atmosmch) && !length(reference.members))
 		if(QDESTROYING(reference))
-			parents[i] = null
-			CRASH("nullifyPipenet() called on qdeleting [reference] indexed on parents\[[i]\]")
+			CRASH("nullifyPipenet() called on qdeleting [reference]")
 		qdel(reference)
-	parents[i] = null
 
 /obj/machinery/atmospherics/components/returnPipenetAir(datum/pipeline/reference)
 	return airs[parents.Find(reference)]
@@ -183,7 +188,7 @@
 /obj/machinery/atmospherics/components/ui_status(mob/user)
 	if(allowed(user))
 		return ..()
-	to_chat(user, "<span class='danger'>Access denied.</span>")
+	to_chat(user, span_danger("Access denied."))
 	return UI_CLOSE
 
 // Tool acts

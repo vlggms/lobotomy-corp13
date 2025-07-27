@@ -39,6 +39,7 @@ have ways of interacting with a specific atom and control it. They posses a blac
 /datum/ai_controller/proc/PossessPawn(atom/new_pawn)
 	if(pawn) //Reset any old signals
 		UnpossessPawn(FALSE)
+		return
 
 	if(istype(new_pawn.ai_controller)) //Existing AI, kill it.
 		QDEL_NULL(new_pawn.ai_controller)
@@ -59,7 +60,8 @@ have ways of interacting with a specific atom and control it. They posses a blac
 	else
 		set_ai_status(AI_STATUS_ON)
 
-	RegisterSignal(pawn, COMSIG_MOB_LOGIN, .proc/on_sentience_gained)
+	RegisterSignal(pawn, COMSIG_MOB_LOGIN, PROC_REF(on_sentience_gained))
+	return
 
 ///Abstract proc for initializing the pawn to the new controller
 /datum/ai_controller/proc/TryPossessPawn(atom/new_pawn)
@@ -105,8 +107,10 @@ have ways of interacting with a specific atom and control it. They posses a blac
 			current_behavior.perform(delta_time, src)
 
 	if(want_to_move)
-		MoveTo(delta_time) //Need to add some code to check if we can perform the actions now without too much overhead
+		PerformMovement(delta_time) //Need to add some code to check if we can perform the actions now without too much overhead
 
+/datum/ai_controller/proc/PerformMovement(delta_time)
+	return MoveTo(delta_time)
 
 ///Move somewhere using dumb movement (byond base)
 /datum/ai_controller/proc/MoveTo(delta_time)
@@ -157,9 +161,9 @@ have ways of interacting with a specific atom and control it. They posses a blac
 	UnregisterSignal(pawn, COMSIG_MOB_LOGIN)
 	if(!continue_processing_when_client)
 		set_ai_status(AI_STATUS_OFF) //Can't do anything while player is connected
-	RegisterSignal(pawn, COMSIG_MOB_LOGOUT, .proc/on_sentience_lost)
+	RegisterSignal(pawn, COMSIG_MOB_LOGOUT, PROC_REF(on_sentience_lost))
 
 /datum/ai_controller/proc/on_sentience_lost()
 	UnregisterSignal(pawn, COMSIG_MOB_LOGOUT)
 	set_ai_status(AI_STATUS_ON) //Can't do anything while player is connected
-	RegisterSignal(pawn, COMSIG_MOB_LOGIN, .proc/on_sentience_gained)
+	RegisterSignal(pawn, COMSIG_MOB_LOGIN, PROC_REF(on_sentience_gained))

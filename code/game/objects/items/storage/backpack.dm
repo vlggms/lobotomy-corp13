@@ -67,7 +67,7 @@
 	STR.max_combined_w_class = 35
 
 /obj/item/storage/backpack/holding/suicide_act(mob/living/user)
-	user.visible_message("<span class='suicide'>[user] is jumping into [src]! It looks like [user.p_theyre()] trying to commit suicide.</span>")
+	user.visible_message(span_suicide("[user] is jumping into [src]! It looks like [user.p_theyre()] trying to commit suicide."))
 	user.dropItemToGround(src, TRUE)
 	user.Stun(100, ignore_canstun = TRUE)
 	sleep(20)
@@ -92,11 +92,11 @@
 	STR.max_combined_w_class = 60
 
 /obj/item/storage/backpack/santabag/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] places [src] over [user.p_their()] head and pulls it tight! It looks like [user.p_they()] [user.p_are()]n't in the Christmas spirit...</span>")
+	user.visible_message(span_suicide("[user] places [src] over [user.p_their()] head and pulls it tight! It looks like [user.p_they()] [user.p_are()]n't in the Christmas spirit..."))
 	return (OXYLOSS)
 
 /obj/item/storage/backpack/santabag/proc/regenerate_presents()
-	addtimer(CALLBACK(src, .proc/regenerate_presents), 30 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(regenerate_presents)), 30 SECONDS)
 
 	var/mob/M = get(loc, /mob)
 	if(!istype(M))
@@ -343,12 +343,6 @@
 	desc = "A large duffel bag for holding extra things."
 	icon_state = "duffel"
 	inhand_icon_state = "duffel"
-	slowdown = 1
-
-/obj/item/storage/backpack/duffelbag/ComponentInitialize()
-	. = ..()
-	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_combined_w_class = 30
 
 /obj/item/storage/backpack/duffelbag/cursed
 	name = "living duffel bag"
@@ -436,6 +430,36 @@
 	name = "surgical duffel bag"
 	desc = "A large duffel bag for holding extra medical supplies - this one seems to be designed for holding surgical tools."
 
+/obj/item/storage/backpack/duffelbag/med/surgery/PopulateContents()
+	new /obj/item/scalpel(src)
+	new /obj/item/hemostat(src)
+	new /obj/item/retractor(src)
+	new /obj/item/circular_saw(src)
+	new /obj/item/surgicaldrill(src)
+	new /obj/item/cautery(src)
+	new /obj/item/bonesetter(src)
+	new /obj/item/surgical_drapes(src)
+	new /obj/item/clothing/mask/surgical(src)
+	new /obj/item/razor(src)
+	new /obj/item/blood_filter(src)
+
+/obj/item/storage/backpack/duffelbag/med/upgradedsurgery
+	name = "surgical duffel bag"
+	desc = "A large duffel bag for holding extra medical supplies - this one seems to hold upgraded surgical tools."
+	icon_state = "duffel-syndiemed"
+	inhand_icon_state = "duffel-syndiemed"
+
+/obj/item/storage/backpack/duffelbag/med/upgradedsurgery/PopulateContents()
+	new /obj/item/scalpel/advanced(src)
+	new /obj/item/retractor/advanced(src)
+	new /obj/item/cautery/advanced(src)
+	new /obj/item/bonesetter(src)
+	new /obj/item/surgical_drapes(src)
+	new /obj/item/clothing/mask/surgical(src)
+	new /obj/item/razor(src)
+	new /obj/item/blood_filter(src)
+	new /obj/item/reagent_containers/medigel/sterilizine(src)
+
 /obj/item/storage/backpack/duffelbag/explorer
 	name = "explorator's duffel bag"
 	desc = "A large duffel bag for holding extra exotic treasures."
@@ -471,21 +495,6 @@
 	desc = "A large duffel bag for holding extra viral bottles."
 	icon_state = "duffel-virology"
 	inhand_icon_state = "duffel-virology"
-
-
-
-/obj/item/storage/backpack/duffelbag/med/surgery/PopulateContents()
-	new /obj/item/scalpel(src)
-	new /obj/item/hemostat(src)
-	new /obj/item/retractor(src)
-	new /obj/item/circular_saw(src)
-	new /obj/item/surgicaldrill(src)
-	new /obj/item/cautery(src)
-	new /obj/item/bonesetter(src)
-	new /obj/item/surgical_drapes(src)
-	new /obj/item/clothing/mask/surgical(src)
-	new /obj/item/razor(src)
-	new /obj/item/blood_filter(src)
 
 /obj/item/storage/backpack/duffelbag/sec
 	name = "security duffel bag"

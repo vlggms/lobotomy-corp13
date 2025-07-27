@@ -264,9 +264,6 @@ GLOBAL_LIST_EMPTY(species_list)
 /proc/do_after(mob/user, delay, atom/target, timed_action_flags = NONE, progress = TRUE, datum/callback/extra_checks, interaction_key, max_interact_count = 1)
 	if(!user)
 		return FALSE
-	var/atom/target_loc = null
-	if(target && !isturf(target))
-		target_loc = target.loc
 
 	if(!interaction_key && target)
 		interaction_key = target //Use the direct ref to the target
@@ -277,6 +274,7 @@ GLOBAL_LIST_EMPTY(species_list)
 		LAZYSET(user.do_afters, interaction_key, current_interaction_count + 1)
 
 	var/atom/user_loc = user.loc
+	var/atom/target_loc = target?.loc
 
 	var/drifting = FALSE
 	if(!user.Process_Spacemove(0) && user.inertia_dir)
@@ -303,23 +301,18 @@ GLOBAL_LIST_EMPTY(species_list)
 			drifting = FALSE
 			user_loc = user.loc
 
-		if(
-			QDELETED(user) \
+		if(QDELETED(user) \
 			|| (!(timed_action_flags & IGNORE_USER_LOC_CHANGE) && !drifting && user.loc != user_loc) \
 			|| (!(timed_action_flags & IGNORE_HELD_ITEM) && user.get_active_held_item() != holding) \
 			|| (!(timed_action_flags & IGNORE_INCAPACITATED) && HAS_TRAIT(user, TRAIT_INCAPACITATED)) \
-			|| (extra_checks && !extra_checks.Invoke()) \
-		)
+			|| (extra_checks && !extra_checks.Invoke()))
 			. = FALSE
 			break
 
-		if(
-			!(timed_action_flags & IGNORE_TARGET_LOC_CHANGE) \
-			&& !drifting \
-			&& !QDELETED(target_loc) \
-			&& (QDELETED(target) || target_loc != target.loc) \
-			&& ((user_loc != target_loc || target_loc != user)) \
-			)
+		if(target && (user != target) \
+			&& (QDELETED(target) \
+			|| (!(timed_action_flags & IGNORE_TARGET_LOC_CHANGE) && target.loc != target_loc))
+		)
 			. = FALSE
 			break
 
@@ -354,7 +347,7 @@ GLOBAL_LIST_EMPTY(species_list)
 	if(interaction_key)
 		var/current_interaction_count = LAZYACCESS(user.do_afters, interaction_key) || 0
 		if(current_interaction_count >= max_interact_count) //We are at our peak
-			to_chat(user, "<span class='warning'>You can't do this at the moment!</span>")
+			to_chat(user, span_warning("You can't do this at the moment!"))
 			return
 		LAZYSET(user.do_afters, interaction_key, current_interaction_count + 1)
 
@@ -465,7 +458,7 @@ GLOBAL_LIST_EMPTY(species_list)
 // Displays a message in deadchat, sent by source. source is not linkified, message is, to avoid stuff like character names to be linkified.
 // Automatically gives the class deadsay to the whole message (message + source)
 /proc/deadchat_broadcast(message, source=null, mob/follow_target=null, turf/turf_target=null, speaker_key=null, message_type=DEADCHAT_REGULAR, admin_only=FALSE)
-	message = "<span class='deadsay'>[source]<span class='linkify'>[message]</span></span>"
+	message = span_deadsay("[source]<span class='linkify'>[message]</span>")
 
 	for(var/mob/M in GLOB.player_list)
 		var/chat_toggles = TOGGLES_DEFAULT_CHAT
@@ -480,7 +473,7 @@ GLOBAL_LIST_EMPTY(species_list)
 			if (!M.client.holder)
 				return
 			else
-				message += "<span class='deadsay'> (This is viewable to admins only).</span>"
+				message += span_deadsay(" (This is viewable to admins only).")
 		var/override = FALSE
 		if(M.client.holder && (chat_toggles & CHAT_DEAD))
 			override = TRUE
@@ -649,3 +642,95 @@ GLOBAL_LIST_EMPTY(species_list)
 	return log(temp_diff * change_rate + 1) * BODYTEMP_AUTORECOVERY_DIVISOR
 
 #define ISADVANCEDTOOLUSER(mob) (HAS_TRAIT(mob, TRAIT_ADVANCEDTOOLUSER) && !HAS_TRAIT(mob, TRAIT_MONKEYLIKE))
+
+/**
+ * Used to apply damage to all targets in a turf.
+ * Allows for damage of vehicles and structures as options.
+ * vars:
+ * * target (optional) The targetted turf. If none is set it looks for all in the source's turf.
+ * * hit_list (optional) A list of things that have been hit. Will not be hit multiple times.
+ * * damage (required) How much damage is being dealt.
+ * * damage_type (required) What type of damage is being dealt. Defaults to RED_DAMAGE.
+ * * def_zone (optional) What body part we're hitting.
+ * * check_faction (optional) Whether or not we care about the faction of the units in the area. If TRUE, we don't harm allies.
+ * * exact_faction_match (optional) Pointless to set if check_faction isn't set. Do we care about the factions being an exact match?
+ * * hurt_mechs (optional) If this damage effect hurts mechs.
+ * * mech_damage (optional) If you want a different amount of damage dealt to mechs
+ * * hurt_hidden (optional) If this damage hits people hiding in lockers or boxes.
+ * * hurt_structure (optional) If this damage applies to structures as well.
+ * * break_not_destroy (optional) If this is TRUE, then the damage will not DESTROY structures, only break them.
+ * * attack_direction (optional) Is the direction of the attack relative to the mecha that gets hit by this attack, for directional armor.
+ *
+ * returns:
+ * * hit_list - A list containing all things hit by this proc.
+ */
+/mob/proc/HurtInTurf(turf/target, list/hit_list = list(), damage = 0, damage_type = RED_DAMAGE, def_zone = null, check_faction = FALSE, exact_faction_match = FALSE, hurt_mechs = FALSE, mech_damage = 0, hurt_hidden = FALSE, hurt_structure = FALSE, break_not_destroy = FALSE, attack_direction = null)
+	// Types that should never be hit by HurtInTurf
+	var/static/list/exclude = typecacheof(list(/obj/machinery/navbeacon/wayfinding, /obj/structure/disposalpipe, /obj/structure/lattice, /obj/machinery/cryopod, /obj/structure/sign, /obj/machinery/button, /obj/machinery/light, /obj/structure/extinguisher_cabinet, /obj/machinery/containment_panel, /obj/machinery/computer/security/telescreen, /obj/machinery/facility_holomap, /obj/structure/fans/tiny, /obj/machinery/requests_console))
+	var/static/list/hiding_places = typecacheof(list(/obj/structure/closet, /obj/structure/bodycontainer, /obj/machinery/disposal, /obj/machinery/cryopod, /obj/machinery/sleeper, /obj/machinery/fat_sucker))
+	. = list()
+	. += hit_list
+	target = isturf(target) ? target : get_turf(src)
+	for(var/mob/living/L in target)
+		if(L == src)
+			continue
+		if(L.status_flags & GODMODE)
+			continue
+		if(L in .)
+			continue
+		if(is_type_in_typecache(L, exclude))
+			continue
+		if(check_faction)
+			if(faction_check_mob(L, exact_faction_match))
+				continue
+		if(damage)
+			L.apply_damage(damage, damage_type, def_zone, L.run_armor_check(def_zone, damage_type), FALSE, TRUE)
+		. += L
+	if(hurt_mechs || hurt_hidden || hurt_structure)
+		for(var/obj/O in target)
+			if(hurt_mechs && ismecha(O))
+				var/obj/vehicle/sealed/mecha/M = O
+				if(M.resistance_flags & INDESTRUCTIBLE)
+					continue
+				if(is_type_in_typecache(M, exclude))
+					continue
+				if(M in .)
+					continue
+				if(check_faction && M.occupants && M.occupants.len > 0)
+					if(faction_check_mob(M.occupants[1], exact_faction_match))
+						continue
+				var/mechDamage = mech_damage ? mech_damage : damage
+				if(mechDamage)
+					M.take_damage(mechDamage, damage_type, attack_dir = attack_direction)
+				. += M
+				continue
+			if(hurt_hidden && is_type_in_typecache(O, hiding_places))
+				for(var/mob/living/L in O)
+					if(L == src)
+						continue
+					if(L.status_flags & GODMODE)
+						continue
+					if(L in .)
+						continue
+					if(is_type_in_typecache(L, exclude))
+						continue
+					if(check_faction)
+						if(faction_check_mob(L, exact_faction_match))
+							continue
+					if(damage)
+						L.apply_damage(damage, damage_type, def_zone, L.run_armor_check(def_zone, damage_type), FALSE, TRUE)
+					. += L
+			if(hurt_structure && (isstructure(O) || ismachinery(O)))
+				if(O.resistance_flags & INDESTRUCTIBLE)
+					continue
+				if(is_type_in_typecache(O, exclude))
+					continue
+				if(O in .)
+					continue
+				if(damage)
+					var/dealt_damage = damage
+					if(break_not_destroy && (O.obj_integrity - damage <= 0))
+						dealt_damage = O.obj_integrity - 1
+					O.take_damage(dealt_damage, damage_type)
+				. += O
+	return

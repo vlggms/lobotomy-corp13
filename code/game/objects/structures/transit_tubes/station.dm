@@ -55,7 +55,7 @@
 	R.transfer_fingerprints_to(TP)
 	TP.add_fingerprint(user)
 	TP.setDir(turn(src.dir, -90))
-	user.visible_message("<span class='notice'>[user] inserts [R].</span>", "<span class='notice'>You insert [R].</span>")
+	user.visible_message(span_notice("[user] inserts [R]."), span_notice("You insert [R]."))
 	qdel(R)
 
 
@@ -69,10 +69,10 @@
 				var/mob/living/GM = user.pulling
 				if(user.grab_state >= GRAB_AGGRESSIVE)
 					if(GM.buckled || GM.has_buckled_mobs())
-						to_chat(user, "<span class='warning'>[GM] is attached to something!</span>")
+						to_chat(user, span_warning("[GM] is attached to something!"))
 						return
 					for(var/obj/structure/transit_tube_pod/pod in loc)
-						pod.visible_message("<span class='warning'>[user] starts putting [GM] into the [pod]!</span>")
+						pod.visible_message(span_warning("[user] starts putting [GM] into the [pod]!"))
 						if(do_after(user, 15, target = src))
 							if(open_status == STATION_TUBE_OPEN && GM && user.grab_state >= GRAB_AGGRESSIVE && user.pulling == GM && !GM.buckled && !GM.has_buckled_mobs())
 								GM.Paralyze(100)
@@ -86,7 +86,7 @@
 
 					else if(open_status == STATION_TUBE_OPEN)
 						if(pod.contents.len && user.loc != pod)
-							user.visible_message("<span class='notice'>[user] starts emptying [pod]'s contents onto the floor.</span>", "<span class='notice'>You start emptying [pod]'s contents onto the floor...</span>")
+							user.visible_message(span_notice("[user] starts emptying [pod]'s contents onto the floor."), span_notice("You start emptying [pod]'s contents onto the floor..."))
 							if(do_after(user, 10, target = src)) //So it doesn't default to close_animation() on fail
 								if(pod && pod.loc == loc)
 									for(var/atom/movable/AM in pod)
@@ -108,7 +108,7 @@
 	if(open_status == STATION_TUBE_CLOSED)
 		icon_state = "opening_[base_icon]"
 		open_status = STATION_TUBE_OPENING
-		addtimer(CALLBACK(src, .proc/finish_animation), OPEN_DURATION)
+		addtimer(CALLBACK(src, PROC_REF(finish_animation)), OPEN_DURATION)
 
 /obj/structure/transit_tube/station/proc/finish_animation()
 	switch(open_status)
@@ -131,7 +131,7 @@
 	if(open_status == STATION_TUBE_OPEN)
 		icon_state = "closing_[base_icon]"
 		open_status = STATION_TUBE_CLOSING
-		addtimer(CALLBACK(src, .proc/finish_animation), CLOSE_DURATION)
+		addtimer(CALLBACK(src, PROC_REF(finish_animation)), CLOSE_DURATION)
 
 /obj/structure/transit_tube/station/proc/launch_pod()
 	if(launch_cooldown >= world.time)
@@ -153,7 +153,7 @@
 
 /obj/structure/transit_tube/station/pod_stopped(obj/structure/transit_tube_pod/pod, from_dir)
 	pod_moving = TRUE
-	addtimer(CALLBACK(src, .proc/start_stopped, pod), 5)
+	addtimer(CALLBACK(src, PROC_REF(start_stopped), pod), 5)
 
 /obj/structure/transit_tube/station/proc/start_stopped(obj/structure/transit_tube_pod/pod)
 	if(QDELETED(pod))
@@ -162,7 +162,7 @@
 		pod.setDir(tube_dirs[1]) //turning the pod around for next launch.
 	launch_cooldown = world.time + cooldown_delay
 	open_animation()
-	addtimer(CALLBACK(src, .proc/finish_stopped, pod), OPEN_DURATION + 2)
+	addtimer(CALLBACK(src, PROC_REF(finish_stopped), pod), OPEN_DURATION + 2)
 
 /obj/structure/transit_tube/station/proc/finish_stopped(obj/structure/transit_tube_pod/pod)
 	pod_moving = FALSE
@@ -249,13 +249,13 @@
 
 /obj/structure/transit_tube/station/dispenser/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>This station will create a pod for you to ride, no need to wait for one.</span>"
+	. += span_notice("This station will create a pod for you to ride, no need to wait for one.")
 
 /obj/structure/transit_tube/station/dispenser/Bumped(atom/movable/AM)
 	if(!(istype(AM) && AM.dir == boarding_dir))
 		return
 	var/obj/structure/transit_tube_pod/dispensed/pod = new(loc)
-	AM.visible_message("<span class='notice'>[pod] forms around [AM].</span>", "<span class='notice'>[pod] materializes around you.</span>")
+	AM.visible_message(span_notice("[pod] forms around [AM]."), span_notice("[pod] materializes around you."))
 	playsound(src, 'sound/weapons/emitter2.ogg', 50, TRUE)
 	pod.setDir(turn(src.dir, -90))
 	AM.forceMove(pod)

@@ -34,6 +34,8 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 	///Looping sounds for any servers
 	var/datum/looping_sound/server/soundloop
 
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+
 /obj/machinery/telecomms/proc/relay_information(datum/signal/subspace/signal, filter, copysig, amount = 20)
 	// relay signal to all linked machinery that are of type [filter]. If signal has been sent [amount] times, stop sending
 
@@ -157,7 +159,7 @@ GLOBAL_LIST_EMPTY(telecomms_list)
 	if(prob(100/severity) && !(machine_stat & EMPED))
 		set_machine_stat(machine_stat | EMPED)
 		var/duration = (300 * 10)/severity
-		addtimer(CALLBACK(src, .proc/de_emp), rand(duration - 20, duration + 20))
+		addtimer(CALLBACK(src, PROC_REF(de_emp)), rand(duration - 20, duration + 20))
 
 /obj/machinery/telecomms/proc/de_emp()
 	set_machine_stat(machine_stat & ~EMPED)

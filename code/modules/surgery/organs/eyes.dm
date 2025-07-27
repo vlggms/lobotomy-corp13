@@ -7,7 +7,7 @@
 	gender = PLURAL
 
 	healing_factor = STANDARD_ORGAN_HEALING
-	decay_factor = STANDARD_ORGAN_DECAY
+	decay_factor = STANDARD_ORGAN_DECAY * 0.25 // fails around 60 minutes
 	maxHealth = 0.5 * STANDARD_ORGAN_THRESHOLD		//half the normal health max since we go blind at 30, a permanent blindness at 50 therefore makes sense unless medicine is administered
 	high_threshold = 0.3 * STANDARD_ORGAN_THRESHOLD	//threshold at 30
 	low_threshold = 0.2 * STANDARD_ORGAN_THRESHOLD	//threshold at 20
@@ -177,6 +177,16 @@
 	flash_protect = FLASH_PROTECTION_SENSITIVE
 	see_in_dark = 8
 
+/obj/item/organ/eyes/robotic/infofixer
+	name = "high-information eyes"
+	desc = "Many fixers who work in dangerous locations swear by these cybernetic eyes' ability to detect threats ahead of time."
+	eye_color = "F00"
+	sight_flags = SEE_MOBS | SEE_TURFS
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+	flash_protect = FLASH_PROTECTION_SENSITIVE
+	see_in_dark = 8
+	custom_premium_price = 1800
+
 /obj/item/organ/eyes/robotic/flashlight
 	name = "flashlight eyes"
 	desc = "It's two flashlights rigged together with some wire. Why would you put these in someone's head?"
@@ -304,7 +314,7 @@
 
 /obj/item/organ/eyes/robotic/glow/Insert(mob/living/carbon/M, special = FALSE, drop_if_replaced = FALSE)
 	. = ..()
-	RegisterSignal(M, COMSIG_ATOM_DIR_CHANGE, .proc/update_visuals)
+	RegisterSignal(M, COMSIG_ATOM_DIR_CHANGE, PROC_REF(update_visuals))
 
 /obj/item/organ/eyes/robotic/glow/Remove(mob/living/carbon/M, special = FALSE)
 	. = ..()

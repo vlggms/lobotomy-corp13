@@ -1,6 +1,6 @@
 // This is eventually for wjohn to add more color standardization stuff like I keep asking him >:(
 
-#define COLOR_INPUT_DISABLED			"#F0F0F0"
+#define COLOR_INPUT_DISABLED			"#171717"
 #define COLOR_INPUT_ENABLED				"#D3B5B5"
 
 #define COLOR_DARKMODE_BACKGROUND		"#202020"
@@ -50,14 +50,15 @@
 #define COLOR_NAVY						"#000080"
 #define COLOR_BLUE_GRAY					"#75A2BB"
 
-#define COLOR_PINK						"#FFC0CB"
-#define COLOR_LIGHT_PINK				"#ff3cc8"
-#define COLOR_MOSTLY_PURE_PINK			"#E4005B"
-#define COLOR_MAGENTA					"#FF00FF"
-#define COLOR_STRONG_MAGENTA			"#B800B8"
-#define COLOR_PURPLE					"#800080"
-#define COLOR_VIOLET					"#B900F7"
-#define COLOR_STRONG_VIOLET				"#6927c5"
+#define COLOR_PINK "#FFC0CB"
+#define COLOR_LIGHT_PINK "#ff3cc8"
+#define COLOR_MOSTLY_PURE_PINK "#E4005B"
+#define COLOR_BLUSH_PINK "#DE5D83"
+#define COLOR_MAGENTA "#FF00FF"
+#define COLOR_STRONG_MAGENTA "#B800B8"
+#define COLOR_PURPLE "#800080"
+#define COLOR_VIOLET "#B900F7"
+#define COLOR_STRONG_VIOLET "#6927c5"
 
 #define COLOR_ORANGE					"#FF9900"
 #define COLOR_MOSTLY_PURE_ORANGE		"#ff8000"

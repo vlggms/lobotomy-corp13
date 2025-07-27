@@ -245,12 +245,14 @@
 					[!body_only ? "<a href='byond://?src=[REF(src)];clone=[active_record.fields["id"]]'>Clone</a>" : "" ]\
 				 	<a href='byond://?src=[REF(src)];clone=[active_record.fields["id"]];empty=TRUE'>Empty Clone</a><br>"
 
+/* LOBOTOMYCORPORATION REMOVAL - TG removed health implants, this does cause the pods to drop people as dead nuggets but eh. Tis life
 				var/obj/item/implant/health/H = locate(active_record.fields["imp"])
 
 				if ((H) && (istype(H)))
 					dat += "<b>Health Implant Data:</b><br />[H.sensehealth()]<br><br />"
 				else
 					dat += "<font class='bad'>Unable to locate Health Implant.</font><br /><br />"
+*/
 
 				dat += "<b>Unique Identifier:</b><br /><span class='highlight'>[active_record.fields["UI"]]</span><br>"
 				dat += "<b>Structural Enzymes:</b><br /><span class='highlight'>"
@@ -357,7 +359,7 @@
 		playsound(src, 'sound/machines/terminal_prompt.ogg', 50, FALSE)
 		say("Initiating scan...")
 
-		addtimer(CALLBACK(src, .proc/do_scan, usr, body_only), 2 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(do_scan), usr, body_only), 2 SECONDS)
 
 		//No locking an open scanner.
 	else if ((href_list["lock"]) && !isnull(scanner) && scanner.is_operational)
@@ -598,6 +600,7 @@
 	R.fields["last_death"] = mob_occupant.stat == DEAD && mob_occupant.mind ? mob_occupant.mind.last_death : -1
 	R.fields["body_only"] = body_only
 
+/* LOBOTOMYCORPORATION REMOVAL - TG removed health implants, this does cause the pods to drop people as dead nuggets but eh. Tis life
 	if(!body_only)
 	    //Add an implant if needed
 		var/obj/item/implant/health/imp
@@ -608,6 +611,7 @@
 			imp = new /obj/item/implant/health(mob_occupant)
 			imp.implant(mob_occupant)
 		R.fields["imp"] = "[REF(imp)]"
+*/
 
 	var/datum/data/record/old_record = find_record("mindref", REF(mob_occupant.mind), records)
 	if(body_only)

@@ -89,7 +89,7 @@ effective or pretty fucking useless.
 		addtimer(VARSET_CALLBACK(src, used, FALSE), cooldown)
 		addtimer(VARSET_CALLBACK(src, icon_state, "health"), cooldown)
 		to_chat(user, "<span class='warning'>Successfully irradiated [M].</span>")
-		addtimer(CALLBACK(src, .proc/radiation_aftereffect, M), (wavelength+(intensity*4))*5)
+		addtimer(CALLBACK(src, PROC_REF(radiation_aftereffect), M), (wavelength+(intensity*4))*5)
 	else
 		to_chat(user, "<span class='warning'>The radioactive microlaser is still recharging.</span>")
 
@@ -264,6 +264,13 @@ effective or pretty fucking useless.
 		GLOB.active_jammers -= src
 	update_icon()
 
+/obj/item/jammer/self_activated
+
+/obj/item/jammer/self_activated/Initialize()
+	. = ..()
+	GLOB.active_jammers |= src
+	update_icon()
+
 /obj/item/storage/toolbox/emergency/turret
 	desc = "You feel a strange urge to hit this with a wrench."
 
@@ -283,5 +290,4 @@ effective or pretty fucking useless.
 		var/obj/machinery/porta_turret/syndicate/pod/toolbox/turret = new(get_turf(loc))
 		turret.faction = list("[REF(user)]")
 		qdel(src)
-
 	..()

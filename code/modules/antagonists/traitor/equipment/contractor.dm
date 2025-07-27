@@ -1,7 +1,6 @@
 /// Support unit gets it's own very basic antag datum for admin logging.
 /datum/antagonist/traitor/contractor_support
 	name = "Contractor Support Unit"
-	antag_moodlet = /datum/mood_event/focused
 
 	show_in_roundend = FALSE /// We're already adding them in to the contractor's roundend.
 	give_objectives = TRUE /// We give them their own custom objective.
@@ -163,7 +162,7 @@
 	. = ..()
 
 	if (.)
-		to_chat(user, "<span class='notice'>The uplink vibrates quietly, connecting to nearby agents...</span>")
+		to_chat(user, span_notice("The uplink vibrates quietly, connecting to nearby agents..."))
 
 		var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as the Contractor Support Unit for [user.real_name]?", ROLE_PAI, null, FALSE, 100, POLL_IGNORE_CONTRACTOR_SUPPORT)
 
@@ -171,7 +170,7 @@
 			var/mob/dead/observer/C = pick(candidates)
 			spawn_contractor_partner(user, C.key)
 		else
-			to_chat(user, "<span class='notice'>No available agents at this time, please try again later.</span>")
+			to_chat(user, span_notice("No available agents at this time, please try again later."))
 
 			// refund and add the limit back.
 			limited += 1
@@ -226,8 +225,8 @@
 	partner_mind = partner.mind
 	partner_mind.make_Contractor_Support()
 
-	to_chat(partner_mind.current, "\n<span class='alertwarning'>[user.real_name] is your superior. Follow any, and all orders given by them. You're here to support their mission only.</span>")
-	to_chat(partner_mind.current, "<span class='alertwarning'>Should they perish, or be otherwise unavailable, you're to assist other active agents in this mission area to the best of your ability.</span>\n\n")
+	to_chat(partner_mind.current, "\n[span_alertwarning("[user.real_name] is your superior. Follow any, and all orders given by them. You're here to support their mission only.")]")
+	to_chat(partner_mind.current, "[span_alertwarning("Should they perish, or be otherwise unavailable, you're to assist other active agents in this mission area to the best of your ability.")]\n\n")
 
 	new /obj/effect/pod_landingzone(free_location, arrival_pod)
 
@@ -266,9 +265,9 @@
 		var/atom/item_to_create = new item(get_turf(user))
 
 		if(user.put_in_hands(item_to_create))
-			to_chat(user, "<span class='notice'>Your purchase materializes into your hands!</span>")
+			to_chat(user, span_notice("Your purchase materializes into your hands!"))
 		else
-			to_chat(user, "<span class='notice'>Your purchase materializes onto the floor.</span>")
+			to_chat(user, span_notice("Your purchase materializes onto the floor."))
 
 		return item_to_create
 	return TRUE

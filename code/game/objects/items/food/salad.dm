@@ -66,6 +66,14 @@
 	tastes = list("sourness" = 1, "leaves" = 1)
 	foodtypes = FRUIT
 
+/obj/item/food/salad/parasite_salad
+	name = "Parasite Salad"
+	desc = "A dish imitating the leaves of an abnormal tree, you could've sworn you saw the leaves move by themselves."
+	icon_state = "parasite_salad"
+	food_reagents = list(/datum/reagent/consumable/nutriment = 11, /datum/reagent/consumable/nutriment/vitamin = 7)
+	tastes = list("vegetable" = 1, "leaves" = 1)
+	foodtypes = VEGETABLES
+
 /obj/item/food/salad/ricebowl
 	name = "ricebowl"
 	desc = "A bowl of raw rice."

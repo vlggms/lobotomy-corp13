@@ -185,7 +185,7 @@
 	var/turf/T2 = get_step(T,turn(direction, -90))
 
 	var/list/the_targets = list(T,T1,T2)
-	INVOKE_ASYNC(src, .proc/do_extinguish, the_targets, source)
+	INVOKE_ASYNC(src, PROC_REF(do_extinguish), the_targets, source)
 	return ..()
 
 ///Creates new water effects and moves them, takes a list of turfs as an argument
@@ -310,7 +310,7 @@
 				energy_drain = 2*initial(energy_drain)
 
 /obj/item/mecha_parts/mecha_equipment/rcd/get_equip_info()
-	return "[..()] \[<a href='?src=[REF(src)];mode=0'>D</a>|<a href='?src=[REF(src)];mode=1'>C</a>|<a href='?src=[REF(src)];mode=2'>A</a>\]"
+	return "[..()] \[<a href='byond://?src=[REF(src)];mode=0'>D</a>|<a href='byond://?src=[REF(src)];mode=1'>C</a>|<a href='byond://?src=[REF(src)];mode=2'>A</a>\]"
 
 #undef MODE_DECONSTRUCT
 #undef MODE_WALL

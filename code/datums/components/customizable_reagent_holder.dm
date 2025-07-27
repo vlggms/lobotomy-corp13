@@ -55,9 +55,9 @@
 
 /datum/component/customizable_reagent_holder/RegisterWithParent()
 	. = ..()
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, .proc/customizable_attack)
-	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/on_examine)
-	RegisterSignal(parent, COMSIG_ATOM_PROCESSED, .proc/on_processed)
+	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(customizable_attack))
+	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
+	RegisterSignal(parent, COMSIG_ATOM_PROCESSED, PROC_REF(on_processed))
 	ADD_TRAIT(parent, TRAIT_CUSTOMIZABLE_REAGENT_HOLDER, src)
 
 
@@ -111,11 +111,11 @@
 
 	// only accept valid ingredients
 	if (!valid_ingredient || HAS_TRAIT(ingredient, TRAIT_CUSTOMIZABLE_REAGENT_HOLDER))
-		to_chat(attacker, "<span class='warning'>[ingredient] doesn't belong on [parent]!</span>")
+		to_chat(attacker, span_warning("[ingredient] doesn't belong on [parent]!"))
 		return
 
 	if (LAZYLEN(ingredients) >= max_ingredients)
-		to_chat(attacker, "<span class='warning'>[parent] is too full for any more ingredients!</span>")
+		to_chat(attacker, span_warning("[parent] is too full for any more ingredients!"))
 		return COMPONENT_NO_AFTERATTACK
 
 	var/atom/atom_parent = parent

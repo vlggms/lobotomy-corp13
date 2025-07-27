@@ -30,7 +30,7 @@
 
 	///Check if the key is short enough to even be a real key
 	if(LAZYLEN(_key) > MAX_KEYPRESS_COMMANDLENGTH)
-		to_chat(src, "<span class='userdanger'>Invalid KeyDown detected! You have been disconnected from the server automatically.</span>")
+		to_chat(src, span_userdanger("Invalid KeyDown detected! You have been disconnected from the server automatically."))
 		log_admin("Client [ckey] just attempted to send an invalid keypress. Keymessage was over [MAX_KEYPRESS_COMMANDLENGTH] characters, autokicking due to likely abuse.")
 		message_admins("Client [ckey] just attempted to send an invalid keypress. Keymessage was over [MAX_KEYPRESS_COMMANDLENGTH] characters, autokicking due to likely abuse.")
 		qdel(src)
@@ -74,8 +74,9 @@
 			break
 
 	holder?.key_down(_key, src)
-	mob.focus?.key_down(_key, src)
-	mob.update_mouse_pointer()
+	if(mob)
+		mob.focus?.key_down(_key, src)
+		mob.update_mouse_pointer()
 
 
 /client/verb/keyUp(_key as text)
@@ -104,11 +105,6 @@
 		if(kb.can_use(src) && kb.up(src))
 			break
 	holder?.key_up(_key, src)
-	mob.focus?.key_up(_key, src)
-	mob.update_mouse_pointer()
-
-
-// Called every game tick
-/client/keyLoop()
-	holder?.keyLoop(src)
-	mob.focus?.keyLoop(src)
+	if(mob)
+		mob.focus?.key_up(_key, src)
+		mob.update_mouse_pointer()

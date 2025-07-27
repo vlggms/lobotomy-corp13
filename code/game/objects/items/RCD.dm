@@ -334,7 +334,7 @@ RLD
 		"SOUTH" = image(icon = 'icons/hud/radial.dmi', icon_state = "csouth"),
 		"WEST" = image(icon = 'icons/hud/radial.dmi', icon_state = "cwest")
 		)
-	var/computerdirs = show_radial_menu(user, src, computer_dirs, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = TRUE)
+	var/computerdirs = show_radial_menu(user, src, computer_dirs, custom_check = CALLBACK(src, PROC_REF(check_menu), user), require_near = TRUE, tooltips = TRUE)
 	if(!check_menu(user))
 		return
 	switch(computerdirs)
@@ -393,13 +393,13 @@ RLD
 		"External Maintenance" = get_airlock_image(/obj/machinery/door/airlock/maintenance/external/glass)
 	)
 
-	var/airlockcat = show_radial_menu(user, src, solid_or_glass_choices, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = TRUE)
+	var/airlockcat = show_radial_menu(user, src, solid_or_glass_choices, custom_check = CALLBACK(src, PROC_REF(check_menu), user), require_near = TRUE, tooltips = TRUE)
 	if(!check_menu(user))
 		return
 	switch(airlockcat)
 		if("Solid")
 			if(advanced_airlock_setting == 1)
-				var/airlockpaint = show_radial_menu(user, src, solid_choices, radius = 42, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = TRUE)
+				var/airlockpaint = show_radial_menu(user, src, solid_choices, radius = 42, custom_check = CALLBACK(src, PROC_REF(check_menu), user), require_near = TRUE, tooltips = TRUE)
 				if(!check_menu(user))
 					return
 				switch(airlockpaint)
@@ -442,7 +442,7 @@ RLD
 
 		if("Glass")
 			if(advanced_airlock_setting == 1)
-				var/airlockpaint = show_radial_menu(user, src , glass_choices, radius = 42, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = TRUE)
+				var/airlockpaint = show_radial_menu(user, src , glass_choices, radius = 42, custom_check = CALLBACK(src, PROC_REF(check_menu), user), require_near = TRUE, tooltips = TRUE)
 				if(!check_menu(user))
 					return
 				switch(airlockpaint)
@@ -496,7 +496,7 @@ RLD
 		"Table" = image(icon = 'icons/hud/radial.dmi', icon_state = "table"),
 		"Glass Table" = image(icon = 'icons/hud/radial.dmi', icon_state = "glass_table")
 		)
-	var/choice = show_radial_menu(user, src, choices, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = TRUE)
+	var/choice = show_radial_menu(user, src, choices, custom_check = CALLBACK(src, PROC_REF(check_menu), user), require_near = TRUE, tooltips = TRUE)
 	if(!check_menu(user))
 		return
 	switch(choice)
@@ -594,7 +594,7 @@ RLD
 		choices += list(
 		"Change Furnishing Type" = image(icon = 'icons/hud/radial.dmi', icon_state = "chair")
 		)
-	var/choice = show_radial_menu(user, src, choices, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = TRUE)
+	var/choice = show_radial_menu(user, src, choices, custom_check = CALLBACK(src, PROC_REF(check_menu), user), require_near = TRUE, tooltips = TRUE)
 	if(!check_menu(user))
 		return
 	switch(choice)
@@ -654,7 +654,7 @@ RLD
 		buzz loudly!</b></span>","<span class='danger'><b>[src] begins \
 		vibrating violently!</b></span>")
 	// 5 seconds to get rid of it
-	addtimer(CALLBACK(src, .proc/detonate_pulse_explode), 50)
+	addtimer(CALLBACK(src, PROC_REF(detonate_pulse_explode)), 50)
 
 /obj/item/construction/rcd/proc/detonate_pulse_explode()
 	explosion(src, 0, 0, 3, 1, flame_range = 1)
@@ -977,7 +977,7 @@ RLD
 			name_to_type[initial(M.name)] = M
 			machinery_data["cost"][A] = plumbing_design_types[A]
 
-	var/choice = show_radial_menu(user, src, choices, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = TRUE)
+	var/choice = show_radial_menu(user, src, choices, custom_check = CALLBACK(src, PROC_REF(check_menu), user), require_near = TRUE, tooltips = TRUE)
 	if(!check_menu(user))
 		return
 

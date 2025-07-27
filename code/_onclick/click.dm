@@ -92,7 +92,7 @@
 		MiddleClickOn(A, params)
 		return
 	if(LAZYACCESS(modifiers, ALT_CLICK)) // alt and alt-gr (rightalt)
-		AltClickOn(A)
+		AltClickOn(A, params)
 		return
 	if(LAZYACCESS(modifiers, CTRL_CLICK))
 		CtrlClickOn(A)
@@ -144,7 +144,20 @@
 	//Standard reach turf to turf or reaching inside storage
 	if(CanReach(A,W))
 		if(W)
-			W.melee_attack_chain(src, A, params)
+			var/atom/target_thing = A
+			if(a_intent != INTENT_HARM && (isturf(A) || iseffect(A)) && W.force > 10)
+				var/turf/T = get_turf(A)
+				for(var/mob/living/L in T)
+					if(istype(L, /mob/living/simple_animal/projectile_blocker_dummy))
+						var/mob/living/simple_animal/projectile_blocker_dummy/pbd = L
+						L = pbd.parent
+					if(L.invisibility > see_invisible)
+						continue
+					if(L.stat != DEAD)
+						target_thing = L
+						break
+					target_thing = L
+			W.melee_attack_chain(src, target_thing, params)
 		else
 			if(ismob(A))
 				changeNext_move(CLICK_CD_MELEE)
@@ -285,7 +298,29 @@
 	. = SEND_SIGNAL(src, COMSIG_MOB_MIDDLECLICKON, A, params)
 	if(. & COMSIG_MOB_CANCEL_CLICKON)
 		return
-	swap_hand()
+
+	var/list/modifiers = params2list(params)
+	if(incapacitated(ignore_restraints = TRUE, ignore_stasis = TRUE))
+		return
+
+	face_atom(A)
+
+	if(next_move > world.time)
+		return
+
+	if(!LAZYACCESS(modifiers, "catcher") && A.IsObscured())
+		return
+
+	var/obj/item/W = get_active_held_item()
+
+	if(!W || ismovable(A.loc))
+		return
+
+	//Can't reach anything else in lockers or other weirdness
+	if(!loc.AllowClick())
+		return
+
+	W.MiddleClickAction(A, src)
 
 /**
  * Shift click
@@ -333,11 +368,38 @@
  * Alt click
  * Unused except for AI
  */
-/mob/proc/AltClickOn(atom/A)
+/mob/proc/AltClickOn(atom/A, params)
 	. = SEND_SIGNAL(src, COMSIG_MOB_ALTCLICKON, A)
 	if(. & COMSIG_MOB_CANCEL_CLICKON)
 		return
 	A.AltClick(src)
+
+/mob/living/carbon/AltClickOn(atom/A, params)
+	. = ..()
+	if(. & COMSIG_MOB_CANCEL_CLICKON)
+		return
+	var/list/modifiers = params2list(params)
+	if(incapacitated(ignore_restraints = TRUE, ignore_stasis = TRUE))
+		return
+
+	face_atom(A)
+
+	if(next_move > world.time)
+		return
+
+	if(!LAZYACCESS(modifiers, "catcher") && A.IsObscured())
+		return
+
+	var/obj/item/W = get_active_held_item()
+
+	if(!W || ismovable(A.loc))
+		return
+
+	//Can't reach anything else in lockers or other weirdness
+	if(!loc.AllowClick())
+		return
+
+	W.MiddleClickAction(A, src)
 
 /atom/proc/AltClick(mob/user)
 	SEND_SIGNAL(src, COMSIG_CLICK_ALT, user)
@@ -361,6 +423,9 @@
  * Unused except for AI
  */
 /mob/proc/CtrlShiftClickOn(atom/A)
+	. = SEND_SIGNAL(src, COMSIG_MOB_CTRLSHIFTCLICKON, A)
+	if(. & COMSIG_MOB_CANCEL_CLICKON)
+		return
 	A.CtrlShiftClick(src)
 	return
 
@@ -440,14 +505,10 @@
 
 /atom/movable/screen/click_catcher/Click(location, control, params)
 	var/list/modifiers = params2list(params)
-	if(LAZYACCESS(modifiers, MIDDLE_CLICK) && iscarbon(usr))
-		var/mob/living/carbon/C = usr
-		C.swap_hand()
-	else
-		var/turf/T = params2turf(LAZYACCESS(modifiers, SCREEN_LOC), get_turf(usr.client ? usr.client.eye : usr), usr.client)
-		params += "&catcher=1"
-		if(T)
-			T.Click(location, control, params)
+	var/turf/T = params2turf(LAZYACCESS(modifiers, SCREEN_LOC), get_turf(usr.client ? usr.client.eye : usr), usr.client)
+	params += "&catcher=1"
+	if(T)
+		T.Click(location, control, params)
 	. = 1
 
 /// MouseWheelOn

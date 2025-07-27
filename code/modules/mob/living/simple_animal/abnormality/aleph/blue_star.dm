@@ -7,24 +7,29 @@
 	base_pixel_x = -32
 	pixel_y = -16
 	base_pixel_y = -16
+	offsets_pixel_x = list("south" = -32, "north" = -32, "west" = -32, "east" = -32)
+	offsets_pixel_y = list("south" = -16, "north" = -16, "west" = -16, "east" = -16)
+	occupied_tiles_up = 1
 	icon = 'ModularTegustation/Teguicons/96x96.dmi'
 	icon_state = "blue_star"
 	icon_living = "blue_star"
 	icon_dead = "blue_star_dead"
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.2)
+	portrait = "blue_star"
+	damage_coeff = list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.2)
 	is_flying_animal = TRUE
 	del_on_death = FALSE
 	can_breach = TRUE
 	threat_level = ALEPH_LEVEL
 	start_qliphoth = 2
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 30,
-						ABNORMALITY_WORK_INSIGHT = 50,
-						ABNORMALITY_WORK_ATTACHMENT = 0,
-						ABNORMALITY_WORK_REPRESSION = 40
-						)
+		ABNORMALITY_WORK_INSTINCT = 30,
+		ABNORMALITY_WORK_INSIGHT = 50,
+		ABNORMALITY_WORK_ATTACHMENT = 0,
+		ABNORMALITY_WORK_REPRESSION = 40,
+	)
 	work_damage_amount = 16
 	work_damage_type = WHITE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/gloom
 	can_patrol = FALSE
 
 	wander = FALSE
@@ -36,9 +41,21 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/star_sound,
-		/datum/ego_datum/armor/star_sound
-		)
+		/datum/ego_datum/armor/star_sound,
+	)
 	gift_type =  /datum/ego_gifts/star
+	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	observation_prompt = "A group of employees worship this abnormality, despite the fact nothing can be sacred in this place. <br>\
+		You recall how you pulled away one employee away from it in the past, even as she screamed and wailed that you were keeping her chained to this world. <br>You thought you were saving her. <br>\
+		You can hear a distant howl emanating from the centre of the blue-coloured heart. <br>It's the sound of stars. <br>They're welcoming you, asking you to join them as a star."
+	observation_choices = list(
+		"Be pulled in" = list(TRUE, "You don't hesitate as you approach the centre of the void. <br>Sensation in your hands and legs are the first things to go, creeping up your body until you couldn't feel anything physical at all. <br>\
+			Despite how scary it should have been, you feel at peace, <br>this isn't an end it's a new beginning - You're a martyr. <br>\
+			Let's meet everyone again, as stars."),
+		"Hold yourself tight" = list(FALSE, "You wrapped your arms around yourself and shut your eyes, turning your senses inward until the temptation passes and the sounds become distant howls again. <br>\
+			You opened your eyes and looked again at the heart. <br>It remains in the air, floating towards a new beginning."),
+	)
 
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 12 SECONDS
@@ -52,7 +69,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/bluestar/Destroy()
 	QDEL_NULL(soundloop)
-	..()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/bluestar/death(gibbed)
 	QDEL_NULL(soundloop)
@@ -79,9 +96,11 @@
 	var/matrix/init_transform = transform
 	animate(src, transform = transform*1.5, time = 3, easing = BACK_EASING|EASE_OUT)
 	for(var/mob/living/L in livinginrange(48, src))
+		if(L.z != z)
+			continue
 		if(faction_check_mob(L))
 			continue
-		L.apply_damage((pulse_damage - get_dist(src, L)), WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+		L.deal_damage((pulse_damage - get_dist(src, L)), WHITE_DAMAGE)
 		flash_color(L, flash_color = COLOR_BLUE_LIGHT, flash_time = 70)
 		if(!ishuman(L))
 			continue
@@ -116,10 +135,11 @@
 		QDEL_IN(user, 5)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/bluestar/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/bluestar/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	var/turf/T = pick(GLOB.department_centers)
 	soundloop.start()
-	forceMove(T)
+	if(breach_type != BREACH_MINING)
+		forceMove(T)
 	BluePulse()
 	return

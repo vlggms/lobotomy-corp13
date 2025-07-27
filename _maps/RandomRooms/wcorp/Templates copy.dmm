@@ -1,0 +1,528 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ab" = (
+/obj/structure/chair/sofa/corner{
+	dir = 8;
+	icon_state = "sofamiddle"
+	},
+/turf/open/floor/wood,
+/area/city/outskirts)
+"at" = (
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "gib6";
+	dir = 4
+	},
+/turf/open/floor/carpet/royalblue,
+/area/city/outskirts)
+"aS" = (
+/obj/item/chair/wood{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "gib2";
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/city/outskirts)
+"bL" = (
+/obj/structure/table/wood/poker,
+/obj/item/storage/pill_bottle/dice,
+/obj/item/food/fudgedice,
+/turf/open/floor/wood,
+/area/city/outskirts)
+"cg" = (
+/obj/item/chair/wood{
+	icon_state = "wooden_chair";
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "floor1"
+	},
+/turf/open/floor/wood,
+/area/city/outskirts)
+"dv" = (
+/obj/item/chair/wood{
+	icon_state = "wooden_chair";
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/city/outskirts)
+"er" = (
+/obj/structure/table_frame/wood,
+/obj/effect/decal/cleanable/blood/gibs/torso,
+/obj/effect/decal/cleanable/blood/gibs/torso,
+/obj/effect/decal/cleanable/blood/gibs/torso,
+/turf/open/floor/carpet/royalblue,
+/area/city/outskirts)
+"go" = (
+/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden/crude,
+/turf/open/floor/wood,
+/area/city/outskirts)
+"gu" = (
+/obj/structure/table/wood/fancy/blue,
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "u_dangerous_l"
+	},
+/turf/open/floor/carpet/royalblue,
+/area/city/outskirts)
+"hH" = (
+/obj/item/chair/wood{
+	icon_state = "wooden_chair";
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/city/outskirts)
+"iC" = (
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "gib3";
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/city/outskirts)
+"iU" = (
+/turf/closed/wall/r_wall/syndicate,
+/area/city/outskirts)
+"jq" = (
+/obj/structure/chair/sofa/corner{
+	dir = 4;
+	icon_state = "sofamiddle"
+	},
+/turf/open/floor/carpet/royalblue,
+/area/city/outskirts)
+"pd" = (
+/obj/structure/table/wood/poker,
+/obj/item/dice/d100,
+/turf/open/floor/wood,
+/area/city/outskirts)
+"qR" = (
+/obj/structure/chair/sofa/corner{
+	dir = 8;
+	icon_state = "sofamiddle"
+	},
+/obj/structure/chair/sofa/corner{
+	dir = 8;
+	icon_state = "sofamiddle"
+	},
+/turf/open/floor/wood,
+/area/city/outskirts)
+"sk" = (
+/obj/structure/table/wood/poker,
+/obj/item/dice/fourdd6,
+/turf/open/floor/wood,
+/area/city/outskirts)
+"sm" = (
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "floor6";
+	dir = 4
+	},
+/turf/open/floor/carpet/royalblue,
+/area/city/outskirts)
+"tA" = (
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "tracks"
+	},
+/turf/open/floor/carpet/royalblue,
+/area/city/outskirts)
+"ug" = (
+/obj/structure/chair/sofa/corner{
+	dir = 1
+	},
+/turf/open/floor/carpet/royalblue,
+/area/city/outskirts)
+"uY" = (
+/obj/structure/barricade/wooden,
+/turf/open/floor/wood,
+/area/city/outskirts)
+"vk" = (
+/obj/structure/table/wood/poker,
+/obj/structure/table/wood/poker,
+/turf/open/floor/wood,
+/area/city/outskirts)
+"vL" = (
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "gibarm";
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/city/outskirts)
+"wN" = (
+/obj/structure/table/wood,
+/obj/structure/showcase/machinery/tv,
+/obj/structure/showcase/machinery/tv,
+/turf/open/floor/wood,
+/area/city/outskirts)
+"xZ" = (
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "trails_2";
+	dir = 9
+	},
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "trails_2";
+	dir = 9
+	},
+/turf/open/floor/wood,
+/area/city/outskirts)
+"yk" = (
+/obj/item/chair/wood{
+	icon_state = "wooden_chair";
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "floor2";
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/city/outskirts)
+"Ac" = (
+/obj/structure/barricade/wooden,
+/turf/closed/wall/r_wall/syndicate,
+/area/city/outskirts)
+"Av" = (
+/obj/structure/chair/sofa/corner{
+	dir = 8;
+	icon_state = "sofacorner_armrest"
+	},
+/turf/open/floor/carpet/royalblue,
+/area/city/outskirts)
+"DI" = (
+/obj/structure/chair/sofa/corner,
+/turf/open/floor/carpet/royalblue,
+/area/city/outskirts)
+"DJ" = (
+/obj/structure/chair/sofa/corner{
+	dir = 4
+	},
+/turf/open/floor/carpet/royalblue,
+/area/city/outskirts)
+"Ew" = (
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "gibmid3";
+	dir = 4
+	},
+/turf/open/floor/carpet/royalblue,
+/area/city/outskirts)
+"EX" = (
+/turf/open/floor/carpet/royalblue,
+/area/city/outskirts)
+"Hg" = (
+/obj/structure/chair/sofa/corner{
+	dir = 8;
+	icon_state = "sofamiddle"
+	},
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "u_dangerous_l"
+	},
+/turf/open/floor/carpet/royalblue,
+/area/city/outskirts)
+"Iv" = (
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "drip1"
+	},
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "drip2";
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/city/outskirts)
+"IJ" = (
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "floor4";
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/city/outskirts)
+"IS" = (
+/obj/structure/chair/sofa/corner{
+	dir = 2;
+	icon_state = "sofaend_left"
+	},
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "floor3"
+	},
+/turf/open/floor/carpet/royalblue,
+/area/city/outskirts)
+"IX" = (
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "gib3-old";
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/city/outskirts)
+"JE" = (
+/obj/structure/table/wood/fancy/blue,
+/turf/open/floor/carpet/royalblue,
+/area/city/outskirts)
+"Ms" = (
+/obj/structure/chair/sofa/corner{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/city/outskirts)
+"MG" = (
+/obj/structure/table_frame/wood,
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "tracks";
+	dir = 5
+	},
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "trails_2";
+	dir = 5
+	},
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "trails_2";
+	dir = 5
+	},
+/turf/open/floor/carpet/royalblue,
+/area/city/outskirts)
+"OC" = (
+/obj/structure/chair/sofa/corner{
+	icon_state = "sofaend_right"
+	},
+/turf/open/floor/carpet/royalblue,
+/area/city/outskirts)
+"OE" = (
+/obj/structure/chair/sofa/corner{
+	dir = 1;
+	icon_state = "sofacorner_armrest"
+	},
+/turf/open/floor/wood,
+/area/city/outskirts)
+"OH" = (
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "drip1"
+	},
+/turf/open/floor/wood,
+/area/city/outskirts)
+"QH" = (
+/obj/structure/table_frame/wood,
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "tracks";
+	dir = 10
+	},
+/turf/open/floor/carpet/royalblue,
+/area/city/outskirts)
+"QV" = (
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "itemblood";
+	dir = 4
+	},
+/turf/closed/wall/r_wall/syndicate,
+/area/city/outskirts)
+"Rf" = (
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/city/outskirts)
+"Rt" = (
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "gib3";
+	dir = 8
+	},
+/turf/open/floor/carpet/royalblue,
+/area/city/outskirts)
+"TW" = (
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "drip1"
+	},
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "drip4";
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/city/outskirts)
+"Ut" = (
+/turf/open/floor/wood,
+/area/city/outskirts)
+"UK" = (
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "floor1";
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "floor2";
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/city/outskirts)
+"VY" = (
+/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden/crude,
+/turf/open/floor/wood,
+/area/city/outskirts)
+"YX" = (
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "gibbl4";
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/city/outskirts)
+
+(1,1,1) = {"
+iU
+QV
+aS
+UK
+OH
+Iv
+Ut
+Ut
+Ut
+iU
+iU
+"}
+(2,1,1) = {"
+iU
+bL
+sk
+yk
+Iv
+TW
+Ut
+Ut
+Ut
+Ut
+iU
+"}
+(3,1,1) = {"
+iU
+pd
+vk
+hH
+EX
+EX
+sm
+iC
+Ut
+Ut
+iU
+"}
+(4,1,1) = {"
+iU
+dv
+cg
+EX
+EX
+EX
+EX
+Ew
+Ut
+Ut
+iU
+"}
+(5,1,1) = {"
+iU
+Ut
+Ut
+DJ
+jq
+jq
+jq
+ug
+YX
+Ut
+iU
+"}
+(6,1,1) = {"
+iU
+Rf
+IJ
+IS
+JE
+JE
+JE
+Av
+IX
+Ut
+iU
+"}
+(7,1,1) = {"
+iU
+wN
+xZ
+tA
+QH
+JE
+JE
+EX
+Ut
+Ut
+iU
+"}
+(8,1,1) = {"
+iU
+Rf
+Ut
+OC
+MG
+er
+gu
+EX
+Ut
+Ut
+iU
+"}
+(9,1,1) = {"
+iU
+Ut
+Ut
+DI
+Hg
+Rt
+EX
+EX
+Ut
+Ut
+iU
+"}
+(10,1,1) = {"
+iU
+Ut
+Ut
+EX
+EX
+EX
+EX
+EX
+OE
+Ut
+iU
+"}
+(11,1,1) = {"
+iU
+uY
+Ut
+Ut
+EX
+EX
+at
+vL
+Ms
+go
+iU
+"}
+(12,1,1) = {"
+iU
+go
+go
+Ut
+Ut
+qR
+ab
+go
+uY
+go
+iU
+"}
+(13,1,1) = {"
+iU
+Ac
+uY
+VY
+uY
+Ut
+Ut
+Ut
+go
+Ac
+iU
+"}

@@ -1,0 +1,90 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/wall/mineral/titanium/survival/pod,
+/area/survivalpod)
+"c" = (
+/obj/machinery/sleeper/syndie,
+/turf/open/floor/pod/dark,
+/area/survivalpod)
+"e" = (
+/obj/structure/table/abductor,
+/obj/item/weldingtool/experimental,
+/turf/open/floor/pod,
+/area/survivalpod)
+"f" = (
+/obj/structure/rack,
+/obj/effect/landmark/rcorpitemspawn,
+/turf/open/floor/pod/dark,
+/area/survivalpod)
+"g" = (
+/obj/structure/fans/tiny,
+/obj/machinery/door/airlock/survival_pod/glass,
+/turf/open/floor/pod,
+/area/survivalpod)
+"j" = (
+/obj/effect/spawner/structure/window/survival_pod,
+/turf/open/floor/pod,
+/area/survivalpod)
+"m" = (
+/obj/item/gps/computer,
+/turf/closed/wall/mineral/titanium/survival/pod,
+/area/survivalpod)
+"p" = (
+/obj/machinery/computer/crew,
+/turf/open/floor/pod/dark,
+/area/survivalpod)
+"t" = (
+/obj/structure/chair/comfy{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/pod/dark,
+/area/survivalpod)
+"y" = (
+/obj/structure/rack,
+/obj/item/stack/sheet/mineral/sandbags{
+	amount = 30
+	},
+/turf/open/floor/pod/dark,
+/area/survivalpod)
+"z" = (
+/turf/open/floor/pod/dark,
+/area/survivalpod)
+
+(1,1,1) = {"
+a
+j
+j
+j
+a
+"}
+(2,1,1) = {"
+j
+p
+t
+y
+j
+"}
+(3,1,1) = {"
+m
+z
+z
+z
+g
+"}
+(4,1,1) = {"
+j
+c
+e
+f
+j
+"}
+(5,1,1) = {"
+a
+j
+j
+j
+a
+"}

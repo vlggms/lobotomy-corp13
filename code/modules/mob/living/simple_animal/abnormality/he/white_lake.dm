@@ -7,76 +7,95 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "white_lake"
 	icon_living = "white_lake"
+	portrait = "white_lake"
 	maxHealth = 600
 	health = 600
 	threat_level = HE_LEVEL
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = 10,
+		ABNORMALITY_WORK_INSTINCT = 0,
 		ABNORMALITY_WORK_INSIGHT = 60,
-		ABNORMALITY_WORK_ATTACHMENT = 40,
-		ABNORMALITY_WORK_REPRESSION = 30
+		ABNORMALITY_WORK_ATTACHMENT = 50,
+		ABNORMALITY_WORK_REPRESSION = 40,
 	)
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
-	/// Grab her champion
-	var/champion
+	chem_type = /datum/reagent/abnormality/sin/lust
 	//Has the weapon been given out?
 	var/sword = FALSE
 	start_qliphoth = 3
 
 	ego_list = list(
 		/datum/ego_datum/weapon/wings,
-		/datum/ego_datum/armor/wings
-		)
+		/datum/ego_datum/armor/wings,
+	)
 	gift_type = /datum/ego_gifts/waltz
 	gift_chance = 0
+	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
+	observation_prompt = "The feathered lady dances in the centre of the containment unit to a tempo that exists only in her world, it's elegant and precise. <br>\
+		\"This domain, my lunar palace, it's mine birdcage gilded with fine gold. <br>Whatever I wish, it is brought for me and all that is expected of me is to dance. <br>\
+		Even if I possessed the fortitude to bend these bars and free myself, I would not - what good comes from change? <br>Fortitude won't avail anyone, wouldn't you agree?\""
+	observation_choices = list(
+		"Agree" = list(TRUE, "\"Hmm, you'll make for a cute decoration in mine sanctum, bear my circlet and come to your Princess' aid, won't you? <br>\
+			Protect her from witches seeking to bully this poor Lake.\" <br>\
+			She dances towards you, placing the circlet upon your head. \"Sully your hands so mine stay clean and beautiful.\" She turns away, returning to her dance."),
+		"Disagree" = list(FALSE, "\"I don't find heroes cute at all. <br>Leave me to my dancing butcher, before you tarnish my pure-white feathers with your blood-soaked hands.\" <br>\
+			The ballerina turns away from you and continues her dance, ignoring you."),
+	)
 
 /mob/living/simple_animal/hostile/abnormality/whitelake/WorkChance(mob/living/carbon/human/user, chance)
 	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 60)
-		var/newchance = chance - 20 //You suck, die. I hate you
+		var/newchance = chance - 10 //You suck, die. I hate you
 		return newchance
 	return chance
 
 /mob/living/simple_animal/hostile/abnormality/whitelake/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
-	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) < 60)		//Doesn't like these people
-		champion = user
+	. = ..()
+	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) < 60)		//Right in the zone
+		user.Apply_Gift(new gift_type)	//It's a gift now! Free shit! And there are absolutely, positively no downsides, nope!
+		to_chat(user, span_nicegreen("A cute crown appears on your head!"))
 
 /mob/living/simple_animal/hostile/abnormality/whitelake/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
-
 	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 60)	//Lower it again.
 		datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/whitelake/ZeroQliphoth(mob/living/carbon/human/user)
 	datum_reference.qliphoth_change(3)
-	if(!champion)	//no champion? Fuck you.
-		for(var/mob/living/L in GLOB.player_list)
-			if(faction_check_mob(L, FALSE) || L.z != z || L.stat == DEAD)
-				continue
-			new /obj/effect/temp_visual/whitelake(get_turf(L))
-			L.apply_damage(50, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
-		return
-	var/mob/living/carbon/human/H = champion
-	H.Apply_Gift(new gift_type)	//It's a gift now! Free shit! Oh wait you- oh god you just stabbed that man.
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		if(faction_check_mob(H, FALSE) || H.z != z || H.stat == DEAD)
+			continue
+		if(istype(H.ego_gift_list[HELMET], /datum/ego_gifts/waltz)) // You're still wearing the gift? Pitiable fool...
+			TurnChampion(H)
+			return
+		BreachAttack(H)
+	return
+
+/mob/living/simple_animal/hostile/abnormality/whitelake/proc/BreachAttack(mob/living/carbon/human/H)
+	set waitfor = FALSE
+	new /obj/effect/temp_visual/whitelake(get_turf(H))
+	var/userfort = (get_attribute_level(H, FORTITUDE_ATTRIBUTE))
+	var/damage_dealt = clamp((0 + (userfort / 2)), 30, 65)//deals between 30 and 60 white damage depending on your fortitude attribute when applied.
+	H.deal_damage(damage_dealt, WHITE_DAMAGE)
+
+/mob/living/simple_animal/hostile/abnormality/whitelake/proc/TurnChampion(mob/living/carbon/human/H)
 	H.apply_status_effect(STATUS_EFFECT_CHAMPION)
 	if(!sword)
 		waltz(H)
 	//Replaces AI with murder one
-	if (!H.sanity_lost)
-		H.adjustSanityLoss(-500)
+	if(!H.sanity_lost)
+		H.adjustSanityLoss(500)
 	QDEL_NULL(H.ai_controller)
 	H.ai_controller = /datum/ai_controller/insane/murder/whitelake
 	H.InitializeAIController()
-	champion = null
-	return
 
 /mob/living/simple_animal/hostile/abnormality/whitelake/proc/waltz(mob/living/carbon/human/H)
 	var/obj/item/held = H.get_active_held_item()
 	var/obj/item/wep = new /obj/item/ego_weapon/flower_waltz(H)
 	H.dropItemToGround(held) //Drop weapon
-	RegisterSignal(H, COMSIG_LIVING_DEATH, .proc/Champion_Death_Sword)
+	RegisterSignal(H, COMSIG_LIVING_DEATH, PROC_REF(Champion_Death_Sword))
 	ADD_TRAIT(wep, TRAIT_NODROP, wep)
 	H.put_in_hands(wep) 		//Time for pale
 	sword = TRUE
@@ -110,10 +129,13 @@
 	icon_state = "flower_waltz"
 	force = 22
 	damtype = PALE_DAMAGE
-	armortype = PALE_DAMAGE
 	attack_verb_continuous = list("slices", "cuts")
 	attack_verb_simple = list("slices", "cuts")
 	hitsound = 'sound/weapons/bladeslice.ogg'
+	// The damage we add when attacking the nemesis faction (abnormalities)
+	var/faction_bonus_force = 22
+	// list of nemesis factions (things we deal bonus damage to)
+	var/list/nemesis_factions = list("hostile")
 	//No requirements because who knows who will use it.
 
 // Sets the weapon to not be droppable until it's moved from the main hand. No more leg sweeping.
@@ -122,16 +144,16 @@
 	if (slot != ITEM_SLOT_HANDS)
 		REMOVE_TRAIT(src, TRAIT_NODROP, src)
 
-/obj/item/ego_weapon/flower_waltz/pre_attack(atom/A, mob/living/user, params)
+/obj/item/ego_weapon/flower_waltz/attack(mob/living/target, mob/living/carbon/human/user, proximity)
+	var/enemy = FALSE
+	for(var/found_faction in target.faction)
+		if(found_faction in nemesis_factions) // if we are hitting a nemesis...
+			force += faction_bonus_force
+			enemy = TRUE
+			break
 	. = ..()
-	if (!ishuman(A) && istype(A, /mob/living))
-		force = 44
-	return
-
-/obj/item/ego_weapon/flower_waltz/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
-	. = ..()
-	force = 22
-	return
+	if(enemy) // we should delete the extra force ONLY if we hit a nemesis
+		force -= faction_bonus_force
 
 //Slightly different AI lines
 /datum/ai_controller/insane/murder/whitelake
@@ -139,16 +161,16 @@
 
 /datum/ai_behavior/say_line/insanity_whitelake
 	lines = list(
-				"I will protect her!!",
-				"You're in the way!",
-				"I will dance with her forever!"
-				)
+		"I will protect her!!",
+		"You're in the way!",
+		"I will dance with her forever!",
+	)
 //CHAMPION
 //Sets the defenses of the champion
 /datum/status_effect/champion
 	id = "champion"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 6000		//Lasts 10 minutes, guaranteed.
+	duration = -1
 	alert_type = /atom/movable/screen/alert/status_effect/champion
 
 /atom/movable/screen/alert/status_effect/champion
@@ -159,24 +181,33 @@
 
 /datum/status_effect/champion/on_apply()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		ADD_TRAIT(L, TRAIT_STUNIMMUNE, type)
-		ADD_TRAIT(L, TRAIT_PUSHIMMUNE, type)
-		L.physiology.red_mod *= 0.3
-		L.physiology.white_mod *= 0.1
-		L.physiology.black_mod *= 0.1
-		L.physiology.pale_mod *= 0.2
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	ADD_TRAIT(status_holder, TRAIT_STUNIMMUNE, type)
+	ADD_TRAIT(status_holder, TRAIT_PUSHIMMUNE, type)
+	status_holder.physiology.red_mod *= 0.6
+	status_holder.physiology.white_mod *= 0.4
+	status_holder.physiology.black_mod *= 0.4
+	status_holder.physiology.pale_mod *= 0.6
+
+/datum/status_effect/champion/tick()
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	if(!status_holder.sanity_lost)
+		status_holder.remove_status_effect(STATUS_EFFECT_CHAMPION)
 
 /datum/status_effect/champion/on_remove()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		REMOVE_TRAIT(L, TRAIT_STUNIMMUNE, type)
-		REMOVE_TRAIT(L, TRAIT_PUSHIMMUNE, type)
-		L.physiology.red_mod /= 0.3
-		L.physiology.white_mod /= 0.1
-		L.physiology.black_mod /= 0.1
-		L.physiology.pale_mod /= 0.2
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	REMOVE_TRAIT(status_holder, TRAIT_STUNIMMUNE, type)
+	REMOVE_TRAIT(status_holder, TRAIT_PUSHIMMUNE, type)
+	status_holder.physiology.red_mod /= 0.6
+	status_holder.physiology.white_mod /= 0.4
+	status_holder.physiology.black_mod /= 0.4
+	status_holder.physiology.pale_mod /= 0.6
 
 #undef STATUS_EFFECT_CHAMPION

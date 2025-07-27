@@ -47,7 +47,8 @@
 		var/datum/tgs_revision_information/test_merge/tm = line
 		var/cm = tm.head_commit
 		var/details = ": '" + html_encode(tm.title) + "' by " + html_encode(tm.author) + " at commit " + html_encode(copytext_char(cm, 1, 11))
-		. += "<a href=\"[CONFIG_GET(string/githuburl)]/pull/[tm.number]\">#[tm.number][details]</a><br>"
+		var/extra = tm.comment ? "<br> - '" + html_encode(tm.comment) + "'" : ""
+		. += "<a href=\"[CONFIG_GET(string/githuburl)]/pull/[tm.number]\">#[tm.number][details]</a>[extra]<br>"
 
 /client/verb/showrevinfo()
 	set category = "OOC"

@@ -39,15 +39,9 @@
 	desc = "A fillet of unspecified fish meat."
 	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/consumable/nutriment/vitamin = 2) //No carpotoxin
 
-/obj/item/food/fishfingers
-	name = "fish fingers"
-	desc = "A finger of fish."
-	icon_state = "fishfingers"
-	food_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/protein = 5, /datum/reagent/consumable/nutriment/vitamin = 2)
-	bite_consumption = 1
-	tastes = list("fish" = 1, "breadcrumbs" = 1)
-	foodtypes = MEAT
-	w_class = WEIGHT_CLASS_SMALL
+/obj/item/food/carpmeat/icantbeliveitsnotcarp/Initialize()
+	. = ..()
+	AddComponent(/datum/component/grillable, /obj/item/food/carpmeat/icantbeliveitsnotcarp, rand(30 SECONDS, 40 SECONDS), TRUE)
 
 /obj/item/food/fishandchips
 	name = "fish and chips"
@@ -56,15 +50,6 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/protein = 5, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("fish" = 1, "chips" = 1)
 	foodtypes = MEAT | VEGETABLES | FRIED
-
-/obj/item/food/fishfry
-	name = "fish fry"
-	desc = "All that and no bag of chips..."
-	icon_state = "fishfry"
-	food_reagents = list (/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 3)
-	tastes = list("fish" = 1, "pan seared vegtables" = 1)
-	foodtypes = MEAT | VEGETABLES | FRIED
-	w_class = WEIGHT_CLASS_SMALL
 
 ////////////////////////////////////////////MEATS AND ALIKE////////////////////////////////////////////
 
@@ -337,37 +322,37 @@
 	if(faction)
 		bananas.faction = faction
 	if (!QDELETED(bananas))
-		visible_message("<span class='notice'>[src] expands!</span>")
+		visible_message(span_notice("[src] expands!"))
 		bananas.log_message("Spawned via [src] at [AREACOORD(src)], Last attached mob: [key_name(spammer)].", LOG_ATTACK)
 	else if (!spammer) // Visible message in case there are no fingerprints
-		visible_message("<span class='notice'>[src] fails to expand!</span>")
+		visible_message(span_notice("[src] fails to expand!"))
 	qdel(src)
 
 /obj/item/food/monkeycube/suicide_act(mob/living/M)
-	M.visible_message("<span class='suicide'>[M] is putting [src] in [M.p_their()] mouth! It looks like [M.p_theyre()] trying to commit suicide!</span>")
+	M.visible_message(span_suicide("[M] is putting [src] in [M.p_their()] mouth! It looks like [M.p_theyre()] trying to commit suicide!"))
 	var/eating_success = do_after(M, 1 SECONDS, src)
 	if(QDELETED(M)) //qdeletion: the nuclear option of self-harm
 		return SHAME
 	if(!eating_success || QDELETED(src)) //checks if src is gone or if they failed to wait for a second
-		M.visible_message("<span class='suicide'>[M] chickens out!</span>")
+		M.visible_message(span_suicide("[M] chickens out!"))
 		return SHAME
 	if(HAS_TRAIT(M, TRAIT_NOHUNGER)) //plasmamen don't have saliva/stomach acid
-		M.visible_message("<span class='suicide'>[M] realizes [M.p_their()] body won't activate [src]!</span>"
-		,"<span class='warning'>Your body won't activate [src]...</span>")
+		M.visible_message(span_suicide("[M] realizes [M.p_their()] body won't activate [src]!")
+		,span_warning("Your body won't activate [src]..."))
 		return SHAME
 	playsound(M, 'sound/items/eatfood.ogg', rand(10,50), TRUE)
 	M.temporarilyRemoveItemFromInventory(src) //removes from hands, keeps in M
-	addtimer(CALLBACK(src, .proc/finish_suicide, M), 15) //you've eaten it, you can run now
+	addtimer(CALLBACK(src, PROC_REF(finish_suicide), M), 15) //you've eaten it, you can run now
 	return MANUAL_SUICIDE
 
 /obj/item/food/monkeycube/proc/finish_suicide(mob/living/M) ///internal proc called by a monkeycube's suicide_act using a timer and callback. takes as argument the mob/living who activated the suicide
 	if(QDELETED(M) || QDELETED(src))
 		return
 	if((src.loc != M)) //how the hell did you manage this
-		to_chat(M, "<span class='warning'>Something happened to [src]...</span>")
+		to_chat(M, span_warning("Something happened to [src]..."))
 		return
 	Expand()
-	M.visible_message("<span class='danger'>[M]'s torso bursts open as a primate emerges!</span>")
+	M.visible_message(span_danger("[M]'s torso bursts open as a primate emerges!"))
 	M.gib(null, TRUE, null, TRUE)
 
 /obj/item/food/monkeycube/syndicate
@@ -427,19 +412,6 @@
 	foodtypes = MEAT
 	w_class = WEIGHT_CLASS_SMALL
 
-/obj/item/food/sashimi
-	name = "carp sashimi"
-	desc = "Celebrate surviving attack from hostile alien lifeforms by hospitalising yourself."
-	icon_state = "sashimi"
-	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 10, /datum/reagent/consumable/capsaicin = 9, /datum/reagent/consumable/nutriment/vitamin = 4)
-	tastes = list("fish" = 1, "hot peppers" = 1)
-	foodtypes = MEAT | TOXIC
-	w_class = WEIGHT_CLASS_TINY
-
-/obj/item/food/sashimi/Initialize()
-	. = ..()
-	AddElement(/datum/element/swabable, CELL_LINE_TABLE_CARP, CELL_VIRUS_TABLE_GENERIC_MOB)
-
 /obj/item/food/nugget
 	name = "chicken nugget"
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/protein = 2, /datum/reagent/consumable/nutriment/vitamin = 1)
@@ -490,6 +462,23 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/tomatojuice = 10)
 	tastes = list("meat" = 3, "pasta" = 3, "tomato" = 2, "cheese" = 2)
 	foodtypes = MEAT | DAIRY | GRAIN
+
+/obj/item/food/yukhoe
+	name = "Yukhoe"
+	desc = "Korean tartare, basically."
+	icon_state = "yukhoe"
+	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 6, /datum/reagent/consumable/eggyolk = 4)
+	tastes = list("meat" = 2, "egg yolk" = 3)
+	foodtypes = MEAT
+
+/obj/item/food/meatjam
+	name = "meat jam"
+	desc = "A jar of delicious meat jam."
+	icon_state = "meatproduct" //this is a placeholder
+	food_reagents = list(/datum/reagent/consumable/nutriment/protein =  5, /datum/reagent/abnormality/we_can_change_anything = 3)
+	tastes = list("strange meat" = 3, "suffering" = 1)
+	foodtypes = MEAT
+
 
 //////////////////////////////////////////// KEBABS AND OTHER SKEWERS ////////////////////////////////////////////
 
@@ -598,38 +587,6 @@
 	tastes = list("slime" = 1, "jelly" = 1)
 	foodtypes = MEAT | RAW | TOXIC
 
-/obj/item/food/meat/slab/human/mutant/sweeper
-	name = "meat slurry"
-	desc = "Cobalt metal holding the liquified remains of a human, it smells rancid. It has the taste and texture of Surströmming."
-	icon_state = "sweepermeat"
-	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 4)
-	tastes = list("tender meat" = 1, "metal" = 1)
-	foodtypes = MEAT | RAW | GROSS
-
-/obj/item/food/meat/slab/human/mutant/fruit
-	name = "curious meat"
-	desc = "Wretched rubbery meat cut from a gigantic heart. It tastes of anxiety and has the texture of uncooked squid."
-	icon_state = "fruitmeat"
-	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/consumable/sugar = 3)
-	tastes = list("tender meat" = 1, "jelly" = 1, "slime" = 1)
-	foodtypes = MEAT | RAW | TOXIC | JUNKFOOD
-
-/obj/item/food/meat/slab/human/mutant/worm
-	name = "perfect meat"
-	desc = "An awful jiggling chunk of meat cut from the hide of a worm. It tastes foul and has the texture of spoiled jelly."
-	icon_state = "wormmeat"
-	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/toxin/slimejelly = 3)
-	tastes = list("slime" = 1, "jelly" = 1)
-	foodtypes = MEAT | RAW | TOXIC | GROSS
-
-/obj/item/food/meat/slab/human/mutant/robot
-	name = "nihilist component"
-	desc = "Ancient metal, filaments and cogwheels, all absolutely ruined. It tastes of metal and has the texture of metal. Its metal."
-	icon_state = "robotmeat"
-	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/iron = 3)
-	tastes = list("metal" = 1)
-	foodtypes = MEAT | RAW | GROSS
-
 /obj/item/food/meat/slab/human/mutant/golem
 	icon_state = "golemmeat"
 	desc = "Edible rocks, welcome to the future."
@@ -671,6 +628,7 @@
 	foodtypes = MEAT | RAW | GROSS
 
 /obj/item/food/meat/slab/human/mutant/moth
+	name = "bug meat"
 	icon_state = "mothmeat"
 	desc = "Unpleasantly powdery and dry. Kind of pretty, though."
 	tastes = list("dust" = 1, "powder" = 1, "meat" = 2)
@@ -690,6 +648,7 @@
 	name = " meat (rotten)"
 	icon_state = "rottenmeat"
 	desc = "Halfway to becoming fertilizer for your garden."
+	food_reagents = list(/datum/reagent/consumable/nutriment/vile_fluid = 6)
 	tastes = list("brains" = 1, "meat" = 1)
 	foodtypes = RAW | MEAT | TOXIC
 
@@ -823,7 +782,7 @@
 	foodtypes = RAW | MEAT | TOXIC
 
 /obj/item/food/meat/slab/goliath/burn()
-	visible_message("<span class='notice'>[src] finishes cooking!</span>")
+	visible_message(span_notice("[src] finishes cooking!"))
 	new /obj/item/food/meat/steak/goliath(loc)
 	qdel(src)
 
@@ -929,6 +888,90 @@
 /obj/item/food/meat/slab/chicken/Initialize()
 	. = ..()
 	AddElement(/datum/element/swabable, CELL_LINE_TABLE_CHICKEN, CELL_VIRUS_TABLE_GENERIC_MOB)
+
+/obj/item/food/meat/slab/sweeper
+	name = "meat slurry"
+	desc = "Cobalt metal holding the liquified remains of a human, it smells rancid. It has the taste and texture of Surströmming."
+	icon_state = "sweepermeat"
+	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 4)
+	tastes = list("tender meat" = 1, "metal" = 1)
+	foodtypes = MEAT | RAW | GROSS
+
+/obj/item/food/meat/slab/fruit
+	name = "curious meat"
+	desc = "Wretched rubbery meat cut from a gigantic heart. It tastes of anxiety and has the texture of uncooked squid."
+	icon_state = "fruitmeat"
+	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/consumable/sugar = 3)
+	tastes = list("tender meat" = 1, "jelly" = 1, "slime" = 1)
+	foodtypes = MEAT | RAW | TOXIC | JUNKFOOD
+
+/obj/item/food/meat/slab/fruit/MakeGrillable()
+	AddComponent(/datum/component/grillable, /obj/item/food/meat/steak/violet, rand(30 SECONDS, 90 SECONDS), TRUE, TRUE)
+
+/obj/item/food/meat/slab/worm
+	name = "perfect meat"
+	desc = "An awful jiggling chunk of meat cut from the hide of a worm. It tastes foul and has the texture of spoiled jelly."
+	icon_state = "wormmeat"
+	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/yuck = 5, /datum/reagent/amber = 5)
+	tastes = list("slime" = 1, "jelly" = 1)
+	foodtypes = MEAT | RAW | TOXIC | GROSS
+
+/obj/item/food/meat/slab/worm/MakeGrillable()
+	AddComponent(/datum/component/grillable, /obj/item/food/meat/steak/amber, rand(30 SECONDS, 90 SECONDS), TRUE, TRUE)
+
+/obj/item/food/meat/slab/robot
+	name = "nihilist component"
+	desc = "Ancient metal, filaments and cogwheels, all absolutely ruined. It tastes of metal and has the texture of metal. Its metal."
+	icon_state = "robotmeat"
+	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/iron = 3)
+	tastes = list("metal" = 1)
+	foodtypes = MEAT | RAW | GROSS
+
+/obj/item/food/meat/slab/crimson
+	name = "sweet meat"
+	desc = "Scraped together from what was left, the result smells sickly sweet. You should eat this as fast as possible, as it looks to be going bad very soon."
+	icon_state = "clownmeat"
+	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 4)
+	tastes = list("sugar" = 1, "nearly rotten flesh" = 1)
+	foodtypes = MEAT | RAW | TOXIC | GROSS
+
+
+/obj/item/food/meat/slab/crimson/MakeGrillable()
+	AddComponent(/datum/component/grillable, /obj/item/food/meat/steak/crimson, rand(30 SECONDS, 90 SECONDS), TRUE, TRUE)
+
+/obj/item/food/meat/slab/buggy
+	name = "buggy meat"
+	desc = "A chunk of horrible and unpalatable mutated meat and chitin. Some bits are still moving..."
+	icon_state = "buggymeat"
+	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 4)
+	tastes = list("tender meat" = 1, "gristle" = 1)
+	foodtypes = MEAT | RAW | GROSS
+
+/obj/item/food/meat/slab/buggy/MakeGrillable()
+	AddComponent(/datum/component/grillable, /obj/item/food/meat/steak/meatproduct, rand(30 SECONDS, 90 SECONDS), TRUE, TRUE) // too lazy to add a new sprite
+
+/obj/item/food/meat/slab/corroded
+	name = "corroded meat"
+	desc = "Human meat, with other stuff mixed in. Hardly has any resemblance to the original anymore."
+	icon_state = "xenomeat" // Placeholder
+	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 4)
+	tastes = list("tough meat" = 1)
+	foodtypes = MEAT | RAW | GROSS
+
+/obj/item/food/meat/slab/corroded/MakeGrillable()
+	AddComponent(/datum/component/grillable, /obj/item/food/meat/steak/meatproduct, rand(30 SECONDS, 90 SECONDS), TRUE, TRUE) // too lazy to add a new sprite
+
+/obj/item/food/meat/slab/sinnew
+	name = "sin-eew"
+	desc = "Eyeballs, veins, and offal that came from something no longer resembling a human."
+	icon_state = "sinnew"
+	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 1)
+	tastes = list("blood" = 1, "tough meat" = 1)
+	foodtypes = MEAT | RAW | GROSS
+
+/obj/item/food/meat/slab/sinnew/MakeGrillable()
+	AddComponent(/datum/component/grillable, /obj/item/food/meat/steak/meatproduct, rand(30 SECONDS, 90 SECONDS), TRUE, TRUE) // too lazy to add a new sprite
+
 ////////////////////////////////////// MEAT STEAKS ///////////////////////////////////////////////////////////
 
 /obj/item/food/meat/steak
@@ -943,7 +986,7 @@
 
 /obj/item/food/meat/steak/Initialize()
 	. = ..()
-	RegisterSignal(src, COMSIG_ITEM_MICROWAVE_COOKED, .proc/OnMicrowaveCooked)
+	RegisterSignal(src, COMSIG_ITEM_MICROWAVE_COOKED, PROC_REF(OnMicrowaveCooked))
 
 
 /obj/item/food/meat/steak/proc/OnMicrowaveCooked(datum/source, obj/item/source_item, cooking_efficiency = 1)
@@ -1026,6 +1069,25 @@
 	desc = "A synthetic meat steak. It doesn't look quite right, now does it?"
 	icon_state = "meatsteak_old"
 	tastes = list("meat" = 4, "cryoxandone" = 1)
+
+/obj/item/food/meat/steak/violet
+	name = "violet steak"
+	desc = "The most edible part of the violet ordeals, cooking it seems to have removed the glyphs."
+	icon_state = "violetsteak"
+	tastes = list("squid" = 1, "half organic" = 1, "half inorganic" = 1, "love" = 1, "rocks" = 1)
+
+/obj/item/food/meat/steak/amber
+	name = "amber steak"
+	desc = "Preparing the amber meat expresses the sophistication and control that the amber worms lacked."
+	icon_state = "ambersteak"
+	tastes = list("crab" = 1, "crunchy" = 1, "status quo" = 1)
+
+/obj/item/food/meat/steak/crimson
+	name = "crimson steak"
+	desc = "Scraping together most of what you could, this meat is very sweet, but won't last much longer.."
+	tastes = list("squid" = 1, "half organic" = 1, "half inorganic" = 1, "love" = 1)
+	foodtypes = MEAT
+
 
 //////////////////////////////// MEAT CUTLETS ///////////////////////////////////////////////////////
 
@@ -1146,7 +1208,7 @@
 
 /obj/item/food/meat/cutlet/Initialize()
 	. = ..()
-	RegisterSignal(src, COMSIG_ITEM_MICROWAVE_COOKED, .proc/OnMicrowaveCooked)
+	RegisterSignal(src, COMSIG_ITEM_MICROWAVE_COOKED, PROC_REF(OnMicrowaveCooked))
 
 ///This proc handles setting up the correct meat name for the cutlet, this should definitely be changed with the food rework.
 /obj/item/food/meat/cutlet/proc/OnMicrowaveCooked(datum/source, atom/source_item, cooking_efficiency)
@@ -1213,3 +1275,13 @@
 	. = ..()
 	if(prob(50))
 		icon_state = "fried_chicken2"
+
+/obj/item/food/forsaken_burrito
+	name = "Forsaken Burrito"
+	desc = "It appears to be just a regular burrito with half the wrapper still on."
+	icon_state = "forsaken_burrito"
+	bite_consumption = 4
+	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/protein = 7, /datum/reagent/consumable/capsaicin = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
+	tastes = list("soybeans" = 2, "meat" = 1, "tortilla" = 2)
+	foodtypes = MEAT
+	w_class = WEIGHT_CLASS_SMALL

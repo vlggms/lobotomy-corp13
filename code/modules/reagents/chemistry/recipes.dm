@@ -32,7 +32,7 @@
 
 /datum/chemical_reaction/New()
 	. = ..()
-	SSticker.OnRoundstart(CALLBACK(src,.proc/update_info))
+	SSticker.OnRoundstart(CALLBACK(src, PROC_REF(update_info)))
 
 /**
  * Updates information during the roundstart
@@ -74,7 +74,7 @@
 		var/atom/A = holder.my_atom
 		var/turf/T = get_turf(A)
 		var/message = "Mobs have been spawned in [ADMIN_VERBOSEJMP(T)] by a [reaction_name] reaction."
-		message += " (<A HREF='?_src_=vars;Vars=[REF(A)]'>VV</A>)"
+		message += " (<A HREF='byond://?_src_=vars;Vars=[REF(A)]'>VV</A>)"
 
 		var/mob/M = get(A, /mob)
 		if(M)
@@ -128,7 +128,7 @@
 		else
 			if(setting_type)
 				if(step_away(X, T) && moving_power > 1) //Can happen twice at most. So this is fine.
-					addtimer(CALLBACK(GLOBAL_PROC, .proc/_step_away, X, T), 2)
+					addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(_step_away), X, T), 2)
 			else
 				if(step_towards(X, T) && moving_power > 1)
-					addtimer(CALLBACK(GLOBAL_PROC, .proc/_step_towards, X, T), 2)
+					addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(_step_towards), X, T), 2)

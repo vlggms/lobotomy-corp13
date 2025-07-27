@@ -9,9 +9,9 @@
 	rogue_types = list(/datum/nanite_program/brain_misfire, /datum/nanite_program/brain_decay)
 
 /datum/nanite_program/sleepy/on_trigger(comm_message)
-	to_chat(host_mob, "<span class='warning'>You start to feel very sleepy...</span>")
+	to_chat(host_mob, span_warning("You start to feel very sleepy..."))
 	host_mob.drowsyness += 20
-	addtimer(CALLBACK(host_mob, /mob/living.proc/Sleeping, 200), rand(60,200))
+	addtimer(CALLBACK(host_mob, TYPE_PROC_REF(/mob/living, Sleeping), 200), rand(60,200))
 
 /datum/nanite_program/paralyzing
 	name = "Paralysis"
@@ -24,11 +24,11 @@
 
 /datum/nanite_program/paralyzing/enable_passive_effect()
 	. = ..()
-	to_chat(host_mob, "<span class='warning'>Your muscles seize! You can't move!</span>")
+	to_chat(host_mob, span_warning("Your muscles seize! You can't move!"))
 
 /datum/nanite_program/paralyzing/disable_passive_effect()
 	. = ..()
-	to_chat(host_mob, "<span class='notice'>Your muscles relax, and you can move again.</span>")
+	to_chat(host_mob, span_notice("Your muscles relax, and you can move again."))
 
 /datum/nanite_program/shocking
 	name = "Electric Shock"
@@ -153,7 +153,7 @@
 		return
 	if(host_mob.stat == DEAD)
 		return
-	to_chat(host_mob, "<span class='warning'>You feel compelled to speak...</span>")
+	to_chat(host_mob, span_warning("You feel compelled to speak..."))
 	host_mob.say(sent_message, forced = "nanite speech")
 
 /datum/nanite_program/comm/voice
@@ -175,7 +175,7 @@
 		sent_message = message_setting.get_value()
 	if(host_mob.stat == DEAD)
 		return
-	to_chat(host_mob, "<i>You hear a strange, robotic voice in your head...</i> \"<span class='robot'>[html_encode(sent_message)]</span>\"")
+	to_chat(host_mob, "<i>You hear a strange, robotic voice in your head...</i> \"[span_robot("[html_encode(sent_message)]")]\"")
 
 /datum/nanite_program/comm/hallucination
 	name = "Hallucination"
@@ -282,13 +282,6 @@
 	. = ..()
 	extra_settings[NES_MOOD_MESSAGE] = new /datum/nanite_extra_setting/text("HAPPINESS ENHANCEMENT")
 
-/datum/nanite_program/good_mood/enable_passive_effect()
-	. = ..()
-	SEND_SIGNAL(host_mob, COMSIG_ADD_MOOD_EVENT, "nanite_happy", /datum/mood_event/nanite_happiness, get_extra_setting_value(NES_MOOD_MESSAGE))
-
-/datum/nanite_program/good_mood/disable_passive_effect()
-	. = ..()
-	SEND_SIGNAL(host_mob, COMSIG_CLEAR_MOOD_EVENT, "nanite_happy")
 
 /datum/nanite_program/bad_mood
 	name = "Happiness Suppressor"
@@ -300,10 +293,3 @@
 	. = ..()
 	extra_settings[NES_MOOD_MESSAGE] = new /datum/nanite_extra_setting/text("HAPPINESS SUPPRESSION")
 
-/datum/nanite_program/bad_mood/enable_passive_effect()
-	. = ..()
-	SEND_SIGNAL(host_mob, COMSIG_ADD_MOOD_EVENT, "nanite_sadness", /datum/mood_event/nanite_sadness, get_extra_setting_value(NES_MOOD_MESSAGE))
-
-/datum/nanite_program/bad_mood/disable_passive_effect()
-	. = ..()
-	SEND_SIGNAL(host_mob, COMSIG_CLEAR_MOOD_EVENT, "nanite_sadness")

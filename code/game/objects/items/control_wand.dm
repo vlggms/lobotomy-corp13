@@ -19,16 +19,16 @@
 /obj/item/door_remote/Initialize()
 	. = ..()
 	access_list = get_region_accesses(region_access)
-	RegisterSignal(src, COMSIG_COMPONENT_NTNET_NAK, .proc/bad_signal)
-	RegisterSignal(src, COMSIG_COMPONENT_NTNET_ACK, .proc/good_signal)
+	RegisterSignal(src, COMSIG_COMPONENT_NTNET_NAK, PROC_REF(bad_signal))
+	RegisterSignal(src, COMSIG_COMPONENT_NTNET_ACK, PROC_REF(good_signal))
 
 /obj/item/door_remote/proc/bad_signal(datum/source, datum/netdata/data, error_code)
 	if(QDELETED(data.user))
 		return // can't send a message to a missing user
 	if(error_code == NETWORK_ERROR_UNAUTHORIZED)
-		to_chat(data.user, "<span class='notice'>This remote is not authorized to modify this door.</span>")
+		to_chat(data.user, span_notice("This remote is not authorized to modify this door."))
 	else
-		to_chat(data.user, "<span class='notice'>Error: [error_code]</span>")
+		to_chat(data.user, span_notice("Error: [error_code]"))
 
 
 /obj/item/door_remote/proc/good_signal(datum/source, datum/netdata/data, error_code)

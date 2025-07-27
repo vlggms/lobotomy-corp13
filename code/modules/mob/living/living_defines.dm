@@ -25,10 +25,12 @@
 	var/cloneloss = 0	///Damage caused by being cloned or ejected from the cloner early. slimes also deal cloneloss damage to victims
 	var/staminaloss = 0		///Stamina damage, or exhaustion. You recover it slowly naturally, and are knocked down if it gets too high. Holodeck and hallucinations deal this.
 	var/crit_threshold = HEALTH_THRESHOLD_CRIT /// when the mob goes from "normal" to crit
-	var/sanityhealth = 220		// Sanity damage. Humans go insane when it reaches 0
+	var/sanityhealth = 100 // Sanity health. Humans go insane when it reaches 0
+	var/sanityloss = 0
 	var/maxSanity = 100
 	///When the mob enters hard critical state and is fully incapacitated.
 	var/hardcrit_threshold = HEALTH_THRESHOLD_FULLCRIT
+	var/death_threshold = HEALTH_THRESHOLD_DEAD
 
 	//Damage dealing vars! These are meaningless outside of specific instances where it's checked and defined.
 	// Lower bound of damage done by unarmed melee attacks. Mob code is a mess, only works where this is checked for.
@@ -56,6 +58,11 @@
 	var/last_special = 0 ///Used by the resist verb, likely used to prevent players from bypassing next_move by logging in/out.
 	var/timeofdeath = 0
 
+	///A message sent when the mob dies, with the *deathgasp emote
+	var/death_message = ""
+	///A sound sent when the mob dies, with the *deathgasp emote
+	var/death_sound
+
 	/**
 	  * Allows mobs to move through dense areas without restriction. For instance, in space or out of holder objects.
 	  *
@@ -72,7 +79,8 @@
 
 	var/cameraFollow = null
 
-	var/tod = null /// Time of death
+	/// Time of death
+	var/tod = null
 
 	var/on_fire = FALSE ///The "Are we on fire?" var
 	var/fire_stacks = 0 ///Tracks how many stacks of fire we have on, max is usually 20
@@ -113,6 +121,7 @@
 
 	var/list/butcher_results = null ///these will be yielded from butchering with a probability chance equal to the butcher item's effectiveness
 	var/list/guaranteed_butcher_results = null ///these will always be yielded from butchering
+	var/list/silk_results = null
 	var/butcher_difficulty = 0 ///effectiveness prob. is modified negatively by this amount; positive numbers make it more difficult, negative ones make it easier
 
 	var/list/weather_immunities
@@ -168,3 +177,9 @@
 	var/body_position_pixel_x_offset = 0
 	///The x amount a mob's sprite should be offset due to the current position they're in
 	var/body_position_pixel_y_offset = 0
+
+	/// How much devotion to the fish gods do you have?
+	var/devotion = 0
+
+	/// Which god are you aligned with?
+	var/god_aligned = FISHGOD_NONE

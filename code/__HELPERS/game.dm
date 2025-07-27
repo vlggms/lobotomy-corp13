@@ -136,6 +136,9 @@
 
 	return dist
 
+/proc/get_dist_manhattan(atom/Loc1, atom/Loc2)
+	return abs(Loc1.x - Loc2.x) + abs(Loc1.y - Loc2.y)
+
 /proc/circlerangeturfs(center=usr,radius=3)
 
 	var/turf/centerturf = get_turf(center)
@@ -215,6 +218,9 @@
 
 /proc/get_hearers_in_view(R, atom/source)
 	// Returns a list of hearers in view(R) from source (ignoring luminosity). Used in saycode.
+	if(!isnum(R))
+		stack_trace("invalid get_hearers_in_view call on [source] with an range [R]")
+		return list()
 	var/turf/T = get_turf(source)
 	. = list()
 	if(!T)
@@ -350,7 +356,7 @@
 /proc/flick_overlay(image/I, list/show_to, duration)
 	for(var/client/C in show_to)
 		C.images += I
-	addtimer(CALLBACK(GLOBAL_PROC, /proc/remove_images_from_clients, I, show_to), duration, TIMER_CLIENT_TIME)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(remove_images_from_clients), I, show_to), duration, TIMER_CLIENT_TIME)
 
 /proc/flick_overlay_view(image/I, atom/target, duration) //wrapper for the above, flicks to everyone who can see the target atom
 	var/list/viewing = list()
@@ -390,22 +396,22 @@
 	var/list/answers = ignore_category ? list("Yes", "No", "Never for this round") : list("Yes", "No")
 	switch(tgui_alert(M, Question, "A limited-time offer!", answers, timeout=poll_time))
 		if("Yes")
-			to_chat(M, "<span class='notice'>Choice registered: Yes.</span>")
+			to_chat(M, span_notice("Choice registered: Yes."))
 			if(time_passed + poll_time <= world.time)
-				to_chat(M, "<span class='danger'>Sorry, you answered too late to be considered!</span>")
+				to_chat(M, span_danger("Sorry, you answered too late to be considered!"))
 				SEND_SOUND(M, 'sound/machines/buzz-sigh.ogg')
 				candidates -= M
 			else
 				candidates += M
 		if("No")
-			to_chat(M, "<span class='danger'>Choice registered: No.</span>")
+			to_chat(M, span_danger("Choice registered: No."))
 			candidates -= M
 		if("Never for this round")
 			var/list/L = GLOB.poll_ignore[ignore_category]
 			if(!L)
 				GLOB.poll_ignore[ignore_category] = list()
 			GLOB.poll_ignore[ignore_category] += M.ckey
-			to_chat(M, "<span class='danger'>Choice registered: Never for this round.</span>")
+			to_chat(M, span_danger("Choice registered: Never for this round."))
 			candidates -= M
 		else
 			candidates -= M
@@ -513,7 +519,7 @@
 	if(!SSticker.IsRoundInProgress() || QDELETED(character))
 		return
 	var/area/A = get_area(character)
-	deadchat_broadcast("<span class='game'> has arrived at the station at <span class='name'>[A.name]</span>.</span>", "<span class='game'><span class='name'>[character.real_name]</span> ([rank])</span>", follow_target = character, message_type=DEADCHAT_ARRIVALRATTLE)
+	deadchat_broadcast("<span class='game'> has arrived at the facility at <span class='name'>[A.name]</span>.</span>", "<span class='game'><span class='name'>[character.real_name]</span> ([rank])</span>", follow_target = character, message_type=DEADCHAT_ARRIVALRATTLE)
 	if((!GLOB.announcement_systems.len) || (!character.mind))
 		return
 	if((character.mind.assigned_role == "Cyborg") || (character.mind.assigned_role == character.mind.special_role))

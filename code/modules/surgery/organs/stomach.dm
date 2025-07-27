@@ -12,7 +12,7 @@
 	desc = "Onaka ga suite imasu."
 
 	healing_factor = STANDARD_ORGAN_HEALING
-	decay_factor = STANDARD_ORGAN_DECAY * 1.15 // ~13 minutes, the stomach is one of the first organs to die
+	decay_factor = STANDARD_ORGAN_DECAY * 0.25 // fails around 60 minutes
 
 	low_threshold_passed = "<span class='info'>Your stomach flashes with pain before subsiding. Food doesn't seem like a good idea right now.</span>"
 	high_threshold_passed = "<span class='warning'>Your stomach flares up with constant pain- you can hardly stomach the idea of food right now!</span>"
@@ -140,22 +140,17 @@
 	switch(H.disgust)
 		if(0 to DISGUST_LEVEL_GROSS)
 			H.clear_alert("disgust")
-			SEND_SIGNAL(H, COMSIG_CLEAR_MOOD_EVENT, "disgust")
 		if(DISGUST_LEVEL_GROSS to DISGUST_LEVEL_VERYGROSS)
 			H.throw_alert("disgust", /atom/movable/screen/alert/gross)
-			SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "disgust", /datum/mood_event/gross)
 		if(DISGUST_LEVEL_VERYGROSS to DISGUST_LEVEL_DISGUSTED)
 			H.throw_alert("disgust", /atom/movable/screen/alert/verygross)
-			SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "disgust", /datum/mood_event/verygross)
 		if(DISGUST_LEVEL_DISGUSTED to INFINITY)
 			H.throw_alert("disgust", /atom/movable/screen/alert/disgusted)
-			SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "disgust", /datum/mood_event/disgusted)
 
 /obj/item/organ/stomach/Remove(mob/living/carbon/M, special = 0)
 	if(istype(owner, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = owner
 		H.clear_alert("disgust")
-		SEND_SIGNAL(H, COMSIG_CLEAR_MOOD_EVENT, "disgust")
 
 	return ..()
 
@@ -199,8 +194,8 @@
 
 /obj/item/organ/stomach/ethereal/Insert(mob/living/carbon/M, special = 0)
 	..()
-	RegisterSignal(owner, COMSIG_PROCESS_BORGCHARGER_OCCUPANT, .proc/charge)
-	RegisterSignal(owner, COMSIG_LIVING_ELECTROCUTE_ACT, .proc/on_electrocute)
+	RegisterSignal(owner, COMSIG_PROCESS_BORGCHARGER_OCCUPANT, PROC_REF(charge))
+	RegisterSignal(owner, COMSIG_LIVING_ELECTROCUTE_ACT, PROC_REF(on_electrocute))
 
 /obj/item/organ/stomach/ethereal/Remove(mob/living/carbon/M, special = 0)
 	UnregisterSignal(owner, COMSIG_PROCESS_BORGCHARGER_OCCUPANT)

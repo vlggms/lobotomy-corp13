@@ -179,6 +179,39 @@
 		file_data["wanted"] = list("author" = "[GLOB.news_network.wanted_issue.scannedUser]", "criminal" = "[GLOB.news_network.wanted_issue.criminal]", "description" = "[GLOB.news_network.wanted_issue.body]", "photo file" = "[GLOB.news_network.wanted_issue.photo_file]")
 	WRITE_FILE(json_file, json_encode(file_data))
 
+//LC13 Survival Achivments
+/datum/controller/subsystem/ticker/proc/SurvivalAwards(client/player_client)
+	if(!ishuman(player_client.mob))
+		return FALSE
+	var/mob/living/carbon/human/human_mob = player_client.mob
+	if(human_mob.stat == DEAD)
+		return FALSE
+
+	if(human_mob.mind)
+		var/datum/mind/M = human_mob.mind
+		if(M.get_skill_level(/datum/skill/fishing) >= 6)
+			player_client.give_award(/datum/award/achievement/lc13/scorpworld, human_mob)
+		//If you join not from roundstart you do not apply for these achivements.
+		if(M.late_joiner)
+			return FALSE
+
+		if(SSmaptype.maptype == "standard")
+			//Standard LC13 Gamemode Achivements.
+			var/list/valid_roles = list(
+				"Manager",
+				"Clerk",
+				"Agent Captain",
+				"Agent",
+				"Agent Intern",
+				"Extraction Officer",
+				"Records Officer",
+				"Training Officer",
+				)
+			if(M.assigned_role in valid_roles)
+				player_client.give_award(/datum/award/achievement/lc13/lcorpworld, human_mob)
+			if(istype(human_mob.ego_gift_list["Right Back Slot"], /datum/ego_gifts/twilight))
+				player_client.give_award(/datum/award/achievement/lc13/twilight, human_mob)
+
 ///Handles random hardcore point rewarding if it applies.
 /datum/controller/subsystem/ticker/proc/HandleRandomHardcoreScore(client/player_client)
 	if(!ishuman(player_client.mob))
@@ -208,6 +241,20 @@
 	to_chat(world, "<BR><BR><BR><span class='big bold'>The round has ended.</span>")
 	log_game("The round has ended.")
 
+	var/rounds_since_vote = trim(file2text("data/rounds_since_vote.txt"))
+	rounds_since_vote = text2num(rounds_since_vote)
+	rounds_since_vote += 1
+	if(rounds_since_vote < 3)
+		if(GLOB.master_mode != "classic")
+			SSticker.save_mode("classic")
+	else
+		SSvote.initiate_vote("gamemode", "automatic gamemode selection vote")
+		rounds_since_vote = 0
+	var/F = file("data/rounds_since_vote.txt")
+	var/file_contents = num2text(rounds_since_vote)
+	fdel(F)
+	WRITE_FILE(F, file_contents)
+
 	for(var/I in round_end_events)
 		var/datum/callback/cb = I
 		cb.InvokeAsync()
@@ -216,6 +263,9 @@
 	var/speed_round = FALSE
 	if(world.time - SSticker.round_start_time <= 300 SECONDS)
 		speed_round = TRUE
+	var/check_survival = FALSE
+	if(world.time - SSticker.round_start_time >= 1 HOURS)
+		check_survival = TRUE
 
 	for(var/client/C in GLOB.clients)
 		if(!C.credits)
@@ -223,6 +273,9 @@
 		C.playcreditsmusic(40)//playtitlemusic(40) // Tegustation Music edit
 		if(speed_round)
 			C.give_award(/datum/award/achievement/misc/speed_round, C.mob)
+		//You survived for more than a hour!
+		if(check_survival)
+			SurvivalAwards(C)
 		HandleRandomHardcoreScore(C)
 
 	var/popcount = gather_roundend_feedback()
@@ -320,6 +373,12 @@
 	parts += goal_report()
 	//Economy & Money
 	parts += market_report()
+	//PE Quota
+	if(SSmaptype.maptype == "standard")
+		parts += pe_report()
+	//Enkephalin Rush
+	if(SSmaptype.maptype == "enkephalin_rush")
+		parts += mining_report()
 
 	listclearnulls(parts)
 
@@ -331,7 +390,7 @@
 
 	if(GLOB.round_id)
 		var/statspage = CONFIG_GET(string/roundstatsurl)
-		var/info = statspage ? "<a href='?action=openLink&link=[url_encode(statspage)][GLOB.round_id]'>[GLOB.round_id]</a>" : GLOB.round_id
+		var/info = statspage ? "<a href='byond://?action=openLink&link=[url_encode(statspage)][GLOB.round_id]'>[GLOB.round_id]</a>" : GLOB.round_id
 		parts += "[FOURSPACES]Round ID: <b>[info]</b>"
 	parts += "[FOURSPACES]Shift Duration: <B>[DisplayTimeText(world.time - SSticker.round_start_time)]</B>"
 	parts += "[FOURSPACES]Facility Integrity: <B>[mode.station_was_nuked ? "<span class='redtext'>Destroyed</span>" : "[popcount["station_integrity"]]%"]</B>"
@@ -358,14 +417,57 @@
 			parts += "[FOURSPACES][FOURSPACES][rule.ruletype] - <b>[rule.name]</b>: -[rule.cost + rule.scaled_times * rule.scaling_cost] threat"
 	return parts.Join("<br>")
 
+/datum/controller/subsystem/ticker/proc/agent_report()
+	var/list/parts = list()
+	var/highest_works = null
+	var/highest_earner = null
+	var/highest_gains = null
+
+	var/highest_work_count = 0
+	var/highest_earn_count = 0
+	var/highest_gain_count = 0
+	for(var/agent_name in SSlobotomy_corp.work_stats)
+		var/curr_work_count = SSlobotomy_corp.work_stats[agent_name]["works"]
+		if(curr_work_count > highest_work_count)
+			highest_works = agent_name
+			highest_work_count = curr_work_count
+		var/curr_earn_count = SSlobotomy_corp.work_stats[agent_name]["pe"]
+		if(curr_earn_count > highest_earn_count)
+			highest_earner = agent_name
+			highest_earn_count = curr_earn_count
+		var/curr_gain_count = 0
+		for(var/attr in SSlobotomy_corp.work_stats[agent_name]["gain"])
+			curr_gain_count += SSlobotomy_corp.work_stats[agent_name]["gain"][attr]
+		if(curr_gain_count > highest_gain_count)
+			highest_gains = agent_name
+			highest_gain_count = curr_gain_count
+
+	parts += "<br>[FOURSPACES]Facility records:<br>"
+	if(!highest_works && !highest_earner && !highest_gains) // How
+		parts += "[FOURSPACES][FOURSPACES]...Everyone was miserable and did nothing.."
+		return parts.Join("<br>")
+	if(highest_works)
+		parts += "[FOURSPACES][FOURSPACES][highest_works] worked the most, for a total of <b>[highest_work_count]</b> sessions!"
+	if(highest_earner)
+		parts += "[FOURSPACES][FOURSPACES][highest_earner] earned the most PE while working, for a total of <b>[highest_earn_count]</b> boxes!"
+	if(highest_gains)
+		parts += "[FOURSPACES][FOURSPACES][highest_gains] gained the most attributes <u>while working</u>, for a total of <b>[highest_gain_count]</b> points!"
+
+	return parts.Join("<br>")
+
 /datum/controller/subsystem/ticker/proc/abnormality_report()
 	var/list/parts = list()
 	var/datum/abnormality/highest_abno = null
+	var/highest_work_count = 0
 	var/full_abno_count = 0
 	var/list/abno_count = list(0, 0, 0, 0, 0)
 	for(var/datum/abnormality/A in SSlobotomy_corp.all_abnormality_datums)
-		if(!highest_abno || A.work_logs.len > highest_abno.work_logs.len)
+		var/work_count = 0
+		for(var/worker in A.work_stats)
+			work_count += A.work_stats[worker]["works"]
+		if(work_count > highest_work_count)
 			highest_abno = A
+			highest_work_count = work_count
 		abno_count[A.threat_level] += 1
 		full_abno_count += 1
 	parts += "[FOURSPACES]<b>The facility had [full_abno_count] abnormalities:</b>"
@@ -374,7 +476,20 @@
 			continue
 		parts += "[FOURSPACES][FOURSPACES]<span style='color: [THREAT_TO_COLOR[i]]'>[abno_count[i]] [THREAT_TO_NAME[i]]s.</span>"
 	if(istype(highest_abno))
-		parts += "<br>[FOURSPACES][highest_abno.name] has been worked on the most, for a total of [highest_abno.work_logs.len] sessions.<br>"
+		parts += "<br>[FOURSPACES][highest_abno.name] has been worked on the most, for a total of [highest_work_count] sessions.<br>"
+		if(LAZYLEN(highest_abno.work_stats))
+			var/highest_worker = null
+			var/highest_work_num = -1
+			for(var/worker_name in highest_abno.work_stats)
+				var/curr_work_num = highest_abno.work_stats[worker_name]["works"]
+				if(curr_work_num > highest_work_num)
+					highest_worker = worker_name
+					highest_work_num = curr_work_num
+			if(highest_worker)
+				var/total_attr_points = 0
+				for(var/attr in highest_abno.work_stats[highest_worker]["gain"])
+					total_attr_points += highest_abno.work_stats[highest_worker]["gain"][attr] // Nice lists we got there, huh?
+				parts += "[FOURSPACES][highest_worker] worked on it the most, for a total of [highest_abno.work_stats[highest_worker]["works"]] sessions, earning [highest_abno.work_stats[highest_worker]["pe"]] PE in the process, while gaining a total of [total_attr_points] attribute points.<br>"
 	return parts.Join("<br>")
 
 /client/proc/roundend_report_file()
@@ -394,6 +509,9 @@
 	var/list/parts = list()
 	parts += "<div class='panel stationborder'>"
 	parts += GLOB.survivor_report
+	parts += "</div>"
+	parts += "<div class='panel stationborder'>"
+	parts += GLOB.agent_report
 	parts += "</div>"
 	parts += "<div class='panel stationborder'>"
 	parts += GLOB.abnormality_report
@@ -456,6 +574,9 @@
 	parts += GLOB.survivor_report
 	parts += "</div>"
 	parts += "<div class='panel stationborder'>"
+	parts += GLOB.agent_report
+	parts += "</div>"
+	parts += "<div class='panel stationborder'>"
 	parts += GLOB.abnormality_report
 	parts += "</div>"
 
@@ -464,6 +585,7 @@
 /datum/controller/subsystem/ticker/proc/display_report(popcount)
 	GLOB.common_report = build_roundend_report()
 	GLOB.survivor_report = survivor_report(popcount)
+	GLOB.agent_report = agent_report()
 	GLOB.abnormality_report = abnormality_report()
 	log_roundend_report()
 	for(var/client/C in GLOB.clients)
@@ -544,6 +666,33 @@
 		parts += "Somehow, nobody made any money this shift! This'll result in some budget cuts...</div>"
 	return parts
 
+/datum/controller/subsystem/ticker/proc/pe_report()
+	. = list()
+	SSpersistence.pe_status[PE_GOAL_SPENT] = FALSE
+	. += "<span class='header'>PE Quota</span>"
+	. += "<div class='panel stationborder'>"
+	. += "[SSlobotomy_corp.total_generated] total PE was generated.<br>"
+	if(SSlobotomy_corp.goal_boxes)
+		. += "[SSlobotomy_corp.goal_boxes] PE was refined or otherwise generated through alternative means.<br>"
+	if(SSlobotomy_corp.total_spent)
+		. += "[SSlobotomy_corp.total_spent] PE was spent on various things.<br>"
+	if(SSlobotomy_corp.goal_reached)
+		. += "PE Quota was reached!<br>"
+		SSpersistence.pe_status[PE_GOAL_REACHED] = TRUE
+		if(SSlobotomy_corp.available_box)
+			SSpersistence.pe_status[PE_LEFTOVER] = SSlobotomy_corp.available_box
+	else
+		SSpersistence.pe_status[PE_GOAL_REACHED] = FALSE
+		if(SSlobotomy_corp.box_goal == 0)
+			. += "The day hasn't even started yet and you're leaving?<br>"
+		else if(SSlobotomy_corp.total_spent >= SSlobotomy_corp.box_goal)
+			. += "Enough PE to meet PE Quota was made, but you spent it all!? You'll be hearing from our lawyers.<br>"
+			SSpersistence.pe_status[PE_GOAL_SPENT] = TRUE
+		else
+			. += "PE Quota was not reached! Don't expect to have a job tomorrow...<br>"
+	. += "</div>"
+	return
+
 /datum/controller/subsystem/ticker/proc/medal_report()
 	if(GLOB.commendations.len)
 		var/list/parts = list()
@@ -598,7 +747,7 @@
 	var/currrent_category
 	var/datum/antagonist/previous_category
 
-	sortTim(all_antagonists, /proc/cmp_antag_category)
+	sortTim(all_antagonists, GLOBAL_PROC_REF(cmp_antag_category))
 
 	for(var/datum/antagonist/A in all_antagonists)
 		if(!A.show_in_roundend)
@@ -630,7 +779,7 @@
 	var/datum/action/report/R = new
 	C.player_details.player_actions += R
 	R.Grant(C.mob)
-	to_chat(C,"<a href='?src=[REF(R)];report=1'>Show roundend report again</a>")
+	to_chat(C,"<a href='byond://?src=[REF(R)];report=1'>Show roundend report again</a>")
 
 /datum/action/report
 	name = "Show roundend report"
@@ -760,3 +909,21 @@
 				return
 			qdel(query_update_everything_ranks)
 		qdel(query_check_everything_ranks)
+
+//enkephalin rush roundend stuff
+/datum/controller/subsystem/ticker/proc/mining_report()
+	. = list()
+	var/repaired_machines = (GLOB.lobotomy_repairs)
+	var/total_machines = (GLOB.lobotomy_damages)
+	var/facility_full_percentage = 100 * (repaired_machines / total_machines)
+	. += "<span class='header'>Site Recovery Report</span>"
+	. += "<div class='panel stationborder'>"
+	. += "[facility_full_percentage]% of the facility has been recovered!<br>"
+	if(facility_full_percentage >= 100)
+		. += "The facility is fully functional!<br>"
+	if(GLOB.bough_collected)
+		. += "The golden bough has been successfully retrieved!<br>"
+	else
+		. += "You have failed to collect the golden bough.<br>"
+	. += "</div>"
+	return

@@ -3,6 +3,15 @@
 
 ////////////////////////////////////////////////SOUP////////////////////////////////////////////////
 
+/datum/crafting_recipe/food/wishsoup
+	name = "Wish soup"
+	reqs = list(
+		/datum/reagent/water = 20,
+		/obj/item/reagent_containers/glass/bowl = 1
+	)
+	result= /obj/item/food/soup/wish
+	subcategory = CAT_SOUP
+
 /datum/crafting_recipe/food/meatballsoup
 	name = "Meatball soup"
 	reqs = list(
@@ -40,25 +49,6 @@
 	result = /obj/item/food/soup/nettle
 	subcategory = CAT_SOUP
 
-/datum/crafting_recipe/food/wingfangchu
-	name = "Wingfangchu"
-	reqs = list(
-		/obj/item/reagent_containers/glass/bowl = 1,
-		/datum/reagent/consumable/soysauce = 5,
-		/obj/item/food/meat/cutlet/xeno = 2
-	)
-	result = /obj/item/food/soup/wingfangchu
-	subcategory = CAT_SOUP
-
-/datum/crafting_recipe/food/wishsoup
-	name = "Wish soup"
-	reqs = list(
-		/datum/reagent/water = 20,
-		/obj/item/reagent_containers/glass/bowl = 1
-	)
-	result= /obj/item/food/soup/wish
-	subcategory = CAT_SOUP
-
 /datum/crafting_recipe/food/hotchili
 	name = "Hot chili"
 	reqs = list(
@@ -68,29 +58,6 @@
 		/obj/item/food/grown/tomato = 1
 	)
 	result = /obj/item/food/soup/hotchili
-	subcategory = CAT_SOUP
-
-/datum/crafting_recipe/food/coldchili
-	name = "Cold chili"
-	reqs = list(
-		/obj/item/reagent_containers/glass/bowl = 1,
-		/obj/item/food/meat/cutlet = 2,
-		/obj/item/food/grown/icepepper = 1,
-		/obj/item/food/grown/tomato = 1
-	)
-	result = /obj/item/food/soup/coldchili
-	subcategory = CAT_SOUP
-
-/datum/crafting_recipe/food/clownchili
-	name = "Chili con carnival"
-	reqs = list(
-		/obj/item/reagent_containers/glass/bowl = 1,
-		/obj/item/food/meat/cutlet = 2,
-		/obj/item/food/grown/chili = 1,
-		/obj/item/food/grown/tomato = 1,
-		/obj/item/clothing/shoes/clown_shoes = 1
-	)
-	result = /obj/item/food/soup/clownchili
 	subcategory = CAT_SOUP
 
 /datum/crafting_recipe/food/tomatosoup
@@ -293,4 +260,77 @@
 		/obj/item/reagent_containers/glass/bowl = 1
 	)
 	result = /obj/item/food/soup/peasoup
+	subcategory = CAT_SOUP
+
+
+////////////////////////////////////////////////SALADS////////////////////////////////////////////////
+
+/datum/crafting_recipe/food/validsalad
+	name = "Valid salad"
+	reqs = list(
+		/obj/item/reagent_containers/glass/bowl = 1,
+		/obj/item/food/grown/ambrosia/vulgaris = 3,
+		/obj/item/food/grown/potato = 1,
+		/obj/item/food/meatball = 1
+	)
+	result = /obj/item/food/salad/validsalad
+	subcategory = CAT_SALAD
+
+/datum/crafting_recipe/food/oatmeal
+	name = "Oatmeal"
+	reqs = list(
+		/datum/reagent/consumable/milk = 10,
+		/obj/item/reagent_containers/glass/bowl = 1,
+		/obj/item/food/grown/oat = 1
+	)
+	result = /obj/item/food/salad/oatmeal
+	subcategory = CAT_SALAD
+
+/datum/crafting_recipe/food/fruitsalad
+	name = "Fruit salad"
+	reqs = list(
+		/obj/item/reagent_containers/glass/bowl = 1,
+		/obj/item/food/grown/apple = 1,
+		/obj/item/food/grown/grapes = 1,
+		/obj/item/food/grown/citrus/orange = 1,
+		/obj/item/food/watermelonslice = 2
+
+	)
+	result = /obj/item/food/salad/fruit
+	subcategory = CAT_SALAD
+
+/datum/crafting_recipe/food/junglesalad
+	name = "Jungle salad"
+	reqs = list(
+		/obj/item/reagent_containers/glass/bowl = 1,
+		/obj/item/food/grown/apple = 1,
+		/obj/item/food/grown/grapes = 1,
+		/obj/item/food/grown/banana = 2,
+		/obj/item/food/watermelonslice = 2,
+	)
+	result = /obj/item/food/salad/jungle
+	subcategory = CAT_SALAD
+
+/datum/crafting_recipe/food/citrusdelight
+	name = "Citrus delight"
+	reqs = list(
+		/obj/item/reagent_containers/glass/bowl = 1,
+		/obj/item/food/grown/citrus/lime = 1,
+		/obj/item/food/grown/citrus/lemon = 1,
+		/obj/item/food/grown/citrus/orange = 1,
+	)
+	result = /obj/item/food/salad/citrusdelight
+	subcategory = CAT_SALAD
+
+/datum/crafting_recipe/food/crying_soup
+	name = "Crying Soup"
+	reqs = list(
+		/datum/reagent/water = 10,
+		/datum/reagent/consumable/salt = 1,
+		/obj/item/reagent_containers/glass/bowl = 1,
+		/obj/item/food/meat/cutlet = 2,
+		/obj/item/food/grown/onion = 1,
+		/obj/item/food/tortilla = 1
+	)
+	result = /obj/item/food/soup/crying_soup
 	subcategory = CAT_SOUP

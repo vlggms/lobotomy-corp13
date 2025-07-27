@@ -143,13 +143,10 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	keyslot = new /obj/item/encryptionkey/headset_training
 
 /obj/item/radio/headset/headset_command
-	name = "command radio headset"
+	name = "central radio headset"
 	desc = "This is used by the central command department."
 	icon_state = "eng_headset"
 	keyslot = new /obj/item/encryptionkey/headset_command
-
-/obj/item/radio/headset/headset_command/agent
-	keyslot = null
 
 /obj/item/radio/headset/headset_welfare
 	name = "welfare radio headset"
@@ -187,9 +184,56 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	icon_state = "com_headset"
 	keyslot = new /obj/item/encryptionkey/headset_command
 
+//LC13 syndicate headset
+/obj/item/radio/headset/syndicatecity
+	name = "radio headset"
+	desc = "An updated, modular intercom that fits over the head. Takes encryption keys, but only a few."
+	icon_state = "headset"
+	inhand_icon_state = "headset"
+	frequency = FREQ_DISCIPLINE
+	freerange = TRUE
+	freqlock = TRUE
+
+//LC13 syndicate headset
+/obj/item/radio/headset/syndicatecity/heads
+	command = TRUE
+
+//LC13 Association when mixed
+/obj/item/radio/headset/association_locked
+	name = "association headset"
+	desc = "An updated, modular intercom that fits over the head. Takes encryption keys, but only a few."
+	icon_state = "headset"
+	inhand_icon_state = "headset"
+	freerange = TRUE
+	freqlock = TRUE
+	frequency = FREQ_CENTCOM
+
+/obj/item/radio/headset/association_locked/heads
+	name = "association director headset"
+	command = TRUE
+
+/obj/item/radio/headset/association_locked/subsidiary
+	name = "subsidary fixer headset"
+	frequency = 1487
+
+/obj/item/radio/headset/association_locked/subsidiary/heads
+	name = "subsidary director headset"
+	command = TRUE
+
+
 /obj/item/radio/headset/heads
 	command = TRUE
 	keyslot = new /obj/item/encryptionkey/headset_architecture
+
+/obj/item/radio/headset/heads/rep
+	command = TRUE
+	keyslot2 = new /obj/item/encryptionkey/headset_cent
+
+/obj/item/radio/headset/agent_lieutenant
+	name = "\proper the lieutenant's headset"
+	desc = "A headset used by agents in Lobotomy Corporation who have earned the rank of captain."
+	icon_state = "com_headset"
+	keyslot = new /obj/item/encryptionkey/agent_lieutenant
 
 /obj/item/radio/headset/heads/agent_captain
 	name = "\proper the captain's headset"
@@ -275,6 +319,58 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/silicon/can_receive(freq, level)
 	return ..(freq, level, TRUE)
 
+//Department heads
+
+/obj/item/radio/headset/heads/headset_control
+	name = "control radio headset"
+	desc = "This is used by the control department."
+	icon_state = "cargo_headset"
+	keyslot = new /obj/item/encryptionkey/heads/headset_control
+
+/obj/item/radio/headset/heads/headset_information
+	name = "information radio headset"
+	desc = "This is used by the information department."
+	icon_state = "sci_headset"
+	keyslot = new /obj/item/encryptionkey/heads/headset_information
+
+/obj/item/radio/headset/heads/headset_safety
+	name = "safety radio headset"
+	desc = "This is used by the safety department."
+	icon_state = "cent_headset"
+	keyslot = new /obj/item/encryptionkey/heads/headset_safety
+
+/obj/item/radio/headset/heads/headset_training
+	name = "training radio headset"
+	desc = "This is used by the training department."
+	icon_state = "rob_headset"
+	keyslot = new /obj/item/encryptionkey/heads/headset_training
+
+/obj/item/radio/headset/heads/headset_welfare
+	name = "welfare radio headset"
+	desc = "This is used by the welfare department."
+	icon_state = "com_headset"
+	keyslot = new /obj/item/encryptionkey/heads/headset_welfare
+
+/obj/item/radio/headset/heads/headset_discipline
+	name = "disciplinary headset"
+	desc = "This is used by the disciplinary department."
+	icon_state = "sec_headset"
+	keyslot = new /obj/item/encryptionkey/heads/headset_discipline
+
+//Assciation stuff
+/obj/item/radio/headset/heads/headset_association
+	name = "association director headset"
+	desc = "This is used by the local association director."
+	icon_state = "cent_headset"
+	keyslot = new /obj/item/encryptionkey/headset_cent
+
+/obj/item/radio/headset/headset_cent
+	name = "association headset"
+	desc = "This is used by the local association."
+	icon_state = "cent_headset"
+	keyslot = new /obj/item/encryptionkey/headset_cent
+
+
 /obj/item/radio/headset/attackby(obj/item/W, mob/user, params)
 	user.set_machine(src)
 
@@ -341,3 +437,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	if (command)
 		use_command = !use_command
 		to_chat(user, "<span class='notice'>You toggle high-volume mode [use_command ? "on" : "off"].</span>")
+
+
+

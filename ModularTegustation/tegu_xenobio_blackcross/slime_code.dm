@@ -20,7 +20,7 @@
 	if(slime_ask == "No" || QDELETED(src))
 		return
 	if(key)
-		to_chat(user, "<span class='warning'>Someone else already took this slime!</span>")
+		to_chat(user, span_warning("Someone else already took this slime!"))
 		return
 	key = user.key
 	log_game("[key_name(src)] took control of [name].")

@@ -54,7 +54,7 @@ If you create T5+ please take a pass at mech_fabricator.dm. The parts being good
 /obj/item/storage/part_replacer/bluespace/Initialize()
 	. = ..()
 
-	RegisterSignal(src, COMSIG_ATOM_ENTERED, .proc/on_part_entered)
+	RegisterSignal(src, COMSIG_ATOM_ENTERED, PROC_REF(on_part_entered))
 
 /obj/item/storage/part_replacer/bluespace/proc/on_part_entered(datum/source, obj/item/I)
 	if(!istype(I, /obj/item/stock_parts/cell))

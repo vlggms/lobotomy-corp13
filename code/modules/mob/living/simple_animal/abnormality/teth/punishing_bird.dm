@@ -1,20 +1,21 @@
 /mob/living/simple_animal/hostile/abnormality/punishing_bird
 	name = "Punishing Bird"
 	desc = "A white bird with tiny beak. Looks harmless."
-	icon = 'icons/mob/punishing_bird.dmi'
-	icon_state = "pbird"
-	icon_living = "pbird"
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "pbird_breach"
+	icon_living = "pbird_breach"
 	icon_dead = "pbird_dead"
+	portrait = "punishing_bird"
+	del_on_death = FALSE
 	turns_per_move = 2
 	response_help_continuous = "brushes aside"
 	response_help_simple = "brush aside"
 	response_disarm_continuous = "flails at"
 	response_disarm_simple = "flail at"
 	density = FALSE
-	is_flying_animal = TRUE
 	maxHealth = 600
 	health = 600
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 2, WHITE_DAMAGE = 2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
+	damage_coeff = list(RED_DAMAGE = 2, WHITE_DAMAGE = 2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
 	see_in_dark = 10
 	move_to_delay = 2
 	harm_intent_damage = 10
@@ -37,28 +38,50 @@
 	threat_level = TETH_LEVEL
 	start_qliphoth = 3
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(40, 40, 40, 45, 45),
-						ABNORMALITY_WORK_INSIGHT = 60,
-						ABNORMALITY_WORK_ATTACHMENT = list(55, 55, 50, 50, 50),
-						ABNORMALITY_WORK_REPRESSION = list(30, 20, 10, 0, 0)
-						)
+		ABNORMALITY_WORK_INSTINCT = list(40, 40, 40, 45, 45),
+		ABNORMALITY_WORK_INSIGHT = 60,
+		ABNORMALITY_WORK_ATTACHMENT = list(55, 55, 50, 50, 50),
+		ABNORMALITY_WORK_REPRESSION = list(30, 20, 10, 0, 0),
+	)
 	work_damage_amount = 5
 	work_damage_type = RED_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/beak,
 		/datum/ego_datum/weapon/beakmagnum,
-		/datum/ego_datum/armor/beak
-		)
+		/datum/ego_datum/armor/beak,
+	)
 	gift_type =  /datum/ego_gifts/beak
+	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/big_bird = 3,
+		/mob/living/simple_animal/hostile/abnormality/judgement_bird = 3,
+	)
+
+	observation_prompt = "A bird stares at you. What is the name of this bird?"
+	observation_choices = list(
+		"Little bird" = list(TRUE, "The small bird accepts whatever name you decide to give it. Its nature can never change now."),
+		"Punishing bird" = list(TRUE, "The small bird accepts whatever name you decide to give it. Its nature can never change now."),
+	)
+
+	do_not_possess = TRUE
+
 	var/list/enemies = list()
 	var/list/pecking_targets = list()
 	var/list/already_punished = list()
+	var/bird_angry = FALSE
+	/// Melee damage done to simple mobs when enraged
+	var/angry_damage = 100
+	/// Melee damage done to humans when enraged
+	var/angry_damage_human = 500
+
+	var/death_timer
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_WORK_STARTED, .proc/OnAbnoWork)
-	RegisterSignal(SSdcs, COMSIG_GLOB_HUMAN_INSANE, .proc/OnHumanInsane)
+	RegisterSignal(SSdcs, COMSIG_GLOB_WORK_STARTED, PROC_REF(OnAbnoWork))
+	RegisterSignal(SSdcs, COMSIG_GLOB_HUMAN_INSANE, PROC_REF(OnHumanInsane))
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/Destroy()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_WORK_STARTED)
@@ -66,24 +89,30 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/proc/TransformRed()
-	visible_message("<span class='danger'>\The [src] turns its insides out as a giant bloody beak appears!</span>")
+	visible_message(span_danger("\The [src] turns its insides out as a giant bloody beak appears!"))
+	flick("pbird_transition", src)
+	AdjustStun(12, ignore_canstun = TRUE)
 	icon_state = "pbird_red"
 	icon_living = "pbird_red"
 	attack_verb_continuous = "eviscerates"
 	attack_verb_simple = "eviscerate"
 	rapid_melee = 1
-	melee_damage_lower = 400
-	melee_damage_upper = 500
+	//other damage done later
 	obj_damage = 2500
 	environment_smash = ENVIRONMENT_SMASH_STRUCTURES
 	stat_attack = DEAD
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
+	ChangeResistances(list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5))
+	bird_angry = TRUE
 	update_icon()
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/proc/TransformBack()
-	visible_message("<span class='notice'>\The [src] turns back into a fuzzy looking bird!</span>")
+	visible_message(span_notice("\The [src] turns back into a fuzzy looking bird!"))
 	icon_state = initial(icon_state)
 	icon_living = initial(icon_living)
+	pixel_x = initial(pixel_x)
+	pixel_y = initial(pixel_y)
+	base_pixel_x = initial(base_pixel_x)
+	base_pixel_y = initial(base_pixel_y)
 	attack_verb_continuous = initial(attack_verb_continuous)
 	attack_verb_simple = initial(attack_verb_simple)
 	rapid_melee = initial(rapid_melee)
@@ -93,7 +122,8 @@
 	environment_smash = initial(environment_smash)
 	stat_attack = initial(stat_attack)
 	adjustHealth(-maxHealth) // Full restoration
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 2, WHITE_DAMAGE = 2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
+	ChangeResistances(list(RED_DAMAGE = 2, WHITE_DAMAGE = 2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2))
+	bird_angry = FALSE
 	update_icon()
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/proc/OnAbnoWork(datum/source, datum/abnormality/abno_datum, mob/user, work_type)
@@ -137,21 +167,33 @@
 			var/mob/living/carbon/le_target = pick(potential_mobs)
 			pecking_targets |= le_target
 
-/mob/living/simple_animal/hostile/abnormality/punishing_bird/AttackingTarget()
-	if(isliving(target))
-		var/mob/living/L = target
+/mob/living/simple_animal/hostile/abnormality/punishing_bird/AttackingTarget(atom/attacked_target)
+	if(ishuman(attacked_target) && bird_angry)
+		melee_damage_lower = angry_damage_human
+		melee_damage_upper = angry_damage_human
+
+	else if(bird_angry)
+		melee_damage_lower = angry_damage
+		melee_damage_upper = angry_damage
+
+	else
+		melee_damage_lower = 1
+		melee_damage_upper = 2
+
+	if(isliving(attacked_target))
+		var/mob/living/L = attacked_target
 		if(!(L in enemies) && obj_damage > 0) // The target didn't attack us and we've transformed
-			to_chat(src, "<span class='warning'>You can't punish innocent people!</span>")
+			to_chat(src, span_warning("You can't punish innocent people!"))
 			return
 		if(client && obj_damage <= 0 && L.health <= maxHealth*0.45) // User controlled AND not transformed - can't kill things
-			to_chat(src, "<span class='warning'>You can't keep punishing them!</span>")
+			to_chat(src, span_warning("You can't keep punishing them!"))
 			return
 		..()
 		if(obj_damage <= 0) // Not transformed
 			if(ishuman(L))
 				var/mob/living/carbon/human/H = L
 				if(H.sanity_lost)
-					H.adjustSanityLoss(10) // Heal sanity
+					H.adjustSanityLoss(-10) // Heal sanity
 					return
 			if(prob(5) || L.health < L.maxHealth*0.5)
 				if(L in enemies)
@@ -161,11 +203,16 @@
 					already_punished |= L
 				target = null
 		else if(L.health <= 0)
-			visible_message("<span class='danger'>\The [src] devours [L]!</span>")
+			visible_message(span_danger("\The [src] devours [L]!"))
 			L.gib()
 			TransformBack()
 		return
 	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/punishing_bird/death(gibbed)
+	animate(src, alpha = 0, time = 10 SECONDS)
+	QDEL_IN(src, 10 SECONDS)
+	..()
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/Found(atom/A)
 	if(isliving(A))
@@ -186,6 +233,20 @@
 		targeting |= pecking_targets
 	see &= targeting // Remove all entries that aren't in enemies
 	return see
+
+/mob/living/simple_animal/hostile/abnormality/punishing_bird/HandleStructures()
+	. = ..()
+	if(!.)
+		return
+	if(!locate(/obj/structure/pbird_perch) in datum_reference.connected_structures)
+		SpawnConnectedStructure(/obj/structure/pbird_perch)
+	icon_state = "pbird"
+	pixel_x = 15
+	pixel_y = 32
+	base_pixel_x = 15
+	base_pixel_y = 32
+	is_flying_animal = FALSE
+	update_icon()
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/proc/Retaliate(atom/movable/A)
 	if((health < maxHealth * 0.9) && (obj_damage <= 0))
@@ -228,16 +289,24 @@
 	..()
 	Retaliate(user)
 
-/mob/living/simple_animal/hostile/abnormality/punishing_bird/BreachEffect(mob/living/carbon/human/user)
-	..()
-	addtimer(CALLBACK(src, .proc/kill_bird), 180 SECONDS)
+/mob/living/simple_animal/hostile/abnormality/punishing_bird/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
+	icon_state = initial(icon_state)
+	icon_living = initial(icon_living)
+	pixel_x = initial(pixel_x)
+	pixel_y = initial(pixel_y)
+	base_pixel_x = initial(base_pixel_x)
+	base_pixel_y = initial(base_pixel_y)
+	ADD_TRAIT(src, TRAIT_MOVE_FLYING, INNATE_TRAIT)
+	update_icon()
+	death_timer = addtimer(CALLBACK(src, PROC_REF(kill_bird)), 180 SECONDS, TIMER_STOPPABLE)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/proc/kill_bird()
 	if(!(status_flags & GODMODE) && !isliving(target) && icon_state != "pbird_red")
 		QDEL_NULL(src)
 	else
-		addtimer(CALLBACK(src, .proc/kill_bird), 60 SECONDS)
+		death_timer = addtimer(CALLBACK(src, PROC_REF(kill_bird)), 60 SECONDS, TIMER_STOPPABLE)
 
 // Modified patrolling
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/patrol_select()
@@ -259,7 +328,7 @@
 
 	var/turf/target_turf = get_closest_atom(/turf/open, target_turfs, src)
 	if(istype(target_turf))
-		patrol_path = get_path_to(src, target_turf, /turf/proc/Distance_cardinal, 0, 200)
+		patrol_path = get_path_to(src, target_turf, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 200)
 		return
 	return ..()
 
@@ -270,11 +339,26 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(1)
 	manual_emote("chirps!")
 	return
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
+//Punishing Bird Perch
+/obj/structure/pbird_perch
+	name = "dark tree perch"
+	desc = "A thin tree with wood dark as charcoal that only one bird makes a habit of perching on. Towards the base of the tree hangs a shark toothed necklace. Something prevents you from removing the necklace from the tree."
+	icon = 'ModularTegustation/Teguicons/64x48.dmi'
+	icon_state = "pbird_perch"
+	pixel_x = -16
+	base_pixel_x = -16
+	anchored = TRUE
+	density = FALSE
+	layer = TURF_LAYER
+	plane = FLOOR_PLANE
+	resistance_flags = INDESTRUCTIBLE

@@ -198,6 +198,20 @@ GLOBAL_LIST_EMPTY(station_turfs)
 			return TRUE
 	return FALSE
 
+/**
+ * Checks whether the specified turf is blocked by something dense inside it, but ignores anything with the climbable trait
+ *
+ * Works similar to is_blocked_turf(), but ignores climbables and has less options. Primarily added for jaunting checks
+ */
+/turf/proc/is_blocked_turf_ignore_climbable()
+	if(density)
+		return TRUE
+
+	for(var/atom/movable/atom_content as anything in contents)
+		if(atom_content.density && !(atom_content.flags_1 & ON_BORDER_1) && !HAS_TRAIT(atom_content, TRAIT_CLIMBABLE))
+			return TRUE
+	return FALSE
+
 //zPassIn doesn't necessarily pass an atom!
 //direction is direction of travel of air
 /turf/proc/zPassIn(atom/movable/A, direction, turf/source)
@@ -224,12 +238,12 @@ GLOBAL_LIST_EMPTY(station_turfs)
 		if(flags & FALL_STOP_INTERCEPTING)
 			break
 	if(prev_turf && !(flags & FALL_NO_MESSAGE))
-		prev_turf.visible_message("<span class='danger'>[mov_name] falls through [prev_turf]!</span>")
+		prev_turf.visible_message(span_danger("[mov_name] falls through [prev_turf]!"))
 	if(flags & FALL_INTERCEPTED)
 		return
 	if(zFall(A, levels + 1))
 		return FALSE
-	A.visible_message("<span class='danger'>[A] crashes into [src]!</span>")
+	A.visible_message(span_danger("[A] crashes into [src]!"))
 	A.onZImpact(src, levels)
 	return TRUE
 
@@ -413,13 +427,13 @@ GLOBAL_LIST_EMPTY(station_turfs)
 	if(.)
 		return
 	if(length(src_object.contents()))
-		to_chat(usr, "<span class='notice'>You start dumping out the contents...</span>")
+		to_chat(usr, span_notice("You start dumping out the contents..."))
 		if(!do_after(usr,20,target=src_object.parent))
 			return FALSE
 
 	var/list/things = src_object.contents()
 	var/datum/progressbar/progress = new(user, things.len, src)
-	while (do_after(usr, 1 SECONDS, src, NONE, FALSE, CALLBACK(src_object, /datum/component/storage.proc/mass_remove_from_storage, src, things, progress)))
+	while (do_after(usr, 1 SECONDS, src, NONE, FALSE, CALLBACK(src_object, TYPE_PROC_REF(/datum/component/storage, mass_remove_from_storage), src, things, progress)))
 		stoplag(1)
 	progress.end_progress()
 

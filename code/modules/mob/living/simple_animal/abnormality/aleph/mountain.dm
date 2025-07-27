@@ -5,19 +5,18 @@
 	icon_state = "mosb"
 	icon_living = "mosb"
 	icon_dead = "mosb_dead"
+	portrait = "mountain"
 	maxHealth = 1500
 	health = 1500
 	pixel_x = -16
 	base_pixel_x = -16
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.5)
+	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.5)
 	melee_damage_lower = 25
 	melee_damage_upper = 35
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	rapid_melee = 2
 	stat_attack = DEAD
 	ranged = TRUE
-	speed = 2
 	move_to_delay = 2
 	generic_canpass = FALSE
 	attack_sound = 'sound/abnormalities/mountain/bite.ogg'
@@ -28,19 +27,34 @@
 	threat_level = ALEPH_LEVEL
 	start_qliphoth = 2
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(0, 0, 0, 50, 55),
-						ABNORMALITY_WORK_INSIGHT = 0,
-						ABNORMALITY_WORK_ATTACHMENT = 0,
-						ABNORMALITY_WORK_REPRESSION = list(0, 0, 0, 50, 55)
-						)
+		ABNORMALITY_WORK_INSTINCT = list(0, 0, 0, 50, 55),
+		ABNORMALITY_WORK_INSIGHT = 0,
+		ABNORMALITY_WORK_ATTACHMENT = 0,
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 0, 50, 55),
+	)
 	work_damage_amount = 16
 	work_damage_type = BLACK_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/gluttony
 
 	ego_list = list(
 		/datum/ego_datum/weapon/smile,
-		/datum/ego_datum/armor/smile
-		)
+		/datum/ego_datum/armor/smile,
+	)
 	gift_type =  /datum/ego_gifts/smile
+	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	secret_chance = TRUE // Kirie, why
+	secret_icon_state = "amog"
+	secret_gift = /datum/ego_gifts/amogus
+
+	observation_prompt = "It smells like death itself in its containment unit, the mound of rotted, half-purtefied flesh stares at you with its many faces. <br>\
+		Arms and legs bent at odd angles, entrails draped like lazy christmas decorations, innumerable limbs twisted and distorted into a sphere - all blanketed black with necrotic skin. <br>\
+		Yet the faces remain intact, pale from a lack of blood, but still as recognizable as they've always been. <br>They're smiling at you."
+	observation_choices = list(
+		"I recognize those faces" = list(TRUE, "From the mountain of bodies; the dead give their life to be something greater. <br>Why shouldn't they be smiling? <br>You should be smiling too."),
+		"I don't recognize them" = list(FALSE, "They're holding all the laughter of those who cannot be seen here. <br>The mounds begins to shamble, upon borrowed hands and feet, it has your scent now and it will never be satisfied."),
+	)
+
 	/// Is user performing work hurt at the beginning?
 	var/agent_hurt = FALSE
 	var/death_counter = 0
@@ -61,10 +75,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/mountain/Initialize()		//1 in 100 chance for amogus MOSB
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/on_mob_death)
-	if(prob(1)) // Kirie, why
-		icon_state = "amog"
-		gift_type =  /datum/ego_gifts/amogus
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(on_mob_death))
 
 /mob/living/simple_animal/hostile/abnormality/mountain/Destroy()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
@@ -110,16 +121,18 @@
 			return TRUE
 	return FALSE
 
-/mob/living/simple_animal/hostile/abnormality/mountain/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/mountain/AttackingTarget(atom/attacked_target)
 	if(finishing)
 		return FALSE
 	if(phase >= 2)
+		if(!target)
+			GiveTarget(attacked_target)
 		if(prob(35) && OpenFire())
 			return
 	. = ..()
-	if(.)
-		var/mob/living/L = target
-		if(L.health < 0 || L.stat == DEAD)
+	if(. && isliving(attacked_target))
+		var/mob/living/L = attacked_target
+		if(isliving(attacked_target) && (L.health < 0 || L.stat == DEAD))
 			finishing = TRUE
 			if(phase == 3)
 				icon_state = "mosb_bite2"
@@ -193,11 +206,13 @@
 
 /mob/living/simple_animal/hostile/abnormality/mountain/proc/on_mob_death(datum/source, mob/living/died, gibbed)
 	SIGNAL_HANDLER
-	if(!(status_flags & GODMODE)) // If it's breaching right now
+	if(!IsContained()) // If it's breaching right now
 		return FALSE
 	if(!ishuman(died))
 		return FALSE
-	if(!died.ckey)
+	if(died.z != z)
+		return FALSE
+	if(!died.mind)
 		return FALSE
 	death_counter += 1
 	if(death_counter >= 2)
@@ -209,7 +224,7 @@
 	// Increase stage
 	if(increase)
 		if(belly >= 2)
-			if(phase < 3)
+			if(phase < 3 && SSmaptype.maptype != "limbus_labs")
 				playsound(get_turf(src), 'sound/abnormalities/mountain/level_up.ogg', 75, 1)
 				adjustHealth(-5000)
 				maxHealth += 1000
@@ -220,13 +235,11 @@
 			base_pixel_x = -32
 			if(phase == 3)
 				icon_living = "mosb_breach2"
-				speed = 4
-				move_to_delay = 5
+				ChangeMoveToDelay(5)
 				patrol_cooldown_time = 30 SECONDS
 			if(phase == 2)
 				icon_living = "mosb_breach"
-				speed = 3
-				move_to_delay = 4
+				ChangeMoveToDelay(4)
 				patrol_cooldown_time = 20 SECONDS
 			icon_state = icon_living
 		return
@@ -242,15 +255,13 @@
 		icon = 'ModularTegustation/Teguicons/64x64.dmi'
 		pixel_x = -16
 		base_pixel_x = -16
-		speed = 2
-		move_to_delay = 2
+		ChangeMoveToDelay(2)
 		patrol_cooldown_time = 10 SECONDS
 	if(phase == 2)
 		icon = 'ModularTegustation/Teguicons/96x96.dmi'
 		pixel_x = -32
 		base_pixel_x = -32
-		speed = 3
-		move_to_delay = 4
+		ChangeMoveToDelay(4)
 		patrol_cooldown_time = 20 SECONDS
 	icon_state = icon_living
 	return TRUE
@@ -261,34 +272,29 @@
 	if(scream_cooldown > world.time)
 		return
 	scream_cooldown = world.time + scream_cooldown_time
-	visible_message("<span class='danger'>[src] screams wildly!</span>")
+	visible_message(span_danger("[src] screams wildly!"))
 	new /obj/effect/temp_visual/voidout(get_turf(src))
 	playsound(get_turf(src), 'sound/abnormalities/mountain/scream.ogg', 75, 1, 5)
-	for(var/mob/living/L in view(7, src))
-		if(faction_check_mob(L, FALSE))
-			continue
-		if(L.stat == DEAD)
-			continue
-		L.apply_damage(scream_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+	var/list/been_hit = list()
+	for(var/turf/T in view(7, src))
+		HurtInTurf(T, been_hit, scream_damage, BLACK_DAMAGE, null, TRUE, FALSE, TRUE, hurt_hidden = TRUE)
 
 /mob/living/simple_animal/hostile/abnormality/mountain/proc/Slam(range)
 	if(slam_cooldown > world.time)
 		return
 	slam_cooldown = world.time + slam_cooldown_time
-	visible_message("<span class='danger'>[src] slams on the ground!</span>")
+	visible_message(span_danger("[src] slams on the ground!"))
 	playsound(get_turf(src), 'sound/abnormalities/mountain/slam.ogg', 75, 1)
+	var/list/been_hit = list()
 	for(var/turf/open/T in view(2, src))
 		new /obj/effect/temp_visual/small_smoke/halfsecond(T)
-		for(var/mob/living/L in T)
-			if(faction_check_mob(L))
-				continue
-			L.apply_damage(slam_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		HurtInTurf(T, been_hit, slam_damage, BLACK_DAMAGE, null, TRUE, FALSE, TRUE, hurt_hidden = FALSE, hurt_structure = TRUE, break_not_destroy = TRUE)
 
 /mob/living/simple_animal/hostile/abnormality/mountain/proc/Spit(atom/target)
 	if(spit_cooldown > world.time)
 		return
 	finishing = TRUE
-	visible_message("<span class='danger'>[src] prepares to spit an acidic substance at [target]!</span>")
+	visible_message(span_danger("[src] prepares to spit an acidic substance at [target]!"))
 	SLEEP_CHECK_DEATH(4)
 	spit_cooldown = world.time + spit_cooldown_time
 	playsound(get_turf(src), 'sound/abnormalities/mountain/spit.ogg', 75, 1, 3)
@@ -311,7 +317,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/mountain/CanStartPatrol()
 	if(phase <= 1) // Still phase one, we need corpses and can't really fight
-		return TRUE
+		return !(status_flags & GODMODE)
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/mountain/patrol_reset()
@@ -345,19 +351,22 @@
 	var/turf/target_turf
 	if(LAZYLEN(high_priority_turfs))
 		target_turf = get_closest_atom(/turf/open, high_priority_turfs, src)
+		if(phase <= 1)
+			target = null
 	else if(LAZYLEN(medium_priority_turfs))
 		target_turf = get_closest_atom(/turf/open, medium_priority_turfs, src)
 	else if(LAZYLEN(low_priority_turfs))
 		target_turf = get_closest_atom(/turf/open, low_priority_turfs, src)
 
 	if(istype(target_turf))
-		patrol_path = get_path_to(src, target_turf, /turf/proc/Distance_cardinal, 0, 200)
+		patrol_path = get_path_to(src, target_turf, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 200)
 		return
 	return ..()
 
 /* Abnormality work */
 
 /mob/living/simple_animal/hostile/abnormality/mountain/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
@@ -376,8 +385,8 @@
 
 /* Abnormality breach */
 
-/mob/living/simple_animal/hostile/abnormality/mountain/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/mountain/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	GiveTarget(user)
 	icon_living = "mosb_breach"
 	icon_state = icon_living

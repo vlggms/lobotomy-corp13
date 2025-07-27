@@ -58,7 +58,7 @@
 	if(. & EMP_PROTECT_SELF)
 		return
 	set_machine_stat(machine_stat | EMPED)
-	addtimer(CALLBACK(src, .proc/unemp), 600)
+	addtimer(CALLBACK(src, PROC_REF(unemp)), 600)
 	refresh_working()
 
 /obj/machinery/rnd/server/proc/unemp()
@@ -148,7 +148,7 @@
 			var/obj/machinery/rnd/server/S = locate(href_list["toggle"]) in SSresearch.servers
 			S.toggle_disable()
 		else
-			to_chat(usr, "<span class='danger'>Access Denied.</span>")
+			to_chat(usr, span_danger("Access Denied."))
 
 	updateUsrDialog()
 	return
@@ -160,7 +160,7 @@
 	dat += "<b>Connected Servers:</b>"
 	dat += "<table><tr><td style='width:25%'><b>Server</b></td><td style='width:25%'><b>Operating Temp</b></td><td style='width:25%'><b>Status</b></td>"
 	for(var/obj/machinery/rnd/server/S in GLOB.machines)
-		dat += "<tr><td style='width:25%'>[S.name]</td><td style='width:25%'>[S.current_temp]</td><td style='width:25%'>[S.machine_stat & EMPED || machine_stat & NOPOWER?"Offline":"<A href='?src=[REF(src)];toggle=[REF(S)]'>([S.research_disabled? "<font color=red>Disabled" : "<font color=lightgreen>Online"]</font>)</A>"]</td><BR>"
+		dat += "<tr><td style='width:25%'>[S.name]</td><td style='width:25%'>[S.current_temp]</td><td style='width:25%'>[S.machine_stat & EMPED || machine_stat & NOPOWER?"Offline":"<A href='byond://?src=[REF(src)];toggle=[REF(S)]'>([S.research_disabled? "<font color=red>Disabled" : "<font color=lightgreen>Online"]</font>)</A>"]</td><BR>"
 	dat += "</table></br>"
 
 	dat += "<b>Research Log</b></br>"
@@ -192,4 +192,4 @@
 		return
 	playsound(src, "sparks", 75, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 	obj_flags |= EMAGGED
-	to_chat(user, "<span class='notice'>You disable the security protocols.</span>")
+	to_chat(user, span_notice("You disable the security protocols."))

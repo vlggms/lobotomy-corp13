@@ -11,24 +11,23 @@
 	. = ..()
 	AddElement(/datum/element/atmos_sensitive)
 
-/obj/structure/spider/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
+/obj/structure/spider/play_attack_sound(damage_amount, damage_type = BRUTE)
 	if(damage_type == BURN)//the stickiness of the web mutes all attack sounds except fire damage type
 		playsound(loc, 'sound/items/welder.ogg', 100, TRUE)
 
-/obj/structure/spider/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)
-	if(damage_flag == MELEE)
-		switch(damage_type)
-			if(BURN)
-				damage_amount *= 2
-			if(BRUTE)
-				damage_amount *= 0.25
+/obj/structure/spider/run_obj_armor(damage_amount, damage_type, attack_dir)
+	switch(damage_type)
+		if(BURN)
+			damage_amount *= 2
+		if(BRUTE)
+			damage_amount *= 0.25
 	. = ..()
 
 /obj/structure/spider/should_atmos_process(datum/gas_mixture/air, exposed_temperature)
 	return exposed_temperature > 300
 
 /obj/structure/spider/atmos_expose(datum/gas_mixture/air, exposed_temperature)
-	take_damage(5, BURN, 0, 0)
+	take_damage(5, BURN, 0)
 
 /obj/structure/spider/stickyweb
 	var/genetic = FALSE
@@ -212,7 +211,7 @@
 
 	forceMove(exit_vent)
 	var/travel_time = round(get_dist(loc, exit_vent.loc) / 2)
-	addtimer(CALLBACK(src, .proc/do_vent_move, exit_vent, travel_time), travel_time)
+	addtimer(CALLBACK(src, PROC_REF(do_vent_move), exit_vent, travel_time), travel_time)
 
 /obj/structure/spider/spiderling/proc/do_vent_move(obj/machinery/atmospherics/components/unary/vent_pump/exit_vent, travel_time)
 	if(QDELETED(exit_vent) || exit_vent.welded)
@@ -222,7 +221,7 @@
 	if(prob(50))
 		audible_message("<span class='hear'>You hear something scampering through the ventilation ducts.</span>")
 
-	addtimer(CALLBACK(src, .proc/finish_vent_move, exit_vent), travel_time)
+	addtimer(CALLBACK(src, PROC_REF(finish_vent_move), exit_vent), travel_time)
 
 /obj/structure/spider/spiderling/proc/finish_vent_move(obj/machinery/atmospherics/components/unary/vent_pump/exit_vent)
 	if(QDELETED(exit_vent) || exit_vent.welded)
@@ -250,7 +249,7 @@
 				visible_message("<B>[src] scrambles into the ventilation ducts!</B>", \
 								"<span class='hear'>You hear something scampering through the ventilation ducts.</span>")
 
-			addtimer(CALLBACK(src, .proc/vent_move, exit_vent), rand(20,60))
+			addtimer(CALLBACK(src, PROC_REF(vent_move), exit_vent), rand(20,60))
 
 	//=================
 

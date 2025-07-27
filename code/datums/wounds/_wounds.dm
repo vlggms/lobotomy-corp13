@@ -110,8 +110,8 @@
  * * smited- If this is a smite, we don't care about this wound for stat tracking purposes (not yet implemented)
  */
 /datum/wound/proc/apply_wound(obj/item/bodypart/L, silent = FALSE, datum/wound/old_wound = null, smited = FALSE)
-	return
-	/*
+	if(SSmaptype.chosen_trait != FACILITY_TRAIT_CALLBACK)
+		return
 	if(!istype(L) || !L.owner || !(L.body_zone in viable_zones) || !L.is_organic_limb() || HAS_TRAIT(L.owner, TRAIT_NEVER_WOUNDED))
 		qdel(src)
 		return
@@ -149,20 +149,20 @@
 		return
 
 	if(!(silent || demoted))
-		var/msg = "<span class='danger'>[victim]'s [limb.name] [occur_text]!</span>"
+		var/msg = span_danger("[victim]'s [limb.name] [occur_text]!")
 		var/vis_dist = COMBAT_MESSAGE_RANGE
 
 		if(severity != WOUND_SEVERITY_MODERATE)
 			msg = "<b>[msg]</b>"
 			vis_dist = DEFAULT_MESSAGE_RANGE
 
-		victim.visible_message(msg, "<span class='userdanger'>Your [limb.name] [occur_text]!</span>", vision_distance = vis_dist)
+		victim.visible_message(msg, span_userdanger("Your [limb.name] [occur_text]!"), vision_distance = vis_dist)
 		if(sound_effect)
 			playsound(L.owner, sound_effect, 70 + 20 * severity, TRUE)
 
 	if(!demoted)
 		wound_injury(old_wound)
-		second_wind()*/
+		second_wind()
 
 /// Remove the wound from whatever it's afflicting, and cleans up whateverstatus effects it had or modifiers it had on interaction times. ignore_limb is used for detachments where we only want to forget the victim
 /datum/wound/proc/remove_wound(ignore_limb, replaced = FALSE)
@@ -286,7 +286,7 @@
 
 	// now that we've determined we have a valid attempt at treating, we can stomp on their dreams if we're already interacting with the patient or if their part is obscured
 	if(DOING_INTERACTION_WITH_TARGET(user, victim))
-		to_chat(user, "<span class='warning'>You're already interacting with [victim]!</span>")
+		to_chat(user, span_warning("You're already interacting with [victim]!"))
 		return TRUE
 
 	// next we check if the bodypart in actually accessible (not under thick clothing). We skip the species trait check since skellies

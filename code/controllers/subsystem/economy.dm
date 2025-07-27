@@ -47,6 +47,11 @@ SUBSYSTEM_DEF(economy)
 		new /datum/bank_account/department(A, budget_to_hand_out)
 	return ..()
 
+/datum/controller/subsystem/economy/Recover()
+	generated_accounts = SSeconomy.generated_accounts
+	bank_accounts_by_id = SSeconomy.bank_accounts_by_id
+	dep_cards = SSeconomy.dep_cards
+
 /datum/controller/subsystem/economy/fire(resumed = 0)
 	var/temporary_total = 0
 	departmental_payouts()
@@ -59,8 +64,8 @@ SUBSYSTEM_DEF(economy)
 		if(!istype(bank_account, /datum/bank_account/department))
 			station_total += bank_account.account_balance
 	station_target = max(round(temporary_total / max(bank_accounts_by_id.len * 2, 1)) + station_target_buffer, 1)
-	if(!market_crashing)
-		price_update()
+//	if(!market_crashing)
+//		price_update()		Fucks up Workshop, I'll figure out how to make it override soon:tm: - Kirie
 
 /**
  * Handy proc for obtaining a department's bank account, given the department ID, AKA the define assigned for what department they're under.

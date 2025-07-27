@@ -93,7 +93,7 @@
 		if(iscyborg(user)) //Cyborg modules that include drinks automatically refill themselves, but drain the borg's cell
 			var/mob/living/silicon/robot/bro = user
 			bro.cell.use(30)
-			addtimer(CALLBACK(reagents, /datum/reagents.proc/add_reagent, refill, trans), 600)
+			addtimer(CALLBACK(reagents, TYPE_PROC_REF(/datum/reagents, add_reagent), refill, trans), 600)
 
 	else if(target.is_drainable()) //A dispenser. Transfer FROM it TO us.
 		if (!is_refillable())
@@ -375,8 +375,6 @@
 	if(!QDELETED(src) && cap_on && reagents.total_volume)
 		if(prob(flip_chance)) // landed upright
 			src.visible_message("<span class='notice'>[src] lands upright!</span>")
-			if(throwingdatum.thrower)
-				SEND_SIGNAL(throwingdatum.thrower, COMSIG_ADD_MOOD_EVENT, "bottle_flip", /datum/mood_event/bottle_flip)
 		else // landed on it's side
 			animate(src, transform = matrix(prob(50)? 90 : -90, MATRIX_ROTATE), time = 3, loop = 0)
 
@@ -598,6 +596,12 @@
 	icon_state = "britcup"
 	volume = 30
 	spillable = TRUE
+
+/obj/item/reagent_containers/food/drinks/fairywine
+	name = "Fairy Wine"
+	desc = "A very strong drink driping with slime, Smells quite pleasant"
+	icon_state = "fairy_wine"
+	list_reagents = list(/datum/reagent/consumable/ethanol/fairywine = 15)
 
 //////////////////////////soda_cans//
 //These are in their own group to be used as IED's in /obj/item/grenade/ghettobomb.dm

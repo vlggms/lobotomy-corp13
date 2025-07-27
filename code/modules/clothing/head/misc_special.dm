@@ -316,7 +316,7 @@
 /obj/item/clothing/head/foilhat/Initialize(mapload)
 	. = ..()
 	if(!warped)
-		AddComponent(/datum/component/anti_magic, FALSE, FALSE, TRUE, ITEM_SLOT_HEAD,  6, TRUE, null, CALLBACK(src, .proc/warp_up))
+		AddComponent(/datum/component/anti_magic, FALSE, FALSE, TRUE, ITEM_SLOT_HEAD,  6, TRUE, null, CALLBACK(src, PROC_REF(warp_up)))
 	else
 		warp_up()
 
@@ -396,3 +396,39 @@
 		worn_icon = 'icons/mob/clothing/big_hat.dmi'
 		icon_state = "rabbit_grunt"
 		worn_icon_state = "rabbit_grunt_four"
+
+/obj/item/clothing/head/rabbit_helmet/raven
+	name = "\improper raven captain helmet"
+	icon_state = "raven"
+
+/obj/item/clothing/head/rabbit_helmet/raven/grunt
+	name = "\improper raven team helmet"
+	icon_state = "raven_grunt"
+
+/obj/item/clothing/head/rabbit_helmet/reindeer
+	name = "\improper reindeer captain helmet"
+	icon_state = "reindeer"
+
+/obj/item/clothing/head/rabbit_helmet/reindeer/grunt
+	name = "\improper reindeer team helmet"
+	icon_state = "reindeer_grunt"
+
+/obj/item/clothing/head/rabbit_helmet/raccoon
+	name = "\improper raccoon team helmet"
+	icon_state = "raccoon_helmet"
+
+/obj/item/clothing/head/rabbit_helmet/raccoonsniper
+	name = "\improper raccoon sniper helmet"
+	icon_state = "raccoon_sniper"
+
+/obj/item/clothing/head/rabbit_helmet/raccooncap
+	name = "\improper raccoon captain helmet"
+	icon_state = "raccoon_cap"
+
+/obj/item/clothing/head/rabbit_helmet/roadrunner
+	name = "\improper roadrunner team helmet"
+	icon_state = "roadrunner"
+
+/obj/item/clothing/head/rabbit_helmet/rat
+	name = "\improper roadrunner team helmet"
+	icon_state = "rat"

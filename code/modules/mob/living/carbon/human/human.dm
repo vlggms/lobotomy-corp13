@@ -5,6 +5,7 @@
 	add_verb(src, /mob/living/carbon/human/verb/show_attributes_to)
 	add_verb(src, /mob/living/carbon/human/verb/show_gifts_self)
 	add_verb(src, /mob/living/carbon/human/verb/show_gifts_other)
+	add_verb(src, /mob/living/carbon/human/verb/show_cores_info)
 
 	icon_state = ""		//Remove the inherent human icon that is visible on the map editor. We're rendering ourselves limb by limb, having it still be there results in a bug where the basic human icon appears below as south in all directions and generally looks nasty.
 
@@ -16,7 +17,7 @@
 	init_attributes()
 
 	if(dna.species)
-		INVOKE_ASYNC(src, .proc/set_species, dna.species.type)
+		INVOKE_ASYNC(src, PROC_REF(set_species), dna.species.type)
 
 	//initialise organs
 	create_internal_organs() //most of it is done in set_species now, this is only for parent call
@@ -25,7 +26,7 @@
 
 	. = ..()
 
-	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_FACE_ACT, .proc/clean_face)
+	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_FACE_ACT, PROC_REF(clean_face))
 	AddComponent(/datum/component/personal_crafting)
 	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_HUMAN, 1, -6)
 	AddComponent(/datum/component/bloodysoles/feet)
@@ -47,13 +48,19 @@
 
 /mob/living/carbon/human/verb/show_attributes_self()
 	set category = "IC"
-	set name = "Show Attributes"
-
+	set name = "View Attributes"
+	if(SSmaptype.maptype in SSmaptype.citymaps)
+		to_chat(src, "<span class='notice'>You have no clue what your potential is.</span>")
+		return
 	show_attributes()
 
 /mob/living/carbon/human/verb/show_attributes_to(mob/living/L in oview(1))
 	set category = "IC"
 	set name = "Show Attributes To"
+
+	if(SSmaptype.maptype in SSmaptype.citymaps)
+		to_chat(src, "<span class='notice'>You have no clue what your potential is.</span>")
+		return
 
 	if(istype(L))
 		if(do_after(src, 1 SECONDS, L))
@@ -67,16 +74,51 @@
 		to_chat(viewer, "<span class='warning'>[src] has no attributes!</span>")
 		return
 
-	var/list/dat = list()
-	dat += "<b>[real_name]</b><br>"
-	dat += "Level [get_text_level()]<br>"
+	ui_interact(viewer)
+
+/mob/living/carbon/human/ui_static_data(mob/user)
+	. = ..()
+	.["name"] = real_name
+
+/mob/living/carbon/human/ui_data(mob/user)
+	. = ..()
+	.["level"] = get_text_level()
+	.["attributes"] = list()
+	.["stats"] = list()
+	if(!attributes)
+		return
 	for(var/atrname in attributes)
 		var/datum/attribute/atr = attributes[atrname]
-		dat += "[atr.name] [get_attribute_text_level(atr.get_level())]: [round(atr.level)]/[round(atr.level_limit)] + [round(atr.level_buff)]"
+		.["attributes"] += atrname
+		.[atrname + "name"] = atrname
+		.[atrname + "level_text"] = get_attribute_text_level(atr.get_level())
+		.[atrname + "level_current"] = round(atr.level)
+		.[atrname + "level_max"] = round(atr.level_limit)
+		.[atrname + "level_buff"] = atr.level_buff
+		for(var/stat in atr.affected_stats)
+			.["stats"] += stat
+			.[stat + "name"] = stat
+			.[stat + "base"] = atr.get_printed_level_bonus() + atr.get_level_buff()
+			.[stat + "bonus"] = round(atr.get_stat_bonus())
 
-	var/datum/browser/popup = new(viewer, "skills", "<div align='center'>Attributes</div>", 300, 300)
-	popup.set_content(dat.Join("<br>"))
-	popup.open(FALSE)
+/mob/living/carbon/human/ui_interact(mob/user, datum/tgui/ui)
+	. = ..()
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "ShowAttributes")
+		ui.open()
+
+/mob/living/carbon/human/ui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
+
+	switch(action)
+		if("show_gifts")
+			ShowGifts()
+			return TRUE
+
+	return FALSE
 
 /mob/living/carbon/human/verb/show_gifts_self()
 	set category = "IC"
@@ -106,14 +148,45 @@
 	dat += "<div align='center'>Slot | Name ( Fortitude | Prudence | Temperance | Justice )</div><br>"
 	for(var/beta_gift in ego_gift_list) // These show the benefits of each one and at level 4+ you can lock the gift in place.
 		var/datum/ego_gifts/alpha_gift = ego_gift_list[beta_gift]
-		dat += "[!istype(alpha_gift, /datum/ego_gifts/empty) && viewer == src ? "<A href='byond://?src=[REF(alpha_gift)];choice=dissolve'>X</A>" : ""][alpha_gift.slot]: [alpha_gift.name] \
+		dat += "[!istype(alpha_gift, /datum/ego_gifts/empty) && viewer == src ? "<A href='byond://?src=[REF(alpha_gift)];choice=dissolve'>X</A>" : ""][alpha_gift.slot]: ["<A href='byond://?src=[REF(alpha_gift)];choice=description'>[alpha_gift.name]</A>"] \
 			( [alpha_gift.fortitude_bonus >= 0 ? "+[alpha_gift.fortitude_bonus]":"[alpha_gift.fortitude_bonus]"] | \
 			[alpha_gift.prudence_bonus >= 0 ? "+[alpha_gift.prudence_bonus]":"[alpha_gift.prudence_bonus]"] | \
 			[alpha_gift.temperance_bonus >= 0 ? "+[alpha_gift.temperance_bonus]":"[alpha_gift.temperance_bonus]"] | \
 			[alpha_gift.justice_bonus >= 0 ? "+[alpha_gift.justice_bonus]":"[alpha_gift.justice_bonus]"] ) \
 			[get_user_level(src) > 3 && viewer == src ? "<A href='byond://?src=[REF(alpha_gift)];choice=lock'>[alpha_gift.locked ? "Locked" : "Unlocked"]</A>" : ""] \
-			[!istype(alpha_gift, /datum/ego_gifts/empty) && viewer == src ? "<A href='byond://?src=[REF(alpha_gift)];choice=hide'>Hide</A>" : ""]"
+			[!istype(alpha_gift, /datum/ego_gifts/empty) && viewer == src ? "<A href='byond://?src=[REF(alpha_gift)];choice=hide'>[alpha_gift.visible ? "Hide" : "Show"]</A>" : ""]"
 	var/datum/browser/popup = new(viewer, "gifts", "<div align='center'>E.G.O. Gifts</div>", 600, 450)
+	popup.set_content(dat.Join("<br>"))
+	popup.open(FALSE)
+
+
+// Shows the list of specifically selected list of core suppressions and their status for this player
+/mob/living/carbon/human/verb/show_cores_info()
+	set category = "IC"
+	set name = "Display Cores Info"
+
+	var/list/dat = list()
+	// All the normal cores
+	for(var/core in GLOB.displayed_core_suppressions)
+		var/persistent_status = "N/A"
+		if(LAZYLEN(SSpersistence.cleared_core_suppressions))
+			if((ckey in SSpersistence.cleared_core_suppressions) && (core in SSpersistence.cleared_core_suppressions[ckey]))
+				persistent_status = "Yes"
+			else // N/A is used when persistence isn't loaded
+				persistent_status = "No"
+		dat += "<b>[core]</b>: [persistent_status]"
+	// Secret keter cores
+	for(var/core in GLOB.hidden_displayed_core_suppressions)
+		if(!LAZYLEN(SSpersistence.cleared_core_suppressions))
+			continue
+		if(!(ckey in SSpersistence.cleared_core_suppressions) || !(core in SSpersistence.cleared_core_suppressions[ckey]))
+			continue
+		var/secret_header = "<br><hr>"
+		if(!(secret_header in dat))
+			dat += secret_header
+		dat += "<b>[core]</b>: CLEARED!"
+
+	var/datum/browser/popup = new(src, "cores", "<div align='center'>Core Suppression Info</div>", 300, 500)
 	popup.set_content(dat.Join("<br>"))
 	popup.open(FALSE)
 
@@ -123,10 +196,6 @@
 	randomize_human(src)
 	dna.initialize_dna()
 
-/mob/living/carbon/human/ComponentInitialize()
-	. = ..()
-	if(!CONFIG_GET(flag/disable_human_mood))
-		AddComponent(/datum/component/mood)
 
 /mob/living/carbon/human/Destroy()
 	QDEL_NULL(physiology)
@@ -185,47 +254,47 @@
 	dat += "<table>"
 	for(var/i in 1 to held_items.len)
 		var/obj/item/I = get_item_for_held_index(i)
-		dat += "<tr><td><B>[get_held_index_name(i)]:</B></td><td><A href='?src=[REF(src)];item=[ITEM_SLOT_HANDS];hand_index=[i]'>[(I && !(I.item_flags & ABSTRACT)) ? I : "<font color=grey>Empty</font>"]</a></td></tr>"
+		dat += "<tr><td><B>[get_held_index_name(i)]:</B></td><td><A href='byond://?src=[REF(src)];item=[ITEM_SLOT_HANDS];hand_index=[i]'>[(I && !(I.item_flags & ABSTRACT)) ? I : "<font color=grey>Empty</font>"]</a></td></tr>"
 	dat += "<tr><td>&nbsp;</td></tr>"
 
-	dat += "<tr><td><B>Back:</B></td><td><A href='?src=[REF(src)];item=[ITEM_SLOT_BACK]'>[(back && !(back.item_flags & ABSTRACT)) ? back : "<font color=grey>Empty</font>"]</A>"
+	dat += "<tr><td><B>Back:</B></td><td><A href='byond://?src=[REF(src)];item=[ITEM_SLOT_BACK]'>[(back && !(back.item_flags & ABSTRACT)) ? back : "<font color=grey>Empty</font>"]</A>"
 	if(has_breathable_mask && istype(back, /obj/item/tank))
-		dat += "&nbsp;<A href='?src=[REF(src)];internal=[ITEM_SLOT_BACK]'>[internal ? "Disable Internals" : "Set Internals"]</A>"
+		dat += "&nbsp;<A href='byond://?src=[REF(src)];internal=[ITEM_SLOT_BACK]'>[internal ? "Disable Internals" : "Set Internals"]</A>"
 
 	dat += "</td></tr><tr><td>&nbsp;</td></tr>"
 
-	dat += "<tr><td><B>Head:</B></td><td><A href='?src=[REF(src)];item=[ITEM_SLOT_HEAD]'>[(head && !(head.item_flags & ABSTRACT)) ? head : "<font color=grey>Empty</font>"]</A></td></tr>"
+	dat += "<tr><td><B>Head:</B></td><td><A href='byond://?src=[REF(src)];item=[ITEM_SLOT_HEAD]'>[(head && !(head.item_flags & ABSTRACT)) ? head : "<font color=grey>Empty</font>"]</A></td></tr>"
 
 	if(obscured & ITEM_SLOT_MASK)
 		dat += "<tr><td><font color=grey><B>Mask:</B></font></td><td><font color=grey>Obscured</font></td></tr>"
 	else
-		dat += "<tr><td><B>Mask:</B></td><td><A href='?src=[REF(src)];item=[ITEM_SLOT_MASK]'>[(wear_mask && !(wear_mask.item_flags & ABSTRACT)) ? wear_mask : "<font color=grey>Empty</font>"]</A></td></tr>"
+		dat += "<tr><td><B>Mask:</B></td><td><A href='byond://?src=[REF(src)];item=[ITEM_SLOT_MASK]'>[(wear_mask && !(wear_mask.item_flags & ABSTRACT)) ? wear_mask : "<font color=grey>Empty</font>"]</A></td></tr>"
 
 	if(obscured & ITEM_SLOT_NECK)
 		dat += "<tr><td><font color=grey><B>Neck:</B></font></td><td><font color=grey>Obscured</font></td></tr>"
 	else
-		dat += "<tr><td><B>Neck:</B></td><td><A href='?src=[REF(src)];item=[ITEM_SLOT_NECK]'>[(wear_neck && !(wear_neck.item_flags & ABSTRACT)) ? wear_neck : "<font color=grey>Empty</font>"]</A></td></tr>"
+		dat += "<tr><td><B>Neck:</B></td><td><A href='byond://?src=[REF(src)];item=[ITEM_SLOT_NECK]'>[(wear_neck && !(wear_neck.item_flags & ABSTRACT)) ? wear_neck : "<font color=grey>Empty</font>"]</A></td></tr>"
 
 	if(obscured & ITEM_SLOT_EYES)
 		dat += "<tr><td><font color=grey><B>Eyes:</B></font></td><td><font color=grey>Obscured</font></td></tr>"
 	else
-		dat += "<tr><td><B>Eyes:</B></td><td><A href='?src=[REF(src)];item=[ITEM_SLOT_EYES]'>[(glasses && !(glasses.item_flags & ABSTRACT))	? glasses : "<font color=grey>Empty</font>"]</A></td></tr>"
+		dat += "<tr><td><B>Eyes:</B></td><td><A href='byond://?src=[REF(src)];item=[ITEM_SLOT_EYES]'>[(glasses && !(glasses.item_flags & ABSTRACT))	? glasses : "<font color=grey>Empty</font>"]</A></td></tr>"
 
 	if(obscured & ITEM_SLOT_EARS)
 		dat += "<tr><td><font color=grey><B>Ears:</B></font></td><td><font color=grey>Obscured</font></td></tr>"
 	else
-		dat += "<tr><td><B>Ears:</B></td><td><A href='?src=[REF(src)];item=[ITEM_SLOT_EARS]'>[(ears && !(ears.item_flags & ABSTRACT))		? ears		: "<font color=grey>Empty</font>"]</A></td></tr>"
+		dat += "<tr><td><B>Ears:</B></td><td><A href='byond://?src=[REF(src)];item=[ITEM_SLOT_EARS]'>[(ears && !(ears.item_flags & ABSTRACT))		? ears		: "<font color=grey>Empty</font>"]</A></td></tr>"
 
 	dat += "<tr><td>&nbsp;</td></tr>"
 
-	dat += "<tr><td><B>Exosuit:</B></td><td><A href='?src=[REF(src)];item=[ITEM_SLOT_OCLOTHING]'>[(wear_suit && !(wear_suit.item_flags & ABSTRACT)) ? wear_suit : "<font color=grey>Empty</font>"]</A></td></tr>"
+	dat += "<tr><td><B>Exosuit:</B></td><td><A href='byond://?src=[REF(src)];item=[ITEM_SLOT_OCLOTHING]'>[(wear_suit && !(wear_suit.item_flags & ABSTRACT)) ? wear_suit : "<font color=grey>Empty</font>"]</A></td></tr>"
 	if(wear_suit)
 		if(obscured & ITEM_SLOT_SUITSTORE)
 			dat += "<tr><td><font color=grey>&nbsp;&#8627;<B>Suit Storage:</B></font></td></tr>"
 		else
-			dat += "<tr><td>&nbsp;&#8627;<B>Suit Storage:</B></td><td><A href='?src=[REF(src)];item=[ITEM_SLOT_SUITSTORE]'>[(s_store && !(s_store.item_flags & ABSTRACT)) ? s_store : "<font color=grey>Empty</font>"]</A>"
+			dat += "<tr><td>&nbsp;&#8627;<B>Suit Storage:</B></td><td><A href='byond://?src=[REF(src)];item=[ITEM_SLOT_SUITSTORE]'>[(s_store && !(s_store.item_flags & ABSTRACT)) ? s_store : "<font color=grey>Empty</font>"]</A>"
 			if(has_breathable_mask && istype(s_store, /obj/item/tank))
-				dat += "&nbsp;<A href='?src=[REF(src)];internal=[ITEM_SLOT_SUITSTORE]'>[internal ? "Disable Internals" : "Set Internals"]</A>"
+				dat += "&nbsp;<A href='byond://?src=[REF(src)];internal=[ITEM_SLOT_SUITSTORE]'>[internal ? "Disable Internals" : "Set Internals"]</A>"
 			dat += "</td></tr>"
 	else
 		dat += "<tr><td><font color=grey>&nbsp;&#8627;<B>Suit Storage:</B></font></td></tr>"
@@ -233,24 +302,24 @@
 	if(obscured & ITEM_SLOT_FEET)
 		dat += "<tr><td><font color=grey><B>Shoes:</B></font></td><td><font color=grey>Obscured</font></td></tr>"
 	else
-		dat += "<tr><td><B>Shoes:</B></td><td><A href='?src=[REF(src)];item=[ITEM_SLOT_FEET]'>[(shoes && !(shoes.item_flags & ABSTRACT))		? shoes		: "<font color=grey>Empty</font>"]</A>"
+		dat += "<tr><td><B>Shoes:</B></td><td><A href='byond://?src=[REF(src)];item=[ITEM_SLOT_FEET]'>[(shoes && !(shoes.item_flags & ABSTRACT))		? shoes		: "<font color=grey>Empty</font>"]</A>"
 		if(shoes && shoes.can_be_tied && shoes.tied != SHOES_KNOTTED)
-			dat += "&nbsp;<A href='?src=[REF(src)];shoes=[ITEM_SLOT_FEET]'>[shoes.tied ? "Untie shoes" : "Knot shoes"]</A>"
+			dat += "&nbsp;<A href='byond://?src=[REF(src)];shoes=[ITEM_SLOT_FEET]'>[shoes.tied ? "Untie shoes" : "Knot shoes"]</A>"
 
 		dat += "</td></tr>"
 	if(obscured & ITEM_SLOT_GLOVES)
 		dat += "<tr><td><font color=grey><B>Gloves:</B></font></td><td><font color=grey>Obscured</font></td></tr>"
 	else
-		dat += "<tr><td><B>Gloves:</B></td><td><A href='?src=[REF(src)];item=[ITEM_SLOT_GLOVES]'>[(gloves && !(gloves.item_flags & ABSTRACT))		? gloves	: "<font color=grey>Empty</font>"]</A></td></tr>"
+		dat += "<tr><td><B>Gloves:</B></td><td><A href='byond://?src=[REF(src)];item=[ITEM_SLOT_GLOVES]'>[(gloves && !(gloves.item_flags & ABSTRACT))		? gloves	: "<font color=grey>Empty</font>"]</A></td></tr>"
 
 	if(obscured & ITEM_SLOT_ICLOTHING)
 		dat += "<tr><td><font color=grey><B>Uniform:</B></font></td><td><font color=grey>Obscured</font></td></tr>"
 	else
-		dat += "<tr><td><B>Uniform:</B></td><td><A href='?src=[REF(src)];item=[ITEM_SLOT_ICLOTHING]'>[(w_uniform && !(w_uniform.item_flags & ABSTRACT)) ? w_uniform : "<font color=grey>Empty</font>"]</A>"
+		dat += "<tr><td><B>Uniform:</B></td><td><A href='byond://?src=[REF(src)];item=[ITEM_SLOT_ICLOTHING]'>[(w_uniform && !(w_uniform.item_flags & ABSTRACT)) ? w_uniform : "<font color=grey>Empty</font>"]</A>"
 		if(w_uniform)
 			var/obj/item/clothing/under/U = w_uniform
 			if (U.can_adjust)
-				dat += "&nbsp;<A href='?src=[REF(src)];toggle_uniform=[ITEM_SLOT_ICLOTHING]'>Adjust</A>"
+				dat += "&nbsp;<A href='byond://?src=[REF(src)];toggle_uniform=[ITEM_SLOT_ICLOTHING]'>Adjust</A>"
 		dat += "</td></tr>"
 
 	var/obj/item/bodypart/O = get_bodypart(BODY_ZONE_CHEST)
@@ -259,21 +328,21 @@
 		dat += "<tr><td><font color=grey>&nbsp;&#8627;<B>ID:</B></font></td></tr>"
 		dat += "<tr><td><font color=grey>&nbsp;&#8627;<B>Belt:</B></font></td></tr>"
 	else
-		dat += "<tr><td>&nbsp;&#8627;<B>Belt:</B></td><td><A href='?src=[REF(src)];item=[ITEM_SLOT_BELT]'>[(belt && !(belt.item_flags & ABSTRACT)) ? belt : "<font color=grey>Empty</font>"]</A>"
+		dat += "<tr><td>&nbsp;&#8627;<B>Belt:</B></td><td><A href='byond://?src=[REF(src)];item=[ITEM_SLOT_BELT]'>[(belt && !(belt.item_flags & ABSTRACT)) ? belt : "<font color=grey>Empty</font>"]</A>"
 		if(has_breathable_mask && istype(belt, /obj/item/tank))
-			dat += "&nbsp;<A href='?src=[REF(src)];internal=[ITEM_SLOT_BELT]'>[internal ? "Disable Internals" : "Set Internals"]</A>"
+			dat += "&nbsp;<A href='byond://?src=[REF(src)];internal=[ITEM_SLOT_BELT]'>[internal ? "Disable Internals" : "Set Internals"]</A>"
 		dat += "</td></tr>"
-		dat += "<tr><td>&nbsp;&#8627;<B>Pockets:</B></td><td><A href='?src=[REF(src)];pockets=left'>[(l_store && !(l_store.item_flags & ABSTRACT)) ? "Left (Full)" : "<font color=grey>Left (Empty)</font>"]</A>"
-		dat += "&nbsp;<A href='?src=[REF(src)];pockets=right'>[(r_store && !(r_store.item_flags & ABSTRACT)) ? "Right (Full)" : "<font color=grey>Right (Empty)</font>"]</A></td></tr>"
-		dat += "<tr><td>&nbsp;&#8627;<B>ID:</B></td><td><A href='?src=[REF(src)];item=[ITEM_SLOT_ID]'>[(wear_id && !(wear_id.item_flags & ABSTRACT)) ? wear_id : "<font color=grey>Empty</font>"]</A></td></tr>"
+		dat += "<tr><td>&nbsp;&#8627;<B>Pockets:</B></td><td><A href='byond://?src=[REF(src)];pockets=left'>[(l_store && !(l_store.item_flags & ABSTRACT)) ? "Left (Full)" : "<font color=grey>Left (Empty)</font>"]</A>"
+		dat += "&nbsp;<A href='byond://?src=[REF(src)];pockets=right'>[(r_store && !(r_store.item_flags & ABSTRACT)) ? "Right (Full)" : "<font color=grey>Right (Empty)</font>"]</A></td></tr>"
+		dat += "<tr><td>&nbsp;&#8627;<B>ID:</B></td><td><A href='byond://?src=[REF(src)];item=[ITEM_SLOT_ID]'>[(wear_id && !(wear_id.item_flags & ABSTRACT)) ? wear_id : "<font color=grey>Empty</font>"]</A></td></tr>"
 
 	if(handcuffed)
-		dat += "<tr><td><B>Handcuffed:</B> <A href='?src=[REF(src)];item=[ITEM_SLOT_HANDCUFFED]'>Remove</A></td></tr>"
+		dat += "<tr><td><B>Handcuffed:</B> <A href='byond://?src=[REF(src)];item=[ITEM_SLOT_HANDCUFFED]'>Remove</A></td></tr>"
 	if(legcuffed)
-		dat += "<tr><td><B>Legcuffed:</B> <A href='?src=[REF(src)];item=[ITEM_SLOT_LEGCUFFED]'>Remove</A></td></tr>"
+		dat += "<tr><td><B>Legcuffed:</B> <A href='byond://?src=[REF(src)];item=[ITEM_SLOT_LEGCUFFED]'>Remove</A></td></tr>"
 
 	dat += {"</table>
-	<A href='?src=[REF(user)];mach_close=mob[REF(src)]'>Close</A>
+	<A href='byond://?src=[REF(user)];mach_close=mob[REF(src)]'>Close</A>
 	"}
 
 	var/datum/browser/popup = new(user, "mob[REF(src)]", "[src]", 440, 510)
@@ -359,6 +428,9 @@
 	var/mob/living/user = usr
 	if(istype(user) && href_list["shoes"] && shoes && (user.mobility_flags & MOBILITY_USE)) // we need to be on the ground, so we'll be a bit looser
 		shoes.handle_tying(usr)
+
+	if(href_list["see_attributes"])
+		show_attributes(usr)
 
 ///////HUDs///////
 	if(href_list["hud"])
@@ -519,7 +591,7 @@
 					if (c.crimeDetails)
 						to_chat(usr, "<b>Details:</b> [c.crimeDetails]")
 					else
-						to_chat(usr, "<b>Details:</b> <A href='?src=[REF(src)];hud=s;add_details=1;cdataid=[c.dataId]'>\[Add details]</A>")
+						to_chat(usr, "<b>Details:</b> <A href='byond://?src=[REF(src)];hud=s;add_details=1;cdataid=[c.dataId]'>\[Add details]</A>")
 					to_chat(usr, "Added by [c.author] at [c.time]")
 					to_chat(usr, "----------")
 				to_chat(usr, "<b>Notes:</b> [R.fields["notes"]]")
@@ -779,7 +851,6 @@
 			return FALSE
 
 		visible_message("<span class='notice'>[src] performs CPR on [target.name]!</span>", "<span class='notice'>You perform CPR on [target.name].</span>")
-		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "saved_life", /datum/mood_event/saved_life)
 		log_combat(src, target, "CPRed")
 
 		if (HAS_TRAIT(target, TRAIT_NOBREATH))
@@ -829,14 +900,28 @@
 	return TRUE
 
 /**
- * Cleans the lips of any lipstick. Returns TRUE if the lips had any lipstick and was thus cleaned
+ * Used to update the makeup on a human and apply/remove lipstick traits, then store/unstore them on the head object in case it gets severed
+ */
+/mob/living/carbon/human/proc/update_lips(new_style, new_colour, apply_trait)
+	lip_style = new_style
+	lip_color = new_colour
+	update_body()
+
+	var/obj/item/bodypart/head/hopefully_a_head = get_bodypart(BODY_ZONE_HEAD)
+	REMOVE_TRAITS_IN(src, LIPSTICK_TRAIT)
+	hopefully_a_head?.stored_lipstick_trait = null
+
+	if(new_style && apply_trait)
+		ADD_TRAIT(src, apply_trait, LIPSTICK_TRAIT)
+		hopefully_a_head?.stored_lipstick_trait = apply_trait
+
+/**
+ * A wrapper for [mob/living/carbon/human/proc/update_lips] that tells us if there were lip styles to change
  */
 /mob/living/carbon/human/proc/clean_lips()
 	if(isnull(lip_style) && lip_color == initial(lip_color))
 		return FALSE
-	lip_style = null
-	lip_color = initial(lip_color)
-	update_body()
+	update_lips(null)
 	return TRUE
 
 /**
@@ -897,7 +982,7 @@
 			electrocution_skeleton_anim = mutable_appearance(icon, "electrocuted_base")
 			electrocution_skeleton_anim.appearance_flags |= RESET_COLOR|KEEP_APART
 		add_overlay(electrocution_skeleton_anim)
-		addtimer(CALLBACK(src, .proc/end_electrocution_animation, electrocution_skeleton_anim), anim_duration)
+		addtimer(CALLBACK(src, PROC_REF(end_electrocution_animation), electrocution_skeleton_anim), anim_duration)
 
 	else //or just do a generic animation
 		flick_overlay_view(image(icon,src,"electrocuted_generic",ABOVE_MOB_LAYER), src, anim_duration)
@@ -1008,7 +1093,7 @@
 	remove_all_embedded_objects()
 	set_heartattack(FALSE)
 	drunkenness = 0
-	adjustSanityLoss(maxSanity+1)
+	adjustSanityLoss(-maxSanity, TRUE)
 	for(var/datum/mutation/human/HM in dna.mutations)
 		if(HM.quality != POSITIVE)
 			dna.remove_mutation(HM.name)
@@ -1230,19 +1315,23 @@
 	return ..()
 
 /mob/living/carbon/human/updatehealth()
+	if(LAZYLEN(attributes))
+		maxHealth = max(1, DEFAULT_HUMAN_MAX_HEALTH + round(get_attribute_level(src, FORTITUDE_ATTRIBUTE) * FORTITUDE_MOD + get_stat_bonus(src, FORTITUDE_ATTRIBUTE, no_neg = FALSE)))
+		maxSanity = max(1, DEFAULT_HUMAN_MAX_SANITY + round(get_attribute_level(src, PRUDENCE_ATTRIBUTE) * PRUDENCE_MOD + get_stat_bonus(src, PRUDENCE_ATTRIBUTE, no_neg = FALSE)))
 	. = ..()
 	dna?.species.spec_updatehealth(src)
-	if(LAZYLEN(attributes))
-		maxHealth = 100 + round(get_attribute_level(src, FORTITUDE_ATTRIBUTE))
-		maxSanity = 100 + round(get_attribute_level(src, PRUDENCE_ATTRIBUTE))
+	sanityhealth = maxSanity - sanityloss
+	update_sanity_hud()
+	med_hud_set_sanity()
 	if(HAS_TRAIT(src, TRAIT_IGNOREDAMAGESLOWDOWN))
 		remove_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown)
 		remove_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown_flying)
 		return
-	var/health_deficiency = max((maxHealth - health), staminaloss)
-	if(health_deficiency >= 40)
-		add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown, TRUE, multiplicative_slowdown = health_deficiency / 200)
-		add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown_flying, TRUE, multiplicative_slowdown = health_deficiency / 100)
+	// Gets a percent of lost health and applies the slowdown
+	var/health_missing_percent = (maxHealth - health) / maxHealth
+	if(health_missing_percent > 0.5)
+		add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown, TRUE, multiplicative_slowdown = health_missing_percent * 0.5)
+		add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown_flying, TRUE, multiplicative_slowdown = health_missing_percent * 0.25)
 	else
 		remove_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown)
 		remove_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown_flying)
@@ -1297,25 +1386,25 @@
 			if(-INFINITY to 0)
 				continue
 			if(1)
-				sanity_damage = -(H.maxSanity*0.1)
+				sanity_damage = H.maxSanity*0.1
 				H.apply_status_effect(/datum/status_effect/panicked_lvl_1)
 				if(H.sanity_lost)
 					continue
 				to_chat(H, "<span class='warning'>[result_text]</span>")
 			if(2)
-				sanity_damage = -(H.maxSanity*0.3)
+				sanity_damage = H.maxSanity*0.3
 				H.apply_status_effect(/datum/status_effect/panicked_lvl_2)
 				if(H.sanity_lost)
 					continue
 				to_chat(H, "<span class='danger'>[result_text]</span>")
 			if(3)
-				sanity_damage = -(H.maxSanity*0.6)
+				sanity_damage = H.maxSanity*0.6
 				H.apply_status_effect(/datum/status_effect/panicked_lvl_3)
 				if(H.sanity_lost)
 					continue
 				to_chat(H, "<span class='userdanger'>[result_text]</span>")
 			if(4 to INFINITY)
-				sanity_damage = -(H.maxSanity*0.95)
+				sanity_damage = H.maxSanity*0.95
 				H.apply_status_effect(/datum/status_effect/panicked_lvl_4)
 				if(H.sanity_lost)
 					continue
@@ -1332,7 +1421,7 @@
 
 /mob/living/carbon/human/species/Initialize()
 	. = ..()
-	INVOKE_ASYNC(src, .proc/set_species, race)
+	INVOKE_ASYNC(src, PROC_REF(set_species), race)
 
 /mob/living/carbon/human/species/set_species(datum/species/mrace, icon_update, pref_load)
 	. = ..()
@@ -1494,3 +1583,6 @@
 
 /mob/living/carbon/human/species/zombie/krokodil_addict
 	race = /datum/species/krokodil_addict
+
+/mob/living/carbon/human/species/shrimp //for the funnies only
+	race = /datum/species/shrimp

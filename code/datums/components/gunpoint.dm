@@ -33,9 +33,9 @@
 	var/mob/living/shooter = parent
 	target = targ
 	weapon = wep
-	RegisterSignal(targ, list(COMSIG_MOB_ATTACK_HAND, COMSIG_MOB_ITEM_ATTACK, COMSIG_MOVABLE_MOVED, COMSIG_MOB_FIRED_GUN), .proc/trigger_reaction)
+	RegisterSignal(targ, list(COMSIG_MOB_ATTACK_HAND, COMSIG_MOB_ITEM_ATTACK, COMSIG_MOVABLE_MOVED, COMSIG_MOB_FIRED_GUN), PROC_REF(trigger_reaction))
 
-	RegisterSignal(weapon, list(COMSIG_ITEM_DROPPED, COMSIG_ITEM_EQUIPPED), .proc/cancel)
+	RegisterSignal(weapon, list(COMSIG_ITEM_DROPPED, COMSIG_ITEM_EQUIPPED), PROC_REF(cancel))
 
 	shooter.visible_message("<span class='danger'>[shooter] aims [weapon] point blank at [target]!</span>", \
 		"<span class='danger'>You aim [weapon] point blank at [target]!</span>", ignored_mobs = target)
@@ -50,9 +50,8 @@
 
 	target.do_alert_animation()
 	target.playsound_local(target.loc, 'sound/machines/chime.ogg', 50, TRUE)
-	SEND_SIGNAL(target, COMSIG_ADD_MOOD_EVENT, "gunpoint", /datum/mood_event/gunpoint)
 
-	addtimer(CALLBACK(src, .proc/update_stage, 2), GUNPOINT_DELAY_STAGE_2)
+	addtimer(CALLBACK(src, PROC_REF(update_stage), 2), GUNPOINT_DELAY_STAGE_2)
 
 /datum/component/gunpoint/Destroy(force, silent)
 	var/mob/living/shooter = parent
@@ -61,10 +60,10 @@
 	return ..()
 
 /datum/component/gunpoint/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, .proc/check_deescalate)
-	RegisterSignal(parent, COMSIG_MOB_APPLY_DAMGE, .proc/flinch)
-	RegisterSignal(parent, COMSIG_MOB_ATTACK_HAND, .proc/check_shove)
-	RegisterSignal(parent, list(COMSIG_LIVING_START_PULL, COMSIG_MOVABLE_BUMP), .proc/check_bump)
+	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(check_deescalate))
+	RegisterSignal(parent, COMSIG_MOB_APPLY_DAMGE, PROC_REF(flinch))
+	RegisterSignal(parent, COMSIG_MOB_ATTACK_HAND, PROC_REF(check_shove))
+	RegisterSignal(parent, list(COMSIG_LIVING_START_PULL, COMSIG_MOVABLE_BUMP), PROC_REF(check_bump))
 
 /datum/component/gunpoint/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_MOVABLE_MOVED)
@@ -102,7 +101,7 @@
 		to_chat(parent, "<span class='danger'>You steady [weapon] on [target].</span>")
 		to_chat(target, "<span class='userdanger'>[parent] has steadied [weapon] on you!</span>")
 		damage_mult = GUNPOINT_MULT_STAGE_2
-		addtimer(CALLBACK(src, .proc/update_stage, 3), GUNPOINT_DELAY_STAGE_3)
+		addtimer(CALLBACK(src, PROC_REF(update_stage), 3), GUNPOINT_DELAY_STAGE_3)
 	else if(stage == 3)
 		to_chat(parent, "<span class='danger'>You have fully steadied [weapon] on [target].</span>")
 		to_chat(target, "<span class='userdanger'>[parent] has fully steadied [weapon] on you!</span>")
@@ -122,7 +121,6 @@
 	var/mob/living/shooter = parent
 	shooter.remove_status_effect(STATUS_EFFECT_HOLDUP) // try doing these before the trigger gets pulled since the target (or shooter even) may not exist after pulling the trigger, dig?
 	target.remove_status_effect(STATUS_EFFECT_HELDUP)
-	SEND_SIGNAL(target, COMSIG_CLEAR_MOOD_EVENT, "gunpoint")
 
 	if(point_of_no_return)
 		return
@@ -161,7 +159,6 @@
 	shooter.visible_message("<span class='danger'>[shooter] breaks [shooter.p_their()] aim on [target]!</span>", \
 		"<span class='danger'>You are no longer aiming [weapon] at [target].</span>", ignored_mobs = target)
 	to_chat(target, "<span class='userdanger'>[shooter] breaks [shooter.p_their()] aim on you!</span>")
-	SEND_SIGNAL(target, COMSIG_CLEAR_MOOD_EVENT, "gunpoint")
 	qdel(src)
 
 ///If the shooter is hit by an attack, they have a 50% chance to flinch and fire. If it hit the arm holding the trigger, it's an 80% chance to fire instead
@@ -184,7 +181,7 @@
 	if(prob(flinch_chance))
 		shooter.visible_message("<span class='danger'>[shooter] flinches!</span>", \
 			"<span class='danger'>You flinch!</span>")
-		INVOKE_ASYNC(src, .proc/trigger_reaction)
+		INVOKE_ASYNC(src, PROC_REF(trigger_reaction))
 
 #undef GUNPOINT_SHOOTER_STRAY_RANGE
 #undef GUNPOINT_DELAY_STAGE_2

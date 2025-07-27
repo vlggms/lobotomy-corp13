@@ -3,6 +3,8 @@
 	var/input
 	/// What this recipe creates
 	var/output
+	/// Subtypes of input that it will refuse
+	var/list/blacklist
 	/// The amount of time this recipe takes.
 	var/time = 40
 	/// The machine required to do this recipe
@@ -14,48 +16,67 @@
 
 /datum/food_processor_process/meat
 	input = /obj/item/food/meat/slab
+	blacklist = list(
+		/obj/item/food/meat/slab/human,
+		/obj/item/food/meat/slab/xeno,
+		/obj/item/food/meat/slab/corgi,
+		/obj/item/food/meat/slab/bear,
+		/obj/item/food/meat/slab/chicken
+	)
 	output = /obj/item/food/raw_meatball
 	multiplier = 3
 
 /datum/food_processor_process/cutlet
 	input = /obj/item/food/meat/cutlet/plain
+	blacklist = list(
+		/obj/item/food/meat/cutlet/plain/human
+	)
 	output = /obj/item/food/raw_meatball
 
 /datum/food_processor_process/meat/human
 	input = /obj/item/food/meat/slab/human
+	blacklist = null
 	output = /obj/item/food/raw_meatball/human
 
 /datum/food_processor_process/cutlet/human
 	input = /obj/item/food/meat/cutlet/plain/human
+	blacklist = null
 	output = /obj/item/food/raw_meatball/human
 
 /datum/food_processor_process/meat/corgi
 	input = /obj/item/food/meat/slab/corgi
+	blacklist = null
 	output = /obj/item/food/raw_meatball/corgi
 
 /datum/food_processor_process/meat/xeno
 	input = /obj/item/food/meat/slab/xeno
+	blacklist = null
 	output = /obj/item/food/raw_meatball/xeno
 
 /datum/food_processor_process/cutlet/xeno
 	input = /obj/item/food/meat/cutlet/xeno
+	blacklist = null
 	output = /obj/item/food/raw_meatball/xeno
 
 /datum/food_processor_process/meat/bear
 	input = /obj/item/food/meat/slab/bear
+	blacklist = null
 	output = /obj/item/food/raw_meatball/bear
 
 /datum/food_processor_process/cutlet/bear
 	input = /obj/item/food/meat/cutlet/bear
+	blacklist = null
 	output = /obj/item/food/raw_meatball/bear
 
 /datum/food_processor_process/meat/chicken
 	input = /obj/item/food/meat/slab/chicken
+	blacklist = null
 	output = /obj/item/food/raw_meatball/chicken
 	multiplier = 3
 
 /datum/food_processor_process/cutlet/chicken
 	input = /obj/item/food/meat/cutlet/chicken
+	blacklist = null
 	output = /obj/item/food/raw_meatball/chicken
 
 /datum/food_processor_process/bacon

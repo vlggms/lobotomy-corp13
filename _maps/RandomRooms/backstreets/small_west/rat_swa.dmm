@@ -1,0 +1,89 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"g" = (
+/obj/effect/mob_spawn/human/corpse/assistant,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"v" = (
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"w" = (
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"x" = (
+/obj/structure/bed,
+/obj/item/bedsheet/blue,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"z" = (
+/mob/living/simple_animal/hostile/humanoid/rat/hammer,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"J" = (
+/obj/structure/closet/cabinet,
+/obj/item/ego_weapon/city/rats/brick,
+/obj/item/ego_weapon/city/rats/brick,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"N" = (
+/obj/structure/chair/wood,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"O" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/item/organ/liver,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"X" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+x
+w
+w
+N
+v
+a
+"}
+(3,1,1) = {"
+a
+w
+z
+g
+w
+w
+a
+"}
+(4,1,1) = {"
+a
+J
+w
+w
+w
+O
+a
+"}
+(5,1,1) = {"
+a
+a
+a
+X
+a
+a
+a
+"}

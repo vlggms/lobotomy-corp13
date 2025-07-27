@@ -17,9 +17,8 @@
 	affecting.receive_damage(clamp(brute_dam/2 * affecting.body_damage_coeff, 15, 50), clamp(burn_dam/2 * affecting.body_damage_coeff, 0, 50), wound_bonus=CANT_WOUND) //Damage the chest based on limb's existing damage
 	if(!silent)
 		C.visible_message("<span class='danger'><B>[C]'s [name] is violently dismembered!</B></span>")
-	INVOKE_ASYNC(C, /mob.proc/emote, "scream")
+	INVOKE_ASYNC(C, TYPE_PROC_REF(/mob, emote), "scream")
 	playsound(get_turf(C), 'sound/effects/dismember.ogg', 80, TRUE)
-	SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "dismembered", /datum/mood_event/dismembered)
 	drop_limb()
 
 	C.update_equipment_speed_mods() // Update in case speed affecting item unequipped by dismemberment
@@ -116,7 +115,6 @@
 		I.forceMove(src)
 	if(!phantom_owner.has_embedded_objects())
 		phantom_owner.clear_alert("embeddedobject")
-		SEND_SIGNAL(phantom_owner, COMSIG_CLEAR_MOOD_EVENT, "embedded")
 
 	if(!special)
 		if(phantom_owner.dna)
@@ -414,8 +412,7 @@
 		H.hairstyle = hairstyle
 		H.facial_hair_color = facial_hair_color
 		H.facial_hairstyle = facial_hairstyle
-		H.lip_style = lip_style
-		H.lip_color = lip_color
+		H.update_lips(lip_style, lip_color, stored_lipstick_trait)
 	if(real_name)
 		C.real_name = real_name
 	real_name = ""

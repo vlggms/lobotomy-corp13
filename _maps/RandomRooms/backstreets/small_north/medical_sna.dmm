@@ -1,0 +1,107 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/obj/machinery/vending/medical,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/city/backstreets_room)
+"d" = (
+/obj/structure/chair/sofa/corp,
+/turf/open/floor/plasteel/showroomfloor,
+/area/city/backstreets_room)
+"k" = (
+/obj/machinery/medipen_refiller,
+/turf/open/floor/plasteel/showroomfloor,
+/area/city/backstreets_room)
+"q" = (
+/obj/item/kirbyplants/random{
+	pixel_y = 10
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/city/backstreets_room)
+"t" = (
+/obj/structure/chair/sofa/corp/left,
+/turf/open/floor/plasteel/showroomfloor,
+/area/city/backstreets_room)
+"y" = (
+/obj/structure/table,
+/turf/open/floor/plasteel/showroomfloor,
+/area/city/backstreets_room)
+"J" = (
+/obj/structure/chair/greyscale,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/city/backstreets_room)
+"M" = (
+/obj/structure/chair/sofa/corp/right,
+/turf/open/floor/plasteel/showroomfloor,
+/area/city/backstreets_room)
+"P" = (
+/obj/machinery/door/airlock/public/glass{
+	name = "Medical Kiosk"
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/city/backstreets_room)
+"R" = (
+/turf/open/floor/plasteel/showroomfloor,
+/area/city/backstreets_room)
+"U" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"W" = (
+/obj/structure/reagent_dispensers/water_cooler,
+/turf/open/floor/plasteel/showroomfloor,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+U
+U
+U
+U
+U
+"}
+(2,1,1) = {"
+U
+R
+J
+y
+U
+"}
+(3,1,1) = {"
+U
+M
+R
+R
+P
+"}
+(4,1,1) = {"
+U
+d
+R
+W
+U
+"}
+(5,1,1) = {"
+U
+t
+R
+R
+P
+"}
+(6,1,1) = {"
+U
+k
+b
+q
+U
+"}
+(7,1,1) = {"
+U
+U
+U
+U
+U
+"}

@@ -1,0 +1,1501 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ak" = (
+/obj/effect/turf_decal{
+	dir = 6
+	},
+/obj/structure/closet/crate/large,
+/obj/item/toy/plush/rabbit,
+/obj/item/toy/plush/rabbit,
+/obj/item/gun/energy/e_gun/rabbit/nopin,
+/obj/item/gun/energy/e_gun/rabbit/nopin,
+/obj/item/ego_weapon/city/rabbit_blade,
+/obj/item/ego_weapon/city/rabbit_blade,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"aE" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/trimline/blue/filled/warning{
+	dir = 8
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"aV" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/closed/wall/mineral/iron,
+/area/city/backstreets_room)
+"bu" = (
+/obj/effect/landmark/npc_reveal_sensor{
+	sensor_id = "entering";
+	cooldown_duration = 6000
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"bA" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/trimline/blue/filled/warning,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"bF" = (
+/obj/structure/closet/crate/large,
+/obj/item/clothing/suit/armor/ego_gear/limbus/ego/minos,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"bY" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/mineral/diamond,
+/area/city/backstreets_room)
+"cC" = (
+/obj/effect/landmark/cratespawn/corpo,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"dl" = (
+/obj/structure/railing{
+	dir = 10
+	},
+/obj/structure/statue/bronze/marx,
+/obj/structure/statue/custom,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"dm" = (
+/obj/effect/landmark/npc_reveal_sensor{
+	sensor_id = "ai";
+	cooldown_duration = 6000
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"dz" = (
+/obj/machinery/light{
+	dir = 4;
+	light_color = "#e8eaff"
+	},
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 10
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"dC" = (
+/obj/structure/chair/sofa/corp{
+	dir = 4
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"dH" = (
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 6
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"dL" = (
+/obj/machinery/light{
+	dir = 4;
+	light_color = "#e8eaff"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"dT" = (
+/obj/effect/turf_decal/siding/thinplating/corner{
+	dir = 8
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"ea" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"ev" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/statue/petrified,
+/obj/structure/statue/custom,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"eA" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"eC" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/clan/scout,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"eG" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/sign/warning/securearea{
+	pixel_y = 32
+	},
+/obj/effect/turf_decal/siding/thinplating/corner,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"eO" = (
+/obj/structure/railing/corner{
+	dir = 4
+	},
+/mob/living/simple_animal/hostile/clan/drone,
+/turf/open/floor/mineral/diamond,
+/area/city/backstreets_room)
+"eR" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/obj/machinery/light{
+	dir = 4;
+	light_color = "#e8eaff"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"fn" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/mineral/diamond,
+/area/city/backstreets_room)
+"fN" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/clan/drone,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"gR" = (
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 3
+	},
+/obj/effect/turf_decal/siding/thinplating/corner{
+	dir = 1
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"gT" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 3
+	},
+/obj/effect/spawner/lootdrop/garbage_spawner,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"hR" = (
+/obj/structure/mineral_door/iron,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"hV" = (
+/obj/effect/turf_decal{
+	dir = 9
+	},
+/obj/structure/closet/crate/large,
+/obj/item/ego_weapon/city/ncorp_mark,
+/obj/item/ego_weapon/city/ncorp_mark/black,
+/obj/item/ego_weapon/city/ncorp_mark/pale,
+/obj/item/ego_weapon/city/ncorp_mark/white,
+/obj/item/soap/ncorporation,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"ia" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/sign/warning/securearea{
+	pixel_x = -32
+	},
+/obj/effect/turf_decal/siding/thinplating/corner,
+/mob/living/simple_animal/hostile/clan/drone,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"ix" = (
+/obj/effect/turf_decal{
+	dir = 5
+	},
+/obj/effect/landmark/cratespawn/corpo,
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"iX" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"iY" = (
+/obj/machinery/light{
+	dir = 4;
+	light_color = "#e8eaff"
+	},
+/obj/effect/spawner/lootdrop/garbage_spawner,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"jb" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"jk" = (
+/obj/effect/turf_decal{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/closet/crate/large,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c200,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"jn" = (
+/obj/effect/turf_decal{
+	dir = 10
+	},
+/obj/effect/landmark/cratespawn/corpo,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"jy" = (
+/obj/effect/gibspawner/generic,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/spawner/lootdrop/garbage_spawner,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"jO" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 4
+	},
+/mob/living/simple_animal/hostile/clan/defender,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"kG" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/clan/scout,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"lc" = (
+/obj/structure/chair/greyscale,
+/mob/living/simple_animal/hostile/clan/scout,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"lV" = (
+/obj/effect/turf_decal{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/clan/drone,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"me" = (
+/obj/structure/rack,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"mh" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"mI" = (
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"mL" = (
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 5
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"nr" = (
+/obj/effect/turf_decal{
+	dir = 3
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"ns" = (
+/obj/structure/filingcabinet,
+/obj/structure/filingcabinet{
+	pixel_x = -9
+	},
+/obj/structure/filingcabinet{
+	pixel_x = 10
+	},
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"nA" = (
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 1
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"nD" = (
+/obj/machinery/light{
+	dir = 4;
+	light_color = "#e8eaff"
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"nF" = (
+/obj/structure/railing/corner,
+/turf/open/floor/mineral/diamond,
+/area/city/backstreets_room)
+"od" = (
+/obj/effect/turf_decal{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"ot" = (
+/obj/structure/railing,
+/obj/structure/statue/silver/md,
+/obj/structure/statue/custom,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"oA" = (
+/obj/effect/turf_decal/siding/thinplating/corner{
+	dir = 4
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"oC" = (
+/obj/effect/turf_decal{
+	dir = 3
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"oN" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/thinplating/corner,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"oO" = (
+/obj/effect/turf_decal/siding/thinplating/corner,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"oS" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/thinplating,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"pg" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 6
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"qb" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/sofa/corp/left{
+	dir = 4
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"qR" = (
+/obj/effect/turf_decal/siding/thinplating/corner,
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 1
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"rg" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/closed/wall/mineral/iron,
+/area/city/backstreets_room)
+"ri" = (
+/obj/effect/turf_decal{
+	dir = 3
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"rF" = (
+/obj/effect/turf_decal{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"sd" = (
+/obj/effect/turf_decal{
+	dir = 3
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/npc_reveal_spawn{
+	sensor_id = "speech";
+	mobtype = /mob/living/simple_animal/npc/tinkerer_speech
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"sf" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"sO" = (
+/obj/effect/turf_decal{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/clan/drone,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"th" = (
+/obj/effect/turf_decal{
+	dir = 5
+	},
+/obj/effect/landmark/cratespawn/corpo,
+/obj/machinery/light{
+	dir = 4;
+	light_color = "#e8eaff"
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"ti" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/mob/living/simple_animal/hostile/clan/scout,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"tv" = (
+/obj/effect/gibspawner/generic,
+/obj/effect/spawner/lootdrop/garbage_spawner,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"tK" = (
+/obj/item/gps/mining{
+	anchored = 1;
+	gpstag = "Ordering Signal";
+	alpha = 10
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"tM" = (
+/obj/effect/turf_decal/siding/thinplating/corner{
+	dir = 8
+	},
+/mob/living/simple_animal/hostile/clan/scout,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"ug" = (
+/obj/structure/table/reinforced,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/taperecorder/empty,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"um" = (
+/mob/living/simple_animal/hostile/clan/scout,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"ux" = (
+/obj/structure/table/reinforced,
+/obj/item/paper_bin,
+/obj/item/pen,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"uS" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/sign/warning/securearea{
+	pixel_y = 32
+	},
+/mob/living/simple_animal/hostile/clan/drone,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"vL" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"vU" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"wH" = (
+/obj/effect/turf_decal{
+	dir = 6
+	},
+/obj/effect/landmark/cratespawn/corpo,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"wQ" = (
+/obj/effect/turf_decal/trimline/blue/filled/warning{
+	dir = 4
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"xa" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 8
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"xt" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/railing,
+/turf/open/floor/mineral/diamond,
+/area/city/backstreets_room)
+"xF" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/railing{
+	dir = 6
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"xL" = (
+/obj/effect/spawner/lootdrop/garbage_spawner,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"xO" = (
+/turf/closed/wall/mineral/iron,
+/area/city/backstreets_room)
+"xQ" = (
+/obj/structure/sign/warning/securearea{
+	pixel_y = 32
+	},
+/mob/living/simple_animal/hostile/clan/scout,
+/obj/effect/turf_decal/trimline/blue/filled/warning,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"xT" = (
+/obj/effect/turf_decal{
+	dir = 1
+	},
+/obj/structure/closet/crate/large,
+/obj/item/clothing/suit/armor/ego_gear/limbus/durante,
+/obj/item/clothing/neck/limbus_tie,
+/obj/item/clothing/accessory/limbusvest,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"za" = (
+/obj/effect/turf_decal{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"ze" = (
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 3
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"zU" = (
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/mob/living/simple_animal/hostile/clan/scout,
+/obj/effect/landmark/npc_reveal_spawn{
+	sensor_id = "ai";
+	mobtype = /mob/living/simple_animal/npc/tinkerer
+	},
+/turf/open/floor/mineral/diamond,
+/area/city/backstreets_room)
+"zX" = (
+/obj/effect/turf_decal/trimline/blue/filled/warning{
+	dir = 1
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Ab" = (
+/obj/effect/turf_decal{
+	dir = 1
+	},
+/obj/effect/landmark/cratespawn/corpo,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"Ai" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/railing{
+	dir = 5
+	},
+/obj/item/statuebust/hippocratic,
+/obj/structure/statue/custom,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"Az" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/rack,
+/obj/item/workshop_mod/aoe/large/pale,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"AS" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/living_heart{
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/item/living_heart{
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/item/living_heart,
+/obj/item/living_heart,
+/obj/structure/table/reinforced,
+/obj/item/tape/resurgence/podcast_seven,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"AX" = (
+/obj/structure/railing{
+	dir = 9
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"BI" = (
+/obj/effect/turf_decal{
+	dir = 1
+	},
+/obj/effect/landmark/cratespawn/corpo,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"BN" = (
+/obj/effect/landmark/cratespawn/corpo,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"Cl" = (
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 4
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"CH" = (
+/obj/structure/table/reinforced,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"Df" = (
+/obj/structure/closet/crate/large,
+/obj/item/clothing/suit/armor/ego_gear/city/azure_armor,
+/obj/item/clothing/suit/armor/ego_gear/city/azure_armor,
+/obj/item/clothing/suit/armor/ego_gear/city/azure_armor,
+/obj/item/stack/sheet/silk/azure_advanced,
+/obj/item/stack/sheet/silk/azure_advanced,
+/obj/item/stack/sheet/silk/azure_elegant,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/tape/resurgence/first,
+/obj/item/stack/sheet/silk/azure_advanced,
+/obj/item/stack/sheet/silk/azure_advanced,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"Dy" = (
+/obj/structure/chair/sofa/corp/right{
+	dir = 4
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"DA" = (
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 9
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"DW" = (
+/obj/effect/turf_decal{
+	dir = 1
+	},
+/obj/structure/closet/crate/large,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c1000,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"ED" = (
+/obj/structure/mineral_door/iron,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Fl" = (
+/obj/effect/turf_decal{
+	dir = 9
+	},
+/obj/effect/landmark/cratespawn/corpo,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"Fx" = (
+/obj/structure/table/reinforced,
+/obj/effect/spawner/lootdrop/organ_spawner,
+/obj/effect/spawner/lootdrop/armory_contraband/cybersun,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Hz" = (
+/obj/machinery/modular_computer/console{
+	desc = "For all your warehousing needs.";
+	name = "warehouse console";
+	dir = 1
+	},
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"Is" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"IK" = (
+/obj/effect/turf_decal{
+	dir = 3
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"IN" = (
+/obj/structure/flora/rock/jungle,
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 9
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"Jd" = (
+/obj/structure/sign/warning/securearea{
+	pixel_y = 32
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Je" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/clan/scout,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Jj" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/turf/open/floor/mineral/diamond,
+/area/city/backstreets_room)
+"Ju" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"Jz" = (
+/mob/living/simple_animal/hostile/clan/scout,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"JF" = (
+/obj/effect/turf_decal{
+	dir = 3
+	},
+/obj/structure/closet/crate/large,
+/obj/item/ego_weapon/shield/kcorp,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"JK" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"JR" = (
+/obj/effect/turf_decal{
+	dir = 3
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/clan/defender,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"Kp" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/effect/turf_decal/siding/thinplating/corner{
+	dir = 1
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"Lc" = (
+/obj/machinery/light,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Nx" = (
+/obj/machinery/light{
+	dir = 4;
+	light_color = "#e8eaff"
+	},
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 8
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Ox" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/door/airlock/centcom{
+	desc = "A bit too sturdy...";
+	max_integrity = 10000;
+	name = "Strange Airlock";
+	normal_integrity = 100000;
+	req_access_txt = "19"
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"ON" = (
+/obj/effect/turf_decal{
+	dir = 10
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"Pm" = (
+/obj/effect/turf_decal{
+	dir = 4
+	},
+/obj/effect/landmark/cratespawn/corpo,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"PM" = (
+/obj/effect/turf_decal{
+	dir = 4
+	},
+/obj/effect/landmark/cratespawn/corpo,
+/obj/machinery/light{
+	dir = 4;
+	light_color = "#e8eaff"
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"PP" = (
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 8
+	},
+/obj/effect/spawner/lootdrop/garbage_spawner,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"QP" = (
+/obj/effect/turf_decal/trimline/blue/filled/warning,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"RB" = (
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"RG" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/trimline/blue/filled/warning{
+	dir = 1
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"RI" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"Sm" = (
+/obj/effect/turf_decal/trimline/blue/filled/warning{
+	dir = 8
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Sz" = (
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 8
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"SQ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Tg" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/mob/living/simple_animal/hostile/clan/defender,
+/obj/effect/turf_decal/trimline/blue/filled/warning{
+	dir = 4
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"TN" = (
+/obj/structure/railing,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"Ur" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 4
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Us" = (
+/obj/machinery/light{
+	dir = 4;
+	light_color = "#e8eaff"
+	},
+/obj/effect/turf_decal/trimline/blue/filled/warning{
+	dir = 8
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"UP" = (
+/obj/structure/rack,
+/obj/item/implanter/tracking,
+/obj/item/implanter/tracking,
+/obj/item/implanter/tracking,
+/obj/item/implanter/tracking,
+/obj/item/implanter/tracking/gps,
+/obj/item/implanter/tracking/gps,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Vh" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/rack,
+/obj/item/workshop_mod/aoe/large/pale,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"VJ" = (
+/mob/living/simple_animal/hostile/clan/drone,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"VT" = (
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"VZ" = (
+/obj/effect/landmark/npc_reveal_sensor{
+	sensor_id = "speech";
+	cooldown_duration = 6000
+	},
+/obj/machinery/door/airlock/centcom{
+	desc = "A bit too sturdy...";
+	max_integrity = 10000;
+	name = "Strange Airlock";
+	normal_integrity = 100000;
+	req_access_txt = "19"
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Wn" = (
+/obj/structure/mineral_door/iron,
+/obj/structure/barricade/wooden/crude,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Ws" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/mineral/diamond,
+/area/city/backstreets_room)
+"WR" = (
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 10
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Yf" = (
+/obj/machinery/light{
+	dir = 4;
+	light_color = "#e8eaff"
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"Yi" = (
+/mob/living/simple_animal/hostile/clan/defender,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"ZB" = (
+/obj/structure/statue/diamond/ai2,
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/floor/mineral/diamond,
+/area/city/backstreets_room)
+"ZG" = (
+/obj/structure/chair/greyscale,
+/mob/living/simple_animal/hostile/clan/scout,
+/obj/effect/landmark/npc_reveal_spawn{
+	sensor_id = "entering";
+	mobtype = /mob/living/simple_animal/npc/tinkerer
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+xO
+xO
+aV
+aV
+aV
+xO
+xO
+xO
+xO
+aV
+rg
+xO
+xO
+xO
+xO
+aV
+xO
+xO
+xO
+xO
+"}
+(2,1,1) = {"
+xO
+Fl
+jn
+xO
+xL
+um
+iX
+mI
+xO
+Df
+aV
+mI
+ti
+mI
+mI
+ze
+RB
+Jz
+jy
+xO
+"}
+(3,1,1) = {"
+xO
+DW
+sd
+xO
+mI
+AX
+dl
+eC
+xO
+Ox
+xO
+oO
+Ur
+oA
+mI
+dT
+dz
+RB
+vL
+xO
+"}
+(4,1,1) = {"
+xO
+BI
+ri
+xO
+uS
+ev
+TN
+sf
+xO
+sf
+ia
+pg
+vL
+aV
+aV
+xO
+aV
+xa
+xa
+aV
+"}
+(5,1,1) = {"
+xO
+Ab
+nr
+VZ
+SQ
+Ju
+ot
+mI
+hR
+sf
+oS
+vL
+ns
+xO
+Fx
+jb
+sf
+sf
+um
+xO
+"}
+(6,1,1) = {"
+xO
+jk
+IK
+xO
+Jd
+Ai
+xF
+mI
+xO
+iY
+oS
+vL
+ns
+xO
+Fx
+mI
+sf
+mI
+mI
+xO
+"}
+(7,1,1) = {"
+xO
+th
+wH
+xO
+um
+eR
+mI
+Yi
+xO
+aV
+hR
+xO
+xO
+xO
+xO
+hR
+xO
+xO
+xO
+xO
+"}
+(8,1,1) = {"
+xO
+aV
+xO
+aV
+xO
+xO
+xO
+aV
+aV
+mI
+dm
+xO
+RI
+mL
+jO
+oA
+qb
+dC
+Dy
+xO
+"}
+(9,1,1) = {"
+xO
+UP
+Az
+Vh
+mI
+xO
+Jd
+Tg
+wQ
+wQ
+xL
+xO
+VJ
+Is
+ux
+nA
+mI
+mI
+mI
+xO
+"}
+(10,1,1) = {"
+xO
+me
+mI
+mI
+sf
+ED
+bA
+nF
+bY
+eO
+zX
+xO
+tK
+ZG
+ug
+nA
+sf
+sf
+bu
+hR
+"}
+(11,1,1) = {"
+xO
+sf
+mI
+kG
+mI
+xO
+xQ
+xt
+ZB
+Ws
+zX
+xO
+VT
+lc
+CH
+nA
+oN
+Cl
+Cl
+Wn
+"}
+(12,1,1) = {"
+xO
+sf
+SQ
+SQ
+Lc
+xO
+QP
+zU
+fn
+Jj
+RG
+aV
+VT
+Is
+ux
+qR
+pg
+vL
+vL
+xO
+"}
+(13,1,1) = {"
+xO
+hV
+rF
+za
+ON
+xO
+mh
+Sm
+aE
+Us
+sf
+xO
+RI
+DA
+Nx
+gR
+RB
+vL
+tv
+xO
+"}
+(14,1,1) = {"
+xO
+lV
+eA
+JK
+JR
+xO
+xO
+xO
+hR
+aV
+aV
+aV
+xO
+xO
+xO
+hR
+xO
+xO
+xO
+xO
+"}
+(15,1,1) = {"
+xO
+BI
+cC
+JK
+IK
+iX
+mI
+xO
+mI
+sf
+ze
+vU
+RB
+Hz
+xO
+sf
+sf
+SQ
+SQ
+xO
+"}
+(16,1,1) = {"
+xO
+sO
+eA
+ea
+oC
+eC
+mI
+xO
+sf
+sf
+tM
+WR
+RB
+RB
+xO
+mI
+dL
+sf
+kG
+xO
+"}
+(17,1,1) = {"
+xO
+xT
+BN
+bF
+JF
+SQ
+sf
+aV
+aV
+hR
+aV
+aV
+Sz
+PP
+xO
+xO
+xO
+mI
+sf
+xO
+"}
+(18,1,1) = {"
+xO
+od
+eA
+eA
+oC
+sf
+kG
+aV
+eG
+dH
+RB
+xO
+mI
+um
+mI
+mI
+Je
+sf
+IN
+xO
+"}
+(19,1,1) = {"
+xO
+ix
+PM
+Pm
+ak
+mI
+mI
+ED
+gT
+Yf
+AS
+xO
+nD
+sf
+fN
+sf
+sf
+IN
+Kp
+xO
+"}
+(20,1,1) = {"
+xO
+xO
+xO
+xO
+xO
+aV
+xO
+xO
+xO
+aV
+aV
+xO
+xO
+xO
+xO
+xO
+xO
+xO
+xO
+xO
+"}

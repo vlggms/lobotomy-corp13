@@ -43,6 +43,7 @@
 	var/syndie = FALSE  // If true, hears all well-known channels automatically, and can say/hear on the Syndicate channel.
 	var/list/channels = list()  // Map from name (see communications.dm) to on/off. First entry is current department (:h)
 	var/list/secure_radio_connections
+	var/list/radio_sounds = list('sound/effects/radio/radio1.ogg','sound/effects/radio/radio2.ogg','sound/effects/radio/radio3.ogg')
 
 /obj/item/radio/suicide_act(mob/living/user)
 	user.visible_message("<span class='suicide'>[user] starts bouncing [src] off [user.p_their()] head! It looks like [user.p_theyre()] trying to commit suicide!</span>")
@@ -209,7 +210,7 @@
 		spans = list(M.speech_span)
 	if(!language)
 		language = M.get_selected_language()
-	INVOKE_ASYNC(src, .proc/talk_into_impl, M, message, channel, spans.Copy(), language, message_mods)
+	INVOKE_ASYNC(src, PROC_REF(talk_into_impl), M, message, channel, spans.Copy(), language, message_mods)
 	return ITALICS | REDUCE_RANGE
 
 /obj/item/radio/proc/talk_into_impl(atom/movable/M, message, channel, list/spans, datum/language/language, list/message_mods)
@@ -221,6 +222,16 @@
 		return
 	if(!M.IsVocal())
 		return
+	if(LAZYLEN(radio_sounds)) //Sephora - Radios make small static sounds now.
+		var/sound_channel = SSsounds.random_available_channel()
+		var/radio_sound = pick(radio_sounds)
+		var/sound/S = sound(get_sfx(radio_sound))
+		for(var/mob/living/L in range(1, M))
+			if(!L.client)
+				continue
+			if(L.client.prefs?.toggles & SOUND_RADIO_STATIC)
+				L.playsound_local(M, radio_sound, 50, TRUE, 0, SOUND_FALLOFF_EXPONENT, sound_channel, TRUE, S, 1, get_dist(L, M))
+
 
 	if(use_command)
 		spans |= SPAN_COMMAND
@@ -249,10 +260,8 @@
 
 	// Nearby active jammers prevent the message from transmitting
 	var/turf/position = get_turf(src)
-	for(var/obj/item/jammer/jammer in GLOB.active_jammers)
-		var/turf/jammer_turf = get_turf(jammer)
-		if(position.z == jammer_turf.z && (get_dist(position, jammer_turf) <= jammer.range))
-			return
+	if(check_jammed(position))
+		return
 
 	// Determine the identity information which will be attached to the signal.
 	var/atom/movable/virtualspeaker/speaker = new(null, M, src)
@@ -277,7 +286,18 @@
 
 	// Non-subspace radios will check in a couple of seconds, and if the signal
 	// was never received, send a mundane broadcast (no headsets).
-	addtimer(CALLBACK(src, .proc/backup_transmission, signal), 20)
+	addtimer(CALLBACK(src, PROC_REF(backup_transmission), signal), 20)
+
+/obj/item/radio/proc/check_jammed(turf/position)
+	for(var/obj/item/jammer/jammer in GLOB.active_jammers)
+		var/turf/jammer_turf = get_turf(jammer)
+		if(position.z == jammer_turf.z && (get_dist(position, jammer_turf) <= jammer.range))
+			return TRUE
+	for(var/obj/effect/radiojammer/radiojammer in GLOB.active_jammers)
+		var/turf/radiojammer_turf = get_turf(radiojammer)
+		if(position.z == radiojammer_turf.z && (get_dist(position, radiojammer_turf) <= radiojammer.range))
+			return TRUE
+	return FALSE
 
 /obj/item/radio/proc/backup_transmission(datum/signal/subspace/vocal/signal)
 	var/turf/T = get_turf(src)
@@ -294,7 +314,10 @@
 	. = ..()
 	if(radio_freq || !broadcasting || get_dist(src, speaker) > canhear_range)
 		return
-
+	var/filtered_mods = list()
+	if (message_mods[MODE_CUSTOM_SAY_EMOTE])
+		filtered_mods[MODE_CUSTOM_SAY_EMOTE] = message_mods[MODE_CUSTOM_SAY_EMOTE]
+		filtered_mods[MODE_CUSTOM_SAY_ERASE_INPUT] = message_mods[MODE_CUSTOM_SAY_ERASE_INPUT]
 	if(message_mods[RADIO_EXTENSION] == MODE_L_HAND || message_mods[RADIO_EXTENSION] == MODE_R_HAND)
 		// try to avoid being heard double
 		if (loc == speaker && ismob(speaker))
@@ -304,7 +327,7 @@
 			if (idx && (idx % 2) == (message_mods[RADIO_EXTENSION] == MODE_L_HAND))
 				return
 
-	talk_into(speaker, raw_message, , spans, language=message_language)
+	talk_into(speaker, raw_message, , spans, language=message_language, message_mods=filtered_mods)
 
 // Checks if this radio can receive on the given frequency.
 /obj/item/radio/proc/can_receive(freq, level)
@@ -364,7 +387,7 @@
 	for (var/ch_name in channels)
 		channels[ch_name] = 0
 	on = FALSE
-	addtimer(CALLBACK(src, .proc/end_emp_effect, curremp), 200)
+	addtimer(CALLBACK(src, PROC_REF(end_emp_effect), curremp), 200)
 
 /obj/item/radio/proc/end_emp_effect(curremp)
 	if(emped != curremp) //Don't fix it if it's been EMP'd again

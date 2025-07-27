@@ -166,7 +166,7 @@
 /obj/machinery/LateInitialize()
 	. = ..()
 	power_change()
-	RegisterSignal(src, COMSIG_ENTER_AREA, .proc/power_change)
+	RegisterSignal(src, COMSIG_ENTER_AREA, PROC_REF(power_change))
 
 /obj/machinery/Destroy()
 	GLOB.machines.Remove(src)
@@ -427,7 +427,7 @@
 		user.changeNext_move(CLICK_CD_MELEE)
 		user.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
 		user.visible_message("<span class='danger'>[user.name] smashes against \the [src.name] with its paws.</span>", null, null, COMBAT_MESSAGE_RANGE)
-		take_damage(4, BRUTE, MELEE, 1)
+		take_damage(4, MELEE, 1)
 
 /obj/machinery/attack_hulk(mob/living/carbon/user)
 	. = ..()
@@ -594,7 +594,7 @@
 		I.play_tool_sound(src, 50)
 		var/prev_anchored = anchored
 		//as long as we're the same anchored state and we're either on a floor or are anchored, toggle our anchored state
-		if(I.use_tool(src, user, time, extra_checks = CALLBACK(src, .proc/unfasten_wrench_check, prev_anchored, user)))
+		if(I.use_tool(src, user, time, extra_checks = CALLBACK(src, PROC_REF(unfasten_wrench_check), prev_anchored, user)))
 			if(!anchored && ground.is_blocked_turf(exclude_mobs = TRUE, source_atom = src))
 				to_chat(user, "<span class='notice'>You fail to secure [src].</span>")
 				return CANT_UNFASTEN
@@ -707,7 +707,7 @@
 	if(prob(85) && (zap_flags & ZAP_MACHINE_EXPLOSIVE) && !(resistance_flags & INDESTRUCTIBLE))
 		explosion(src, 1, 2, 4, flame_range = 2, adminlog = FALSE, smoke = FALSE)
 	else if(zap_flags & ZAP_OBJ_DAMAGE)
-		take_damage(power * 0.0005, BURN, ENERGY)
+		take_damage(power * 0.0005, ENERGY)
 		if(prob(40))
 			emp_act(EMP_LIGHT)
 		power -= power * 0.0005
@@ -730,7 +730,7 @@
 	AM.pixel_y = -8 + (round( . / 3)*8)
 
 /obj/machinery/rust_heretic_act()
-	take_damage(500, BRUTE, MELEE, 1)
+	take_damage(500, MELEE, 1)
 
 /obj/machinery/vv_edit_var(vname, vval)
 	if(vname == "occupant")

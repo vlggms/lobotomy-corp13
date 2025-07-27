@@ -1,0 +1,730 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"b" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/ashplanet/ash,
+/area/city/backstreets_room)
+"d" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"e" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/statuebust/hippocratic{
+	dir = 6
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"f" = (
+/obj/structure/table/reinforced,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/chisel,
+/obj/item/workshop_mod/sharp/pale,
+/turf/open/floor/plating/ashplanet/ash,
+/area/city/backstreets_room)
+"g" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/ordeal/green_bot_big{
+	name = "constructed bot"
+	},
+/turf/open/floor/plating/ashplanet/ash,
+/area/city/backstreets_room)
+"h" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/humanoid/fixer/metal{
+	return_to_origin = 1
+	},
+/obj/item/gps/mining{
+	anchored = 1;
+	gpstag = "Metal Signal";
+	alpha = 10
+	},
+/turf/open/floor/plating/ashplanet/ash,
+/area/city/backstreets_room)
+"i" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/cratespawn,
+/turf/open/floor/plating/ashplanet/ash,
+/area/city/backstreets_room)
+"j" = (
+/obj/structure/statue/sandstone/venus,
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/ashplanet/ash,
+/area/city/backstreets_room)
+"l" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wideplating/dark/corner{
+	dir = 4
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"m" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/statue/petrified,
+/obj/structure/statue/custom{
+	anchored = 1
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"p" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wideplating/dark/corner{
+	dir = 8
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"q" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 8
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"r" = (
+/turf/closed/wall/mineral/iron,
+/area/city/backstreets_room)
+"t" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 3
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"v" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wideplating/dark/corner{
+	dir = 1
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"y" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/statue/petrified,
+/obj/structure/statue/custom{
+	anchored = 1
+	},
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 8
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"A" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/ordeal/green_bot{
+	name = "clerk bot"
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"C" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/statuebust,
+/turf/open/floor/plating/ashplanet/ash,
+/area/city/backstreets_room)
+"D" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/closed/wall/mineral/iron,
+/area/city/backstreets_room)
+"F" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 6
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"G" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/ashplanet/ash,
+/area/city/backstreets_room)
+"H" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wideplating/dark,
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 4
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"I" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 8
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"J" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 3
+	},
+/mob/living/simple_animal/hostile/ordeal/green_bot{
+	name = "clerk bot"
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"K" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wideplating/dark,
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 8
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"L" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wideplating/dark/corner{
+	dir = 5
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"M" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wideplating/dark,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"N" = (
+/obj/structure/table/reinforced,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/lootcrate/money,
+/obj/structure/lootcrate/syndicate,
+/obj/structure/lootcrate/money,
+/turf/open/floor/plating/ashplanet/ash,
+/area/city/backstreets_room)
+"P" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 4
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Q" = (
+/obj/structure/statue/sandstone/venus{
+	anchored = 1;
+	dir = 8
+	},
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/ashplanet/ash,
+/area/city/backstreets_room)
+"S" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 5
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"T" = (
+/obj/structure/sign/painting/library,
+/turf/closed/wall/mineral/iron,
+/area/city/backstreets_room)
+"U" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 1
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"V" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"W" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 6
+	},
+/mob/living/simple_animal/hostile/ordeal/green_bot{
+	name = "clerk bot"
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"X" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wideplating/dark,
+/mob/living/simple_animal/hostile/ordeal/green_bot{
+	name = "clerk bot"
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Z" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/statue/petrified,
+/obj/structure/statue/custom{
+	anchored = 1
+	},
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 1
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+r
+r
+r
+r
+r
+r
+T
+r
+r
+r
+r
+r
+r
+T
+r
+r
+r
+r
+r
+r
+"}
+(2,1,1) = {"
+r
+j
+b
+b
+b
+b
+b
+b
+b
+b
+G
+b
+b
+b
+b
+b
+b
+b
+G
+r
+"}
+(3,1,1) = {"
+r
+b
+q
+I
+I
+I
+I
+y
+I
+I
+I
+I
+I
+I
+I
+I
+y
+K
+b
+r
+"}
+(4,1,1) = {"
+r
+b
+Z
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+t
+b
+r
+"}
+(5,1,1) = {"
+r
+b
+U
+a
+D
+D
+e
+a
+a
+a
+a
+a
+a
+e
+D
+D
+a
+t
+b
+r
+"}
+(6,1,1) = {"
+r
+b
+U
+a
+D
+D
+a
+a
+a
+a
+a
+a
+a
+a
+D
+D
+a
+t
+b
+r
+"}
+(7,1,1) = {"
+r
+i
+U
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+J
+b
+r
+"}
+(8,1,1) = {"
+T
+C
+S
+l
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+L
+W
+b
+r
+"}
+(9,1,1) = {"
+r
+f
+b
+S
+l
+a
+L
+P
+P
+P
+P
+P
+P
+P
+P
+P
+H
+g
+b
+b
+"}
+(10,1,1) = {"
+r
+N
+h
+b
+U
+a
+M
+d
+V
+V
+V
+V
+V
+d
+V
+V
+A
+V
+V
+V
+"}
+(11,1,1) = {"
+r
+N
+b
+b
+U
+a
+M
+d
+V
+V
+V
+V
+V
+d
+V
+V
+A
+V
+V
+V
+"}
+(12,1,1) = {"
+r
+f
+b
+q
+v
+a
+p
+I
+I
+I
+I
+I
+I
+I
+I
+I
+K
+g
+b
+b
+"}
+(13,1,1) = {"
+T
+C
+q
+v
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+p
+X
+b
+r
+"}
+(14,1,1) = {"
+r
+i
+U
+a
+a
+a
+a
+a
+a
+a
+a
+m
+a
+a
+a
+a
+a
+J
+b
+r
+"}
+(15,1,1) = {"
+r
+b
+Z
+a
+D
+D
+a
+a
+a
+a
+a
+a
+a
+a
+D
+D
+a
+t
+b
+r
+"}
+(16,1,1) = {"
+r
+b
+U
+a
+D
+D
+e
+a
+a
+a
+a
+a
+a
+e
+D
+D
+a
+t
+b
+r
+"}
+(17,1,1) = {"
+r
+b
+U
+a
+a
+a
+a
+a
+m
+a
+a
+a
+a
+a
+a
+a
+a
+t
+b
+r
+"}
+(18,1,1) = {"
+r
+b
+S
+P
+P
+P
+P
+P
+P
+P
+P
+P
+P
+P
+P
+P
+P
+F
+b
+r
+"}
+(19,1,1) = {"
+r
+Q
+b
+b
+b
+b
+b
+b
+b
+b
+G
+b
+b
+b
+b
+b
+b
+b
+G
+r
+"}
+(20,1,1) = {"
+r
+r
+r
+r
+r
+r
+T
+r
+r
+r
+r
+r
+r
+T
+r
+r
+r
+r
+r
+r
+"}

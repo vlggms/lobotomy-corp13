@@ -38,7 +38,7 @@
 	search_objects = 3 //Ancient simplemob AI shitcode. This makes them ignore all other mobs.
 	del_on_death = TRUE
 	loot = list(/obj/effect/decal/cleanable/blood/gibs)
-	deathmessage = "is pulped into bugmash."
+	death_message = "is pulped into bugmash."
 
 	animal_species = /mob/living/simple_animal/hostile/asteroid/gutlunch
 	childtype = list(/mob/living/simple_animal/hostile/asteroid/gutlunch/grublunch = 100)
@@ -93,7 +93,7 @@
 	if(is_type_in_typecache(target,wanted_objects)) //we eats
 		udder.generateMilk()
 		regenerate_icons()
-		visible_message("<span class='notice'>[src] slurps up [target].</span>")
+		visible_message(span_notice("[src] slurps up [target]."))
 		qdel(target)
 	return ..()
 
@@ -153,7 +153,7 @@
 	L.faction = faction
 	L.setDir(dir)
 	L.Stun(20, ignore_canstun = TRUE)
-	visible_message("<span class='notice'>[src] grows up into [L].</span>")
+	visible_message(span_notice("[src] grows up into [L]."))
 	qdel(src)
 
 //Gutlunch udder

@@ -394,7 +394,7 @@
 		to_chat(src, text="You are unable to succumb to death! This life continues.", type=MESSAGE_TYPE_INFO)
 		return
 	log_message("Has [whispered ? "whispered his final words" : "succumbed to death"] with [round(health, 0.1)] points of health!", LOG_ATTACK)
-	adjustOxyLoss(health - HEALTH_THRESHOLD_DEAD)
+	adjustOxyLoss(health - death_threshold)
 	updatehealth()
 	if(!whispered)
 		to_chat(src, "<span class='notice'>You have given up life and succumbed to death.</span>")
@@ -524,7 +524,7 @@
 
 /mob/living/proc/get_up(instant = FALSE)
 	set waitfor = FALSE
-	if(!instant && !do_mob(src, src, 1 SECONDS, timed_action_flags = (IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE|IGNORE_HELD_ITEM), extra_checks = CALLBACK(src, /mob/living/proc/rest_checks_callback), interaction_key = DOAFTER_SOURCE_GETTING_UP))
+	if(!instant && !do_mob(src, src, 1 SECONDS, timed_action_flags = (IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE|IGNORE_HELD_ITEM), extra_checks = CALLBACK(src, TYPE_PROC_REF(/mob/living, rest_checks_callback)), interaction_key = DOAFTER_SOURCE_GETTING_UP))
 		return
 	if(resting || body_position == STANDING_UP || HAS_TRAIT(src, TRAIT_FLOORED))
 		return
@@ -674,7 +674,7 @@
 				var/obj/effect/proc_holder/spell/spell = S
 				spell.updateButtonIcon()
 		if(excess_healing)
-			INVOKE_ASYNC(src, .proc/emote, "gasp")
+			INVOKE_ASYNC(src, PROC_REF(emote), "gasp")
 			log_combat(src, src, "revived")
 	else if(admin_revive)
 		updatehealth()
@@ -734,7 +734,7 @@
 //proc called by revive(), to check if we can actually ressuscitate the mob (we don't want to revive him and have him instantly die again)
 /mob/living/proc/can_be_revived()
 	. = TRUE
-	if(health <= HEALTH_THRESHOLD_DEAD)
+	if(health <= death_threshold)
 		return FALSE
 
 /mob/living/proc/update_damage_overlays()
@@ -1024,7 +1024,12 @@
 		to_chat(src, "<span class='notice'>You try to put [what] on [who]...</span>")
 		who.log_message("[key_name(who)] is having [what] put on them by [key_name(src)]", LOG_ATTACK, color="red")
 		log_message("[key_name(who)] is having [what] put on them by [key_name(src)]", LOG_ATTACK, color="red", log_globally=FALSE)
-		if(do_mob(src, who, what.equip_delay_other))
+
+		var/equip_delay = what.equip_delay_other
+		if(istype(what,/obj/item/clothing/suit/armor/ego_gear))
+			var/obj/item/clothing/suit/armor/ego_gear/EGO = what
+			equip_delay = max(EGO.equip_delay_other, EGO.equip_slowdown) //Preventing 0 delay on some ego suits
+		if(do_mob(src, who, equip_delay))
 			if(what && Adjacent(who) && what.mob_can_equip(who, src, final_where, TRUE, TRUE))
 				if(temporarilyRemoveItemFromInventory(what))
 					if(where_list)
@@ -1205,7 +1210,7 @@
 /**
  * Extinguish all fire on the mob
  *
- * This removes all fire stacks, fire effects, alerts, and moods
+ * This removes all fire stacks, fire effects, and alerts.
  * Signals the extinguishing.
  */
 /mob/living/proc/extinguish_mob()
@@ -1216,7 +1221,6 @@
 	for(var/obj/effect/dummy/lighting_obj/moblight/fire/F in src)
 		qdel(F)
 	clear_alert("fire")
-	SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "on_fire")
 	SEND_SIGNAL(src, COMSIG_LIVING_EXTINGUISHED, src)
 	update_fire()
 
@@ -1471,13 +1475,13 @@
 	. += {"
 		<br><font size='1'>[VV_HREF_TARGETREF(refid, VV_HK_GIVE_DIRECT_CONTROL, "[ckey || "no ckey"]")] / [VV_HREF_TARGETREF_1V(refid, VV_HK_BASIC_EDIT, "[real_name || "no real name"]", NAMEOF(src, real_name))]</font>
 		<br><font size='1'>
-			BRUTE:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=brute' id='brute'>[getBruteLoss()]</a>
-			FIRE:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=fire' id='fire'>[getFireLoss()]</a>
-			TOXIN:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=toxin' id='toxin'>[getToxLoss()]</a>
-			OXY:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=oxygen' id='oxygen'>[getOxyLoss()]</a>
-			CLONE:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=clone' id='clone'>[getCloneLoss()]</a>
-			BRAIN:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=brain' id='brain'>[getOrganLoss(ORGAN_SLOT_BRAIN)]</a>
-			STAMINA:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=stamina' id='stamina'>[getStaminaLoss()]</a>
+			BRUTE:<font size='1'><a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=brute' id='brute'>[getBruteLoss()]</a>
+			FIRE:<font size='1'><a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=fire' id='fire'>[getFireLoss()]</a>
+			TOXIN:<font size='1'><a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=toxin' id='toxin'>[getToxLoss()]</a>
+			OXY:<font size='1'><a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=oxygen' id='oxygen'>[getOxyLoss()]</a>
+			CLONE:<font size='1'><a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=clone' id='clone'>[getCloneLoss()]</a>
+			BRAIN:<font size='1'><a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=brain' id='brain'>[getOrganLoss(ORGAN_SLOT_BRAIN)]</a>
+			STAMINA:<font size='1'><a href='byond://?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=stamina' id='stamina'>[getStaminaLoss()]</a>
 		</font>
 	"}
 
@@ -1576,8 +1580,8 @@
 	if(!can_look_up())
 		return
 	changeNext_move(CLICK_CD_LOOK_UP)
-	RegisterSignal(src, COMSIG_MOVABLE_PRE_MOVE, .proc/stop_look_up) //We stop looking up if we move.
-	RegisterSignal(src, COMSIG_MOVABLE_MOVED, .proc/start_look_up) //We start looking again after we move.
+	RegisterSignal(src, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(stop_look_up)) //We stop looking up if we move.
+	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(start_look_up)) //We start looking again after we move.
 	start_look_up()
 
 /mob/living/proc/start_look_up()
@@ -1621,8 +1625,8 @@
 	if(!can_look_up()) //if we cant look up, we cant look down.
 		return
 	changeNext_move(CLICK_CD_LOOK_UP)
-	RegisterSignal(src, COMSIG_MOVABLE_PRE_MOVE, .proc/stop_look_down) //We stop looking down if we move.
-	RegisterSignal(src, COMSIG_MOVABLE_MOVED, .proc/start_look_down) //We start looking again after we move.
+	RegisterSignal(src, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(stop_look_down)) //We stop looking down if we move.
+	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(start_look_down)) //We start looking again after we move.
 	start_look_down()
 
 /mob/living/proc/start_look_down()

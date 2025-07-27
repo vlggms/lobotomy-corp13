@@ -1,0 +1,132 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/mineral/ash_rock,
+/area/city/backstreets_room)
+"e" = (
+/mob/living/simple_animal/hostile/ordeal/amber_bug{
+	name = "carnivorous worm"
+	},
+/obj/structure/lootcrate/syndicate,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"l" = (
+/obj/structure/flora/rock/pile,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"s" = (
+/mob/living/simple_animal/hostile/ordeal/amber_bug{
+	name = "carnivorous worm"
+	},
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"x" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"E" = (
+/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden/crude,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"H" = (
+/obj/structure/barricade/wooden/crude,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"I" = (
+/mob/living/simple_animal/hostile/ordeal/amber_bug{
+	name = "carnivorous worm"
+	},
+/mob/living/simple_animal/hostile/ordeal/amber_bug{
+	name = "carnivorous worm"
+	},
+/obj/structure/lootcrate/money,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"M" = (
+/mob/living/simple_animal/hostile/ordeal/amber_bug{
+	name = "carnivorous worm"
+	},
+/mob/living/simple_animal/hostile/ordeal/amber_bug{
+	name = "carnivorous worm"
+	},
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"P" = (
+/obj/structure/flora/rock,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"Y" = (
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+x
+x
+a
+x
+H
+x
+a
+x
+E
+x
+"}
+(2,1,1) = {"
+x
+e
+a
+a
+Y
+Y
+l
+Y
+Y
+x
+"}
+(3,1,1) = {"
+x
+M
+M
+a
+a
+Y
+Y
+Y
+a
+x
+"}
+(4,1,1) = {"
+x
+I
+s
+s
+s
+P
+Y
+a
+a
+x
+"}
+(5,1,1) = {"
+x
+a
+s
+s
+s
+Y
+Y
+a
+a
+x
+"}
+(6,1,1) = {"
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+"}

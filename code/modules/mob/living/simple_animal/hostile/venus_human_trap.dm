@@ -40,8 +40,8 @@
 	for(var/turf/T in anchors)
 		Beam(T, "vine", maxdistance=5, beam_type=/obj/effect/ebeam/vine)
 	finish_time = world.time + growth_time
-	addtimer(CALLBACK(src, .proc/bear_fruit), growth_time)
-	addtimer(CALLBACK(src, .proc/progress_growth), growth_time/4)
+	addtimer(CALLBACK(src, PROC_REF(bear_fruit)), growth_time)
+	addtimer(CALLBACK(src, PROC_REF(progress_growth)), growth_time/4)
 	countdown.start()
 
 /**
@@ -50,7 +50,7 @@
  * Displays a message, spawns a human venus trap, then qdels itself.
  */
 /obj/structure/alien/resin/flower_bud/proc/bear_fruit()
-	visible_message("<span class='danger'>The plant has borne fruit!</span>")
+	visible_message(span_danger("The plant has borne fruit!"))
 	new /mob/living/simple_animal/hostile/venus_human_trap(get_turf(src))
 	qdel(src)
 
@@ -59,7 +59,7 @@
 	icon_state = "bud[growth_icon]"
 	if(growth_icon == FINAL_BUD_GROWTH_ICON)
 		return
-	addtimer(CALLBACK(src, .proc/progress_growth), growth_time/4)
+	addtimer(CALLBACK(src, PROC_REF(progress_growth)), growth_time/4)
 
 /obj/effect/ebeam/vine
 	name = "thick vine"
@@ -72,7 +72,7 @@
 		var/mob/living/L = AM
 		if(!isvineimmune(L))
 			L.adjustBruteLoss(5)
-			to_chat(L, "<span class='alert'>You cut yourself on the thorny vines.</span>")
+			to_chat(L, span_alert("You cut yourself on the thorny vines."))
 
 /**
  * Venus Human Trap
@@ -102,9 +102,9 @@
 	melee_damage_upper = 25
 	a_intent = INTENT_HARM
 	del_on_death = TRUE
-	deathmessage = "collapses into bits of plant matter."
+	death_message = "collapses into bits of plant matter."
 	attacked_sound = 'sound/creatures/venus_trap_hurt.ogg'
-	deathsound = 'sound/creatures/venus_trap_death.ogg'
+	death_sound = 'sound/creatures/venus_trap_death.ogg'
 	attack_sound = 'sound/creatures/venus_trap_hit.ogg'
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	unsuitable_atmos_damage = 0
@@ -153,7 +153,7 @@
 				return
 
 	var/datum/beam/newVine = Beam(the_target, icon_state = "vine", maxdistance = vine_grab_distance, beam_type=/obj/effect/ebeam/vine)
-	RegisterSignal(newVine, COMSIG_PARENT_QDELETING, .proc/remove_vine, newVine)
+	RegisterSignal(newVine, COMSIG_PARENT_QDELETING, PROC_REF(remove_vine), newVine)
 	vines += newVine
 	if(isliving(the_target))
 		var/mob/living/L = the_target
@@ -162,7 +162,7 @@
 
 /mob/living/simple_animal/hostile/venus_human_trap/Login()
 	. = ..()
-	to_chat(src, "<span class='boldwarning'>You are a venus human trap!  Protect the kudzu at all costs, and feast on those who oppose you!</span>")
+	to_chat(src, span_boldwarning("You are a venus human trap!  Protect the kudzu at all costs, and feast on those who oppose you!"))
 
 /mob/living/simple_animal/hostile/venus_human_trap/attack_ghost(mob/user)
 	. = ..()
@@ -185,7 +185,7 @@
 	if(plant_ask == "No" || QDELETED(src))
 		return
 	if(key)
-		to_chat(user, "<span class='warning'>Someone else already took this plant!</span>")
+		to_chat(user, span_warning("Someone else already took this plant!"))
 		return
 	key = user.key
 	log_game("[key_name(src)] took control of [name].")

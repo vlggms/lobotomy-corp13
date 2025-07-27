@@ -1,0 +1,401 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"b" = (
+/turf/open/floor/plating/foam,
+/area/city/backstreets_room)
+"c" = (
+/obj/structure/closet/secure_closet/freezer{
+	anchored = 1;
+	secure = 0;
+	name = "emergency rations locker";
+	divable = 0;
+	locked = 0
+	},
+/obj/item/food/soup/sweepersoup,
+/turf/open/floor/plating/foam,
+/area/city/backstreets_room)
+"d" = (
+/turf/open/floor/plastic,
+/area/city/backstreets_room)
+"e" = (
+/obj/structure/cavein_door{
+	pixel_y = -39
+	},
+/turf/open/floor/plastic,
+/area/city/backstreets_room)
+"f" = (
+/obj/structure/sigsystem/deployer{
+	happens_once = 0;
+	atom_path = /mob/living/simple_animal/hostile/ordeal/indigo_noon;
+	atom_rename = "homebound sweeper";
+	deploy_sound = /sound/machines/airlockforced.ogg;
+	spawn_dist_x = -9;
+	spawn_dist_y = 1
+	},
+/turf/closed/wall/rust,
+/area/city/backstreets_room)
+"g" = (
+/obj/structure/sigsystem/connector{
+	dir = 8
+	},
+/turf/open/floor/plating/foam,
+/area/city/backstreets_room)
+"h" = (
+/obj/structure/sigsystem/connector{
+	dir = 1
+	},
+/turf/closed/wall/rust,
+/area/city/backstreets_room)
+"i" = (
+/turf/closed/indestructible/fakedoor{
+	name = "Locked Door"
+	},
+/area/city/backstreets_room)
+"j" = (
+/obj/structure/sigsystem/deployer{
+	happens_once = 0;
+	atom_path = /mob/living/simple_animal/hostile/ordeal/indigo_noon;
+	atom_rename = "homebound sweeper";
+	deploy_sound = /sound/machines/airlockforced.ogg;
+	spawn_dist_x = -9
+	},
+/turf/closed/wall/rust,
+/area/city/backstreets_room)
+"k" = (
+/obj/structure/closet/secure_closet/freezer{
+	anchored = 1;
+	secure = 0;
+	name = "emergency rations locker";
+	divable = 0;
+	locked = 0
+	},
+/turf/open/floor/plastic,
+/area/city/backstreets_room)
+"m" = (
+/obj/structure/sigsystem/connector{
+	repeat_amt = 3;
+	delay_time = 50
+	},
+/turf/closed/wall/rust,
+/area/city/backstreets_room)
+"n" = (
+/obj/structure/fence/door/opened,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "sweeper_nestsmall"
+	},
+/obj/structure/sigsystem/activator,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"p" = (
+/obj/item/food/soup/sweepersoup,
+/obj/structure/closet/secure_closet/freezer{
+	anchored = 1;
+	secure = 0;
+	name = "emergency rations locker";
+	divable = 0;
+	locked = 0
+	},
+/turf/open/floor/plastic,
+/area/city/backstreets_room)
+"q" = (
+/obj/structure/fence/door/opened,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "sweeper_nestsmall"
+	},
+/obj/structure/sigsystem/connector{
+	dir = 8
+	},
+/obj/structure/sigsystem/activator,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"r" = (
+/obj/structure/closet/secure_closet/freezer{
+	anchored = 1;
+	secure = 0;
+	name = "emergency rations locker";
+	divable = 0;
+	locked = 0
+	},
+/obj/item/food/soup/sweepersoup,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"s" = (
+/obj/structure/sigsystem/connector{
+	dir = 8
+	},
+/obj/structure/sigsystem/connector{
+	dir = 1;
+	delay_time = 180
+	},
+/turf/closed/wall/rust,
+/area/city/backstreets_room)
+"t" = (
+/obj/structure/sigsystem/adaptor{
+	device_id = "sweeper_nestsmall"
+	},
+/turf/closed/wall/rust,
+/area/city/backstreets_room)
+"v" = (
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"x" = (
+/obj/structure/sigsystem/connector/split{
+	dir = 4
+	},
+/turf/closed/wall/rust,
+/area/city/backstreets_room)
+"y" = (
+/turf/closed/wall/rust,
+/area/city/backstreets_room)
+"z" = (
+/obj/structure/sigsystem/connector{
+	dir = 1;
+	repeat_amt = 3;
+	delay_time = 60
+	},
+/turf/closed/wall/rust,
+/area/city/backstreets_room)
+"E" = (
+/obj/structure/sigsystem/connector/split{
+	dir = 1;
+	happens_once = 1
+	},
+/turf/closed/wall/rust,
+/area/city/backstreets_room)
+"F" = (
+/obj/structure/sigsystem/connector{
+	dir = 8
+	},
+/turf/closed/wall/rust,
+/area/city/backstreets_room)
+"H" = (
+/obj/structure/closet/secure_closet/freezer{
+	anchored = 1;
+	secure = 0;
+	name = "emergency rations locker";
+	divable = 0;
+	locked = 0
+	},
+/turf/open/floor/circuit/off,
+/area/city/backstreets_room)
+"I" = (
+/obj/structure/sigsystem/connector{
+	dir = 1
+	},
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"K" = (
+/obj/structure/cable,
+/obj/structure/sigsystem/announcer{
+	message_range = 5;
+	message = "Gears shift and doors lock! A trap is triggered!";
+	sound = /sound/effects/explosioncreak2.ogg
+	},
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"L" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"N" = (
+/obj/structure/cable,
+/obj/structure/closet/crate/sigsystem{
+	name = "sweeper storage crate"
+	},
+/obj/item/tresmetal/indigo,
+/obj/item/tresmetal/indigo,
+/obj/item/ego_weapon/city/sweeper,
+/obj/structure/sigsystem/signal_node{
+	dir = 8
+	},
+/obj/structure/sigsystem/signal_node{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"O" = (
+/turf/open/floor/circuit/off,
+/area/city/backstreets_room)
+"P" = (
+/obj/structure/cable,
+/turf/open/floor/plating/foam,
+/area/city/backstreets_room)
+"S" = (
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"T" = (
+/obj/structure/cable,
+/turf/open/floor/circuit/off,
+/area/city/backstreets_room)
+"V" = (
+/obj/structure/sigsystem/connector{
+	dir = 8
+	},
+/turf/closed/indestructible/fakedoor{
+	name = "Locked Door"
+	},
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+L
+L
+L
+L
+L
+L
+L
+L
+"}
+(2,1,1) = {"
+L
+a
+d
+e
+y
+L
+L
+L
+"}
+(3,1,1) = {"
+n
+v
+a
+v
+y
+L
+L
+L
+"}
+(4,1,1) = {"
+q
+I
+a
+v
+b
+T
+L
+L
+"}
+(5,1,1) = {"
+L
+F
+b
+b
+O
+T
+i
+L
+"}
+(6,1,1) = {"
+L
+V
+T
+b
+T
+S
+L
+L
+"}
+(7,1,1) = {"
+L
+F
+r
+O
+S
+O
+H
+L
+"}
+(8,1,1) = {"
+L
+g
+S
+S
+P
+O
+d
+L
+"}
+(9,1,1) = {"
+L
+g
+v
+a
+P
+b
+k
+L
+"}
+(10,1,1) = {"
+L
+g
+v
+v
+P
+P
+b
+L
+"}
+(11,1,1) = {"
+L
+F
+p
+k
+P
+c
+y
+L
+"}
+(12,1,1) = {"
+L
+F
+t
+y
+K
+y
+y
+L
+"}
+(13,1,1) = {"
+L
+F
+s
+h
+N
+y
+y
+L
+"}
+(14,1,1) = {"
+L
+y
+y
+x
+E
+m
+f
+L
+"}
+(15,1,1) = {"
+L
+y
+j
+z
+y
+y
+y
+L
+"}
+(16,1,1) = {"
+L
+L
+L
+L
+L
+L
+L
+L
+"}

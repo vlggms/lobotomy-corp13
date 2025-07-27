@@ -34,7 +34,7 @@ Possible to do for anyone motivated enough:
 	layer = LOW_OBJ_LAYER
 	plane = FLOOR_PLANE
 	flags_1 = HEAR_1
-	req_access = list(ACCESS_KEYCARD_AUTH) //Used to allow for forced connecting to other (not secure) holopads. Anyone can make a call, though.
+	req_access = list(ACCESS_COMMAND) //Used to allow for forced connecting to other (not secure) holopads. Anyone can make a call, though.
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 100
@@ -95,6 +95,8 @@ Possible to do for anyone motivated enough:
 	flags_1 = NODECONSTRUCT_1
 	on_network = FALSE
 	var/proximity_range = 1
+	var/proximity_cooldown
+	var/proximity_cooldown_time = 30 SECONDS
 
 /obj/machinery/holopad/tutorial/Initialize(mapload)
 	. = ..()
@@ -119,8 +121,14 @@ Possible to do for anyone motivated enough:
 /obj/machinery/holopad/tutorial/HasProximity(atom/movable/AM)
 	if (!isliving(AM))
 		return
+	if(proximity_cooldown > world.time)
+		return
 	if(!replay_mode && (disk?.record))
 		replay_start()
+
+/obj/machinery/holopad/tutorial/replay_stop()
+	..()
+	proximity_cooldown = world.time + proximity_cooldown_time
 
 /obj/machinery/holopad/Initialize()
 	. = ..()
@@ -227,7 +235,7 @@ Possible to do for anyone motivated enough:
 	for(var/I in holo_calls)
 		var/datum/holocall/HC = I
 		var/list/call_data = list(
-			caller = HC.user,
+			requester = HC.user,
 			connected = HC.connected_holopad == src ? TRUE : FALSE,
 			ref = REF(HC)
 		)
@@ -248,7 +256,7 @@ Possible to do for anyone motivated enough:
 				for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
 					if(!AI.client)
 						continue
-					to_chat(AI, "<span class='info'>Your presence is requested at <a href='?src=[REF(AI)];jumptoholopad=[REF(src)]'>\the [area]</a>.</span>")
+					to_chat(AI, "<span class='info'>Your presence is requested at <a href='byond://?src=[REF(AI)];jumptoholopad=[REF(src)]'>\the [area]</a>.</span>")
 				return TRUE
 			else
 				to_chat(usr, "<span class='info'>A request for AI presence was already sent recently.</span>")
@@ -640,7 +648,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 		if(HOLORECORD_SOUND)
 			playsound(src,entry[2],50,TRUE)
 		if(HOLORECORD_DELAY)
-			addtimer(CALLBACK(src,.proc/replay_entry,entry_number+1),entry[2])
+			addtimer(CALLBACK(src, PROC_REF(replay_entry),entry_number+1),entry[2],TIMER_UNIQUE|TIMER_OVERRIDE)
 			return
 		if(HOLORECORD_LANGUAGE)
 			var/datum/language_holder/holder = replay_holo.get_language_holder()

@@ -118,6 +118,28 @@
 /datum/movespeed_modifier/metabolicboost
 	multiplicative_slowdown = -1.5
 
+//LC13 Movespeeds
 /datum/movespeed_modifier/justice_attribute
 	variable = TRUE
 	multiplicative_slowdown = 0
+
+/datum/movespeed_modifier/hostile_stamina_loss
+	variable = TRUE
+	multiplicative_slowdown = 0
+
+/datum/movespeed_modifier/variable_hostile_speed_multiplier
+	variable = TRUE
+	flags = IS_ACTUALLY_MULTIPLICATIVE
+	multiplicative_slowdown = 1
+
+/datum/movespeed_modifier/variable_hostile_speed_bonus
+	variable = TRUE
+	multiplicative_slowdown = 0
+
+/datum/movespeed_modifier/qliphothoverload
+	flags = IS_ACTUALLY_MULTIPLICATIVE
+	multiplicative_slowdown = 2
+
+/datum/movespeed_modifier/bloodhold
+	flags = IS_ACTUALLY_MULTIPLICATIVE
+	multiplicative_slowdown = 4

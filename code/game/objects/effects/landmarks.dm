@@ -469,10 +469,10 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/start/new_player)
 /obj/effect/landmark/abnormality_spawn/training_rabbit/LateInitialize()
 	..()
 	datum_reference = new(src, /mob/living/simple_animal/hostile/abnormality/training_rabbit)
-	//incredibly dumb idea that only works if there's one training rabbit console
-	var/obj/machinery/computer/abnormality/training_rabbit/AR = get_closest_atom(/obj/machinery/computer/abnormality/training_rabbit, GLOB.abnormality_consoles, src)
+	var/obj/machinery/computer/abnormality/training_rabbit/AR = get_closest_atom(/obj/machinery/computer/abnormality/training_rabbit, GLOB.lobotomy_devices, src)
 	if(istype(AR))
 		AR.datum_reference = datum_reference
+		datum_reference.console = AR
 	return
 
 
@@ -487,10 +487,11 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/start/new_player)
 /obj/effect/landmark/abnormality_spawn/tutorial/LateInitialize()
 	..()
 	datum_reference = new(src, chosen)
-	//Pick the closest console
-	var/obj/machinery/computer/abnormality/tutorial/AR = get_closest_atom(/obj/machinery/computer/abnormality/tutorial, GLOB.abnormality_consoles, src)
+	//Since tutorial concoles aren't in GLOB.lobotomy_devices, we can just use oview
+	var/obj/machinery/computer/abnormality/tutorial/AR = get_closest_atom(/obj/machinery/computer/abnormality/tutorial, oview(3, src), src)
 	if(istype(AR))
 		AR.datum_reference = datum_reference
+		datum_reference.console = AR
 	return
 
 /obj/effect/landmark/abnormality_spawn/tutorial/shadow
@@ -504,3 +505,18 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/start/new_player)
 /obj/effect/landmark/abnormality_spawn/tutorial/fairy
 	name = "tutorial spawn (fairy)"
 	chosen = /mob/living/simple_animal/hostile/abnormality/fairy_swarm
+
+/obj/effect/radiojammer
+	name = "radio jammer"
+	desc = "Device used to disrupt nearby radio communication."
+	icon = 'icons/obj/device.dmi'
+	icon_state = "gangtool-blue"
+	anchored = TRUE
+	layer = MID_LANDMARK_LAYER
+	invisibility = INVISIBILITY_ABSTRACT
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	var/range = 12
+
+/obj/effect/radiojammer/Initialize()
+	. = ..()
+	GLOB.active_jammers |= src

@@ -166,6 +166,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_NOMETABOLISM		"no_metabolism"
 #define TRAIT_NOCLONELOSS		"no_cloneloss"
 #define TRAIT_TOXIMMUNE			"toxin_immune"
+#define TRAIT_BRUTEPALE			"brute_pale" //Take PALE as brute.
+#define TRAIT_BRUTESANITY		"brute_sanity" //Take BLACK and WHITE as brute.
 #define TRAIT_EASYDISMEMBER		"easy_dismember"
 #define TRAIT_LIMBATTACHMENT 	"limb_attach"
 #define TRAIT_NOLIMBDISABLE		"no_limb_disable"
@@ -177,6 +179,13 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_WORKFEAR_IMMUNE		"work_fear_immune"
 #define TRAIT_COMBATFEAR_IMMUNE		"combat_fear_immune"
 #define TRAIT_WORK_KNOWLEDGE		"work_knowledge"
+#define TRAIT_WORK_FORBIDDEN		"work_forbidden"
+#define TRAIT_ATTRIBUTES_VISION		"attributes_vision"
+#define TRAIT_WEAK_MELEE		"weak_melee"
+#define TRAIT_STRONG_MELEE		"strong_melee"
+#define TRAIT_BETTER_GUNS		"better_guns"
+#define TRAIT_BONUS_EXP			"bonus_exp"
+
 /// reduces the use time of syringes, pills, patches and medigels but only when using on someone
 #define TRAIT_FASTMED "fast_med_use"
 #define TRAIT_NOBREATH			"no_breath"
@@ -204,6 +213,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_NOMOBSWAP         "no-mob-swap"
 #define TRAIT_XRAY_VISION       "xray_vision"
 #define TRAIT_THERMAL_VISION    "thermal_vision"
+#define TRAIT_TRUE_NIGHT_VISION "truenight_vision"
 #define TRAIT_ABDUCTOR_TRAINING "abductor-training"
 #define TRAIT_ABDUCTOR_SCIENTIST_TRAINING "abductor-scientist-training"
 #define TRAIT_SURGEON           "surgeon"
@@ -250,10 +260,16 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_ANTICONVULSANT "anticonvulsant"
 /// The holder of this trait has antennae or whatever that hurt a ton when noogied
 #define TRAIT_ANTENNAE	"antennae"
+/// Blowing kisses actually does damage to the victim
+#define TRAIT_KISS_OF_DEATH "kiss_of_death"
+/// Used to activate french kissing
+#define TRAIT_GARLIC_BREATH "kiss_of_garlic_death"
 /// Addictions don't tick down, basically they're permanently addicted
 #define TRAIT_HOPELESSLY_ADDICTED "hopelessly_addicted"
 /// Special examine if eyes are visible
 #define CULT_EYES "cult_eyes"
+/// This person is blushing
+#define TRAIT_BLUSHING "blushing"
 
 #define TRAIT_NOBLEED "nobleed" //This carbon doesn't bleed
 
@@ -271,6 +287,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 * When present in the mob's mind, they will always love donuts.
 */
 #define TRAIT_DONUT_LOVER "donut_lover"
+
+/// The person with this trait always appears as 'unknown'.
+#define TRAIT_UNKNOWN "unknown"
 
 // METABOLISMS
 // Various jobs on the station have historically had better reactions
@@ -318,6 +337,9 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 /// Used for limbs.
 #define TRAIT_DISABLED_BY_WOUND		"disabled-by-wound"
 
+/// Climbable trait, given and taken by the climbable element when added or removed. Exists to be easily checked via HAS_TRAIT().
+#define TRAIT_CLIMBABLE "trait_climbable"
+
 ///Used for managing KEEP_TOGETHER in [/atom/var/appearance_flags]
 #define TRAIT_KEEP_TOGETHER 	"keep-together"
 
@@ -334,7 +356,33 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_FISH_SAFE_STORAGE "fish_case" //Fish in this won't die
 #define TRAIT_FISH_CASE_COMPATIBILE "fish_case_compatibile" //Stuff that can go inside fish cases
 
-//quirk traits
+//lobotomy quirk traits
+//positive quirks
+#define TRAIT_RESISTANT      	"resistant"
+#define TRAIT_SKILLED    	    "skilled"
+//neutral quirks
+#define TRAIT_NERD          	"nerd"
+#define TRAIT_BRAWLER    	    "brawler"
+#define TRAIT_ARTIST    	    "artist"
+//negative quirks
+#define TRAIT_MINOR_RED     	"minor_red"
+#define TRAIT_MAJOR_RED	        "major_red"
+#define TRAIT_FATAL_RED	        "fatal_red"
+#define TRAIT_MINOR_WHITE	    "minor_white"
+#define TRAIT_MAJOR_WHITE	    "major_white"
+#define TRAIT_FATAL_WHITE      	"fatal_white"
+#define TRAIT_MINOR_BLACK     	"minor_black"
+#define TRAIT_MAJOR_BLACK	    "major_black"
+#define TRAIT_FATAL_BLACK	    "fatal_black"
+#define TRAIT_MINOR_PALE	    "minor_pale"
+#define TRAIT_MAJOR_PALE	    "major_pale"
+#define TRAIT_FATAL_PALE      	"fatal_pale"
+#define TRAIT_GUNS          	"guns"       // used for the "no guns" challenge
+#define TRAIT_HEALING          	"healing"    // used for the "no medipens" challenge
+#define TRAIT_GRAB_IMMUNE 		"grab_immune"// used to prevent grabs
+//lobotomy quirk traits end
+#define TRAIT_PHYSICAL_HEALING_BLOCKED "physical_healing_blocked"
+#define TRAIT_SANITY_HEALING_BLOCKED "sanity_healing_blocked"
 #define TRAIT_ALCOHOL_TOLERANCE	"alcohol_tolerance"
 #define TRAIT_AGEUSIA			"ageusia"
 #define TRAIT_HEAVY_SLEEPER		"heavy_sleeper"
@@ -362,6 +410,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_BADTOUCH			"bad_touch"
 #define TRAIT_EXTROVERT			"extrovert"
 #define TRAIT_INTROVERT			"introvert"
+#define TRAIT_ANXIOUS			"anxious"
 ///Trait for dryable items
 #define TRAIT_DRYABLE "trait_dryable"
 ///Trait for dried items
@@ -490,6 +539,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define ELEMENT_TRAIT "element_trait"
 /// Trait granted by [/obj/item/clothing/head/helmet/space/hardsuit/berserker]
 #define BERSERK_TRAIT "berserk_trait"
+/// Trait granted by lipstick
+#define LIPSTICK_TRAIT "lipstick_trait"
 
 /**
 * Trait granted by [/mob/living/carbon/Initialize] and

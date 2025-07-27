@@ -5,17 +5,18 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "smile"
 	icon_living = "smile"
+	portrait = "simple_smile"
 	del_on_death = TRUE
 	maxHealth = 400		//He's a little shit.
 	health = 400
 	rapid_melee = 2
 	move_to_delay = 2
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
 	melee_damage_lower = 5
 	melee_damage_upper = 5
 	is_flying_animal = TRUE
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/lust
 	stat_attack = HARD_CRIT
 	attack_verb_continuous = "bumps"
 	attack_verb_simple = "bumps"
@@ -28,32 +29,46 @@
 	retreat_distance = 3
 	minimum_distance = 1
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 80,
-						ABNORMALITY_WORK_INSIGHT = 80,
-						ABNORMALITY_WORK_ATTACHMENT = 80,
-						ABNORMALITY_WORK_REPRESSION = 80,
-						)
+		ABNORMALITY_WORK_INSTINCT = 85,
+		ABNORMALITY_WORK_INSIGHT = 85,
+		ABNORMALITY_WORK_ATTACHMENT = 85,
+		ABNORMALITY_WORK_REPRESSION = 85,
+	)
 	work_damage_amount = 5
 	work_damage_type = BLACK_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/trick,
-		/datum/ego_datum/armor/trick
+		/datum/ego_datum/armor/trick,
+	)
+	gift_type =  /datum/ego_gifts/trick
+	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
+
+	observation_prompt = "The abnormality appears to you from out of thin air, and swipes away your weapon."
+	observation_choices = list(
+		"Chase after it" = list(TRUE, "You chase gone with a simple smile across the facility <br>\
+			You trip and scrape your leg on the facility's floor. <br>\
+			\"Well that wasn't very nice! You should apologize for so rudely disarming me, and having me run around like that!\" <br>\
+			The words come out of your mouth before you even realize what is happening. <br>\
+			And as if to answer, Gone with a Simple Smile hands your weapon back. <br>\
+			Then, it disappears with a smile."),
+	)
+
+	var/list/stats = list(
+		FORTITUDE_ATTRIBUTE,
+		PRUDENCE_ATTRIBUTE,
+		TEMPERANCE_ATTRIBUTE,
+		JUSTICE_ATTRIBUTE,
 		)
-//	gift_type =  /datum/ego_gifts/trick
-	var/list/stats = list(FORTITUDE_ATTRIBUTE,
-			PRUDENCE_ATTRIBUTE,
-			TEMPERANCE_ATTRIBUTE,
-			JUSTICE_ATTRIBUTE)
 
 	var/lucky_counter
 
 
 
-/mob/living/simple_animal/hostile/abnormality/smile/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/smile/AttackingTarget(atom/attacked_target)
 	. = ..()
-	if(ishuman(target))
-		var/mob/living/carbon/human/L = target
+	if(ishuman(attacked_target))
+		var/mob/living/carbon/human/L = attacked_target
 		L.Knockdown(20)
 		var/obj/item/held = L.get_active_held_item()
 		L.dropItemToGround(held) //Drop weapon
@@ -63,7 +78,7 @@
 	for (var/obj/item/ego_weapon/Y in range(1, src))
 		pullable += Y
 
-	for (var/obj/item/gun/ego_gun/Z in range(1, src))
+	for (var/obj/item/ego_weapon/ranged/Z in range(1, src))
 		pullable += Z
 
 	if(!LAZYLEN(pullable))
@@ -77,6 +92,7 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/smile/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
@@ -86,7 +102,7 @@
 
 	for(var/attribute in stats)
 		if(get_attribute_level(user, attribute)>= 40)
-			chance_modifier *= 0.7
+			chance_modifier *= 0.8
 			lucky_counter += 1
 
 	return chance * chance_modifier

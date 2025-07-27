@@ -1,7 +1,6 @@
 SUBSYSTEM_DEF(time_track)
 	name = "Time Tracking"
 	wait = 100
-	flags = SS_NO_TICK_CHECK
 	init_order = INIT_ORDER_TIMETRACK
 	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT
 
@@ -75,7 +74,7 @@ SUBSYSTEM_DEF(time_track)
 			time_dilation_avg_fast,
 			time_dilation_avg,
 			time_dilation_avg_slow,
-			MAPTICK_LAST_INTERNAL_TICK_USAGE,
+			world.map_cpu,
 			length(SStimer.timer_id_dict),
 			SSair.cost_turfs,
 			SSair.cost_groups,

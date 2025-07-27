@@ -3,14 +3,14 @@
 		return
 
 	W.play_tool_sound(src, 100)
-	user.visible_message("<span class='notice'>[user] installs [W] into the airlock assembly.</span>", \
-						"<span class='notice'>You start to install [W] into the airlock assembly...</span>")
+	user.visible_message(span_notice("[user] installs [W] into the airlock assembly."), \
+						span_notice("You start to install [W] into the airlock assembly..."))
 
 	if(do_after(user, 40, target = src))
 		if(!src || electronics )
 			return
 
-		to_chat(user, "<span class='notice'>You install [W].</span>")
+		to_chat(user, span_notice("You install [W]."))
 
 		electronics = new /obj/item/electronics/airlock
 
@@ -25,14 +25,14 @@
 		return
 
 	W.play_tool_sound(src, 100)
-	user.visible_message("<span class='notice'>[user] installs [W] into the airlock assembly.</span>", \
-						"<span class='notice'>You start to install [W] into the airlock assembly...</span>")
+	user.visible_message(span_notice("[user] installs [W] into the airlock assembly."), \
+						span_notice("You start to install [W] into the airlock assembly..."))
 
 	if(do_after(user, 40, target = src))
 		if( state != AIRLOCK_ASSEMBLY_NEEDS_ELECTRONICS )
 			return
 
-		to_chat(user, "<span class='notice'>You install [W].</span>")
+		to_chat(user, span_notice("You install [W]."))
 		state = AIRLOCK_ASSEMBLY_NEEDS_SCREWDRIVER
 		name = "near finished airlock assembly"
 		electronics = new /obj/item/electronics/airlock
@@ -142,7 +142,7 @@
 
 /obj/item/electroadaptive_pseudocircuit/proc/absorb_circuit(mob/user)
 	if(circuits > 4)
-		to_chat(user, "<span class='warning'>You cannot store any additional circuits!</span>")
+		to_chat(user, span_warning("You cannot store any additional circuits!"))
 		return FALSE
 
 	circuits = min(circuits + 1, 5)

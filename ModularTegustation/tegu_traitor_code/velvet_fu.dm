@@ -18,12 +18,12 @@
 
 /datum/martial_art/velvetfu/teach(mob/living/H, make_temporary=0)
 	if(..())
-		to_chat(H, "<span class='userdanger'>You've mastered the arts of Velvet-Fu!</span>")
+		to_chat(H, span_userdanger("You've mastered the arts of Velvet-Fu!"))
 		recedingstance.Grant(H)
 		twistedstance.Grant(H)
 
 /datum/martial_art/velvetfu/on_remove(mob/living/H)
-	to_chat(H, "<span class='userdanger'>You've forgotten the arts of Velvet-Fu...'</span>")
+	to_chat(H, span_userdanger("You've forgotten the arts of Velvet-Fu...'"))
 	recedingstance.Remove(H)
 	twistedstance.Remove(H)
 
@@ -63,21 +63,21 @@
 
 /datum/action/receding_stance/Trigger(mob/living/M, mob/living/user)
 	if(owner.incapacitated())
-		to_chat(owner, "<span class='warning'>You can't do stances while incapacitated...</span>")
+		to_chat(owner, span_warning("You can't do stances while incapacitated..."))
 		return
 	if(stancing)
-		to_chat(owner, "<span class='warning'>You are already perfoming a stance.</span>")
+		to_chat(owner, span_warning("You are already perfoming a stance."))
 		return
 	var/mob/living/carbon/human/H = owner
 	if(owner.mind.martial_art.streak == "receding_stance")
 		owner.visible_message("<span class='danger'>[owner] stops moving back.</i></b>")
 		owner.mind.martial_art.streak = ""
 	else
-		owner.visible_message("<span class='danger'>[owner] moves back and begins to form a stance.</span>", "<b><i>You backpedal and begin to form your stance.</i></b>")
+		owner.visible_message(span_danger("[owner] moves back and begins to form a stance."), "<b><i>You backpedal and begin to form your stance.</i></b>")
 		stancing = TRUE
 		addtimer(VARSET_CALLBACK(src, stancing, FALSE), 30, TIMER_UNIQUE)
 		if(do_after(owner, 3 SECONDS))
-			owner.visible_message("<span class='danger'>[owner] focuses on his stance.</span>", "<b><i>You focus on your stance. Stamina...</i></b>")
+			owner.visible_message(span_danger("[owner] focuses on his stance."), "<b><i>You focus on your stance. Stamina...</i></b>")
 			owner.mind.martial_art.streak = "receding_stance"
 			H.adjustStaminaLoss(-40)
 		else
@@ -95,14 +95,14 @@
 
 /datum/action/twisted_stance/Trigger(mob/living/M, mob/living/user)
 	if(owner.incapacitated())
-		to_chat(owner, "<span class='warning'>You can't do stances while incapacitated...</span>")
+		to_chat(owner, span_warning("You can't do stances while incapacitated..."))
 		return
 	var/mob/living/carbon/human/H = owner
 	if(owner.mind.martial_art.streak == "twisted_stance")
 		owner.visible_message("<span class='danger'>[owner] untwists [owner.p_them()]self.</i></b>")
 		owner.mind.martial_art.streak = ""
 	else
-		owner.visible_message("<span class='danger'>[owner] suddenly twists and turns, what a strange stance!</span>", "<b>You twist and turn, your twisted stance is done!</b>")
+		owner.visible_message(span_danger("[owner] suddenly twists and turns, what a strange stance!"), "<b>You twist and turn, your twisted stance is done!</b>")
 		owner.mind.martial_art.streak = "twisted_stance"
 		H.adjustStaminaLoss(-40)
 		H.apply_damage(18, BRUTE, BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
@@ -113,9 +113,9 @@
 //Flying Axe Kick - Deals Brute and causes bleeding. Costs 50 Stamina.
 /datum/martial_art/velvetfu/proc/flyingAxekick(mob/living/A, mob/living/D)
 	log_combat(A, D, "flying kick (Velvet-Fu)")
-	D.visible_message("<span class='danger'>[A] flying kicked [D], such skill!</span>", \
-					"<span class='userdanger'>Your neck is flying kicked by [A]!</span>", "<span class='hear'>You hear a sickening sound of flesh hitting flesh!</span>", COMBAT_MESSAGE_RANGE, A)
-	to_chat(A, "<span class='danger'>You flying kick [D]!</span>")
+	D.visible_message(span_danger("[A] flying kicked [D], such skill!"), \
+					span_userdanger("Your neck is flying kicked by [A]!"), span_hear("You hear a sickening sound of flesh hitting flesh!"), COMBAT_MESSAGE_RANGE, A)
+	to_chat(A, span_danger("You flying kick [D]!"))
 	A.adjustStaminaLoss(50)
 	if(prob(60))
 		if(!D.stat)
@@ -123,7 +123,7 @@
 			var/datum/wound/slash/moderate/crit_wound = new
 			crit_wound.apply_wound(limb)
 	else
-		to_chat(A, "<span class='danger'>Your flying axe kick fails to cause [D] to bleed!</span>")
+		to_chat(A, span_danger("Your flying axe kick fails to cause [D] to bleed!"))
 	D.apply_damage(10, BRUTE) // Slash!
 	playsound(get_turf(A), 'sound/weapons/slice.ogg', 50, TRUE, -1)
 	return TRUE
@@ -131,9 +131,9 @@
 //Goat Headbutt - Deals Brute and Stuns, in exchange for causing Brute to the user. Costs 60 Stamina and deals some Brute.
 /datum/martial_art/velvetfu/proc/goatHeadbutt(mob/living/A, mob/living/D)
 	log_combat(A, D, "goat headbutt (Velvet-Fu)")
-	D.visible_message("<span class='danger'>[A] headbutted [D]!</span>", \
-					"<span class='userdanger'>You're headbutted by [A]!</span>", "<span class='hear'>You hear a sickening sound of flesh hitting flesh!</span>", COMBAT_MESSAGE_RANGE, A)
-	to_chat(A, "<span class='danger'>You swiftly headbutt [D]!</span>")
+	D.visible_message(span_danger("[A] headbutted [D]!"), \
+					span_userdanger("You're headbutted by [A]!"), span_hear("You hear a sickening sound of flesh hitting flesh!"), COMBAT_MESSAGE_RANGE, A)
+	to_chat(A, span_danger("You swiftly headbutt [D]!"))
 	A.apply_damage(15, BRUTE, BODY_ZONE_HEAD, wound_bonus = CANT_WOUND)
 	A.adjustStaminaLoss(60)
 	if(prob(80))
@@ -141,7 +141,7 @@
 			D.Stun(4 SECONDS)
 			D.Jitter(6 SECONDS)
 	else
-		to_chat(A, "<span class='danger'>You fail to stun [D]!</span>")
+		to_chat(A, span_danger("You fail to stun [D]!"))
 	D.apply_damage(10, A.get_attack_type(), BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
 	playsound(get_turf(A), 'sound/effects/hit_punch.ogg', 50, TRUE, -1)
 	return TRUE
@@ -149,15 +149,15 @@
 //Full Thrust - Deals Brute and has a chance to knock the opponent down. Costs 70 Stamina.
 /datum/martial_art/velvetfu/proc/fullThrust(mob/living/A, mob/living/D)
 	log_combat(A, D, "full thrust (Velvet-Fu)")
-	D.visible_message("<span class='danger'>[A] thrusted into [D]!</span>", \
-					"<span class='userdanger'>You're thrusted by [A]!</span>", "<span class='hear'>You hear a sickening sound of flesh hitting flesh!</span>", COMBAT_MESSAGE_RANGE, A)
-	to_chat(A, "<span class='danger'>You quickly and fashionably thrust into [D]!</span>")
+	D.visible_message(span_danger("[A] thrusted into [D]!"), \
+					span_userdanger("You're thrusted by [A]!"), span_hear("You hear a sickening sound of flesh hitting flesh!"), COMBAT_MESSAGE_RANGE, A)
+	to_chat(A, span_danger("You quickly and fashionably thrust into [D]!"))
 	A.adjustStaminaLoss(70)
 	if(prob(60))
 		if(!D.stat)
 			D.Knockdown(30)
 	else
-		to_chat(A, "<span class='danger'>You fail to knock [D] down!</span>")
+		to_chat(A, span_danger("You fail to knock [D] down!"))
 	D.apply_damage(15, A.get_attack_type(), BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
 	playsound(get_turf(A), 'sound/weapons/cqchit1.ogg', 50, TRUE, -1)
 	return TRUE
@@ -165,9 +165,9 @@
 //Minor Iris - Deals a ton of armor penetrating slash brute. Costs 80 Stamina.
 /datum/martial_art/velvetfu/proc/minorIris(mob/living/A, mob/living/D)
 	log_combat(A, D, "minor iris (Velvet-Fu)")
-	D.visible_message("<span class='danger'>[A] slashes [D] rapidly and repeatedly!</span>", \
-					"<span class='userdanger'>You're slashed several times by [A]!</span>", "<span class='hear'>You hear several sickening sounds of flesh slashing flesh!</span>", COMBAT_MESSAGE_RANGE, A)
-	to_chat(A, "<span class='danger'>You swiftly and repeatedly slash at [D], truly a master attack!</span>")
+	D.visible_message(span_danger("[A] slashes [D] rapidly and repeatedly!"), \
+					span_userdanger("You're slashed several times by [A]!"), span_hear("You hear several sickening sounds of flesh slashing flesh!"), COMBAT_MESSAGE_RANGE, A)
+	to_chat(A, span_danger("You swiftly and repeatedly slash at [D], truly a master attack!"))
 	A.adjustStaminaLoss(80)
 	var/obj/item/bodypart/limb = D.get_bodypart(ran_zone(A.zone_selected)) // Guaranteed, unlike Flying Axe Kick
 	var/datum/wound/slash/moderate/crit_wound = new
@@ -192,9 +192,9 @@
 		bonus_damage += 5
 		picked_hit_type = "iron hooved"
 	D.apply_damage(bonus_damage, A.get_attack_type())
-	D.visible_message("<span class='danger'>[A] [picked_hit_type]ed [D]!</span>", \
-					"<span class='userdanger'>You're [picked_hit_type]ed by [A]!</span>", "<span class='hear'>You hear a sickening sound of flesh hitting flesh!</span>", COMBAT_MESSAGE_RANGE, A)
-	to_chat(A, "<span class='danger'>You [picked_hit_type] [D]!</span>")
+	D.visible_message(span_danger("[A] [picked_hit_type]ed [D]!"), \
+					span_userdanger("You're [picked_hit_type]ed by [A]!"), span_hear("You hear a sickening sound of flesh hitting flesh!"), COMBAT_MESSAGE_RANGE, A)
+	to_chat(A, span_danger("You [picked_hit_type] [D]!"))
 	playsound(D, 'sound/weapons/punch1.ogg', 50, TRUE, -1)
 	return TRUE
 
@@ -215,9 +215,9 @@
 		bonus_damage += 5
 		picked_hit_type = "iron hooved"
 	D.apply_damage(bonus_damage, A.get_attack_type())
-	D.visible_message("<span class='danger'>[A] [picked_hit_type]ed [D]!</span>", \
-					"<span class='userdanger'>You're [picked_hit_type]ed by [A]!</span>", "<span class='hear'>You hear a sickening sound of flesh hitting flesh!</span>", COMBAT_MESSAGE_RANGE, A)
-	to_chat(A, "<span class='danger'>You [picked_hit_type] [D]!</span>")
+	D.visible_message(span_danger("[A] [picked_hit_type]ed [D]!"), \
+					span_userdanger("You're [picked_hit_type]ed by [A]!"), span_hear("You hear a sickening sound of flesh hitting flesh!"), COMBAT_MESSAGE_RANGE, A)
+	to_chat(A, span_danger("You [picked_hit_type] [D]!"))
 	playsound(D, 'sound/weapons/punch1.ogg', 50, TRUE, -1)
 	return TRUE
 
@@ -238,9 +238,9 @@
 		bonus_damage += 8
 		picked_hit_type = "iron hooved"
 	D.apply_damage(bonus_damage, A.get_attack_type())
-	D.visible_message("<span class='danger'>[A] [picked_hit_type]ed [D]!</span>", \
-					"<span class='userdanger'>You're [picked_hit_type]ed by [A]!</span>", "<span class='hear'>You hear a sickening sound of flesh hitting flesh!</span>", COMBAT_MESSAGE_RANGE, A)
-	to_chat(A, "<span class='danger'>You [picked_hit_type] [D]!</span>")
+	D.visible_message(span_danger("[A] [picked_hit_type]ed [D]!"), \
+					span_userdanger("You're [picked_hit_type]ed by [A]!"), span_hear("You hear a sickening sound of flesh hitting flesh!"), COMBAT_MESSAGE_RANGE, A)
+	to_chat(A, span_danger("You [picked_hit_type] [D]!"))
 	playsound(D, 'sound/weapons/punch1.ogg', 50, TRUE, -1)
 	return TRUE
 

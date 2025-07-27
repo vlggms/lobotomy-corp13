@@ -70,8 +70,7 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define NO_LAVA_GEN (1<<3)
 /// Blocks ruins spawning on the turf.
 #define NO_RUINS (1<<4)
-/// Should this tile be cleaned up and reinserted into an excited group?
-#define EXCITED_CLEANUP (1<<5)
+#define NO_BASIC_INCORP_MOVE (1<<5)
 
 ////////////////Area flags\\\\\\\\\\\\\\
 /// If it's a valid territory for cult summoning or the CRAB-17 phone to spawn
@@ -102,6 +101,8 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define NO_ALERTS					(1<<12)
 /// If blood cultists can draw runes or build structures on this AREA.
 #define CULT_PERMITTED (1<<13)
+/// If we shouldn't be drawn on station holomaps
+#define HIDE_FROM_HOLOMAP (1<<14)
 
 /*
 	These defines are used specifically with the atom/pass_flags bitmask

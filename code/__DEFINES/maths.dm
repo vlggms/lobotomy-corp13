@@ -221,3 +221,11 @@
 // )
 
 #define GET_TRUE_DIST(a, b) (a == null || b == null) ? -1 : max(abs(a.x -b.x), abs(a.y-b.y), abs(a.z-b.z))
+
+//Named after the Risk of Rain 2 item, and uses the exact math of it.
+//Allows for an easy decaying stacking off a variable.
+#define TOUGHER_TIMES(x) ((0.15*x)/(0.15*x + 1))
+
+//If you REALLY need to fine-tune the decaying alogrithm for some reason.
+#define TOUGHER_TIMES_SPECIFIC(x,y) ((y*x)/(y*x + 1))
+

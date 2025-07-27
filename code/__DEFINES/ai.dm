@@ -7,7 +7,7 @@
 
 ///Monkey checks
 #define SHOULD_RESIST(source) (source.on_fire || source.buckled || HAS_TRAIT(source, TRAIT_RESTRAINED) || (source.pulledby && source.pulledby.grab_state > GRAB_PASSIVE))
-#define IS_DEAD_OR_INCAP(source) (HAS_TRAIT(source, TRAIT_INCAPACITATED) || HAS_TRAIT(source, TRAIT_HANDS_BLOCKED) || IS_IN_STASIS(source) || source.stat)
+#define IS_DEAD_OR_INCAP(source) (HAS_TRAIT(source, TRAIT_INCAPACITATED) || IS_IN_STASIS(source) || source.stat)
 
 ///Max pathing attempts before auto-fail
 #define MAX_PATHING_ATTEMPTS 16
@@ -41,10 +41,11 @@
 #define BB_INSANE_BEST_FORCE_FOUND "BB_insane_bestforcefound"
 #define BB_INSANE_ENEMIES "BB_insane_enemies"
 #define BB_INSANE_BLACKLISTITEMS "BB_insane_blacklistitems"
+#define BB_INSANE_TEMPORARY_BLACKLISTITEMS "BB_insane_temporary_blacklistitems"
 #define BB_INSANE_PICKUPTARGET "BB_insane_pickuptarget"
 #define BB_INSANE_CURRENT_ATTACK_TARGET "BB_insane_current_attack_target"
 
-
+#define INSANE_MINIMUM_WEAPON_FORCE 10
 
 ///Haunted item controller defines
 

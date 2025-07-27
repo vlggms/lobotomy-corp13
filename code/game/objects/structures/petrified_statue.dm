@@ -15,7 +15,7 @@
 		petrified_mob = L
 		if(L.buckled)
 			L.buckled.unbuckle_mob(L,force=1)
-		L.visible_message("<span class='warning'>[L]'s skin rapidly turns to marble!</span>", "<span class='userdanger'>Your body freezes up! Can't... move... can't... think...</span>")
+		L.visible_message(span_warning("[L]'s skin rapidly turns to marble!"), span_userdanger("Your body freezes up! Can't... move... can't... think..."))
 		L.forceMove(src)
 		ADD_TRAIT(L, TRAIT_MUTE, STATUE_MUTE)
 		L.faction += "mimic" //Stops mimics from instaqdeling people in statues
@@ -50,7 +50,7 @@
 			if(petrified_mob)
 				S.mind.transfer_to(petrified_mob)
 				petrified_mob.Paralyze(100)
-				to_chat(petrified_mob, "<span class='notice'>You slowly come back to your senses. You are in control of yourself again!</span>")
+				to_chat(petrified_mob, span_notice("You slowly come back to your senses. You are in control of yourself again!"))
 		qdel(S)
 
 	for(var/obj/O in src)
@@ -70,21 +70,25 @@
 	if(!disassembled)
 		if(petrified_mob)
 			petrified_mob.dust()
-	visible_message("<span class='danger'>[src] shatters!.</span>")
+	visible_message(span_danger("[src] shatters!."))
 	qdel(src)
-
 
 /mob/proc/petrify(statue_timer)
 
-/mob/living/carbon/human/petrify(statue_timer)
+/mob/living/carbon/human/petrify(statue_timer, list/rgb_colors, description)
 	if(!isturf(loc))
 		return FALSE
 	var/obj/structure/statue/petrified/S = new(loc, src, statue_timer)
 	S.name = "statue of [name]"
 	ADD_TRAIT(src, TRAIT_NOBLEED, MAGIC_TRAIT)
 	S.copy_overlays(src)
-	var/newcolor = list(rgb(77,77,77), rgb(150,150,150), rgb(28,28,28), rgb(0,0,0))
-	S.add_atom_colour(newcolor, FIXED_COLOUR_PRIORITY)
+	if(!rgb_colors)
+		var/newcolor = list(rgb(77,77,77), rgb(150,150,150), rgb(28,28,28), rgb(0,0,0))
+		S.add_atom_colour(newcolor, FIXED_COLOUR_PRIORITY)
+	else
+		S.add_atom_colour(rgb_colors, FIXED_COLOUR_PRIORITY)
+	if(description)
+		S.desc = description
 	return TRUE
 
 /mob/living/simple_animal/pet/dog/corgi/petrify(statue_timer)

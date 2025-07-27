@@ -108,13 +108,14 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 
 	if(ic_blocked)
 		//The filter warning message shows the sanitized message though.
-		to_chat(src, "<span class='warning'>That message contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[message]\"</span></span>")
+		to_chat(src, span_warning("That message contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[message]\"</span>"))
 		SSblackbox.record_feedback("tally", "ic_blocked_words", 1, lowertext(config.ic_filter_regex.match))
 		return
 	var/list/message_mods = list()
 	var/original_message = message
 	message = get_message_mods(message, message_mods)
 	var/datum/saymode/saymode = SSradio.saymodes[message_mods[RADIO_KEY]]
+	message = check_for_custom_say_emote(message, message_mods)
 
 	if(!message)
 		return
@@ -161,10 +162,10 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 	var/mob/living/carbon/human/H = src
 	if(!can_speak_vocal(message))
 		if (HAS_TRAIT(src, TRAIT_SIGN_LANG) && H.mind.miming)
-			to_chat(src, "<span class='warning'>You stop yourself from signing in favor of the artform of mimery!</span>")
+			to_chat(src, span_warning("You stop yourself from signing in favor of the artform of mimery!"))
 			return
 		else
-			to_chat(src, "<span class='warning'>You find yourself unable to speak!</span>")
+			to_chat(src, span_warning("You find yourself unable to speak!"))
 			return
 
 	var/message_range = 7
@@ -175,7 +176,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 		message_range = 1
 		log_talk(message, LOG_WHISPER)
 		if(stat == HARD_CRIT)
-			var/health_diff = round(-HEALTH_THRESHOLD_DEAD + health)
+			var/health_diff = round(-death_threshold + health)
 			// If we cut our message short, abruptly end it with a-..
 			var/message_len = length_char(message)
 			message = copytext_char(message, 1, health_diff) + "[message_len > health_diff ? "-.." : "..."]"
@@ -257,7 +258,10 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 
 		// Create map text prior to modifying message for goonchat, sign lang edition
 		if (client?.prefs.chat_on_map && !(stat == UNCONSCIOUS || stat == HARD_CRIT || is_blind(src)) && (client.prefs.see_chat_non_mob || ismob(speaker)))
-			create_chat_message(speaker, message_language, raw_message, spans)
+			if (message_mods[MODE_CUSTOM_SAY_ERASE_INPUT])
+				create_chat_message(speaker, null, message_mods[MODE_CUSTOM_SAY_EMOTE], spans, EMOTE_MESSAGE)
+			else
+				create_chat_message(speaker, message_language, raw_message, spans)
 
 		if(is_blind(src))
 			return FALSE
@@ -273,12 +277,15 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 			deaf_message = "<span class='name'>[speaker]</span> [speaker.verb_say] something but you cannot hear [speaker.p_them()]."
 			deaf_type = 1
 	else
-		deaf_message = "<span class='notice'>You can't hear yourself!</span>"
+		deaf_message = span_notice("You can't hear yourself!")
 		deaf_type = 2 // Since you should be able to hear yourself without looking
 
 	// Create map text prior to modifying message for goonchat
 	if (client?.prefs.chat_on_map && !(stat == UNCONSCIOUS || stat == HARD_CRIT) && (client.prefs.see_chat_non_mob || ismob(speaker)) && can_hear())
-		create_chat_message(speaker, message_language, raw_message, spans)
+		if (message_mods[MODE_CUSTOM_SAY_ERASE_INPUT])
+			create_chat_message(speaker, null, message_mods[MODE_CUSTOM_SAY_EMOTE], spans, EMOTE_MESSAGE)
+		else
+			create_chat_message(speaker, message_language, raw_message, spans)
 
 	// Recompose message for AI hrefs, language incomprehension.
 	message = compose_message(speaker, message_language, raw_message, radio_freq, spans, message_mods)
@@ -348,7 +355,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 			speech_bubble_recipients.Add(M.client)
 	var/image/I = image('icons/mob/talk.dmi', src, "[bubble_type][say_test(message)]", FLY_LAYER)
 	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
-	INVOKE_ASYNC(GLOBAL_PROC, /.proc/flick_overlay, I, speech_bubble_recipients, 30)
+	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(flick_overlay), I, speech_bubble_recipients, 30)
 
 /mob/proc/binarycheck()
 	return FALSE
@@ -360,7 +367,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 /mob/living/proc/can_speak_basic(message, ignore_spam = FALSE, forced = FALSE) //Check BEFORE handling of xeno and ling channels
 	if(client)
 		if(client.prefs.muted & MUTE_IC)
-			to_chat(src, "<span class='danger'>You cannot speak in IC (muted).</span>")
+			to_chat(src, span_danger("You cannot speak in IC (muted)."))
 			return FALSE
 		if(!(ignore_spam || forced) && client.handle_spam_prevention(message,MUTE_IC))
 			return FALSE

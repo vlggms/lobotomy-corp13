@@ -68,7 +68,7 @@
 
 /obj/machinery/hydroponics/constructable/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/simple_rotation, ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS, null, CALLBACK(src, .proc/can_be_rotated))
+	AddComponent(/datum/component/simple_rotation, ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS, null, CALLBACK(src, PROC_REF(can_be_rotated)))
 	AddComponent(/datum/component/plumbing/simple_demand)
 
 /obj/machinery/hydroponics/constructable/proc/can_be_rotated(mob/user, rotation_type)
@@ -826,7 +826,7 @@
 		to_chat(user, "<span class='warning'>You fail to harvest anything useful!</span>")
 	else
 		to_chat(user, "<span class='notice'>You harvest [myseed.getYield()] items from the [myseed.plantname].</span>")
-	if(!myseed.get_gene(/datum/plant_gene/trait/repeated_harvest))
+	if(!myseed.get_gene(/datum/plant_gene/trait/repeated_harvest) || istype(src, /obj/machinery/hydroponics/soil/amurdad))
 		qdel(myseed)
 		myseed = null
 		dead = FALSE

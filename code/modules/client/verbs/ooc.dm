@@ -1,6 +1,7 @@
 GLOBAL_VAR_INIT(OOC_COLOR, null)//If this is null, use the CSS for OOC. Otherwise, use a custom colour.
 GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 
+///talking in OOC uses this
 /client/verb/ooc(msg as text)
 	set name = "OOC" //Gave this shit a shorter name so you only have to time out "ooc" rather than "ooc message" to use it --NeoFite
 	set category = "OOC"
@@ -56,36 +57,41 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 	mob.log_talk(raw_msg, LOG_OOC)
 
 	var/keyname = key
-	if(prefs.hearted)
-		var/datum/asset/spritesheet/sheet = get_asset_datum(/datum/asset/spritesheet/chat)
-		keyname = "[sheet.icon_tag("emoji-heart")][keyname]"
 	if(prefs.unlock_content)
 		if(prefs.toggles & MEMBER_PUBLIC)
 			keyname = "<font color='[prefs.ooccolor ? prefs.ooccolor : GLOB.normal_ooc_colour]'>[icon2html('icons/member_content.dmi', world, "blag")][keyname]</font>"
 	//Get client badges
 	var/badge_data = badge_parse(get_badges())
+	if(prefs.hearted)
+		var/datum/asset/spritesheet/sheet = get_asset_datum(/datum/asset/spritesheet/chat)
+		keyname = "[sheet.icon_tag("emoji-heart")][keyname]"
 	//The linkify span classes and linkify=TRUE below make ooc text get clickable chat href links if you pass in something resembling a url
-	for(var/client/C in GLOB.clients)
-		if(C.prefs.chat_toggles & CHAT_OOC)
-			if(holder?.fakekey in C.prefs.ignoring)
-				continue
-			if(holder)
-				if(!holder.fakekey || C.holder)
-					if(check_rights_for(src, R_ADMIN))
-						to_chat(C, "[badge_data]<span class='adminooc'>[CONFIG_GET(flag/allow_admin_ooccolor) && prefs.ooccolor ? "<font color=[prefs.ooccolor]>" :"" ]<span class='prefix'>OOC:</span> <EM>[keyname][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message linkify'>[msg]</span></span></font>")
-					else
-						to_chat(C, "[badge_data]<span class='adminobserverooc'><span class='prefix'>OOC:</span> <EM>[keyname][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message linkify'>[msg]</span></span>")
+	for(var/client/receiver as anything in GLOB.clients)
+		if(!receiver.prefs) // Client being created or deleted. Despite all, this can be null.
+			continue
+		if(!(receiver.prefs.chat_toggles & CHAT_OOC))
+			continue
+		if(holder?.fakekey in receiver.prefs.ignoring)
+			continue
+		var/avoid_highlight = receiver == src
+		if(holder)
+			if(!holder.fakekey || receiver.holder)
+				if(check_rights_for(src, R_ADMIN))
+					to_chat(receiver, "[badge_data][span_adminooc("[CONFIG_GET(flag/allow_admin_ooccolor) && prefs.ooccolor ? "<font color=[prefs.ooccolor]>" :"" ][span_prefix("OOC:")] <EM>[keyname][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message linkify'>[msg]</span>")]", avoid_highlighting = avoid_highlight)
 				else
-					if(GLOB.OOC_COLOR)
-						to_chat(C, "[badge_data]<font color='[GLOB.OOC_COLOR]'><b><span class='prefix'>OOC:</span> <EM>[holder.fakekey ? holder.fakekey : key]:</EM> <span class='message linkify'>[msg]</span></b></font>")
-					else
-						to_chat(C, "[badge_data]<span class='ooc'><span class='prefix'>OOC:</span> <EM>[holder.fakekey ? holder.fakekey : key]:</EM> <span class='message linkify'>[msg]</span></span>")
-
-			else if(!(key in C.prefs.ignoring))
+					to_chat(receiver, "[badge_data][span_adminobserverooc(span_prefix("OOC:</span> <EM>[keyname][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message linkify'>[msg]"))]", avoid_highlighting = avoid_highlight)
+			else
 				if(GLOB.OOC_COLOR)
-					to_chat(C, "[badge_data]<font color='[GLOB.OOC_COLOR]'><b><span class='prefix'>OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></b></font>")
+					to_chat(receiver, "[badge_data]<span class='oocplain'><font color='[GLOB.OOC_COLOR]'><b>[span_prefix("OOC:")] <EM>[holder.fakekey ? holder.fakekey : key]:</EM> <span class='message linkify'>[msg]</span></b></font></span>", avoid_highlighting = avoid_highlight)
 				else
-					to_chat(C, "[badge_data]<span class='ooc'><span class='prefix'>OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></span>")
+					to_chat(receiver, "[badge_data][span_ooc(span_prefix("OOC:</span> <EM>[holder.fakekey ? holder.fakekey : key]:</EM> <span class='message linkify'>[msg]"))]", avoid_highlighting = avoid_highlight)
+
+		else if(!(key in receiver.prefs.ignoring))
+			if(GLOB.OOC_COLOR)
+				to_chat(receiver, "[badge_data]<span class='oocplain'><font color='[GLOB.OOC_COLOR]'><b>[span_prefix("OOC:")] <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></b></font></span>", avoid_highlighting = avoid_highlight)
+			else
+				to_chat(receiver, "[badge_data][span_ooc(span_prefix("OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]"))]", avoid_highlighting = avoid_highlight)
+
 
 /proc/toggle_ooc(toggle = null)
 	if(toggle != null) //if we're specifically en/disabling ooc

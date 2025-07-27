@@ -80,6 +80,7 @@ const OrbitedButton = (props, context) => {
 export const Orbit = (props, context) => {
   const { act, data } = useBackend(context);
   const {
+    abnormalities, // LOBOTOMYCORPORATION ADDITION -- Abnormalities
     alive,
     antagonists,
     auto_observe,
@@ -191,6 +192,18 @@ export const Orbit = (props, context) => {
               <OrbitedButton
                 key={thing.name}
                 color="good"
+                thing={thing} />
+            ))}
+        </Section>
+
+        <Section title={`Abnormalities - (${abnormalities.length})`}>
+          {abnormalities // LOBOTOMYCORPORATION ADDITION -- Abnormalities
+            .filter(searchFor(searchText))
+            .sort(compareNumberedText)
+            .map(thing => (
+              <OrbitedButton
+                key={thing.name}
+                color={thing.is_contained ? "green" : "red"}
                 thing={thing} />
             ))}
         </Section>

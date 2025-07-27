@@ -54,7 +54,7 @@
 			for(var/entry in all_the_entrys)
 				concatenated_logs += "<b>[entry]</b><br>[all_the_entrys[entry]]"
 	if(length(concatenated_logs))
-		sortTim(concatenated_logs, cmp = /proc/cmp_text_dsc) //Sort by timestamp.
+		sortTim(concatenated_logs, cmp = GLOBAL_PROC_REF(cmp_text_dsc)) //Sort by timestamp.
 		dat += "<font size=2px>"
 		dat += concatenated_logs.Join("<br>")
 		dat += "</font>"
@@ -69,4 +69,4 @@
 		slabel = "<b>\[[label]\]</b>"
 	//This is necessary because num2text drops digits and rounds on big numbers. If more defines get added in the future it could break again.
 	log_type = num2text(log_type, MAX_BITFLAG_DIGITS)
-	return "<a href='?_src_=holder;[HrefToken()];individuallog=[REF(M)];log_type=[log_type];log_src=[log_src]'>[slabel]</a>"
+	return "<a href='byond://?_src_=holder;[HrefToken()];individuallog=[REF(M)];log_type=[log_type];log_src=[log_src]'>[slabel]</a>"

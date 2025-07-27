@@ -20,3 +20,9 @@
 /obj/item/ammo_box/magazine/internal/rus357/Initialize()
 	stored_ammo += new ammo_type(src)
 	. = ..()
+
+/obj/item/ammo_box/magazine/internal/cylinder/atelier357
+	name = "\improper 'Atelier Logic' revolver cylinder"
+	ammo_type = /obj/item/ammo_casing/a357/atelier
+	caliber = CALIBER_357
+	max_ammo = 9

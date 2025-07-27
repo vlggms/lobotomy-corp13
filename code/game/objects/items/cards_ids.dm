@@ -93,7 +93,7 @@
 	. = ..()
 	if(mapload && access_txt)
 		access = text2access(access_txt)
-	RegisterSignal(src, COMSIG_ATOM_UPDATED_ICON, .proc/update_in_wallet)
+	RegisterSignal(src, COMSIG_ATOM_UPDATED_ICON, PROC_REF(update_in_wallet))
 
 /obj/item/card/id/Destroy()
 	if (registered_account)
@@ -135,7 +135,7 @@
 
 /obj/item/card/id/proc/insert_money(obj/item/I, mob/user)
 	var/physical_currency
-	if(istype(I, /obj/item/stack/spacecash) || istype(I, /obj/item/coin))
+	if(istype(I, /obj/item/stack/spacecash) || (istype(I, /obj/item/coin) && !istype(I, /obj/item/coin/casino_token)))
 		physical_currency = TRUE
 
 	if(!registered_account)
@@ -250,7 +250,7 @@
 /obj/item/card/id/examine(mob/user)
 	. = ..()
 	if(registered_account)
-		. += "The account linked to the ID belongs to '[registered_account.account_holder]' and reports a balance of [registered_account.account_balance] cr."
+		. += "The account linked to the ID belongs to '[registered_account.account_holder]' and reports a balance of [registered_account.account_balance] ahn."
 	. += "<span class='notice'><i>There's more information below, you can look again to take a closer look...</i></span>"
 
 /obj/item/card/id/examine_more(mob/user)
@@ -261,11 +261,11 @@
 	if(mining_points)
 		msg += "There's [mining_points] mining equipment redemption point\s loaded onto this card."
 	if(registered_account)
-		msg += "The account linked to the ID belongs to '[registered_account.account_holder]' and reports a balance of [registered_account.account_balance] cr."
+		msg += "The account linked to the ID belongs to '[registered_account.account_holder]' and reports a balance of [registered_account.account_balance] ahn."
 		if(registered_account.account_job)
 			var/datum/bank_account/D = SSeconomy.get_dep_account(registered_account.account_job.paycheck_department)
 			if(D)
-				msg += "The [D.account_holder] reports a balance of [D.account_balance] cr."
+				msg += "The [D.account_holder] reports a balance of [D.account_balance] ahn."
 		msg += "<span class='info'>Alt-Click the ID to pull money from the linked account in the form of holochips.</span>"
 		msg += "<span class='info'>You can insert ahn into the linked account by pressing holochips, cash, or coins against the ID.</span>"
 		if(registered_account.civilian_bounty)
@@ -340,6 +340,11 @@ update_label()
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
 
+/obj/item/card/id/silver/plastic
+	name = "plastic identification card"
+	id_type_name = "plastic identification card"
+	desc = "A plastic card which shows creme of the crop."
+
 /obj/item/card/id/silver/reaper
 	name = "Thirteen's ID Card (Reaper)"
 	access = list(ACCESS_MAINT_TUNNELS)
@@ -354,6 +359,18 @@ update_label()
 	inhand_icon_state = "gold_id"
 	lefthand_file = 'icons/mob/inhands/equipment/idcards_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/idcards_righthand.dmi'
+
+/obj/item/card/id/fixer
+	name = "fixer identification card"
+	id_type_name = "fixer identification card"
+	desc = "A purple card used by fixers."
+	icon_state = "fixer"
+
+/obj/item/card/id/association
+	name = "association identification card"
+	id_type_name = "association identification card"
+	desc = "A blue card used by association fixers."
+	icon_state = "association"
 
 /obj/item/card/id/syndicate
 	name = "agent card"
@@ -626,6 +643,20 @@ update_label()
 	registered_name = "Shield Captain"
 	assignment = "Shield Captain"
 
+/obj/item/card/id/fixerdirector
+	name = "fixer director identification card"
+	id_type_name = "fixer director identification card"
+	desc = "A purple card used by fixers."
+	uses_overlays = FALSE
+	icon_state = "fixer_director"
+
+/obj/item/card/id/fixercard
+	name = "fixer identification card"
+	id_type_name = "fixer identification card"
+	desc = "A purple card used by fixers."
+	uses_overlays = FALSE
+	icon_state = "fixer_id"
+
 /obj/item/card/id/debug
 	name = "\improper Debug ID"
 	desc = "A debug ID card. Has ALL the all access, you really shouldn't have this."
@@ -716,6 +747,12 @@ update_label()
 	name = "\proper a perfectly generic identification card"
 	desc = "A perfectly generic identification card. Looks like it could use some flavor."
 
+/obj/item/card/id/away/old/cap
+	name = "Charlie Station Captain's ID card"
+	desc = "A faded Charlie Station ID card. You can make out the rank \"Captain\"."
+	assignment = "Charlie Station Captain"
+	access = list(ACCESS_AWAY_GENERAL, ACCESS_AWAY_SEC)
+
 /obj/item/card/id/away/old/sec
 	name = "Charlie Station Security Officer's ID card"
 	desc = "A faded Charlie Station ID card. You can make out the rank \"Security Officer\"."
@@ -726,6 +763,18 @@ update_label()
 	name = "Charlie Station Scientist's ID card"
 	desc = "A faded Charlie Station ID card. You can make out the rank \"Scientist\"."
 	assignment = "Charlie Station Scientist"
+	access = list(ACCESS_AWAY_GENERAL)
+
+/obj/item/card/id/away/old/doc
+	name = "Charlie Station Doctor's ID card"
+	desc = "A faded Charlie Station ID card. You can make out the rank \"Doctor\"."
+	assignment = "Charlie Station Doctor"
+	access = list(ACCESS_AWAY_GENERAL)
+
+/obj/item/card/id/away/old/ass
+	name = "Charlie Station Assistant's ID card"
+	desc = "A faded Charlie Station ID card. You can make out the rank \"Assistant\"."
+	assignment = "Charlie Station Assisant"
 	access = list(ACCESS_AWAY_GENERAL)
 
 /obj/item/card/id/away/old/eng
@@ -775,4 +824,5 @@ update_label()
 	icon_state = "car_budget" //saving up for a new tesla
 
 /obj/item/card/id/departmental_budget/AltClick(mob/living/user)
-	registered_account.bank_card_talk("<span class='warning'>Withdrawing is not compatible with this card design.</span>", TRUE) //prevents the vault bank machine being useless and putting money from the budget to your card to go over personal crates
+	registered_account.bank_card_talk(span_warning("Withdrawing is not compatible with this card design."), TRUE) //prevents the vault bank machine being useless and putting money from the budget to your card to go over personal crates
+

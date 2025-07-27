@@ -38,7 +38,7 @@
 	. = ..()
 	if(!reset)
 		reset = new reset_path(get_turf(src))
-	RegisterSignal(src, COMSIG_PARENT_PREQDELETED, .proc/reset_flag) //just in case CTF has some map hazards (read: chasms).
+	RegisterSignal(src, COMSIG_PARENT_PREQDELETED, PROC_REF(reset_flag)) //just in case CTF has some map hazards (read: chasms).
 
 /obj/item/ctf/ComponentInitialize()
 	. = ..()
@@ -295,7 +295,7 @@
 	SIGNAL_HANDLER
 
 	recently_dead_ckeys += body.ckey
-	addtimer(CALLBACK(src, .proc/clear_cooldown, body.ckey), respawn_cooldown, TIMER_UNIQUE)
+	addtimer(CALLBACK(src, PROC_REF(clear_cooldown), body.ckey), respawn_cooldown, TIMER_UNIQUE)
 
 /obj/machinery/capture_the_flag/proc/clear_cooldown(ckey)
 	recently_dead_ckeys -= ckey
@@ -323,7 +323,7 @@
 	M.key = new_team_member.key
 	M.faction += team
 	M.equipOutfit(chosen_class)
-	RegisterSignal(M, COMSIG_PARENT_QDELETING, .proc/ctf_qdelled_player) //just in case CTF has some map hazards (read: chasms). bit shorter than dust
+	RegisterSignal(M, COMSIG_PARENT_QDELETING, PROC_REF(ctf_qdelled_player)) //just in case CTF has some map hazards (read: chasms). bit shorter than dust
 	for(var/trait in player_traits)
 		ADD_TRAIT(M, trait, CAPTURE_THE_FLAG_TRAIT)
 	spawned_mobs[M] = chosen_class
@@ -446,7 +446,7 @@
 
 /obj/item/gun/ballistic/automatic/pistol/deagle/ctf/dropped()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/floor_vanish), 1)
+	addtimer(CALLBACK(src, PROC_REF(floor_vanish)), 1)
 
 /obj/item/gun/ballistic/automatic/pistol/deagle/ctf/proc/floor_vanish()
 	if(isturf(loc))
@@ -474,7 +474,7 @@
 
 /obj/item/gun/ballistic/automatic/laser/ctf/dropped()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/floor_vanish), 1)
+	addtimer(CALLBACK(src, PROC_REF(floor_vanish)), 1)
 
 /obj/item/gun/ballistic/automatic/laser/ctf/proc/floor_vanish()
 	if(isturf(loc))
@@ -485,7 +485,7 @@
 
 /obj/item/ammo_box/magazine/recharge/ctf/dropped()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/floor_vanish), 1)
+	addtimer(CALLBACK(src, PROC_REF(floor_vanish)), 1)
 
 /obj/item/ammo_box/magazine/recharge/ctf/proc/floor_vanish()
 	if(isturf(loc))

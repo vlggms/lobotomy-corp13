@@ -29,12 +29,12 @@
 	owner.mind.add_antag_datum(/datum/antagonist/obsessed)
 	antagonist = owner.mind.has_antag_datum(/datum/antagonist/obsessed)
 	antagonist.trauma = src
-	RegisterSignal(obsession, COMSIG_MOB_EYECONTACT, .proc/stare)
+	RegisterSignal(obsession, COMSIG_MOB_EYECONTACT, PROC_REF(stare))
 	..()
 	//antag stuff//
 	antagonist.forge_objectives(obsession.mind)
 	antagonist.greet()
-	RegisterSignal(owner, COMSIG_CARBON_HUG, .proc/on_hug)
+	RegisterSignal(owner, COMSIG_CARBON_HUG, PROC_REF(on_hug))
 
 /datum/brain_trauma/special/obsessed/on_life()
 	if(!obsession || obsession.stat == DEAD)
@@ -49,7 +49,6 @@
 	else
 		viewing = FALSE
 	if(viewing)
-		SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "creeping", /datum/mood_event/creeping, obsession.name)
 		total_time_creeping += 20
 		time_spent_away = 0
 		if(attachedobsessedobj)//if an objective needs to tick down, we can do that since traumas coexist with the antagonist datum
@@ -59,10 +58,6 @@
 
 /datum/brain_trauma/special/obsessed/proc/out_of_view()
 	time_spent_away += 20
-	if(time_spent_away > 1800) //3 minutes
-		SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "creeping", /datum/mood_event/notcreepingsevere, obsession.name)
-	else
-		SEND_SIGNAL(owner, COMSIG_ADD_MOOD_EVENT, "creeping", /datum/mood_event/notcreeping, obsession.name)
 
 /datum/brain_trauma/special/obsessed/on_lose()
 	..()
@@ -73,8 +68,7 @@
 /datum/brain_trauma/special/obsessed/handle_speech(datum/source, list/speech_args)
 	if(!viewing)
 		return
-	var/datum/component/mood/mood = owner.GetComponent(/datum/component/mood)
-	if(mood && mood.sanity >= SANITY_GREAT && social_interaction())
+	if(owner.getSanityLoss() >= owner.getMaxSanity() && social_interaction())
 		speech_args[SPEECH_MESSAGE] = ""
 
 /datum/brain_trauma/special/obsessed/proc/on_hug(mob/living/hugger, mob/living/hugged)
@@ -91,15 +85,15 @@
 			owner.vomit()
 			fail = TRUE
 		if(2)
-			INVOKE_ASYNC(owner, /mob.proc/emote, "cough")
+			INVOKE_ASYNC(owner, TYPE_PROC_REF(/mob, emote), "cough")
 			owner.dizziness += 10
 			fail = TRUE
 		if(3)
-			to_chat(owner, "<span class='userdanger'>You feel your heart lurching in your chest...</span>")
+			to_chat(owner, span_userdanger("You feel your heart lurching in your chest..."))
 			owner.Stun(20)
 			shake_camera(owner, 15, 1)
 		if(4)
-			to_chat(owner, "<span class='warning'>You faint.</span>")
+			to_chat(owner, span_warning("You faint."))
 			owner.Unconscious(80)
 			fail = TRUE
 	return fail
@@ -111,7 +105,7 @@
 	if(examining_mob != owner || !triggering_examiner || prob(50))
 		return
 
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, obsession, "<span class='warning'>You catch [examining_mob] staring at you...</span>", 3))
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), obsession, span_warning("You catch [examining_mob] staring at you..."), 3))
 	return COMSIG_BLOCK_EYECONTACT
 
 /datum/brain_trauma/special/obsessed/proc/find_obsession()

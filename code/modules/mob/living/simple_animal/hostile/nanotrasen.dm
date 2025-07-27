@@ -33,7 +33,7 @@
 
 /mob/living/simple_animal/hostile/nanotrasen/can_inject(mob/user, error_msg)
 	if(error_msg)
-		to_chat(user, "<span class='alert'>[p_their(TRUE)] armor is too tough!</span>")
+		to_chat(user, span_alert("[p_their(TRUE)] armor is too tough!"))
 	return FALSE
 
 /mob/living/simple_animal/hostile/nanotrasen/screaming

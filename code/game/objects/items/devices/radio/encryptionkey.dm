@@ -21,7 +21,7 @@
 		for(var/i in channels)
 			examine_text_list += "[GLOB.channel_tokens[i]] - [lowertext(i)]"
 
-		. += "<span class='notice'>It can access the following channels; [jointext(examine_text_list, ", ")].</span>"
+		. += span_notice("It can access the following channels; [jointext(examine_text_list, ", ")].")
 
 /obj/item/encryptionkey/syndicate
 	name = "syndicate encryption key"
@@ -74,6 +74,13 @@
 	icon_state = "srvmed_cypherkey"
 	channels = list(RADIO_CHANNEL_ARCHITECTURE = 1)
 
+/obj/item/encryptionkey/agent_lieutenant
+	name = "\proper the agent captain's encryption key"
+	icon_state = "cap_cypherkey"
+	channels = list(
+	RADIO_CHANNEL_CONTROL = 1, RADIO_CHANNEL_INFORMATION = 1, RADIO_CHANNEL_SAFETY = 1, RADIO_CHANNEL_TRAINING = 1, \
+	RADIO_CHANNEL_COMMAND = 1, RADIO_CHANNEL_WELFARE = 1, RADIO_CHANNEL_DISCIPLINE = 1)
+
 
 /obj/item/encryptionkey/heads/manager
 	name = "\proper the manager's encryption key"
@@ -106,3 +113,35 @@
 
 /obj/item/encryptionkey/secbot
 	channels = list(RADIO_CHANNEL_AI_PRIVATE = 1, RADIO_CHANNEL_SECURITY = 1)
+
+
+//Department heads
+/obj/item/encryptionkey/heads/headset_control
+	name = "control radio encryption key"
+	icon_state = "cargo_cypherkey"
+	channels = list(RADIO_CHANNEL_CONTROL = 1, RADIO_CHANNEL_ARCHITECTURE = 1)
+
+/obj/item/encryptionkey/heads/headset_information
+	name = "information radio encryption key"
+	icon_state = "sci_cypherkey"
+	channels = list(RADIO_CHANNEL_INFORMATION = 1, RADIO_CHANNEL_ARCHITECTURE = 1)
+
+/obj/item/encryptionkey/heads/headset_safety
+	name = "safety radio encryption key"
+	icon_state = "bin_cypherkey"
+	channels = list(RADIO_CHANNEL_SAFETY = 1, RADIO_CHANNEL_ARCHITECTURE = 1)
+
+/obj/item/encryptionkey/heads/headset_training
+	name = "training radio encryption key"
+	icon_state = "rob_cypherkey"
+	channels = list(RADIO_CHANNEL_TRAINING = 1, RADIO_CHANNEL_ARCHITECTURE = 1)
+
+/obj/item/encryptionkey/heads/headset_welfare
+	name = "welfare radio encryption key"
+	icon_state = "com_cypherkey"
+	channels = list(RADIO_CHANNEL_WELFARE = 1, RADIO_CHANNEL_ARCHITECTURE = 1)
+
+/obj/item/encryptionkey/heads/headset_discipline
+	name = "discipline radio encryption key"
+	icon_state = "sec_cypherkey"
+	channels = list(RADIO_CHANNEL_DISCIPLINE = 1, RADIO_CHANNEL_ARCHITECTURE = 1)

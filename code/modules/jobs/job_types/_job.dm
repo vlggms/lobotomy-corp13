@@ -11,6 +11,9 @@
 	/// Innate skill levels unlocked at roundstart. Based on config.jobs_have_minimal_access config setting, for example with a full crew. Format is list(/datum/skill/foo = SKILL_EXP_NOVICE) with exp as an integer or as per code/_DEFINES/skills.dm
 	var/list/minimal_skills
 
+	/// The attribute limit for this job
+	var/job_attribute_limit = 130
+
 	/// Assoc list of round-start attributes
 	var/list/roundstart_attributes = list(
 									FORTITUDE_ATTRIBUTE = 0,
@@ -76,8 +79,36 @@
 
 	var/bounty_types = CIV_JOB_BASIC
 
+	///Bitfield of departments this job belongs wit
+	var/departments = NONE
+
 	/// Should this job be allowed to be picked for the bureaucratic error event?
 	var/allow_bureaucratic_error = TRUE
+
+	//MAPTYPES
+	/// Job's station type. Will affect what kinds of map the job spawns on.
+	var/maptype = "standard"
+	///Used to exclude jobs
+	var/list/mapexclude = list("none")
+	//If this job is needed to load, then this the flag that keeps it to load.
+	var/loadalways = FALSE
+
+	///Is this job trusted only? If so, then this job requires the player to be in the trusted_players.txt
+	var/trusted_only = FALSE
+
+	//Mentors have one role
+	var/mentor_only = FALSE
+
+	//Does this job need any extra instructions?
+	var/job_important
+	var/job_notice
+
+	//Mostly used for military stuff.
+	var/rank_title
+	var/trusted_rank
+
+	///Job abbreviation used when humans talk on radio. If null should not add anything to radio messages
+	var/job_abbreviation
 
 /datum/job/New()
 	. = ..()
@@ -128,11 +159,30 @@
 
 	if(roundstart_attributes.len)
 		var/mob/living/carbon/human/HA = H
+		HA.set_attribute_limit(job_attribute_limit)
 		for(var/atrib in roundstart_attributes)
 			var/datum/attribute/atr = HA?.attributes[atrib]
 			if(istype(atr))
 				atr.level = roundstart_attributes[atrib]
 				atr.on_update(HA)
+
+
+	if(job_important)
+		to_chat(M, "<span class='userdanger'>[job_important]</span>")
+	if(job_notice)
+		to_chat(M, "<span class='notice'>[job_notice] </span>")
+
+	//Sets your rank title
+	if(rank_title)
+		H.real_name = "[rank_title] [H.real_name]"
+		H.name = H.real_name
+		for(var/obj/item/card/id/Y in H.contents)
+			Y.registered_name = H.name
+			Y.update_label()
+
+	var/obj/item/organ/brain/B = H.getorganslot(ORGAN_SLOT_BRAIN)
+	if(LAZYLEN(B.initial_traits) == 0)
+		B.initial_traits = H.status_traits
 
 /datum/job/proc/announce(mob/living/carbon/human/H)
 	if(head_announce)
@@ -196,7 +246,7 @@
 /datum/job/proc/announce_head(mob/living/carbon/human/H, channels) //tells the given channel that the given mob is the new department head. See communications.dm for valid channels.
 	if(H && GLOB.announcement_systems.len)
 		//timer because these should come after the captain announcement
-		SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/_addtimer, CALLBACK(pick(GLOB.announcement_systems), /obj/machinery/announcement_system/proc/announce, "NEWHEAD", H.real_name, H.job, channels), 1))
+		SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(_addtimer), CALLBACK(pick(GLOB.announcement_systems), TYPE_PROC_REF(/obj/machinery/announcement_system, announce), "NEWHEAD", H.real_name, H.job, channels), 1))
 
 //If the configuration option is set to require players to be logged as old enough to play certain jobs, then this proc checks that they are, otherwise it just returns 1
 /datum/job/proc/player_old_enough(client/C)

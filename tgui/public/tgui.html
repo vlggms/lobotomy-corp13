@@ -4,74 +4,86 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta charset="utf-8">
 
-<!-- Inlined data -->
+<!-- Inlined metadata -->
 <meta id="tgui:windowId" content="[tgui:windowId]">
+<meta id="tgui:strictMode" content="[tgui:strictMode]">
 
 <!-- Early setup -->
 <script type="text/javascript">
-// Read window id into a global
-window.__windowId__ = document
-  .getElementById('tgui:windowId')
-  .getAttribute('content');
-if (window.__windowId__ === '[' + 'tgui:windowId' + ']') {
-  window.__windowId__ = null;
-}
-
-(function () {
-  // Utility functions
-  var hasOwn = Object.prototype.hasOwnProperty;
-  var assign = function (target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i];
-      for (var key in source) {
-        if (hasOwn.call(source, key)) {
-          target[key] = source[key];
+  (function () {
+    // Utility functions
+    var hasOwn = Object.prototype.hasOwnProperty;
+    var assign = function (target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (hasOwn.call(source, key)) {
+            target[key] = source[key];
+          }
         }
       }
+      return target;
+    };
+  var parseMetaTag = function (name) {
+    var content = document.getElementById(name).getAttribute('content');
+    if (content === '[' + name + ']') {
+      return null;
     }
-    return target;
+    return content;
   };
-
   // BYOND API object
   // ------------------------------------------------------
 
   var Byond = window.Byond = {};
+
+  // Expose inlined metadata
+  Byond.windowId = parseMetaTag('tgui:windowId');
+
+  Byond.storageCdn = "tgui:storagecdn"
+
+  // Backwards compatibility
+  window.__windowId__ = Byond.windowId;
+
   // Trident engine version
-  var tridentVersion = (function () {
+  Byond.TRIDENT = (function () {
     var groups = navigator.userAgent.match(/Trident\/(\d+).+?;/i);
     var majorVersion = groups && groups[1];
     return majorVersion
       ? parseInt(majorVersion, 10)
       : null;
   })();
+
+  // Blink engine version
+  Byond.BLINK = (function () {
+    var groups = navigator.userAgent.match(/Chrome\/(\d+)\./);
+    var majorVersion = groups && groups[1];
+    return majorVersion ? parseInt(majorVersion, 10) : null;
+  })();
+
   // Basic checks to detect whether this page runs in BYOND
-  var isByond = tridentVersion !== null
+  var isByond = (Byond.TRIDENT !== null || Byond.BLINK !== null || window.cef_to_byond)
     && location.hostname === '127.0.0.1'
-    && location.pathname.indexOf('/tmp') === 0
     && location.search !== '?external';
+    //As of BYOND 515 the path doesn't seem to include tmp dir anymore if you're trying to open tgui in external browser and looking why it doesn't work
+    //&& location.pathname.indexOf('/tmp') === 0
+
 
   // Version constants
   Byond.IS_BYOND = isByond;
-  Byond.IS_LTE_IE8 = tridentVersion !== null && tridentVersion <= 4;
-  Byond.IS_LTE_IE9 = tridentVersion !== null && tridentVersion <= 5;
-  Byond.IS_LTE_IE10 = tridentVersion !== null && tridentVersion <= 6;
-  Byond.IS_LTE_IE11 = tridentVersion !== null && tridentVersion <= 7;
+
+  // Strict mode flag
+  Byond.strictMode = Boolean(Number(parseMetaTag('tgui:strictMode')));
 
   // Callbacks for asynchronous calls
   Byond.__callbacks__ = [];
 
   // Reviver for BYOND JSON
-  // IE8: No reviver for you!
-  // See: https://stackoverflow.com/questions/1288962
-  var byondJsonReviver;
-  if (!Byond.IS_LTE_IE8) {
-    byondJsonReviver = function (key, value) {
-      if (typeof value === 'object' && value !== null && value.__number__) {
-        return parseFloat(value.__number__);
-      }
-      return value;
-    };
-  }
+  var byondJsonReviver = function (key, value) {
+    if (typeof value === 'object' && value !== null && value.__number__) {
+      return parseFloat(value.__number__);
+    }
+    return value;
+  };
 
   // Makes a BYOND call.
   // See: https://secure.byond.com/docs/ref/skinparams.html
@@ -98,6 +110,13 @@ if (window.__windowId__ === '[' + 'tgui:windowId' + ']') {
         }
       }
     }
+
+    // If we're a Chromium client, just use the fancy method
+    if (window.cef_to_byond) {
+      cef_to_byond('byond://' + url);
+      return;
+    }
+
     // Perform a standard call via location.href
     if (url.length < 2048) {
       location.href = 'byond://' + url;
@@ -135,6 +154,9 @@ if (window.__windowId__ === '[' + 'tgui:windowId' + ']') {
   };
 
   Byond.winget = function (id, propName) {
+    if (id === null) {
+      id = '';
+    }
     var isArray = propName instanceof Array;
     var isSpecific = propName && propName !== '*' && !isArray;
     var promise = Byond.callAsync('winget', {
@@ -150,7 +172,10 @@ if (window.__windowId__ === '[' + 'tgui:windowId' + ']') {
   };
 
   Byond.winset = function (id, propName, propValue) {
-    if (typeof id === 'object' && id !== null) {
+    if (id === null) {
+      id = '';
+    }
+    else if (typeof id === 'object' && id !== null) {
       return Byond.call('winset', id);
     }
     var props = {};
@@ -194,6 +219,8 @@ if (window.__windowId__ === '[' + 'tgui:windowId' + ']') {
     var len = styleSheets.length;
     for (var i = 0; i < len; i++) {
       var styleSheet = styleSheets[i];
+      if(styleSheet.href === undefined)
+        continue;
       if (styleSheet.href.indexOf(url) !== -1) {
         return styleSheet.rules.length > 0;
       }
@@ -209,6 +236,7 @@ if (window.__windowId__ === '[' + 'tgui:windowId' + ']') {
       });
       return;
     }
+
     var refs = document.body.childNodes;
     var ref = refs[refs.length - 1];
     ref.parentNode.insertBefore(node, ref.nextSibling);
@@ -244,11 +272,10 @@ if (window.__windowId__ === '[' + 'tgui:windowId' + ']') {
     // JS specific code
     if (type === 'js') {
       var node = document.createElement('script');
+
       node.type = 'text/javascript';
-      // IE8: Prefer non-https protocols
-      node.src = Byond.IS_LTE_IE9
-        ? url.replace('https://', 'http://')
-        : url;
+      node.crossOrigin = 'anonymous';
+      node.src = url;
       if (sync) {
         node.defer = true;
       }
@@ -269,14 +296,24 @@ if (window.__windowId__ === '[' + 'tgui:windowId' + ']') {
       var node = document.createElement('link');
       node.type = 'text/css';
       node.rel = 'stylesheet';
-      // IE8: Prefer non-https protocols
-      node.href = Byond.IS_LTE_IE9
-        ? url.replace('https://', 'http://')
-        : url;
+      node.crossOrigin = 'anonymous';
+      node.href = url;
       // Temporarily set media to something inapplicable
       // to ensure it'll fetch without blocking render
       if (!sync) {
         node.media = 'only x';
+      }
+      var removeNodeAndRetry = function () {
+        node.parentNode.removeChild(node);
+        node = null;
+        retry();
+      }
+      // 516: Chromium won't call onload() if there is a 404 error
+      // Legacy IE doesn't use onerror, so we retain that
+      // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link#stylesheet_load_events
+      node.onerror = function () {
+        node.onerror = null;
+        removeNodeAndRetry();
       }
       node.onload = function () {
         node.onload = null;
@@ -285,10 +322,7 @@ if (window.__windowId__ === '[' + 'tgui:windowId' + ']') {
           node.media = 'all';
           return;
         }
-        // Try again
-        node.parentNode.removeChild(node);
-        node = null;
-        retry();
+        removeNodeAndRetry();
       };
       injectNode(node);
       return;
@@ -302,6 +336,37 @@ if (window.__windowId__ === '[' + 'tgui:windowId' + ']') {
   Byond.loadCss = function (url, sync) {
     loadAsset({ url: url, sync: sync, type: 'css' });
   };
+
+  Byond.saveBlob = function (blob, filename, ext) {
+    if (window.navigator.msSaveBlob) {
+      window.navigator.msSaveBlob(blob, filename)
+    } else if (window.showSaveFilePicker) {
+      var accept = {};
+      accept[blob.type] = [ext];
+
+      var opts = {
+        suggestedName: filename,
+        types: [
+          {
+            description: "SS13 file",
+            accept: accept,
+          }
+        ]
+      }
+
+      try {
+        window.showSaveFilePicker(opts).then(function (fileHandle) {
+          fileHandle.createWritable().then(function (writeableFileHandle) {
+            writeableFileHandle.write(blob).then(function () {
+              writeableFileHandle.close()
+            }).catch(function (e) { console.error(e) });
+          }).catch(function (e) { console.error(e) });
+        }).catch(function (e) { console.error(e) });
+      } catch (e) { console.error(e) }
+
+    }
+  };
+
 })();
 
 // Global error handling
@@ -328,7 +393,7 @@ window.onerror = function (msg, url, line, col, error) {
     else {
       window.onerror.__stack__ = stack;
     }
-    var textProp = Byond.IS_LTE_IE8 ? 'innerText' : 'textContent';
+    var textProp = 'textContent';
     errorStack[textProp] = window.onerror.__stack__;
   }
   // Set window geometry
@@ -379,59 +444,19 @@ window.__updateQueue__ = [];
 window.update = function (message) {
   window.__updateQueue__.push(message);
 };
-Byond.topic({
-  tgui: 1,
-  window_id: window.__windowId__,
-  type: 'ready',
-});
-
-// Necessary polyfill to make Webpack code splitting work on IE8
-if (!Function.prototype.bind) (function () {
-  var slice = Array.prototype.slice;
-  Function.prototype.bind = function () {
-    var thatFunc = this, thatArg = arguments[0];
-    var args = slice.call(arguments, 1);
-    if (typeof thatFunc !== 'function') {
-      // closest thing possible to the ECMAScript 5
-      // internal IsCallable function
-      throw new TypeError('Function.prototype.bind - ' +
-        'what is trying to be bound is not callable');
-    }
-    return function () {
-      var funcArgs = args.concat(slice.call(arguments))
-      return thatFunc.apply(thatArg, funcArgs);
-    };
-  };
-})();
-
-if (!Array.prototype['forEach']) {
-  Array.prototype.forEach = function (callback, thisArg) {
-    if (this == null) {
-      throw new TypeError('Array.prototype.forEach called on null or undefined');
-    }
-    var T, k;
-    var O = Object(this);
-    var len = O.length >>> 0;
-    if (typeof callback !== "function") {
-      throw new TypeError(callback + ' is not a function');
-    }
-    if (arguments.length > 1) {
-      T = thisArg;
-    }
-    k = 0;
-    while (k < len) {
-      var kValue;
-      if (k in O) {
-        kValue = O[k];
-        callback.call(T, kValue, k, O);
-      }
-      k++;
-    }
-  };
-}
 </script>
 
 <style>
+blink {
+  animation: 1s linear infinite condemned-blink-effect;
+}
+
+@keyframes condemned-blink-effect {
+  0% { visibility: hidden; }
+  50% { visibility: hidden; }
+  100% { visibility: visible; }
+}
+
 .FatalError {
   display: none;
   position: absolute;
@@ -519,6 +544,7 @@ if (!Array.prototype['forEach']) {
 </head>
 <body>
 
+<!-- tgui:inline-polyfill -->
 <!-- Inline assets -->
 <!-- tgui:assets -->
 
@@ -558,6 +584,12 @@ Nanotrasen (c) 2525-2561
     <div>Please enable Javascript and restart the game.</div>
   </div>
 </noscript>
-
+<script>
+  Byond.topic({
+  tgui: 1,
+  window_id: window.__windowId__,
+  type: 'ready',
+});
+</script>
 </body>
 </html>

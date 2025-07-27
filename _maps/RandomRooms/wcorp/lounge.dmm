@@ -1,0 +1,291 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ab" = (
+/obj/structure/chair/sofa/corner{
+	dir = 8;
+	icon_state = "sofamiddle"
+	},
+/turf/open/floor/wood,
+/area/city/outskirts)
+"aJ" = (
+/obj/structure/chair/sofa/corner{
+	dir = 2;
+	icon_state = "sofaend_left"
+	},
+/turf/open/floor/carpet/royalblue,
+/area/city/outskirts)
+"cG" = (
+/obj/structure/chair/sofa/corner{
+	dir = 4;
+	icon_state = "sofamiddle"
+	},
+/turf/open/floor/carpet/royalblue,
+/area/city/outskirts)
+"er" = (
+/obj/structure/table_frame/wood,
+/turf/open/floor/carpet/royalblue,
+/area/city/outskirts)
+"gu" = (
+/obj/structure/table/wood/fancy/blue,
+/turf/open/floor/carpet/royalblue,
+/area/city/outskirts)
+"hH" = (
+/obj/structure/chair/sofa/corner{
+	dir = 4
+	},
+/turf/open/floor/carpet/royalblue,
+/area/city/outskirts)
+"iU" = (
+/turf/closed/wall/r_wall/syndicate,
+/area/city/outskirts)
+"qR" = (
+/obj/structure/chair/sofa/corner{
+	dir = 8;
+	icon_state = "sofamiddle"
+	},
+/obj/structure/chair/sofa/corner{
+	dir = 8;
+	icon_state = "sofamiddle"
+	},
+/turf/open/floor/wood,
+/area/city/outskirts)
+"tA" = (
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/city/outskirts)
+"vh" = (
+/obj/structure/barricade/wooden,
+/turf/open/floor/wood,
+/area/city/outskirts)
+"DI" = (
+/obj/structure/chair/sofa/corner,
+/turf/open/floor/carpet/royalblue,
+/area/city/outskirts)
+"Ew" = (
+/turf/open/floor/carpet/royalblue,
+/area/city/outskirts)
+"EX" = (
+/obj/structure/table/wood,
+/obj/structure/showcase/machinery/tv,
+/obj/structure/showcase/machinery/tv,
+/turf/open/floor/wood,
+/area/city/outskirts)
+"Hg" = (
+/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden/crude,
+/turf/open/floor/wood,
+/area/city/outskirts)
+"Ms" = (
+/obj/structure/chair/sofa/corner{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/city/outskirts)
+"Og" = (
+/obj/structure/barricade/wooden,
+/turf/closed/wall/r_wall/syndicate,
+/area/city/outskirts)
+"OC" = (
+/obj/structure/chair/sofa/corner{
+	icon_state = "sofaend_right"
+	},
+/turf/open/floor/carpet/royalblue,
+/area/city/outskirts)
+"OE" = (
+/obj/structure/chair/sofa/corner{
+	dir = 1;
+	icon_state = "sofacorner_armrest"
+	},
+/turf/open/floor/wood,
+/area/city/outskirts)
+"OH" = (
+/turf/open/floor/wood,
+/area/city/outskirts)
+"UK" = (
+/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden/crude,
+/turf/open/floor/wood,
+/area/city/outskirts)
+"VY" = (
+/obj/structure/chair/sofa/corner{
+	dir = 8;
+	icon_state = "sofamiddle"
+	},
+/turf/open/floor/carpet/royalblue,
+/area/city/outskirts)
+"YX" = (
+/obj/structure/chair/sofa/corner{
+	icon_state = "sofaend_right_armrest"
+	},
+/turf/open/floor/carpet/royalblue,
+/area/city/outskirts)
+
+(1,1,1) = {"
+iU
+iU
+OH
+OH
+OH
+OH
+OH
+OH
+OH
+iU
+iU
+"}
+(2,1,1) = {"
+iU
+OH
+OH
+OH
+OH
+OH
+OH
+OH
+OH
+OH
+iU
+"}
+(3,1,1) = {"
+iU
+OH
+OH
+OH
+Ew
+Ew
+Ew
+OH
+OH
+OH
+iU
+"}
+(4,1,1) = {"
+iU
+OH
+OH
+Ew
+Ew
+Ew
+Ew
+Ew
+OH
+OH
+iU
+"}
+(5,1,1) = {"
+iU
+OH
+OH
+hH
+cG
+cG
+Ew
+Ew
+OH
+OH
+iU
+"}
+(6,1,1) = {"
+iU
+tA
+OH
+aJ
+gu
+gu
+gu
+Ew
+OH
+OH
+iU
+"}
+(7,1,1) = {"
+iU
+EX
+OH
+Ew
+er
+gu
+gu
+Ew
+OH
+OH
+iU
+"}
+(8,1,1) = {"
+iU
+tA
+OH
+OC
+er
+er
+gu
+Ew
+OH
+OH
+iU
+"}
+(9,1,1) = {"
+iU
+OH
+OH
+DI
+VY
+Ew
+Ew
+YX
+OH
+OH
+iU
+"}
+(10,1,1) = {"
+iU
+OH
+OH
+Ew
+Ew
+Ew
+Ew
+Ew
+OE
+OH
+iU
+"}
+(11,1,1) = {"
+iU
+vh
+OH
+OH
+Ew
+Ew
+Ew
+OH
+Ms
+Hg
+iU
+"}
+(12,1,1) = {"
+iU
+Hg
+Hg
+OH
+OH
+qR
+ab
+Hg
+vh
+Hg
+iU
+"}
+(13,1,1) = {"
+iU
+Og
+vh
+UK
+vh
+OH
+OH
+OH
+Hg
+Og
+iU
+"}

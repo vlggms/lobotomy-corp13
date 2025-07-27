@@ -130,18 +130,17 @@
 	)
 
 /obj/tear_in_reality/attack_tk(mob/user)
-	if(!iscarbon(user))
+	if(!ishuman(user))
 		return
 	. = COMPONENT_CANCEL_ATTACK_CHAIN
-	var/mob/living/carbon/jedi = user
-	var/datum/component/mood/insaneinthemembrane = jedi.GetComponent(/datum/component/mood)
-	if(insaneinthemembrane.sanity < 15)
+	var/mob/living/carbon/human/jedi = user
+	if(jedi.sanity_lost)
 		return //they've already seen it and are about to die, or are just too insane to care
 	to_chat(jedi, "<span class='userdanger'>OH GOD! NONE OF IT IS REAL! NONE OF IT IS REEEEEEEEEEEEEEEEEEEEEEEEAL!</span>")
-	insaneinthemembrane.sanity = 0
+	jedi.adjustSanityLoss(jedi.maxSanity) // To retain original function.
 	for(var/lore in typesof(/datum/brain_trauma/severe))
 		jedi.gain_trauma(lore)
-	addtimer(CALLBACK(src, .proc/deranged, jedi), 10 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(deranged), jedi), 10 SECONDS)
 
 /obj/tear_in_reality/proc/deranged(mob/living/carbon/C)
 	if(!C || C.stat == DEAD)
@@ -354,7 +353,7 @@
 			if(BODY_ZONE_PRECISE_EYES)
 				user.set_machine(src)
 				user.reset_perspective(target)
-				addtimer(CALLBACK(src, .proc/reset, user), 15 SECONDS)
+				addtimer(CALLBACK(src, PROC_REF(reset), user), 15 SECONDS)
 			if(BODY_ZONE_R_LEG,BODY_ZONE_L_LEG)
 				to_chat(user, "<span class='notice'>You move the doll's legs around.</span>")
 				var/turf/T = get_step(target,user.dir)

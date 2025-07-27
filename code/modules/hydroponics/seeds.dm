@@ -158,12 +158,7 @@
 	adjust_weed_rate(rand(-wrmut, wrmut))
 	adjust_weed_chance(rand(-wcmut, wcmut))
 	if(prob(traitmut))
-		if(prob(50))
-			add_random_traits(1, 1)
-		else
-			add_random_reagents(1, 1)
-
-
+		add_random_traits(1, 1)
 
 /obj/item/seeds/bullet_act(obj/projectile/Proj) //Works with the Somatoray to modify plant variables.
 	if(istype(Proj, /obj/projectile/energy/florayield))
@@ -650,3 +645,16 @@
 	reagents_from_genes()
 
 	return TRUE
+
+/* Neutered but cancerous code that i cant
+	remove due to it being involved in
+	several maps. -IP */
+/obj/item/seeds/random
+	name = "pack of strange seeds"
+	icon_state = "seed-x"
+	icon_grow = "xpod-grow"
+
+	icon_dead = "xpod-dead"
+
+	icon_harvest = "xpod-harvest"
+	growthstages = 4

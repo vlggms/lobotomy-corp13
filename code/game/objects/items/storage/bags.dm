@@ -50,7 +50,7 @@
 	STR.set_holdable(null, list(/obj/item/disk/nuclear))
 
 /obj/item/storage/bag/trash/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] puts [src] over [user.p_their()] head and starts chomping at the insides! Disgusting!</span>")
+	user.visible_message(span_suicide("[user] puts [src] over [user.p_their()] head and starts chomping at the insides! Disgusting!"))
 	playsound(loc, 'sound/items/eatfood.ogg', 50, TRUE, -1)
 	return (TOXLOSS)
 
@@ -74,7 +74,7 @@
 		J.mybag=src
 		J.update_icon()
 	else
-		to_chat(user, "<span class='warning'>You are unable to fit your [name] into the [J.name].</span>")
+		to_chat(user, span_warning("You are unable to fit your [name] into the [J.name]."))
 		return
 
 /obj/item/storage/bag/trash/filled
@@ -132,7 +132,7 @@
 		return
 	if(listeningTo)
 		UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
-	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/Pickup_ores)
+	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(Pickup_ores))
 	listeningTo = user
 
 /obj/item/storage/bag/ore/dropped()
@@ -161,17 +161,17 @@
 				show_message = TRUE
 			else
 				if(!spam_protection)
-					to_chat(user, "<span class='warning'>Your [name] is full and can't hold any more!</span>")
+					to_chat(user, span_warning("Your [name] is full and can't hold any more!"))
 					spam_protection = TRUE
 					continue
 	if(show_message)
 		playsound(user, "rustle", 50, TRUE)
 		if (box)
-			user.visible_message("<span class='notice'>[user] offloads the ores beneath [user.p_them()] into [box].</span>", \
-			"<span class='notice'>You offload the ores beneath you into your [box].</span>")
+			user.visible_message(span_notice("[user] offloads the ores beneath [user.p_them()] into [box]."), \
+			span_notice("You offload the ores beneath you into your [box]."))
 		else
-			user.visible_message("<span class='notice'>[user] scoops up the ores beneath [user.p_them()].</span>", \
-				"<span class='notice'>You scoop up the ores beneath you with your [name].</span>")
+			user.visible_message(span_notice("[user] scoops up the ores beneath [user.p_them()]."), \
+				span_notice("You scoop up the ores beneath you with your [name]."))
 	spam_protection = FALSE
 
 /obj/item/storage/bag/ore/cyborg
@@ -213,7 +213,10 @@
 		/obj/item/reagent_containers/honeycomb,
 		/obj/item/graft,
 		))
-////////
+
+// -----------------------------
+//          Plant bag
+// -----------------------------
 
 /obj/item/storage/bag/plants/portaseeder
 	name = "portable seed extractor"
@@ -343,7 +346,7 @@
 	SEND_SIGNAL(src, COMSIG_TRY_STORAGE_QUICK_EMPTY)
 	// Make each item scatter a bit
 	for(var/obj/item/I in oldContents)
-		INVOKE_ASYNC(src, .proc/do_scatter, I)
+		INVOKE_ASYNC(src, PROC_REF(do_scatter), I)
 
 	if(prob(50))
 		playsound(M, 'sound/items/trayhit1.ogg', 50, TRUE)
@@ -496,3 +499,43 @@
 /obj/item/storage/bag/harpoon_quiver/PopulateContents()
 	for(var/i in 1 to 40)
 		new /obj/item/ammo_casing/caseless/harpoon(src)
+
+// -----------------------------
+//           Silk Bag
+// -----------------------------
+
+/obj/item/storage/bag/silk
+	name = "silk bag"
+	icon = 'icons/obj/mining.dmi'
+	icon_state = "silk_satchel"
+	resistance_flags = FLAMMABLE
+
+/obj/item/storage/bag/silk/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_w_class = WEIGHT_CLASS_NORMAL
+	STR.max_combined_w_class = 100
+	STR.max_items = 100
+	STR.set_holdable(list(
+		/obj/item/stack/sheet/silk,
+		))
+
+// -----------------------------
+//           Meat Bag
+// -----------------------------
+
+/obj/item/storage/bag/meat
+	name = "meat bag"
+	icon = 'icons/obj/mining.dmi'
+	icon_state = "meat_satchel"
+	resistance_flags = FLAMMABLE
+
+/obj/item/storage/bag/meat/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_w_class = WEIGHT_CLASS_NORMAL
+	STR.max_combined_w_class = 70
+	STR.max_items = 70
+	STR.set_holdable(list(
+		/obj/item/food/meat/slab,
+		))

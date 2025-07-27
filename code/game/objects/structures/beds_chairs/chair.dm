@@ -25,13 +25,13 @@
 /obj/structure/chair/Initialize()
 	. = ..()
 	if(!anchored)	//why would you put these on the shuttle?
-		addtimer(CALLBACK(src, .proc/RemoveFromLatejoin), 0)
+		addtimer(CALLBACK(src, PROC_REF(RemoveFromLatejoin)), 0)
 	if(prob(0.2))
 		name = "tactical [name]"
 
 /obj/structure/chair/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/simple_rotation,ROTATION_ALTCLICK | ROTATION_CLOCKWISE, CALLBACK(src, .proc/can_user_rotate),CALLBACK(src, .proc/can_be_rotated),null)
+	AddComponent(/datum/component/simple_rotation,ROTATION_ALTCLICK | ROTATION_CLOCKWISE, CALLBACK(src, PROC_REF(can_user_rotate)),CALLBACK(src, PROC_REF(can_be_rotated)),null)
 
 /obj/structure/chair/proc/can_be_rotated(mob/user)
 	return TRUE
@@ -117,7 +117,7 @@
 	. = ..()
 	handle_layer()
 
-/obj/structure/chair/post_unbuckle_mob()
+/obj/structure/chair/post_unbuckle_mob(mob/living/M)
 	. = ..()
 	handle_layer()
 
@@ -342,10 +342,10 @@
 		return
 	if(prob(break_chance))
 		user.visible_message("<span class='danger'>[user] smashes \the [src] to pieces against \the [target]</span>")
-		if(iscarbon(target))
-			var/mob/living/carbon/C = target
-			if(C.health < C.maxHealth*0.5)
-				C.Paralyze(20)
+		// if(iscarbon(target))
+		// 	var/mob/living/carbon/C = target
+		// 	if(C.health < C.maxHealth*0.5)
+		// 		C.Paralyze(20)
 		smash(user)
 
 /obj/item/chair/greyscale
@@ -463,7 +463,7 @@
 	Mob.pixel_y += 2
 	.=..()
 	if(iscarbon(Mob))
-		INVOKE_ASYNC(src, .proc/snap_check, Mob)
+		INVOKE_ASYNC(src, PROC_REF(snap_check), Mob)
 
 /obj/structure/chair/plastic/post_unbuckle_mob(mob/living/Mob)
 	Mob.pixel_y -= 2
@@ -490,3 +490,16 @@
 	custom_materials = list(/datum/material/plastic = 2000)
 	break_chance = 25
 	origin_type = /obj/structure/chair/plastic
+
+/obj/item/chair/icequeen
+	name = "Snow Queen's Throne"
+	desc = "An icey throne."
+	icon = 'ModularTegustation/Teguicons/160x160.dmi'
+	icon_state = "snowqueen_throne"
+	dir = 2
+	layer = HIGH_OBJ_LAYER
+	density = 1
+	anchored = 1
+	bound_height = 160
+	bound_width = 160
+

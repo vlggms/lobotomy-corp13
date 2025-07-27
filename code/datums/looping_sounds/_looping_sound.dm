@@ -34,6 +34,7 @@
 	var/falloff_exponent
 	var/timerid
 	var/falloff_distance
+	var/channel = 0
 
 /datum/looping_sound/New(list/_output_atoms=list(), start_immediately=FALSE, _direct=FALSE)
 	if(!mid_sounds)
@@ -74,7 +75,7 @@
 	if(!chance || prob(chance))
 		play(get_sound(starttime))
 	if(!timerid)
-		timerid = addtimer(CALLBACK(src, .proc/sound_loop, world.time), mid_length, TIMER_CLIENT_TIME | TIMER_STOPPABLE | TIMER_LOOP)
+		timerid = addtimer(CALLBACK(src, PROC_REF(sound_loop), world.time), mid_length, TIMER_CLIENT_TIME | TIMER_STOPPABLE | TIMER_LOOP)
 
 /datum/looping_sound/proc/play(soundfile, volume_override)
 	var/list/atoms_cache = output_atoms
@@ -87,7 +88,7 @@
 		if(direct)
 			SEND_SOUND(thing, S)
 		else
-			playsound(thing, S, volume, vary, extra_range, falloff_exponent = falloff_exponent, falloff_distance = falloff_distance)
+			playsound(thing, S, volume, vary, extra_range, falloff_exponent = falloff_exponent, falloff_distance = falloff_distance, channel = channel)
 
 /datum/looping_sound/proc/get_sound(starttime, _mid_sounds)
 	. = _mid_sounds || mid_sounds
@@ -99,7 +100,7 @@
 	if(start_sound)
 		play(start_sound, start_volume)
 		start_wait = start_length
-	addtimer(CALLBACK(src, .proc/sound_loop), start_wait, TIMER_CLIENT_TIME)
+	addtimer(CALLBACK(src, PROC_REF(sound_loop)), start_wait, TIMER_CLIENT_TIME)
 
 /datum/looping_sound/proc/on_stop()
 	if(end_sound)

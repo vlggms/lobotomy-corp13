@@ -4,22 +4,33 @@
 	desc = "A scythe with a clock attached, quietly ticking."
 	icon = 'ModularTegustation/Teguicons/32x64.dmi'
 	icon_state = "silence"
+	portrait = "silence"
 	threat_level = WAW_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(0, 0, 40, 50, 50),
 		ABNORMALITY_WORK_INSIGHT = 0,
 		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 30, 40, 40),
-		ABNORMALITY_WORK_REPRESSION = list(0, 0, 50, 45, 45)
-			)
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 50, 45, 45),
+	)
 	start_qliphoth = 1
 	work_damage_amount = 10
 	work_damage_type = PALE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/gloom
 
 	ego_list = list(
 		/datum/ego_datum/weapon/thirteen,
 		/datum/ego_datum/armor/thirteen,
-		)
-//	gift_type = /datum/ego_gifts/thirteen
+	)
+	gift_type = /datum/ego_gifts/thirteen
+	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
+
+	observation_prompt = "Time's wasting. <br>Time's running out... <br>They are nothing but meaningless tantrums. <br>\
+		The watch will not only take your lost time back, but also give you even more time."
+	observation_choices = list(
+		"Use the watch" = list(TRUE, "The price will follow to your decision. <br>It is designed this way."),
+		"Do not use the watch" = list(FALSE, "Actually, you have no right to refuse this gift. <br>\
+			Whether you want it or not, we all know that you have to take it."),
+	)
 
 	var/meltdown_cooldown_time = 13 MINUTES
 	var/meltdown_cooldown
@@ -35,11 +46,19 @@
 
 /mob/living/simple_animal/hostile/abnormality/silence/Destroy()
 	QDEL_NULL(soundloop)
-	..()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/silence/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	safe = TRUE
-	to_chat(user, "<span class='nicegreen'>The bells do not toll for thee. Not yet.</span>")
+	to_chat(user, span_nicegreen("The bells do not toll for thee. Not yet."))
+	return
+
+/mob/living/simple_animal/hostile/abnormality/silence/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
+	if(prob(50))
+		safe = TRUE
+		to_chat(user, span_nicegreen("The bells do not toll for thee. Not yet."))
 	return
 
 /mob/living/simple_animal/hostile/abnormality/silence/Life()
@@ -62,8 +81,8 @@
 			continue
 
 		new /obj/effect/temp_visual/thirteen(get_turf(H))	//A visual effect if it hits
-		H.apply_damage(worldwide_damage, PALE_DAMAGE, null, H.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
-	addtimer(CALLBACK(src, .proc/Reset), reset_time)
+		H.deal_damage(worldwide_damage, PALE_DAMAGE)
+	addtimer(CALLBACK(src, PROC_REF(Reset)), reset_time)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/silence/proc/Reset()

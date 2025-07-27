@@ -15,7 +15,7 @@
 		return ..()
 
 /obj/structure/mineral_door/resin/wrench_act(mob/living/user, obj/item/I)
-	to_chat(user, "<span class='notice'>It appears that there are no bolts on the [src].</span>")
+	to_chat(user, span_notice("It appears that there are no bolts on the [src]."))
 	return
 
 /obj/structure/mineral_door/resin/welder_act(mob/living/user, obj/item/I)

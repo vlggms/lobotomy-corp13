@@ -17,9 +17,9 @@
 		if(W.get_sharpness() && W.force > 0)
 			if(W.hitsound)
 				playsound(get_turf(src), W.hitsound, 100, FALSE, FALSE)
-			user.visible_message("<span class='notice'>[user] begins to cut down [src] with [W].</span>","<span class='notice'>You begin to cut down [src] with [W].</span>", "<span class='hear'>You hear the sound of sawing.</span>")
+			user.visible_message(span_notice("[user] begins to cut down [src] with [W]."),span_notice("You begin to cut down [src] with [W]."), span_hear("You hear the sound of sawing."))
 			if(do_after(user, 1000/W.force, target = src)) //5 seconds with 20 force, 8 seconds with a hatchet, 20 seconds with a shard.
-				user.visible_message("<span class='notice'>[user] fells [src] with the [W].</span>","<span class='notice'>You fell [src] with the [W].</span>", "<span class='hear'>You hear the sound of a tree falling.</span>")
+				user.visible_message(span_notice("[user] fells [src] with the [W]."),span_notice("You fell [src] with the [W]."), span_hear("You hear the sound of a tree falling."))
 				playsound(get_turf(src), 'sound/effects/meteorimpact.ogg', 100 , FALSE, FALSE)
 				user.log_message("cut down [src] at [AREACOORD(src)]", LOG_ATTACK)
 				for(var/i=1 to log_amount)
@@ -78,9 +78,9 @@
 		return
 
 	if(took_presents[user.ckey] && !unlimited)
-		to_chat(user, "<span class='warning'>There are no presents with your name on.</span>")
+		to_chat(user, span_warning("There are no presents with your name on."))
 		return
-	to_chat(user, "<span class='warning'>After a bit of rummaging, you locate a gift with your name on it!</span>")
+	to_chat(user, span_warning("After a bit of rummaging, you locate a gift with your name on it!"))
 
 	if(!unlimited)
 		took_presents[user.ckey] = TRUE
@@ -326,9 +326,9 @@
 /obj/item/kirbyplants/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
 	if(trimmable && HAS_TRAIT(user,TRAIT_BONSAI) && isturf(loc) && I.get_sharpness())
-		to_chat(user,"<span class='notice'>You start trimming [src].</span>")
+		to_chat(user,span_notice("You start trimming [src]."))
 		if(do_after(user,3 SECONDS,target=src))
-			to_chat(user,"<span class='notice'>You finish trimming [src].</span>")
+			to_chat(user,span_notice("You finish trimming [src]."))
 			change_visual()
 
 /// Cycle basic plant visuals
@@ -415,9 +415,9 @@
 		return ..()
 	if(flags_1 & NODECONSTRUCT_1)
 		return ..()
-	to_chat(user, "<span class='notice'>You start mining...</span>")
+	to_chat(user, span_notice("You start mining..."))
 	if(W.use_tool(src, user, 40, volume=50))
-		to_chat(user, "<span class='notice'>You finish mining the rock.</span>")
+		to_chat(user, span_notice("You finish mining the rock."))
 		if(mineResult && mineAmount)
 			new mineResult(loc, mineAmount)
 		SSblackbox.record_feedback("tally", "pick_used_mining", 1, W.type)
@@ -493,3 +493,61 @@
 	. = ..()
 	icon_state = "[initial(icon_state)][rand(1,3)]"
 
+//Ice stuff :3
+
+/obj/structure/flora/iceshards
+	name = "ice shards"
+	icon = 'icons/obj/flora/icedecor.dmi'
+	icon_state = "ice_shards"
+	density = FALSE
+
+/obj/structure/flora/icestalactite
+	name = "icicle"
+	icon = 'icons/obj/flora/icedecor.dmi'
+	icon_state = "ice_stalactite"
+	density = TRUE
+	plane = 0
+
+/obj/structure/flora/icestalactite/small
+	icon_state = "small_icetite"
+
+/obj/structure/flora/icestalagmite
+	name = "icicle"
+	icon = 'icons/obj/flora/icedecor.dmi'
+	icon_state = "ice_stalagmite"
+	density = TRUE
+	plane = 0
+
+/obj/structure/flora/icestalagmite/small
+	icon_state = "small_icemite"
+
+/obj/structure/flora/iceslab
+	name = "ice chunk"
+	icon = 'icons/obj/flora/icedecor.dmi'
+	icon_state = "ice_slab1"
+	density = TRUE
+	plane = 0
+
+/obj/structure/flora/iceslab/alt
+	icon_state = "ice_slab2"
+
+/obj/structure/flora/icechunk
+	name = "ice chunk"
+	icon = 'icons/obj/flora/icedecor.dmi'
+	icon_state = "ice_chunk1"
+	density = TRUE
+	plane = 0
+
+/obj/structure/flora/icechunk/alt
+	icon_state = "ice_chunk2"
+
+/obj/structure/flora/icegrave
+	name = "ice prison"
+	icon = 'icons/obj/flora/icedecor.dmi'
+	icon_state = "ice_grave1"
+	density = TRUE
+	plane = 0
+
+/obj/structure/flora/icegrave/alt
+	icon_state = "ice_grave2"
+	max_integrity = 600

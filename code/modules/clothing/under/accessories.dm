@@ -252,25 +252,46 @@
 //OBJECTION!//
 //////////////
 
-/obj/item/clothing/accessory/fixer_badge
+/obj/item/clothing/accessory/lawyers_badge
+	name = "attorney's badge"
+	desc = "Fills you with the conviction of JUSTICE. Lawyers tend to want to show it to everyone they meet."
+	icon_state = "lawyerbadge"
+/obj/item/clothing/accessory/lawyers_badge/attack_self(mob/user)
+	if(prob(1))
+		user.say("The testimony contradicts the evidence!", forced = "attorney's badge")
+	user.visible_message("<span class='notice'>[user] shows [user.p_their()] attorney's badge.</span>", "<span class='notice'>You show your attorney's badge.</span>")
+
+/obj/item/clothing/accessory/lawyers_badge/on_uniform_equip(obj/item/clothing/under/U, mob/living/user)
+	RegisterSignal(user, COMSIG_LIVING_SLAM_TABLE, PROC_REF(table_slam))
+	user.bubble_icon = "lawyer"
+
+/obj/item/clothing/accessory/lawyers_badge/on_uniform_dropped(obj/item/clothing/under/U, mob/living/user)
+	UnregisterSignal(user, COMSIG_LIVING_SLAM_TABLE)
+	user.bubble_icon = initial(user.bubble_icon)
+
+/obj/item/clothing/accessory/lawyers_badge/proc/table_slam(mob/living/source, obj/structure/table/the_table)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, PROC_REF(handle_table_slam), source)
+
+/obj/item/clothing/accessory/lawyers_badge/proc/handle_table_slam(mob/living/user)
+	user.say("Objection!!", spans = list(SPAN_YELL), forced=TRUE)
+
+// LOBOTOMYCORPORATION EDIT ADDITION START - this badge originally replaced the lawyers one, its better to have it seperate for the sake of modularity, but im not fully modularizing this in a emote PR
+
+/obj/item/clothing/accessory/lawyers_badge/fixer
 	name = "fixer's badge"
 	desc = "Fixers tend to want to show it to everyone they meet. Fills you with the conviction of JUSTICE."
 	icon_state = "lawyerbadge"
 
-/obj/item/clothing/accessory/fixer_badge/attack_self(mob/user)
+/obj/item/clothing/accessory/lawyers_badge/fixer/attack_self(mob/user)
 	if(prob(1))
 		user.say("Nothing between me and a payday!", forced = "fixer's badge")
 	user.visible_message("<span class='notice'>[user] shows [user.p_their()] fixer's badge.</span>", "<span class='notice'>You show your fixer's badge.</span>")
 
-/obj/item/clothing/accessory/fixer_badge/on_uniform_equip(obj/item/clothing/under/U, user)
-	var/mob/living/L = user
-	if(L)
-		L.bubble_icon = "lawyer"
+/obj/item/clothing/accessory/lawyers_badge/fixer/handle_table_slam(mob/living/user)
+	user.say("I WANT MY FUCKING AHN!!", spans = list(SPAN_YELL), forced=TRUE)
 
-/obj/item/clothing/accessory/fixer_badge/on_uniform_dropped(obj/item/clothing/under/U, user)
-	var/mob/living/L = user
-	if(L)
-		L.bubble_icon = initial(L.bubble_icon)
+// LOBOTOMYCORPORATION EDIT ADDITION END
 
 ////////////////
 //HA HA! NERD!//
@@ -301,30 +322,12 @@
 	desc = "A pin to show off your appreciation for clowns and clowning!"
 	icon_state = "fan_clown_pin"
 
-/obj/item/clothing/accessory/fan_clown_pin/on_uniform_equip(obj/item/clothing/under/U, user)
-	var/mob/living/L = user
-	if(HAS_TRAIT(L, TRAIT_FAN_CLOWN))
-		SEND_SIGNAL(L, COMSIG_ADD_MOOD_EVENT, "fan_clown_pin", /datum/mood_event/fan_clown_pin)
-
-/obj/item/clothing/accessory/fan_clown_pin/on_uniform_dropped(obj/item/clothing/under/U, user)
-	var/mob/living/L = user
-	if(HAS_TRAIT(L, TRAIT_FAN_CLOWN))
-		SEND_SIGNAL(L, COMSIG_CLEAR_MOOD_EVENT, "fan_clown_pin")
 
 /obj/item/clothing/accessory/fan_mime_pin
 	name = "\improper Mime Pin"
 	desc = "A pin to show off your appreciation for mimes and miming!"
 	icon_state = "fan_mime_pin"
 
-/obj/item/clothing/accessory/fan_mime_pin/on_uniform_equip(obj/item/clothing/under/U, user)
-	var/mob/living/L = user
-	if(HAS_TRAIT(L, TRAIT_FAN_MIME))
-		SEND_SIGNAL(L, COMSIG_ADD_MOOD_EVENT, "fan_mime_pin", /datum/mood_event/fan_mime_pin)
-
-/obj/item/clothing/accessory/fan_mime_pin/on_uniform_dropped(obj/item/clothing/under/U, user)
-	var/mob/living/L = user
-	if(HAS_TRAIT(L, TRAIT_FAN_MIME))
-		SEND_SIGNAL(L, COMSIG_CLEAR_MOOD_EVENT, "fan_mime_pin")
 
 ////////////////
 //OONGA BOONGA//
@@ -370,7 +373,7 @@
 
 /obj/item/clothing/accessory/allergy_dogtag/on_uniform_equip(obj/item/clothing/under/U, user)
 	. = ..()
-	RegisterSignal(U,COMSIG_PARENT_EXAMINE,.proc/on_examine)
+	RegisterSignal(U,COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
 
 /obj/item/clothing/accessory/allergy_dogtag/on_uniform_dropped(obj/item/clothing/under/U, user)
 	. = ..()
@@ -379,3 +382,11 @@
 ///What happens when we examine the uniform
 /obj/item/clothing/accessory/allergy_dogtag/proc/on_examine(datum/source, mob/user, list/examine_list)
 	examine_list += "The dogtag has a listing of allergies : [display]"
+
+//Limbus company
+/obj/item/clothing/accessory/limbusvest
+	name = "LCB vest"
+	desc = "An unarmored vest, slightly different than the usual L-corp standard."
+	icon_state = "lcb_vest"
+	minimize_when_attached = FALSE
+	attachment_slot = CHEST

@@ -90,10 +90,15 @@
 	med_hud_set_status()
 	stop_pulling()
 
+	set_ssd_indicator(FALSE) //LOBOTOMYCORPORATION ADDITION -- SSD INDICATOR
+
 	SEND_SIGNAL(src, COMSIG_LIVING_DEATH, gibbed)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_DEATH, src, gibbed)
 
 	if (client)
 		client.move_delay = initial(client.move_delay)
+
+	if(!gibbed && (death_sound || death_message))
+		INVOKE_ASYNC(src, TYPE_PROC_REF(/mob, emote), "deathgasp")
 
 	return TRUE

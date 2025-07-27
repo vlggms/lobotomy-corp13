@@ -31,7 +31,7 @@
 	if(!isliving(M))
 		return FALSE
 	// WOULDN'T IT BE FUNNY IF I TOOK AWAY YOUR HEALING?
-	if(istype(SSlobotomy_corp.core_suppression, /datum/suppression/safety))
+	if(GetCoreSuppression(/datum/suppression/safety))
 		if(!do_after(user, 10, target = M))
 			return FALSE
 		if(prob(50))
@@ -198,14 +198,14 @@
 	desc = "An autoinjector containing salicylic acid, used to treat severe brute damage."
 	icon_state = "salacid"
 	inhand_icon_state = "salacid"
-	list_reagents = list(/datum/reagent/medicine/sal_acid = 10)
+	list_reagents = list(/datum/reagent/medicine/sal_acid = 5)
 
 /obj/item/reagent_containers/hypospray/medipen/mental
 	name = "mental stabilizator medipen"
 	desc = "An autoinjector containing mental stabilizator, used to treat severe anxiety and panic."
 	icon_state = "morphen"
 	inhand_icon_state = "morphen"
-	list_reagents = list(/datum/reagent/medicine/mental_stabilizator = 10)
+	list_reagents = list(/datum/reagent/medicine/mental_stabilizator = 5)
 
 /obj/item/reagent_containers/hypospray/medipen/salbutamol
 	name = "salbutamol medipen"

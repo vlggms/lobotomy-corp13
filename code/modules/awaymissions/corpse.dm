@@ -20,7 +20,6 @@
 	var/short_desc = "The mapper forgot to set this!"
 	var/flavour_text = ""
 	var/important_info = ""
-	var/faction = null
 	var/permanent = FALSE	//If true, the spawner will not disappear upon running out of uses.
 	var/random = FALSE		//Don't set a name or gender, just go random
 	var/antagonist_type
@@ -35,13 +34,10 @@
 	var/show_flavour = TRUE
 	var/banType = ROLE_LAVALAND
 	var/ghost_usable = TRUE
+	var/list/faction
 
-//ATTACK GHOST IGNORING PARENT RETURN VALUE
-/obj/effect/mob_spawn/attack_ghost(mob/user)
-	if(!SSticker.HasRoundStarted() || !loc || !ghost_usable)
-		return
-	var/ghost_role = alert("Become [mob_name]? (Warning, You can no longer be revived!)",,"Yes","No")
-	if(ghost_role == "No" || !loc || QDELETED(user))
+/obj/effect/mob_spawn/proc/spawn_user_as_role(mob/user)
+	if(!SSticker.HasRoundStarted() || !loc)
 		return
 	if(!(GLOB.ghost_role_flags & GHOSTROLE_SPAWNER) && !(flags_1 & ADMIN_SPAWNED_1))
 		to_chat(user, "<span class='warning'>An admin has temporarily disabled non-admin ghost roles!</span>")
@@ -50,7 +46,7 @@
 		to_chat(user, "<span class='warning'>This spawner is out of charges!</span>")
 		return
 	if(is_banned_from(user.key, banType))
-		to_chat(user, "<span class='warning'>You are jobanned!</span>")
+		to_chat(user, "<span class='warning'>You are job-banned from this role!</span>")
 		return
 	if(!allow_spawn(user))
 		return
@@ -59,10 +55,19 @@
 	log_game("[key_name(user)] became [mob_name]")
 	create(ckey = user.ckey)
 
+//ATTACK GHOST IGNORING PARENT RETURN VALUE
+/obj/effect/mob_spawn/attack_ghost(mob/user)
+	if(!ghost_usable)
+		return
+	var/ghost_role = alert("Become [mob_name]? (Warning, You can no longer be revived!)",,"Yes","No")
+	if(ghost_role == "No" || !loc || QDELETED(user))
+		return
+	spawn_user_as_role(user)
+
 /obj/effect/mob_spawn/Initialize(mapload)
 	. = ..()
 	if(instant || (roundstart && (mapload || (SSticker && SSticker.current_state > GAME_STATE_SETTING_UP))))
-		INVOKE_ASYNC(src, .proc/create)
+		INVOKE_ASYNC(src, PROC_REF(create))
 	else if(ghost_usable)
 		AddElement(/datum/element/point_of_interest)
 		LAZYADD(GLOB.mob_spawners[name], src)
@@ -97,7 +102,12 @@
 			var/mob/living/carbon/human/hoomie = M
 			hoomie.body_type = mob_gender
 	if(faction)
-		M.faction = list(faction)
+		/*This used to be list(faction) replacing the entire mob faction
+			with ONE faction, but now the faction is a list...
+			I considered making this a LAZYADD(M.faction, faction)
+			but there may be some roles that dont want a mob to be
+			neutral automatically. -IP */
+		M.faction = faction
 	if(disease)
 		M.ForceContractDisease(new disease)
 	if(death)

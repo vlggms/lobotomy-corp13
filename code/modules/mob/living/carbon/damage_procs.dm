@@ -1,7 +1,10 @@
 
 
 /mob/living/carbon/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked = FALSE, forced = FALSE, spread_damage = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE, white_healable = FALSE)
-	SEND_SIGNAL(src, COMSIG_MOB_APPLY_DAMGE, damage, damagetype, def_zone)
+	var/signal_return = SEND_SIGNAL(src, COMSIG_MOB_APPLY_DAMGE, damage, damagetype, def_zone)
+	if(signal_return & COMPONENT_MOB_DENY_DAMAGE)
+		return FALSE
+
 	var/hit_percent = (100-blocked)/100
 	if(!damage || (!forced && hit_percent <= 0))
 		return 0
@@ -75,7 +78,7 @@
 		return FALSE
 	if(amount > 0)
 		take_overall_damage(amount, 0, 0, updating_health, required_status)
-	else
+	else if(forced || !HAS_TRAIT(src, TRAIT_PHYSICAL_HEALING_BLOCKED))
 		heal_overall_damage(abs(amount), 0, 0, required_status ? required_status : BODYPART_ORGANIC, updating_health)
 	return amount
 
@@ -84,7 +87,7 @@
 		return FALSE
 	if(amount > 0)
 		take_overall_damage(0, amount, 0, updating_health, required_status)
-	else
+	else if(forced || !HAS_TRAIT(src, TRAIT_PHYSICAL_HEALING_BLOCKED))
 		heal_overall_damage(0, abs(amount), 0, required_status ? required_status : BODYPART_ORGANIC, updating_health)
 	return amount
 

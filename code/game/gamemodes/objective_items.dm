@@ -25,6 +25,7 @@
 	GLOB.possible_items -= src
 	return ..()
 
+/*
 /datum/objective_item/steal/caplaser
 	name = "the captain's antique laser gun."
 	targetitem = /obj/item/gun/energy/laser/captain
@@ -171,6 +172,36 @@
 	targetitem = /obj/item/blackbox
 	difficulty = 10
 	excludefromjob = list("Chief Engineer","Station Engineer","Atmospheric Technician")
+*/
+/datum/objective_item/steal/manager_docs
+	name = "The manager's Highly Confidential Folder"
+	targetitem = /obj/item/folder/syndicate/blue
+	difficulty = 5
+	excludefromjob = list("Manager")
+
+/datum/objective_item/steal/ro_watch
+	name = "one of the Record Officer's watches"
+	targetitem = /obj/item/records
+	difficulty = 5
+	excludefromjob = list("Records Officer")
+
+/datum/objective_item/steal/medal
+	name = "one of the manager's medals"
+	targetitem = /obj/item/clothing/accessory/medal
+	difficulty = 3 //Almost no manager actually uses these anyways
+	excludefromjob = list("Manager")
+
+/datum/objective_item/steal/skub
+	name = "skub"
+	targetitem = /obj/item/skub
+	difficulty = 2 //Skub can be gotten from the Seph vendors or EO console
+	excludefromjob = list("Extraction Officer")
+
+/datum/objective_item/steal/cactus
+	name = "the manager's cactus"
+	targetitem = /obj/item/food/grown/star_cactus
+	difficulty = 5
+	excludefromjob = list("Manager")
 
 //Unique Objectives
 /datum/objective_item/special/New()
@@ -244,7 +275,7 @@
 	if(istype(S, targetitem))
 		found_amount = S.amount
 	return found_amount>=target_amount
-
+/*
 /datum/objective_item/stack/diamond
 	name = "10 diamonds."
 	targetitem = /obj/item/stack/sheet/mineral/diamond
@@ -259,3 +290,4 @@
 	name = "25 refined uranium bars."
 	targetitem = /obj/item/stack/sheet/mineral/uranium
 	difficulty = 10
+*/

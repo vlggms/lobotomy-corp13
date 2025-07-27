@@ -12,6 +12,7 @@
 	max_stamina_damage = 120
 	var/obj/item/cavity_item
 	wound_resistance = 50
+	max_damage_callback = 200
 
 /obj/item/bodypart/chest/can_dismember(obj/item/I)
 	if(owner.stat < HARD_CRIT || !get_organs())
@@ -77,10 +78,10 @@
 	if(owner)
 		if(HAS_TRAIT(owner, TRAIT_PARALYSIS_L_ARM))
 			ADD_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_L_ARM)
-			RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_L_ARM), .proc/on_owner_paralysis_loss)
+			RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_L_ARM), PROC_REF(on_owner_paralysis_loss))
 		else
 			REMOVE_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_L_ARM)
-			RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_L_ARM), .proc/on_owner_paralysis_gain)
+			RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_L_ARM), PROC_REF(on_owner_paralysis_gain))
 	if(.)
 		var/mob/living/carbon/old_owner = .
 		if(HAS_TRAIT(old_owner, TRAIT_PARALYSIS_L_ARM))
@@ -96,7 +97,7 @@
 	SIGNAL_HANDLER
 	ADD_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_L_ARM)
 	UnregisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_L_ARM))
-	RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_L_ARM), .proc/on_owner_paralysis_loss)
+	RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_L_ARM), PROC_REF(on_owner_paralysis_loss))
 
 
 ///Proc to react to the owner losing the TRAIT_PARALYSIS_L_ARM trait.
@@ -104,7 +105,7 @@
 	SIGNAL_HANDLER
 	REMOVE_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_L_ARM)
 	UnregisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_L_ARM))
-	RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_L_ARM), .proc/on_owner_paralysis_gain)
+	RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_L_ARM), PROC_REF(on_owner_paralysis_gain))
 
 
 /obj/item/bodypart/l_arm/set_disabled(new_disabled)
@@ -115,8 +116,9 @@
 	if(!.)
 		if(bodypart_disabled)
 			owner.set_usable_hands(owner.usable_hands - 1)
+			on_disabled()
 			if(owner.stat < UNCONSCIOUS)
-				to_chat(owner, "<span class='userdanger'>Your lose control of your [name]!</span>")
+				to_chat(owner, span_userdanger("Your lose control of your [name]!"))
 			if(held_index)
 				owner.dropItemToGround(owner.get_item_for_held_index(held_index))
 	else if(!bodypart_disabled)
@@ -126,6 +128,8 @@
 		var/atom/movable/screen/inventory/hand/hand_screen_object = owner.hud_used.hand_slots["[held_index]"]
 		hand_screen_object?.update_icon()
 
+/obj/item/bodypart/l_arm/proc/on_disabled()
+//This is shitcode. but I need it elsewhere to shit code up less
 
 /obj/item/bodypart/l_arm/monkey
 	icon = 'icons/mob/animal_parts.dmi'
@@ -172,10 +176,10 @@
 	if(owner)
 		if(HAS_TRAIT(owner, TRAIT_PARALYSIS_R_ARM))
 			ADD_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_R_ARM)
-			RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_R_ARM), .proc/on_owner_paralysis_loss)
+			RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_R_ARM), PROC_REF(on_owner_paralysis_loss))
 		else
 			REMOVE_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_R_ARM)
-			RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_R_ARM), .proc/on_owner_paralysis_gain)
+			RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_R_ARM), PROC_REF(on_owner_paralysis_gain))
 	if(.)
 		var/mob/living/carbon/old_owner = .
 		if(HAS_TRAIT(old_owner, TRAIT_PARALYSIS_R_ARM))
@@ -191,7 +195,7 @@
 	SIGNAL_HANDLER
 	ADD_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_R_ARM)
 	UnregisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_R_ARM))
-	RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_R_ARM), .proc/on_owner_paralysis_loss)
+	RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_R_ARM), PROC_REF(on_owner_paralysis_loss))
 
 
 ///Proc to react to the owner losing the TRAIT_PARALYSIS_R_ARM trait.
@@ -199,7 +203,7 @@
 	SIGNAL_HANDLER
 	REMOVE_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_R_ARM)
 	UnregisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_R_ARM))
-	RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_R_ARM), .proc/on_owner_paralysis_gain)
+	RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_R_ARM), PROC_REF(on_owner_paralysis_gain))
 
 
 /obj/item/bodypart/r_arm/set_disabled(new_disabled)
@@ -210,8 +214,9 @@
 	if(!.)
 		if(bodypart_disabled)
 			owner.set_usable_hands(owner.usable_hands - 1)
+			on_disabled()
 			if(owner.stat < UNCONSCIOUS)
-				to_chat(owner, "<span class='userdanger'>Your lose control of your [name]!</span>")
+				to_chat(owner, span_userdanger("Your lose control of your [name]!"))
 			if(held_index)
 				owner.dropItemToGround(owner.get_item_for_held_index(held_index))
 	else if(!bodypart_disabled)
@@ -220,6 +225,9 @@
 	if(owner.hud_used)
 		var/atom/movable/screen/inventory/hand/hand_screen_object = owner.hud_used.hand_slots["[held_index]"]
 		hand_screen_object?.update_icon()
+
+/obj/item/bodypart/r_arm/proc/on_disabled()
+//This is shitcode. but I need it elsewhere to shit code up less
 
 
 /obj/item/bodypart/r_arm/monkey
@@ -264,10 +272,10 @@
 	if(owner)
 		if(HAS_TRAIT(owner, TRAIT_PARALYSIS_L_LEG))
 			ADD_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_L_LEG)
-			RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_L_LEG), .proc/on_owner_paralysis_loss)
+			RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_L_LEG), PROC_REF(on_owner_paralysis_loss))
 		else
 			REMOVE_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_L_LEG)
-			RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_L_LEG), .proc/on_owner_paralysis_gain)
+			RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_L_LEG), PROC_REF(on_owner_paralysis_gain))
 	if(.)
 		var/mob/living/carbon/old_owner = .
 		if(HAS_TRAIT(old_owner, TRAIT_PARALYSIS_L_LEG))
@@ -283,7 +291,7 @@
 	SIGNAL_HANDLER
 	ADD_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_L_LEG)
 	UnregisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_L_LEG))
-	RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_L_LEG), .proc/on_owner_paralysis_loss)
+	RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_L_LEG), PROC_REF(on_owner_paralysis_loss))
 
 
 ///Proc to react to the owner losing the TRAIT_PARALYSIS_L_LEG trait.
@@ -291,7 +299,7 @@
 	SIGNAL_HANDLER
 	REMOVE_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_L_LEG)
 	UnregisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_L_LEG))
-	RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_L_LEG), .proc/on_owner_paralysis_gain)
+	RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_L_LEG), PROC_REF(on_owner_paralysis_gain))
 
 
 /obj/item/bodypart/l_leg/set_disabled(new_disabled)
@@ -303,7 +311,7 @@
 		if(bodypart_disabled)
 			owner.set_usable_legs(owner.usable_legs - 1)
 			if(owner.stat < UNCONSCIOUS)
-				to_chat(owner, "<span class='userdanger'>Your lose control of your [name]!</span>")
+				to_chat(owner, span_userdanger("Your lose control of your [name]!"))
 	else if(!bodypart_disabled)
 		owner.set_usable_legs(owner.usable_legs + 1)
 
@@ -355,10 +363,10 @@
 	if(owner)
 		if(HAS_TRAIT(owner, TRAIT_PARALYSIS_R_LEG))
 			ADD_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_R_LEG)
-			RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_R_LEG), .proc/on_owner_paralysis_loss)
+			RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_R_LEG), PROC_REF(on_owner_paralysis_loss))
 		else
 			REMOVE_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_R_LEG)
-			RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_R_LEG), .proc/on_owner_paralysis_gain)
+			RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_R_LEG), PROC_REF(on_owner_paralysis_gain))
 	if(.)
 		var/mob/living/carbon/old_owner = .
 		if(HAS_TRAIT(old_owner, TRAIT_PARALYSIS_R_LEG))
@@ -374,7 +382,7 @@
 	SIGNAL_HANDLER
 	ADD_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_R_LEG)
 	UnregisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_R_LEG))
-	RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_R_LEG), .proc/on_owner_paralysis_loss)
+	RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_R_LEG), PROC_REF(on_owner_paralysis_loss))
 
 
 ///Proc to react to the owner losing the TRAIT_PARALYSIS_R_LEG trait.
@@ -382,7 +390,7 @@
 	SIGNAL_HANDLER
 	REMOVE_TRAIT(src, TRAIT_PARALYSIS, TRAIT_PARALYSIS_R_LEG)
 	UnregisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS_R_LEG))
-	RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_R_LEG), .proc/on_owner_paralysis_gain)
+	RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS_R_LEG), PROC_REF(on_owner_paralysis_gain))
 
 
 /obj/item/bodypart/r_leg/set_disabled(new_disabled)
@@ -394,7 +402,7 @@
 		if(bodypart_disabled)
 			owner.set_usable_legs(owner.usable_legs - 1)
 			if(owner.stat < UNCONSCIOUS)
-				to_chat(owner, "<span class='userdanger'>Your lose control of your [name]!</span>")
+				to_chat(owner, span_userdanger("Your lose control of your [name]!"))
 	else if(!bodypart_disabled)
 		owner.set_usable_legs(owner.usable_legs + 1)
 

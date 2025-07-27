@@ -32,7 +32,7 @@
 
 /obj/machinery/computer/apc_control/attack_ai(mob/user)
 	if(!isAdminGhostAI(user))
-		to_chat(user,"<span class='warning'>[src] does not support AI control.</span>") //You already have APC access, cheater!
+		to_chat(user,span_warning("[src] does not support AI control.")) //You already have APC access, cheater!
 		return
 	..()
 
@@ -114,7 +114,7 @@
 			log_game("[key_name(operator)] set the logs of [src] in [AREACOORD(src)] [should_log ? "On" : "Off"]")
 		if("restore-console")
 			restoring = TRUE
-			addtimer(CALLBACK(src, .proc/restore_comp), rand(3,5) * 9)
+			addtimer(CALLBACK(src, PROC_REF(restore_comp)), rand(3,5) * 9)
 		if("access-apc")
 			var/ref = params["ref"]
 			playsound(src, "terminal_type", 50, FALSE)

@@ -74,6 +74,67 @@
 		return
 	duration = world.time + original_duration
 
+//LC13 Addition -IP
+//This is for status effects that add a little box at the top of your character. These new procs sort those boxes.
+//Its weird using defines as coder variables.
+//The row will be one less than this number. Wrap 0-3 would be rows of 3 icons.
+#define MINIMUM_ROW_NUMBER 0
+#define MAXIMUM_ROW_NUMBER 4
+//This is the width and height of the icon in pixels so that they dont overlap.
+#define STATUS_ICON_WIDTH 10
+#define STATUS_ICON_HEIGHT 10
+//X axis offset for status effect icon, changing this to negative makes the icon appear farther to the left.
+#define STATUS_ICON_OFFSET -5
+
+/datum/status_effect/display
+	var/display_name
+	var/mutable_appearance/icon_overlay
+
+/datum/status_effect/display/on_apply()
+	. = ..()
+	UpdateStatusDisplay()
+	return TRUE
+
+/datum/status_effect/display/on_remove()
+	if(icon_overlay)
+		owner.cut_overlay(icon_overlay)
+	..()
+
+	//This is the system for sorting the buff/debuff icons for display status effects.-IP
+	//We can change this into a optional proc for normal status effects but display subtype is easier to find.
+/datum/status_effect/display/proc/UpdateStatusDisplay()
+	if(owner.status_effects.len <= 1)
+		AddDisplayIcon(MINIMUM_ROW_NUMBER)
+		return FALSE
+	var/tally = 0
+	for(var/datum/status_effect/display/SE in owner.status_effects)
+		if(SE.icon_overlay)
+			owner.cut_overlay(SE.icon_overlay)
+			SE.icon_overlay = null
+		SE.AddDisplayIcon(tally)
+		tally++
+
+	//This is the code that UpdateStatusDisplay calls for each display status effect every time a display status effect is added. -IP
+/datum/status_effect/display/proc/AddDisplayIcon(position)
+	icon_overlay = mutable_appearance('ModularTegustation/Teguicons/tegu_effects10x10.dmi', display_name, -MUTATIONS_LAYER)
+	TweakDisplayIcon(position)
+	owner.add_overlay(icon_overlay)
+
+	//This is for altering the display icon. If you want the icon to be different color you would add onto this like in parasite tree. -IP
+/datum/status_effect/display/proc/TweakDisplayIcon(our_slot)
+	//at 0 our x should be -2
+	var/column = (WRAP(our_slot, MINIMUM_ROW_NUMBER, MAXIMUM_ROW_NUMBER ) * STATUS_ICON_WIDTH ) + STATUS_ICON_OFFSET
+	//at 0 our slot should be 30
+	var/row = 33 + (round(our_slot * (1/ MAXIMUM_ROW_NUMBER )) * STATUS_ICON_HEIGHT )
+	icon_overlay.pixel_x = column
+	icon_overlay.pixel_y = row
+
+#undef MINIMUM_ROW_NUMBER
+#undef MAXIMUM_ROW_NUMBER
+#undef STATUS_ICON_WIDTH
+#undef STATUS_ICON_HEIGHT
+#undef STATUS_ICON_OFFSET
+
 //clickdelay/nextmove modifiers!
 /datum/status_effect/proc/nextmove_modifier()
 	return 1
@@ -102,15 +163,25 @@
 	. = FALSE
 	var/datum/status_effect/S1 = effect
 	LAZYINITLIST(status_effects)
+	var/our_id = initial(S1.id)
 	for(var/datum/status_effect/S in status_effects)
-		if(S.id == initial(S1.id) && S.status_type)
-			if(S.status_type == STATUS_EFFECT_REPLACE)
-				S.be_replaced()
-			else if(S.status_type == STATUS_EFFECT_REFRESH)
-				S.refresh()
-				return
-			else
-				return
+		if(S.id == our_id)
+			switch(S.status_type)
+				if(STATUS_EFFECT_MULTIPLE)
+					// check the rest of the matching effects in case they have a different status_type somehow
+					continue
+				if(STATUS_EFFECT_UNIQUE)
+					// leave the original untouched and don't add this one
+					return
+				if(STATUS_EFFECT_REPLACE)
+					// used for behavior where the newly-applied effect takes over
+					// and the old effect is deleted
+					S.be_replaced()
+				if(STATUS_EFFECT_REFRESH)
+					// used for behavior where the old effect is updated with stats from the new one
+					// and the new one is deleted
+					S.refresh()
+					return
 	var/list/arguments = args.Copy()
 	arguments[1] = src
 	S1 = new effect(arguments)
@@ -121,8 +192,9 @@
 	var/list/arguments = args.Copy(2)
 	if(status_effects)
 		var/datum/status_effect/S1 = effect
+		var/our_id = initial(S1.id)
 		for(var/datum/status_effect/S in status_effects)
-			if(initial(S1.id) == S.id && S.before_remove(arguments))
+			if(our_id == S.id && S.before_remove(arguments))
 				qdel(S)
 				. = TRUE
 
@@ -130,16 +202,18 @@
 	. = FALSE
 	if(status_effects)
 		var/datum/status_effect/S1 = effect
+		var/our_id = initial(S1.id)
 		for(var/datum/status_effect/S in status_effects)
-			if(initial(S1.id) == S.id)
+			if(our_id == S.id)
 				return S
 
 /mob/living/proc/has_status_effect_list(effect) //returns a list of effects with matching IDs that the mod owns; use for effects there can be multiple of
 	. = list()
 	if(status_effects)
 		var/datum/status_effect/S1 = effect
+		var/our_id = initial(S1.id)
 		for(var/datum/status_effect/S in status_effects)
-			if(initial(S1.id) == S.id)
+			if(our_id == S.id)
 				. += S
 
 //////////////////////

@@ -57,7 +57,7 @@
 /obj/item/melee/twistedtea/attack_self(mob/user)
 	if(!broken)
 		return
-	to_chat(usr, "<span class='warning'>You crumple up and throw away the [src].</span>")
+	to_chat(usr, span_warning("You crumple up and throw away the [src]."))
 	qdel(src)
 
 
@@ -71,7 +71,7 @@
 		return
 
 	if(broken)
-		to_chat(usr, "<span class='warning'>The [src] has been used and is no longer functional.</span>")
+		to_chat(usr, span_warning("The [src] has been used and is no longer functional."))
 		return
 
 	var/atom/throw_target = get_edge_target_turf(target, user.dir)
@@ -110,7 +110,7 @@
 		W.reagents.add_reagent(chem, 1)
 
 	//Make em move dat ass, hun
-	addtimer(CALLBACK(src, /obj/item/melee/twistedtea/proc/move_particles, reagent_particles), 2)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/item/melee/twistedtea, move_particles), reagent_particles), 2)
 
 	if(!unlimiteduse)
 		broken = TRUE
@@ -143,7 +143,7 @@
 			particles -= W
 	if(repetition < power)
 		repetition++
-		addtimer(CALLBACK(src, /obj/item/melee/twistedtea/proc/move_particles, particles, repetition), 2)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/item/melee/twistedtea, move_particles), particles, repetition), 2)
 
 
 
@@ -161,13 +161,13 @@
 
 /obj/item/melee/twistedtea/suicide_act(mob/user)
 	if(broken)
-		user.visible_message("<span class='suicide'>[user] stuffs [src] into [user.p_their()] mouth! It looks like [user.p_theyre()] trying to commit suicide... but nothing happens.</span>")
+		user.visible_message(span_suicide("[user] stuffs [src] into [user.p_their()] mouth! It looks like [user.p_theyre()] trying to commit suicide... but nothing happens."))
 		return SHAME
 
 	var/mob/living/carbon/human/H = user
 	var/obj/item/organ/brain/B = H.getorgan(/obj/item/organ/brain)
 
-	user.visible_message("<span class='suicide'>[user] stuffs [src] into [user.p_their()] mouth and pulls on the tab. It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] stuffs [src] into [user.p_their()] mouth and pulls on the tab. It looks like [user.p_theyre()] trying to commit suicide!"))
 
 
 	playsound(src, hitsound, 60, TRUE)

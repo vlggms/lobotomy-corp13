@@ -430,6 +430,48 @@
 		/obj/item/storage/box/fireworks=3,\
 		/obj/item/food/cake/birthday=1)
 
+/datum/outfit/job/raven/ert
+	name = "Raven Team"
+	jobtype = /datum/job/raven
+
+	ears = /obj/item/radio/headset/headset_cent/alt
+	glasses = /obj/item/clothing/glasses/night
+	uniform = /obj/item/clothing/under/suit/lobotomy/rabbit
+	shoes = /obj/item/clothing/shoes/combat
+	gloves = /obj/item/clothing/gloves/color/black
+	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
+	head = /obj/item/clothing/head/rabbit_helmet/raven/grunt
+	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/raven
+	belt = /obj/item/ego_weapon/city/rabbit_blade/raven
+	r_pocket = /obj/item/reagent_containers/hypospray/medipen/salacid
+	backpack_contents = list(
+		/obj/item/grenade/smokebomb = 1)
+
+/datum/outfit/job/raven/ert/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	if(visualsOnly)
+		return
+
+	var/obj/item/implant/sanity_death/L = new/obj/item/implant/sanity_death(H)
+	L.implant(H, null, 1)
+	H.faction |= "rabbit"
+	..()
+
+/datum/outfit/job/reindeer/berserker/ert
+	name = "Reindeer team"
+
+	ears = /obj/item/radio/headset/headset_cent/alt
+	r_pocket = /obj/item/reagent_containers/hypospray/medipen/mental
+	belt = /obj/item/ego_weapon/city/reindeer
+
+/datum/outfit/job/reindeer/berserker/ert/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	if(visualsOnly)
+		return
+
+	var/obj/item/implant/sanity_death/L = new/obj/item/implant/sanity_death(H)
+	L.implant(H, null, 1)
+	H.faction |= "rabbit"
+	..()
+
 /datum/outfit/centcom/ert/commander/rabbit
 	name = "Rabbit Team Leader"
 
@@ -438,7 +480,7 @@
 	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit
 	suit_store = /obj/item/gun/energy/e_gun/rabbit
 	glasses = /obj/item/clothing/glasses/hud/health/night
-	belt = /obj/item/ego_weapon/rabbit_blade
+	belt = /obj/item/ego_weapon/city/rabbit_blade
 	backpack_contents = list(/obj/item/storage/box/survival/engineer=1)
 	r_pocket = /obj/item/melee/classic_baton/telescopic
 
@@ -459,7 +501,7 @@
 	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/grunts
 	suit_store = /obj/item/gun/energy/e_gun/rabbit
 	glasses = /obj/item/clothing/glasses/hud/health/night
-	belt = /obj/item/ego_weapon/rabbit_blade
+	belt = /obj/item/ego_weapon/city/rabbit_blade
 	r_pocket = /obj/item/melee/classic_baton/telescopic
 	backpack_contents = list(/obj/item/storage/box/survival/engineer=1)
 
@@ -505,9 +547,42 @@
 	belt = /obj/item/storage/belt/utility/full
 	l_pocket = null
 	r_pocket = null
-	backpack_contents = list(/obj/item/storage/box/survival/engineer=1)
+	backpack_contents = list(
+		/obj/item/storage/box/survival/engineer=1,
+		/obj/item/clothing/glasses/welding=1
+		)
 
 /datum/outfit/centcom/ert/security/rhino/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	if(visualsOnly)
+		return
+
+	var/obj/item/implant/sanity_death/L = new/obj/item/implant/sanity_death(H)
+	L.implant(H, null, 1)
+	H.faction |= "rabbit"
+	..()
+
+/datum/outfit/job/roadrunner/ert
+	name = "Roadrunner Team"
+
+	ears = /obj/item/radio/headset/headset_cent/alt
+	r_pocket = /obj/item/reagent_containers/hypospray/medipen/salacid
+
+/datum/outfit/job/roadrunner/ert/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	if(visualsOnly)
+		return
+
+	var/obj/item/implant/sanity_death/L = new/obj/item/implant/sanity_death(H)
+	L.implant(H, null, 1)
+	H.faction |= "rabbit"
+	..()
+
+/datum/outfit/job/rooster/ert
+	name = "Rooster Team"
+
+	ears = /obj/item/radio/headset/headset_cent/alt
+	r_pocket = /obj/item/reagent_containers/hypospray/medipen/salacid
+
+/datum/outfit/job/rooster/ert/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(visualsOnly)
 		return
 
@@ -521,12 +596,12 @@
 
 	id = /obj/item/card/id/ert/zwei_shield
 	uniform = /obj/item/clothing/under/rank/civilian/curator/zwei_shield
-	suit = /obj/item/clothing/suit/armor/vest/zwei_jacket
+	suit = /obj/item/clothing/suit/armor/ego_gear/city/zwei/noreq
 	shoes = /obj/item/clothing/shoes/combat/merc
 	gloves = /obj/item/clothing/gloves/combat
 	ears = /obj/item/radio/headset/headset_cent/alt
-	l_hand = /obj/item/claymore
-	r_hand = /obj/item/clothing/accessory/fixer_badge
+	l_hand = /obj/item/ego_weapon/city/zweihander/noreq
+	r_hand = /obj/item/clothing/accessory/lawyers_badge/fixer
 	l_pocket = /obj/item/reagent_containers/hypospray/medipen/salacid
 	r_pocket = /obj/item/reagent_containers/hypospray/medipen/mental
 	implants = list(/obj/item/implant/mindshield, /obj/item/organ/cyberimp/eyes/hud/security)
@@ -534,13 +609,17 @@
 /datum/outfit/zwei_shield/veteran
 	name = "Zwei Veteran Shield"
 
+	suit = /obj/item/clothing/suit/armor/ego_gear/city/zweivet/noreq
 	id = /obj/item/card/id/ert/zwei_shield/veteran
 	head = /obj/item/clothing/head/beret/sec/zwei
 	glasses = /obj/item/clothing/glasses/sunglasses
+	l_hand = /obj/item/ego_weapon/city/zweihander/vet/noreq
+
 
 /datum/outfit/zwei_shield/captain
 	name = "Zwei Shield Captain"
-
+	suit = /obj/item/clothing/suit/armor/ego_gear/city/zweileader/noreq
 	id = /obj/item/card/id/ert/zwei_shield/captain
 	head = /obj/item/clothing/head/zwei
 	glasses = /obj/item/clothing/glasses/hud/health/sunglasses
+	l_hand = /obj/item/ego_weapon/city/zweihander/vet/noreq

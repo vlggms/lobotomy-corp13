@@ -5,7 +5,6 @@
 	damage_type = OXY
 	nodamage = TRUE
 	armour_penetration = 100
-	flag = MAGIC
 
 /obj/projectile/magic/death
 	name = "bolt of death"
@@ -354,7 +353,6 @@
 	icon_state = "lavastaff"
 	damage = 15
 	damage_type = BURN
-	flag = MAGIC
 	dismemberment = 50
 	nodamage = FALSE
 
@@ -374,7 +372,6 @@
 	damage_type = BURN
 	nodamage = FALSE
 	armour_penetration = 0
-	flag = MAGIC
 	hitsound = 'sound/weapons/barragespellhit.ogg'
 
 /obj/projectile/magic/arcane_barrage/on_hit(target)
@@ -391,7 +388,6 @@
 	name = "locker bolt"
 	icon_state = "locker"
 	nodamage = TRUE
-	flag = MAGIC
 	var/weld = TRUE
 	var/created = FALSE //prevents creation of more then one locker if it has multiple hits
 	var/locker_suck = TRUE
@@ -440,7 +436,7 @@
 /obj/structure/closet/decay/Initialize()
 	. = ..()
 	if(auto_destroy)
-		addtimer(CALLBACK(src, .proc/bust_open), 5 MINUTES)
+		addtimer(CALLBACK(src, PROC_REF(bust_open)), 5 MINUTES)
 
 /obj/structure/closet/decay/after_weld(weld_state)
 	if(weld_state)
@@ -449,7 +445,7 @@
 ///Fade away into nothing
 /obj/structure/closet/decay/proc/decay()
 	animate(src, alpha = 0, time = 30)
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, src), 30)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), src), 30)
 
 /obj/structure/closet/decay/open(mob/living/user, force = FALSE)
 	. = ..()
@@ -461,7 +457,7 @@
 	icon_state = weakened_icon
 	update_icon()
 
-	addtimer(CALLBACK(src, .proc/decay), 15 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(decay)), 15 SECONDS)
 
 /obj/projectile/magic/flying
 	name = "bolt of flying"
@@ -528,7 +524,6 @@
 		if(M.anti_magic_check())
 			M.visible_message("<span class='warning'>[src] vanishes on contact with [target]!</span>")
 			return BULLET_ACT_BLOCK
-		SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, src, /datum/mood_event/sapped)
 
 /obj/projectile/magic/necropotence
 	name = "bolt of necropotence"
@@ -620,7 +615,6 @@
 	damage_type = BURN
 	nodamage = FALSE
 	speed = 0.3
-	flag = MAGIC
 
 	var/zap_power = 20000
 	var/zap_range = 15
@@ -679,23 +673,21 @@
 
 /obj/projectile/magic/aoe/pillar
 	name = "pillar"
-	icon = 'ModularTegustation/Teguicons/64x64.dmi'
+	icon = 'ModularTegustation/Teguicons/32x64.dmi'
 	icon_state = "pillar"
 	alpha = 0
-	pixel_x = -16
-	base_pixel_x = -16
-	pixel_y = -16
-	base_pixel_y = -16
 
 	damage = 350
 	damage_type = BLACK_DAMAGE
-	flag = BLACK_DAMAGE
 	armour_penetration = 0
-	speed = 1.3 // Slow
+	speed = 1.5 // Slow
+	damage_falloff_tile = -5 // Loses a bit of damage so you don't get jumpscared out of nowhere
+	white_healing = FALSE
 	nodamage = FALSE
 	projectile_piercing = PASSMOB
 	projectile_phasing = (ALL & (~PASSMOB))
 	hitsound = 'sound/magic/arbiter/pillar_hit.ogg'
+	var/obj/effect/trail_type = /obj/effect/temp_visual/revenant
 	var/list/been_hit = list()
 
 /obj/projectile/magic/aoe/pillar/Initialize()
@@ -705,24 +697,30 @@
 /obj/projectile/magic/aoe/pillar/Moved(atom/OldLoc, Dir)
 	..()
 	for(var/turf/T in range(1, get_turf(src)))
-		new /obj/effect/temp_visual/revenant(T)
+		new trail_type(T)
 
 /obj/projectile/magic/aoe/pillar/Range()
 	if(proxdet)
 		for(var/obj/machinery/computer/abnormality/CA in range(1, get_turf(src)))
-			if(CA.meltdown || !CA.datum_reference || !CA.datum_reference.current || !CA.datum_reference.qliphoth_meter)
+			if(CA.meltdown || !CA.datum_reference || !CA.datum_reference.current || !CA.datum_reference.qliphoth_meter || CA.datum_reference.working)
 				continue
-			CA.start_meltdown()
-			CA.meltdown_time = rand(10,20)
+			CA.start_meltdown(MELTDOWN_NORMAL, 40, 60)
+			playsound(CA, hitsound, 50, TRUE, 4)
 	..()
 
-/obj/projectile/magic/aoe/pillar/on_hit(target)
-	. = ..()
-	if(isliving(target) && !(target in been_hit))
-		var/mob/living/L = target
-		var/throwtarget = get_edge_target_turf(src, pick(GLOB.alldirs))
-		L.safe_throw_at(throwtarget, 7, force = MOVE_FORCE_EXTREMELY_STRONG)
-		been_hit += L
+/obj/projectile/magic/aoe/pillar/red
+	icon_state = "pillar_red"
+	damage_type = RED_DAMAGE
+	trail_type = /obj/effect/temp_visual/cult/sparks
+
+/obj/projectile/magic/aoe/pillar/white
+	icon_state = "pillar_white"
+	damage_type = WHITE_DAMAGE
+
+/obj/projectile/magic/aoe/pillar/pale
+	icon_state = "pillar_pale"
+	damage = 250
+	damage_type = PALE_DAMAGE
 
 //still magic related, but a different path
 
@@ -734,7 +732,6 @@
 	nodamage = FALSE
 	armour_penetration = 100
 	temperature = -200 // Cools you down greatly per hit
-	flag = MAGIC
 
 /obj/projectile/magic/nothing
 	name = "bolt of nothing"

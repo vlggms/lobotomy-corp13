@@ -7,7 +7,6 @@
 // where all the reagents related to medicine go.
 
 /datum/reagent/medicine
-	name = "Medicine"
 	taste_description = "bitterness"
 
 /datum/reagent/medicine/on_mob_life(mob/living/M)
@@ -377,19 +376,21 @@
 	overdose_threshold = 30
 	var/healing = 0.5
 
-/datum/reagent/medicine/omnizine/on_mob_life(mob/living/M)
+/datum/reagent/medicine/omnizine/on_mob_life(mob/living/carbon/human/M)
 	M.adjustToxLoss(-healing*REM, 0)
 	M.adjustOxyLoss(-healing*REM, 0)
 	M.adjustBruteLoss(-healing*REM, 0)
+	M.adjustSanityLoss(-healing*REM, 0)
 	M.adjustFireLoss(-healing*REM, 0)
 	..()
 	. = 1
 
-/datum/reagent/medicine/omnizine/overdose_process(mob/living/M)
+/datum/reagent/medicine/omnizine/overdose_process(mob/living/carbon/human/M)
 	M.adjustToxLoss(1.5*REM, 0)
 	M.adjustOxyLoss(1.5*REM, 0)
 	M.adjustBruteLoss(1.5*REM, FALSE, FALSE, BODYPART_ORGANIC)
 	M.adjustFireLoss(1.5*REM, FALSE, FALSE, BODYPART_ORGANIC)
+	M.adjustSanityLoss(1.5*REM, 0)
 	..()
 	. = 1
 
@@ -445,7 +446,7 @@
 
 /datum/reagent/medicine/sal_acid
 	name = "Salicylic Acid"
-	description = "Stimulates the healing of severe bruises. Extremely rapidly heals severe bruising and slowly heals minor ones. Overdose will worsen existing bruising."
+	description = "Stimulates the healing of severe bruises. Extremely rapidly heals severe bruising and slowly heals minor ones. Overdose will halt metabolization of the medicine."
 	reagent_state = LIQUID
 	color = "#D2D2D2"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
@@ -453,6 +454,10 @@
 
 /datum/reagent/medicine/sal_acid/on_mob_life(mob/living/M)
 	if(overdosed)
+		return
+	var/mob/living/carbon/human/H = M
+	if(HAS_TRAIT(H, TRAIT_HEALING)) // Used for "no medipens" challenge quirk
+		holder.remove_reagent(/datum/reagent/medicine/sal_acid, 1)
 		return
 	if(M.getBruteLoss() > (M.maxHealth*0.25))
 		M.adjustBruteLoss(-4*REM, 0)
@@ -524,7 +529,7 @@
 
 /datum/reagent/medicine/mental_stabilizator //Classic sanity restoration medicine.
 	name = "Mental Stabilizator"
-	description = "Heals any potential issues with mental state of the patient."
+	description = "Counters mental corruption and restores the mental state of the patient. Overdose will halt metabolization of the medicine."
 	reagent_state = LIQUID
 	color = "#CCFFFF"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
@@ -536,7 +541,10 @@
 	if(overdosed)
 		return
 	var/mob/living/carbon/human/H = M
-	H.adjustSanityLoss(5*REM) // That's healing 5 units.
+	if(HAS_TRAIT(H, TRAIT_HEALING)) // Used for "no medipens" challenge quirk
+		holder.remove_reagent(/datum/reagent/medicine/mental_stabilizator, 1)
+		return
+	H.adjustSanityLoss(-5*REM) // That's healing 5 units.
 	..()
 	. = 1
 
@@ -572,8 +580,6 @@
 	..()
 
 /datum/reagent/medicine/morphine/on_mob_life(mob/living/M)
-	if(current_cycle >= 5)
-		SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "numb", /datum/mood_event/narcotic_medium, name)
 	switch(current_cycle)
 		if(11)
 			to_chat(M, "<span class='warning'>You start to feel tired...</span>" )
@@ -674,6 +680,10 @@
 
 /datum/reagent/medicine/epinephrine/on_mob_life(mob/living/M)
 	. = TRUE
+	var/mob/living/carbon/human/H = M
+	if(HAS_TRAIT(H, TRAIT_HEALING)) // Used for "no medipens" challenge quirk
+		holder.remove_reagent(/datum/reagent/medicine/epinephrine, 1)
+		return
 	if(holder.has_reagent(/datum/reagent/toxin/lexorin))
 		holder.remove_reagent(/datum/reagent/toxin/lexorin, 2)
 		holder.remove_reagent(/datum/reagent/medicine/epinephrine, 1)
@@ -736,9 +746,9 @@
 	exposed_mob.notify_ghost_cloning("Your body is being revived with Strange Reagent!")
 	exposed_mob.do_jitter_animation(10)
 	var/excess_healing = 5*(reac_volume-amount_to_revive) //excess reagent will heal blood and organs across the board
-	addtimer(CALLBACK(exposed_mob, /mob/living/carbon.proc/do_jitter_animation, 10), 40) //jitter immediately, then again after 4 and 8 seconds
-	addtimer(CALLBACK(exposed_mob, /mob/living/carbon.proc/do_jitter_animation, 10), 80)
-	addtimer(CALLBACK(exposed_mob, /mob/living.proc/revive, FALSE, FALSE, excess_healing), 79)
+	addtimer(CALLBACK(exposed_mob, TYPE_PROC_REF(/mob/living/carbon, do_jitter_animation), 10), 40) //jitter immediately, then again after 4 and 8 seconds
+	addtimer(CALLBACK(exposed_mob, TYPE_PROC_REF(/mob/living/carbon, do_jitter_animation), 10), 80)
+	addtimer(CALLBACK(exposed_mob, TYPE_PROC_REF(/mob/living, revive), FALSE, FALSE, excess_healing), 79)
 	..()
 
 /datum/reagent/medicine/strange_reagent/on_mob_life(mob/living/M)
@@ -1187,7 +1197,7 @@
 		C.disgust = max(0, C.disgust-6)
 	if(prob(10))
 		var/mob/living/carbon/human/H = M
-		H.adjustSanityLoss(1*REM) // That's healing
+		H.adjustSanityLoss(-1*REM) // That's healing
 	..()
 	. = 1
 
@@ -1321,12 +1331,12 @@
 	/// For tracking when we tell the person we're no longer bleeding
 	var/was_working
 
-/datum/reagent/medicine/coagulant/on_mob_metabolize(mob/living/M)
-	ADD_TRAIT(M, TRAIT_COAGULATING, /datum/reagent/medicine/coagulant)
+/datum/reagent/medicine/coagulant/on_mob_add(mob/living/M)
+	ADD_TRAIT(M, TRAIT_COAGULATING, type)
 	return ..()
 
-/datum/reagent/medicine/coagulant/on_mob_end_metabolize(mob/living/M)
-	REMOVE_TRAIT(M, TRAIT_COAGULATING, /datum/reagent/medicine/coagulant)
+/datum/reagent/medicine/coagulant/on_mob_delete(mob/living/M)
+	REMOVE_TRAIT(M, TRAIT_COAGULATING, type)
 	return ..()
 
 /datum/reagent/medicine/coagulant/on_mob_life(mob/living/carbon/M)

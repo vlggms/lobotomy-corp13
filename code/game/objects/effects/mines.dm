@@ -17,7 +17,7 @@
 	if(arm_delay)
 		armed = FALSE
 		icon_state = "uglymine-inactive"
-		addtimer(CALLBACK(src, .proc/now_armed), arm_delay)
+		addtimer(CALLBACK(src, PROC_REF(now_armed)), arm_delay)
 
 /obj/effect/mine/examine(mob/user)
 	. = ..()
@@ -26,7 +26,7 @@
 
 /// The effect of the mine
 /obj/effect/mine/proc/mineEffect(mob/victim)
-	to_chat(victim, "<span class='danger'>*click*</span>")
+	to_chat(victim, span_danger("*click*"))
 
 /// If the landmine was previously inactive, this beeps and displays a message marking it active
 /obj/effect/mine/proc/now_armed()
@@ -36,27 +36,60 @@
 	visible_message("<span class='danger'>\The [src] beeps softly, indicating it is now active.<span>", vision_distance = COMBAT_MESSAGE_RANGE)
 
 /obj/effect/mine/Crossed(atom/movable/AM)
-	if(triggered || !isturf(loc) || !armed)
+	//Stops us for exploding more then once
+	if(safety_check(AM))
 		return
 	. = ..()
 
+	//If are atom is being thrown we have to check it futher
+	if(AM.throwing)
+		//Grab a dummy datum for its vars and match the throwing datum of are item
+		var/datum/thrownthing/T = AM.throwing
+		//We need to know are landmines location, so grab it
+		var/myturf = get_turf(src)
+		//Check are throwing datum's goal tile and see if its the same as are landmines tile.
+		if(T.target_turf == myturf)
+			//Both match up so trigger the landmine
+			triggermine()
+
+	//If are atom is flying over the mine, we dont trigger
 	if(AM.movement_type & FLYING)
+		return
+
+	//If the crossed atom isnt a mob, and has gotton this far, then we dont trigger are mine
+	if(!ismob(AM))
 		return
 
 	triggermine(AM)
 
-/obj/effect/mine/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir)
+/obj/effect/mine/take_damage(damage_amount, damage_type, sound_effect, attack_dir)
+	//Stops us for exploding more then once
+	if(safety_check())
+		return
 	. = ..()
 	triggermine()
+
+/obj/effect/mine/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
+	//Stops us for exploding more then once
+	if(safety_check(AM))
+		return
+	. = ..()
+	triggermine()
+
+/obj/effect/mine/proc/safety_check(atom/movable/on_who)
+	//If we are already triggered, not ona  vaid turf or not armed, we dont explod!
+	if(triggered || !isturf(loc) || !armed || on_who && iseffect(on_who))
+		return TRUE
+	return FALSE
 
 /// When something sets off a mine
 /obj/effect/mine/proc/triggermine(atom/movable/triggerer)
 	if(triggered) //too busy detonating to detonate again
 		return
 	if(triggerer)
-		visible_message("<span class='danger'>[triggerer] sets off [icon2html(src, viewers(src))] [src]!</span>")
+		visible_message(span_danger("[triggerer] sets off [icon2html(src, viewers(src))] [src]!"))
 	else
-		visible_message("<span class='danger'>[icon2html(src, viewers(src))] [src] detonates!</span>")
+		visible_message(span_danger("[icon2html(src, viewers(src))] [src] detonates!"))
 
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(3, 1, src)
@@ -90,7 +123,7 @@
 
 /obj/effect/mine/kickmine/mineEffect(mob/victim)
 	if(isliving(victim) && victim.client)
-		to_chat(victim, "<span class='userdanger'>You have been kicked FOR NO REISIN!</span>")
+		to_chat(victim, span_userdanger("You have been kicked FOR NO REISIN!"))
 		qdel(victim.client)
 
 
@@ -184,16 +217,16 @@
 		user_human.throw_mode_on()
 
 	playsound(src, 'sound/weapons/armbomb.ogg', 70, TRUE)
-	to_chat(user, "<span class='warning'>You arm \the [src], causing it to shake! It will deploy in 3 seconds.</span>")
+	to_chat(user, span_warning("You arm \the [src], causing it to shake! It will deploy in 3 seconds."))
 	active = TRUE
-	addtimer(CALLBACK(src, .proc/deploy_mine), 3 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(deploy_mine)), 3 SECONDS)
 
 /// Deploys the mine and deletes itself
 /obj/item/minespawner/proc/deploy_mine()
 	do_alert_animation()
 	playsound(loc, 'sound/machines/chime.ogg', 30, FALSE, -3)
 	var/obj/effect/mine/new_mine = new mine_type(get_turf(src))
-	visible_message("<span class='danger'>\The [src] releases a puff of smoke, revealing \a [new_mine]!</span>")
+	visible_message(span_danger("\The [src] releases a puff of smoke, revealing \a [new_mine]!"))
 	var/obj/effect/particle_effect/smoke/poof = new (get_turf(src))
 	poof.lifetime = 3
 	qdel(src)

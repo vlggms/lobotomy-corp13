@@ -8,6 +8,10 @@
 	},
 /turf/open/floor/facility/dark,
 /area/containment_zone)
+"c" = (
+/obj/machinery/containment_panel,
+/turf/closed/indestructible/reinforced,
+/area/containment_zone)
 "f" = (
 /obj/machinery/door/airlock/vault,
 /turf/open/floor/plasteel/dark,
@@ -79,7 +83,7 @@ a
 Q
 Q
 Q
-a
+c
 "}
 (6,1,1) = {"
 a

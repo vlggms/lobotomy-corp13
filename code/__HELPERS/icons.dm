@@ -833,7 +833,7 @@ world
 						break
 				layers[current] = current_layer
 
-		//sortTim(layers, /proc/cmp_image_layer_asc)
+		//sortTim(layers, GLOBAL_PROC_REF(cmp_image_layer_asc))
 
 		var/icon/add // Icon of overlay being added
 
@@ -1239,7 +1239,7 @@ GLOBAL_LIST_EMPTY(transformation_animation_objects)
  * result_appearance - End result appearance/atom/image
  * time - Animation duration
  * transform_overlay - Appearance/atom/image of effect that moves along the animation - should be horizonatally centered
- * reset_after - If FALSE, filters won't be reset and helper vis_objects will not be removed after animation duration expires. Cleanup must be handled by the caller!
+ * reset_after - If FALSE, filters won't be reset and helper vis_objects will not be removed after animation duration expires. Cleanup must be handled by the requester!
  */
 /atom/movable/proc/transformation_animation(result_appearance,time = 3 SECONDS,transform_overlay,reset_after=TRUE)
 	var/list/transformation_objects = GLOB.transformation_animation_objects[src] || list()
@@ -1271,7 +1271,7 @@ GLOBAL_LIST_EMPTY(transformation_animation_objects)
 	for(var/A in transformation_objects)
 		vis_contents += A
 	if(reset_after)
-		addtimer(CALLBACK(src,.proc/_reset_transformation_animation,filter_index),time)
+		addtimer(CALLBACK(src, PROC_REF(_reset_transformation_animation),filter_index),time)
 
 /*
  * Resets filters and removes transformation animations helper objects from vis contents.
@@ -1287,3 +1287,44 @@ GLOBAL_LIST_EMPTY(transformation_animation_objects)
 		filters -= filters[filter_index]
 	//else
 	//	filters = null
+
+/*
+ * Given an atom, it returns the average color of the atom's current icon
+ */
+/proc/GetAverageColor(atom/target)
+	var/icon/temp_icon = icon(target.icon, target.icon_state)
+	if(target.color)
+		temp_icon.Blend(target.color, ICON_MULTIPLY)
+	var/list/colors = list()
+	for(var/h = 1 to temp_icon.Height())
+		for(var/w = 1 to temp_icon.Width())
+			var/color_code = temp_icon.GetPixel(w, h)
+			if(isnull(color_code))
+				continue
+			colors += list(hex2rgb(color_code))
+	qdel(temp_icon)
+	if(colors.len == 0)
+		stack_trace("GetAverageColor called on [target] and got no colors. Is [target.icon] at state [target.icon_state] transparent?")
+		return
+	var/list/final_color_code = list(0, 0, 0)
+	var/total = 0
+	for(var/list/color_codes in colors)
+		var/too_dark = -2
+		var/too_bright = -2
+		for(var/color_value in color_codes)
+			if(color_value < 64)
+				too_dark++
+			if(color_value > 192)
+				too_bright++
+		if(too_dark > 0 || too_bright > 0)
+			continue
+		final_color_code[1] += color_codes[1]
+		final_color_code[2] += color_codes[2]
+		final_color_code[3] += color_codes[3]
+		total++
+	if(!total)
+		return
+	final_color_code[1] = FLOOR(final_color_code[1]/total, 1)
+	final_color_code[2] = FLOOR(final_color_code[2]/total, 1)
+	final_color_code[3] = FLOOR(final_color_code[3]/total, 1)
+	return "#[num2hex(final_color_code[1], 2)][num2hex(final_color_code[2], 2)][num2hex(final_color_code[3], 2)]"

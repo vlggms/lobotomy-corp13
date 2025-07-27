@@ -8,8 +8,8 @@
 	mind_control_duration = 900
 
 /obj/item/organ/heart/gland/access/activate()
-	to_chat(owner, "<span class='notice'>You feel like a VIP for some reason.</span>")
-	RegisterSignal(owner, COMSIG_MOB_ALLOWED, .proc/free_access)
+	to_chat(owner, span_notice("You feel like a VIP for some reason."))
+	RegisterSignal(owner, COMSIG_MOB_ALLOWED, PROC_REF(free_access))
 
 /obj/item/organ/heart/gland/access/proc/free_access(datum/source, obj/O)
 	return TRUE

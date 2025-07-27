@@ -13,6 +13,8 @@
 	gender = NEUTER
 	var/divine = FALSE
 
+	var/unique_pet = FALSE // LOBOTOMYCORPORATION EDIT ADDITION - unique plushie messages
+
 /obj/item/toy/plush/Initialize()
 	. = ..()
 	AddComponent(/datum/component/squeak, squeak_override)
@@ -33,6 +35,9 @@
 
 /obj/item/toy/plush/attack_self(mob/user)
 	. = ..()
+	if(unique_pet) // LOBOTOMYCORPORATION EDIT ADDITION - unique plushie messages
+		to_chat(user, "<span class='notice'>[unique_pet]</span>")
+		return
 	if(stuffed || grenade)
 		to_chat(user, "<span class='notice'>You pet [src]. D'awww.</span>")
 		if(grenade && !grenade.active)
@@ -88,8 +93,8 @@
 	return ..()
 
 /obj/item/toy/plush/carpplushie
-	name = "space carp plushie"
-	desc = "An adorable stuffed toy that resembles a space carp."
+	name = "carp plushie"
+	desc = "An adorable stuffed toy that resembles a carp."
 	icon_state = "carpplush"
 	inhand_icon_state = "carp_plushie"
 	attack_verb_continuous = list("bites", "eats", "fin slaps")
@@ -231,7 +236,7 @@
 
 /obj/item/toy/plush/nukeplushie
 	name = "operative plushie"
-	desc = "A stuffed toy that resembles a syndicate nuclear operative. The tag claims operatives to be purely fictitious."
+	desc = "A stuffed toy that resembles a syndicate nuclear operative from a popular video game"
 	icon_state = "plushie_nuke"
 	inhand_icon_state = "plushie_nuke"
 	attack_verb_continuous = list("shoots", "nukes", "detonates")
@@ -327,6 +332,7 @@
 	desc = "A plushie depicting a researcher that did <b>nothing wrong</b>." // Fight me
 	icon_state = "ayin"
 	gender = MALE
+	unique_pet = "You pet the ayin plushie, ayin did nothing wrong."
 
 /obj/item/toy/plush/benjamin
 	name = "benjamin plushie"
@@ -407,6 +413,118 @@
 	icon_state = "angela"
 	gender = FEMALE
 
+	//Limbus Sinners
+/obj/item/toy/plush/yisang
+	name = "yi sang plushie"
+	desc = "A plushie depicting a ruminating sinner."
+	icon_state = "yisang"
+	attack_verb_continuous = list("shanks", "stabs")
+	attack_verb_simple = list("shank", "stab")
+	gender = MALE
+
+/obj/item/toy/plush/faust
+	name = "faust plushie"
+	desc = "A plushie depicting an insufferable sinner."
+	icon_state = "faust"
+	attack_verb_continuous = list("slices", "cleaves")
+	attack_verb_simple = list("slice", "cleaves")
+	gender = FEMALE
+
+/obj/item/toy/plush/don
+	name = "don quixote plushie"
+	desc = "A plushie depicting a heroic sinner."
+	icon_state = "don"
+	attack_verb_continuous = list("impales", "jousts")
+	attack_verb_simple = list("impale", "joust")
+	gender = FEMALE
+
+/obj/item/toy/plush/don/attack_self(mob/user)
+	..()
+	icon_state = "don_yahoo"
+	addtimer(CALLBACK(src, PROC_REF(sprite_return)), 3 SECONDS)
+
+//So you can make her yahoo again
+/obj/item/toy/plush/don/proc/sprite_return(mob/user)
+	icon_state = "don"
+
+/obj/item/toy/plush/ryoshu
+	name = "ryoshu plushie"
+	desc = "A plushie depicting a artistic sinner."
+	icon_state = "ryoshu"
+	attack_verb_continuous = list("slices", "cleaves")
+	attack_verb_simple = list("slice", "cleaves")
+	gender = FEMALE
+
+/obj/item/toy/plush/meursault
+	name = "meursault plushie"
+	desc = "A plushie depicting a neutral sinner."
+	icon_state = "meursault"
+	attack_verb_continuous = list("bashes", "slams", "bludgeons")
+	attack_verb_simple = list("bash", "slam", "bludgeon")
+	gender = MALE
+
+/obj/item/toy/plush/honglu
+	name = "hong lu plushie"
+	desc = "A plushie depicting a sheltered sinner."
+	icon_state = "honglu"
+	attack_verb_continuous = list("slices", "cleaves")
+	attack_verb_simple = list("slice", "cleaves")
+	gender = MALE
+
+/obj/item/toy/plush/heathcliff
+	name = "heathcliff plushie"
+	desc = "A plushie depicting a brash sinner."
+	icon_state = "heathcliff"
+	attack_verb_continuous = list("bashes", "slams", "bludgeons")
+	attack_verb_simple = list("bash", "slam", "bludgeon")
+	gender = MALE
+
+/obj/item/toy/plush/ishmael
+	name = "ishmael plushie"
+	desc = "A plushie depicting a reliable sinner."
+	icon_state = "ishmael"
+	attack_verb_continuous = list("bashes", "slams", "bludgeons")
+	attack_verb_simple = list("bash", "slam", "bludgeon")
+	gender = FEMALE
+
+/obj/item/toy/plush/rodion
+	name = "rodion plushie"
+	desc = "A plushie depicting a backstreets born sinner."
+	icon_state = "rodion"
+	attack_verb_continuous = list("slices", "cleaves")
+	attack_verb_simple = list("slice", "cleaves")
+	gender = FEMALE
+
+/obj/item/toy/plush/sinclair
+	name = "sinclair plushie"
+	desc = "A plushie depicting a insecure sinner."
+	icon_state = "sinclair"
+	attack_verb_continuous = list("slices", "cleaves")
+	attack_verb_simple = list("slice", "cleaves")
+	gender = MALE
+
+/obj/item/toy/plush/dante
+	name = "dante plushie"
+	desc = "A plushie depicting a clock headed manager."
+	icon_state = "dante"
+	gender = MALE
+
+/obj/item/toy/plush/outis
+	name = "outis plushie"
+	desc = "A plushie depicting a strategic sinner."
+	icon_state = "outis"
+	attack_verb_continuous = list("shanks", "stabs")
+	attack_verb_simple = list("shank", "stab")
+	gender = FEMALE
+
+/obj/item/toy/plush/gregor
+	name = "bug guy plushie"
+	desc = "A plushie depicting a genetically altered sinner."
+	icon_state = "gregor"
+	attack_verb_continuous = list("shanks", "stabs")
+	attack_verb_simple = list("shank", "stab")
+	gender = MALE
+
 // Misc LC stuff
 /obj/item/toy/plush/pierre
 	name = "pierre plushie"
@@ -421,12 +539,46 @@
 	icon_state = "myo"
 	gender = FEMALE
 	squeak_override = list('sound/effects/yem.ogg'=1)
+	unique_pet = "You pet the myo plushie, yem."
 
 /obj/item/toy/plush/rabbit
 	name = "rabbit plushie"
 	desc = "A plushie depicting a mercenary."
 	icon_state = "rabbit"
 	squeak_override = list('sound/effects/radio_clear.ogg'=1)
+
+/obj/item/toy/plush/yuri
+	name = "yuri plushie"
+	desc = "A plushie depicting an L corp employee who had the potential to walk alongside the sinners."
+	icon_state = "yuri"
+	gender = FEMALE
+
+/obj/item/toy/plush/attackby(obj/item/I, mob/living/user, params)
+	. = ..()
+	if(istype(I, /obj/item/food/grown/apple/gold))
+		if(do_after(user, 2 SECONDS, target = user))
+			user.visible_message("<span class='notice'>[src] is violently absorbed by the [I]!</span>")
+			qdel(src)
+			return
+		to_chat(user, "<span class='notice'>You feel as if you prevented something weird and terrible from happening again.</span>")
+
+/obj/item/toy/plush/samjo
+	name = "samjo plushie"
+	desc = "A plushie depicting a K corp secretary, their devotion deserved recognition."
+	icon_state = "samjo"
+	gender = MALE
+
+/obj/item/toy/plush/zena
+	name = "zena plushie"
+	desc = "A plushie depicting an aloof arbiter."
+	icon_state = "zena"
+	gender = FEMALE
+
+/obj/item/toy/plush/blank
+	name = "plushie blank"
+	desc = "A humanoid plush that had been freshly made or stripped down to its cloth. Despite its lack of identity, the mere aknowelegement of this plushie makes it unique."
+	icon_state = "blank"
+
 
 // Abnormalities
 /obj/item/toy/plush/qoh
@@ -435,20 +587,68 @@
 	icon_state = "qoh"
 	gender = FEMALE
 
+/obj/item/toy/plush/kog
+	name = "king of greed plushie"
+	desc = "A plushie depicting a magical girl whose desires got the best of her."
+	icon_state = "kog"
+	gender = FEMALE
+	unique_pet = "You pet the king of greed plushie, you swear it looks up to you hungirly."
+
+/obj/item/toy/plush/kod
+	name = "knight of despair plushie"
+	desc = "A plushie depicting a magical girl who abandoned those who needed her most."
+	icon_state = "kod"
+	gender = FEMALE
+
+/obj/item/toy/plush/sow
+	name = "servant of wrath plushie"
+	desc = "A plushie depicting a magical girl who was betrayed by someone they trusted dearly."
+	icon_state = "sow"
+	gender = FEMALE
+
+/obj/item/toy/plush/nihil
+	name = "jester of nihil plushie"
+	desc = "A plushie depicting a black and white jester, usually found alongside the magical girls."
+	icon_state = "nihil"
+
 /obj/item/toy/plush/bigbird
 	name = "big bird plushie"
 	desc = "A plushie depicting a big bird with a lantern that burns forever. How does it even work..?"
 	icon_state = "bigbird"
+
+/obj/item/toy/plush/pbird
+	name = "small bird plushie"
+	desc = "A plushie depicting a tiny bird with a small beak and red splotch on its chest."
+	icon_state = "pbird"
+	attack_verb_continuous = list("pecks", "punishes")
+	attack_verb_simple = list("peck", "punish")
+	squeak_override = list('sound/weapons/pbird_bite.ogg' = 1)
+
+/obj/item/toy/plush/jbird
+	name = "tall bird plushie"
+	desc = "A plushie depicting a tall bird with a bandaged head. It's so thin!"
+	icon_state = "jbird"
+	attack_verb_continuous = list("judges")
+	attack_verb_simple = list("judge")
 
 /obj/item/toy/plush/mosb
 	name = "mountain of smiling bodies plushie"
 	desc = "A plushie depicting a mountain of corpses merged into one. Yuck!"
 	icon_state = "mosb"
 
+/obj/item/toy/plush/big_bad_wolf
+	name = "big and will be bad wolf plushie"
+	desc = "A plushie depicting quite a not so bad and very much so marketable wolf plush."
+	icon_state = "big_bad_wolf"
+
 /obj/item/toy/plush/melt
 	name = "melting love plushie"
 	desc = "A plushie depicting a slime girl, you think."
 	icon_state = "melt"
+	attack_verb_continuous = list("blorbles", "slimes", "absorbs")
+	attack_verb_simple = list("blorble", "slime", "absorb")
+	squeak_override = list('sound/effects/blobattack.ogg' = 1)
+	unique_pet = "You pet the melting love plushie... you swear it smiles and looks at you, yet when you blink the plushie returns to normal"
 
 /obj/item/toy/plush/scorched
 	name = "scorched girl plushie"
@@ -457,13 +657,32 @@
 	gender = FEMALE
 	squeak_override = list('sound/abnormalities/scorchedgirl/pre_ability.ogg'=1)
 
+/obj/item/toy/plush/pinocchio
+	name = "pinocchio plushie"
+	desc = "A plushie depicting pinocchio."
+	icon_state = "pinocchio"
+
 // Others
 /obj/item/toy/plush/bongbong
 	name = "bongbong plushie"
 	desc = "A plushie depicting the Lobotomy Corporation"
 	icon_state = "bongbong"
+	unique_pet = "Bong"
 
 /obj/item/toy/plush/fumo
 	name = "cirno fumo"
 	desc = "A plushie depicting an adorable ice fairy. It's cold to the touch."
 	icon_state = "fumo_cirno"
+
+// Special
+/obj/item/toy/plush/bongy
+	name = "bongy plushie"
+	desc = "It looks like a raw chicken. A cute raw chicken!"
+	icon = 'icons/obj/plushes.dmi'
+	icon_state = "bongy"
+	squeak_override = list('sound/creatures/lc13/bongy/kweh.ogg'=1)
+
+/obj/item/toy/plush/apocbird
+	name = "apocalypse bird plushie"
+	desc = "A large plushie that resembles the beast of the black forest."
+	icon_state = "apocbird"

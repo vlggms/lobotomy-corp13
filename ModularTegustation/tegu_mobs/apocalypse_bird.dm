@@ -4,7 +4,7 @@
 	that terrorizes the forest, without realizing that it is looking for itself."
 	health = 600000
 	maxHealth = 600000
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+	damage_coeff = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
 	icon_state = "apocalypse"
 	icon_living = "apocalypse"
 	//icon_dead = "apocalypse_dead"
@@ -20,10 +20,20 @@
 	melee_damage_upper = 85
 	pixel_x = -96
 	base_pixel_x = -96
+	offsets_pixel_x = list("south" = -96, "north" = -96, "west" = -96, "east" = -96)
+	occupied_tiles_left = 3
+	occupied_tiles_right = 3
+	occupied_tiles_up = 2
+	damage_effect_scale = 1.25
 	blood_volume = BLOOD_VOLUME_NORMAL
 	del_on_death = TRUE
-	deathmessage = "finally stops moving, falling to the ground."
-	deathsound = 'sound/abnormalities/apocalypse/dead.ogg'
+	death_message = "finally stops moving, falling to the ground."
+	death_sound = 'sound/abnormalities/apocalypse/dead.ogg'
+
+	loot = list(
+		/obj/item/ego_weapon/twilight,
+		/obj/item/clothing/suit/armor/ego_gear/aleph/twilight
+		)
 
 	var/list/eggs = list()
 	var/list/egg_types = list(
@@ -73,6 +83,12 @@
 		eggs += EGG
 		potential_locs -= T
 	ADD_TRAIT(src, TRAIT_NO_FLOATING_ANIM, ROUNDSTART_TRAIT)
+	for(var/area/facility_hallway/F in GLOB.sortedAreas)
+		F.big_bird = TRUE
+		F.RefreshLights()
+	for(var/area/department_main/D in GLOB.sortedAreas)
+		D.big_bird = TRUE
+		D.RefreshLights()
 
 /mob/living/simple_animal/hostile/megafauna/apocalypse_bird/death(gibbed)
 	for(var/mob/living/carbon/human/H in enchanted_list)
@@ -83,7 +99,7 @@
 		QDEL_NULL(m)
 	var/blurb_text = "Three birds, now as one, looked around to find the monster but couldn't find it.\
 	There were no creatures, no sun and moon, and no monsters. All that is left is just a bird, and the black forest."
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/show_global_blurb, 10 SECONDS, blurb_text, 25), 5 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 10 SECONDS, blurb_text, 25), 5 SECONDS)
 	for(var/mob/living/carbon/human/M in GLOB.player_list)
 		if(M.stat != DEAD && M.client)
 			M.Apply_Gift(new /datum/ego_gifts/twilight)
@@ -146,7 +162,7 @@
 	flick("apocalypse_slam", src)
 	SLEEP_CHECK_DEATH(4)
 	playsound(src, 'sound/abnormalities/apocalypse/slam.ogg', 100, FALSE, 12)
-	visible_message("<span class='danger'>[src] slams at the floor with its talons!</span>")
+	visible_message(span_danger("[src] slams at the floor with its talons!"))
 	// Shake effect
 	for(var/mob/living/M in livinginrange(20, get_turf(src)))
 		shake_camera(M, 2, 3)
@@ -178,9 +194,9 @@
 	animate(src, alpha = 0, time = 15)
 	SLEEP_CHECK_DEATH(1.8 SECONDS)
 	animate(src, alpha = 255, time = 5)
-	visible_message("<span class='danger'>[src] suddenly disappears!</span>")
+	visible_message(span_danger("[src] suddenly disappears!"))
 	forceMove(T)
-	visible_message("<span class='danger'>[src] suddenly appears in front of you!</span>")
+	visible_message(span_danger("[src] suddenly appears in front of you!"))
 	SLEEP_CHECK_DEATH(2 SECONDS)
 	teleport_cooldown = world.time + teleport_cooldown_time
 	attacking = FALSE
@@ -243,17 +259,13 @@
 	SLEEP_CHECK_DEATH(10)
 	flick("apocalypse_slam", src)
 	playsound(src, 'sound/abnormalities/apocalypse/beak.ogg', 100, FALSE, 12)
-	visible_message("<span class='danger'>[src] opens its mouth and devours everything in its path!</span>")
+	visible_message(span_danger("[src] opens its mouth and devours everything in its path!"))
 	var/list/been_hit = list()
 	for(var/turf/TF in area_of_effect)
 		new /obj/effect/temp_visual/beakbite(TF)
-		for(var/mob/living/L in TF)
-			if(faction_check_mob(L) || (L in been_hit))
-				continue
-			if (L == src)
-				continue
-			been_hit += L
-			L.apply_damage(bite_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		var/list/new_hits = HurtInTurf(TF, been_hit, bite_damage, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE) - been_hit
+		been_hit += new_hits
+		for(var/mob/living/L in new_hits)
 			if(L.health < 0)
 				L.gib()
 	SLEEP_CHECK_DEATH(2 SECONDS)
@@ -317,7 +329,7 @@
 		H.InitializeAIController()
 		enchanted_list.Add(H)
 		H.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "enchanted", -HALO_LAYER))
-		addtimer(CALLBACK(src,.proc/EndEnchant, H), 20 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
+		addtimer(CALLBACK(src, PROC_REF(EndEnchant), H), 20 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 	icon_state = icon_living
 	SLEEP_CHECK_DEATH(2 SECONDS)
 	special_cooldown = world.time + special_cooldown_time
@@ -360,7 +372,7 @@
 		P.xo = PT.x - T.x
 		P.original = PT
 		P.preparePixelProjectile(PT, T)
-		addtimer(CALLBACK (P, .obj/projectile/proc/fire), 6.5 SECONDS)
+		addtimer(CALLBACK (P, TYPE_PROC_REF(/obj/projectile, fire)), 6.5 SECONDS)
 
 	SLEEP_CHECK_DEATH(6.5 SECONDS)
 	playsound(src, 'sound/abnormalities/apocalypse/fire.ogg', 75, FALSE, 12)
@@ -405,7 +417,7 @@
 	return ..()
 
 /mob/living/simple_animal/apocalypse_egg/death(gibbed)
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/show_global_blurb, 5 SECONDS, blurb_text, 25))
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 5 SECONDS, blurb_text, 25))
 	for(var/mob/M in GLOB.player_list)
 		if(M.z == z && M.client)
 			flash_color(M, flash_color = "#CCBBCC", flash_time = 50)
@@ -429,7 +441,7 @@
 	icon_living = "egg_beak"
 	icon_damaged = "egg_beak_damaged"
 	icon_dead = "egg_beak_dead"
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = -2, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.5)
+	damage_coeff = list(RED_DAMAGE = -2, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.5)
 	blurb_text = "And Little Bird's mouth that devours everything has been shut."
 
 /mob/living/simple_animal/apocalypse_egg/beak/death(gibbed)
@@ -443,7 +455,7 @@
 	icon_living = "egg_arm"
 	icon_damaged = "egg_arm_damaged"
 	icon_dead = "egg_arm_dead"
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = -2)
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = -2)
 	blurb_text = "A head that looked up to the cosmos has been lowered."
 
 /mob/living/simple_animal/apocalypse_egg/arm/death(gibbed)
@@ -457,12 +469,18 @@
 	icon_living = "egg_eyes"
 	icon_damaged = "egg_eyes_damaged"
 	icon_dead = "egg_eyes_dead"
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = -2, PALE_DAMAGE = 0.5)
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = -2, PALE_DAMAGE = 0.5)
 	blurb_text = "Far-sighted eyes of Big Bird have been blinded."
 
 /mob/living/simple_animal/apocalypse_egg/eyes/death(gibbed)
 	if(istype(bird))
 		bird.big_possible = FALSE
+	for(var/area/facility_hallway/F in GLOB.sortedAreas)
+		F.big_bird = FALSE
+		F.RefreshLights()
+	for(var/area/department_main/D in GLOB.sortedAreas)
+		D.big_bird = FALSE
+		D.RefreshLights()
 	..()
 
 // Portal
@@ -477,7 +495,7 @@
 	faction = list("Apocalypse", "hostile")
 	maxHealth = 30000
 	health = 30000
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.3)
+	damage_coeff = list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.3)
 	move_resist = MOVE_FORCE_STRONG
 	pull_force = MOVE_FORCE_STRONG
 	mob_size = MOB_SIZE_HUGE
@@ -485,7 +503,17 @@
 	icon_living = "forest_portal"
 	del_on_death = TRUE
 	/// List of birds that entered it. We don't delete/kill them for the sake of abnormality respawn mechanics.
-	var/list/stored_birds = list()
+	var/list/stored_birds = list("spoken" = list(), "unspoken" = list())
+	/// These are the birds.
+	var/list/bird_types = list(
+		/mob/living/simple_animal/hostile/abnormality/punishing_bird,
+		/mob/living/simple_animal/hostile/abnormality/big_bird,
+		/mob/living/simple_animal/hostile/abnormality/judgement_bird
+		)
+	var/force_bird_time
+	/// I wanna guarantee we get all Blurbs spaced and also a little prep delay so...
+	COOLDOWN_DECLARE(speak_bird)
+	COOLDOWN_DECLARE(summon_bird)
 
 /mob/living/simple_animal/forest_portal/CanAttack(atom/the_target)
 	return FALSE
@@ -498,48 +526,43 @@
 	for(var/mob/M in GLOB.player_list)
 		if(M.z == z && M.client)
 			flash_color(M, flash_color = "#CCBBBB", flash_time = 50)
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/show_global_blurb, 5 SECONDS, "A long time ago, in a warm and dense forest lived three happy birds.", 25))
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 5 SECONDS, "A long time ago, in a warm and dense forest lived three happy birds.", 25))
+	COOLDOWN_START(src, speak_bird, 10 SECONDS)
+	COOLDOWN_START(src, summon_bird, 30 SECONDS)
+	force_bird_time = world.time + 3 MINUTES
+
+/mob/living/simple_animal/forest_portal/Life()
+	. = ..()
+	var/list/range_area = orange(2, src)
+	if(force_bird_time < world.time)
+		range_area = GLOB.abnormality_mob_list // If they take too long, we shove them in MANUALLY.
+	for(var/mob/living/simple_animal/hostile/abnormality/A in range_area) // We're just gonna suckem in...
+		if(A in stored_birds["unspoken"])
+			continue
+		if(A in stored_birds["spoken"])
+			continue
+		if(!(A in SSlobotomy_events.AB_breached))
+			continue
+		if(A.type in bird_types)
+			if(!ConsumeBird(A))
+				continue
+	if(COOLDOWN_FINISHED(src, speak_bird))
+		SpeakBird()
+	if(COOLDOWN_FINISHED(src, summon_bird))
+		SummonBird()
+		COOLDOWN_START(src, summon_bird, 30 SECONDS) // So they keep trying to move towards the portal, even if temporarily blocked.
 
 /mob/living/simple_animal/forest_portal/Bumped(atom/movable/AM)
 	if(!isliving(AM))
 		return ..()
-
-	var/mob/living/L = AM
-	var/blurb_text
-	if(istype(L, /mob/living/simple_animal/hostile/abnormality/punishing_bird))
-		blurb_text = "Little bird decided to punish bad creatures with his beak."
-	else if(istype(L, /mob/living/simple_animal/hostile/abnormality/big_bird))
-		blurb_text = "Big bird, with his many eyes, watched over the forest to seek trespassers."
-	else if(istype(L, /mob/living/simple_animal/hostile/abnormality/judgement_bird))
-		blurb_text = "Long bird weighed the sins of creatures that enter the forest to keep peace."
-	else
+	if(!ishostile(AM))
 		return ..()
-	L.forceMove(src)
-	L.status_flags |= GODMODE
-	stored_birds += L
-	update_icon()
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/show_global_blurb, 5 SECONDS, blurb_text, 25))
-	for(var/mob/M in GLOB.player_list)
-		if(M.z == z && M.client)
-			flash_color(M, flash_color = "#CCBBBB", flash_time = 50)
-	SLEEP_CHECK_DEATH(5 SECONDS)
-	if(stored_birds.len >= 3)
-		var/mob/living/simple_animal/hostile/megafauna/apocalypse_bird/AB = new(get_turf(src))
-		for(var/mob/living/B in stored_birds)
-			B.forceMove(AB)
-			AB.birds += B
-		var/final_text = "In chaotic cries, somebody shouted: \"It's the monster! Big terrible monster lives in the dark, black forest!\""
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/show_global_blurb, 10 SECONDS, final_text, 50))
-		sound_to_playing_players_on_level('sound/abnormalities/apocalypse/appear.ogg', 100, zlevel = z)
-		for(var/mob/M in GLOB.player_list)
-			if(M.z == z && M.client)
-				flash_color(M, flash_color = "#FF0000", flash_time = 250)
-		qdel(src)
+	ConsumeBird(AM)
 	return
 
 /mob/living/simple_animal/forest_portal/update_overlays()
 	. = ..()
-	var/bird_len = stored_birds.len
+	var/bird_len = length(stored_birds["spoken"])
 	if(bird_len <= 0)
 		cut_overlays()
 		return
@@ -553,10 +576,78 @@
 
 	. += bird_overlay
 
+/mob/living/simple_animal/forest_portal/death(gibbed)
+	SSlobotomy_events.AB_types |= bird_types // Restore so it may happen again
+	for(var/mob/living/simple_animal/hostile/abnormality/bird in SSlobotomy_events.AB_breached)
+		bird.death()
+	SSlobotomy_events.AB_breached = list()
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 5 SECONDS, "But that is a story for another time...", 25))
+	. = ..()
+	return
+
+/mob/living/simple_animal/forest_portal/proc/ConsumeBird(mob/living/simple_animal/hostile/abnormality/bird)
+	if(!istype(bird))
+		return FALSE
+	if(!(bird.type in bird_types))
+		return FALSE
+	bird.forceMove(src)
+	bird.status_flags |= GODMODE
+	stored_birds["unspoken"] += bird
+	return TRUE
+
+/mob/living/simple_animal/forest_portal/proc/SpeakBird()
+	if(!COOLDOWN_FINISHED(src, speak_bird))
+		return FALSE
+	var/blurb_text
+	if(!length(stored_birds["unspoken"]))
+		return FALSE
+	var/mob/living/simple_animal/hostile/abnormality/bird = stored_birds["unspoken"][1] // Grab the most recent bird that entered and didn't speak
+	if(!istype(bird))
+		return FALSE
+	if(istype(bird, /mob/living/simple_animal/hostile/abnormality/punishing_bird))
+		blurb_text = "Little bird decided to punish bad creatures with his beak."
+	else if(istype(bird, /mob/living/simple_animal/hostile/abnormality/big_bird))
+		blurb_text = "Big bird, with his many eyes, watched over the forest to seek trespassers."
+	else if(istype(bird, /mob/living/simple_animal/hostile/abnormality/judgement_bird))
+		blurb_text = "Long bird weighed the sins of creatures that enter the forest to keep peace."
+	else
+		return FALSE
+	stored_birds["unspoken"] -= bird // Remove it from list
+	stored_birds["spoken"] += bird // Add it to the one where they spoke
+	update_icon()
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 5 SECONDS, blurb_text, 25))
+	for(var/mob/M in GLOB.player_list)
+		if(M.z == z && M.client)
+			flash_color(M, flash_color = "#CCBBBB", flash_time = 50)
+	if(length(stored_birds["spoken"]) >= 3)
+		SLEEP_CHECK_DEATH(10 SECONDS)
+		var/mob/living/simple_animal/hostile/megafauna/apocalypse_bird/AB = new(get_turf(src))
+		for(var/mob/living/B in stored_birds["spoken"])
+			B.forceMove(AB)
+			AB.birds += B
+		var/final_text = "In chaotic cries, somebody shouted: \"It's the monster! Big terrible monster lives in the dark, black forest!\""
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 10 SECONDS, final_text, 50))
+		sound_to_playing_players_on_level('sound/abnormalities/apocalypse/appear.ogg', 100, zlevel = z)
+		for(var/mob/M in GLOB.player_list)
+			if(M.z == z && M.client)
+				flash_color(M, flash_color = "#FF0000", flash_time = 250)
+		qdel(src)
+	COOLDOWN_START(src, speak_bird, 8 SECONDS)
+	return TRUE
+
+/mob/living/simple_animal/forest_portal/proc/SummonBird()
+	var/birds = SSlobotomy_events.AB_breached
+	birds -= stored_birds["spoken"]
+	birds -= stored_birds["unspoken"]
+	for(var/mob/living/simple_animal/hostile/abnormality/bird in birds)
+		if(!(bird.type in bird_types))
+			continue
+		bird.patrol_to(get_turf(src))
+	return
+
 /datum/ai_controller/insane/enchanted
 	lines_type = /datum/ai_behavior/say_line/insanity_enchanted
 	var/last_message = 0
-	var/list/current_path = list()
 
 /datum/ai_behavior/say_line/insanity_enchanted
 	lines = list(
@@ -604,8 +695,8 @@
 		return
 
 	if(!LAZYLEN(controller.current_path))
-		controller.current_path = get_path_to(living_pawn, target, /turf/proc/Distance_cardinal, 0, 80)
-		if(!controller.current_path) // Returned FALSE or null.
+		controller.current_path = get_path_to(living_pawn, target, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 80)
+		if(!controller.current_path.len) // Returned FALSE or null.
 			finish_action(controller, FALSE)
 			return
 		controller.current_path.Remove(controller.current_path[1])
@@ -637,7 +728,7 @@
 				else
 					controller.pathing_attempts++
 			var/move_delay = living_pawn.cached_multiplicative_slowdown + 0.1
-			addtimer(CALLBACK(src, .proc/Movement, controller), move_delay)
+			addtimer(CALLBACK(src, PROC_REF(Movement), controller), move_delay)
 			return TRUE
 	finish_action(controller, FALSE)
 	return FALSE

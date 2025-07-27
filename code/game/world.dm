@@ -29,12 +29,6 @@ GLOBAL_VAR(restart_counter)
  *			All atoms in both compiled and uncompiled maps are initialized()
  */
 /world/New()
-#ifdef USE_EXTOOLS
-	var/extools = world.GetConfig("env", "EXTOOLS_DLL") || (world.system_type == MS_WINDOWS ? "./byond-extools.dll" : "./libbyond-extools.so")
-	if (fexists(extools))
-		call(extools, "maptick_initialize")()
-#endif
-	enable_debugger()
 
 	log_world("World loaded at [time_stamp()]!")
 
@@ -71,7 +65,7 @@ GLOBAL_VAR(restart_counter)
 	if(CONFIG_GET(flag/usewhitelist))
 		load_whitelist()
 
-	GLOB.timezoneOffset = text2num(time2text(0,"hh")) * 36000
+	GLOB.timezoneOffset = world.timezone * 36000
 
 	if(fexists(RESTART_COUNTER_PATH))
 		GLOB.restart_counter = text2num(trim(file2text(RESTART_COUNTER_PATH)))
@@ -97,11 +91,11 @@ GLOBAL_VAR(restart_counter)
 	CONFIG_SET(number/round_end_countdown, 0)
 	var/datum/callback/cb
 #ifdef UNIT_TESTS
-	cb = CALLBACK(GLOBAL_PROC, /proc/RunUnitTests)
+	cb = CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(RunUnitTests))
 #else
 	cb = VARSET_CALLBACK(SSticker, force_ending, TRUE)
 #endif
-	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, /proc/_addtimer, cb, 10 SECONDS))
+	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(_addtimer), cb, 10 SECONDS))
 
 
 /world/proc/SetupLogs()
@@ -280,60 +274,26 @@ GLOBAL_VAR(restart_counter)
 	..()
 
 /world/proc/update_status()
-
-	status = update_status_tegu()  // Tegustation Edit
-
-	/*
-	var/list/features = list()
-
-	if(GLOB.master_mode)
-		features += GLOB.master_mode
-
-	if (!GLOB.enter_allowed)
-		features += "closed"
-
 	var/s = ""
-	var/hostedby
 	if(config)
 		var/server_name = CONFIG_GET(string/servername)
-		if (server_name)
-			s += "<b>[server_name]</b> &#8212; "
-		features += "[CONFIG_GET(flag/norespawn) ? "no " : ""]respawn"
-		if(CONFIG_GET(flag/allow_vote_mode))
-			features += "vote"
-		if(CONFIG_GET(flag/allow_ai))
-			features += "AI allowed"
-		hostedby = CONFIG_GET(string/hostedby)
+		if(server_name)
+			s += "<b>[server_name]</b>\] &#8212; "
 
-	s += "<b>[station_name()]</b>";
-	s += " ("
-	s += "<a href=\"http://\">" //Change this to wherever you want the hub to link to.
-	s += "Default"  //Replace this with something else. Or ever better, delete it and uncomment the game version.
-	s += "</a>"
-	s += ")"
+		var/server_caption = CONFIG_GET(string/servercaption)
+		s += "<b>[server_caption]</b>"
 
-	var/players = GLOB.clients.len
+		s += " ("
+		s += "<a href=\"[CONFIG_GET(string/discordurl)]\">"
+		s += "Discord"
+		s += "</a>"
+		s += ")<br>"
 
-	var/popcaptext = ""
-	var/popcap = max(CONFIG_GET(number/extreme_popcap), CONFIG_GET(number/hard_popcap), CONFIG_GET(number/soft_popcap))
-	if (popcap)
-		popcaptext = "/[popcap]"
-
-	if (players > 1)
-		features += "[players][popcaptext] players"
-	else if (players > 0)
-		features += "[players][popcaptext] player"
-
-	game_state = (CONFIG_GET(number/extreme_popcap) && players >= CONFIG_GET(number/extreme_popcap)) //tells the hub if we are full
-
-	if (!host && hostedby)
-		features += "hosted by <b>[hostedby]</b>"
-
-	if (features)
-		s += ": [jointext(features, ", ")]"
+		s += "<br>Map: <b>\[[SSmapping.config?.map_name || "Loading..."]</b>\]"
+		s += "<br>Roleplay: \[<b>[CONFIG_GET(string/serverrplevel)]</b>"
+		// NOTE: If this is the LAST THING to be added to the description, then it'll end with a ] anyway. So don't include it here
 
 	status = s
-	*/
 
 /world/proc/update_hub_visibility(new_visibility)
 	if(new_visibility == GLOB.hub_visibility)

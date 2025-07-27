@@ -126,7 +126,7 @@
 		energy_to_raise = energy_to_raise * 1.25
 
 		playsound(src.loc, 'sound/magic/lightning_chargeup.ogg', 100, TRUE, extrarange = 30)
-		addtimer(CALLBACK(src, .proc/new_mini_ball), 100)
+		addtimer(CALLBACK(src, PROC_REF(new_mini_ball)), 100)
 	else if(energy < energy_to_lower && orbiting_balls.len)
 		energy_to_raise = energy_to_raise / 1.25
 		energy_to_lower = (energy_to_raise / 1.25) - 20
@@ -162,7 +162,7 @@
 	if(!iscarbon(user))
 		return
 	var/mob/living/carbon/jedi = user
-	to_chat(jedi, "<span class='userdanger'>That was a shockingly dumb idea.</span>")
+	to_chat(jedi, span_userdanger("That was a shockingly dumb idea."))
 	var/obj/item/organ/brain/rip_u = locate(/obj/item/organ/brain) in jedi.internal_organs
 	jedi.ghostize(jedi)
 	if(rip_u)
@@ -211,22 +211,30 @@
 	*/
 	var/atom/closest_atom
 	var/closest_type = 0
-	var/static/things_to_shock = typecacheof(list(/obj/machinery, /mob/living, /obj/structure, /obj/vehicle/ridden))
-	var/static/blacklisted_tesla_types = typecacheof(list(/obj/machinery/atmospherics,
-										/obj/machinery/portable_atmospherics,
-										/obj/machinery/power/emitter,
-										/obj/machinery/field/generator,
-										/mob/living/simple_animal,
-										/obj/machinery/field/containment,
-										/obj/structure/disposalpipe,
-										/obj/structure/disposaloutlet,
-										/obj/machinery/disposal/delivery_chute,
-										/obj/machinery/camera,
-										/obj/structure/sign,
-										/obj/machinery/gateway,
-										/obj/structure/lattice,
-										/obj/structure/grille,
-										/obj/structure/frame/machine))
+	var/static/list/things_to_shock = zebra_typecacheof(list(
+		// Things that we want to shock.
+		/obj/machinery = TRUE,
+		/mob/living = TRUE,
+		/obj/structure = TRUE,
+		/obj/vehicle/ridden = TRUE,
+
+		// Things that we don't want to shock.
+		/obj/machinery/atmospherics = FALSE,
+		/obj/machinery/portable_atmospherics = FALSE,
+		/obj/machinery/power/emitter = FALSE,
+		/obj/machinery/field/generator = FALSE,
+		/obj/machinery/field/containment = FALSE,
+		/obj/machinery/camera = FALSE,
+		/obj/machinery/gateway = FALSE,
+		/mob/living/simple_animal = FALSE,
+		/obj/structure/disposalpipe = FALSE,
+		/obj/structure/disposaloutlet = FALSE,
+		/obj/machinery/disposal/delivery_chute = FALSE,
+		/obj/structure/sign = FALSE,
+		/obj/structure/lattice = FALSE,
+		/obj/structure/grille = FALSE,
+		/obj/structure/frame/machine = FALSE,
+	))
 
 	//Ok so we are making an assumption here. We assume that view() still calculates from the center out.
 	//This means that if we find an object we can assume it is the closest one of its type. This is somewhat of a speed increase.
@@ -234,7 +242,7 @@
 
 	//Darkness fucks oview up hard. I've tried dview() but it doesn't seem to work
 	//I hate existance
-	for(var/a in typecache_filter_multi_list_exclusion(oview(zap_range+2, source), things_to_shock, blacklisted_tesla_types))
+	for(var/a in typecache_filter_list(oview(zap_range+2, source), things_to_shock))
 		var/atom/A = a
 		if(!(zap_flags & ZAP_ALLOW_DUPLICATES) && LAZYACCESS(shocked_targets, A))
 			continue
@@ -326,7 +334,7 @@
 	if(closest_type == LIVING)
 		var/mob/living/closest_mob = closest_atom
 		closest_mob.set_shocked()
-		addtimer(CALLBACK(closest_mob, /mob/living/proc/reset_shocked), 10)
+		addtimer(CALLBACK(closest_mob, TYPE_PROC_REF(/mob/living, reset_shocked)), 10)
 		var/shock_damage = (zap_flags & ZAP_MOB_DAMAGE) ? (min(round(power/600), 90) + rand(-5, 5)) : 0
 		closest_mob.electrocute_act(shock_damage, source, 1, SHOCK_TESLA | ((zap_flags & ZAP_MOB_STUN) ? NONE : SHOCK_NOSTUN))
 		if(issilicon(closest_mob))

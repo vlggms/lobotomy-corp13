@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Box, Button, LabeledList, ProgressBar, Section } from '../components';
+import { Box, Button, LabeledList, ProgressBar, Section, AnimatedNumber } from '../components';
 import { Window } from '../layouts';
 
 const damageTypes = [
@@ -18,6 +18,10 @@ const damageTypes = [
   {
     label: 'Oxygen',
     type: 'oxyLoss',
+  },
+  {
+    label: "Sanity",
+    type: "sanityLoss",
   },
 ];
 
@@ -94,6 +98,24 @@ export const Sleeper = (props, context) => {
             </>
           )}
         </Section>
+        {!!occupied && (
+          <Section
+            title="Reagents"
+            minHeight="50px"
+          >
+            {occupant.reagents.map(reagent => (
+              <Box key={reagent.name}>
+                {reagent.name} -
+                <AnimatedNumber
+                  value={reagent.volume}
+                  format={value => {
+                    return " " + Math.round(value * 100) / 100 + " units";
+                  }} />
+              </Box>
+
+            ))}
+          </Section>
+        )}
         <Section
           title="Medicines"
           minHeight="205px"

@@ -96,18 +96,18 @@
 	description = "Originally developed as a prototype-gym supliment for those looking for quick workout turnover, this oral medication quickly repairs broken muscle tissue but causes lactic acid buildup, tiring the patient. Overdosing can cause extreme drowsiness. An Influx of nutrients promotes the muscle repair even further."
 	reagent_state = SOLID
 	color = "#FFFF6B"
-	overdose_threshold = 20
+	overdose_threshold = 25
 
 /datum/reagent/medicine/c2/probital/on_mob_life(mob/living/M)
 	M.adjustBruteLoss(-2.25*REM, FALSE)
-	var/ooo_youaregettingsleepy = 3.5
+	var/ooo_youaregettingsleepy = 1.1
 	switch(round(M.getStaminaLoss()))
 		if(10 to 40)
-			ooo_youaregettingsleepy = 3
+			ooo_youaregettingsleepy = 1
 		if(41 to 60)
-			ooo_youaregettingsleepy = 2.5
+			ooo_youaregettingsleepy = 0.9
 		if(61 to 200) //you really can only go to 120
-			ooo_youaregettingsleepy = 2
+			ooo_youaregettingsleepy = 0.8
 	M.adjustStaminaLoss(ooo_youaregettingsleepy*REM, FALSE)
 	..()
 	. = TRUE
@@ -434,7 +434,6 @@
 	carbies.adjustToxLoss((harmies+burnies)*0.66)
 	if(show_message)
 		to_chat(carbies, "<span class='danger'>You feel your burns and bruises healing! It stings like hell!</span>")
-	SEND_SIGNAL(carbies, COMSIG_ADD_MOOD_EVENT, "painful_medicine", /datum/mood_event/painful_medicine)
 	if(HAS_TRAIT_FROM(exposed_mob, TRAIT_HUSK, BURN) && carbies.getFireLoss() < UNHUSK_DAMAGE_THRESHOLD && (carbies.reagents.get_reagent_amount(/datum/reagent/medicine/c2/synthflesh) + reac_volume >= SYNTHFLESH_UNHUSK_AMOUNT))
 		carbies.cure_husk(BURN)
 		carbies.visible_message("<span class='nicegreen'>A rubbery liquid coats [carbies]'s burns. [carbies] looks a lot healthier!") //we're avoiding using the phrases "burnt flesh" and "burnt skin" here because carbies could be a skeleton or a golem or something

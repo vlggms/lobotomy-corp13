@@ -39,7 +39,7 @@
 	move_to_delay = 5
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	mouse_opacity = MOUSE_OPACITY_ICON
-	deathmessage = "explodes into gore!"
+	death_message = "explodes into gore!"
 	loot_drop = /obj/item/crusher_trophy/broodmother_tongue
 
 	attack_action_types = list(/datum/action/innate/elite_attack/tentacle_patch,
@@ -53,25 +53,25 @@
 /datum/action/innate/elite_attack/tentacle_patch
 	name = "Tentacle Patch"
 	button_icon_state = "tentacle_patch"
-	chosen_message = "<span class='boldwarning'>You are now attacking with a patch of tentacles.</span>"
+	chosen_message = span_boldwarning("You are now attacking with a patch of tentacles.")
 	chosen_attack_num = TENTACLE_PATCH
 
 /datum/action/innate/elite_attack/spawn_children
 	name = "Spawn Children"
 	button_icon_state = "spawn_children"
-	chosen_message = "<span class='boldwarning'>You will spawn two children at your location to assist you in combat.  You can have up to 8.</span>"
+	chosen_message = span_boldwarning("You will spawn two children at your location to assist you in combat.  You can have up to 8.")
 	chosen_attack_num = SPAWN_CHILDREN
 
 /datum/action/innate/elite_attack/rage
 	name = "Rage"
 	button_icon_state = "rage"
-	chosen_message = "<span class='boldwarning'>You will temporarily increase your movement speed.</span>"
+	chosen_message = span_boldwarning("You will temporarily increase your movement speed.")
 	chosen_attack_num = RAGE
 
 /datum/action/innate/elite_attack/call_children
 	name = "Call Children"
 	button_icon_state = "call_children"
-	chosen_message = "<span class='boldwarning'>You will summon your children to your location.</span>"
+	chosen_message = span_boldwarning("You will summon your children to your location.")
 	chosen_attack_num = CALL_CHILDREN
 
 /mob/living/simple_animal/hostile/asteroid/elite/broodmother/OpenFire()
@@ -116,30 +116,30 @@
 	var/tturf = get_turf(target)
 	if(!isturf(tturf))
 		return
-	visible_message("<span class='warning'>[src] digs its tentacles under [target]!</span>")
+	visible_message(span_warning("[src] digs its tentacles under [target]!"))
 	new /obj/effect/temp_visual/goliath_tentacle/broodmother/patch(tturf, src)
 
 /mob/living/simple_animal/hostile/asteroid/elite/broodmother/proc/spawn_children(target)
 	ranged_cooldown = world.time + 40
-	visible_message("<span class='boldwarning'>The ground churns behind [src]!</span>")
+	visible_message(span_boldwarning("The ground churns behind [src]!"))
 	for(var/i in 1 to 2)
 		if(children_list.len >= 8)
 			return
 		var/mob/living/simple_animal/hostile/asteroid/elite/broodmother_child/newchild = new /mob/living/simple_animal/hostile/asteroid/elite/broodmother_child(loc)
 		newchild.GiveTarget(target)
 		newchild.faction = faction.Copy()
-		visible_message("<span class='boldwarning'>[newchild] appears below [src]!</span>")
+		visible_message(span_boldwarning("[newchild] appears below [src]!"))
 		newchild.mother = src
 		children_list += newchild
 
 /mob/living/simple_animal/hostile/asteroid/elite/broodmother/proc/rage()
 	ranged_cooldown = world.time + 100
 	playsound(src,'sound/spookoween/insane_low_laugh.ogg', 200, 1)
-	visible_message("<span class='warning'>[src] starts picking up speed!</span>")
+	visible_message(span_warning("[src] starts picking up speed!"))
 	color = "#FF0000"
 	set_varspeed(0)
 	move_to_delay = 3
-	addtimer(CALLBACK(src, .proc/reset_rage), 65)
+	addtimer(CALLBACK(src, PROC_REF(reset_rage)), 65)
 
 /mob/living/simple_animal/hostile/asteroid/elite/broodmother/proc/reset_rage()
 	color = "#FFFFFF"
@@ -148,7 +148,7 @@
 
 /mob/living/simple_animal/hostile/asteroid/elite/broodmother/proc/call_children()
 	ranged_cooldown = world.time + 60
-	visible_message("<span class='warning'>The ground shakes near [src]!</span>")
+	visible_message(span_warning("The ground shakes near [src]!"))
 	var/list/directions = GLOB.cardinals.Copy() + GLOB.diagonals.Copy()
 	for(var/mob/child in children_list)
 		var/spawndir = pick_n_take(directions)
@@ -181,7 +181,7 @@
 	mouse_opacity = MOUSE_OPACITY_ICON
 	butcher_results = list()
 	guaranteed_butcher_results = list(/obj/item/stack/sheet/animalhide/goliath_hide = 1)
-	deathmessage = "falls to the ground."
+	death_message = "falls to the ground."
 	status_flags = CANPUSH
 	var/mob/living/simple_animal/hostile/asteroid/elite/broodmother/mother = null
 
@@ -191,14 +191,14 @@
 	if(!isturf(tturf))
 		return
 	if(get_dist(src, target) <= 7)//Screen range check, so it can't attack people off-screen
-		visible_message("<span class='warning'>[src] digs one of its tentacles under [target]!</span>")
+		visible_message(span_warning("[src] digs one of its tentacles under [target]!"))
 		new /obj/effect/temp_visual/goliath_tentacle/broodmother(tturf, src)
 
 /mob/living/simple_animal/hostile/asteroid/elite/broodmother_child/death()
 	. = ..()
 	if(mother != null)
 		mother.children_list -= src
-	visible_message("<span class='warning'>[src] explodes!</span>")
+	visible_message(span_warning("[src] explodes!"))
 	explosion(get_turf(loc),0,0,0,flame_range = 3, adminlog = FALSE)
 	gib()
 
@@ -208,7 +208,7 @@
 	for(var/mob/living/L in loc)
 		if((!QDELETED(spawner) && spawner.faction_check_mob(L)) || L.stat == DEAD)
 			continue
-		visible_message("<span class='danger'>[src] grabs hold of [L]!</span>")
+		visible_message(span_danger("[src] grabs hold of [L]!"))
 		L.Stun(10)
 		L.adjustBruteLoss(rand(30,35))
 		latched = TRUE
@@ -216,11 +216,11 @@
 		retract()
 	else
 		deltimer(timerid)
-		timerid = addtimer(CALLBACK(src, .proc/retract), 10, TIMER_STOPPABLE)
+		timerid = addtimer(CALLBACK(src, PROC_REF(retract)), 10, TIMER_STOPPABLE)
 
 /obj/effect/temp_visual/goliath_tentacle/broodmother/patch/Initialize(mapload, new_spawner)
 	. = ..()
-	INVOKE_ASYNC(src, .proc/createpatch)
+	INVOKE_ASYNC(src, PROC_REF(createpatch))
 
 /obj/effect/temp_visual/goliath_tentacle/broodmother/patch/proc/createpatch()
 	var/tentacle_locs = spiral_range_turfs(1, get_turf(src))
@@ -262,7 +262,7 @@
 		return
 	LAZYOR(living_user.weather_immunities, "lava")
 	to_chat(living_user, "<b>You squeeze the tongue, and some transluscent liquid shoots out all over you.</b>")
-	addtimer(CALLBACK(src, .proc/remove_lavaproofing, living_user), 10 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(remove_lavaproofing), living_user), 10 SECONDS)
 	use_time = world.time + 60 SECONDS
 
 /obj/item/crusher_trophy/broodmother_tongue/proc/remove_lavaproofing(mob/living/user)

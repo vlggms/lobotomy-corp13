@@ -36,7 +36,7 @@
 			if(!target)
 				to_chat(usr, "<span class='warning'>The object you tried to expose to [C] no longer exists (nulled or hard-deled)</span>", confidential = TRUE)
 				return
-			message_admins("[key_name_admin(usr)] Showed [key_name_admin(C)] a <a href='?_src_=vars;datumrefresh=[REF(target)]'>VV window</a>")
+			message_admins("[key_name_admin(usr)] Showed [key_name_admin(C)] a <a href='byond://?_src_=vars;datumrefresh=[REF(target)]'>VV window</a>")
 			log_admin("Admin [key_name(usr)] Showed [key_name(C)] a VV window of a [target]")
 			to_chat(C, "[holder.fakekey ? "an Administrator" : "[usr.client.key]"] has granted you access to view a View Variables window", confidential = TRUE)
 			C.debug_variables(target)
@@ -53,11 +53,11 @@
 		if(!check_rights(NONE))
 			return
 		var/list/names = list()
-		var/list/componentsubtypes = sortList(subtypesof(/datum/component), /proc/cmp_typepaths_asc)
+		var/list/componentsubtypes = sortList(subtypesof(/datum/component), GLOBAL_PROC_REF(cmp_typepaths_asc))
 		names += "---Components---"
 		names += componentsubtypes
 		names += "---Elements---"
-		names += sortList(subtypesof(/datum/element), /proc/cmp_typepaths_asc)
+		names += sortList(subtypesof(/datum/element), GLOBAL_PROC_REF(cmp_typepaths_asc))
 		var/result = input(usr, "Choose a component/element to add","better know what ur fuckin doin pal") as null|anything in names
 		if(!usr || !result || result == "---Components---" || result == "---Elements---")
 			return

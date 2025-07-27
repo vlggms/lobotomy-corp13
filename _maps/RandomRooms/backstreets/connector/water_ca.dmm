@@ -1,0 +1,241 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"Q" = (
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"S" = (
+/turf/open/water/deep/freshwater,
+/area/city/backstreets_room)
+"W" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/water/deep/freshwater,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+Q
+Q
+Q
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+W
+S
+S
+S
+Q
+Q
+Q
+Q
+Q
+S
+S
+S
+W
+a
+"}
+(3,1,1) = {"
+a
+S
+S
+S
+S
+S
+Q
+Q
+Q
+S
+S
+S
+S
+S
+a
+"}
+(4,1,1) = {"
+a
+S
+S
+S
+S
+S
+S
+S
+S
+S
+S
+S
+S
+Q
+a
+"}
+(5,1,1) = {"
+a
+Q
+S
+S
+S
+S
+S
+S
+S
+S
+S
+S
+S
+Q
+a
+"}
+(6,1,1) = {"
+Q
+Q
+S
+S
+S
+S
+S
+S
+S
+S
+S
+S
+Q
+Q
+Q
+"}
+(7,1,1) = {"
+Q
+Q
+Q
+S
+S
+S
+S
+S
+S
+S
+S
+S
+Q
+Q
+Q
+"}
+(8,1,1) = {"
+Q
+Q
+Q
+S
+S
+S
+S
+S
+S
+S
+S
+S
+S
+Q
+Q
+"}
+(9,1,1) = {"
+a
+Q
+S
+S
+S
+S
+S
+S
+S
+S
+S
+S
+S
+S
+a
+"}
+(10,1,1) = {"
+a
+S
+S
+S
+S
+S
+S
+S
+S
+S
+S
+S
+S
+S
+a
+"}
+(11,1,1) = {"
+a
+S
+S
+S
+S
+S
+Q
+Q
+Q
+Q
+Q
+S
+S
+S
+a
+"}
+(12,1,1) = {"
+a
+W
+S
+S
+S
+Q
+Q
+Q
+Q
+Q
+Q
+Q
+S
+W
+a
+"}
+(13,1,1) = {"
+a
+a
+a
+a
+a
+a
+Q
+Q
+Q
+a
+a
+a
+a
+a
+a
+"}

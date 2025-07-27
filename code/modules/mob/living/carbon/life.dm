@@ -65,10 +65,6 @@
 
 	if((times_fired % next_breath) == 0 || failed_last_breath)
 		breathe() //Breathe per 4 ticks if healthy, down to 2 if our lungs or heart are damaged, unless suffocating
-		if(failed_last_breath)
-			SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "suffocation", /datum/mood_event/suffocation)
-		else
-			SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "suffocation")
 	else
 		if(istype(loc, /obj/))
 			var/obj/location_as_object = loc
@@ -164,7 +160,7 @@
 	var/safe_tox_max = 0.05
 	var/SA_para_min = 1
 	var/SA_sleep_min = 5
-	var/oxygen_used = 0
+	//var/oxygen_used = 0
 	var/breath_pressure = (breath.total_moles()*R_IDEAL_GAS_EQUATION*breath.temperature)/BREATH_VOLUME
 
 	var/list/breath_gases = breath.gases
@@ -182,7 +178,6 @@
 			var/ratio = 1 - O2_partialpressure/safe_oxy_min
 			adjustOxyLoss(min(5*ratio, 3))
 			failed_last_breath = TRUE
-			oxygen_used = breath_gases[/datum/gas/oxygen][MOLES]*ratio
 		else
 			adjustOxyLoss(3)
 			failed_last_breath = TRUE
@@ -192,11 +187,7 @@
 		failed_last_breath = FALSE
 		if(health >= crit_threshold)
 			adjustOxyLoss(-5)
-		oxygen_used = breath_gases[/datum/gas/oxygen][MOLES]
 		clear_alert("not_enough_oxy")
-
-	breath_gases[/datum/gas/oxygen][MOLES] -= oxygen_used
-	breath_gases[/datum/gas/carbon_dioxide][MOLES] += oxygen_used
 
 	//CARBON DIOXIDE
 	if(CO2_partialpressure > safe_co2_max)
@@ -231,15 +222,12 @@
 		else if(SA_partialpressure > 0.01)
 			if(prob(20))
 				emote(pick("giggle","laugh"))
-			SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "chemical_euphoria", /datum/mood_event/chemical_euphoria)
 		if(SA_partialpressure > safe_tox_max*3)
 			var/ratio = (breath_gases[/datum/gas/nitrous_oxide][MOLES]/safe_tox_max)
 			adjustToxLoss(clamp(ratio, MIN_TOXIC_GAS_DAMAGE, MAX_TOXIC_GAS_DAMAGE))
 			throw_alert("too_much_tox", /atom/movable/screen/alert/too_much_tox)
 		else
 			clear_alert("too_much_tox")
-	else
-		SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "chemical_euphoria")
 
 	//BZ (Facepunch port of their Agent B)
 	if(breath_gases[/datum/gas/bz])
@@ -277,32 +265,22 @@
 		switch(miasma_partialpressure)
 			if(0.25 to 5)
 				// At lower pp, give out a little warning
-				SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "smell")
 				if(prob(5))
-					to_chat(src, "<span class='notice'>There is an unpleasant smell in the air.</span>")
+					to_chat(src, span_notice("There is an unpleasant smell in the air."))
 			if(5 to 20)
 				//At somewhat higher pp, warning becomes more obvious
 				if(prob(15))
-					to_chat(src, "<span class='warning'>You smell something horribly decayed inside this room.</span>")
-					SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "smell", /datum/mood_event/disgust/bad_smell)
+					to_chat(src, span_warning("You smell something horribly decayed inside this room."))
 			if(15 to 30)
 				//Small chance to vomit. By now, people have internals on anyway
 				if(prob(5))
-					to_chat(src, "<span class='warning'>The stench of rotting carcasses is unbearable!</span>")
-					SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "smell", /datum/mood_event/disgust/nauseating_stench)
+					to_chat(src, span_warning("The stench of rotting carcasses is unbearable!"))
 					vomit()
 			if(30 to INFINITY)
 				//Higher chance to vomit. Let the horror start
 				if(prob(25))
-					to_chat(src, "<span class='warning'>The stench of rotting carcasses is unbearable!</span>")
-					SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "smell", /datum/mood_event/disgust/nauseating_stench)
+					to_chat(src, span_warning("The stench of rotting carcasses is unbearable!"))
 					vomit()
-			else
-				SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "smell")
-
-	//Clear all moods if no miasma at all
-	else
-		SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "smell")
 
 	breath.garbage_collect()
 
@@ -313,8 +291,7 @@
 
 //Fourth and final link in a breath chain
 /mob/living/carbon/proc/handle_breath_temperature(datum/gas_mixture/breath)
-	// The air you breathe out should match your body temperature
-	breath.temperature = bodytemperature
+	return
 
 /mob/living/carbon/proc/get_breath_from_internal(volume_needed)
 	if(internal)
@@ -487,9 +464,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	if(jitteriness)
 		do_jitter_animation(jitteriness)
 		jitteriness = max(jitteriness - restingpwr, 0)
-		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "jittery", /datum/mood_event/jittery)
-	else
-		SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "jittery")
 
 	if(stuttering)
 		stuttering = max(stuttering-1, 0)
@@ -510,16 +484,16 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		handle_hallucinations()
 
 	if(drunkenness)
+		var/obj/item/clothing/suit/armor/ego_gear/realization/stupor/Z = get_item_by_slot(ITEM_SLOT_OCLOTHING)
+		var/obj/item/organ/liver/L = getorganslot(ORGAN_SLOT_LIVER)
 		drunkenness = max(drunkenness - (drunkenness * 0.04) - 0.01, 0)
 		if(drunkenness >= 6)
-			SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "drunk", /datum/mood_event/drunk)
 			if(prob(25))
 				slurring += 2
 			jitteriness = max(jitteriness - 3, 0)
 			throw_alert("drunk", /atom/movable/screen/alert/drunk)
 			sound_environment_override = SOUND_ENVIRONMENT_PSYCHOTIC
 		else
-			SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "drunk")
 			clear_alert("drunk")
 			sound_environment_override = SOUND_ENVIRONMENT_NONE
 
@@ -543,41 +517,81 @@ All effects don't start immediately, but rather get worse over time; the rate is
 						SSresearch.science_tech.remove_point_list(list(TECHWEB_POINT_TYPE_GENERIC = BALLMER_POINTS))
 						say(pick_list_replacements(VISTA_FILE, "ballmer_windows_me_msg"), forced = "ballmer")
 
-		if(drunkenness >= 41)
-			if(prob(25))
-				add_confusion(2)
-			Dizzy(10)
+		if(istype(Z)) //Start of Realization adjustments to drunkenness
+			var/heal_modifier = clamp(round((drunkenness/5)-2), 1, 10)
+			if(ishuman(src))
+				var/mob/living/carbon/human/H = src
+				H.adjustBruteLoss(-heal_modifier)
+				H.adjustSanityLoss(-heal_modifier)
+			L.applyOrganDamage(-3)
+			if(drunkenness >= 61)
+				if(prob(25))
+					add_confusion(2)
+				Dizzy(10)
 
-		if(drunkenness >= 51)
-			if(prob(3))
-				add_confusion(15)
-				vomit() // vomiting clears toxloss, consider this a blessing
-			Dizzy(25)
+			if(drunkenness >= 71)
+				if(prob(3))
+					add_confusion(15)
+				Dizzy(25)
 
-		if(drunkenness >= 61)
-			if(prob(50))
+			if(drunkenness >= 81)
+				if(prob(50))
+					blur_eyes(5)
+
+			if(drunkenness >= 91)
 				blur_eyes(5)
 
-		if(drunkenness >= 71)
-			blur_eyes(5)
+			if(drunkenness >= 101)
+				adjustToxLoss(1)
+				if(prob(5) && !stat)
+					to_chat(src, span_warning("Maybe you should lie down for a bit..."))
 
-		if(drunkenness >= 81)
-			adjustToxLoss(1)
-			if(prob(5) && !stat)
-				to_chat(src, "<span class='warning'>Maybe you should lie down for a bit...</span>")
+			if(drunkenness >= 111)
+				adjustToxLoss(1)
+				adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.4)
+				if(prob(20) && !stat)
+					if(SSshuttle.emergency.mode == SHUTTLE_DOCKED && is_station_level(z)) //QoL mainly
+						to_chat(src, span_warning("You're so tired... but you can't miss that shuttle..."))
+					else
+						to_chat(src, span_warning("Just a quick nap..."))
+						Sleeping(900)
 
-		if(drunkenness >= 91)
-			adjustToxLoss(1)
-			adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.4)
-			if(prob(20) && !stat)
-				if(SSshuttle.emergency.mode == SHUTTLE_DOCKED && is_station_level(z)) //QoL mainly
-					to_chat(src, "<span class='warning'>You're so tired... but you can't miss that shuttle...</span>")
-				else
-					to_chat(src, "<span class='warning'>Just a quick nap...</span>")
-					Sleeping(900)
+		else
+			if(drunkenness >= 41)
+				if(prob(25))
+					add_confusion(2)
+				Dizzy(10)
 
-		if(drunkenness >= 101)
-			adjustToxLoss(2) //Let's be honest you shouldn't be alive by now
+			if(drunkenness >= 51)
+				if(prob(3))
+					add_confusion(15)
+					vomit() // vomiting clears toxloss, consider this a blessing
+				Dizzy(25)
+
+			if(drunkenness >= 61)
+				if(prob(50))
+					blur_eyes(5)
+
+			if(drunkenness >= 71)
+				blur_eyes(5)
+
+			if(drunkenness >= 81)
+				adjustToxLoss(1)
+				if(prob(5) && !stat)
+					to_chat(src, span_warning("Maybe you should lie down for a bit..."))
+
+			if(drunkenness >= 91)
+				adjustToxLoss(1)
+				adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.4)
+				if(prob(20) && !stat)
+					if(SSshuttle.emergency.mode == SHUTTLE_DOCKED && is_station_level(z)) //QoL mainly
+						to_chat(src, span_warning("You're so tired... but you can't miss that shuttle..."))
+					else
+						to_chat(src, span_warning("Just a quick nap..."))
+						Sleeping(900)
+
+			if(drunkenness >= 101)
+				adjustToxLoss(2) //Let's be honest you shouldn't be alive by now
 
 /// Base carbon environment handler, adds natural stabilization
 /mob/living/carbon/handle_environment(datum/gas_mixture/environment)
@@ -763,7 +777,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 		return
 	adjustToxLoss(4, TRUE,  TRUE)
 	if(prob(30))
-		to_chat(src, "<span class='warning'>You feel a stabbing pain in your abdomen!</span>")
+		to_chat(src, span_warning("You feel a stabbing pain in your abdomen!"))
 
 /////////////
 //CREMATION//
@@ -791,11 +805,11 @@ All effects don't start immediately, but rather get worse over time; the rate is
 				if(limb.cremation_progress >= 100)
 					if(limb.status == BODYPART_ORGANIC) //Non-organic limbs don't burn
 						limb.drop_limb()
-						limb.visible_message("<span class='warning'>[src]'s [limb.name] crumbles into ash!</span>")
+						limb.visible_message(span_warning("[src]'s [limb.name] crumbles into ash!"))
 						qdel(limb)
 					else
 						limb.drop_limb()
-						limb.visible_message("<span class='warning'>[src]'s [limb.name] detaches from [p_their()] body!</span>")
+						limb.visible_message(span_warning("[src]'s [limb.name] detaches from [p_their()] body!"))
 	if(still_has_limbs)
 		return
 
@@ -807,17 +821,17 @@ All effects don't start immediately, but rather get worse over time; the rate is
 			if(head.cremation_progress >= 100)
 				if(head.status == BODYPART_ORGANIC) //Non-organic limbs don't burn
 					head.drop_limb()
-					head.visible_message("<span class='warning'>[src]'s head crumbles into ash!</span>")
+					head.visible_message(span_warning("[src]'s head crumbles into ash!"))
 					qdel(head)
 				else
 					head.drop_limb()
-					head.visible_message("<span class='warning'>[src]'s head detaches from [p_their()] body!</span>")
+					head.visible_message(span_warning("[src]'s head detaches from [p_their()] body!"))
 		return
 
 	//Nothing left: dust the body, drop the items (if they're flammable they'll burn on their own)
 	chest.cremation_progress += rand(2,5)
 	if(chest.cremation_progress >= 100)
-		visible_message("<span class='warning'>[src]'s body crumbles into a pile of ash!</span>")
+		visible_message(span_warning("[src]'s body crumbles into a pile of ash!"))
 		dust(TRUE, TRUE)
 
 ////////////////

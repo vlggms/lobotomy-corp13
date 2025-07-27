@@ -22,32 +22,32 @@
 	if(!istype(user))
 		return
 	if(used)
-		to_chat(user, "<span class='warning'>[src] has been already used, you can't activate it again!</span>")
+		to_chat(user, span_warning("[src] has been already used, you can't activate it again!"))
 		return
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		if(user.real_name != H.dna.real_name)
 			stored = H
-			to_chat(user, "<span class='notice'>You stealthly stab [H.name] with [src].</span>")
+			to_chat(user, span_notice("You stealthly stab [H.name] with [src]."))
 			desc = "Toxin that permanently changes your DNA into the one of last injected person. It has DNA of <span class='blue'>[stored.dna.real_name]</span> inside."
 			icon_state = "dnainjector"
 		else
 			if(stored)
 				mutate(user)
 			else
-				to_chat(user, "<span class='warning'>You can't stab yourself with [src]!</span>")
+				to_chat(user, span_warning("You can't stab yourself with [src]!"))
 
 /obj/item/adv_mulligan/attack_self(mob/living/carbon/user)
 	mutate(user)
 
 /obj/item/adv_mulligan/proc/mutate(mob/living/carbon/user)
 	if(used)
-		to_chat(user, "<span class='warning'>[src] has been already used, you can't activate it again!</span>")
+		to_chat(user, span_warning("[src] has been already used, you can't activate it again!"))
 		return
 	if(!used)
 		if(stored)
-			user.visible_message("<span class='warning'>[user.name] shivers in pain and soon transform into [stored.dna.real_name]!</span>", \
-			"<span class='notice'>You inject yourself with [src] and suddenly become a copy of [stored.dna.real_name].</span>")
+			user.visible_message(span_warning("[user.name] shivers in pain and soon transform into [stored.dna.real_name]!"), \
+			span_notice("You inject yourself with [src] and suddenly become a copy of [stored.dna.real_name]."))
 
 			user.real_name = stored.real_name
 			stored.dna.transfer_identity(user, transfer_SE=1)
@@ -59,7 +59,7 @@
 			desc = "Toxin that permanently changes your DNA into the one of last injected person. This one is used up."
 
 		else
-			to_chat(user, "<span class='warning'>[src] doesn't have any DNA loaded in it!</span>")
+			to_chat(user, span_warning("[src] doesn't have any DNA loaded in it!"))
 
 // A "nuke op" kit for Gorlex Infiltrators, available for 15 TC.
 /obj/item/storage/backpack/duffelbag/syndie/flukeop/PopulateContents()
@@ -101,14 +101,14 @@
 	else //caused by emp/remote signal
 		M.log_message("was [targeted? "hypno-flashed(targeted)" : "hypno-flashed(AOE)"]",LOG_ATTACK)
 	if(generic_message && M != user)
-		to_chat(M, "<span class='notice'>[src] emits a red, sharp light!</span>")
+		to_chat(M, span_notice("[src] emits a red, sharp light!"))
 	if(targeted)
 		if(M.flash_act(1, 1))
 			if(user)
-				user.visible_message("<span class='danger'>[user] blinds [M] with the flash!</span>", "<span class='danger'>You hypno-flash [M]!</span>")
+				user.visible_message(span_danger("[user] blinds [M] with the flash!"), span_danger("You hypno-flash [M]!"))
 
 			if(hypno_cooldown_current > world.time) // Still on cooldown
-				to_chat(M, "<span class='hypnophrase'>The light makes you feel oddly relaxed...</span>")
+				to_chat(M, span_hypnophrase("The light makes you feel oddly relaxed..."))
 				M.add_confusion(min(M.get_confusion() + 10, 20))
 				M.dizziness += min(M.dizziness + 10, 20)
 				M.drowsyness += min(M.drowsyness + 10, 20)
@@ -125,12 +125,12 @@
 				M.Stun(60, TRUE, TRUE)
 
 		else if(user)
-			user.visible_message("<span class='warning'>[user] fails to blind [M] with the flash!</span>", "<span class='warning'>You fail to hypno-flash [M]!</span>")
+			user.visible_message(span_warning("[user] fails to blind [M] with the flash!"), span_warning("You fail to hypno-flash [M]!"))
 		else
-			to_chat(M, "<span class='danger'>[src] fails to blind you!</span>")
+			to_chat(M, span_danger("[src] fails to blind you!"))
 
 	else if(M.flash_act())
-		to_chat(M, "<span class='notice'>Such a pretty light...</span>")
+		to_chat(M, span_notice("Such a pretty light..."))
 		M.add_confusion(min(M.get_confusion() + 4, 20))
 		M.dizziness += min(M.dizziness + 4, 20)
 		M.drowsyness += min(M.drowsyness + 4, 20)
@@ -140,7 +140,7 @@
 	hypno_message = stripped_input(user, "What order will be given to hypnotised people?", \
 	"Hypnosis message", "You are a secret agent, working for [user.real_name]. You must do anything they ask of you, \
 	and you must never attempt to harm them, nor allow harm to come to them.")
-	to_chat(user, "<span class='notice'>New message is: [hypno_message]</span>")
+	to_chat(user, span_notice("New message is: [hypno_message]"))
 
 // Virology bottles
 /obj/item/reagent_containers/glass/bottle/accelerant_ts
@@ -247,11 +247,11 @@
 
 /obj/item/item_announcer/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>It has [uses] uses left.</span>"
+	. += span_notice("It has [uses] uses left.")
 
 /// Deletes the item when it's used up.
 /obj/item/item_announcer/proc/break_item(mob/user)
-	to_chat(user, "<span class='notice'>The [src] breaks down into unrecognizable scrap and ash after being used.</span>")
+	to_chat(user, span_notice("The [src] breaks down into unrecognizable scrap and ash after being used."))
 	var/obj/effect/decal/cleanable/ash/spawned_ash = new(drop_location())
 	spawned_ash.desc = "Ashes to ashes, dust to dust. There's a few pieces of scrap in this pile."
 	playsound(src, "sparks", 100, TRUE, 5)
@@ -277,7 +277,7 @@
 
 /obj/item/item_announcer/preset/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>It causes a fake \"[fake_event_name]\" when used.</span>"
+	. += span_notice("It causes a fake \"[fake_event_name]\" when used.")
 
 /obj/item/item_announcer/preset/attack_self(mob/user)
 	. = ..()
@@ -290,9 +290,9 @@
 		return FALSE
 	triggered_event.forced_type = fake_event
 	triggered_event.runEvent(FALSE)
-	to_chat(user, "<span class='notice'>You press the [src], triggering a false alarm for [fake_event_name].</span>")
+	to_chat(user, span_notice("You press the [src], triggering a false alarm for [fake_event_name]."))
 	message_admins("[ADMIN_LOOKUPFLW(user)] has triggered a false alarm using a syndicate device: \"[fake_event_name]\".")
-	deadchat_broadcast("<span class='bold'>Someone has triggered a false alarm using a syndicate device!</span>")
+	deadchat_broadcast(span_bold("Someone has triggered a false alarm using a syndicate device!"))
 	log_game("[key_name(user)] has triggered a false alarm using a syndicate device: \"[fake_event_name]\".")
 	uses--
 
@@ -317,7 +317,7 @@
 
 /obj/item/item_announcer/input/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>It sends messages from \"[fake_command_name]\".</span>"
+	. += span_notice("It sends messages from \"[fake_command_name]\".")
 
 /obj/item/item_announcer/input/ui_state(mob/user)
 	return GLOB.inventory_state
@@ -348,7 +348,7 @@
 			announce_contents = !announce_contents
 		if("submit_report")
 			if(!command_report_content)
-				to_chat(usr, "<span class='danger'>You can't send a report with no contents.</span>")
+				to_chat(usr, span_danger("You can't send a report with no contents."))
 				return
 			if(send_announcement(usr) && uses <= 0)
 				break_item(usr)
@@ -368,9 +368,9 @@
 
 	change_command_name(original_command_name)
 
-	to_chat(user, "<span class='notice'>You tap on the [src], sending a [announce_contents ? "" : "classified "]report from [fake_command_name].</span>")
+	to_chat(user, span_notice("You tap on the [src], sending a [announce_contents ? "" : "classified "]report from [fake_command_name]."))
 	message_admins("[ADMIN_LOOKUPFLW(user)] has sent a fake command report using a syndicate device: \"[command_report_content]\".")
-	deadchat_broadcast("<span class='bold'>Someone has sent a fake report using a syndicate device!</span>")
+	deadchat_broadcast(span_bold("Someone has sent a fake report using a syndicate device!"))
 	log_game("[key_name(user)] has sent a fake command report using a syndicate device: \"[command_report_content]\", sent from \"[fake_command_name]\".")
 	uses--
 

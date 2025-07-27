@@ -369,7 +369,7 @@
 			brightness = 4
 			if(prob(5))
 				break_light_tube(1)
-	addtimer(CALLBACK(src, .proc/update, 0), 1)
+	addtimer(CALLBACK(src, PROC_REF(update), 0), 1)
 
 /obj/machinery/light/ComponentInitialize()
 	. = ..()
@@ -471,7 +471,7 @@
 		if(!start_only)
 			do_sparks(3, TRUE, src)
 		var/delay = rand(BROKEN_SPARKS_MIN, BROKEN_SPARKS_MAX)
-		addtimer(CALLBACK(src, .proc/broken_sparks), delay, TIMER_UNIQUE | TIMER_NO_HASH_WAIT)
+		addtimer(CALLBACK(src, PROC_REF(broken_sparks)), delay, TIMER_UNIQUE | TIMER_NO_HASH_WAIT)
 
 /obj/machinery/light/process()
 	if (!cell)
@@ -609,7 +609,7 @@
 			if(prob(12))
 				electrocute_mob(user, get_area(src), src, 0.3, TRUE)
 
-/obj/machinery/light/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1)
+/obj/machinery/light/take_damage(damage_amount, damage_type = BRUTE, sound_effect = 1)
 	. = ..()
 	if(. && !QDELETED(src))
 		if(prob(damage_amount * 5))
@@ -618,7 +618,7 @@
 
 
 
-/obj/machinery/light/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
+/obj/machinery/light/play_attack_sound(damage_amount, damage_type = BRUTE)
 	switch(damage_type)
 		if(BRUTE)
 			switch(status)
@@ -796,7 +796,7 @@
 	if(!skip_sound_and_sparks)
 		if(status == LIGHT_OK || status == LIGHT_BURNED)
 			playsound(src.loc, 'sound/effects/glasshit.ogg', 75, TRUE)
-		if(on)
+		if(on && !(SSmaptype.maptype in SSmaptype.citymaps))// Just can't afford to
 			do_sparks(3, TRUE, src)
 	status = LIGHT_BROKEN
 	update()
@@ -931,8 +931,8 @@
 
 /obj/item/light/create_reagents(max_vol, flags)
 	. = ..()
-	RegisterSignal(reagents, list(COMSIG_REAGENTS_NEW_REAGENT, COMSIG_REAGENTS_ADD_REAGENT, COMSIG_REAGENTS_DEL_REAGENT, COMSIG_REAGENTS_REM_REAGENT), .proc/on_reagent_change)
-	RegisterSignal(reagents, COMSIG_PARENT_QDELETING, .proc/on_reagents_del)
+	RegisterSignal(reagents, list(COMSIG_REAGENTS_NEW_REAGENT, COMSIG_REAGENTS_ADD_REAGENT, COMSIG_REAGENTS_DEL_REAGENT, COMSIG_REAGENTS_REM_REAGENT), PROC_REF(on_reagent_change))
+	RegisterSignal(reagents, COMSIG_PARENT_QDELETING, PROC_REF(on_reagents_del))
 
 /**
  * Handles rigging the cell if it contains enough plasma.
@@ -962,7 +962,7 @@
 	..()
 	shatter()
 
-/obj/item/light/attack_obj(obj/O, mob/living/user)
+/obj/item/light/attack_obj(obj/O, mob/living/user, params)
 	..()
 	shatter()
 

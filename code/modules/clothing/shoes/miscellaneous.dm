@@ -77,7 +77,7 @@
 
 /obj/item/clothing/shoes/galoshes/dry/Initialize()
 	. = ..()
-	RegisterSignal(src, COMSIG_SHOES_STEP_ACTION, .proc/on_step)
+	RegisterSignal(src, COMSIG_SHOES_STEP_ACTION, PROC_REF(on_step))
 
 /obj/item/clothing/shoes/galoshes/dry/proc/on_step()
 	SIGNAL_HANDLER
@@ -106,14 +106,10 @@
 	if(slot == ITEM_SLOT_FEET)
 		if(enabled_waddle)
 			user.AddElement(/datum/element/waddling)
-		if(user.mind && user.mind.assigned_role == "Clown")
-			SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "clownshoes", /datum/mood_event/clownshoes)
 
 /obj/item/clothing/shoes/clown_shoes/dropped(mob/user)
 	. = ..()
 	user.RemoveElement(/datum/element/waddling)
-	if(user.mind && user.mind.assigned_role == "Clown")
-		SEND_SIGNAL(user, COMSIG_CLEAR_MOOD_EVENT, "clownshoes")
 
 /obj/item/clothing/shoes/clown_shoes/CtrlClick(mob/living/user)
 	if(!isliving(user))
@@ -392,13 +388,13 @@
 	active = TRUE
 	set_light_color(rgb(rand(0, 255), rand(0, 255), rand(0, 255)))
 	set_light_on(active)
-	addtimer(CALLBACK(src, .proc/lightUp), 0.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(lightUp)), 0.5 SECONDS)
 
 /obj/item/clothing/shoes/kindle_kicks/proc/lightUp(mob/user)
 	if(lightCycle < 15)
 		set_light_color(rgb(rand(0, 255), rand(0, 255), rand(0, 255)))
 		lightCycle++
-		addtimer(CALLBACK(src, .proc/lightUp), 0.5 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(lightUp)), 0.5 SECONDS)
 	else
 		lightCycle = 0
 		active = FALSE
@@ -432,6 +428,7 @@
 
 /obj/item/clothing/shoes/cowboy/equipped(mob/living/carbon/user, slot)
 	. = ..()
+	RegisterSignal(user, COMSIG_LIVING_SLAM_TABLE, PROC_REF(table_slam))
 	if(slot == ITEM_SLOT_FEET)
 		for(var/mob/living/occupant in occupants)
 			occupant.forceMove(user.drop_location())
@@ -441,6 +438,18 @@
 			if(istype(occupant, /mob/living/simple_animal/hostile/retaliate/poison))
 				user.reagents.add_reagent(/datum/reagent/toxin, 7)
 		occupants.Cut()
+
+/obj/item/clothing/shoes/cowboy/dropped(mob/living/user)
+	. = ..()
+	UnregisterSignal(user, COMSIG_LIVING_SLAM_TABLE)
+
+/obj/item/clothing/shoes/cowboy/proc/table_slam(mob/living/source, obj/structure/table/the_table)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, PROC_REF(handle_table_slam), source)
+
+/obj/item/clothing/shoes/cowboy/proc/handle_table_slam(mob/living/user)
+	user.say(pick("Hot damn!", "Hoo-wee!", "Got-dang!"), spans = list(SPAN_YELL), forced=TRUE)
+	user.client?.give_award(/datum/award/achievement/misc/hot_damn, user)
 
 /obj/item/clothing/shoes/cowboy/MouseDrop_T(mob/living/target, mob/living/user)
 	. = ..()

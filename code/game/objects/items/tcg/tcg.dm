@@ -83,7 +83,7 @@ GLOBAL_LIST_EMPTY(tcgcard_radial_choices)
 		"Tap" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_tap"),
 		"Flip" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_flip"),
 		)
-	var/choice = show_radial_menu(user, src, choices, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = TRUE)
+	var/choice = show_radial_menu(user, src, choices, custom_check = CALLBACK(src, PROC_REF(check_menu), user), require_near = TRUE, tooltips = TRUE)
 	if(!check_menu(user))
 		return
 	switch(choice)
@@ -125,7 +125,7 @@ GLOBAL_LIST_EMPTY(tcgcard_radial_choices)
 	if(istype(I, /obj/item/tcgcard_deck))
 		var/obj/item/tcgcard_deck/old_deck = I
 		if(length(old_deck.contents) >= 30)
-			to_chat(user, "<span class='notice'>This pile has too many cards for a regular deck!</span>")
+			to_chat(user, span_notice("This pile has too many cards for a regular deck!"))
 			return
 		user.transferItemToLoc(src, old_deck)
 		flipped = old_deck.flipped
@@ -196,7 +196,7 @@ GLOBAL_LIST_EMPTY(tcgcard_radial_choices)
 
 /obj/item/tcgcard_deck/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>\The [src] has [contents.len] cards inside.</span>"
+	. += span_notice("\The [src] has [contents.len] cards inside.")
 
 /obj/item/tcgcard_deck/attack_hand(mob/user)
 	var/list/choices = list(
@@ -205,7 +205,7 @@ GLOBAL_LIST_EMPTY(tcgcard_radial_choices)
 		"Pickup" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_pickup"),
 		"Flip" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_flip"),
 		)
-	var/choice = show_radial_menu(user, src, choices, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = TRUE)
+	var/choice = show_radial_menu(user, src, choices, custom_check = CALLBACK(src, PROC_REF(check_menu), user), require_near = TRUE, tooltips = TRUE)
 	if(!check_menu(user))
 		return
 	switch(choice)
@@ -237,7 +237,7 @@ GLOBAL_LIST_EMPTY(tcgcard_radial_choices)
 	. = ..()
 	if(istype(I, /obj/item/tcgcard))
 		if(contents.len > 30)
-			to_chat(user, "<span class='notice'>This pile has too many cards for a regular deck!</span>")
+			to_chat(user, span_notice("This pile has too many cards for a regular deck!"))
 			return FALSE
 		var/obj/item/tcgcard/new_card = I
 		new_card.flipped = flipped
@@ -258,8 +258,8 @@ GLOBAL_LIST_EMPTY(tcgcard_radial_choices)
 	user.put_in_hands(drawn_card)
 	drawn_card.flipped = flipped //If it's a face down deck, it'll be drawn face down, if it's a face up pile you'll draw it face up.
 	drawn_card.update_icon_state()
-	user.visible_message("<span class='notice'>[user] draws a card from \the [src]!</span>", \
-					"<span class='notice'>You draw a card from \the [src]!</span>")
+	user.visible_message(span_notice("[user] draws a card from \the [src]!"), \
+					span_notice("You draw a card from \the [src]!"))
 	if(contents.len <= 1)
 		var/obj/item/tcgcard/final_card = contents[1]
 		user.transferItemToLoc(final_card, drop_location())
@@ -278,8 +278,8 @@ GLOBAL_LIST_EMPTY(tcgcard_radial_choices)
 	if(user.active_storage)
 		user.active_storage.close(user)
 	if(visable)
-		user.visible_message("<span class='notice'>[user] shuffles \the [src]!</span>", \
-						"<span class='notice'>You shuffle \the [src]!</span>")
+		user.visible_message(span_notice("[user] shuffles \the [src]!"), \
+						span_notice("You shuffle \the [src]!"))
 
 
 /**
@@ -553,7 +553,7 @@ GLOBAL_LIST_EMPTY(tcgcard_radial_choices)
 			totalCards++
 			cardsByCount[id] += 1
 	var/toSend = "Out of [totalCards] cards"
-	for(var/id in sortList(cardsByCount, /proc/cmp_num_string_asc))
+	for(var/id in sortList(cardsByCount, GLOBAL_PROC_REF(cmp_num_string_asc)))
 		if(id)
 			var/datum/card/template = GLOB.cached_cards[pack.series]["ALL"][id]
 			toSend += "\nID:[id] [template.name] [(cardsByCount[id] * 100) / totalCards]% Total:[cardsByCount[id]]"

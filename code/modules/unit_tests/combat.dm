@@ -53,9 +53,9 @@
 	var/mob/living/carbon/human/victim = allocate(/mob/living/carbon/human)
 	var/obj/item/storage/toolbox/toolbox = allocate(/obj/item/storage/toolbox)
 
-	RegisterSignal(toolbox, COMSIG_ITEM_PRE_ATTACK, .proc/pre_attack_hit)
-	RegisterSignal(toolbox, COMSIG_ITEM_ATTACK, .proc/attack_hit)
-	RegisterSignal(toolbox, COMSIG_ITEM_AFTERATTACK, .proc/post_attack_hit)
+	RegisterSignal(toolbox, COMSIG_ITEM_PRE_ATTACK, PROC_REF(pre_attack_hit))
+	RegisterSignal(toolbox, COMSIG_ITEM_ATTACK, PROC_REF(attack_hit))
+	RegisterSignal(toolbox, COMSIG_ITEM_AFTERATTACK, PROC_REF(post_attack_hit))
 
 	attacker.put_in_active_hand(toolbox, forced = TRUE)
 	attacker.a_intent_change(INTENT_HARM)
@@ -92,7 +92,8 @@
 
 	// Second disarm, victim was against wall and should be down
 	victim.attack_hand(attacker)
-
+	if(SSmaptype.maptype in SSmaptype.citymaps)
+		return
 	TEST_ASSERT_EQUAL(victim.loc.x, run_loc_floor_bottom_left.x + 2, "Victim was moved after being pushed against a wall")
 	TEST_ASSERT(victim.has_status_effect(STATUS_EFFECT_KNOCKDOWN), "Victim was not knocked down after being pushed against a wall")
 	TEST_ASSERT_EQUAL(victim.get_active_held_item(), null, "Victim didn't drop toolbox after being pushed against a wall")

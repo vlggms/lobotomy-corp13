@@ -94,7 +94,7 @@
 		lighting_alpha = null
 		mode = MODE_NONE
 	emped = TRUE
-	addtimer(CALLBACK(src, /obj/item/clothing/glasses/detective/.proc/emp_recover), rand(100*severity, 200*severity))
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/item/clothing/glasses/detective, emp_recover)), rand(100*severity, 200*severity))
 
 /obj/item/clothing/glasses/detective/proc/emp_recover(slot)
 	emped = FALSE

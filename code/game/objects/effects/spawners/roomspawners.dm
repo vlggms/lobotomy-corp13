@@ -8,12 +8,14 @@
 	var/room_width = 0
 	var/room_height = 0
 	var/room_type = "maintenance" // Used so we can place landmarks in ruins and such.
+	var/spawn_delay_min = 600
+	var/spawn_delay_max = 600
 
 /obj/effect/spawner/room/Initialize()
-	..()
+	..()/*
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/effect/spawner/room/LateInitialize()
+/obj/effect/spawner/room/LateInitialize()*/
 	var/list/possibletemplates = list()
 	var/datum/map_template/random_room/cantidate = null
 	shuffle_inplace(SSmapping.random_room_templates)
@@ -29,7 +31,7 @@
 		template.weight = (template.weight / 2)
 		if(template.stock <= 0)
 			template.spawned = TRUE
-		addtimer(CALLBACK(src, /obj/effect/spawner/room.proc/LateSpawn), 600)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/effect/spawner/room, LateSpawn)), rand(spawn_delay_min, spawn_delay_max))
 	else
 		template = null
 	if(!template)

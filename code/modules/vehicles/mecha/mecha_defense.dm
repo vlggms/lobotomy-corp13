@@ -1,16 +1,25 @@
 /obj/vehicle/sealed/mecha/proc/get_armour_facing(relative_dir)
-	switch(relative_dir)
+	switch(relative_dir > 180 ? 360 - relative_dir : relative_dir)
+		if(0) // direct front
+			return facing_modifiers[MECHA_FRONT_ARMOUR]
+		if(45)
+			return facing_modifiers[MECHA_FRONT_DIAGONAL_ARMOUR]
+		if(90)
+			return facing_modifiers[MECHA_SIDE_ARMOUR]
+		if(135)
+			return facing_modifiers[MECHA_BACK_DIAGONAL_ARMOUR]
 		if(180) // BACKSTAB!
 			return facing_modifiers[MECHA_BACK_ARMOUR]
-		if(0, 45) // direct or 45 degrees off
-			return facing_modifiers[MECHA_FRONT_ARMOUR]
-	return facing_modifiers[MECHA_SIDE_ARMOUR] //if its not a front hit or back hit then assume its from the side
+		else
+			stack_trace("mecha somehow got a weird attack angle")
 
-/obj/vehicle/sealed/mecha/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
+	return facing_modifiers[MECHA_SIDE_ARMOUR] //shouldnt reach this far but just in case
+
+/obj/vehicle/sealed/mecha/take_damage(damage_amount, damage_type = BRUTE, sound_effect = 1, attack_dir)
 	. = ..()
 	if(. && obj_integrity > 0)
 		spark_system.start()
-		switch(damage_flag)
+		switch(damage_type)
 			if(FIRE)
 				check_for_internal_damage(list(MECHA_INT_FIRE,MECHA_INT_TEMP_CONTROL))
 			if(MELEE)
@@ -21,31 +30,38 @@
 			to_chat(occupants, "[icon2html(src, occupants)]<span class='userdanger'>Taking damage!</span>")
 		log_message("Took [damage_amount] points of damage. Damage type: [damage_type]", LOG_MECHA)
 
-/obj/vehicle/sealed/mecha/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)
+/obj/vehicle/sealed/mecha/run_obj_armor(damage_amount, damage_type, attack_dir)
 	. = ..()
 	if(!damage_amount)
 		return 0
 	var/booster_deflection_modifier = 1
+	var/booster_dodge_modifier = 1
 	var/booster_damage_modifier = 1
-	if(damage_flag == BULLET || damage_flag == LASER || damage_flag == ENERGY)
+	if(damage_type in list(BULLET, LASER, ENERGY))
 		for(var/obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster/B in equipment)
 			if(B.projectile_react())
 				booster_deflection_modifier = B.deflect_coeff
 				booster_damage_modifier = B.damage_coeff
 				break
-	else if(damage_flag == MELEE)
+	else if(damage_type == MELEE)
 		for(var/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster/B in equipment)
 			if(B.attack_react())
 				booster_deflection_modifier *= B.deflect_coeff
+				booster_dodge_modifier *= B.dodge_coeff
 				booster_damage_modifier *= B.damage_coeff
 				break
 
 	if(attack_dir)
 		var/facing_modifier = get_armour_facing(abs(dir2angle(dir) - dir2angle(attack_dir)))
-		booster_damage_modifier /= facing_modifier
-		booster_deflection_modifier *= facing_modifier
+		booster_damage_modifier *= facing_modifier
+		booster_deflection_modifier /= facing_modifier
+		booster_dodge_modifier /= facing_modifier
 	if(prob(deflect_chance * booster_deflection_modifier))
 		visible_message("<span class='danger'>[src]'s armour deflects the attack!</span>")
+		log_message("Armor saved.", LOG_MECHA)
+	if(prob(dodge_chance * booster_dodge_modifier))
+		SpinAnimation(7, 1)
+		visible_message("<span class='danger'>[src] narrowly dodges the attack!</span>")
 		log_message("Armor saved.", LOG_MECHA)
 		return 0
 	if(.)
@@ -99,7 +115,7 @@
 
 /obj/vehicle/sealed/mecha/blob_act(obj/structure/blob/B)
 	log_message("Attack by blob. Attacker - [B].", LOG_MECHA, color="red")
-	take_damage(30, BRUTE, MELEE, 0, get_dir(src, B))
+	take_damage(30, MELEE, 0, get_dir(src, B))
 
 /obj/vehicle/sealed/mecha/attack_tk()
 	return
@@ -114,7 +130,7 @@
 			var/mob/living/hitmob = m
 			hitmob.bullet_act(Proj) //If the sides are open, the occupant can be hit
 		return BULLET_ACT_HIT
-	log_message("Hit by projectile. Type: [Proj.name]([Proj.flag]).", LOG_MECHA, color="red")
+	log_message("Hit by projectile. Type: [Proj.name]([Proj.damage_type]).", LOG_MECHA, color="red")
 	. = ..()
 
 /obj/vehicle/sealed/mecha/ex_act(severity, target)
@@ -160,7 +176,7 @@
 		return
 	if(get_charge())
 		use_power((cell.charge/3)/(severity*2))
-		take_damage(30 / severity, BURN, ENERGY, 1)
+		take_damage(30 / severity, ENERGY, 1)
 	log_message("EMP detected", LOG_MECHA, color="red")
 
 	if(istype(src, /obj/vehicle/sealed/mecha/combat))
@@ -170,7 +186,7 @@
 			occupant.update_mouse_pointer()
 	if(!equipment_disabled && LAZYLEN(occupants)) //prevent spamming this message with back-to-back EMPs
 		to_chat(occupants, "<span=danger>Error -- Connection to equipment control unit has been lost.</span>")
-	addtimer(CALLBACK(src, /obj/vehicle/sealed/mecha/proc/restore_equipment), 3 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/vehicle/sealed/mecha, restore_equipment)), 3 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 	equipment_disabled = 1
 
 /obj/vehicle/sealed/mecha/should_atmos_process(datum/gas_mixture/air, exposed_temperature)
@@ -178,7 +194,7 @@
 
 /obj/vehicle/sealed/mecha/atmos_expose(datum/gas_mixture/air, exposed_temperature)
 	log_message("Exposed to dangerous temperature.", LOG_MECHA, color="red")
-	take_damage(5, BURN, 0, 1)
+	take_damage(5, BURN, 1)
 
 /obj/vehicle/sealed/mecha/attackby(obj/item/W, mob/user, params)
 

@@ -80,7 +80,7 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	victim.apply_damage(15, BRUTE, BODY_ZONE_HEAD, wound_bonus = 7)
 	return TRUE
 
-///Is slightly radioactive
+///Is slightly radioactive (not anymore)
 /datum/material/uranium
 	name = "uranium"
 	desc = "Uranium"
@@ -91,20 +91,12 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	beauty_modifier = 0.3 //It shines so beautiful
 	armor_modifiers = list(MELEE = 1.5, BULLET = 1.4, LASER = 0.5, ENERGY = 0.5, BOMB = 0, BIO = 0, RAD = 0, FIRE = 1, ACID = 1)
 
-/datum/material/uranium/on_applied(atom/source, amount, material_flags)
-	. = ..()
-	source.AddComponent(/datum/component/radioactive, amount / 50, source, 0) //half-life of 0 because we keep on going. amount / 50 means 40 radiation per sheet.
-
-/datum/material/uranium/on_removed(atom/source, amount, material_flags)
-	. = ..()
-	qdel(source.GetComponent(/datum/component/radioactive))
-
 /datum/material/uranium/on_accidental_mat_consumption(mob/living/carbon/victim, obj/item/source_item)
 	victim.reagents.add_reagent(/datum/reagent/uranium, rand(4, 6))
 	source_item?.reagents?.add_reagent(/datum/reagent/uranium, source_item.reagents.total_volume*(2/5))
 	return TRUE
 
-///Adds firestacks on hit (Still needs support to turn into gas on destruction)
+///Adds firestacks on hit (Still needs support to turn into gas on destruction) (not anymore)
 /datum/material/plasma
 	name = "plasma"
 	desc = "Isn't plasma a state of matter? Oh whatever."
@@ -115,17 +107,6 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	value_per_unit = 0.1
 	beauty_modifier = 0.15
 	armor_modifiers = list(MELEE = 1.4, BULLET = 0.7, LASER = 0, ENERGY = 1.2, BOMB = 0, BIO = 1.2, RAD = 1, FIRE = 0, ACID = 0.5)
-
-/datum/material/plasma/on_applied(atom/source, amount, material_flags)
-	. = ..()
-	if(ismovable(source))
-		source.AddElement(/datum/element/firestacker, amount=1)
-		source.AddComponent(/datum/component/explodable, 0, 0, amount / 2500, amount / 1250)
-
-/datum/material/plasma/on_removed(atom/source, amount, material_flags)
-	. = ..()
-	source.RemoveElement(/datum/element/firestacker, amount=1)
-	qdel(source.GetComponent(/datum/component/explodable))
 
 /datum/material/plasma/on_accidental_mat_consumption(mob/living/carbon/victim, obj/item/source_item)
 	victim.reagents.add_reagent(/datum/reagent/toxin/plasma, rand(6, 8))

@@ -24,18 +24,6 @@
 	result = /obj/item/food/pizza/meat
 	subcategory = CAT_PIZZA
 
-/datum/crafting_recipe/food/arnold
-	name = "Arnold pizza"
-	reqs = list(
-		/obj/item/food/pizzabread = 1,
-		/obj/item/food/meat/cutlet = 3,
-		/obj/item/ammo_casing/c9mm = 8,
-		/obj/item/food/cheesewedge = 1,
-		/obj/item/food/grown/tomato = 1
-	)
-	result = /obj/item/food/pizza/arnold
-	subcategory = CAT_PIZZA
-
 /datum/crafting_recipe/food/mushroompizza
 	name = "Mushroom pizza"
 	reqs = list(
@@ -66,17 +54,6 @@
 		/obj/item/food/grown/tomato = 1
 	)
 	result = /obj/item/food/pizza/donkpocket
-	subcategory = CAT_PIZZA
-
-/datum/crafting_recipe/food/dankpizza
-	name = "Dank pizza"
-	reqs = list(
-		/obj/item/food/pizzabread = 1,
-		/obj/item/food/grown/ambrosia/vulgaris = 3,
-		/obj/item/food/cheesewedge = 1,
-		/obj/item/food/grown/tomato = 1
-	)
-	result = /obj/item/food/pizza/dank
 	subcategory = CAT_PIZZA
 
 /datum/crafting_recipe/food/sassysagepizza

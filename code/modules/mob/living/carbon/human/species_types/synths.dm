@@ -28,14 +28,13 @@
 	armor = 25
 	punchdamagelow = 10
 	punchdamagehigh = 19
-	punchstunthreshold = 14 //about 50% chance to stun
 	disguise_fail_health = 50
 	changesource_flags = MIRROR_BADMIN | WABBAJACK
 
 /datum/species/synth/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	..()
 	assume_disguise(old_species, H)
-	RegisterSignal(H, COMSIG_MOB_SAY, .proc/handle_speech)
+	RegisterSignal(H, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 	H.set_safe_hunger_level()
 
 /datum/species/synth/on_species_loss(mob/living/carbon/human/H)
@@ -61,6 +60,7 @@
 		species_traits |= S.species_traits
 		inherent_traits |= S.inherent_traits
 		attack_verb = S.attack_verb
+		attack_effect = S.attack_effect
 		attack_sound = S.attack_sound
 		miss_sound = S.miss_sound
 		meat = S.meat
@@ -79,6 +79,7 @@
 		species_traits = initial_species_traits.Copy()
 		inherent_traits = initial_inherent_traits.Copy()
 		attack_verb = initial(attack_verb)
+		attack_effect = initial(attack_verb)
 		attack_sound = initial(attack_sound)
 		miss_sound = initial(miss_sound)
 		mutant_bodyparts = list()

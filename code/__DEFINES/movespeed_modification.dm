@@ -1,5 +1,6 @@
 //flags
 #define IGNORE_NOSLOW	(1 << 0)
+#define IS_ACTUALLY_MULTIPLICATIVE (1 << 1)
 
 //conflict types
 

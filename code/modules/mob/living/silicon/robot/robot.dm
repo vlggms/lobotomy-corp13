@@ -6,7 +6,7 @@
 	wires = new /datum/wires/robot(src)
 	AddElement(/datum/element/empprotection, EMP_PROTECT_WIRES)
 	AddElement(/datum/element/ridable, /datum/component/riding/creature/cyborg)
-	RegisterSignal(src, COMSIG_PROCESS_BORGCHARGER_OCCUPANT, .proc/charge)
+	RegisterSignal(src, COMSIG_PROCESS_BORGCHARGER_OCCUPANT, PROC_REF(charge))
 
 	robot_modules_background = new()
 	robot_modules_background.icon_state = "block"
@@ -61,7 +61,7 @@
 		mmi.brainmob.container = mmi
 		mmi.update_icon()
 
-	INVOKE_ASYNC(src, .proc/updatename)
+	INVOKE_ASYNC(src, PROC_REF(updatename))
 
 	playsound(loc, 'sound/voice/liveagain.ogg', 75, TRUE)
 	aicamera = new/obj/item/camera/siliconcam/robot_camera(src)
@@ -72,7 +72,7 @@
 /mob/living/silicon/robot/model/syndicate/Initialize()
 	. = ..()
 	laws = new /datum/ai_laws/syndicate_override()
-	addtimer(CALLBACK(src, .proc/show_playstyle), 5)
+	addtimer(CALLBACK(src, PROC_REF(show_playstyle)), 5)
 
 /mob/living/silicon/robot/proc/create_modularInterface()
 	if(!modularInterface)
@@ -97,7 +97,7 @@
 			mind.transfer_to(mmi.brainmob)
 			mmi.update_icon()
 		else
-			to_chat(src, "<span class='boldannounce'>Oops! Something went very wrong, your MMI was unable to receive your mind. You have been ghosted. Please make a bug report so we can fix this bug.</span>")
+			to_chat(src, span_boldannounce("Oops! Something went very wrong, your MMI was unable to receive your mind. You have been ghosted. Please make a bug report so we can fix this bug."))
 			ghostize()
 			stack_trace("Borg MMI lacked a brainmob")
 		mmi = null
@@ -134,7 +134,7 @@
 		return
 
 	if(wires.is_cut(WIRE_RESET_MODEL))
-		to_chat(src,"<span class='userdanger'>ERROR: Model installer reply timeout. Please check internal connections.</span>")
+		to_chat(src,span_userdanger("ERROR: Model installer reply timeout. Please check internal connections."))
 		return
 
 	var/list/model_list = list("Engineering" = /obj/item/robot_model/engineering, \
@@ -210,7 +210,7 @@
 
 /mob/living/silicon/robot/proc/toggle_ionpulse()
 	if(!ionpulse)
-		to_chat(src, "<span class='notice'>No thrusters are installed!</span>")
+		to_chat(src, span_notice("No thrusters are installed!"))
 		return
 
 	if(!ion_trail)
@@ -218,7 +218,7 @@
 		ion_trail.set_up(src)
 
 	ionpulse_on = !ionpulse_on
-	to_chat(src, "<span class='notice'>You [ionpulse_on ? null :"de"]activate your ion thrusters.</span>")
+	to_chat(src, span_notice("You [ionpulse_on ? null :"de"]activate your ion thrusters."))
 	if(ionpulse_on)
 		ion_trail.start()
 	else
@@ -439,7 +439,7 @@
 	lamp_functional = FALSE
 	playsound(src, 'sound/effects/glass_step.ogg', 50)
 	toggle_headlamp(TRUE)
-	to_chat(src, "<span class='danger'>Your headlamp is broken! You'll need a human to help replace it.</span>")
+	to_chat(src, span_danger("Your headlamp is broken! You'll need a human to help replace it."))
 
 /**
  * Handles headlamp toggling, disabling, and color setting.
@@ -520,19 +520,19 @@
 		return
 	switch(notifytype)
 		if(NEW_BORG) //New Cyborg
-			to_chat(connected_ai, "<br><br><span class='notice'>NOTICE - New cyborg connection detected: <a href='?src=[REF(connected_ai)];track=[html_encode(name)]'>[name]</a></span><br>")
+			to_chat(connected_ai, "<br><br>[span_notice("NOTICE - New cyborg connection detected: <a href='byond://?src=[REF(connected_ai)];track=[html_encode(name)]'>[name]</a>")]<br>")
 		if(NEW_MODEL) //New Model
-			to_chat(connected_ai, "<br><br><span class='notice'>NOTICE - Cyborg model change detected: [name] has loaded the [designation] model.</span><br>")
+			to_chat(connected_ai, "<br><br>[span_notice("NOTICE - Cyborg model change detected: [name] has loaded the [designation] model.")]<br>")
 		if(RENAME) //New Name
-			to_chat(connected_ai, "<br><br><span class='notice'>NOTICE - Cyborg reclassification detected: [oldname] is now designated as [newname].</span><br>")
+			to_chat(connected_ai, "<br><br>[span_notice("NOTICE - Cyborg reclassification detected: [oldname] is now designated as [newname].")]<br>")
 		if(AI_SHELL) //New Shell
-			to_chat(connected_ai, "<br><br><span class='notice'>NOTICE - New cyborg shell detected: <a href='?src=[REF(connected_ai)];track=[html_encode(name)]'>[name]</a></span><br>")
+			to_chat(connected_ai, "<br><br>[span_notice("NOTICE - New cyborg shell detected: <a href='byond://?src=[REF(connected_ai)];track=[html_encode(name)]'>[name]</a>")]<br>")
 		if(DISCONNECT) //Tampering with the wires
-			to_chat(connected_ai, "<br><br><span class='notice'>NOTICE - Remote telemetry lost with [name].</span><br>")
+			to_chat(connected_ai, "<br><br>[span_notice("NOTICE - Remote telemetry lost with [name].")]<br>")
 
 /mob/living/silicon/robot/canUseTopic(atom/movable/M, be_close=FALSE, no_dexterity=FALSE, no_tk=FALSE, need_hands = FALSE, floor_okay=FALSE)
 	if(lockcharge || low_power_mode)
-		to_chat(src, "<span class='warning'>You can't do that right now!</span>")
+		to_chat(src, span_warning("You can't do that right now!"))
 		return FALSE
 	return ..()
 
@@ -694,7 +694,7 @@
 	hat_offset = model.hat_offset
 
 	magpulse = model.magpulsing
-	INVOKE_ASYNC(src, .proc/updatename)
+	INVOKE_ASYNC(src, PROC_REF(updatename))
 
 
 /mob/living/silicon/robot/proc/place_on_head(obj/item/new_hat)
@@ -722,10 +722,10 @@
 	if(!user.temporarilyRemoveItemFromInventory(new_upgrade)) //calling the upgrade's dropped() proc /before/ we add action buttons
 		return FALSE
 	if(!new_upgrade.action(src, user))
-		to_chat(user, "<span class='danger'>Upgrade error.</span>")
+		to_chat(user, span_danger("Upgrade error."))
 		new_upgrade.forceMove(loc) //gets lost otherwise
 		return FALSE
-	to_chat(user, "<span class='notice'>You apply the upgrade to [src].</span>")
+	to_chat(user, span_notice("You apply the upgrade to [src]."))
 	to_chat(src, "----------------\nNew hardware detected...Identified as \"<b>[new_upgrade]</b>\"...Setup complete.\n----------------")
 	if(new_upgrade.one_use)
 		logevent("Firmware [new_upgrade] run successfully.")
@@ -733,8 +733,8 @@
 		return FALSE
 	upgrades += new_upgrade
 	new_upgrade.forceMove(src)
-	RegisterSignal(new_upgrade, COMSIG_MOVABLE_MOVED, .proc/remove_from_upgrades)
-	RegisterSignal(new_upgrade, COMSIG_PARENT_QDELETING, .proc/on_upgrade_deleted)
+	RegisterSignal(new_upgrade, COMSIG_MOVABLE_MOVED, PROC_REF(remove_from_upgrades))
+	RegisterSignal(new_upgrade, COMSIG_PARENT_QDELETING, PROC_REF(on_upgrade_deleted))
 	logevent("Hardware [new_upgrade] installed successfully.")
 
 ///Called when an upgrade is moved outside the robot. So don't call this directly, use forceMove etc.
@@ -866,13 +866,13 @@
 
 /mob/living/silicon/robot/buckle_mob(mob/living/M, force = FALSE, check_loc = TRUE, buckle_mob_flags= RIDER_NEEDS_ARM)
 	if(!is_type_in_typecache(M, can_ride_typecache))
-		M.visible_message("<span class='warning'>[M] really can't seem to mount [src]...</span>")
+		M.visible_message(span_warning("[M] really can't seem to mount [src]..."))
 		return
 
 	if(stat || incapacitated())
 		return
 	if(model && !model.allow_riding)
-		M.visible_message("<span class='boldwarning'>Unfortunately, [M] just can't seem to hold onto [src]!</span>")
+		M.visible_message(span_boldwarning("Unfortunately, [M] just can't seem to hold onto [src]!"))
 		return
 
 	buckle_mob_flags= RIDER_NEEDS_ARM // just in case

@@ -2,6 +2,147 @@
  *	Premade paper
  */
 
+/obj/item/paper/fluff/silk_guide
+	name = "Silk Guide: 'Exploring the Thread within us'"
+	icon_state = "silk_guide"
+	info = "Silkweaving is currently accessible to City Fixer Workshops or the Carnival in City of Light. Those who know the ways of the silk, are good people to ask if you are seeking out quality armor.\
+			Using the bodies of fallen monsters, (and fellow humans?) You are able to weave them into silk, a valuable resource, which can be used to create new armor or upgrade already existing gear.<br>\
+			<br>\
+			<br>\
+			<center><b> Part 1: Gathering Silk </b></center><br>\
+			<br>\
+			So, You are new to the trade and are oh so existed to be weaving new armor. But wait, you first need to gather your own silk! One path you can take is to do your own dirty work and head out into the backstreets and start hunting them by yourself!<br>\
+			<br>\
+			* If you are a Workshop Fixer in CF (City Fixer), you can find the necessary gear for silk gathering in the room above your workshop.<br>\
+			<br>\
+			* If you are the Carnival in CoL (City of Light), you can find the necessary gear for silk gathering in your hideout, which is on the far left side of the map.<br>\
+			<br>\
+			The next section will explain how each tool is used.<br>\
+			<br>\
+			<br>\
+			<center><b> Part 2: Silkweaving Gear </b></center><br>\
+			<br>\
+			Now, You are able to find your silkweaving gear but you don’t have any idea on what they do? Well, Time to learn their basics!<br>\
+			<br>\
+			* <b>Silkweaver:</b> Your main silk gathering tool, When you attack a dead body you will butcher it and create a unique type of silk depending on the creature you butchered. Stronger creatures will give out more, and higher rarity silk. If a creature you butcher doesn’t have silk associated with them, they will drop a random simple silk. (Green, Indigo, Steel or Amber) Lastly, You are able to butcher humans with the silk knife. The stronger the human is, the more silk they will drop. However, if that human still has a soul, you will be unable to butcher them.<br>\
+			<br>\
+			* <b>Carnival Spear:</b> Your weapon of choice! (Workshop Fixers get a off-brand/weaker version of this weapon.) This is a normal spear which deals 30 BLACK damage on hit (The off-brand version deals 22 BLACK damage), However the main highlight of the carnival spear is that it deals double damage to most backstreets mobs!<br>\
+			<br>\
+			* <b>Silk Bag:</b> A Small bag which can hold a massive amount of silk! You can use it to store all of the silk you collect while hunting in the backstreets.<br>\
+			<br>\
+			* <b>Weaving Armor; Basic Edition:</b> A Book which holds all of the basic knowledge about silk weaving. This book allows you to create basic armor and weave meat into silk.<br>\
+			<br>\
+			* (Carnival Only) <b>Carnival Armor:</b> Armor designed by the carnival, perfect at resisting the most \
+			common damage types in the backstreets!<br>\
+			<br>\
+			Now you know the gear you start out with, time to learn about your product... Silk!<br>\
+			<br>\
+			<br>\
+			<center><b> Part 3: Silk Guide </b></center><br>\
+			<br>\
+			<center> =Types/Rarities= </center><br>\
+			Silks have 2 important variables, Type and Rarity.<br>\
+			The type of the silk is determined by the source of its creation, For example weaving Sweepers will produce Indigo Silk, While weaving Bots will produce Green Silk!<br>\
+			<br>\
+			The rarity of the silk is determined by the strength of the source, For example a Sweeper Scout will only create simple silk, while a normal Sweeper will create advanced silk and simple silk!<br>\
+			There are 4 total rarities; Simple, Advanced, Elegant and Masterpiece.<br>\
+			<br>\
+			<center> =Silk Conversions/Transfers= </center><br>\
+			For the Common Silks, You can relatively easily find monsters in the backstreets which you can butcher to gather their silk type. <br>\
+			<br>\
+			However, What if you need a masterpiece rarity silk but you can’t find a monster who can drop such silk? Or you are looking to get Crimson Silk which no monster drops?<br>\
+			<br>\
+			Well then, You arrive at Silk Conversions/Transfers! They are ways you are able to use your silk to change them into higher rarities or different types!<br>\
+			<i>In order to unlock Silk Conversions/Transfers for Common Silks you will need to buy the “Weaving Armor: Common Conversions/Transfers Edition” Book.\
+			While for Rare Silks you will need to buy the “Weaving Armor: Rare Conversions/Transfers Edition” Book</i><br>\
+			<br>\
+			Silk Conversions:<br>\
+			Essentially, You are able to use 4 silks of the same type/rarity to combine them into one silk of the same type and higher rarity! For Example, Converting 4 Simple Green Silks will create 1 Advanced Green Silk.<br>\
+			<br>\
+			Silk Transfers:<br>\
+			Certain silks are able to be transferred into other silks!<br>\
+			Here is a small table to show what silks can be transferred into.<br>\
+			<br>\
+			Common Transfers:<br>\
+			2 Simple Green -> 1 Simple Steel<br>\
+			2 Simple Indigo -> 1 Simple Amber<br>\
+			<br>\
+			Rare Transfers:<br>\
+			2 Simple Steel -> 1 Simple Crimson<br>\
+			2 Simple Amber -> 1 Simple Violet<br>\
+			1 Advanced Violet + 1 Advanced Crimson -> 1 Simple Azure<br>\
+			1 Simple Steel + 1 Simple Amber -> 1 Simple Shrimple<br>\
+			<br>\
+			Human Supplements <i>(You can only get this Transfer from the book, Weaving Armor: Human Supplements Edition) </i>:<br>\
+			2 Simple Shrimple -> 1 Simple Human<br>\
+			<br>\
+			<br>\
+			<center>=Silk Uses=<br></center>\
+			As you may have read in the above sections, Silk can be used for 2 things. <br>\
+			One, You are able to attach your silk to armor in order to upgrade it!<br>\
+			The type of the silk will determine how to change your armor, while rarity will determine the size of the change.<br>\
+			For example, a Simple Indigo Silk will give you +5% BLACK and -5% RED. An Advanced Indigo Silk will multiply both of those values by 2, Giving you +10 BLACK and -10% RED. Elegant Silk multiplies the simple value by 3, while Masterpiece Silk multiples it by 4.<br>\
+			<br>\
+			However, Any time silk increases your resistance to something, It also decreases your resistance to something else. So upgrade with caution! <br>\
+			<i>(At maximum, you can increase your resistance to a damage type to 40%. However you can go infinitely negative.)</i><br>\
+			<br>\
+			And Two, You can use them as resources to tailor new armor! In order to weave armor from silk, you will need to buy some weaving books from your tailoring vending machine! It should be in the same place where you found your silkweaving gear.<br>\
+			<br>\
+			<center>=Available Silks=</center><br>\
+			Here is the current list of all silks you can get in the game.<br>\
+			<br>\
+			<b>Available Common Silks</b><br>\
+			|  Silk Type |         Armor Effect      |     Common Sources    |<br>\
+			| ---------- | ------------------------- | --------------------- |<br>\
+			| Indigo Silk|     BLACK +5%, RED -5%    |        Sweepers       |<br>\
+			| Green Silk |      RED +5%, BLACK -5%   |          Bots         |<br>\
+			| Amber Silk |    BLACK +5%, WHITE -5%   |          Worms        |<br>\
+			| Steel Silk |     RED +5%, WHITE -5%    |    G-Corp Remnants    |<br>\
+			| Human Silk | PALE +5%, RED/WHITE -2.5% | Flesh Monsters/Humans |<br>\
+			<br>\
+			<b>Available Rare Silks</b><br>\
+			|   Silk Type   |        Armor Effect        |      Common Sources     |<br>\
+			| ------------- | -------------------------- | ----------------------- |<br>\
+			|  Violet Silk  |   WHITE +5%, BLACK -5%     |      Silk Transfers     |<br>\
+			|  Crimson Silk |     WHITE +5%, RED -5%     |      Silk Transfers     |<br>\
+			|  Azure Silk   |  RED/BLACK +2.5%, RED -5%  | Resurgence Clan Machines|<br>\
+			| Shrimple Silk | WHITE +5%, RED/BLACK -2.5% |      Silk Transfers     |<br>\
+			<br>\
+			<br>\
+			<center><b> Part 4: Armor Tailoring </b></center><br>\
+			<br>\
+			Oh boy that was a lot of silk info, but now we are getting to the part you might have been looking forward to, TAILORING ARMOR! Yes, As long as you have enough silk you will be able to tailor nearly any armor in the game... As long as you have the right book. You are able to get weaving armor books from your weaving vending machine which you should be able to find in your base.<br>\
+			<br>\
+			I can tell you right now that they aren't cheap, Costing 1000 ahn per book.<br>\
+			* (If you are a workshop fixer in CF, Books will only cost 200 ahn. So... lucky you.)<br>\
+			<br>\
+			However, The cost is quite worth it as once you get your hands on one book you can reuse it as much as you want and even give it out to your fellow Tailors! Once you do read the book, you will be able to learn how to craft all of the armor from the faction the book is about!<br>\
+			<br>\
+			<br>\
+			<center><b> Part 5: The End </b></center><br>\
+			<br>\
+			Well, You were able to learn a lot about silk today... Now, It is up to you to sell your products!<br>\
+			<br>\
+			<i>Good Luck...</i> <br>"
+
+/obj/item/paper/fluff/fixer_skills
+	name = "Fixer Skills Guide"
+	info = "<center><b>Well, This will be a short one, but it should be enough to teach new Fixers on how to learn new skills in this line of work.</b></center><br>\
+	<br>\
+	<i>In total, there are 4 levels of skills you can learn. And depending on your grade you will be able to learn some skills, or become unable to learn others.</i><br>\
+	<br>\
+	Grade 9 Fixers will be able to learn level 1 Skills, Which are your main abilities for surviving in the backstreets ranging from healing and movement. You are also able to learn 5 of them at this level.<br>\
+	<br>\
+	Grade 8 Fixers are also able to learn level 1 Skills, but they are only able to learn 3 level 1 Skills. However, if they already knew 5 level 1 skills they will keep those skills.<br>\
+	<br>\
+	Grade 7 and 6 Fixers will be able to learn level 2 Skills, Which are your main utility, making gathering and looting easier. At this point and all higher grades, you will also be unable to learn skills of a lower level. So be cautious of over leveling.<br>\
+	<br>\
+	Grade 5 Fixers will be able to learn level 3 Skill, Which are your passives, you are able too toggle them on and off to gain benefits and downsides while they are active. You are only able to learn one of this skill.<br>\
+	<br>\
+	Finaly, Grade 4 Fixers will be able to learn level 4 Skills, Which are your 'Ultimate' abilities. They hold powerful effects, but come at the cost off having very long cooldowns. You are only able to learn one of this skill.<br>\
+	<br>\
+	<i>Written by the Hana Association</i>"
+
 /obj/item/paper/fluff/sop
 	name = "paper- 'Standard Operating Procedure'"
 	info = "Alert Levels:<BR>\nBlue- Emergency<BR>\n\t1. Caused by fire<BR>\n\t2. Caused by manual interaction<BR>\n\tAction:<BR>\n\t\tClose all fire doors. These can only be opened by resetting the alarm<BR>\nRed- Ejection/Self-Destruct<BR>\n\t1. Caused by module operating computer.<BR>\n\tAction:<BR>\n\t\tAfter the specified time the module will eject completely.<BR>\n<BR>\nEngine Maintenance Instructions:<BR>\n\tShut off ignition systems:<BR>\n\tActivate internal power<BR>\n\tActivate orbital balance matrix<BR>\n\tRemove volatile liquids from area<BR>\n\tWear a fire suit<BR>\n<BR>\n\tAfter<BR>\n\t\tDecontaminate<BR>\n\t\tVisit medical examiner<BR>\n<BR>\nToxin Laboratory Procedure:<BR>\n\tWear a gas mask regardless<BR>\n\tGet an oxygen tank.<BR>\n\tActivate internal atmosphere<BR>\n<BR>\n\tAfter<BR>\n\t\tDecontaminate<BR>\n\t\tVisit medical examiner<BR>\n<BR>\nDisaster Procedure:<BR>\n\tFire:<BR>\n\t\tActivate sector fire alarm.<BR>\n\t\tMove to a safe area.<BR>\n\t\tGet a fire suit<BR>\n\t\tAfter:<BR>\n\t\t\tAssess Damage<BR>\n\t\t\tRepair damages<BR>\n\t\t\tIf needed, Evacuate<BR>\n\tMeteor Shower:<BR>\n\t\tActivate fire alarm<BR>\n\t\tMove to the back of ship<BR>\n\t\tAfter<BR>\n\t\t\tRepair damage<BR>\n\t\t\tIf needed, Evacuate<BR>\n\tAccidental Reentry:<BR>\n\t\tActivate fire alarms in front of ship.<BR>\n\t\tMove volatile matter to a fire proof area!<BR>\n\t\tGet a fire suit.<BR>\n\t\tStay secure until an emergency ship arrives.<BR>\n<BR>\n\t\tIf ship does not arrive-<BR>\n\t\t\tEvacuate to a nearby safe area!"
@@ -19,6 +160,17 @@
 	<br>
 	<br>Please stay safe,
 	<br>-Love, <i>Your Dearest</i>"}
+
+/obj/item/paper/fluff/joey/letter
+	name = "letter from coworker"
+	info = {"Dearest Joey,
+	<br>It is truly remarkable with how you are able to stay collected even during the most dangerous situations.
+	<br>Especially after the last breach... So many have fallen to that Predator, Even more would of fallen if you did not step in.
+	<br>Thanks to your bravery, I am sure there are many agents who would love to thank you if they got the chance to see you. Especially my brother Roy, If it was not for you stepping in and taking such a heavy blow for them.
+	<br>So, Do you think you would like to meet up after your recovery? so I could thank you in person? I heard that HamHamPangPang is holding a special event!
+	<br>
+	<br>Get better soon!,
+	<br>-Love, <i>Your coworker, Marisa</i>"}
 
 
 ////////////	Job guides n' fluff
@@ -66,7 +218,7 @@
 
 /obj/item/paper/guides/jobs/zayin/lore/wellcheers
 	name = "F-05-52 Information Attachment"
-	info = {"The Wèllcheers Ocean Soda brand is to be blunt, non-existent outside this one vending machine in containment. It dispenses three flavors of ocean soda, coming in regular, cherry and grape free of charge from the drink dock, dispensed as soon as work is done with it.<br>
+	info = {"The Wèllcheers Ocean Soda brand is, to be blunt, nonexistent outside this one vending machine in containment. It dispenses three flavors of ocean soda, coming in regular, cherry and grape free of charge from the drink dock, dispensed as soon as work is done with it.<br>
 	<br>
 	As long as the work is good or acceptable, the drink will be closed, and safe for consumption, providing benefits to physical or mental health dependent on which flavor was dispensed.<br>
 	<br>
@@ -90,7 +242,7 @@
 
 /obj/item/paper/guides/jobs/teth/guide
 	name = "TETH Safety Guide - Netzach"
-	info = {"Read this carefully alright company boy? These things can actually kill you if you're not prepared. Put on some ego equipment. That neat suit and baton aren't going to cut it anymore.<br>
+	info = {"Read this carefully, alright, company boy? These things can actually <em>kill</em> you if you're not prepared. Put on some ego equipment. That neat suit and baton aren't going to cut it anymore.<br>
 	<br>
 	- Netzach"}
 
@@ -108,17 +260,17 @@
 
 /obj/item/paper/guides/jobs/teth/lore
 	name = "Attribute System - Hod"
-	info = {"You may have been wondering, fortitude, prudence, temperance, justice, what are these and why are people yelling about them?<br>
+	info = {"You may have been wondering: Fortitude, prudence, temperance, justice; what are these and why are people yelling about them?<br>
 	<br>
-	These are ways the company has simplified measurements of the body, mind and soul to help you stay safe and efficient!<br>
+	These are ways the company has simplified measurements of the body, mind, and soul to help you stay safe and efficient!<br>
 	<br>
-	Fortitude is how strong and durable you are physically, your physique! You can train this by doing instinct work with abnormalities.<br>
+	Fortitude is how strong and durable you are physically: your physique! You can train this by doing instinct work with abnormalities.<br>
 	<br>
-	Prudence is mental durability and intelligence, its your physique of smarts! Make your brain strong by doing insightful work.<br>
+	Prudence is mental durability and intelligence: it's your physique of smarts! Make your brain strong by doing insightful work.<br>
 	<br>
-	Temperance is the strength of your heart, your empathy and kindness! It helps you to avoid bending to the will of abnormals, and general temptation. Attachment work is good training for temperance.<br>
+	Temperance is the strength of your heart: your empathy and kindness! It helps you avoid bending to the will of abnormalities, and general temptation. Attachment work is good training for temperance.<br>
 	<br>
-	Now if temperance is the strength of your soul, justice is the strength of your spirit. Its quite literally your sense of justice, courage to fight even when you know you face death. Repression work is how one gets a sense of justice.<br>
+	Now if temperance is the strength of your soul, justice is the strength of your spirit. It's quite literally your sense of justice, courage to fight even when you know you face death. Repression work is how one gets a sense of justice.<br>
 	<br>
 	And that is all the attributes and what they ACTUALLY mean! Hopefully the context makes you less confused!<br>
 	<br>
@@ -141,9 +293,9 @@
 	info = {"These abnormalities can easily kill a number of employees, including veteran agents of the company. You have to pay twice as much attention as with ZAYIN or TETH subjects.<br>
 	As long as you pay close attention, you can avoid serious casualties.<br>
 	<br>
-	Ensure you are properly armed and armored if they do breach, these are serious threats, that require small teams to contain. And double check your safety guides so you don't immediately get terminated by a very stupid mistake.<br>
+	Ensure you are properly armed and armored if they do breach. These are serious threats that require coordinated teams to contain. Double-check your safety guides so you don't immediately get terminated by a very stupid mistake.<br>
 	<br>
-	Remember that not only is the company relying on you, but your fellow agents. Do not let them down.<br>
+	Remember that not only the company relies on you, but also your fellow agents. Do not let them down.<br>
 	<br>
 	-Malkuth"}
 
@@ -170,6 +322,84 @@
 	If these subjects escape into the city, we face a paradigm shift, even total extinction. Needless to say your employment and life will be terminated should you allow or facilitate this event.<br>
 	<br>
 	-Malkuth"}
+
+/////Abnochem Documentation - Written by Nutterbutter
+
+/obj/item/paper/guides/jobs/abnochem
+	name = "Enkephalin-Derived Substance Experimentation - Yesod"
+	info = {"The study of substances originating from abnormalities that cannot be classified simply as positive or negative enkephalin is a budding topic of research within the company. <br>
+	<br>
+	Recently, it has been discovered that trace elements generated by abnormalities in the work process, normally prone to disappearing after work, can be refined into a stable form- from here on, known as Enkephalin-Derived Substances, or EDS.<br>
+	<br>
+	As of now, this only has distinct properties from ZAYIN-class abnormalities. However, all other abnormalities have shown the ability to produce the same generic set, apparently at random.<br>
+	<br>
+	To retrieve a sample of an EDS, the abnormality must first be 100% understood. Then, you may fit the containment cell with a Chemical Extraction Cell Upgrade.<br>
+	<br>
+	Once both these conditions are met, work must recommence on the abnormality; the Chemical Extraction Cell Upgrade will then keep the abnormality primed to produce an EDS.<br>
+	<br>
+	Finally, approach the abnormality in its cell while holding an appropriate receptacle. Some will offer it willingly, some will need to be more directly interacted with. This does not constitute work in itself.<br>
+	<br>
+	For each one completed work, you may perform one harvest. The quality of the work does not matter for the purposes of EDS extraction.<br>
+	<br>
+	The Enkephalin-Derived Substance Analyzer is an experimental tool that will inform you of the basic properties held by any EDS in the vessel you scan with it. Simply hold it in hand and use it on a vessel containing at least one EDS.<br>
+	<br>
+	In order to understand and record the full breadth of an EDS's effect, it is recommended that a subject imbibe a small portion of it under safe conditions.<br>
+	<br>
+	More information shall be forthcoming as HQ acquires it.<br>
+	<br>
+	-Yesod"}
+
+/obj/item/paper/guides/jobs/abnochem_effects_generic
+	name = "Enkephalin-Derived Substance Documentation, supplementary - Yesod"
+	info = {"The basic information of each "generic" EDS is documented below. <br>
+	<br>
+	- Type NT: Orange in color. Heals the user physically, at the cost of increasing their metabolism.<br>
+	<br>
+	- Type CN: Jade green in color. Harms the user physically, but cleans them of all physical filth.<br>
+	<br>
+	- Type CS: Dusty teal in color. Restores the user's mental stability, but renders them weaker to white damage.<br>
+	<br>
+	- Type AM: Pink in color. The user's Justice is temporarily reduced, while their fortitude and prudence are improved.<br>
+	<br>
+	- Type VL: Red in color. The user's Justice is temporarily improved, but they suffer repeated physical damage.<br>
+	<br>
+	These effects may not be the most useful, but they still can have an impact in an emergency situation. Please learn them well.<br>
+	<br>
+	- Yesod"}
+
+/obj/item/paper/guides/jobs/abnochem_effects_zayin
+	name = "Enkephalin-Derived Substance Documentation, Zayin edition - Yesod"
+	info = {"The basic information of each Zayin-originating EDS has been derived. <br>
+	<br>
+	- Bald-is-Awesome: Produces "essence of baldness". Sap-like liquid. The user is rapidly rendered bald, but mental stability improves.<br>
+	<br>
+	- Bottle of Tears: Produces soggy crumbs. Powdery solid soaked with water-like liquid. The user's attributes drop temporarily, but their physical health improves.<br>
+	<br>
+	- Fairy Festival: Produces nectar from an unknown flower. Sweet liquid. The user's red-damage resistance drops, but their physical health improves.<br>
+	<br>
+	- One Sin and Hundreds of Good Deeds: Produces "holy light"... Process poorly understood. The user's mental stability drops, but those in the immediate vicinity have theirs improve.<br>
+	<br>
+	- A Quiet Day: Produces "liquid nostalgia". Viscous near-black liquid. The user's attributes improve temporarily, but their mental stability worsens.<br>
+	<br>
+	- Sleeping Beauty: Produces cloudy liquid. Liquid resembles a blue sky with white clouds. The user briefly falls asleep, but recovers mental stability rapidly.<br>
+	<br>
+	- We Can Change Anything: Produces dubious red goo. Thick, viscous red liquid. The user's red-damage resistance improves, but their physical health lowers.<br>
+	<br>
+	- Wellcheers Vending Machine: Produces Wellcheers Zero. Semi-transparent, golden fluid with a sweet flavor. The user undergoes rapid and unpredictable changes to physical health and mental stability. Overall trend appears to be slightly positive.<br>
+	<br>
+	Please learn these effects and encourage your manager to use them well.<br>
+	<br>
+	- Yesod"}
+
+/obj/item/paper/guides/jobs/abnochem_effects_he
+	name = "Enkephalin-Derived Substance Documentation, He edition - Yesod"
+	info = {"The basic information of each He-originating EDS has been derived. <br>
+	<br>
+	- Golden Apple: Produces "ambrosia". Syrupy liquid sap. The user glows with a powerful golden sheen, restoring physical and mental health.<br>
+	<br>
+	Please learn these effects and encourage your manager to use them well.<br>
+	<br>
+	- Yesod"}
 
 /////Documents I have yet to delete...
 

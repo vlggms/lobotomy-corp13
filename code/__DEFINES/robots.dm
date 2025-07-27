@@ -6,7 +6,7 @@
 #define BOT_STEP_DELAY 4 //Delay between movemements
 #define BOT_STEP_MAX_RETRIES 5 //Maximum times a bot will retry to step from its position
 
-#define DEFAULT_SCAN_RANGE		7	//default view range for finding targets.
+#define DEFAULT_SCAN_RANGE		5	//default view range for finding targets.
 
 //Mode defines. If you add a new one make sure you update mode_name in /mob/living/simple_animal/bot
 #define BOT_IDLE 			0	// idle

@@ -62,6 +62,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/datum/orbit_menu/orbit_menu
 	var/datum/spawners_menu/spawners_menu
 
+	var/possession_cooldown = 0 // LOBOTOMYCORPORATION ADDITION -- Possession cooldown
+
 /mob/dead/observer/Initialize()
 	set_invisibility(GLOB.observer_default_invisibility)
 
@@ -130,7 +132,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	if(!fun_verbs)
 		remove_verb(src, /mob/dead/observer/verb/boo)
-		remove_verb(src, /mob/dead/observer/verb/possess)
 
 	animate(src, pixel_y = 2, time = 10, loop = -1)
 
@@ -148,6 +149,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	show_data_huds()
 	data_huds_on = 1
 
+	possession_cooldown = world.time + (10 SECONDS) // LOBOTOMYCORPORATION ADDITION -- Possession cooldown
 
 /mob/dead/observer/get_photo_description(obj/item/camera/camera)
 	if(!invisibility || camera.see_ghosts)
@@ -157,7 +159,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/old_color = color
 	color = "#960000"
 	animate(src, color = old_color, time = 10, flags = ANIMATION_PARALLEL)
-	addtimer(CALLBACK(src, /atom/proc/update_atom_colour), 10)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, update_atom_colour)), 10)
 
 /mob/dead/observer/Destroy()
 	if(data_huds_on)
@@ -352,18 +354,18 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(!client)
 		return
 	if(!mind || QDELETED(mind.current))
-		to_chat(src, "<span class='warning'>You have no body.</span>")
+		to_chat(src, span_warning("You have no body."))
 		return
 	if(!can_reenter_corpse)
-		to_chat(src, "<span class='warning'>You cannot re-enter your body.</span>")
+		to_chat(src, span_warning("You cannot re-enter your body."))
 		return
 	if(ishuman(mind.current)) // Went insane
 		var/mob/living/carbon/human/H = mind.current
 		if(H.sanity_lost)
-			to_chat(src, "<span class='warning'>You went insane and can't control yourself.</span>")
+			to_chat(src, span_warning("You went insane and can't control yourself."))
 			return
 	if(mind.current.key && mind.current.key[1] != "@")	//makes sure we don't accidentally kick any clients
-		to_chat(usr, "<span class='warning'>Another consciousness is in your body...It is resisting you.</span>")
+		to_chat(usr, span_warning("Another consciousness is in your body...It is resisting you."))
 		return
 	client.view_size.setDefault(getScreenSize(client.prefs.widescreenpref))//Let's reset so people can't become allseeing gods
 	SStgui.on_transfer(src, mind.current) // Transfer NanoUIs.
@@ -377,7 +379,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(!client)
 		return
 	if(!can_reenter_corpse)
-		to_chat(usr, "<span class='warning'>You're already stuck out of your body!</span>")
+		to_chat(usr, span_warning("You're already stuck out of your body!"))
 		return FALSE
 
 	var/response = alert(src, "Are you sure you want to prevent (almost) all means of resuscitation? This cannot be undone. ","Are you sure you want to stay dead?","DNR","Save Me")
@@ -391,14 +393,14 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	// Disassociates observer mind from the body mind
 	mind = null
 
-	to_chat(src, "<span class='boldnotice'>You can no longer be brought back into your body.</span>")
+	to_chat(src, span_boldnotice("You can no longer be brought back into your body."))
 	return TRUE
 
 /mob/dead/observer/proc/notify_cloning(message, sound, atom/source, flashwindow = TRUE)
 	if(flashwindow)
 		window_flash(client)
 	if(message)
-		to_chat(src, "<span class='ghostalert'>[message]</span>")
+		to_chat(src, span_ghostalert("[message]"))
 		if(source)
 			var/atom/movable/screen/alert/A = throw_alert("[REF(source)]_notify_cloning", /atom/movable/screen/alert/notify_cloning)
 			if(A)
@@ -412,7 +414,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 				A.add_overlay(source)
 				source.layer = old_layer
 				source.plane = old_plane
-	to_chat(src, "<span class='ghostalert'><a href=?src=[REF(src)];reenter=1>(Click to re-enter)</a></span>")
+	to_chat(src, span_ghostalert("<a href=?src=[REF(src)];reenter=1>(Click to re-enter)</a>"))
 	if(sound)
 		SEND_SOUND(src, sound(sound))
 
@@ -421,7 +423,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "Teleport"
 	set desc= "Teleport to a location"
 	if(!isobserver(usr))
-		to_chat(usr, "<span class='warning'>Not when you're not dead!</span>")
+		to_chat(usr, span_warning("Not when you're not dead!"))
 		return
 	var/list/filtered = list()
 	for(var/V in GLOB.sortedAreas)
@@ -438,7 +440,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		L+=T
 
 	if(!L || !L.len)
-		to_chat(usr, "<span class='warning'>No area available.</span>")
+		to_chat(usr, span_warning("No area available."))
 		return
 
 	usr.forceMove(pick(L))
@@ -515,7 +517,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 				A.forceMove(T)
 				A.update_parallax_contents()
 			else
-				to_chat(A, "<span class='danger'>This mob is not located in the game world.</span>")
+				to_chat(A, span_danger("This mob is not located in the game world."))
 
 /mob/dead/observer/verb/change_view_range()
 	set category = "Ghost"
@@ -558,11 +560,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/dead/observer/memory()
 	set hidden = TRUE
-	to_chat(src, "<span class='danger'>You are dead! You have no mind to store memory!</span>")
+	to_chat(src, span_danger("You are dead! You have no mind to store memory!"))
 
 /mob/dead/observer/add_memory()
 	set hidden = TRUE
-	to_chat(src, "<span class='danger'>You are dead! You have no mind to store memory!</span>")
+	to_chat(src, span_danger("You are dead! You have no mind to store memory!"))
 
 /mob/dead/observer/verb/toggle_ghostsee()
 	set name = "Toggle Ghost Vision"
@@ -570,7 +572,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set category = "Ghost"
 	ghostvision = !(ghostvision)
 	update_sight()
-	to_chat(usr, "<span class='boldnotice'>You [(ghostvision?"now":"no longer")] have ghost vision.</span>")
+	to_chat(usr, span_boldnotice("You [(ghostvision?"now":"no longer")] have ghost vision."))
 
 /mob/dead/observer/verb/toggle_darkness()
 	set name = "Toggle Darkness"
@@ -632,10 +634,34 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "Possess!"
 	set desc= "Take over the body of a mindless creature!"
 
+	// LOBOTOMYCORPORATION ADDITION START
+	if(!SSlobotomy_corp.enable_possession)
+		to_chat(usr, span_userdanger("Abnormality possession is not enabled!"))
+		return FALSE
+
+	if(possession_cooldown >= world.time)
+		to_chat(src, span_userdanger("You are under a cooldown for possessing for [(possession_cooldown - world.time) / 10] more seconds!"))
+		return FALSE
+	// LOBOTOMYCORPORATION ADDITION END
+
 	var/list/possessible = list()
 	for(var/mob/living/L in GLOB.alive_mob_list)
-		if(istype(L,/mob/living/carbon/human/dummy) || !get_turf(L)) //Haha no.
+		// LOBOTOMYCORPORATION ADDITION START
+		if(isabnormalitymob(L))
+			var/mob/living/simple_animal/hostile/abnormality/abnormality = L
+			if(abnormality.do_not_possess)
+				continue
+		if(!get_turf(L))
 			continue
+		if(istype(L, /mob/living/carbon/human))
+			var/mob/living/carbon/human/H = L
+			if(istype(H, /mob/living/carbon/human/dummy) || H.sanity_lost) //Haha no.
+				continue
+
+		if(istype(L, /mob/living/simple_animal/hostile/der_freis_portal) || !get_turf(L)) //We don't want portals to be stolen...
+			continue
+		// LOBOTOMYCORPORATION ADDITION END
+
 		if(!(L in GLOB.player_list) && !L.mind)
 			possessible += L
 
@@ -645,17 +671,18 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return FALSE
 
 	if(ismegafauna(target))
-		to_chat(src, "<span class='warning'>This creature is too powerful for you to possess!</span>")
+		to_chat(src, span_warning("This creature is too powerful for you to possess!"))
 		return FALSE
 
 	if(can_reenter_corpse && mind?.current)
 		if(alert(src, "Your soul is still tied to your former life as [mind.current.name], if you go forward there is no going back to that life. Are you sure you wish to continue?", "Move On", "Yes", "No") == "No")
 			return FALSE
 	if(target.key)
-		to_chat(src, "<span class='warning'>Someone has taken this body while you were choosing!</span>")
+		to_chat(src, span_warning("Someone has taken this body while you were choosing!"))
 		return FALSE
 
 	target.key = key
+//	target.faction = list("neutral") LOBOTOMYCORPORATION REMOVAL -- messes with the posessed abnormality's factions
 	return TRUE
 
 //this is a mob verb instead of atom for performance reasons
@@ -664,7 +691,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/observer/pointed(atom/A as mob|obj|turf in view(client.view, src))
 	if(!..())
 		return FALSE
-	usr.visible_message("<span class='deadsay'><b>[src]</b> points to [A].</span>")
+	usr.visible_message(span_deadsay("<b>[src]</b> points to [A]."))
 	return TRUE
 
 /mob/dead/observer/verb/view_manifest()
@@ -677,11 +704,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 	client.crew_manifest_delay = world.time + (1 SECONDS)
 
-	var/dat
-	dat += "<h4>Crew Manifest</h4>"
-	dat += GLOB.data_core.get_manifest_html()
+	if(!GLOB.crew_manifest_tgui)
+		GLOB.crew_manifest_tgui = new /datum/crew_manifest(src)
 
-	src << browse(dat, "window=manifest;size=387x420;can_close=1")
+	GLOB.crew_manifest_tgui.ui_interact(src)
 
 //this is called when a ghost is drag clicked to something.
 /mob/dead/observer/MouseDrop(atom/over)
@@ -691,7 +717,41 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if (usr.client.holder.cmd_ghost_drag(src,over))
 			return
 
+	//LOBOTOMYCORPORATION ADDITION START -- drag-clicking your ghost onto abnormalities to possess them
+
+	if(usr != src) // dont give chat feedback, dragging others onto an abnormality is probably just a silly mistake
+		return ..()
+
+	if(!isliving(over)) // you really did just miss your possession target, pathetic. You dont get a satisfactory message for that
+		return ..()
+
+	if(!SSlobotomy_corp.enable_possession) // if admins dont want us to fuck around, lets not fuck around
+		to_chat(usr, span_userdanger("Abnormality possession is not enabled!"))
+		return ..()
+
+	if(isabnormalitymob(over))
+		var/mob/living/simple_animal/hostile/abnormality/abnormality = over
+		if(abnormality.do_not_possess)
+			to_chat(usr, span_userdanger("This abnormality is blacklisted from being possessed!"))
+			return ..()
+
+	if(possession_cooldown >= world.time)
+		to_chat(src, span_userdanger("You are under a cooldown for possessing for [(possession_cooldown - world.time) / 10] more seconds!"))
+		return ..()
+
+	if(!usr.client) // who are we talking to again...? whatever
+		to_chat(usr, span_userdanger("You dont exist, so you cant possess!"))
+		return ..()
+
+	if(!isabnormalitymob(over) && !SSmaptype.maptype == "limbus_labs") // we want them to ONLY be able to possess abnormalities
+		to_chat(usr, span_userdanger("You can only possess abnormalities!"))
+		return ..()
+
+	try_take_abnormality(src, over)
 	return ..()
+	//LOBOTOMYCORPORATION ADDITION END
+
+//	return ..() LOBOTOMYCORPORATION REMOVAL -- we dont need this anymore since we do safety checks with early returns instead
 
 /mob/dead/observer/Topic(href, href_list)
 	..()
@@ -735,11 +795,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	if(data_huds_on) //remove old huds
 		remove_data_huds()
-		to_chat(src, "<span class='notice'>Data HUDs disabled.</span>")
+		to_chat(src, span_notice("Data HUDs disabled."))
 		data_huds_on = 0
 	else
 		show_data_huds()
-		to_chat(src, "<span class='notice'>Data HUDs enabled.</span>")
+		to_chat(src, span_notice("Data HUDs enabled."))
 		data_huds_on = 1
 
 /mob/dead/observer/verb/toggle_health_scan()
@@ -748,10 +808,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set category = "Ghost"
 
 	if(health_scan) //remove old huds
-		to_chat(src, "<span class='notice'>Health scan disabled.</span>")
+		to_chat(src, span_notice("Health scan disabled."))
 		health_scan = FALSE
 	else
-		to_chat(src, "<span class='notice'>Health scan enabled.</span>")
+		to_chat(src, span_notice("Health scan enabled."))
 		health_scan = TRUE
 
 /mob/dead/observer/verb/toggle_chem_scan()
@@ -760,10 +820,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set category = "Ghost"
 
 	if(chem_scan) //remove old huds
-		to_chat(src, "<span class='notice'>Chem scan disabled.</span>")
+		to_chat(src, span_notice("Chem scan disabled."))
 		chem_scan = FALSE
 	else
-		to_chat(src, "<span class='notice'>Chem scan enabled.</span>")
+		to_chat(src, span_notice("Chem scan enabled."))
 		chem_scan = TRUE
 
 /mob/dead/observer/verb/toggle_gas_scan()
@@ -772,10 +832,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set category = "Ghost"
 
 	if(gas_scan)
-		to_chat(src, "<span class='notice'>Gas scan disabled.</span>")
+		to_chat(src, span_notice("Gas scan disabled."))
 		gas_scan = FALSE
 	else
-		to_chat(src, "<span class='notice'>Gas scan enabled.</span>")
+		to_chat(src, span_notice("Gas scan enabled."))
 		gas_scan = TRUE
 
 /mob/dead/observer/verb/restore_ghost_appearance()
@@ -884,7 +944,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(isobserver(src))
 		SSpai.recruitWindow(src)
 	else
-		to_chat(usr, "<span class='warning'>Can't become a pAI candidate while not dead!</span>")
+		to_chat(usr, span_warning("Can't become a pAI candidate while not dead!"))
 
 /mob/dead/observer/verb/mafia_game_signup()
 	set category = "Ghost"
@@ -897,7 +957,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(!client)
 		return
 	if(!isobserver(src))
-		to_chat(usr, "<span class='warning'>You must be a ghost to join mafia!</span>")
+		to_chat(usr, span_warning("You must be a ghost to join mafia!"))
 		return
 	var/datum/mafia_controller/game = GLOB.mafia_game //this needs to change if you want multiple mafia games up at once.
 	if(!game)
@@ -916,7 +976,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/observer/examine_more(mob/user)
 	if(!isAdminObserver(user))
 		return ..()
-	. = list("<span class='notice'><i>You examine [src] closer, and note the following...</i></span>")
+	. = list(span_notice("<i>You examine [src] closer, and note the following...</i>"))
 	. += list("\t><span class='admin'>[ADMIN_FULLMONTY(src)]</span>")
 
 

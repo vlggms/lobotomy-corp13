@@ -29,7 +29,7 @@
 	var/datum/gas_mixture/turf/air
 
 	var/obj/effect/hotspot/active_hotspot
-	var/planetary_atmos = FALSE //air will revert to initial_gas_mix
+	var/planetary_atmos = TRUE //air will revert to initial_gas_mix
 
 	var/list/atmos_overlay_types //gas IDs of current active gas overlays
 	var/significant_share_ticker = 0
@@ -38,6 +38,9 @@
 	#endif
 
 /turf/open/Initialize()
+	//If we want actual space grameplay. What can go wrong?
+	if(SSmaptype.maptype in SSmaptype.spacemaps)
+		planetary_atmos = FALSE
 	if(!blocks_air)
 		air = new
 		air.copy_from_turf(src)
@@ -131,7 +134,10 @@
 	temperature_archived = temperature
 
 /turf/open/archive()
-	air.archive()
+	if(!air)
+		stack_trace("[src] tried to archive null air at [x]x-[y]y-[z]z")
+	else
+		air.archive()
 	archived_cycle = SSair.times_fired
 	temperature_archived = temperature
 
@@ -254,8 +260,7 @@
 	max_share = 0 //Gotta reset our tracker
 	#endif
 
-	for(var/t in adjacent_turfs)
-		var/turf/open/enemy_tile = t
+	for(var/turf/open/enemy_tile in adjacent_turfs)
 
 		if(fire_count <= enemy_tile.current_cycle)
 			continue
@@ -330,43 +335,6 @@
 
 	significant_share_ticker = cached_ticker //Save our changes
 	temperature_expose(our_air, our_air.temperature)
-
-////////////////////Excited Group Cleanup///////////////////////
-
-///For dealing with reforming excited groups, this prevents clog in process_cell
-/turf/open/proc/cleanup_group(fire_count, breakdown, dismantle)
-	current_cycle = fire_count + 0.5 //It works, I know it's dumb but it works
-
-	//cache for sanic speed
-	var/list/adjacent_turfs = atmos_adjacent_turfs
-	var/datum/excited_group/our_excited_group = excited_group
-
-	for(var/t in adjacent_turfs)
-		var/turf/open/enemy_tile = t
-
-		if(current_cycle <= enemy_tile.current_cycle)
-			continue
-
-		//cache for sanic speed
-		var/datum/excited_group/enemy_excited_group = enemy_tile.excited_group
-		//If we are both in an excited group, and they aren't the same, merge.
-		//Otherwise make/take one to join and get to it
-		if(our_excited_group && enemy_excited_group)
-			if(our_excited_group != enemy_excited_group)
-				//combine groups (this also handles updating the excited_group var of all involved turfs)
-				our_excited_group.merge_groups(enemy_excited_group)
-				our_excited_group = excited_group //update our cache
-		else
-			var/datum/excited_group/EG = our_excited_group || enemy_excited_group || new
-			if(!our_excited_group)
-				EG.add_turf(src)
-			if(!enemy_excited_group && enemy_tile.turf_flags & EXCITED_CLEANUP)
-				EG.add_turf(enemy_tile)
-			our_excited_group = excited_group
-	if(our_excited_group)
-		our_excited_group.breakdown_cooldown = breakdown //Update with the old data
-		our_excited_group.dismantle_cooldown = dismantle
-	turf_flags &= ~EXCITED_CLEANUP
 
 //////////////////////////SPACEWIND/////////////////////////////
 
@@ -469,8 +437,7 @@
 	var/energy = 0
 	var/heat_cap = 0
 
-	for(var/t in turf_list)
-		var/turf/open/T = t
+	for(var/turf/open/T in turf_list)
 		//Cache?
 		var/datum/gas_mixture/turf/mix = T.air
 		if (roundstart && istype(T.air, /datum/gas_mixture/immutable))
@@ -495,8 +462,7 @@
 			A_gases[id][MOLES] /= turflen
 		A.garbage_collect()
 
-	for(var/t in turf_list)
-		var/turf/open/T = t
+	for(var/turf/open/T in turf_list)
 		if(T.planetary_atmos) //We do this as a hack to try and minimize unneeded excited group spread over planetary turfs
 			T.air.copy_from(SSair.planetary[T.initial_gas_mix]) //Comes with a cost of "slower" drains, but it's worth it
 		else
@@ -521,16 +487,12 @@
 	garbage_collect()
 
 //Breaks down the excited group, this doesn't sleep the turfs mind, just removes them from the group
-/datum/excited_group/proc/garbage_collect(will_cleanup = FALSE)
+/datum/excited_group/proc/garbage_collect()
 	if(display_id) //If we ever did make those changes
 		hide_turfs()
 	for(var/t in turf_list)
 		var/turf/open/T = t
 		T.excited_group = null
-		if(will_cleanup)
-			T.turf_flags |= EXCITED_CLEANUP
-	if(will_cleanup)
-		SSair.add_to_cleanup(src)
 	turf_list.Cut()
 	SSair.excited_groups -= src
 	if(SSair.currentpart == SSAIR_EXCITEDGROUPS)

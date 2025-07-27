@@ -31,8 +31,8 @@
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	unique_name = 1
 	gold_core_spawnable = NO_SPAWN
-	deathsound = 'sound/voice/hiss6.ogg'
-	deathmessage = "lets out a waning guttural screech, green blood bubbling from its maw..."
+	death_sound = 'sound/voice/hiss6.ogg'
+	death_message = "lets out a waning guttural screech, green blood bubbling from its maw..."
 
 /mob/living/simple_animal/hostile/alien/Initialize()
 	. = ..()
@@ -115,7 +115,7 @@
 		return
 	if(locate(/obj/structure/alien/weeds/node) in get_turf(src))
 		return
-	visible_message("<span class='alertalien'>[src] plants some alien weeds!</span>")
+	visible_message(span_alertalien("[src] plants some alien weeds!"))
 	new /obj/structure/alien/weeds/node(loc)
 
 /mob/living/simple_animal/hostile/alien/proc/LayEggs()
@@ -123,7 +123,7 @@
 		return
 	if(locate(/obj/structure/alien/egg) in get_turf(src))
 		return
-	visible_message("<span class='alertalien'>[src] lays an egg!</span>")
+	visible_message(span_alertalien("[src] lays an egg!"))
 	new /obj/structure/alien/egg(loc)
 
 /mob/living/simple_animal/hostile/alien/queen/large
@@ -169,7 +169,7 @@
 	if(ismovable(target))
 		target.wash(CLEAN_SCRUB)
 		if(istype(target, /obj/effect/decal/cleanable))
-			visible_message("<span class='notice'>[src] cleans up \the [target].</span>")
+			visible_message(span_notice("[src] cleans up \the [target]."))
 		else
-			visible_message("<span class='notice'>[src] polishes \the [target].</span>")
+			visible_message(span_notice("[src] polishes \the [target]."))
 		return TRUE

@@ -87,7 +87,7 @@ global procs
 		Composes the href tags used by the AI for tracking. Returns "" for all mobs except AIs.
 
 	compose_job(message, atom/movable/speaker, message_langs, raw_message, radio_freq)
-		Composes the job and the end tag for tracking hrefs. Returns "" for all mobs except AIs.
+		Composes the job and the end tag for tracking hrefs. Returns "" for all mobs except AIs and humans with job abbreviations.
 
 	hivecheck()
 		Returns TRUE if the mob can hear and talk in the alien hivemind.
@@ -174,6 +174,8 @@ If radio_freq is not null, the code will rely on the fact that the speaker is vi
 	(all of these procs are defined at the atom/movable level and return "" at that level.)
 	GetJob()
 		Returns the job string variable of the virtual speaker.
+	GetJobAbbrev()
+		Returns the job abbreviation string variable of the virtual speaker.
 	GetTrack()
 		Returns wether the tracking href should be fake or not.
 	GetSource()

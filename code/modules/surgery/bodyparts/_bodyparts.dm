@@ -37,6 +37,7 @@
 	var/stamina_dam = 0
 	var/max_stamina_damage = 0
 	var/max_damage = 0
+	var/max_damage_callback = 50
 
 	var/cremation_progress = 0 //Gradually increases while burning when at full damage, destroys the limb when at 100
 
@@ -92,15 +93,17 @@
 	var/generic_bleedstacks
 	/// If we have a gauze wrapping currently applied (not including splints)
 	var/obj/item/stack/current_gauze
-	/// If something is currently grasping this bodypart and trying to staunch bleeding (see [/obj/item/self_grasp])
-	var/obj/item/self_grasp/grasped_by
+	/// If something is currently grasping this bodypart and trying to staunch bleeding (see [/obj/item/hand_item/self_grasp])
+	var/obj/item/hand_item/self_grasp/grasped_by
 
 
 /obj/item/bodypart/Initialize(mapload)
+	if(SSmaptype.chosen_trait == FACILITY_TRAIT_CALLBACK)
+		max_damage = max_damage_callback
 	. = ..()
 	if(can_be_disabled)
-		RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS), .proc/on_paralysis_trait_gain)
-		RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS), .proc/on_paralysis_trait_loss)
+		RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS), PROC_REF(on_paralysis_trait_gain))
+		RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS), PROC_REF(on_paralysis_trait_loss))
 
 
 /obj/item/bodypart/Destroy()
@@ -569,7 +572,7 @@
 			last_maxed = FALSE
 		else
 			if(!last_maxed && owner.stat < UNCONSCIOUS)
-				INVOKE_ASYNC(owner, /mob.proc/emote, "scream")
+				INVOKE_ASYNC(owner, TYPE_PROC_REF(/mob, emote), "scream")
 			last_maxed = TRUE
 		set_disabled(FALSE) // we only care about the paralysis trait
 		return
@@ -578,7 +581,7 @@
 	if(total_damage >= max_damage * disable_threshold)
 		if(!last_maxed)
 			if(owner.stat < UNCONSCIOUS)
-				INVOKE_ASYNC(owner, /mob.proc/emote, "scream")
+				INVOKE_ASYNC(owner, TYPE_PROC_REF(/mob, emote), "scream")
 			last_maxed = TRUE
 		set_disabled(TRUE)
 		return
@@ -624,8 +627,8 @@
 			if(HAS_TRAIT(owner, TRAIT_NOLIMBDISABLE))
 				set_can_be_disabled(FALSE)
 				needs_update_disabled = FALSE
-			RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_NOLIMBDISABLE), .proc/on_owner_nolimbdisable_trait_loss)
-			RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_NOLIMBDISABLE), .proc/on_owner_nolimbdisable_trait_gain)
+			RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_NOLIMBDISABLE), PROC_REF(on_owner_nolimbdisable_trait_loss))
+			RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_NOLIMBDISABLE), PROC_REF(on_owner_nolimbdisable_trait_gain))
 		if(needs_update_disabled)
 			update_disabled()
 
@@ -640,8 +643,8 @@
 		if(owner)
 			if(HAS_TRAIT(owner, TRAIT_NOLIMBDISABLE))
 				CRASH("set_can_be_disabled to TRUE with for limb whose owner has TRAIT_NOLIMBDISABLE")
-			RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS), .proc/on_paralysis_trait_gain)
-			RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS), .proc/on_paralysis_trait_loss)
+			RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS), PROC_REF(on_paralysis_trait_gain))
+			RegisterSignal(owner, SIGNAL_REMOVETRAIT(TRAIT_PARALYSIS), PROC_REF(on_paralysis_trait_loss))
 		update_disabled()
 	else if(.)
 		if(owner)

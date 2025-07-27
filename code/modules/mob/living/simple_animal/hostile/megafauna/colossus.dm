@@ -49,8 +49,8 @@
 	score_achievement_type = /datum/award/score/colussus_score
 	crusher_loot = list(/obj/structure/closet/crate/necropolis/colossus/crusher)
 	loot = list(/obj/structure/closet/crate/necropolis/colossus)
-	deathmessage = "disintegrates, leaving a glowing core in its wake."
-	deathsound = 'sound/magic/demon_dies.ogg'
+	death_message = "disintegrates, leaving a glowing core in its wake."
+	death_sound = 'sound/magic/demon_dies.ogg'
 	attack_action_types = list(/datum/action/innate/megafauna_attack/spiral_attack,
 							   /datum/action/innate/megafauna_attack/aoe_attack,
 							   /datum/action/innate/megafauna_attack/shotgun,
@@ -65,28 +65,28 @@
 	name = "Spiral Shots"
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "sniper_zoom"
-	chosen_message = "<span class='colossus'>You are now firing in a spiral.</span>"
+	chosen_message = span_colossus("You are now firing in a spiral.")
 	chosen_attack_num = 1
 
 /datum/action/innate/megafauna_attack/aoe_attack
 	name = "All Directions"
 	icon_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "at_shield2"
-	chosen_message = "<span class='colossus'>You are now firing in all directions.</span>"
+	chosen_message = span_colossus("You are now firing in all directions.")
 	chosen_attack_num = 2
 
 /datum/action/innate/megafauna_attack/shotgun
 	name = "Shotgun Fire"
 	icon_icon = 'icons/obj/guns/projectile.dmi'
 	button_icon_state = "shotgun"
-	chosen_message = "<span class='colossus'>You are now firing shotgun shots where you aim.</span>"
+	chosen_message = span_colossus("You are now firing shotgun shots where you aim.")
 	chosen_attack_num = 3
 
 /datum/action/innate/megafauna_attack/alternating_cardinals
 	name = "Alternating Shots"
 	icon_icon = 'icons/obj/guns/projectile.dmi'
 	button_icon_state = "pistol"
-	chosen_message = "<span class='colossus'>You are now firing in alternating cardinal directions.</span>"
+	chosen_message = span_colossus("You are now firing in alternating cardinal directions.")
 	chosen_attack_num = 4
 
 /mob/living/simple_animal/hostile/megafauna/colossus/OpenFire()
@@ -107,7 +107,7 @@
 
 	if(enrage(target))
 		if(move_to_delay == initial(move_to_delay))
-			visible_message("<span class='colossus'>\"<b>You can't dodge.</b>\"</span>")
+			visible_message(span_colossus("\"<b>You can't dodge.</b>\""))
 		ranged_cooldown = world.time + 30
 		telegraph()
 		dir_shots(GLOB.alldirs)
@@ -150,15 +150,15 @@
 	icon_state = "eva_attack"
 	if(health < maxHealth/3)
 		return double_spiral()
-	visible_message("<span class='colossus'>\"<b>Judgement.</b>\"</span>")
+	visible_message(span_colossus("\"<b>Judgement.</b>\""))
 	return spiral_shoot()
 
 /mob/living/simple_animal/hostile/megafauna/colossus/proc/double_spiral()
-	visible_message("<span class='colossus'>\"<b>Die.</b>\"</span>")
+	visible_message(span_colossus("\"<b>Die.</b>\""))
 
 	SLEEP_CHECK_DEATH(10)
-	INVOKE_ASYNC(src, .proc/spiral_shoot, FALSE)
-	INVOKE_ASYNC(src, .proc/spiral_shoot, TRUE)
+	INVOKE_ASYNC(src, PROC_REF(spiral_shoot), FALSE)
+	INVOKE_ASYNC(src, PROC_REF(spiral_shoot), TRUE)
 
 /mob/living/simple_animal/hostile/megafauna/colossus/proc/spiral_shoot(negative = pick(TRUE, FALSE), counter_start = 8)
 	var/turf/start_turf = get_step(src, pick(GLOB.alldirs))
@@ -225,7 +225,7 @@
 
 
 /mob/living/simple_animal/hostile/megafauna/colossus/devour(mob/living/L)
-	visible_message("<span class='colossus'>[src] disintegrates [L]!</span>")
+	visible_message(span_colossus("[src] disintegrates [L]!"))
 	L.dust()
 
 /obj/effect/temp_visual/at_shield
@@ -242,7 +242,7 @@
 /obj/effect/temp_visual/at_shield/Initialize(mapload, new_target)
 	. = ..()
 	target = new_target
-	INVOKE_ASYNC(src, /atom/movable/proc/orbit, target, 0, FALSE, 0, 0, FALSE, TRUE)
+	INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, orbit), target, 0, FALSE, 0, 0, FALSE, TRUE)
 
 /mob/living/simple_animal/hostile/megafauna/colossus/bullet_act(obj/projectile/P)
 	if(!stat)
@@ -299,7 +299,7 @@
 	if(!istype(O))
 		return FALSE
 	if(blacklist[O])
-		visible_message("<span class='boldwarning'>[src] ripples as it rejects [O]. The device will not accept items that have been removed from it.</span>")
+		visible_message(span_boldwarning("[src] ripples as it rejects [O]. The device will not accept items that have been removed from it."))
 		return FALSE
 	return TRUE
 
@@ -447,7 +447,7 @@
 	if(istype(P, /obj/projectile/magic))
 		ActivationReaction(P.firer, ACTIVATE_MAGIC, P.damage_type)
 		return
-	ActivationReaction(P.firer, P.flag, P.damage_type)
+	ActivationReaction(P.firer, P.damage_type, P.damage_type)
 
 /obj/machinery/anomalous_crystal/proc/ActivationReaction(mob/user, method, damtype)
 	if(world.time < last_use_timer)
@@ -692,7 +692,7 @@
 		if(L.stat != DEAD)
 			L.heal_overall_damage(melee_damage_upper, melee_damage_upper)
 			new /obj/effect/temp_visual/heal(get_turf(target), "#80F5FF")
-			visible_message("<span class='notice'>[src] mends the wounds of [target].</span>","<span class='notice'>You mend the wounds of [target].</span>")
+			visible_message(span_notice("[src] mends the wounds of [target]."),span_notice("You mend the wounds of [target]."))
 
 /mob/living/simple_animal/hostile/lightgeist/ghost()
 	. = ..()

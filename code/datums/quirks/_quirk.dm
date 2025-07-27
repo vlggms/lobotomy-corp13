@@ -21,7 +21,8 @@
 		return
 	quirk_holder = quirk_mob
 	SSquirks.quirk_objects += src
-	to_chat(quirk_holder, gain_text)
+	if(gain_text)
+		to_chat(quirk_holder, gain_text)
 	quirk_holder.roundstart_quirks += src
 	if(mob_trait)
 		ADD_TRAIT(quirk_holder, mob_trait, ROUNDSTART_TRAIT)
@@ -32,7 +33,7 @@
 	if(quirk_holder.client)
 		post_add()
 	else
-		RegisterSignal(quirk_holder, COMSIG_MOB_LOGIN, .proc/on_quirk_holder_first_login)
+		RegisterSignal(quirk_holder, COMSIG_MOB_LOGIN, PROC_REF(on_quirk_holder_first_login))
 
 
 /**
@@ -52,7 +53,8 @@
 	STOP_PROCESSING(SSquirks, src)
 	remove()
 	if(quirk_holder)
-		to_chat(quirk_holder, lose_text)
+		if(lose_text)
+			to_chat(quirk_holder, lose_text)
 		quirk_holder.roundstart_quirks -= src
 		if(mob_trait)
 			REMOVE_TRAIT(quirk_holder, mob_trait, ROUNDSTART_TRAIT)

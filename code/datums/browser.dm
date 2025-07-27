@@ -96,7 +96,7 @@
 /datum/browser/proc/open(use_onclose = TRUE)
 	if(isnull(window_id))	//null check because this can potentially nuke goonchat
 		WARNING("Browser [title] tried to open with a null ID")
-		to_chat(user, "<span class='userdanger'>The [title] browser you tried to open failed a sanity check! Please report this on github!</span>")
+		to_chat(user, span_userdanger("The [title] browser you tried to open failed a sanity check! Please report this on github!"))
 		return
 	var/window_size = ""
 	if (width && height)
@@ -227,7 +227,7 @@
 					winset(user, "mapwindow", "focus=true")
 				break
 	if (timeout)
-		addtimer(CALLBACK(src, .proc/close), timeout)
+		addtimer(CALLBACK(src, PROC_REF(close)), timeout)
 
 /datum/browser/modal/proc/wait()
 	while (opentime && selectedbutton <= 0 && (!timeout || opentime+timeout > world.time))
@@ -347,11 +347,11 @@
 		var/setting = settings["mainsettings"][name]
 		if (setting["type"] == "datum")
 			if (setting["subtypesonly"])
-				dat += "<b>[setting["desc"]]:</b> <a href='?src=[REF(src)];setting=[name];task=input;subtypesonly=1;type=datum;path=[setting["path"]]'>[setting["value"]]</a><BR>"
+				dat += "<b>[setting["desc"]]:</b> <a href='byond://?src=[REF(src)];setting=[name];task=input;subtypesonly=1;type=datum;path=[setting["path"]]'>[setting["value"]]</a><BR>"
 			else
-				dat += "<b>[setting["desc"]]:</b> <a href='?src=[REF(src)];setting=[name];task=input;type=datum;path=[setting["path"]]'>[setting["value"]]</a><BR>"
+				dat += "<b>[setting["desc"]]:</b> <a href='byond://?src=[REF(src)];setting=[name];task=input;type=datum;path=[setting["path"]]'>[setting["value"]]</a><BR>"
 		else
-			dat += "<b>[setting["desc"]]:</b> <a href='?src=[REF(src)];setting=[name];task=input;type=[setting["type"]]'>[setting["value"]]</a><BR>"
+			dat += "<b>[setting["desc"]]:</b> <a href='byond://?src=[REF(src)];setting=[name];task=input;type=[setting["type"]]'>[setting["value"]]</a><BR>"
 
 	if (preview_icon)
 		dat += "<td valign='center'>"
@@ -362,7 +362,7 @@
 
 	dat += "</tr></table>"
 
-	dat += "<hr><center><a href='?src=[REF(src)];button=1'>Ok</a> "
+	dat += "<hr><center><a href='byond://?src=[REF(src)];button=1'>Ok</a> "
 
 	dat += "</center>"
 

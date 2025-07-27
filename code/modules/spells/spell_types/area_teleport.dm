@@ -18,7 +18,7 @@
 		return
 	invocation(thearea,user)
 	if(charge_type == "recharge" && recharge)
-		INVOKE_ASYNC(src, .proc/start_recharge)
+		INVOKE_ASYNC(src, PROC_REF(start_recharge))
 	cast(targets,thearea,user)
 	after_cast(targets)
 
@@ -50,7 +50,7 @@
 					L+=T
 
 		if(!L.len)
-			to_chat(usr, "<span class='warning'>The spell matrix was unable to locate a suitable teleport destination for an unknown reason. Sorry.</span>")
+			to_chat(usr, span_warning("The spell matrix was unable to locate a suitable teleport destination for an unknown reason. Sorry."))
 			return
 
 		if(target?.buckled)

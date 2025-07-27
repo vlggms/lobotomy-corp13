@@ -43,12 +43,12 @@
 	if(patient == user)
 		if(!silent)
 			user.visible_message("<span class='notice'>[user] starts to apply [src] on [user.p_them()]self...</span>", "<span class='notice'>You begin applying [src] on yourself...</span>")
-		if(!do_mob(user, patient, self_delay, extra_checks=CALLBACK(patient, /mob/living/proc/can_inject, user, TRUE)))
+		if(!do_mob(user, patient, self_delay, extra_checks=CALLBACK(patient, TYPE_PROC_REF(/mob/living, can_inject), user, TRUE)))
 			return
 	else if(other_delay)
 		if(!silent)
 			user.visible_message("<span class='notice'>[user] starts to apply [src] on [patient].</span>", "<span class='notice'>You begin applying [src] on [patient]...</span>")
-		if(!do_mob(user, patient, other_delay, extra_checks=CALLBACK(patient, /mob/living/proc/can_inject, user, TRUE)))
+		if(!do_mob(user, patient, other_delay, extra_checks=CALLBACK(patient, TYPE_PROC_REF(/mob/living, can_inject), user, TRUE)))
 			return
 
 	if(heal(patient, user))
@@ -218,6 +218,23 @@
 	stop_bleeding = 0.6
 	grind_results = list(/datum/reagent/medicine/spaceacillin = 2)
 	merge_type = /obj/item/stack/medical/suture
+
+/obj/item/stack/medical/suture/abno
+	name = "abno suture"
+	desc = "sutures used to heal abno wounds."
+	heal_brute = 100
+	amount = 1
+	max_amount = 1
+	merge_type = /obj/item/stack/medical/suture/abno
+
+/obj/item/stack/medical/suture/abno/use()
+	return
+
+/obj/item/stack/medical/suture/abno/attack(mob/living/M, mob/user)
+	if (istype(M, /mob/living/simple_animal/hostile/abnormality))
+		try_heal(M, user)
+	else
+		to_chat(user, span_warning("You can't use [src] on [M]!"))
 
 /obj/item/stack/medical/suture/emergency
 	name = "emergency suture"

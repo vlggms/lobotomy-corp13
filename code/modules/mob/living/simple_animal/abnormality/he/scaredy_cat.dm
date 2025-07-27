@@ -5,17 +5,16 @@
 	icon_state = "scaredy_cat"
 	icon_living = "scaredy_cat"
 	icon_dead = "scaredy_dead"
+	portrait = "scaredy_cat"
 	del_on_death = FALSE
 	maxHealth = 800 //Lower health because he can revive indefinitely
 	health = 800
 	rapid_melee = 1
 	move_to_delay = 1.7
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 4, WHITE_DAMAGE = 4, BLACK_DAMAGE = 4, PALE_DAMAGE = 4)
+	damage_coeff = list(RED_DAMAGE = 4, WHITE_DAMAGE = 4, BLACK_DAMAGE = 4, PALE_DAMAGE = 4)
 	melee_damage_lower = 1
 	melee_damage_upper = 1
-	speed = 4 //stupidly fast
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	vision_range = 7 //nerfed vision range so he doesn't go 2 continents away from his friend
 	stat_attack = CONSCIOUS
 	attack_sound = 'sound/abnormalities/scaredycat/catattack.ogg'
@@ -25,30 +24,49 @@
 	can_breach = TRUE
 	threat_level = HE_LEVEL
 	start_qliphoth = 3
-	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(50, 60, 70, 80, 90),
-						ABNORMALITY_WORK_INSIGHT = list(40, 50, 55, 55, 55),
-						ABNORMALITY_WORK_ATTACHMENT = list(40, 50, 55, 55, 55),
-						ABNORMALITY_WORK_REPRESSION = list(20, 30, 40, 40, 40)
-						) //higher work chance than the rest of oz because he can breach so easily
+	work_chances = list( //higher work chance than the rest of oz because he can breach so easily
+		ABNORMALITY_WORK_INSTINCT = list(50, 60, 70, 80, 90),
+		ABNORMALITY_WORK_INSIGHT = list(40, 50, 55, 55, 55),
+		ABNORMALITY_WORK_ATTACHMENT = list(40, 50, 55, 55, 55),
+		ABNORMALITY_WORK_REPRESSION = list(20, 30, 40, 40, 40),
+	)
 	work_damage_amount = 7 //Shit damage because it's a small cat
 	work_damage_type = RED_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/gluttony
 	can_patrol = FALSE
-	deathsound = 'sound/abnormalities/scaredycat/catgrunt.ogg'
+	death_sound = 'sound/abnormalities/scaredycat/catgrunt.ogg'
 	ego_list = list(
 		/datum/ego_datum/weapon/courage,
-		/datum/ego_datum/armor/courage
-		)
+		/datum/ego_datum/weapon/bravery,
+		/datum/ego_datum/armor/courage,
+	)
 	gift_type =  /datum/ego_gifts/courage_cat //the sprites for the EGO are shitty codersprites placeholders and are only here so that there's EGO to use
+	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/scarecrow = 2,
+		/mob/living/simple_animal/hostile/abnormality/woodsman = 2,
+		/mob/living/simple_animal/hostile/abnormality/road_home = 2,
+		// Ozma = 2,
+		/mob/living/simple_animal/hostile/abnormality/pinocchio = 1.5,
+	)
+
+	observation_prompt = "Cowardly kitten. <br>I’ll give you the courage to stand up to anything and everything. <br>The wizard grants you..."
+	observation_choices = list(
+		"A vial of \"liquid courage\"" = list(TRUE, "What are you even going to do when you lack the bravery to face anything head-on?"),
+		"Courage" = list(FALSE, "Drink this potion, it’ll give you courage. <br>You’ll be braver than anyone."),
+	)
+
 	/// The list of abnormality scaredy cat will automatically join when they breach, add any "Oz" abno to this list if possible
 	var/list/prefered_abno_list = list(
-									/mob/living/simple_animal/hostile/abnormality/woodsman,
-									/mob/living/simple_animal/hostile/abnormality/scarecrow
-									)
+		/mob/living/simple_animal/hostile/abnormality/woodsman,
+		/mob/living/simple_animal/hostile/abnormality/scarecrow,
+		/mob/living/simple_animal/hostile/abnormality/road_home,
+	)
 	/// Types of abnormalities that we will ignore when they are breaching
 	var/list/ignore_abno_list = list(
-									/mob/living/simple_animal/hostile/abnormality/training_rabbit
-									)
+		/mob/living/simple_animal/hostile/abnormality/training_rabbit,
+	)
 	/// If scaredy cat is breaching but has no "friend" to follow, he'll wait for the next abno breach to follow them
 	var/wait_for_friend = FALSE
 	/// The abnormality scaredy cat follows on breach
@@ -62,15 +80,30 @@
 
 /mob/living/simple_animal/hostile/abnormality/scaredy_cat/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/OnMobDeath)
-	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, .proc/OnAbnoBreach)
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(OnMobDeath))
+	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, PROC_REF(OnAbnoBreach))
 
-/mob/living/simple_animal/hostile/abnormality/scaredy_cat/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
+/mob/living/simple_animal/hostile/abnormality/scaredy_cat/WorkChance(mob/living/carbon/human/user, chance, work_type)
+	var/newchance = chance
+	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 60)
+		newchance = chance-20
+	return newchance
+
+/mob/living/simple_animal/hostile/abnormality/scaredy_cat/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
+	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 60)
+		if(prob(40))
+			datum_reference.qliphoth_change(-1)
+	return
+
+/mob/living/simple_animal/hostile/abnormality/scaredy_cat/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 60)
 		datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/scaredy_cat/BreachEffect(mob/living/carbon/human/user)
+
+/mob/living/simple_animal/hostile/abnormality/scaredy_cat/BreachEffect(mob/living/carbon/human/user, breach_type)
 	protect_cooldown = world.time + protect_cooldown_time //to avoid him teleporting twice for no reason on breach
 	if(priority_friend) //if an oz abno escape they take absolute priority
 		ProtectFriend(priority_friend)
@@ -86,14 +119,14 @@
 		ProtectFriend(pick(breached_abno))
 	else
 		wait_for_friend = TRUE //Should only happen on meltdowns, can safely be killed in that state too
-	..()
+	return ..()
 
 ///checks if the friend is in view every 10 second, and if not teleports to it
 /mob/living/simple_animal/hostile/abnormality/scaredy_cat/Life()
 	. = ..()
 	if(!friend || status_flags & GODMODE || stat == DEAD) //for some reason life() works on death ain't that something
 		return
-	if(QDELETED(friend)) //if the friend is deleted instead of dying first somehow (looking at you pbird)
+	if(QDELETED(friend) || friend.status_flags & GODMODE) //if the friend is deleted instead of dying first somehow (looking at you pbird)
 		Courage(FALSE)
 		return
 	if(protect_cooldown < world.time)
@@ -112,7 +145,7 @@
 	density = FALSE
 	anchored = TRUE
 	if(friend)
-		addtimer(CALLBACK(src, .proc/Regenerate), 20 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(Regenerate)), 20 SECONDS)
 		stunned_effect = new(get_turf(src))
 	else
 		animate(src, alpha = 0, time = 10 SECONDS)
@@ -168,7 +201,7 @@
 	if(courage)
 		melee_damage_lower = 15
 		melee_damage_upper = 20
-		damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 2, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0.5)
+		ChangeResistances(list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 2, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0.5))
 		icon = 'ModularTegustation/Teguicons/48x48.dmi'
 		icon_living = "cat_courage"
 		icon_dead = "dead_courage"
@@ -179,7 +212,7 @@
 		faction = list("neutral")
 		melee_damage_lower = initial(melee_damage_lower)
 		melee_damage_upper = initial(melee_damage_upper) //it shouldn't attack in that form in the first place but...
-		damage_coeff = list(BRUTE = 1, RED_DAMAGE = 4, WHITE_DAMAGE = 4, BLACK_DAMAGE = 4, PALE_DAMAGE = 4)
+		ChangeResistances(list(RED_DAMAGE = 4, WHITE_DAMAGE = 4, BLACK_DAMAGE = 4, PALE_DAMAGE = 4))
 		playsound(src, 'sound/abnormalities/scaredycat/catchange.ogg', 75, FALSE, 4)
 		icon = 'ModularTegustation/Teguicons/32x32.dmi'
 		icon_living = "scaredy_cat"

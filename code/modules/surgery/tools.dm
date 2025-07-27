@@ -111,7 +111,7 @@
 
 /obj/item/surgicaldrill/suicide_act(mob/user)
 	user.visible_message("<span class='suicide'>[user] rams [src] into [user.p_their()] chest! It looks like [user.p_theyre()] trying to commit suicide!</span>")
-	addtimer(CALLBACK(user, /mob/living/carbon.proc/gib, null, null, TRUE, TRUE), 25)
+	addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living/carbon, gib), null, null, TRUE, TRUE), 25)
 	user.SpinAnimation(3, 10)
 	playsound(user, 'sound/machines/juicer.ogg', 20, TRUE)
 	return (MANUAL_SUICIDE)
@@ -192,7 +192,7 @@
 
 /obj/item/circular_saw/augment
 	desc = "A small but very fast spinning saw. It rips and tears until it is done."
-	w_class = WEIGHT_CLASS_SMALL	
+	w_class = WEIGHT_CLASS_SMALL
 	toolspeed = 0.5
 
 
@@ -416,8 +416,8 @@
 	for(var/obj/item/bodypart/thing in user.bodyparts)
 		if(thing.body_part == CHEST)
 			continue
-		addtimer(CALLBACK(thing, /obj/item/bodypart/.proc/dismember), timer)
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, user, 'sound/weapons/bladeslice.ogg', 70), timer)
+		addtimer(CALLBACK(thing, TYPE_PROC_REF(/obj/item/bodypart, dismember)), timer)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(playsound), user, 'sound/weapons/bladeslice.ogg', 70), timer)
 		timer += 1 SECONDS
 	sleep(timer)
 	return BRUTELOSS
@@ -452,3 +452,23 @@
 	attack_verb_simple = list("pumps", "siphons")
 	tool_behaviour = TOOL_BLOODFILTER
 	toolspeed = 1
+
+/obj/item/prosthetictool
+	name = "prosthetic electronic tool"
+	desc = "A specialized medical tool for prosthetic electronic manipulation."
+	icon = 'icons/obj/module.dmi'
+	icon_state = "beaker_holder"
+	inhand_icon_state = "electronic"
+	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
+	force = 5
+	w_class = WEIGHT_CLASS_SMALL
+	throwforce = 0
+	throw_range = 7
+	throw_speed = 3
+	drop_sound = 'sound/items/handling/multitool_drop.ogg'
+	pickup_sound =  'sound/items/handling/multitool_pickup.ogg'
+	custom_materials = list(/datum/material/iron=50, /datum/material/glass=20)
+	// Only used in one thing so far, so probably not worth having tool_behaviour?
+	toolspeed = 1
+	usesound = 'sound/weapons/empty.ogg'

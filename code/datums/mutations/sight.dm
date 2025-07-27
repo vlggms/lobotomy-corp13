@@ -86,7 +86,7 @@
 	. = ..()
 	if(.)
 		return
-	RegisterSignal(H, COMSIG_MOB_ATTACK_RANGED, .proc/on_ranged_attack)
+	RegisterSignal(H, COMSIG_MOB_ATTACK_RANGED, PROC_REF(on_ranged_attack))
 
 /datum/mutation/human/laser_eyes/on_losing(mob/living/carbon/human/H)
 	. = ..()
@@ -103,14 +103,14 @@
 
 	if(source.a_intent != INTENT_HARM)
 		return
-	to_chat(source, "<span class='warning'>You shoot with your laser eyes!</span>")
+	to_chat(source, span_warning("You shoot with your laser eyes!"))
 	source.changeNext_move(CLICK_CD_RANGE)
 	source.newtonian_move(get_dir(target, source))
 	var/obj/projectile/beam/laser_eyes/LE = new(source.loc)
 	LE.firer = source
 	LE.def_zone = ran_zone(source.zone_selected)
 	LE.preparePixelProjectile(target, source, mouseparams)
-	INVOKE_ASYNC(LE, /obj/projectile.proc/fire)
+	INVOKE_ASYNC(LE, TYPE_PROC_REF(/obj/projectile, fire))
 	playsound(source, 'sound/weapons/taser2.ogg', 75, TRUE)
 
 ///Projectile type used by laser eyes

@@ -31,7 +31,7 @@ All ShuttleMove procs go here
 				if(M.pulledby)
 					M.pulledby.stop_pulling()
 				M.stop_pulling()
-				M.visible_message("<span class='warning'>[shuttle] slams into [M]!</span>")
+				M.visible_message(span_warning("[shuttle] slams into [M]!"))
 				SSblackbox.record_feedback("tally", "shuttle_gib", 1, M.type)
 				log_attack("[key_name(M)] was hit by a shuttle; [shuttle].")
 				M.apply_damage(300, RED_DAMAGE, null, M.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
@@ -187,7 +187,7 @@ All ShuttleMove procs go here
 	for(var/obj/machinery/door/airlock/A in range(1, src))  // includes src
 		A.shuttledocked = FALSE
 		A.air_tight = TRUE
-		INVOKE_ASYNC(A, /obj/machinery/door/.proc/close)
+		INVOKE_ASYNC(A, TYPE_PROC_REF(/obj/machinery/door, close))
 
 /obj/machinery/door/airlock/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
 	. = ..()
@@ -396,4 +396,4 @@ All ShuttleMove procs go here
 
 /obj/effect/abstract/proximity_checker/onShuttleMove(turf/newT, turf/oldT, list/movement_force, move_dir, obj/docking_port/stationary/old_dock, obj/docking_port/mobile/moving_dock)
 	//timer so it only happens once
-	addtimer(CALLBACK(monitor, /datum/proximity_monitor/proc/SetRange, monitor.current_range, TRUE), 0, TIMER_UNIQUE)
+	addtimer(CALLBACK(monitor, TYPE_PROC_REF(/datum/proximity_monitor, SetRange), monitor.current_range, TRUE), 0, TIMER_UNIQUE)

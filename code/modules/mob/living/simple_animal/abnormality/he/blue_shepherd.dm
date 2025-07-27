@@ -10,6 +10,7 @@
 	icon_state = "blueshep"
 	icon_living = "blueshep"
 	icon_dead = "blueshep_dead"
+	portrait = "blue_shepherd"
 	attack_sound = 'sound/weapons/slash.ogg'
 	del_on_death = FALSE
 	pixel_x = -8
@@ -24,16 +25,16 @@
 		ABNORMALITY_WORK_INSIGHT = 50,
 		ABNORMALITY_WORK_ATTACHMENT = 50,
 		ABNORMALITY_WORK_REPRESSION = 30,
-		"Release" = 100
-		)
+		"Release" = 100,
+	)
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.5)
 	melee_damage_lower = 22
 	melee_damage_upper = 30
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
 	work_damage_amount = 10
 	work_damage_type = BLACK_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/pride
 	attack_verb_continuous = "cuts"
 	attack_verb_simple = "cuts"
 	faction = list("blueshep")
@@ -43,9 +44,23 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/oppression,
-		/datum/ego_datum/armor/oppression
-		)
+		/datum/ego_datum/armor/oppression,
+	)
 	gift_type = /datum/ego_gifts/oppression
+	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/red_buddy = 5,
+	)
+
+	observation_prompt = "Got nothing better to do than to watch me? Anyway, while I'm lazing around... <br>\
+		The wolf is coming down the hill. <br>I'm the only one who can stop it, if you let me out I'll save you from the Wolf. <br>\
+		So, how about it?"
+	observation_choices = list(
+		"You're a liar" = list(TRUE, "Hmph. Sad ain't it? It only waits for me, I'm free to abandon it all I wish. <br>\
+			Lifeless things like that mutt and I don't deserve love but it'll wait for me all the same. <br>Does anyone wait for you?"),
+		"Release him" = list(FALSE, "Good choice, don't worry about the rest - I won't hurt them, pinky swear."),
+	)
 
 	var/death_counter //He won't go off a timer, he'll go off deaths. Takes 8 for him.
 	var/slash_current = 4
@@ -59,56 +74,204 @@
 	var/mob/living/simple_animal/hostile/abnormality/red_buddy/awakened_buddy //the red buddy shepherd is currently fighting with
 	var/awakened = FALSE //if shepherd has seen red buddy or not
 	var/list/people_list = list() //list of people shepperd can mention
-	//lines said during combat
 	var/buddy_hit = FALSE
+	var/red_hit = FALSE // Controls Little Red Riding Hooded Mercenary's ability to be "hit" by slash attacks
+	var/combat_map = FALSE
+	//lines said during combat
 	var/list/combat_lines = list(
-				"Have at you!",
-				"Take this!",
-				"I'll kill you!",
-				"This is for locking me up!",
-				"Die!"
-				)
+		"Have at you!",
+		"Take this!",
+		"I'll kill you!",
+		"This is for locking me up!",
+		"Die!",
+	)
 	//lines shepperd say when someone's dead
 	var/list/people_dead_lines = list(
-				" didn't last long huh?",
-				" died, if only I was here to help...",
-				"'s dead? what a shame, I kinda liked them.",
-				)
+		" didn't last long huh?",
+		" died, if only I was here to help...",
+		"'s dead? what a shame, I kinda liked them.",
+	)
 	//lines shepperd say when someone is still alive
 	var/list/people_alive_lines = list(
-				" is still alive somehow, won't last long though.",
-				" is doing much better than you, but I can take care of them if you want.",
-				"'s abilities are quite phenomenal, and yet I'm stuck with you, tch.",
-				"'s would have released me by now, why can't you do the same?",
-				)
+		" is still alive somehow, won't last long though.",
+		" is doing much better than you, but I can take care of them if you want.",
+		"'s abilities are quite phenomenal, and yet I'm stuck with you, tch.",
+		"'s would have released me by now, why can't you do the same?",
+	)
 	//lines shepperd say when something has breached
 	var/list/abno_breach_lines = list(
-				" has breached, I could help you know?",
-				" is out, are you sure you're strong enough to take care of it by yourself?",
-				" is going on a rampage, you guys really can't do your job right huh?",
-				" has breached and you're still wasting your time on me? I'm flattered.",
-				)
+		" has breached, I could help you know?",
+		" is out, are you sure you're strong enough to take care of it by yourself?",
+		" is going on a rampage, you guys really can't do your job right huh?",
+		" has breached and you're still wasting your time on me? I'm flattered.",
+	)
 	//lines shepperd say when an abno hasn't breached (yet)
 	var/list/abno_safe_lines = list(
-				" is still stuck in their cell like me, but freedom isn't something you can just take away so easily.",
-				" hasn't breached yet, but I wouldn't count on it staying that way.",
-				" hasn't escaped despite your terrible work ethic, I won't be as easy to handle.",
-				"'s doing fine, don't you have a manager to check those things for you?",
-				)
+		" is still stuck in their cell like me, but freedom isn't something you can just take away so easily.",
+		" hasn't breached yet, but I wouldn't count on it staying that way.",
+		" hasn't escaped despite your terrible work ethic, I won't be as easy to handle.",
+		"'s doing fine, don't you have a manager to check those things for you?",
+	)
 	//lines shepherd say about red buddy
 	var/list/red_buddy_lines = list(
-				"The wolf is coming down the hill...",
-				"You'd think I lie when I foretell a wolf showing up and tearing this basement up too? ",
-				"You know what? about that thing connected to me. It has no life, lifeless things always wait.",
-				"That red thing? they miss the love, the cuddles, the happiness of that moment dearly.",
-				"And when that 'buddy' fully realises the situation it's in, it becomes a wolf. That's when it can get my attention and care, what a dummy."
-				)
+		"The wolf is coming down the hill...",
+		"You'd think I lie when I foretell a wolf showing up and tearing this basement up too? ",
+		"You know what? about that thing connected to me. It has no life, lifeless things always wait.",
+		"That red thing? they miss the love, the cuddles, the happiness of that moment dearly.",
+		"And when that 'buddy' fully realises the situation it's in, it becomes a wolf. That's when it can get my attention and care, what a dummy.",
+	)
+	var/no_counter = FALSE
+	var/sidesteping = FALSE
+	var/countering = FALSE
+	var/counter_damage = 20
+	//PLAYABLES ATTACKS
+	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/sheperd_spin_toggle, /datum/action/cooldown/evade, /datum/action/cooldown/parry)
+
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/Login()
+	. = ..()
+	to_chat(src, "<h1>You are Blue Shepherd, A Combat Role Abnormality.</h1><br>\
+		<b>|Slayer|: When you attack, if your spin attack is off cooldown you will use it. \
+		Your spin attack is a 5x5 AoE centered around you, which deals medium BLACK damage. \
+		You are able to toggle your spin attack on and off with your ability.<br>\
+		<br>\
+		|Sidestep|: You are able to trigger your 'Dodge' ability using the button on the top left of your screen, \
+		Or you can use a hotkey. (Which is Spacebar by default). When you trigger your 'Dodge' ability you will gain a speed boost and lose density (Bullet will pass through you.) for 1 second. \
+		Once the speed boost ends, you will be slowed down for 1.5 seconds.<br>\
+		<br>\
+		|Counter|: You are able to trigger your 'Counter' ability using the button on the top left of your screen, \
+		Or you can use a hotkey. (Which is E by default). When you trigger your 'Counter' ability, If you take damage within the next second you will trigger a 5x5 AoE which deals BLACK damage. \
+		Also, Anyone hit by this AoE will knockdown all humans who are hit by it.\
+		</b>")
+
+/datum/action/cooldown/evade
+	name = "Dodge"
+	icon_icon = 'ModularTegustation/Teguicons/teguicons.dmi'
+	button_icon_state = "ruina_evade"
+	desc = "Gain a short speed boost evade your foes!"
+	cooldown_time = 30
+	var/speeded_up = 2
+	var/restspeed = 4
+	var/speed_duration = 10
+	var/weaken_duration = 15
+	var/old_speed
+
+/datum/action/cooldown/evade/Trigger()
+	if(!..())
+		return FALSE
+	if (istype(owner, /mob/living/simple_animal/hostile/abnormality/blue_shepherd))
+		var/mob/living/simple_animal/hostile/abnormality/blue_shepherd/H = owner
+		old_speed = 3
+		H.move_to_delay = speeded_up
+		H.UpdateSpeed()
+		H.sidesteping = TRUE
+		H.density = FALSE
+		H.no_counter = TRUE
+		addtimer(CALLBACK(src, PROC_REF(slowdown)), speed_duration)
+		StartCooldown()
+
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/Moved()
+	. = ..()
+	if (sidesteping)
+		MoveVFX()
+
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/MoveVFX()
+	set waitfor = FALSE
+	var/obj/viscon_filtereffect/distortedform_trail/trail = new(src.loc,themob = src, waittime = 5)
+	trail.vis_contents += src
+	trail.filters += filter(type="drop_shadow", x=0, y=0, size=3, offset=2, color=rgb(0, 250, 229))
+	trail.filters += filter(type = "blur", size = 3)
+	animate(trail, alpha=120)
+	animate(alpha = 0, time = 10)
+
+/datum/action/cooldown/evade/proc/slowdown()
+	if (istype(owner, /mob/living/simple_animal/hostile/abnormality/blue_shepherd))
+		var/mob/living/simple_animal/hostile/abnormality/blue_shepherd/H = owner
+		H.move_to_delay = restspeed
+		H.density = TRUE
+		H.sidesteping = FALSE
+		addtimer(CALLBACK(src, PROC_REF(recover)), weaken_duration)
+		H.UpdateSpeed()
+
+/datum/action/cooldown/evade/proc/recover()
+	if (istype(owner, /mob/living/simple_animal/hostile/abnormality/blue_shepherd))
+		var/mob/living/simple_animal/hostile/abnormality/blue_shepherd/H = owner
+		H.move_to_delay = old_speed
+		H.no_counter = FALSE
+		H.UpdateSpeed()
+
+/datum/action/cooldown/parry
+	name = "Counter"
+	icon_icon = 'ModularTegustation/Teguicons/teguicons.dmi'
+	button_icon_state = "hollowpoint_ability"
+	desc = "Predict an attack, to deal damage to your foes!"
+	cooldown_time = 100
+	var/counter_duration = 10
+
+/datum/action/cooldown/parry/Trigger()
+	if(!..())
+		return FALSE
+	if (istype(owner, /mob/living/simple_animal/hostile/abnormality/blue_shepherd))
+		var/mob/living/simple_animal/hostile/abnormality/blue_shepherd/H = owner
+		if(H.no_counter)
+			to_chat(H, "You are curretnly dodging!")
+			return FALSE
+		else
+			H.ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))
+			H.countering = TRUE
+			H.slashing = TRUE
+			H.manual_emote("raises their blade...")
+			H.color = "#26a2d4"
+			playsound(H, 'sound/items/unsheath.ogg', 75, FALSE, 4)
+			addtimer(CALLBACK(src, PROC_REF(endcounter)), counter_duration)
+			StartCooldown()
+
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/attacked_by(obj/item/I, mob/living/user)
+	. = ..()
+	if (countering)
+		counter()
+
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/bullet_act(obj/projectile/P, def_zone, piercing_hit = FALSE)
+	. = ..()
+	if (countering)
+		counter()
+
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/counter()
+	var/list/been_hit = list()
+	say(pick(combat_lines))
+	playsound(src, 'sound/weapons/fixer/generic/finisher2.ogg', 75, TRUE, 2)
+	for(var/turf/T in range(2, src))
+		new /obj/effect/temp_visual/smash_effect(T)
+		been_hit = HurtInTurf(T, been_hit, counter_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, mech_damage = 15)
+		for(var/mob/living/carbon/human/H in T)
+			H.Knockdown(20)
+	countering = FALSE
+
+/datum/action/cooldown/parry/proc/endcounter()
+	if (istype(owner, /mob/living/simple_animal/hostile/abnormality/blue_shepherd))
+		var/mob/living/simple_animal/hostile/abnormality/blue_shepherd/H = owner
+		H.countering = FALSE
+		H.slashing = FALSE
+		H.color = null
+		H.ChangeResistances(list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.5))
+
+/datum/action/innate/abnormality_attack/toggle/sheperd_spin_toggle
+	name = "Toggle Spinning Slash"
+	button_icon_state = "sheperd_toggle0"
+	chosen_attack_num = 2
+	chosen_message = span_colossus("You won't spin anymore.")
+	button_icon_toggle_activated = "sheperd_toggle1"
+	toggle_attack_num = 1
+	toggle_message = span_colossus("You will now execute a spinning slash when ready.")
+	button_icon_toggle_deactivated = "sheperd_toggle0"
 
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/OnMobDeath) // Alright, here we go again
-	RegisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED, .proc/OnNewCrew)
+	if(IsCombatMap())
+		combat_map = TRUE
+		faction |= "hostile"
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(OnMobDeath)) // Alright, here we go again
+	RegisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED, PROC_REF(OnNewCrew))
 	//makes a list of people and abno to shit talk
 	if(LAZYLEN(GLOB.mob_living_list))
 		for(var/mob/living/carbon/human/H in GLOB.mob_living_list)
@@ -121,7 +284,7 @@
 				buddy = A
 				return
 	if(!buddy)
-		RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_SPAWN, .proc/OnAbnoSpawn) //if red buddy isn't in the facility, we wait for him
+		RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_SPAWN, PROC_REF(OnAbnoSpawn)) //if red buddy isn't in the facility, we wait for him
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/Destroy()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
@@ -137,6 +300,7 @@
 	return chance
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
@@ -158,7 +322,10 @@
 		Lying(buddy_abno, user)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/blue_shepherd/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/BreachEffect(mob/living/carbon/human/user, breach_type)
+	if(SSmaptype.maptype == "limbus_labs")
+		return
+
 	var/sighted = FALSE
 	for(var/mob/living/carbon/human/L in view(4, src))
 		sighted = TRUE
@@ -170,9 +337,20 @@
 		var/turf/T = pick(GLOB.xeno_spawn)
 		forceMove(T)
 		hired = FALSE
-	..()
+	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/blue_shepherd/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/AttackingTarget(atom/attacked_target)
+	. = ..()
+	if(client)
+		switch(chosen_attack)
+			if(1)
+				if(isliving(attacked_target))
+					slash_current-=1
+				return OpenFire()
+			if(2)
+				return
+		return
+
 	slash_current-=1
 	if(slash_current == 0)
 		slash_current = slash_cooldown
@@ -180,7 +358,14 @@
 		slashing = TRUE
 		slash()
 	if(awakened_buddy)
-		awakened_buddy.GiveTarget(target)
+		awakened_buddy.GiveTarget(attacked_target)
+
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/OpenFire()
+	if(slash_current == 0)
+		slash_current = slash_cooldown
+		say(pick(combat_lines))
+		slashing = TRUE
+		slash()
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/death(gibbed)
@@ -206,7 +391,7 @@
 		slash_damage = 50
 		melee_damage_lower = 30
 		melee_damage_upper = 40
-		move_to_delay = 2.5
+		ChangeMoveToDelayBy(-0.5)
 		maxHealth = maxHealth * 4 //5000 health, will get hurt by buddy's howl to make up for the high health
 		set_health(health * 4)
 		med_hud_set_health()
@@ -220,7 +405,7 @@
 		return FALSE
 	if(awakened_buddy)
 		awakened_buddy.LoseTarget()
-	. = ..()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/stop_pulling()
 	if(pulling == awakened_buddy) //it's tempting to make player controlled shepherd pull you forever but I'll hold off on it
@@ -242,23 +427,29 @@
 	var/turf/orgin = get_turf(src)
 	var/list/all_turfs = RANGE_TURFS(range, orgin)
 	for(var/i = 0 to range)
+		playsound(src, 'sound/weapons/slice.ogg', 75, FALSE, 4)
 		for(var/turf/T in all_turfs)
 			if(get_dist(orgin, T) > i)
 				continue
-			addtimer(CALLBACK(src, .proc/SlashHit, T, all_turfs, i, buddy_hit), (3 * (i+1)) + 0.5 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(SlashHit), T, all_turfs, i, buddy_hit), (3 * (i+1)) + 0.5 SECONDS)
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/SlashHit(turf/T, list/all_turfs, slash_count, buddy_hit)
 	if(stat == DEAD)
 		return
-	playsound(src, 'sound/weapons/slice.ogg', 75, FALSE, 4)
 	new /obj/effect/temp_visual/smash_effect(T)
-	for(var/mob/living/L in T)
-		if(L == src)
-			continue
+	for(var/mob/living/L in HurtInTurf(T, list(), slash_damage, BLACK_DAMAGE, check_faction = combat_map, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE))
 		if(L == awakened_buddy && !buddy_hit)
 			buddy_hit = TRUE //sometimes buddy get hit twice so we check if it got hit in this slash
 			awakened_buddy.adjustHealth(700) //it would take approximatively 9 slashes to take buddy down
-		L.apply_damage(slash_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			break
+		if(istype(L, /mob/living/simple_animal/hostile/abnormality/red_hood))
+			if(!red_hit)
+				red_hit = TRUE
+				var/mob/living/simple_animal/hostile/abnormality/red_hood/current_red = L
+				current_red.WatchIt()
+			all_turfs -= T
+			continue // Red doesn't get hit.
+		L.deal_damage(slash_damage, BLACK_DAMAGE)
 		all_turfs -= T
 	if(slash_count >= range)
 		buddy_hit = FALSE
@@ -271,6 +462,8 @@
 	if(!ishuman(died))
 		return FALSE
 	if(!died.ckey)
+		return FALSE
+	if(died.z != z)
 		return FALSE
 	death_counter += 1
 	if(death_counter >= 2)
@@ -287,7 +480,7 @@
 	if(prob(lie_chance))
 		lie = TRUE
 		if(buddy_abno)
-			buddy_abno.lying_timer = addtimer(CALLBACK(buddy_abno, /mob/living/simple_animal/hostile/abnormality/red_buddy/proc/ShepherdLying), 90 SECONDS)
+			buddy_abno.lying_timer = addtimer(CALLBACK(buddy_abno, TYPE_PROC_REF(/mob/living/simple_animal/hostile/abnormality/red_buddy, ShepherdLying)), 90 SECONDS)
 			buddy_abno.lying = TRUE
 	else
 		lie = FALSE
@@ -344,3 +537,11 @@
 	if(abno.name == "Reddened Buddy")
 		buddy = abno
 		UnregisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_SPAWN)
+
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/TriggerDodge()
+	for(var/datum/action/cooldown/evade/A in actions)
+		A.Trigger()
+
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/TriggerCounter()
+	for(var/datum/action/cooldown/parry/A in actions)
+		A.Trigger()

@@ -173,5 +173,4 @@
 	carbon_victim.Jitter(10)
 	carbon_victim.Dizzy(20)
 	carbon_victim.blind_eyes(2)
-	SEND_SIGNAL(carbon_victim, COMSIG_ADD_MOOD_EVENT, "gates_of_mansus", /datum/mood_event/gates_of_mansus)
 	return ..()

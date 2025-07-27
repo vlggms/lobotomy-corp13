@@ -15,7 +15,7 @@
 	after_select_cb = _after_select_cb
 
 /datum/component/surgery_initiator/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_ITEM_ATTACK, .proc/initiate_surgery_moment)
+	RegisterSignal(parent, COMSIG_ITEM_ATTACK, PROC_REF(initiate_surgery_moment))
 
 /datum/component/surgery_initiator/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_ITEM_ATTACK)
@@ -34,7 +34,7 @@
 	SIGNAL_HANDLER
 	if(!isliving(target))
 		return
-	INVOKE_ASYNC(src, .proc/do_initiate_surgery_moment, source, target, user)
+	INVOKE_ASYNC(src, PROC_REF(do_initiate_surgery_moment), source, target, user)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 
 /datum/component/surgery_initiator/proc/do_initiate_surgery_moment(datum/source, atom/target, mob/user)
@@ -108,13 +108,13 @@
 
 			if(surgeryinstance_notonmob.ignore_clothes || get_location_accessible(livingtarget, selected_zone))
 				var/datum/surgery/procedure = new surgeryinstance_notonmob.type(livingtarget, selected_zone, affecting)
-				user.visible_message("<span class='notice'>[user] drapes [parent] over [livingtarget]'s [parse_zone(selected_zone)] to prepare for surgery.</span>", \
-					"<span class='notice'>You drape [parent] over [livingtarget]'s [parse_zone(selected_zone)] to prepare for \an [procedure.name].</span>")
+				user.visible_message(span_notice("[user] drapes [parent] over [livingtarget]'s [parse_zone(selected_zone)] to prepare for surgery."), \
+					span_notice("You drape [parent] over [livingtarget]'s [parse_zone(selected_zone)] to prepare for \an [procedure.name]."))
 
 				log_combat(user, livingtarget, "operated on", null, "(OPERATION TYPE: [procedure.name]) (TARGET AREA: [selected_zone])")
 				after_select_cb?.Invoke()
 			else
-				to_chat(user, "<span class='warning'>You need to expose [livingtarget]'s [parse_zone(selected_zone)] first!</span>")
+				to_chat(user, span_warning("You need to expose [livingtarget]'s [parse_zone(selected_zone)] first!"))
 
 	else if(!current_surgery.step_in_progress)
 		attempt_cancel_surgery(current_surgery, parent, livingtarget, user)
@@ -129,8 +129,8 @@
 
 	if(the_surgery.status == 1)
 		the_patient.surgeries -= the_surgery
-		user.visible_message("<span class='notice'>[user] removes [the_item] from [the_patient]'s [parse_zone(selected_zone)].</span>", \
-			"<span class='notice'>You remove [the_item] from [the_patient]'s [parse_zone(selected_zone)].</span>")
+		user.visible_message(span_notice("[user] removes [the_item] from [the_patient]'s [parse_zone(selected_zone)]."), \
+			span_notice("You remove [the_item] from [the_patient]'s [parse_zone(selected_zone)]."))
 		qdel(the_surgery)
 		return
 
@@ -147,16 +147,16 @@
 	if(iscyborg(user))
 		close_tool = locate(/obj/item/cautery) in user.held_items
 		if(!close_tool)
-			to_chat(user, "<span class='warning'>You need to equip a cautery in an inactive slot to stop [the_patient]'s surgery!</span>")
+			to_chat(user, span_warning("You need to equip a cautery in an inactive slot to stop [the_patient]'s surgery!"))
 			return
 	else if(!close_tool || close_tool.tool_behaviour != required_tool_type)
-		to_chat(user, "<span class='warning'>You need to hold a [is_robotic ? "screwdriver" : "cautery"] in your inactive hand to stop [the_patient]'s surgery!</span>")
+		to_chat(user, span_warning("You need to hold a [is_robotic ? "screwdriver" : "cautery"] in your inactive hand to stop [the_patient]'s surgery!"))
 		return
 
 	if(the_surgery.operated_bodypart)
 		the_surgery.operated_bodypart.generic_bleedstacks -= 5
 
 	the_patient.surgeries -= the_surgery
-	user.visible_message("<span class='notice'>[user] closes [the_patient]'s [parse_zone(selected_zone)] with [close_tool] and removes [the_item].</span>", \
-		"<span class='notice'>You close [the_patient]'s [parse_zone(selected_zone)] with [close_tool] and remove [the_item].</span>")
+	user.visible_message(span_notice("[user] closes [the_patient]'s [parse_zone(selected_zone)] with [close_tool] and removes [the_item]."), \
+		span_notice("You close [the_patient]'s [parse_zone(selected_zone)] with [close_tool] and remove [the_item]."))
 	qdel(the_surgery)

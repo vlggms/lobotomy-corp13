@@ -100,7 +100,7 @@
 	static_inventory += using
 
 /datum/hud/dextrous/guardian/persistent_inventory_update()
-	if(!mymob)
+	if(!mymob || !mymob.client)
 		return
 	if(istype(mymob, /mob/living/simple_animal/hostile/guardian/dextrous))
 		var/mob/living/simple_animal/hostile/guardian/dextrous/D = mymob

@@ -21,8 +21,8 @@
 
 /obj/item/singularityhammer/Initialize()
 	. = ..()
-	RegisterSignal(src, COMSIG_TWOHANDED_WIELD, .proc/on_wield)
-	RegisterSignal(src, COMSIG_TWOHANDED_UNWIELD, .proc/on_unwield)
+	RegisterSignal(src, COMSIG_TWOHANDED_WIELD, PROC_REF(on_wield))
+	RegisterSignal(src, COMSIG_TWOHANDED_UNWIELD, PROC_REF(on_unwield))
 
 /obj/item/singularityhammer/ComponentInitialize()
 	. = ..()
@@ -81,7 +81,7 @@
 			playsound(user, 'sound/weapons/marauder.ogg', 50, TRUE)
 			var/turf/target = get_turf(A)
 			vortex(target,user)
-			addtimer(CALLBACK(src, .proc/recharge), 100)
+			addtimer(CALLBACK(src, PROC_REF(recharge)), 100)
 
 /obj/item/mjollnir
 	name = "Mjolnir"
@@ -100,8 +100,8 @@
 
 /obj/item/mjollnir/Initialize()
 	. = ..()
-	RegisterSignal(src, COMSIG_TWOHANDED_WIELD, .proc/on_wield)
-	RegisterSignal(src, COMSIG_TWOHANDED_UNWIELD, .proc/on_unwield)
+	RegisterSignal(src, COMSIG_TWOHANDED_WIELD, PROC_REF(on_wield))
+	RegisterSignal(src, COMSIG_TWOHANDED_UNWIELD, PROC_REF(on_unwield))
 
 /obj/item/mjollnir/ComponentInitialize()
 	. = ..()
@@ -124,9 +124,9 @@
 	var/datum/effect_system/lightning_spread/s = new /datum/effect_system/lightning_spread
 	s.set_up(5, 1, target.loc)
 	s.start()
-	target.visible_message("<span class='danger'>[target.name] is shocked by [src]!</span>", \
-		"<span class='userdanger'>You feel a powerful shock course through your body sending you flying!</span>", \
-		"<span class='hear'>You hear a heavy electrical crack!</span>")
+	target.visible_message(span_danger("[target.name] is shocked by [src]!"), \
+		span_userdanger("You feel a powerful shock course through your body sending you flying!"), \
+		span_hear("You hear a heavy electrical crack!"))
 	var/atom/throw_target = get_edge_target_turf(target, get_dir(src, get_step_away(target, src)))
 	target.throw_at(throw_target, 200, 4)
 	return

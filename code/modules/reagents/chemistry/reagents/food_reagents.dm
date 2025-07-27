@@ -24,21 +24,6 @@
 		return
 	holder.remove_reagent(type, metabolization_rate)
 
-/datum/reagent/consumable/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume)
-	. = ..()
-	if(!(methods & INGEST) || !quality || HAS_TRAIT(exposed_mob, TRAIT_AGEUSIA))
-		return
-	switch(quality)
-		if (DRINK_NICE)
-			SEND_SIGNAL(exposed_mob, COMSIG_ADD_MOOD_EVENT, "quality_drink", /datum/mood_event/quality_nice)
-		if (DRINK_GOOD)
-			SEND_SIGNAL(exposed_mob, COMSIG_ADD_MOOD_EVENT, "quality_drink", /datum/mood_event/quality_good)
-		if (DRINK_VERYGOOD)
-			SEND_SIGNAL(exposed_mob, COMSIG_ADD_MOOD_EVENT, "quality_drink", /datum/mood_event/quality_verygood)
-		if (DRINK_FANTASTIC)
-			SEND_SIGNAL(exposed_mob, COMSIG_ADD_MOOD_EVENT, "quality_drink", /datum/mood_event/quality_fantastic)
-		if (FOOD_AMAZING)
-			SEND_SIGNAL(exposed_mob, COMSIG_ADD_MOOD_EVENT, "quality_food", /datum/mood_event/amazingtaste)
 
 /datum/reagent/consumable/nutriment
 	name = "Nutriment"
@@ -122,6 +107,20 @@
 	description = "Natural tissues that make up the bulk of organs, providing many vitamins and minerals."
 	taste_description = "rich earthy pungent"
 
+/datum/reagent/consumable/nutriment/vile_fluid
+	name = "vile fluid"
+	description = "This fluid contains a microbiome of pathogens that reproduce through the raw consumption of its host."
+	taste_description = "popping and wriggling"
+	metabolization_rate = 1
+	var/list/microbiome = list(/datum/disease/parasite)
+
+/datum/reagent/consumable/nutriment/vile_fluid/on_mob_life(mob/living/carbon/M)
+	. = ..()
+	if(prob(15 + (current_cycle * 5)))
+		var/datum/disease/D = pick(microbiome)
+		var/datum/disease/worms = new D()
+		M.ForceContractDisease(worms, FALSE, TRUE)
+
 /datum/reagent/consumable/cooking_oil
 	name = "Cooking Oil"
 	description = "A variety of cooking oil derived from fat or plants. Used in food preparation and frying."
@@ -163,7 +162,7 @@
 			exposed_mob.emote("scream")
 		playsound(exposed_mob, 'sound/machines/fryer/deep_fryer_emerge.ogg', 25, TRUE)
 		ADD_TRAIT(exposed_mob, TRAIT_OIL_FRIED, "cooking_oil_react")
-		addtimer(CALLBACK(exposed_mob, /mob/living/proc/unfry_mob), 3)
+		addtimer(CALLBACK(exposed_mob, TYPE_PROC_REF(/mob/living, unfry_mob)), 3)
 	if(FryLoss)
 		exposed_mob.adjustFireLoss(FryLoss)
 
@@ -336,7 +335,7 @@
 			victim.set_confusion(max(exposed_mob.get_confusion(), 5)) // 10 seconds
 			victim.Knockdown(3 SECONDS)
 			victim.add_movespeed_modifier(/datum/movespeed_modifier/reagent/pepperspray)
-			addtimer(CALLBACK(victim, /mob.proc/remove_movespeed_modifier, /datum/movespeed_modifier/reagent/pepperspray), 10 SECONDS)
+			addtimer(CALLBACK(victim, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/reagent/pepperspray), 10 SECONDS)
 		victim.update_damage_hud()
 	if(methods & INGEST)
 		if(!holder.has_reagent(/datum/reagent/consumable/milk))
@@ -423,7 +422,15 @@
 	taste_description = "garlic"
 	metabolization_rate = 0.15 * REAGENTS_METABOLISM
 
-/datum/reagent/consumable/garlic/on_mob_life(mob/living/carbon/M)
+/datum/reagent/consumable/garlic/on_mob_add(mob/living/L, amount)
+	. = ..()
+	ADD_TRAIT(L, TRAIT_GARLIC_BREATH, type)
+
+/datum/reagent/consumable/garlic/on_mob_delete(mob/living/L)
+	. = ..()
+	REMOVE_TRAIT(L, TRAIT_GARLIC_BREATH, type)
+
+/datum/reagent/consumable/garlic/on_mob_life(mob/living/carbon/M, delta_time, times_fired)
 	if(isvampire(M)) //incapacitating but not lethal. Unfortunately, vampires cannot vomit.
 		if(prob(min(25,current_cycle)))
 			to_chat(M, "<span class='danger'>You can't get the scent of garlic out of your nose! You can barely think...</span>")
@@ -715,7 +722,7 @@
 /datum/reagent/consumable/tinlux/proc/add_reagent_light(mob/living/living_holder)
 	var/obj/effect/dummy/lighting_obj/moblight/mob_light_obj = living_holder.mob_light(2)
 	LAZYSET(mobs_affected, living_holder, mob_light_obj)
-	RegisterSignal(living_holder, COMSIG_PARENT_QDELETING, .proc/on_living_holder_deletion)
+	RegisterSignal(living_holder, COMSIG_PARENT_QDELETING, PROC_REF(on_living_holder_deletion))
 
 /datum/reagent/consumable/tinlux/proc/remove_reagent_light(mob/living/living_holder)
 	UnregisterSignal(living_holder, COMSIG_PARENT_QDELETING)
@@ -823,13 +830,6 @@
 	color = "#C8C8C8"
 	taste_mult = 6
 	taste_description = "smoke"
-	overdose_threshold = 15
-
-/datum/reagent/consumable/char/overdose_process(mob/living/M)
-	if(prob(25))
-		M.say(pick_list_replacements(BOOMER_FILE, "boomer"), forced = /datum/reagent/consumable/char)
-	..()
-	return
 
 /datum/reagent/consumable/bbqsauce
 	name = "BBQ Sauce"

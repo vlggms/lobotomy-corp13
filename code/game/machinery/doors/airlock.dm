@@ -111,6 +111,7 @@
 	var/delayed_close_requested = FALSE // TRUE means the door will automatically close the next time it's opened.
 	var/air_tight = FALSE	//TRUE means density will be set as soon as the door begins to close
 	var/prying_so_hard = FALSE
+	var/whitelist_door	//Whistlist stuff
 
 	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 	rad_insulation = RAD_MEDIUM_INSULATION
@@ -124,7 +125,7 @@
 		set_frequency(frequency)
 
 	if(closeOtherId != null)
-		addtimer(CALLBACK(.proc/update_other_id), 5)
+		addtimer(CALLBACK(PROC_REF(update_other_id)), 5)
 	if(glass)
 		airlock_material = "glass"
 	if(security_level > AIRLOCK_SECURITY_METAL)
@@ -140,8 +141,8 @@
 		diag_hud.add_to_hud(src)
 	diag_hud_set_electrified()
 
-	RegisterSignal(src, COMSIG_MACHINERY_BROKEN, .proc/on_break)
-	RegisterSignal(src, COMSIG_COMPONENT_NTNET_RECEIVE, .proc/ntnet_receive)
+	RegisterSignal(src, COMSIG_MACHINERY_BROKEN, PROC_REF(on_break))
+	RegisterSignal(src, COMSIG_COMPONENT_NTNET_RECEIVE, PROC_REF(ntnet_receive))
 
 	return INITIALIZE_HINT_LATELOAD
 
@@ -233,9 +234,9 @@
 				return
 
 			if(density)
-				INVOKE_ASYNC(src, .proc/open)
+				INVOKE_ASYNC(src, PROC_REF(open))
 			else
-				INVOKE_ASYNC(src, .proc/close)
+				INVOKE_ASYNC(src, PROC_REF(close))
 
 		if("bolt")
 			if(command_value == "on" && locked)
@@ -330,17 +331,12 @@
 	if(!issilicon(usr))
 		if(isElectrified() && shock(user, 100))
 			return
-		else if(user.hallucinating() && iscarbon(user) && prob(1) && !operating)
-			var/mob/living/carbon/C = user
-			if(!C.wearing_shock_proof_gloves())
-				new /datum/hallucination/shock(C)
-				return
 	if (cyclelinkedairlock)
 		if (!shuttledocked && !emergency && !cyclelinkedairlock.shuttledocked && !cyclelinkedairlock.emergency && allowed(user))
 			if(cyclelinkedairlock.operating)
 				cyclelinkedairlock.delayed_close_requested = TRUE
 			else
-				addtimer(CALLBACK(cyclelinkedairlock, .proc/close), 2)
+				addtimer(CALLBACK(cyclelinkedairlock, PROC_REF(close)), 2)
 	..()
 
 /obj/machinery/door/airlock/proc/isElectrified()
@@ -395,7 +391,7 @@
 			secondsBackupPowerLost = 10
 	if(!spawnPowerRestoreRunning)
 		spawnPowerRestoreRunning = TRUE
-	INVOKE_ASYNC(src, .proc/handlePowerRestore)
+	INVOKE_ASYNC(src, PROC_REF(handlePowerRestore))
 	update_icon()
 
 /obj/machinery/door/airlock/proc/loseBackupPower()
@@ -403,7 +399,7 @@
 		secondsBackupPowerLost = 60
 	if(!spawnPowerRestoreRunning)
 		spawnPowerRestoreRunning = TRUE
-	INVOKE_ASYNC(src, .proc/handlePowerRestore)
+	INVOKE_ASYNC(src, PROC_REF(handlePowerRestore))
 	update_icon()
 
 /obj/machinery/door/airlock/proc/regainBackupPower()
@@ -628,7 +624,7 @@
 			if(!machine_stat)
 				update_icon(AIRLOCK_DENY)
 				playsound(src,doorDeni,50,FALSE,3)
-				addtimer(CALLBACK(src, /atom/proc/update_icon, AIRLOCK_CLOSED), AIRLOCK_DENY_ANIMATION_TIME)
+				addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, update_icon), AIRLOCK_CLOSED), AIRLOCK_DENY_ANIMATION_TIME)
 
 /obj/machinery/door/airlock/examine(mob/user)
 	. = ..()
@@ -927,6 +923,10 @@
 		if(panel_open && detonated)
 			to_chat(user, "<span class='warning'>[src] has no maintenance panel!</span>")
 			return
+
+		if(whitelist_door)		//Whitelist doors kill you if you fucking open them. Crispy clerk.
+			return
+
 		panel_open = !panel_open
 		to_chat(user, "<span class='notice'>You [panel_open ? "open":"close"] the maintenance panel of the airlock.</span>")
 		C.play_tool_sound(src)
@@ -997,7 +997,7 @@
 			user.visible_message("<span class='notice'>[user] begins [welded ? "unwelding":"welding"] the airlock.</span>", \
 							"<span class='notice'>You begin [welded ? "unwelding":"welding"] the airlock...</span>", \
 							"<span class='hear'>You hear welding.</span>")
-			if(W.use_tool(src, user, 40, volume=50, extra_checks = CALLBACK(src, .proc/weld_checks, W, user)))
+			if(W.use_tool(src, user, 40, volume=50, extra_checks = CALLBACK(src, PROC_REF(weld_checks), W, user)))
 				welded = !welded
 				user.visible_message("<span class='notice'>[user] [welded? "welds shut":"unwelds"] [src].</span>", \
 									"<span class='notice'>You [welded ? "weld the airlock shut":"unweld the airlock"].</span>")
@@ -1010,7 +1010,7 @@
 				user.visible_message("<span class='notice'>[user] begins welding the airlock.</span>", \
 								"<span class='notice'>You begin repairing the airlock...</span>", \
 								"<span class='hear'>You hear welding.</span>")
-				if(W.use_tool(src, user, 40, volume=50, extra_checks = CALLBACK(src, .proc/weld_checks, W, user)))
+				if(W.use_tool(src, user, 40, volume=50, extra_checks = CALLBACK(src, PROC_REF(weld_checks), W, user)))
 					obj_integrity = max_integrity
 					set_machine_stat(machine_stat & ~BROKEN)
 					user.visible_message("<span class='notice'>[user] finishes welding [src].</span>", \
@@ -1088,7 +1088,7 @@
 						prying_so_hard = FALSE
 						return
 					open(2)
-					take_damage(25, BRUTE, 0, 0) // Enough to sometimes spark
+					take_damage(25, BRUTE, 0) // Enough to sometimes spark
 					if(density && !open(2))
 						to_chat(user, "<span class='warning'>Despite your attempts, [src] refuses to open.</span>")
 				prying_so_hard = FALSE
@@ -1102,7 +1102,7 @@
 			if(axe && !axe.wielded)
 				to_chat(user, "<span class='warning'>You need to be wielding \the [axe] to do that!</span>")
 				return
-		INVOKE_ASYNC(src, (density ? .proc/open : .proc/close), 2)
+		INVOKE_ASYNC(src, (density ? PROC_REF(open) : PROC_REF(close)), 2)
 
 
 /obj/machinery/door/airlock/open(forced=0)
@@ -1143,7 +1143,7 @@
 	operating = FALSE
 	if(delayed_close_requested)
 		delayed_close_requested = FALSE
-		addtimer(CALLBACK(src, .proc/close), 1)
+		addtimer(CALLBACK(src, PROC_REF(close)), 1)
 	return TRUE
 
 
@@ -1313,7 +1313,7 @@
 	secondsElectrified = seconds
 	diag_hud_set_electrified()
 	if(secondsElectrified > MACHINE_NOT_ELECTRIFIED)
-		INVOKE_ASYNC(src, .proc/electrified_loop)
+		INVOKE_ASYNC(src, PROC_REF(electrified_loop))
 
 	if(user)
 		var/message
@@ -1328,8 +1328,8 @@
 		log_combat(user, src, message)
 		add_hiddenprint(user)
 
-/obj/machinery/door/airlock/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
-	if((damage_amount >= obj_integrity) && (damage_flag == BOMB))
+/obj/machinery/door/airlock/take_damage(damage_amount, damage_type = BRUTE, sound_effect = 1, attack_dir)
+	if((damage_amount >= obj_integrity) && (damage_type == BOMB))
 		flags_1 |= NODECONSTRUCT_1  //If an explosive took us out, don't drop the assembly
 	. = ..()
 	if(obj_integrity < (0.75 * max_integrity))

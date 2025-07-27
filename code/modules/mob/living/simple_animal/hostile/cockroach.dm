@@ -95,14 +95,14 @@
 	AddElement(/datum/element/caltrop, min_damage = 10, max_damage = 15, flags = (CALTROP_BYPASS_SHOES | CALTROP_SILENT))
 
 /mob/living/simple_animal/hostile/cockroach/hauberoach/make_squashable()
-	AddElement(/datum/element/squashable, squash_chance = 100, squash_damage = 1, squash_callback = /mob/living/simple_animal/hostile/cockroach/hauberoach/.proc/on_squish)
+	AddElement(/datum/element/squashable, squash_chance = 100, squash_damage = 1, squash_callback = TYPE_PROC_REF(/mob/living/simple_animal/hostile/cockroach/hauberoach, on_squish))
 
 ///Proc used to override the squashing behavior of the normal cockroach.
 /mob/living/simple_animal/hostile/cockroach/hauberoach/proc/on_squish(mob/living/cockroach, mob/living/living_target)
 	if(!istype(living_target))
 		return FALSE //We failed to run the invoke. Might be because we're a structure. Let the squashable element handle it then!
 	if(!HAS_TRAIT(living_target, TRAIT_PIERCEIMMUNE))
-		living_target.visible_message("<span class='danger'>[living_target] steps onto [cockroach]'s spike!</span>", "<span class='userdanger'>You step onto [cockroach]'s spike!</span>")
+		living_target.visible_message(span_danger("[living_target] steps onto [cockroach]'s spike!"), span_userdanger("You step onto [cockroach]'s spike!"))
 		return TRUE
-	living_target.visible_message("<span class='notice'>[living_target] squashes [cockroach], not even noticing its spike.</span>", "<span class='notice'>You squashed [cockroach], not even noticing its spike.</span>")
+	living_target.visible_message(span_notice("[living_target] squashes [cockroach], not even noticing its spike."), span_notice("You squashed [cockroach], not even noticing its spike."))
 	return FALSE

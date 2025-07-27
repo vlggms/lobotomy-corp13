@@ -36,17 +36,6 @@
 		return new /obj/item/reagent_containers/glass/beaker/unholywater(loc)
 	return ..()
 
-/datum/blackmarket_item/misc/strange_seed
-	name = "Strange Seeds"
-	desc = "An Exotic Variety of seed that can contain anything from glow to acid."
-	item = /obj/item/seeds/random
-
-	price_min = 320
-	price_max = 360
-	stock_min = 2
-	stock_max = 5
-	availability_prob = 50
-
 /datum/blackmarket_item/misc/smugglers_satchel
 	name = "Smuggler's Satchel"
 	desc = "This easily hidden satchel can become a versatile tool to anybody with the desire to keep certain items out of sight and out of mind."

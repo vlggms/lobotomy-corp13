@@ -17,7 +17,7 @@
 	x_offset = x
 	y_offset = y
 	rotation_degree = rotation
-	RegisterSignal(target, COMSIG_ITEM_ATTACK_OBJ, .proc/tuck_into_bed)
+	RegisterSignal(target, COMSIG_ITEM_ATTACK_OBJ, PROC_REF(tuck_into_bed))
 
 /datum/element/bed_tuckable/Detach(obj/target)
 	. = ..()
@@ -39,12 +39,12 @@
 	if(!tucker.transferItemToLoc(tucked, target_bed.drop_location()))
 		return
 
-	to_chat(tucker, "<span class='notice'>You lay [tucked] out on [target_bed].</span>")
+	to_chat(tucker, span_notice("You lay [tucked] out on [target_bed]."))
 	tucked.pixel_x = x_offset
 	tucked.pixel_y = y_offset
 	if(rotation_degree)
 		tucked.transform = turn(tucked.transform, rotation_degree)
-		RegisterSignal(tucked, COMSIG_ITEM_PICKUP, .proc/untuck)
+		RegisterSignal(tucked, COMSIG_ITEM_PICKUP, PROC_REF(untuck))
 
 	return COMPONENT_NO_AFTERATTACK
 

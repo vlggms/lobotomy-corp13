@@ -106,7 +106,7 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/stock_parts/cell = 1,
 		/obj/item/stack/rods/twentyfive = 1,
 		/obj/item/stack/sheet/metal/twenty = 1,
-		/obj/item/stack/sheet/mineral/plasma = 1,
+//		/obj/item/stack/sheet/mineral/plasma = 1, LOBOTOMYCORPORATION REMOVAL -- This was used to blatantly grief
 		/obj/item/sign = 1,
 
 		//assemblies
@@ -129,6 +129,7 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/reagent_containers/glass/beaker = 1,
 		/obj/item/reagent_containers/glass/rag = 1,
 		/obj/item/reagent_containers/hypospray/medipen/pumpup = 2,
+		/obj/item/reagent_containers/food/drinks/soda_cans/oceanwave = 1, // LOBOTOMYCORPORATION ADDITION -- Replaces plasma
 		) = 1,
 
 	list(//food
@@ -186,9 +187,11 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 		/obj/item/clothing/gloves/color/black = 1,
 		) = 8,
 
+	/*//No, sci is not being added to Enkephalin Rush.
 	list(//strange objects
 		/obj/item/relic = 5,
 		) = 8,
+	*/
 
 	list(//construction and crafting
 		/obj/item/stock_parts/cell/high = 1,
@@ -246,7 +249,6 @@ GLOBAL_LIST_INIT(oddity_loot, list(//oddity: strange or crazy items
 		/obj/item/clothing/head/helmet/abductor = 1,
 		/obj/item/clothing/head/helmet/justice =1,
 		/obj/item/clothing/suit/space/hardsuit/carp = 1,
-		/obj/item/book/granter/crafting_recipe/pipegun_prime =1,
 		/obj/item/dice/d20/fate/stealth/one_use = 1,	//Looks like a d20, keep the d20 in the uncommon pool.
 		/obj/item/dice/d20/fate/stealth/cursed = 1, 	//Only rolls 1
 		/obj/item/clothing/shoes/jackboots/fast = 1,

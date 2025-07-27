@@ -33,9 +33,9 @@
 
 /obj/item/seeds/replicapod/create_reagents(max_vol, flags)
 	. = ..()
-	RegisterSignal(reagents, list(COMSIG_REAGENTS_ADD_REAGENT, COMSIG_REAGENTS_NEW_REAGENT), .proc/on_reagent_add)
-	RegisterSignal(reagents, COMSIG_REAGENTS_DEL_REAGENT, .proc/on_reagent_del)
-	RegisterSignal(reagents, COMSIG_PARENT_QDELETING, .proc/on_reagents_del)
+	RegisterSignal(reagents, list(COMSIG_REAGENTS_ADD_REAGENT, COMSIG_REAGENTS_NEW_REAGENT), PROC_REF(on_reagent_add))
+	RegisterSignal(reagents, COMSIG_REAGENTS_DEL_REAGENT, PROC_REF(on_reagent_del))
+	RegisterSignal(reagents, COMSIG_PARENT_QDELETING, PROC_REF(on_reagents_del))
 
 /// Handles the seeds' reagents datum getting deleted.
 /obj/item/seeds/replicapod/proc/on_reagents_del(datum/reagents/reagents)
@@ -61,10 +61,10 @@
 		quirks = B.data["quirks"]
 		sampleDNA = B.data["blood_DNA"]
 		contains_sample = TRUE
-		visible_message("<span class='notice'>The [src] is injected with a fresh blood sample.</span>")
+		visible_message(span_notice("The [src] is injected with a fresh blood sample."))
 		log_cloning("[key_name(mind)]'s cloning record was added to [src] at [AREACOORD(src)].")
 	else
-		visible_message("<span class='warning'>The [src] rejects the sample!</span>")
+		visible_message(span_warning("The [src] rejects the sample!"))
 	return NONE
 
 /// Handles reagents being deleted from these seeds.

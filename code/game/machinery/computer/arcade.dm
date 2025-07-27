@@ -82,7 +82,6 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		say("CODE ACTIVATED: EXTRA PRIZES.")
 		prizes *= 2
 	for(var/i = 0, i < prizes, i++)
-		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "arcade", /datum/mood_event/arcade)
 		if(prob(0.0001)) //1 in a million
 			new /obj/item/gun/energy/pulse/prize(src)
 			visible_message("<span class='notice'>[src] dispenses.. woah, a gun! Way past cool.</span>", "<span class='notice'>You hear a chime and a shot.</span>")
@@ -351,7 +350,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		else
 			playsound(src, 'sound/arcade/hit.ogg', 50, TRUE, extrarange = -3)
 
-	timer_id = addtimer(CALLBACK(src, .proc/enemy_action,player_stance,user),1 SECONDS,TIMER_STOPPABLE)
+	timer_id = addtimer(CALLBACK(src, PROC_REF(enemy_action),player_stance,user),1 SECONDS,TIMER_STOPPABLE)
 	gameover_check(user)
 
 
@@ -1013,7 +1012,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 						var/mob/living/L = usr
 						L.Stun(200, ignore_canstun = TRUE) //you can't run :^)
 					var/S = new /obj/singularity/academy(usr.loc)
-					addtimer(CALLBACK(src, /atom/movable/proc/say, "[S] winks out, just as suddenly as it appeared."), 50)
+					addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, say), "[S] winks out, just as suddenly as it appeared."), 50)
 					QDEL_IN(S, 50)
 			else
 				event = null

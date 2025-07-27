@@ -12,7 +12,7 @@ SUBSYSTEM_DEF(job)
 	var/list/prioritized_jobs = list()
 	var/list/latejoin_trackers = list()	//Don't read this list, use GetLateJoinTurfs() instead
 
-	var/overflow_role = "Agent"
+	var/overflow_role = "None"	//TODO: Remove.
 
 	var/list/level_order = list(JP_HIGH,JP_MEDIUM,JP_LOW)
 
@@ -23,24 +23,7 @@ SUBSYSTEM_DEF(job)
 	if(CONFIG_GET(flag/load_jobs_from_txt))
 		LoadJobs()
 	generate_selectable_species()
-	set_overflow_role(CONFIG_GET(string/overflow_job))
 	return ..()
-
-/datum/controller/subsystem/job/proc/set_overflow_role(new_overflow_role)
-	var/datum/job/new_overflow = GetJob(new_overflow_role)
-	var/cap = CONFIG_GET(number/overflow_cap)
-
-	new_overflow.allow_bureaucratic_error = FALSE
-	new_overflow.spawn_positions = cap
-	new_overflow.total_positions = cap
-
-	if(new_overflow_role != overflow_role)
-		var/datum/job/old_overflow = GetJob(overflow_role)
-		old_overflow.allow_bureaucratic_error = initial(old_overflow.allow_bureaucratic_error)
-		old_overflow.spawn_positions = initial(old_overflow.spawn_positions)
-		old_overflow.total_positions = initial(old_overflow.total_positions)
-		overflow_role = new_overflow_role
-		JobDebug("Overflow role set to : [new_overflow_role]")
 
 /datum/controller/subsystem/job/proc/SetupOccupations(faction = "Station")
 	occupations = list()
@@ -60,6 +43,49 @@ SUBSYSTEM_DEF(job)
 		if(!job.map_check())	//Even though we initialize before mapping, this is fine because the config is loaded at new
 			testing("Removed [job.type] due to map config")
 			continue
+
+
+		//THIS IS FOR MAPTYPES.
+		//Something has two maptypes? well, check if it's matching our maptype right now, and set it to ours.
+		if(islist(job.maptype))
+			if(SSmaptype.maptype in job.maptype)
+				job.maptype = SSmaptype.maptype
+
+
+		//Okay, R-Corp has 2 sets of jobs; and none of them are available on multiple maps.
+		//If the map has multiple jobtypes, the set will be randomized in the Maptype SS.
+		//If the wrong maptype is set
+		if(SSmaptype.jobtype && job.maptype != SSmaptype.jobtype)
+			job.maptype = "Nullified"
+		if(SSmaptype.jobtype && job.maptype == SSmaptype.jobtype)
+			job.maptype = SSmaptype.maptype
+
+
+		//Checks if the maptype is the same as the map
+		if(job.maptype != SSmaptype.maptype)
+			if(job.maptype != "standard")		//Is the job standard on all maps?
+				if(!job.loadalways)	//We don't really need this, but still important
+					job.total_positions = 0
+					job.spawn_positions = 0
+					continue
+
+		//Checks mapexclude.
+		if(SSmaptype.maptype in job.mapexclude)
+			if(!job.loadalways)	//Will the game break if we remove it?
+				continue
+			//If it does break, set the jobslots to Zero.
+			job.total_positions = 0
+			job.spawn_positions = 0
+
+		//Checks the clearmap, I will configure this to
+		if(SSmaptype.maptype in SSmaptype.clearmaps)	//Is the maptype a maptype that clears all jobs?
+			if(job.maptype != SSmaptype.maptype)		//This clears all the job from the map. Runs after the top one to fully remove a job.
+				if(!job.loadalways)				//THIS one we need. If a job can't be removed without breaking the game then don't unload it
+					continue
+				else
+					job.total_positions = 0
+					job.spawn_positions = 0
+
 		occupations += job
 		name_occupations[job.title] = job
 		type_occupations[J] = job
@@ -88,6 +114,10 @@ SUBSYSTEM_DEF(job)
 		if(!job.player_old_enough(player.client))
 			return FALSE
 		if(job.required_playtime_remaining(player.client))
+			return FALSE
+		if(job.trusted_only && !is_trusted_player(player.client))
+			return FALSE
+		if(job.mentor_only && !is_mentor_player(player.client))
 			return FALSE
 		var/position_limit = job.total_positions
 		if(!latejoin)
@@ -128,6 +158,12 @@ SUBSYSTEM_DEF(job)
 		if(player.mind && (job.title in player.mind.restricted_roles))
 			JobDebug("FOC incompatible with antagonist role, Player: [player]")
 			continue
+		if(job.trusted_only && !is_trusted_player(player.client))
+			JobDebug("FOC player is not trusted, Player: [player]")
+			continue
+		if(job.mentor_only && !is_mentor_player(player.client))
+			JobDebug("FOC player is not mentor, Player: [player]")
+			continue
 		if(player.client.prefs.job_preferences[job.title] == level)
 			JobDebug("FOC pass, Player: [player], Level:[level]")
 			candidates += player
@@ -163,6 +199,14 @@ SUBSYSTEM_DEF(job)
 
 		if(player.mind && (job.title in player.mind.restricted_roles))
 			JobDebug("GRJ incompatible with antagonist role, Player: [player], Job: [job.title]")
+			continue
+
+		if(job.trusted_only && !is_trusted_player(player.client))
+			JobDebug("GRJ player is not trusted, Player: [player]")
+			continue
+
+		if(job.mentor_only && !is_mentor_player(player.client))
+			JobDebug("GRJ player is not trusted, Player: [player]")
 			continue
 
 		if((job.current_positions < job.spawn_positions) || job.spawn_positions == -1)
@@ -270,17 +314,6 @@ SUBSYSTEM_DEF(job)
 
 	HandleFeedbackGathering()
 
-	//People who wants to be the overflow role, sure, go on.
-	JobDebug("DO, Running Overflow Check 1")
-	var/datum/job/overflow = GetJob(SSjob.overflow_role)
-	var/list/overflow_candidates = FindOccupationCandidates(overflow, JP_LOW)
-	JobDebug("AC1, Candidates: [overflow_candidates.len]")
-	for(var/mob/dead/new_player/player in overflow_candidates)
-		JobDebug("AC1 pass, Player: [player]")
-		AssignRole(player, SSjob.overflow_role)
-		overflow_candidates -= player
-	JobDebug("DO, AC1 end")
-
 	//Select one head
 	JobDebug("DO, Running Head Check")
 	FillHeadPosition()
@@ -335,6 +368,14 @@ SUBSYSTEM_DEF(job)
 					JobDebug("DO incompatible with antagonist role, Player: [player], Job:[job.title]")
 					continue
 
+				if(job.trusted_only && !is_trusted_player(player.client))
+					JobDebug("DO player is not trusted, Player: [player], Job:[job.title]")
+					continue
+
+				if(job.mentor_only && !is_mentor_player(player.client))
+					JobDebug("DO player is not a mentor, Player: [player], Job:[job.title]")
+					continue
+
 				// If the player wants that job on this level, then try give it to him.
 				if(player.client.prefs.job_preferences[job.title] == level)
 					// If the job isn't filled
@@ -355,8 +396,7 @@ SUBSYSTEM_DEF(job)
 	//Mop up people who can't leave.
 	for(var/mob/dead/new_player/player in unassigned) //Players that wanted to back out but couldn't because they're antags (can you feel the edge case?)
 		if(!GiveRandomJob(player))
-			if(!AssignRole(player, SSjob.overflow_role)) //If everything is already filled, make them an assistant
-				return FALSE //Living on the edge, the forced antagonist couldn't be assigned to overflow role (bans, client age) - just reroll
+			return FALSE //Living on the edge, the forced antagonist couldn't be assigned to overflow role (bans, client age) - just reroll
 
 	return validate_required_jobs(required_jobs)
 
@@ -583,7 +623,7 @@ SUBSYSTEM_DEF(job)
 	var/oldjobs = SSjob.occupations
 	sleep(20)
 	for (var/datum/job/J in oldjobs)
-		INVOKE_ASYNC(src, .proc/RecoverJob, J)
+		INVOKE_ASYNC(src, PROC_REF(RecoverJob), J)
 
 /datum/controller/subsystem/job/proc/RecoverJob(datum/job/J)
 	var/datum/job/newjob = GetJob(J.title)
@@ -650,9 +690,12 @@ SUBSYSTEM_DEF(job)
 		message_admins(msg)
 		CRASH(msg)
 
-///Lands specified mob at a random spot in the hallways
+GLOBAL_LIST_EMPTY(allowed_random_drop_areas)
+///Lands specified mob at a random spot in the hallways or departments
 /datum/controller/subsystem/job/proc/DropLandAtRandomHallwayPoint(mob/living/living_mob)
-	var/turf/spawn_turf = get_safe_random_station_turf(typesof(/area/hallway))
+	if(!length(GLOB.allowed_random_drop_areas))
+		GLOB.allowed_random_drop_areas = subtypesof(/area/facility_hallway) + subtypesof(/area/department_main) - list(/area/facility_hallway/human, /area/department_main/human)
+	var/turf/spawn_turf = get_safe_random_station_turf(GLOB.allowed_random_drop_areas)
 
 	var/obj/structure/closet/supplypod/centcompod/toLaunch = new()
 	living_mob.forceMove(toLaunch)

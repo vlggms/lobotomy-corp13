@@ -297,7 +297,6 @@
 				return
 		if(target.mind && !target.mind.has_antag_datum(/datum/antagonist/heretic))
 			to_chat(user,"<span class='warning'>[target.name] has been cursed!</span>")
-			SEND_SIGNAL(target, COMSIG_ADD_MOOD_EVENT, "gates_of_mansus", /datum/mood_event/gates_of_mansus)
 
 /obj/effect/proc_holder/spell/pointed/ash_final
 	name = "Nightwatcher's Rite"
@@ -316,15 +315,15 @@
 	for(var/X in targets)
 		var/T
 		T = line_target(-25, range, X, user)
-		INVOKE_ASYNC(src, .proc/fire_line, user,T)
+		INVOKE_ASYNC(src, PROC_REF(fire_line), user,T)
 		T = line_target(10, range, X, user)
-		INVOKE_ASYNC(src, .proc/fire_line, user,T)
+		INVOKE_ASYNC(src, PROC_REF(fire_line), user,T)
 		T = line_target(0, range, X, user)
-		INVOKE_ASYNC(src, .proc/fire_line, user,T)
+		INVOKE_ASYNC(src, PROC_REF(fire_line), user,T)
 		T = line_target(-10, range, X, user)
-		INVOKE_ASYNC(src, .proc/fire_line, user,T)
+		INVOKE_ASYNC(src, PROC_REF(fire_line), user,T)
 		T = line_target(25, range, X, user)
-		INVOKE_ASYNC(src, .proc/fire_line, user,T)
+		INVOKE_ASYNC(src, PROC_REF(fire_line), user,T)
 	return ..()
 
 /obj/effect/proc_holder/spell/pointed/ash_final/proc/line_target(offset, range, atom/at , atom/user)
@@ -362,7 +361,7 @@
 			if(M in hit_list)
 				continue
 			hit_list += M
-			M.take_damage(45, BURN, MELEE, 1)
+			M.take_damage(45, MELEE, 1)
 		sleep(1.5)
 
 /obj/effect/proc_holder/spell/targeted/shapeshift/eldritch
@@ -404,7 +403,7 @@
 	action_background_icon_state = "bg_ecult"
 
 /obj/effect/proc_holder/spell/aoe_turf/fire_cascade/cast(list/targets, mob/user = usr)
-	INVOKE_ASYNC(src, .proc/fire_cascade, user,range)
+	INVOKE_ASYNC(src, PROC_REF(fire_cascade), user,range)
 
 /obj/effect/proc_holder/spell/aoe_turf/fire_cascade/proc/fire_cascade(atom/centre,max_range)
 	playsound(get_turf(centre), 'sound/items/welder.ogg', 75, TRUE)
@@ -451,7 +450,7 @@
 	. = ..()
 	current_user = user
 	has_fire_ring = TRUE
-	addtimer(CALLBACK(src, .proc/remove, user), duration, TIMER_OVERRIDE|TIMER_UNIQUE)
+	addtimer(CALLBACK(src, PROC_REF(remove), user), duration, TIMER_OVERRIDE|TIMER_UNIQUE)
 
 /obj/effect/proc_holder/spell/targeted/fire_sworn/proc/remove()
 	has_fire_ring = FALSE
@@ -705,7 +704,6 @@
 		for(var/mob/living/carbon/human/humie in view(9,outside)-target)
 			if(IS_HERETIC(humie) || IS_HERETIC_MONSTER(humie))
 				continue
-			SEND_SIGNAL(humie, COMSIG_ADD_MOOD_EVENT, "gates_of_mansus", /datum/mood_event/gates_of_mansus)
 			///They see the very reality uncoil before their eyes.
 			if(prob(25))
 				var/trauma = pick(subtypesof(BRAIN_TRAUMA_MILD) + subtypesof(BRAIN_TRAUMA_SEVERE))

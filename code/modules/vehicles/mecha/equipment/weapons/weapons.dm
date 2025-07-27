@@ -37,6 +37,7 @@
 				spread = round((i / projectiles_per_shot - 0.5) * variance)
 
 		var/obj/projectile/A = new projectile(get_turf(src))
+		A.firer = chassis;
 		A.preparePixelProjectile(target, source, params, spread)
 
 		A.fire()
@@ -94,45 +95,6 @@
 	projectile = /obj/projectile/beam/laser/pale
 	fire_sound = 'sound/weapons/laser.ogg'
 	harmful = TRUE
-
-//Heavy Rabbit Mech Laser
-/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy
-	equip_cooldown = 15
-	name = "\improper You should not have this"
-	desc = "You should not have this"
-	energy_drain = 0
-	projectiles_per_shot = 2
-	variance = 6
-	randomspread = 1
-	projectile_delay = 2
-
-/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy/red
-	name = "\improper CH-LC \"Red\" laser cannon"
-	desc = "A weapon for combat exosuits. Shoots heavy lasers."
-	icon_state = "mecha_laser_red"
-	projectile = /obj/projectile/beam/laser/heavylaser/red
-	fire_sound = 'sound/weapons/lasercannonfire.ogg'
-
-/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy/white
-	name = "\improper CH-LC \"White\" laser cannon"
-	desc = "A weapon for combat exosuits. Shoots heavy white lasers."
-	icon_state = "mecha_laser_white"
-	projectile = /obj/projectile/beam/laser/heavylaser/white
-	fire_sound = 'sound/weapons/lasercannonfire.ogg'
-
-/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy/black
-	name = "\improper CH-LC \"Black\" laser cannon"
-	desc = "A weapon for combat exosuits. Shoots heavy black lasers."
-	icon_state = "mecha_laser_black"
-	projectile = /obj/projectile/beam/laser/heavylaser/black
-	fire_sound = 'sound/weapons/lasercannonfire.ogg'
-
-/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy/pale
-	name = "\improper CH-LC \"Pale\" laser cannon"
-	desc = "A weapon for combat exosuits. Shoots heavy pale lasers."
-	icon_state = "mecha_laser_pale"
-	projectile = /obj/projectile/beam/laser/heavylaser/pale
-	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 
 //Others
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/ion
@@ -271,7 +233,7 @@
 	return TRUE
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/get_equip_info()
-	return "[..()] \[[src.projectiles][projectiles_cache_max &&!projectile_energy_cost?"/[projectiles_cache]":""]\][!disabledreload &&(src.projectiles < initial(src.projectiles))?" - <a href='?src=[REF(src)];rearm=1'>Rearm</a>":null]"
+	return "[..()] \[[src.projectiles][projectiles_cache_max &&!projectile_energy_cost?"/[projectiles_cache]":""]\][!disabledreload &&(src.projectiles < initial(src.projectiles))?" - <a href='byond://?src=[REF(src)];rearm=1'>Rearm</a>":null]"
 
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/rearm()
@@ -438,7 +400,7 @@
 	var/turf/T = get_turf(src)
 	message_admins("[ADMIN_LOOKUPFLW(user)] fired a [F] in [ADMIN_VERBOSEJMP(T)]")
 	log_game("[key_name(user)] fired a [F] in [AREACOORD(T)]")
-	addtimer(CALLBACK(F, /obj/item/grenade/flashbang.proc/detonate), det_time)
+	addtimer(CALLBACK(F, TYPE_PROC_REF(/obj/item/grenade/flashbang, detonate)), det_time)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/flashbang/clusterbang //Because I am a heartless bastard -Sieve //Heartless? for making the poor man's honkblast? - Kaze
 	name = "\improper SOB-3 grenade launcher"
@@ -523,7 +485,7 @@
 		return
 
 	if(can_toggle_lethal)
-		return "[..()] &nbsp; <a href='?src=[REF(src)];lethalPunch=1'>[harmful?"Punch":"Pat"] mode</a>"
+		return "[..()] &nbsp; <a href='byond://?src=[REF(src)];lethalPunch=1'>[harmful?"Punch":"Pat"] mode</a>"
 	else
 		return ..()
 
@@ -534,9 +496,9 @@
 		if(!chassis)
 			return
 		if(harmful)
-			to_chat(usr, "[icon2html(src, usr)]<span class='warning'>Lethal Fisting Enabled.</span>")
+			to_chat(usr, "[icon2html(src, usr)][span_warning("Lethal Fisting Enabled.")]")
 		else
-			to_chat(usr, "[icon2html(src, usr)]<span class='warning'>Lethal Fisting Disabled.</span>")
+			to_chat(usr, "[icon2html(src, usr)][span_warning("Lethal Fisting Disabled.")]")
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/punching_glove/action(mob/source, atom/target, params)
 	. = ..()

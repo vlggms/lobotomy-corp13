@@ -56,8 +56,9 @@ Difficulty: Medium
 	var/dash_cooldown = 15
 	var/guidance = FALSE
 	var/transform_stop_attack = FALSE // stops the blood drunk miner from attacking after transforming his weapon until the next attack chain
-	deathmessage = "falls to the ground, decaying into glowing particles."
-	deathsound = "bodyfall"
+	death_message = "falls to the ground, decaying into glowing particles."
+//	death_sound = SFX_BODYFALL REQUIRES TG PR
+	death_sound = "bodyfall" // REQUIRES TG PR
 	footstep_type = FOOTSTEP_MOB_HEAVY
 	attack_action_types = list(/datum/action/innate/megafauna_attack/dash,
 							   /datum/action/innate/megafauna_attack/kinetic_accelerator,
@@ -72,21 +73,21 @@ Difficulty: Medium
 	name = "Dash To Target"
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "sniper_zoom"
-	chosen_message = "<span class='colossus'>You are now dashing to your target.</span>"
+	chosen_message = span_colossus("You are now dashing to your target.")
 	chosen_attack_num = 1
 
 /datum/action/innate/megafauna_attack/kinetic_accelerator
 	name = "Fire Kinetic Accelerator"
 	icon_icon = 'icons/obj/guns/energy.dmi'
 	button_icon_state = "kineticgun"
-	chosen_message = "<span class='colossus'>You are now shooting your kinetic accelerator.</span>"
+	chosen_message = span_colossus("You are now shooting your kinetic accelerator.")
 	chosen_attack_num = 2
 
 /datum/action/innate/megafauna_attack/transform_weapon
 	name = "Transform Weapon"
 	icon_icon = 'icons/obj/lavaland/artefacts.dmi'
 	button_icon_state = "cleaving_saw"
-	chosen_message = "<span class='colossus'>You are now transforming your weapon.</span>"
+	chosen_message = span_colossus("You are now transforming your weapon.")
 	chosen_attack_num = 3
 
 /mob/living/simple_animal/hostile/megafauna/blood_drunk_miner/OpenFire()
@@ -143,9 +144,9 @@ Difficulty: Medium
 		return
 	return ..()
 
-/mob/living/simple_animal/hostile/megafauna/blood_drunk_miner/MeleeAction(patience = TRUE)
+/*/mob/living/simple_animal/hostile/megafauna/blood_drunk_miner/MeleeAction(patience = TRUE)
 	transform_stop_attack = FALSE
-	return ..()
+	return ..()*/
 
 /mob/living/simple_animal/hostile/megafauna/blood_drunk_miner/AttackingTarget()
 	if(client)
@@ -156,8 +157,8 @@ Difficulty: Medium
 	if(isliving(target))
 		var/mob/living/L = target
 		if(L.stat == DEAD)
-			visible_message("<span class='danger'>[src] butchers [L]!</span>",
-			"<span class='userdanger'>You butcher [L], restoring your health!</span>")
+			visible_message(span_danger("[src] butchers [L]!"),
+			span_userdanger("You butcher [L], restoring your health!"))
 			if(!is_station_level(z) || client) //NPC monsters won't heal while on station
 				if(guidance)
 					adjustHealth(-L.maxHealth)
@@ -183,13 +184,13 @@ Difficulty: Medium
 		wander = TRUE
 
 /mob/living/simple_animal/hostile/megafauna/blood_drunk_miner/proc/dash_attack()
-	INVOKE_ASYNC(src, .proc/dash, target)
+	INVOKE_ASYNC(src, PROC_REF(dash), target)
 	shoot_ka()
 
 /mob/living/simple_animal/hostile/megafauna/blood_drunk_miner/proc/shoot_ka()
 	if(ranged_cooldown <= world.time && get_dist(src, target) <= MINER_DASH_RANGE && !Adjacent(target))
 		ranged_cooldown = world.time + ranged_cooldown_time
-		visible_message("<span class='danger'>[src] fires the proto-kinetic accelerator!</span>")
+		visible_message(span_danger("[src] fires the proto-kinetic accelerator!"))
 		face_atom(target)
 		new /obj/effect/temp_visual/dir_setting/firing_effect(loc, dir)
 		Shoot(target)
@@ -265,7 +266,7 @@ Difficulty: Medium
 
 /obj/effect/temp_visual/dir_setting/miner_death/Initialize(mapload, set_dir)
 	. = ..()
-	INVOKE_ASYNC(src, .proc/fade_out)
+	INVOKE_ASYNC(src, PROC_REF(fade_out))
 
 /obj/effect/temp_visual/dir_setting/miner_death/proc/fade_out()
 	var/matrix/M = new
@@ -286,7 +287,7 @@ Difficulty: Medium
 /mob/living/simple_animal/hostile/megafauna/blood_drunk_miner/hunter/AttackingTarget()
 	. = ..()
 	if(. && prob(12))
-		INVOKE_ASYNC(src, .proc/dash)
+		INVOKE_ASYNC(src, PROC_REF(dash))
 
 /mob/living/simple_animal/hostile/megafauna/blood_drunk_miner/doom
 	name = "hostile-environment miner"

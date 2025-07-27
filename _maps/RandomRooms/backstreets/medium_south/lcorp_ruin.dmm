@@ -1,0 +1,198 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/machinery/door/airlock/vault,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"c" = (
+/obj/effect/turf_decal/plaque{
+	alpha = 230;
+	icon_state = "LC5"
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"h" = (
+/obj/effect/turf_decal/plaque{
+	alpha = 230;
+	icon_state = "LC14"
+	},
+/obj/effect/landmark/cratespawn/corpo,
+/turf/open/floor/plating/ashplanet/wateryrock,
+/area/city/backstreets_room)
+"i" = (
+/obj/effect/turf_decal/plaque{
+	alpha = 230;
+	icon_state = "LC7"
+	},
+/turf/closed/mineral/ash_rock,
+/area/city/backstreets_room)
+"j" = (
+/obj/structure/sign/departments/l_corp,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"k" = (
+/obj/effect/turf_decal/plaque{
+	alpha = 230;
+	icon_state = "LC9"
+	},
+/turf/open/floor/plating/ashplanet/wateryrock,
+/area/city/backstreets_room)
+"r" = (
+/obj/structure/cavein_door,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"s" = (
+/obj/effect/turf_decal/plaque{
+	alpha = 230;
+	icon_state = "LC15"
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"t" = (
+/obj/effect/turf_decal/plaque{
+	alpha = 230;
+	icon_state = "LC10"
+	},
+/mob/living/simple_animal/hostile/ordeal/sin_sloth,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"x" = (
+/obj/effect/turf_decal/plaque{
+	alpha = 230;
+	icon_state = "LC4"
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"B" = (
+/turf/closed/mineral/ash_rock,
+/area/city/backstreets_room)
+"D" = (
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"E" = (
+/turf/open/floor/plating/ashplanet/wateryrock,
+/area/city/backstreets_room)
+"F" = (
+/obj/effect/turf_decal/plaque{
+	alpha = 230;
+	icon_state = "LC1"
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"O" = (
+/obj/effect/turf_decal/plaque{
+	alpha = 230;
+	icon_state = "LC3"
+	},
+/obj/effect/landmark/cratespawn/corpo,
+/turf/open/floor/plating/ashplanet/wateryrock,
+/area/city/backstreets_room)
+"Q" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"R" = (
+/obj/effect/turf_decal/plaque{
+	alpha = 230;
+	icon_state = "LC6"
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"U" = (
+/mob/living/simple_animal/hostile/ordeal/sin_sloth,
+/turf/open/floor/plating/ashplanet/wateryrock,
+/area/city/backstreets_room)
+"V" = (
+/obj/effect/turf_decal/plaque{
+	alpha = 230;
+	icon_state = "LC2"
+	},
+/mob/living/simple_animal/hostile/ordeal/sin_sloth,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"X" = (
+/obj/effect/turf_decal/plaque{
+	alpha = 230;
+	icon_state = "LC8"
+	},
+/turf/closed/mineral/ash_rock,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+Q
+Q
+Q
+B
+B
+B
+"}
+(2,1,1) = {"
+Q
+B
+B
+B
+B
+B
+"}
+(3,1,1) = {"
+Q
+U
+B
+B
+B
+B
+"}
+(4,1,1) = {"
+j
+E
+U
+E
+B
+B
+"}
+(5,1,1) = {"
+a
+D
+x
+k
+h
+B
+"}
+(6,1,1) = {"
+r
+F
+c
+t
+s
+B
+"}
+(7,1,1) = {"
+j
+V
+R
+B
+B
+Q
+"}
+(8,1,1) = {"
+Q
+O
+i
+B
+B
+Q
+"}
+(9,1,1) = {"
+Q
+B
+X
+B
+B
+Q
+"}
+(10,1,1) = {"
+Q
+Q
+Q
+Q
+Q
+Q
+"}

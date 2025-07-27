@@ -22,7 +22,6 @@
 	can_elimination_hijack = ELIMINATION_PREVENT
 	show_in_antagpanel = FALSE
 	show_to_ghosts = TRUE
-	antag_moodlet = /datum/mood_event/focused
 	antag_attributes = list(
 		FORTITUDE_ATTRIBUTE = 70,
 		PRUDENCE_ATTRIBUTE = 70,
@@ -31,6 +30,7 @@
 		)
 
 /datum/antagonist/ert/on_gain()
+	. = ..()
 	if(random_names)
 		update_name()
 	if(forge_objectives_for_ert)
@@ -38,17 +38,18 @@
 	if(equip_ert)
 		equipERT()
 	owner.store_memory("Your team's shared tracking beacon frequency is [ert_team.ert_frequency].")
-	. = ..()
 
 /datum/antagonist/ert/apply_innate_effects(mob/living/mob_override)
 	..()
 	var/mob/living/carbon/human/H = mob_override || owner.current
 	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, "ERT Antagonist")
+	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, "ERT Antagonist")
 
 /datum/antagonist/ert/remove_innate_effects(mob/living/mob_override)
 	..()
 	var/mob/living/carbon/human/H = mob_override || owner.current
 	REMOVE_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, "ERT Antagonist")
+	REMOVE_TRAIT(H, TRAIT_WORK_FORBIDDEN, "ERT Antagonist")
 
 /datum/antagonist/ert/get_team()
 	return ert_team

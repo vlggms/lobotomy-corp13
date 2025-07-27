@@ -16,7 +16,7 @@
 	. = ..()
 	set_light(glow_range)
 
-/obj/structure/swarmer/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
+/obj/structure/swarmer/play_attack_sound(damage_amount, damage_type = BRUTE)
 	switch(damage_type)
 		if(BRUTE)
 			playsound(src, 'sound/weapons/egloves.ogg', 80, TRUE)
@@ -80,8 +80,8 @@
 		return FALSE
 	var/mob/living/simple_animal/hostile/swarmer/newswarmer = new /mob/living/simple_animal/hostile/swarmer(src)
 	newswarmer.key = user.key
-	addtimer(CALLBACK(src, .proc/release_swarmer, newswarmer), (LAZYLEN(swarmerlist) * 2 SECONDS) + 5 SECONDS)
-	to_chat(newswarmer, "<span class='boldannounce'>SWARMER CONSTRUCTION INITIALIZED.</span>")
+	addtimer(CALLBACK(src, PROC_REF(release_swarmer), newswarmer), (LAZYLEN(swarmerlist) * 2 SECONDS) + 5 SECONDS)
+	to_chat(newswarmer, span_boldannounce("SWARMER CONSTRUCTION INITIALIZED."))
 	processing_swarmer = TRUE
 	return TRUE
 
@@ -105,7 +105,7 @@
 		GLORY TO !*# $*#^</span>")
 	swarmer.forceMove(get_turf(src))
 	LAZYADD(swarmerlist, swarmer)
-	RegisterSignal(swarmer, COMSIG_PARENT_QDELETING, .proc/remove_swarmer, swarmer)
+	RegisterSignal(swarmer, COMSIG_PARENT_QDELETING, PROC_REF(remove_swarmer), swarmer)
 	processing_swarmer = FALSE
 
 /**

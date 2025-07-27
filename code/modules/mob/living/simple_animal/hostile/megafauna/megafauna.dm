@@ -71,7 +71,7 @@
 
 /mob/living/simple_animal/hostile/megafauna/can_inject(mob/user, error_msg)
 	if(error_msg)
-		to_chat(user, "<span class='alert'>[p_they(TRUE)] [p_are(TRUE)] too tough!</span>")
+		to_chat(user, span_alert("[p_they(TRUE)] [p_are(TRUE)] too tough!"))
 	return FALSE
 
 /mob/living/simple_animal/hostile/megafauna/Moved()
@@ -117,12 +117,12 @@
 	else
 		..()
 
-/mob/living/simple_animal/hostile/megafauna/AttackingTarget()
+/mob/living/simple_animal/hostile/megafauna/AttackingTarget(atom/attacked_target)
 	if(recovery_time >= world.time)
 		return
 	. = ..()
-	if(. && isliving(target))
-		var/mob/living/L = target
+	if(. && isliving(attacked_target))
+		var/mob/living/L = attacked_target
 		if(L.stat != DEAD)
 			if(!client && ranged && ranged_cooldown <= world.time)
 				OpenFire()
@@ -137,8 +137,8 @@
 	if(!L)
 		return FALSE
 	visible_message(
-		"<span class='danger'>[src] devours [L]!</span>",
-		"<span class='userdanger'>You feast on [L], restoring your health!</span>")
+		span_danger("[src] devours [L]!"),
+		span_userdanger("You feast on [L], restoring your health!"))
 	if(!is_station_level(z) || client) //NPC monsters won't heal while on station
 		adjustBruteLoss(-L.maxHealth/2)
 	L.gib()

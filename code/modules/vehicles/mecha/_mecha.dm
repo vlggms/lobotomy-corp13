@@ -44,8 +44,10 @@
 	var/overload_step_energy_drain_min = 100
 	///chance to deflect the incoming projectiles, hits, or lesser the effect of ex_act.
 	var/deflect_chance = 10
+	///deflect but has reduced chance against specific ranged
+	var/dodge_chance = 0
 	///Modifiers for directional armor
-	var/list/facing_modifiers = list(MECHA_FRONT_ARMOUR = 1.5, MECHA_SIDE_ARMOUR = 1, MECHA_BACK_ARMOUR = 0.5)
+	var/list/facing_modifiers = list(MECHA_FRONT_ARMOUR = 0.66, MECHA_FRONT_DIAGONAL_ARMOUR = 0.8, MECHA_SIDE_ARMOUR = 1, MECHA_BACK_DIAGONAL_ARMOUR = 1.5, MECHA_BACK_ARMOUR = 2)
 	///if we cant use our equipment(such as due to EMP)
 	var/equipment_disabled = FALSE
 	/// Keeps track of the mech's cell
@@ -177,8 +179,8 @@
 	add_cabin()
 	if(enclosed)
 		add_airtank()
-		RegisterSignal(src, COMSIG_MOVABLE_PRE_MOVE , .proc/disconnect_air)
-	RegisterSignal(src, COMSIG_MOVABLE_MOVED, .proc/play_stepsound)
+		RegisterSignal(src, COMSIG_MOVABLE_PRE_MOVE , PROC_REF(disconnect_air))
+	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(play_stepsound))
 	spark_system.set_up(2, 0, src)
 	spark_system.attach(src)
 	smoke_system.set_up(3, src)
@@ -246,7 +248,7 @@
 	return cell
 
 /obj/vehicle/sealed/mecha/rust_heretic_act()
-	take_damage(500,  BRUTE)
+	take_damage(500, BRUTE)
 
 /obj/vehicle/sealed/mecha/proc/restore_equipment()
 	equipment_disabled = FALSE
@@ -388,7 +390,7 @@
 			if(cabin_air && cabin_air.return_volume()>0)
 				cabin_air.temperature = min(6000+T0C, cabin_air.return_temperature()+rand(5,7.5)*delta_time)
 				if(cabin_air.return_temperature() > max_temperature/2)
-					take_damage(delta_time*2/round(max_temperature/cabin_air.return_temperature(),0.1), BURN, 0, 0)
+					take_damage(delta_time*2/round(max_temperature/cabin_air.return_temperature(),0.1), BURN, 0)
 
 		if(internal_damage & MECHA_INT_TEMP_CONTROL)
 			internal_temp_regulation = 0
@@ -510,7 +512,7 @@
 	for(var/mob/M in speech_bubble_recipients)
 		if(M.client)
 			speech_bubble_recipients.Add(M.client)
-	INVOKE_ASYNC(GLOBAL_PROC, /proc/flick_overlay, image('icons/mob/talk.dmi', src, "machine[say_test(speech_args[SPEECH_MESSAGE])]",MOB_LAYER+1), speech_bubble_recipients, 30)
+	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(flick_overlay), image('icons/mob/talk.dmi', src, "machine[say_test(speech_args[SPEECH_MESSAGE])]",MOB_LAYER+1), speech_bubble_recipients, 30)
 
 ////////////////////////////
 ///// Action processing ////
@@ -552,13 +554,13 @@
 			if(HAS_TRAIT(L, TRAIT_PACIFISM) && selected.harmful)
 				to_chat(L, "<span class='warning'>You don't want to harm other living beings!</span>")
 				return
-			INVOKE_ASYNC(selected, /obj/item/mecha_parts/mecha_equipment.proc/action, user, target, params)
+			INVOKE_ASYNC(selected, TYPE_PROC_REF(/obj/item/mecha_parts/mecha_equipment, action), user, target, params)
 			return
 		if((selected.range & MECHA_MELEE) && Adjacent(target))
 			if(isliving(target) && selected.harmful && HAS_TRAIT(L, TRAIT_PACIFISM))
 				to_chat(L, "<span class='warning'>You don't want to harm other living beings!</span>")
 				return
-			INVOKE_ASYNC(selected, /obj/item/mecha_parts/mecha_equipment.proc/action, user, target, params)
+			INVOKE_ASYNC(selected, TYPE_PROC_REF(/obj/item/mecha_parts/mecha_equipment, action), user, target, params)
 			return
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_MECHA_MELEE_ATTACK) || !istype(target, /atom) || !Adjacent(target))
 		return
@@ -785,7 +787,7 @@
 			to_chat(user, "[B.get_mecha_info()]")
 			break
 		//Nothing like a big, red link to make the player feel powerful!
-		to_chat(user, "<a href='?src=[REF(user)];ai_take_control=[REF(src)]'><span class='userdanger'>ASSUME DIRECT CONTROL?</span></a><br>")
+		to_chat(user, "<a href='byond://?src=[REF(user)];ai_take_control=[REF(src)]'><span class='userdanger'>ASSUME DIRECT CONTROL?</span></a><br>")
 	else
 		examine(user)
 		if(length(return_drivers()) > 0)
@@ -799,7 +801,7 @@
 		if(!can_control_mech)
 			to_chat(user, "<span class='warning'>You cannot control exosuits without AI control beacons installed.</span>")
 			return
-		to_chat(user, "<a href='?src=[REF(user)];ai_take_control=[REF(src)]'><span class='boldnotice'>Take control of exosuit?</span></a><br>")
+		to_chat(user, "<a href='byond://?src=[REF(user)];ai_take_control=[REF(src)]'><span class='boldnotice'>Take control of exosuit?</span></a><br>")
 
 /obj/vehicle/sealed/mecha/transfer_ai(interaction, mob/user, mob/living/silicon/ai/AI, obj/item/aicard/card)
 	. = ..()
@@ -1109,14 +1111,27 @@
 
 
 /obj/vehicle/sealed/mecha/add_occupant(mob/M, control_flags)
-	RegisterSignal(M, COMSIG_LIVING_DEATH, .proc/mob_exit)
-	RegisterSignal(M, COMSIG_MOB_CLICKON, .proc/on_mouseclick)
-	RegisterSignal(M, COMSIG_MOB_MIDDLECLICKON, .proc/on_middlemouseclick) //For AIs
-	RegisterSignal(M, COMSIG_MOB_SAY, .proc/display_speech_bubble)
+	RegisterSignal(M, COMSIG_LIVING_DEATH, PROC_REF(mob_exit))
+	RegisterSignal(M, COMSIG_MOB_CLICKON, PROC_REF(on_mouseclick))
+	RegisterSignal(M, COMSIG_MOB_MIDDLECLICKON, PROC_REF(on_middlemouseclick)) //For AIs
+	RegisterSignal(M, COMSIG_MOB_SAY, PROC_REF(display_speech_bubble))
 	. = ..()
 	update_icon()
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/obj/item/suit = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+		if(suit)
+			H.dropItemToGround(suit, TRUE)
+			to_chat(H, span_interface("You remove your armor to put on the exosuit"))
+		H.physiology.red_mod *= 1 - clamp(armor.red, 0, 99) / 100
+		H.physiology.white_mod *= 1 - clamp(armor.white, 0, 99) / 100
+		H.physiology.black_mod *= 1 - clamp(armor.black, 0, 99) / 100
+		H.physiology.pale_mod *= 1 - clamp(armor.pale, 0, 99) / 100
+		H.physiology.burn_mod *= 1 - clamp(armor.fire, 0, 99) / 100
 
 /obj/vehicle/sealed/mecha/remove_occupant(mob/M)
+	if(!(M in occupants))
+		return FALSE
 	UnregisterSignal(M, COMSIG_LIVING_DEATH)
 	UnregisterSignal(M, COMSIG_MOB_CLICKON)
 	UnregisterSignal(M, COMSIG_MOB_MIDDLECLICKON)
@@ -1129,6 +1144,13 @@
 		zoom_mode = 0
 	. = ..()
 	update_icon()
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		H.physiology.red_mod /= 1 - clamp(armor.red, 0, 99) / 100
+		H.physiology.white_mod /= 1 - clamp(armor.white, 0, 99) / 100
+		H.physiology.black_mod /= 1 - clamp(armor.black, 0, 99) / 100
+		H.physiology.pale_mod /= 1 - clamp(armor.pale, 0, 99) / 100
+		H.physiology.burn_mod /= 1 - clamp(armor.fire, 0, 99) / 100
 
 /////////////////////////
 ////// Access stuff /////

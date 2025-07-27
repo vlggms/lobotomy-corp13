@@ -5,26 +5,28 @@
 	icon = 'ModularTegustation/Teguicons/64x48.dmi'
 	icon_state = "current"
 	icon_living = "current"
+	portrait = "dreaming_current"
 	pixel_x = -16
 	base_pixel_x = -16
 
 	ranged = TRUE
 	maxHealth = 2000
 	health = 2000
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
+	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	stat_attack = HARD_CRIT
-	deathsound = 'sound/abnormalities/dreamingcurrent/dead.ogg'
+	death_sound = 'sound/abnormalities/dreamingcurrent/dead.ogg'
 
 	threat_level = WAW_LEVEL
 
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(50, 50, 60, 55, 55),
-						ABNORMALITY_WORK_INSIGHT = 0,
-						ABNORMALITY_WORK_ATTACHMENT = list(45, 45, 45, 50, 55),
-						ABNORMALITY_WORK_REPRESSION = 45
-						)
+		ABNORMALITY_WORK_INSTINCT = list(50, 50, 60, 55, 55),
+		ABNORMALITY_WORK_INSIGHT = 0,
+		ABNORMALITY_WORK_ATTACHMENT = list(45, 45, 45, 50, 55),
+		ABNORMALITY_WORK_REPRESSION = 45,
+	)
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/gluttony
 
 	can_breach = TRUE
 	start_qliphoth = 2
@@ -32,8 +34,23 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/ecstasy,
-		/datum/ego_datum/armor/ecstasy
-		)
+		/datum/ego_datum/armor/ecstasy,
+	)
+	gift_type = /datum/ego_gifts/ecstasy
+	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/siltcurrent = 2
+	)
+
+	observation_prompt = "My mom and dad took me to this place when I was very small, it smells strange and the people in it only wear white. <br>\
+		Mom says she and dad will come back for me very soon. <br>\
+		Today one of the men in the white clothing offers me the purple candy, it's grape-flavoured he says. <br>Grape is my favourite."
+	observation_choices = list(
+		"Eat the candy" = list(TRUE, "It's grape flavour, the grape is my favourite. <br>\
+			When I eat the grape candy I imagine myself swimming in an ocean of colour. <br>Today, I think I'm going to go to the Sea..."),
+		"Don't eat the candy" = list(FALSE, "I don't eat the candy given to me. <br>When will mom and dad come? <br>Why aren't they here? <br>It doesn't stop hurting, <br>I'm scared..."),
+	)
 
 	var/list/movement_path = list()
 	var/list/been_hit = list()
@@ -44,8 +61,16 @@
 	/// Delay between each subsequent move when charging
 	var/dash_speed = 0.8
 	/// How many paths do we create between several landmarks?
-	var/dash_nodes = 4
+	var/dash_nodes = 6
+	/// Maximum AStar pathfinding distances from one point to another
+	var/dash_max_distance = 40
 	var/datum/looping_sound/dreamingcurrent/soundloop
+
+	secret_chance = TRUE
+	secret_icon_state = "blahaj"
+	secret_icon_living = "blahaj"
+	secret_horizontal_offset = -16
+	secret_gift = /datum/ego_gifts/blahaj
 
 /mob/living/simple_animal/hostile/abnormality/dreaming_current/Initialize()
 	. = ..()
@@ -53,9 +78,11 @@
 
 /mob/living/simple_animal/hostile/abnormality/dreaming_current/Destroy()
 	QDEL_NULL(soundloop)
-	..()
+	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/dreaming_current/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/dreaming_current/AttackingTarget(atom/attacked_target)
+	if(!target)
+		GiveTarget(attacked_target)
 	return OpenFire()
 
 /mob/living/simple_animal/hostile/abnormality/dreaming_current/Move()
@@ -68,7 +95,8 @@
 /mob/living/simple_animal/hostile/abnormality/dreaming_current/Life()
 	. = ..()
 	if((status_flags & GODMODE) && prob(2)) // Contained
-		icon_state = "current_bubble"
+		if(!secret_abnormality)
+			icon_state = "current_bubble"
 		playsound(src, "sound/effects/bubbles.ogg", 30, TRUE)
 		SLEEP_CHECK_DEATH(12)
 		icon_state = icon_living
@@ -86,9 +114,18 @@
 	for(var/turf/open/T in initial_turfs)
 		if(get_dist(src, T) > 3)
 			potential_turfs += T
-	for(var/mob/living/L in livinginrange(24, src))
-		if(prob(35) && !(L.status_flags & GODMODE) && !faction_check_mob(L) && L != src)
-			potential_turfs += get_turf(L)
+	for(var/mob/living/L in livinginrange(32, src))
+		if(prob(50))
+			continue
+		if((L.status_flags & GODMODE) || faction_check_mob(L))
+			continue
+		if(L.stat == DEAD)
+			continue
+		if(ishuman(L))
+			var/mob/living/carbon/human/H = L
+			if(H.is_working)
+				continue
+		potential_turfs += get_turf(L)
 	var/turf/picking_from = get_turf(src)
 	var/turf/path_start = get_turf(src)
 	if(target)
@@ -103,17 +140,32 @@
 		var/turf/T = get_closest_atom(/turf/open, potential_turfs, picking_from)
 		if(!T)
 			break
-		movement_path += get_path_to(path_start, T, /turf/proc/Distance_cardinal)
+		var/list/our_path = list()
+		for(var/o = 1 to 3) // Grand total of 3 retries
+			our_path = get_path_to(path_start, T, TYPE_PROC_REF(/turf, Distance_cardinal), dash_max_distance)
+			if(islist(our_path) && LAZYLEN(our_path))
+				break
+			potential_turfs -= T // Couldn't find path to it, don't try again
+			if(!LAZYLEN(potential_turfs))
+				break
+			T = get_closest_atom(/turf/open, potential_turfs, picking_from)
+		if(!islist(our_path) || !LAZYLEN(our_path))
+			continue
+		movement_path += our_path
 		picking_from = T
 		path_start = T
 		potential_turfs -= T
-	icon_state = "current_prepare"
+	if(!LAZYLEN(movement_path))
+		return FALSE
+	if(!secret_abnormality)
+		icon_state = "current_prepare"
 	playsound(src, "sound/effects/bubbles.ogg", 50, TRUE, 7)
 	for(var/turf/T in movement_path) // Warning before charging
 		new /obj/effect/temp_visual/sparks/quantum(T)
 	SLEEP_CHECK_DEATH(18)
 	been_hit = list()
-	icon_state = "current_attack"
+	if(!secret_abnormality)
+		icon_state = "current_attack"
 	for(var/turf/T in movement_path)
 		if(QDELETED(T))
 			break
@@ -131,27 +183,32 @@
 		W.obj_destruction("teeth")
 	for(var/obj/machinery/door/D in T.contents)
 		if(D.density)
-			addtimer(CALLBACK (D, .obj/machinery/door/proc/open))
+			addtimer(CALLBACK (D, TYPE_PROC_REF(/obj/machinery/door, open)))
 	forceMove(T)
 	if(prob(33))
 		playsound(T, "sound/abnormalities/dreamingcurrent/move.ogg", 10, TRUE, 3)
 	for(var/turf/TF in view(1, T))
 		var/obj/effect/temp_visual/small_smoke/halfsecond/S = new(TF)
-		var/list/potential_colors = list(COLOR_LIGHT_GRAYISH_RED, COLOR_SOFT_RED, COLOR_YELLOW, \
-			COLOR_VIBRANT_LIME, COLOR_GREEN, COLOR_CYAN, COLOR_BLUE, COLOR_PINK, COLOR_PURPLE)
+		var/list/potential_colors = list(
+			COLOR_LIGHT_GRAYISH_RED,
+			COLOR_SOFT_RED,
+			COLOR_YELLOW,
+			COLOR_VIBRANT_LIME,
+			COLOR_GREEN,
+			COLOR_CYAN,
+			COLOR_BLUE,
+			COLOR_PINK,
+			COLOR_PURPLE,
+		)
 		S.add_atom_colour(pick(potential_colors), FIXED_COLOUR_PRIORITY)
-		for(var/mob/living/L in TF)
-			if(!faction_check_mob(L))
-				if(L in been_hit)
-					continue
-				visible_message("<span class='boldwarning'>[src] bites [L]!</span>")
-				L.apply_damage(dash_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-				new /obj/effect/temp_visual/cleave(get_turf(L))
-				playsound(L, "sound/abnormalities/dreamingcurrent/bite.ogg", 50, TRUE)
-				if(L.health < 0)
-					L.gib()
-				if(!QDELETED(L))
-					been_hit += L
+		var/list/new_hits = HurtInTurf(TF, been_hit, dash_damage, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE) - been_hit
+		been_hit += new_hits
+		for(var/mob/living/L in new_hits)
+			visible_message(span_boldwarning("[src] bites [L]!"))
+			new /obj/effect/temp_visual/cleave(get_turf(L))
+			playsound(L, "sound/abnormalities/dreamingcurrent/bite.ogg", 50, TRUE)
+			if(L.health < 0)
+				L.gib()
 
 /mob/living/simple_animal/hostile/abnormality/dreaming_current/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(user.sanity_lost)
@@ -159,11 +216,13 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/dreaming_current/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/dreaming_current/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/dreaming_current/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	ADD_TRAIT(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT) // Floating
-	icon_living = "current_breach"
-	icon_state = icon_living
+	if(!secret_abnormality)
+		icon_living = "current_breach"
+		icon_state = icon_living

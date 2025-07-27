@@ -1,0 +1,120 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/window/fulltile,
+/obj/structure/curtain{
+	open = 0
+	},
+/turf/open/floor/grass/fairy,
+/area/city/backstreets_room)
+"c" = (
+/obj/item/toy/plush/fumo,
+/turf/open/floor/grass/fairy,
+/area/city/backstreets_room)
+"k" = (
+/mob/living/simple_animal/hostile/retaliate/frog{
+	living_flags = 0
+	},
+/turf/open/floor/plating/ice,
+/area/city/backstreets_room)
+"t" = (
+/obj/effect/decal/remains/human,
+/turf/open/floor/grass/fairy,
+/area/city/backstreets_room)
+"x" = (
+/obj/machinery/door/airlock/diamond,
+/turf/open/floor/grass/fairy,
+/area/city/backstreets_room)
+"B" = (
+/turf/open/floor/grass/fairy,
+/area/city/backstreets_room)
+"N" = (
+/obj/item/paper/fluff/ruins/oldstation/survivor_note{
+	info = "Finally, our research succeeded! We can become one with the Wisest One! All hail the Nine!";
+	name = "Our epiphany"
+	},
+/turf/open/floor/grass/fairy,
+/area/city/backstreets_room)
+"Q" = (
+/turf/closed/wall/mineral/diamond,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+Q
+Q
+Q
+Q
+Q
+Q
+"}
+(2,1,1) = {"
+Q
+c
+t
+k
+B
+a
+"}
+(3,1,1) = {"
+Q
+B
+B
+N
+B
+a
+"}
+(4,1,1) = {"
+Q
+B
+c
+t
+k
+x
+"}
+(5,1,1) = {"
+Q
+c
+t
+k
+B
+x
+"}
+(6,1,1) = {"
+Q
+k
+c
+t
+B
+a
+"}
+(7,1,1) = {"
+Q
+B
+c
+t
+k
+a
+"}
+(8,1,1) = {"
+Q
+k
+B
+k
+B
+a
+"}
+(9,1,1) = {"
+Q
+c
+t
+B
+B
+a
+"}
+(10,1,1) = {"
+Q
+Q
+Q
+Q
+Q
+Q
+"}

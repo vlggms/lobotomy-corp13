@@ -50,7 +50,7 @@
 
 /mob/living/simple_animal/hostile/syndicate/can_inject(mob/user, error_msg)
 	if(error_msg)
-		to_chat(user, "<span class='alert'>[p_their(TRUE)] armor is too tough!</span>")
+		to_chat(user, span_alert("[p_their(TRUE)] armor is too tough!"))
 	return FALSE
 
 ///////////////Melee////////////
@@ -137,7 +137,7 @@
 
 /mob/living/simple_animal/hostile/syndicate/melee/bullet_act(obj/projectile/Proj)
 	if(prob(projectile_deflect_chance))
-		visible_message("<span class='danger'>[src] blocks [Proj] with its shield!</span>")
+		visible_message(span_danger("[src] blocks [Proj] with its shield!"))
 		return BULLET_ACT_BLOCK
 	return ..()
 
@@ -317,7 +317,7 @@
 	bubble_icon = "syndibot"
 	gold_core_spawnable = HOSTILE_SPAWN
 	del_on_death = 1
-	deathmessage = "is smashed into pieces!"
+	death_message = "is smashed into pieces!"
 
 /mob/living/simple_animal/hostile/viscerator/Initialize()
 	. = ..()

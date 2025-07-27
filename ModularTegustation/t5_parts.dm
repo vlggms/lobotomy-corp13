@@ -188,7 +188,7 @@
 /obj/vehicle/ridden/wheelchair/motorized/proc/RunOver(mob/living/carbon/H)
 	var/bloodiness = 0
 	log_combat(src, H, "run over", null, "(DAMTYPE: [uppertext(BRUTE)])")
-	H.visible_message("<span class='danger'>[src] runs [H] over!</span>", "<span class='userdanger'>[src] runs you over!</span>")
+	H.visible_message(span_danger("[src] runs [H] over!"), span_userdanger("[src] runs you over!"))
 	playsound(loc, 'sound/effects/splat.ogg', 50, TRUE)
 
 	var/damage = rand(7,9) //Choose a number between 7 and 9, then use that number for the damage calculations applied to the head, chest, legs and arms.

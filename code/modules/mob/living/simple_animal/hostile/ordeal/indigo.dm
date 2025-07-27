@@ -1,121 +1,3 @@
-/mob/living/simple_animal/hostile/ordeal/indigo_dawn
-	name = "unknown scout"
-	desc = "A tall humanoid with a walking cane. It's wearing indigo armor."
-	icon = 'ModularTegustation/Teguicons/32x48.dmi'
-	icon_state = "indigo_dawn"
-	icon_living = "indigo_dawn"
-	icon_dead = "indigo_dawn_dead"
-	faction = list("indigo_ordeal")
-	maxHealth = 110
-	health = 110
-	move_to_delay = 1.3	//Super fast, but squishy and weak.
-	stat_attack = DEAD
-	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
-	melee_damage_lower = 10
-	melee_damage_upper = 12
-	butcher_results = list(/obj/item/food/meat/slab/human/mutant/sweeper = 1)
-	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/sweeper = 1)
-	attack_verb_continuous = "stabs"
-	attack_verb_simple = "stab"
-	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.8)
-	blood_volume = BLOOD_VOLUME_NORMAL
-
-/mob/living/simple_animal/hostile/ordeal/indigo_dawn/AttackingTarget()
-	. = ..()
-	if(. && isliving(target))
-		var/mob/living/L = target
-		if(L.stat != DEAD)
-			if(L.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(L, TRAIT_NODEATH))
-				devour(L)
-		else
-			devour(L)
-
-/mob/living/simple_animal/hostile/ordeal/indigo_dawn/proc/devour(mob/living/L)
-	if(!L)
-		return FALSE
-	visible_message(
-		"<span class='danger'>[src] devours [L]!</span>",
-		"<span class='userdanger'>You feast on [L], restoring your health!</span>")
-	adjustBruteLoss(-(maxHealth/2))
-	L.gib()
-	return TRUE
-
-/mob/living/simple_animal/hostile/ordeal/indigo_noon
-	name = "sweeper"
-	desc = "A humanoid creature wearing metallic armor. It has bloodied hooks in its hands."
-	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
-	icon_state = "sweeper_1"
-	icon_living = "sweeper_1"
-	icon_dead = "sweeper_dead"
-	faction = list("indigo_ordeal")
-	maxHealth = 500
-	health = 500
-	move_to_delay = 4
-	stat_attack = DEAD
-	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
-	melee_damage_lower = 20
-	melee_damage_upper = 24
-	butcher_results = list(/obj/item/food/meat/slab/human/mutant/sweeper = 2)
-	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/sweeper = 1)
-	attack_verb_continuous = "stabs"
-	attack_verb_simple = "stab"
-	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.8)
-	blood_volume = BLOOD_VOLUME_NORMAL
-
-/mob/living/simple_animal/hostile/ordeal/indigo_noon/Initialize()
-	..()
-	attack_sound = "sound/effects/ordeals/indigo/stab_[pick(1,2)].ogg"
-	icon_living = "sweeper_[pick(1,2)]"
-	icon_state = icon_living
-
-/mob/living/simple_animal/hostile/ordeal/indigo_noon/AttackingTarget()
-	. = ..()
-	if(. && isliving(target))
-		var/mob/living/L = target
-		if(L.stat != DEAD)
-			if(L.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(L, TRAIT_NODEATH))
-				devour(L)
-		else
-			devour(L)
-
-/mob/living/simple_animal/hostile/ordeal/indigo_noon/proc/devour(mob/living/L)
-	if(!L)
-		return FALSE
-	visible_message(
-		"<span class='danger'>[src] devours [L]!</span>",
-		"<span class='userdanger'>You feast on [L], restoring your health!</span>")
-	adjustBruteLoss(-(maxHealth/2))
-	L.gib()
-	return TRUE
-
-/mob/living/simple_animal/hostile/ordeal/indigo_noon/PickTarget(list/Targets)
-	if(health <= maxHealth * 0.6) // If we're damaged enough
-		for(var/mob/living/simple_animal/hostile/ordeal/indigo_noon/sweeper in view(7, src)) // And there is no sweepers even more damaged than us
-			if(sweeper.stat != DEAD && (health > sweeper.health))
-				sweeper.PickTarget(Targets) // Let this sweeper see the same targets as we do
-				return ..()
-		var/list/highest_priority = list()
-		for(var/mob/living/L in Targets)
-			if(!CanAttack(L))
-				continue
-			if(L.health < 0 || L.stat == DEAD)
-				highest_priority += L
-		if(LAZYLEN(highest_priority))
-			return pick(highest_priority)
-	var/list/lower_priority = list() // We aren't exactly damaged, but it'd be a good idea to finish the wounded first
-	for(var/mob/living/L in Targets)
-		if(!CanAttack(L))
-			continue
-		if(L.health < L.maxHealth*0.5 && (L.stat < UNCONSCIOUS))
-			lower_priority += L
-	if(LAZYLEN(lower_priority))
-		return pick(lower_priority)
-	return ..()
-
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_dead = "sweeper_dead"
@@ -124,16 +6,19 @@
 	health = 1500
 	stat_attack = DEAD
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	rapid_melee = 1
 	melee_damage_lower = 13
 	melee_damage_upper = 17
-	butcher_results = list(/obj/item/food/meat/slab/human/mutant/sweeper = 2)
-	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/sweeper = 1)
+	butcher_results = list(/obj/item/food/meat/slab/sweeper = 2)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sweeper = 1)
+	silk_results = list(/obj/item/stack/sheet/silk/indigo_elegant = 1,
+						/obj/item/stack/sheet/silk/indigo_advanced = 2,
+						/obj/item/stack/sheet/silk/indigo_simple = 4)
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
 	blood_volume = BLOOD_VOLUME_NORMAL
+	can_patrol = TRUE
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/white
 	name = "\proper Commander Adelheide"
@@ -143,10 +28,22 @@
 	icon_state = "adelheide"
 	icon_living = "adelheide"
 	melee_damage_type = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
 	melee_damage_lower = 42
 	melee_damage_upper = 55
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.7, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0.7)
+	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0.7)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sweeper = 1)
+
+/mob/living/simple_animal/hostile/ordeal/indigo_dusk/white/Initialize(mapload)
+	. = ..()
+	if(SSmaptype.maptype in SSmaptype.citymaps)
+		guaranteed_butcher_results += list(/obj/item/head_trophy/indigo_head/white = 1)
+
+/mob/living/simple_animal/hostile/ordeal/indigo_dusk/white/CanAttack(atom/the_target)
+	if(ishuman(the_target))
+		var/mob/living/carbon/human/L = the_target
+		if(L.sanity_lost && L.stat != DEAD)
+			return FALSE
+	return ..()
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/black
 	name = "\proper Commander Maria"
@@ -154,10 +51,15 @@
 	icon_state = "maria"
 	icon_living = "maria"
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	melee_damage_lower = 42
 	melee_damage_upper = 55
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.7, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5)
+	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sweeper = 1)
+
+/mob/living/simple_animal/hostile/ordeal/indigo_dusk/black/Initialize(mapload)
+	. = ..()
+	if(SSmaptype.maptype in SSmaptype.citymaps)
+		guaranteed_butcher_results += list(/obj/item/head_trophy/indigo_head/black = 1)
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/red
 	name = "\proper Commander Jacques"
@@ -166,8 +68,14 @@
 	icon_living = "jacques"
 	rapid_melee = 4
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.7)
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.7)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sweeper = 1)
+
+/mob/living/simple_animal/hostile/ordeal/indigo_dusk/red/Initialize(mapload)
+	. = ..()
+	if(SSmaptype.maptype in SSmaptype.citymaps)
+		guaranteed_butcher_results += list(/obj/item/head_trophy/indigo_head = 1)
+
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/pale
 	name = "\proper Commander Silvina"
@@ -176,14 +84,33 @@
 	icon_living = "silvina"
 	rapid_melee = 2
 	melee_damage_type = PALE_DAMAGE
-	armortype = PALE_DAMAGE
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.5)
+	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.5)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sweeper = 1)
 
-
-/mob/living/simple_animal/hostile/ordeal/indigo_dusk/AttackingTarget()
+/mob/living/simple_animal/hostile/ordeal/indigo_dusk/pale/Initialize(mapload)
 	. = ..()
-	if(. && isliving(target))
-		var/mob/living/L = target
+	if(SSmaptype.maptype in SSmaptype.citymaps)
+		guaranteed_butcher_results += list(/obj/item/head_trophy/indigo_head/pale = 1)
+
+/mob/living/simple_animal/hostile/ordeal/indigo_dusk/Initialize(mapload)
+	. = ..()
+	var/units_to_add = list(
+		/mob/living/simple_animal/hostile/ordeal/indigo_noon = 1,
+		)
+	AddComponent(/datum/component/ai_leadership, units_to_add)
+
+/mob/living/simple_animal/hostile/ordeal/indigo_dusk/Aggro()
+	. = ..()
+	a_intent_change(INTENT_HARM)
+
+/mob/living/simple_animal/hostile/ordeal/indigo_dusk/LoseAggro()
+	. = ..()
+	a_intent_change(INTENT_HELP) //so that they dont get body blocked by their kin outside of combat
+
+/mob/living/simple_animal/hostile/ordeal/indigo_dusk/AttackingTarget(atom/attacked_target)
+	. = ..()
+	if(. && isliving(attacked_target))
+		var/mob/living/L = attacked_target
 		if(L.stat != DEAD)
 			if(L.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(L, TRAIT_NODEATH))
 				devour(L)
@@ -194,9 +121,12 @@
 	if(!L)
 		return FALSE
 	visible_message(
-		"<span class='danger'>[src] devours [L]!</span>",
-		"<span class='userdanger'>You feast on [L], restoring your health!</span>")
-	adjustBruteLoss(-(maxHealth/2))
+		span_danger("[src] devours [L]!"),
+		span_userdanger("You feast on [L], restoring your health!"))
+	if(istype(L, SWEEPER_TYPES))
+		adjustBruteLoss(-20)
+	else
+		adjustBruteLoss(-(maxHealth/2))
 	L.gib()
 	return TRUE
 
@@ -215,21 +145,24 @@
 	pixel_x = -16
 	base_pixel_x = -16
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	move_to_delay = 3
 	speed = 3
 	rapid_melee = 2
 	melee_damage_lower = 60
 	melee_damage_upper = 60
 	ranged = TRUE
-	butcher_results = list(/obj/item/food/meat/slab/human/mutant/sweeper = 4)
-	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/sweeper = 3)
+	butcher_results = list(/obj/item/food/meat/slab/sweeper = 4)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sweeper = 3)
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 0.5)
+	damage_coeff = list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 0.5)
 	blood_volume = BLOOD_VOLUME_NORMAL
 	move_resist = MOVE_FORCE_OVERPOWERING
+	simple_mob_flags = SILENCE_RANGED_MESSAGE
+	can_patrol = TRUE
+	occupied_tiles_up = 1
+	offsets_pixel_x = list("south" = -16, "north" = -16, "west" = -16, "east" = -16)
 
 	//How many people has she eaten
 	var/belly = 0
@@ -251,19 +184,98 @@
 	var/pissed_threshold = 16
 
 	//phase speedchange
-	var/phase2speed = 2.4
-	var/phase3speed = 1.8
+	var/phasespeedchange = -0.6
 
 
 /mob/living/simple_animal/hostile/ordeal/indigo_midnight/Move()
-	if(slamming)
+	if(slamming) //slammin B)
 		return FALSE
 	..()
 
-/mob/living/simple_animal/hostile/ordeal/indigo_midnight/AttackingTarget()
+//Prototype Complex Targeting -IP
+/mob/living/simple_animal/hostile/ordeal/indigo_midnight/CanAttack(atom/the_target)
+	if(isliving(the_target))
+		var/mob/living/L = the_target
+		if(stat == DEAD && !faction_check_mob(L))
+			return TRUE
+	return ..()
+
+//Remind me to return to this and make complex targeting a option for all creatures. I may make it a TRUE FALSE var.
+/mob/living/simple_animal/hostile/ordeal/indigo_midnight/ValueTarget(atom/target_thing)
+	//Higher brain functions have been turned off.
+	if(phase >= 3)
+		return ..()
+
 	. = ..()
-	if(. && isliving(target))
-		var/mob/living/L = target
+
+	if(isliving(target_thing))
+		var/mob/living/L = target_thing
+		//Hate for corpses since we eats them.
+		if(L.stat == DEAD)
+			. += 10
+		//Highest possible addition is + 9.9
+		if(iscarbon(L))
+			if(L.stat != DEAD && L.health <= (L.maxHealth * 0.6))
+				var/upper = L.maxHealth - HEALTH_THRESHOLD_DEAD
+				var/lower = L.health - HEALTH_THRESHOLD_DEAD
+				. += min( 2 * ( 1 / ( max( lower, 1 ) / upper ) ), 20)
+
+	/*
+	Priority from greatest to least:
+	dead close: 90
+	close: 80
+	dead far: 40
+	far: 30
+	*/
+
+//Stolen MOSB patrol code
+/mob/living/simple_animal/hostile/ordeal/indigo_midnight/CanStartPatrol()
+	return !(status_flags & GODMODE) && !target
+
+/mob/living/simple_animal/hostile/ordeal/indigo_midnight/patrol_reset()
+	. = ..()
+	FindTarget() // Start eating corpses IMMEDIATELLY
+
+/mob/living/simple_animal/hostile/ordeal/indigo_midnight/patrol_select()
+	var/list/low_priority_turfs = list() // Oh, you're wounded, how nice.
+	var/list/medium_priority_turfs = list() // You're about to die and you are close? Splendid.
+	var/list/high_priority_turfs = list() // IS THAT A DEAD BODY?
+	for(var/mob/living/carbon/human/H in GLOB.human_list)
+		if(H.z != z) // Not on our level
+			continue
+		if(get_dist(src, H) < 4) // Way too close
+			continue
+		if(H.stat != DEAD) // Not dead people
+			if(H.health < H.maxHealth*0.5)
+				if(get_dist(src, H) > 24) // Way too far
+					low_priority_turfs += get_turf(H)
+					continue
+				medium_priority_turfs += get_turf(H)
+			continue
+		if(get_dist(src, H) > 24) // Those are dead people
+			medium_priority_turfs += get_turf(H)
+			continue
+		high_priority_turfs += get_turf(H)
+
+	var/turf/target_turf
+	if(LAZYLEN(high_priority_turfs))
+		target_turf = get_closest_atom(/turf/open, high_priority_turfs, src)
+	else if(LAZYLEN(medium_priority_turfs))
+		target_turf = get_closest_atom(/turf/open, medium_priority_turfs, src)
+	else if(LAZYLEN(low_priority_turfs))
+		target_turf = get_closest_atom(/turf/open, low_priority_turfs, src)
+
+	if(istype(target_turf))
+		patrol_path = get_path_to(src, target_turf, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 200)
+		return TRUE
+	//unsure if this patrol reset will cause the patrol cooldown even if there is not patrol path.
+	patrol_reset()
+	return FALSE
+
+/mob/living/simple_animal/hostile/ordeal/indigo_midnight/AttackingTarget(atom/attacked_target)
+	. = ..()
+	if(. && isliving(attacked_target))
+		var/mob/living/L = attacked_target
 		if(L.stat != DEAD)
 			if(L.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(L, TRAIT_NODEATH))
 				devour(L)
@@ -280,9 +292,12 @@
 	if(!L)
 		return FALSE
 	visible_message(
-		"<span class='danger'>[src] devours [L]!</span>",
-		"<span class='userdanger'>You feast on [L], restoring your health!</span>")
-	adjustBruteLoss(-(maxHealth*0.3))
+		span_danger("[src] devours [L]!"),
+		span_userdanger("You feast on [L], restoring your health!"))
+	if(istype(L, SWEEPER_TYPES))
+		adjustBruteLoss(-20)
+	else
+		adjustBruteLoss(-(maxHealth*0.3))
 	L.gib()
 	//Increase the Vore counter by 1
 	belly += 1
@@ -334,9 +349,8 @@
 	SLEEP_CHECK_DEATH(5)
 
 	maxHealth = 4000
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.25, PALE_DAMAGE = 0.8)
-	move_to_delay = phase2speed
-	speed = phase2speed
+	ChangeResistances(list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.25, PALE_DAMAGE = 0.8))
+	ChangeMoveToDelayBy(phasespeedchange)
 	rapid_melee +=1
 	melee_damage_lower -= 10
 	melee_damage_upper -= 10
@@ -353,9 +367,8 @@
 	SLEEP_CHECK_DEATH(5)
 
 	maxHealth = 3000
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 1)
-	move_to_delay = phase3speed
-	speed = phase3speed
+	ChangeResistances(list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 1))
+	ChangeMoveToDelayBy(phasespeedchange)
 	rapid_melee += 2
 	melee_damage_lower -= 15
 	melee_damage_upper -= 15
@@ -380,10 +393,10 @@
 				continue
 			playsound(T,'sound/effects/bamf.ogg', 60, TRUE, 10)
 			new /obj/effect/temp_visual/small_smoke/halfsecond(T)
-			for(var/mob/living/L in T)
+			for(var/mob/living/carbon/human/L in T)
 				if(L == src || L.throwing)
 					continue
-				to_chat(L, "<span class='userdanger'>[src]'s ground slam shockwave sends you flying!</span>")
+				to_chat(L, span_userdanger("[src]'s ground slam shockwave sends you flying!"))
 				var/turf/thrownat = get_ranged_target_turf_direct(src, L, 8, rand(-10, 10))
 				L.throw_at(thrownat, 8, 2, src, TRUE, force = MOVE_FORCE_OVERPOWERING, gentle = TRUE)
 				L.apply_damage(slam_damage, RED_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
@@ -391,6 +404,7 @@
 			all_turfs -= T
 		sleep(delay)
 	slamming = FALSE
+
 
 /obj/effect/sweeperspawn
 	name = "bloodpool"
@@ -404,8 +418,8 @@
 	layer = POINT_LAYER	//We want this HIGH. SUPER HIGH. We want it so that you can absolutely, guaranteed, see exactly what is about to hit you.
 
 /obj/effect/sweeperspawn/Initialize()
-	..()
-	addtimer(CALLBACK(src, .proc/spawnscout), 6)
+	. = ..()
+	addtimer(CALLBACK(src, PROC_REF(spawnscout)), 6)
 
 /obj/effect/sweeperspawn/proc/spawnscout()
 	new /mob/living/simple_animal/hostile/ordeal/indigo_spawn(get_turf(src))
@@ -424,11 +438,10 @@
 	move_to_delay = 1.3	//Super fast, but squishy and weak.
 	stat_attack = HARD_CRIT
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	melee_damage_lower = 21
 	melee_damage_upper = 24
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.8)
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.8)
 	blood_volume = BLOOD_VOLUME_NORMAL

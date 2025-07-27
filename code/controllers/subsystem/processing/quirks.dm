@@ -33,12 +33,18 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 							// Tegustation Prosthetic limbs edit ends
 							list("Clown Fan","Mime Fan"), \
 							list("Bad Touch", "Friendly"), \
-							list("Extrovert", "Introvert"))
+							list("Extrovert", "Introvert"), \
+							//special stuff starts here
+							list("Challenge: No Guns", "Challenge: No Attacking"), \
+							list("Minor RED Damage Weakness", "Major RED Damage Weakness", "Fatal RED Damage Weakness"), \
+							list("Minor WHITE Damage Weakness", "Major WHITE Damage Weakness", "Fatal WHITE Damage Weakness"), \
+							list("Minor BLACK Damage Weakness", "Major BLACK Damage Weakness", "Fatal BLACK Damage Weakness"), \
+							list("Minor PALE Damage Weakness", "Major PALE Damage Weakness", "Fatal PALE Damage Weakness"))
 	return ..()
 
 /datum/controller/subsystem/processing/quirks/proc/SetupQuirks()
 	// Sort by Positive, Negative, Neutral; and then by name
-	var/list/quirk_list = sortList(subtypesof(/datum/quirk), /proc/cmp_quirk_asc)
+	var/list/quirk_list = sortList(subtypesof(/datum/quirk), GLOBAL_PROC_REF(cmp_quirk_asc))
 
 	for(var/V in quirk_list)
 		var/datum/quirk/T = V

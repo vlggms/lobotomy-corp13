@@ -61,7 +61,7 @@
 /datum/syndicate_contract/proc/launch_extraction_pod(turf/empty_pod_turf)
 	var/obj/structure/closet/supplypod/extractionpod/empty_pod = new()
 
-	RegisterSignal(empty_pod, COMSIG_ATOM_ENTERED, .proc/enter_check)
+	RegisterSignal(empty_pod, COMSIG_ATOM_ENTERED, PROC_REF(enter_check))
 
 	empty_pod.stay_after_drop = TRUE
 	empty_pod.reversing = TRUE
@@ -152,7 +152,7 @@
 /datum/syndicate_contract/proc/handleVictimExperience(mob/living/M)
 	// Ship 'em back - dead or alive, 4 minutes wait.
 	// Even if they weren't the target, we're still treating them the same.
-	addtimer(CALLBACK(src, .proc/returnVictim, M), (60 * 10) * 4)
+	addtimer(CALLBACK(src, PROC_REF(returnVictim), M), (60 * 10) * 4)
 
 	if (M.stat != DEAD)
 		// Heal them up - gets them out of crit/soft crit. If omnizine is removed in the future, this needs to be replaced with a
@@ -162,17 +162,17 @@
 		M.flash_act()
 		M.add_confusion(10)
 		M.blur_eyes(5)
-		to_chat(M, "<span class='warning'>You feel strange...</span>")
+		to_chat(M, span_warning("You feel strange..."))
 		sleep(60)
-		to_chat(M, "<span class='warning'>That pod did something to you...</span>")
+		to_chat(M, span_warning("That pod did something to you..."))
 		M.Dizzy(35)
 		sleep(65)
-		to_chat(M, "<span class='warning'>Your head pounds... It feels like it's going to burst out your skull!</span>")
+		to_chat(M, span_warning("Your head pounds... It feels like it's going to burst out your skull!"))
 		M.flash_act()
 		M.add_confusion(20)
 		M.blur_eyes(3)
 		sleep(30)
-		to_chat(M, "<span class='warning'>Your head pounds...</span>")
+		to_chat(M, span_warning("Your head pounds..."))
 		sleep(100)
 		M.flash_act()
 		M.Unconscious(200)
@@ -201,7 +201,7 @@
 		return_pod.style = STYLE_SYNDICATE
 
 		do_sparks(8, FALSE, M)
-		M.visible_message("<span class='notice'>[M] vanishes...</span>")
+		M.visible_message(span_notice("[M] vanishes..."))
 
 		for(var/obj/item/W in M)
 			if (ishuman(M))

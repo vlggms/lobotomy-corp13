@@ -145,10 +145,16 @@
 //Need to be granted by the mech type, Not default abilities.
 
 /datum/action/vehicle/sealed/mecha/mech_defense_mode
-	name = "Toggle an energy shield that blocks all attacks from the faced direction at a heavy power cost."
+	name = "Toggle an energy shield that blocks all attacks from the faced direction at a heavy power cost, will need to recharge after use."
 	button_icon_state = "mech_defense_mode_off"
+	COOLDOWN_DECLARE(shield_cooldown)
 
 /datum/action/vehicle/sealed/mecha/mech_defense_mode/Trigger(forced_state = FALSE)
+	if(!owner || !chassis || !(owner in chassis.occupants))
+		return
+	if(!COOLDOWN_FINISHED(src, shield_cooldown))
+		return
+	COOLDOWN_START(src, shield_cooldown, 15 SECONDS)
 	SEND_SIGNAL(chassis, COMSIG_MECHA_ACTION_TRIGGER, owner, args) //Signal sent to the mech, to be handed to the shield. See durand.dm for more details
 
 /datum/action/vehicle/sealed/mecha/mech_overload_mode

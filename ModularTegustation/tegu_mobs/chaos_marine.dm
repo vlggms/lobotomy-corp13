@@ -26,8 +26,8 @@
 	del_on_death = TRUE
 	blood_volume = BLOOD_VOLUME_NORMAL
 	gps_name = "Chaotic Signal"
-	deathmessage = "falls to the ground, decaying into glowing particles."
-	deathsound = "sound/magic/curse.ogg"
+	death_message = "falls to the ground, decaying into glowing particles."
+	death_sound = "sound/magic/curse.ogg"
 	footstep_type = FOOTSTEP_MOB_HEAVY
 	attack_action_types = list(/datum/action/innate/megafauna_attack/blood_dash,
 							   /datum/action/innate/megafauna_attack/teleport_b,
@@ -81,42 +81,42 @@
 	name = "Blood Dash"
 	icon_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "rift"
-	chosen_message = "<span class='colossus'>You are now dashing through your enemies, piercing everyone caught in your path.</span>"
+	chosen_message = span_colossus("You are now dashing through your enemies, piercing everyone caught in your path.")
 	chosen_attack_num = 1
 
 /datum/action/innate/megafauna_attack/runic_blast
 	name = "Runic Blast"
 	icon_icon = 'icons/obj/rune.dmi'
 	button_icon_state = "4"
-	chosen_message = "<span class='colossus'>You are now setting up a big explosion, with a delay.</span>"
+	chosen_message = span_colossus("You are now setting up a big explosion, with a delay.")
 	chosen_attack_num = 2
 
 /datum/action/innate/megafauna_attack/blast
 	name = "Blast"
 	icon_icon = 'icons/obj/guns/projectile.dmi'
 	button_icon_state = "arg"
-	chosen_message = "<span class='colossus'>You are now shooting at your enemy with explosive bullets.</span>"
+	chosen_message = span_colossus("You are now shooting at your enemy with explosive bullets.")
 	chosen_attack_num = 3
 
 /datum/action/innate/megafauna_attack/infernal_summon
 	name = "Infernal Summon"
 	icon_icon = 'icons/mob/mob.dmi'
 	button_icon_state = "imp"
-	chosen_message = "<span class='colossus'>You will now summon demons to assist you.</span>"
+	chosen_message = span_colossus("You will now summon demons to assist you.")
 	chosen_attack_num = 4
 
 /datum/action/innate/megafauna_attack/teleport_b
 	name = "Teleport"
 	icon_icon = 'icons/obj/projectiles.dmi'
 	button_icon_state = "bluespace"
-	chosen_message = "<span class='colossus'>You will now teleport next to your target.</span>"
+	chosen_message = span_colossus("You will now teleport next to your target.")
 	chosen_attack_num = 5
 
 /datum/action/innate/megafauna_attack/rapid_fire
 	name = "Rapid Fire"
 	icon_icon = 'icons/obj/guns/projectile.dmi'
 	button_icon_state = "arg"
-	chosen_message = "<span class='colossus'>You are now rapidly shooting at your enemy with explosive bullets (5).</span>"
+	chosen_message = span_colossus("You are now rapidly shooting at your enemy with explosive bullets (5).")
 	chosen_attack_num = 6
 
 /mob/living/simple_animal/hostile/megafauna/chaos_marine/AttackingTarget()
@@ -126,8 +126,8 @@
 	if(isliving(target))
 		var/mob/living/L = target
 		if(L.health <= HEALTH_THRESHOLD_DEAD || L.stat == DEAD) //To prevent memento mori limbo
-			visible_message("<span class='danger'>[src] butchers [L]!</span>",
-			"<span class='userdanger'>You butcher [L], restoring your health!</span>")
+			visible_message(span_danger("[src] butchers [L]!"),
+			span_userdanger("You butcher [L], restoring your health!"))
 			if(!is_station_level(z) || client) //NPC monsters won't heal while on station
 				adjustHealth(-(L.maxHealth * 0.5))
 			L.gib()
@@ -239,7 +239,7 @@
 	for(var/i in 1 to dash_num)
 		new /obj/effect/temp_visual/dragon_swoop/legionnaire(T)
 		T = get_step(T, dir_to_target)
-	addtimer(CALLBACK(src, .proc/blood_dash_2, dir_to_target, 0), (5 * dash_mod))
+	addtimer(CALLBACK(src, PROC_REF(blood_dash_2), dir_to_target, 0), (5 * dash_mod))
 	playsound(src,'sound/effects/meteorimpact.ogg', 200, 1)
 
 /mob/living/simple_animal/hostile/megafauna/chaos_marine/proc/blood_dash_2(move_dir, times_ran)
@@ -264,12 +264,12 @@
 	playsound(src,"sound/effects/footstep/heavy[pick(1,2)].ogg", 200, 1)
 	for(var/mob/living/L in T.contents - src)
 		if(!faction_check_mob(L))
-			visible_message("<span class='boldwarning'>[src] runs through [L]!</span>")
-			to_chat(L, "<span class='userdanger'>[src] pierces you with a chain-sword!</span>")
+			visible_message(span_boldwarning("[src] runs through [L]!"))
+			to_chat(L, span_userdanger("[src] pierces you with a chain-sword!"))
 			shake_camera(L, 2, 1)
 			L.apply_damage(75, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 			playsound(L,"sound/effects/wounds/pierce[pick(1,2,3)].ogg", 200, 1)
-	addtimer(CALLBACK(src, .proc/blood_dash_2, move_dir, (times_ran + 1)), (1.5 * dash_mod))
+	addtimer(CALLBACK(src, PROC_REF(blood_dash_2), move_dir, (times_ran + 1)), (1.5 * dash_mod))
 
 /mob/living/simple_animal/hostile/megafauna/chaos_marine/proc/teleport_b(target)
 	if(charging || teleport_cooldown > world.time)
@@ -304,7 +304,7 @@
 /mob/living/simple_animal/hostile/megafauna/chaos_marine/proc/blast()
 	if(ranged_cooldown <= world.time && !Adjacent(target) && !charging)
 		ranged_cooldown = world.time + ranged_cooldown_time
-		visible_message("<span class='danger'>[src] fires with bolter gun!</span>")
+		visible_message(span_danger("[src] fires with bolter gun!"))
 		face_atom(target)
 		new /obj/effect/temp_visual/dir_setting/firing_effect(loc, dir)
 		Shoot(target)
@@ -314,7 +314,7 @@
 	if(ranged_cooldown <= world.time && !Adjacent(target) && !charging)
 		ranged_cooldown = world.time + ranged_cooldown_time
 		charging = TRUE
-		visible_message("<span class='danger'>[src] rapidly fires with bolter gun!</span>")
+		visible_message(span_danger("[src] rapidly fires with bolter gun!"))
 		face_atom(target)
 		for(var/i = 1 to 5)
 			new /obj/effect/temp_visual/dir_setting/firing_effect(loc, dir)
@@ -394,12 +394,12 @@
 	playsound(src, 'sound/magic/clockwork/narsie_attack.ogg', 200, TRUE)
 
 /mob/living/simple_animal/hostile/megafauna/chaos_marine/proc/cmempower()
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.25, WHITE_DAMAGE = 2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.1)
+	ChangeResistances(list(RED_DAMAGE = 0.25, WHITE_DAMAGE = 2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.1))
 	add_atom_colour(newcolor, TEMPORARY_COLOUR_PRIORITY)
 	new /obj/effect/temp_visual/cult/sparks(get_turf(src))
 
 /mob/living/simple_animal/hostile/megafauna/chaos_marine/proc/cmdepower()
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.2)
+	ChangeResistances(list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.2))
 	remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, newcolor)
 	new /obj/effect/temp_visual/cult/sparks(get_turf(src))
 
@@ -430,7 +430,7 @@
 	if(istype(H) && prob(5))
 		if(prob(25))
 			H.adjustSanityLoss(-20)
-			to_chat(H, "<span class='danger'>[pick("Voices... Voices everywhere", "Your mind shatters.", "Voices echo inside your head.")].</span>")
+			to_chat(H, span_danger("[pick("Voices... Voices everywhere", "Your mind shatters.", "Voices echo inside your head.")]."))
 		SEND_SOUND(H, sound(pick('sound/hallucinations/over_here3.ogg', 'sound/hallucinations/behind_you2.ogg', 'sound/magic/exit_blood.ogg', 'sound/hallucinations/im_here1.ogg', 'sound/hallucinations/turn_around1.ogg', 'sound/hallucinations/turn_around2.ogg')))
 
 //DEMONS
@@ -469,8 +469,8 @@
 	move_to_delay = 3
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	del_on_death = TRUE
-	deathmessage = "screams in agony as it sublimates into a sulfurous smoke."
-	deathsound = 'sound/magic/demon_dies.ogg'
+	death_message = "screams in agony as it sublimates into a sulfurous smoke."
+	death_sound = 'sound/magic/demon_dies.ogg'
 
 /mob/living/simple_animal/hostile/chaos/greater
 	name = "daemon"

@@ -79,7 +79,7 @@
 		if (GUILLOTINE_BLADE_DROPPED)
 			blade_status = GUILLOTINE_BLADE_MOVING
 			icon_state = "guillotine_raise"
-			addtimer(CALLBACK(src, .proc/raise_blade), GUILLOTINE_ANIMATION_LENGTH)
+			addtimer(CALLBACK(src, PROC_REF(raise_blade)), GUILLOTINE_ANIMATION_LENGTH)
 			return
 		if (GUILLOTINE_BLADE_RAISED)
 			if (LAZYLEN(buckled_mobs))
@@ -92,7 +92,7 @@
 						current_action = 0
 						blade_status = GUILLOTINE_BLADE_MOVING
 						icon_state = "guillotine_drop"
-						addtimer(CALLBACK(src, .proc/drop_blade, user), GUILLOTINE_ANIMATION_LENGTH - 2) // Minus two so we play the sound and decap faster
+						addtimer(CALLBACK(src, PROC_REF(drop_blade), user), GUILLOTINE_ANIMATION_LENGTH - 2) // Minus two so we play the sound and decap faster
 					else
 						current_action = 0
 				else
@@ -105,7 +105,7 @@
 			else
 				blade_status = GUILLOTINE_BLADE_MOVING
 				icon_state = "guillotine_drop"
-				addtimer(CALLBACK(src, .proc/drop_blade), GUILLOTINE_ANIMATION_LENGTH)
+				addtimer(CALLBACK(src, PROC_REF(drop_blade)), GUILLOTINE_ANIMATION_LENGTH)
 
 /obj/structure/guillotine/proc/raise_blade()
 	blade_status = GUILLOTINE_BLADE_RAISED
@@ -148,7 +148,7 @@
 			for(var/mob/M in viewers(src, 7))
 				var/mob/living/carbon/human/C = M
 				if (ishuman(M))
-					addtimer(CALLBACK(C, /mob/.proc/emote, "clap"), delay_offset * 0.3)
+					addtimer(CALLBACK(C, TYPE_PROC_REF(/mob, emote), "clap"), delay_offset * 0.3)
 					delay_offset++
 		else
 			H.apply_damage(15 * blade_sharpness, BRUTE, head)
@@ -208,7 +208,6 @@
 	if (!istype(M, /mob/living/carbon/human))
 		return
 
-	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "dying", /datum/mood_event/deaths_door)
 	var/mob/living/carbon/human/H = M
 
 	if (H.dna)
@@ -233,7 +232,6 @@
 	M.regenerate_icons()
 	M.pixel_y -= -GUILLOTINE_HEAD_OFFSET // Move their body back
 	M.layer -= GUILLOTINE_LAYER_DIFF
-	SEND_SIGNAL(M, COMSIG_CLEAR_MOOD_EVENT, "dying")
 	..()
 
 /obj/structure/guillotine/can_be_unfasten_wrench(mob/user, silent)

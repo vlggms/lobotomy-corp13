@@ -12,7 +12,7 @@ SUBSYSTEM_DEF(statpanels)
 /datum/controller/subsystem/statpanels/fire(resumed = FALSE)
 	if (!resumed)
 		var/datum/map_config/cached = SSmapping.next_map_config
-		var/round_time = world.time - SSticker.round_start_time
+		var/round_time = ROUNDTIME
 		var/list/global_data = list(
 			"Map: [SSmapping.config?.map_name || "Loading..."]",
 			cached ? "Next Map: [cached.map_name]" : null,
@@ -133,7 +133,7 @@ SUBSYSTEM_DEF(statpanels)
 						if(length(turfitems) < 30) // only create images for the first 30 items on the turf, for performance reasons
 							if(!(REF(turf_content) in cached_images))
 								cached_images += REF(turf_content)
-								turf_content.RegisterSignal(turf_content, COMSIG_PARENT_QDELETING, /atom/.proc/remove_from_cache) // we reset cache if anything in it gets deleted
+								turf_content.RegisterSignal(turf_content, COMSIG_PARENT_QDELETING, TYPE_PROC_REF(/atom, remove_from_cache)) // we reset cache if anything in it gets deleted
 								if(ismob(turf_content) || length(turf_content.overlays) > 2)
 									turfitems[++turfitems.len] = list("[turf_content.name]", REF(turf_content), costly_icon2html(turf_content, target, sourceonly=TRUE))
 								else
@@ -155,7 +155,7 @@ SUBSYSTEM_DEF(statpanels)
 		list("World Time:", "[world.time]"),
 		list("Globals:", GLOB.stat_entry(), "\ref[GLOB]"),
 		list("[config]:", config.stat_entry(), "\ref[config]"),
-		list("Byond:", "(FPS:[world.fps]) (TickCount:[world.time/world.tick_lag]) (TickDrift:[round(Master.tickdrift,1)]([round((Master.tickdrift/(world.time/world.tick_lag))*100,0.1)]%)) (Internal Tick Usage: [round(MAPTICK_LAST_INTERNAL_TICK_USAGE,0.1)]%)"),
+		list("Byond:", "(FPS:[world.fps]) (TickCount:[world.time/world.tick_lag]) (TickDrift:[round(Master.tickdrift,1)]([round((Master.tickdrift/(world.time/world.tick_lag))*100,0.1)]%)) (Internal Tick Usage: [round(world.map_cpu,0.1)]%)"),
 		list("Master Controller:", Master.stat_entry(), "\ref[Master]"),
 		list("Failsafe Controller:", Failsafe.stat_entry(), "\ref[Failsafe]"),
 		list("","")

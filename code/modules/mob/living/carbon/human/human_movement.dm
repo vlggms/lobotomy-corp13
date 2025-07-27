@@ -52,3 +52,17 @@
 	if(dna.species.space_move(src))
 		return TRUE
 	return ..()
+
+/mob/living/carbon/human/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(.) // If we're already letting them through, then might as well not check anything else.
+		return
+	if(!sanity_lost) // If we're not crazy, why the hell would we do these things?
+		return
+	if(ishostile(mover)) // Is it a threat that we now don't care about?
+		return TRUE
+	if(ishuman(mover)) // Is it another crazy person?
+		var/mob/living/carbon/human/H = mover
+		if(H.sanity_lost)
+			return TRUE
+	return

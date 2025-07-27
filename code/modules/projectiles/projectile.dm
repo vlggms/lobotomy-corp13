@@ -88,6 +88,8 @@
 	var/ricochet_auto_aim_angle = 30
 	/// the angle of impact must be within this many degrees of the struck surface, set to 0 to allow any angle
 	var/ricochet_incidence_leeway = 40
+	/// Whether or not it bounces, regardless of hit atom's tags.
+	var/ricochet_ignore_flag = FALSE
 
 	///If the object being hit can pass ths damage on to something else, it should not do it for this bullet
 	var/force_hit = FALSE
@@ -128,7 +130,6 @@
 	var/damage = 10
 	var/damage_type = RED_DAMAGE
 	var/nodamage = FALSE //Determines if the projectile will skip any damage inflictions
-	var/flag = RED_DAMAGE //Defines what armor to use when it hits things.  Must be set to bullet, laser, energy,or bomb
 	///How much armor this projectile pierces.
 	var/armour_penetration = 0
 	var/projectile_type = /obj/projectile
@@ -161,12 +162,24 @@
 	///If TRUE, hit mobs even if they're on the floor and not our target
 	var/hit_stunned_targets = FALSE
 
+	/// If TRUE, hits non dense mobs
+	var/hit_nondense_targets = FALSE
+
+	///How much damage is added/deducted per tile
+	var/damage_falloff_tile = 0
+
+	///If TRUE and damage type is either WHITE or BLACK, it will heal sanity of insane humans
+	var/white_healing = TRUE
+
 	///For what kind of brute wounds we're rolling for, if we're doing such a thing. Lasers obviously don't care since they do burn instead.
 	var/sharpness = SHARP_NONE
 	///How much we want to drop both wound_bonus and bare_wound_bonus (to a minimum of 0 for the latter) per tile, for falloff purposes
 	var/wound_falloff_tile
 	///How much we want to drop the embed_chance value, if we can embed, per tile, for falloff purposes
 	var/embed_falloff_tile
+
+	//Does this bullet ignore bulletproof?
+	var/ignore_bulletproof = FALSE			//Thumb literally cannot do anything against these goons.
 
 /obj/projectile/Initialize()
 	. = ..()
@@ -176,6 +189,7 @@
 
 /obj/projectile/proc/Range()
 	range--
+	damage += damage_falloff_tile
 	if(wound_bonus != CANT_WOUND)
 		wound_bonus += wound_falloff_tile
 		bare_wound_bonus = max(0, bare_wound_bonus + wound_falloff_tile)
@@ -274,13 +288,13 @@
 			playsound(loc, hitsound, 5, TRUE, -1)
 		else if(suppressed)
 			playsound(loc, hitsound, 5, TRUE, -1)
-			to_chat(L, "<span class='userdanger'>You're shot by \a [src][organ_hit_text]!</span>")
+			to_chat(L, span_userdanger("You're shot by \a [src][organ_hit_text]!"))
 		else
 			if(hitsound)
 				var/volume = vol_by_damage()
 				playsound(src, hitsound, volume, TRUE, -1)
-			L.visible_message("<span class='danger'>[L] is hit by \a [src][organ_hit_text]!</span>", \
-					"<span class='userdanger'>You're hit by \a [src][organ_hit_text]!</span>", null, COMBAT_MESSAGE_RANGE)
+			L.visible_message(span_danger("[L] is hit by \a [src][organ_hit_text]!"), \
+					span_userdanger("You're hit by \a [src][organ_hit_text]!"), null, COMBAT_MESSAGE_RANGE)
 		L.on_hit(src)
 
 	var/reagent_note
@@ -475,8 +489,11 @@
 //Returns true if the target atom is on our current turf and above the right layer
 //If direct target is true it's the originally clicked target.
 /obj/projectile/proc/can_hit_target(atom/target, direct_target = FALSE, ignore_loc = FALSE, cross_failed = FALSE)
-	if(QDELETED(target) || impacted[target])
+	if(QDELETED(target))
 		return FALSE
+	if(target in impacted)
+		if(impacted[target])
+			return FALSE
 	if(!ignore_loc && (loc != target.loc))
 		return FALSE
 	// if pass_flags match, pass through entirely - unless direct target is set.
@@ -502,8 +519,10 @@
 		// If target not able to use items, move and stand - or if they're just dead, pass over.
 		if(L.stat == DEAD)
 			return FALSE
+		if(L.status_flags & MUST_HIT_PROJECTILE)
+			return TRUE
 		if(!L.density)
-			return FALSE
+			return hit_nondense_targets
 		if(L.body_position != LYING_DOWN)
 			return TRUE
 		var/stunned = HAS_TRAIT(L, TRAIT_IMMOBILIZED) && HAS_TRAIT(L, TRAIT_FLOORED) && HAS_TRAIT(L, TRAIT_HANDS_BLOCKED)
@@ -602,10 +621,13 @@
 	return FALSE
 
 /obj/projectile/proc/check_ricochet_flag(atom/A)
-	if((flag in list(ENERGY, LASER)) && (A.flags_ricochet & RICOCHET_SHINY))
+	if(ricochet_ignore_flag)
 		return TRUE
 
-	if((flag in list(BOMB, BULLET)) && (A.flags_ricochet & RICOCHET_HARD))
+	if((damage_type in list(ENERGY, LASER)) && (A.flags_ricochet & RICOCHET_SHINY))
+		return TRUE
+
+	if((damage_type in list(BOMB, BULLET)) && (A.flags_ricochet & RICOCHET_HARD))
 		return TRUE
 
 	return FALSE

@@ -18,8 +18,8 @@
 					/obj/item/food/candy/bronx = 1)
 	refill_canister = /obj/item/vending_refill/snack
 	canload_access_list = list(ACCESS_KITCHEN)
-	default_price = PAYCHECK_RESOURCE
-	extra_price = PAYCHECK_RESOURCE
+	default_price  = PAYCHECK_PRISONER
+	extra_price = PAYCHECK_PRISONER
 	payment_department = ACCOUNT_SRV
 	input_display_header = "Chef's Food Selection"
 

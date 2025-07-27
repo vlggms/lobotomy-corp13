@@ -221,6 +221,12 @@
 /obj/effect/landmark/xeno_spawn,
 /turf/open/floor/plasteel,
 /area/facility_hallway/central)
+"xY" = (
+/obj/machinery/camera/autoname{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/facility_hallway/central)
 "yq" = (
 /obj/docking_port/stationary{
 	dir = 2;
@@ -311,6 +317,12 @@
 /obj/effect/landmark/xeno_spawn,
 /turf/open/floor/plasteel,
 /area/facility_hallway/east)
+"LE" = (
+/obj/machinery/camera/autoname{
+	dir = 4
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/department_main)
 "LU" = (
 /obj/machinery/door/poddoor,
 /turf/open/floor/plating,
@@ -4149,7 +4161,7 @@ fb
 av
 av
 av
-az
+LE
 az
 az
 az
@@ -4415,7 +4427,7 @@ Xh
 nT
 Xh
 Xh
-Xh
+xY
 Xh
 Xh
 nT

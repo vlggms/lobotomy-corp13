@@ -125,6 +125,7 @@
 		src.data |= data.Copy()
 
 /datum/reagent/vaccine/fungal_tb
+	name = "Vaccine (Fungal Tuberculosis)"
 
 /datum/reagent/vaccine/fungal_tb/New(data)
 	. = ..()
@@ -201,6 +202,11 @@
 /datum/reagent/water/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume)//Splashing people with water can help put them out!
 	. = ..()
 	if(methods & TOUCH)
+		//LC13 Code: Funny Felinid Code
+		if(isfelinid(exposed_mob))
+			var/mob/living/carbon/human/H = exposed_mob
+			H.adjustSanityLoss(50)
+			to_chat(H, span_warning("Ack! Water!"))
 		exposed_mob.extinguish_mob() // extinguish removes all fire stacks
 
 /datum/reagent/water/on_mob_life(mob/living/carbon/M)
@@ -660,6 +666,13 @@
 	race = /datum/species/plasmaman
 	taste_description = "plasma"
 
+/datum/reagent/mutationtoxin/shrimp
+	name = "Shrimp Mutation Toxin"
+	description = "A salty toxin"
+	color = "#5EFF3B" //RGB: 94, 255, 59
+	race = /datum/species/shrimp
+	taste_description = "shrimp"
+
 #undef MUT_MSG_IMMEDIATE
 #undef MUT_MSG_EXTENDED
 #undef MUT_MSG_ABOUT2TURN
@@ -1009,7 +1022,7 @@
 		to_chat(M, "<span class='warning'>You feel unstable...</span>")
 		M.Jitter(2)
 		current_cycle = 1
-		addtimer(CALLBACK(M, /mob/living/proc/bluespace_shuffle), 30)
+		addtimer(CALLBACK(M, TYPE_PROC_REF(/mob/living, bluespace_shuffle)), 30)
 	..()
 
 /mob/living/proc/bluespace_shuffle()
@@ -1393,7 +1406,7 @@
 	return ..()
 
 /////////////////////////Colorful Powder////////////////////////////
-//For colouring in /proc/mix_color_from_reagents
+//For colouring in GLOBAL_PROC_REF(mix_color_from_reagents)
 
 /datum/reagent/colorful_reagent/powder
 	name = "Mundane Powder" //the name's a bit similar to the name of colorful reagent, but hey, they're practically the same chem anyway
@@ -1503,6 +1516,22 @@
 	can_colour_mobs = FALSE
 
 //////////////////////////////////Hydroponics stuff///////////////////////////////
+
+/datum/reagent/compost
+	name = "compost"
+	description = "A mixture of waste and rotten plant matter that nurtures plants and keeps them free of pests."
+	reagent_state = SOLID
+	color = "#44341F"
+	taste_description = "rot"
+
+//Compost when used on soil
+/datum/reagent/compost/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray)
+	. = ..()
+	if(chems.has_reagent(src.type, 1))
+		mytray.adjustPests(-1)
+		if(myseed && chems.has_reagent(src.type, 1))
+			myseed.adjust_yield(round(chems.get_reagent_amount(src.type) * 0.1))
+			myseed.adjust_potency(round(chems.get_reagent_amount(src.type) * 0.1))
 
 /datum/reagent/plantnutriment
 	name = "Generic nutriment"
@@ -1784,7 +1813,7 @@
 	var/can_colour_mobs = TRUE
 
 /datum/reagent/colorful_reagent/New()
-	SSticker.OnRoundstart(CALLBACK(src,.proc/UpdateColor))
+	SSticker.OnRoundstart(CALLBACK(src, PROC_REF(UpdateColor)))
 	return ..()
 
 /datum/reagent/colorful_reagent/proc/UpdateColor()
@@ -1811,7 +1840,7 @@
 	penetrates_skin = NONE
 
 /datum/reagent/hair_dye/New()
-	SSticker.OnRoundstart(CALLBACK(src,.proc/UpdateColor))
+	SSticker.OnRoundstart(CALLBACK(src, PROC_REF(UpdateColor)))
 	return ..()
 
 /datum/reagent/hair_dye/proc/UpdateColor()
@@ -2312,7 +2341,7 @@
 /datum/reagent/gravitum/expose_obj(obj/exposed_obj, volume)
 	. = ..()
 	exposed_obj.AddElement(/datum/element/forced_gravity, 0)
-	addtimer(CALLBACK(exposed_obj, .proc/_RemoveElement, list(/datum/element/forced_gravity, 0)), volume * time_multiplier)
+	addtimer(CALLBACK(exposed_obj, PROC_REF(_RemoveElement), list(/datum/element/forced_gravity, 0)), volume * time_multiplier)
 
 /datum/reagent/gravitum/on_mob_add(mob/living/L)
 	L.AddElement(/datum/element/forced_gravity, 0) //0 is the gravity, and in this case weightless

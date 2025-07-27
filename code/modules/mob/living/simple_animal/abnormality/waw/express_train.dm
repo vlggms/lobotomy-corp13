@@ -1,30 +1,43 @@
 /mob/living/simple_animal/hostile/abnormality/express_train
-	name = "express train to hell"
+	name = "Express Train to Hell"
 	desc = "A creature with glowing eyes inside of an odd-looking ticket booth."
 	icon = 'ModularTegustation/Teguicons/64x96.dmi'
 	icon_state = "express_booth0"
 	icon_living = "express_booth0"
+	portrait = "express_train"
 	faction = list("hostile")
 	speak_emote = list("drones")
 
 	threat_level = WAW_LEVEL
 	start_qliphoth = 4
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 35,
-						ABNORMALITY_WORK_INSIGHT = 35,
-						ABNORMALITY_WORK_ATTACHMENT = 35,
-						ABNORMALITY_WORK_REPRESSION = 35
-						)
+		ABNORMALITY_WORK_INSTINCT = 35,
+		ABNORMALITY_WORK_INSIGHT = 35,
+		ABNORMALITY_WORK_ATTACHMENT = 35,
+		ABNORMALITY_WORK_REPRESSION = 35,
+	)
 	work_damage_amount = 8
 	work_damage_type = BLACK_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/sloth
 	pixel_x = -16
 	base_pixel_x = -16
 
 	ego_list = list(
 		/datum/ego_datum/weapon/intentions,
 		/datum/ego_datum/armor/intentions,
-		/datum/ego_datum/weapon/laststop
-		)
+		/datum/ego_datum/weapon/laststop,
+	)
+	gift_type =  /datum/ego_gifts/good_intentions
+	gift_message = "When the time comes, the train will chug down the tracks and sound its mighty horn."
+	abnormality_origin = ABNORMALITY_ORIGIN_ALTERED
+
+	observation_prompt = "The booking clerk who remains dauntingly quiet sells tickets for a train with no final destination. <br>\
+		There are no clocks to alert the arrival times, instead, there are some blinking lights. <br>\
+		\"Sir! Your ticket?\" The clerk behind the counter smothered in shadow, save for two pinpricks of amber light for eyes, holds out an unmarked ticket with its gangly appendage."
+	observation_choices = list(
+		"Take the ticket" = list(TRUE, "I took the ticket from his hand, it felt like a lead weight, and asked him when the train would arrive. <br>\
+			\"Sooner than you'd like, later than you prepare for. <br>It comes for everyone Sir.\" <br>I hear the sound of a distant horn."),
+	)
 
 	var/meltdown_tick = 60 SECONDS
 	var/meltdown_timer
@@ -58,20 +71,20 @@
 	switch(datum_reference.qliphoth_meter)
 		if(0)
 			for(var/mob/living/carbon/human/H in GLOB.mob_living_list)
-				H.adjustSanityLoss(50)
+				H.adjustSanityLoss(-50)
 				H.adjustBruteLoss(-50)
 			tickets |= user
 		if(1)
 			for(var/mob/living/carbon/human/H in livinginrange(30))
-				H.adjustSanityLoss(50)
+				H.adjustSanityLoss(-50)
 				H.adjustBruteLoss(-50)
 			tickets |= user
 		if(2)
-			user.adjustSanityLoss(80)
+			user.adjustSanityLoss(-80)
 			user.adjustBruteLoss(-80)
 			tickets |= user
 		if(3)
-			user.adjustSanityLoss(40)
+			user.adjustSanityLoss(-40)
 			user.adjustBruteLoss(-40)
 			tickets |= user
 		if(4)
@@ -136,8 +149,8 @@
 			else if(i % 2)
 				persX -= xIncrement/4
 		segments += seg
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/sound_to_playing_players, 'sound/abnormalities/expresstrain/express_summoned.ogg', 50), 1)
-	addtimer(CALLBACK(src, .proc/moveTrain), 10 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(sound_to_playing_players), 'sound/abnormalities/expresstrain/express_summoned.ogg', 50), 1)
+	addtimer(CALLBACK(src, PROC_REF(moveTrain)), 10 SECONDS)
 	/*
 	The logic is pretty simple in what it's SUPPOSED to produce.
 	Every train segment is comprised of 2 effects; the spawn positions of these effects are four tiles offset from one another. This number cannot change.
@@ -148,7 +161,7 @@
 /mob/living/simple_animal/hostile/abnormality/express_train/proc/moveTrain()
 	// I HATE CALLBACKS I HATE CALLBACKS I HATE CALLBACKS I HATE CALLBACKS I HATE CALLBACKS I HATE CALLBACKS
 	if(LAZYLEN(src.segments))
-		addtimer(CALLBACK(src, .proc/moveTrain), 0.5)
+		addtimer(CALLBACK(src, PROC_REF(moveTrain)), 0.5)
 		for(var/obj/effect/expresstrain/seg in segments)
 			if((seg.x < 10 && seg.dir == WEST) || (seg.x > 245 && seg.dir == EAST))
 				QDEL_IN(seg, 1)
@@ -176,7 +189,7 @@
 					else
 						playsound(get_turf(seg), 'sound/abnormalities/expresstrain/express_whistle.ogg', 100, 0, 40)
 					seg.noise = 1
-				M.apply_damage(400, BLACK_DAMAGE, null, M.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+				M.deal_damage(400, BLACK_DAMAGE)
 				var/atom/throw_target = locate(M)
 				throw_target = locate(M.x, M.y + pick(rand(-8, -5), rand(5, 8)), M.z)
 				if(!M.anchored)

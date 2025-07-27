@@ -24,8 +24,8 @@
 
 /obj/item/fireaxe/Initialize()
 	. = ..()
-	RegisterSignal(src, COMSIG_TWOHANDED_WIELD, .proc/on_wield)
-	RegisterSignal(src, COMSIG_TWOHANDED_UNWIELD, .proc/on_unwield)
+	RegisterSignal(src, COMSIG_TWOHANDED_WIELD, PROC_REF(on_wield))
+	RegisterSignal(src, COMSIG_TWOHANDED_UNWIELD, PROC_REF(on_unwield))
 
 /obj/item/fireaxe/ComponentInitialize()
 	. = ..()
@@ -48,7 +48,7 @@
 	icon_state = "fireaxe0"
 
 /obj/item/fireaxe/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] axes [user.p_them()]self from head to toe! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] axes [user.p_them()]self from head to toe! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return (BRUTELOSS)
 
 /obj/item/fireaxe/afterattack(atom/A, mob/user, proximity)

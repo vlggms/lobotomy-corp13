@@ -42,22 +42,22 @@
 		tox_loss = L.getToxLoss()
 		oxy_loss = L.getOxyLoss()
 		brain_loss = L.getOrganLoss(ORGAN_SLOT_BRAIN)
-		rewind_type = .proc/rewind_living
+		rewind_type = PROC_REF(rewind_living)
 
 	if(iscarbon(parent))
 		var/mob/living/carbon/C = parent
 		saved_bodyparts = C.save_bodyparts()
-		rewind_type = .proc/rewind_carbon
+		rewind_type = PROC_REF(rewind_carbon)
 
 	else if(isanimal(parent))
 		var/mob/living/simple_animal/M = parent
 		brute_loss = M.bruteloss
-		rewind_type = .proc/rewind_animal
+		rewind_type = PROC_REF(rewind_animal)
 
 	else if(isobj(parent))
 		var/obj/O = parent
 		integrity = O.obj_integrity
-		rewind_type = .proc/rewind_obj
+		rewind_type = PROC_REF(rewind_obj)
 
 	addtimer(CALLBACK(src, rewind_type), rewind_interval)
 
@@ -73,7 +73,7 @@
 	if(starting_turf)
 		var/area/destination_area = starting_turf.loc
 		if(destination_area.area_flags & NOTELEPORT)
-			to_chat(parent, "<span class='warning'>For some reason, your head aches and fills with mental fog when you try to think of where you were... It feels like you're now going against some dull, unstoppable universal force.</span>")
+			to_chat(parent, span_warning("For some reason, your head aches and fills with mental fog when you try to think of where you were... It feels like you're now going against some dull, unstoppable universal force."))
 		else
 			var/atom/movable/master = parent
 			master.forceMove(starting_turf)

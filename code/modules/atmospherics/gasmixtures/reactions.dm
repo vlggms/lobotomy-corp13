@@ -42,7 +42,7 @@ nobiliumsuppression = INFINITY
 					reaction_key = req_gas
 		reaction.major_gas = reaction_key
 		. += reaction
-	sortTim(., /proc/cmp_gas_reaction)
+	sortTim(., GLOBAL_PROC_REF(cmp_gas_reaction))
 
 /proc/cmp_gas_reaction(datum/gas_reaction/a, datum/gas_reaction/b) // compares lists of reactions by the maximum priority contained within the list
 	return b.priority - a.priority

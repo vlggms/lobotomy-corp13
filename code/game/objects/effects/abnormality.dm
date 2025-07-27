@@ -8,7 +8,7 @@
 	alpha = 0
 
 /obj/effect/silent_orchestra_singer/Initialize()
-	..()
+	. = ..()
 	animate(src, alpha = 225, time = 10)
 
 /obj/effect/silent_orchestra_singer/proc/fade_out()
@@ -31,12 +31,15 @@
 	alpha = 0
 
 /obj/effect/qoh_sygil/Initialize()
-	..()
+	. = ..()
 	animate(src, alpha = 255, time = 15)
 
 /obj/effect/qoh_sygil/proc/fade_out()
 	animate(src, alpha = 0, time = 1 SECONDS)
 	QDEL_IN(src, 1 SECONDS)
+
+/obj/effect/qoh_sygil/kog
+	icon_state = "kog"
 
 /obj/effect/magic_bullet
 	name = "magic bullet"
@@ -49,7 +52,7 @@
 	movement_type = PHASING | FLYING
 
 /obj/effect/magic_bullet/Initialize()
-	..()
+	. = ..()
 	playsound(get_turf(src), 'sound/abnormalities/freischutz/shoot.ogg', 100, 1)
 
 /obj/effect/magic_bullet/proc/moveBullet() // Shamelessly stolen code from immovable rod and paradise lost, GO!
@@ -94,7 +97,7 @@
 	alpha = 0
 
 /obj/effect/frei_magic/Initialize()
-	..()
+	. = ..()
 	animate(src, alpha = 255, time = 6)
 	playsound(get_turf(src), 'sound/abnormalities/freischutz/portal.ogg', 100, 0, 10)
 
@@ -109,7 +112,7 @@
 	alpha = 0
 
 /obj/effect/frei_trail/Initialize()
-	..()
+	. = ..()
 	animate(src, alpha = 255, time = 1, easing = JUMP_EASING)
 	QDEL_IN(src, 33)
 
@@ -124,7 +127,7 @@
 	base_pixel_y = 25
 
 /obj/effect/scaredy_stun/Initialize()
-	..()
+	. = ..()
 	animate(src, alpha = 0, time = 20 SECONDS)
 	QDEL_IN(src, 20 SECONDS)
 
@@ -159,6 +162,34 @@
 			s.x += 2
 	return ..()
 
+/obj/effect/cinderella
+	name = "Cinderella's Pumpkin Carriage"
+	desc = "So pretty."
+	icon = 'ModularTegustation/Teguicons/128x128.dmi'
+	icon_state = "cinderella_1"
+	move_force = INFINITY
+	pull_force = INFINITY
+	generic_canpass = FALSE
+	movement_type = PHASING | FLYING
+	pixel_y = -32
+	pixel_x = -32
+	var/list/damaged = list()
+	animate_movement = SLIDE_STEPS
+	var/clickety = 0
+	var/noise = 0
+
+/obj/effect/cinderella/Moved()
+	if(clickety == 22)
+		playsound(get_turf(src), 'sound/abnormalities/cinderella/carriage_loop.ogg', 100, 0, 20)
+		clickety = 0
+	clickety += 1
+	if(clickety % 2)
+		var/obj/effect/particle_effect/smoke/s = new(locate(src.x, src.y - 2, src.z))
+		s.pixel_y -= 16
+		if(src.dir != EAST)
+			s.x += 2
+	return ..()
+
 /obj/effect/pale_case
 	name = "pale suitcase"
 	icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
@@ -169,3 +200,97 @@
 /obj/effect/pale_case/proc/FadeOut()
 	animate(src, alpha = 0, time = 5)
 	QDEL_IN(src, 5)
+
+/obj/effect/greenmidnight_shell
+	name = "protective shell"
+	desc = "A protective shell of an enormous machine."
+	icon = 'ModularTegustation/Teguicons/224x128.dmi'
+	icon_state = "greenmidnight_casel"
+	density = FALSE
+	anchored = TRUE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	layer = MOB_LAYER
+	pixel_x = -96
+	base_pixel_x = -96
+
+/obj/effect/greenmidnight_shell/right
+	icon_state = "greenmidnight_caser"
+
+/obj/effect/greenmidnight_laser
+	name = "laser"
+	desc = "A giant laser gun."
+	icon = 'ModularTegustation/Teguicons/128x128.dmi'
+	icon_state = "greenmidnight_laser"
+	density = FALSE
+	anchored = TRUE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	layer = ABOVE_MOB_LAYER
+	alpha = 0
+	pixel_x = -48
+	base_pixel_x = -48
+
+/obj/effect/greenmidnight_laser/Initialize()
+	. = ..()
+	animate(src, alpha = 255, time = 5)
+
+/obj/effect/golden_bough
+	name = "Golden Bough"
+	desc = "A shining golden bough, the light it emits feels soothing."
+	icon = 'ModularTegustation/Teguicons/32x48.dmi'
+	icon_state = "bough_bough"
+	move_force = INFINITY
+	pull_force = INFINITY
+
+/obj/effect/sled
+	name = "sleigh"
+	desc = "The sleigh with presents!"
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "sled"
+	density = FALSE
+	anchored = TRUE
+
+/obj/effect/sled/Initialize()
+	. = ..()
+	addtimer(CALLBACK(src, PROC_REF(FadeOut)), 5)
+
+/obj/effect/sled/proc/FadeOut()
+	animate(src, alpha = 0, time = 5)
+	QDEL_IN(src, 5)
+/obj/effect/titania_aura
+	name = "titania"
+	desc = "A gargantuan fairy."
+	icon = 'ModularTegustation/Teguicons/64x64.dmi'
+	icon_state = "titania_oberon"
+	pixel_x = -16
+	base_pixel_x = -16
+	pixel_y = -16
+	base_pixel_y = -16
+	density = FALSE
+	anchored = TRUE
+	layer = BELOW_MOB_LAYER
+	alpha = 255
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
+/obj/effect/areaflavor_snow
+	icon = 'icons/effects/weather_effects.dmi'
+	icon_state = "snowfall_calm"
+	name = "light snow"
+	desc = "Looks like the terrain is being shifted by an abnormality."
+	layer = POINT_LAYER
+	alpha = 150
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
+/obj/effect/area_heal
+	name = "large healing aura"
+	desc = "A large area of restorative energy."
+	icon = 'ModularTegustation/Teguicons/lc13_effects64x64.dmi'
+	icon_state = "healarea_fade"
+	pixel_x = -16
+	base_pixel_x = -16
+	pixel_y = -16
+	base_pixel_y = -16
+	density = FALSE
+	anchored = TRUE
+	layer = BELOW_MOB_LAYER
+	alpha = 200
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT

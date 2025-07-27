@@ -60,7 +60,8 @@
 		/datum/reagent/sulfur,
 		/datum/reagent/toxin/acid,
 		/datum/reagent/water,
-		/datum/reagent/fuel
+		/datum/reagent/fuel,
+		/datum/reagent/drug/enkephalin
 	)
 	//these become available once the manipulator has been upgraded to tier 4 (femto)
 	var/list/upgrade_reagents = list(
@@ -85,11 +86,11 @@
 
 /obj/machinery/chem_dispenser/Initialize()
 	. = ..()
-	dispensable_reagents = sortList(dispensable_reagents, /proc/cmp_reagents_asc)
+	dispensable_reagents = sortList(dispensable_reagents, GLOBAL_PROC_REF(cmp_reagents_asc))
 	if(emagged_reagents)
-		emagged_reagents = sortList(emagged_reagents, /proc/cmp_reagents_asc)
+		emagged_reagents = sortList(emagged_reagents, GLOBAL_PROC_REF(cmp_reagents_asc))
 	if(upgrade_reagents)
-		upgrade_reagents = sortList(upgrade_reagents, /proc/cmp_reagents_asc)
+		upgrade_reagents = sortList(upgrade_reagents, GLOBAL_PROC_REF(cmp_reagents_asc))
 	if(is_operational)
 		begin_processing()
 	update_icon()
@@ -144,8 +145,8 @@
 		. += mutable_appearance(icon, "[initial(icon_state)]_panel-o")
 
 	if(beaker)
-		beaker_overlay = display_beaker()
-		. += beaker_overlay
+		var/mutable_appearance/new_beaker_overlay = display_beaker()
+		. += new_beaker_overlay
 
 
 /obj/machinery/chem_dispenser/emag_act(mob/user)
@@ -210,16 +211,10 @@
 		data["beakerTransferAmounts"] = null
 
 	var/chemicals[0]
-	var/is_hallucinating = FALSE
-	if(user.hallucinating())
-		is_hallucinating = TRUE
 	for(var/re in dispensable_reagents)
-		var/datum/reagent/temp = GLOB.chemical_reagents_list[re]
-		if(temp)
-			var/chemname = temp.name
-			if(is_hallucinating && prob(5))
-				chemname = "[pick_list_replacements("hallucination.json", "chemicals")]"
-			chemicals.Add(list(list("title" = chemname, "id" = ckey(temp.name))))
+		var/datum/reagent/R = GLOB.chemical_reagents_list[re]
+		if(R)
+			chemicals.Add(list(list("title" = R.name, "id" = ckey(R.name))))
 	data["chemicals"] = chemicals
 	data["recipes"] = saved_recipes
 
@@ -521,25 +516,26 @@
 	icon_state = "booze_dispenser"
 	circuit = /obj/item/circuitboard/machine/chem_dispenser/drinks/beer
 	dispensable_reagents = list(
-		/datum/reagent/consumable/ethanol/beer,
-		/datum/reagent/consumable/ethanol/kahlua,
-		/datum/reagent/consumable/ethanol/whiskey,
-		/datum/reagent/consumable/ethanol/wine,
-		/datum/reagent/consumable/ethanol/vodka,
-		/datum/reagent/consumable/ethanol/gin,
-		/datum/reagent/consumable/ethanol/rum,
-		/datum/reagent/consumable/ethanol/tequila,
-		/datum/reagent/consumable/ethanol/vermouth,
-		/datum/reagent/consumable/ethanol/cognac,
-		/datum/reagent/consumable/ethanol/ale,
 		/datum/reagent/consumable/ethanol/absinthe,
-		/datum/reagent/consumable/ethanol/hcider,
-		/datum/reagent/consumable/ethanol/creme_de_menthe,
+		/datum/reagent/consumable/ethanol/ale,
+		/datum/reagent/consumable/ethanol/applejack,
+		/datum/reagent/consumable/ethanol/beer,
+		/datum/reagent/consumable/ethanol/cognac,
 		/datum/reagent/consumable/ethanol/creme_de_cacao,
 		/datum/reagent/consumable/ethanol/creme_de_coconut,
-		/datum/reagent/consumable/ethanol/triple_sec,
+		/datum/reagent/consumable/ethanol/creme_de_menthe,
+		/datum/reagent/consumable/ethanol/gin,
+		/datum/reagent/consumable/ethanol/hcider,
+		/datum/reagent/consumable/ethanol/kahlua,
+		/datum/reagent/consumable/ethanol/beer/maltliquor,
+		/datum/reagent/consumable/ethanol/rum,
 		/datum/reagent/consumable/ethanol/sake,
-		/datum/reagent/consumable/ethanol/applejack
+		/datum/reagent/consumable/ethanol/tequila,
+		/datum/reagent/consumable/ethanol/triple_sec,
+		/datum/reagent/consumable/ethanol/vermouth,
+		/datum/reagent/consumable/ethanol/vodka,
+		/datum/reagent/consumable/ethanol/whiskey,
+		/datum/reagent/consumable/ethanol/wine,
 	)
 	upgrade_reagents = null
 	emagged_reagents = list(

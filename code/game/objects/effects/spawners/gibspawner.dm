@@ -157,7 +157,6 @@
 
 
 /obj/effect/gibspawner/scrap_metal
-	sparks = 1
 	virusProb = 0
 	gibtypes = list(/obj/effect/decal/cleanable/robot_debris/general_scrap, /obj/effect/decal/cleanable/robot_debris/general_scrap, /obj/effect/decal/cleanable/robot_debris/general_scrap)
 	gibamounts = list(1, 1, 1)

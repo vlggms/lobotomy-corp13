@@ -135,7 +135,7 @@
 
 /datum/mafia_role/detective/New(datum/mafia_controller/game)
 	. = ..()
-	RegisterSignal(game,COMSIG_MAFIA_NIGHT_ACTION_PHASE,.proc/investigate)
+	RegisterSignal(game,COMSIG_MAFIA_NIGHT_ACTION_PHASE, PROC_REF(investigate))
 
 /datum/mafia_role/detective/validate_action_target(datum/mafia_controller/game,action,datum/mafia_role/target)
 	. = ..()
@@ -191,7 +191,7 @@
 
 /datum/mafia_role/psychologist/New(datum/mafia_controller/game)
 	. = ..()
-	RegisterSignal(game,COMSIG_MAFIA_NIGHT_END,.proc/therapy_reveal)
+	RegisterSignal(game,COMSIG_MAFIA_NIGHT_END, PROC_REF(therapy_reveal))
 
 /datum/mafia_role/psychologist/validate_action_target(datum/mafia_controller/game, action, datum/mafia_role/target)
 	. = ..()
@@ -229,7 +229,7 @@
 
 /datum/mafia_role/chaplain/New(datum/mafia_controller/game)
 	. = ..()
-	RegisterSignal(game,COMSIG_MAFIA_NIGHT_ACTION_PHASE,.proc/commune)
+	RegisterSignal(game,COMSIG_MAFIA_NIGHT_ACTION_PHASE, PROC_REF(commune))
 
 /datum/mafia_role/chaplain/validate_action_target(datum/mafia_controller/game, action, datum/mafia_role/target)
 	. = ..()
@@ -264,8 +264,8 @@
 
 /datum/mafia_role/md/New(datum/mafia_controller/game)
 	. = ..()
-	RegisterSignal(game,COMSIG_MAFIA_NIGHT_ACTION_PHASE,.proc/protect)
-	RegisterSignal(game,COMSIG_MAFIA_NIGHT_END,.proc/end_protection)
+	RegisterSignal(game,COMSIG_MAFIA_NIGHT_ACTION_PHASE, PROC_REF(protect))
+	RegisterSignal(game,COMSIG_MAFIA_NIGHT_END, PROC_REF(end_protection))
 
 /datum/mafia_role/md/validate_action_target(datum/mafia_controller/game,action,datum/mafia_role/target)
 	. = ..()
@@ -286,7 +286,7 @@
 	SIGNAL_HANDLER
 
 	if(current_protected)
-		RegisterSignal(current_protected,COMSIG_MAFIA_ON_KILL,.proc/prevent_kill)
+		RegisterSignal(current_protected,COMSIG_MAFIA_ON_KILL, PROC_REF(prevent_kill))
 		add_note("N[game.turn] - Protected [current_protected.body.real_name]")
 
 /datum/mafia_role/md/proc/prevent_kill(datum/source)
@@ -317,9 +317,9 @@
 
 /datum/mafia_role/lawyer/New(datum/mafia_controller/game)
 	. = ..()
-	RegisterSignal(game,COMSIG_MAFIA_SUNDOWN,.proc/roleblock_text)
-	RegisterSignal(game,COMSIG_MAFIA_NIGHT_START,.proc/try_to_roleblock)
-	RegisterSignal(game,COMSIG_MAFIA_NIGHT_END,.proc/release)
+	RegisterSignal(game,COMSIG_MAFIA_SUNDOWN, PROC_REF(roleblock_text))
+	RegisterSignal(game,COMSIG_MAFIA_NIGHT_START, PROC_REF(try_to_roleblock))
+	RegisterSignal(game,COMSIG_MAFIA_NIGHT_END, PROC_REF(release))
 
 /datum/mafia_role/lawyer/proc/roleblock_text(datum/mafia_controller/game)
 	SIGNAL_HANDLER
@@ -352,12 +352,11 @@
 	SIGNAL_HANDLER
 
 	if(current_target)
-		RegisterSignal(current_target,COMSIG_MAFIA_CAN_PERFORM_ACTION, .proc/prevent_action)
+		RegisterSignal(current_target,COMSIG_MAFIA_CAN_PERFORM_ACTION, PROC_REF(prevent_action))
 
 /datum/mafia_role/lawyer/proc/release(datum/mafia_controller/game)
 	SIGNAL_HANDLER
 
-	. = ..()
 	if(current_target)
 		UnregisterSignal(current_target, COMSIG_MAFIA_CAN_PERFORM_ACTION)
 		current_target = null
@@ -406,7 +405,7 @@
 
 /datum/mafia_role/mafia/New(datum/mafia_controller/game)
 	. = ..()
-	RegisterSignal(game,COMSIG_MAFIA_SUNDOWN,.proc/mafia_text)
+	RegisterSignal(game,COMSIG_MAFIA_SUNDOWN, PROC_REF(mafia_text))
 
 /datum/mafia_role/mafia/proc/mafia_text(datum/mafia_controller/source)
 	SIGNAL_HANDLER
@@ -427,7 +426,7 @@
 
 /datum/mafia_role/mafia/thoughtfeeder/New(datum/mafia_controller/game)
 	. = ..()
-	RegisterSignal(game,COMSIG_MAFIA_NIGHT_ACTION_PHASE,.proc/investigate)
+	RegisterSignal(game,COMSIG_MAFIA_NIGHT_ACTION_PHASE, PROC_REF(investigate))
 
 /datum/mafia_role/mafia/thoughtfeeder/validate_action_target(datum/mafia_controller/game,action,datum/mafia_role/target)
 	. = ..()
@@ -478,8 +477,8 @@
 
 /datum/mafia_role/traitor/New(datum/mafia_controller/game)
 	. = ..()
-	RegisterSignal(src,COMSIG_MAFIA_ON_KILL,.proc/nightkill_immunity)
-	RegisterSignal(game,COMSIG_MAFIA_NIGHT_KILL_PHASE,.proc/try_to_kill)
+	RegisterSignal(src,COMSIG_MAFIA_ON_KILL, PROC_REF(nightkill_immunity))
+	RegisterSignal(game,COMSIG_MAFIA_NIGHT_KILL_PHASE, PROC_REF(try_to_kill))
 
 /datum/mafia_role/traitor/check_total_victory(alive_town, alive_mafia) //serial killers just want teams dead
 	return alive_town + alive_mafia <= 1
@@ -536,7 +535,7 @@
 
 /datum/mafia_role/nightmare/New(datum/mafia_controller/game)
 	. = ..()
-	RegisterSignal(game,COMSIG_MAFIA_NIGHT_KILL_PHASE,.proc/flicker_or_hunt)
+	RegisterSignal(game,COMSIG_MAFIA_NIGHT_KILL_PHASE, PROC_REF(flicker_or_hunt))
 
 /datum/mafia_role/nightmare/check_total_victory(alive_town, alive_mafia) //nightmares just want teams dead
 	return alive_town + alive_mafia <= 1
@@ -615,9 +614,9 @@
 
 /datum/mafia_role/fugitive/New(datum/mafia_controller/game)
 	. = ..()
-	RegisterSignal(game,COMSIG_MAFIA_SUNDOWN,.proc/night_start)
-	RegisterSignal(game,COMSIG_MAFIA_NIGHT_END,.proc/night_end)
-	RegisterSignal(game,COMSIG_MAFIA_GAME_END,.proc/survived)
+	RegisterSignal(game,COMSIG_MAFIA_SUNDOWN, PROC_REF(night_start))
+	RegisterSignal(game,COMSIG_MAFIA_NIGHT_END, PROC_REF(night_end))
+	RegisterSignal(game,COMSIG_MAFIA_GAME_END, PROC_REF(survived))
 
 /datum/mafia_role/fugitive/handle_action(datum/mafia_controller/game, action, datum/mafia_role/target)
 	. = ..()
@@ -638,7 +637,7 @@
 
 	if(protection_status == FUGITIVE_WILL_PRESERVE)
 		to_chat(body,"<span class='danger'>Your preparations are complete. Nothing could kill you tonight!</span>")
-		RegisterSignal(src,COMSIG_MAFIA_ON_KILL,.proc/prevent_death)
+		RegisterSignal(src,COMSIG_MAFIA_ON_KILL, PROC_REF(prevent_death))
 
 /datum/mafia_role/fugitive/proc/night_end(datum/mafia_controller/game)
 	SIGNAL_HANDLER
@@ -686,7 +685,7 @@
 
 /datum/mafia_role/obsessed/New(datum/mafia_controller/game) //note: obsession is always a townie
 	. = ..()
-	RegisterSignal(game,COMSIG_MAFIA_SUNDOWN,.proc/find_obsession)
+	RegisterSignal(game,COMSIG_MAFIA_SUNDOWN, PROC_REF(find_obsession))
 
 /datum/mafia_role/obsessed/proc/find_obsession(datum/mafia_controller/game)
 	SIGNAL_HANDLER
@@ -702,7 +701,7 @@
 	//if you still don't have an obsession you're playing a single player game like i can't help your dumb ass
 	to_chat(body, "<span class='userdanger'>Your obsession is [obsession.body.real_name]! Get them lynched to win!</span>")
 	add_note("N[game.turn] - I vowed to watch my obsession, [obsession.body.real_name], hang!") //it'll always be N1 but whatever
-	RegisterSignal(obsession,COMSIG_MAFIA_ON_KILL,.proc/check_victory)
+	RegisterSignal(obsession,COMSIG_MAFIA_ON_KILL, PROC_REF(check_victory))
 	UnregisterSignal(game,COMSIG_MAFIA_SUNDOWN)
 
 /datum/mafia_role/obsessed/proc/check_victory(datum/source,datum/mafia_controller/game,lynch)
@@ -733,7 +732,7 @@
 
 /datum/mafia_role/clown/New(datum/mafia_controller/game)
 	. = ..()
-	RegisterSignal(src,COMSIG_MAFIA_ON_KILL,.proc/prank)
+	RegisterSignal(src,COMSIG_MAFIA_ON_KILL, PROC_REF(prank))
 
 /datum/mafia_role/clown/proc/prank(datum/source,datum/mafia_controller/game,lynch)
 	SIGNAL_HANDLER

@@ -35,6 +35,9 @@
 #define COMSIG_GLOB_ABNORMALITY_SPAWN "!abno_spawned"
 ///an abnormality has breached
 #define COMSIG_GLOB_ABNORMALITY_BREACH "!abno_breach"
+// An abnormality cell was swapped with another;
+// First argument is main abno of a swap, second argument is a target abno of a swap: (/datum/abnormality, /datum/abnormality)
+#define COMSIG_GLOB_ABNORMALITY_SWAP "!abno_swap"
 
 /// signals from globally accessible objects
 
@@ -388,6 +391,8 @@
 ///from base of mob/ShiftClickOn(): (atom/A)
 #define COMSIG_MOB_SHIFTCLICKON "mob_shiftclickon"
 	#define COMSIG_MOB_CANCEL_CLICKON (1<<0)
+///from base of mob/CrtlShiftClickOn(): (atom/A)
+#define COMSIG_MOB_CTRLSHIFTCLICKON "mob_ctrlshiftclickon"
 
 ///from base of obj/allowed(mob/M): (/obj) returns bool, if TRUE the mob has id access to the obj
 #define COMSIG_MOB_ALLOWED "mob_allowed"
@@ -399,6 +404,8 @@
 
 ///from base of /mob/living/proc/apply_damage(): (damage, damagetype, def_zone)
 #define COMSIG_MOB_APPLY_DAMGE	"mob_apply_damage"
+/// Blocks the damage from being taken if this is returned in a signal handler
+#define COMPONENT_MOB_DENY_DAMAGE (1<<0)
 ///from base of /mob/throw_item(): (atom/target)
 #define COMSIG_MOB_THROW "mob_throw"
 ///from base of /mob/verb/examinate(): (atom/target)
@@ -429,9 +436,10 @@
 ///from base of mob/swap_hand(): (obj/item)
 #define COMSIG_MOB_SWAP_HANDS "mob_swap_hands"
 	#define COMPONENT_BLOCK_SWAP (1<<0)
+#define COMSIG_MOB_EMOTED(emote_key) "mob_emoted_[emote_key]"
+
 ///from /obj/structure/door/crush(): (mob/living/crushed, /obj/machinery/door/crushing_door)
 #define COMSIG_LIVING_DOORCRUSHED "living_doorcrush"
-
 ///from base of mob/living/resist() (/mob/living)
 #define COMSIG_LIVING_RESIST "living_resist"
 ///from base of mob/living/IgniteMob() (/mob/living)
@@ -455,7 +463,8 @@
 ///From post-can inject check of syringe after attack (mob/user)
 #define COMSIG_LIVING_TRY_SYRINGE "living_try_syringe"
 
-
+///from /mob/living/bullet_act() since it does not call /atom/bullet_act()
+#define COMSIG_LIVING_BULLET_ACT "living_bullet_act"
 ///Sent when bloodcrawl ends in mob/living/phasein(): (phasein_decal)
 #define COMSIG_LIVING_AFTERPHASEIN "living_phasein"
 
@@ -559,11 +568,20 @@
 
 // /mob/living/simple_animal/hostile signals
 #define COMSIG_HOSTILE_ATTACKINGTARGET "hostile_attackingtarget"
+#define COMSIG_HOSTILE_LOSTTARGET "hostile_losttarget"
 	#define COMPONENT_HOSTILE_NO_ATTACK (1<<0)
+/// a hostile has started their patrol (datum/source, mob/living/simple_animal/hostile/mover, turf/target_location)
+#define COMSIG_GLOB_PATROL_START "!patrol_start"
+#define COMSIG_PATROL_START "patrol_start"
+
+///from /obj/item/hand_item/slapper/attack_obj(): (source=mob/living/slammer, obj/structure/table/slammed_table)
+#define COMSIG_LIVING_SLAM_TABLE "living_slam_table"
+///from /obj/item/hand_item/slapper/attack_obj(): (source=obj/structure/table/slammed_table, mob/living/slammer)
+#define COMSIG_TABLE_SLAMMED "table_slammed"
 
 // /obj signals
 
-///from base of [/obj/proc/take_damage]: (damage_amount, damage_type, damage_flag, sound_effect, attack_dir, aurmor_penetration)
+///from base of [/obj/proc/take_damage]: (damage_amount, damage_type, sound_effect, attack_dir, aurmor_penetration)
 #define COMSIG_OBJ_TAKE_DAMAGE	"obj_take_damage"
 	/// Return bitflags for the above signal which prevents the object taking any damage.
 	#define COMPONENT_NO_TAKE_DAMAGE	(1<<0)
@@ -652,6 +670,14 @@
 #define COMSIG_ARMOR_PLATED "armor_plated"
 ///Called when an item gets recharged by the ammo powerup
 #define COMSIG_ITEM_RECHARGED "item_recharged"
+///Called when an item is being offered, from [/obj/item/proc/on_offered(mob/living/carbon/offerer)]
+#define COMSIG_ITEM_OFFERING "item_offering"
+	///Interrupts the offer proc
+	#define COMPONENT_OFFER_INTERRUPT (1<<0)
+///Called when an someone tries accepting an offered item, from [/obj/item/proc/on_offer_taken(mob/living/carbon/offerer, mob/living/carbon/taker)]
+#define COMSIG_ITEM_OFFER_TAKEN "item_offer_taken"
+	///Interrupts the offer acceptance
+	#define COMPONENT_OFFER_TAKE_INTERRUPT (1<<0)
 
 ///from base of [/obj/item/proc/tool_check_callback]: (mob/living/user)
 #define COMSIG_TOOL_IN_USE "tool_in_use"
@@ -854,15 +880,6 @@
 /// Called on mobs when they step in blood. (blood_amount, blood_state, list/blood_DNA)
 #define COMSIG_STEP_ON_BLOOD "step_on_blood"
 
-//Mood
-
-///called when you send a mood event from anywhere in the code.
-#define COMSIG_ADD_MOOD_EVENT "add_mood"
-///Mood event that only RnD members listen for
-#define COMSIG_ADD_MOOD_EVENT_RND "RND_add_mood"
-///called when you clear a mood event from anywhere in the code.
-#define COMSIG_CLEAR_MOOD_EVENT "clear_mood"
-
 ///sent to everyone in range of being affected by mask of madness
 #define COMSIG_VOID_MASK_ACT "void_mask_act"
 
@@ -1028,6 +1045,10 @@
 #define COMSIG_ITEM_AFTERATTACK "item_afterattack"
 ///from base of obj/item/attack_qdeleted(): (atom/target, mob/user, params)
 #define COMSIG_ITEM_ATTACK_QDELETED "item_attack_qdeleted"
+///from base of obj/item/MiddleClickAction(): (atom/target, mob/living/user, params)
+#define COMSIG_ITEM_MIDDLE_CLICK_ACTION "item_middle_click_action"
+	///cancels middle click action
+	#define COMPONENT_CANCEL_MIDDLE_CLICK_ACTION (1<<0)
 ///from base of atom/attack_hand(): (mob/user)
 #define COMSIG_MOB_ATTACK_HAND "mob_attack_hand"
 ///from base of /obj/item/attack(): (mob/M, mob/user)
@@ -1045,14 +1066,39 @@
 ///from mob/living/carbon/human/UnarmedAttack(): (atom/target, proximity)
 #define COMSIG_HUMAN_MELEE_UNARMED_ATTACK "human_melee_unarmed_attack"
 
-
+/* moved to code/__DEFINES/dcs/signals_fish.dm
 // Aquarium related signals
 #define COMSIG_AQUARIUM_BEFORE_INSERT_CHECK "aquarium_about_to_be_inserted"
 #define COMSIG_AQUARIUM_SURFACE_CHANGED "aquarium_surface_changed"
 #define COMSIG_AQUARIUM_FLUID_CHANGED "aquarium_fluid_changed"
+*/
+
+/// generally called before temporary non-parallel animate()s on the atom (animation_duration)
+#define COMSIG_ATOM_TEMPORARY_ANIMATION_START "atom_temp_animate_start" // LC13 addition: MODULE ID: FISHING
 
 // Abnormality Work Signals
 #define COMSIG_WORK_STARTED "work_started" // Work Start/Attempt
 #define COMSIG_GLOB_WORK_STARTED "!work_started" // Same, but global
 #define COMSIG_WORK_COMPLETED "work_completed" // Work Complete
 #define COMSIG_GLOB_WORK_COMPLETED "!work_completed" // Ditto
+#define COMSIG_MELTDOWN_FINISHED "meltdown_finished"
+#define COMSIG_GLOB_MELTDOWN_FINISHED "!meltdown_finished"
+
+// General Abnormality Signals
+
+///Whenever FearEffect() is called on a human
+#define COMSIG_FEAR_EFFECT "fear_effect"
+///Whenever the season is changed through god of the seasons or its E.G.O.
+#define COMSIG_GLOB_SEASON_CHANGE "!change_season"
+
+// Ordeal signals
+// When the ordeal ends; (/datum/ordeal)
+#define COMSIG_GLOB_ORDEAL_END "!ordeal_end"
+
+
+// Crate signals
+#define COMSIG_CRATE_LOOTING_STARTED "looting_started"
+#define COMSIG_CRATE_LOOTING_ENDED "looting_ended"
+
+#define COMSIG_PARCEL_DELIVERED "parcel_delivered"
+#define COMSIG_ITEM_DELIVERED "item_delivered"

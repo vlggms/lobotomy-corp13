@@ -277,7 +277,7 @@
 				to_chat(user, "<span class='warning'>Your glow is already enhanced!</span>")
 				return
 			species.update_glow(user, 5)
-			addtimer(CALLBACK(species, /datum/species/jelly/luminescent.proc/update_glow, user, LUMINESCENT_DEFAULT_GLOW), 600)
+			addtimer(CALLBACK(species, TYPE_PROC_REF(/datum/species/jelly/luminescent, update_glow), user, LUMINESCENT_DEFAULT_GLOW), 600)
 			to_chat(user, "<span class='notice'>You start glowing brighter.</span>")
 
 		if(SLIME_ACTIVATE_MAJOR)
@@ -493,7 +493,7 @@
 				return
 			to_chat(user, "<span class='notice'>You feel your skin harden and become more resistant.</span>")
 			species.armor += 25
-			addtimer(CALLBACK(src, .proc/reset_armor, species), 1200)
+			addtimer(CALLBACK(src, PROC_REF(reset_armor), species), 1200)
 			return 450
 
 		if(SLIME_ACTIVATE_MAJOR)
@@ -713,6 +713,9 @@
 	if(!isanimal(M) || M.ckey) //only works on animals that aren't player controlled
 		to_chat(user, "<span class='warning'>[M] is already too intelligent for this to work!</span>")
 		return
+	if(isabnormalitymob(M)) //only works on animals that aren't player controlled
+		to_chat(user, span_warning("The potion will have no effect on [M]!"))
+		return
 	if(M.stat)
 		to_chat(user, "<span class='warning'>[M] is dead!</span>")
 		return
@@ -770,7 +773,7 @@
 /obj/item/slimepotion/transference/afterattack(mob/living/M, mob/living/user, proximity)
 	if(!proximity)
 		return
-	if(prompted || !ismob(M))
+	if(prompted || !ismob(M) || isabnormalitymob(M))
 		return
 	if(!isanimal(M) || M.ckey) //much like sentience, these will not work on something that is already player controlled
 		to_chat(user, "<span class='warning'>[M] already has a higher consciousness!</span>")

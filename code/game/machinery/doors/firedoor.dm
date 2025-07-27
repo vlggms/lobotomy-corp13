@@ -76,7 +76,7 @@
 
 /obj/machinery/door/firedoor/power_change()
 	. = ..()
-	INVOKE_ASYNC(src, .proc/latetoggle)
+	INVOKE_ASYNC(src, PROC_REF(latetoggle))
 
 /obj/machinery/door/firedoor/attack_hand(mob/user)
 	. = ..()

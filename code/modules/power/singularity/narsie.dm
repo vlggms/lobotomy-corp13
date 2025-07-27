@@ -44,7 +44,7 @@
 	singularity = WEAKREF(AddComponent(
 		/datum/component/singularity, \
 		bsa_targetable = FALSE, \
-		consume_callback = CALLBACK(src, .proc/consume), \
+		consume_callback = CALLBACK(src, PROC_REF(consume)), \
 		consume_range = NARSIE_CONSUME_RANGE, \
 		disregard_failed_movements = TRUE, \
 		grav_pull = NARSIE_GRAV_PULL, \
@@ -88,7 +88,7 @@
 			souls_needed[player] = TRUE
 
 	soul_goal = round(1 + LAZYLEN(souls_needed) * 0.75)
-	INVOKE_ASYNC(GLOBAL_PROC, .proc/begin_the_end)
+	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(begin_the_end))
 
 /obj/narsie/Destroy()
 	send_to_playing_players("<span class='narsie'>\"<b>[pick("Nooooo...", "Not die. How-", "Die. Mort-", "Sas tyen re-")]\"</b></span>")
@@ -195,7 +195,7 @@
 /obj/narsie/proc/narsie_spawn_animation()
 	setDir(SOUTH)
 	flick("narsie_spawn_anim", src)
-	addtimer(CALLBACK(src, .proc/narsie_spawn_animation_end), 3.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(narsie_spawn_animation_end)), 3.5 SECONDS)
 
 /obj/narsie/proc/narsie_spawn_animation_end()
 	var/datum/component/singularity/singularity_component = singularity.resolve()
@@ -207,7 +207,7 @@
 		priority_announce("Status report? We detected an anomaly, but it disappeared almost immediately.","Central Command Higher Dimensional Affairs", 'sound/misc/notice1.ogg')
 		GLOB.cult_narsie = null
 		sleep(20)
-		INVOKE_ASYNC(GLOBAL_PROC, .proc/cult_ending_helper, 2)
+		INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(cult_ending_helper), 2)
 		return
 	priority_announce("An acausal dimensional event has been detected in your sector. Event has been flagged EXTINCTION-CLASS. Directing all available assets toward simulating solutions. SOLUTION ETA: 60 SECONDS.","Central Command Higher Dimensional Affairs", 'sound/misc/airraid.ogg')
 	sleep(500)
@@ -215,7 +215,7 @@
 		priority_announce("Simulations aborted, sensors report that the acasual event is normalizing. Good work, crew.","Central Command Higher Dimensional Affairs", 'sound/misc/notice1.ogg')
 		GLOB.cult_narsie = null
 		sleep(20)
-		INVOKE_ASYNC(GLOBAL_PROC, .proc/cult_ending_helper, 2)
+		INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(cult_ending_helper), 2)
 		return
 	priority_announce("Simulations on acausal dimensional event complete. Deploying solution package now. Deployment ETA: ONE MINUTE. ","Central Command Higher Dimensional Affairs")
 	sleep(50)
@@ -230,23 +230,23 @@
 		set_security_level(num2seclevel(SEC_LEVEL_RED))
 		SSshuttle.clearHostileEnvironment()
 		SSshuttle.lockdown = FALSE
-		INVOKE_ASYNC(GLOBAL_PROC, .proc/cult_ending_helper, 2)
+		INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(cult_ending_helper), 2)
 		return
 	if(GLOB.cult_narsie.resolved == FALSE)
 		GLOB.cult_narsie.resolved = TRUE
 		sound_to_playing_players('sound/machines/alarm.ogg')
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/cult_ending_helper), 120)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(cult_ending_helper)), 120)
 
 /proc/ending_helper()
 	SSticker.force_ending = 1
 
 /proc/cult_ending_helper(ending_type = 0)
 	if(ending_type == 2) //narsie fukkin died
-		Cinematic(CINEMATIC_CULT_FAIL,world,CALLBACK(GLOBAL_PROC,/proc/ending_helper))
+		Cinematic(CINEMATIC_CULT_FAIL,world,CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(ending_helper)))
 	else if(ending_type) //no explosion
-		Cinematic(CINEMATIC_CULT,world,CALLBACK(GLOBAL_PROC,/proc/ending_helper))
+		Cinematic(CINEMATIC_CULT,world,CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(ending_helper)))
 	else // explosion
-		Cinematic(CINEMATIC_CULT_NUKE,world,CALLBACK(GLOBAL_PROC,/proc/ending_helper))
+		Cinematic(CINEMATIC_CULT_NUKE,world,CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(ending_helper)))
 
 #undef NARSIE_CHANCE_TO_PICK_NEW_TARGET
 #undef NARSIE_CONSUME_RANGE

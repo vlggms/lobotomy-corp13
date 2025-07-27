@@ -34,20 +34,20 @@
 		return COMPONENT_INCOMPATIBLE
 
 
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, .proc/OnAttackBy)
-	RegisterSignal(parent, COMSIG_ITEM_ATTACK_SELF, .proc/interact)
+	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(OnAttackBy))
+	RegisterSignal(parent, COMSIG_ITEM_ATTACK_SELF, PROC_REF(interact))
 	if(istype(parent, /obj/item/implant))
-		RegisterSignal(parent, COMSIG_IMPLANT_ACTIVATED, .proc/implant_activation)
-		RegisterSignal(parent, COMSIG_IMPLANT_IMPLANTING, .proc/implanting)
-		RegisterSignal(parent, COMSIG_IMPLANT_OTHER, .proc/old_implant)
-		RegisterSignal(parent, COMSIG_IMPLANT_EXISTING_UPLINK, .proc/new_implant)
+		RegisterSignal(parent, COMSIG_IMPLANT_ACTIVATED, PROC_REF(implant_activation))
+		RegisterSignal(parent, COMSIG_IMPLANT_IMPLANTING, PROC_REF(implanting))
+		RegisterSignal(parent, COMSIG_IMPLANT_OTHER, PROC_REF(old_implant))
+		RegisterSignal(parent, COMSIG_IMPLANT_EXISTING_UPLINK, PROC_REF(new_implant))
 	else if(istype(parent, /obj/item/pda))
-		RegisterSignal(parent, COMSIG_PDA_CHANGE_RINGTONE, .proc/new_ringtone)
-		RegisterSignal(parent, COMSIG_PDA_CHECK_DETONATE, .proc/check_detonate)
+		RegisterSignal(parent, COMSIG_PDA_CHANGE_RINGTONE, PROC_REF(new_ringtone))
+		RegisterSignal(parent, COMSIG_PDA_CHECK_DETONATE, PROC_REF(check_detonate))
 	else if(istype(parent, /obj/item/radio))
-		RegisterSignal(parent, COMSIG_RADIO_NEW_FREQUENCY, .proc/new_frequency)
+		RegisterSignal(parent, COMSIG_RADIO_NEW_FREQUENCY, PROC_REF(new_frequency))
 	else if(istype(parent, /obj/item/pen))
-		RegisterSignal(parent, COMSIG_PEN_ROTATED, .proc/pen_rotation)
+		RegisterSignal(parent, COMSIG_PEN_ROTATED, PROC_REF(pen_rotation))
 
 	uplink_items = get_uplink_items(_gamemode, TRUE, allow_restricted)
 
@@ -84,7 +84,7 @@
 
 /datum/component/uplink/proc/LoadTC(mob/user, obj/item/stack/telecrystal/TC, silent = FALSE)
 	if(!silent)
-		to_chat(user, "<span class='notice'>You slot [TC] into [parent] and charge its internal uplink.</span>")
+		to_chat(user, span_notice("You slot [TC] into [parent] and charge its internal uplink."))
 	var/amt = TC.amount
 	telecrystals += amt
 	TC.use(amt)
@@ -111,7 +111,7 @@
 				log_uplink("[key_name(user)] refunded [UI] for [cost] telecrystals using [parent]'s uplink")
 				if(purchase_log)
 					purchase_log.total_spent -= cost
-				to_chat(user, "<span class='notice'>[I] refunded.</span>")
+				to_chat(user, span_notice("[I] refunded."))
 				qdel(I)
 				return
 
@@ -122,7 +122,7 @@
 		return
 	active = TRUE
 	if(user)
-		INVOKE_ASYNC(src, .proc/ui_interact, user)
+		INVOKE_ASYNC(src, PROC_REF(ui_interact), user)
 	// an unlocked uplink blocks also opening the PDA or headset menu
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 
@@ -272,7 +272,7 @@
 		return
 	locked = FALSE
 	interact(null, user)
-	to_chat(user, "<span class='hear'>The PDA softly beeps.</span>")
+	to_chat(user, span_hear("The PDA softly beeps."))
 	user << browse(null, "window=pda")
 	master.mode = 0
 	return COMPONENT_STOP_RINGTONE_CHANGE
@@ -312,7 +312,7 @@
 		previous_attempts.Cut()
 		master.degrees = 0
 		interact(null, user)
-		to_chat(user, "<span class='warning'>Your pen makes a clicking noise, before quickly rotating back to 0 degrees!</span>")
+		to_chat(user, span_warning("Your pen makes a clicking noise, before quickly rotating back to 0 degrees!"))
 
 	else if(compare_list(previous_attempts, failsafe_code))
 		failsafe(user)

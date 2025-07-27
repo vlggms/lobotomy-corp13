@@ -1,8 +1,9 @@
 	////////////
 	//SECURITY//
 	////////////
-#define UPLOAD_LIMIT		524288	//Restricts client uploads to the server to 0.5MB
-#define UPLOAD_LIMIT_ADMIN	2621440	//Restricts admin client uploads to the server to 2.5MB
+// Divide by 1024 to get actual number of MB
+#define UPLOAD_LIMIT		524288		//Restricts client uploads to the server to 0.5MB
+#define UPLOAD_LIMIT_ADMIN	16777216	//Restricts admin client uploads to the server to 16MB
 
 GLOBAL_LIST_INIT(blacklisted_builds, list(
 	"1407" = "bug preventing client display overrides from working leads to clients being able to see things/mobs they shouldn't be able to see",
@@ -325,7 +326,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	// Initialize tgui panel
 	src << browse(file('html/statbrowser.html'), "window=statbrowser")
-	addtimer(CALLBACK(src, .proc/check_panel_loaded), 30 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(check_panel_loaded)), 30 SECONDS)
 	tgui_panel.initialize()
 
 	if(alert_mob_dupe_login)
@@ -381,7 +382,9 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	if(holder)
 		add_admin_verbs()
-		to_chat(src, get_message_output("memo"))
+		var/memo_message = get_message_output("memo")
+		if(memo_message)
+			to_chat(src, memo_message)
 		adminGreet()
 	if (mob && reconnecting)
 		var/stealth_admin = mob.client?.holder?.fakekey
@@ -394,7 +397,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		player_age = 0
 	var/nnpa = CONFIG_GET(number/notify_new_player_age)
 	if (isnum(cached_player_age) && cached_player_age == -1) //first connection
-		to_chat(src, "<span class='userdanger'>It's your first time connecting! We have a tutorial ghost role for if you are unfamiliar with Lobotomy Corporation.</span>")
+		to_chat(src, "<span class='greentext'><b>It's your first time connecting! If you are unfamiliar with Lobotomy Corporation or SS13 and need a tutorial, observe the round and spawn as the Intern ghost role.</b></span>")
 		if (nnpa >= 0)
 			message_admins("New user: [key_name_admin(src)] is connecting here for the first time.")
 			if (CONFIG_GET(flag/irc_first_connection_alert))
@@ -430,7 +433,9 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	if(CONFIG_GET(flag/autoconvert_notes))
 		convert_notes_sql(ckey)
-	to_chat(src, get_message_output("message", ckey))
+	var/user_messages = get_message_output("message", ckey)
+	if(user_messages)
+		to_chat(src, user_messages)
 	if(!winexists(src, "asset_cache_browser")) // The client is using a custom skin, tell them.
 		to_chat(src, "<span class='warning'>Unable to access asset cache browser, if you are using a custom skin file, please allow DS to download the updated version, if you are not, then make a bug report. This is not a critical issue but can cause issues with resource downloading, as it is impossible to know when extra resources arrived to you.</span>")
 
@@ -499,6 +504,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		UNSETEMPTY(movingmob.client_mobs_in_contents)
 		movingmob = null
 	active_mousedown_item = null
+	SSping.currentrun -= src
 	QDEL_NULL(view_size)
 	QDEL_NULL(void)
 	QDEL_NULL(tooltips)
@@ -863,15 +869,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			to_chat(src, "<span class='danger'>Your previous click was ignored because you've done too many in a second</span>")
 			return
 
-	if (prefs.hotkeys)
-		// If hotkey mode is enabled, then clicking the map will automatically
-		// unfocus the text bar. This removes the red color from the text bar
-		// so that the visual focus indicator matches reality.
-		winset(src, null, "input.background-color=[COLOR_INPUT_DISABLED]")
-
-	else
-		winset(src, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED]")
-
 	..()
 
 /client/proc/add_verbs_from_config()
@@ -910,7 +907,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 		//Precache the client with all other assets slowly, so as to not block other browse() calls
 		if (CONFIG_GET(flag/asset_simple_preload))
-			addtimer(CALLBACK(SSassets.transport, /datum/asset_transport.proc/send_assets_slow, src, SSassets.transport.preload), 5 SECONDS)
+			addtimer(CALLBACK(SSassets.transport, TYPE_PROC_REF(/datum/asset_transport, send_assets_slow), src, SSassets.transport.preload), 5 SECONDS)
 
 		#if (PRELOAD_RSC == 0)
 		for (var/name in GLOB.vox_sounds)
@@ -974,6 +971,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=ooc")
 				if("Me")
 					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=me")
+				if("LOOC")
+					winset(src, "default-[REF(key)]", "parent=default;name=[key];command=looc")
 
 /client/proc/change_view(new_size)
 	if (isnull(new_size))
@@ -1030,15 +1029,14 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 /client/proc/get_award_status(achievement_type, mob/user, value = 1)
 	return	player_details.achievements.get_achievement_status(achievement_type)
 
-///Redirect proc that makes it easier to get the status of an achievement. Achievement type is the typepath to the award.
-/client/proc/award_heart(heart_reason)
-	to_chat(src, "<span class='nicegreen'>Someone awarded you a heart![heart_reason ? " They said: [heart_reason]!" : ""]</span>")
-	if(!src)
+///Gives someone hearted status for OOC, from behavior commendations
+/client/proc/adjust_heart(duration = 24 HOURS)
+	var/new_duration = world.realtime + duration
+	if(prefs.hearted_until > new_duration)
 		return
-	prefs.hearted_until = world.realtime + (24 HOURS)
+	to_chat(src, "<span class='nicegreen'>Someone awarded you a heart!</span>")
+	prefs.hearted_until = new_duration
 	prefs.hearted = TRUE
-	if(!src)
-		return
 	prefs.save_preferences()
 
 /// compiles a full list of verbs and sends it to the browser
@@ -1068,7 +1066,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 /client/proc/check_panel_loaded()
 	if(statbrowser_ready)
 		return
-	to_chat(src, "<span class='userdanger'>Statpanel failed to load, click <a href='?src=[REF(src)];reload_statbrowser=1'>here</a> to reload the panel </span>")
+	to_chat(src, "<span class='userdanger'>Statpanel failed to load, click <a href='byond://?src=[REF(src)];reload_statbrowser=1'>here</a> to reload the panel </span>")
 
 /**
  * Initializes dropdown menus on client

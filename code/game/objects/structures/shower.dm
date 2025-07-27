@@ -43,7 +43,7 @@
 
 /obj/machinery/shower/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>[reagents.total_volume]/[reagents.maximum_volume] liquids remaining.</span>"
+	. += span_notice("[reagents.total_volume]/[reagents.maximum_volume] liquids remaining.")
 
 /obj/machinery/shower/Destroy()
 	QDEL_NULL(soundloop)
@@ -52,7 +52,7 @@
 
 /obj/machinery/shower/interact(mob/M)
 	if(reagents.total_volume < 5)
-		to_chat(M,"<span class='notice'>\The [src] is dry.</span>")
+		to_chat(M,span_notice("\The [src] is dry."))
 		return FALSE
 	on = !on
 	update_icon()
@@ -70,7 +70,7 @@
 
 /obj/machinery/shower/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_ANALYZER)
-		to_chat(user, "<span class='notice'>The water temperature seems to be [current_temperature].</span>")
+		to_chat(user, span_notice("The water temperature seems to be [current_temperature]."))
 	else
 		return ..()
 
@@ -87,7 +87,7 @@
 
 /obj/machinery/shower/wrench_act(mob/living/user, obj/item/I)
 	..()
-	to_chat(user, "<span class='notice'>You begin to adjust the temperature valve with \the [I]...</span>")
+	to_chat(user, span_notice("You begin to adjust the temperature valve with \the [I]..."))
 	if(I.use_tool(src, user, 50))
 		switch(current_temperature)
 			if(SHOWER_NORMAL)
@@ -96,7 +96,7 @@
 				current_temperature = SHOWER_BOILING
 			if(SHOWER_BOILING)
 				current_temperature = SHOWER_NORMAL
-		user.visible_message("<span class='notice'>[user] adjusts the shower with \the [I].</span>", "<span class='notice'>You adjust the shower with \the [I] to [current_temperature] temperature.</span>")
+		user.visible_message(span_notice("[user] adjusts the shower with \the [I]."), span_notice("You adjust the shower with \the [I] to [current_temperature] temperature."))
 		user.log_message("has wrenched a shower at [AREACOORD(src)] to [current_temperature].", LOG_ATTACK)
 		add_hiddenprint(user)
 	handle_mist()
@@ -115,10 +115,10 @@
 	// If there was already mist, and the shower was turned off (or made cold): remove the existing mist in 25 sec
 	var/obj/effect/mist/mist = locate() in loc
 	if(!mist && on && current_temperature != SHOWER_FREEZING)
-		addtimer(CALLBACK(src, .proc/make_mist), 5 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(make_mist)), 5 SECONDS)
 
 	if(mist && (!on || current_temperature == SHOWER_FREEZING))
-		addtimer(CALLBACK(src, .proc/clear_mist), 25 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(clear_mist)), 25 SECONDS)
 
 /obj/machinery/shower/proc/make_mist()
 	var/obj/effect/mist/mist = locate() in loc
@@ -140,7 +140,6 @@
 /obj/machinery/shower/proc/wash_atom(atom/target)
 	target.wash(CLEAN_RAD | CLEAN_TYPE_WEAK) // Clean radiation non-instantly
 	target.wash(CLEAN_WASH)
-	SEND_SIGNAL(target, COMSIG_ADD_MOOD_EVENT, "shower", /datum/mood_event/nice_shower)
 	reagents.expose(target, (TOUCH), SHOWER_EXPOSURE_MULTIPLIER * SHOWER_SPRAY_VOLUME / max(reagents.total_volume, SHOWER_SPRAY_VOLUME))
 	if(isliving(target))
 		check_heat(target)
@@ -174,12 +173,12 @@
 	if(current_temperature == SHOWER_FREEZING)
 		if(iscarbon(L))
 			C.adjust_bodytemperature(-80, 80)
-		to_chat(L, "<span class='warning'>[src] is freezing!</span>")
+		to_chat(L, span_warning("[src] is freezing!"))
 	else if(current_temperature == SHOWER_BOILING)
 		if(iscarbon(L))
 			C.adjust_bodytemperature(35, 0, 500)
 		L.adjustFireLoss(5)
-		to_chat(L, "<span class='danger'>[src] is searing!</span>")
+		to_chat(L, span_danger("[src] is searing!"))
 
 
 /obj/structure/showerframe
@@ -200,11 +199,11 @@
 
 /obj/structure/showerframe/Initialize()
 	. = ..()
-	AddComponent(/datum/component/simple_rotation, ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS, null, CALLBACK(src, .proc/can_be_rotated))
+	AddComponent(/datum/component/simple_rotation, ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_VERBS, null, CALLBACK(src, PROC_REF(can_be_rotated)))
 
 /obj/structure/showerframe/proc/can_be_rotated(mob/user, rotation_type)
 	if(anchored)
-		to_chat(user, "<span class='warning'>It is fastened to the floor!</span>")
+		to_chat(user, span_warning("It is fastened to the floor!"))
 	return !anchored
 
 /obj/effect/mist

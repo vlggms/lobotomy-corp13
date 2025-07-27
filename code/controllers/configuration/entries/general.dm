@@ -522,3 +522,15 @@
 	config_entry_value = 18000
 	integer = FALSE
 	min_val = 0
+
+/datum/config_entry/number/qliphoth_meltdown_percent // percentage of abnormalities to melt down per meltdown
+	config_entry_value = 0.35
+	integer = FALSE
+	min_val = 0.0
+	max_val = 1.0
+
+// If midnight has started by this time - upon finishing it, the core suppression will be available
+// In 1/10 of a second
+/datum/config_entry/number/suppression_time_limit
+	config_entry_value = 60 MINUTES
+	min_val = 0

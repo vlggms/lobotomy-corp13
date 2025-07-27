@@ -13,7 +13,7 @@
 
 	var/injecting = 0
 
-	var/volume_rate = 100
+	var/volume_rate = 50
 
 	var/frequency = 0
 	var/id = null
@@ -53,7 +53,7 @@
 	else
 		icon_state = "inje_on"
 
-/obj/machinery/atmospherics/components/unary/outlet_injector/process_atmos(delta_time)
+/obj/machinery/atmospherics/components/unary/outlet_injector/process_atmos()
 	..()
 
 	injecting = 0
@@ -64,7 +64,7 @@
 	var/datum/gas_mixture/air_contents = airs[1]
 
 	if(air_contents.temperature > 0)
-		var/transfer_moles = (air_contents.return_pressure() * volume_rate * delta_time) / (air_contents.temperature * R_IDEAL_GAS_EQUATION)
+		var/transfer_moles = (air_contents.return_pressure() * volume_rate) / (air_contents.temperature * R_IDEAL_GAS_EQUATION)
 
 		var/datum/gas_mixture/removed = air_contents.remove(transfer_moles)
 
@@ -128,7 +128,7 @@
 		on = !on
 
 	if("inject" in signal.data)
-		INVOKE_ASYNC(src, .proc/inject)
+		INVOKE_ASYNC(src, PROC_REF(inject))
 		return
 
 	if("set_volume_rate" in signal.data)
@@ -136,7 +136,7 @@
 		var/datum/gas_mixture/air_contents = airs[1]
 		volume_rate = clamp(number, 0, air_contents.volume)
 
-	addtimer(CALLBACK(src, .proc/broadcast_status), 2)
+	addtimer(CALLBACK(src, PROC_REF(broadcast_status)), 2)
 
 	if(!("status" in signal.data)) //do not update_icon
 		update_icon()
@@ -182,7 +182,7 @@
 /obj/machinery/atmospherics/components/unary/outlet_injector/can_unwrench(mob/user)
 	. = ..()
 	if(. && on && is_operational)
-		to_chat(user, "<span class='warning'>You cannot unwrench [src], turn it off first!</span>")
+		to_chat(user, span_warning("You cannot unwrench [src], turn it off first!"))
 		return FALSE
 
 // mapping

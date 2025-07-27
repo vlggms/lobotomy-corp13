@@ -454,6 +454,16 @@ const FunForYouTab = (props, context) => {
         <NoticeBox danger>
           <Button
             color="red"
+            icon="bomb"
+            fluid
+            content="Toggle Hardcore Fuck It Let's Roll"
+            onClick={() => act("enablehardcore")} />
+        </NoticeBox>
+      </Flex.Item>
+      <Flex.Item>
+        <NoticeBox danger>
+          <Button
+            color="red"
             icon="paw"
             fluid
             content="Turn all humans into monkeys"

@@ -26,8 +26,9 @@
 	var/max_failed_spreads = 5
 	/// Turfs where the glowshroom cannot spread to
 	var/static/list/blacklisted_glowshroom_turfs = typecacheof(list(
-	/turf/open/lava,
-	/turf/open/floor/plating/beach/water))
+		/turf/open/lava,
+		/turf/open/floor/plating/beach/water,
+	))
 
 /obj/structure/glowshroom/glowcap
 	name = "glowcap"
@@ -96,8 +97,8 @@
 		icon_state = base_icon_state
 
 
-	addtimer(CALLBACK(src, .proc/Spread), delay_spread, TIMER_UNIQUE|TIMER_NO_HASH_WAIT)
-	addtimer(CALLBACK(src, .proc/Decay), delay_decay, TIMER_UNIQUE|TIMER_NO_HASH_WAIT)
+	addtimer(CALLBACK(src, PROC_REF(Spread)), delay_spread, TIMER_UNIQUE|TIMER_NO_HASH_WAIT)
+	addtimer(CALLBACK(src, PROC_REF(Decay)), delay_decay, TIMER_UNIQUE|TIMER_NO_HASH_WAIT)
 
 /obj/structure/glowshroom/ComponentInitialize()
 	. = ..()
@@ -115,7 +116,7 @@
 
 	var/turf/ownturf = get_turf(src)
 	if(!TURF_SHARES(ownturf)) //If we are in a 1x1 room
-		addtimer(CALLBACK(src, .proc/Spread), delay_spread, TIMER_UNIQUE|TIMER_NO_HASH_WAIT)
+		addtimer(CALLBACK(src, PROC_REF(Spread)), delay_spread, TIMER_UNIQUE|TIMER_NO_HASH_WAIT)
 		return //Deal with it not now
 
 	var/shrooms_planted = 0
@@ -182,7 +183,7 @@
 	if( (shrooms_planted <= myseed.yield) && (max_failed_spreads >= 0)  )
 		myseed.adjust_yield(-shrooms_planted)
 		//Lets make this a unique hash
-		addtimer(CALLBACK(src, .proc/Spread), delay_spread, TIMER_UNIQUE|TIMER_NO_HASH_WAIT)
+		addtimer(CALLBACK(src, PROC_REF(Spread)), delay_spread, TIMER_UNIQUE|TIMER_NO_HASH_WAIT)
 
 /obj/structure/glowshroom/proc/CalcDir(turf/location = loc)
 	var/direction = 16
@@ -229,12 +230,12 @@
 	else // Timed decay
 		myseed.endurance -= 1
 		if (myseed.endurance > 0)
-			addtimer(CALLBACK(src, .proc/Decay), delay_decay, TIMER_UNIQUE|TIMER_NO_HASH_WAIT) // Recall decay timer
+			addtimer(CALLBACK(src, PROC_REF(Decay)), delay_decay, TIMER_UNIQUE|TIMER_NO_HASH_WAIT) // Recall decay timer
 			return
 	if (myseed.endurance < 1) // Plant is gone
 		qdel(src)
 
-/obj/structure/glowshroom/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
+/obj/structure/glowshroom/play_attack_sound(damage_amount, damage_type = BRUTE)
 	if(damage_type == BURN && damage_amount)
 		playsound(src.loc, 'sound/items/welder.ogg', 100, TRUE)
 
@@ -242,10 +243,10 @@
 	return exposed_temperature > 300
 
 /obj/structure/glowshroom/atmos_expose(datum/gas_mixture/air, exposed_temperature)
-	take_damage(5, BURN, 0, 0)
+	take_damage(5, BURN, 0)
 
 /obj/structure/glowshroom/acid_act(acidpwr, acid_volume)
-	visible_message("<span class='danger'>[src] melts away!</span>")
+	visible_message(span_danger("[src] melts away!"))
 	var/obj/effect/decal/cleanable/molten_object/I = new (get_turf(src))
 	I.desc = "Looks like this was \an [src] some time ago."
 	qdel(src)

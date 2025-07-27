@@ -139,8 +139,7 @@
 		user.visible_message("<span class='warning'>\the [user] washes \the [target]'s mouth out with [src.name]!</span>", "<span class='notice'>You wash \the [target]'s mouth out with [src.name]!</span>") //washes mouth out with soap sounds better than 'the soap' here			if(user.zone_selected == "mouth")
 		if(human_user.lip_style)
 			user.mind?.adjust_experience(/datum/skill/cleaning, CLEAN_SKILL_GENERIC_WASH_XP)
-			human_user.lip_style = null //removes lipstick
-			human_user.update_body()
+			human_user.update_lips(null)
 		decreaseUses(user)
 		return
 	else if(istype(target, /obj/structure/window))
@@ -191,12 +190,6 @@
 	. = ..()
 	AddComponent(/datum/component/squeak, list('sound/items/bikehorn.ogg'=1), 50, falloff_exponent = 20) //die off quick please)
 
-/obj/item/bikehorn/attack(mob/living/carbon/M, mob/living/carbon/user)
-	if(user != M && ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if (HAS_TRAIT(H, TRAIT_CLUMSY)) //only clowns can unlock its true powers
-			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "honk", /datum/mood_event/honk)
-	return ..()
 
 /obj/item/bikehorn/suicide_act(mob/user)
 	user.visible_message("<span class='suicide'>[user] solemnly points [src] at [user.p_their()] temple! It looks like [user.p_theyre()] trying to commit suicide!</span>")

@@ -63,6 +63,7 @@
 	cooldown = world.time + cooldown_time
 	if(cooldown_time > 0)
 		remove_ranged_ability()
+	update_icon()
 	return
 
 /obj/effect/proc_holder/ability/aimed/Click()
@@ -94,7 +95,7 @@
 	action.button_icon_state = "[base_icon_state][active]"
 	action.UpdateButtonIcon()
 
-/obj/effect/proc_holder/ability/aimed/InterceptClickOn(mob/living/caller, params, atom/target)
+/obj/effect/proc_holder/ability/aimed/InterceptClickOn(mob/living/requester, params, atom/target)
 	if(..())
 		return FALSE
 	if(!can_cast())
@@ -102,3 +103,65 @@
 		return FALSE
 	Perform(target, user = ranged_ability_user)
 	return TRUE
+
+/obj/effect/proc_holder/ability/hat_ability
+	name = "Toggle Hat"
+	desc = "Toggle your current armors hat."
+	action_icon_state = "hat0"
+	base_icon_state = "hat"
+	var/obj/item/clothing/head/ego_hat/hat = null
+
+/obj/effect/proc_holder/ability/hat_ability/New(loc, obj/item/clothing/head/ego_hat/ego_hat, ...)
+	. = ..()
+	hat = ego_hat
+
+/obj/effect/proc_holder/ability/hat_ability/Perform(target, user)
+	. = ..()
+	if(!ishuman(user))
+		return
+	if(isnull(hat))
+		Destroy()
+		return
+	var/mob/living/carbon/human/H = user
+	var/obj/item/clothing/head/headgear = H.get_item_by_slot(ITEM_SLOT_HEAD)
+	if(!istype(headgear, hat)) // We don't have the hat on?
+		if(!isnull(headgear))
+			if(HAS_TRAIT(headgear, TRAIT_NODROP))
+				to_chat(H, "<span class='warning'>[headgear] cannot be dropped!</span>")
+				return
+			H.dropItemToGround(headgear) // Drop the other hat, if it exists.
+		H.equip_to_slot(new hat, ITEM_SLOT_HEAD) // Equip the hat!
+		return
+	headgear.Destroy()
+	return
+
+/obj/effect/proc_holder/ability/neck_ability
+	name = "Toggle Neckwear"
+	desc = "Toggle your current armors neckwear."
+	action_icon_state = "neck0"
+	base_icon_state = "neck"
+	var/obj/item/clothing/neck/ego_neck/neck = null
+
+/obj/effect/proc_holder/ability/neck_ability/New(loc, obj/item/clothing/neck/ego_neck/ego_neck, ...)
+	. = ..()
+	neck = ego_neck
+
+/obj/effect/proc_holder/ability/neck_ability/Perform(target, user) // Works just like the hat ability from above
+	. = ..()
+	if(!ishuman(user))
+		return
+	if(isnull(neck))
+		Destroy()
+		return
+	var/mob/living/carbon/human/H = user
+	var/obj/item/clothing/neck/neckwear = H.get_item_by_slot(ITEM_SLOT_NECK)
+	if(!istype(neckwear, neck))
+		if(!isnull(neckwear))
+			if(HAS_TRAIT(neckwear, TRAIT_NODROP))
+				to_chat(H, "<span class='warning'>[neckwear] cannot be dropped!</span>")
+				return
+			H.dropItemToGround(neckwear )
+		H.equip_to_slot(new neck, ITEM_SLOT_NECK)
+		return
+	neckwear.Destroy()
+	return

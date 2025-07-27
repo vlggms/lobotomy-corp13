@@ -75,7 +75,7 @@
 
 /datum/reagent/toxin/plasma/on_new(data)
 	. = ..()
-	RegisterSignal(holder, COMSIG_REAGENTS_TEMP_CHANGE, .proc/on_temp_change)
+	RegisterSignal(holder, COMSIG_REAGENTS_TEMP_CHANGE, PROC_REF(on_temp_change))
 
 /datum/reagent/toxin/plasma/Destroy()
 	UnregisterSignal(holder, COMSIG_REAGENTS_TEMP_CHANGE)
@@ -291,7 +291,7 @@
 
 /datum/reagent/toxin/plantbgone/expose_obj(obj/exposed_obj, reac_volume)
 	. = ..()
-	if(istype(exposed_obj, /obj/structure/alien/weeds))
+	if(istype(exposed_obj, /obj/structure/alien/weeds) || istype(exposed_obj, /obj/structure/spreading/apple_vine))
 		var/obj/structure/alien/weeds/alien_weeds = exposed_obj
 		alien_weeds.take_damage(rand(15,35), BRUTE, 0) // Kills alien weeds pretty fast
 	else if(istype(exposed_obj, /obj/structure/glowshroom)) //even a small amount is enough to kill it
@@ -403,7 +403,7 @@
 	..()
 
 /datum/reagent/toxin/fakebeer	//disguised as normal beer for use by emagged brobots
-	name = "Beer"
+	name = "Bear" //Netzach approved
 	description = "A specially-engineered sedative disguised as beer. It induces instant sleep in its target."
 	color = "#664300" // rgb: 102, 67, 0
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
@@ -555,8 +555,6 @@
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 3*REM, 150)
 	if(M.toxloss <= 60)
 		M.adjustToxLoss(1*REM, 0)
-	if(current_cycle >= 4)
-		SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "smacked out", /datum/mood_event/narcotic_heavy, name)
 	if(current_cycle >= 18)
 		M.Sleeping(40)
 	..()
@@ -675,11 +673,11 @@
 	metabolization_rate = 0.75 * REAGENTS_METABOLISM
 	toxpwr = 0
 
-/datum/reagent/medicine/sodium_thiopental/on_mob_add(mob/living/L, amount)
+/datum/reagent/toxin/sodium_thiopental/on_mob_add(mob/living/L, amount)
 	. = ..()
 	ADD_TRAIT(L, TRAIT_ANTICONVULSANT, name)
 
-/datum/reagent/medicine/sodium_thiopental/on_mob_delete(mob/living/L)
+/datum/reagent/toxin/sodium_thiopental/on_mob_delete(mob/living/L)
 	. = ..()
 	REMOVE_TRAIT(L, TRAIT_ANTICONVULSANT, name)
 
@@ -980,7 +978,7 @@
 			if(1)
 				M.say(pick("oof.", "ouch.", "my bones.", "oof ouch.", "oof ouch my bones."), forced = /datum/reagent/toxin/bonehurtingjuice)
 			if(2)
-				M.manual_emote(pick("oofs silently.", "looks like their bones hurt.", "grimaces, as though their bones hurt."))
+				M.manual_emote(pick("oofs silently.", "looks like [M.p_their()] bones hurt.", "grimaces, as though [M.p_their()] bones hurt."))
 			if(3)
 				to_chat(M, "<span class='warning'>Your bones hurt!</span>")
 	return ..()
@@ -1033,3 +1031,24 @@
 		to_chat(M, "<span class='notice'>Ah, what was that? You thought you heard something...</span>")
 		M.add_confusion(5)
 	return ..()
+
+#define STATUS_EFFECT_PALLIDNOISE /datum/status_effect/stacking/pallid_noise//located in debuffs.dm
+
+/datum/reagent/toxin/pallidwaste
+	name = "Pallid Waste"
+	description = "A collection of pale connective tissue."
+	color = "#DDDDDD"
+	taste_description = "blood"
+	metabolization_rate = 3 * REAGENTS_METABOLISM
+
+/datum/reagent/toxin/pallidwaste/on_mob_life(mob/living/carbon/M)
+	..()
+	var/datum/status_effect/stacking/pallid_noise/P = M.has_status_effect(/datum/status_effect/stacking/pallid_noise)
+	if(!P)
+		M.apply_status_effect(STATUS_EFFECT_PALLIDNOISE)
+		M.vomit(10, TRUE, TRUE, 1, FALSE, FALSE, FALSE, TRUE, 100)
+		M.reagents.remove_reagent(src, 1)
+		return
+	P.add_stacks(1)
+
+#undef STATUS_EFFECT_PALLIDNOISE

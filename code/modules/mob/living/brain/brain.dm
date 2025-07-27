@@ -54,7 +54,7 @@
 	return // no eyes, no flashing
 
 /mob/living/brain/can_be_revived()
-	if(!container || health <= HEALTH_THRESHOLD_DEAD)
+	if(!container || health <= death_threshold)
 		return FALSE
 	return TRUE
 

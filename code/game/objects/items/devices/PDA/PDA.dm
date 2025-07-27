@@ -78,7 +78,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 	var/datum/picture/picture //Scanned photo
 
-	var/list/contained_item = list(/obj/item/pen, /obj/item/toy/crayon, /obj/item/lipstick, /obj/item/flashlight/pen, /obj/item/clothing/mask/cigarette)
+	var/list/contained_item = list(/obj/item/pen, /obj/item/toy/crayon, /obj/item/lipstick, /obj/item/flashlight/pen, /obj/item/clothing/mask/cigarette, /obj/item/ego_weapon/city/fixerpen)
 	var/obj/item/inserted_item //Used for pen, crayon, and lipstick insertion or removal. Same as above.
 	var/overlays_x_offset = 0	//x offset to use for certain overlays
 
@@ -242,8 +242,8 @@ GLOBAL_LIST_EMPTY(PDAs)
 			if (0)
 				dat += "<h2>PERSONAL DATA ASSISTANT v.1.2</h2>"
 				dat += "Owner: [owner], [ownjob]<br>"
-				dat += text("ID: <a href='?src=[REF(src)];choice=Authenticate'>[id ? "[id.registered_name], [id.assignment]" : "----------"]")
-				dat += text("<br><a href='?src=[REF(src)];choice=UpdateInfo'>[id ? "Update PDA Info" : ""]</A><br><br>")
+				dat += text("ID: <a href='byond://?src=[REF(src)];choice=Authenticate'>[id ? "[id.registered_name], [id.assignment]" : "----------"]")
+				dat += text("<br><a href='byond://?src=[REF(src)];choice=UpdateInfo'>[id ? "Update PDA Info" : ""]</A><br><br>")
 
 				dat += "[station_time_timestamp()]<br>" //:[world.time / 100 % 6][world.time / 100 % 10]"
 				dat += "[time2text(world.realtime, "MMM DD")] [GLOB.year_integer+540]"
@@ -513,7 +513,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 				update_label()
 				if(!silent)
 					playsound(src, 'sound/machines/terminal_processing.ogg', 15, TRUE)
-					addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, src, 'sound/machines/terminal_success.ogg', 15, TRUE), 1.3 SECONDS)
+					addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(playsound), src, 'sound/machines/terminal_success.ogg', 15, TRUE), 1.3 SECONDS)
 			if("Eject")//Ejects the cart, only done from hub.
 				eject_cart(U)
 				if(!silent)
@@ -828,7 +828,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 		var/hrefstart
 		var/hrefend
 		if (isAI(L))
-			hrefstart = "<a href='?src=[REF(L)];track=[html_encode(signal.data["name"])]'>"
+			hrefstart = "<a href='byond://?src=[REF(L)];track=[html_encode(signal.data["name"])]'>"
 			hrefend = "</a>"
 
 		if(signal.data["automated"])
@@ -1224,7 +1224,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 			A.emp_act(severity)
 	if (!(. & EMP_PROTECT_SELF))
 		emped++
-		addtimer(CALLBACK(src, .proc/emp_end), 200 * severity)
+		addtimer(CALLBACK(src, PROC_REF(emp_end)), 200 * severity)
 
 /obj/item/pda/proc/emp_end()
 	emped--
@@ -1234,9 +1234,9 @@ GLOBAL_LIST_EMPTY(PDAs)
 	// Returns a list of PDAs which can be viewed from another PDA/message monitor.,
 	var/sortmode
 	if(sort_by_job)
-		sortmode = /proc/cmp_pdajob_asc
+		sortmode = GLOBAL_PROC_REF(cmp_pdajob_asc)
 	else
-		sortmode = /proc/cmp_pdaname_asc
+		sortmode = GLOBAL_PROC_REF(cmp_pdaname_asc)
 
 	for(var/obj/item/pda/P in sortList(GLOB.PDAs, sortmode))
 		if(!P.owner || P.toff || P.hidden)

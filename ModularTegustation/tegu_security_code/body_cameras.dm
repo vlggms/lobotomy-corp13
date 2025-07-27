@@ -8,9 +8,9 @@
 	builtInCamera = new (src)
 	builtInCamera.internal_light = FALSE
 
-	RegisterSignal(src, COMSIG_ITEM_EQUIPPED, .proc/auto_register_bodycam)
+	RegisterSignal(src, COMSIG_ITEM_EQUIPPED, PROC_REF(auto_register_bodycam))
 
-	addtimer(CALLBACK(src, /obj/item/clothing/under/rank/security.proc/auto_register_bodycam, null, ITEM_SLOT_ICLOTHING), SEC_BODY_CAM_REG_DELAY)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/item/clothing/under/rank/security, auto_register_bodycam), null, ITEM_SLOT_ICLOTHING), SEC_BODY_CAM_REG_DELAY)
 
 /obj/item/clothing/under/rank/security/proc/auto_register_bodycam(mob/living/user, slot)
 	if(!builtInCamera)
@@ -42,17 +42,17 @@
 		I = P.id
 
 	if(!I)
-		to_chat(user, "<span class='warning'>No ID detected for body camera registration.</span>")
+		to_chat(user, span_warning("No ID detected for body camera registration."))
 		return
 
 	if(!builtInCamera)
-		to_chat(user, "<span class='warning'>No body camera detected for registration.</span>")
+		to_chat(user, span_warning("No body camera detected for registration."))
 		return
 
 	if(check_access(I))
 		register_body_camera(I, user)
 	else
-		to_chat(user, "<span class='warning'>ID is not authorized for registration with this uniform's body camera.</span>")
+		to_chat(user, span_warning("ID is not authorized for registration with this uniform's body camera."))
 		camera_sound(FALSE)
 
 /obj/item/clothing/under/rank/security/proc/register_body_camera(obj/item/card/id/I, mob/user)
@@ -68,7 +68,7 @@
 	var/cam_name = "-Body Camera: [id_name] ([I.assignment])"
 	for(var/obj/machinery/camera/matching_camera in GLOB.cameranet.cameras)
 		if(cam_name == matching_camera.c_tag)
-			to_chat(user, "<span class='notice'>Matching registration found. Unregistering previously registered body camera.</span>")
+			to_chat(user, span_notice("Matching registration found. Unregistering previously registered body camera."))
 			var/obj/item/clothing/under/rank/security/S = matching_camera.loc
 			if(S)
 				S.unregister_body_camera(I, user, FALSE)
@@ -78,7 +78,7 @@
 
 	camera_sound()
 	if(user)
-		to_chat(user, "<span class='notice'>Security uniform body camera successfully registered to [id_name]</span>")
+		to_chat(user, span_notice("Security uniform body camera successfully registered to [id_name]"))
 
 /obj/item/clothing/under/rank/security/proc/unregister_body_camera(obj/item/card/id/I, mob/user, message=TRUE)
 	builtInCamera.network = list()
@@ -86,7 +86,7 @@
 	registrant = null
 	if(user && message)
 		camera_sound()
-		to_chat(user, "<span class='notice'>Security uniform body camera successfully unregistered from [I.registered_name]</span>")
+		to_chat(user, span_notice("Security uniform body camera successfully unregistered from [I.registered_name]"))
 
 
 
@@ -103,17 +103,17 @@
 
 
 /obj/item/clothing/under/rank/security/proc/camera_toggle()
-	var/message = "<span class='notice'>There's no camera!</span>"
+	var/message = span_notice("There's no camera!")
 
 	if(builtInCamera)
 		if(camera_on)
 			camera_on = FALSE
 			builtInCamera.status = 0
-			message = "<span class='notice'>You toggle the body camera off.</span>"
+			message = span_notice("You toggle the body camera off.")
 		else
 			camera_on = TRUE
 			builtInCamera.status = 1
-			message = "<span class='notice'>You toggle the body camera on.</span>"
+			message = span_notice("You toggle the body camera on.")
 		camera_sound()
 
 	if(ismob(loc))

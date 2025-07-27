@@ -1,0 +1,616 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"co" = (
+/obj/effect/landmark/cratespawn/corpo,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"ev" = (
+/obj/structure/closet/crate/large,
+/obj/item/stack/sheet/silk/green_simple,
+/obj/item/stack/sheet/silk/green_simple,
+/obj/item/stack/sheet/silk/green_advanced,
+/obj/item/stack/sheet/silk/green_advanced,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"kx" = (
+/obj/effect/landmark/cratespawn,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"vv" = (
+/mob/living/simple_animal/hostile/ordeal/green_dusk,
+/obj/item/gps/mining{
+	anchored = 1;
+	gpstag = "Mechanical Signal";
+	alpha = 10
+	},
+/turf/open/floor/circuit/green,
+/area/city/backstreets_room)
+"vT" = (
+/obj/machinery/door/airlock/centcom{
+	desc = "A bit too sturdy...";
+	max_integrity = 10000;
+	name = "Strange Airlock";
+	normal_integrity = 100000;
+	req_access_txt = "19"
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"wg" = (
+/obj/effect/turf_decal{
+	dir = 10
+	},
+/obj/structure/closet/crate/wooden,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c200,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"wU" = (
+/obj/effect/turf_decal{
+	dir = 8
+	},
+/obj/structure/closet/crate/large,
+/obj/item/stack/sheet/silk/green_simple,
+/obj/item/stack/sheet/silk/green_simple,
+/obj/item/stack/sheet/silk/green_simple,
+/obj/item/stack/sheet/silk/green_simple,
+/obj/item/stack/sheet/silk/green_simple,
+/obj/item/stack/sheet/silk/green_advanced,
+/obj/item/stack/sheet/silk/green_advanced,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"An" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"HP" = (
+/obj/effect/turf_decal{
+	dir = 6
+	},
+/obj/structure/closet/crate/wooden,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c200,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"Je" = (
+/obj/effect/turf_decal{
+	dir = 3
+	},
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"Pq" = (
+/obj/effect/turf_decal{
+	dir = 4
+	},
+/obj/structure/closet/crate/large,
+/obj/item/stack/sheet/silk/green_simple,
+/obj/item/stack/sheet/silk/green_simple,
+/obj/item/stack/sheet/silk/green_simple,
+/obj/item/stack/sheet/silk/green_simple,
+/obj/item/stack/sheet/silk/green_simple,
+/obj/item/stack/sheet/silk/green_advanced,
+/obj/item/stack/sheet/silk/green_advanced,
+/obj/item/stack/sheet/silk/green_advanced,
+/obj/item/stack/sheet/silk/green_advanced,
+/obj/item/stack/sheet/silk/green_advanced,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"PH" = (
+/turf/closed/indestructible/rock,
+/area/city/backstreets_room)
+"Rh" = (
+/obj/effect/turf_decal{
+	dir = 8
+	},
+/obj/structure/closet/crate/large,
+/obj/item/stack/sheet/silk/green_simple,
+/obj/item/stack/sheet/silk/green_simple,
+/obj/item/stack/sheet/silk/green_advanced,
+/obj/item/stack/sheet/silk/green_advanced,
+/obj/item/stack/sheet/silk/green_advanced,
+/obj/item/stack/sheet/silk/green_advanced,
+/obj/item/stack/sheet/silk/green_advanced,
+/obj/item/stack/sheet/silk/green_advanced,
+/obj/item/stack/sheet/silk/green_advanced,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"Ro" = (
+/obj/structure/closet/crate/wooden,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c200,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"Sa" = (
+/obj/structure/closet/crate/large,
+/obj/item/stack/sheet/silk/green_simple,
+/obj/item/stack/sheet/silk/green_simple,
+/obj/item/stack/sheet/silk/green_simple,
+/obj/item/stack/sheet/silk/green_advanced,
+/obj/item/stack/sheet/silk/green_advanced,
+/obj/item/stack/sheet/silk/green_advanced,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"SY" = (
+/turf/open/floor/circuit/green,
+/area/city/backstreets_room)
+"TE" = (
+/obj/structure/closet/crate/wooden,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c200,
+/obj/item/stack/spacecash/c200,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"Vk" = (
+/obj/effect/turf_decal{
+	dir = 4
+	},
+/obj/structure/closet/crate/large,
+/obj/item/stack/sheet/silk/green_simple,
+/obj/item/stack/sheet/silk/green_simple,
+/obj/item/stack/sheet/silk/green_advanced,
+/obj/item/stack/sheet/silk/green_advanced,
+/obj/item/stack/sheet/silk/green_advanced,
+/turf/open/floor/engine,
+/area/city/backstreets_room)
+"ZT" = (
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+PH
+PH
+PH
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+PH
+PH
+"}
+(2,1,1) = {"
+PH
+PH
+An
+An
+ZT
+ZT
+ZT
+ZT
+An
+ev
+TE
+Je
+vT
+ZT
+ZT
+ZT
+ZT
+An
+An
+PH
+"}
+(3,1,1) = {"
+PH
+An
+An
+co
+ZT
+ZT
+ZT
+ZT
+An
+Pq
+Vk
+HP
+An
+ZT
+ZT
+ZT
+ZT
+ZT
+An
+An
+"}
+(4,1,1) = {"
+An
+An
+ZT
+ZT
+ZT
+ZT
+ZT
+ZT
+An
+An
+An
+An
+An
+ZT
+ZT
+ZT
+ZT
+ZT
+ZT
+An
+"}
+(5,1,1) = {"
+An
+ZT
+ZT
+ZT
+ZT
+ZT
+ZT
+ZT
+ZT
+ZT
+ZT
+ZT
+ZT
+ZT
+ZT
+ZT
+ZT
+ZT
+ZT
+An
+"}
+(6,1,1) = {"
+An
+co
+ZT
+ZT
+ZT
+ZT
+ZT
+ZT
+ZT
+SY
+SY
+SY
+SY
+ZT
+ZT
+ZT
+An
+ZT
+ZT
+An
+"}
+(7,1,1) = {"
+An
+ZT
+ZT
+ZT
+ZT
+ZT
+ZT
+ZT
+SY
+SY
+SY
+SY
+SY
+SY
+ZT
+ZT
+An
+An
+ZT
+An
+"}
+(8,1,1) = {"
+An
+ZT
+ZT
+ZT
+ZT
+ZT
+ZT
+SY
+SY
+SY
+SY
+ZT
+SY
+SY
+SY
+SY
+ZT
+An
+ZT
+An
+"}
+(9,1,1) = {"
+An
+ZT
+kx
+ZT
+ZT
+ZT
+ZT
+SY
+SY
+SY
+ZT
+ZT
+SY
+SY
+SY
+ZT
+ZT
+An
+ZT
+ZT
+"}
+(10,1,1) = {"
+An
+ZT
+ZT
+ZT
+ZT
+ZT
+ZT
+SY
+SY
+vv
+SY
+SY
+SY
+SY
+SY
+SY
+ZT
+An
+ZT
+An
+"}
+(11,1,1) = {"
+An
+ZT
+ZT
+ZT
+ZT
+ZT
+ZT
+SY
+SY
+SY
+SY
+SY
+SY
+SY
+SY
+SY
+ZT
+An
+ZT
+An
+"}
+(12,1,1) = {"
+An
+ZT
+ZT
+ZT
+ZT
+ZT
+ZT
+SY
+SY
+SY
+ZT
+ZT
+SY
+SY
+SY
+ZT
+ZT
+An
+ZT
+ZT
+"}
+(13,1,1) = {"
+An
+ZT
+ZT
+ZT
+co
+ZT
+ZT
+SY
+SY
+SY
+SY
+ZT
+SY
+SY
+SY
+SY
+ZT
+An
+ZT
+An
+"}
+(14,1,1) = {"
+An
+ZT
+ZT
+ZT
+ZT
+ZT
+ZT
+ZT
+SY
+SY
+SY
+SY
+SY
+SY
+ZT
+ZT
+An
+An
+ZT
+An
+"}
+(15,1,1) = {"
+An
+kx
+ZT
+ZT
+ZT
+ZT
+ZT
+ZT
+ZT
+SY
+SY
+SY
+SY
+ZT
+ZT
+ZT
+An
+ZT
+ZT
+An
+"}
+(16,1,1) = {"
+An
+ZT
+ZT
+ZT
+ZT
+ZT
+ZT
+ZT
+ZT
+ZT
+ZT
+ZT
+ZT
+ZT
+ZT
+ZT
+ZT
+ZT
+ZT
+An
+"}
+(17,1,1) = {"
+An
+An
+ZT
+kx
+ZT
+ZT
+ZT
+ZT
+An
+An
+An
+An
+An
+ZT
+ZT
+ZT
+ZT
+ZT
+ZT
+An
+"}
+(18,1,1) = {"
+PH
+An
+An
+ZT
+ZT
+ZT
+ZT
+ZT
+An
+Rh
+wU
+wg
+An
+ZT
+ZT
+ZT
+ZT
+ZT
+An
+An
+"}
+(19,1,1) = {"
+PH
+PH
+An
+An
+ZT
+ZT
+ZT
+ZT
+An
+Sa
+Ro
+Je
+vT
+ZT
+ZT
+ZT
+ZT
+An
+An
+PH
+"}
+(20,1,1) = {"
+PH
+PH
+PH
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+An
+PH
+PH
+"}

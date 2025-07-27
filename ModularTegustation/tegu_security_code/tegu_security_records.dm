@@ -4,10 +4,10 @@
 
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C
-		threatlevel = H.assess_threat_tegu(judgement_criteria, src, FALSE, null, weaponcheck=CALLBACK(src, .proc/check_for_weapons))
+		threatlevel = H.assess_threat_tegu(judgement_criteria, src, FALSE, null, weaponcheck=CALLBACK(src, PROC_REF(check_for_weapons)))
 		return
 
-	threatlevel = C.assess_threat(judgement_criteria, weaponcheck=CALLBACK(src, .proc/check_for_weapons))
+	threatlevel = C.assess_threat(judgement_criteria, weaponcheck=CALLBACK(src, PROC_REF(check_for_weapons)))
 
 
 
@@ -23,7 +23,7 @@
 		if(sec_comp)
 			sec_comp.secbot_entry(C, src, arrest_type, threat, location)
 			arrest_cooldown += C
-			addtimer(CALLBACK(src, /mob/living/simple_animal/bot/secbot.proc/sec_record_bot_cooldown_end,C), SEC_RECORD_BOT_COOLDOWN)
+			addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/simple_animal/bot/secbot, sec_record_bot_cooldown_end),C), SEC_RECORD_BOT_COOLDOWN)
 			return
 
 /mob/living/simple_animal/bot/secbot/proc/sec_record_bot_cooldown_end(mob/living/carbon/C)
@@ -113,10 +113,10 @@
 	temp = ""
 	if(check_input_clearance(usr, TRUE))
 		temp += "<h5><b>Are you sure you wish to delete all Security records?</b></h5><br>"
-		temp += "<a href='?src=[REF(src)];choice=Purge All Records'>Yes</a><br>"
-		temp += "<a href='?src=[REF(src)];choice=Clear Screen'>No</a>"
+		temp += "<a href='byond://?src=[REF(src)];choice=Purge All Records'>Yes</a><br>"
+		temp += "<a href='byond://?src=[REF(src)];choice=Clear Screen'>No</a>"
 	else
-		temp += "<a href='?src=[REF(src)];choice=Clear Screen'><b>[SEC_RECORD_BAD_CLEARANCE]</b></a>"
+		temp += "<a href='byond://?src=[REF(src)];choice=Clear Screen'><b>[SEC_RECORD_BAD_CLEARANCE]</b></a>"
 	return temp
 
 
@@ -124,9 +124,9 @@
 	temp = ""
 	if(check_input_clearance(usr, TRUE))
 		temp = "<h5><b>Are you sure you wish to delete the record ([type])?</b></h5><br>"
-		temp += "<a href='?src=[REF(src)];choice=Delete Record ([type]) Execute'>Yes</a><br>"
-		temp += "<a href='?src=[REF(src)];choice=Clear Screen'>No</a>"
+		temp += "<a href='byond://?src=[REF(src)];choice=Delete Record ([type]) Execute'>Yes</a><br>"
+		temp += "<a href='byond://?src=[REF(src)];choice=Clear Screen'>No</a>"
 	else
-		temp += "<a href='?src=[REF(src)];choice=Clear Screen'><b>[SEC_RECORD_BAD_CLEARANCE]</b></a>"
+		temp += "<a href='byond://?src=[REF(src)];choice=Clear Screen'><b>[SEC_RECORD_BAD_CLEARANCE]</b></a>"
 
 	return temp

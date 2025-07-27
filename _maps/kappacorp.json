@@ -1,0 +1,15 @@
+{
+	"version": 1,
+	"map_name": "Facility J-777 ARENA",
+	"map_path": "map_files/Kappa",
+	"map_file": [
+		"kappacorp.dmm"
+	],
+	"space_ruin_levels": 0,
+	"space_empty_levels": 0,
+	"shuttles": {
+		"emergency": "emergency_alpha"
+	},
+	"minetype": "none",
+	"maptype": "standard"
+}

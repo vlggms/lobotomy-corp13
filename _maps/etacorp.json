@@ -1,0 +1,17 @@
+{
+	"version": 1,
+	"map_name": "Facility G-412 CROSS",
+	"map_path": "map_files/Eta",
+	"map_file": [
+		"etacorp.dmm"
+	],
+	"traits": [
+		{
+			"Baseturf": "/turf/open/floor/plating/asteroid"
+		}
+	],
+	"space_ruin_levels": 0,
+	"space_empty_levels": 0,
+	"minetype": "none",
+	"maptype": "standard"
+}

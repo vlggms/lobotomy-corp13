@@ -4,6 +4,7 @@
 	desc = "A ham radio resting on a table."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "radio"
+	portrait = "khz"
 	maxHealth = 400
 	health = 400
 	threat_level = HE_LEVEL
@@ -13,14 +14,39 @@
 		ABNORMALITY_WORK_ATTACHMENT = 40,
 		ABNORMALITY_WORK_REPRESSION = 40,
 		"Input One" = 0,		//These should never be used, but it's here for brevity
-		"Input Zero" = 0
+		"Input Zero" = 0,
 	)
 	work_damage_amount = 12
 	work_damage_type = WHITE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/envy
 
 	ego_list = list(
 		/datum/ego_datum/weapon/transmission,
-		/datum/ego_datum/armor/transmission
+		/datum/ego_datum/armor/transmission,
+	)
+	gift_type = /datum/ego_gifts/transmission
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/quiet_day = 1.5,
+		/mob/living/simple_animal/hostile/abnormality/mhz = 1.5,
+		/mob/living/simple_animal/hostile/abnormality/army = 1.5,
+	)
+
+	observation_prompt = "A faint buzzing enters your ears from your radio.<br>\
+		Sounds of gunshots. <br>Sounds of a battle. <br>\
+		\"Sierra... Oscar... Sierra...\" <br>\
+		What could this callsign mean? <br>\
+		Are you in danger, or is someone else? <br>What will you do?"
+	observation_choices = list(
+		"Tune your radio to 680 KHz" = list(TRUE, "Suddenly, you hear something from your radio, clear as day. <br>\
+			\"We hear you loud and clear.\" <br>\
+			\"You've done a great service.\" <br>\
+			The operator on the other end continues babbling, completely obscured by the returning static. <br>\
+			However, it seems you somehow managed solve their problem somehow."),
+		"Ignore it" = list(FALSE, "You turn off your radio and leave the room. <br>\
+			All abnormalities are dangerous, right? <br>\
+			This cry for help could just be a trick to make you let your guard down. <br>\
+			If there is anyone really out there, they are going to have to fend for themselves."),
 	)
 
 	var/input
@@ -40,7 +66,7 @@
 		InputZero(user)
 		return FALSE
 	else if(work_type == "Input Zero" || work_type == "Input Zero" && !isopen)
-		to_chat(user, "<span class='notice'>You have not recieved an input.</span>")
+		to_chat(user, span_notice("You have not recieved an input."))
 		return FALSE
 	return TRUE
 
@@ -51,17 +77,17 @@
 	//Heal everyone and reset the bit calculator
 	if(bitcalculator == input && isopen)
 		for(var/mob/living/carbon/human/H in GLOB.player_list)
-			H.adjustSanityLoss(10)
-			to_chat(H, "<span class='notice'>You feel a pleasant sound.</span>")
+			H.adjustSanityLoss(-10)
+			to_chat(H, span_notice("You feel a pleasant sound."))
 
 	//If you fuck it up
 	else if(bitcalculator != input && bitcalculator != 0 && isopen)
 		for(var/mob/living/carbon/human/H in GLOB.player_list)
 			if(z != H.z)
 				continue
-			H.adjustSanityLoss(-30)
+			H.adjustSanityLoss(30)
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(H), pick(GLOB.alldirs))
-			to_chat(H, "<span class='notice'>You feel a crackling noise in your head.</span>")
+			to_chat(H, span_notice("You feel a crackling noise in your head."))
 	bitcalculator = 0
 
 	//If you're new, grab a callsign paper. Also set new input
@@ -77,25 +103,25 @@
 	//Selecting input and playing sound effect
 	switch(output)
 		if(1)
-			playsound(get_turf(src), 'sound/abnormalities/khz/Clip1.ogg', 200, 8)
+			playsound(get_turf(src), 'sound/abnormalities/khz/Clip1.ogg', 300, 8)
 			input = 8	//01000
 		if(2)
-			playsound(get_turf(src), 'sound/abnormalities/khz/Clip2.ogg', 200, 8)
+			playsound(get_turf(src), 'sound/abnormalities/khz/Clip2.ogg', 300, 8)
 			input = 25	//11001
 		if(3)
-			playsound(get_turf(src), 'sound/abnormalities/khz/Clip3.ogg', 200, 8)
+			playsound(get_turf(src), 'sound/abnormalities/khz/Clip3.ogg', 300, 8)
 			input = 24	//11000
 		if(4)
-			playsound(get_turf(src), 'sound/abnormalities/khz/Clip4.ogg', 200, 8)
+			playsound(get_turf(src), 'sound/abnormalities/khz/Clip4.ogg', 300, 8)
 			input = 13	//01101
 		if(5)
-			playsound(get_turf(src), 'sound/abnormalities/khz/Clip5.ogg', 200, 8)
+			playsound(get_turf(src), 'sound/abnormalities/khz/Clip5.ogg', 300, 8)
 			input = 26	//11010
 		if(6)
-			playsound(get_turf(src), 'sound/abnormalities/khz/Clip6.ogg', 200, 8)
+			playsound(get_turf(src), 'sound/abnormalities/khz/Clip6.ogg', 300, 8)
 			input = 16	//10000
 		if(7)
-			playsound(get_turf(src), 'sound/abnormalities/khz/Clip7.ogg', 200, 8)
+			playsound(get_turf(src), 'sound/abnormalities/khz/Clip7.ogg', 300, 8)
 			input = 28	//11100
 
 //This is for sending messages back
@@ -103,17 +129,17 @@
 	if (bitposition>=0)
 		bitcalculator += 1*2**bitposition
 		bitposition -=1
-		to_chat(user, "<span class='notice'>You input a one.</span>")
+		to_chat(user, span_notice("You input a one."))
 	else
-		to_chat(user, "<span class='notice'>You can only input 5 digits.</span>")
+		to_chat(user, span_notice("You can only input 5 digits."))
 
 /mob/living/simple_animal/hostile/abnormality/khz/proc/InputZero(mob/living/carbon/human/user)
 	if (bitposition>=0)
 		bitcalculator += 0*2**bitposition
 		bitposition -=1
-		to_chat(user, "<span class='notice'>You input a zero.</span>")
+		to_chat(user, span_notice("You input a zero."))
 	else
-		to_chat(user, "<span class='notice'>You can only input 5 digits.</span>")
+		to_chat(user, span_notice("You can only input 5 digits."))
 
 //What happens if the stars align
 /mob/living/simple_animal/hostile/abnormality/khz/WorkChance(mob/living/carbon/human/user, chance)
@@ -127,7 +153,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/khz/proc/active()
 	icon_state = "radio-on"
-	addtimer(CALLBACK(src, .proc/deactive), 3 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(deactive)), 3 SECONDS)
 
 /mob/living/simple_animal/hostile/abnormality/khz/proc/deactive()
 	icon_state = "radio"
@@ -142,6 +168,6 @@
 	Hotel - Oscar - Charlie	> 01101	<br>
 	Whiskey - Echo- Whiskey	> 11010	<br>
 	Delta - Alpha - Xray	> 10000	<br>
-	Lima - Alpha - Delta	> 01101	<br>
+	Lima - Alpha - Delta	> 11100	<br>
 	"}
 

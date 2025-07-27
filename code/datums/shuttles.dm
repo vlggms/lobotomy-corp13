@@ -178,6 +178,38 @@
 	port_id = "epsilon"
 	can_be_bought = FALSE
 
+/datum/map_template/shuttle/secondary
+	port_id = "secondary"
+	can_be_bought = FALSE
+
+/datum/map_template/shuttle/iotamain
+	port_id = "iotamain"
+	can_be_bought = FALSE
+
+/datum/map_template/shuttle/iotaextra
+	port_id = "iotaextra"
+	can_be_bought = FALSE
+
+/datum/map_template/shuttle/iotafinal
+	port_id = "iotafinal"
+	can_be_bought = FALSE
+
+/datum/map_template/shuttle/zetadepartwest
+	port_id = "zetadepartwest"
+	can_be_bought = FALSE
+
+/datum/map_template/shuttle/zetadeparteast
+	port_id = "zetadeparteast"
+	can_be_bought = FALSE
+
+/datum/map_template/shuttle/deltamain
+	port_id = "deltamain"
+	can_be_bought = FALSE
+
+/datum/map_template/shuttle/district4/elevator
+	port_id = "district4"
+	can_be_bought = FALSE
+
 // Shuttles start here:
 
 /datum/map_template/shuttle/manager/elevator
@@ -187,6 +219,42 @@
 /datum/map_template/shuttle/epsilon/elevator
 	suffix = "elevator"
 	name = "epsilon elevator"
+
+/datum/map_template/shuttle/secondary/epsilon
+	suffix = "epsilon"
+	name = "epsilon backup"
+
+/datum/map_template/shuttle/iotamain/elevator
+	suffix = "elevator"
+	name = "iotamain elevator"
+
+/datum/map_template/shuttle/iotaextra/elevator
+	suffix = "elevator"
+	name = "iotaextra elevator"
+
+/datum/map_template/shuttle/iotafinal/elevator
+	suffix = "elevator"
+	name = "iotafinal elevator"
+
+/datum/map_template/shuttle/zetadepartwest/elevator
+	suffix = "elevator"
+	name = "zetadepartwest elevator"
+
+/datum/map_template/shuttle/zetadeparteast/elevator
+	suffix = "elevator"
+	name = "zetadeparteast elevator"
+
+/datum/map_template/shuttle/deltamain/elevator
+	suffix = "elevator"
+	name = "deltamain elevator"
+
+/datum/map_template/shuttle/manager_broken/elevator//enkephalin rush
+	suffix = "elevator"
+	name = "rustic manager elevator"
+
+/datum/map_template/shuttle/district4/elevator
+	suffix = "elevator"
+	name = "district 4 elevator"
 
 /datum/map_template/shuttle/emergency/backup
 	suffix = "backup"
@@ -669,3 +737,11 @@
 /datum/map_template/shuttle/snowdin/excavation
 	suffix = "excavation"
 	name = "Snowdin Excavation Elevator"
+
+/datum/map_template/shuttle/quest
+	port_id = "quest"
+	can_be_bought = FALSE
+
+/datum/map_template/shuttle/quest/bus
+	suffix = "coolbus"
+	name = "quest bus"

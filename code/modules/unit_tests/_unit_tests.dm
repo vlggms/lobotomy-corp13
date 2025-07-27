@@ -37,6 +37,7 @@
 #define UNIT_TEST_FAILED 1
 #define UNIT_TEST_SKIPPED 2
 
+#include "abno_code.dm"
 #include "anchored_mobs.dm"
 #include "bespoke_id.dm"
 #include "binary_insert.dm"
@@ -65,6 +66,7 @@
 #include "reagent_id_typos.dm"
 #include "reagent_mod_expose.dm"
 #include "reagent_mod_procs.dm"
+#include "reagent_names.dm"
 #include "reagent_recipe_collisions.dm"
 #include "resist.dm"
 #include "say.dm"

@@ -28,7 +28,7 @@
 	movement_type = GROUND
 	pressure_resistance = 100
 	del_on_death = TRUE
-	deathmessage = "implodes into itself"
+	death_message = "implodes into itself"
 	faction = list("heretics")
 	simple_mob_flags = SILENCE_RANGED_MESSAGE
 	///Innate spells that are supposed to be added when a beast is created
@@ -81,11 +81,11 @@
 	if(linked_mobs[mob_linked])
 		return FALSE
 
-	to_chat(mob_linked, "<span class='notice'>You feel something new enter your sphere of mind, you hear whispers of people far away, screeches of horror and a huming of welcome to [src]'s Mansus Link.</span>")
+	to_chat(mob_linked, span_notice("You feel something new enter your sphere of mind, you hear whispers of people far away, screeches of horror and a huming of welcome to [src]'s Mansus Link."))
 	var/datum/action/innate/mansus_speech/action = new(src)
 	linked_mobs[mob_linked] = action
 	action.Grant(mob_linked)
-	RegisterSignal(mob_linked, list(COMSIG_LIVING_DEATH, COMSIG_PARENT_QDELETING), .proc/unlink_mob)
+	RegisterSignal(mob_linked, list(COMSIG_LIVING_DEATH, COMSIG_PARENT_QDELETING), PROC_REF(unlink_mob))
 	return TRUE
 
 /mob/living/simple_animal/hostile/eldritch/raw_prophet/proc/unlink_mob(mob/living/mob_linked)
@@ -97,8 +97,8 @@
 	var/datum/action/innate/mansus_speech/action = linked_mobs[mob_linked]
 	action.Remove(mob_linked)
 	qdel(action)
-	to_chat(mob_linked, "<span class='notice'>Your mind shatters as the [src]'s Mansus Link leaves your mind.</span>")
-	INVOKE_ASYNC(mob_linked, /mob.proc/emote, "scream")
+	to_chat(mob_linked, span_notice("Your mind shatters as the [src]'s Mansus Link leaves your mind."))
+	INVOKE_ASYNC(mob_linked, TYPE_PROC_REF(/mob, emote), "scream")
 	//micro stun
 	mob_linked.AdjustParalyzed(0.5 SECONDS)
 	linked_mobs -= mob_linked
@@ -146,7 +146,7 @@
 		stack_trace("Eldritch Armsy created with invalid len ([len]). Reverting to 3.")
 		len = 3 //code breaks below 3, let's just not allow it.
 	oldloc = loc
-	RegisterSignal(src,COMSIG_MOVABLE_MOVED,.proc/update_chain_links)
+	RegisterSignal(src,COMSIG_MOVABLE_MOVED, PROC_REF(update_chain_links))
 	if(!spawn_more)
 		return
 	allow_pulling = TRUE

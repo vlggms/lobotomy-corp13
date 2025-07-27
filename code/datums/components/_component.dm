@@ -4,7 +4,7 @@
  * The component datum
  *
  * A component should be a single standalone unit
- * of functionality, that works by receiving signals from it's parent
+ * of functionality, that works by receiving signals from its parent
  * object to provide some single functionality (i.e a slippery component)
  * that makes the object it's attached to cause people to slip over.
  * Useful when you want shared behaviour independent of type inheritance
@@ -216,6 +216,9 @@
  * * sig_typeor_types Signal string key or list of signal keys to stop listening to specifically
  */
 /datum/proc/UnregisterSignal(datum/target, sig_type_or_types)
+	if(!target)
+		stack_trace("Unregister Signal called without a target by [src].")
+		return
 	var/list/lookup = target.comp_lookup
 	if(!signal_procs || !signal_procs[target] || !lookup)
 		return

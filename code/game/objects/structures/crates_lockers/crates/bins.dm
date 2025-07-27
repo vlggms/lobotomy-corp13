@@ -24,7 +24,7 @@
 /obj/structure/closet/crate/bin/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/storage/bag/trash))
 		var/obj/item/storage/bag/trash/T = W
-		to_chat(user, "<span class='notice'>You fill the bag.</span>")
+		to_chat(user, span_notice("You fill the bag."))
 		for(var/obj/item/O in src)
 			SEND_SIGNAL(T, COMSIG_TRY_STORAGE_INSERT, O, user, TRUE)
 		T.update_icon()
@@ -36,7 +36,7 @@
 /obj/structure/closet/crate/bin/proc/do_animate()
 	playsound(loc, open_sound, 15, TRUE, -3)
 	flick("animate_largebins", src)
-	addtimer(CALLBACK(src, .proc/do_close), 13)
+	addtimer(CALLBACK(src, PROC_REF(do_close)), 13)
 
 /obj/structure/closet/crate/bin/proc/do_close()
 	playsound(loc, close_sound, 15, TRUE, -3)

@@ -1,0 +1,95 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"t" = (
+/obj/structure/table/wood/fancy/black,
+/obj/item/stack/spacecash/c200,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"x" = (
+/obj/structure/table/wood/fancy/black,
+/obj/item/reagent_containers/food/drinks/bottle/lizardwine,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"M" = (
+/obj/structure/chair/wood{
+	dir = 8
+	},
+/mob/living/simple_animal/hostile/sweeper,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"N" = (
+/obj/machinery/door/airlock/public/glass,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"P" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"R" = (
+/obj/item/candle/infinite{
+	lit = 1
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"S" = (
+/obj/structure/chair/wood{
+	dir = 4
+	},
+/mob/living/simple_animal/hostile/sweeper,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"U" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+U
+U
+U
+U
+U
+"}
+(2,1,1) = {"
+P
+a
+a
+t
+U
+"}
+(3,1,1) = {"
+P
+R
+S
+R
+U
+"}
+(4,1,1) = {"
+P
+a
+x
+a
+U
+"}
+(5,1,1) = {"
+P
+R
+M
+R
+U
+"}
+(6,1,1) = {"
+N
+a
+a
+a
+U
+"}
+(7,1,1) = {"
+U
+U
+U
+U
+U
+"}

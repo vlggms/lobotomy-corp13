@@ -45,8 +45,6 @@
 /area/shuttle/sbc/bay
 	name = "Syndicate Battle Cruiser Shuttle Bay"
 	icon_state = "cargo_bay"
-	mood_bonus = 3
-	mood_message = "<span class='nicegreen'>This place feels so spacious!\n</span>"
 
 /area/shuttle/sbc/armory
 	name = "Syndicate Battle Cruiser Armory"
@@ -55,14 +53,10 @@
 /area/shuttle/sbc/crew
 	name = "Syndicate Battle Cruiser Crew Area"
 	icon_state = "bar"
-	mood_bonus = 5
-	mood_message = "<span class='nicegreen'>I love this place!\n</span>"
 
 /area/shuttle/sbc/supermatter
 	name = "Syndicate Battle Cruiser Engine"
 	icon_state = "engine_sm"
-	mood_bonus = -5
-	mood_message = "<span class='warning'>I feel in constant danger, being near the unstable crystal.\n</span>"
 
 /area/shuttle/sbc/fighter1
 	name = "SBC Fighter 1"
@@ -121,7 +115,7 @@
 	toolspeed = on ? 0.2 : initial(toolspeed)
 	hitsound = on ? 'sound/weapons/blade1.ogg' : "swing_hit"
 	playsound(user, on ? 'sound/weapons/saberon.ogg' : 'sound/weapons/saberoff.ogg', 5, TRUE)
-	to_chat(user, "<span class='warning'>[src] is now [on ? "active" : "concealed"].</span>")
+	to_chat(user, span_warning("[src] is now [on ? "active" : "concealed"]."))
 	update_icon()
 
 /obj/item/crowbar/combat/update_icon_state()

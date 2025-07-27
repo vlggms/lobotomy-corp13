@@ -53,10 +53,6 @@
 					/obj/item/storage/backpack/satchel/med = 4,
 					/obj/item/clothing/suit/hooded/wintercoat/medical = 4,
 					/obj/item/clothing/under/rank/medical/paramedic = 4,
-					/obj/item/clothing/under/rank/medical/paramedic/skirt = 4,
-					/obj/item/clothing/under/rank/medical/doctor/nurse = 4,
-					/obj/item/clothing/head/nursehat = 4,
-					/obj/item/clothing/under/rank/medical/doctor/skirt= 4,
 					/obj/item/clothing/under/rank/medical/doctor/blue = 4,
 					/obj/item/clothing/under/rank/medical/doctor/green = 4,
 					/obj/item/clothing/under/rank/medical/doctor/purple = 4,
@@ -350,7 +346,7 @@
 					/obj/item/clothing/suit/aristocrat/brown = 1,
 					/obj/item/clothing/suit/aristocrat/blue = 1,
 					/obj/item/clothing/shoes/laceup = 2,
-					/obj/item/clothing/accessory/fixer_badge = 2)
+					/obj/item/clothing/accessory/lawyers_badge = 2)
 	refill_canister = /obj/item/vending_refill/wardrobe/law_wardrobe
 	payment_department = ACCOUNT_SRV
 /obj/item/vending_refill/wardrobe/law_wardrobe

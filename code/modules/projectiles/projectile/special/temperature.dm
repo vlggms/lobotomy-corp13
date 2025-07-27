@@ -2,9 +2,8 @@
 	name = "freeze beam"
 	icon_state = "ice_2"
 	damage = 0
-	damage_type = BURN
+	damage_type = ENERGY
 	nodamage = FALSE
-	flag = ENERGY
 	var/temperature = -50 // reduce the body temperature by 50 points
 
 /obj/projectile/temp/on_hit(atom/target, blocked = 0)

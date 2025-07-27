@@ -1,0 +1,230 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"bI" = (
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"Ds" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"MA" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/floor/plasteel/bluespace,
+/area/city/outskirts)
+"MK" = (
+/obj/effect/landmark/department_center,
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"QM" = (
+/turf/open/floor/plasteel/bluespace,
+/area/city/outskirts)
+"QT" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"St" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/plasteel/bluespace,
+/area/city/outskirts)
+"Ue" = (
+/obj/effect/landmark/department_center,
+/turf/open/floor/plasteel/bluespace,
+/area/city/outskirts)
+"WD" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/turf/open/floor/plasteel/bluespace,
+/area/city/outskirts)
+"Xm" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"Xn" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/city/outskirts)
+
+(1,1,1) = {"
+Xn
+QM
+QM
+QM
+QM
+QM
+QM
+bI
+QM
+QM
+Xn
+"}
+(2,1,1) = {"
+Xn
+QM
+St
+St
+QM
+bI
+bI
+bI
+QM
+QM
+Xn
+"}
+(3,1,1) = {"
+Xn
+bI
+bI
+QM
+bI
+Xm
+bI
+QM
+St
+Xn
+Xn
+"}
+(4,1,1) = {"
+Xn
+QM
+QM
+bI
+QM
+bI
+bI
+QM
+QM
+bI
+Xn
+"}
+(5,1,1) = {"
+Xn
+WD
+QT
+bI
+bI
+bI
+QM
+bI
+WD
+WD
+Xn
+"}
+(6,1,1) = {"
+Xn
+Xn
+QM
+QM
+bI
+bI
+bI
+QM
+QM
+QM
+Xn
+"}
+(7,1,1) = {"
+Xn
+Xn
+Xn
+Ds
+bI
+bI
+bI
+bI
+bI
+bI
+Xn
+"}
+(8,1,1) = {"
+Xn
+Xn
+Xn
+bI
+QM
+bI
+QM
+QM
+Ds
+Xn
+Xn
+"}
+(9,1,1) = {"
+Xn
+Xn
+Xn
+St
+bI
+QM
+QM
+bI
+bI
+QM
+Xn
+"}
+(10,1,1) = {"
+Xn
+Xn
+QM
+QM
+bI
+bI
+QM
+bI
+bI
+bI
+Xn
+"}
+(11,1,1) = {"
+Xn
+WD
+QT
+bI
+QM
+MA
+bI
+bI
+WD
+WD
+Xn
+"}
+(12,1,1) = {"
+Xn
+bI
+MK
+bI
+bI
+bI
+bI
+bI
+Ue
+QM
+Xn
+"}
+(13,1,1) = {"
+Xn
+QM
+QM
+QM
+QM
+QM
+QM
+bI
+bI
+bI
+Xn
+"}

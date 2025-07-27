@@ -1,0 +1,116 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"c" = (
+/mob/living/simple_animal/hostile/sweeper,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"j" = (
+/obj/structure/chair/comfy/black{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"t" = (
+/obj/structure/closet/cabinet,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"w" = (
+/obj/effect/decal/cleanable/blood/gibs/up,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"A" = (
+/obj/item/bedsheet/grey,
+/obj/structure/bed,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"K" = (
+/obj/structure/table,
+/obj/item/reagent_containers/pill/salicylic,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"M" = (
+/obj/item/bedsheet/clown,
+/obj/structure/bed/maint,
+/obj/item/bikehorn,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"N" = (
+/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden/crude,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"O" = (
+/obj/structure/table,
+/obj/item/flashlight/lamp/green{
+	pixel_x = -8;
+	pixel_y = 6
+	},
+/obj/item/paper,
+/obj/item/pen,
+/obj/item/reagent_containers/hypospray/medipen/stimpack,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"P" = (
+/obj/structure/barricade/wooden/crude,
+/obj/structure/barricade/wooden,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"R" = (
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"T" = (
+/mob/living/simple_animal/hostile/ordeal/indigo_dawn,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"U" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+U
+U
+U
+U
+U
+"}
+(2,1,1) = {"
+U
+t
+M
+K
+U
+"}
+(3,1,1) = {"
+U
+R
+c
+w
+P
+"}
+(4,1,1) = {"
+U
+U
+U
+U
+U
+"}
+(5,1,1) = {"
+U
+t
+T
+R
+N
+"}
+(6,1,1) = {"
+U
+O
+j
+A
+U
+"}
+(7,1,1) = {"
+U
+U
+U
+U
+U
+"}

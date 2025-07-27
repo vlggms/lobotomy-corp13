@@ -10,6 +10,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 2
 	throw_range = 7
+	var/preassembled = FALSE  //Don't want it calling unconditionally
 
 	var/obj/item/assembly/a_left = null
 	var/obj/item/assembly/a_right = null
@@ -22,6 +23,10 @@
 /obj/item/assembly_holder/IsAssemblyHolder()
 	return TRUE
 
+/obj/item/assembly_holder/Initialize(mapload)
+	if(mapload && preassembled)
+		addtimer(CALLBACK(src, PROC_REF(assemble_contents)), 0)
+	. = ..()
 
 /obj/item/assembly_holder/proc/assemble(obj/item/assembly/A, obj/item/assembly/A2, mob/user)
 	attach(A,user)
@@ -105,7 +110,7 @@
 /obj/item/assembly_holder/screwdriver_act(mob/user, obj/item/tool)
 	if(..())
 		return TRUE
-	to_chat(user, "<span class='notice'>You disassemble [src]!</span>")
+	to_chat(user, span_notice("You disassemble [src]!"))
 	if(a_left)
 		a_left.on_detach()
 		a_left = null
@@ -118,7 +123,7 @@
 /obj/item/assembly_holder/attack_self(mob/user)
 	src.add_fingerprint(user)
 	if(!a_left || !a_right)
-		to_chat(user, "<span class='danger'>Assembly part missing!</span>")
+		to_chat(user, span_danger("Assembly part missing!"))
 		return
 	if(istype(a_left,a_right.type))//If they are the same type it causes issues due to window code
 		switch(alert("Which side would you like to use?",,"Left","Right"))
@@ -142,4 +147,22 @@
 			a_left.pulsed(FALSE)
 	if(master)
 		master.receive_signal()
+	return TRUE
+
+/obj/item/assembly_holder/proc/assemble_contents()
+	var/atom/L = drop_location()
+	for(var/atom/movable/AM in L)
+		if(istype(AM, /obj/item/assembly/)) 
+			attach(AM, null)
+		if(a_right)
+			break
+	if (!a_right)
+		if(a_left)
+			a_left.on_detach()
+			a_left = null
+		qdel(src)
+		return FALSE
+	name = "[a_left.name]-[a_right.name] assembly"
+	a_left.holder_movement()
+	a_right.holder_movement()
 	return TRUE

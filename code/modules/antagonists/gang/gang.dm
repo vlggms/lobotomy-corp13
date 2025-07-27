@@ -21,6 +21,10 @@
 	var/gang_objective = "Be super cool and stuff."
 	/// Whether or not this family member is the first of their family.
 	var/starter_gangster = FALSE
+	/// The gangster's original real name. Used for renaming stuff, kept between gang switches.
+	var/original_name
+	/// Type of team to create when creating the gang in the first place. Used for renames.
+	var/gang_team_type = /datum/team/gang
 
 	/// A reference to the handler datum that manages the families gamemode. In case of no handler (admin-spawned during round), this will be null; this is fine.
 	var/datum/gang_handler/handler
@@ -30,7 +34,7 @@
 
 /datum/antagonist/gang/get_admin_commands()
 	. = ..()
-	.["Give extra equipment"] = CALLBACK(src,.proc/equip_gangster_in_inventory)
+	.["Give extra equipment"] = CALLBACK(src, PROC_REF(equip_gangster_in_inventory))
 
 /datum/antagonist/gang/create_team(team_given) // gets called whenever add_antag_datum() is called on a mind
 	if(team_given)
@@ -155,9 +159,9 @@
 	var/list/report = list()
 	report += "<span class='header'>[name]:</span>"
 	if(!members.len)
-		report += "<span class='redtext'>The family was wiped out!</span>"
+		report += span_redtext("The family was wiped out!")
 	else if(my_gang_datum.check_gang_objective())
-		report += "<span class='greentext'>The family completed their objective!</span>"
+		report += span_greentext("The family completed their objective!")
 	else
 		report += "<span class='redtext big'>The family failed their objective!</span>"
 	report += "Objective: [my_gang_datum.gang_objective]"

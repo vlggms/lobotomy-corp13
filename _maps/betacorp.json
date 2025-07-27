@@ -1,11 +1,17 @@
 {
 	"version": 1,
-	"map_name": "Facility B-939",
+	"map_name": "Facility B-939 BRAVO",
 	"map_path": "map_files/Beta",
 	"map_file": [
 		"betacorp.dmm"
 	],
+	"traits": [
+		{
+			"Baseturf": "/turf/open/floor/plating/asteroid"
+		}
+	],
 	"space_ruin_levels": 0,
 	"space_empty_levels": 0,
-	"minetype": "none"
+	"minetype": "none",
+	"maptype": "standard"
 }

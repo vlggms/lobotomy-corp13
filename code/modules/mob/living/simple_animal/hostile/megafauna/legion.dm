@@ -63,21 +63,21 @@
 	name = "Create Legion Skull"
 	icon_icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
 	button_icon_state = "legion_head"
-	chosen_message = "<span class='colossus'>You are now creating legion skulls.</span>"
+	chosen_message = span_colossus("You are now creating legion skulls.")
 	chosen_attack_num = 1
 
 /datum/action/innate/megafauna_attack/charge_target
 	name = "Charge Target"
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "sniper_zoom"
-	chosen_message = "<span class='colossus'>You are now charging at your target.</span>"
+	chosen_message = span_colossus("You are now charging at your target.")
 	chosen_attack_num = 2
 
 /datum/action/innate/megafauna_attack/create_turrets
 	name = "Create Sentinels"
 	icon_icon = 'icons/mob/lavaland/lavaland_monsters.dmi'
 	button_icon_state = "legion_turret"
-	chosen_message = "<span class='colossus'>You are now creating legion sentinels.</span>"
+	chosen_message = span_colossus("You are now creating legion sentinels.")
 	chosen_attack_num = 3
 
 /mob/living/simple_animal/hostile/megafauna/legion/OpenFire(the_target)
@@ -116,22 +116,22 @@
 
 ///Attack proc. Gives legion some movespeed buffs and switches the AI to melee. At lower sizes, this also throws the skull at the player.
 /mob/living/simple_animal/hostile/megafauna/legion/proc/charge_target()
-	visible_message("<span class='warning'><b>[src] charges!</b></span>")
+	visible_message(span_warning("<b>[src] charges!</b>"))
 	SpinAnimation(speed = 20, loops = 3, parallel = FALSE)
 	ranged = FALSE
 	retreat_distance = 0
 	minimum_distance = 0
 	set_varspeed(0)
 	charging = TRUE
-	addtimer(CALLBACK(src, .proc/reset_charge), 60)
+	addtimer(CALLBACK(src, PROC_REF(reset_charge)), 60)
 	var/mob/living/L = target
 	if(!istype(L) || L.stat != DEAD) //I know, weird syntax, but it just works.
-		addtimer(CALLBACK(src, .proc/throw_thyself), 20)
+		addtimer(CALLBACK(src, PROC_REF(throw_thyself)), 20)
 
 ///This is the proc that actually does the throwing. Charge only adds a timer for this.
 /mob/living/simple_animal/hostile/megafauna/legion/proc/throw_thyself()
 	playsound(src, 'sound/weapons/sonic_jackhammer.ogg', 50, TRUE)
-	throw_at(target, 7, 1.1, src, FALSE, FALSE, CALLBACK(GLOBAL_PROC, .proc/playsound, src, 'sound/effects/meteorimpact.ogg', 50 * size, TRUE, 2), INFINITY)
+	throw_at(target, 7, 1.1, src, FALSE, FALSE, CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(playsound), src, 'sound/effects/meteorimpact.ogg', 50 * size, TRUE, 2), INFINITY)
 
 ///Deals some extra damage on throw impact.
 /mob/living/simple_animal/hostile/megafauna/legion/throw_impact(mob/living/hit_atom, datum/thrownthing/throwingdatum)
@@ -233,7 +233,7 @@
 			pixel_y = 0
 			maxHealth = 200
 	adjustHealth(0) //Make the health HUD look correct.
-	visible_message("<span class='boldannounce'>This is getting out of hands. Now there are three of them!</span>")
+	visible_message(span_boldannounce("This is getting out of hands. Now there are three of them!"))
 	for(var/i in 1 to 2) //Create three skulls in total
 		var/mob/living/simple_animal/hostile/megafauna/legion/L = new(loc)
 		L.setVarsAfterSplit(src)
@@ -274,13 +274,13 @@
 
 /obj/item/staff/storm/attack_self(mob/user)
 	if(storm_nextuse > world.time)
-		to_chat(user, "<span class='warning'>The staff is still recharging!</span>")
+		to_chat(user, span_warning("The staff is still recharging!"))
 		return
 
 	var/area/user_area = get_area(user)
 	var/turf/user_turf = get_turf(user)
 	if(!user_area || !user_turf || (user_area.type in excluded_areas))
-		to_chat(user, "<span class='warning'>Something is preventing you from using the staff here.</span>")
+		to_chat(user, span_warning("Something is preventing you from using the staff here."))
 		return
 	var/datum/weather/A
 	for(var/V in SSweather.processing)
@@ -292,10 +292,10 @@
 	if(A)
 		if(A.stage != END_STAGE)
 			if(A.stage == WIND_DOWN_STAGE)
-				to_chat(user, "<span class='warning'>The storm is already ending! It would be a waste to use the staff now.</span>")
+				to_chat(user, span_warning("The storm is already ending! It would be a waste to use the staff now."))
 				return
-			user.visible_message("<span class='warning'>[user] holds [src] skywards as an orange beam travels into the sky!</span>", \
-			"<span class='notice'>You hold [src] skyward, dispelling the storm!</span>")
+			user.visible_message(span_warning("[user] holds [src] skywards as an orange beam travels into the sky!"), \
+			span_notice("You hold [src] skyward, dispelling the storm!"))
 			playsound(user, 'sound/magic/staff_change.ogg', 200, FALSE)
 			A.wind_down()
 			log_game("[user] ([key_name(user)]) has dispelled a storm at [AREACOORD(user_turf)]")
@@ -310,8 +310,8 @@
 		A.telegraph_duration = storm_telegraph_duration
 		A.end_duration = storm_duration
 
-	user.visible_message("<span class='warning'>[user] holds [src] skywards as red lightning crackles into the sky!</span>", \
-	"<span class='notice'>You hold [src] skyward, calling down a terrible storm!</span>")
+	user.visible_message(span_warning("[user] holds [src] skywards as red lightning crackles into the sky!"), \
+	span_notice("You hold [src] skyward, calling down a terrible storm!"))
 	playsound(user, 'sound/magic/staff_change.ogg', 200, FALSE)
 	A.telegraph()
 	storm_nextuse = world.time + staff_cooldown
@@ -341,7 +341,7 @@
 
 /obj/structure/legionturret/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/set_up_shot), initial_firing_time)
+	addtimer(CALLBACK(src, PROC_REF(set_up_shot)), initial_firing_time)
 
 ///Handles an extremely basic AI
 /obj/structure/legionturret/proc/set_up_shot()
@@ -365,7 +365,7 @@
 	var/datum/point/vector/V = new(T1.x, T1.y, T1.z, 0, 0, angle)
 	generate_tracer_between_points(V, V.return_vector_after_increments(6), /obj/effect/projectile/tracer/legion/tracer, 0, shot_delay, 0, 0, 0, null)
 	playsound(src, 'sound/machines/airlockopen.ogg', 100, TRUE)
-	addtimer(CALLBACK(src, .proc/fire_beam, angle), shot_delay)
+	addtimer(CALLBACK(src, PROC_REF(fire_beam), angle), shot_delay)
 
 ///Called shot_delay after the turret shot the tracer. Shoots a projectile into the same direction.
 /obj/structure/legionturret/proc/fire_beam(angle)

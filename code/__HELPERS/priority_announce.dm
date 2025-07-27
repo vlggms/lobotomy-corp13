@@ -2,6 +2,11 @@
 	if(!text)
 		return
 
+	// All your text is gone. Enjoy.
+	var/datum/suppression/information/I = GetCoreSuppression(/datum/suppression/information)
+	if(istype(I))
+		text = Gibberish(text, TRUE, I.gibberish_value)
+
 	var/announcement
 	if(!sound)
 		sound = SSstation.announcer.get_rand_alert_sound()
@@ -67,7 +72,7 @@
 
 	for(var/mob/M in GLOB.player_list)
 		if(!isnewplayer(M) && M.can_hear())
-			to_chat(M, "<span class='minorannounce'><font color = red>[title]</font color><BR>[message]</span><BR>")
+			to_chat(M, "<BR><span class='minorannounce'>[title]</span><BR><BR><font color = red>[message]</font color><BR><BR>")
 			if(M.client.prefs.toggles & SOUND_ANNOUNCEMENTS)
 				if(alert)
 					SEND_SOUND(M, sound('sound/misc/notice1.ogg'))

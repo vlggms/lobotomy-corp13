@@ -46,7 +46,7 @@
 /obj/machinery/processor/proc/select_recipe(X)
 	for (var/type in subtypesof(/datum/food_processor_process) - /datum/food_processor_process/mob)
 		var/datum/food_processor_process/recipe = new type()
-		if (!istype(X, recipe.input) || !istype(src, recipe.required_machine))
+		if (!istype(X, recipe.input) || !istype(src, recipe.required_machine) || is_type_in_list(X, recipe.blacklist))
 			continue
 		return recipe
 

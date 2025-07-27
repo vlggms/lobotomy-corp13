@@ -1,0 +1,125 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/mob/living/simple_animal/hostile/cockroach/glockroach,
+/obj/structure/chair/stool/bar,
+/turf/open/floor/carpet/orange,
+/area/city/backstreets_room)
+"d" = (
+/obj/structure/table/wood/fancy,
+/obj/item/toy/cards/deck/syndicate,
+/turf/open/floor/carpet/orange,
+/area/city/backstreets_room)
+"l" = (
+/obj/structure/table/wood/fancy,
+/obj/item/toy/cards/deck/cas/black,
+/turf/open/floor/carpet/orange,
+/area/city/backstreets_room)
+"q" = (
+/obj/structure/table/wood/fancy,
+/obj/item/stack/spacecash/c500,
+/turf/open/floor/carpet/orange,
+/area/city/backstreets_room)
+"s" = (
+/obj/item/stack/spacecash/c500,
+/mob/living/simple_animal/hostile/cockroach/glockroach,
+/turf/open/floor/carpet/orange,
+/area/city/backstreets_room)
+"x" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"H" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/carpet/orange,
+/area/city/backstreets_room)
+"O" = (
+/obj/structure/table/wood/fancy,
+/obj/item/toy/cards/deck/cas,
+/turf/open/floor/carpet/orange,
+/area/city/backstreets_room)
+"P" = (
+/mob/living/simple_animal/hostile/cockroach/glockroach,
+/turf/open/floor/carpet/orange,
+/area/city/backstreets_room)
+"W" = (
+/obj/structure/table/wood/fancy,
+/obj/item/toy/cards/deck,
+/turf/open/floor/carpet/orange,
+/area/city/backstreets_room)
+"Y" = (
+/mob/living/simple_animal/hostile/cockroach/glockroach,
+/mob/living/simple_animal/hostile/cockroach/glockroach,
+/turf/open/floor/carpet/orange,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+x
+x
+x
+x
+H
+H
+x
+x
+x
+x
+"}
+(2,1,1) = {"
+x
+s
+a
+a
+P
+P
+a
+a
+P
+x
+"}
+(3,1,1) = {"
+x
+P
+W
+l
+P
+Y
+d
+q
+P
+x
+"}
+(4,1,1) = {"
+x
+P
+O
+W
+P
+P
+W
+q
+P
+x
+"}
+(5,1,1) = {"
+x
+P
+a
+a
+P
+P
+a
+a
+P
+x
+"}
+(6,1,1) = {"
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+"}

@@ -1,0 +1,288 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/industrial_lift,
+/obj/structure/showcase/machinery/cloning_pod,
+/obj/structure/window/reinforced/spawner/east,
+/obj/structure/window/reinforced/spawner/north,
+/obj/structure/window/reinforced/spawner,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"c" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/green{
+	color = "#006400";
+	dir = 6
+	},
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"g" = (
+/obj/structure/barricade/slime{
+	color = "#32a852"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/xenoblood,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"k" = (
+/obj/structure/barricade/slime{
+	color = "#32a852"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/industrial_lift,
+/obj/structure/lootcrate/seven,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"l" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/industrial_lift,
+/obj/structure/showcase/machinery/cloning_pod,
+/obj/structure/window/reinforced/spawner/west,
+/obj/structure/window/reinforced/spawner/north,
+/obj/structure/window/reinforced/spawner,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"n" = (
+/mob/living/simple_animal/hostile/ooze/gelatinous{
+	maxHealth = 750;
+	health = 750
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/xenoblood,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"s" = (
+/obj/structure/barricade/slime{
+	color = "#32a852"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/industrial_lift,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"u" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/closed/indestructible/reinforced{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"x" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/green{
+	color = "#006400";
+	dir = 10
+	},
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"y" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/xenoblood/xsplatter,
+/obj/structure/barricade/slime{
+	color = "#32a852"
+	},
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"z" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/xenoblood,
+/obj/effect/turf_decal/siding/green{
+	color = "#006400";
+	dir = 9
+	},
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"C" = (
+/obj/structure/mineral_door/uranium,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"E" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/green{
+	color = "#006400";
+	dir = 5
+	},
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"J" = (
+/turf/closed/indestructible/reinforced{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"L" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"M" = (
+/obj/structure/barricade/slime{
+	color = "#32a852"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/industrial_lift,
+/obj/structure/showcase/horrific_experiment,
+/obj/structure/window/reinforced/spawner/north,
+/obj/structure/window/reinforced/spawner,
+/obj/structure/window/reinforced/spawner/east,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"O" = (
+/obj/structure/barricade/slime{
+	color = "#32a852"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"P" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/xenoblood/xsplatter,
+/obj/structure/industrial_lift,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"Q" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/industrial_lift,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"U" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/industrial_lift,
+/obj/structure/barricade/slime{
+	color = "#32a852"
+	},
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"V" = (
+/mob/living/simple_animal/hostile/ooze/gelatinous{
+	maxHealth = 750;
+	health = 750
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/industrial_lift,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"W" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/industrial_lift,
+/obj/structure/lootcrate/seven,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+"Y" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/industrial_lift,
+/obj/effect/decal/cleanable/xenoblood/xsplatter,
+/turf/open/floor/plasteel/shuttle{
+	color = "#42f545"
+	},
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+J
+J
+J
+J
+J
+J
+"}
+(2,1,1) = {"
+J
+a
+V
+M
+k
+u
+"}
+(3,1,1) = {"
+J
+P
+O
+g
+U
+u
+"}
+(4,1,1) = {"
+J
+s
+L
+O
+U
+u
+"}
+(5,1,1) = {"
+J
+Q
+z
+x
+Y
+C
+"}
+(6,1,1) = {"
+J
+Q
+E
+c
+Q
+C
+"}
+(7,1,1) = {"
+J
+s
+n
+L
+s
+u
+"}
+(8,1,1) = {"
+J
+U
+y
+g
+k
+u
+"}
+(9,1,1) = {"
+J
+W
+l
+s
+s
+u
+"}
+(10,1,1) = {"
+J
+J
+J
+J
+J
+J
+"}

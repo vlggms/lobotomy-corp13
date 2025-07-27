@@ -8,13 +8,20 @@
 	var/t_is = p_are()
 	var/t_es = p_es()
 	var/obscure_name
+	var/obscure_examine
 
 	if(isliving(user))
 		var/mob/living/L = user
 		if(HAS_TRAIT(L, TRAIT_PROSOPAGNOSIA))
 			obscure_name = TRUE
+		if(HAS_TRAIT(src, TRAIT_UNKNOWN))
+			obscure_name = TRUE
+			obscure_examine = TRUE
 
 	. = list("<span class='info'>*---------*\nThis is <EM>[!obscure_name ? name : "Unknown"]</EM>!")
+
+	if(obscure_examine)
+		return list("<span class='warning'>You're struggling to make out any details...")
 
 	var/obscured = check_obscured_slots()
 	var/skipface = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
@@ -31,26 +38,26 @@
 		. += "[t_He] [t_is] wearing [w_uniform.get_examine_string(user)][accessory_msg]."
 	//head
 	if(head && !(obscured & ITEM_SLOT_HEAD) && !(head.item_flags & EXAMINE_SKIP))
-		. += "[t_He] [t_is] wearing [head.get_examine_string(user)] on [t_his] head."
+		. += "[t_He] [t_is] wearing [head.get_examine_string(user)] on [t_his] head. <A href='byond://?src=[REF(head)];examine=[user.ckey]'>Examine</A>"
 	//suit/armor
 	if(wear_suit && !(wear_suit.item_flags & EXAMINE_SKIP))
-		. += "[t_He] [t_is] wearing [wear_suit.get_examine_string(user)]."
+		. += "[t_He] [t_is] wearing [wear_suit.get_examine_string(user)]. <A href='byond://?src=[REF(wear_suit)];examine=[user.ckey]'>Examine</A>"
 		//suit/armor storage
 		if(s_store && !(obscured & ITEM_SLOT_SUITSTORE) && !(s_store.item_flags & EXAMINE_SKIP))
-			. += "[t_He] [t_is] carrying [s_store.get_examine_string(user)] on [t_his] [wear_suit.name]."
+			. += "[t_He] [t_is] carrying [s_store.get_examine_string(user)] on [t_his] [wear_suit.name]. <A href='byond://?src=[REF(s_store)];examine=[user.ckey]'>Examine</A>"
 	//back
 	if(back && !(back.item_flags & EXAMINE_SKIP))
-		. += "[t_He] [t_has] [back.get_examine_string(user)] on [t_his] back."
+		. += "[t_He] [t_has] [back.get_examine_string(user)] on [t_his] back. <A href='byond://?src=[REF(back)];examine=[user.ckey]'>Examine</A>"
 
 	//Hands
 	for(var/obj/item/I in held_items)
 		if(!(I.item_flags & ABSTRACT) && !(I.item_flags & EXAMINE_SKIP))
-			. += "[t_He] [t_is] holding [I.get_examine_string(user)] in [t_his] [get_held_index_name(get_held_index_of_item(I))]."
+			. += "[t_He] [t_is] holding [I.get_examine_string(user)] in [t_his] [get_held_index_name(get_held_index_of_item(I))]. <A href='byond://?src=[REF(I)];examine=[user.ckey]'>Examine</A>"
 
 	var/datum/component/forensics/FR = GetComponent(/datum/component/forensics)
 	//gloves
 	if(gloves && !(obscured & ITEM_SLOT_GLOVES) && !(gloves.item_flags & EXAMINE_SKIP))
-		. += "[t_He] [t_has] [gloves.get_examine_string(user)] on [t_his] hands."
+		. += "[t_He] [t_has] [gloves.get_examine_string(user)] on [t_his] hands. <A href='byond://?src=[REF(gloves)];examine=[user.ckey]'>Examine</A>"
 	else if(FR && length(FR.blood_DNA))
 		if(num_hands)
 			. += "<span class='warning'>[t_He] [t_has] [num_hands > 1 ? "" : "a"] blood-stained hand[num_hands > 1 ? "s" : ""]!</span>"
@@ -66,33 +73,36 @@
 
 	//belt
 	if(belt && !(belt.item_flags & EXAMINE_SKIP))
-		. += "[t_He] [t_has] [belt.get_examine_string(user)] about [t_his] waist."
+		. += "[t_He] [t_has] [belt.get_examine_string(user)] about [t_his] waist. <A href='byond://?src=[REF(belt)];examine=[user.ckey]'>Examine</A>"
 
 	//shoes
 	if(shoes && !(obscured & ITEM_SLOT_FEET)  && !(shoes.item_flags & EXAMINE_SKIP))
-		. += "[t_He] [t_is] wearing [shoes.get_examine_string(user)] on [t_his] feet."
+		. += "[t_He] [t_is] wearing [shoes.get_examine_string(user)] on [t_his] feet. <A href='byond://?src=[REF(shoes)];examine=[user.ckey]'>Examine</A>"
 
 	//mask
 	if(wear_mask && !(obscured & ITEM_SLOT_MASK)  && !(wear_mask.item_flags & EXAMINE_SKIP))
-		. += "[t_He] [t_has] [wear_mask.get_examine_string(user)] on [t_his] face."
+		. += "[t_He] [t_has] [wear_mask.get_examine_string(user)] on [t_his] face. <A href='byond://?src=[REF(wear_mask)];examine=[user.ckey]'>Examine</A>"
 
 	if(wear_neck && !(obscured & ITEM_SLOT_NECK)  && !(wear_neck.item_flags & EXAMINE_SKIP))
-		. += "[t_He] [t_is] wearing [wear_neck.get_examine_string(user)] around [t_his] neck."
+		. += "[t_He] [t_is] wearing [wear_neck.get_examine_string(user)] around [t_his] neck. <A href='byond://?src=[REF(wear_neck)];examine=[user.ckey]'>Examine</A>"
 
 	//eyes
 	if(!(obscured & ITEM_SLOT_EYES) )
 		if(glasses  && !(glasses.item_flags & EXAMINE_SKIP))
-			. += "[t_He] [t_has] [glasses.get_examine_string(user)] covering [t_his] eyes."
+			. += "[t_He] [t_has] [glasses.get_examine_string(user)] covering [t_his] eyes. <A href='byond://?src=[REF(glasses)];examine=[user.ckey]'>Examine</A>"
 		else if(eye_color == BLOODCULT_EYE && iscultist(src) && HAS_TRAIT(src, CULT_EYES))
 			. += "<span class='warning'><B>[t_His] eyes are glowing an unnatural red!</B></span>"
 
 	//ears
 	if(ears && !(obscured & ITEM_SLOT_EARS) && !(ears.item_flags & EXAMINE_SKIP))
-		. += "[t_He] [t_has] [ears.get_examine_string(user)] on [t_his] ears."
+		. += "[t_He] [t_has] [ears.get_examine_string(user)] on [t_his] ears. <A href='byond://?src=[REF(ears)];examine=[user.ckey]'>Examine</A>"
 
 	//ID
 	if(wear_id && !(wear_id.item_flags & EXAMINE_SKIP))
-		. += "[t_He] [t_is] wearing [wear_id.get_examine_string(user)]."
+		. += "[t_He] [t_is] wearing [wear_id.get_examine_string(user)]. <A href='byond://?src=[REF(wear_id)];examine=[user.ckey]'>Examine</A>"
+
+	if(LAZYLEN(attributes) && (isobserver(user) || HAS_TRAIT(user, TRAIT_ATTRIBUTES_VISION)))
+		. += "<A href='byond://?src=[REF(src)];see_attributes=1'>Check Attributes</A>"
 
 	//Status effects
 	var/list/status_examines = status_effect_examines()
@@ -225,10 +235,7 @@
 	if(nutrition < NUTRITION_LEVEL_STARVING - 50)
 		msg += "[t_He] [t_is] severely malnourished.\n"
 	else if(nutrition >= NUTRITION_LEVEL_FAT)
-		if(user.nutrition < NUTRITION_LEVEL_STARVING - 50)
-			msg += "[t_He] [t_is] plump and delicious looking - Like a fat little piggy. A tasty piggy.\n"
-		else
-			msg += "[t_He] [t_is] quite chubby.\n"
+		msg += "[t_He] [t_is] quite chubby.\n"
 	switch(disgust)
 		if(DISGUST_LEVEL_GROSS to DISGUST_LEVEL_VERYGROSS)
 			msg += "[t_He] look[p_s()] a bit grossed out.\n"
@@ -325,10 +332,6 @@
 					msg += "[t_He] seem[p_s()] winded.\n"
 				if (getToxLoss() >= 10)
 					msg += "[t_He] seem[p_s()] sickly.\n"
-				var/datum/component/mood/mood = src.GetComponent(/datum/component/mood)
-				if(mood.sanity <= SANITY_DISTURBED)
-					msg += "[t_He] seem[p_s()] distressed.\n"
-					SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "empath", /datum/mood_event/sad_empath, src)
 				if (is_blind())
 					msg += "[t_He] appear[p_s()] to be staring off into space.\n"
 				if (HAS_TRAIT(src, TRAIT_DEAF))
@@ -342,7 +345,6 @@
 
 			if(HAS_TRAIT(user, TRAIT_SPIRITUAL) && mind?.holy_role)
 				msg += "[t_He] [t_has] a holy aura about [t_him].\n"
-				SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "religious_comfort", /datum/mood_event/religiously_comforted)
 
 		switch(stat)
 			if(UNCONSCIOUS, HARD_CRIT)
@@ -354,11 +356,17 @@
 					msg += "[t_He] [t_has] a stupid expression on [t_his] face.\n"
 		if(getorgan(/obj/item/organ/brain))
 			if(ai_controller?.ai_status == AI_STATUS_ON)
-				msg += "<span class='deadsay'>[t_He] do[t_es]n't appear to be [t_him]self.</span>\n"
+				if(istype(ai_controller, /datum/ai_controller/insane))
+					msg += span_danger("<b>[t_He] [t_is] completely out of [t_his] mind!</b>\n")
+				else
+					msg += "<span class='deadsay'>[t_He] do[t_es]n't appear to be [t_him]self.</span>\n"
 			if(!key)
-				msg += "<span class='deadsay'>[t_He] [t_is] totally catatonic. The stresses of life in deep-space must have been too much for [t_him]. Any recovery is unlikely.</span>\n"
+				var/mob/dead/observer/ghost = get_ghost()
+				if(!ghost || !ghost.client)
+					msg += "<span class='deadsay'>[t_He] [t_is] totally catatonic. The stresses of life in deep-space must have been too much for [t_him]. Any recovery is unlikely.</span>\n"
 			else if(!client)
-				msg += "[t_He] [t_has] a blank, absent-minded stare and appears completely unresponsive to anything. [t_He] may snap out of it soon.\n"
+//				msg += "[t_He] [t_has] a blank, absent-minded stare and appears completely unresponsive to anything. [t_He] may snap out of it soon.\n" // LOBOTOMYCORPORATION EDIT OLD
+				msg += "[t_He] [t_has] a blank, absent-minded stare and [t_has] been completely unresponsive to anything for [round(((world.time - lastclienttime) / (1 MINUTES)),1)] minutes. [t_He] may snap out of it soon.\n" // LOBOTOMYCORPORATION EDIT NEW
 
 	var/scar_severity = 0
 	for(var/i in all_scars)
@@ -388,7 +396,7 @@
 	if(perpname && (HAS_TRAIT(user, TRAIT_SECURITY_HUD) || HAS_TRAIT(user, TRAIT_MEDICAL_HUD)))
 		var/datum/data/record/R = find_record("name", perpname, GLOB.data_core.general)
 		if(R)
-			. += "<span class='deptradio'>Rank:</span> [R.fields["rank"]]\n<a href='?src=[REF(src)];hud=1;photo_front=1'>\[Front photo\]</a><a href='?src=[REF(src)];hud=1;photo_side=1'>\[Side photo\]</a>"
+			. += "<span class='deptradio'>Rank:</span> [R.fields["rank"]]\n<a href='byond://?src=[REF(src)];hud=1;photo_front=1'>\[Front photo\]</a><a href='byond://?src=[REF(src)];hud=1;photo_side=1'>\[Side photo\]</a>"
 		if(HAS_TRAIT(user, TRAIT_MEDICAL_HUD))
 			var/cyberimp_detect
 			for(var/obj/item/organ/cyberimp/CI in internal_organs)
@@ -399,13 +407,13 @@
 				. += "<span class='notice ml-2'>[cyberimp_detect]</span>"
 			if(R)
 				var/health_r = R.fields["p_stat"]
-				. += "<a href='?src=[REF(src)];hud=m;p_stat=1'>\[[health_r]\]</a>"
+				. += "<a href='byond://?src=[REF(src)];hud=m;p_stat=1'>\[[health_r]\]</a>"
 				health_r = R.fields["m_stat"]
-				. += "<a href='?src=[REF(src)];hud=m;m_stat=1'>\[[health_r]\]</a>"
+				. += "<a href='byond://?src=[REF(src)];hud=m;m_stat=1'>\[[health_r]\]</a>"
 			R = find_record("name", perpname, GLOB.data_core.medical)
 			if(R)
-				. += "<a href='?src=[REF(src)];hud=m;evaluation=1'>\[Medical evaluation\]</a><br>"
-			. += "<a href='?src=[REF(src)];hud=m;quirk=1'>\[See quirks\]</a>"
+				. += "<a href='byond://?src=[REF(src)];hud=m;evaluation=1'>\[Medical evaluation\]</a><br>"
+			. += "<a href='byond://?src=[REF(src)];hud=m;quirk=1'>\[See quirks\]</a>"
 
 		if(HAS_TRAIT(user, TRAIT_SECURITY_HUD))
 			if(!user.stat && user != src)
@@ -416,12 +424,12 @@
 				if(R)
 					criminal = R.fields["criminal"]
 
-				. += "<span class='deptradio'>Criminal status:</span> <a href='?src=[REF(src)];hud=s;status=1'>\[[criminal]\]</a>"
-				. += jointext(list("<span class='deptradio'>Security record:</span> <a href='?src=[REF(src)];hud=s;view=1'>\[View\]</a>",
-					"<a href='?src=[REF(src)];hud=s;add_citation=1'>\[Add citation\]</a>",
-					"<a href='?src=[REF(src)];hud=s;add_crime=1'>\[Add crime\]</a>",
-					"<a href='?src=[REF(src)];hud=s;view_comment=1'>\[View comment log\]</a>",
-					"<a href='?src=[REF(src)];hud=s;add_comment=1'>\[Add comment\]</a>"), "")
+				. += "<span class='deptradio'>Criminal status:</span> <a href='byond://?src=[REF(src)];hud=s;status=1'>\[[criminal]\]</a>"
+				. += jointext(list("<span class='deptradio'>Security record:</span> <a href='byond://?src=[REF(src)];hud=s;view=1'>\[View\]</a>",
+					"<a href='byond://?src=[REF(src)];hud=s;add_citation=1'>\[Add citation\]</a>",
+					"<a href='byond://?src=[REF(src)];hud=s;add_crime=1'>\[Add crime\]</a>",
+					"<a href='byond://?src=[REF(src)];hud=s;view_comment=1'>\[View comment log\]</a>",
+					"<a href='byond://?src=[REF(src)];hud=s;add_comment=1'>\[Add comment\]</a>"), "")
 	else if(isobserver(user))
 		. += "<span class='info'><b>Traits:</b> [get_quirk_string(FALSE, CAT_QUIRK_ALL)]</span>"
 	. += "*---------*</span>"

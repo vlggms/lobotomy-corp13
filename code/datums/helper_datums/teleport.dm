@@ -10,14 +10,13 @@
 // forced: whether or not to ignore no_teleport
 /proc/do_teleport(atom/movable/teleatom, atom/destination, precision=null, forceMove = TRUE, datum/effect_system/effectin=null, datum/effect_system/effectout=null, asoundin=null, asoundout=null, no_effects=FALSE, channel=TELEPORT_CHANNEL_BLUESPACE, forced = FALSE)
 	// teleporting most effects just deletes them
-	var/static/list/delete_atoms = typecacheof(list(
-		/obj/effect,
-		)) - typecacheof(list(
-		/obj/effect/dummy/chameleon,
-		/obj/effect/wisp,
-		/obj/effect/mob_spawn,
-		/obj/effect/immovablerod,
-		))
+	var/static/list/delete_atoms = zebra_typecacheof(list(
+		/obj/effect = TRUE,
+		/obj/effect/dummy/chameleon = FALSE,
+		/obj/effect/wisp = FALSE,
+		/obj/effect/mob_spawn = FALSE,
+		/obj/effect/immovablerod = FALSE,
+	))
 	if(delete_atoms[teleatom.type])
 		qdel(teleatom)
 		return FALSE
@@ -38,7 +37,7 @@
 				precision = max(rand(1,100)*bagholding.len,100)
 				if(isliving(teleatom))
 					var/mob/living/MM = teleatom
-					to_chat(MM, "<span class='warning'>The bluespace interface on your bag of holding interferes with the teleport!</span>")
+					to_chat(MM, span_warning("The bluespace interface on your bag of holding interferes with the teleport!"))
 
 			// if effects are not specified and not explicitly disabled, sparks
 			if ((!effectin || !effectout) && !no_effects)

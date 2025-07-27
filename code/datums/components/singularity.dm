@@ -43,7 +43,7 @@
 /datum/component/singularity/Initialize(
 	bsa_targetable = TRUE,
 	consume_range = 0,
-	consume_callback = CALLBACK(src, .proc/default_singularity_act),
+	consume_callback = CALLBACK(src, PROC_REF(default_singularity_act)),
 	disregard_failed_movements = FALSE,
 	grav_pull = 4,
 	notify_admins = TRUE,
@@ -69,21 +69,21 @@
 	parent.AddElement(/datum/element/forced_gravity, FALSE)
 
 	parent.AddElement(/datum/element/bsa_blocker)
-	RegisterSignal(parent, COMSIG_ATOM_BSA_BEAM, .proc/bluespace_reaction)
+	RegisterSignal(parent, COMSIG_ATOM_BSA_BEAM, PROC_REF(bluespace_reaction))
 
-	RegisterSignal(parent, COMSIG_ATOM_BLOB_ACT, .proc/block_blob)
+	RegisterSignal(parent, COMSIG_ATOM_BLOB_ACT, PROC_REF(block_blob))
 
 	RegisterSignal(parent, list(
 		COMSIG_ATOM_ATTACK_ANIMAL,
 		COMSIG_ATOM_ATTACK_HAND,
 		COMSIG_ATOM_ATTACK_PAW,
-	), .proc/consume_attack)
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, .proc/consume_attackby)
+	), PROC_REF(consume_attack))
+	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(consume_attackby))
 
-	RegisterSignal(parent, COMSIG_MOVABLE_PRE_MOVE, .proc/moved)
-	RegisterSignal(parent, list(COMSIG_ATOM_BUMPED, COMSIG_MOVABLE_CROSSED), .proc/consume)
+	RegisterSignal(parent, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(moved))
+	RegisterSignal(parent, list(COMSIG_ATOM_BUMPED, COMSIG_MOVABLE_CROSSED), PROC_REF(consume))
 
-	RegisterSignal(parent, COMSIG_ATOM_BULLET_ACT, .proc/consume_bullets)
+	RegisterSignal(parent, COMSIG_ATOM_BULLET_ACT, PROC_REF(consume_bullets))
 
 	if (notify_admins)
 		admin_investigate_setup()
@@ -250,10 +250,10 @@
 	var/dir2
 	var/dir3
 	switch (direction)
-		if (NORTH || SOUTH)
+		if (NORTH, SOUTH)
 			dir2 = EAST
 			dir3 = WEST
-		if (EAST || WEST)
+		if (EAST, WEST)
 			dir2 = NORTH
 			dir3 = SOUTH
 	var/turf/farthest_perpendicular_turf = farthest_turf

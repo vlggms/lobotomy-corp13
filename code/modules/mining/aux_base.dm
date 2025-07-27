@@ -188,13 +188,12 @@
 		to_chat(user, "<span class='warning'>This station is not equipped with an auxiliary base. Please contact your Nanotrasen contractor.</span>")
 		return
 	if(!no_restrictions)
-		var/static/list/disallowed_turf_types = typecacheof(list(
-			/turf/closed,
-			/turf/open/lava,
-			/turf/open/indestructible,
-			)) - typecacheof(list(
-			/turf/closed/mineral,
-			))
+		var/static/list/disallowed_turf_types = zebra_typecacheof(list(
+			/turf/closed = TRUE,
+			/turf/open/lava = TRUE,
+			/turf/open/indestructible = TRUE,
+			/turf/closed/mineral = FALSE,
+		))
 
 		if(!is_mining_level(T.z))
 			return BAD_ZLEVEL
@@ -336,7 +335,7 @@
 		return
 
 	anti_spam_cd = 1
-	addtimer(CALLBACK(src, .proc/clear_cooldown), 50)
+	addtimer(CALLBACK(src, PROC_REF(clear_cooldown)), 50)
 
 	var/turf/landing_spot = get_turf(src)
 

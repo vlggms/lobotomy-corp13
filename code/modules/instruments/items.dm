@@ -27,12 +27,12 @@
 	return user.incapacitated() || !((loc == user) || (isturf(loc) && Adjacent(user)))		// sorry, no more TK playing.
 
 /obj/item/instrument/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] begins to play 'Gloomy Sunday'! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	user.visible_message(span_suicide("[user] begins to play 'Gloomy Sunday'! It looks like [user.p_theyre()] trying to commit suicide!"))
 	return (BRUTELOSS)
 
 /obj/item/instrument/attack_self(mob/user)
 	if(!ISADVANCEDTOOLUSER(user))
-		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
+		to_chat(user, span_warning("You don't have the dexterity to do this!"))
 		return TRUE
 	interact(user)
 
@@ -89,8 +89,8 @@
 /obj/item/instrument/piano_synth/headphones/ComponentInitialize()
 	. = ..()
 	AddElement(/datum/element/update_icon_updates_onmob)
-	RegisterSignal(src, COMSIG_SONG_START, .proc/start_playing)
-	RegisterSignal(src, COMSIG_SONG_END, .proc/stop_playing)
+	RegisterSignal(src, COMSIG_SONG_START, PROC_REF(start_playing))
+	RegisterSignal(src, COMSIG_SONG_END, PROC_REF(stop_playing))
 
 /**
  * Called by a component signal when our song starts playing.
@@ -254,12 +254,12 @@
 
 /obj/item/instrument/harmonica/proc/handle_speech(datum/source, list/speech_args)
 	if(song.playing && ismob(loc))
-		to_chat(loc, "<span class='warning'>You stop playing the harmonica to talk...</span>")
+		to_chat(loc, span_warning("You stop playing the harmonica to talk..."))
 		song.playing = FALSE
 
 /obj/item/instrument/harmonica/equipped(mob/M, slot)
 	. = ..()
-	RegisterSignal(M, COMSIG_MOB_SAY, .proc/handle_speech)
+	RegisterSignal(M, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 
 /obj/item/instrument/harmonica/dropped(mob/M)
 	. = ..()

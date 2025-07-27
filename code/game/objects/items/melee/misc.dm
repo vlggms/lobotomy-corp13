@@ -121,8 +121,8 @@
 		var/speedbase = abs((4 SECONDS) / limbs_to_dismember.len)
 		for(bodypart in limbs_to_dismember)
 			i++
-			addtimer(CALLBACK(src, .proc/suicide_dismember, user, bodypart), speedbase * i)
-	addtimer(CALLBACK(src, .proc/manual_suicide, user), (5 SECONDS) * i)
+			addtimer(CALLBACK(src, PROC_REF(suicide_dismember), user, bodypart), speedbase * i)
+	addtimer(CALLBACK(src, PROC_REF(manual_suicide), user), (5 SECONDS) * i)
 	return MANUAL_SUICIDE
 
 /obj/item/melee/sabre/proc/suicide_dismember(mob/living/user, obj/item/bodypart/affecting)
@@ -170,197 +170,6 @@
 	user.visible_message("<span class='suicide'>[user] is stabbing [user.p_them()]self in the throat with [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	playsound(get_turf(src), hitsound, 75, TRUE, -1)
 	return TOXLOSS
-
-/obj/item/melee/classic_baton
-	name = "agent baton"
-	desc = "A cheap weapon for beating Abnormalities or Clerks."
-	icon = 'icons/obj/items_and_weapons.dmi'
-	icon_state = "classic_baton"
-	inhand_icon_state = "classic_baton"
-	worn_icon_state = "classic_baton"
-	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/security_righthand.dmi'
-	slot_flags = ITEM_SLOT_BELT
-	force = 12 //9 hit crit
-	w_class = WEIGHT_CLASS_NORMAL
-
-	var/cooldown_check = 0 // Used interally, you don't want to modify
-
-	var/cooldown = 30 // Default wait time until can stun again.
-	var/knockdown_time_carbon = (2 SECONDS) // Knockdown length for carbons. Only used when targeting legs.
-	var/stun_time_silicon = (5 SECONDS) // If enabled, how long do we stun silicons.
-	var/stamina_damage = 55 // Do we deal stamina damage.
-	var/stunarmor_penetration = 1 // A modifier from 0 to 1. How much armor we can ignore. Less = Ignores more armor.
-	var/affect_silicon = FALSE // Does it stun silicons.
-	var/on_sound // "On" sound, played when switching between able to stun or not.
-	var/on_stun_sound = 'sound/effects/woodhit.ogg' // Default path to sound for when we stun.
-	var/stun_animation = TRUE // Do we animate the "hit" when stunning.
-	var/on = TRUE // Are we on or off.
-
-	var/on_icon_state // What is our sprite when turned on
-	var/off_icon_state // What is our sprite when turned off
-	var/on_inhand_icon_state // What is our in-hand sprite when turned on
-	var/force_on // Damage when on - not stunning
-	var/force_off // Damage when off - not stunning
-	var/weight_class_on // What is the new size class when turned on
-
-	wound_bonus = 15
-
-// Description for trying to stun when still on cooldown.
-/obj/item/melee/classic_baton/proc/get_wait_description()
-	return
-
-// Description for when turning their baton "on"
-/obj/item/melee/classic_baton/proc/get_on_description()
-	. = list()
-
-	.["local_on"] = "<span class ='warning'>You extend the baton.</span>"
-	.["local_off"] = "<span class ='notice'>You collapse the baton.</span>"
-
-	return .
-
-// Default message for stunning mob.
-/obj/item/melee/classic_baton/proc/get_stun_description(mob/living/target, mob/living/user)
-	. = list()
-
-	.["visibletrip"] =  "<span class ='danger'>[user] has knocked [target]'s legs out from under them with [src]!</span>"
-	.["localtrip"] = "<span class ='danger'>[user]  has knocked your legs out from under you [src]!</span>"
-	.["visibledisarm"] =  "<span class ='danger'>[user] has disarmed [target] with [src]!</span>"
-	.["localdisarm"] = "<span class ='danger'>[user] whacks your arm with [src], causing a coursing pain!</span>"
-	.["visiblestun"] =  "<span class ='danger'>[user] beat [target] with [src]!</span>"
-	.["localstun"] = "<span class ='danger'>[user] has beat you with [src]!</span>"
-
-	return .
-
-// Default message for stunning a silicon.
-/obj/item/melee/classic_baton/proc/get_silicon_stun_description(mob/living/target, mob/living/user)
-	. = list()
-
-	.["visible"] = "<span class='danger'>[user] pulses [target]'s sensors with the baton!</span>"
-	.["local"] = "<span class='danger'>You pulse [target]'s sensors with the baton!</span>"
-
-	return .
-
-// Are we applying any special effects when we stun to carbon
-/obj/item/melee/classic_baton/proc/additional_effects_carbon(mob/living/target, mob/living/user)
-	return
-
-// Are we applying any special effects when we stun to silicon
-/obj/item/melee/classic_baton/proc/additional_effects_silicon(mob/living/target, mob/living/user)
-	return
-
-/obj/item/melee/classic_baton/attack(mob/living/target, mob/living/user)
-	if(!on)
-		return ..()
-
-	add_fingerprint(user)
-	if((HAS_TRAIT(user, TRAIT_CLUMSY)) && prob(50))
-		to_chat(user, "<span class ='userdanger'>You hit yourself over the head!</span>")
-
-		user.Paralyze(knockdown_time_carbon * force)
-		user.apply_damage(stamina_damage, STAMINA, BODY_ZONE_HEAD)
-
-		additional_effects_carbon(user) // user is the target here
-		if(ishuman(user))
-			var/mob/living/carbon/human/H = user
-			H.apply_damage(2*force, BRUTE, BODY_ZONE_HEAD)
-		else
-			user.take_bodypart_damage(2*force)
-		return
-	if(iscyborg(target))
-		// We don't stun if we're on harm.
-		if (user.a_intent != INTENT_HARM)
-			if (affect_silicon)
-				var/list/desc = get_silicon_stun_description(target, user)
-
-				target.flash_act(affect_silicon = TRUE)
-				target.Paralyze(stun_time_silicon)
-				additional_effects_silicon(target, user)
-
-				user.visible_message(desc["visible"], desc["local"])
-				playsound(get_turf(src), on_stun_sound, 100, TRUE, -1)
-
-				if (stun_animation)
-					user.do_attack_animation(target)
-			else
-				..()
-		else
-			..()
-		return
-	if(!isliving(target))
-		return
-	if (user.a_intent == INTENT_HARM)
-		if(!..())
-			return
-		if(!iscyborg(target))
-			return
-	else
-		if(cooldown_check <= world.time)
-			if(ishuman(target))
-				var/mob/living/carbon/human/H = target
-				if (H.check_shields(src, 0, "[user]'s [name]", MELEE_ATTACK))
-					return
-				if(check_martial_counter(H, user))
-					return
-
-			var/list/desc = get_stun_description(target, user)
-
-			if (stun_animation)
-				user.do_attack_animation(target)
-
-			playsound(get_turf(src), on_stun_sound, 75, TRUE, -1)
-			additional_effects_carbon(target, user)
-
-			var/selected_bodypart_area = check_zone(user.zone_selected)
-			var/target_limb = target.get_bodypart(selected_bodypart_area)
-			var/def_check = (target.getarmor(target_limb, type = "melee") * stunarmor_penetration)
-			switch(selected_bodypart_area)
-				if(BODY_ZONE_R_LEG, BODY_ZONE_L_LEG)
-					if(target.stat || target.IsKnockdown() || (target == user) || def_check < 41) // Can't knock down someone with shit-load of armor.
-						var/armor_effect = 1 - (def_check / 100)
-						target.Knockdown(knockdown_time_carbon * armor_effect)
-						log_combat(user, target, "tripped", src)
-						target.visible_message(desc["visibletrip"], desc["localtrip"])
-						target.apply_damage(stamina_damage*0.25, STAMINA, selected_bodypart_area, def_check)
-					else
-						log_combat(user, target, "stunned", src)
-						target.visible_message(desc["visiblestun"], desc["localstun"])
-						target.apply_damage(stamina_damage, STAMINA, selected_bodypart_area, def_check)
-
-				if(BODY_ZONE_L_ARM)
-					baton_disarm(user, target, LEFT_HANDS, selected_bodypart_area, def_check)
-
-				if(BODY_ZONE_R_ARM)
-					baton_disarm(user, target, RIGHT_HANDS, selected_bodypart_area, def_check)
-
-				else // Normal effect.
-					target.apply_damage(stamina_damage, STAMINA, selected_bodypart_area, def_check)
-					log_combat(user, target, "stunned", src)
-					target.visible_message(desc["visiblestun"], desc["localstun"])
-
-			add_fingerprint(user)
-
-			if(!iscarbon(user))
-				target.LAssailant = null
-			else
-				target.LAssailant = user
-			cooldown_check = world.time + cooldown
-		else
-			var/wait_desc = get_wait_description()
-			if (wait_desc)
-				to_chat(user, wait_desc)
-
-/obj/item/melee/classic_baton/proc/baton_disarm(mob/living/carbon/user, mob/living/carbon/target, side, bodypart_target, def_check)
-	var/obj/item/I = target.get_held_items_for_side(side)
-	var/list/desc = get_stun_description(target, user)
-	if(I && target.dropItemToGround(I)) // There is an item in this hand. Drop it and deal slightly less stamina damage.
-		log_combat(user, target, "disarmed", src)
-		target.visible_message(desc["visibledisarm"], desc["localdisarm"])
-		target.apply_damage(stamina_damage*0.5, STAMINA, bodypart_target, def_check)
-	else // No item in that hand. Deal normal stamina damage.
-		log_combat(user, target, "stunned", src)
-		target.visible_message(desc["visiblestun"], desc["localstun"])
-		target.apply_damage(stamina_damage, STAMINA, bodypart_target, def_check)
 
 /obj/item/conversion_kit
 	name = "conversion kit"
@@ -779,7 +588,6 @@
 	slot_flags = ITEM_SLOT_BELT
 	force = 14
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
 	w_class = WEIGHT_CLASS_BULKY
 	throwforce = 8
 	block_chance = 10

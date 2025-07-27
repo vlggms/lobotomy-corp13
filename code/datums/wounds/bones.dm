@@ -34,14 +34,14 @@
 */
 /datum/wound/blunt/wound_injury(datum/wound/old_wound = null)
 	// hook into gaining/losing gauze so crit bone wounds can re-enable/disable depending if they're slung or not
-	RegisterSignal(limb, list(COMSIG_BODYPART_GAUZED, COMSIG_BODYPART_GAUZE_DESTROYED), .proc/update_inefficiencies)
+	RegisterSignal(limb, list(COMSIG_BODYPART_GAUZED, COMSIG_BODYPART_GAUZE_DESTROYED), PROC_REF(update_inefficiencies))
 
 	if(limb.body_zone == BODY_ZONE_HEAD && brain_trauma_group)
 		processes = TRUE
 		active_trauma = victim.gain_trauma_type(brain_trauma_group, TRAUMA_RESILIENCE_WOUND)
 		next_trauma_cycle = world.time + (rand(100-WOUND_BONE_HEAD_TIME_VARIANCE, 100+WOUND_BONE_HEAD_TIME_VARIANCE) * 0.01 * trauma_cycle_cooldown)
 
-	RegisterSignal(victim, COMSIG_HUMAN_EARLY_UNARMED_ATTACK, .proc/attack_with_hurt_hand)
+	RegisterSignal(victim, COMSIG_HUMAN_EARLY_UNARMED_ATTACK, PROC_REF(attack_with_hurt_hand))
 	if(limb.held_index && victim.get_item_for_held_index(limb.held_index) && (disabling || prob(30 * severity)))
 		var/obj/item/I = victim.get_item_for_held_index(limb.held_index)
 		if(istype(I, /obj/item/offhand))
@@ -108,7 +108,7 @@
 		else
 			victim.visible_message("<span class='danger'>[victim] weakly strikes [target] with [victim.p_their()] broken [limb.name], recoiling from pain!</span>", \
 			"<span class='userdanger'>You fail to strike [target] as the fracture in your [limb.name] lights up in unbearable pain!</span>", vision_distance=COMBAT_MESSAGE_RANGE)
-			INVOKE_ASYNC(victim, /mob.proc/emote, "scream")
+			INVOKE_ASYNC(victim, TYPE_PROC_REF(/mob, emote), "scream")
 			victim.Stun(0.5 SECONDS)
 			limb.receive_damage(brute=rand(3,7))
 			return COMPONENT_CANCEL_ATTACK_CHAIN
@@ -218,7 +218,7 @@
 
 /datum/wound/blunt/moderate/wound_injury(datum/wound/old_wound)
 	. = ..()
-	RegisterSignal(victim, COMSIG_LIVING_DOORCRUSHED, .proc/door_crush)
+	RegisterSignal(victim, COMSIG_LIVING_DOORCRUSHED, PROC_REF(door_crush))
 
 /// Getting smushed in an airlock/firelock is a last-ditch attempt to try relocating your limb
 /datum/wound/blunt/moderate/proc/door_crush()
@@ -247,7 +247,7 @@
 /datum/wound/blunt/moderate/proc/chiropractice(mob/living/carbon/human/user)
 	var/time = base_treat_time
 
-	if(!do_after(user, time, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
+	if(!do_after(user, time, target=victim, extra_checks = CALLBACK(src, PROC_REF(still_exists))))
 		return
 
 	if(prob(65))
@@ -266,7 +266,7 @@
 /datum/wound/blunt/moderate/proc/malpractice(mob/living/carbon/human/user)
 	var/time = base_treat_time
 
-	if(!do_after(user, time, target=victim, extra_checks = CALLBACK(src, .proc/still_exists)))
+	if(!do_after(user, time, target=victim, extra_checks = CALLBACK(src, PROC_REF(still_exists))))
 		return
 
 	if(prob(65))
@@ -287,7 +287,7 @@
 	else
 		user.visible_message("<span class='danger'>[user] begins resetting [victim]'s [limb.name] with [I].</span>", "<span class='notice'>You begin resetting [victim]'s [limb.name] with [I]...</span>")
 
-	if(!do_after(user, base_treat_time * (user == victim ? 1.5 : 1), target = victim, extra_checks=CALLBACK(src, .proc/still_exists)))
+	if(!do_after(user, base_treat_time * (user == victim ? 1.5 : 1), target = victim, extra_checks=CALLBACK(src, PROC_REF(still_exists))))
 		return
 
 	if(victim == user)
@@ -365,7 +365,7 @@
 
 	user.visible_message("<span class='danger'>[user] begins hastily applying [I] to [victim]'s' [limb.name]...</span>", "<span class='warning'>You begin hastily applying [I] to [user == victim ? "your" : "[victim]'s"] [limb.name], disregarding the warning label...</span>")
 
-	if(!do_after(user, base_treat_time * 1.5 * (user == victim ? 1.5 : 1), target = victim, extra_checks=CALLBACK(src, .proc/still_exists)))
+	if(!do_after(user, base_treat_time * 1.5 * (user == victim ? 1.5 : 1), target = victim, extra_checks=CALLBACK(src, PROC_REF(still_exists))))
 		return
 
 	I.use(1)
@@ -407,7 +407,7 @@
 
 	user.visible_message("<span class='danger'>[user] begins applying [I] to [victim]'s' [limb.name]...</span>", "<span class='warning'>You begin applying [I] to [user == victim ? "your" : "[victim]'s"] [limb.name]...</span>")
 
-	if(!do_after(user, base_treat_time * (user == victim ? 1.5 : 1), target = victim, extra_checks=CALLBACK(src, .proc/still_exists)))
+	if(!do_after(user, base_treat_time * (user == victim ? 1.5 : 1), target = victim, extra_checks=CALLBACK(src, PROC_REF(still_exists))))
 		return
 
 	if(victim == user)

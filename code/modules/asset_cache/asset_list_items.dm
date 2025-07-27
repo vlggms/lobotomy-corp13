@@ -268,7 +268,25 @@
 		"thoughtfeeder" = 'icons/UI_Icons/Achievements/Mafia/thoughtfeeder.png',
 		"traitor" = 'icons/UI_Icons/Achievements/Mafia/traitor.png',
 		"basemafia" ='icons/UI_Icons/Achievements/basemafia.png',
-		"frenching" = 'icons/UI_Icons/Achievements/Misc/frenchingthebubble.png'
+		"frenching" = 'icons/UI_Icons/Achievements/Misc/frenchingthebubble.png',
+		"amber" = 'icons/UI_Icons/Achievements/lobotomycorp13/amber.png',
+		"claw" = 'icons/UI_Icons/Achievements/lobotomycorp13/claw.png',
+		"green" = 'icons/UI_Icons/Achievements/lobotomycorp13/green.png',
+		"lcorp" = 'icons/UI_Icons/Achievements/lobotomycorp13/lcorp.png',
+		"shrimp" = 'icons/UI_Icons/Achievements/lobotomycorp13/shrimp.png',
+		"twilight" = 'icons/UI_Icons/Achievements/lobotomycorp13/twlight.png',
+		"violet" = 'icons/UI_Icons/Achievements/lobotomycorp13/violet.png',
+		"whitenight" = 'icons/UI_Icons/Achievements/lobotomycorp13/whitenight.png',
+		"tinkerer" = 'icons/UI_Icons/Achievements/lobotomycorp13/tinkerer.png',
+		"tape" = 'icons/UI_Icons/Achievements/lobotomycorp13/tape.png',
+		"village" = 'icons/UI_Icons/Achievements/lobotomycorp13/village.png',
+		"parcel" = 'icons/UI_Icons/Achievements/lobotomycorp13/parcel.png',
+		"briefcase" = 'icons/UI_Icons/Achievements/lobotomycorp13/briefcase.png',
+		"briefcase_gold" = 'icons/UI_Icons/Achievements/lobotomycorp13/briefcase_gold.png',
+		"clown_boss" = 'icons/UI_Icons/Achievements/lobotomycorp13/clown_boss.png',
+		"rat_quest" = 'icons/UI_Icons/Achievements/lobotomycorp13/rat_quest.png',
+		"clan_genocide" = 'icons/UI_Icons/Achievements/lobotomycorp13/clan_genocide.png',
+		"rats_genocide" = 'icons/UI_Icons/Achievements/lobotomycorp13/rats_genocide.png',
 	)
 
 /datum/asset/spritesheet/simple/pills
@@ -523,8 +541,8 @@
 	name = "fish"
 
 /datum/asset/spritesheet/fish/register()
-	for (var/path in subtypesof(/datum/aquarium_behaviour/fish))
-		var/datum/aquarium_behaviour/fish/fish_type = path
+	for (var/path in subtypesof(/obj/item/food/fish))
+		var/obj/item/food/fish/fish_type = path
 		var/fish_icon = initial(fish_type.icon)
 		var/fish_icon_state = initial(fish_type.icon_state)
 		var/id = sanitize_css_class_name("[fish_icon][fish_icon_state]")

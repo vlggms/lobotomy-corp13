@@ -2,7 +2,7 @@
 	set category = null
 	set name = "Mentor PM Mob"
 	if(!is_mentor())
-		to_chat(src, "<span class='danger'>Error: Mentor-PM-Context: Only mentors and administrators may use this command.</span>", confidential = TRUE)
+		to_chat(src, span_danger("Error: Mentor-PM-Context: Only mentors and administrators may use this command."), confidential = TRUE)
 		return
 	if( !ismob(M) || !M.client )
 		return

@@ -20,7 +20,7 @@
 
 /obj/vehicle/ridden/wheelchair/ComponentInitialize()	//Since it's technically a chair I want it to have chair properties
 	. = ..()
-	AddComponent(/datum/component/simple_rotation,ROTATION_ALTCLICK | ROTATION_CLOCKWISE, CALLBACK(src, .proc/can_user_rotate),CALLBACK(src, .proc/can_be_rotated),null)
+	AddComponent(/datum/component/simple_rotation,ROTATION_ALTCLICK | ROTATION_CLOCKWISE, CALLBACK(src, PROC_REF(can_user_rotate)),CALLBACK(src, PROC_REF(can_be_rotated)),null)
 
 /obj/vehicle/ridden/wheelchair/obj_destruction(damage_flag)
 	new /obj/item/stack/rods(drop_location(), 1)
@@ -55,9 +55,9 @@
 
 /obj/vehicle/ridden/wheelchair/wrench_act(mob/living/user, obj/item/I)	//Attackby should stop it attacking the wheelchair after moving away during decon
 	..()
-	to_chat(user, "<span class='notice'>You begin to detach the wheels...</span>")
+	to_chat(user, span_notice("You begin to detach the wheels..."))
 	if(I.use_tool(src, user, 40, volume=50))
-		to_chat(user, "<span class='notice'>You detach the wheels and deconstruct the chair.</span>")
+		to_chat(user, span_notice("You detach the wheels and deconstruct the chair."))
 		new /obj/item/stack/rods(drop_location(), 6)
 		new /obj/item/stack/sheet/metal(drop_location(), 4)
 		qdel(src)
@@ -135,7 +135,7 @@
 		return FALSE
 	if(has_buckled_mobs())
 		return FALSE
-	usr.visible_message("<span class='notice'>[usr] collapses [src].</span>", "<span class='notice'>You collapse [src].</span>")
+	usr.visible_message(span_notice("[usr] collapses [src]."), span_notice("You collapse [src]."))
 	var/obj/vehicle/ridden/wheelchair/wheelchair_folded = new foldabletype(get_turf(src))
 	usr.put_in_hands(wheelchair_folded)
 	qdel(src)

@@ -144,7 +144,6 @@
 
 /datum/reagent/consumable/laughter/on_mob_life(mob/living/carbon/M)
 	M.emote("laugh")
-	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "chemical_laughter", /datum/mood_event/chemical_laughter)
 	..()
 
 /datum/reagent/consumable/superlaughter
@@ -158,7 +157,6 @@
 	if(prob(30))
 		M.visible_message("<span class='danger'>[M] bursts out into a fit of uncontrollable laughter!</span>", "<span class='userdanger'>You burst out in a fit of uncontrollable laughter!</span>")
 		M.Stun(5)
-		SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "chemical_laughter", /datum/mood_event/chemical_superlaughter)
 	..()
 
 /datum/reagent/consumable/potato_juice
@@ -255,7 +253,7 @@
 	M.adjust_bodytemperature(25 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, M.get_body_temp_normal())
 	if(prob(5))
 		var/mob/living/carbon/human/H = M
-		H.adjustSanityLoss(1*REM) // That's healing
+		H.adjustSanityLoss(-1*REM) // That's healing
 	if(holder.has_reagent(/datum/reagent/consumable/frostoil))
 		holder.remove_reagent(/datum/reagent/consumable/frostoil, 5)
 	..()
@@ -278,7 +276,7 @@
 	M.AdjustSleeping(-20)
 	if(prob(5))
 		var/mob/living/carbon/human/H = M
-		H.adjustSanityLoss(0.02*H.maxSanity*REM) // That's healing 2% of max sanity.
+		H.adjustSanityLoss(-0.02*H.maxSanity*REM) // That's healing 2% of max sanity.
 	if(M.getToxLoss() && prob(20))
 		M.adjustToxLoss(-1, 0)
 	M.adjust_bodytemperature(20 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, M.get_body_temp_normal())
@@ -330,7 +328,7 @@
 	M.Jitter(5)
 	if(prob(5))
 		var/mob/living/carbon/human/H = M
-		H.adjustSanityLoss(0.02*H.maxSanity*REM) // That's healing 2% of max sanity.
+		H.adjustSanityLoss(-0.02*H.maxSanity*REM) // That's healing 2% of max sanity.
 	..()
 	. = 1
 
@@ -370,7 +368,7 @@
 	M.AdjustSleeping(-40)
 	if(prob(5))
 		var/mob/living/carbon/human/H = M
-		H.adjustSanityLoss(0.02*H.maxSanity*REM) // That's healing 2% of max sanity.
+		H.adjustSanityLoss(-0.02*H.maxSanity*REM) // That's healing 2% of max sanity.
 	if(M.getToxLoss() && prob(20))
 		M.adjustToxLoss(-1, 0)
 	M.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, M.get_body_temp_normal())
@@ -646,7 +644,7 @@
 	M.Jitter(5)
 	if(prob(5))
 		var/mob/living/carbon/human/H = M
-		H.adjustSanityLoss(0.02*H.maxSanity*REM) // That's healing 2% of max sanity.
+		H.adjustSanityLoss(-0.02*H.maxSanity*REM) // That's healing 2% of max sanity.
 	if(M.getBruteLoss() && prob(20))
 		M.heal_bodypart_damage(1,0, 0)
 	..()
@@ -670,7 +668,7 @@
 	M.Jitter(5)
 	if(prob(5))
 		var/mob/living/carbon/human/H = M
-		H.adjustSanityLoss(0.02*H.maxSanity*REM) // That's healing 2% of max sanity.
+		H.adjustSanityLoss(-0.02*H.maxSanity*REM) // That's healing 2% of max sanity.
 	if(M.getBruteLoss() && prob(20))
 		M.heal_bodypart_damage(1,0, 0)
 	..()
@@ -961,7 +959,7 @@
 // Wellcheers
 /datum/reagent/consumable/wellcheers_red
 	name = "Cherry Soda"
-	description = "A can of cherry-flavored soda."
+	description = "It tastes like cherry-flavored soda."
 	color = "#FC2403"
 	taste_description = "cherry soda"
 	glass_icon_state = "dr_gibb_glass"
@@ -973,24 +971,24 @@
 	return ..()
 
 /datum/reagent/consumable/wellcheers_white
-	name = "Soda"
-	description = "A can of normal soda."
+	name = "Regular Soda"
+	description = "It tastes like regular soda."
 	color = "#03FCD3"
 	taste_description = "soda"
 	glass_icon_state = "glass_clear"
-	glass_name = "glass of soda"
-	glass_desc = "A glass of normal soda."
+	glass_name = "glass of regular soda"
+	glass_desc = "A glass of regular soda."
 
 /datum/reagent/consumable/wellcheers_white/on_mob_life(mob/living/M)
 	if(!ishuman(M))
 		return
 	var/mob/living/carbon/human/H = M
-	H.adjustSanityLoss(5) // That's healing
+	H.adjustSanityLoss(-5) // That's healing
 	return ..()
 
 /datum/reagent/consumable/wellcheers_purple
-	name = "Soda"
-	description = "A can of grape-flavored soda."
+	name = "Purple Soda"
+	description = "It tastes like grape-flavored soda."
 	color = "#DB03FC"
 	taste_description = "grape soda"
 	glass_icon_state = "lean"
@@ -1002,5 +1000,5 @@
 		return
 	var/mob/living/carbon/human/H = M
 	H.adjustBruteLoss(-3.5)
-	H.adjustSanityLoss(3.5) // That's healing
+	H.adjustSanityLoss(-3.5) // That's healing
 	return ..()

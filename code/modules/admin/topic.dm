@@ -999,7 +999,7 @@
 		L.Unconscious(100)
 		sleep(5)
 		L.forceMove(pick(GLOB.tdome1))
-		addtimer(CALLBACK(GLOBAL_PROC, /proc/to_chat, L, "<span class='adminnotice'>You have been sent to the Thunderdome.</span>"), 5 SECONDS)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), L, "<span class='adminnotice'>You have been sent to the Thunderdome.</span>"), 5 SECONDS)
 		log_admin("[key_name(usr)] has sent [key_name(L)] to the thunderdome. (Team 1)")
 		message_admins("[key_name_admin(usr)] has sent [key_name_admin(L)] to the thunderdome. (Team 1)")
 
@@ -1025,7 +1025,7 @@
 		L.Unconscious(100)
 		sleep(5)
 		L.forceMove(pick(GLOB.tdome2))
-		addtimer(CALLBACK(GLOBAL_PROC, /proc/to_chat, L, "<span class='adminnotice'>You have been sent to the Thunderdome.</span>"), 5 SECONDS)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), L, "<span class='adminnotice'>You have been sent to the Thunderdome.</span>"), 5 SECONDS)
 		log_admin("[key_name(usr)] has sent [key_name(L)] to the thunderdome. (Team 2)")
 		message_admins("[key_name_admin(usr)] has sent [key_name_admin(L)] to the thunderdome. (Team 2)")
 
@@ -1048,7 +1048,7 @@
 		L.Unconscious(100)
 		sleep(5)
 		L.forceMove(pick(GLOB.tdomeadmin))
-		addtimer(CALLBACK(GLOBAL_PROC, /proc/to_chat, L, "<span class='adminnotice'>You have been sent to the Thunderdome.</span>"), 5 SECONDS)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), L, "<span class='adminnotice'>You have been sent to the Thunderdome.</span>"), 5 SECONDS)
 		log_admin("[key_name(usr)] has sent [key_name(L)] to the thunderdome. (Admin.)")
 		message_admins("[key_name_admin(usr)] has sent [key_name_admin(L)] to the thunderdome. (Admin.)")
 
@@ -1078,7 +1078,7 @@
 		L.Unconscious(100)
 		sleep(5)
 		L.forceMove(pick(GLOB.tdomeobserve))
-		addtimer(CALLBACK(GLOBAL_PROC, /proc/to_chat, L, "<span class='adminnotice'>You have been sent to the Thunderdome.</span>"), 5 SECONDS)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), L, "<span class='adminnotice'>You have been sent to the Thunderdome.</span>"), 5 SECONDS)
 		log_admin("[key_name(usr)] has sent [key_name(L)] to the thunderdome. (Observer.)")
 		message_admins("[key_name_admin(usr)] has sent [key_name_admin(L)] to the thunderdome. (Observer.)")
 
@@ -2056,10 +2056,10 @@
 		else if(response.status_code != 200)
 			dat += "<br>Failed to connect to CentCom. Status code: [response.status_code]"
 		else
-			if(response.body == "[]")
+			if(response.body == "\[]")
 				dat += "<center><b>0 bans detected for [ckey]</b></center>"
 			else
-				bans = json_decode(response["body"])
+				bans = json_decode(response.body)
 
 				//Ignore bans from non-whitelisted sources, if a whitelist exists
 				var/list/valid_sources
@@ -2286,9 +2286,17 @@
 			to_chat(usr, "<span class='warning'>The round must be in progress to use this!</span>")
 			return
 		var/mob/heart_recepient = locate(href_list["admincommend"])
-		if(tgui_alert(usr, "Are you sure you'd like to anonymously commend [heart_recepient.ckey]? NOTE: This is logged, please use this sparingly and only for actual kind behavior, not as a reward for your friends.", "<3?", list("Yes", "No")) == "No")
+		if(!heart_recepient?.ckey)
+			to_chat(usr, "<span class='warning'>This mob either no longer exists or no longer is being controlled by someone!</span>")
 			return
-		usr.nominate_heart(heart_recepient)
+
+		switch(tgui_alert(usr, "Would you like the effects to apply immediately or at the end of the round? Applying them now will make it clear it was an admin commendation.", "<3?", list("Apply now", "Apply at round end", "Cancel")))
+			if("Apply now")
+				usr.nominate_heart(heart_recepient, instant = TRUE)
+			if("Apply at round end")
+				usr.nominate_heart(heart_recepient)
+			else
+				return
 
 	else if(href_list["force_war"])
 		if(!check_rights(R_ADMIN))
@@ -2314,9 +2322,9 @@
 
 	var/dat = {"<B>What mode do you wish to play?</B><HR>"}
 	for(var/mode in config.modes)
-		dat += {"<A href='?src=[REF(src)];[HrefToken()];c_mode2=[mode]'>[config.mode_names[mode]]</A><br>"}
-	dat += {"<A href='?src=[REF(src)];[HrefToken()];c_mode2=secret'>Secret</A><br>"}
-	dat += {"<A href='?src=[REF(src)];[HrefToken()];c_mode2=random'>Random</A><br>"}
+		dat += {"<A href='byond://?src=[REF(src)];[HrefToken()];c_mode2=[mode]'>[config.mode_names[mode]]</A><br>"}
+	dat += {"<A href='byond://?src=[REF(src)];[HrefToken()];c_mode2=secret'>Secret</A><br>"}
+	dat += {"<A href='byond://?src=[REF(src)];[HrefToken()];c_mode2=random'>Random</A><br>"}
 	dat += {"Now: [GLOB.master_mode]"}
 	usr << browse(dat, "window=c_mode")
 
@@ -2330,7 +2338,7 @@
 		return alert(usr, "The game mode has to be secret!", null, null, null, null)
 	var/dat = {"<B>What game mode do you want to force secret to be? Use this if you want to change the game mode, but want the players to believe it's secret. This will only work if the current game mode is secret.</B><HR>"}
 	for(var/mode in config.modes)
-		dat += {"<A href='?src=[REF(src)];[HrefToken()];f_secret2=[mode]'>[config.mode_names[mode]]</A><br>"}
-	dat += {"<A href='?src=[REF(src)];[HrefToken()];f_secret2=secret'>Random (default)</A><br>"}
+		dat += {"<A href='byond://?src=[REF(src)];[HrefToken()];f_secret2=[mode]'>[config.mode_names[mode]]</A><br>"}
+	dat += {"<A href='byond://?src=[REF(src)];[HrefToken()];f_secret2=secret'>Random (default)</A><br>"}
 	dat += {"Now: [GLOB.secret_force_mode]"}
 	usr << browse(dat, "window=f_secret")

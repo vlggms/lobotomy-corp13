@@ -6,41 +6,54 @@
 	spawn_positions = 1
 	supervisors = "the manager"
 	selection_color = "#bcbcef"
-	display_order = JOB_DISPLAY_ORDER_CAPTAIN
+	display_order = JOB_DISPLAY_ORDER_MANAGER
 
 	exp_requirements = 720
 	exp_type = EXP_TYPE_CREW
+	minimal_player_age = 7
 
 	outfit = /datum/outfit/job/manager
 
 	access = list(ACCESS_COMMAND, ACCESS_MANAGER) // LC13:To-Do
 	minimal_access = list(ACCESS_COMMAND, ACCESS_MANAGER)
+	departments = DEPARTMENT_COMMAND
 
-	roundstart_attributes = list(
-								FORTITUDE_ATTRIBUTE = 0,
-								PRUDENCE_ATTRIBUTE = 60,
-								TEMPERANCE_ATTRIBUTE = 0,
-								JUSTICE_ATTRIBUTE = 0
-								)
+	job_attribute_limit = 60
+	roundstart_attributes = list(FORTITUDE_ATTRIBUTE, PRUDENCE_ATTRIBUTE = 60, TEMPERANCE_ATTRIBUTE, JUSTICE_ATTRIBUTE)
+	job_important = "You are the Manager. Your goal is to provide overwatch to Agents and Clerks while guiding the facility's progress. You are able to choose arriving Abnormalities, buy facility upgrades, and apply buffs through your camera console."
 
-/datum/job/manager/announce(mob/living/carbon/human/H)
+	job_abbreviation = "MGR"
+
+/datum/job/manager/announce(mob/living/carbon/human/outfit_owner)
 	..()
-	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/minor_announce, "Manager [H.real_name] has arrived to the facility."))
+	var/displayed_rank = title // Handle alt titles
+	if(title in outfit_owner?.client?.prefs?.alt_titles_preferences)
+		displayed_rank = outfit_owner.client.prefs.alt_titles_preferences[title]
 
-/datum/job/manager/after_spawn(mob/living/H, mob/M)
+	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(minor_announce), "[displayed_rank] [outfit_owner.real_name] has arrived to the facility."))
+
+/datum/job/manager/after_spawn(mob/living/carbon/human/outfit_owner, mob/M)
 	. = ..()
-	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
-	H.grant_language(/datum/language/bong, TRUE, FALSE, LANGUAGE_MIND) //So they can understand the bong-bong better but not speak it
+	ADD_TRAIT(outfit_owner, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
+	ADD_TRAIT(outfit_owner, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
+	outfit_owner.grant_language(/datum/language/bong, TRUE, FALSE, LANGUAGE_MIND) //So they can understand the bong-bong but not speak it
+
+	//Adding huds, blame some guy from at least 3 years ago.
+	var/datum/atom_hud/secsensor = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
+	var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
+
+	secsensor.add_hud_to(outfit_owner)
+	medsensor.add_hud_to(outfit_owner)
 
 /datum/outfit/job/manager
 	name = "Manager"
 	jobtype = /datum/job/manager
 
-	glasses = /obj/item/clothing/glasses/debug
 	belt = /obj/item/pda/security
 	ears = /obj/item/radio/headset/heads/manager/alt
 	uniform = /obj/item/clothing/under/suit/lobotomy
 	suit =  /obj/item/clothing/suit/toggle/labcoat
-	backpack_contents = list()
 	shoes = /obj/item/clothing/shoes/laceup
 	r_pocket = /obj/item/modular_computer/tablet/preset/advanced/command
+
+	backpack_contents = list(/obj/item/station_charter)

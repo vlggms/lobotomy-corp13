@@ -1,21 +1,91 @@
+// LOBOTOMYCORPORATION EDIT -- This whole un-modular monstrosity
 GLOBAL_LIST_INIT(command_positions, list(
 	"Manager",
 	"Extraction Officer",
 	"Records Officer",
+	"Control Officer",
+	"Training Officer",
+	"Disciplinary Officer",
+	"Sephirah",
+	"Department Head",
 	"Agent Captain",
+
+	// City heads
+	"Doctor",
+	"Hana Administrator",
+	"Association Section Director",
+	"Association Assistant Director",
+	"Subsidary Office Director",
+	"Index Messenger",
+	"Blade Lineage Cutthroat",
+	"Grand Inquisitor",
+	"Thumb Sottocapo",
+	"Kurokumo Kashira",
+
+	// R-corp Fourth Pack
+	"Ground Commander",
+	"Lieutenant Commander",
+	"Operations Officer",
+	"Rabbit Squad Captain",
+	"Reindeer Squad Captain",
+	"Rhino Squad Captain",
+	"Raven Squad Captain",
+
+	// R-corp Fifth Pack
+	"Assault Commander",
+	"Base Commander",
+	"Support Officer",
+	"Rat Squad Leader",
+	"Rooster Squad Leader",
+	"Raccoon Squad Leader",
+	"Roadrunner Squad Leader",
+
+	// W-corp stuff
+	"W-Corp Representative",
+	"W-Corp L3 Squad Captain",
+
+	// LCB Labs
+	"District Manager",
+	"LC Asset Protection",
+	"Chief Medical Officer",
+	"Lead Researcher",
+	"High Security Commander",
+	"Low Security Commander",
+
+	"Office Director",
 	))
 
 
 GLOBAL_LIST_INIT(engineering_positions, list(
+	"Containment Engineer", // LCB Labs
 	))
 
 
 GLOBAL_LIST_INIT(medical_positions, list(
+	// LCB Labs
+	"Chief Medical Officer",
+	"Surgeon",
+	"Nurse Practitioner",
+	"Pharmacist",
+	"Emergency Medical Technician",
+
+	// City
+	"Doctor",
+	"Nurse",
+	"Paramedic",
+	"Medical Fixer Assistant",
+	"Prosthetics Surgeon",
 	))
 
 
 GLOBAL_LIST_INIT(science_positions, list(
-//	"Fixer",
+	// LCB Labs
+	"Lead Researcher",
+	"Senior Researcher",
+	"Information Systems Tech",
+	"Research Archivist",
+	"Researcher",
+	"LC Staff",
 	))
 
 
@@ -25,22 +95,167 @@ GLOBAL_LIST_INIT(supply_positions, list(
 
 GLOBAL_LIST_INIT(service_positions, list(
 	"Clerk",
+	"Agent Support Clerk",
+	"Facility Support Clerk",
+
+	"Proshetics Surgeon",
+	"HHPP Chef",
+	"Civilian",
+	"Backstreets Butcher",
+	"Carnival",
+	"Workshop Attendant",
+	"Main Office Representative",
+	"Fishhook Office Fixer",
+
+	// LCB Labs
+	"LC Chef",
+	"LC Janitor",
 	))
 
 
 GLOBAL_LIST_INIT(security_positions, list(
+	"Department Head",
+	"Department Captain",
+	"Training Officer",
+
+	"Disciplinary Officer",
+	"Combat Research Agent",
+
 	"Agent Captain",
+	"Agent Lieutenant",
 	"Senior Agent",
 	"Agent",
 	"Agent Intern",
+
+	// LCB Labs
+	"High Security Commander",
+	"Low Security Commander",
+	"High Security Officer",
+	"Low Security Officer",
+	"Damage Mitigation Officer",
+	"Damage Exasperation Officer",
+	"Internal Police",
 	))
 
 
 GLOBAL_LIST_INIT(nonhuman_positions, list(
 	))
 
+
+
+GLOBAL_LIST_INIT(w_corp_positions, list(
+	"W-Corp Representative",
+	"W-Corp L3 Squad Captain",
+	"W-Corp L2 Type A Lieutenant",
+	"W-Corp L2 Type B Support Agent",
+	"W-Corp L2 Type C Weapon Specialist",
+	"W-Corp L2 Type D Spear Agent",
+	"W-Corp L1 Cleanup Agent",
+))
+
+GLOBAL_LIST_INIT(r_corp_positions, list(
+	// 4th Pack Command
+	"Ground Commander",
+	"Lieutenant Commander",
+	"Operations Officer",
+	"Rabbit Squad Captain",
+	"Reindeer Squad Captain",
+	"Rhino Squad Captain",
+	"Raven Squad Captain",
+
+	// 5th Pack Command
+	"Assault Commander",
+	"Base Commander",
+	"Support Officer",
+	"Rat Squad Leader",
+	"Rooster Squad Leader",
+	"Raccoon Squad Leader",
+	"Roadrunner Squad Leader",
+
+	// 4th Pack troops
+	"R-Corp Suppressive Rabbit",
+	"R-Corp Assault Rabbit",
+	"R-Corp Medical Reindeer",
+	"R-Corp Berserker Reindeer",
+	"R-Corp Gunner Rhino",
+	"R-Corp Hammer Rhino",
+	"R-Corp Scout Raven",
+	"R-Corp Support Raven",
+
+	// 5th Pack troops
+	"R-Corp Rat",
+	"R-Corp Rooster",
+	"R-Corp Raccoon Spy",
+	"R-Corp Raccoon Sniper",
+	"R-Corp Roadrunner",
+))
+
+GLOBAL_LIST_INIT(hana_positions, list(
+	"Hana Administrator",
+	"Hana Representative",
+	"Hana Intern",
+))
+
+GLOBAL_LIST_INIT(fixer_positions, list(
+	"East Office Director",
+	"East Office Fixer",
+	"North Office Director",
+	"North Office Fixer",
+
+	"Association Section Director",
+	"Association Veteran",
+	"Association Fixer",
+	"Roaming Association Fixer",
+
+	"Medical Fixer Assistant",
+	"Fixer",
+	"Rat", // most fitting, somehow
+
+	"Office Fixer",
+))
+
+GLOBAL_LIST_INIT(association_positions, list(
+	"Association Section Director",
+	"Association Veteran",
+	"Association Fixer",
+	"Roaming Association Fixer",
+))
+
+GLOBAL_LIST_INIT(city_antagonist_positions, list(
+	"Index Messenger",
+	"Index Proxy",
+	"Index Proselyte",
+
+	"Blade Lineage Cutthroat",
+	"Blade Lineage Salsu",
+	"Blade Lineage Ronin",
+	"Blade Lineage Roaming Salsu",
+
+	"Grand Inquisitor",
+	"N Corp Grosshammer",
+	"N Corp Mittlehammer",
+	"N Corp Kleinhammer",
+
+	"Thumb Sottocapo",
+	"Thumb Capo",
+	"Thumb Soldato",
+
+	"Kurokumo Kashira",
+	"Kurokumo Hosa",
+	"Kurokumo Wakashu",
+))
+
+
 // job categories for rendering the late join menu
 GLOBAL_LIST_INIT(position_categories, list(
+	// LOBOTOMYCORPORATION ADDITION START
+	"W Corp" = list("jobs" = w_corp_positions, "color" = "#00b5ad"),
+	"R Corp" = list("jobs" = r_corp_positions, "color" = "#f2711c"),
+	"Hana" = list("jobs" = hana_positions, "color" = "#ffffff"),
+	"Association" = list("jobs" = association_positions, "color" = "#5baa27"),
+	"Syndicate" = list("jobs" = city_antagonist_positions, "color" = "#db2828"),
+	"Fixers" = list("jobs" = fixer_positions, "color" = "#767676"),
+	// LOBOTOMYCORPORATION ADDITION END
 	EXP_TYPE_COMMAND = list("jobs" = command_positions, "color" = "#ccccff"),
 	EXP_TYPE_ENGINEERING = list("jobs" = engineering_positions, "color" = "#ffeeaa"),
 	EXP_TYPE_SUPPLY = list("jobs" = supply_positions, "color" = "#ddddff"),
@@ -48,17 +263,22 @@ GLOBAL_LIST_INIT(position_categories, list(
 	EXP_TYPE_SERVICE = list("jobs" = service_positions, "color" = "#bbe291"),
 	EXP_TYPE_MEDICAL = list("jobs" = medical_positions, "color" = "#ffddf0"),
 	EXP_TYPE_SCIENCE = list("jobs" = science_positions, "color" = "#ffddff"),
-	EXP_TYPE_SECURITY = list("jobs" = security_positions, "color" = "#ffdddd")
+	EXP_TYPE_SECURITY = list("jobs" = security_positions, "color" = "#ffdddd"),
 ))
 
 GLOBAL_LIST_INIT(exp_jobsmap, list(
-	EXP_TYPE_CREW = list("titles" = command_positions | engineering_positions | medical_positions | science_positions | supply_positions | security_positions | service_positions | list("AI","Cyborg")), // crew positions
-	EXP_TYPE_COMMAND = list("titles" = command_positions),
+// LOBOTOMYCORPORATION EDIT START
+//	EXP_TYPE_CREW = list("titles" = command_positions | engineering_positions | medical_positions | science_positions | supply_positions | security_positions | service_positions | list("AI","Cyborg")), // crew positions
+//	EXP_TYPE_COMMAND = list("titles" = command_positions),
+	EXP_TYPE_CREW = list("titles" = command_positions | engineering_positions | medical_positions | science_positions | supply_positions | security_positions | service_positions | w_corp_positions | r_corp_positions | hana_positions | association_positions | city_antagonist_positions | list("AI","Cyborg")), // crew positions
+	EXP_TYPE_COMMAND = list("titles" = command_positions | hana_positions),
+// LOBOTOMYCORPORATION EDIT END
 	EXP_TYPE_ENGINEERING = list("titles" = engineering_positions),
 	EXP_TYPE_MEDICAL = list("titles" = medical_positions),
 	EXP_TYPE_SCIENCE = list("titles" = science_positions),
 	EXP_TYPE_SUPPLY = list("titles" = supply_positions),
-	EXP_TYPE_SECURITY = list("titles" = security_positions),
+//	EXP_TYPE_SECURITY = list("titles" = security_positions), // LOBOTOMYCORPORATION EDIT OLD
+	EXP_TYPE_SECURITY = list("titles" = security_positions | city_antagonist_positions | association_positions | w_corp_positions | r_corp_positions | fixer_positions), // LOBOTOMYCORPORATION EDIT NEW
 	EXP_TYPE_SILICON = list("titles" = list("AI","Cyborg")),
 	EXP_TYPE_SERVICE = list("titles" = service_positions)
 ))

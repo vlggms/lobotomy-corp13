@@ -320,7 +320,7 @@
 			to_chat(user, "<span class='warning'>Wait for them to decide on whether to join or not!</span>")
 			return FALSE
 		if(!(possible_crusader in sect.possible_crusaders))
-			INVOKE_ASYNC(sect, /datum/religion_sect/honorbound.proc/invite_crusader, possible_crusader)
+			INVOKE_ASYNC(sect, TYPE_PROC_REF(/datum/religion_sect/honorbound, invite_crusader), possible_crusader)
 			to_chat(user, "<span class='notice'>They have been given the option to consider joining the crusade against evil. Wait for them to decide and try again.</span>")
 			return FALSE
 		new_crusader = possible_crusader
@@ -483,7 +483,6 @@
 	user.emote("laughs")
 	ADD_TRAIT(user, TRAIT_HOPELESSLY_ADDICTED, "maint_adaptation")
 	//addiction sends some nasty mood effects but we want the maint adaption to be enjoyed like a fine wine
-	SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "maint_adaptation", /datum/mood_event/maintenance_adaptation)
 	if(iscarbon(user))
 		var/mob/living/carbon/vomitorium = user
 		vomitorium.vomit()

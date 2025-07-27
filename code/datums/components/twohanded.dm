@@ -72,13 +72,13 @@
 
 // register signals withthe parent item
 /datum/component/two_handed/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/on_equip)
-	RegisterSignal(parent, COMSIG_ITEM_DROPPED, .proc/on_drop)
-	RegisterSignal(parent, COMSIG_ITEM_ATTACK_SELF, .proc/on_attack_self)
-	RegisterSignal(parent, COMSIG_ITEM_ATTACK, .proc/on_attack)
-	RegisterSignal(parent, COMSIG_ATOM_UPDATE_ICON, .proc/on_update_icon)
-	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, .proc/on_moved)
-	RegisterSignal(parent, COMSIG_ITEM_SHARPEN_ACT, .proc/on_sharpen)
+	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(on_equip))
+	RegisterSignal(parent, COMSIG_ITEM_DROPPED, PROC_REF(on_drop))
+	RegisterSignal(parent, COMSIG_ITEM_ATTACK_SELF, PROC_REF(on_attack_self))
+	RegisterSignal(parent, COMSIG_ITEM_ATTACK, PROC_REF(on_attack))
+	RegisterSignal(parent, COMSIG_ATOM_UPDATE_ICON, PROC_REF(on_update_icon))
+	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved))
+	RegisterSignal(parent, COMSIG_ITEM_SHARPEN_ACT, PROC_REF(on_sharpen))
 
 // Remove all siginals registered to the parent item
 /datum/component/two_handed/UnregisterFromParent()
@@ -130,29 +130,29 @@
 		return
 	if(ismonkey(user))
 		if(require_twohands)
-			to_chat(user, "<span class='notice'>[parent] is too heavy and cumbersome for you to carry!</span>")
+			to_chat(user, span_notice("[parent] is too heavy and cumbersome for you to carry!"))
 			user.dropItemToGround(parent, force=TRUE)
 		else
-			to_chat(user, "<span class='notice'>It's too heavy for you to wield fully.</span>")
+			to_chat(user, span_notice("It's too heavy for you to wield fully."))
 		return
 	if(user.get_inactive_held_item())
 		if(require_twohands)
-			to_chat(user, "<span class='notice'>[parent] is too cumbersome to carry in one hand!</span>")
+			to_chat(user, span_notice("[parent] is too cumbersome to carry in one hand!"))
 			user.dropItemToGround(parent, force=TRUE)
 		else
-			to_chat(user, "<span class='warning'>You need your other hand to be empty!</span>")
+			to_chat(user, span_warning("You need your other hand to be empty!"))
 		return
 	if(user.usable_hands < 2)
 		if(require_twohands)
 			user.dropItemToGround(parent, force=TRUE)
-		to_chat(user, "<span class='warning'>You don't have enough intact hands.</span>")
+		to_chat(user, span_warning("You don't have enough intact hands."))
 		return
 
 	// wield update status
 	if(SEND_SIGNAL(parent, COMSIG_TWOHANDED_WIELD, user) & COMPONENT_TWOHANDED_BLOCK_WIELD)
 		return // blocked wield from item
 	wielded = TRUE
-	RegisterSignal(user, COMSIG_MOB_SWAP_HANDS, .proc/on_swap_hands)
+	RegisterSignal(user, COMSIG_MOB_SWAP_HANDS, PROC_REF(on_swap_hands))
 
 	// update item stats and name
 	var/obj/item/parent_item = parent
@@ -166,9 +166,9 @@
 	parent_item.update_icon()
 
 	if(iscyborg(user))
-		to_chat(user, "<span class='notice'>You dedicate your module to [parent].</span>")
+		to_chat(user, span_notice("You dedicate your module to [parent]."))
 	else
-		to_chat(user, "<span class='notice'>You grab [parent] with both hands.</span>")
+		to_chat(user, span_notice("You grab [parent] with both hands."))
 
 	// Play sound if one is set
 	if(wieldsound)
@@ -179,7 +179,7 @@
 	offhand_item.name = "[parent_item.name] - offhand"
 	offhand_item.desc = "Your second grip on [parent_item]."
 	offhand_item.wielded = TRUE
-	RegisterSignal(offhand_item, COMSIG_ITEM_DROPPED, .proc/on_drop)
+	RegisterSignal(offhand_item, COMSIG_ITEM_DROPPED, PROC_REF(on_drop))
 	user.put_in_inactive_hand(offhand_item)
 
 /**
@@ -230,11 +230,11 @@
 		// Show message if requested
 		if(show_message)
 			if(iscyborg(user))
-				to_chat(user, "<span class='notice'>You free up your module.</span>")
+				to_chat(user, span_notice("You free up your module."))
 			else if(require_twohands)
-				to_chat(user, "<span class='notice'>You drop [parent].</span>")
+				to_chat(user, span_notice("You drop [parent]."))
 			else
-				to_chat(user, "<span class='notice'>You are now carrying [parent] with one hand.</span>")
+				to_chat(user, span_notice("You are now carrying [parent] with one hand."))
 
 	// Play sound if set
 	if(unwieldsound)

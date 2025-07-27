@@ -68,8 +68,6 @@ export const findCacheRoot = async () => {
 
 const onCacheRootFound = cacheRoot => {
   logger.log(`found cache at '${cacheRoot}'`);
-  // Plant dummy
-  fs.closeSync(fs.openSync(cacheRoot + '/dummy', 'w'));
 };
 
 export const reloadByondCache = async bundleDir => {
@@ -93,15 +91,23 @@ export const reloadByondCache = async bundleDir => {
   for (let cacheDir of cacheDirs) {
     // Clear garbage
     const garbage = await resolveGlob(cacheDir, './*.+(bundle|chunk|hot-update).*');
-    for (let file of garbage) {
-      await promisify(fs.unlink)(file);
+    try {
+      // Plant dummy
+      fs.closeSync(fs.openSync(cacheRoot + '/dummy', 'w'));
+
+      for (let file of garbage) {
+        await promisify(fs.unlink)(file);
+      }
+      // Copy assets
+      for (let asset of assets) {
+        const destination = resolvePath(cacheDir, basename(asset));
+        await promisify(fs.copyFile)(asset, destination);
+      }
+      logger.log(`copied ${assets.length} files to '${cacheDir}'`);
+    } catch (err) {
+      logger.error(`failed copying to '${cacheDir}'`);
+      logger.error(err);
     }
-    // Copy assets
-    for (let asset of assets) {
-      const destination = resolvePath(cacheDir, basename(asset));
-      await promisify(fs.copyFile)(asset, destination);
-    }
-    logger.log(`copied ${assets.length} files to '${cacheDir}'`);
   }
   // Notify dreamseeker
   const dss = await dssPromise;

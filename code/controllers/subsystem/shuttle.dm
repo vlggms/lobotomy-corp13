@@ -164,10 +164,10 @@ SUBSYSTEM_DEF(shuttle)
 /datum/controller/subsystem/shuttle/proc/block_recall(lockout_timer)
 	if(adminEmergencyNoRecall)
 		priority_announce("Error!", "Emergency Shuttle Uplink Alert", 'sound/misc/announce_dig.ogg')
-		addtimer(CALLBACK(src, .proc/unblock_recall), lockout_timer)
+		addtimer(CALLBACK(src, PROC_REF(unblock_recall)), lockout_timer)
 		return
 	emergencyNoRecall = TRUE
-	addtimer(CALLBACK(src, .proc/unblock_recall), lockout_timer)
+	addtimer(CALLBACK(src, PROC_REF(unblock_recall)), lockout_timer)
 
 /datum/controller/subsystem/shuttle/proc/unblock_recall()
 	if(adminEmergencyNoRecall)
@@ -226,13 +226,13 @@ SUBSYSTEM_DEF(shuttle)
 
 	var/can_evac_or_fail_reason = SSshuttle.canEvac(user)
 	if(can_evac_or_fail_reason != TRUE)
-		to_chat(user, "<span class='alert'>[can_evac_or_fail_reason]</span>")
+		to_chat(user, span_alert("[can_evac_or_fail_reason]"))
 		return
 
 	call_reason = trim(html_encode(call_reason))
 
 	if(length(call_reason) < CALL_SHUTTLE_REASON_LENGTH && seclevel2num(get_security_level()) > SEC_LEVEL_GREEN)
-		to_chat(user, "<span class='alert'>You must provide a reason.</span>")
+		to_chat(user, span_alert("You must provide a reason."))
 		return
 
 	var/area/signal_origin = get_area(user)
@@ -255,12 +255,12 @@ SUBSYSTEM_DEF(shuttle)
 	var/area/A = get_area(user)
 
 	log_shuttle("[key_name(user)] has called the emergency shuttle.")
-	deadchat_broadcast(" has called the shuttle at <span class='name'>[A.name]</span>.", "<span class='name'>[user.real_name]</span>", user, message_type=DEADCHAT_ANNOUNCEMENT)
+	deadchat_broadcast(" has called the shuttle at [span_name("[A.name]")].", span_name("[user.real_name]"), user, message_type=DEADCHAT_ANNOUNCEMENT)
 	if(call_reason)
 		SSblackbox.record_feedback("text", "shuttle_reason", 1, "[call_reason]")
 		log_shuttle("Shuttle call reason: [call_reason]")
 		SSticker.emergency_reason = call_reason
-	message_admins("[ADMIN_LOOKUPFLW(user)] has called the shuttle. (<A HREF='?_src_=holder;[HrefToken()];trigger_centcom_recall=1'>TRIGGER CENTCOM RECALL</A>)")
+	message_admins("[ADMIN_LOOKUPFLW(user)] has called the shuttle. (<A HREF='byond://?_src_=holder;[HrefToken()];trigger_centcom_recall=1'>TRIGGER CENTCOM RECALL</A>)")
 
 /datum/controller/subsystem/shuttle/proc/centcom_recall(old_timer, admiral_message)
 	if(emergency.mode != SHUTTLE_CALL || emergency.timer != old_timer)
@@ -294,7 +294,7 @@ SUBSYSTEM_DEF(shuttle)
 		emergency.cancel(get_area(user))
 		log_shuttle("[key_name(user)] has recalled the shuttle.")
 		message_admins("[ADMIN_LOOKUPFLW(user)] has recalled the shuttle.")
-		deadchat_broadcast(" has recalled the shuttle from <span class='name'>[get_area_name(user, TRUE)]</span>.", "<span class='name'>[user.real_name]</span>", user, message_type=DEADCHAT_ANNOUNCEMENT)
+		deadchat_broadcast(" has recalled the shuttle from [span_name("[get_area_name(user, TRUE)]")].", span_name("[user.real_name]"), user, message_type=DEADCHAT_ANNOUNCEMENT)
 		return 1
 
 /datum/controller/subsystem/shuttle/proc/canRecall()
@@ -335,6 +335,9 @@ SUBSYSTEM_DEF(shuttle)
 		if(T && is_station_level(T.z))
 			callShuttle = FALSE
 			break
+
+	if(SSmaptype.maptype in SSmaptype.lc_maps || SSmaptype.maptype == "lcorp_city" || SSmaptype.maptype == "city")
+		callShuttle = FALSE
 
 	if(callShuttle)
 		if(EMERGENCY_IDLE_OR_RECALLED)
@@ -464,16 +467,7 @@ SUBSYSTEM_DEF(shuttle)
 		[transit_height] in height. The travel dir is [travel_dir]."
 */
 
-	var/transit_path = /turf/open/space/transit
-	switch(travel_dir)
-		if(NORTH)
-			transit_path = /turf/open/space/transit/north
-		if(SOUTH)
-			transit_path = /turf/open/space/transit/south
-		if(EAST)
-			transit_path = /turf/open/space/transit/east
-		if(WEST)
-			transit_path = /turf/open/space/transit/west
+	var/transit_path = /turf/closed/indestructible/rock
 
 	var/datum/turf_reservation/proposal = SSmapping.RequestBlockReservation(transit_width, transit_height, null, /datum/turf_reservation/transit, transit_path)
 
@@ -521,6 +515,7 @@ SUBSYSTEM_DEF(shuttle)
 	return new_transit_dock
 
 /datum/controller/subsystem/shuttle/Recover()
+	initialized = SSshuttle.initialized
 	if (istype(SSshuttle.mobile))
 		mobile = SSshuttle.mobile
 	if (istype(SSshuttle.stationary))

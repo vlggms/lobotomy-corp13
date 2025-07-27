@@ -100,6 +100,9 @@
 
 	hud_possible = list(DIAG_STAT_HUD, DIAG_BOT_HUD, DIAG_HUD, DIAG_PATH_HUD = HUD_LIST_LIST) //Diagnostic HUD views
 
+	var/list/previous_locations = list()
+	var/list/LC_destinations = list()
+
 /mob/living/simple_animal/bot/proc/get_mode()
 	if(client) //Player bots do not have modes, thus the override. Also an easy way for PDA users/AI to know when a bot is a player.
 		if(paicard)
@@ -153,7 +156,7 @@
 	. = ..()
 	GLOB.bots_list += src
 	access_card = new /obj/item/card/id(src)
-//This access is so bots can be immediately set to patrol and leave Robotics, instead of having to be let out first.
+	//This access is so bots can be immediately set to patrol and leave Robotics, instead of having to be let out first.
 	access_card.access += ACCESS_ROBOTICS
 	set_custom_texts()
 	Radio = new/obj/item/radio(src)
@@ -382,7 +385,7 @@
 		ejectpai(0)
 	if(on)
 		turn_off()
-	addtimer(CALLBACK(src, .proc/emp_reset, was_on), severity*30 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(emp_reset), was_on), severity*30 SECONDS)
 
 /mob/living/simple_animal/bot/proc/emp_reset(was_on)
 	stat &= ~EMPED
@@ -527,7 +530,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 
 	if(step_count >= 1 && tries < BOT_STEP_MAX_RETRIES)
 		for(var/step_number = 0, step_number < step_count,step_number++)
-			addtimer(CALLBACK(src, .proc/bot_step, dest), BOT_STEP_DELAY*step_number)
+			addtimer(CALLBACK(src, PROC_REF(bot_step), dest), BOT_STEP_DELAY*step_number)
 	else
 		return FALSE
 	return TRUE
@@ -554,7 +557,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 	if(mode != BOT_SUMMON && mode != BOT_RESPONDING)
 		access_card.access = prev_access
 
-/mob/living/simple_animal/bot/proc/call_bot(caller, turf/waypoint, message=TRUE)
+/mob/living/simple_animal/bot/proc/call_bot(requester, turf/waypoint, message=TRUE)
 	bot_reset() //Reset a bot before setting it to call mode.
 
 	//For giving the bot temporary all-access.
@@ -562,8 +565,8 @@ Pass a positive integer as an argument to override a bot's default speed.
 	var/datum/job/captain/All = new/datum/job/captain
 	all_access.access = All.get_access()
 
-	set_path(get_path_to(src, waypoint, /turf/proc/Distance_cardinal, 0, 200, id=all_access))
-	calling_ai = caller //Link the AI to the bot!
+	set_path(get_path_to(src, waypoint, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 200, id=all_access))
+	calling_ai = requester //Link the AI to the bot!
 	ai_waypoint = waypoint
 
 	if(path?.len) //Ensures that a valid path is calculated!
@@ -572,8 +575,8 @@ Pass a positive integer as an argument to override a bot's default speed.
 			turn_on() //Saves the AI the hassle of having to activate a bot manually.
 		access_card = all_access //Give the bot all-access while under the AI's command.
 		if(client)
-			reset_access_timer_id = addtimer(CALLBACK (src, .proc/bot_reset), 600, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE) //if the bot is player controlled, they get the extra access for a limited time
-			to_chat(src, "<span class='notice'><span class='big'>Priority waypoint set by [icon2html(calling_ai, src)] <b>[caller]</b>. Proceed to <b>[end_area]</b>.</span><br>[path.len-1] meters to destination. You have been granted additional door access for 60 seconds.</span>")
+			reset_access_timer_id = addtimer(CALLBACK (src, PROC_REF(bot_reset)), 600, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE) //if the bot is player controlled, they get the extra access for a limited time
+			to_chat(src, "<span class='notice'><span class='big'>Priority waypoint set by [icon2html(calling_ai, src)] <b>[requester]</b>. Proceed to <b>[end_area]</b>.</span><br>[path.len-1] meters to destination. You have been granted additional door access for 60 seconds.</span>")
 		if(message)
 			to_chat(calling_ai, "<span class='notice'>[icon2html(src, calling_ai)] [name] called to [end_area]. [path.len-1] meters to destination.</span>")
 		pathset = 1
@@ -619,7 +622,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 
 /mob/living/simple_animal/bot/proc/bot_patrol()
 	patrol_step()
-	addtimer(CALLBACK(src, .proc/do_patrol), 5)
+	addtimer(CALLBACK(src, PROC_REF(do_patrol)), 5)
 
 /mob/living/simple_animal/bot/proc/do_patrol()
 	if(mode == BOT_PATROL)
@@ -639,7 +642,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 		return
 
 	if(patrol_target) // has patrol target
-		INVOKE_ASYNC(src, .proc/target_patrol)
+		INVOKE_ASYNC(src, PROC_REF(target_patrol))
 	else					// no patrol target, so need a new one
 		speak("Engaging patrol mode.")
 		find_patrol_target()
@@ -660,6 +663,9 @@ Pass a positive integer as an argument to override a bot's default speed.
 		return
 
 	if(loc == patrol_target)		// reached target
+		previous_locations |= patrol_target
+		if(previous_locations.len >= 8)
+			previous_locations.Cut(1,2)
 		//Find the next beacon matching the target.
 		if(!get_next_patrol_target())
 			find_patrol_target() //If it fails, look for the nearest one instead.
@@ -673,7 +679,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 
 		var/moved = bot_move(patrol_target)//step_towards(src, next)	// attempt to move
 		if(!moved) //Couldn't proceed the next step of the path BOT_STEP_MAX_RETRIES times
-			addtimer(CALLBACK(src, .proc/patrol_step_not_moved), 2)
+			addtimer(CALLBACK(src, PROC_REF(patrol_step_not_moved)), 2)
 
 	else	// no path, so calculate new one
 		mode = BOT_START_PATROL
@@ -705,6 +711,30 @@ Pass a positive integer as an argument to override a bot's default speed.
 			patrol_target = NB.loc //Get its location and set it as the target.
 			next_destination = NB.codes["next_patrol"] //Also get the name of the next beacon in line.
 			return TRUE
+	if(isnull(next_destination))
+		return FALSE
+	patrol_target = next_destination
+	next_destination = null
+	var/list/potential_destinations = list()
+	for(var/datum/abnormality/AD in SSlobotomy_corp.all_abnormality_datums) // Clean newly added Abno rooms
+		LC_destinations |= get_turf(AD.landmark)
+	if(LC_destinations.len == 0)
+		return FALSE
+	for(var/turf/open/OT in LC_destinations)
+		if(OT.density)
+			continue
+		if(get_dist(src, OT) < 5)
+			continue
+		if(OT in previous_locations)
+			continue
+		potential_destinations |= OT
+	if(potential_destinations.len == 0)
+		if(previous_locations.len > 1)
+			previous_locations.Cut(1,2)
+		return FALSE
+	next_destination = pick(potential_destinations)
+	return TRUE
+
 
 /mob/living/simple_animal/bot/proc/find_nearest_beacon()
 	for(var/obj/machinery/navbeacon/NB in GLOB.navbeacons["[z]"])
@@ -720,6 +750,30 @@ Pass a positive integer as an argument to override a bot's default speed.
 		else if(dist > 1) //Begin the search, save this one for comparison on the next loop.
 			nearest_beacon = NB.location
 			nearest_beacon_loc = NB.loc
+	if(!isnull(nearest_beacon))
+		return
+	LC_destinations |= GLOB.xeno_spawn // Clean hallways
+	LC_destinations |= GLOB.department_centers // Clean main rooms
+	if(LC_destinations.len != 0)
+		var/list/potential_destinations = list()
+		for(var/turf/open/OT in LC_destinations)
+			if(OT.density)
+				continue
+			if(get_dist(src, OT) < 5)
+				continue
+			if(OT in previous_locations)
+				continue
+			potential_destinations |= OT
+		if(potential_destinations.len == 0)
+			if(previous_locations.len > 1)
+				previous_locations.Cut(1,2)
+			nearest_beacon = get_closest_atom(/turf/open, LC_destinations, src)
+			next_destination = pick(LC_destinations)
+		else
+			nearest_beacon = pick(potential_destinations)
+			potential_destinations -= nearest_beacon
+			next_destination = pick(potential_destinations)
+		nearest_beacon_loc = get_turf(nearest_beacon)
 	patrol_target = nearest_beacon_loc
 	destination = nearest_beacon
 
@@ -780,14 +834,14 @@ Pass a positive integer as an argument to override a bot's default speed.
 // given an optional turf to avoid
 /mob/living/simple_animal/bot/proc/calc_path(turf/avoid)
 	check_bot_access()
-	set_path(get_path_to(src, patrol_target, /turf/proc/Distance_cardinal, 0, 120, id=access_card, exclude=avoid))
+	set_path(get_path_to(src, patrol_target, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 120, id=access_card, exclude=avoid))
 
 /mob/living/simple_animal/bot/proc/calc_summon_path(turf/avoid)
 	check_bot_access()
-	INVOKE_ASYNC(src, .proc/do_calc_summon_path, avoid)
+	INVOKE_ASYNC(src, PROC_REF(do_calc_summon_path), avoid)
 
 /mob/living/simple_animal/bot/proc/do_calc_summon_path(turf/avoid)
-	set_path(get_path_to(src, summon_target, /turf/proc/Distance_cardinal, 0, 150, id=access_card, exclude=avoid))
+	set_path(get_path_to(src, summon_target, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 150, id=access_card, exclude=avoid))
 	if(!length(path)) //Cannot reach target. Give up and announce the issue.
 		speak("Summon command failed, destination unreachable.",radio_channel)
 		bot_reset()
@@ -808,7 +862,7 @@ Pass a positive integer as an argument to override a bot's default speed.
 
 		var/moved = bot_move(summon_target, 3)	// Move attempt
 		if(!moved)
-			addtimer(CALLBACK(src, .proc/summon_step_not_moved), 2)
+			addtimer(CALLBACK(src, PROC_REF(summon_step_not_moved)), 2)
 
 	else	// no path, so calculate new one
 		calc_summon_path()
@@ -817,13 +871,20 @@ Pass a positive integer as an argument to override a bot's default speed.
 	calc_summon_path()
 	tries = 0
 
-/mob/living/simple_animal/bot/Bump(atom/A) //Leave no door unopened!
-	. = ..()
+/mob/living/simple_animal/bot/Bump(atom/A)
+	var/turf/destination = get_turf(A)
 	if((istype(A, /obj/machinery/door/airlock) ||  istype(A, /obj/machinery/door/window)) && (!isnull(access_card)))
 		var/obj/machinery/door/D = A
-		if(D.check_access(access_card))
-			D.open()
+		if(D.check_access(access_card) && !D.locked)
+			forceMove(destination)
 			frustration = 0
+			return
+	if(istype(A, /obj/structure/closet))
+		var/obj/structure/closet/C = A
+		if(!C.anchored)
+			forceMove(destination)
+			return
+	. = ..()
 
 /mob/living/simple_animal/bot/proc/show_controls(mob/M)
 	users |= M
@@ -919,9 +980,9 @@ Pass a positive integer as an argument to override a bot's default speed.
 	var/hack
 	if(issilicon(user) || isAdminGhostAI(user)) //Allows silicons or admins to toggle the emag status of a bot.
 		hack += "[emagged == 2 ? "Software compromised! Unit may exhibit dangerous or erratic behavior." : "Unit operating normally. Release safety lock?"]<BR>"
-		hack += "Harm Prevention Safety System: <A href='?src=[REF(src)];operation=hack'>[emagged ? "<span class='bad'>DANGER</span>" : "Engaged"]</A><BR>"
+		hack += "Harm Prevention Safety System: <A href='byond://?src=[REF(src)];operation=hack'>[emagged ? "<span class='bad'>DANGER</span>" : "Engaged"]</A><BR>"
 	else if(!locked) //Humans with access can use this option to hide a bot from the AI's remote control panel and PDA control.
-		hack += "Remote network control radio: <A href='?src=[REF(src)];operation=remote'>[remote_disabled ? "Disconnected" : "Connected"]</A><BR>"
+		hack += "Remote network control radio: <A href='byond://?src=[REF(src)];operation=remote'>[remote_disabled ? "Disconnected" : "Connected"]</A><BR>"
 	return hack
 
 /mob/living/simple_animal/bot/proc/showpai(mob/user)
@@ -931,9 +992,9 @@ Pass a positive integer as an argument to override a bot's default speed.
 			eject += "Personality card status: "
 			if(paicard)
 				if(client)
-					eject += "<A href='?src=[REF(src)];operation=ejectpai'>Active</A>"
+					eject += "<A href='byond://?src=[REF(src)];operation=ejectpai'>Active</A>"
 				else
-					eject += "<A href='?src=[REF(src)];operation=ejectpai'>Inactive</A>"
+					eject += "<A href='byond://?src=[REF(src)];operation=ejectpai'>Inactive</A>"
 			else if(!allow_pai || key)
 				eject += "Unavailable"
 			else

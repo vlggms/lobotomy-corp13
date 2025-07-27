@@ -35,6 +35,7 @@
 	/// the higher this number, the more projectiles are created as shrapnel
 	var/shrapnel_radius
 	var/shrapnel_initialized
+	var/thrower
 
 /obj/item/grenade/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] primes [src], then eats it! It looks like [user.p_theyre()] trying to commit suicide!</span>")
@@ -107,7 +108,8 @@
 	active = TRUE
 	icon_state = initial(icon_state) + "_active"
 	SEND_SIGNAL(src, COMSIG_GRENADE_ARMED, det_time, delayoverride)
-	addtimer(CALLBACK(src, .proc/detonate), isnull(delayoverride)? det_time : delayoverride)
+	thrower = user
+	addtimer(CALLBACK(src, PROC_REF(detonate)), isnull(delayoverride)? det_time : delayoverride)
 
 /**
  * detonate (formerly prime) refers to when the grenade actually delivers its payload (whether or not a boom/bang/detonation is involved)
@@ -116,6 +118,7 @@
  * * lanced_by- If this grenade was detonated by an elance, we need to pass that along with the COMSIG_GRENADE_DETONATE signal for pellet clouds
  */
 /obj/item/grenade/proc/detonate(mob/living/lanced_by)
+	thrower = null
 	if(shrapnel_type && shrapnel_radius && !shrapnel_initialized) // add a second check for adding the component in case whatever triggered the grenade went straight to prime (badminnery for example)
 		shrapnel_initialized = TRUE
 		AddComponent(/datum/component/pellet_cloud, projectile_type=shrapnel_type, magnitude=shrapnel_radius)

@@ -107,6 +107,9 @@
 /obj/docking_port/mobile/arrivals/proc/CheckTurfsPressure()
 	for(var/I in SSjob.latejoin_trackers)
 		var/turf/open/T = get_turf(I)
+		if(!istype(T))
+			stack_trace("Closed Turf in SSjob.latejoin_trackers was checked for air pressure.")
+			continue
 		var/pressure = T.air.return_pressure()
 		if(pressure < HAZARD_LOW_PRESSURE || pressure > HAZARD_HIGH_PRESSURE)	//simple safety check
 			return TRUE
@@ -190,7 +193,7 @@
 
 	Launch(TRUE)
 
-	to_chat(user, "<span class='notice'>Calling your shuttle. One moment...</span>")
+	to_chat(user, span_notice("Calling your shuttle. One moment..."))
 	while(mode != SHUTTLE_CALL && !damaged)
 		stoplag()
 
@@ -198,7 +201,7 @@
 	if(mode != SHUTTLE_CALL)
 		AnnounceArrival(mob, rank)
 	else
-		LAZYADD(queued_announces, CALLBACK(GLOBAL_PROC, .proc/AnnounceArrival, mob, rank))
+		LAZYADD(queued_announces, CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(AnnounceArrival), mob, rank))
 
 /obj/docking_port/mobile/arrivals/vv_edit_var(var_name, var_value)
 	switch(var_name)

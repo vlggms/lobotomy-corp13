@@ -29,8 +29,8 @@
 		catalyst_type = override_catalyst_type
 
 /datum/component/religious_tool/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY,.proc/AttemptActions)
-	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/on_examine)
+	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(AttemptActions))
+	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
 
 /datum/component/religious_tool/UnregisterFromParent()
 	UnregisterSignal(parent, list(COMSIG_PARENT_ATTACKBY, COMSIG_PARENT_EXAMINE))
@@ -57,7 +57,7 @@
 	SIGNAL_HANDLER
 
 	if(istype(the_item, catalyst_type))
-		INVOKE_ASYNC(src, /datum.proc/ui_interact, user) //asynchronous to avoid sleeping in a signal
+		INVOKE_ASYNC(src, TYPE_PROC_REF(/datum, ui_interact), user) //asynchronous to avoid sleeping in a signal
 
 	/**********Sacrificing**********/
 	else if(operation_flags & RELIGION_TOOL_SACRIFICE)
@@ -124,7 +124,7 @@
 		to_chat(user, "<span class='warning'>You are not the high priest, and therefore cannot select a religious sect.")
 		return
 	if(!user.canUseTopic(parent, BE_CLOSE, FALSE, NO_TK))
-		to_chat(user,"<span class='warning'>You cannot select a sect at this time.</span>")
+		to_chat(user,span_warning("You cannot select a sect at this time."))
 		return
 
 	if(GLOB.religious_sect)
@@ -149,7 +149,7 @@
 		to_chat(user, "<span class='notice'>There is a rite currently being performed here already.")
 		return
 	if(!user.canUseTopic(parent, BE_CLOSE, FALSE, NO_TK))
-		to_chat(user,"<span class='warning'>You are not close enough to perform the rite.</span>")
+		to_chat(user,span_warning("You are not close enough to perform the rite."))
 		return
 	performing_rite = new path(parent)
 	if(!performing_rite.perform_rite(user, parent))
@@ -229,13 +229,13 @@
 
 	if(!can_i_see)
 		return
-	examine_list += "<span class='notice'>Use a bible to interact with this.</span>"
+	examine_list += span_notice("Use a bible to interact with this.")
 	if(!easy_access_sect)
 		if(operation_flags & RELIGION_TOOL_SECTSELECT)
-			examine_list += "<span class='notice'>This looks like it can be used to select a sect.</span>"
+			examine_list += span_notice("This looks like it can be used to select a sect.")
 			return
 
 	if(operation_flags & RELIGION_TOOL_SACRIFICE)//this can be moved around if things change but usually no rites == no sacrifice
-		examine_list += "<span class='notice'>Desired items can be used on this to increase favor.</span>"
+		examine_list += span_notice("Desired items can be used on this to increase favor.")
 	if(easy_access_sect.rites_list && operation_flags & RELIGION_TOOL_INVOKE)
-		examine_list += "<span class='notice'>You can invoke rites from this.</span>"
+		examine_list += span_notice("You can invoke rites from this.")

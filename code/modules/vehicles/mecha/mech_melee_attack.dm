@@ -29,17 +29,15 @@
 		play_soundeffect = 1
 	else
 		switch(mecha_attacker.damtype)
-			if(BRUTE)
-				playsound(src, 'sound/weapons/punch4.ogg', 50, TRUE)
 			if(BURN)
 				playsound(src, 'sound/items/welder.ogg', 50, TRUE)
 			if(TOX)
 				playsound(src, 'sound/effects/spray2.ogg', 50, TRUE)
 				return 0
 			else
-				return 0
-	mecha_attacker.visible_message("<span class='danger'>[mecha_attacker.name] hits [src]!</span>", "<span class='danger'>You hit [src]!</span>", null, COMBAT_MESSAGE_RANGE)
-	return take_damage(mecha_attacker.force * 3, mech_damtype, "melee", play_soundeffect, get_dir(src, mecha_attacker)) // multiplied by 3 so we can hit objs hard but not be overpowered against mobs.
+				playsound(src, 'sound/weapons/punch4.ogg', 50, TRUE)
+	mecha_attacker.visible_message(span_danger("[mecha_attacker.name] hits [src]!"), span_danger("You hit [src]!"), null, COMBAT_MESSAGE_RANGE)
+	return take_damage(mecha_attacker.force, mech_damtype, play_soundeffect, get_dir(src, mecha_attacker))
 
 /obj/structure/window/mech_melee_attack(obj/vehicle/sealed/mecha/mecha_attacker)
 	if(!can_be_reached())
@@ -49,36 +47,36 @@
 /mob/living/mech_melee_attack(obj/vehicle/sealed/mecha/mecha_attacker, mob/user)
 	if(user.a_intent == INTENT_HARM)
 		if(HAS_TRAIT(user, TRAIT_PACIFISM))
-			to_chat(user, "<span class='warning'>You don't want to harm other living beings!</span>")
+			to_chat(user, span_warning("You don't want to harm other living beings!"))
 			return
 		mecha_attacker.do_attack_animation(src)
-		if(mecha_attacker.damtype == "brute")
-			step_away(src, mecha_attacker, 15)
+		step_away(src, mecha_attacker, 15)
 		switch(mecha_attacker.damtype)
-			if(BRUTE)
-				Unconscious(20)
-				take_overall_damage(rand(mecha_attacker.force/2, mecha_attacker.force))
-				playsound(src, 'sound/weapons/punch4.ogg', 50, TRUE)
 			if(BURN)
 				take_overall_damage(0, rand(mecha_attacker.force * 0.5, mecha_attacker.force))
 				playsound(src, 'sound/items/welder.ogg', 50, TRUE)
 			if(TOX)
 				mecha_attacker.mech_toxin_damage(src)
 			else
-				return
-		updatehealth()
-		visible_message("<span class='danger'>[mecha_attacker.name] hits [src]!</span>", \
-						"<span class='userdanger'>[mecha_attacker.name] hits you!</span>", "<span class='hear'>You hear a sickening sound of flesh hitting flesh!</span>", COMBAT_MESSAGE_RANGE, mecha_attacker)
-		to_chat(mecha_attacker, "<span class='danger'>You hit [src]!</span>")
+				apply_damage(mecha_attacker.force, mecha_attacker.damtype, null, run_armor_check(null, mecha_attacker.damtype), FALSE, TRUE)
+				playsound(src, 'sound/weapons/punch4.ogg', 50, TRUE)
+		visible_message(span_danger("[mecha_attacker.name] hits [src]!"), \
+						span_userdanger("[mecha_attacker.name] hits you!"), span_hear("You hear a sickening sound of flesh hitting flesh!"), COMBAT_MESSAGE_RANGE, mecha_attacker)
+		to_chat(mecha_attacker, span_danger("You hit [src]!"))
 		log_combat(user, src, "attacked", mecha_attacker, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(mecha_attacker.damtype)])")
 	else
 		step_away(src, mecha_attacker)
 		log_combat(user, src, "pushed", mecha_attacker)
-		visible_message("<span class='warning'>[mecha_attacker] pushes [src] out of the way.</span>", \
-						"<span class='warning'>[mecha_attacker] pushes you out of the way.</span>", "<span class='hear'>You hear aggressive shuffling!</span>", 5, list(mecha_attacker))
-		to_chat(mecha_attacker, "<span class='danger'>You push [src] out of the way.</span>")
+		visible_message(span_warning("[mecha_attacker] pushes [src] out of the way."), \
+						span_warning("[mecha_attacker] pushes you out of the way."), span_hear("You hear aggressive shuffling!"), 5, list(mecha_attacker))
+		to_chat(mecha_attacker, span_danger("You push [src] out of the way."))
 
-/mob/living/carbon/human/mech_melee_attack(obj/vehicle/sealed/mecha/mecha_attacker, mob/user)
+/mob/living/simple_animal/hostile/mech_melee_attack(obj/vehicle/sealed/mecha/mecha_attacker, mob/user)
+	RegisterAggroValue(mecha_attacker, mecha_attacker.force, mecha_attacker.damtype)
+	return ..()
+
+//we dont really want limb damage and knockdowns
+/*/mob/living/carbon/human/mech_melee_attack(obj/vehicle/sealed/mecha/mecha_attacker, mob/user)
 	if(user.a_intent == INTENT_HARM)
 		if(HAS_TRAIT(user, TRAIT_PACIFISM))
 			to_chat(user, "<span class='warning'>You don't want to harm other living beings!</span>")
@@ -114,4 +112,4 @@
 		to_chat(mecha_attacker, "<span class='danger'>You hit [src]!</span>")
 		log_combat(user, src, "attacked", mecha_attacker, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(mecha_attacker.damtype)])")
 	else
-		return ..()
+		return ..()*/

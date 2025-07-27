@@ -124,6 +124,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	body_parts_covered = null
 	grind_results = list()
 	heat = 1000
+	throw_verb = "flick"
 	var/dragtime = 10
 	var/nextdragtime = 0
 	var/lit = FALSE
@@ -193,6 +194,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	hitsound = 'sound/items/welder.ogg'
 	damtype = BURN
 	force = 4
+	/* LOBOTOMYCORPORATION REMOVAL -- This was used to blatantly grief
 	if(reagents.get_reagent_amount(/datum/reagent/toxin/plasma)) // the plasma explodes when exposed to fire
 		var/datum/effect_system/reagents_explosion/e = new()
 		e.set_up(round(reagents.get_reagent_amount(/datum/reagent/toxin/plasma) / 2.5, 1), get_turf(src), 0, 0)
@@ -206,6 +208,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		qdel(src)
 		return
 	// allowing reagents to react after being lit
+	*/
 	reagents.flags &= ~(NO_REACT)
 	reagents.handle_reactions()
 	icon_state = icon_on
@@ -718,7 +721,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 					var/hitzone = user.held_index_to_dir(user.active_hand_index) == "r" ? BODY_ZONE_PRECISE_R_HAND : BODY_ZONE_PRECISE_L_HAND
 					user.apply_damage(5, BURN, hitzone)
 					user.visible_message("<span class='warning'>After a few attempts, [user] manages to light [src] - however, [user.p_they()] burn [user.p_their()] finger in the process.</span>", "<span class='warning'>You burn yourself while lighting the lighter!</span>")
-					SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "burnt_thumb", /datum/mood_event/burnt_thumb)
 
 		else
 			set_lit(FALSE)
@@ -957,12 +959,13 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 					//HOT STUFF
 					C.adjust_fire_stacks(2)
 					C.IgniteMob()
-
+/* LOBOTOMYCORPORATION REMOVAL -- This was used to blatantly grief
 				if(reagents.get_reagent_amount(/datum/reagent/toxin/plasma)) // the plasma explodes when exposed to fire
 					var/datum/effect_system/reagents_explosion/e = new()
 					e.set_up(round(reagents.get_reagent_amount(/datum/reagent/toxin/plasma) / 2.5, 1), get_turf(src), 0, 0)
 					e.start()
 					qdel(src)
+*/
 				return
 		reagents.remove_any(REAGENTS_METABOLISM)
 

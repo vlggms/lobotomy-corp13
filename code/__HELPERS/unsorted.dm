@@ -470,11 +470,11 @@ Turf and target are separate in case you want to teleport some distance from a t
 	for(var/area/A in world)
 		GLOB.sortedAreas.Add(A)
 
-	sortTim(GLOB.sortedAreas, /proc/cmp_name_asc)
+	sortTim(GLOB.sortedAreas, GLOBAL_PROC_REF(cmp_name_asc))
 
 /area/proc/addSorted()
 	GLOB.sortedAreas.Add(src)
-	sortTim(GLOB.sortedAreas, /proc/cmp_name_asc)
+	sortTim(GLOB.sortedAreas, GLOBAL_PROC_REF(cmp_name_asc))
 
 //Takes: Area type as a text string from a variable.
 //Returns: Instance for the area in the world.
@@ -979,10 +979,10 @@ rough example of the "cone" made by the 3 dirs checked
 
 	var/list/mobs = list()
 	for(var/mob/living/L in GLOB.mob_living_list)
-		var/check_place = L
+		var/atom/check_place = L
 		if(isatom(L.loc)) // Not a turf/area
 			check_place = L.loc
-		if(get_dist(center, check_place) <= dist)
+		if(get_dist(center, check_place) <= dist && center.z == check_place.z)
 			mobs += L
 
 	return mobs
@@ -993,11 +993,12 @@ rough example of the "cone" made by the 3 dirs checked
 		return list()
 
 	var/list/mobs = list()
+	var/list/my_view = view(dist, center)
 	for(var/mob/living/L in GLOB.mob_living_list)
 		var/check_place = L
 		if(isatom(L.loc)) // Not a turf/area
 			check_place = L.loc
-		if(check_place in view(dist, center))
+		if(check_place in my_view)
 			mobs += L
 
 	return mobs
@@ -1145,6 +1146,25 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 
 	var/animate_color = C.color
 	C.color = flash_color
+	animate(C, color = animate_color, time = flash_time)
+
+/proc/extended_flash_color(mob_or_client, flash_color="#960000", flash_time=20, maintain_time=0)//this calls sleep()
+	var/client/C
+	if(ismob(mob_or_client))
+		var/mob/M = mob_or_client
+		if(M.client)
+			C = M.client
+		else
+			return
+	else if(istype(mob_or_client, /client))
+		C = mob_or_client
+
+	if(!istype(C))
+		return
+
+	var/animate_color = C.color
+	C.color = flash_color
+	sleep(maintain_time)//thank redacted for this addition
 	animate(C, color = animate_color, time = flash_time)
 
 #define RANDOM_COLOUR (rgb(rand(0,255),rand(0,255),rand(0,255)))
@@ -1335,12 +1355,10 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 		. = CB.Invoke()
 	usr = temp
 
-//datum may be null, but it does need to be a typed var
-#define NAMEOF(datum, X) (#X || ##datum.##X)
 
-#define VARSET_LIST_CALLBACK(target, var_name, var_value) CALLBACK(GLOBAL_PROC, /proc/___callbackvarset, ##target, ##var_name, ##var_value)
+#define VARSET_LIST_CALLBACK(target, var_name, var_value) CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(___callbackvarset), ##target, ##var_name, ##var_value)
 //dupe code because dm can't handle 3 level deep macros
-#define VARSET_CALLBACK(datum, var, var_value) CALLBACK(GLOBAL_PROC, /proc/___callbackvarset, ##datum, NAMEOF(##datum, ##var), ##var_value)
+#define VARSET_CALLBACK(datum, var, var_value) CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(___callbackvarset), ##datum, NAMEOF(##datum, ##var), ##var_value)
 
 /proc/___callbackvarset(list_or_datum, var_name, var_value)
 	if(length(list_or_datum))
@@ -1352,8 +1370,8 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	else
 		D.vars[var_name] = var_value
 
-#define	TRAIT_CALLBACK_ADD(target, trait, source) CALLBACK(GLOBAL_PROC, /proc/___TraitAdd, ##target, ##trait, ##source)
-#define	TRAIT_CALLBACK_REMOVE(target, trait, source) CALLBACK(GLOBAL_PROC, /proc/___TraitRemove, ##target, ##trait, ##source)
+#define	TRAIT_CALLBACK_ADD(target, trait, source) CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(___TraitAdd), ##target, ##trait, ##source)
+#define	TRAIT_CALLBACK_REMOVE(target, trait, source) CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(___TraitRemove), ##target, ##trait, ##source)
 
 ///DO NOT USE ___TraitAdd OR ___TraitRemove as a replacement for ADD_TRAIT / REMOVE_TRAIT defines. To be used explicitly for callback.
 /proc/___TraitAdd(target,trait,source)
@@ -1474,11 +1492,11 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	set waitfor = FALSE
 	return call(source, proctype)(arglist(arguments))
 
-/proc/show_blurb(client/C, duration, blurb_text, fade_time = 5)
+/proc/show_blurb(client/C, duration, blurb_text, fade_time = 5, text_color = "white", outline_color = "black", text_align = "left", screen_location = "LEFT+1,BOTTOM+2")
 	if(!C)
 		return
 
-	var/style = "font-family: 'Fixedsys'; -dm-text-outline: 1 black; font-size: 11px;"
+	var/style = "font-family: 'Fixedsys'; text-align: [text_align]; color: [text_color]; -dm-text-outline: 1 [outline_color]; font-size: 11px;"
 	var/text = blurb_text
 	text = uppertext(text)
 
@@ -1489,13 +1507,13 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	T.layer = FLOAT_LAYER
 	T.plane = HUD_PLANE
 	T.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
-	T.screen_loc = "LEFT+1,BOTTOM+2"
+	T.screen_loc = screen_location
 
 	C.screen += T
 	animate(T, alpha = 255, time = 10)
 	T.maptext = "<span style=\"[style]\">[text]</span>"
 
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/fade_blurb, C, T, fade_time), duration)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(fade_blurb), C, T, fade_time), duration)
 
 /proc/fade_blurb(client/C, obj/T, fade_time = 5)
 	animate(T, alpha = 0, time = fade_time)
@@ -1503,8 +1521,43 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	C.screen -= T
 	qdel(T)
 
-/proc/show_global_blurb(duration, blurb_text, fade_time = 5) // Shows a blurb to every client
+// Shows a blurb to every client
+/proc/show_global_blurb(duration, blurb_text, fade_time = 5, text_color = "white", outline_color = "black", text_align = "left", screen_location = "LEFT+1,BOTTOM+2")
 	for(var/client/C in GLOB.clients)
-		show_blurb(C, duration, blurb_text, fade_time)
+		show_blurb(C, duration, blurb_text, fade_time, text_color, outline_color, text_align, screen_location)
+
+// Animates atom's color over time
+/proc/SetColorOverTime(atom/A, new_color = "#FFFFFF", new_time = 2)
+	animate(A, color = new_color, time = new_time)
 
 #define TURF_FROM_COORDS_LIST(List) (locate(List[1], List[2], List[3]))
+
+// Returns a list of all safe directions based off of the turf given
+// Included in stuff like Blue Sicko's Tempestuous Danza or The Claw weapon's serum W
+/proc/GetSafeDir(turf/target)
+	var/turf/list = list()
+	for(var/dir in GLOB.alldirs)
+		var/turf/T = get_step(target, dir)
+		if(!IsSafeTurf(T))
+			continue
+		list += dir
+	return list
+
+// Checks if the current turf is "Safe"
+// Future notes: Convert to a list and check if T is in that list?
+/proc/IsSafeTurf(turf/T)
+	if(!T)
+		return FALSE
+	if(T.density)
+		return FALSE
+	if(T in typesof(/turf/open/water/deep)) // No water
+		return FALSE
+	if(T in typesof(/turf/open/space)) // No space
+		return FALSE
+	var/obj/structure/window/W = locate() in T // No windows
+	var/obj/machinery/door/D = locate() in T // No doors
+	var/obj/machinery/vending/V = locate() in T // No vending
+	var/obj/structure/table/glass/G = locate() in T // No glass tables
+	if(W || D || V || G)
+		return FALSE
+	return TRUE

@@ -1,0 +1,168 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 1
+	},
+/obj/structure/rack,
+/obj/item/tresmetal/green,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"b" = (
+/obj/structure/rack,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"c" = (
+/obj/structure/forge,
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 1
+	},
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"i" = (
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 1
+	},
+/obj/structure/rack,
+/obj/item/forginghammer,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"l" = (
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"p" = (
+/obj/structure/rack,
+/obj/item/tresmetal,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"s" = (
+/obj/structure/lootcrate/tres,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"t" = (
+/obj/structure/lootcrate/tres,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"v" = (
+/obj/structure/table/anvil,
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 1
+	},
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"x" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"D" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/humanoid/rat/hammer,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"H" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"N" = (
+/mob/living/simple_animal/hostile/humanoid/rat,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"P" = (
+/turf/closed/indestructible/fakeglass,
+/area/city/backstreets_room)
+"V" = (
+/obj/structure/rack,
+/obj/item/tresmetal,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"X" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"Y" = (
+/obj/machinery/door/airlock/centcom{
+	desc = "A bit too sturdy...";
+	max_integrity = 10000;
+	name = "Strange Airlock";
+	normal_integrity = 100000;
+	req_access_txt = "19"
+	},
+/turf/open/floor/plasteel/shuttle{
+	name = "floor"
+	},
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+x
+x
+x
+x
+x
+x
+x
+H
+H
+x
+"}
+(2,1,1) = {"
+x
+a
+l
+t
+t
+P
+p
+l
+l
+x
+"}
+(3,1,1) = {"
+x
+i
+X
+l
+l
+Y
+l
+X
+N
+x
+"}
+(4,1,1) = {"
+x
+c
+l
+X
+s
+P
+V
+D
+t
+x
+"}
+(5,1,1) = {"
+x
+v
+l
+s
+s
+P
+b
+l
+t
+x
+"}
+(6,1,1) = {"
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+"}

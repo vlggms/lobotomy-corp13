@@ -23,6 +23,11 @@
  * client can be deleted mid-execution of this proc, chiefly on parent calls, with lag
  */
 /mob/Login()
+	// Probably hacky?
+	var/debug_server = world.GetConfig("env", "AUXTOOLS_DEBUG_DLL")
+	if(debug_server)
+		winset(usr, null, "browser-options=devtools")
+
 	if(!client)
 		return FALSE
 	add_to_player_list()
@@ -92,6 +97,8 @@
 	log_message("Client [key_name(src)] has taken ownership of mob [src]([src.type])", LOG_OWNERSHIP)
 	SEND_SIGNAL(src, COMSIG_MOB_CLIENT_LOGIN, client)
 	client.init_verbs()
+
+	client.patreon = new(client)
 
 	return TRUE
 

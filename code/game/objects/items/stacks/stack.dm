@@ -41,6 +41,7 @@
 	var/matter_amount = 0
 	/// Does this stack require a unique girder in order to make a wall?
 	var/has_unique_girder = FALSE
+	var/bypassmode = FALSE
 
 /obj/item/stack/Initialize(mapload, new_amount, merge = TRUE, list/mat_override=null, mat_amt=1)
 	if(new_amount != null)
@@ -62,7 +63,7 @@
 	if(merge)
 		for(var/obj/item/stack/S in loc)
 			if(can_merge(S))
-				INVOKE_ASYNC(src, .proc/merge, S)
+				INVOKE_ASYNC(src, PROC_REF(merge), S)
 	var/list/temp_recipes = get_main_recipes()
 	recipes = temp_recipes.Copy()
 	if(material_type)
@@ -228,6 +229,10 @@
 /obj/item/stack/ui_act(action, params)
 	. = ..()
 	if(.)
+		return
+
+	if((SSmaptype.maptype in SSmaptype.combatmaps) && !bypassmode)
+		usr.visible_message("<span class='notice'>Now is not the time to be building!</span>")
 		return
 
 	switch(action)

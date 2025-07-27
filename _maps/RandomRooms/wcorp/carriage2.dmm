@@ -1,0 +1,274 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/wall/r_wall/syndicate,
+/area/city/outskirts)
+"c" = (
+/obj/effect/decal/cleanable/blood/gibs/core,
+/turf/closed/wall/r_wall/syndicate,
+/area/city/outskirts)
+"e" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"p" = (
+/obj/effect/decal/cleanable/blood/gibs/core,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/plasteel/bluespace,
+/area/city/outskirts)
+"q" = (
+/turf/open/floor/carpet/red,
+/area/city/outskirts)
+"r" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/turf/open/floor/plasteel/bluespace,
+/area/city/outskirts)
+"A" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/obj/effect/landmark/department_center,
+/turf/open/floor/plasteel/bluespace,
+/area/city/outskirts)
+"C" = (
+/turf/closed/wall/mineral/plastitanium/explosive,
+/area/city/outskirts)
+"D" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/plasteel/bluespace,
+/area/city/outskirts)
+"F" = (
+/obj/effect/landmark/department_center,
+/turf/open/floor/plasteel/bluespace,
+/area/city/outskirts)
+"G" = (
+/obj/effect/decal/cleanable/blood/gibs/bubblegum,
+/obj/effect/decal/cleanable/blood/gibs/bubblegum,
+/turf/open/floor/plasteel/bluespace,
+/area/city/outskirts)
+"H" = (
+/obj/effect/decal/cleanable/blood/gibs/core,
+/turf/open/floor/plasteel/bluespace,
+/area/city/outskirts)
+"L" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/gibs/core,
+/turf/open/floor/plasteel/bluespace,
+/area/city/outskirts)
+"M" = (
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"T" = (
+/obj/effect/decal/cleanable/blood/gibs/bubblegum,
+/turf/open/floor/plasteel/bluespace,
+/area/city/outskirts)
+"V" = (
+/turf/open/floor/plasteel/bluespace,
+/area/city/outskirts)
+"X" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"Y" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/gibs/bubblegum,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/plasteel/bluespace,
+/area/city/outskirts)
+"Z" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/plasteel/bluespace,
+/area/city/outskirts)
+
+(1,1,1) = {"
+a
+c
+q
+T
+V
+H
+V
+H
+H
+C
+a
+"}
+(2,1,1) = {"
+a
+q
+V
+H
+V
+V
+V
+V
+V
+V
+a
+"}
+(3,1,1) = {"
+a
+L
+r
+L
+V
+T
+H
+L
+Y
+Z
+a
+"}
+(4,1,1) = {"
+a
+p
+D
+V
+T
+V
+V
+T
+T
+V
+a
+"}
+(5,1,1) = {"
+a
+V
+V
+T
+V
+V
+V
+V
+T
+V
+a
+"}
+(6,1,1) = {"
+a
+r
+r
+r
+G
+G
+V
+Y
+Z
+r
+a
+"}
+(7,1,1) = {"
+a
+V
+T
+V
+T
+A
+V
+V
+V
+V
+a
+"}
+(8,1,1) = {"
+a
+V
+T
+T
+V
+V
+V
+V
+V
+H
+a
+"}
+(9,1,1) = {"
+a
+e
+r
+Z
+p
+V
+V
+r
+L
+e
+a
+"}
+(10,1,1) = {"
+a
+M
+M
+V
+V
+H
+V
+V
+V
+X
+a
+"}
+(11,1,1) = {"
+a
+D
+F
+M
+V
+M
+M
+V
+F
+M
+a
+"}
+(12,1,1) = {"
+a
+e
+r
+r
+V
+V
+V
+e
+e
+e
+a
+"}
+(13,1,1) = {"
+a
+M
+V
+M
+V
+V
+M
+M
+V
+M
+a
+"}

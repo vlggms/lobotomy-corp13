@@ -105,28 +105,30 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 			continue // key is unbound and or bound to something
 		var/addedbind = FALSE
 		if(hotkeys)
-			for(var/hotkeytobind in kb.classic_keys)
-				if(!length(key_bindings[hotkeytobind]))
+			for(var/hotkeytobind in kb.hotkey_keys)
+				if(!length(key_bindings[hotkeytobind]) || hotkeytobind == "Unbound") //Only bind to the key if nothing else is bound expect for Unbound
 					LAZYADD(key_bindings[hotkeytobind], kb.name)
 					addedbind = TRUE
 		else
 			for(var/classickeytobind in kb.classic_keys)
-				if(!length(key_bindings[classickeytobind]))
+				if(!length(key_bindings[classickeytobind]) || classickeytobind == "Unbound") //Only bind to the key if nothing else is bound expect for Unbound
 					LAZYADD(key_bindings[classickeytobind], kb.name)
 					addedbind = TRUE
 		if(!addedbind)
 			notadded += kb
+	save_preferences() //Save the players pref so that new keys that were set to Unbound as default are permanently stored
 	if(length(notadded))
-		addtimer(CALLBACK(src, .proc/announce_conflict, notadded), 5 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(announce_conflict), notadded), 5 SECONDS)
 
 /datum/preferences/proc/announce_conflict(list/notadded)
 	to_chat(parent, "<span class='userdanger'>KEYBINDING CONFLICT!!!\n\
 	There are new keybindings that have defaults bound to keys you already set, They will default to Unbound. You can bind them in Setup Character or Game Preferences\n\
-	<a href='?_src_=prefs;preference=tab;tab=3'>Or you can click here to go straight to the keybindings page</a></span>")
+	<a href='byond://?_src_=prefs;preference=tab;tab=3'>Or you can click here to go straight to the keybindings page</a></span>")
 	for(var/item in notadded)
 		var/datum/keybinding/conflicted = item
 		to_chat(parent, "<span class='userdanger'>[conflicted.category]: [conflicted.full_name] needs updating")
 		LAZYADD(key_bindings["Unbound"], conflicted.name) // set it to unbound to prevent this from opening up again in the future
+		save_preferences()
 
 
 
@@ -170,6 +172,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["tgui_fancy"], tgui_fancy)
 	READ_FILE(S["tgui_lock"], tgui_lock)
 	READ_FILE(S["buttons_locked"], buttons_locked)
+	READ_FILE(S["client_language"], client_language)
+	READ_FILE(S["auxiliary_console_tgui"], auxiliary_console_tgui)
 	READ_FILE(S["windowflash"], windowflashing)
 	READ_FILE(S["be_special"] , be_special)
 
@@ -240,6 +244,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	tgui_fancy		= sanitize_integer(tgui_fancy, FALSE, TRUE, initial(tgui_fancy))
 	tgui_lock		= sanitize_integer(tgui_lock, FALSE, TRUE, initial(tgui_lock))
 	buttons_locked	= sanitize_integer(buttons_locked, FALSE, TRUE, initial(buttons_locked))
+	client_language = sanitize_inlist(client_language, GLOB.allowed_client_languages, initial(client_language))
+	auxiliary_console_tgui = sanitize_integer(auxiliary_console_tgui, FALSE, TRUE, initial(auxiliary_console_tgui))
 	windowflashing	= sanitize_integer(windowflashing, FALSE, TRUE, initial(windowflashing))
 	default_slot	= sanitize_integer(default_slot, 1, max_save_slots, initial(default_slot))
 	toggles			= sanitize_integer(toggles, 0, (2**24)-1, initial(toggles))
@@ -307,6 +313,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["tgui_fancy"], tgui_fancy)
 	WRITE_FILE(S["tgui_lock"], tgui_lock)
 	WRITE_FILE(S["buttons_locked"], buttons_locked)
+	WRITE_FILE(S["client_language"], client_language)
+	WRITE_FILE(S["auxiliary_console_tgui"], auxiliary_console_tgui)
 	WRITE_FILE(S["windowflash"], windowflashing)
 	WRITE_FILE(S["be_special"], be_special)
 	WRITE_FILE(S["default_slot"], default_slot)
@@ -374,10 +382,12 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["body_type"], body_type)
 	READ_FILE(S["age"], age)
 	READ_FILE(S["hair_color"], hair_color)
+	READ_FILE(S["gradient_color"], gradient_color)
 	READ_FILE(S["facial_hair_color"], facial_hair_color)
 	READ_FILE(S["eye_color"], eye_color)
 	READ_FILE(S["skin_tone"], skin_tone)
 	READ_FILE(S["hairstyle_name"], hairstyle)
+	READ_FILE(S["gradient_style"], gradient_style)
 	READ_FILE(S["facial_style_name"], facial_hairstyle)
 	READ_FILE(S["underwear"], underwear)
 	READ_FILE(S["underwear_color"], underwear_color)
@@ -412,7 +422,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	alt_titles_preferences = SANITIZE_LIST(alt_titles_preferences)
 	if(SSjob)
-		for(var/datum/job/job in sortList(SSjob.occupations, /proc/cmp_job_display_asc))
+		for(var/datum/job/job in sortList(SSjob.occupations, GLOBAL_PROC_REF(cmp_job_display_asc)))
 			if(alt_titles_preferences[job.title])
 				if(!((alt_titles_preferences[job.title] in job.alt_titles) || (alt_titles_preferences[job.title] == job.senior_title) || (alt_titles_preferences[job.title] == job.ultra_senior_title)))
 					alt_titles_preferences.Remove(job.title) // Tegu end
@@ -425,6 +435,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["preferred_ai_core_display"], preferred_ai_core_display)
 	READ_FILE(S["prefered_security_department"], prefered_security_department)
 	READ_FILE(S["prefered_agent_department"], prefered_agent_department)
+	READ_FILE(S["prefered_sephirah_department"], prefered_sephirah_department)
+	READ_FILE(S["prefered_sephirah_bodytype"], prefered_sephirah_bodytype)
+	READ_FILE(S["prefered_sephirah_boxcolor"], prefered_sephirah_boxcolor)
 
 	//Lore
 	READ_FILE(S["terragov_relation"], terragov_relation)
@@ -484,6 +497,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	age				= sanitize_integer(age, AGE_MIN, AGE_MAX, initial(age))
 	hair_color			= sanitize_hexcolor(hair_color, 3, 0)
 	facial_hair_color			= sanitize_hexcolor(facial_hair_color, 3, 0)
+	gradient_style = sanitize_inlist(gradient_style, GLOB.hair_gradients_list, "None")
+	gradient_color = sanitize_hexcolor(gradient_color, 3, 0)
 	underwear_color			= sanitize_hexcolor(underwear_color, 3, 0)
 	eye_color		= sanitize_hexcolor(eye_color, 3, 0)
 	skin_tone		= sanitize_inlist(skin_tone, GLOB.skin_tones)
@@ -513,6 +528,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	joblessrole	= sanitize_integer(joblessrole, 1, 3, initial(joblessrole))
 	//Validate job prefs
+	job_preferences = SANITIZE_LIST(job_preferences)
 	for(var/j in job_preferences)
 		if(job_preferences[j] != JP_LOW && job_preferences[j] != JP_MEDIUM && job_preferences[j] != JP_HIGH)
 			job_preferences -= j
@@ -538,10 +554,12 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["body_type"]		, body_type)
 	WRITE_FILE(S["age"]			, age)
 	WRITE_FILE(S["hair_color"]			, hair_color)
+	WRITE_FILE(S["gradient_color"]		, gradient_color)
 	WRITE_FILE(S["facial_hair_color"]			, facial_hair_color)
 	WRITE_FILE(S["eye_color"]			, eye_color)
 	WRITE_FILE(S["skin_tone"]			, skin_tone)
 	WRITE_FILE(S["hairstyle_name"]			, hairstyle)
+	WRITE_FILE(S["gradient_style"]		, gradient_style)
 	WRITE_FILE(S["facial_style_name"]			, facial_hairstyle)
 	WRITE_FILE(S["underwear"]			, underwear)
 	WRITE_FILE(S["underwear_color"]			, underwear_color)
@@ -577,6 +595,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	WRITE_FILE(S["preferred_ai_core_display"] ,  preferred_ai_core_display)
 	WRITE_FILE(S["prefered_agent_department"] , prefered_agent_department)
+	WRITE_FILE(S["prefered_sephirah_department"] , prefered_sephirah_department)
+	WRITE_FILE(S["prefered_sephirah_bodytype"], prefered_sephirah_bodytype)
+	WRITE_FILE(S["prefered_sephirah_boxcolor"] , prefered_sephirah_boxcolor)
 
 	//Lore
 	WRITE_FILE(S["terragov_relation"], terragov_relation)

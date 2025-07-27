@@ -89,6 +89,8 @@
 	var/flip_cooldown = 0
 	var/suppressor_x_offset ///pixel offset for the suppressor overlay on the x axis.
 	var/suppressor_y_offset ///pixel offset for the suppressor overlay on the y axis.
+	/// Check if you are able to see if a weapon has a bullet loaded in or not.
+	var/hidden_chambered = FALSE
 
 	///Gun internal magazine modification and misfiring
 
@@ -124,7 +126,7 @@
 	else
 		chamber_round(replace_new_round = TRUE)
 	update_icon()
-	RegisterSignal(src, COMSIG_ITEM_RECHARGED, .proc/instant_reload)
+	RegisterSignal(src, COMSIG_ITEM_RECHARGED, PROC_REF(instant_reload))
 
 /obj/item/gun/ballistic/vv_edit_var(vname, vval)
 	. = ..()
@@ -452,7 +454,7 @@
 	var/count_chambered = !(bolt_type == BOLT_TYPE_NO_BOLT || bolt_type == BOLT_TYPE_OPEN)
 	. += "It has [get_ammo(count_chambered)] round\s remaining."
 
-	if (!chambered)
+	if (!chambered && !hidden_chambered)
 		. += "It does not seem to have a round chambered."
 	if (bolt_locked)
 		. += "The [bolt_wording] is locked back and needs to be released before firing or de-fouling."
@@ -497,7 +499,7 @@
 			var/turf/target = get_ranged_target_turf(user, turn(user.dir, 180), BRAINS_BLOWN_THROW_RANGE)
 			B.Remove(user)
 			B.forceMove(T)
-			var/datum/callback/gibspawner = CALLBACK(GLOBAL_PROC, /proc/spawn_atom_to_turf, /obj/effect/gibspawner/generic, B, 1, FALSE, user)
+			var/datum/callback/gibspawner = CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(spawn_atom_to_turf), /obj/effect/gibspawner/generic, B, 1, FALSE, user)
 			B.throw_at(target, BRAINS_BLOWN_THROW_RANGE, BRAINS_BLOWN_THROW_SPEED, callback=gibspawner)
 			return(BRUTELOSS)
 		else

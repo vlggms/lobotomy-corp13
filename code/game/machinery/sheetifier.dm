@@ -14,7 +14,7 @@
 /obj/machinery/sheetifier/Initialize()
 	. = ..()
 
-	AddComponent(/datum/component/material_container, list(/datum/material/meat, /datum/material/hauntium), MINERAL_MATERIAL_AMOUNT * MAX_STACK_SIZE * 2, MATCONTAINER_EXAMINE|BREAKDOWN_FLAGS_SHEETIFIER, typesof(/datum/material/meat) + /datum/material/hauntium, /obj/item/food/meat, null, CALLBACK(src, .proc/CanInsertMaterials), CALLBACK(src, .proc/AfterInsertMaterials))
+	AddComponent(/datum/component/material_container, list(/datum/material/meat, /datum/material/hauntium), MINERAL_MATERIAL_AMOUNT * MAX_STACK_SIZE * 2, MATCONTAINER_EXAMINE|BREAKDOWN_FLAGS_SHEETIFIER, typesof(/datum/material/meat) + /datum/material/hauntium, /obj/item/food/meat, null, CALLBACK(src, PROC_REF(CanInsertMaterials)), CALLBACK(src, PROC_REF(AfterInsertMaterials)))
 
 /obj/machinery/sheetifier/update_overlays()
 	. = ..()
@@ -36,7 +36,7 @@
 	var/mutable_appearance/processing_overlay = mutable_appearance(icon, "processing")
 	processing_overlay.color = last_inserted_material.color
 	flick_overlay_static(processing_overlay, src, 64)
-	addtimer(CALLBACK(src, .proc/finish_processing), 64)
+	addtimer(CALLBACK(src, PROC_REF(finish_processing)), 64)
 
 /obj/machinery/sheetifier/proc/finish_processing()
 	busy_processing = FALSE

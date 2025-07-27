@@ -37,5 +37,4 @@
 	icon_state = "declone"
 	damage = 4
 	damage_type = BURN
-	flag = ENERGY
 	temperature = -100 // closer to the old temp loss

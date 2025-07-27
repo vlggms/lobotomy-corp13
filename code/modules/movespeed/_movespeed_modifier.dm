@@ -110,37 +110,43 @@ GLOBAL_LIST_EMPTY(movespeed_modification_cache)
 	4. If any of the rest of the args are not null (see: multiplicative slowdown), modify the datum
 	5. Update if necessary
 */
-/mob/proc/add_or_update_variable_movespeed_modifier(datum/movespeed_modifier/type_id_datum, update = TRUE, multiplicative_slowdown)
+/mob/proc/add_or_update_variable_movespeed_modifier(datum/movespeed_modifier/type_id_datum, update = TRUE, multiplicative_slowdown, apply_to_existing_modifier = FALSE)
 	var/modified = FALSE
 	var/inject = FALSE
-	var/datum/movespeed_modifier/final
+	var/datum/movespeed_modifier/final_value
 	if(istext(type_id_datum))
-		final = LAZYACCESS(movespeed_modification, type_id_datum)
-		if(!final)
+		final_value = LAZYACCESS(movespeed_modification, type_id_datum)
+		if(!final_value)
 			CRASH("Couldn't find existing modification when provided a text ID.")
 	else if(ispath(type_id_datum))
 		if(!initial(type_id_datum.variable))
 			CRASH("Not a variable modifier")
-		final = LAZYACCESS(movespeed_modification, initial(type_id_datum.id) || "[type_id_datum]")
-		if(!final)
-			final = new type_id_datum
+		final_value = LAZYACCESS(movespeed_modification, initial(type_id_datum.id) || "[type_id_datum]")
+		if(!final_value)
+			final_value = new type_id_datum
 			inject = TRUE
 			modified = TRUE
 	else
 		if(!initial(type_id_datum.variable))
 			CRASH("Not a variable modifier")
-		final = type_id_datum
-		if(!LAZYACCESS(movespeed_modification, final.id))
+		final_value = type_id_datum
+		if(!LAZYACCESS(movespeed_modification, final_value.id))
 			inject = TRUE
 			modified = TRUE
 	if(!isnull(multiplicative_slowdown))
-		final.multiplicative_slowdown = multiplicative_slowdown
+		if(apply_to_existing_modifier)
+			if(final_value.flags & IS_ACTUALLY_MULTIPLICATIVE)
+				final_value.multiplicative_slowdown *= multiplicative_slowdown
+			else
+				final_value.multiplicative_slowdown += multiplicative_slowdown
+		else
+			final_value.multiplicative_slowdown = multiplicative_slowdown
 		modified = TRUE
 	if(inject)
-		add_movespeed_modifier(final, FALSE)
+		add_movespeed_modifier(final_value, FALSE)
 	if(update && modified)
 		update_movespeed(TRUE)
-	return final
+	return final_value
 
 
 ///Is there a movespeed modifier for this mob
@@ -168,6 +174,7 @@ GLOBAL_LIST_EMPTY(movespeed_modification_cache)
 /// Go through the list of movespeed modifiers and calculate a final movespeed. ANY ADD/REMOVE DONE IN UPDATE_MOVESPEED MUST HAVE THE UPDATE ARGUMENT SET AS FALSE!
 /mob/proc/update_movespeed()
 	. = 0
+	var/multiplier = 1
 	var/list/conflict_tracker = list()
 	for(var/key in get_movespeed_modifiers())
 		var/datum/movespeed_modifier/M = movespeed_modification[key]
@@ -184,8 +191,17 @@ GLOBAL_LIST_EMPTY(movespeed_modification_cache)
 				conflict_tracker[conflict] = amt
 			else
 				continue
-		. += amt
+		if((M.flags & IS_ACTUALLY_MULTIPLICATIVE) && amt > 0)
+			multiplier *= amt
+		else
+			. += amt
+	. *= multiplier
 	cached_multiplicative_slowdown = .
+
+//cached_multiplicative_slowdown is the delay for clients while move_to_delay is for ai, they must be equal
+/mob/living/simple_animal/hostile/update_movespeed()
+	. = ..()
+	move_to_delay = .
 
 /// Get the move speed modifiers list of the mob
 /mob/proc/get_movespeed_modifiers()

@@ -1,0 +1,85 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"v" = (
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"w" = (
+/obj/structure/fluff/clockwork/alloy_shards/medium_gearbit,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"x" = (
+/obj/structure/fluff/clockwork/alloy_shards,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"J" = (
+/obj/structure/fluff/clockwork/clockgolem_remains,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"M" = (
+/obj/structure/fluff/drake_statue/falling,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"N" = (
+/obj/structure/fluff/clockwork/blind_eye,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"S" = (
+/obj/structure/fluff/clockwork/alloy_shards/medium,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"T" = (
+/obj/structure/fluff/clockwork/alloy_shards/large,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"X" = (
+/obj/item/spear/bonespear,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+a
+v
+v
+v
+v
+X
+a
+"}
+(2,1,1) = {"
+a
+J
+v
+w
+v
+v
+a
+"}
+(3,1,1) = {"
+a
+v
+x
+M
+v
+N
+a
+"}
+(4,1,1) = {"
+a
+S
+v
+v
+v
+T
+a
+"}
+(5,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+"}

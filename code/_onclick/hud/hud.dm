@@ -6,12 +6,11 @@
 
 // The default UI style is the first one in the list
 GLOBAL_LIST_INIT(available_ui_styles, list(
+	"Lobotomite" = 'icons/hud/screen_lobotomy.dmi',
+	"Limboid (Gloom)" = 'icons/hud/screen_limboid.dmi',
+	"Limboid (Envy)" = 'icons/hud/screen_limboidenvy.dmi',
 	"Midnight" = 'icons/hud/screen_midnight.dmi',
-	"Retro" = 'icons/hud/screen_retro.dmi',
-	"Plasmafire" = 'icons/hud/screen_plasmafire.dmi',
 	"Slimecore" = 'icons/hud/screen_slimecore.dmi',
-	"Operative" = 'icons/hud/screen_operative.dmi',
-	"Clockwork" = 'icons/hud/screen_clockwork.dmi',
 	"Glass" = 'icons/hud/screen_glass.dmi'
 ))
 
@@ -63,10 +62,13 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	var/atom/movable/screen/healthdoll
 	var/atom/movable/screen/sanityhealth
 	var/atom/movable/screen/internals
+	var/atom/movable/screen/stats
 	var/atom/movable/screen/wanted/wanted_lvl
 	var/atom/movable/screen/spacesuit
 	// subtypes can override this to force a specific UI style
 	var/ui_style
+
+	var/atom/movable/screen/holomap
 
 /datum/hud/New(mob/owner)
 	mymob = owner
@@ -117,6 +119,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	sanityhealth = null
 	wanted_lvl = null
 	internals = null
+	stats = null
 	spacesuit = null
 	lingchemdisplay = null
 	lingstingdisplay = null
@@ -210,6 +213,15 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 			if(team_finder_arrows.len)
 				screenmob.client.screen -= team_finder_arrows
 
+	holomap = new /atom/movable/screen/holomap()
+	holomap.name = "holomap"
+	holomap.icon = null
+	holomap.icon_state = ""
+	holomap.screen_loc = UI_HOLOMAP
+	holomap.mouse_opacity = 0
+	holomap.alpha = 255
+	mymob.client.screen += src.holomap
+
 	hud_version = display_hud_version
 	persistent_inventory_update(screenmob)
 	screenmob.update_action_buttons(1)
@@ -228,6 +240,8 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	return TRUE
 
 /datum/hud/proc/plane_masters_update()
+	if(!mymob.client)
+		return
 	// Plane masters are always shown to OUR mob, never to observers
 	for(var/thing in plane_masters)
 		var/atom/movable/screen/plane_master/PM = plane_masters[thing]
@@ -274,9 +288,9 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 
 	if(hud_used && client)
 		hud_used.show_hud() //Shows the next hud preset
-		to_chat(usr, "<span class='info'>Switched HUD mode. Press F12 to toggle.</span>")
+		to_chat(usr, span_info("Switched HUD mode. Press F12 to toggle."))
 	else
-		to_chat(usr, "<span class='warning'>This mob type does not use a HUD.</span>")
+		to_chat(usr, span_warning("This mob type does not use a HUD."))
 
 
 //(re)builds the hand ui slots, throwing away old ones

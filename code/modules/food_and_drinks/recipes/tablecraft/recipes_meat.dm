@@ -2,15 +2,6 @@
 
 ////////////////////////////////////////////////KEBABS////////////////////////////////////////////////
 
-/datum/crafting_recipe/food/humankebab
-	name = "Human kebab"
-	reqs = list(
-		/obj/item/stack/rods = 1,
-		/obj/item/food/meat/steak/plain/human = 2
-	)
-	result = /obj/item/food/kebab/human
-	subcategory = CAT_MEAT
-
 /datum/crafting_recipe/food/kebab
 	name = "Kebab"
 	reqs = list(
@@ -27,15 +18,6 @@
 		/obj/item/food/tofu = 2
 	)
 	result = /obj/item/food/kebab/tofu
-	subcategory = CAT_MEAT
-
-/datum/crafting_recipe/food/tailkebab
-	name = "Lizard tail kebab"
-	reqs = list(
-		/obj/item/stack/rods = 1,
-		/obj/item/organ/tail/lizard = 1
-	)
-	result = /obj/item/food/kebab/tail
 	subcategory = CAT_MEAT
 
 /datum/crafting_recipe/food/fiestaskewer
@@ -94,23 +76,9 @@
 /datum/crafting_recipe/food/sashimi
 	name = "Sashimi"
 	reqs = list(
-		/datum/reagent/consumable/soysauce = 5,
-		/obj/item/food/spidereggs = 1,
 		/obj/item/food/carpmeat = 1
 	)
 	result = /obj/item/food/sashimi
-	subcategory = CAT_MEAT
-
-////////////////////////////////////////////////MR SPIDER////////////////////////////////////////////////
-
-/datum/crafting_recipe/food/spidereggsham
-	name = "Spider eggs ham"
-	reqs = list(
-		/datum/reagent/consumable/salt = 1,
-		/obj/item/food/spidereggs = 1,
-		/obj/item/food/meat/cutlet/spider = 2
-	)
-	result = /obj/item/food/spidereggsham
 	subcategory = CAT_MEAT
 
 ////////////////////////////////////////////////MISC RECIPE's////////////////////////////////////////////////
@@ -125,16 +93,6 @@
 	result = /obj/item/food/cornedbeef
 	subcategory = CAT_MEAT
 
-/datum/crafting_recipe/food/bearsteak
-	name = "Filet migrawr"
-	reqs = list(
-		/datum/reagent/consumable/ethanol/manly_dorf = 5,
-		/obj/item/food/meat/steak/bear = 1,
-	)
-	tools = list(/obj/item/lighter)
-	result = /obj/item/food/bearsteak
-	subcategory = CAT_MEAT
-
 /datum/crafting_recipe/food/enchiladas
 	name = "Enchiladas"
 	reqs = list(
@@ -143,6 +101,16 @@
 		/obj/item/food/tortilla = 2
 	)
 	result = /obj/item/food/enchiladas
+	subcategory = CAT_MEAT
+
+/datum/crafting_recipe/food/forsaken_burrito
+	name = "Forsaken Burrito"
+	reqs = list(
+		/obj/item/food/meat/cutlet = 1,
+		/obj/item/food/grown/soybeans = 2,
+		/obj/item/food/tortilla = 1
+	)
+	result = /obj/item/food/forsaken_burrito
 	subcategory = CAT_MEAT
 
 /datum/crafting_recipe/food/stewedsoymeat
@@ -192,24 +160,6 @@
 	result = /obj/item/food/pigblanket
 	subcategory = CAT_MEAT
 
-/datum/crafting_recipe/food/ratkebab
-	name = "Rat Kebab"
-	reqs = list(
-		/obj/item/stack/rods = 1,
-		/obj/item/food/deadmouse = 1
-	)
-	result = /obj/item/food/kebab/rat
-	subcategory = CAT_MEAT
-
-/datum/crafting_recipe/food/doubleratkebab
-	name = "Double Rat Kebab"
-	reqs = list(
-		/obj/item/stack/rods = 1,
-		/obj/item/food/deadmouse = 2
-	)
-	result = /obj/item/food/kebab/rat/double
-	subcategory = CAT_MEAT
-
 /datum/crafting_recipe/food/ricepork
 	name = "Rice and Pork"
 	reqs = list(
@@ -227,15 +177,6 @@
 		/obj/item/stack/rods = 2
 	)
 	result = /obj/item/food/bbqribs
-	subcategory = CAT_MEAT
-
-/datum/crafting_recipe/food/meatclown
-	name = "Meat Clown"
-	reqs = list(
-		/obj/item/food/meat/steak/plain = 1,
-		/obj/item/food/grown/banana = 1
-	)
-	result = /obj/item/food/meatclown
 	subcategory = CAT_MEAT
 
 /datum/crafting_recipe/food/lasagna
@@ -260,13 +201,21 @@
 	result = /obj/item/food/salad/gumbo
 	subcategory = CAT_MEAT
 
-
 /datum/crafting_recipe/food/fried_chicken
 	name = "Fried Chicken"
 	reqs = list(
 		/obj/item/food/meat/slab/chicken = 1,
 		/datum/reagent/consumable/flour = 5,
-		/datum/reagent/consumable/corn_starch = 5,
+		/datum/reagent/consumable/corn_starch = 5
 	)
 	result = /obj/item/food/fried_chicken
+	subcategory = CAT_MEAT
+
+/datum/crafting_recipe/food/yukhoe
+	name = "Yukhoe"
+	reqs = list(
+		/obj/item/food/meat/rawcutlet = 2,
+		/obj/item/food/egg = 1
+	)
+	result = /obj/item/food/yukhoe
 	subcategory = CAT_MEAT

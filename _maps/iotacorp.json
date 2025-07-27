@@ -1,0 +1,15 @@
+{
+	"version": 1,
+	"map_name": "Facility i-575 BOTANICAL",
+	"map_path": "map_files/Iota",
+	"map_file": [
+		"iotacorp.dmm"
+	],
+	"space_ruin_levels": 0,
+	"space_empty_levels": 0,
+	"shuttles": {
+		"emergency": "emergency_alpha"
+	},
+	"minetype": "none",
+	"maptype": "standard"
+}

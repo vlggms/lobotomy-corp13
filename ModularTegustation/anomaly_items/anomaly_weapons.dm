@@ -39,7 +39,7 @@
 
 /obj/item/gun/energy/vortex_gun/attackby(obj/item/C, mob/user)
 	if(istype(C, /obj/item/assembly/signaler/anomaly/vortex) && !firing_core)
-		to_chat(user, "<span class='notice'>You insert [C] into the [src] and the weapon starts humming.</span>")
+		to_chat(user, span_notice("You insert [C] into the [src] and the weapon starts humming."))
 		firing_core = TRUE
 		playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
 		qdel(C)
@@ -53,7 +53,7 @@
 /obj/item/gun/energy/vortex_gun/shoot_with_empty_chamber(mob/living/user)
 	. = ..()
 	if(!firing_core)
-		to_chat(user, "<span class='danger'>The display says, 'NO CORE INSTALLED'.</span>")
+		to_chat(user, span_danger("The display says, \"NO CORE INSTALLED\"."))
 
 // Casing
 /obj/item/ammo_casing/energy/vortex
@@ -155,7 +155,7 @@
 
 /obj/item/melee/flux_sword/attackby(obj/item/C, mob/user)
 	if(istype(C, /obj/item/assembly/signaler/anomaly/flux) && !anomaly_ready)
-		to_chat(user, "<span class='notice'>You insert [C] into the [src].</span>")
+		to_chat(user, span_notice("You insert [C] into the [src]."))
 		playsound(src.loc, "sparks", 50, TRUE)
 		name = "flux sword"
 		anomaly_ready = TRUE

@@ -26,7 +26,6 @@ const taskTgui = new Task('tgui')
   .provides('tgui/public/tgui-common.bundle.js')
   .provides('tgui/public/tgui-panel.bundle.css')
   .provides('tgui/public/tgui-panel.bundle.js')
-  .provides('code/modules/tgui/USE_BUILD_BAT_INSTEAD_OF_DREAM_MAKER.dm')
   .build(async () => {
     // Instead of calling `tgui/bin/tgui`, we reproduce the whole pipeline
     // here for maximum compilation speed.
@@ -49,6 +48,7 @@ const taskDm = new Task('dm')
   .depends('tgui/public/tgui.html')
   .depends('tgui/public/*.bundle.*')
   .depends('tgui/public/*.chunk.*')
+  .depends('ModularTegustation/**') // LOBOTOMYCORPORATION ADDITION ensure it also checks for updates in modular code
   .depends('lobotomy-corp13.dme')
   .provides('lobotomy-corp13.dmb')
   .provides('lobotomy-corp13.rsc')

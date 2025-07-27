@@ -44,7 +44,7 @@
 	if(selfcharge)
 		START_PROCESSING(SSobj, src)
 	update_icon()
-	RegisterSignal(src, COMSIG_ITEM_RECHARGED, .proc/instant_recharge)
+	RegisterSignal(src, COMSIG_ITEM_RECHARGED, PROC_REF(instant_recharge))
 
 /obj/item/gun/energy/ComponentInitialize()
 	. = ..()

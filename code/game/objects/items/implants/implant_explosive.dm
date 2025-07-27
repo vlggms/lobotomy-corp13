@@ -18,7 +18,7 @@
 	// and the process of activating destroys the body, so let the other
 	// signal handlers at least finish. Also, the "delayed explosion"
 	// uses sleeps, which is bad for signal handlers to do.
-	INVOKE_ASYNC(src, .proc/activate, "death")
+	INVOKE_ASYNC(src, PROC_REF(activate), "death")
 
 /obj/item/implant/explosive/get_data()
 	var/dat = {"<b>Implant Specifications:</b><BR>
@@ -45,7 +45,7 @@
 	heavy = round(heavy)
 	medium = round(medium)
 	weak = round(weak)
-	to_chat(imp_in, "<span class='notice'>You activate your [name].</span>")
+	to_chat(imp_in, span_notice("You activate your [name]."))
 	active = TRUE
 	var/turf/boomturf = get_turf(imp_in)
 	message_admins("[ADMIN_LOOKUPFLW(imp_in)] has activated their [name] at [ADMIN_VERBOSEJMP(boomturf)], with cause of [cause].")
@@ -71,14 +71,19 @@
 
 	. = ..()
 	if(.)
-		RegisterSignal(target, COMSIG_LIVING_DEATH, .proc/on_death)
+		RegisterSignal(target, COMSIG_LIVING_DEATH, PROC_REF(on_death))
+
+/obj/item/implant/explosive/removed(mob/target, silent = FALSE, special = FALSE)
+	. = ..()
+	if(.)
+		UnregisterSignal(target, COMSIG_LIVING_DEATH)
 
 /obj/item/implant/explosive/proc/timed_explosion()
-	imp_in.visible_message("<span class='warning'>[imp_in] starts beeping ominously!</span>")
+	imp_in.visible_message(span_warning("[imp_in] starts beeping ominously!"))
 	playsound(loc, 'sound/items/timer.ogg', 30, FALSE)
 	sleep(delay*0.25)
 	if(imp_in && !imp_in.stat)
-		imp_in.visible_message("<span class='warning'>[imp_in] doubles over in pain!</span>")
+		imp_in.visible_message(span_warning("[imp_in] doubles over in pain!"))
 		imp_in.Paralyze(140)
 	playsound(loc, 'sound/items/timer.ogg', 30, FALSE)
 	sleep(delay*0.25)

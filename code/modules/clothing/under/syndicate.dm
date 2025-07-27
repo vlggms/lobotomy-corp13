@@ -40,6 +40,8 @@
 	name = "tactical uniform"
 	desc = "A simple black turtleneck with digital camo pants, worn by many fixers and corporate security."
 	icon_state = "tactifool"
+	has_sensor = HAS_SENSORS
+	sensor_mode = SENSOR_COORDS
 	inhand_icon_state = "bl_suit"
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 40)
 

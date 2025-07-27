@@ -1,0 +1,132 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"c" = (
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room)
+"d" = (
+/obj/structure/mineral_door/wood,
+/obj/structure/barricade/wooden/crude,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"f" = (
+/obj/structure/flora/rock/pile/largejungle,
+/obj/structure/flora/rock/pile/largejungle,
+/obj/structure/flora/rock/pile/largejungle,
+/obj/structure/flora/rock/pile/largejungle,
+/turf/open/water/jungle,
+/area/city/backstreets_room)
+"i" = (
+/obj/structure/table/wood,
+/obj/item/instrument/saxophone,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"p" = (
+/obj/effect/landmark/cratespawn,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"u" = (
+/turf/closed/indestructible/wood,
+/area/city/backstreets_room)
+"v" = (
+/mob/living/simple_animal/hostile/clan/scout,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"C" = (
+/turf/open/floor/grass/fakebasalt,
+/area/city/backstreets_room)
+"E" = (
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"F" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/ironsand,
+/area/city/backstreets_room)
+"V" = (
+/obj/structure/table/wood,
+/obj/item/clothing/under/costume/singer/yellow,
+/obj/item/clothing/shoes/workboots,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+c
+F
+c
+C
+C
+"}
+(3,1,1) = {"
+u
+u
+u
+u
+c
+C
+"}
+(4,1,1) = {"
+u
+p
+E
+u
+c
+c
+"}
+(5,1,1) = {"
+u
+E
+v
+d
+c
+c
+"}
+(6,1,1) = {"
+u
+V
+i
+u
+F
+C
+"}
+(7,1,1) = {"
+u
+u
+u
+u
+C
+C
+"}
+(8,1,1) = {"
+a
+c
+c
+c
+c
+C
+"}
+(9,1,1) = {"
+a
+c
+f
+c
+c
+C
+"}
+(10,1,1) = {"
+a
+a
+a
+a
+a
+a
+"}

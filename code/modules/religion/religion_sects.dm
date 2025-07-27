@@ -112,7 +112,6 @@
 		blessed.visible_message("<span class='notice'>[chap] heals [blessed] with the power of [GLOB.deity]!</span>")
 		to_chat(blessed, "<span class='boldnotice'>May the power of [GLOB.deity] compel you to be healed!</span>")
 		playsound(chap, "punch", 25, TRUE, -1)
-		SEND_SIGNAL(blessed, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/blessing)
 	return TRUE
 
 /**** Nanotrasen Approved God ****/
@@ -145,7 +144,6 @@
 		R.cell?.charge += charge_amt
 		R.visible_message("<span class='notice'>[chap] charges [R] with the power of [GLOB.deity]!</span>")
 		to_chat(R, "<span class='boldnotice'>You are charged by the power of [GLOB.deity]!</span>")
-		SEND_SIGNAL(R, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/blessing)
 		playsound(chap, 'sound/effects/bang.ogg', 25, TRUE, -1)
 		return TRUE
 	if(!ishuman(target))
@@ -167,7 +165,6 @@
 		else
 			blessed.visible_message("<span class='notice'>[chap] charges [blessed] with the power of [GLOB.deity]!</span>")
 			to_chat(blessed, "<span class='boldnotice'>You feel charged by the power of [GLOB.deity]!</span>")
-			SEND_SIGNAL(blessed, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/blessing)
 			playsound(chap, 'sound/machines/synth_yes.ogg', 25, TRUE, -1)
 		return TRUE
 
@@ -178,7 +175,6 @@
 	blessed.visible_message("<span class='notice'>[chap] [did_we_charge ? "repairs" : "repairs and charges"] [blessed] with the power of [GLOB.deity]!</span>")
 	to_chat(blessed, "<span class='boldnotice'>The inner machinations of [GLOB.deity] [did_we_charge ? "repairs" : "repairs and charges"] you!</span>")
 	playsound(chap, 'sound/effects/bang.ogg', 25, TRUE, -1)
-	SEND_SIGNAL(blessed, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/blessing)
 	return TRUE
 
 /datum/religion_sect/mechanical/on_sacrifice(obj/item/I, mob/living/chap)
@@ -262,7 +258,6 @@
 		blessed.visible_message("<span class='notice'>[chap] barters a heal for [blessed] from [GLOB.deity]!</span>")
 		to_chat(blessed, "<span class='boldnotice'>May the power of [GLOB.deity] compel you to be healed! Thank you for choosing [GLOB.deity]!</span>")
 		playsound(chap, 'sound/effects/cashregister.ogg', 60, TRUE)
-		SEND_SIGNAL(blessed, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/blessing)
 	return TRUE
 
 #undef GREEDY_HEAL_COST
@@ -356,7 +351,6 @@
 	blessed.visible_message("<span class='notice'>[chap] empowers [blessed] with the power of [GLOB.deity]!</span>")
 	to_chat(blessed, "<span class='boldnotice'>The power of [GLOB.deity] has made you harder to wound for a while!</span>")
 	playsound(chap, "punch", 25, TRUE, -1)
-	SEND_SIGNAL(blessed, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/blessing)
 	return TRUE //trust me, you'll be feeling the pain from the maint drugs all well enough
 
 /datum/religion_sect/maintenance/on_sacrifice(obj/item/reagent_containers/offering, mob/living/user)

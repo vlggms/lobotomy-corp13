@@ -16,6 +16,7 @@
 	var/crush_damage = 1000
 	var/eat_victim_items = TRUE
 	var/item_recycle_sound = 'sound/items/welder.ogg'
+	var/static/list/forbidden_items = typecacheof(list(/obj/item/ego_weapon, /obj/item/ego_weapon/ranged, /obj/item/clothing/suit/armor/ego_gear, /obj/item/toy/plush, /obj/structure/toolabnormality))
 
 /obj/machinery/recycler/Initialize()
 	AddComponent(/datum/component/butchering/recycler, 1, amount_produced,amount_produced/5)
@@ -53,7 +54,7 @@
 
 /obj/machinery/recycler/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>Reclaiming <b>[amount_produced]%</b> of materials salvaged.</span>"
+	. += span_notice("Reclaiming <b>[amount_produced]%</b> of materials salvaged.")
 	. += {"The power light is [(machine_stat & NOPOWER) ? "off" : "on"].
 	The safety-mode light is [safety_mode ? "on" : "off"].
 	The safety-sensors status light is [obj_flags & EMAGGED ? "off" : "on"]."}
@@ -81,7 +82,7 @@
 		safety_mode = FALSE
 		update_icon()
 	playsound(src, "sparks", 75, TRUE, SILENCED_SOUND_EXTRARANGE)
-	to_chat(user, "<span class='notice'>You use the cryptographic sequencer on [src].</span>")
+	to_chat(user, span_notice("You use the cryptographic sequencer on [src]."))
 
 /obj/machinery/recycler/update_icon_state()
 	..()
@@ -111,7 +112,8 @@
 		return
 	if(!isturf(AM0.loc))
 		return //I don't know how you called Crossed() but stop it.
-
+	if(is_type_in_typecache(AM0, forbidden_items))
+		return
 	var/list/to_eat = AM0.GetAllContents()
 
 	var/living_detected = FALSE //technically includes silicons as well but eh
@@ -173,7 +175,7 @@
 	playsound(src, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
 	safety_mode = TRUE
 	update_icon()
-	addtimer(CALLBACK(src, .proc/reboot), SAFETY_COOLDOWN)
+	addtimer(CALLBACK(src, PROC_REF(reboot)), SAFETY_COOLDOWN)
 
 /obj/machinery/recycler/proc/reboot()
 	playsound(src, 'sound/machines/ping.ogg', 50, FALSE)

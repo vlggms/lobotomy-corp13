@@ -403,7 +403,7 @@
 	results = list(/datum/reagent/consumable/hot_coco = 3)
 	required_reagents = list(/datum/reagent/consumable/milk/chocolate_milk = 1, /datum/reagent/consumable/milk = 2)
 	required_temp = 320
-	
+
 /datum/chemical_reaction/coffee
 	results = list(/datum/reagent/consumable/coffee = 5)
 	required_reagents = list(/datum/reagent/toxin/coffeepowder = 1, /datum/reagent/water = 5)
@@ -591,4 +591,8 @@
 /datum/chemical_reaction/ginger_amaretto
 	results = list(/datum/reagent/consumable/ethanol/ginger_amaretto = 4)
 	required_reagents = list(/datum/reagent/consumable/ethanol/amaretto = 1, /datum/reagent/consumable/sol_dry = 1, /datum/reagent/consumable/ice = 1, /datum/reagent/consumable/lemonjuice = 1)
-	
+
+/datum/chemical_reaction/drink/telepole
+	results = list(/datum/reagent/consumable/ethanol/telepole = 5)
+	required_reagents = list(/datum/reagent/consumable/tea = 1, /datum/reagent/consumable/grapejuice = 2, /datum/reagent/consumable/ethanol/sake = 1)
+	mix_message = "You swear you saw a spark fly from the glass..."

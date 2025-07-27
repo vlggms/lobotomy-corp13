@@ -7,6 +7,7 @@
 	desc = "A tiny, wilting rose."
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "rose"
+	portrait = "staining_rose"
 	maxHealth = 10
 	health = 10			//It's a rose lol
 	threat_level = ALEPH_LEVEL
@@ -14,11 +15,12 @@
 		ABNORMALITY_WORK_INSTINCT = 0,
 		ABNORMALITY_WORK_INSIGHT = list(0, 0, 0, 30, 40),
 		ABNORMALITY_WORK_ATTACHMENT = 0,
-		ABNORMALITY_WORK_REPRESSION = list(0, 0, 0, 45, 50)
-			)
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 0, 45, 50),
+	)
 	start_qliphoth = 1
 	work_damage_amount = 14
 	work_damage_type = PALE_DAMAGE
+	chem_type = /datum/reagent/abnormality/sin/pride
 	pixel_x = -16
 	base_pixel_x = -16
 	pixel_y = -8
@@ -27,9 +29,17 @@
 	ego_list = list(
 		/datum/ego_datum/weapon/blooming,
 		/datum/ego_datum/armor/blooming,
-		/datum/ego_datum/armor/flowering
-		)
+		/datum/ego_datum/armor/flowering,
+	)
 	gift_type = /datum/ego_gifts/blossoming
+	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
+
+	observation_prompt = "This isn't worth being called a sacrifice, is it? <br>I've always wanted to be a hero, but... <br>Even when I'm ordered forth to die a worthless death... <br>\
+		I find myself laughable for deciding to do it still. <br>I joined this company to save people. <br>If I can save the lives of those I love, I have no regrets."
+	observation_choices = list(
+		"100 paper roses" = list(TRUE, "I was the only one who could do it... <br>\
+			... <br>that's all."),
+	)
 
 	var/chosen
 	var/list/sacrificed = list()
@@ -41,31 +51,30 @@
 
 
 /mob/living/simple_animal/hostile/abnormality/staining_rose/Initialize()
-	..()
+	. = ..()
 	meltdown_cooldown = world.time + meltdown_cooldown_time
 
 /mob/living/simple_animal/hostile/abnormality/staining_rose/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	safe = TRUE
 	if (chosen == null)
 		chosen = user
-		user.visible_message("<span class='warning'>You are now the rose's chosen.</span>")
+		user.visible_message(span_warning("You are now Staining Rose's Chosen."))
 		icon_state = "rose_activated"
 
 	if (user != chosen)		//Your body starts to wilt.
-		user.visible_message("<span class='warning'>The rose has already chosen another, [chosen]!</span>")
+		user.visible_message(span_warning("Staining Rose already has a Chosen named [chosen]!"))
 		user.apply_status_effect(STATUS_EFFECT_SCHISMATIC)
 		if(!(user in heretics))
 			heretics += user
 		pissed()
-
 	else
-		user.visible_message("<span class='warning'>The Rose is satisfied.</span>")
+		user.visible_message(span_warning("Staining Rose is content."))
 
 	if(get_attribute_level(user, JUSTICE_ATTRIBUTE) < 100)
 		user.apply_status_effect(STATUS_EFFECT_SACRIFICE)
 		if(!(user in sacrificed))
 			sacrificed += user
-			user.visible_message("<span class='warning'>The rose adds your strength to it, and it is born anew.</span>")
+			user.visible_message(span_warning("Staining Rose drains your strength, and it is born anew."))
 			meltdown_cooldown = world.time + meltdown_cooldown_time	//There we go!
 		pissed()
 
@@ -75,7 +84,7 @@
 		meltdown_cooldown = world.time + meltdown_cooldown_time
 		sound_to_playing_players('sound/abnormalities/rose/meltdown.ogg')	//Church bells ringing, whether it happens or not.
 		if(chosen)
-			to_chat(chosen, "<span class='warning'>The rose requires you.</span>")
+			to_chat(chosen, span_boldwarning("Staining Rose requires you to resonate with it again!"))
 		if(!safe)
 			datum_reference.qliphoth_change(-1)
 		safe = FALSE
@@ -112,15 +121,15 @@
 	name = "petal storm"
 	immunity_type = "petal"
 	desc = "Petals shed by the Staining Rose."
-	telegraph_message = "<span class='warning'>The petals are falling.... they're so beautiful...</span>"
+	telegraph_message = span_warning("The petals are falling. They're so beautiful...")
 	telegraph_duration = 300
 	telegraph_overlay = "petal"
-	weather_message = "<span class='userdanger'><i>The petals are so beautiful, you can feel yourself wilting away</i></span>"
+	weather_message = span_userdanger("<i>You can feel yourself wilting away like a delicate rose.</i>")
 	weather_overlay = "petal_harsh"
 	weather_duration_lower = 1500		//2.5-5 minutes.
 	weather_duration_upper = 3000
 	end_duration = 100
-	end_message = "<span class='boldannounce'>The last of the petals are falling. You'll never forget it.</span>"
+	end_message = span_boldannounce("The last of the petals are falling. You'll never forget it.")
 	area_type = /area
 	target_trait = ZTRAIT_STATION
 
@@ -139,26 +148,28 @@
 /datum/status_effect/wilting
 	id = "wilting"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 3000		//Lasts 5 minutes, or when the weather ends
+	duration = 5 MINUTES // Can end early when the weather ends
 	alert_type = null
 
 /datum/status_effect/wilting/on_apply()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		L.physiology.red_mod /= 0.5
-		L.physiology.white_mod /= 0.5
-		L.physiology.black_mod /= 0.5
-		L.physiology.pale_mod /= 0.5
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.physiology.red_mod /= 0.5
+	status_holder.physiology.white_mod /= 0.5
+	status_holder.physiology.black_mod /= 0.5
+	status_holder.physiology.pale_mod /= 0.5
 
 /datum/status_effect/wilting/on_remove()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		L.physiology.red_mod *= 0.5
-		L.physiology.white_mod *= 0.5
-		L.physiology.black_mod *= 0.5
-		L.physiology.pale_mod *= 0.5
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.physiology.red_mod *= 0.5
+	status_holder.physiology.white_mod *= 0.5
+	status_holder.physiology.black_mod *= 0.5
+	status_holder.physiology.pale_mod *= 0.5
 
 
 //SCHISMATIC
@@ -171,27 +182,29 @@
 
 /atom/movable/screen/alert/status_effect/schismatic
 	name = "Schismatic"
-	desc = "You have ruined the sanctity between the rose and it's chosen and have been punished."
+	desc = "You have ruined the sanctity between the rose and its chosen and have been punished."
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "schismatic"
 
 /datum/status_effect/schismatic/on_apply()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		L.physiology.red_mod /= 0.8
-		L.physiology.white_mod /= 0.8
-		L.physiology.black_mod /= 0.8
-		L.physiology.pale_mod /= 0.8
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.physiology.red_mod /= 0.8
+	status_holder.physiology.white_mod /= 0.8
+	status_holder.physiology.black_mod /= 0.8
+	status_holder.physiology.pale_mod /= 0.8
 
 /datum/status_effect/schismatic/on_remove()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		L.physiology.red_mod *= 0.8
-		L.physiology.white_mod *= 0.8
-		L.physiology.black_mod *= 0.8
-		L.physiology.pale_mod *= 0.8
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.physiology.red_mod *= 0.8
+	status_holder.physiology.white_mod *= 0.8
+	status_holder.physiology.black_mod *= 0.8
+	status_holder.physiology.pale_mod *= 0.8
 
 
 //SACRIFICE
@@ -210,21 +223,23 @@
 
 /datum/status_effect/sacrifice/on_apply()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		L.physiology.red_mod /= 0.7
-		L.physiology.white_mod /= 0.7
-		L.physiology.black_mod /= 0.7
-		L.physiology.pale_mod /= 0.7
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.physiology.red_mod /= 0.7
+	status_holder.physiology.white_mod /= 0.7
+	status_holder.physiology.black_mod /= 0.7
+	status_holder.physiology.pale_mod /= 0.7
 
 /datum/status_effect/sacrifice/on_remove()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		L.physiology.red_mod *= 0.7
-		L.physiology.white_mod *= 0.7
-		L.physiology.black_mod *= 0.7
-		L.physiology.pale_mod *= 0.7
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.physiology.red_mod *= 0.7
+	status_holder.physiology.white_mod *= 0.7
+	status_holder.physiology.black_mod *= 0.7
+	status_holder.physiology.pale_mod *= 0.7
 
 #undef STATUS_EFFECT_WILTING
 #undef STATUS_EFFECT_SCHISMATIC

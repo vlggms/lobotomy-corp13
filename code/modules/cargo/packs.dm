@@ -1700,9 +1700,7 @@
 					/obj/item/seeds/amanita,
 					/obj/item/seeds/eggplant/eggy,
 					/obj/item/seeds/rainbow_bunch,
-					/obj/item/seeds/shrub,
-					/obj/item/seeds/random,
-					/obj/item/seeds/random)
+					/obj/item/seeds/shrub,)
 	crate_name = "exotic seeds crate"
 	crate_type = /obj/structure/closet/crate/hydroponics
 
@@ -1796,7 +1794,7 @@
 				anomalous_box_provided = TRUE
 				log_game("An anomalous pizza box was provided in a pizza crate at during cargo delivery")
 				if(prob(50))
-					addtimer(CALLBACK(src, .proc/anomalous_pizza_report), rand(300, 1800))
+					addtimer(CALLBACK(src, PROC_REF(anomalous_pizza_report)), rand(300, 1800))
 				else
 					message_admins("An anomalous pizza box was silently created with no command report in a pizza crate delivery.")
 				break
@@ -2330,27 +2328,6 @@
 					/obj/item/toy/crayon/rainbow)
 	crate_name = "art supply crate"
 	crate_type = /obj/structure/closet/crate/wooden
-
-/datum/supply_pack/misc/aquarium_kit
-	name = "Aquarium Kit"
-	desc = "Everything you need to start your own aquarium. Contains aquarium construction kit, fish catalog, feed can and three freshwater fish from our collection."
-	cost = CARGO_CRATE_VALUE * 10
-	contains = list(/obj/item/book/fish_catalog,
-					/obj/item/storage/fish_case/random/freshwater,
-					/obj/item/storage/fish_case/random/freshwater,
-					/obj/item/storage/fish_case/random/freshwater,
-					/obj/item/fish_feed,
-					/obj/item/storage/box/aquarium_props,
-					/obj/item/aquarium_kit)
-	crate_name = "aquarium kit crate"
-	crate_type = /obj/structure/closet/crate/wooden
-
-/datum/supply_pack/misc/aquarium_fish
-	name = "Aquarium Fish Case"
-	desc = "An aquarium fish handpicked by monkeys from our collection."
-	cost = CARGO_CRATE_VALUE * 2
-	contains = list(/obj/item/storage/fish_case/random)
-	crate_name = "aquarium fish crate"
 
 /datum/supply_pack/misc/bicycle
 	name = "Bicycle"

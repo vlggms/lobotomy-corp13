@@ -136,6 +136,15 @@
 	tastes = list("ice" = 1, "water" = 1, "oranges" = 5, "limes" = 5, "lemons" = 5, "citrus" = 5, "salad" = 5)
 	foodtypes = FRUIT
 
+/obj/item/food/frozen_treats/despaired_delight
+	name = "Despaired Delight"
+	desc = "A sweet icecream sundae that gives you a rather sad feeling as you eat it."
+	icon = 'icons/obj/food/frozen_treats.dmi'
+	icon_state = "despaired_delight"
+	food_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/milk = 5, /datum/reagent/consumable/ice = 5)
+	tastes = list("ice" = 5, "milk" = 5, "berries" = 2,)
+	foodtypes = FRUIT
+
 /obj/item/food/snowcones/pineapple
 	name = "pineapple snowcone"
 	desc = "Pineapple syrup drizzled over a snowball in a paper cup."
@@ -224,7 +233,7 @@
 				bite_consumption = bite_consumption,\
 				microwaved_type = microwaved_type,\
 				junkiness = junkiness,\
-				after_eat = CALLBACK(src, .proc/after_bite))
+				after_eat = CALLBACK(src, PROC_REF(after_bite)))
 
 
 /obj/item/food/popsicle/update_overlays()

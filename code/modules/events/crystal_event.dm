@@ -58,7 +58,7 @@ This section is for the event controller
 /datum/round_event/crystal_invasion/start()
 	destabilize_supermatter_crystal()
 	choose_wave_type()
-	addtimer(CALLBACK(src, .proc/create_random_portals), 2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(create_random_portals)), 2 SECONDS)
 
 ///Destabilize the Supermatter crystal and spawn 6 portals around it
 /datum/round_event/crystal_invasion/proc/destabilize_supermatter_crystal()
@@ -74,7 +74,7 @@ This section is for the event controller
 
 	var/obj/machinery/power/supermatter_crystal/crystal = pick(sm_crystal)
 	dest_crystal = crystal.destabilize(portal_numbers)
-	RegisterSignal(dest_crystal, COMSIG_PARENT_QDELETING, .proc/on_dest_crystal_qdel)
+	RegisterSignal(dest_crystal, COMSIG_PARENT_QDELETING, PROC_REF(on_dest_crystal_qdel))
 
 	for(var/t in RANGE_TURFS(8, dest_crystal.loc))
 		var/turf/turf_loc = t
@@ -154,7 +154,7 @@ This section is for the event controller
 			new pick_portal(portal_spawner_turf)
 	dest_crystal.icon_state = "psy_shielded"
 	dest_crystal.changed_icon = FALSE
-	addtimer(CALLBACK(src, .proc/announce_locations), 8 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(announce_locations)), 8 SECONDS)
 
 ///After 8 seconds from the initial explosions centcom will announce the location of the huge portals
 /datum/round_event/crystal_invasion/proc/announce_locations()
@@ -238,7 +238,7 @@ This section is for the event controller
 	priority_announce("WARNING - The crystal has reached critical instability point. ZK-Event inbound, please do not panic, anyone who panics will \
 						be terminated on the spot. Have a nice day", "Alert")
 	sound_to_playing_players('sound/machines/alarm.ogg')
-	addtimer(CALLBACK(src, .proc/do_zk_event), 10 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(do_zk_event)), 10 SECONDS)
 
 ///This proc actually manages the end of the event
 /datum/round_event/crystal_invasion/proc/do_zk_event()
@@ -667,7 +667,7 @@ This section is for the crystal monsters variations
 	faction = list("crystal")
 	see_in_dark = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-	deathmessage = "collapses into dust!"
+	death_message = "collapses into dust!"
 	del_on_death = 1
 	footstep_type = FOOTSTEP_MOB_SHOE
 	stop_automated_movement = FALSE
@@ -792,7 +792,6 @@ This section is for the crystal monsters variations
 	damage = 0
 	damage_type = BURN
 	nodamage = TRUE
-	flag = ENERGY
 	temperature = -75
 
 /mob/living/simple_animal/hostile/crystal_monster/killer/Bump(atom/clong)

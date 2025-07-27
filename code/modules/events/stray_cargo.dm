@@ -70,9 +70,10 @@
 		var/list/safe_area_types = typecacheof(list(
 		/area/ai_monitored/turret_protected/ai,
 		/area/ai_monitored/turret_protected/ai_upload,
-		/area/engine,
-		/area/shuttle)
-		)
+//		/area/engineering, REQUIRES TG PR
+		/area/engine, // REQUIRES TG PR
+		/area/shuttle,
+	))
 
 		///Subtypes from the above that actually should explode.
 		var/list/unsafe_area_subtypes = typecacheof(list(/area/engine/break_room))

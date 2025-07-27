@@ -85,6 +85,9 @@
 	///Used to decide what kind of reverb the area makes sound have
 	var/sound_environment = SOUND_ENVIRONMENT_NONE
 
+	/// Shows all adjacent areas. Pain on start.
+	var/list/adjacent_areas = list()
+
 /**
  * A list of teleport locations
  *
@@ -115,7 +118,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		if (picked && is_station_level(picked.z))
 			GLOB.teleportlocs[AR.name] = AR
 
-	sortTim(GLOB.teleportlocs, /proc/cmp_text_asc)
+	sortTim(GLOB.teleportlocs, GLOBAL_PROC_REF(cmp_text_asc))
 
 /**
  * Called when an area loads
@@ -327,7 +330,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 				if(D.operating)
 					D.nextstate = opening ? FIREDOOR_OPEN : FIREDOOR_CLOSED
 				else if(!(D.density ^ opening))
-					INVOKE_ASYNC(D, (opening ? /obj/machinery/door/firedoor.proc/open : /obj/machinery/door/firedoor.proc/close))
+					INVOKE_ASYNC(D, (opening ? TYPE_PROC_REF(/obj/machinery/door/firedoor, open) : TYPE_PROC_REF(/obj/machinery/door/firedoor, close)))
 
 /**
  * Generate a firealarm alert for this area
@@ -428,7 +431,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		var/mob/living/silicon/SILICON = i
 		if(SILICON.triggerAlarm("Burglar", src, cameras, trigger))
 			//Cancel silicon alert after 1 minute
-			addtimer(CALLBACK(SILICON, /mob/living/silicon.proc/cancelAlarm,"Burglar",src,trigger), 600)
+			addtimer(CALLBACK(SILICON, TYPE_PROC_REF(/mob/living/silicon, cancelAlarm),"Burglar",src,trigger), 600)
 
 /**
  * Trigger the fire alarm visual affects in an area
@@ -443,8 +446,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	for(var/alarm in firealarms)
 		var/obj/machinery/firealarm/F = alarm
 		F.update_fire_light(fire)
-	for(var/obj/machinery/light/L in src)
-		L.update()
+	RefreshLights()
 
 /**
  * unset the fire alarm visual affects in an area
@@ -459,6 +461,12 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		var/obj/machinery/firealarm/F = alarm
 		F.update_fire_light(fire)
 		F.triggered = FALSE
+	RefreshLights()
+
+/**
+ *  Updates all lights in the area.
+ */
+/area/proc/RefreshLights()
 	for(var/obj/machinery/light/L in src)
 		L.update()
 
@@ -588,7 +596,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		if(!L.client.played)
 			SEND_SOUND(L, sound(sound, repeat = 0, wait = 0, volume = 25, channel = CHANNEL_AMBIENCE))
 			L.client.played = TRUE
-			addtimer(CALLBACK(L.client, /client/proc/ResetAmbiencePlayed), 600)
+			addtimer(CALLBACK(L.client, TYPE_PROC_REF(/client, ResetAmbiencePlayed)), 600)
 
 ///Divides total beauty in the room by roomsize to allow us to get an average beauty per tile.
 /area/proc/update_beauty()
@@ -640,8 +648,14 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	if(outdoors)
 		return FALSE
 	areasize = 0
+	var/list/temp_areas = list()
 	for(var/turf/open/T in contents)
 		areasize++
+		for(var/area/A in get_adjacent_areas(T))
+			if(A == src)
+				continue
+			temp_areas |= A
+	adjacent_areas |= temp_areas
 
 /**
  * Causes a runtime error

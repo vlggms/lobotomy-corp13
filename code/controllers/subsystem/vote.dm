@@ -7,6 +7,7 @@ SUBSYSTEM_DEF(vote)
 	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT
 
 	var/list/choices = list()
+	var/list/choice_tags = list() // If you want your votes to be named something comprehensible while their actual values may not be so useful
 	var/list/choice_by_ckey = list()
 	var/list/generated_actions = list()
 	var/initiator
@@ -29,6 +30,7 @@ SUBSYSTEM_DEF(vote)
 
 /datum/controller/subsystem/vote/proc/reset()
 	choices.Cut()
+	choice_tags.Cut()
 	choice_by_ckey.Cut()
 	initiator = null
 	mode = null
@@ -62,10 +64,14 @@ SUBSYSTEM_DEF(vote)
 				if(choices["Continue Playing"] >= greatest_votes)
 					greatest_votes = choices["Continue Playing"]
 			else if(mode == "gamemode")
-				if(GLOB.master_mode in choices)
-					choices[GLOB.master_mode] += non_voters.len
-					if(choices[GLOB.master_mode] >= greatest_votes)
-						greatest_votes = choices[GLOB.master_mode]
+				/*
+				var/random_gamemode = pick(choices)
+				choices[random_gamemode] += non_voters.len
+				if(choices[random_gamemode] >= greatest_votes)
+					greatest_votes = choices[random_gamemode]
+				*/
+				// Nothing happens! Absolutely nothing.
+				non_voters = list() // Clear out that list.
 			else if(mode == "map")
 				for (var/non_voter_ckey in non_voters)
 					var/client/C = non_voters[non_voter_ckey]
@@ -126,12 +132,11 @@ SUBSYSTEM_DEF(vote)
 				if(. == "Restart Round")
 					restart = TRUE
 			if("gamemode")
-				if(GLOB.master_mode != .)
-					SSticker.save_mode(.)
-					if(SSticker.HasRoundStarted())
-						restart = TRUE
-					else
-						GLOB.master_mode = .
+				var/chosen_mode = choice_tags[choices.Find(.)]
+				if(GLOB.master_mode != chosen_mode)
+					SSticker.save_mode(chosen_mode)
+					if(!SSticker.HasRoundStarted())
+						GLOB.master_mode = chosen_mode
 			if("map")
 				SSmapping.changemap(global.config.maplist[.])
 				SSmapping.map_voted = TRUE
@@ -171,17 +176,21 @@ SUBSYSTEM_DEF(vote)
 		return FALSE
 	// If user has already voted, remove their specific vote
 	if(usr.ckey in voted)
+		if(usr.client.patreon.has_access(ACCESS_SENIOR_AGENT_RANK))	//Patreons get double mapvote
+			choices[choices[vote]]--
 		choices[choices[choice_by_ckey[usr.ckey]]]--
 	else
 		voted += usr.ckey
 	choice_by_ckey[usr.ckey] = vote
+	if(usr.client.patreon.has_access(ACCESS_SENIOR_AGENT_RANK))	//Patreons get double mapvote
+		choices[choices[vote]]++
 	choices[choices[vote]]++
 	return vote
 
 /datum/controller/subsystem/vote/proc/initiate_vote(vote_type, initiator_key)
 	//Server is still intializing.
 	if(!Master.current_runlevel)
-		to_chat(usr, "<span class='warning'>Cannot start vote, server is not done initializing.</span>")
+		to_chat(usr, span_warning("Cannot start vote, server is not done initializing."))
 		return FALSE
 	var/lower_admin = FALSE
 	var/ckey = ckey(initiator_key)
@@ -192,10 +201,10 @@ SUBSYSTEM_DEF(vote)
 		if(started_time)
 			var/next_allowed_time = (started_time + CONFIG_GET(number/vote_delay))
 			if(mode)
-				to_chat(usr, "<span class='warning'>There is already a vote in progress! please wait for it to finish.</span>")
+				to_chat(usr, span_warning("There is already a vote in progress! please wait for it to finish."))
 				return FALSE
 			if(next_allowed_time > world.time && !lower_admin)
-				to_chat(usr, "<span class='warning'>A vote was initiated recently, you must wait [DisplayTimeText(next_allowed_time-world.time)] before a new vote can be started!</span>")
+				to_chat(usr, span_warning("A vote was initiated recently, you must wait [DisplayTimeText(next_allowed_time-world.time)] before a new vote can be started!"))
 				return FALSE
 
 		reset()
@@ -203,16 +212,17 @@ SUBSYSTEM_DEF(vote)
 			if("restart")
 				choices.Add("Restart Round","Continue Playing")
 			if("gamemode")
-				choices.Add(config.votable_modes)
+				choice_tags.Add(config.votable_modes)
+				choices.Add(config.votable_mode_names)
 			if("map")
 				if(!lower_admin && SSmapping.map_voted)
-					to_chat(usr, "<span class='warning'>The next map has already been selected.</span>")
+					to_chat(usr, span_warning("The next map has already been selected."))
 					return FALSE
 				// Randomizes the list so it isn't always METASTATION
 				var/list/maps = list()
 				for(var/map in global.config.maplist)
 					var/datum/map_config/VM = config.maplist[map]
-					if(!VM.votable || (VM.map_name in SSpersistence.blocked_maps))
+					if(!VM.votable)
 						continue
 					var/player_count = GLOB.clients.len
 					if(VM.config_max_users > 0 && player_count >= VM.config_max_users)
@@ -254,7 +264,7 @@ SUBSYSTEM_DEF(vote)
 			text += "\n[question]"
 		log_vote(text)
 		var/vp = CONFIG_GET(number/vote_period)
-		to_chat(world, "\n<font color='purple'><b>[text]</b>\nType <b>vote</b> or click <a href='byond://winset?command=vote'>here</a> to place your votes.\nYou have [DisplayTimeText(vp)] to vote.</font>")
+		to_chat(world, "\n<span class='userdanger'><font color='purple'><b>[text]</b>\nType <b>vote</b> or click <a href='byond://winset?command=vote'>here</a> to place your votes.\nYou have [DisplayTimeText(vp)] to vote.</font></span>")
 		time_remaining = round(vp/10)
 		for(var/c in GLOB.clients)
 			var/client/C = c
@@ -303,7 +313,7 @@ SUBSYSTEM_DEF(vote)
 	)
 
 	if(!!user.client?.holder)
-		data["voting"] += list(voting)
+		data["voting"] = voting
 
 	for(var/key in choices)
 		data["choices"] += list(list(

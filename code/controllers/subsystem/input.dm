@@ -23,7 +23,7 @@ SUBSYSTEM_DEF(input)
 	"Any" = "\"KeyDown \[\[*\]\]\"",
 	"Any+UP" = "\"KeyUp \[\[*\]\]\"",
 	"Back" = "\".winset \\\"input.text=\\\"\\\"\\\"\"",
-	"Tab" = "\".winset \\\"input.focus=true?map.focus=true input.background-color=[COLOR_INPUT_DISABLED]:input.focus=true input.background-color=[COLOR_INPUT_ENABLED]\\\"\"",
+	"Tab" = "\".winset \\\"input.focus=true?map.focus=true :input.focus=true\\\"\"",
 	"Escape" = "Reset-Held-Keys",
 	)
 
@@ -35,7 +35,5 @@ SUBSYSTEM_DEF(input)
 		user.set_macros()
 
 /datum/controller/subsystem/input/fire()
-	var/list/clients = GLOB.clients // Let's sing the list cache song
-	for(var/i in 1 to clients.len)
-		var/client/C = clients[i]
-		C.keyLoop()
+	for(var/mob/user as anything in GLOB.player_list)
+		user.focus?.keyLoop(user.client)

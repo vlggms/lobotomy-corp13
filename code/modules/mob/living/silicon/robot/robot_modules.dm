@@ -136,7 +136,7 @@
 	RM.rebuild_modules()
 	R.radio.recalculateChannels()
 
-	INVOKE_ASYNC(RM, .proc/do_transform_animation)
+	INVOKE_ASYNC(RM, PROC_REF(do_transform_animation))
 	qdel(src)
 	return RM
 
@@ -372,7 +372,7 @@
 		"Spider Miner" = image(icon = 'icons/mob/robots.dmi', icon_state = "spidermin"),
 		"Lavaland Miner" = image(icon = 'icons/mob/robots.dmi', icon_state = "miner")
 		)
-	var/miner_robot_icon = show_radial_menu(cyborg, cyborg, miner_icons, custom_check = CALLBACK(src, .proc/check_menu, cyborg, old_model), radius = 38, require_near = TRUE)
+	var/miner_robot_icon = show_radial_menu(cyborg, cyborg, miner_icons, custom_check = CALLBACK(src, PROC_REF(check_menu), cyborg, old_model), radius = 38, require_near = TRUE)
 	switch(miner_robot_icon)
 		if("Asteroid Miner")
 			cyborg_base_icon = "minerOLD"
@@ -492,7 +492,7 @@
 		"Tophat" = image(icon = 'icons/mob/robots.dmi', icon_state = "tophat"),
 		"Waitress" = image(icon = 'icons/mob/robots.dmi', icon_state = "service_f")
 		)
-	var/service_robot_icon = show_radial_menu(cyborg, cyborg, service_icons, custom_check = CALLBACK(src, .proc/check_menu, cyborg, old_model), radius = 38, require_near = TRUE)
+	var/service_robot_icon = show_radial_menu(cyborg, cyborg, service_icons, custom_check = CALLBACK(src, PROC_REF(check_menu), cyborg, old_model), radius = 38, require_near = TRUE)
 	switch(service_robot_icon)
 		if("Bro")
 			cyborg_base_icon = "brobot"

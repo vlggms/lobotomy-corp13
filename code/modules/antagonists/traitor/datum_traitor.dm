@@ -6,7 +6,6 @@
 	roundend_category = "traitors"
 	antagpanel_category = "Traitor"
 	job_rank = ROLE_TRAITOR
-	antag_moodlet = /datum/mood_event/focused
 	antag_hud_type = ANTAG_HUD_TRAITOR
 	antag_hud_name = "traitor"
 	hijack_speed = 0.5				//10 seconds per hijack stage by default
@@ -143,11 +142,11 @@
 			kill_objective.find_target()
 			add_objective(kill_objective)
 	else
-		if(prob(15) && !(locate(/datum/objective/download) in objectives) && !(owner.assigned_role in list("Research Director", "Scientist", "Roboticist")))
-			var/datum/objective/download/download_objective = new
-			download_objective.owner = owner
-			download_objective.gen_amount_goal()
-			add_objective(download_objective)
+		if(prob(50))
+			var/datum/objective/breach/breach_objective = new
+			breach_objective.owner = owner
+			breach_objective.gen_amount_goal()
+			add_objective(breach_objective)
 		else
 			var/datum/objective/steal/steal_objective = new
 			steal_objective.owner = owner
@@ -207,7 +206,7 @@
 	var/mob/living/silicon/ai/A = M
 	if(istype(A) && traitor_kind == TRAITOR_AI)
 		A.hack_software = TRUE
-	RegisterSignal(M, COMSIG_MOVABLE_HEAR, .proc/handle_hearing)
+	RegisterSignal(M, COMSIG_MOVABLE_HEAR, PROC_REF(handle_hearing))
 
 /datum/antagonist/traitor/remove_innate_effects(mob/living/mob_override)
 	. = ..()

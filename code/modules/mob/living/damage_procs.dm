@@ -15,14 +15,22 @@
  * Returns TRUE if damage applied
  */
 /mob/living/proc/apply_damage(damage = 0,damagetype = RED_DAMAGE, def_zone = null, blocked = FALSE, forced = FALSE, spread_damage = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE, white_healable = FALSE)
-	SEND_SIGNAL(src, COMSIG_MOB_APPLY_DAMGE, damage, damagetype, def_zone)
+	if(GLOB.damage_type_shuffler?.is_enabled && IsColorDamageType(damagetype))
+		var/datum/damage_type_shuffler/shuffler = GLOB.damage_type_shuffler
+		var new_damage_type = shuffler.mapping_offense[damagetype]
+		if(new_damage_type == PALE_DAMAGE && damagetype != PALE_DAMAGE)
+			damage *= shuffler.pale_debuff
+		else if(new_damage_type != PALE_DAMAGE && damagetype == PALE_DAMAGE)
+			damage /= shuffler.pale_debuff
+		damagetype = new_damage_type
+	var/signal_return = SEND_SIGNAL(src, COMSIG_MOB_APPLY_DAMGE, damage, damagetype, def_zone)
+	if(signal_return & COMPONENT_MOB_DENY_DAMAGE)
+		return FALSE
 	var/hit_percent = (100-blocked)/100
 	if(!damage || (!forced && hit_percent <= 0))
 		return FALSE
 	var/damage_amount =  forced ? damage : damage * hit_percent
 	switch(damagetype)
-		if(BRUTE)
-			adjustBruteLoss(damage_amount, forced = forced)
 		if(BURN)
 			adjustFireLoss(damage_amount, forced = forced)
 		if(TOX)
@@ -41,6 +49,8 @@
 			adjustBlackLoss(damage_amount, forced = forced, white_healable = white_healable)
 		if(PALE_DAMAGE)
 			adjustPaleLoss(damage_amount, forced = forced)
+		else
+			adjustBruteLoss(damage_amount, forced = forced)
 	return TRUE
 
 ///like [apply_damage][/mob/living/proc/apply_damage] except it always uses the damage procs
@@ -268,7 +278,7 @@
 	return
 
 /mob/living/proc/getSanityLoss()
-	return maxSanity - sanityhealth
+	return sanityloss
 
 /mob/living/proc/adjustRedLoss(amount, updating_health = TRUE, forced = FALSE)
 	return adjustBruteLoss(amount, forced = forced)
@@ -282,6 +292,12 @@
 	return amount
 
 /mob/living/proc/adjustPaleLoss(amount, updating_health = TRUE, forced = FALSE)
+	if(HAS_TRAIT(src, TRAIT_BRUTEPALE))
+		return adjustBruteLoss(amount, forced = forced)
+	if(SSmaptype.chosen_trait == FACILITY_TRAIT_LEGACY_PALE)	//You eat shit and die
+		if(prob(amount))
+			var/damage_amt = maxHealth * 0.9	//If Legacy Pale hits you, take 90% of your health in damage
+			return adjustBruteLoss(damage_amt, forced = forced)
 	var/damage_amt = maxHealth * (amount/100)
 	return adjustBruteLoss(damage_amt, forced = forced)
 

@@ -16,6 +16,24 @@
 	if(!allowed)
 		allowed = GLOB.security_vest_allowed
 
+/obj/item/clothing/suit/armor/attackby(obj/item/W, mob/user, params)
+	if(istype(W, /obj/item/stack/sheet/silk))
+		if(SSmaptype.maptype != "office")
+			if(user?.mind?.assigned_role == "Carnival" || user?.mind?.assigned_role == "Workshop Attendant")
+				var/datum/component/silkweave/silkweave = GetComponent(/datum/component/silkweave)
+				if(!silkweave)
+					silkweave = AddComponent(/datum/component/silkweave)
+				silkweave.apply_silk(W, user)
+			else
+				to_chat(user, span_danger("You cannot use this silk, as you are not proficent with it."))
+		else
+			var/datum/component/silkweave/silkweave = GetComponent(/datum/component/silkweave)
+			if(!silkweave)
+				silkweave = AddComponent(/datum/component/silkweave)
+			silkweave.apply_silk(W, user)
+	else
+		. = ..()
+
 /obj/item/clothing/suit/armor/vest
 	name = "armor vest"
 	desc = "A slim Type I armored vest that provides decent protection against most types of damage."
@@ -24,11 +42,6 @@
 	blood_overlay_type = "armor"
 	allowed = list(/obj/item/ego_weapon, /obj/item/melee, /obj/item/gun)
 	dog_fashion = /datum/dog_fashion/back
-
-/obj/item/clothing/suit/armor/vest/alt
-	desc = "A cheap plastic vest that provides practically no protection against abnormalities."
-	icon_state = "armor"
-	inhand_icon_state = "armor"
 
 /obj/item/clothing/suit/armor/vest/old
 	name = "degrading armor vest"
@@ -313,36 +326,3 @@
 	icon_state = "centcom_formal"
 	inhand_icon_state = "centcom"
 	body_parts_covered = CHEST|GROIN|ARMS
-	armor = list(MELEE = 50, BULLET = 40, LASER = 50, ENERGY = 50, BOMB = 25, BIO = 0, RAD = 0, FIRE = 100, ACID = 90, WOUND = 10)
-
-
-/*Extraction officer coat.
-I don't want them gaming ego right off the bat beacuse this one actually looks pretty okay.
-It's not great though.
-*/
-/obj/item/clothing/suit/armor/extraction
-	name = "patchwork coat"
-	icon = 'icons/obj/clothing/suits.dmi'
-	worn_icon = 'icons/mob/clothing/suit.dmi'
-	desc = "A poorly made patchwork coat made from a bunch of spare cloth, dyed black. Worn by the extraction officer"
-	icon_state = "extraction"
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 20)
-
-/obj/item/clothing/suit/armor/extraction/arbiter
-	name = "arbiter's armored coat"
-	desc = "A coat made out of quality cloth, providing immense protection against most damage sources. It is quite heavy."
-	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 100, BLACK_DAMAGE = 90, PALE_DAMAGE = 90)
-	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS|HEAD
-	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS|HEAD
-	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS|HEAD
-	w_class = WEIGHT_CLASS_BULKY
-	slowdown = 1.5
-	allowed = list(/obj/item/gun, /obj/item/ego_weapon, /obj/item/melee)
-
-/obj/item/clothing/suit/armor/records
-	name = "old coat"
-	icon = 'icons/obj/clothing/suits.dmi'
-	worn_icon = 'icons/mob/clothing/suit.dmi'
-	desc = "A poorly made patchwork coat made from a bunch of spare cloth, dyed grey. Worn by the records officer"
-	icon_state = "records"
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 20)

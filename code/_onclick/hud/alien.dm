@@ -122,6 +122,8 @@
 	if(!mymob)
 		return
 	var/mob/living/carbon/alien/humanoid/H = mymob
+	if(!H.client)
+		return
 	if(hud_version != HUD_STYLE_NOHUD)
 		for(var/obj/item/I in H.held_items)
 			I.screen_loc = ui_hand_position(H.get_held_index_of_item(I))

@@ -2,6 +2,7 @@
 	icon = 'icons/turf/floors/facility.dmi'
 	icon_state = "fulltile"
 	floor_tile = /obj/item/stack/tile/plasteel
+	tiled_dirt = FALSE
 
 /turf/open/floor/facility/dark
 	icon_state = "darktile"

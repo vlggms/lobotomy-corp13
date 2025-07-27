@@ -27,7 +27,7 @@
 	var/oldloc = loc
 	step(src, direction)
 	if(oldloc != loc)
-		addtimer(CALLBACK(src, .proc/ResetMoveDelay), CONFIG_GET(number/movedelay/walk_delay) * move_speed_multiplier)
+		addtimer(CALLBACK(src, PROC_REF(ResetMoveDelay)), CONFIG_GET(number/movedelay/walk_delay) * move_speed_multiplier)
 	else
 		move_delay = FALSE
 
@@ -62,6 +62,10 @@
 	I.alpha = 0
 	animate(I, pixel_z = 32, alpha = 255, time = 5, easing = ELASTIC_EASING)
 
+/obj/structure/closet/cardboard/after_open(mob/living/user, force = FALSE)
+	for(var/mob/living/L in src.contents)
+		L.Immobilize(50)
+	return
 
 /obj/structure/closet/cardboard/metal
 	name = "large metal box"

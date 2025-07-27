@@ -3,11 +3,12 @@ name: Compile changelogs
 on:
   schedule:
   - cron: "0 0 * * *"
+  workflow_dispatch:
 
 jobs:
   compile:
     name: "Compile changelogs"
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     steps:
       - name: "Check for CHANGELOG_ENABLER secret and pass true to output if it exists to be checked by later steps"
         id: value_holder
@@ -44,12 +45,12 @@ jobs:
       - name: Commit
         if: steps.value_holder.outputs.CL_ENABLED
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "Changelogs"
+          git config --local user.email "${{ secrets.BOT_EMAIL }}"
+          git config --local user.name "${{ secrets.BOT_NAME }}"
           git pull origin master
           git commit -m "Automatic changelog compile [ci skip]" -a || true
       - name: "Push"
         if: steps.value_holder.outputs.CL_ENABLED
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.BOT_TOKEN }}

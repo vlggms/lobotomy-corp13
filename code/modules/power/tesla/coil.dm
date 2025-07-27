@@ -36,7 +36,7 @@
 /obj/machinery/power/tesla_coil/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += "<span class='notice'>The status display reads: Power generation at <b>[input_power_multiplier*100]%</b>.<br>Shock interval at <b>[zap_cooldown*0.1]</b> seconds.</span>"
+		. += span_notice("The status display reads: Power generation at <b>[input_power_multiplier*100]%</b>.<br>Shock interval at <b>[zap_cooldown*0.1]</b> seconds.")
 
 /obj/machinery/power/tesla_coil/on_construction()
 	if(anchored)
@@ -76,7 +76,7 @@
 		//don't lose arc power when it's not connected to anything
 		//please place tesla coils all around the station to maximize effectiveness
 		obj_flags |= BEING_SHOCKED
-		addtimer(CALLBACK(src, .proc/reset_shocked), 1 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(reset_shocked)), 1 SECONDS)
 		zap_buckle_check(power)
 		if(zap_flags & ZAP_GENERATES_POWER) //I don't want no tesla revolver making 8GW you hear
 			return power / 2

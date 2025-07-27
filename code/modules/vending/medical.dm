@@ -5,17 +5,23 @@
 	icon_deny = "med-deny"
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
 	req_access = list(ACCESS_MEDICAL)
-	products = list(/obj/item/stack/medical/gauze = 8,
+	products = list(/obj/item/flashlight/pen = 12,
+					/obj/item/stack/medical/gauze = 8,
 					/obj/item/reagent_containers/syringe = 12,
 					/obj/item/reagent_containers/dropper = 3,
 					/obj/item/reagent_containers/glass/bottle/ethanol = 5,
 					/obj/item/healthanalyzer = 4,
 					/obj/item/wrench/medical = 1,
+					/obj/item/prosthetictool = 1,
 					/obj/item/stack/sticky_tape/surgical = 3,
 					/obj/item/healthanalyzer/wound = 4,
 					/obj/item/stack/medical/ointment = 2,
 					/obj/item/stack/medical/suture = 2,
-					/obj/item/stack/medical/bone_gel = 4)
+					/obj/item/stack/medical/bone_gel = 4,
+					/obj/item/reagent_containers/hypospray/medipen/mental = 6,
+					/obj/item/reagent_containers/hypospray/medipen/salacid = 6,
+					/obj/item/storage/box/bodybags = 4,
+					/obj/item/storage/box/masks = 1)
 	contraband = list(/obj/item/storage/box/gum/happiness = 3,
 						/obj/item/storage/box/hug/medical = 1)
 	premium = list(/obj/item/reagent_containers/hypospray/medipen = 3,
@@ -54,6 +60,7 @@
 					/obj/item/reagent_containers/glass/bottle/multiver = 2,
 					/obj/item/reagent_containers/glass/bottle/syriniver = 2,
 					/obj/item/reagent_containers/glass/bottle/epinephrine = 3,
+					/obj/item/reagent_containers/hypospray/medipen/salbutamol = 10, // LOBOTOMYCORPORATION ADDITION
 					/obj/item/reagent_containers/glass/bottle/morphine = 4,
 					/obj/item/reagent_containers/glass/bottle/potass_iodide = 1,
 					/obj/item/reagent_containers/glass/bottle/salglu_solution = 3,
