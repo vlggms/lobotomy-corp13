@@ -215,12 +215,6 @@ Based on the design document in PIANIST_PHASE_DESIGN.md
 			damage_threshold_tracker -= (thresholds_crossed * threshold_amount)
 
 /mob/living/simple_animal/hostile/distortion/pianist/attacked_by(obj/item/I, mob/living/user)
-	// Phase 1 - Complete immunity
-	if(phase == PIANIST_PHASE_OVERTURE)
-		to_chat(user, span_warning("The Pianist is completely invulnerable during the overture!"))
-		playsound(src, 'sound/magic/clockwork/fellowship_armory.ogg', 50, TRUE)
-		return FALSE
-
 	// Special case for Black Silence gloves - bypass all resistances
 	if(istype(I, /obj/item/ego_weapon/black_silence_gloves))
 		ChangeResistances(list(RED_DAMAGE = 10, WHITE_DAMAGE = 10, BLACK_DAMAGE = 10, PALE_DAMAGE = 10))
@@ -416,7 +410,7 @@ Based on the design document in PIANIST_PHASE_DESIGN.md
 		var/dist = get_dist(src, T)
 		if(dist >= min_dist && dist <= max_dist)
 			zone_tiles += T
-			new /obj/effect/temp_visual/aoe_warning(T)
+			new /obj/effect/temp_visual/column_warning(T)
 
 	playsound(src, 'sound/abnormalities/crumbling/warning.ogg', 50, TRUE)
 
@@ -710,7 +704,7 @@ Based on the design document in PIANIST_PHASE_DESIGN.md
 
 	// Warning at landing zone
 	for(var/turf/T in range(5, landing_turf))
-		new /obj/effect/temp_visual/aoe_warning(T)
+		new /obj/effect/temp_visual/column_warning(T)
 
 	playsound(landing_turf, 'sound/abnormalities/thunderbird/tbird_beam.ogg', 100, TRUE, 40)
 
@@ -887,7 +881,7 @@ Based on the design document in PIANIST_PHASE_DESIGN.md
 
 	// Visual warning with enhanced effects - show wider area
 	for(var/turf/T in line_tiles)
-		new /obj/effect/temp_visual/resonance_line_warning(T)
+		new /obj/effect/temp_visual/column_warning(T)
 		// Add rumbling effect
 		for(var/mob/living/L in T)
 			to_chat(L, span_userdanger("The ground begins to resonate violently!"))
@@ -895,7 +889,7 @@ Based on the design document in PIANIST_PHASE_DESIGN.md
 		// Also warn adjacent tiles
 		for(var/turf/adj in orange(1, T))
 			if(adj.z == z)
-				var/obj/effect/temp_visual/resonance_line_warning/W = new(adj)
+				var/obj/effect/temp_visual/column_warning/W = new(adj)
 				W.alpha = 120 // Side tiles are more transparent
 
 	playsound(src, 'sound/effects/lc13_environment/day_50/Shake_Start.ogg', 100, TRUE, 50)
@@ -1167,12 +1161,12 @@ Based on the design document in PIANIST_PHASE_DESIGN.md
 
 	// Visual warning for all tiles - show wider area
 	for(var/turf/T in extended_tiles)
-		new /obj/effect/temp_visual/resonance_line_warning(T)
+		new /obj/effect/temp_visual/column_warning(T)
 
 		// Also warn adjacent tiles for wider effect
 		for(var/turf/adj in orange(1, T))
 			if(adj.z == z)
-				new /obj/effect/temp_visual/resonance_line_warning(adj)
+				new /obj/effect/temp_visual/column_warning(adj)
 				adj.alpha = 180 // Slightly transparent
 
 	// Convert after delay
