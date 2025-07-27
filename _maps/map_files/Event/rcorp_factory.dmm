@@ -181,19 +181,23 @@
 "fp" = (
 /turf/open/floor/plating/asteroid,
 /area/rce/xcorp/rce_3_0)
+"fs" = (
+/obj/structure/resourcepoint/blue,
+/turf/open/floor/plating/asteroid/basalt,
+/area/rce/xcorp/rce_1_1)
 "fw" = (
 /obj/structure/table/wood,
 /obj/item/implant/radio,
 /turf/open/floor/pod/light,
 /area/rce/rcorp_base)
-"fD" = (
-/obj/structure/limitedresourcepoint,
-/turf/open/floor/plating/ashplanet/rocky,
-/area/rce/xcorp/rce_1_0)
 "fG" = (
 /obj/structure/sign/warning,
 /turf/closed/indestructible/necropolis,
 /area/rce/xcorp/rce_4_1)
+"fT" = (
+/obj/structure/resourcepoint/silver,
+/turf/open/floor/plating/asteroid/snow,
+/area/rce/xcorp/rce_3_0)
 "fX" = (
 /turf/open/floor/plating/asteroid,
 /area/rce/xcorp/rce_0_1)
@@ -249,10 +253,6 @@
 "gJ" = (
 /turf/open/floor/plating/abductor,
 /area/rce/xcorp/rce_3_2)
-"gL" = (
-/obj/structure/resourcepoint/purple,
-/turf/open/floor/plating/ashplanet/rocky,
-/area/rce/xcorp/rce_2_0)
 "gP" = (
 /turf/open/floor/grass,
 /area/rce/xcorp/rce_2_3)
@@ -294,17 +294,6 @@
 /obj/effect/turf_decal/delivery/red,
 /turf/open/floor/mineral/plastitanium,
 /area/rce/xcorp/rce_2_2)
-"hX" = (
-/obj/structure/destructible/cult/pylon,
-/obj/effect/light_emitter{
-	light_power = 4;
-	light_range = 25;
-	set_cap = 3;
-	set_luminosity = 24;
-	light_color = "#FF9911"
-	},
-/turf/open/indestructible/necropolis/air,
-/area/rce/xcorp/rce_4_1)
 "if" = (
 /obj/machinery/conveyor/auto{
 	dir = 8
@@ -315,10 +304,6 @@
 "in" = (
 /turf/closed/mineral/ash_rock,
 /area/rce/xcorp/rce_2_2)
-"iu" = (
-/obj/structure/resourcepoint/orange,
-/turf/open/floor/plating/ironsand,
-/area/rce/xcorp/rce_3_3)
 "iz" = (
 /turf/open/floor/plating/asteroid,
 /area/rce/xcorp/rce_2_0)
@@ -370,10 +355,6 @@
 "jT" = (
 /turf/open/floor/pod/light,
 /area/rce/rcorp_base)
-"jU" = (
-/obj/structure/limitedresourcepoint/orange,
-/turf/open/floor/plating/asteroid/basalt,
-/area/rce/xcorp/rce_2_1)
 "jW" = (
 /obj/structure/table/abductor,
 /obj/item/storage/lockbox/medal/lcdr,
@@ -558,6 +539,10 @@
 /obj/machinery/light/broken,
 /turf/open/floor/wood,
 /area/rce/xcorp/rce_2_2)
+"mR" = (
+/obj/structure/limitedresourcepoint/orange,
+/turf/open/floor/plating/asteroid/basalt,
+/area/rce/xcorp/rce_2_1)
 "mS" = (
 /obj/machinery/button/door{
 	id = "cellfour";
@@ -624,6 +609,10 @@
 /obj/structure/flora/rock,
 /turf/open/floor/plating/beach/sand,
 /area/rce/xcorp/rce_2_0)
+"nU" = (
+/obj/structure/resourcepoint,
+/turf/open/floor/plating/asteroid,
+/area/rce/xcorp/rce_0_3)
 "nW" = (
 /obj/structure/table,
 /obj/structure/flora/ash/stem_shroom,
@@ -689,6 +678,10 @@
 "ph" = (
 /turf/closed/mineral/ash_rock,
 /area/rce/xcorp/rce_0_0)
+"pi" = (
+/obj/structure/flora/ash/cacti,
+/turf/open/floor/plating/beach/sand,
+/area/rce/xcorp/rce_0_1)
 "pk" = (
 /turf/open/space,
 /area/rce/xcorp/rce_3_2)
@@ -700,10 +693,6 @@
 	},
 /turf/open/floor/pod,
 /area/rce/rcorp_base)
-"ps" = (
-/obj/structure/flora/ash/cacti,
-/turf/open/floor/plating/beach/sand,
-/area/rce/xcorp/rce_0_1)
 "pv" = (
 /obj/effect/gibspawner/generic,
 /obj/effect/spawner/lootdrop/grille_or_trash,
@@ -794,6 +783,10 @@
 "ry" = (
 /turf/closed/mineral/ash_rock,
 /area/rce/xcorp/rce_1_2)
+"rA" = (
+/obj/structure/limitedresourcepoint,
+/turf/open/floor/plating/ashplanet/rocky,
+/area/rce/xcorp/rce_1_0)
 "rE" = (
 /obj/machinery/conveyor/auto{
 	dir = 4
@@ -808,6 +801,10 @@
 /obj/machinery/body_fabricator,
 /turf/open/floor/pod/light,
 /area/rce/rcorp_base)
+"rU" = (
+/obj/structure/limitedresourcepoint/silver,
+/turf/open/floor/sepia,
+/area/rce/xcorp/rce_1_2)
 "rX" = (
 /obj/machinery/telecomms/server/presets/security,
 /turf/open/floor/circuit/telecomms/mainframe,
@@ -871,10 +868,10 @@
 "tz" = (
 /turf/open/floor/plating/ironsand,
 /area/rce/xcorp/rce_3_2)
-"tB" = (
+"tL" = (
 /obj/structure/resourcepoint/blue,
-/turf/open/floor/plating/asteroid/basalt,
-/area/rce/xcorp/rce_1_1)
+/turf/open/floor/grass,
+/area/rce/xcorp/rce_2_3)
 "tN" = (
 /obj/structure/holosign/barrier,
 /turf/open/floor/plating/asteroid/basalt,
@@ -968,6 +965,10 @@
 	},
 /turf/open/floor/pod,
 /area/rce/rcorp_base)
+"wm" = (
+/obj/structure/resourcepoint/purple,
+/turf/open/floor/plating/ashplanet/rocky,
+/area/rce/xcorp/rce_2_0)
 "wn" = (
 /obj/machinery/conveyor/auto{
 	dir = 8
@@ -1191,6 +1192,10 @@
 /obj/structure/den/rce/announcer,
 /turf/open/indestructible/cult,
 /area/rce/xcorp/rce_4_2)
+"AJ" = (
+/obj/structure/flora/ash/cacti,
+/turf/open/floor/plating/beach/sand,
+/area/rce/xcorp/rce_0_0)
 "AN" = (
 /obj/machinery/button/door{
 	id = "celltwo";
@@ -1225,10 +1230,6 @@
 	},
 /turf/open/floor/pod,
 /area/rce/rcorp_base)
-"Bp" = (
-/obj/structure/limitedresourcepoint/silver,
-/turf/open/floor/sepia,
-/area/rce/xcorp/rce_1_2)
 "Bv" = (
 /mob/living/simple_animal/hostile/retaliate/tegu/atlas,
 /turf/open/floor/wood,
@@ -1280,6 +1281,10 @@
 /obj/structure/mineral_door/wood,
 /turf/open/floor/wood,
 /area/rce/xcorp/rce_2_2)
+"CH" = (
+/obj/structure/resourcepoint/red,
+/turf/open/floor/plating/beach/sand,
+/area/rce/xcorp/rce_0_0)
 "CL" = (
 /obj/structure/table/reinforced,
 /obj/machinery/recharger,
@@ -1599,10 +1604,6 @@
 /obj/structure/flora/ash/tall_shroom,
 /turf/open/floor/plating/ashplanet/ash,
 /area/rce/xcorp/rce_2_1)
-"Jb" = (
-/obj/structure/resourcepoint/blue,
-/turf/open/floor/grass,
-/area/rce/xcorp/rce_2_3)
 "Jd" = (
 /obj/structure/window/plasma/reinforced/plastitanium,
 /turf/open/floor/plating,
@@ -1625,10 +1626,6 @@
 /obj/structure/sign/warning/nosmoking/circle,
 /turf/closed/indestructible/r_wall,
 /area/rce/xcorp/rce_1_1)
-"JI" = (
-/obj/structure/resourcepoint/red,
-/turf/open/floor/plating/beach/sand,
-/area/rce/xcorp/rce_0_0)
 "JM" = (
 /turf/open/floor/plating/asteroid/snow,
 /area/rce/xcorp/rce_3_1)
@@ -1643,10 +1640,6 @@
 "Kc" = (
 /turf/open/floor/facility/halls,
 /area/rce/rcorp_base)
-"Kd" = (
-/obj/structure/resourcepoint,
-/turf/open/floor/plating/asteroid,
-/area/rce/xcorp/rce_0_3)
 "Ke" = (
 /obj/effect/turf_decal/sand,
 /turf/open/floor/plating/asteroid,
@@ -1709,10 +1702,6 @@
 "Mh" = (
 /turf/open/floor/plating/ice/smooth,
 /area/rce/xcorp/rce_3_0)
-"Mj" = (
-/obj/structure/flora/ash/cacti,
-/turf/open/floor/plating/beach/sand,
-/area/rce/xcorp/rce_0_0)
 "Ml" = (
 /obj/effect/turf_decal/delivery,
 /obj/structure/closet/crate,
@@ -1905,10 +1894,6 @@
 /obj/item/ego_weapon/city/rabbit/white,
 /turf/open/floor/pod,
 /area/rce/rcorp_base)
-"Ql" = (
-/obj/structure/resourcepoint/silver,
-/turf/open/floor/plating/asteroid/snow,
-/area/rce/xcorp/rce_3_0)
 "Qn" = (
 /obj/machinery/conveyor/auto{
 	dir = 4
@@ -2044,6 +2029,10 @@
 /obj/effect/gibspawner/generic,
 /turf/open/floor/plating/asteroid,
 /area/rce/xcorp/rce_3_1)
+"SW" = (
+/obj/structure/resourcepoint/orange,
+/turf/open/floor/plating/ironsand,
+/area/rce/xcorp/rce_3_3)
 "Te" = (
 /obj/machinery/sleeper/syndie,
 /turf/open/floor/pod/light,
@@ -2119,6 +2108,17 @@
 	},
 /turf/open/floor/pod,
 /area/rce/rcorp_base)
+"Va" = (
+/obj/structure/destructible/cult/pylon,
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24;
+	light_color = "#FF9911"
+	},
+/turf/open/indestructible/necropolis/air,
+/area/rce/xcorp/rce_4_1)
 "Vm" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/server/presets/service,
@@ -27115,7 +27115,7 @@ Sb
 Sb
 AT
 AT
-ps
+pi
 AT
 AT
 bN
@@ -27640,7 +27640,7 @@ ph
 ph
 Xm
 Xm
-Mj
+AJ
 Xm
 Xm
 Xm
@@ -28682,7 +28682,7 @@ Xm
 Xm
 Xm
 Xm
-Mj
+AJ
 Xm
 Xm
 Fj
@@ -29188,7 +29188,7 @@ Xm
 Xm
 Xm
 Xm
-Mj
+AJ
 Xm
 Xm
 Xm
@@ -29356,7 +29356,7 @@ KF
 KF
 KF
 KF
-Kd
+nU
 VQ
 KF
 KF
@@ -29424,7 +29424,7 @@ AT
 fX
 AT
 AT
-ps
+pi
 AT
 AT
 AT
@@ -29438,7 +29438,7 @@ AT
 Xm
 Xm
 Xm
-Mj
+AJ
 Xm
 Xm
 Xm
@@ -29449,7 +29449,7 @@ Xm
 Xm
 Xm
 Xm
-JI
+CH
 zh
 Xm
 Xm
@@ -29686,7 +29686,7 @@ AT
 AT
 AT
 AT
-ps
+pi
 AT
 AT
 AT
@@ -29960,9 +29960,9 @@ Xm
 Fj
 Xm
 Xm
-Mj
+AJ
 Xm
-Mj
+AJ
 Xm
 Xm
 Ft
@@ -30484,7 +30484,7 @@ ph
 Fj
 Fj
 Xm
-Mj
+AJ
 Xm
 Xm
 Fj
@@ -30723,7 +30723,7 @@ Sb
 Fj
 Fj
 Fj
-Mj
+AJ
 Xm
 Fj
 Fj
@@ -32022,7 +32022,7 @@ Xm
 Xm
 Xm
 Xm
-Mj
+AJ
 Xm
 Xm
 Fj
@@ -32528,7 +32528,7 @@ Xm
 Xm
 Xm
 Xm
-Mj
+AJ
 Xm
 Xm
 Ft
@@ -33038,7 +33038,7 @@ Fj
 Fj
 Xm
 Xm
-Mj
+AJ
 Xm
 Xm
 Xm
@@ -37354,7 +37354,7 @@ lp
 lp
 lp
 TJ
-Bp
+rU
 DC
 lM
 lp
@@ -37386,7 +37386,7 @@ CX
 CX
 CX
 CX
-tB
+fs
 LZ
 CX
 ls
@@ -37416,7 +37416,7 @@ GV
 GV
 GV
 my
-fD
+rA
 Rc
 GV
 GV
@@ -45290,7 +45290,7 @@ gP
 gP
 gP
 gP
-Jb
+tL
 Yu
 gP
 gP
@@ -45353,7 +45353,7 @@ DU
 mk
 Fs
 mk
-jU
+mR
 Jr
 DU
 DU
@@ -45383,7 +45383,7 @@ vr
 vr
 vr
 nr
-gL
+wm
 kM
 zj
 zj
@@ -53257,7 +53257,7 @@ os
 os
 os
 iJ
-iu
+SW
 aJ
 iJ
 iJ
@@ -53350,7 +53350,7 @@ FR
 FR
 FR
 bf
-Ql
+fT
 bv
 FR
 FR
@@ -61286,7 +61286,7 @@ oY
 Fx
 Fx
 Fx
-hX
+Va
 Lo
 Fx
 RH
