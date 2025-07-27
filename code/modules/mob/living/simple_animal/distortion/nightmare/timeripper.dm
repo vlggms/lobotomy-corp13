@@ -1,10 +1,10 @@
 /mob/living/simple_animal/hostile/distortion/timeripper
-	name = "Kaukritya-Aniyata"
+	name = "Time Ripper"
 	desc = "A full-body prosthetic looking guy, he feels eerie."
-	icon = 'ModularTegustation/Teguicons/DistortedKim.dmi'
-	icon_state = "Kim"
-	icon_living = "Kim"
-	icon_dead = "Kim"
+	icon = 'ModularTegustation/Teguicons/ripper32x64.dmi'
+	icon_state = "Ripper1"
+	icon_living = "Ripper1"
+	icon_dead = "Ripper1"
 	faction = list("hostile")
 	maxHealth = 6000
 	health = 6000
