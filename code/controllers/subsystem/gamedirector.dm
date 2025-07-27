@@ -10,7 +10,7 @@ SUBSYSTEM_DEF(gamedirector)
 
 /datum/controller/subsystem/gamedirector/Initialize()
 	. = ..()
-	available_landmarks = GLOB.department_centers
+	available_landmarks = GLOB.department_centers.Copy()
 
 /datum/controller/subsystem/gamedirector/fire(resumed = FALSE)
 	return
@@ -34,9 +34,9 @@ SUBSYSTEM_DEF(gamedirector)
 		first_announce = FALSE
 		return
 	var/text = "A new X-Corp attack wave is inbound."
-	show_global_blurb(60 SECONDS, text, 1 SECONDS, "red", "black")
+	show_global_blurb(10 SECONDS, text, 2 SECONDS, "red", "black")
 
 /datum/controller/subsystem/gamedirector/proc/AnnounceVictory()
 	var/text = "The X-Corp Heart has been destroyed! Victory achieved."
-	show_global_blurb(60 SECONDS, text, 1 SECONDS, "gold", "white")
+	show_global_blurb(60 SECONDS, text, 2 SECONDS, "gold", "white")
 	SSticker.force_ending = 1
