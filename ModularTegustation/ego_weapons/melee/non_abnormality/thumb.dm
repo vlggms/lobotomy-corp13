@@ -407,6 +407,16 @@
 		to_chat(user, span_userdanger("Combo attacks with this weapon are currently disabled, use it in-hand to re-enable them."))
 	return
 
+/// I've been asked by several people to let you light cigars with Thumb East weapons. I mean... okay.
+/// Was tempted to give this a chance to burn you but I'll be nice.
+/// That being said if another coder happens to find this code and accidentally adds a prob or fortitude check to decap you, I clean my hands of it.
+/obj/item/ego_weapon/city/thumb_east/ignition_effect(atom/A, mob/user)
+	. = ""
+	if(SpendAmmo(user))
+		. = span_danger("[user] fires their [src.name], using the exhaust to nonchalantly light the [A]. They don't even flinch from the recoil. Holy shit.")
+		playsound(src, detonation_sound, 100, FALSE, 10)
+	return .
+
 ////////////////////////////////////////////////////////////
 // AMMO MANAGEMENT PROCS SECTION.
 // These are the procs used to handle the loading and usage of ammunition.

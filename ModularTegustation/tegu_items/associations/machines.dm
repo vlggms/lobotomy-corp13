@@ -43,7 +43,7 @@
 	// However, I didn't want to mess with that type for the whole codebase.
 	var/list/stack_item_pricing = list(
 		/obj/item/stack/thumb_east_ammo = 100,
-		/obj/item/stack/thumb_east_ammo/spent = 50,
+		/obj/item/stack/thumb_east_ammo/spent = 40,
 		/obj/item/stack/thumb_east_ammo/tigermark = 200,
 		/obj/item/stack/thumb_east_ammo/spent/tigermark = 100,
 		/obj/item/stack/thumb_east_ammo/tigermark/savage = 500,

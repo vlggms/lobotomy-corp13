@@ -92,6 +92,7 @@
 /// The Thumb's own lootcrate. RED damage, which is bad, but has some pretty decent gear in here. Also has ammo boxes for Thumb E weapons.
 /// The ammo can be sold on city mode if you don't need it, but is otherwise a wasted crate if you don't have the corresponding weapon to use it with.
 /// Reliable but not great armour, Thumb S weaponry includes rifles that reload on melee and have extra reach, and Thumb E weaponry use physical ammo to boost their melee.
+/// Also I got talked into adding Kurokumo into it, they're a subsidiary and also RED damage.
 /obj/structure/lootcrate/thumb
 	name = "thumb crate"
 	desc = "A crate received from the Thumb finger syndicate. Open with a Crowbar."
@@ -105,10 +106,16 @@
 		/obj/item/ego_weapon/ranged/city/thumb,
 		// Thumb S Soldato Armour
 		/obj/item/clothing/suit/armor/ego_gear/city/thumb,
+
+		// Kurokumo Wakashu armour
+		/obj/item/clothing/suit/armor/ego_gear/city/kurokumo,
 	)
 	rareloot = list(
 		// Thumb E Soldato Weapons
+		// Woah, why did I put the same weapon here twice? BOOSTED RATES BANNER. (the loot pool is really diluted and I want people to test it)
 		/obj/item/ego_weapon/city/thumb_east,
+		/obj/item/ego_weapon/city/thumb_east,
+
 		// Thumb S Capo Weapons
 		/obj/item/ego_weapon/ranged/city/thumb/capo,
 		/obj/item/ego_weapon/city/thumbmelee,
@@ -116,6 +123,11 @@
 		// /obj/item/clothing/suit/armor/ego_gear/city/thumb_east - This is commented because I don't have a sprite for it yet and it'd confuse players.
 		// Thumb S Capo Armour
 		/obj/item/clothing/suit/armor/ego_gear/city/thumb_capo,
+
+		// Kurokumo Blade - used by all its members.
+		/obj/item/ego_weapon/city/kurokumo/weak,
+		// Kurokumo Kimono - used by the Captain. Bad numbers but makes you speedy.
+		/obj/item/clothing/suit/armor/ego_gear/city/kurokumo/captain,
 	)
 	veryrareloot = list(
 		// Thumb E Capo Weapons
