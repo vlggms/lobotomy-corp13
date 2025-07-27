@@ -1281,7 +1281,7 @@
 "ib" = (
 /obj/structure/table,
 /obj/machinery/button/door/indestructible{
-	id = "village_lockdown";
+	id = "outskirtslockdown";
 	name = "Outskirts Lockdown Button";
 	pixel_y = 7;
 	req_access_txt = "20"
@@ -4708,8 +4708,8 @@
 /area/city/shop)
 "DQ" = (
 /obj/machinery/door/poddoor{
-	id = "village_lockdown";
-	name = "Backstreets Lockdown Door"
+	id = "outskirtslockdown";
+	name = "Outskirts Lockdown Door"
 	},
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_checkpoint)
