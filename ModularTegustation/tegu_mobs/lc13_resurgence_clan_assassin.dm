@@ -29,8 +29,8 @@
 	var/stealth_speed_modifier = 0.7
 	var/backstab_damage = 150
 	var/backstab_damage_type = RED_DAMAGE
-	var/charge_cost_stealth_hit = 3
-	var/charge_cost_backstab = 2
+	var/charge_cost_stealth_hit = 5
+	var/charge_cost_backstab = 10
 	var/stun_duration_on_hit = 1.5 SECONDS
 	var/isolation_check_range = 3
 	var/z_level_hunt_mode = FALSE
@@ -95,9 +95,11 @@
 	if(!attacked_target)
 		attacked_target = target
 
-	// Handle object climbing
-	if(stealth_mode && (istype(attacked_target, /obj/structure/table) || istype(attacked_target, /obj/structure/barricade)))
-		ClimbOver(attacked_target)
+	// Assassins cannot damage objects
+	if(isobj(attacked_target))
+		// Handle object climbing while in stealth
+		if(stealth_mode && (istype(attacked_target, /obj/structure/table) || istype(attacked_target, /obj/structure/barricade)))
+			ClimbOver(attacked_target)
 		return
 
 	// Handle backstab
@@ -124,11 +126,11 @@
 	// Announce the backstab
 	say("Behind you.")
 	SLEEP_CHECK_DEATH(7)
-	
+
 	// Exit stealth dramatically
 	ExitStealth()
 	SLEEP_CHECK_DEATH(3)
-	
+
 	// Perform the backstab if still in range
 	if(L in range(1, src))
 		visible_message(span_userdanger("[src] rips out [L]'s guts!"))
@@ -136,12 +138,12 @@
 		new /obj/effect/gibspawner/generic(get_turf(L))
 		L.deal_damage(backstab_damage, backstab_damage_type)
 		charge -= charge_cost_backstab
-		
+
 		// Re-enter stealth after a delay
 		SLEEP_CHECK_DEATH(20)
 		if(charge >= 2) // Need some charge to re-stealth
 			EnterStealth()
-		
+
 		// Find new target
 		LoseTarget()
 		FindTarget()
@@ -223,4 +225,4 @@
 		visible_message(span_warning("[src]'s eyes glow as it locks onto a distant target!"))
 
 /datum/movespeed_modifier/assassin_stealth
-	multiplicative_slowdown = 0.7
+	multiplicative_slowdown = 2.5
