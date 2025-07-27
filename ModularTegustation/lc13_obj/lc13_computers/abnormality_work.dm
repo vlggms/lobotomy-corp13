@@ -100,11 +100,8 @@
 		dat += "<span style='color: [COLOR_BLUE_LIGHT]'>Current Understanding is: [round((datum_reference.understanding/datum_reference.max_understanding)*100, 0.01)]%, granting a [datum_reference.understanding]% Work Success and Speed bonus.</span><br>"
 		if(datum_reference.observation_ready)
 			dat += "<A href='byond://?src=[REF(src)];final_observation=1'>Final Observation ready</A> <br>"
-	switch(work_bonus)
-		if(EXTRACTION_KEY)
-			dat += "<span style='color: [COLOR_VERY_SOFT_YELLOW]'>Work Speed and Success Rates are being positively impacted by low Qliphoth deterrance levels.</span><br>"
-		if(EXTRACTION_LOCK)
-			dat += "<span style='color: [COLOR_MOSTLY_PURE_RED]'>Work Speed and Success Rates are being negatively impacted by high Qliphoth deterrance levels.</span><br>"
+	if(work_bonus == EXTRACTION_KEY)
+		dat += "<span style='color: [COLOR_VERY_SOFT_YELLOW]'>Work Speed and Success Rates are being positively impacted by low Qliphoth deterrance levels.</span><br>"
 	dat += "<br>"
 
 	//Abnormality portraits
@@ -233,10 +230,6 @@
 				work_speed *= 0.8 //20% faster work
 			else
 				work_speed *= 0.9 //10% faster work
-		if(EXTRACTION_LOCK)
-			work_speed *= 1.2 //20% slower work
-			if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_1))
-				work_chance += 5 //but +5% work chance
 	work_speed /= user.physiology.work_speed_mod
 	var/success_boxes = 0
 	var/total_boxes = 0
@@ -373,7 +366,7 @@
 /obj/machinery/computer/abnormality/proc/LinkPanel(obj/machinery/panel)
 	linked_panel = panel
 
-//Applies or Removes Extraction Officer Key or Lock
+//Applies or Removes Extraction Officer Key visuals and whatnot. Still has legacy support for possible future tools.
 /obj/machinery/computer/abnormality/proc/ApplyEOTool(modifier = 0, removal = FALSE, obj/item/extraction/key/thetool = null)
 	if(removal && modifier == work_bonus)
 		if(vfx)
@@ -386,17 +379,6 @@
 	if(!datum_reference.current)
 		return FALSE
 	var/abno_target = datum_reference.current
-	if(modifier == EXTRACTION_LOCK)
-		if(work_bonus != 0) //We can't apply a lock while something is already active
-			return FALSE
-		if(datum_reference.understanding < datum_reference.max_understanding) //Understanding is not capped - we can't punish players for overwork
-			return FALSE
-		work_bonus = EXTRACTION_LOCK
-		var/turf/target_turf = get_ranged_target_turf(abno_target, SOUTHWEST, 1)
-		vfx = new/obj/effect/extraction_effect(target_turf)
-		vfx.icon_state = "lock"
-		EOTool = thetool
-		return TRUE
 	if(modifier == EXTRACTION_KEY)
 		if(work_bonus != 0) //We can't apply a key while something is already active
 			return FALSE
