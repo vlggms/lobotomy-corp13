@@ -36,6 +36,20 @@
 		/obj/item/folder/documents,
 	)
 
+	/// This is an association list mapping stack items to their price, per individual item in the stack. A stack of 13 items with a price of 10 will sell for 130 ahn.
+	/// It exists so we can allow players to sell stack items properly, with a price corresponding to the amount of items in the stack.
+	/// Do not put non-stack items in this list.
+	// An alternative way to implement this could be to give the stack type a price variable and here we could just list what we allow the sale of.
+	// However, I didn't want to mess with that type for the whole codebase.
+	var/list/stack_item_pricing = list(
+		/obj/item/stack/thumb_east_ammo = 100,
+		/obj/item/stack/thumb_east_ammo/spent = 50,
+		/obj/item/stack/thumb_east_ammo/tigermark = 200,
+		/obj/item/stack/thumb_east_ammo/spent/tigermark = 100,
+		/obj/item/stack/thumb_east_ammo/tigermark/savage = 500,
+		/obj/item/stack/thumb_east_ammo/spent/tigermark/savage = 250,
+	)
+
 	/// Types that aren't listed with within examine.
 	var/list/exclude_listing = list(
 		/obj/item/clothing/suit/armor/ego_gear/city = "All Non-'Fixer Suit' Armor",
@@ -152,6 +166,8 @@
 		spawntype = /obj/item/stack/spacecash/c50
 	else if (is_type_in_typecache(I, level_0))
 		spawntype = /obj/item/stack/spacecash/c10
+	else if (stack_item_pricing[I.type] > 0)
+		ManageStackSale(I, user)
 	else
 		to_chat(user, span_warning("You cannot sell [I]."))
 		return FALSE
@@ -160,6 +176,14 @@
 		new spawntype (get_turf(src))
 		qdel(I)
 	return TRUE
+
+/obj/structure/itemselling/proc/ManageStackSale(obj/item/stack/I, mob/living/user)
+	var/total_value = stack_item_pricing[I.type] * I.amount
+	if(total_value)
+		var/obj/item/holochip/credit_chip = new /obj/item/holochip (get_turf(src))
+		credit_chip.credits = total_value
+		credit_chip.update_icon()
+		qdel(I)
 
 /obj/structure/potential
 	name = "Potential estimation machine"

@@ -265,4 +265,21 @@
 	extra_price = 700
 	input_display_header = "Prosthetic plus"
 
-
+/// Thumb East's ammo vending machine. Sells ammo boxes of Scorch Propellant or Tigermark.
+/// Bring it spent casings and it'll refund more of the ammo's cost than selling it at a Hana machine would.
+/obj/machinery/vending/thumb_east_ammo
+	name = "\improper Thumb East Ammunition vending"
+	desc = "A vending machine used by the Thumb East to requisition additional ammunition for their propellant weapons.\n"+\
+	"Insert spent ammunition casings to recover some of their value. This will count as ahn having been inserted into the machine, and give you a better rate than selling them."
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF | FREEZE_PROOF
+	// If you have a sprite for this hit me up.
+	icon_state = "generic"
+	products = list(
+		/obj/item/storage/box/thumb_east_ammo/scorch = 100,
+	)
+	premium = list(
+		/obj/item/storage/box/thumb_east_ammo/tigermark = 50,
+	)
+	default_price = 900
+	extra_price = 1500
+	input_display_header = "Propellant Ammunition"

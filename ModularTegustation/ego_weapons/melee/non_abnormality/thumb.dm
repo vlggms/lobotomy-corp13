@@ -128,6 +128,8 @@
 	inhand_icon_state = "thumb_east_rifle"
 	hitsound = 'sound/weapons/ego/thumb_east_rifle_attack.ogg'
 	usesound = 'sound/machines/click.ogg'
+	attack_verb_continuous = list("pierces", "skewers", "stabs")
+	attack_verb_simple = list("pierce", "skewer", "stab")
 	force = 40
 	damtype = RED_DAMAGE
 	attack_speed = 1.3
@@ -138,7 +140,7 @@
 							TEMPERANCE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 60
 							)
-	special = "This is a Thumb East weapon. Load it with propellant ammunition to unlock a powerful combo. Initiate the combo by attacking from range. Each hit of the combo requires 1 propellant round to trigger, and have varying damage and attack speed. Your combo will cancel if you run out of ammo or hit without spending a round.\n"+\
+	special = "This is a Thumb East weapon. Load it with propellant ammunition to unlock a powerful combo. Initiate the combo by attacking from range. Each hit of the combo requires 1 propellant round to trigger, and have varying damage and attack speed. Your combo will cancel if you run out of ammo, wait more than 5 seconds between hits, or hit without spending a round.\n"+\
 	"Hit the weapon with a handful of propellant ammunition to attempt to load as much of the handful as possible. Toggle your combo on or off by using this weapon in-hand. Alt-click the weapon to unload a round.\n"+\
 	"Spending ammo with this weapon generates heat. Heat increases the base damage of the weapon when not using combo attacks. It decays on each hit and is reset on reloading or unloading."
 	/// This list holds the bonuses that our next hit should deal. The keys for them are ["tremor"], ["burn"], ["aoe_flat_force_bonus"] and ["aoe_size_bonus"].
@@ -839,6 +841,8 @@
 	lunge_sound = 'sound/weapons/ego/thumb_east_podao_boostedlunge.ogg'
 	sweep_sound =  'sound/weapons/ego/thumb_east_podao_boostedsweep.ogg'
 	finisher_sound = 'sound/weapons/ego/thumb_east_podao_leap_impact.ogg'
+	attack_verb_continuous = list("slashes", "cuts", "chops")
+	attack_verb_simple = list("slash", "cut", "chop")
 	force = 60
 	attack_speed = 1.1
 	swingstyle = WEAPONSWING_LARGESWEEP
