@@ -45,6 +45,7 @@
 	var/meltdown_cooldown_time = 30 SECONDS
 	var/breaching = FALSE
 	var/summon_count = 0
+	var/summon_amount = 0//defaults to between 3 and 5
 
 
 /mob/living/simple_animal/hostile/abnormality/book/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
@@ -115,9 +116,9 @@
 	if(summon_count > 10)
 		qdel(src)
 		return
-	if((meltdown_cooldown < world.time) && !(status_flags & GODMODE))
-		MeltdownEffect()
+	if(meltdown_cooldown < world.time)
 		meltdown_cooldown = world.time + meltdown_cooldown_time
+		MeltdownEffect(summon_amount)
 
 /mob/living/simple_animal/hostile/abnormality/book/Move()
 	return FALSE
@@ -161,15 +162,15 @@
 
 /mob/living/simple_animal/hostile/abnormality/book/ZeroQliphoth(mob/living/carbon/human/user)
 	datum_reference.qliphoth_change(start_qliphoth) //no need for qliphoth to be stuck at 0
-	if(meltdown_cooldown < world.time)
+	if(meltdown_cooldown > world.time)
 		return
 	meltdown_cooldown = world.time + meltdown_cooldown_time
 	MeltdownEffect()
-	return
 
-/mob/living/simple_animal/hostile/abnormality/book/proc/MeltdownEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/book/proc/MeltdownEffect(spawn_num)
 	var/mob/living/simple_animal/newspawn
-	var/spawn_num = rand(3,5)
+	if(!spawn_num)
+		spawn_num = rand(3,5)
 	for(var/i=1, i<=spawn_num, i++)
 		sleep(0.5 SECONDS)
 		newspawn = pick(nasties)
@@ -178,5 +179,6 @@
 			summon_count += 1
 
 /mob/living/simple_animal/hostile/abnormality/book/BreachEffect(mob/living/carbon/human/user, breach_type)
+	breaching = TRUE
 	if(breach_type == BREACH_MINING)
-		breaching = TRUE
+		summon_amount = 2

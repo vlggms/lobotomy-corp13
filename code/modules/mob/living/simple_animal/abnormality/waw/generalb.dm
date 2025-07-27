@@ -201,7 +201,7 @@
 	//Call root code but with normal breach
 	. = ..(null, BREACH_NORMAL)
 	true_breached = TRUE
-	if(!combat_map)
+	if(!combat_map && breach_type != BREACH_MINING)
 		var/turf/orgin = get_turf(src)
 		var/list/all_turfs = RANGE_TURFS(2, orgin)
 		SpawnMinions(all_turfs, TRUE)

@@ -143,7 +143,7 @@
 			if(faction_check_mob(L))
 				continue
 			to_chat(L, span_userdanger("[chosenfake]"))
-		addtimer(CALLBACK(src, PROC_REF(NukeAttack)), 60 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(NukeAttack)), 90 SECONDS)
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/oracle/proc/NukeAttack()
