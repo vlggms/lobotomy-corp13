@@ -38,6 +38,9 @@ GLOBAL_LIST_EMPTY(emergencyresponseteamspawn)
 GLOBAL_LIST_EMPTY(ruin_landmarks)
 GLOBAL_LIST_EMPTY(bar_areas)
 
+// RCE
+GLOBAL_LIST_EMPTY(rce_targets)
+
 GLOBAL_LIST_EMPTY(delivery_doors)
 
 //away missions

@@ -128,17 +128,60 @@
 		/mob/living/simple_animal/hostile/ordeal/green_bot = 1,
 	)
 	var/announce = FALSE
+	var/id
+	var/assault_type = SEND_ONLY_DEFEATED
+	var/max_mobs = 10
+	var/generate_new_mob_time = NONE
+	var/raider = FALSE
 
 /obj/structure/den/rce/announcer
+	max_mobs = 12
+	moblist = list(
+		/mob/living/simple_animal/hostile/rce/sapper = 2,
+		/mob/living/simple_animal/hostile/ordeal/green_bot_big = 2,
+		/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying = 2,
+	)
+	generate_new_mob_time = 90 SECONDS
 	announce = TRUE
+
+/obj/structure/den/rce/mid
+	max_mobs = 10
+	moblist = list(
+		/mob/living/simple_animal/hostile/ordeal/steel_dawn = 1,
+		/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon = 1,
+		/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying = 1,
+		/mob/living/simple_animal/hostile/ordeal/green_bot = 2,
+	)
+
+/obj/structure/den/rce/high
+	max_mobs = 12
+	moblist = list(
+		/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon = 2,
+		/mob/living/simple_animal/hostile/rce/sapper = 1,
+		/mob/living/simple_animal/hostile/ordeal/green_bot_big = 2,
+		/mob/living/simple_animal/hostile/ordeal/sin_lust = 1,
+	)
+	generate_new_mob_time = 20 SECONDS
+
+/obj/structure/den/rce/raider
+	max_mobs = 12
+	moblist = list(
+		/mob/living/simple_animal/hostile/ordeal/sin_lust = 1,
+		/mob/living/simple_animal/hostile/rce/sapper = 1,
+		/mob/living/simple_animal/hostile/ordeal/sin_pride = 2,
+		/mob/living/simple_animal/hostile/ordeal/sin_gloom = 1,
+		/mob/living/simple_animal/hostile/ordeal/sin_wrath = 1,
+	)
+	generate_new_mob_time = 45 SECONDS
+	raider = TRUE
 
 /obj/structure/den/rce/Initialize(mapload)
 	. = ..()
-	if(SSgamedirector.available_landmarks.len == 0)
-		target = pick(GLOB.department_centers)
+	if(id)
+		target = SSgamedirector.GetTargetById(id)
 	else
-		target = SSgamedirector.PopRandomLandmark()
-	AddComponent(/datum/component/monwave_spawner, attack_target = target, new_wave_order = moblist, try_for_announcer = announce)
+		target = SSgamedirector.GetRandomTarget()
+	AddComponent(/datum/component/monwave_spawner, attack_target = target, max_mobs = max_mobs, assault_type = assault_type, new_wave_order = moblist, try_for_announcer = announce, new_wave_cooldown_time = generate_new_mob_time, raider = raider)
 
 /obj/structure/den/rce_defender
 	name = "X-Corp Defense Pylon"
@@ -155,12 +198,20 @@
 		/mob/living/simple_animal/hostile/ordeal/green_bot_big = 2,
 		/mob/living/simple_animal/hostile/asteroid/elite/legionnaire = 1,
 	)
+	var/announce = FALSE
+	var/id
+	var/assault_type = SEND_TILL_MAX
+	var/max_mobs = 11
+	var/generate_new_mob_time = NONE
+	var/raider = FALSE
 
 /obj/structure/den/rce_defender/Initialize(mapload)
 	. = ..()
+	if(id)
+		target = SSgamedirector.GetTargetById(id)
 	if(!target)
 		target = get_turf(src)
-	AddComponent(/datum/component/monwave_spawner, attack_target = target, new_wave_order = moblist)
+	AddComponent(/datum/component/monwave_spawner, attack_target = target, max_mobs = max_mobs, assault_type = assault_type, new_wave_order = moblist, try_for_announcer = announce, new_wave_cooldown_time = generate_new_mob_time, raider = raider)
 
 /obj/structure/den/rce_heart
 	name = "X-Corp Heart"
