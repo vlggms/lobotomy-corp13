@@ -22,29 +22,35 @@
 
 /obj/machinery/conveyor/splitter/proc/toggle_northsouth()
 	// 0 -> N -> NS -> S -> 0
+	// 0 -> 1 -> 3 -> 2 -> 0
 	var/ns = directions & 3
 
 	switch(ns)
-		if(0,2)
+		if(0)
 			directions = directions ^ 1
 		if(1)
 			directions = directions ^ 2
+		if(2)
+			directions = directions ^ 2
 		if(3)
-			directions = directions ^ 3
+			directions = directions ^ 1
 
 	update_icon_state()
 
 /obj/machinery/conveyor/splitter/proc/toggle_eastwest()
 	// 0 -> E -> EW -> W -> 0
+	// 0 -> 4 -> 12 -> 8 -> 0
 	var/ew = directions & 12
 
 	switch(ew)
-		if(0,8)
+		if(0)
 			directions = directions ^ 4
 		if(4)
 			directions = directions ^ 8
+		if(8)
+			directions = directions ^ 8
 		if(12)
-			directions = directions ^ 12
+			directions = directions ^ 4
 
 	update_icon_state()
 
