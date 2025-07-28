@@ -120,7 +120,7 @@
 		/obj/item/ego_weapon/ranged/city/thumb/capo,
 		/obj/item/ego_weapon/city/thumbmelee,
 		// Thumb E Soldato Armour
-		// /obj/item/clothing/suit/armor/ego_gear/city/thumb_east - This is commented because I don't have a sprite for it yet and it'd confuse players.
+		/obj/item/clothing/suit/armor/ego_gear/city/thumb_east,
 		// Thumb S Capo Armour
 		/obj/item/clothing/suit/armor/ego_gear/city/thumb_capo,
 
