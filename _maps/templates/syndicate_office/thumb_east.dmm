@@ -175,7 +175,15 @@
 /obj/structure/table/wood{
 	color = "#705937"
 	},
-/obj/item/reagent_containers/food/drinks/mug,
+/obj/item/reagent_containers/food/drinks/bottle/wine{
+	pixel_x = -6;
+	pixel_y = 11
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = 5;
+	pixel_y = 1;
+	list_reagents = list(/datum/reagent/consumable/ethanol/wine = 15)
+	},
 /turf/open/floor/pod/dark,
 /area/city/backstreets_room)
 "tN" = (
@@ -783,9 +791,10 @@
 /obj/item/coupon{
 	pixel_x = -1;
 	pixel_y = 64;
-	color = "8644a5";
+	color = "#8644a5";
 	name = "mysterious coupon";
-	desc = "This curious coupon seems out of place among these trophies. There must be an interesting story behind it."
+	desc = "This curious coupon seems out of place among these trophies. There must be an interesting story behind it.";
+	anchored = 1
 	},
 /turf/open/floor/carpet,
 /area/city/backstreets_room)
