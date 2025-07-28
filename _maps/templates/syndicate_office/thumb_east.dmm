@@ -1,0 +1,952 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"er" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#2e1f0e";
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"eJ" = (
+/turf/open/floor/carpet,
+/area/city/backstreets_room)
+"eK" = (
+/obj/structure/chair/wood,
+/obj/structure/showcase/machinery/tv{
+	pixel_x = 1;
+	pixel_y = 22;
+	density = 0;
+	name = "\improper Thumb East Favourite Television";
+	desc = "A slightly battered looking TV. Doesn't actually get a very good signal here."
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"fw" = (
+/obj/structure/closet/crate{
+	anchored = 1
+	},
+/obj/item/storage/firstaid/regular,
+/obj/item/storage/firstaid/revival,
+/obj/item/clothing/gloves/color/black,
+/obj/item/clothing/gloves/color/black,
+/obj/item/clothing/gloves/color/black,
+/obj/item/clothing/gloves/color/black,
+/obj/item/clothing/suit/armor/ego_gear/city/thumb_east,
+/obj/item/clothing/suit/armor/ego_gear/city/thumb_east,
+/obj/item/clothing/suit/armor/ego_gear/city/thumb_east,
+/obj/item/clothing/suit/armor/ego_gear/city/thumb_east,
+/turf/open/floor/carpet,
+/area/city/backstreets_room)
+"hw" = (
+/obj/structure/chair/wood{
+	dir = 1
+	},
+/obj/machinery/light,
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"hO" = (
+/obj/structure/chair/sofa/right{
+	name = "fancy leather sofa";
+	desc = "Custom order, this piece of furniture. Its origins made - made apparent - from a wealthy nest in a far-away district.";
+	dir = 8;
+	pixel_y = 12;
+	pixel_x = -4
+	},
+/obj/structure/chair/sofa/left{
+	dir = 8;
+	pixel_y = -5;
+	pixel_x = -4;
+	name = "fancy leather sofa";
+	desc = "Custom order, this piece of furniture. Its origins made - made apparent - from a wealthy nest in a far-away district."
+	},
+/obj/structure/fireplace{
+	pixel_x = -12;
+	dir = 8
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"hR" = (
+/obj/machinery/door/airlock/highsecurity{
+	req_access_txt = "150";
+	name = "interrogation room"
+	},
+/turf/open/floor/pod/dark,
+/area/city/backstreets_room)
+"ik" = (
+/obj/item/storage/box/thumb_east_ammo/scorch,
+/obj/structure/rack{
+	color = "#41272d"
+	},
+/turf/open/floor/shelter,
+/area/city/backstreets_room)
+"iT" = (
+/turf/closed/indestructible/wood,
+/area/city/backstreets_room)
+"jB" = (
+/obj/effect/decal/cleanable/ash{
+	pixel_x = 5;
+	pixel_y = 13
+	},
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 8
+	},
+/turf/open/floor/pod/dark,
+/area/city/backstreets_room)
+"ky" = (
+/obj/structure/table/wood/poker,
+/obj/item/storage/fancy/cigarettes/cigpack_robust{
+	pixel_x = 9;
+	pixel_y = 7
+	},
+/obj/item/lighter/greyscale{
+	pixel_x = -1;
+	pixel_y = 6
+	},
+/obj/item/toy/cards/deck/kotahi{
+	pixel_x = -4;
+	pixel_y = -1
+	},
+/turf/open/floor/carpet,
+/area/city/backstreets_room)
+"kF" = (
+/obj/machinery/vending/boozeomat{
+	density = 0;
+	pixel_x = 0;
+	pixel_y = 32
+	},
+/turf/open/floor/carpet,
+/area/city/backstreets_room)
+"mb" = (
+/obj/structure/sign/warning/explosives,
+/turf/closed/indestructible/wood,
+/area/city/backstreets_room)
+"my" = (
+/obj/machinery/light/small/red{
+	dir = 4
+	},
+/turf/open/floor/pod/dark,
+/area/city/backstreets_room)
+"oG" = (
+/obj/structure/table/wood/fancy/red,
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room)
+"oR" = (
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"pu" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "thumb east armory";
+	req_access_txt = "150"
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"qd" = (
+/turf/closed/indestructible/wood{
+	pixel_x = 0;
+	pixel_y = 0
+	},
+/area/city/backstreets_room)
+"qC" = (
+/obj/effect/turf_decal{
+	dir = 3
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"qG" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"sD" = (
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"tL" = (
+/obj/structure/table/wood{
+	color = "#705937"
+	},
+/obj/item/reagent_containers/food/drinks/mug,
+/turf/open/floor/pod/dark,
+/area/city/backstreets_room)
+"tN" = (
+/obj/item/ego_weapon/city/thumb_east{
+	pixel_x = 1;
+	pixel_y = 0
+	},
+/obj/item/ego_weapon/city/thumb_east{
+	pixel_x = -2;
+	pixel_y = 2
+	},
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/obj/structure/closet{
+	icon_state = "syndicate";
+	anchored = 1;
+	name = "propellant rifle locker";
+	desc = "Storage space for propellant rifles. It smells like gunpowder."
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"tT" = (
+/obj/structure/kitchenspike,
+/obj/item/stack/thumb_east_ammo/spent{
+	dir = 10;
+	pixel_x = 10;
+	pixel_y = 7
+	},
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/cleanable/blood/gibs/old,
+/obj/item/reagent_containers/syringe{
+	pixel_x = 9;
+	pixel_y = 0
+	},
+/obj/item/reagent_containers/syringe{
+	pixel_x = -6;
+	pixel_y = -9
+	},
+/turf/open/floor/pod/dark,
+/area/city/backstreets_room)
+"ul" = (
+/turf/open/floor/carpet/orange,
+/area/city/backstreets_room)
+"uQ" = (
+/obj/item/crowbar{
+	pixel_y = -6
+	},
+/obj/item/surgical_drapes{
+	pixel_x = -5;
+	pixel_y = 8
+	},
+/turf/open/floor/pod/dark,
+/area/city/backstreets_room)
+"uS" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"ve" = (
+/obj/machinery/vending/boozeomat{
+	density = 0;
+	pixel_y = 0
+	},
+/turf/closed/indestructible/wood,
+/area/city/backstreets_room)
+"wd" = (
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/turf/open/floor/carpet/orange,
+/area/city/backstreets_room)
+"wu" = (
+/obj/structure/chair/wood,
+/obj/machinery/light{
+	dir = 1;
+	pixel_y = 19
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"wz" = (
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/bar{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/bar{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/bar,
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room)
+"xd" = (
+/obj/structure/table/wood,
+/obj/item/kirbyplants{
+	icon_state = "plant-04";
+	pixel_y = 18;
+	anchored = 1;
+	pixel_x = 0
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_y = 5;
+	pixel_x = -9
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_y = 3;
+	pixel_x = 7
+	},
+/turf/open/floor/carpet,
+/area/city/backstreets_room)
+"xf" = (
+/obj/machinery/light,
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"yg" = (
+/obj/structure/sign/warning/nosmoking/circle{
+	pixel_x = 0;
+	pixel_y = 27
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"yE" = (
+/obj/machinery/door/airlock/wood{
+	name = "thumb east hallway";
+	req_access_txt = "150"
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"zt" = (
+/obj/structure/rack{
+	color = "#41272d"
+	},
+/obj/item/storage/box/thumb_east_ammo/scorch,
+/turf/open/floor/shelter,
+/area/city/backstreets_room)
+"AF" = (
+/obj/item/stack/thumb_east_ammo/spent{
+	pixel_x = -10;
+	pixel_y = 12
+	},
+/obj/effect/decal/cleanable/blood/footprints,
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/cleanable/vomit/old,
+/obj/item/scalpel{
+	pixel_y = -3
+	},
+/turf/open/floor/pod/dark,
+/area/city/backstreets_room)
+"By" = (
+/obj/item/ego_weapon/city/thumb_east{
+	pixel_x = 1;
+	pixel_y = 0
+	},
+/obj/item/ego_weapon/city/thumb_east{
+	pixel_x = -2;
+	pixel_y = 2
+	},
+/obj/structure/closet{
+	icon_state = "syndicate";
+	anchored = 1;
+	name = "propellant rifle locker";
+	desc = "Storage space for propellant rifles. It smells like gunpowder."
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"BE" = (
+/obj/item/wirecutters,
+/turf/open/floor/pod/dark,
+/area/city/backstreets_room)
+"BS" = (
+/obj/structure/chair/wood{
+	dir = 1
+	},
+/turf/open/floor/pod/dark,
+/area/city/backstreets_room)
+"Cq" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/carpet/orange,
+/area/city/backstreets_room)
+"CX" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"Dy" = (
+/obj/machinery/light{
+	dir = 1;
+	pixel_y = 19
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"DD" = (
+/obj/structure/table/reinforced,
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/obj/item/paper{
+	name = "thumb east weaponry and ammunition manual";
+	info = "<h1> Thumb East Weaponry and Munitions Handbook</h1><br />If you have retrieved a weapon or munitions before even reading this handbook, you may not have the necessary competence to be even a Soldato Primo and it is recommended that you return the equipment and inform your Capo of your negligence posthaste as to minimize the punishment you will receive. <br>Additionally: the punishment for smoking in this room is well-established. It does not need to be reiterated. You know what is going to happen to you.<br /><br/><h2>The Basics</h2><br />As a member of the Thumb, you will use propellant weaponry for melee combat. Despite any preconceptions you may have regarding your weapon, rifles are not meant to shoot bullets. Your rifle is equipped with a system that transforms the explosive power of propellant ammunition into momentum that enhances your attacks.<br /><br />Using these weapons is simpler than it seems. Load your rifle with propellant ammunition (verify the caliber is correct - no, the Capo's Tigermark rounds don't fit in your rifle), verify that the system is activated, and then you may lunge at faraway targets to begin a rapid series of attacks against them.<br /><br /><h2>Ammunition Management</h2><br />Ammunition is only authorized to be carried in handfuls of up to six rounds. If you are storing the ammunition in a bag or similar, you must separate them into at least bundles of three rounds to minimize the hazard they pose due to their volatility.<br /> <br />Ammunition may be fed into a weapon to load it, but all weapons have a maximum capacity - in your rifles' case, it is three rounds, whereas a propellant podao can fit six. You cannot mix and match ammunition types. Unloading your weapon is possible - the instructions should be on a label that you can find by examining your weapon.<br /> <br />You can requisition more ammunition from the vendor in the armory. Recover spent cartridges and feed them into the vendor to recover some of the value - discounts to the purchase of extra ammunition are authorized through retrieval of spent ammunition.<br /> <br />Spending ammunition generates heat for your weapon. This heat is not a bad thing - the weapon's systems are calibrated to make good use of it. Normal attacks, even though they are not boosted by the power of a fired round, will be empowered by the heat generated from previous rounds. Your weapon will vent its heat if you attempt to reload or unload it."
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"Eb" = (
+/obj/effect/turf_decal{
+	dir = 4
+	},
+/obj/item/storage/box/thumb_east_ammo/scorch,
+/obj/structure/rack{
+	color = "#41272d"
+	},
+/turf/open/floor/shelter,
+/area/city/backstreets_room)
+"Fn" = (
+/obj/effect/decal/cleanable/blood/old,
+/obj/item/hatchet/wooden,
+/turf/open/floor/pod/dark,
+/area/city/backstreets_room)
+"FQ" = (
+/obj/structure/chair/wood{
+	dir = 1;
+	desc = "This chair radiates more ominous energy than the other three."
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"Gd" = (
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"Gm" = (
+/obj/item/documents/syndicate{
+	name = "thumb east directives and operations";
+	desc = "Documents outlining the Thumb eastern branch's aspirations in this Nest. Don't let this fall into the evil hands of the Association, Hana or Wings forbid, another Finger...";
+	pixel_x = 0;
+	pixel_y = -10
+	},
+/obj/structure/closet/cabinet,
+/obj/item/clothing/suit/armor/ego_gear/city/thumb_east/capo{
+	pixel_x = 0;
+	pixel_y = 0
+	},
+/turf/open/floor/carpet,
+/area/city/backstreets_room)
+"Gr" = (
+/obj/machinery/door/airlock/wood{
+	req_access_txt = "151";
+	name = "thumb east capo quarters"
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"GH" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/structure/closet/crate/bin,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"IQ" = (
+/obj/machinery/door/airlock/wood{
+	req_access_txt = "150";
+	name = "thumb east soldato quarters"
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"Jq" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 0;
+	pixel_y = -29
+	},
+/obj/structure/table/wood,
+/obj/item/kirbyplants{
+	pixel_x = 0;
+	pixel_y = 11
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Jr" = (
+/obj/item/head_trophy/steel_head{
+	pixel_x = 0;
+	pixel_y = 35;
+	anchored = 1;
+	desc = "The severed head of an old gene corp manager. It is said their screeching was able to become so loud and obnoxious that it'd cause their subordinates to run away from them at speeds nearing that of light itself, which would prevent their enemies from being able to escape them."
+	},
+/obj/structure/rack,
+/obj/item/ego_weapon/city/thumb_east/podao,
+/obj/item/storage/box/thumb_east_ammo/tigermark,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Ln" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/structure/bookcase/random{
+	density = 0;
+	pixel_y = 32
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"LS" = (
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/obj/structure/chair/comfy/black{
+	dir = 4;
+	pixel_y = 7
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Mo" = (
+/obj/machinery/vending/thumb_east_ammo,
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"Nb" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"PN" = (
+/obj/machinery/jukebox{
+	req_access = null
+	},
+/obj/machinery/light,
+/turf/open/floor/carpet,
+/area/city/backstreets_room)
+"PV" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#2e1f0e";
+	dir = 4
+	},
+/obj/machinery/light,
+/turf/open/floor/carpet/orange,
+/area/city/backstreets_room)
+"Qc" = (
+/obj/item/bodypart/head{
+	pixel_x = 1;
+	pixel_y = 32;
+	anchored = 1;
+	name = "head of an index proxy";
+	desc = "The severed head of an Index Proxy. This one made the mistake of picking the an index longsword as their weapon instead of the spear, earning them the title of that nights's biggest loser."
+	},
+/obj/item/storage/fancy/cigarettes/cigars/havana{
+	pixel_y = 3;
+	pixel_x = 3
+	},
+/obj/item/storage/fancy/cigarettes/cigars/havana{
+	pixel_y = 5;
+	pixel_x = 2
+	},
+/obj/item/storage/fancy/cigarettes/cigars/havana{
+	pixel_y = 8;
+	pixel_x = 1
+	},
+/obj/item/storage/fancy/cigarettes/cigars/havana{
+	pixel_y = 11;
+	pixel_x = 0
+	},
+/obj/item/storage/fancy/cigarettes/cigars/havana{
+	pixel_y = 14;
+	pixel_x = -1
+	},
+/obj/item/storage/fancy/cigarettes/cigars/havana{
+	pixel_y = 16;
+	pixel_x = -3
+	},
+/obj/structure/table/wood/poker,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"QX" = (
+/obj/effect/decal/cleanable/blood/footprints,
+/turf/open/floor/pod/dark,
+/area/city/backstreets_room)
+"Rb" = (
+/obj/structure/table/reinforced,
+/obj/item/paper{
+	name = "thumb east weaponry and ammunition manual";
+	info = "<h1> Thumb East Weaponry and Munitions Handbook</h1><br />If you have retrieved a weapon or munitions before even reading this handbook, you may not have the necessary competence to be even a Soldato Primo and it is recommended that you return the equipment and inform your Capo of your negligence posthaste as to minimize the punishment you will receive. <br>Additionally: the punishment for smoking in this room is well-established. It does not need to be reiterated. You know what is going to happen to you.<br /><br/><h2>The Basics</h2><br />As a member of the Thumb, you will use propellant weaponry for melee combat. Despite any preconceptions you may have regarding your weapon, rifles are not meant to shoot bullets. Your rifle is equipped with a system that transforms the explosive power of propellant ammunition into momentum that enhances your attacks.<br /><br />Using these weapons is simpler than it seems. Load your rifle with propellant ammunition (verify the caliber is correct - no, the Capo's Tigermark rounds don't fit in your rifle), verify that the system is activated, and then you may lunge at faraway targets to begin a rapid series of attacks against them.<br /><br /><h2>Ammunition Management</h2><br />Ammunition is only authorized to be carried in handfuls of up to six rounds. If you are storing the ammunition in a bag or similar, you must separate them into at least bundles of three rounds to minimize the hazard they pose due to their volatility.<br /> <br />Ammunition may be fed into a weapon to load it, but all weapons have a maximum capacity - in your rifles' case, it is three rounds, whereas a propellant podao can fit six. You cannot mix and match ammunition types. Unloading your weapon is possible - the instructions should be on a label that you can find by examining your weapon.<br /> <br />You can requisition more ammunition from the vendor in the armory. Recover spent cartridges and feed them into the vendor to recover some of the value - discounts to the purchase of extra ammunition are authorized through retrieval of spent ammunition.<br /> <br />Spending ammunition generates heat for your weapon. This heat is not a bad thing - the weapon's systems are calibrated to make good use of it. Normal attacks, even though they are not boosted by the power of a fired round, will be empowered by the heat generated from previous rounds. Your weapon will vent its heat if you attempt to reload or unload it."
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"RK" = (
+/obj/machinery/vending/cigarette{
+	pixel_y = 24;
+	density = 0;
+	pixel_x = 0
+	},
+/obj/effect/turf_decal/siding/wood{
+	color = "#2e1f0e";
+	dir = 8
+	},
+/obj/machinery/light,
+/turf/open/floor/carpet/orange,
+/area/city/backstreets_room)
+"SF" = (
+/obj/structure/bed{
+	name = "bunk beds";
+	can_buckle = 0;
+	density = 1
+	},
+/obj/structure/table{
+	alpha = 0;
+	mouse_opacity = 0
+	},
+/obj/structure/bed{
+	pixel_y = 15;
+	layer = 2.95;
+	can_buckle = 0;
+	name = "bunk beds";
+	density = 1
+	},
+/obj/structure/ladder{
+	pixel_x = 4;
+	pixel_y = 11;
+	layer = 2;
+	mouse_opacity = 0
+	},
+/obj/item/bedsheet/red{
+	layer = 2.96;
+	name = "soldato bedsheet";
+	anchored = 1;
+	pixel_y = 15
+	},
+/obj/item/bedsheet/red{
+	layer = 2.94;
+	name = "soldato bedsheet";
+	anchored = 1
+	},
+/turf/open/floor/carpet,
+/area/city/backstreets_room)
+"SI" = (
+/obj/item/screwdriver{
+	pixel_y = 16
+	},
+/obj/item/lighter/greyscale{
+	pixel_x = 8;
+	pixel_y = -10
+	},
+/turf/open/floor/pod/dark,
+/area/city/backstreets_room)
+"SK" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -29;
+	pixel_y = 0
+	},
+/obj/effect/turf_decal{
+	dir = 3
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"Ts" = (
+/obj/structure/bed/pod,
+/obj/item/bedsheet/syndie{
+	name = "capo bedsheet";
+	desc = "The fact that this bedsheet was tailored by the Carnival, speaks volumes on its price alone. It smells faintly like gunpowder."
+	},
+/turf/open/floor/carpet,
+/area/city/backstreets_room)
+"TQ" = (
+/obj/structure/chair/comfy/black{
+	dir = 1;
+	pixel_y = 7
+	},
+/turf/open/floor/carpet,
+/area/city/backstreets_room)
+"Vm" = (
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"VL" = (
+/obj/structure/chair/comfy/black,
+/obj/machinery/light{
+	dir = 1;
+	pixel_y = 19
+	},
+/turf/open/floor/carpet,
+/area/city/backstreets_room)
+"VW" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Wg" = (
+/obj/item/organ/vocal_cords/colossus{
+	pixel_x = 3;
+	pixel_y = 32;
+	anchored = 1;
+	name = "strange and ominous trophy";
+	desc = "It's dimly glowing. What the hell is this? Would anyone even dare to ask the Capo?";
+	actions_types = null
+	},
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp/green{
+	pixel_x = -9;
+	pixel_y = 8
+	},
+/obj/item/modular_computer/laptop{
+	pixel_x = 11;
+	pixel_y = 7
+	},
+/obj/item/stack/spacecash/c1000,
+/obj/item/stack/spacecash/c1000{
+	pixel_x = 7;
+	pixel_y = -2
+	},
+/turf/open/floor/carpet,
+/area/city/backstreets_room)
+"WC" = (
+/obj/item/head_trophy/indigo_head/pale{
+	pixel_x = 0;
+	pixel_y = 32;
+	anchored = 1;
+	desc = "The severed head of a high-ranking sweeper. This one used attacks that were able to sunder the soul itself. "
+	},
+/obj/structure/closet/crate/wooden{
+	anchored = 1;
+	color = "#705937"
+	},
+/obj/item/shears{
+	icon_state = "buckknife";
+	icon = 'icons/obj/kitchen.dmi';
+	name = "disciplinary knife";
+	desc = "A knife used to carry out 'disciplinary action' by the Thumb. Keep a target still and this'll remove one of their limbs."
+	},
+/obj/item/restraints/handcuffs,
+/obj/item/restraints/handcuffs,
+/obj/item/restraints/handcuffs,
+/obj/item/restraints/handcuffs,
+/obj/item/storage/firstaid/regular,
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"WH" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/machinery/newscaster{
+	pixel_y = 28
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"WR" = (
+/obj/item/coupon{
+	pixel_x = -1;
+	pixel_y = 64;
+	color = "8644a5";
+	name = "mysterious coupon";
+	desc = "This curious coupon seems out of place among these trophies. There must be an interesting story behind it."
+	},
+/turf/open/floor/carpet,
+/area/city/backstreets_room)
+"XE" = (
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/turf/open/floor/carpet/orange,
+/area/city/backstreets_room)
+"YM" = (
+/obj/machinery/light,
+/turf/open/floor/carpet/orange,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+SI
+uQ
+jB
+QX
+hR
+Cq
+iT
+By
+tN
+SK
+zt
+"}
+(2,1,1) = {"
+tT
+AF
+QX
+BS
+iT
+YM
+iT
+yg
+sD
+qC
+ik
+"}
+(3,1,1) = {"
+BE
+Fn
+my
+tL
+iT
+ul
+iT
+Rb
+sD
+qC
+ik
+"}
+(4,1,1) = {"
+iT
+hR
+iT
+iT
+iT
+PV
+iT
+Rb
+sD
+qC
+Eb
+"}
+(5,1,1) = {"
+wd
+ul
+XE
+qG
+yE
+wz
+iT
+DD
+sD
+Gd
+Mo
+"}
+(6,1,1) = {"
+ve
+Gr
+iT
+iT
+iT
+RK
+iT
+mb
+pu
+mb
+iT
+"}
+(7,1,1) = {"
+Qc
+Vm
+qd
+WH
+CX
+CX
+IQ
+Nb
+er
+LS
+Jq
+"}
+(8,1,1) = {"
+Jr
+Vm
+iT
+wu
+oG
+hw
+iT
+Ln
+VW
+VW
+GH
+"}
+(9,1,1) = {"
+WC
+uS
+iT
+eK
+oG
+FQ
+iT
+VL
+ky
+TQ
+PN
+"}
+(10,1,1) = {"
+Gm
+WR
+iT
+Dy
+oG
+xf
+iT
+kF
+eJ
+eJ
+eJ
+"}
+(11,1,1) = {"
+Wg
+Ts
+iT
+oR
+hO
+oR
+iT
+xd
+SF
+fw
+SF
+"}

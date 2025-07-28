@@ -332,7 +332,7 @@
 			if(fired_round)
 				hitsound = null
 				. = ..()
-				playsound(src, sweep_sound, 100, FALSE, 10)
+				playsound(src, sweep_sound, 100, FALSE, 14)
 				hitsound = initial(hitsound)
 				user.changeNext_move(CLICK_CD_MELEE * attack_speed * 1.3)
 				RadiusAOE(target, user, COMBO_ATTACK2)
@@ -347,7 +347,7 @@
 		if(COMBO_FINISHER)
 			hitsound = null
 			. = ..()
-			playsound(src, finisher_sound, 100, FALSE, 10)
+			playsound(src, finisher_sound, 100, FALSE, 14)
 			hitsound = initial(hitsound)
 			user.changeNext_move(CLICK_CD_MELEE * attack_speed * 1.2)
 			// We finished the combo! Reset it.
@@ -414,7 +414,7 @@
 	. = ""
 	if(SpendAmmo(user))
 		. = span_danger("[user] fires their [src.name], using the exhaust to nonchalantly light the [A]. They don't even flinch from the recoil. Holy shit.")
-		playsound(src, detonation_sound, 100, FALSE, 10)
+		playsound(src, detonation_sound, 100, FALSE, 14)
 	return .
 
 ////////////////////////////////////////////////////////////
@@ -443,7 +443,7 @@
 			to_chat(user, span_notice("You unload a [spent_round.singular_name] from your [src.name]."))
 			playsound(src, 'sound/weapons/gun/pistol/drop_small.ogg', 100, FALSE)
 			user.put_in_hands(spent_round)
-			overheat = 0
+			VentHeat(user)
 			ReturnToNormal(user)
 			return TRUE
 	else
@@ -454,7 +454,7 @@
 			to_chat(user, span_notice("You unload a [live_round.singular_name] from your [src.name]."))
 			playsound(src, 'sound/weapons/gun/pistol/drop_small.ogg', 100, FALSE)
 			user.put_in_hands(live_round)
-			overheat = 0
+			VentHeat(user)
 			ReturnToNormal(user)
 			AmmoDepletedCheck()
 			return TRUE
@@ -486,7 +486,7 @@
 	// This first section is the reload start. You can cancel it, with the only consequence at this point being that you lose your overheat bonus.
 	playsound(src, reload_start_sound, 100, FALSE, 10)
 	to_chat(user, span_info("You begin loading your [src.name]..."))
-	overheat = 0
+	VentHeat(user)
 	ReturnToNormal(user)
 	busy = TRUE
 	if(do_after(user, 0.6 SECONDS, src, progress = TRUE, interaction_key = "thumb_east_reload", max_interact_count = 1))
@@ -602,6 +602,12 @@
 		else
 			INVOKE_ASYNC(src, PROC_REF(EjectRound), new_spent_cartridge, user)
 
+/obj/item/ego_weapon/city/thumb_east/proc/VentHeat(mob/living/user)
+	if(overheat > 0)
+		overheat = 0
+		playsound(src, 'sound/effects/ordeals/steel/gcorp_hiss.ogg', 75, FALSE, 4)
+		to_chat(user, span_danger("You vent [src]'s remaining heat to access its ammo storage!"))
+
 ////////////////////////////////////////////////////////////
 // SPECIAL ATTACKS SECTION.
 // These are the procs used to handle offensive actions such as the special attacks in our combo, and all the auxiliary procs that they use.
@@ -692,7 +698,7 @@
 			target.attackby(src,user)
 		else
 			// Normally we play a boostedlunge.ogg sound when landing a lunge. If we activated lunge but didn't hit our target, play only the bullet detonation sound.
-			playsound(src, detonation_sound, 100, FALSE, 10)
+			playsound(src, detonation_sound, 100, FALSE, 14)
 			to_chat(user, span_warning("Your lunge falls short of hitting your target!"))
 		// We return TRUE regardless of whether we hit them with the lunge or not. What we care about is if we spent the round to lunge at the target.
 		return TRUE
@@ -707,7 +713,7 @@
 	// Telegraph the beginning of the leap to give some chance for counterplay.
 	user.say("*grin")
 	user.visible_message(span_userdanger("[user] prepares to leap towards [target]...!"), span_danger("You prepare to leap towards [target]...!"))
-	playsound(src, 'sound/weapons/ego/thumb_east_podao_leap_prep.ogg', 100, FALSE, 10)
+	playsound(src, 'sound/weapons/ego/thumb_east_podao_leap_prep.ogg', 100, FALSE, 14)
 	// We root the user in place to prevent them from accidentally breaking their combo.
 	user.Immobilize(finisher_windup)
 	// Set this to make sure we can't do some goofy stuff while preparing to leap.
@@ -718,7 +724,7 @@
 		user.say("Firing all rounds!")
 		// Spend a round.
 		if(SpendAmmo(user))
-			playsound(src, detonation_sound, 100, FALSE, 10)
+			playsound(src, detonation_sound, 100, FALSE, 14)
 			// This block of code is for aesthetics regarding the leaping animation.
 			// We figure out whether the target is to our left or right through this (or in the same x).
 			var/horizontal_difference = target.x - user.x
