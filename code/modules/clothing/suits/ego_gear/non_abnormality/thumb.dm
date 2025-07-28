@@ -46,7 +46,7 @@
 	desc = "Armor worn by thumb grunts in eastern parts of the City."
 	icon = 'ModularTegustation/Teguicons/thumb_east_obj.dmi'
 	worn_icon = 'ModularTegustation/Teguicons/thumb_east_worn.dmi'
-	/// TEMPORARY. I don't have a East Soldato armour sprite yet.
+	/// East Soldato armour sprites by Deadkung
 	icon_state = "thumb_east_soldato"
 	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 30, BLACK_DAMAGE = 40, PALE_DAMAGE = 30) // 140 points.
 	attribute_requirements = list(
