@@ -17,7 +17,7 @@
 	room_type = "cuckoo"
 
 /obj/effect/spawner/room/cuckoo_spawner/LateSpawn()
-	if(prob(100))//This will be changed to 20 once testing is over
+	if(prob(20) && 	SSmaptype.maptype == "city")
 		for(var/MN in GLOB.player_list)
 			var/mob/M = MN
 			M.playsound_local(M, "sound/hallucinations/veryfar_noise.ogg", 25)
