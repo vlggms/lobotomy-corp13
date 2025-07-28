@@ -8,7 +8,7 @@
 	icon_state = "centipede"
 	icon_living = "centipede"
 	icon_dead = "centipede_dead"
-	faction = list("gold_ordeal")
+	faction = list("gold_ordeal", "thunder_variant")
 	maxHealth = 1400
 	health = 1400
 	melee_damage_type = BLACK_DAMAGE
@@ -152,7 +152,7 @@
 	icon_state = "thunder_warrior"
 	icon_living = "thunder_warrior"
 	icon_dead = "thunder_warrior_dead"
-	faction = list("gold_ordeal")
+	faction = list("gold_ordeal", "thunder_variant")
 	maxHealth = 600
 	health = 600
 	melee_damage_type = BLACK_DAMAGE
@@ -270,7 +270,7 @@
 	icon_state = "680_ham_actor"
 	icon_living = "680_ham_actor"
 	icon_dead = "ham_actor_dead"
-	faction = list("gold_ordeal")
+	faction = list("gold_ordeal", "thunder_variant")
 	maxHealth = 1500
 	health = 1500
 	melee_damage_type = BLACK_DAMAGE
@@ -394,7 +394,7 @@
 	icon_dead = "thunder_warrior_dead"
 	pixel_x = -16
 	base_pixel_x = -16
-	faction = list("gold_ordeal")
+	faction = list("gold_ordeal", "thunder_variant")
 	maxHealth = 2500
 	health = 2500
 	death_sound = 'sound/effects/limbus_death.ogg'
@@ -437,7 +437,7 @@
 	visible_message(span_warning("The [P] sizzles away as it strikes an invisible barrier!"))
 	return FALSE
 
-/mob/living/simple_animal/hostile/ordeal/thunderbird_corrosion_boss/proc/ThunderWave(range_override = null, faction_check = "gold_ordeal")
+/mob/living/simple_animal/hostile/ordeal/thunderbird_corrosion_boss/proc/ThunderWave(range_override = null)
 	if(lightning_aoe_cooldown > world.time)
 		return
 	if(range_override == null)
@@ -462,17 +462,17 @@
 			if(spawning_effects)
 				new /obj/effect/temp_visual/impact_effect/ion(T)
 			for(var/mob/living/L in T)
-				INVOKE_ASYNC(src, PROC_REF(ThunderStrike), L, i, faction_check)
+				INVOKE_ASYNC(src, PROC_REF(ThunderStrike), L, i)
 		SLEEP_CHECK_DEATH(1.5)
 	current_bolts = minimum_bolts
 
-/mob/living/simple_animal/hostile/ordeal/thunderbird_corrosion_boss/proc/ThunderStrike(mob/living/L, attack_range = 1, faction_check = "gold_ordeal")
+/mob/living/simple_animal/hostile/ordeal/thunderbird_corrosion_boss/proc/ThunderStrike(mob/living/L, attack_range = 1)
 	if(L in been_hit)
 		return
 	been_hit += L
 	if(L.status_flags & GODMODE)
 		return
-	if(!(faction_check in L.faction))
+	if(!faction_check_mob(L, TRUE))
 		if(ishuman(L))// Thunderbolts only damage humans
 			FireShell(L)
 		return
@@ -480,9 +480,10 @@
 		var/mob/living/simple_animal/hostile/ordeal/thunderbird_corrosion/targetmob = L // It might not always be this type, but we need to call their proc
 		targetmob.AdjustCharge(20) // A full battery. Oh no.
 	to_chat(L, span_notice("You feel energized!"))
+	if(L.bruteloss > L.maxHealth)
+		L.adjustBruteLoss(-(L.maxHealth * 0.2) - (L.bruteloss - L.maxHealth)) // recover 20% of hp on revive
+		L.revive(full_heal = FALSE, admin_revive = TRUE)
 	L.adjustBruteLoss(-100)
-	if(L.revive(full_heal = FALSE, admin_revive = TRUE))
-		L.adjustBruteLoss(-(L.maxHealth * 0.2)) // recover 20% of hp on revive
 	playsound(get_turf(L), 'sound/abnormalities/thunderbird/tbird_charge.ogg', 15, 1, 4)
 	L.add_overlay(icon('icons/effects/effects.dmi', "electricity"))
 	addtimer(CALLBACK(L, TYPE_PROC_REF(/atom, cut_overlay), \
