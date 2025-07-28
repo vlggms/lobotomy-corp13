@@ -1667,6 +1667,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(PALE_DAMAGE)
 			var/damage_amount = forced ? damage : damage * hit_percent * palemod * H.physiology.pale_mod
 			H.adjustPaleLoss(damage_amount, forced = forced)
+	SEND_SIGNAL(H, COMSIG_MOB_AFTER_APPLY_DAMGE, damage, damagetype, def_zone, wound_bonus, bare_wound_bonus, sharpness)
 	return 1
 
 /datum/species/proc/on_hit(obj/projectile/P, mob/living/carbon/human/H)
