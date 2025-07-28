@@ -22,11 +22,14 @@
 	max_charge = 5
 	clan_charge_cooldown = 4 SECONDS
 	teleport_away = TRUE
+	search_objects = 3
+	wanted_objects = list(/obj/structure/barricade/clan/blueprint)
 
 	// Engineer specific vars
 	var/can_build_factory = TRUE
 	var/building = FALSE
 	var/build_time = 5 SECONDS
+	var/barricade_build_time = 2 SECONDS
 
 /mob/living/simple_animal/hostile/clan/engineer/examine(mob/user)
 	. = ..()
@@ -42,6 +45,21 @@
 	// Check if targeting a resource point to build factory
 	if(istype(attacked_target, /obj/structure/resource_point) && can_build_factory && commander)
 		StartFactoryConstruction(attacked_target)
+		return
+	
+	// Check if targeting a construction point object
+	if(can_build_factory && commander && isobj(attacked_target))
+		var/obj/O = attacked_target
+		// Check if our commander (who must be a tinkerer) recognizes this as a construction point
+		if(istype(commander, /mob/living/simple_animal/hostile/clan/tinkerer))
+			var/mob/living/simple_animal/hostile/clan/tinkerer/T = commander
+			if(T.IsConstructionPoint(O))
+				StartFactoryConstructionOnObject(O)
+				return
+	
+	// Check if targeting a barricade blueprint
+	if(istype(attacked_target, /obj/structure/barricade/clan/blueprint) && !building)
+		BuildBarricade(attacked_target)
 		return
 
 	return ..()
@@ -71,6 +89,77 @@
 		can_build_factory = TRUE
 
 	building = FALSE
+
+/mob/living/simple_animal/hostile/clan/engineer/proc/StartFactoryConstructionOnObject(obj/O)
+	if(!O || !can_build_factory || building || !commander)
+		return
+
+	var/turf/T = get_turf(O)
+	if(!T)
+		return
+
+	// Check if there's already a factory here
+	for(var/obj/structure/clan_factory/F in T)
+		to_chat(commander, span_warning("There is already a factory at this location!"))
+		return
+
+	building = TRUE
+	can_build_factory = FALSE
+	visible_message(span_notice("[src] begins constructing a factory on [O]..."))
+	playsound(src, 'sound/items/welder2.ogg', 50, TRUE)
+
+	if(do_after(src, build_time, target = O))
+		var/obj/structure/clan_factory/F = new(T)
+		F.owner = commander
+		commander.owned_factories += F
+		visible_message(span_notice("[src] completes the factory construction on [O]!"))
+		playsound(src, 'sound/machines/ping.ogg', 50, TRUE)
+		// Delete the construction point object
+		qdel(O)
+	else
+		visible_message(span_warning("[src] fails to complete the construction."))
+		can_build_factory = TRUE
+
+	building = FALSE
+
+/mob/living/simple_animal/hostile/clan/engineer/proc/BuildBarricade(obj/structure/barricade/clan/blueprint/B)
+	if(!B || building || B.loc == null)
+		return
+	
+	building = TRUE
+	visible_message(span_notice("[src] begins constructing a barricade..."))
+	playsound(src, 'sound/items/welder.ogg', 50, TRUE)
+	
+	if(do_after(src, barricade_build_time, target = B))
+		if(!QDELETED(B) && B.loc)
+			new /obj/structure/barricade/clan(B.loc)
+			qdel(B)
+			visible_message(span_notice("[src] completes the barricade construction!"))
+			playsound(src, 'sound/machines/click.ogg', 50, TRUE)
+	else
+		visible_message(span_warning("[src] fails to complete the barricade construction."))
+	
+	building = FALSE
+
+// Override to handle attack orders on construction points
+/mob/living/simple_animal/hostile/clan/engineer/ReceiveAttackOrder(atom/target, is_hard_lock = FALSE)
+	// Check if we're ordered to attack a construction point
+	if(can_build_factory && commander && isobj(target))
+		var/obj/O = target
+		// Check if our commander recognizes this as a construction point
+		if(istype(commander, /mob/living/simple_animal/hostile/clan/tinkerer))
+			var/mob/living/simple_animal/hostile/clan/tinkerer/T = commander
+			if(T.IsConstructionPoint(O))
+				// Add it to our wanted objects temporarily
+				if(!wanted_objects)
+					wanted_objects = list()
+				wanted_objects += O.type
+				addtimer(CALLBACK(src, PROC_REF(RemoveWantedObject), O.type), 30 SECONDS)
+				// Enable object searching
+				search_objects = 3
+	
+	// Call parent to handle the rest
+	return ..()
 
 // Resource point structure
 /obj/structure/resource_point

@@ -7,8 +7,8 @@
 	icon_dead = "tinker_d"
 	pixel_x = -16
 	base_pixel_x = -16
-	health = 600
-	maxHealth = 600
+	health = 9999
+	maxHealth = 9999
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	attack_sound = 'sound/weapons/tap.ogg'
 	silk_results = list(/obj/item/stack/sheet/silk/azure_simple = 2,
@@ -23,6 +23,8 @@
 	move_to_delay = 4
 	charge = 5
 	max_charge = 20
+	var/base_max_charge = 20
+	var/charge_per_factory = 5
 	clan_charge_cooldown = 2 SECONDS
 	teleport_away = TRUE
 	retreat_distance = 8
@@ -39,25 +41,41 @@
 	var/order_move_cost = 2
 	var/order_attack_cost = 3
 	var/order_overclock_cost = 5
-	var/viewing_alpha = 30
+	var/viewing_alpha = 0
 	var/viewing_speed_modifier = 0.3
+	var/hard_lock_mode = FALSE // Toggle between passive and hard lock on for attack orders
+	// List of object types that count as construction points
+	var/list/construction_point_types = list(
+		/obj/structure/table,
+		/obj/structure/rack,
+		/obj/machinery/computer,
+		/obj/machinery/vending,
+		/obj/structure/closet
+	)
+	// Barricade building
+	var/turf/barricade_start_point = null
+	var/barricade_cost = 3
+	// Box selection
+	var/turf/selection_start_point = null
 
 /mob/living/simple_animal/hostile/clan/tinkerer/Initialize()
 	. = ..()
 	// Create initial factory
 	addtimer(CALLBACK(src, PROC_REF(CreateInitialFactory)), 2 SECONDS)
 	// Add abilities
-	AddAbility(new /obj/effect/proc_holder/ability/tinkerer/toggle_view(src))
-	AddAbility(new /obj/effect/proc_holder/ability/tinkerer/produce_scout(src))
-	AddAbility(new /obj/effect/proc_holder/ability/tinkerer/produce_engineer(src))
-	AddAbility(new /obj/effect/proc_holder/ability/tinkerer/produce_assassin(src))
-	AddAbility(new /obj/effect/proc_holder/ability/tinkerer/produce_demolisher(src))
-	AddAbility(new /obj/effect/proc_holder/ability/tinkerer/produce_defender(src))
-	AddAbility(new /obj/effect/proc_holder/ability/tinkerer/produce_drone(src))
-	AddAbility(new /obj/effect/proc_holder/ability/tinkerer/select_unit(src))
-	AddAbility(new /obj/effect/proc_holder/ability/tinkerer/move_order(src))
-	AddAbility(new /obj/effect/proc_holder/ability/tinkerer/attack_order(src))
-	AddAbility(new /obj/effect/proc_holder/ability/tinkerer/overclock_order(src))
+	AddAbility(new /obj/effect/proc_holder/ability/tinkerer/produce_scout(null, src))
+	AddAbility(new /obj/effect/proc_holder/ability/tinkerer/produce_engineer(null, src))
+	AddAbility(new /obj/effect/proc_holder/ability/tinkerer/produce_assassin(null, src))
+	AddAbility(new /obj/effect/proc_holder/ability/tinkerer/produce_demolisher(null, src))
+	AddAbility(new /obj/effect/proc_holder/ability/tinkerer/produce_defender(null, src))
+	AddAbility(new /obj/effect/proc_holder/ability/tinkerer/produce_drone(null, src))
+	AddAbility(new /obj/effect/proc_holder/ability/aimed/tinkerer_select_unit(null, src))
+	AddAbility(new /obj/effect/proc_holder/ability/aimed/tinkerer_move_order(null, src))
+	AddAbility(new /obj/effect/proc_holder/ability/aimed/tinkerer_attack_order(null, src))
+	AddAbility(new /obj/effect/proc_holder/ability/tinkerer/overclock_order(null, src))
+	AddAbility(new /obj/effect/proc_holder/ability/tinkerer/toggle_lock_mode(null, src))
+	AddAbility(new /obj/effect/proc_holder/ability/tinkerer/release_locks(null, src))
+	AddAbility(new /obj/effect/proc_holder/ability/aimed/tinkerer_build_barricade(null, src))
 
 /mob/living/simple_animal/hostile/clan/tinkerer/examine(mob/user)
 	. = ..()
@@ -67,6 +85,7 @@
 	. += span_notice("Factories owned: [length(owned_factories)]")
 	if(viewing_mode)
 		. += span_boldnotice("Currently in viewing mode (invulnerable).")
+	. += span_notice("Attack mode: [hard_lock_mode ? "Hard Lock" : "Passive"]")
 
 /mob/living/simple_animal/hostile/clan/tinkerer/Life()
 	. = ..()
@@ -78,11 +97,22 @@
 
 	// Clean up dead units
 	CleanupDeadUnits()
+	
+	// Update max charge based on factories
+	UpdateMaxCharge()
 
 /mob/living/simple_animal/hostile/clan/tinkerer/proc/ChargeGain()
 	if(last_charge_update < world.time - clan_charge_cooldown)
 		charge = min(charge + 1, max_charge)
 		last_charge_update = world.time
+
+/mob/living/simple_animal/hostile/clan/tinkerer/proc/UpdateMaxCharge()
+	var/new_max_charge = base_max_charge + (length(owned_factories) * charge_per_factory)
+	if(new_max_charge != max_charge)
+		max_charge = new_max_charge
+		// If current charge exceeds new max, cap it
+		if(charge > max_charge)
+			charge = max_charge
 
 /mob/living/simple_animal/hostile/clan/tinkerer/proc/ToggleViewingMode()
 	if(viewing_mode)
@@ -96,9 +126,11 @@
 
 	viewing_mode = TRUE
 	alpha = viewing_alpha
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	add_movespeed_modifier(/datum/movespeed_modifier/tinkerer_viewing)
 	density = FALSE
 	status_flags |= GODMODE // Invulnerable in viewing mode
+	is_flying_animal = TRUE // Can pass over tables and other obstacles
 	visible_message(span_notice("[src] activates surveillance mode!"))
 	playsound(src, 'sound/mecha/mechmove01.ogg', 50, TRUE)
 
@@ -108,9 +140,11 @@
 
 	viewing_mode = FALSE
 	alpha = 255
+	mouse_opacity = initial(mouse_opacity)
 	remove_movespeed_modifier(/datum/movespeed_modifier/tinkerer_viewing)
 	density = initial(density)
 	status_flags &= ~GODMODE // Remove invulnerability
+	is_flying_animal = FALSE // Back to normal movement
 	visible_message(span_notice("[src] returns to command mode!"))
 	playsound(src, 'sound/mecha/mechmove04.ogg', 50, TRUE)
 
@@ -138,6 +172,47 @@
 
 	return FALSE
 
+/mob/living/simple_animal/hostile/clan/tinkerer/proc/BoxSelectUnits(turf/start_point, turf/end_point)
+	if(!start_point || !end_point)
+		return
+	
+	// Get bounds of selection box
+	var/min_x = min(start_point.x, end_point.x)
+	var/max_x = max(start_point.x, end_point.x)
+	var/min_y = min(start_point.y, end_point.y)
+	var/max_y = max(start_point.y, end_point.y)
+	
+	// Clear current selection
+	for(var/mob/living/simple_animal/hostile/clan/unit in selected_units)
+		unit.RemoveSelectedVisual()
+	selected_units.Cut()
+	
+	// Find all units in box
+	var/list/units_in_box = list()
+	for(var/mob/living/simple_animal/hostile/clan/unit in controlled_units)
+		if(unit.stat == DEAD)
+			continue
+		var/turf/unit_turf = get_turf(unit)
+		if(!unit_turf || unit_turf.z != start_point.z)
+			continue
+		if(unit_turf.x >= min_x && unit_turf.x <= max_x && unit_turf.y >= min_y && unit_turf.y <= max_y)
+			units_in_box += unit
+	
+	// Select up to max_selected_units
+	var/selected_count = 0
+	for(var/mob/living/simple_animal/hostile/clan/unit in units_in_box)
+		if(selected_count >= max_selected_units)
+			break
+		selected_units += unit
+		unit.AddSelectedVisual()
+		selected_count++
+	
+	if(selected_count)
+		visible_message(span_notice("[src] selects [selected_count] unit\s!"))
+		playsound(src, 'sound/machines/click.ogg', 50, TRUE)
+	else
+		to_chat(src, span_warning("No controlled units found in selection area!"))
+
 /mob/living/simple_animal/hostile/clan/tinkerer/proc/IssueMovementOrder(turf/destination, rush_mode = FALSE)
 	if(viewing_mode || !length(selected_units) || charge < order_move_cost)
 		return
@@ -152,16 +227,21 @@
 	playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 
 /mob/living/simple_animal/hostile/clan/tinkerer/proc/IssueAttackOrder(atom/target)
-	if(viewing_mode || !length(selected_units) || charge < order_attack_cost || !target)
+	if(viewing_mode || !length(selected_units) || !target)
+		return
+	
+	var/cost = hard_lock_mode ? order_attack_cost * 2 : order_attack_cost
+	if(charge < cost)
+		to_chat(src, span_warning("Not enough charge! Need [cost] charge."))
 		return
 
-	charge -= order_attack_cost
+	charge -= cost
 	for(var/mob/living/simple_animal/hostile/clan/unit in selected_units)
 		if(unit.stat == DEAD)
 			continue
-		unit.ReceiveAttackOrder(target)
+		unit.ReceiveAttackOrder(target, hard_lock_mode)
 
-	visible_message(span_danger("[src] issues attack orders!"))
+	visible_message(span_danger("[src] issues [hard_lock_mode ? "hard lock" : "passive"] attack orders!"))
 	playsound(src, 'sound/machines/terminal_alert.ogg', 50, TRUE)
 
 /mob/living/simple_animal/hostile/clan/tinkerer/proc/IssueOverclockOrder()
@@ -182,11 +262,94 @@
 		if(unit.stat == DEAD || QDELETED(unit))
 			controlled_units -= unit
 			selected_units -= unit
+			unit.RemoveSelectedVisual()
+
+/mob/living/simple_animal/hostile/clan/tinkerer/proc/ReleaseAllLocks()
+	for(var/mob/living/simple_animal/hostile/clan/unit in controlled_units)
+		if(unit.stat == DEAD)
+			continue
+		unit.ReleaseHardLock()
+	visible_message(span_notice("[src] releases all hard locks!"))
+	playsound(src, 'sound/machines/terminal_off.ogg', 50, TRUE)
+
+/mob/living/simple_animal/hostile/clan/tinkerer/proc/IsConstructionPoint(obj/O)
+	if(!O)
+		return FALSE
+	for(var/type in construction_point_types)
+		if(istype(O, type))
+			return TRUE
+	return FALSE
+
+/mob/living/simple_animal/hostile/clan/tinkerer/proc/BuildBarricadeLine(turf/start_point, turf/end_point)
+	if(!start_point || !end_point)
+		return
+	
+	// Check line of sight
+	if(!CheckLineOfSight(start_point, end_point))
+		to_chat(src, span_warning("No line of sight between points!"))
+		return
+	
+	// Get all turfs in line
+	var/list/line_turfs = getline(start_point, end_point)
+	var/list/valid_turfs = list()
+	
+	// Check each turf for validity
+	for(var/turf/T in line_turfs)
+		if(T.density)
+			continue
+		
+		// Check for adjacent barricades
+		var/adjacent_barricade = FALSE
+		for(var/turf/adjacent in get_adjacent_open_turfs(T))
+			if(locate(/obj/structure/barricade/clan) in adjacent)
+				adjacent_barricade = TRUE
+				break
+			if(locate(/obj/structure/barricade/clan/blueprint) in adjacent)
+				adjacent_barricade = TRUE
+				break
+		
+		if(adjacent_barricade)
+			continue
+			
+		// Check if already has barricade
+		if(locate(/obj/structure/barricade/clan) in T)
+			continue
+		if(locate(/obj/structure/barricade/clan/blueprint) in T)
+			continue
+			
+		valid_turfs += T
+	
+	// Check charge
+	var/total_cost = length(valid_turfs) * barricade_cost
+	if(charge < total_cost)
+		to_chat(src, span_warning("Not enough charge! Need [total_cost] charge for [length(valid_turfs)] barricades."))
+		return
+	
+	if(!length(valid_turfs))
+		to_chat(src, span_warning("No valid positions for barricades!"))
+		return
+	
+	// Build blueprints
+	charge -= total_cost
+	for(var/turf/T in valid_turfs)
+		new /obj/structure/barricade/clan/blueprint(T)
+	
+	visible_message(span_notice("[src] deploys barricade blueprints!"))
+	playsound(src, 'sound/effects/phasein.ogg', 50, TRUE)
+
+/mob/living/simple_animal/hostile/clan/tinkerer/proc/CheckLineOfSight(turf/start_point, turf/end_point)
+	for(var/turf/T in getline(start_point, end_point))
+		if(T.opacity)
+			return FALSE
+	return TRUE
 
 /mob/living/simple_animal/hostile/clan/tinkerer/proc/ProduceUnitAtFactory(unit_type)
 	// Find nearest factory with capacity
 	var/obj/structure/clan_factory/best_factory = null
 	var/min_distance = INFINITY
+	
+	to_chat(src, span_notice("Attempting to produce [unit_type]..."))
+	to_chat(src, span_notice("Owned factories: [length(owned_factories)]"))
 	
 	for(var/obj/structure/clan_factory/F in owned_factories)
 		if(F.CanProduce(unit_type))
@@ -199,6 +362,7 @@
 		to_chat(src, span_warning("No available factory with sufficient capacity!"))
 		return FALSE
 	
+	to_chat(src, span_notice("Factory found, starting production..."))
 	best_factory.ProduceUnit(unit_type)
 	return TRUE
 
@@ -235,6 +399,14 @@
 	var/producing = FALSE
 	var/production_time = 10 SECONDS
 
+/obj/structure/clan_factory/examine(mob/user)
+	. = ..()
+	. += span_notice("Capacity: [used_capacity]/[production_capacity]")
+	if(producing)
+		. += span_boldnotice("Currently producing a unit...")
+	if(owner)
+		. += span_notice("Controlled by [owner].")
+
 /obj/structure/clan_factory/Initialize()
 	. = ..()
 	START_PROCESSING(SSobj, src)
@@ -246,12 +418,20 @@
 		unit.factory_destroyed()
 	if(owner)
 		owner.owned_factories -= src
+		owner.UpdateMaxCharge()
 	. = ..()
 
 /obj/structure/clan_factory/process()
 	if(!owner || owner.stat == DEAD)
 		Destroy()
 		return
+	
+	// Clean up dead units
+	for(var/mob/living/simple_animal/hostile/clan/unit in produced_units)
+		if(unit.stat == DEAD || QDELETED(unit))
+			produced_units -= unit
+			used_capacity -= GetUnitCost(unit.type)
+			used_capacity = max(0, used_capacity) // Ensure it doesn't go negative
 
 /obj/structure/clan_factory/proc/CanProduce(unit_type)
 	if(!owner || producing)
@@ -288,11 +468,20 @@
 	producing = TRUE
 	playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 	visible_message(span_notice("[src] begins production..."))
+	
+	// Add visual effect during production
+	add_overlay(mutable_appearance('icons/effects/effects.dmi', "shield-old", layer + 0.1))
+	color = "#00FF00"
+	animate(src, color = "#FFFFFF", time = production_time, loop = 1)
 
 	addtimer(CALLBACK(src, PROC_REF(FinishProduction), unit_type), production_time)
 
 /obj/structure/clan_factory/proc/FinishProduction(unit_type)
 	producing = FALSE
+	
+	// Remove visual effects
+	cut_overlays()
+	color = initial(color)
 
 	var/turf/T = get_step(src, pick(NORTH, SOUTH, EAST, WEST))
 	if(!T || T.density)
@@ -319,6 +508,10 @@
 	var/rush_movement = FALSE
 	var/overclocked = FALSE
 	var/obj/effect/overlay/selected_visual
+	var/hard_lock = FALSE
+	var/atom/hard_lock_target = null
+	var/atom/faction_attack_target = null // Specific same-faction target we're allowed to attack
+	var/door_bump_cooldown = 0
 
 /mob/living/simple_animal/hostile/clan/proc/AddSelectedVisual()
 	if(selected_visual)
@@ -334,11 +527,44 @@
 /mob/living/simple_animal/hostile/clan/proc/ReceiveMovementOrder(turf/destination, rush_mode = FALSE)
 	order_target = destination
 	rush_movement = rush_mode
+	// Clear attack settings when given movement order
+	faction_attack_target = null
+	attack_same = initial(attack_same)
 	LoseTarget()
-	walk_to(src, destination, 0, move_to_delay)
+	// Use Goto instead of walk_to to handle doors properly
+	Goto(destination, move_to_delay, 0)
 
-/mob/living/simple_animal/hostile/clan/proc/ReceiveAttackOrder(atom/target)
+/mob/living/simple_animal/hostile/clan/proc/ReceiveAttackOrder(atom/target, is_hard_lock = FALSE)
 	order_target = target
+	
+	// Handle hard lock
+	if(is_hard_lock)
+		hard_lock = TRUE
+		hard_lock_target = target
+		if(!isobj(target)) // Only disable object searching if we're not targeting an object
+			search_objects = 0 // Don't search for other targets
+		stat_attack = DEAD // Attack even dead targets if ordered
+	else
+		hard_lock = FALSE
+		hard_lock_target = null
+	
+	// Handle same-faction targets
+	if(isliving(target))
+		var/mob/living/L = target
+		if(faction_check_mob(L))
+			faction_attack_target = L
+			attack_same = TRUE
+		else
+			faction_attack_target = null
+	
+	// If targeting an object, enable object searching and add to wanted_objects
+	if(isobj(target))
+		search_objects = 3 // Enable object searching
+		if(!wanted_objects)
+			wanted_objects = list()
+		wanted_objects += target.type
+		addtimer(CALLBACK(src, PROC_REF(RemoveWantedObject), target.type), 30 SECONDS)
+	
 	GiveTarget(target)
 
 /mob/living/simple_animal/hostile/clan/proc/ReceiveOverclockOrder()
@@ -367,6 +593,100 @@
 	commander = null
 	RemoveSelectedVisual()
 
+/mob/living/simple_animal/hostile/clan/death(gibbed)
+	RemoveSelectedVisual()
+	if(commander)
+		commander.controlled_units -= src
+		commander.selected_units -= src
+	return ..()
+
+/mob/living/simple_animal/hostile/clan/Destroy()
+	RemoveSelectedVisual()
+	if(commander)
+		commander.controlled_units -= src
+		commander.selected_units -= src
+	return ..()
+
+/mob/living/simple_animal/hostile/clan/proc/RestoreFaction(list/old_faction)
+	faction = old_faction
+
+/mob/living/simple_animal/hostile/clan/proc/RemoveWantedObject(obj_type)
+	if(wanted_objects)
+		wanted_objects -= obj_type
+		if(!length(wanted_objects))
+			wanted_objects = null
+
+/mob/living/simple_animal/hostile/clan/proc/ReleaseHardLock()
+	hard_lock = FALSE
+	hard_lock_target = null
+	faction_attack_target = null
+	attack_same = initial(attack_same)
+	search_objects = initial(search_objects)
+	stat_attack = initial(stat_attack)
+	LoseTarget()
+
+// Override Bump to handle doors
+/mob/living/simple_animal/hostile/clan/Bump(atom/A)
+	// Handle doors if we have an order
+	if(order_target && door_bump_cooldown < world.time)
+		if(istype(A, /obj/machinery/door))
+			var/obj/machinery/door/D = A
+			if(!D.density) // Door is already open
+				return ..()
+			door_bump_cooldown = world.time + 10 // 1 second cooldown
+			if(D.open())
+				return
+			// If we can't open it normally, try to attack it
+			if(can_smash && environment_smash >= ENVIRONMENT_SMASH_STRUCTURES)
+				A.attack_animal(src)
+				return
+	return ..()
+
+// Override Move to ensure we move towards our order target
+/mob/living/simple_animal/hostile/clan/Move(atom/newloc, dir, step_x, step_y)
+	. = ..()
+	// If we have a movement order and we're stuck, try a different path
+	if(order_target && !. && door_bump_cooldown < world.time)
+		var/turf/T = get_turf(order_target)
+		if(T && get_dist(src, T) > 1)
+			// Try to find an alternate path
+			var/list/possible_dirs = list()
+			for(var/direction in GLOB.cardinals)
+				var/turf/step_turf = get_step(src, direction)
+				if(step_turf && !step_turf.density)
+					var/blocked = FALSE
+					for(var/obj/O in step_turf)
+						if(O.density && !istype(O, /obj/machinery/door))
+							blocked = TRUE
+							break
+					if(!blocked)
+						possible_dirs += direction
+			
+			if(possible_dirs.len)
+				var/new_dir = pick(possible_dirs)
+				return Move(get_step(src, new_dir), new_dir)
+
+// Override target listing for hard lock units
+/mob/living/simple_animal/hostile/clan/ListTargets()
+	if(hard_lock && hard_lock_target && !QDELETED(hard_lock_target))
+		return list(hard_lock_target)
+	return ..()
+
+// Override to prevent switching targets when hard locked
+/mob/living/simple_animal/hostile/clan/PickTarget(list/Targets)
+	if(hard_lock && hard_lock_target && (hard_lock_target in Targets))
+		return hard_lock_target
+	return ..()
+
+// Override to only allow attacking specific faction targets
+/mob/living/simple_animal/hostile/clan/CanAttack(atom/the_target)
+	// If we have a faction attack target, only allow attacking that specific target
+	if(faction_attack_target && isliving(the_target))
+		var/mob/living/L = the_target
+		if(faction_check_mob(L) && L != faction_attack_target)
+			return FALSE
+	return ..()
+
 // Visual indicator for selected units
 /obj/effect/overlay/selected_indicator
 	icon = 'icons/effects/effects.dmi'
@@ -387,7 +707,7 @@
 /obj/effect/proc_holder/ability/tinkerer
 	name = "Tinkerer Ability"
 	desc = "You shouldn't see this"
-	action_icon = 'icons/mob/actions/actions_abnormality.dmi'
+	action_icon = 'ModularTegustation/Teguicons/resurgence_actions.dmi'
 	action_icon_state = "summoner2"
 	cooldown_time = 2 SECONDS
 	var/mob/living/simple_animal/hostile/clan/tinkerer/linked_tinkerer
@@ -397,35 +717,36 @@
 	if(T)
 		linked_tinkerer = T
 
-/obj/effect/proc_holder/ability/tinkerer/toggle_view
-	name = "Toggle View Mode"
-	desc = "Switch between viewing and command modes."
-	action_icon_state = "qoh_white"
-	cooldown_time = 1 SECONDS
-
-/obj/effect/proc_holder/ability/tinkerer/toggle_view/Perform(target, mob/user)
-	if(!linked_tinkerer)
-		return
-	linked_tinkerer.ToggleViewingMode()
+// Remove the aimed parent - we'll just use the base ability type instead
 
 /obj/effect/proc_holder/ability/tinkerer/produce_scout
 	name = "Produce Scout"
 	desc = "Order a factory to produce a scout unit. Costs 2 capacity."
-	action_icon_state = "cultist"
+	action_icon_state = "produce_scout"
 	cooldown_time = 3 SECONDS
 
 /obj/effect/proc_holder/ability/tinkerer/produce_scout/Perform(target, mob/user)
+	..()  // Call parent to handle cooldown
+	if(!linked_tinkerer && istype(user, /mob/living/simple_animal/hostile/clan/tinkerer))
+		linked_tinkerer = user
+	if(!linked_tinkerer && istype(user, /mob/living/simple_animal/hostile/clan/tinkerer))
+		linked_tinkerer = user
 	if(!linked_tinkerer)
+		to_chat(user, span_warning("No linked tinkerer! User: [user]"))
 		return
+	to_chat(user, span_notice("Producing scout via [linked_tinkerer]..."))
 	linked_tinkerer.ProduceUnitAtFactory(/mob/living/simple_animal/hostile/clan/scout)
 
 /obj/effect/proc_holder/ability/tinkerer/produce_assassin
 	name = "Produce Assassin"
 	desc = "Order a factory to produce an assassin unit. Costs 6 capacity."
-	action_icon_state = "cultist2"
+	action_icon_state = "produce_assassin"
 	cooldown_time = 3 SECONDS
 
 /obj/effect/proc_holder/ability/tinkerer/produce_assassin/Perform(target, mob/user)
+	..()  // Call parent to handle cooldown
+	if(!linked_tinkerer && istype(user, /mob/living/simple_animal/hostile/clan/tinkerer))
+		linked_tinkerer = user
 	if(!linked_tinkerer)
 		return
 	linked_tinkerer.ProduceUnitAtFactory(/mob/living/simple_animal/hostile/clan/assassin)
@@ -433,10 +754,13 @@
 /obj/effect/proc_holder/ability/tinkerer/produce_demolisher
 	name = "Produce Demolisher"
 	desc = "Order a factory to produce a demolisher unit. Costs 7 capacity."
-	action_icon_state = "cultist2"
+	action_icon_state = "produce_demolisher"
 	cooldown_time = 3 SECONDS
 
 /obj/effect/proc_holder/ability/tinkerer/produce_demolisher/Perform(target, mob/user)
+	..()  // Call parent to handle cooldown
+	if(!linked_tinkerer && istype(user, /mob/living/simple_animal/hostile/clan/tinkerer))
+		linked_tinkerer = user
 	if(!linked_tinkerer)
 		return
 	linked_tinkerer.ProduceUnitAtFactory(/mob/living/simple_animal/hostile/clan/demolisher)
@@ -444,10 +768,13 @@
 /obj/effect/proc_holder/ability/tinkerer/produce_defender
 	name = "Produce Defender"
 	desc = "Order a factory to produce a defender unit. Costs 5 capacity."
-	action_icon_state = "cultist"
+	action_icon_state = "produce_defender"
 	cooldown_time = 3 SECONDS
 
 /obj/effect/proc_holder/ability/tinkerer/produce_defender/Perform(target, mob/user)
+	..()  // Call parent to handle cooldown
+	if(!linked_tinkerer && istype(user, /mob/living/simple_animal/hostile/clan/tinkerer))
+		linked_tinkerer = user
 	if(!linked_tinkerer)
 		return
 	linked_tinkerer.ProduceUnitAtFactory(/mob/living/simple_animal/hostile/clan/defender)
@@ -455,10 +782,13 @@
 /obj/effect/proc_holder/ability/tinkerer/produce_drone
 	name = "Produce Drone"
 	desc = "Order a factory to produce a drone unit. Costs 3 capacity."
-	action_icon_state = "cultist"
+	action_icon_state = "produce_drone"
 	cooldown_time = 3 SECONDS
 
 /obj/effect/proc_holder/ability/tinkerer/produce_drone/Perform(target, mob/user)
+	..()  // Call parent to handle cooldown
+	if(!linked_tinkerer && istype(user, /mob/living/simple_animal/hostile/clan/tinkerer))
+		linked_tinkerer = user
 	if(!linked_tinkerer)
 		return
 	linked_tinkerer.ProduceUnitAtFactory(/mob/living/simple_animal/hostile/clan/drone)
@@ -466,56 +796,263 @@
 /obj/effect/proc_holder/ability/tinkerer/produce_engineer
 	name = "Produce Engineer"
 	desc = "Order a factory to produce an engineer unit. Costs 4 capacity."
-	action_icon_state = "summoner1"
+	action_icon_state = "produce_engineer"
 	cooldown_time = 3 SECONDS
 
 /obj/effect/proc_holder/ability/tinkerer/produce_engineer/Perform(target, mob/user)
+	..()  // Call parent to handle cooldown
+	if(!linked_tinkerer && istype(user, /mob/living/simple_animal/hostile/clan/tinkerer))
+		linked_tinkerer = user
 	if(!linked_tinkerer)
 		return
 	linked_tinkerer.ProduceUnitAtFactory(/mob/living/simple_animal/hostile/clan/engineer)
 
-/obj/effect/proc_holder/ability/tinkerer/select_unit
+/obj/effect/proc_holder/ability/aimed/tinkerer_select_unit
 	name = "Select/Deselect Unit"
-	desc = "Select or deselect a clan unit for orders."
-	action_icon_state = "qoh_white"
+	desc = "Click a unit to select/deselect it, or click two points to box select units."
+	action_icon = 'ModularTegustation/Teguicons/resurgence_actions.dmi'
+	action_icon_state = "select_units"
+	base_icon_state = "select_units"
+	active_icon_state = "select_units_on"
+	deactive_msg = "You stop selecting units."
+	active_msg = "Click units to select them!"
 	cooldown_time = 0.5 SECONDS
+	projectile_amount = 9999 // Don't run out
+	var/mob/living/simple_animal/hostile/clan/tinkerer/linked_tinkerer
 
-/obj/effect/proc_holder/ability/tinkerer/select_unit/Perform(target, mob/user)
-	if(!linked_tinkerer || !isliving(target))
+/obj/effect/proc_holder/ability/aimed/tinkerer_select_unit/Initialize(mapload, mob/living/simple_animal/hostile/clan/tinkerer/T)
+	. = ..()
+	if(T)
+		linked_tinkerer = T
+
+/obj/effect/proc_holder/ability/aimed/tinkerer_select_unit/update_icon()
+	if(!action)
 		return
-	var/mob/living/simple_animal/hostile/clan/unit = target
-	if(istype(unit))
-		linked_tinkerer.SelectUnit(unit)
+	action.button_icon_state = active ? "select_units_on" : "select_units"
+	action.UpdateButtonIcon()
 
-/obj/effect/proc_holder/ability/tinkerer/move_order
+/obj/effect/proc_holder/ability/aimed/tinkerer_select_unit/InterceptClickOn(mob/living/caller, params, atom/target)
+	..()  // Call parent but don't check return value
+	if(!linked_tinkerer)
+		return TRUE
+	
+	var/turf/T = get_turf(target)
+	if(!T)
+		return TRUE
+	
+	// Check if clicking on a unit directly
+	if(isliving(target))
+		var/mob/living/simple_animal/hostile/clan/unit = target
+		if(istype(unit))
+			linked_tinkerer.SelectUnit(unit)
+			// Keep ability active
+			return FALSE
+	
+	// Box selection logic
+	if(!linked_tinkerer.selection_start_point)
+		// First click - set start point
+		linked_tinkerer.selection_start_point = T
+		to_chat(linked_tinkerer, span_notice("Selection start point set. Click another location to box select units."))
+		new /obj/effect/temp_visual/cult/sparks(T)
+		// Keep ability active
+		return FALSE
+	else
+		// Second click - box select
+		linked_tinkerer.BoxSelectUnits(linked_tinkerer.selection_start_point, T)
+		linked_tinkerer.selection_start_point = null
+		// Keep ability active
+		return FALSE
+
+/obj/effect/proc_holder/ability/aimed/tinkerer_move_order
 	name = "Movement Order"
 	desc = "Order selected units to move to a location. Costs 2 charge."
-	action_icon_state = "qoh_black"
+	action_icon = 'ModularTegustation/Teguicons/resurgence_actions.dmi'
+	action_icon_state = "move_order"
+	base_icon_state = "move_order"
+	active_icon_state = "move_order_on"
+	deactive_msg = "You cancel the movement order."
+	active_msg = "Click where you want your units to move!"
 	cooldown_time = 1 SECONDS
+	projectile_amount = 9999
+	var/mob/living/simple_animal/hostile/clan/tinkerer/linked_tinkerer
 
-/obj/effect/proc_holder/ability/tinkerer/move_order/Perform(target, mob/user)
-	if(!linked_tinkerer || !isturf(target))
+/obj/effect/proc_holder/ability/aimed/tinkerer_move_order/Initialize(mapload, mob/living/simple_animal/hostile/clan/tinkerer/T)
+	. = ..()
+	if(T)
+		linked_tinkerer = T
+
+/obj/effect/proc_holder/ability/aimed/tinkerer_move_order/update_icon()
+	if(!action)
 		return
-	linked_tinkerer.IssueMovementOrder(target)
+	action.button_icon_state = active ? "move_order_on" : "move_order"
+	action.UpdateButtonIcon()
 
-/obj/effect/proc_holder/ability/tinkerer/attack_order
+/obj/effect/proc_holder/ability/aimed/tinkerer_move_order/InterceptClickOn(mob/living/caller, params, atom/target)
+	..()  // Call parent but don't check return value
+	if(!linked_tinkerer || !isturf(target))
+		return TRUE
+	linked_tinkerer.IssueMovementOrder(target)
+	return TRUE
+
+/obj/effect/proc_holder/ability/aimed/tinkerer_attack_order
 	name = "Attack Order"
 	desc = "Order selected units to attack a target. Costs 3 charge."
-	action_icon_state = "qoh_pale"
+	action_icon = 'ModularTegustation/Teguicons/resurgence_actions.dmi'
+	action_icon_state = "attack_order"
+	base_icon_state = "attack_order"
+	active_icon_state = "attack_order_on"
+	deactive_msg = "You cancel the attack order."
+	active_msg = "Click what you want your units to attack!"
 	cooldown_time = 2 SECONDS
+	projectile_amount = 9999
+	var/mob/living/simple_animal/hostile/clan/tinkerer/linked_tinkerer
 
-/obj/effect/proc_holder/ability/tinkerer/attack_order/Perform(target, mob/user)
-	if(!linked_tinkerer || !target)
+/obj/effect/proc_holder/ability/aimed/tinkerer_attack_order/Initialize(mapload, mob/living/simple_animal/hostile/clan/tinkerer/T)
+	. = ..()
+	if(T)
+		linked_tinkerer = T
+
+/obj/effect/proc_holder/ability/aimed/tinkerer_attack_order/update_icon()
+	if(!action)
 		return
+	action.button_icon_state = active ? "attack_order_on" : "attack_order"
+	action.UpdateButtonIcon()
+
+/obj/effect/proc_holder/ability/aimed/tinkerer_attack_order/InterceptClickOn(mob/living/caller, params, atom/target)
+	..()  // Call parent but don't check return value
+	if(!linked_tinkerer || !target)
+		return TRUE
 	linked_tinkerer.IssueAttackOrder(target)
+	return TRUE
 
 /obj/effect/proc_holder/ability/tinkerer/overclock_order
 	name = "Overclock Order"
 	desc = "Overclock selected units, boosting them before destruction. Costs 5 charge."
-	action_icon_state = "qoh_red"
+	action_icon_state = "overclock_order"
 	cooldown_time = 5 SECONDS
 
 /obj/effect/proc_holder/ability/tinkerer/overclock_order/Perform(target, mob/user)
+	..()  // Call parent to handle cooldown
+	if(!linked_tinkerer && istype(user, /mob/living/simple_animal/hostile/clan/tinkerer))
+		linked_tinkerer = user
 	if(!linked_tinkerer)
 		return
 	linked_tinkerer.IssueOverclockOrder()
+
+/obj/effect/proc_holder/ability/tinkerer/toggle_lock_mode
+	name = "Toggle Lock Mode"
+	desc = "Toggle between passive and hard lock modes for attack orders."
+	action_icon_state = "toggle_attack"
+	cooldown_time = 0.5 SECONDS
+
+/obj/effect/proc_holder/ability/tinkerer/toggle_lock_mode/Perform(target, mob/user)
+	..()  // Call parent to handle cooldown
+	if(!linked_tinkerer && istype(user, /mob/living/simple_animal/hostile/clan/tinkerer))
+		linked_tinkerer = user
+	if(!linked_tinkerer)
+		return
+	linked_tinkerer.hard_lock_mode = !linked_tinkerer.hard_lock_mode
+	to_chat(linked_tinkerer, span_notice("Attack mode set to: [linked_tinkerer.hard_lock_mode ? "Hard Lock" : "Passive"]"))
+	playsound(linked_tinkerer, 'sound/machines/click.ogg', 50, TRUE)
+
+/obj/effect/proc_holder/ability/tinkerer/release_locks
+	name = "Release All Locks"
+	desc = "Release all hard locks on controlled units."
+	action_icon_state = "release_locks"
+	cooldown_time = 1 SECONDS
+
+/obj/effect/proc_holder/ability/tinkerer/release_locks/Perform(target, mob/user)
+	..()  // Call parent to handle cooldown
+	if(!linked_tinkerer && istype(user, /mob/living/simple_animal/hostile/clan/tinkerer))
+		linked_tinkerer = user
+	if(!linked_tinkerer)
+		return
+	linked_tinkerer.ReleaseAllLocks()
+
+/obj/effect/proc_holder/ability/aimed/tinkerer_build_barricade
+	name = "Build Barricade Line"
+	desc = "Click two points to build a barricade line. Costs 3 charge per barricade."
+	action_icon = 'ModularTegustation/Teguicons/resurgence_actions.dmi'
+	action_icon_state = "build_barricade"
+	base_icon_state = "build_barricade"
+	active_icon_state = "build_barricade"
+	deactive_msg = "You cancel barricade construction."
+	active_msg = "Click two points to build a barricade line!"
+	cooldown_time = 1 SECONDS
+	projectile_amount = 9999
+	var/mob/living/simple_animal/hostile/clan/tinkerer/linked_tinkerer
+
+/obj/effect/proc_holder/ability/aimed/tinkerer_build_barricade/Initialize(mapload, mob/living/simple_animal/hostile/clan/tinkerer/T)
+	. = ..()
+	if(T)
+		linked_tinkerer = T
+
+/obj/effect/proc_holder/ability/aimed/tinkerer_build_barricade/update_icon()
+	if(!action)
+		return
+	action.button_icon_state = "build_barricade"
+	action.UpdateButtonIcon()
+
+/obj/effect/proc_holder/ability/aimed/tinkerer_build_barricade/InterceptClickOn(mob/living/caller, params, atom/target)
+	..()  // Call parent but don't check return value
+	if(!linked_tinkerer)
+		return TRUE
+	
+	var/turf/T = get_turf(target)
+	if(!T)
+		return TRUE
+	
+	if(!linked_tinkerer.barricade_start_point)
+		// First click - set start point
+		linked_tinkerer.barricade_start_point = T
+		to_chat(linked_tinkerer, span_notice("Barricade start point set. Click another location to complete the line."))
+		new /obj/effect/temp_visual/cult/sparks(T)
+		// Don't deactivate the ability
+		return FALSE
+	else
+		// Second click - draw line
+		linked_tinkerer.BuildBarricadeLine(linked_tinkerer.barricade_start_point, T)
+		linked_tinkerer.barricade_start_point = null
+		// Keep ability active for more barricade lines
+		return FALSE
+
+// Clan barricade structures
+/obj/structure/barricade/clan
+	name = "clan barricade"
+	desc = "A sturdy mechanical barricade constructed by the Resurgence Clan."
+	icon = 'icons/obj/structures.dmi'
+	icon_state = "barricade"
+	density = TRUE
+	anchored = TRUE
+	max_integrity = 300
+	proj_pass_rate = 50
+	armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 25, BIO = 100, RAD = 100, FIRE = 50, ACID = 0)
+
+/obj/structure/barricade/clan/CanAllowThrough(atom/movable/mover, turf/target)
+	// Allow clan mobs to pass through
+	if(istype(mover, /mob/living/simple_animal/hostile/clan))
+		return TRUE
+	// Otherwise use parent behavior
+	return ..()
+
+/obj/structure/barricade/clan/blueprint
+	name = "barricade blueprint"
+	desc = "A holographic blueprint for a barricade. Engineers can construct the actual barricade here."
+	icon_state = "barricade"
+	color = "#0066ff"
+	alpha = 150
+	density = FALSE
+	max_integrity = 1
+	var/build_time = 2 SECONDS
+
+/obj/structure/barricade/clan/blueprint/Initialize()
+	. = ..()
+	// Flicker effect
+	animate(src, alpha = 100, time = 10, loop = -1)
+	animate(alpha = 200, time = 10)
+
+/obj/structure/barricade/clan/blueprint/attack_hand(mob/user)
+	return
+
+/obj/structure/barricade/clan/blueprint/attackby(obj/item/I, mob/user, params)
+	return

@@ -34,7 +34,7 @@
 	var/stun_duration_on_hit = 1.5 SECONDS
 	var/isolation_check_range = 3
 	var/z_level_hunt_mode = FALSE
-	var/hunt_target = null
+	var/mob/living/carbon/human/hunt_target = null
 
 /mob/living/simple_animal/hostile/clan/assassin/Initialize()
 	. = ..()
@@ -53,6 +53,10 @@
 
 	// Update charge
 	ChargeGain()
+
+	// Activate hunt mode if in stealth with no nearby targets
+	if(stealth_mode && !target && !z_level_hunt_mode && prob(10))
+		ActivateHuntMode()
 
 /mob/living/simple_animal/hostile/clan/assassin/proc/ChargeGain()
 	if(last_charge_update < world.time - clan_charge_cooldown)
@@ -102,10 +106,13 @@
 			ClimbOver(attacked_target)
 		return
 
-	// Handle backstab
-	if(stealth_mode && isliving(attacked_target))
-		var/mob/living/L = attacked_target
-		PerformBackstab(L)
+	// In stealth mode, only attack the hunt target
+	if(stealth_mode)
+		if(z_level_hunt_mode && hunt_target && attacked_target != hunt_target)
+			return // Don't attack anyone except hunt target
+		if(isliving(attacked_target))
+			var/mob/living/L = attacked_target
+			PerformBackstab(L)
 		return
 
 	return ..()
@@ -185,6 +192,15 @@
 	return 10 - nearby_allies
 
 /mob/living/simple_animal/hostile/clan/assassin/MoveToTarget(list/possible_targets)
+	// Handle z-level hunt target
+	if(z_level_hunt_mode && hunt_target)
+		if(hunt_target.stat == DEAD || hunt_target.z != z)
+			z_level_hunt_mode = FALSE
+			hunt_target = null
+			target = null
+		else if(!target || target != hunt_target)
+			target = hunt_target
+
 	if(stealth_mode && !target)
 		// Don't break stealth just to acquire a target
 		return TRUE
