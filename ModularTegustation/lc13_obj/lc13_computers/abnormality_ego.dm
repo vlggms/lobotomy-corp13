@@ -7,6 +7,14 @@
 	var/selected_level = ZAYIN_LEVEL
 	var/delay = 15 SECONDS
 
+/obj/machinery/computer/ego_purchase/examine(mob/user)
+	. = ..()
+	if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_2))
+		if(user.mind.assigned_role == "Extraction Officer")
+			. += span_notice("This console seems to be upgraded, reducing the cost needed to extract by 15%.")
+		else
+			. += span_notice("This console seems to be upgraded, cutting the shipment time in half.")
+
 /obj/machinery/computer/ego_purchase/ui_interact(mob/user)
 	. = ..()
 	if(isliving(user))
@@ -21,8 +29,12 @@
 		if(A.threat_level != selected_level)
 			continue
 		dat += "[A.name] ([A.stored_boxes] PE):<br>"
+		var/mult = 1
+		if(user.mind.assigned_role == "Extraction Officer")
+			if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_2))
+				mult *= 0.85
 		for(var/datum/ego_datum/E in A.ego_datums)
-			dat += " <A href='byond://?src=[REF(src)];purchase=[E.name][E.item_category]'>[E.item_category] - [E.name] ([E.cost] PE)</A>"
+			dat += " <A href='byond://?src=[REF(src)];purchase=[E.name][E.item_category]'>[E.item_category] - [E.name] ([E.cost * mult] PE)</A>"
 			var/info = html_encode(E.PrintOutInfo())
 			if(info)
 				dat += " - <A href='byond://?src=[REF(src)];info=[info]'>Info</A>"
@@ -54,7 +66,11 @@
 			var/datum/abnormality/A = E.linked_abno
 			if(!E || !A)
 				return FALSE
-			if(A.stored_boxes < E.cost)
+			var/mult = 1
+			if(usr.mind.assigned_role == "Extraction Officer")
+				if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_2))
+					mult *= 0.85 //15% off
+			if(A.stored_boxes < (E.cost * mult))
 				to_chat(usr, span_warning("Not enough PE boxes stored for this operation."))
 				playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
 				return FALSE
@@ -63,10 +79,12 @@
 				to_chat(usr, span_notice("[E.item_path] has been dispensed!"))
 
 			else
+				if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_2))
+					delay = initial(delay)/2
 				addtimer(CALLBACK(src, PROC_REF(ShipOut), E.item_path),delay)
 				audible_message(span_notice("[usr.name] has purchased a [E.name]"))
 
-			A.stored_boxes -= E.cost
+			A.stored_boxes -= E.cost * mult
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 			log_game("[key_name(usr)] purchased [E.item_path].")
 			message_admins("[key_name(usr)] purchased [E.item_path].")

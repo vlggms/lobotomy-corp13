@@ -58,13 +58,14 @@
 					dat += "[initial(S.name)]: <A href='byond://?src=[REF(src)];choose_suppression=[core_type]'>Select</A><br>"
 
 		if(FACILITY_UPGRADES)
-			dat += "<b>LOB Points:</b> [round(SSlobotomy_corp.lob_points, 0.1)]"
+			dat += "<b>LOB Points:</b> [round(SSlobotomy_corp.lob_points, 0.001)]"
 			dat += "<hr>"
 			var/list/upgrades_per_category = list(
 				"Bullets" = list(),
 				"Bullet Upgrades" = list(),
-				"Agent" = list(),
-				"Abnormalities" = list(),
+				"Facility" = list(),
+				"Higher-Up Specialization Tier 1" = list(),
+				"Higher-Up Specialization Tier 2" = list(),
 				"Unsorted" = list(),
 			)
 			for(var/datum/facility_upgrade/F in SSlobotomy_corp.upgrades)
@@ -79,7 +80,12 @@
 					continue
 				dat += "<b>[cat]</b><br>"
 				for(var/datum/facility_upgrade/F in upgrades_per_category[cat])
-					dat += "- [F.CanUpgrade() ? "<A href='byond://?src=[REF(src)];upgrade=[F.name]'>Upgrade \[[F.cost]\]</A> " : (F.value >= F.max_value ? "" : "\[[F.cost]\] ")]<b>[F.name]</b>: [F.DisplayValue()]<br>"
+					dat += "- [F.CanUpgrade() ? "<A href='byond://?src=[REF(src)];upgrade=[F.name]'>Upgrade \[[F.cost]\]</A> " : (F.value >= F.max_value ? "" : "\[[F.cost]\] ")]<b>[F.name]</b>: [F.DisplayValue()]"
+					var/info = html_encode(F.PrintOutInfo())
+					if(F.info)
+						dat += " - <A href='byond://?src=[REF(src)];info=[info]'>Info</A> <br>"
+					else
+						dat += "<br>"
 				if(i != length(upgrades_per_category))
 					dat += "<hr>"
 	var/datum/browser/popup = new(user, "abno_auxiliary", "Auxiliary Managerial Console", 480, 640)
@@ -132,6 +138,10 @@
 				to_chat(usr, span_warning("A core suppression is already in the progress!"))
 				selected_core_type = null
 				return FALSE
+			if(usr.mind.assigned_role != "Manager")
+				to_chat(usr, span_warning("Only the Manager can start a Core Suppression!"))
+				playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
+				return FALSE
 			SSlobotomy_corp.core_suppression = new selected_core_type
 			SSlobotomy_corp.core_suppression.legitimate = TRUE
 			SSlobotomy_corp.available_core_suppressions = list()
@@ -148,11 +158,22 @@
 			if(!istype(U) || !U.CanUpgrade())
 				updateUsrDialog()
 				return FALSE
+			if(U.name == UPGRADE_ARCHITECT_1 || U.name == UPGRADE_ARCHITECT_2)
+				if(usr.mind.assigned_role != "Manager")
+					to_chat(usr, span_warning("Only the Manager can buy this."))
+					playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
+					return FALSE
 			U.Upgrade()
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 			updateUsrDialog()
 			return TRUE
-
+		if(href_list["info"])
+			var/dat = html_decode(href_list["info"])
+			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
+			var/datum/browser/popup = new(usr, "upgrade_info", "Auxiliary Managerial Console", 340, 400)
+			popup.set_content(dat)
+			popup.open()
+			return
 #undef CORE_SUPPRESSIONS
 #undef FACILITY_UPGRADES
 
@@ -197,7 +218,7 @@
 	var/list/data = list()
 
 	// start facility upgrade info
-	data["Upgrade_points"] = round(SSlobotomy_corp.lob_points, 0.1)
+	data["Upgrade_points"] = round(SSlobotomy_corp.lob_points, 0.001)
 
 	// preferably this would be in static, but the cost and avaibility needs to be updated whenever an action is performed
 
@@ -205,6 +226,8 @@
 	var/list/real_bullet_upgrades = list()
 	var/list/agent_upgrades = list()
 	var/list/abnormality_upgrades = list()
+	var/list/lvl_1_special_upgrades = list()
+	var/list/lvl_2_special_upgrades = list()
 	var/list/you_didnt_give_it_a_proper_category_dammit_upgrades = list()
 
 	for(var/thing in SSlobotomy_corp.upgrades)
@@ -220,7 +243,7 @@
 		if(upgrade.value == 0) // if the upgrade is just a toggle, there's no point in showing its value now, is there?
 			modified_upgrade_name = upgrade.name
 		else
-			modified_upgrade_name = "[upgrade.name] ([upgrade.value])"
+			modified_upgrade_name = "[upgrade.name] ([upgrade.DisplayValue() ? upgrade.DisplayValue() :upgrade.value])"
 
 
 		var/list/upgrade_data = list(list(
@@ -242,9 +265,12 @@
 			if("Agent")
 				agent_upgrades += upgrade_data
 
-			if("Abnormalities")
+			if("Facility")
 				abnormality_upgrades += upgrade_data
-
+			if("Higher-Up Specialization Tier 1")
+				lvl_1_special_upgrades += upgrade_data
+			if("Higher-Up Specialization Tier 2")
+				lvl_2_special_upgrades += upgrade_data
 			else
 				you_didnt_give_it_a_proper_category_dammit_upgrades += upgrade_data
 
@@ -252,6 +278,8 @@
 	data["real_bullet_upgrades"] = real_bullet_upgrades
 	data["agent_upgrades"] = agent_upgrades
 	data["abnormality_upgrades"] = abnormality_upgrades
+	data["lvl1_upgrades"] = lvl_1_special_upgrades
+	data["lvl2_upgrades"] = lvl_2_special_upgrades
 	data["misc_upgrades"] = you_didnt_give_it_a_proper_category_dammit_upgrades
 	// end facility upgrade info
 
@@ -388,7 +416,10 @@
 				return
 			if(istype(SSlobotomy_corp.core_suppression))
 				CRASH("[src] has attempted to activate a core suppression via TGUI whilst its not possible!")
-
+			if(usr.mind.assigned_role != "Manager")
+				to_chat(usr, span_warning("Only the Manager can start a Core Suppression!"))
+				playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
+				return
 			log_action(usr,
 				message_override = "[usr] has started the [initial(selected_core_type.name)] core suppression"
 			)
@@ -406,13 +437,26 @@
 			var/datum/facility_upgrade/U = locate(params["selected_upgrade"]) in SSlobotomy_corp.upgrades
 			if(!istype(U) || !U.CanUpgrade())
 				return
-
+			if(U.name == UPGRADE_ARCHITECT_1 || U.name == UPGRADE_ARCHITECT_2)
+				if(usr.mind.assigned_role != "Manager")
+					to_chat(usr, span_warning("Only the Manager can buy this."))
+					playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
+					return
 			log_action(usr,
 				message_override = "[usr] has purchased the [U.name] facility upgrade"
 			)
 			U.Upgrade()
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
-
+		if("Info")
+			var/datum/facility_upgrade/U = locate(params["selected_upgrade"]) in SSlobotomy_corp.upgrades
+			if(!istype(U))
+				return
+			var/dat = U.PrintOutInfo()
+			var/datum/browser/popup = new(usr, "upgrade_info", "Auxiliary Managerial Console", 340, 400)
+			popup.set_content(dat)
+			popup.open()
+			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
+			return
 		// admin-only actions, remember to put a if(!log_action) check with a proper return
 		if("Unlock Core Suppressions")
 			if(!log_action(usr, admin_action = TRUE,
@@ -466,7 +510,7 @@
 			))
 				update_static_data_for_all_viewers()
 				return
-
+			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 			SSlobotomy_corp.lob_points += amount
 
 		else // something bad happened, refresh the data and it hopefully fixes itself

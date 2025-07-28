@@ -10,6 +10,9 @@
 
 /obj/item/extraction/delivery/examine(mob/user)
 	. = ..()
+	if(user.mind.assigned_role == "Extraction Officer")
+		if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_2))
+			. += span_notice("This tool seems to be upgraded, reducing the cost needed to extract by 15%.")
 	if(linked_structure)
 		. += span_nicegreen("This tool is linked to an extraction arrival belt.")
 	else
@@ -81,8 +84,12 @@
 		if(A.threat_level != selected_level)
 			continue
 		dat += "[A.name] ([A.stored_boxes] PE):<br>"
+		var/mult = 1
+		if(user.mind.assigned_role == "Extraction Officer")
+			if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_2))
+				mult *= 0.85
 		for(var/datum/ego_datum/E in A.ego_datums)
-			dat += " <A href='byond://?src=[REF(src)];purchase=[E.name][E.item_category]'>[E.item_category] - [E.name] ([E.cost] PE)</A>"
+			dat += " <A href='byond://?src=[REF(src)];purchase=[E.name][E.item_category]'>[E.item_category] - [E.name] ([E.cost * mult] PE)</A>"
 			var/info = html_encode(E.PrintOutInfo())
 			if(info)
 				dat += " - <A href='byond://?src=[REF(src)];info=[info]'>Info</A>"
@@ -115,7 +122,11 @@
 		if(stored_item)
 			to_chat(usr, span_warning("Dispense the item currently stored in the [src] first."))
 			return FALSE
-		if(A.stored_boxes < E.cost)
+		var/mult = 1
+		if(usr.mind.assigned_role == "Extraction Officer")
+			if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_2))
+				mult *= 0.85 //15% off
+		if(A.stored_boxes < (E.cost * mult))
 			to_chat(usr, span_warning("Not enough PE boxes stored for this operation."))
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
 			return FALSE
@@ -123,7 +134,7 @@
 		to_chat(usr, span_notice("[E.name] has been dispensed!"))
 		log_game("[key_name(usr)] purchased [E.item_path].")
 		message_admins("[key_name(usr)] purchased [E.item_path].")
-		A.stored_boxes -= E.cost
+		A.stored_boxes -= E.cost * mult
 		playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 		updateUsrDialog()
 		tool_action(usr)

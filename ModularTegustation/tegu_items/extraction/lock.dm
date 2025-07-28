@@ -8,6 +8,11 @@
 	howtouse = "This tool can only be used on a containment cell that has reached 100% understanding. This does NOT affect Qliphoth Counter."
 	itemname = "Lock"
 
+/obj/item/extraction/lock/examine(mob/user)
+	. = ..()
+	if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_1))
+		. += span_notice("This tool seems to be upgraded, increases work chance.")
+
 /obj/item/extraction/key/lock/update_icon()
 	if(!archived_console)
 		icon_state = "lock"
