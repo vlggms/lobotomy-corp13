@@ -115,7 +115,6 @@
 		new /datum/data/extraction_cargo("TOY SWORD",	/obj/item/toy/waterballoon,			10) = 1,
 		new /datum/data/extraction_cargo("CAT TOY",	/obj/item/toy/cattoy,					15) = 1,
 		new /datum/data/extraction_cargo("PLUSH OF A FRIEND",/obj/item/toy/plush/binah,		15) = 1,
-		new /datum/data/extraction_cargo("UNMARKED CRATE",/obj/structure/lootcrate,			20) = 1,
 		new /datum/data/extraction_cargo("HOURGLASS",	/obj/item/hourglass,				25) = 1,
 		new /datum/data/extraction_cargo("CAT",	/mob/living/simple_animal/pet/cat,			50) = 1,
 		new /datum/data/extraction_cargo("CAK",	/mob/living/simple_animal/pet/cat/cak,		100) = 1,
@@ -126,7 +125,7 @@
 		new /datum/data/extraction_cargo("A GRENADE",				/obj/effect/spawner/lootdrop/grenade,	3) = 1,
 		new /datum/data/extraction_cargo("SOME AHN",				/obj/item/stack/spacecash/c500,			5) = 1,
 		new /datum/data/extraction_cargo("POSITIVE ENKEPHALIN",		/obj/item/rawpe,						10) = 1,
-		new /datum/data/extraction_cargo("EXPERIENCE",				/obj/item/attribute_increase/small,		15) = 1,
+		new /datum/data/extraction_cargo("UNMARKED CRATE",			/obj/structure/lootcrate,				15) = 1,
 	)
 
 	var/list/exchange_upgrade_list = list(
