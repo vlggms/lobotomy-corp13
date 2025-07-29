@@ -30,7 +30,7 @@
 //Capo
 /obj/item/ego_weapon/ranged/city/thumb/capo
 	name = "thumb capo rifle"
-	desc = "A rifle used by thumb Capos. The gun is inlaid with silver."
+	desc = "A rifle used by thumb capos. The gun is inlaid with silver."
 	icon_state = "thumb_capo"
 	inhand_icon_state = "thumb_capo"
 	force = 50
@@ -45,7 +45,7 @@
 //Sottoacpo
 /obj/item/ego_weapon/ranged/city/thumb/sottocapo
 	name = "thumb sottocapo shotgun"
-	desc = "A handgun used by thumb sottocapos. While expensive, it's power is rarely matched among syndicates."
+	desc = "A handgun used by thumb sottocapos. While expensive, its power is rarely matched among syndicates."
 	icon_state = "thumb_sottocapo"
 	inhand_icon_state = "thumb_sottocapo"
 	force = 20	//It's a pistol
@@ -63,7 +63,7 @@
 //wepaons are kinda uninteresting
 /obj/item/ego_weapon/city/thumbmelee
 	name = "thumb brass knuckles"
-	desc = "An pair of dusters sometimes used by thumb capos."
+	desc = "A pair of dusters sometimes used by thumb capos."
 	icon_state = "thumb_duster"
 	force = 44
 	damtype = RED_DAMAGE
@@ -74,7 +74,7 @@
 
 /obj/item/ego_weapon/city/thumbcane
 	name = "thumb sottocapo cane"
-	desc = "An cane used by thumb sottocapos."
+	desc = "A cane used by thumb sottocapos."
 	icon_state = "thumb_cane"
 	force = 65
 	damtype = RED_DAMAGE
@@ -413,7 +413,7 @@
 /obj/item/ego_weapon/city/thumb_east/ignition_effect(atom/A, mob/user)
 	. = ""
 	if(SpendAmmo(user))
-		. = span_danger("[user] fires their [src.name], using the exhaust to nonchalantly light the [A]. They don't even flinch from the recoil. Holy shit.")
+		. = span_danger("[user] fires their [src.name], using the exhaust to nonchalantly light [A]. They don't even flinch from the recoil. Holy shit.")
 		playsound(src, detonation_sound, 100, FALSE, 14)
 	return .
 
