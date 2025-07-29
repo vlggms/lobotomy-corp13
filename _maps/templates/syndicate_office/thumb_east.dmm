@@ -15,8 +15,8 @@
 	pixel_x = 1;
 	pixel_y = 22;
 	density = 0;
-	name = "\improper Thumb East Favourite Television";
-	desc = "A slightly battered looking TV. Doesn't actually get a very good signal here."
+	name = "\improper thumb east favourite television";
+	desc = "A slightly battered looking TV. Doesn't actually get a very good signal here. But it still brings you comfort."
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -71,7 +71,7 @@
 "hR" = (
 /obj/machinery/door/airlock/highsecurity{
 	req_access_txt = "150";
-	name = "interrogation room"
+	name = "guest room"
 	},
 /turf/open/floor/pod/dark,
 /area/city/backstreets_room)
@@ -108,7 +108,8 @@
 	},
 /obj/item/toy/cards/deck/kotahi{
 	pixel_x = -4;
-	pixel_y = -1
+	pixel_y = -1;
+	desc = "A deck of kotahi cards. Soldatos often advise eachother not to force the Capo to draw four, after what happened last time."
 	},
 /turf/open/floor/carpet,
 /area/city/backstreets_room)
@@ -116,7 +117,8 @@
 /obj/machinery/vending/boozeomat{
 	density = 0;
 	pixel_x = 0;
-	pixel_y = 32
+	pixel_y = 32;
+	desc = "A technological marvel, supposedly able to mix just the mixture you'd like to drink the moment you ask for one. It used to be closer to the armory, but after The Incident it had to be moved further away."
 	},
 /turf/open/floor/carpet,
 /area/city/backstreets_room)
@@ -177,7 +179,8 @@
 	},
 /obj/item/reagent_containers/food/drinks/bottle/wine{
 	pixel_x = -6;
-	pixel_y = 11
+	pixel_y = 11;
+	desc = "A faint aura of unease and asspainery surrounds the bottle. You're unsure if it's actually wine in there, or..."
 	},
 /obj/item/reagent_containers/food/drinks/drinkingglass{
 	pixel_x = 5;
@@ -234,11 +237,14 @@
 /area/city/backstreets_room)
 "uQ" = (
 /obj/item/crowbar{
-	pixel_y = -6
+	pixel_y = -6;
+	desc = "A small crowbar. This handy tool is useful for lots of things, such as prying floor tiles or torture."
 	},
 /obj/item/surgical_drapes{
 	pixel_x = -5;
-	pixel_y = 8
+	pixel_y = 8;
+	desc = "These drapes are mostly a formality.";
+	name = "dubious surgical drapes"
 	},
 /turf/open/floor/pod/dark,
 /area/city/backstreets_room)
@@ -319,7 +325,8 @@
 "yg" = (
 /obj/structure/sign/warning/nosmoking/circle{
 	pixel_x = 0;
-	pixel_y = 27
+	pixel_y = 27;
+	desc = "A warning sign which reads 'NO SMOKING'. Do you seriously need to be told not to smoke next to volatile munitions?"
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -374,7 +381,9 @@
 	},
 /area/city/backstreets_room)
 "BE" = (
-/obj/item/wirecutters,
+/obj/item/wirecutters{
+	desc = "This cuts tendons. I mean, wires."
+	},
 /turf/open/floor/pod/dark,
 /area/city/backstreets_room)
 "BS" = (
@@ -458,7 +467,7 @@
 "Gm" = (
 /obj/item/documents/syndicate{
 	name = "thumb east directives and operations";
-	desc = "Documents outlining the Thumb eastern branch's aspirations in this Nest. Don't let this fall into the evil hands of the Association, Hana or Wings forbid, another Finger...";
+	desc = "Documents outlining the Thumb eastern branch's aspirations in this Nest. Don't let this fall into the evil hands of the Association, Hana or, Wings forbid, another Finger...";
 	pixel_x = 0;
 	pixel_y = -10
 	},
@@ -524,7 +533,8 @@
 	},
 /obj/structure/bookcase/random{
 	density = 0;
-	pixel_y = 32
+	pixel_y = 32;
+	desc = "A great place for storing knowledge. Interestingly, a lot of the works here were written by Soldatos."
 	},
 /turf/open/floor/wood,
 /area/city/backstreets_room)
@@ -536,7 +546,8 @@
 	},
 /obj/structure/chair/comfy/black{
 	dir = 4;
-	pixel_y = 7
+	pixel_y = 7;
+	desc = "It looks comfy. This is usually the chair you sit on when you know that you won't be able to handle another game of kotahi without burning the quarters down."
 	},
 /turf/open/floor/wood,
 /area/city/backstreets_room)
@@ -625,7 +636,8 @@
 /obj/machinery/vending/cigarette{
 	pixel_y = 24;
 	density = 0;
-	pixel_x = 0
+	pixel_x = 0;
+	desc = "The cornerstone of any self-respecting Thumb outpost. If this is destroyed, you will have to retreat from the Nest."
 	},
 /obj/effect/turf_decal/siding/wood{
 	color = "#2e1f0e";
