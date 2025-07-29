@@ -3,7 +3,7 @@
 	desc = "A machine used by the Extraction Officer to coinflip for a refined PE box. Costs 40 cargo PE."
 	icon_state = "dominator-purple"
 	extraction_cost = 40
-	reset_time = 20 SECONDS
+	var reset_time = 20 SECONDS
 	var ready = TRUE
 
 /obj/structure/altrefiner/chance/examine(mob/user)
