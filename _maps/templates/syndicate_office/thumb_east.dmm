@@ -1,4 +1,12 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"dW" = (
+/obj/machinery/vending/boozeomat{
+	density = 0;
+	pixel_y = -32;
+	pixel_x = 0
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
 "er" = (
 /obj/effect/turf_decal/siding/wood{
 	color = "#2e1f0e";
@@ -97,7 +105,10 @@
 /turf/open/floor/pod/dark,
 /area/city/backstreets_room)
 "ky" = (
-/obj/structure/table/wood/poker,
+/obj/structure/table/wood/poker{
+	name = "reliable table";
+	desc = "A nice looking table with some burn marks and signs of damage. It really should be taken better care of."
+	},
 /obj/item/storage/fancy/cigarettes/cigpack_robust{
 	pixel_x = 9;
 	pixel_y = 7
@@ -128,7 +139,9 @@
 /area/city/backstreets_room)
 "my" = (
 /obj/machinery/light/small/red{
-	dir = 4
+	dir = 4;
+	name = "ominous red light";
+	desc = "A small lighting fixture. You could be forgiven for thinking this may not be a regular guest room."
 	},
 /turf/open/floor/pod/dark,
 /area/city/backstreets_room)
@@ -214,7 +227,10 @@
 	},
 /area/city/backstreets_room)
 "tT" = (
-/obj/structure/kitchenspike,
+/obj/structure/kitchenspike{
+	name = "comfortable seat";
+	desc = "A comfortable seat for guests that you need to talk to. Drag them onto it, but mind the spikes. They might get hurt a little bit when being seated or unseated."
+	},
 /obj/item/stack/thumb_east_ammo/spent{
 	dir = 10;
 	pixel_x = 10;
@@ -254,13 +270,6 @@
 	},
 /obj/machinery/light,
 /turf/open/floor/wood,
-/area/city/backstreets_room)
-"ve" = (
-/obj/machinery/vending/boozeomat{
-	density = 0;
-	pixel_y = 0
-	},
-/turf/closed/indestructible/wood,
 /area/city/backstreets_room)
 "wd" = (
 /obj/machinery/light{
@@ -589,7 +598,7 @@
 	pixel_y = 32;
 	anchored = 1;
 	name = "head of an index proxy";
-	desc = "The severed head of an Index Proxy. This one made the mistake of picking the an index longsword as their weapon instead of the spear, earning them the title of that nights's biggest loser."
+	desc = "The severed head of an Index Proxy. This one made the mistake of picking the an index longsword as their weapon instead of the spear, earning them the title of that night's biggest loser."
 	},
 /obj/item/storage/fancy/cigarettes/cigars/havana{
 	pixel_y = 3;
@@ -894,7 +903,7 @@ Gd
 Mo
 "}
 (6,1,1) = {"
-ve
+iT
 Gr
 iT
 iT
@@ -921,7 +930,7 @@ Jq
 "}
 (8,1,1) = {"
 Jr
-Vm
+dW
 iT
 wu
 oG
