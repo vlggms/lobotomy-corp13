@@ -33,6 +33,12 @@
 	var/obj/machinery/buffer // simple machine buffer for device linkage
 	var/mode = 0
 
+/obj/item/multitool/Initialize()
+	. = ..()
+	if(SSmaptype.maptype in SSmaptype.citymaps)
+		qdel(src)
+		return INITIALIZE_HINT_QDEL
+
 /obj/item/multitool/examine(mob/user)
 	. = ..()
 	. += span_notice("Its buffer [buffer ? "contains [buffer]." : "is empty."]")
