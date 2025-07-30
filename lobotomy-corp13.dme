@@ -2125,6 +2125,7 @@
 #include "code\modules\clothing\suits\ego_gear\non_abnormality\liu.dm"
 #include "code\modules\clothing\suits\ego_gear\non_abnormality\misc.dm"
 #include "code\modules\clothing\suits\ego_gear\non_abnormality\molar.dm"
+#include "code\modules\clothing\suits\ego_gear\non_abnormality\music_armor_final.dm"
 #include "code\modules\clothing\suits\ego_gear\non_abnormality\ncorp.dm"
 #include "code\modules\clothing\suits\ego_gear\non_abnormality\rcorp.dm"
 #include "code\modules\clothing\suits\ego_gear\non_abnormality\rosespanner.dm"
