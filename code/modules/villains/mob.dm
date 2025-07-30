@@ -217,24 +217,24 @@
 			if(V.is_evidence && GLOB.villains_game?.current_phase == VILLAIN_PHASE_INVESTIGATION)
 				// Mark as found
 				to_chat(src, span_notice("You find [V] and send it to the main room for analysis."))
-				
+
 				// Get a random open turf in main room
 				var/turf/target_turf = GLOB.villains_game.get_random_open_turf_in_main_room()
 				if(target_turf)
 					V.forceMove(target_turf)
-				
+
 				// Update the evidence list to show it was found
 				for(var/i in 1 to length(GLOB.villains_game.evidence_list))
 					if(findtext(GLOB.villains_game.evidence_list[i], V.name))
 						GLOB.villains_game.evidence_list[i] = "[GLOB.villains_game.evidence_list[i]] - <b>FOUND by [name]</b>"
 						break
-				
+
 				continue // Don't pick it up, just mark as found
-			
+
 			// Skip evidence items in other phases
 			if(V.is_evidence)
 				continue
-			
+
 			// Check total item limit (3 items max, or 5 for Warden)
 			var/total_items = 0
 			for(var/obj/item/villains/I in contents)
@@ -285,7 +285,7 @@
 	if(!can_speak)
 		to_chat(src, span_warning("You are unable to speak! Use emotes instead."))
 		return
-	
+
 	// Handle forced whisper during alibi phase
 	if(forced_to_whisper && !findtext(message, "#"))
 		// Add whisper prefix if not already whispering
@@ -377,7 +377,7 @@
 	// Debug logging
 	if(GLOB.villains_game)
 		log_game("VILLAINS DEBUG: counter_action called on [src], forsaken_counter_ready=[forsaken_counter_ready], action=[action], target=[action?.target]")
-	
+
 	// Check if we're blocking and if this action targets us
 	if(forsaken_counter_ready && action && action.target == src)
 		forsaken_counter_ready = FALSE
@@ -389,7 +389,7 @@
 		if(GLOB.villains_game)
 			log_game("VILLAINS: [src] (Forsaken Murder) countered [action.performer]'s [action.name] action")
 		return VILLAIN_PREVENT_ACTION
-	
+
 	// If we're blocking but this doesn't target us, stay ready
 	if(forsaken_counter_ready)
 		if(GLOB.villains_game)
@@ -736,13 +736,13 @@
 	<hr>
 	<h3>Welcome!</h3>
 	<p>You're playing a social deduction game where one player is secretly the villain trying to eliminate others!</p>
-	
+
 	<h3>Your Goal:</h3>
 	<ul>
 	<li><b>As Innocent:</b> Find and vote out the villain to gain victory points</li>
 	<li><b>As Villain:</b> Eliminate players without getting caught</li>
 	</ul>
-	
+
 	<h3>Key Mechanics:</h3>
 	<ul>
 	<li><b>Nobody dies from voting!</b> Wrong votes cost you points, correct votes give you points</li>
@@ -750,7 +750,7 @@
 	<li>Game continues with new villains until <5 players remain</li>
 	<li>Winners have ≥1 victory points at game end</li>
 	</ul>
-	
+
 	<h3>First Steps:</h3>
 	<ol>
 	<li>Check your character sheet (View Character Sheet verb) to see your abilities</li>
@@ -759,7 +759,7 @@
 	<li>During Evening phase, select your night actions carefully</li>
 	<li>If someone dies, investigate for evidence and vote wisely!</li>
 	</ol>
-	
+
 	<h3>Quick Commands:</h3>
 	<ul>
 	<li><b>View Character Sheet</b> - See your abilities and items</li>
@@ -776,7 +776,7 @@
 	<h2>Victory Point System</h2>
 	<hr>
 	<p>Unlike traditional Mafia games, <b>nobody dies from voting</b> in Villains of the Night!</p>
-	
+
 	<h3>How Points Work:</h3>
 	<table border='1' cellpadding='5'>
 	<tr><th>Situation</th><th>Points</th><th>Result</th></tr>
@@ -784,7 +784,7 @@
 	<tr><td>Vote for an innocent player</td><td style='color:red'>-1</td><td>Innocent stays, villain leaves</td></tr>
 	<tr><td>Tie or no votes</td><td style='color:red'>-1</td><td>Villain wins by default</td></tr>
 	</table>
-	
+
 	<h3>Game Flow:</h3>
 	<ol>
 	<li>Each round has one villain who tries to eliminate players</li>
@@ -793,14 +793,14 @@
 	<li>A new villain is selected from remaining players</li>
 	<li>Game continues until fewer than 5 players remain</li>
 	</ol>
-	
+
 	<h3>Winning:</h3>
 	<ul>
 	<li><b>Victory:</b> Have 1 or more victory points when game ends</li>
 	<li><b>Defeat:</b> Have 0 or negative victory points</li>
 	<li>Track your points on the main game panel</li>
 	</ul>
-	
+
 	<h3>Strategy Tips:</h3>
 	<ul>
 	<li>Every vote matters - wrong votes hurt your final score!</li>
@@ -817,7 +817,7 @@
 	<h2>Game Phases</h2>
 	<hr>
 	<p>The game cycles through several phases. Here's what happens in each:</p>
-	
+
 	<h3>1. Morning Phase (5-10 minutes)</h3>
 	<ul>
 	<li>🚪 All doors unlocked - explore freely!</li>
@@ -826,7 +826,7 @@
 	<li>📦 Pick up to 2 "fresh" items (3 total item limit)</li>
 	<li>🗳️ Vote to extend morning by 5 minutes if needed</li>
 	</ul>
-	
+
 	<h3>2. Evening Phase (1 minute)</h3>
 	<ul>
 	<li>🔒 Everyone locked in their rooms</li>
@@ -834,7 +834,7 @@
 	<li><b>Main Action:</b> Talk/Trade, Use Ability, Use Item, or Eliminate (villain only)</li>
 	<li><b>Secondary Action:</b> Use certain items or special abilities</li>
 	</ul>
-	
+
 	<h3>3. Nighttime Phase (0-8 minutes)</h3>
 	<ul>
 	<li>🌙 Actions play out automatically</li>
@@ -842,44 +842,44 @@
 	<li>📊 Actions resolve by priority (see Action Priority help)</li>
 	<li>💀 Someone might die!</li>
 	</ul>
-	
+
 	<h3>If Someone Dies:</h3>
-	
+
 	<h4>4. Investigation Phase (5 minutes)</h4>
 	<ul>
 	<li>🔍 Search hallways for evidence (yellow outline)</li>
 	<li>🔎 Click evidence to send to main room</li>
 	<li>💡 Dead player's items become evidence</li>
 	</ul>
-	
+
 	<h4>5. Trial Briefing (2 minutes)</h4>
 	<ul>
 	<li>👥 Everyone teleported to main room</li>
 	<li>📋 Review collected evidence together</li>
 	<li>💬 Discuss findings before alibis</li>
 	</ul>
-	
+
 	<h4>6. Alibi Phase (30 seconds per player)</h4>
 	<ul>
 	<li>🎤 Each player explains their night actions</li>
 	<li>🤫 Only current speaker can talk (others whisper only)</li>
 	<li>⏱️ 30 seconds per person</li>
 	</ul>
-	
+
 	<h4>7. Discussion Phase (8-14 minutes)</h4>
 	<ul>
 	<li>💬 Free discussion - everyone can talk</li>
 	<li>🤔 Analyze alibis and evidence</li>
 	<li>🤝 Form voting alliances</li>
 	</ul>
-	
+
 	<h4>8. Voting Phase (1 minute)</h4>
 	<ul>
 	<li>🗳️ Vote who you think is the villain</li>
 	<li>⚠️ Wrong votes cost you points!</li>
 	<li>🎯 Correct votes give you points!</li>
 	</ul>
-	
+
 	<h4>9. Results Phase</h4>
 	<ul>
 	<li>📊 Villain revealed</li>
@@ -896,7 +896,7 @@
 	<h2>Character Abilities</h2>
 	<hr>
 	<p>Each character has unique active and passive abilities. Choose wisely!</p>
-	
+
 	<h3>🛡️ Protective Characters</h3>
 	<table border='1' cellpadding='5'>
 	<tr><th>Character</th><th>Active Ability</th><th>Passive</th><th>Strategy</th></tr>
@@ -904,7 +904,7 @@
 	<tr><td><b>Puss in Boots</b></td><td>Give permanent protection (one at a time)</td><td>Free talk/trade with protected</td><td>Form strong partnerships</td></tr>
 	<tr><td><b>Red Blooded American</b></td><td>Redirect all actions to self</td><td>Learn count of aggressive actions</td><td>High risk protection</td></tr>
 	</table>
-	
+
 	<h3>🔍 Investigative Characters</h3>
 	<table border='1' cellpadding='5'>
 	<tr><th>Character</th><th>Active Ability</th><th>Passive</th><th>Strategy</th></tr>
@@ -915,7 +915,7 @@
 	<tr><td><b>Little Red</b></td><td>Alert if target uses aggressive action</td><td>Steal item from hunted targets</td><td>Hunt villains</td></tr>
 	<tr><td><b>Blue Shepherd</b></td><td>80% see villain action, 20% random</td><td>Get false info each morning</td><td>Deduce from lies</td></tr>
 	</table>
-	
+
 	<h3>🚫 Suppressive Characters</h3>
 	<table border='1' cellpadding='5'>
 	<tr><th>Character</th><th>Active Ability</th><th>Passive</th><th>Strategy</th></tr>
@@ -924,7 +924,7 @@
 	<tr><td><b>Kikimora</b></td><td>Target can only say "kiki/mora"</td><td>Curse spreads</td><td>Communication chaos</td></tr>
 	<tr><td><b>The Warden</b></td><td>Cancel items, steal used ones</td><td>Hold 5 items (vs 3)</td><td>Item domination</td></tr>
 	</table>
-	
+
 	<h3>🎭 Special Characters</h3>
 	<table border='1' cellpadding='5'>
 	<tr><th>Character</th><th>Active Ability</th><th>Passive</th><th>Strategy</th></tr>
@@ -942,7 +942,7 @@
 	<h2>Item Guide</h2>
 	<hr>
 	<p>Items provide powerful one-time effects. Use them wisely!</p>
-	
+
 	<h3>Item Basics:</h3>
 	<ul>
 	<li>🟢 <b>Green outline</b> = Fresh item (just spawned)</li>
@@ -951,7 +951,7 @@
 	<li>🎒 Maximum 3 items total (5 for Warden)</li>
 	<li>⚡ EMP'd items can't be used that night</li>
 	</ul>
-	
+
 	<h3>🔍 Investigative Items (Information)</h3>
 	<table border='1' cellpadding='5'>
 	<tr><th>Item</th><th>Rarity</th><th>Cost</th><th>Effect</th></tr>
@@ -963,7 +963,7 @@
 	<tr><td>Drain Monitor</td><td>Uncommon</td><td>Main</td><td>See who targeted your target</td></tr>
 	<tr><td>Keen-Sense Rangefinder</td><td>Uncommon</td><td>Main</td><td>See all actions on target</td></tr>
 	</table>
-	
+
 	<h3>🛡️ Protective Items (Defense)</h3>
 	<table border='1' cellpadding='5'>
 	<tr><th>Item</th><th>Rarity</th><th>Cost</th><th>Effect</th></tr>
@@ -971,7 +971,7 @@
 	<tr><td>Forcefield Projector</td><td>Rare</td><td>Main</td><td>Self elimination immunity</td></tr>
 	<tr><td>Guardian Drone</td><td>Rare</td><td>Main</td><td>Target elimination immunity</td></tr>
 	</table>
-	
+
 	<h3>⚡ Suppressive Items (Disruption)</h3>
 	<table border='1' cellpadding='5'>
 	<tr><th>Item</th><th>Rarity</th><th>Cost</th><th>Effect</th></tr>
@@ -981,7 +981,7 @@
 	<tr><td>Nitrile Gloves</td><td>Rare</td><td>Main</td><td>Steal item, cancel if in use</td></tr>
 	<tr><td>EMP Device</td><td>Rare</td><td>Main</td><td>Disable all target's items</td></tr>
 	</table>
-	
+
 	<h3>✨ Special Items (Unique)</h3>
 	<table border='1' cellpadding='5'>
 	<tr><th>Item</th><th>Rarity</th><th>Cost</th><th>Effect</th></tr>
@@ -997,7 +997,7 @@
 	<h2>Action Priority System</h2>
 	<hr>
 	<p>Actions resolve in a specific order each night. Understanding this is crucial!</p>
-	
+
 	<h3>Priority Order (First to Last):</h3>
 	<ol>
 	<li><b style='color:orange'>🚫 Suppressive (Priority 1)</b>
@@ -1040,7 +1040,7 @@
 		</ul>
 	</li>
 	</ol>
-	
+
 	<h3>Why Priority Matters:</h3>
 	<ul>
 	<li><b>Taser beats everything:</b> If you're tasered, your main action fails</li>
@@ -1048,7 +1048,7 @@
 	<li><b>Investigation sees final results:</b> Scans show what actually happened</li>
 	<li><b>Elimination always last:</b> All other effects apply first</li>
 	</ul>
-	
+
 	<h3>Strategic Examples:</h3>
 	<ul>
 	<li>✅ Taser the villain → Their kill fails</li>
@@ -1066,13 +1066,13 @@
 	<h2>Trading System</h2>
 	<hr>
 	<p>Trading is a key social mechanic. Build alliances or make deals!</p>
-	
+
 	<h3>How to Trade:</h3>
 	<ol>
 	<li>During <b>Morning Phase</b>: Use "Give Item" verb when next to someone</li>
 	<li>During <b>Night Phase</b>: Select "Talk/Trade" as your main action</li>
 	</ol>
-	
+
 	<h3>Talk/Trade Sessions:</h3>
 	<ul>
 	<li>⏱️ Last 2 minutes</li>
@@ -1080,7 +1080,7 @@
 	<li>📦 Can exchange items freely</li>
 	<li>📜 Some abilities trigger during trades</li>
 	</ul>
-	
+
 	<h3>Character Trade Bonuses:</h3>
 	<table border='1' cellpadding='5'>
 	<tr><th>Character</th><th>Trade Effect</th></tr>
@@ -1089,7 +1089,7 @@
 	<tr><td>Sunset Traveller</td><td>Trade partners immune to suppression</td></tr>
 	<tr><td>Puss in Boots</td><td>Free trade with blessed player</td></tr>
 	</table>
-	
+
 	<h3>Der Freischütz Contracts:</h3>
 	<p>Special mechanic during trades:</p>
 	<ol>
@@ -1098,7 +1098,7 @@
 	<li>If successful, <b>partner becomes new villain!</b></li>
 	<li>Changes win conditions for both players</li>
 	</ol>
-	
+
 	<h3>Trading Strategy:</h3>
 	<ul>
 	<li>🤝 Trade protection items to trusted allies</li>
@@ -1116,7 +1116,7 @@
 	<h2>Evidence & Investigation</h2>
 	<hr>
 	<p>When someone dies, investigation phase begins. Find clues to catch the villain!</p>
-	
+
 	<h3>Investigation Phase (5 minutes):</h3>
 	<ul>
 	<li>🔍 Evidence spawns in <b>hallways only</b></li>
@@ -1125,7 +1125,7 @@
 	<li>📋 All evidence appears on public list</li>
 	<li>💀 Dead player's items become evidence</li>
 	</ul>
-	
+
 	<h3>Types of Evidence:</h3>
 	<table border='1' cellpadding='5'>
 	<tr><th>Evidence</th><th>What it Reveals</th></tr>
@@ -1134,7 +1134,7 @@
 	<tr><td>Blood Trail</td><td>Direction of attack</td></tr>
 	<tr><td>Footprints</td><td>Someone was here</td></tr>
 	</table>
-	
+
 	<h3>Evidence Analysis Tips:</h3>
 	<ul>
 	<li>🔍 <b>Used protective item?</b> Someone tried to kill there</li>
@@ -1142,7 +1142,7 @@
 	<li>📦 <b>Victim had protection?</b> It was bypassed somehow</li>
 	<li>🚪 <b>Location matters!</b> Evidence shows where actions happened</li>
 	</ul>
-	
+
 	<h3>During Trial Briefing:</h3>
 	<ul>
 	<li>Review all collected evidence</li>
@@ -1150,7 +1150,7 @@
 	<li>Discuss patterns before alibis start</li>
 	<li>Form theories to test during alibis</li>
 	</ul>
-	
+
 	<h3>Common Evidence Patterns:</h3>
 	<ul>
 	<li><b>No protective items used</b> → Victim was caught off-guard</li>
@@ -1167,7 +1167,7 @@
 	<h2>Tips for Innocent Players</h2>
 	<hr>
 	<p>How to find villains and earn victory points!</p>
-	
+
 	<h3>🔍 Information Gathering:</h3>
 	<ul>
 	<li>Use investigative abilities on suspicious players</li>
@@ -1176,7 +1176,7 @@
 	<li>Cross-reference multiple sources</li>
 	<li>Note inconsistencies in alibis</li>
 	</ul>
-	
+
 	<h3>🛡️ Survival Strategies:</h3>
 	<ul>
 	<li>Collect protective items when possible</li>
@@ -1185,7 +1185,7 @@
 	<li>Avoid being alone with suspicious players</li>
 	<li>Save protection for high-risk nights</li>
 	</ul>
-	
+
 	<h3>🤝 Building Trust:</h3>
 	<ul>
 	<li>Be consistent in your actions</li>
@@ -1194,25 +1194,7 @@
 	<li>Form voting blocks with confirmed innocents</li>
 	<li>Remember: Queen of Hatred is rarely villain (50% less)</li>
 	</ul>
-	
-	<h3>🗳️ Smart Voting:</h3>
-	<ul>
-	<li>Wrong votes cost you points - be careful!</li>
-	<li>Look for contradictions in alibis</li>
-	<li>Consider who benefits from deaths</li>
-	<li>Track voting patterns across rounds</li>
-	<li>Sometimes abstaining is better than guessing</li>
-	</ul>
-	
-	<h3>🎯 Red Flags to Watch:</h3>
-	<ul>
-	<li>Players who avoid investigation</li>
-	<li>Inconsistent alibis or stories</li>
-	<li>Suspicious item usage patterns</li>
-	<li>Players who deflect suspicion</li>
-	<li>Those who know too much (or too little)</li>
-	</ul>
-	
+
 	<h3>Character-Specific Tips:</h3>
 	<ul>
 	<li><b>Judgement Bird:</b> Your ability doesn't use main action!</li>
@@ -1229,7 +1211,7 @@
 	<h2>Tips for Villain Players</h2>
 	<hr>
 	<p>How to eliminate players without getting caught!</p>
-	
+
 	<h3>😈 Deception Basics:</h3>
 	<ul>
 	<li>Act like an innocent - help others!</li>
@@ -1238,7 +1220,7 @@
 	<li>Use your character ability normally</li>
 	<li>Trade items to seem cooperative</li>
 	</ul>
-	
+
 	<h3>🎯 Target Selection:</h3>
 	<ul>
 	<li>Avoid killing investigators early</li>
@@ -1247,7 +1229,7 @@
 	<li>Create confusion with target choice</li>
 	<li>Sometimes skip killing to throw off suspicion</li>
 	</ul>
-	
+
 	<h3>🎭 Creating Alibis:</h3>
 	<ul>
 	<li>Have a believable story ready</li>
@@ -1256,7 +1238,7 @@
 	<li>Coordinate with trade partners</li>
 	<li>Don't over-explain - keep it simple</li>
 	</ul>
-	
+
 	<h3>🔍 Avoiding Detection:</h3>
 	<ul>
 	<li>Watch for investigation items</li>
@@ -1265,7 +1247,7 @@
 	<li>Trade away suspicious items</li>
 	<li>Frame others with strategic kills</li>
 	</ul>
-	
+
 	<h3>💡 Advanced Strategies:</h3>
 	<ul>
 	<li>Kill during busy nights (many actions)</li>
@@ -1274,7 +1256,7 @@
 	<li>Blame missing players first</li>
 	<li>Use character ability to gain trust</li>
 	</ul>
-	
+
 	<h3>Character-Specific Villain Tips:</h3>
 	<ul>
 	<li><b>Queen of Hatred:</b> You're naturally trusted - use it!</li>
@@ -1282,7 +1264,7 @@
 	<li><b>Der Freischütz:</b> Kill contract holder to hide evidence</li>
 	<li><b>Warden:</b> Steal protective items before killing</li>
 	</ul>
-	
+
 	<h3>Remember:</h3>
 	<p>You leave after voting regardless - make your round count!</p>
 	</body></html>"}
@@ -1293,51 +1275,45 @@
 	var/dat = {"<html><head><title>Frequently Asked Questions</title></head><body>
 	<h2>Frequently Asked Questions</h2>
 	<hr>
-	
+
 	<h3>Q: Can I talk during other people's alibis?</h3>
 	<p>A: No, only whispers. The current speaker has exclusive talking rights.</p>
-	
+
 	<h3>Q: What happens if nobody votes?</h3>
 	<p>A: The villain wins by default in case of ties or no votes.</p>
-	
+
 	<h3>Q: Can I refuse to trade items?</h3>
 	<p>A: Yes! Trading is voluntary. You can talk without trading.</p>
-	
+
 	<h3>Q: Do I keep items between rounds?</h3>
-	<p>A: No, each round starts fresh with new item spawns.</p>
-	
+	<p>A: Yes, nothing forces you to drop all of your items.</p>
+
 	<h3>Q: Can villains use protective abilities?</h3>
 	<p>A: Yes! Villains can use any ability to maintain cover.</p>
-	
+
 	<h3>Q: What's the best character for beginners?</h3>
 	<p>A: Queen of Hatred (simple protection) or Judgement Bird (clear info).</p>
-	
+
 	<h3>Q: How many rounds are there?</h3>
 	<p>A: Varies! Game continues until fewer than 5 players remain.</p>
-	
+
 	<h3>Q: What happens to voted innocent players?</h3>
 	<p>A: They stay in the game! Only villains leave when voted.</p>
-	
-	<h3>Q: Can removed villains give information?</h3>
-	<p>A: No, they become spectators and cannot communicate.</p>
-	
+
 	<h3>Q: What if everyone has negative points?</h3>
 	<p>A: The villains win! At least one player needs 1+ points for innocents to win.</p>
-	
-	<h3>Q: Can I see other players' victory points?</h3>
-	<p>A: Only during the Results phase after each vote.</p>
-	
+
 	<h3>Q: What does Der Freischütz's contract do?</h3>
 	<p>A: If accepted and successful, the contract acceptor becomes the new villain!</p>
-	
+
 	<h3>Q: Can Rudolta communicate at all?</h3>
 	<p>A: No speech, but they can use emotes (*wave, *nod, etc).</p>
-	
+
 	<h3>Q: How do I know if I'm protected?</h3>
 	<p>A: You'll get a message saying you feel protected.</p>
-	
+
 	<h3>Q: Can I drop items?</h3>
-	<p>A: No, but you can give them to others with "Give Item" verb.</p>
+	<p>A: Yes! You can just click on the item in your character to drop it, but you can give them to others with "Give Item" verb.</p>
 	</body></html>"}
 
 	usr << browse(dat, "window=villains_help;size=650x700")

@@ -168,7 +168,7 @@ All 17 characters implemented with abilities:
 ### Missing ❌
 - [ ] **Action log/history viewer**
 - [ ] **Phase-specific UI overlays**
-- [ ] **Tutorial/help system**
+- [x] **Tutorial/help system**✅
 
 ## Maps ✅
 - [x] One map template (lc13_mafia.dmm)

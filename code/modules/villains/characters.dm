@@ -953,7 +953,7 @@
 	active_ability_cost = VILLAIN_ACTION_MAIN
 
 	passive_ability_name = "Shepherd's Lies"
-	passive_ability_desc = "During morning phase, you see one random false piece of information (you won't know it's false)."
+	passive_ability_desc = "During morning phase, you receive information about what happened last night. There is a 25% chance this information will be false."
 
 /datum/villains_character/blue_shepherd/perform_active_ability(mob/living/user, mob/living/target, datum/villains_controller/game)
 	if(target != user)
@@ -973,15 +973,52 @@
 
 /datum/villains_character/blue_shepherd/on_phase_change(phase, mob/living/user, datum/villains_controller/game)
 	if(phase == VILLAIN_PHASE_MORNING && istype(user, /mob/living/simple_animal/hostile/villains_character))
-		// Generate one false piece of information
-		var/list/false_messages = list(
-			"You sense that someone used a protective item last night...",
-			"Your intuition tells you that two players traded items...",
-			"You feel that someone was eliminated in the northern rooms...",
-			"Your shepherd's insight reveals unusual activity near your room...",
-			"You sense that an investigative action was blocked last night..."
-		)
-		to_chat(user, span_warning(pick(false_messages)))
+		// 25% chance for false information
+		var/give_false_info = prob(25)
+		
+		if(give_false_info && length(game.living_players) > 2)
+			// Generate false information in the same format as real info
+			var/mob/living/simple_animal/hostile/villains_character/fake_performer = pick(game.living_players - user)
+			var/mob/living/simple_animal/hostile/villains_character/fake_target = pick(game.living_players - fake_performer)
+			
+			var/list/possible_actions = list(
+				"talked with",
+				"used their ability on",
+				"used an item on",
+				"attempted to eliminate"
+			)
+			var/fake_action = pick(possible_actions)
+			
+			// 80% chance to report on two different players, 20% chance for self-target
+			if(prob(80) && fake_target)
+				to_chat(user, span_notice("Your shepherd's insight reveals: [fake_performer.name] [fake_action] [fake_target.name] last night."))
+			else
+				to_chat(user, span_notice("Your shepherd's insight reveals: [fake_performer.name] [fake_action] themselves last night."))
+		else
+			// Give real information about last night
+			if(length(game.last_night_actions))
+				// Pick a random action from last night to report on
+				var/datum/villains_action/random_action = pick(game.last_night_actions)
+				var/mob/living/simple_animal/hostile/villains_character/performer = random_action.performer
+				var/mob/living/simple_animal/hostile/villains_character/target = random_action.target
+				
+				var/action_desc = "unknown action"
+				switch(random_action.action_type)
+					if("talk_trade")
+						action_desc = "talked with"
+					if("character_ability")
+						action_desc = "used their ability on"
+					if("use_item")
+						action_desc = "used an item on"
+					if("eliminate")
+						action_desc = "attempted to eliminate"
+				
+				if(performer && target)
+					to_chat(user, span_notice("Your shepherd's insight reveals: [performer.name] [action_desc] [target.name] last night."))
+				else if(performer)
+					to_chat(user, span_notice("Your shepherd's insight reveals: [performer.name] [action_desc] themselves last night."))
+			else
+				to_chat(user, span_notice("Your shepherd's insight reveals: It was a quiet night with little activity."))
 
 // Character list for selection
 /proc/get_villains_characters()
