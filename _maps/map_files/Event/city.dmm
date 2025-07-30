@@ -4873,7 +4873,6 @@
 /turf/open/indestructible/white,
 /area/city/shop)
 "Jy" = (
-/obj/item/storage/toolbox/mechanical,
 /obj/structure/closet,
 /obj/item/ego_weapon/city/district23,
 /obj/machinery/light/small,
