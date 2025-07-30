@@ -32,6 +32,7 @@
 	is_flying_animal = FALSE
 	start_qliphoth = 1
 	can_breach = TRUE
+	melee_reach = 3
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(5, 10, 15, 50, 55),
 		ABNORMALITY_WORK_INSIGHT = list(5, 10, 15, 50, 55),
@@ -131,6 +132,7 @@
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 4 SECONDS
 	var/pulse_damage = 5
+	var/special_melee_attack = null
 	// Turf Tracker
 	var/list/spawned_turfs = list()
 
@@ -230,10 +232,10 @@
 			return chance + 35
 	return chance
 
-//Transformations
+// Transformations
 /mob/living/simple_animal/hostile/abnormality/seasons/proc/Transform()
 	current_season = SSlobotomy_events.current_season
-	ChangeResistances(modular_damage_coeff[current_season])
+	ChangeResistances(modular_damage_coeff[current_season]) // So basically what we're doing here is grabbing all of the stats from various associated lists
 	work_damage_type = season_stats[current_season][2]
 	melee_damage_type = season_stats[current_season][2]
 	icon_state = current_season
@@ -244,6 +246,18 @@
 	projectilesound = breaching_stats[current_season][1]
 	playsound(get_turf(src), "[breaching_stats[current_season][2]]", 30, 0, 8)
 	projectiletype = breaching_stats[current_season][3]
+	switch(current_season)
+		if("spring")
+			special_melee_attack = PROC_REF(SpringMelee) // I initially wanted to do these with lists like everything else, but BYOND didn't like it.
+		if("summer")
+			special_melee_attack = PROC_REF(SummerMelee)
+		if("fall")
+			special_melee_attack = PROC_REF(FallMelee)
+		if("winter")
+			special_melee_attack = PROC_REF(WinterMelee)
+			cone_attack_damage = 25
+			slam_damage = 40
+			pulse_damage = 5
 	if(datum_reference != null) // Do not change containment conditions if it does not have a containment cell assigned.
 		var/list/new_work_chances = modular_work_chance[current_season]
 		work_chances = new_work_chances.Copy()
@@ -253,11 +267,7 @@
 		portrait = "[current_season]"
 		name = season_stats[current_season][3]
 		desc = season_stats[current_season][5]
-	if(current_season == "winter")
-		cone_attack_damage = 25
-		slam_damage = 125
-		pulse_damage = 10
-	else
+	if(current_season != "winter")
 		cone_attack_damage = initial(cone_attack_damage)
 		slam_damage = initial(slam_damage)
 		pulse_damage = initial(pulse_damage)
@@ -269,7 +279,7 @@
 	Transform()
 	can_breach = FALSE
 	fear_level = WAW_LEVEL
-	work_damage_amount = 8
+	work_damage_amount = 7
 	start_qliphoth = 1
 	datum_reference.qliphoth_meter_max = 5
 	datum_reference.qliphoth_change(4)
@@ -290,7 +300,7 @@
 	REMOVE_TRAIT(src, TRAIT_MOVE_FLYING, INNATE_TRAIT)
 	update_icon()
 	for(var/turf/open/O in range(1, src))
-		new /obj/effect/season_turf(O)
+		new /obj/effect/season_turf(O) // We create this manually instead of using the proc so it is never deleted.
 
 //Breach Stuff
 /mob/living/simple_animal/hostile/abnormality/seasons/proc/WorkCheck()
@@ -365,7 +375,11 @@
 	if(ishuman(attacked_target))
 		if(Finisher(attacked_target))
 			return
-	return ..()
+	if(special_melee_attack) // Use a season-specific special melee attack. Notice how we dont call the parent here!
+		if(attacked_target)
+			. = call(src, special_melee_attack)(attacked_target)
+		else
+			. = call(src, special_melee_attack)()
 
 /mob/living/simple_animal/hostile/abnormality/seasons/OpenFire()
 	if(!can_act)
@@ -399,12 +413,7 @@
 	if(!can_act)
 		return FALSE
 	for(var/turf/open/O in range(1, src))
-		if(!isturf(O) || isspaceturf(O))
-			continue
-		if(locate(/obj/effect/season_turf) in O)
-			continue
-		var/obj/effect/season_turf/newturf = new(O)
-		spawned_turfs += newturf
+		TryCreateSeasonTurf(O)
 	..()
 
 
@@ -500,9 +509,7 @@
 	new attacktype(T)
 
 /mob/living/simple_animal/hostile/abnormality/seasons/proc/PulseHit(turf/T)
-	if(!locate(/obj/effect/season_turf) in T)
-		var/obj/effect/season_turf/newturf = new(T)
-		spawned_turfs += newturf
+	TryCreateSeasonTurf(T)
 	for(var/mob/living/L in T)
 		if(faction_check_mob(L))
 			continue
@@ -531,6 +538,106 @@
 				H.Drain()
 		return TRUE
 	return FALSE
+
+/mob/living/simple_animal/hostile/abnormality/seasons/proc/SpringMelee(atom/attacked_target)
+	to_chat(world, "SpringMelee attack used")
+	return
+
+/mob/living/simple_animal/hostile/abnormality/seasons/proc/SummerMelee(atom/attacked_target)
+	can_act = FALSE
+	changeNext_move(10) //Prevents attack spam
+	var/turf/TT = get_turf(get_step(src, dir))
+	var/turf/T = get_turf(src)
+	var/current_orientation = pick(1, -1) // Makes it so AOE is flipped randomly
+	var/rotate_dir = current_orientation
+	var/angle_to_target = Get_Angle(T, TT)
+	var/angle = angle_to_target + (300 * rotate_dir) * 0.5
+	if(angle > 360)
+		angle -= 360
+	else if(angle < 0)
+		angle += 360
+	var/turf/T2 = get_turf_in_angle(angle, T, 4)
+	var/list/line = getline(T, T2)
+	for(var/i = 1 to 20)
+		angle += ((300 / 20) * rotate_dir)
+		if(angle > 360)
+			angle -= 360
+		else if(angle < 0)
+			angle += 360
+		T2 = get_turf_in_angle(angle, T, 4)
+		line = getline(T, T2)
+		addtimer(CALLBACK(src, PROC_REF(DoLineWarning), line, TT, src), i * 0.12)
+		addtimer(CALLBACK(src, PROC_REF(DoLineAttack), line, TT, src), i * 0.12 + 8)
+
+/mob/living/simple_animal/hostile/abnormality/seasons/proc/DoLineWarning(list/line, atom/target, mob/living/carbon/human/user)
+	playsound(src, 'sound/abnormalities/seasons/summer_change.ogg', 30, TRUE, 3)
+	for(var/turf/T in line)
+		if(locate(/obj/effect/temp_visual/cult/sparks) in T)
+			continue
+		new /obj/effect/temp_visual/cult/sparks(T)
+
+/mob/living/simple_animal/hostile/abnormality/seasons/proc/DoLineAttack(list/line, atom/target, mob/living/carbon/human/user)
+	var/list/been_hit = list()
+	for(var/turf/T in line)
+		if(locate(/obj/effect/temp_visual/smash_effect) in T)
+			continue
+		playsound(T, 'sound/weapons/fixer/generic/fire3.ogg', 30, TRUE, 3)
+		new /obj/effect/temp_visual/smash_effect(T)
+		new /obj/effect/temp_visual/fire/fast(T)
+		been_hit = HurtInTurf(T, been_hit, (melee_damage_upper * 0.25), FIRE, check_faction = TRUE)
+		been_hit = HurtInTurf(T, been_hit, melee_damage_upper, RED_DAMAGE, check_faction = TRUE)
+		TryCreateSeasonTurf(T)
+	can_act = TRUE
+
+/mob/living/simple_animal/hostile/abnormality/seasons/proc/FallMelee(atom/attacked_target)
+	to_chat(world, "FallMelee attack used")
+	return
+
+/mob/living/simple_animal/hostile/abnormality/seasons/proc/WinterMelee(atom/attacked_target)
+	can_act = FALSE
+	changeNext_move(10) //Prevents attack spam
+	var/list/target_list = list()
+	for(var/mob/living/L in urange(10, src))
+		if(L.z != z || (L.status_flags & GODMODE))
+			continue
+		if(faction_check_mob(L, FALSE))
+			continue
+		if(L.stat == DEAD)
+			continue
+		target_list += L
+	var/projectile_number = (length(target_list) + 3)
+	for(var/i = 1 to projectile_number)
+		if(LAZYLEN(target_list))
+			target = pick(target_list)
+		if(!target)
+			return
+		var/turf/T = get_step(get_turf(src), pick(1,2,4,5,6,8,9,10))
+		if(T.density)
+			i -= 1
+			continue
+		var/obj/projectile/season_projectile/winter/weak/P
+		P = new(T)
+		P.starting = T
+		P.firer = src
+		P.fired_from = T
+		P.yo = target.y - T.y
+		P.xo = target.x - T.x
+		P.original = target
+		P.preparePixelProjectile(target, T)
+		addtimer(CALLBACK (P, TYPE_PROC_REF(/obj/projectile, fire)), i + 6)
+	playsound(get_turf(src), 'sound/abnormalities/seasons/winter_change.ogg', 15, 0, 2)
+	SLEEP_CHECK_DEATH(7)
+	playsound(get_turf(src), 'sound/abnormalities/seasons/winter_attack.ogg', 50, 0, 4)
+	SLEEP_CHECK_DEATH(3)
+	can_act = TRUE
+
+/mob/living/simple_animal/hostile/abnormality/seasons/proc/TryCreateSeasonTurf(turf/open/O)
+	if(!isturf(O) || isspaceturf(O))
+		return
+	if(locate(/obj/effect/season_turf) in O)
+		return
+	var/obj/effect/season_turf/newturf = new(O)
+	spawned_turfs += newturf
 
 //Weather and such
 /datum/weather/thunderstorm //Spring weather, might want to add thunder strikes or make it a bit more dangerous overall.
@@ -801,12 +908,15 @@
 			animate(H, alpha = 255,pixel_x = 0, pixel_z = 3, time = 0.5 SECONDS)
 			H.pixel_z = 0
 		if("winter")
-			if(prob(25))
-				to_chat(H, span_warning("You slip on the ice!"))
-				H.slip(0, null, SLIDE_ICE, 0, FALSE) //might need to replace this as stuns are pretty annoying...
-				H.Immobilize(0.5 SECONDS)
+			if(H.body_position == LYING_DOWN)
+				step(H, H.dir)
 				return
-			to_chat(H, notice("You manage to keep your balance on the slippery ice."))
+			if(prob(25))
+				to_chat(H, span_warning("You lose your footing on the ice!"))
+				H.apply_lc_tremor(1, 3)
+				step(H, H.dir)
+				return
+			to_chat(H, span_notice("You manage to keep your balance on the slippery ice."))
 
 /obj/effect/season_turf/proc/DoDamage()
 	var/dealt_damage = FALSE
