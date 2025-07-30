@@ -428,6 +428,11 @@
 	},
 /turf/open/floor/carpet/red,
 /area/city/outskirts)
+"Rk" = (
+/obj/structure/window/reinforced/fulltile/indestructable,
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/city/outskirts)
 "Tn" = (
 /obj/structure/chair/comfy/black,
 /turf/open/floor/wood,
@@ -4827,7 +4832,7 @@ vT
 cH
 vT
 vT
-aJ
+Rk
 HD
 HD
 HD
@@ -4839,7 +4844,7 @@ HD
 HD
 HD
 HD
-aJ
+Rk
 vT
 vT
 cH
@@ -4990,7 +4995,7 @@ vT
 vT
 vT
 Ty
-aJ
+Rk
 HD
 HD
 HD
@@ -5002,7 +5007,7 @@ HD
 HD
 HD
 HD
-aJ
+Rk
 Ty
 vT
 vT
@@ -5316,7 +5321,7 @@ vT
 Iq
 vT
 xl
-aJ
+Rk
 HD
 HD
 of
@@ -5328,7 +5333,7 @@ vC
 of
 HD
 HD
-aJ
+Rk
 xl
 vT
 Iq
@@ -5479,7 +5484,7 @@ Tn
 cH
 vT
 vT
-aJ
+Rk
 HD
 HD
 of
@@ -5491,7 +5496,7 @@ HD
 of
 HD
 HD
-aJ
+Rk
 vT
 vT
 cH
@@ -6457,7 +6462,7 @@ vT
 cH
 vT
 vT
-aJ
+Rk
 HD
 HD
 pc
@@ -6469,7 +6474,7 @@ of
 rh
 HD
 HD
-aJ
+Rk
 vT
 vT
 cH
@@ -6620,7 +6625,7 @@ vT
 vT
 vT
 Ty
-aJ
+Rk
 HD
 HD
 HD
@@ -6632,7 +6637,7 @@ Qu
 HD
 HD
 HD
-aJ
+Rk
 Ty
 vT
 vT
@@ -6784,17 +6789,17 @@ Qq
 Fl
 Fl
 Fl
-aJ
-aJ
-aJ
+Rk
+Rk
+Rk
 Fl
 Qq
 Qq
 Qq
 Fl
-aJ
-aJ
-aJ
+Rk
+Rk
+Rk
 Fl
 Fl
 Fl
@@ -8242,13 +8247,13 @@ vt
 Qx
 Of
 Of
-aJ
+Rk
 nD
 Of
 Of
 nD
 Of
-aJ
+Rk
 HD
 lW
 HD
@@ -8568,13 +8573,13 @@ vt
 Qx
 Of
 Of
-aJ
+Rk
 rS
 Of
 Of
 rS
 Of
-aJ
+Rk
 HD
 wr
 rg

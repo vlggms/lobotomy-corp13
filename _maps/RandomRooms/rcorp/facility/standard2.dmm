@@ -1246,7 +1246,9 @@
 /turf/open/floor/carpet/purple,
 /area/city/outskirts)
 "xX" = (
-/turf/closed/indestructible/fakeglass,
+/obj/structure/window/reinforced/fulltile/indestructable,
+/obj/structure/grille,
+/turf/open/floor/plating,
 /area/city/outskirts)
 "yc" = (
 /obj/machinery/stasis,

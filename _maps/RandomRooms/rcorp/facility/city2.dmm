@@ -437,6 +437,11 @@
 /obj/item/clothing/under/suit/blacktwopiece,
 /turf/open/floor/wood,
 /area/city/outskirts)
+"eV" = (
+/obj/structure/window/reinforced/fulltile/indestructable,
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/city/outskirts)
 "fa" = (
 /obj/structure/chair/comfy{
 	dir = 4
@@ -7494,25 +7499,25 @@ Ld
 Vg
 Vg
 Vg
-GI
-GI
+eV
+eV
 Vg
 Vg
-GI
+eV
 UJ
-GI
-GI
+eV
+eV
 Vg
 Mk
 Vg
-GI
-GI
-GI
+eV
+eV
+eV
 II
 II
-GI
-GI
-GI
+eV
+eV
+eV
 Vg
 Mk
 Vg
@@ -8154,17 +8159,17 @@ Vg
 Vg
 Vg
 Vg
-GI
-GI
-GI
+eV
+eV
+eV
 Vg
 Au
 Au
 Au
 Vg
-GI
-GI
-GI
+eV
+eV
+eV
 Vg
 Vg
 Vg
@@ -8191,9 +8196,9 @@ Vg
 Vg
 Vg
 Vg
-GI
-GI
-GI
+eV
+eV
+eV
 Vg
 Au
 Au
@@ -8832,7 +8837,7 @@ Vg
 aJ
 aJ
 RN
-GI
+eV
 Au
 Au
 Au
@@ -8995,7 +9000,7 @@ PV
 aJ
 aJ
 RY
-GI
+eV
 Au
 Au
 Au
@@ -9009,7 +9014,7 @@ Gh
 OR
 rG
 rG
-GI
+eV
 Au
 Au
 Au
@@ -9172,7 +9177,7 @@ Gh
 OR
 RY
 RY
-GI
+eV
 Au
 Au
 Au
@@ -9335,7 +9340,7 @@ Gh
 OR
 rh
 rh
-GI
+eV
 Au
 Au
 Au
@@ -9461,7 +9466,7 @@ Ia
 iN
 aJ
 aJ
-GI
+eV
 Au
 Au
 Au
@@ -9498,7 +9503,7 @@ Vg
 Vo
 rG
 rG
-GI
+eV
 Au
 Au
 Au
@@ -9661,7 +9666,7 @@ Vg
 aJ
 RY
 RY
-GI
+eV
 Au
 Au
 Au
@@ -9824,7 +9829,7 @@ li
 aJ
 rh
 rh
-GI
+eV
 Au
 Au
 Au
@@ -9954,7 +9959,7 @@ Vg
 Au
 Au
 Au
-GI
+eV
 Nr
 GE
 HO
@@ -9973,7 +9978,7 @@ Vg
 rz
 rz
 HA
-GI
+eV
 Au
 Au
 Au
@@ -10136,7 +10141,7 @@ rY
 rz
 ca
 xv
-GI
+eV
 Au
 Au
 Au
@@ -10280,7 +10285,7 @@ Vg
 Au
 Au
 Au
-GI
+eV
 kE
 uU
 zq
@@ -10303,7 +10308,7 @@ Vg
 Au
 Au
 Au
-GI
+eV
 Qt
 pH
 Qt
@@ -10466,7 +10471,7 @@ Vg
 Au
 Au
 Au
-GI
+eV
 Qt
 pH
 Qt
@@ -10476,7 +10481,7 @@ Vg
 aJ
 aJ
 aJ
-GI
+eV
 Au
 Au
 Au
@@ -10629,7 +10634,7 @@ Vg
 Au
 Au
 Au
-GI
+eV
 Qt
 pH
 Qt
@@ -10639,7 +10644,7 @@ Vg
 oz
 oz
 oz
-GI
+eV
 Au
 Au
 Au
@@ -10769,7 +10774,7 @@ zN
 Au
 Au
 Au
-GI
+eV
 kA
 oG
 Pa
@@ -10792,7 +10797,7 @@ Vg
 Au
 Au
 Au
-GI
+eV
 Qt
 pH
 pH
@@ -10802,7 +10807,7 @@ Vg
 bW
 kR
 kR
-GI
+eV
 Au
 Au
 Au
@@ -10932,7 +10937,7 @@ Vg
 Au
 Au
 Au
-GI
+eV
 CS
 wB
 JV
@@ -10955,7 +10960,7 @@ vO
 Au
 Au
 Au
-GI
+eV
 Wo
 pH
 pH
@@ -10965,7 +10970,7 @@ li
 aJ
 aJ
 aJ
-GI
+eV
 Au
 Au
 Au
@@ -11114,7 +11119,7 @@ Vg
 gc
 gc
 gc
-GI
+eV
 Au
 Au
 Au
@@ -11128,7 +11133,7 @@ Vg
 KK
 af
 bR
-GI
+eV
 WS
 WS
 WS
@@ -11277,7 +11282,7 @@ Cd
 gc
 Wy
 gc
-GI
+eV
 Au
 Au
 Au
@@ -11766,7 +11771,7 @@ nu
 Bg
 LD
 vx
-GI
+eV
 Au
 Au
 Au
@@ -11929,7 +11934,7 @@ Ww
 Ww
 aJ
 aJ
-GI
+eV
 Au
 Au
 Au
@@ -12073,7 +12078,7 @@ Vg
 Au
 Au
 Au
-GI
+eV
 Lj
 Xl
 kI
@@ -12236,7 +12241,7 @@ Vg
 Au
 Au
 Au
-GI
+eV
 IP
 WA
 df
@@ -13233,7 +13238,7 @@ Vg
 YC
 GM
 iN
-GI
+eV
 Au
 Au
 Au
@@ -13396,7 +13401,7 @@ Vg
 aJ
 CR
 aJ
-GI
+eV
 Au
 Au
 Au
@@ -13885,7 +13890,7 @@ Vg
 aJ
 GM
 iN
-GI
+eV
 Au
 Au
 Au
@@ -14048,7 +14053,7 @@ Vg
 aJ
 GM
 aJ
-GI
+eV
 Au
 Au
 Au
@@ -14211,7 +14216,7 @@ Vg
 GM
 GM
 aJ
-GI
+eV
 Au
 Au
 Au
@@ -15188,11 +15193,11 @@ Vg
 Vg
 Vg
 Vg
-GI
-GI
+eV
+eV
 qL
 Vg
-GI
+eV
 Vg
 Mk
 Vg
@@ -16002,7 +16007,7 @@ za
 Kw
 Fb
 HS
-GI
+eV
 pH
 pH
 pH
