@@ -2,7 +2,7 @@
 /obj/effect/temp_visual/healing
 	icon = 'ModularTegustation/Teguicons/lc13_coloreffect.dmi'
 	icon_state = "healing"
-	layer = ABOVE_ALL_MOB_LAYER
+	layer = EMISSIVE_LAYER
 	//duration based on the frames in the sprites.
 	duration = 8
 
@@ -19,7 +19,7 @@
 
 /obj/effect/temp_visual/damage_effect
 	icon = 'ModularTegustation/Teguicons/lc13_coloreffect.dmi'
-	layer = ABOVE_ALL_MOB_LAYER
+	layer = EMISSIVE_LAYER
 	duration = 12
 	var/style_text_color = "#FFFFFF"
 

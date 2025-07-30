@@ -195,7 +195,6 @@
 	desc = "A magic white bolt, enchanted to protect or to avenge the sculptor."
 	icon_state = "bride_bolt_enraged"
 	damage_type = WHITE_DAMAGE
-
 	damage = 20
 	spread = 5
 
@@ -211,7 +210,7 @@
 	if(!istype(firer, /mob/living/simple_animal/hostile/abnormality/seasons))
 		return
 	var/mob/living/simple_animal/hostile/abnormality/seasons/source = firer
-	if(!isturf(loc) || isspaceturf(loc))
+	if(!isturf(get_turf(src)) || isspaceturf(get_turf(src)))
 		return
 	if(locate(/obj/effect/season_turf) in get_turf(src))
 		return
@@ -245,6 +244,100 @@
 	icon_state = "ice_2"
 	damage_type = PALE_DAMAGE
 	damage = 25
+
+/obj/projectile/season_projectile/winter/weak
+	damage = 20
+	color = COLOR_DARK_CYAN
+	spread = 15
+
+/obj/projectile/season_projectile/winter/weakspready
+	damage = 20
+	spread = 360
+
+/obj/projectile/season_projectile/winter/special
+	name = "ice sphere"
+	desc = "Stop reading this and run away!"
+	icon_state = "ice_1"
+	damage = 40
+	speed = 6 // really slow projectile
+	ricochet_chance = 100
+	ricochets_max = 2
+	ricochet_ignore_flag = TRUE // Heehoo
+
+/obj/projectile/season_projectile/winter/special/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	if(!isliving(target))
+		return
+	for(var/turf/T in view(2, get_turf(target)))
+		if(get_dist(T,target) <= 1)
+			continue
+		var/obj/projectile/season_projectile/winter/weakspready/P = new(T)
+		P.starting = T
+		P.firer = firer
+		P.fired_from = src
+		P.yo = original.y - y
+		P.xo = original.x - x
+		P.original = original
+		P.preparePixelProjectile(original, src)
+		P.fire()
+
+/obj/projectile/season_projectile/winter/special/Moved(atom/OldLoc, Dir)
+	. = ..()
+	var/the_turf = get_turf(src)
+	var/splits = rand(1,3)
+	for(var/k = 1 to splits)
+		if(!original)
+			break
+		var/obj/projectile/season_projectile/winter/weakspready/P = new(the_turf)
+		P.starting = the_turf
+		P.firer = firer
+		P.fired_from = src
+		P.yo = original.y - y
+		P.xo = original.x - x
+		P.original = original
+		P.preparePixelProjectile(original, src)
+		P.fire()
+
+/obj/projectile/fall_projectile
+	name = "dark flame"
+	desc = "Unnatural black flames"
+	icon_state = "pulse1"
+	damage_type = BLACK_DAMAGE
+	damage = 3
+	spread = 20
+	speed = 2
+
+/obj/projectile/fall_projectile/Initialize()
+	. = ..()
+	animate(src, transform = src.transform*pick(0.8, 1.2, 1.3, 1.4), time = rand(1,4))
+
+/obj/projectile/fall_projectile/on_hit(target)
+	. = ..()
+	if(!isliving(target))
+		return
+	var/mob/living/L = target
+	L.apply_dark_flame(1)
+
+/obj/projectile/needle_spring
+	name = "needle"
+	desc = "a thorn from a plant"
+	icon_state = "needle"
+	ricochet_chance = 60
+	ricochets_max = 2
+	damage = 5
+	damage_type = WHITE_DAMAGE
+	ricochet_ignore_flag = TRUE
+
+/obj/projectile/needle_spring/can_hit_target(atom/target, direct_target, ignore_loc, cross_failed)
+	if(!fired)
+		return FALSE
+	return ..()
+
+/obj/projectile/needle_spring/on_hit(atom/target, blocked, pierce_hit)
+	. = ..()
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		H.apply_venom(3)
 
 /obj/projectile/actor
 	name = "bullet"
