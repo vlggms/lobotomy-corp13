@@ -543,7 +543,7 @@
 	
 	// Apply immunity during judging
 	U.action_blocked = TRUE
-	addtimer(CALLBACK(U, TYPE_PROC_REF(/mob/living/simple_animal/hostile/villains_character, remove_judge_immunity)), 1 SECONDS)
+	addtimer(CALLBACK(U, TYPE_PROC_REF(/mob/living/simple_animal/hostile/villains_character, remove_judge_immunity)), 1 * SECONDS)
 	
 	return TRUE
 
