@@ -38,7 +38,7 @@ export const VillainsTradeUI = (props, context) => {
               </LabeledList>
             </Section>
           </Stack.Item>
-          
+
           <Stack.Item grow>
             <Grid>
               <Grid.Column>
@@ -51,7 +51,7 @@ export const VillainsTradeUI = (props, context) => {
                   act={act}
                 />
               </Grid.Column>
-              
+
               <Grid.Column>
                 <PlayerInventory
                   title={partner_name + "'s Inventory"}
@@ -64,7 +64,7 @@ export const VillainsTradeUI = (props, context) => {
               </Grid.Column>
             </Grid>
           </Stack.Item>
-          
+
           <Stack.Item>
             <TradeControls
               my_ready={my_ready}
@@ -81,9 +81,9 @@ export const VillainsTradeUI = (props, context) => {
 
 const PlayerInventory = (props, context) => {
   const { title, inventory, offer, ready, isOwner, act } = props;
-  
+
   return (
-    <Section 
+    <Section
       title={title}
       fill
       buttons={
@@ -128,11 +128,11 @@ const PlayerInventory = (props, context) => {
             )}
           </Section>
         </Stack.Item>
-        
+
         <Stack.Item>
           <Divider />
         </Stack.Item>
-        
+
         <Stack.Item>
           <Section title="Offered Items">
             {offer.length > 0 ? (
@@ -173,7 +173,7 @@ const PlayerInventory = (props, context) => {
 
 const TradeControls = (props, context) => {
   const { my_ready, partner_ready, trade_complete, act } = props;
-  
+
   if (trade_complete) {
     return (
       <Section>
@@ -183,7 +183,7 @@ const TradeControls = (props, context) => {
       </Section>
     );
   }
-  
+
   return (
     <Section>
       <Stack>
