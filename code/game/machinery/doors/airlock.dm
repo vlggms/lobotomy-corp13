@@ -112,6 +112,7 @@
 	var/air_tight = FALSE	//TRUE means density will be set as soon as the door begins to close
 	var/prying_so_hard = FALSE
 	var/whitelist_door	//Whistlist stuff
+	var/hackable = FALSE	//If FALSE, tools cannot be used to hack into the airlock's wires
 
 	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 	rad_insulation = RAD_MEDIUM_INSULATION
@@ -758,6 +759,9 @@
 				visible_message("<span class='danger'>[user] headbutts the airlock. Good thing [user.p_theyre()] wearing a helmet.</span>")
 
 /obj/machinery/door/airlock/attempt_wire_interaction(mob/user)
+	if(!hackable)
+		to_chat(user, "<span class='warning'>This airlock's internal systems are inaccessible!</span>")
+		return WIRE_INTERACTION_FAIL
 	if(security_level)
 		to_chat(user, "<span class='warning'>Wires are protected!</span>")
 		return WIRE_INTERACTION_FAIL
@@ -925,6 +929,10 @@
 			return
 
 		if(whitelist_door)		//Whitelist doors kill you if you fucking open them. Crispy clerk.
+			return
+
+		if(!hackable && !panel_open)
+			to_chat(user, "<span class='warning'>This airlock's maintenance panel cannot be accessed!</span>")
 			return
 
 		panel_open = !panel_open
