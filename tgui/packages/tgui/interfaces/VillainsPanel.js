@@ -403,8 +403,8 @@ const CharacterSelection = props => {
                       icon={selected_character === character.id ? 'check' : 'user'}
                       color={selected_character === character.id ? 'good' : 'default'}
                       disabled={
-                        character.taken ||
-                        selected_character === character.id
+                        character.taken
+                        || selected_character === character.id
                       }
                       onClick={() => act(
                         'select_character',
@@ -613,9 +613,9 @@ const EveningActions = (props, context) => {
   // Build target options
   const targetOptions = Array.isArray(living_players)
     ? living_players.map(player => ({
-        value: player.ref,
-        displayText: player.name,
-      }))
+      value: player.ref,
+      displayText: player.name,
+    }))
     : [];
 
   const handleSubmit = () => {
@@ -681,9 +681,9 @@ const EveningActions = (props, context) => {
                   width="100%"
                   placeholder="Select secondary action..."
                   disabled={
-                  !secondaryActionOptions
-                  || secondaryActionOptions.length === 0
-                }
+                    !secondaryActionOptions
+                    || secondaryActionOptions.length === 0
+                  }
                 />
               </Stack.Item>
               {secondaryAction && (
