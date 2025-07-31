@@ -222,7 +222,7 @@
 	if(signal_return & COMPONENT_SKIP_ATTACK)
 		return
 
-	SEND_SIGNAL(user, COMSIG_MOB_ITEM_ATTACK, M, user)
+	SEND_SIGNAL(user, COMSIG_MOB_ITEM_ATTACK, M, user, src)
 
 	if(item_flags & NOBLUDGEON)
 		return
@@ -252,6 +252,7 @@
 
 	log_combat(user, M, "attacked", src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
 	add_fingerprint(user)
+	SEND_SIGNAL(user, COMSIG_MOB_ITEM_AFTERATTACK, M, user, TRUE, src)
 
 
 /// The equivalent of the standard version of [/obj/item/proc/attack] but for object targets.
@@ -293,10 +294,19 @@
 					var/obj/item/ego_weapon/critting = I
 					critting.CritEffect(src, user)
 
-		var/damage = I.force * justice_mod * crit_bonus
+		var/damage = I.force * justice_mod * crit_bonus * (1 + (user.extra_damage / 100))
 		if(istype(I, /obj/item/ego_weapon))
 			var/obj/item/ego_weapon/theweapon = I
 			damage *= theweapon.force_multiplier
+
+		if(I.damtype == RED_DAMAGE)
+			damage *= (1 + (user.extra_damage_red / 100))
+		if(I.damtype == WHITE_DAMAGE)
+			damage *= (1 + (user.extra_damage_white / 100))
+		if(I.damtype == BLACK_DAMAGE)
+			damage *= (1 + (user.extra_damage_black / 100))
+		if(I.damtype == PALE_DAMAGE)
+			damage *= (1 + (user.extra_damage_pale / 100))
 
 		apply_damage(damage, I.damtype, white_healable = TRUE)
 		if(I.damtype in list(RED_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE))
@@ -335,7 +345,7 @@
  */
 /obj/item/proc/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	SEND_SIGNAL(src, COMSIG_ITEM_AFTERATTACK, target, user, proximity_flag, click_parameters)
-	SEND_SIGNAL(user, COMSIG_MOB_ITEM_AFTERATTACK, target, user, proximity_flag, click_parameters)
+	SEND_SIGNAL(user, COMSIG_MOB_ITEM_AFTERATTACK, target, user, proximity_flag, src)
 
 /// Called if the target gets deleted by our attack
 /obj/item/proc/attack_qdeleted(atom/target, mob/user, proximity_flag, click_parameters)
