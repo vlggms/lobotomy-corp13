@@ -87,11 +87,11 @@ const PlayerInventory = (props, context) => {
       title={title}
       fill
       buttons={
-        ready && (
-          <Box color="good">
-            Ready!
-          </Box>
-        )
+      ready && (
+        <Box color="good">
+          Ready!
+        </Box>
+      )
       }>
       <Stack vertical fill>
         <Stack.Item grow>

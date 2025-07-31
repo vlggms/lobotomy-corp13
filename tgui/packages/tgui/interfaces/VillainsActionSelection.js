@@ -2,7 +2,7 @@ import { useBackend } from '../backend';
 import { Button, Section, Box, Stack, Dropdown, Divider, Icon } from '../components';
 import { Window } from '../layouts';
 
-const getActionTypeColor = (type) => {
+const getActionTypeColor = type => {
   const colors = {
     'Investigative': 'blue',
     'Protective': 'green',
@@ -13,7 +13,7 @@ const getActionTypeColor = (type) => {
   return colors[type] || 'white';
 };
 
-const getActionTypeIcon = (type) => {
+const getActionTypeIcon = type => {
   const icons = {
     'Investigative': 'search',
     'Protective': 'shield-alt',
@@ -60,12 +60,16 @@ export const VillainsActionSelection = (props, context) => {
   if (main_self_target_only) {
     // Only allow self-targeting
     mainTargetOptions = mainTargetOptions.filter(
-      option => available_targets.find(t => t.ref === option.value && t.name === character_name)
+      option => available_targets.find(
+        t => t.ref === option.value && t.name === character_name
+      )
     );
   } else if (main_no_self_target) {
     // Remove self from targets
     mainTargetOptions = mainTargetOptions.filter(
-      option => !available_targets.find(t => t.ref === option.value && t.name === character_name)
+      option => !available_targets.find(
+        t => t.ref === option.value && t.name === character_name
+      )
     );
   }
 
@@ -75,8 +79,12 @@ export const VillainsActionSelection = (props, context) => {
   }));
 
   // Find selected action details
-  const selectedMainActionDetails = main_actions.find(a => a.id === selected_main_action);
-  const selectedSecondaryActionDetails = secondary_actions.find(a => a.id === selected_secondary_action);
+  const selectedMainActionDetails = main_actions.find(
+    a => a.id === selected_main_action
+  );
+  const selectedSecondaryActionDetails = secondary_actions.find(
+    a => a.id === selected_secondary_action
+  );
 
   const canSubmit = selected_main_action && selected_main_target;
 
@@ -87,7 +95,8 @@ export const VillainsActionSelection = (props, context) => {
           <Stack.Item>
             <Section title={`${character_name}'s Actions`}>
               <Box color="gray" mb={2}>
-                Select your actions for tonight. All actions will be performed during the nighttime phase in order of priority.
+                Select your actions for tonight. All actions will be 
+                performed during the nighttime phase in order of priority.
               </Box>
               {is_villain && (
                 <Box color="red" mb={2}>
@@ -107,7 +116,7 @@ export const VillainsActionSelection = (props, context) => {
                   <Dropdown
                     selected={selected_main_action}
                     options={mainActionOptions}
-                    onSelected={(value) => act('select_main_action', { action_id: value })}
+                    onSelected={value => act('select_main_action', { action_id: value })}
                     width="100%"
                     placeholder="Choose your main action..."
                   />
@@ -150,7 +159,7 @@ export const VillainsActionSelection = (props, context) => {
                       <Dropdown
                         selected={selected_main_target}
                         options={mainTargetOptions}
-                        onSelected={(value) => act('select_main_target', { target_ref: value })}
+                        onSelected={value => act('select_main_target', { target_ref: value })}
                         width="100%"
                         placeholder="Choose your target..."
                         disabled={mainTargetOptions.length === 0}
@@ -173,7 +182,7 @@ export const VillainsActionSelection = (props, context) => {
                     <Dropdown
                       selected={selected_secondary_action}
                       options={[{ value: null, displayText: 'None' }, ...secondaryActionOptions]}
-                      onSelected={(value) => act('select_secondary_action', { action_id: value })}
+                      onSelected={value => act('select_secondary_action', { action_id: value })}
                       width="100%"
                       placeholder="Choose your secondary action..."
                     />
@@ -182,11 +191,25 @@ export const VillainsActionSelection = (props, context) => {
                   {selectedSecondaryActionDetails && (
                     <>
                       <Stack.Item>
-                        <Box mt={2} p={1} backgroundColor="rgba(255, 255, 255, 0.1)">
+                        <Box 
+                          mt={2} 
+                          p={1} 
+                          backgroundColor="rgba(255, 255, 255, 0.1)">
                           <Stack vertical>
                             <Stack.Item>
-                              <Box color={getActionTypeColor(selectedSecondaryActionDetails.type)}>
-                                <Icon name={getActionTypeIcon(selectedSecondaryActionDetails.type)} />
+                              <Box
+                                color={
+                                  getActionTypeColor(
+                                    selectedSecondaryActionDetails.type
+                                  )
+                                }>
+                                <Icon
+                                  name={
+                                    getActionTypeIcon(
+                                      selectedSecondaryActionDetails.type
+                                    )
+                                  }
+                                />
                                 {' Type: '}{selectedSecondaryActionDetails.type}
                               </Box>
                             </Stack.Item>
@@ -206,7 +229,10 @@ export const VillainsActionSelection = (props, context) => {
                         <Dropdown
                           selected={selected_secondary_target}
                           options={secondaryTargetOptions}
-                          onSelected={(value) => act('select_secondary_target', { target_ref: value })}
+                          onSelected={value => act(
+                            'select_secondary_target',
+                            { target_ref: value }
+                          )}
                           width="100%"
                           placeholder="Choose your target..."
                         />

@@ -149,7 +149,7 @@ const GameStatus = props => {
     min_players, 
     max_players, 
     time_remaining, 
-    victory_points 
+    victory_points,
   } = props;
 
   const getPhaseText = phase => {
@@ -193,7 +193,9 @@ const GameStatus = props => {
         {!!time_remaining && (
           <Stack.Item>
             <Box>
-              <strong>Time Remaining:</strong> {Math.floor(time_remaining / 60)}:{String(time_remaining % 60).padStart(2, '0')}
+              <strong>Time Remaining:</strong> {
+                Math.floor(time_remaining / 60)
+              }:{String(time_remaining % 60).padStart(2, '0')}
             </Box>
           </Stack.Item>
         )}
@@ -225,7 +227,8 @@ const SignupSection = props => {
       <Stack vertical>
         <Stack.Item>
           <Box mb={2}>
-            Sign up to play Villains of the Night, a social deduction game where abnormalities must find the villain among them!
+            Sign up to play Villains of the Night, a social deduction game 
+            where abnormalities must find the villain among them!
           </Box>
         </Stack.Item>
         <Stack.Item>
@@ -262,7 +265,7 @@ const SignupSection = props => {
   );
 };
 
-const getActionTypeName = (type) => {
+const getActionTypeName = type => {
   const typeNames = {
     1: 'Suppressive',
     2: 'Protective',
@@ -273,7 +276,7 @@ const getActionTypeName = (type) => {
   return typeNames[type] || type;
 };
 
-const getActionTypeColor = (type) => {
+const getActionTypeColor = type => {
   // Convert numeric type to name if needed
   const typeName = typeof type === 'number' ? getActionTypeName(type) : type;
   
@@ -301,10 +304,11 @@ const CharacterSelection = props => {
   return (
     <Section title="Character Selection">
       <Box mb={2}>
-        Select your character for this game. Each character has unique abilities and traits.
+        Select your character for this game. Each character has unique 
+        abilities and traits.
       </Box>
       <Stack vertical>
-        {available_characters.map((character) => (
+        {available_characters.map(character => (
           <Stack.Item key={character.id}>
             <Collapsible
               title={
@@ -350,8 +354,12 @@ const CharacterSelection = props => {
                             </Box>
                           </Stack.Item>
                           <Stack.Item>
-                            <Box fontSize="0.9em" italic color={getActionTypeColor(character.active_ability.type)}>
-                              Type: {getActionTypeName(character.active_ability.type)} | Cost: {character.active_ability.cost}
+                            <Box 
+                              fontSize="0.9em" 
+                              italic 
+                              color={getActionTypeColor(character.active_ability.type)}>
+                              Type: {getActionTypeName(character.active_ability.type)} | 
+                              Cost: {character.active_ability.cost}
                             </Box>
                           </Stack.Item>
                           <Stack.Item>
@@ -560,7 +568,7 @@ const EveningActions = (props, context) => {
   }
 
   if (Array.isArray(inventory) && inventory.length > 0) {
-    inventory.forEach((item) => {
+    inventory.forEach(item => {
       if (item.cost === 'Main Action') {
         mainActionOptions.push({
           value: `item_${item.ref}`,
@@ -580,7 +588,7 @@ const EveningActions = (props, context) => {
   // Build secondary action options
   const secondaryActionOptions = [];
   if (Array.isArray(inventory) && inventory.length > 0) {
-    inventory.forEach((item) => {
+    inventory.forEach(item => {
       if (item.cost === 'Secondary Action') {
         secondaryActionOptions.push({
           value: `item_${item.ref}`,
@@ -634,7 +642,11 @@ const EveningActions = (props, context) => {
                   options={targetOptions || []}
                   onSelected={(value) => setMainTarget(value)}
                   width="100%"
-                  placeholder={targetOptions && targetOptions.length > 0 ? "Select target..." : "No targets available"}
+                  placeholder={
+                    targetOptions && targetOptions.length > 0
+                      ? "Select target..."
+                      : "No targets available"
+                  }
                   disabled={!targetOptions || targetOptions.length === 0}
                 />
               </Stack.Item>
@@ -663,7 +675,11 @@ const EveningActions = (props, context) => {
                     options={targetOptions || []}
                     onSelected={(value) => setSecondaryTarget(value)}
                     width="100%"
-                    placeholder={targetOptions && targetOptions.length > 0 ? "Select target..." : "No targets available"}
+                    placeholder={
+                    targetOptions && targetOptions.length > 0
+                      ? "Select target..."
+                      : "No targets available"
+                  }
                     disabled={!targetOptions || targetOptions.length === 0}
                   />
                 </Stack.Item>
@@ -868,7 +884,7 @@ const VotingPhase = props => {
         </Stack.Item>
         <Stack.Item>
           <Grid width="100%">
-            {voting_candidates.map((candidate) => (
+            {voting_candidates.map(candidate => (
               <Grid.Column key={candidate.ref} size={4}>
                 <VoteCard
                   candidate={candidate}
@@ -970,7 +986,7 @@ const DebugControls = (props, context) => {
                 <Stack.Item>
                   <Box mb={1} bold>All Players:</Box>
                   <Box height="200px" overflowY="scroll" backgroundColor="#1a1a1a" p={1}>
-                    {all_players.map((player) => (
+                    {all_players.map(player => (
                       <Box
                         key={player.ref}
                         p={0.5}
@@ -1107,7 +1123,7 @@ const ResultsPhase = props => {
         {results_players && results_players.length > 0 ? (
           results_players
             .sort((a, b) => b.victory_points - a.victory_points)
-            .map((player) => (
+            .map(player => (
               <Stack.Item key={player.name}>
                 <Box>
                   <Stack>
@@ -1124,10 +1140,12 @@ const ResultsPhase = props => {
                           player.victory_points > 0
                             ? 'green'
                             : player.victory_points < 0
-                            ? 'red'
-                            : 'gray'
+                              ? 'red'
+                              : 'gray'
                         }>
-                        {player.victory_points} point{player.victory_points !== 1 && 's'}
+                        {player.victory_points} point{
+                          player.victory_points !== 1 && 's'
+                        }
                       </Box>
                     </Stack.Item>
                   </Stack>

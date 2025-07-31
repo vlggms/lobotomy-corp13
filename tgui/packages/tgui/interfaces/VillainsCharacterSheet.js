@@ -100,7 +100,9 @@ const GamePhaseStatus = props => {
         {!!time_remaining && (
           <Stack.Item>
             <Box>
-              <strong>Time:</strong> {Math.floor(time_remaining / 60)}:{String(time_remaining % 60).padStart(2, '0')}
+              <strong>Time:</strong> {Math.floor(
+                time_remaining / 60
+              )}:{String(time_remaining % 60).padStart(2, '0')}
             </Box>
           </Stack.Item>
         )}
@@ -116,7 +118,7 @@ const CharacterInfo = props => {
     portrait, 
     portrait_base64, 
     is_villain, 
-    victory_points 
+    victory_points,
   } = props;
 
   return (

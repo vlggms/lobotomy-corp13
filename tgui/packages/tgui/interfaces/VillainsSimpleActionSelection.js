@@ -81,7 +81,10 @@ export const VillainsSimpleActionSelection = (props, context) => {
                                 fluid
                                 selected={selected_target === target.ref}
                                 disabled={!target.can_target}
-                                onClick={() => act('select_target', { target_ref: target.ref })}
+                                onClick={() => act(
+                                  'select_target',
+                                  { target_ref: target.ref }
+                                )}
                                 tooltip={target.can_target ? null : target.reason}>
                                 <Box>
                                   {target.name}
@@ -108,10 +111,16 @@ export const VillainsSimpleActionSelection = (props, context) => {
                             <Stack.Item key={action.id}>
                               <Button
                                 fluid
-                                selected={selected_secondary_action === action.id}
-                                onClick={() => act('select_secondary_action', { action_id: action.id })}
+                                selected={
+                                  selected_secondary_action
+                                    === action.id
+                                }
+                                onClick={() => act(
+                                  'select_secondary_action',
+                                  { action_id: action.id }
+                                )}
                                 tooltip={action.desc}
-                                color='transparent'>
+                                color="transparent">
                                 <Stack>
                                   <Stack.Item grow>
                                     <Box bold>{action.name}</Box>
@@ -135,9 +144,15 @@ export const VillainsSimpleActionSelection = (props, context) => {
                               <Stack.Item key={target.ref}>
                                 <Button
                                   fluid
-                                  selected={selected_secondary_target === target.ref}
+                                  selected={
+                                    selected_secondary_target
+                                      === target.ref
+                                  }
                                   disabled={!target.can_target}
-                                  onClick={() => act('select_secondary_target', { target_ref: target.ref })}
+                                  onClick={() => act(
+                                    'select_secondary_target',
+                                    { target_ref: target.ref }
+                                  )}
                                   tooltip={target.can_target ? null : target.reason}>
                                   <Box>
                                     {target.name}
