@@ -1,0 +1,12214 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ac" = (
+/obj/machinery/telecomms/server/presets/engineering,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
+"ad" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/pew/left{
+	dir = 1
+	},
+/turf/open/floor/holofloor/chapel{
+	dir = 1
+	},
+/area/city/backstreets_room/temple_motus/main)
+"aj" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/dorms)
+"ar" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/rack{
+	color = "#f8fc03"
+	},
+/obj/structure/lootcrate/hana,
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room/temple_motus/treasure_room)
+"aG" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/greyscale{
+	color = "#8a8a8a"
+	},
+/obj/item/crown_dagger_puzzle/spear,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room/temple_motus/main)
+"aO" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	pixel_y = 5
+	},
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room/temple_motus/outskirts)
+"aY" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/sofa/corp{
+	dir = 1
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus)
+"bd" = (
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/medbay)
+"bp" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/fluff/empty_cryostasis_sleeper,
+/obj/effect/decal/cleanable/xenoblood/xgibs,
+/turf/open/indestructible/white,
+/area/city/backstreets_room/temple_motus/medbay)
+"bv" = (
+/obj/structure/bookcase{
+	pixel_x = -32;
+	density = 0
+	},
+/obj/structure/bookcase{
+	pixel_y = -32;
+	density = 0
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/wood/fancy/purple,
+/obj/item/food/breadslice/moldy,
+/obj/item/food/breadslice/moldy,
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/library)
+"bC" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/pew/right{
+	dir = 1
+	},
+/obj/effect/pickaxe_spawner,
+/turf/open/floor/holofloor/chapel{
+	dir = 4
+	},
+/area/city/backstreets_room/temple_motus/main)
+"bF" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/bus/preset_two,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
+"bJ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wideplating/dark/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room/temple_motus)
+"bS" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/keeper_field,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/treasure_entrance)
+"bX" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/xenoblood,
+/obj/effect/decal/remains/robot,
+/turf/open/indestructible/white,
+/area/city/backstreets_room/temple_motus/medbay)
+"cb" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room/temple_motus/library)
+"ch" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/glowshroom/single,
+/turf/open/floor/holofloor/grass,
+/area/city/backstreets_room/temple_motus/main)
+"co" = (
+/obj/structure/sign/departments/cargo,
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/storage)
+"cv" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/scarlet_rose,
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/library)
+"cK" = (
+/obj/effect/rubble_spawner,
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/main)
+"cN" = (
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/study_b)
+"cO" = (
+/turf/closed/wall/mineral/gold,
+/area/city/backstreets_room/temple_motus/treasure_room)
+"dc" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/structure/chair/wood{
+	dir = 8
+	},
+/mob/living/simple_animal/hostile/ui_npc/elliot{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room/temple_motus/outskirts)
+"de" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/greyscale{
+	color = "#8a8a8a"
+	},
+/obj/item/crown_dagger_puzzle/hammer,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room/temple_motus/main)
+"dD" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/main)
+"dX" = (
+/turf/open/ai_visible{
+	density = 1
+	},
+/area/city/backstreets_room/temple_motus/outskirts)
+"dY" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/fluff/clockwork/alloy_shards/medium_gearbit,
+/turf/open/floor/plating,
+/area/city/backstreets_room/temple_motus/factory)
+"dZ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/glass,
+/obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/item/tape/resurgence/joshua,
+/turf/open/floor/plasteel/showroomfloor,
+/area/city/backstreets_room/temple_motus/study_b)
+"eb" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/keeper_field,
+/turf/open/floor/light,
+/area/city/backstreets_room/temple_motus/treasure_entrance)
+"ed" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/rubble_spawner,
+/turf/open/floor/holofloor/chapel{
+	dir = 8
+	},
+/area/city/backstreets_room/temple_motus/main)
+"ee" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/fluff/paper/stack{
+	dir = 8
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_a)
+"el" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/greyscale{
+	color = "#8a8a8a"
+	},
+/obj/effect/wall_vent{
+	pixel_x = 32
+	},
+/obj/structure/lootcrate/money{
+	lootlist = list(/obj/item/stack/spacecash/c500);
+	rarechance = null
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room/temple_motus/storage)
+"eo" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/processor/preset_four,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
+"ep" = (
+/obj/structure/spacevine,
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/study_b)
+"es" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/pew{
+	dir = 1
+	},
+/obj/effect/rubble_spawner,
+/turf/open/floor/holofloor/chapel{
+	dir = 4
+	},
+/area/city/backstreets_room/temple_motus/main)
+"ew" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/step_trigger/place_atom{
+	atom_path = /mob/living/simple_animal/hostile/mad_fly_swarm;
+	atom_rename = "fly escapee";
+	spawn_dist_x = -1;
+	spawn_flavor_text = "emerges from a vent.";
+	spawn_dist_y = 1
+	},
+/obj/effect/step_trigger/sound_effect{
+	extra_range = 4;
+	happens_once = 1;
+	sound = 'sound/machines/closet_open.ogg';
+	volume = 50
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/library)
+"ex" = (
+/turf/closed/indestructible/rock,
+/area/city/backstreets_alley)
+"ez" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room/temple_motus)
+"eC" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/wood,
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/dorms)
+"eF" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/rubble_spawner,
+/turf/open/floor/holofloor/chapel{
+	dir = 4
+	},
+/area/city/backstreets_room/temple_motus/main)
+"eN" = (
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand";
+	density = 1
+	},
+/area/city/backstreets_room/temple_motus/outskirts)
+"eO" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/bronze,
+/area/city/backstreets_room/temple_motus/factory)
+"eT" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/portal_exit{
+	id = "temple_start2"
+	},
+/turf/open/floor/plasteel/stairs/old{
+	dir = 1;
+	color = "#5e5e5e"
+	},
+/area/city/backstreets_room/temple_motus)
+"fd" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/step_trigger/place_atom{
+	atom_path = /mob/living/simple_animal/hostile/mad_fly_swarm;
+	atom_rename = "fly escapee";
+	spawn_dist_x = -3;
+	spawn_flavor_text = "emerges from a vent."
+	},
+/obj/effect/step_trigger/sound_effect{
+	extra_range = 4;
+	happens_once = 1;
+	sound = 'sound/machines/closet_open.ogg';
+	volume = 50
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_b)
+"ft" = (
+/obj/structure/fence/door{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_a)
+"fW" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/portal/permanent/one_way{
+	id = "temple_start2";
+	mouse_opacity = 0;
+	alpha = 0
+	},
+/turf/open/floor/plasteel/stairs/old{
+	dir = 1;
+	color = "#5e5e5e"
+	},
+/area/city/backstreets_room/temple_motus)
+"fZ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/clan/stone_guard/dagger_puzzle/scythe,
+/obj/structure/fluff/oldturret{
+	density = 0;
+	layer = 2.8;
+	name = "pedestal";
+	desc = "A pedestal for a statue."
+	},
+/obj/effect/rubble_spawner,
+/turf/open/floor/holofloor/chapel{
+	dir = 1
+	},
+/area/city/backstreets_room/temple_motus/main)
+"go" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/keeper_field,
+/obj/effect/rubble_spawner,
+/turf/open/floor/light,
+/area/city/backstreets_room/temple_motus/treasure_entrance)
+"gt" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room/temple_motus/outskirts)
+"gQ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/portal/permanent/one_way{
+	id = "temple_start3";
+	mouse_opacity = 0;
+	alpha = 0
+	},
+/turf/open/floor/plasteel/stairs/old{
+	dir = 1;
+	color = "#5e5e5e"
+	},
+/area/city/backstreets_room/temple_motus)
+"gT" = (
+/obj/structure/bookcase{
+	pixel_x = -32;
+	density = 0
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/sofa/left{
+	dir = 4
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room/temple_motus/library)
+"gX" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/glass,
+/obj/item/book/manual/wiki/surgery,
+/obj/item/storage/organbox,
+/obj/item/storage/organbox,
+/obj/item/organ_storage,
+/obj/item/organ_storage,
+/turf/open/floor/plasteel/showroomfloor,
+/area/city/backstreets_room/temple_motus/study_b)
+"hd" = (
+/obj/structure/bookcase{
+	pixel_x = 32;
+	density = 0
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/rubble_spawner,
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/library)
+"hi" = (
+/obj/structure/bed/maint,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_a)
+"ht" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/cobweb,
+/obj/effect/rubble_spawner,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/main)
+"hw" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/xenoblood/xgibs,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_a)
+"hx" = (
+/obj/machinery/telecomms/server/presets/service,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
+"hA" = (
+/obj/structure/bookcase/random/religion,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/closed/indestructible/wood,
+/area/city/backstreets_room/temple_motus/library)
+"hG" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/clan/stone_guard/dagger_puzzle/dagger,
+/obj/structure/fluff/oldturret{
+	density = 0;
+	layer = 2.8;
+	name = "pedestal";
+	desc = "A pedestal for a statue."
+	},
+/obj/effect/rubble_spawner,
+/turf/open/floor/holofloor/chapel{
+	dir = 8
+	},
+/area/city/backstreets_room/temple_motus/main)
+"hI" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/keeper_field,
+/obj/structure/table/greyscale{
+	color = "#8a8a8a"
+	},
+/obj/effect/rubble_spawner,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/treasure_entrance)
+"hM" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/statue/bronze/marx{
+	icon = 'ModularTegustation/Teguicons/teaser_mobs.dmi';
+	icon_state = "stone_guard";
+	name = "stone statue";
+	desc = "A humanoid looking statue wielding a spear... It appears to have 'Resurgence Clan' etched on their back...";
+	dir = 8
+	},
+/obj/structure/fluff/oldturret{
+	density = 0;
+	layer = 2.8;
+	name = "pedestal";
+	desc = "A pedestal for a statue."
+	},
+/obj/effect/rubble_spawner,
+/turf/open/floor/light,
+/area/city/backstreets_room/temple_motus/treasure_hallway)
+"hR" = (
+/obj/structure/bed/maint,
+/obj/item/bedsheet/brown,
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/outskirts)
+"hU" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/xenoblood/xsplatter,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_a)
+"hV" = (
+/obj/structure/sign/departments/human,
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus)
+"hZ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/sofa/corp/corner{
+	dir = 4
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus)
+"ii" = (
+/obj/structure/mineral_door/iron,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/main)
+"ik" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room/temple_motus/outskirts)
+"ip" = (
+/obj/structure/bed{
+	pixel_y = 15;
+	layer = 2.95;
+	can_buckle = 0;
+	name = "bunk beds";
+	density = 1
+	},
+/obj/structure/bed{
+	name = "bunk beds";
+	can_buckle = 0;
+	density = 1
+	},
+/obj/structure/ladder{
+	pixel_x = 4;
+	pixel_y = -5;
+	layer = 2.97;
+	mouse_opacity = 0
+	},
+/obj/item/bedsheet/hop{
+	desc = "Fancy cloth earned through good deeds.";
+	name = "old bedsheet";
+	layer = 2.94
+	},
+/obj/item/bedsheet/hop{
+	desc = "Fancy cloth earned through good deeds.";
+	name = "old bedsheet";
+	layer = 2.96;
+	pixel_y = 15
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/gibspawner/robot,
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/dorms)
+"iH" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/portal_exit{
+	id = "temple_exit3"
+	},
+/turf/open/floor/plasteel/stairs/old{
+	dir = 1;
+	color = "#5e5e5e"
+	},
+/area/city/backstreets_room/temple_motus)
+"jf" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/fluff/paper/stack{
+	dir = 8
+	},
+/obj/machinery/blackbox_recorder,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_a)
+"jh" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/generic,
+/obj/effect/keeper_field,
+/obj/effect/rubble_spawner,
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/treasure_entrance)
+"jp" = (
+/obj/structure/spacevine,
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/factory)
+"jq" = (
+/obj/structure/bookcase{
+	pixel_x = 32;
+	density = 0
+	},
+/obj/structure/bookcase{
+	pixel_y = 32;
+	density = 0
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/wood/fancy/purple,
+/obj/item/lighter/greyscale,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/effect/rubble_spawner,
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/library)
+"jv" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/sofa/corp/right{
+	dir = 4
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus)
+"jx" = (
+/obj/structure/spacevine,
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/study_a)
+"jz" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/wall_vent{
+	pixel_x = -32
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/dorms)
+"jG" = (
+/obj/effect/turf_decal/siding/wood/corner,
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room/temple_motus/outskirts)
+"jK" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/ntnet_relay,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
+"jT" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/pew/right{
+	dir = 1
+	},
+/obj/effect/rubble_spawner,
+/turf/open/floor/holofloor/chapel{
+	dir = 1
+	},
+/area/city/backstreets_room/temple_motus/main)
+"jY" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/holofloor/grass,
+/area/city/backstreets_room/temple_motus/dorms)
+"kc" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/mad_fly_swarm,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/dorms)
+"kl" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/main)
+"ks" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/spreading/scarlet_vine,
+/obj/effect/wall_vent{
+	pixel_x = 32
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room/temple_motus/dorms)
+"kK" = (
+/obj/structure/sign/directions/engineering{
+	dir = 4
+	},
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus)
+"kM" = (
+/obj/structure/bookcase{
+	pixel_x = 32;
+	density = 0
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room/temple_motus/library)
+"kZ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/sofa/corp/corner{
+	dir = 1
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus)
+"la" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/glass,
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/effect/decal/cleanable/xenoblood/xsplatter,
+/turf/open/indestructible/white,
+/area/city/backstreets_room/temple_motus/medbay)
+"lc" = (
+/obj/structure/bookcase{
+	pixel_x = -32;
+	density = 0
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room/temple_motus/library)
+"ld" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus)
+"lg" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/sofa/right{
+	dir = 4
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room/temple_motus/library)
+"ll" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room/temple_motus/dorms)
+"lm" = (
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/factory)
+"lB" = (
+/obj/structure/sign/poster/official/do_not_question,
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/main)
+"lE" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/glass,
+/obj/item/tape/resurgence/rose_research,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room/temple_motus/dorms)
+"lG" = (
+/obj/structure/sign/poster/official/do_not_question,
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/factory)
+"lU" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/glowshroom/single,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_a)
+"lV" = (
+/obj/structure/bed/maint,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/mob_spawn/human/corpse,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_a)
+"lY" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/keeper_field,
+/obj/effect/keeper_piller_spawn,
+/turf/open/floor/light,
+/area/city/backstreets_room/temple_motus/treasure_entrance)
+"mi" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/portal_exit{
+	id = "temple_start3"
+	},
+/turf/open/floor/plasteel/stairs/old{
+	dir = 1;
+	color = "#5e5e5e"
+	},
+/area/city/backstreets_room/temple_motus)
+"mk" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/structure/statue/silver/medborg,
+/obj/structure/fluff/oldturret{
+	density = 0;
+	layer = 2.8;
+	name = "pedestal";
+	desc = "A pedestal for a statue."
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_b)
+"mn" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/reagent_containers/glass/beaker,
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/library)
+"mt" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/smartfridge/chemistry,
+/turf/open/indestructible/white,
+/area/city/backstreets_room/temple_motus/medbay)
+"mv" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/pew{
+	dir = 1
+	},
+/obj/effect/rubble_spawner,
+/turf/open/floor/holofloor/chapel{
+	dir = 1
+	},
+/area/city/backstreets_room/temple_motus/main)
+"mB" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room/temple_motus/main)
+"mC" = (
+/obj/structure/sign/departments/chemistry,
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/medbay)
+"mD" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/fluff/clockwork/alloy_shards,
+/turf/open/floor/holofloor/grass,
+/area/city/backstreets_room/temple_motus/factory)
+"mG" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/statue/bronze/marx{
+	icon = 'ModularTegustation/Teguicons/teaser_mobs.dmi';
+	icon_state = "stone_guard";
+	name = "stone statue";
+	desc = "A humanoid looking statue wielding a spear... It appears to have 'Resurgence Clan' etched on their back...";
+	dir = 4
+	},
+/obj/structure/fluff/oldturret{
+	density = 0;
+	layer = 2.8;
+	name = "pedestal";
+	desc = "A pedestal for a statue."
+	},
+/obj/effect/rubble_spawner,
+/turf/open/floor/light,
+/area/city/backstreets_room/temple_motus/treasure_hallway)
+"nc" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/garbage,
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/dorms)
+"nf" = (
+/obj/structure/bookcase/random/nonfiction,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/closed/indestructible/wood,
+/area/city/backstreets_room/temple_motus/library)
+"no" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/rubble_spawner,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/treasure_hallway)
+"nz" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/structure/chair/wood,
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room/temple_motus/outskirts)
+"nB" = (
+/turf/closed/indestructible/rock,
+/area/city/backstreets_room/temple_motus/main)
+"nD" = (
+/obj/structure/statue/silver/md{
+	color = "#919191";
+	name = "statue of a human"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/outskirts)
+"nQ" = (
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/storage)
+"nU" = (
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room/temple_motus/outskirts)
+"nV" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/bronze{
+	dir = 1
+	},
+/turf/open/floor/bronze,
+/area/city/backstreets_room/temple_motus/factory)
+"nX" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/holofloor/grass,
+/area/city/backstreets_room/temple_motus/factory)
+"nZ" = (
+/obj/structure/mineral_door/iron,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/dorms)
+"od" = (
+/obj/structure/sign/poster/contraband/borg_fancy_1,
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/dorms)
+"of" = (
+/obj/structure/bookcase/random/fiction,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/closed/indestructible/wood,
+/area/city/backstreets_room/temple_motus/library)
+"oz" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/greyscale{
+	color = "#8a8a8a"
+	},
+/obj/item/papercutter,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_a)
+"oF" = (
+/obj/structure/bed/maint,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/mob_spawn/human/corpse,
+/obj/effect/gibspawner/human/bodypartless,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_a)
+"oR" = (
+/obj/structure/bookcase/random/nonfiction,
+/obj/structure/bookcase{
+	pixel_x = 32;
+	density = 0
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/closed/indestructible/wood,
+/area/city/backstreets_room/temple_motus/library)
+"oU" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/bus/preset_three,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
+"pd" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/indestructible/white,
+/area/city/backstreets_room/temple_motus/medbay)
+"ph" = (
+/obj/structure/sign/directions/supply{
+	dir = 1
+	},
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/main)
+"pl" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/statue/bronze/marx{
+	icon = 'ModularTegustation/Teguicons/teaser_mobs.dmi';
+	icon_state = "stone_guard";
+	name = "stone statue";
+	desc = "A humanoid looking statue wielding a spear... It appears to have 'Resurgence Clan' etched on their back...";
+	dir = 1
+	},
+/obj/structure/fluff/oldturret{
+	density = 0;
+	layer = 2.8;
+	name = "pedestal";
+	desc = "A pedestal for a statue."
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room/temple_motus/factory)
+"pJ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/pew/left{
+	dir = 1
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room/temple_motus/main)
+"pM" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/statue/silver/secborg,
+/obj/structure/fluff/oldturret{
+	density = 0;
+	layer = 2.8;
+	name = "pedestal";
+	desc = "A pedestal for a statue."
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus)
+"pR" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 10
+	},
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room/temple_motus/outskirts)
+"pW" = (
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/outskirts)
+"pX" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 10
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room/temple_motus)
+"qd" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/remains/robot,
+/turf/open/indestructible/white,
+/area/city/backstreets_room/temple_motus/medbay)
+"qe" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/sofa/corp/right,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus)
+"qg" = (
+/obj/structure/sign/poster/official/do_not_question,
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/study_a)
+"qh" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/portal/permanent/one_way{
+	id = "temple_exit3";
+	mouse_opacity = 0;
+	alpha = 0
+	},
+/turf/open/floor/plasteel/stairs/old{
+	dir = 1;
+	color = "#5e5e5e"
+	},
+/area/city/backstreets_room/temple_motus)
+"qn" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/receiver/preset_right,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
+"qH" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_a)
+"qJ" = (
+/obj/structure/bookcase{
+	pixel_y = 32;
+	density = 0
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/wood/fancy/purple,
+/obj/item/lighter/greyscale,
+/obj/effect/rubble_spawner,
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/library)
+"qO" = (
+/obj/machinery/telecomms/server/presets/common,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
+"qR" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/clan/stone_guard/dagger_puzzle/hammer,
+/obj/structure/fluff/oldturret{
+	density = 0;
+	layer = 2.8;
+	name = "pedestal";
+	desc = "A pedestal for a statue."
+	},
+/obj/effect/rubble_spawner,
+/turf/open/floor/holofloor/chapel{
+	dir = 1
+	},
+/area/city/backstreets_room/temple_motus/main)
+"qY" = (
+/obj/machinery/telecomms/server/presets/supply,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
+"ra" = (
+/obj/structure/flora/junglebush/c,
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room/temple_motus/outskirts)
+"rg" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/wood/fancy/royalblack,
+/obj/item/tape/resurgence/new_library,
+/obj/item/taperecorder/empty,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room/temple_motus/library)
+"rh" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 1;
+	pixel_y = -5
+	},
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room/temple_motus/outskirts)
+"rr" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/telecomms/bus/preset_four,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
+"ru" = (
+/obj/structure/sign/poster/official/work_for_a_future,
+/turf/closed/wall/mineral/bronze,
+/area/city/backstreets_room/temple_motus/factory)
+"rC" = (
+/obj/structure/table/wood,
+/obj/item/food/canned/pcorp,
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/outskirts)
+"rE" = (
+/obj/structure/sign/poster/official/smile,
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/main)
+"rP" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/clan/stone_guard/dagger_puzzle/spear,
+/obj/structure/fluff/oldturret{
+	density = 0;
+	layer = 2.8;
+	name = "pedestal";
+	desc = "A pedestal for a statue."
+	},
+/obj/effect/rubble_spawner,
+/turf/open/floor/holofloor/chapel{
+	dir = 4
+	},
+/area/city/backstreets_room/temple_motus/main)
+"rV" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/storage)
+"sd" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/greyscale{
+	color = "#8a8a8a"
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room/temple_motus/storage)
+"sn" = (
+/obj/structure/bookcase{
+	pixel_x = 32;
+	density = 0
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/sofa/corner{
+	dir = 8
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room/temple_motus/library)
+"sw" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/generic,
+/obj/effect/keeper_field,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/treasure_entrance)
+"sz" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/rubble_spawner,
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/library)
+"sA" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/statue/bronze/marx{
+	icon = 'ModularTegustation/Teguicons/teaser_mobs.dmi';
+	icon_state = "stone_guard";
+	name = "stone statue";
+	desc = "A humanoid looking statue wielding a spear... It appears to have 'Resurgence Clan' etched on their back..."
+	},
+/obj/structure/fluff/oldturret{
+	density = 0;
+	layer = 2.8;
+	name = "pedestal";
+	desc = "A pedestal for a statue."
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/dorms)
+"sM" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/mad_fly_nest,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_a)
+"sT" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/pew{
+	dir = 1
+	},
+/turf/open/floor/holofloor/chapel{
+	dir = 1
+	},
+/area/city/backstreets_room/temple_motus/main)
+"tb" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/keeper_field,
+/obj/effect/motus_final_door,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/treasure_entrance)
+"ty" = (
+/obj/structure/spacevine,
+/turf/closed/indestructible/rock,
+/area/city/backstreets_room/temple_motus/outskirts)
+"tA" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/door/keycard/library{
+	puzzle_id = "motus_library"
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/library)
+"tC" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/crown_dagger_puzzle/crown,
+/obj/structure/sacrificealtar,
+/obj/effect/rubble_spawner,
+/turf/open/floor/holofloor/chapel{
+	dir = 1
+	},
+/area/city/backstreets_room/temple_motus/main)
+"tH" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/treasure_hallway)
+"tJ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/fluff/clockwork/alloy_shards,
+/turf/open/floor/plating,
+/area/city/backstreets_room/temple_motus/factory)
+"tK" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/dorms)
+"tM" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/xenoblood,
+/turf/open/indestructible/white,
+/area/city/backstreets_room/temple_motus/medbay)
+"tR" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	pixel_y = 5
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 1;
+	pixel_y = -5
+	},
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand";
+	density = 1
+	},
+/area/city/backstreets_room/temple_motus/outskirts)
+"ue" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/wood/fancy/royalblack,
+/obj/machinery/computer/bookmanagement,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room/temple_motus/library)
+"ui" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/rack{
+	color = "#f8fc03"
+	},
+/obj/structure/lootcrate/workshopallas,
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room/temple_motus/treasure_room)
+"uo" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/cobweb,
+/obj/effect/rubble_spawner,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room/temple_motus/main)
+"uq" = (
+/obj/machinery/telecomms/server/presets/security,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
+"uu" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room/temple_motus/outskirts)
+"uy" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room/temple_motus/outskirts)
+"uA" = (
+/obj/machinery/computer/shuttle/mining{
+	dir = 8;
+	name = "bus console";
+	possible_destinations = "temple_floor";
+	shuttleId = "quest";
+	resistance_flags = 64
+	},
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room/temple_motus/outskirts)
+"uD" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/keeper_field,
+/obj/effect/rubble_spawner,
+/turf/open/floor/circuit,
+/area/city/backstreets_room/temple_motus/treasure_entrance)
+"uL" = (
+/obj/structure/sign/departments/xenobio,
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/study_a)
+"uS" = (
+/obj/structure/sign/departments/xenobio,
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/dorms)
+"uT" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/statue/bronze/marx{
+	icon = 'ModularTegustation/Teguicons/teaser_mobs.dmi';
+	icon_state = "stone_guard";
+	name = "stone statue";
+	desc = "A humanoid looking statue wielding a spear... It appears to have 'Resurgence Clan' etched on their back...";
+	dir = 8
+	},
+/obj/structure/fluff/oldturret{
+	density = 0;
+	layer = 2.8;
+	name = "pedestal";
+	desc = "A pedestal for a statue."
+	},
+/turf/open/floor/light,
+/area/city/backstreets_room/temple_motus/treasure_hallway)
+"uV" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/greyscale{
+	color = "#8a8a8a"
+	},
+/obj/item/crown_dagger_puzzle/scythe,
+/turf/open/floor/holofloor/chapel{
+	dir = 8
+	},
+/area/city/backstreets_room/temple_motus/main)
+"vn" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/reinforced,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus)
+"vE" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/wood{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/dorms)
+"vF" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/statue/silver/sec,
+/obj/structure/fluff/oldturret{
+	density = 0;
+	layer = 2.8;
+	name = "pedestal";
+	desc = "A pedestal for a statue."
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_b)
+"vG" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/portal_exit{
+	id = "temple_exit2"
+	},
+/turf/open/floor/plasteel/stairs/old{
+	dir = 1;
+	color = "#5e5e5e"
+	},
+/area/city/backstreets_room/temple_motus)
+"vW" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/wall_vent{
+	pixel_y = -32
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_a)
+"wa" = (
+/obj/structure/spacevine,
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/outskirts)
+"wf" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/processor/preset_two,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
+"wn" = (
+/obj/structure/sign/departments/medbay/alt,
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/medbay)
+"wp" = (
+/turf/closed/mineral/ash_rock,
+/area/city/backstreets_room/temple_motus/dorms)
+"ws" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/study_a)
+"wC" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/titanium/tiled/white{
+	color = "#edaf3b"
+	},
+/area/city/backstreets_room/temple_motus/factory)
+"wH" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/stairs/old{
+	dir = 1;
+	color = "#5e5e5e";
+	density = 1
+	},
+/area/city/backstreets_room/temple_motus)
+"wQ" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 9
+	},
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room/temple_motus/outskirts)
+"wV" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/hub/preset,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
+"wW" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/glowshroom/single,
+/turf/open/floor/holofloor/grass,
+/area/city/backstreets_room/temple_motus/dorms)
+"xa" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/dresser,
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/dorms)
+"xg" = (
+/obj/structure/bookcase{
+	pixel_x = 32;
+	density = 0
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/library)
+"xi" = (
+/obj/effect/turf_decal/trimline/red/filled/warning,
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room/temple_motus/outskirts)
+"xt" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/xenoblood/xgibs,
+/turf/open/indestructible/white,
+/area/city/backstreets_room/temple_motus/medbay)
+"xG" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/generic,
+/obj/effect/rubble_spawner,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/treasure_hallway)
+"xI" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/telecomms/processor/preset_three,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
+"xK" = (
+/obj/structure/bookcase{
+	pixel_y = 32;
+	density = 0
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/puzzle_key_case,
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/library)
+"xS" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/outskirts)
+"xV" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/chair/wood,
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/dorms)
+"xZ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/fluff/paper/stack{
+	dir = 4
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_a)
+"ye" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/generic,
+/obj/effect/keeper_field,
+/obj/effect/rubble_spawner,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/treasure_entrance)
+"yg" = (
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/dorms)
+"yp" = (
+/obj/structure/bed/maint,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/glowshroom/single,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_a)
+"yH" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room/temple_motus/outskirts)
+"yM" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/door/window{
+	dir = 4;
+	resistance_flags = 115
+	},
+/obj/effect/turf_decal/siding/wideplating/dark/end{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room/temple_motus)
+"yR" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/loading_area/red{
+	dir = 4
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/main)
+"zn" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/garbage,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_a)
+"zy" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/xenoblood/xgibs,
+/obj/effect/decal/cleanable/garbage,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_a)
+"zz" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/outskirts)
+"zB" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room/temple_motus/outskirts)
+"zG" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/showroomfloor,
+/area/city/backstreets_room/temple_motus/study_b)
+"zH" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/door/window{
+	dir = 8;
+	resistance_flags = 115
+	},
+/obj/effect/turf_decal/siding/wideplating/dark/end{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room/temple_motus)
+"zL" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/holofloor/grass,
+/area/city/backstreets_room/temple_motus/study_a)
+"zO" = (
+/obj/structure/bookcase{
+	pixel_x = -32;
+	density = 0
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/reagent_containers/glass/beaker,
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/library)
+"zP" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/lootcrate/workshopallas,
+/obj/structure/rack,
+/turf/open/floor/plating,
+/area/city/backstreets_room/temple_motus/factory)
+"zV" = (
+/obj/structure/closet/crate/wooden,
+/obj/item/grown/log/tree,
+/obj/item/grown/log/tree,
+/obj/item/grown/log/tree,
+/obj/item/grown/log/tree,
+/obj/item/grown/log/tree,
+/obj/item/grown/log/tree,
+/obj/item/grown/log/tree,
+/obj/item/grown/log/tree,
+/obj/item/grown/log/tree,
+/obj/item/grown/log/tree,
+/obj/item/grown/log/tree,
+/obj/item/grown/log/tree,
+/obj/item/grown/log/tree,
+/obj/item/grown/log/tree,
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/outskirts)
+"Aj" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/receiver/preset_left,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
+"Ak" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/greyscale{
+	color = "#8a8a8a"
+	},
+/obj/item/crown_dagger_puzzle/dagger,
+/obj/effect/rubble_spawner,
+/turf/open/floor/holofloor/chapel,
+/area/city/backstreets_room/temple_motus/main)
+"Al" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 6
+	},
+/obj/item/taperecorder/empty,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room/temple_motus)
+"Ar" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/dorms)
+"Aw" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/pew/right{
+	dir = 1
+	},
+/obj/effect/rubble_spawner,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room/temple_motus/main)
+"AO" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/siding/wideplating/dark/corner,
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room/temple_motus)
+"AP" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/library)
+"Bg" = (
+/obj/structure/fence/door,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_a)
+"Bx" = (
+/obj/structure/mineral_door/iron,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/rubble_spawner,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/main)
+"Bz" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/clan/stone_guard/dagger_puzzle/crown,
+/obj/structure/fluff/oldturret{
+	density = 0;
+	layer = 2.8;
+	name = "pedestal";
+	desc = "A pedestal for a statue."
+	},
+/obj/effect/rubble_spawner,
+/turf/open/floor/holofloor/chapel,
+/area/city/backstreets_room/temple_motus/main)
+"BA" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/glass,
+/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/extra_arm,
+/turf/open/indestructible/white,
+/area/city/backstreets_room/temple_motus/medbay)
+"BD" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/greyscale{
+	color = "#8a8a8a"
+	},
+/obj/structure/fluff/paper/stack,
+/obj/item/reagent_containers/glass/beaker,
+/obj/item/reagent_containers/glass/beaker,
+/obj/item/reagent_containers/glass/beaker,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_a)
+"BE" = (
+/obj/machinery/telecomms/server/presets/command{
+	name = "Command Server"
+	},
+/obj/effect/turf_decal/bot,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
+"BI" = (
+/obj/structure/spacevine,
+/turf/closed/wall/mineral/bronze,
+/area/city/backstreets_room/temple_motus/factory)
+"BU" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room/temple_motus/outskirts)
+"Ca" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/glass,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/turf/open/indestructible/white,
+/area/city/backstreets_room/temple_motus/medbay)
+"Cc" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/wall_vent{
+	pixel_x = 32
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/main)
+"Cn" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/statue/bronze/marx{
+	icon = 'ModularTegustation/Teguicons/teaser_mobs.dmi';
+	icon_state = "stone_guard";
+	name = "stone statue";
+	desc = "A humanoid looking statue wielding a spear... It appears to have 'Resurgence Clan' etched on their back..."
+	},
+/obj/structure/fluff/oldturret{
+	density = 0;
+	layer = 2.8;
+	name = "pedestal";
+	desc = "A pedestal for a statue."
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room/temple_motus/factory)
+"Ct" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/sofa/left{
+	dir = 1
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room/temple_motus/library)
+"Cx" = (
+/obj/structure/spacevine,
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus)
+"CW" = (
+/obj/machinery/telecomms/broadcaster/preset_right,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
+"CX" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/sign/plaques/kiddie/library{
+	pixel_x = -32
+	},
+/obj/effect/rubble_spawner,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room/temple_motus/main)
+"Db" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room/temple_motus/storage)
+"Dl" = (
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/treasure_hallway)
+"Dq" = (
+/obj/structure/sign/poster/official/do_not_question,
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus)
+"Dt" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/stairs/old{
+	dir = 1;
+	color = "#5e5e5e"
+	},
+/area/city/backstreets_room/temple_motus)
+"DE" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/armor{
+	dir = 8
+	},
+/obj/structure/fluff/oldturret{
+	density = 0;
+	layer = 2.8;
+	name = "pedestal";
+	desc = "A pedestal for a statue."
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_b)
+"DG" = (
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/outskirts)
+"DR" = (
+/obj/structure/bed/maint,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/mob_spawn/human/corpse,
+/obj/effect/gibspawner/human/bodypartless,
+/turf/open/floor/holofloor/grass,
+/area/city/backstreets_room/temple_motus/study_a)
+"Ea" = (
+/obj/machinery/telecomms/broadcaster/preset_left,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
+"Ed" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/garbage,
+/turf/open/indestructible/white,
+/area/city/backstreets_room/temple_motus/medbay)
+"Eo" = (
+/obj/structure/filingcabinet,
+/obj/structure/filingcabinet{
+	pixel_x = 10
+	},
+/obj/structure/filingcabinet{
+	pixel_x = -10
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/outskirts)
+"EF" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/rubble_spawner,
+/turf/open/floor/holofloor/chapel{
+	dir = 1
+	},
+/area/city/backstreets_room/temple_motus/main)
+"EG" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/greyscale{
+	color = "#8a8a8a"
+	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/item/tape/resurgence/shared_dreams,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room/temple_motus/storage)
+"EH" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/portal/permanent/one_way{
+	id = "temple_start1";
+	mouse_opacity = 0;
+	alpha = 0
+	},
+/turf/open/floor/plasteel/stairs/old{
+	dir = 1;
+	color = "#5e5e5e"
+	},
+/area/city/backstreets_room/temple_motus)
+"EL" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/portal/permanent/one_way{
+	id = "temple_exit2";
+	mouse_opacity = 0;
+	alpha = 0
+	},
+/turf/open/floor/plasteel/stairs/old{
+	dir = 1;
+	color = "#5e5e5e"
+	},
+/area/city/backstreets_room/temple_motus)
+"EM" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/wall_vent{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/city/backstreets_room/temple_motus/study_b)
+"EN" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/bronze,
+/obj/item/clothing/shoes/bronze,
+/obj/item/clothing/shoes/bronze,
+/obj/item/clothing/head/bronze,
+/obj/item/clothing/head/bronze,
+/turf/open/floor/bronze,
+/area/city/backstreets_room/temple_motus/factory)
+"EO" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/lootcrate/workshopallas,
+/obj/structure/rack,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room/temple_motus/factory)
+"EP" = (
+/obj/structure/flora/stump,
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room/temple_motus/outskirts)
+"EQ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/step_trigger/place_atom{
+	atom_path = /mob/living/simple_animal/hostile/mad_fly_swarm;
+	atom_rename = "fly escapee";
+	spawn_dist_x = -1;
+	spawn_flavor_text = "emerges from a vent."
+	},
+/obj/effect/step_trigger/sound_effect{
+	extra_range = 4;
+	happens_once = 1;
+	sound = 'sound/machines/closet_open.ogg';
+	volume = 50
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/dorms)
+"EX" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/cobweb,
+/obj/machinery/computer/operating{
+	dir = 4
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/city/backstreets_room/temple_motus/study_b)
+"Fe" = (
+/obj/effect/motus_emergency_escape,
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room/temple_motus/outskirts)
+"Fh" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/robes{
+	dir = 8
+	},
+/obj/structure/fluff/oldturret{
+	density = 0;
+	layer = 2.8;
+	name = "pedestal";
+	desc = "A pedestal for a statue."
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_b)
+"Fj" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/siding/wideplating/dark,
+/obj/item/tape/resurgence/temple_of_motus,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room/temple_motus)
+"Fp" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/wood{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/dorms)
+"Fw" = (
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/main)
+"FD" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/xenoblood/xsplatter,
+/turf/open/floor/holofloor/grass,
+/area/city/backstreets_room/temple_motus/study_a)
+"FF" = (
+/obj/effect/decal/cleanable/oil/slippery,
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/outskirts)
+"FJ" = (
+/obj/structure/bookcase{
+	pixel_y = -32;
+	density = 0
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/library)
+"FK" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/bronze,
+/obj/structure/window/bronze{
+	dir = 8
+	},
+/obj/structure/window/bronze{
+	dir = 4
+	},
+/obj/structure/window/bronze,
+/obj/structure/window/bronze{
+	dir = 1
+	},
+/obj/item/organ/cyberimp/chest/resurgence_sandstorm,
+/obj/item/tape/resurgence/morning_raid,
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room/temple_motus/treasure_room)
+"FM" = (
+/obj/structure/sign/departments/holy,
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/main)
+"FN" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/smartfridge/organ,
+/turf/open/floor/plasteel/showroomfloor,
+/area/city/backstreets_room/temple_motus/study_b)
+"Gg" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/rubble_spawner,
+/turf/open/floor/circuit,
+/area/city/backstreets_room/temple_motus/treasure_hallway)
+"Go" = (
+/turf/closed/indestructible/rock,
+/area/city/backstreets_room/temple_motus/outskirts)
+"Gt" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room/temple_motus/outskirts)
+"Gv" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/garbage,
+/obj/structure/glowshroom/single,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_a)
+"GA" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/keeper_field,
+/obj/effect/rubble_spawner,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/treasure_entrance)
+"GB" = (
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/study_a)
+"GL" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/holofloor/chapel{
+	dir = 8
+	},
+/area/city/backstreets_room/temple_motus/main)
+"GO" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/keeper_field,
+/turf/open/floor/circuit,
+/area/city/backstreets_room/temple_motus/treasure_entrance)
+"GP" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/greyscale{
+	color = "#8a8a8a"
+	},
+/obj/item/tape/resurgence/fly_research,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_a)
+"GW" = (
+/obj/structure/sign/poster/contraband/isc,
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/main)
+"Ha" = (
+/turf/closed/indestructible/reinforced,
+/area/facility_hallway/north)
+"Hk" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/sofa/corner{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room/temple_motus/library)
+"Hz" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/greyscale{
+	color = "#8a8a8a"
+	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/structure/lootcrate/hana,
+/obj/item/tape/resurgence/temple_tour,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/library)
+"HG" = (
+/turf/closed/indestructible/wood,
+/area/city/backstreets_room/temple_motus/outskirts)
+"HV" = (
+/obj/structure/sign/poster/official/work_for_a_future,
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/treasure_hallway)
+"Ij" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/portal_exit{
+	id = "temple_start1"
+	},
+/turf/open/floor/plasteel/stairs/old{
+	dir = 1;
+	color = "#5e5e5e"
+	},
+/area/city/backstreets_room/temple_motus)
+"It" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/garbage,
+/obj/structure/chair/sofa/corp{
+	dir = 1
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus)
+"Ix" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/wall_vent{
+	pixel_y = 32
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_a)
+"Iz" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	pixel_y = 5
+	},
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand";
+	density = 1
+	},
+/area/city/backstreets_room/temple_motus/outskirts)
+"IB" = (
+/obj/structure/sign/poster/official/smile,
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/dorms)
+"IP" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room/temple_motus/treasure_room)
+"IS" = (
+/obj/structure/bookcase{
+	pixel_x = 32;
+	density = 0
+	},
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/library)
+"IT" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room/temple_motus/outskirts)
+"IX" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/sofa{
+	dir = 1
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room/temple_motus/library)
+"Jb" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/fluff/oldturret{
+	density = 0;
+	layer = 2.8;
+	name = "pedestal";
+	desc = "A pedestal for a statue."
+	},
+/mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/hood{
+	dir = 8
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_b)
+"Jc" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/wall_vent{
+	pixel_x = 32
+	},
+/obj/effect/rubble_spawner,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room/temple_motus/main)
+"Jf" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/rack{
+	color = "#f8fc03"
+	},
+/obj/structure/lootcrate/money{
+	lootlist = list(/obj/item/stack/spacecash/c500);
+	rarechance = null
+	},
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room/temple_motus/treasure_room)
+"Jj" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/holofloor/chapel,
+/area/city/backstreets_room/temple_motus/main)
+"Jm" = (
+/obj/machinery/telecomms/message_server/preset,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
+"Jp" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/fluff/empty_cryostasis_sleeper,
+/turf/open/indestructible/white,
+/area/city/backstreets_room/temple_motus/medbay)
+"Jv" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/fluff/clockwork/fallen_armor,
+/turf/open/floor/bronze,
+/area/city/backstreets_room/temple_motus/factory)
+"JC" = (
+/obj/structure/bookcase{
+	pixel_y = -32;
+	density = 0
+	},
+/obj/structure/bookcase{
+	pixel_x = 32;
+	density = 0
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/wood/fancy/purple,
+/obj/item/flashlight/pen,
+/obj/item/flashlight/pen,
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/library)
+"JM" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/door/keycard{
+	puzzle_id = "motus_medbay"
+	},
+/turf/open/indestructible/white,
+/area/city/backstreets_room/temple_motus/medbay)
+"JO" = (
+/obj/structure/sign/plaques/kiddie/perfect_man,
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/dorms)
+"JQ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/library)
+"Ka" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/step_trigger/place_atom{
+	atom_path = /mob/living/simple_animal/hostile/mad_fly_swarm;
+	atom_rename = "fly escapee";
+	spawn_flavor_text = "emerges from a vent.";
+	spawn_dist_y = 1
+	},
+/obj/effect/step_trigger/sound_effect{
+	extra_range = 4;
+	happens_once = 1;
+	sound = 'sound/machines/closet_open.ogg';
+	volume = 50
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_a)
+"Kg" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/bronze,
+/obj/item/clothing/suit/bronze,
+/obj/item/clothing/suit/bronze,
+/turf/open/floor/bronze,
+/area/city/backstreets_room/temple_motus/factory)
+"Kk" = (
+/obj/machinery/telecomms/relay/preset/telecomms,
+/obj/structure/emergency_shield,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
+"Kn" = (
+/obj/structure/mineral_door/iron,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/treasure_entrance)
+"Kp" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/greyscale{
+	color = "#8a8a8a"
+	},
+/obj/item/paper_bin/bundlenatural,
+/obj/item/tape/resurgence/fly_research2,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_a)
+"Kq" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/rubble_spawner,
+/turf/open/floor/holofloor/chapel,
+/area/city/backstreets_room/temple_motus/main)
+"Kr" = (
+/obj/structure/bookcase{
+	pixel_y = 32;
+	density = 0
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/library)
+"Ks" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/detective_scanner,
+/obj/item/deepscanner,
+/obj/structure/table/glass,
+/turf/open/floor/plasteel/showroomfloor,
+/area/city/backstreets_room/temple_motus/study_b)
+"Kv" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/drone_maker,
+/turf/open/floor/bronze,
+/area/city/backstreets_room/temple_motus/factory)
+"KE" = (
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/outskirts)
+"KI" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/grille/broken,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/dorms)
+"KJ" = (
+/obj/structure/fence{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_a)
+"KV" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room/temple_motus/factory)
+"KX" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/wood,
+/obj/effect/wall_vent{
+	pixel_y = -32
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/dorms)
+"Le" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/pickaxe_spawner,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room/temple_motus/main)
+"Lo" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/rack{
+	color = "#f8fc03"
+	},
+/obj/effect/landmark/cratespawn/corpo,
+/obj/effect/landmark/cratespawn/corpo,
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room/temple_motus/treasure_room)
+"Lu" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/wall_vent{
+	pixel_y = -32
+	},
+/turf/open/indestructible/white,
+/area/city/backstreets_room/temple_motus/medbay)
+"LA" = (
+/obj/structure/spacevine,
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/storage)
+"LC" = (
+/obj/structure/bookcase{
+	density = 0
+	},
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/library)
+"LM" = (
+/obj/structure/spacevine,
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/main)
+"LP" = (
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/treasure_entrance)
+"LT" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/blackbox_recorder,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_a)
+"Mj" = (
+/turf/closed/indestructible/rock,
+/area/city/backstreets_room/temple_motus/factory)
+"Mk" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/greyscale{
+	color = "#8a8a8a"
+	},
+/obj/structure/lootcrate/money{
+	lootlist = list(/obj/item/stack/spacecash/c500);
+	rarechance = null
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room/temple_motus/storage)
+"Mv" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/circuit,
+/area/city/backstreets_room/temple_motus/treasure_hallway)
+"Mx" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/door/keycard/final_door,
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room/temple_motus/treasure_entrance)
+"My" = (
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus)
+"MD" = (
+/obj/structure/mineral_door/iron,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/city/backstreets_room/temple_motus)
+"ME" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/wall_vent{
+	pixel_y = 32
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/storage)
+"MF" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/relay/preset/telecomms,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
+"MP" = (
+/obj/structure/sign/departments/examroom,
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/study_b)
+"MU" = (
+/obj/structure/sign/poster/official/work_for_a_future,
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus)
+"MZ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/storage)
+"Na" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/chair/wood{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room/temple_motus/outskirts)
+"Nh" = (
+/obj/structure/table/optable,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/mob_spawn/human/corpse,
+/turf/open/floor/plasteel/showroomfloor,
+/area/city/backstreets_room/temple_motus/study_b)
+"No" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/sofa/corp/left{
+	dir = 8
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus)
+"Nv" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/portal_exit{
+	id = "temple_exit1"
+	},
+/turf/open/floor/plasteel/stairs/old{
+	dir = 1;
+	color = "#5e5e5e"
+	},
+/area/city/backstreets_room/temple_motus)
+"NJ" = (
+/turf/closed/wall/mineral/bronze,
+/area/city/backstreets_room/temple_motus/factory)
+"NK" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/step_trigger/sound_effect{
+	extra_range = 4;
+	happens_once = 1;
+	sound = 'sound/machines/closet_open.ogg';
+	volume = 50
+	},
+/obj/effect/step_trigger/place_atom{
+	atom_path = /mob/living/simple_animal/hostile/mad_fly_swarm;
+	atom_rename = "fly escapee";
+	spawn_dist_x = -1;
+	spawn_flavor_text = "emerges from a vent.";
+	spawn_dist_y = -2
+	},
+/obj/effect/step_trigger/place_atom{
+	atom_path = /mob/living/simple_animal/hostile/mad_fly_swarm;
+	atom_rename = "fly escapee";
+	spawn_dist_x = -1;
+	spawn_flavor_text = "emerges from a vent.";
+	spawn_dist_y = -2
+	},
+/turf/open/indestructible/white,
+/area/city/backstreets_room/temple_motus/medbay)
+"NX" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/fluff/paper/stack,
+/obj/structure/glowshroom/single,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_a)
+"Og" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/telecomms/bus/preset_one,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
+"Ok" = (
+/obj/structure/bookcase{
+	pixel_x = -32;
+	density = 0
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/sofa/corner{
+	dir = 1
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room/temple_motus/library)
+"On" = (
+/obj/structure/bed/maint,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/mob_spawn/human/corpse,
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_a)
+"Ot" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/recharge_station,
+/turf/open/indestructible/white,
+/area/city/backstreets_room/temple_motus/medbay)
+"Ov" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/computer/operating{
+	dir = 4
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/city/backstreets_room/temple_motus/study_b)
+"Ox" = (
+/obj/structure/mineral_door/wood,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/rubble_spawner,
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/library)
+"OA" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/door/keycard/puzzle_riddles,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/storage)
+"OB" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/sofa/corp/corner,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus)
+"OD" = (
+/obj/structure/mineral_door/iron,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_b)
+"OQ" = (
+/obj/structure/bookcase{
+	pixel_x = 32;
+	density = 0
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/sofa/right{
+	dir = 8
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room/temple_motus/library)
+"OV" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/sofa/left,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room/temple_motus/library)
+"OY" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/plating,
+/area/city/backstreets_room/temple_motus/factory)
+"PA" = (
+/obj/structure/rack{
+	color = "#875300"
+	},
+/obj/item/flashlight/flare/torch,
+/obj/item/flashlight/flare/torch,
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/outskirts)
+"PE" = (
+/turf/closed/mineral/ash_rock,
+/area/city/backstreets_room/temple_motus/main)
+"PK" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/titanium/yellow,
+/area/city/backstreets_room/temple_motus/treasure_room)
+"Qm" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room/temple_motus/outskirts)
+"Qs" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/robot_debris,
+/turf/open/indestructible/white,
+/area/city/backstreets_room/temple_motus/medbay)
+"Qt" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/statue/silver/secborg,
+/obj/structure/fluff/oldturret{
+	density = 0;
+	layer = 2.8;
+	name = "pedestal";
+	desc = "A pedestal for a statue."
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_b)
+"QK" = (
+/obj/structure/bookcase/random/adult,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/closed/indestructible/wood,
+/area/city/backstreets_room/temple_motus/library)
+"Rg" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/clan/stone_guard/heretic_puzzle/intro{
+	dir = 4
+	},
+/obj/structure/fluff/oldturret{
+	density = 0;
+	layer = 2.8;
+	name = "pedestal";
+	desc = "A pedestal for a statue."
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_b)
+"Ri" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/telecomms/processor/preset_one,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
+"Rl" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/xenoblood,
+/mob/living/simple_animal/hostile/mad_fly_nest,
+/turf/open/floor/holofloor/grass,
+/area/city/backstreets_room/temple_motus/study_a)
+"Rr" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/xenoblood/xsplatter,
+/obj/effect/step_trigger/place_atom{
+	atom_path = /mob/living/simple_animal/hostile/mad_fly_swarm;
+	atom_rename = "fly escapee";
+	spawn_flavor_text = "emerges from a vent."
+	},
+/obj/effect/step_trigger/sound_effect{
+	extra_range = 4;
+	happens_once = 1;
+	sound = 'sound/machines/closet_open.ogg';
+	volume = 50
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_a)
+"Ru" = (
+/obj/structure/mineral_door/iron,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/step_trigger/place_atom{
+	atom_path = /mob/living/simple_animal/hostile/mad_fly_swarm;
+	atom_rename = "fly escapee";
+	spawn_dist_x = 2;
+	spawn_dist_y = -1;
+	spawn_flavor_text = "emerges from a vent."
+	},
+/obj/effect/step_trigger/sound_effect{
+	extra_range = 4;
+	happens_once = 1;
+	sound = 'sound/machines/closet_open.ogg';
+	volume = 50
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/dorms)
+"Rv" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/sofa/right{
+	dir = 1
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room/temple_motus/library)
+"RC" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room/temple_motus/main)
+"RD" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/titanium/tiled/white{
+	color = "#03a113"
+	},
+/area/city/backstreets_room/temple_motus/factory)
+"RF" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/titanium/tiled/white{
+	color = "#03a19e"
+	},
+/area/city/backstreets_room/temple_motus/factory)
+"RT" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/dorms)
+"RU" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/library)
+"RY" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/door/keycard{
+	puzzle_id = "motus_storage"
+	},
+/obj/effect/rubble_spawner,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/main)
+"Sf" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room/temple_motus/outskirts)
+"Si" = (
+/obj/structure/bookcase/random/reference,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/closed/indestructible/wood,
+/area/city/backstreets_room/temple_motus/library)
+"Su" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 5
+	},
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room/temple_motus/outskirts)
+"SB" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/bookbinder,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room/temple_motus/library)
+"Te" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/clan/stone_guard/dagger_puzzle/book,
+/obj/structure/fluff/oldturret{
+	density = 0;
+	layer = 2.8;
+	name = "pedestal";
+	desc = "A pedestal for a statue."
+	},
+/obj/effect/rubble_spawner,
+/turf/open/floor/holofloor/chapel{
+	dir = 4
+	},
+/area/city/backstreets_room/temple_motus/main)
+"TG" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_b)
+"TW" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/titanium/tiled/white{
+	color = "#c40d00"
+	},
+/area/city/backstreets_room/temple_motus/factory)
+"TZ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/statue/bronze/marx{
+	icon = 'ModularTegustation/Teguicons/teaser_mobs.dmi';
+	icon_state = "stone_guard";
+	name = "stone statue";
+	desc = "A humanoid looking statue wielding a spear... It appears to have 'Resurgence Clan' etched on their back...";
+	dir = 1
+	},
+/obj/structure/fluff/oldturret{
+	density = 0;
+	layer = 2.8;
+	name = "pedestal";
+	desc = "A pedestal for a statue."
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/dorms)
+"Ub" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/sofa/corp/left,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus)
+"Ud" = (
+/obj/structure/sign/poster/contraband/borg_fancy_2,
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/main)
+"Ui" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/spreading/scarlet_vine,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room/temple_motus/dorms)
+"Uk" = (
+/obj/structure/mineral_door/iron,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room/temple_motus)
+"Ul" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/city/backstreets_room/temple_motus/factory)
+"Uq" = (
+/obj/structure/mineral_door/iron,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus)
+"Uw" = (
+/obj/effect/turf_decal/trimline/red/filled/warning,
+/obj/docking_port/stationary{
+	dwidth = 5;
+	height = 5;
+	id = "temple_floor";
+	name = "temple floor";
+	width = 10
+	},
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room/temple_motus/outskirts)
+"UB" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_b)
+"UE" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room/temple_motus/storage)
+"UG" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/sofa/corp/corner{
+	dir = 8
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus)
+"UM" = (
+/obj/machinery/telecomms/server/presets/science,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
+"Va" = (
+/obj/structure/flora/rock/pile,
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room/temple_motus/outskirts)
+"Vu" = (
+/obj/structure/bonfire/prelit,
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room/temple_motus/outskirts)
+"Vy" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/crown_dagger_puzzle/book,
+/obj/structure/fluff/divine/convertaltar{
+	density = 1
+	},
+/obj/effect/rubble_spawner,
+/turf/open/floor/holofloor/chapel{
+	dir = 4
+	},
+/area/city/backstreets_room/temple_motus/main)
+"Vz" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/storage)
+"VC" = (
+/obj/structure/bed/maint,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/holofloor/grass,
+/area/city/backstreets_room/temple_motus/study_a)
+"VR" = (
+/turf/closed/indestructible/rock,
+/area/city/backstreets_room/temple_motus/dorms)
+"VU" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/pew{
+	dir = 1
+	},
+/turf/open/floor/holofloor/chapel{
+	dir = 4
+	},
+/area/city/backstreets_room/temple_motus/main)
+"Wk" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 6
+	},
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room/temple_motus/outskirts)
+"Wp" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/rubble_spawner,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room/temple_motus/main)
+"WN" = (
+/obj/machinery/telecomms/server/presets/medical,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/north)
+"WT" = (
+/obj/structure/bed{
+	pixel_y = 15;
+	layer = 2.95;
+	can_buckle = 0;
+	name = "bunk beds";
+	density = 1
+	},
+/obj/structure/bed{
+	name = "bunk beds";
+	can_buckle = 0;
+	density = 1
+	},
+/obj/structure/ladder{
+	pixel_x = 4;
+	pixel_y = -5;
+	layer = 2.97;
+	mouse_opacity = 0
+	},
+/obj/item/bedsheet/hop{
+	desc = "Fancy cloth earned through good deeds.";
+	name = "old bedsheet";
+	layer = 2.94
+	},
+/obj/item/bedsheet/hop{
+	desc = "Fancy cloth earned through good deeds.";
+	name = "old bedsheet";
+	layer = 2.96;
+	pixel_y = 15
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/dorms)
+"WZ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/greyscale{
+	color = "#8a8a8a"
+	},
+/obj/effect/wall_vent{
+	pixel_x = -32
+	},
+/obj/structure/lootcrate/money{
+	lootlist = list(/obj/item/stack/spacecash/c500);
+	rarechance = null
+	},
+/obj/structure/lootcrate/money{
+	lootlist = list(/obj/item/stack/spacecash/c500);
+	rarechance = null
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/library)
+"Xa" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/xenoblood,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_a)
+"Xb" = (
+/obj/structure/closet/crate/wooden,
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/outskirts)
+"Xg" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/chair/pew/left{
+	dir = 1
+	},
+/obj/effect/rubble_spawner,
+/turf/open/floor/holofloor/chapel{
+	dir = 4
+	},
+/area/city/backstreets_room/temple_motus/main)
+"Xl" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/glass,
+/obj/item/tape/resurgence/rose_research2,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room/temple_motus/dorms)
+"Xn" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room/temple_motus/outskirts)
+"Xt" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/garbage,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus)
+"Xw" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/glowshroom/single,
+/turf/open/floor/holofloor/grass,
+/area/city/backstreets_room/temple_motus/study_a)
+"Xx" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/sign/plaques/kiddie/library{
+	pixel_x = -32
+	},
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room/temple_motus/main)
+"XG" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/glass,
+/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/tape/resurgence/dying_machine,
+/turf/open/indestructible/white,
+/area/city/backstreets_room/temple_motus/medbay)
+"XL" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/fluff/paper/stack{
+	dir = 1
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_a)
+"XN" = (
+/obj/structure/mineral_door/iron,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/step_trigger/place_atom{
+	atom_path = /mob/living/simple_animal/hostile/mad_fly_swarm;
+	atom_rename = "fly escapee";
+	spawn_dist_x = 2;
+	spawn_dist_y = -1;
+	spawn_flavor_text = "emerges from a vent."
+	},
+/obj/effect/step_trigger/sound_effect{
+	extra_range = 4;
+	happens_once = 1;
+	sound = 'sound/machines/closet_open.ogg';
+	volume = 50
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/dorms)
+"XP" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/fluff/clockwork/blind_eye,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room/temple_motus/factory)
+"Ya" = (
+/turf/closed/mineral/ash_rock,
+/area/city/backstreets_room/temple_motus/outskirts)
+"Ye" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/portal/permanent/one_way{
+	id = "temple_exit1";
+	mouse_opacity = 0;
+	alpha = 0
+	},
+/turf/open/floor/plasteel/stairs/old{
+	dir = 1;
+	color = "#5e5e5e"
+	},
+/area/city/backstreets_room/temple_motus)
+"Yj" = (
+/obj/structure/sign/poster/official/do_not_question,
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/study_b)
+"Yp" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/keeper_field,
+/obj/effect/rubble_spawner,
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/treasure_entrance)
+"Yz" = (
+/obj/structure/spacevine,
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/dorms)
+"YD" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	pixel_y = 5
+	},
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 1;
+	pixel_y = -5
+	},
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room/temple_motus/outskirts)
+"YF" = (
+/obj/structure/bookcase{
+	pixel_x = -32;
+	density = 0
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/library)
+"YG" = (
+/turf/closed/indestructible/iron,
+/area/city/backstreets_room/temple_motus/library)
+"YP" = (
+/obj/structure/flora/rock,
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room/temple_motus/outskirts)
+"YQ" = (
+/obj/structure/mineral_door/iron,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/study_a)
+"YR" = (
+/obj/structure/bookcase{
+	pixel_y = 32;
+	density = 0
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/rubble_spawner,
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/library)
+"YT" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/structure/chair/wood{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand"
+	},
+/area/city/backstreets_room/temple_motus/outskirts)
+"Zc" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/generic,
+/obj/effect/rubble_spawner,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/main)
+"Zd" = (
+/obj/structure/bookcase{
+	pixel_x = -32;
+	density = 0
+	},
+/obj/structure/bookcase{
+	pixel_y = 32;
+	density = 0
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/puzzle_key_case,
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/library)
+"Zs" = (
+/obj/structure/bed{
+	pixel_y = 15;
+	layer = 2.95;
+	can_buckle = 0;
+	name = "bunk beds";
+	density = 1
+	},
+/obj/structure/bed{
+	name = "bunk beds";
+	can_buckle = 0;
+	density = 1
+	},
+/obj/structure/ladder{
+	pixel_x = 4;
+	pixel_y = -5;
+	layer = 2.97;
+	mouse_opacity = 0
+	},
+/obj/item/bedsheet/hop{
+	desc = "Fancy cloth earned through good deeds.";
+	name = "old bedsheet";
+	layer = 2.94
+	},
+/obj/item/bedsheet/hop{
+	desc = "Fancy cloth earned through good deeds.";
+	name = "old bedsheet";
+	layer = 2.96;
+	pixel_y = 15
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/gibspawner/robot,
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/wood,
+/area/city/backstreets_room/temple_motus/dorms)
+"ZC" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/displaycase/labcage,
+/obj/structure/spreading/scarlet_vine,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room/temple_motus/dorms)
+"ZD" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/rubble_spawner,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus/main)
+"ZG" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand";
+	density = 1
+	},
+/area/city/backstreets_room/temple_motus/outskirts)
+"ZI" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/xenoblood,
+/turf/open/floor/holofloor/grass,
+/area/city/backstreets_room/temple_motus/study_a)
+"ZM" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/structure/glowshroom/single,
+/turf/open/floor/holofloor/grass,
+/area/city/backstreets_room/temple_motus/factory)
+"ZO" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/stone,
+/area/city/backstreets_room/temple_motus)
+"ZS" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/fluff/clockwork/clockgolem_remains,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room/temple_motus/factory)
+"ZV" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/holofloor/grass,
+/area/city/backstreets_room/temple_motus/main)
+"ZX" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 1;
+	pixel_y = -5
+	},
+/turf/open/floor/plating/asteroid{
+	name = "outskirts sand";
+	density = 1
+	},
+/area/city/backstreets_room/temple_motus/outskirts)
+
+(1,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+"}
+(2,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+ty
+ty
+ty
+ty
+Go
+Va
+nU
+nU
+YP
+nU
+nU
+EP
+Va
+Go
+ty
+ty
+Go
+Go
+Go
+Go
+"}
+(3,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+ty
+uu
+nU
+EP
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+uu
+nU
+ty
+ty
+ty
+Go
+Go
+"}
+(4,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+Go
+Go
+Go
+Go
+Va
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+uy
+nU
+nU
+nU
+nU
+nU
+EP
+ty
+ty
+Go
+"}
+(5,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+Go
+Go
+Go
+nU
+nU
+ra
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+Va
+ty
+Go
+"}
+(6,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+Go
+Go
+uu
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+uu
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+YP
+Go
+"}
+(7,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+LC
+YG
+YG
+YG
+YG
+YG
+YG
+YG
+YG
+LC
+YG
+YG
+YG
+YG
+YG
+YG
+YG
+LC
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+Go
+Go
+pW
+EP
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+HG
+HG
+HG
+HG
+HG
+HG
+HG
+nU
+nU
+Go
+"}
+(8,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+YG
+YG
+YG
+YG
+Zd
+YF
+YF
+zO
+YF
+lc
+gT
+Ok
+Si
+YF
+YF
+YF
+YF
+YF
+YF
+bv
+YG
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+Go
+Go
+pW
+pW
+YP
+nU
+EP
+Va
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+HG
+PA
+PA
+PA
+DG
+zV
+HG
+nU
+nU
+Go
+"}
+(9,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+YG
+WZ
+AP
+YG
+xK
+JQ
+JQ
+cv
+hA
+JQ
+cb
+Rv
+Si
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+FJ
+YG
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+Go
+pW
+pW
+pW
+pW
+pW
+pW
+pW
+pW
+pW
+pW
+nU
+nU
+nU
+nU
+nU
+HG
+DG
+DG
+DG
+DG
+FF
+HG
+nU
+nU
+Go
+"}
+(10,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+YG
+AP
+ew
+tA
+sz
+sz
+mn
+hA
+hA
+hA
+JQ
+cb
+cb
+JQ
+JQ
+hA
+hA
+hA
+JQ
+FJ
+YG
+GB
+GB
+GB
+GB
+GB
+qg
+GB
+GB
+GB
+GB
+GB
+GB
+GB
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+Go
+KE
+KE
+KE
+KE
+KE
+pW
+KE
+KE
+KE
+pW
+nU
+nU
+nU
+EP
+nU
+HG
+DG
+FF
+DG
+DG
+Xb
+HG
+nU
+nU
+Go
+"}
+(11,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+YG
+Hz
+AP
+YG
+xK
+sz
+sz
+JQ
+hA
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+hA
+JQ
+JQ
+JQ
+FJ
+YG
+On
+oF
+yp
+ws
+oz
+Kp
+GP
+BD
+ws
+oF
+hi
+lV
+GB
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+pW
+pW
+pW
+pW
+pW
+pW
+pW
+KE
+KE
+KE
+pW
+YP
+nU
+nU
+nU
+nU
+HG
+xS
+HG
+HG
+HG
+HG
+HG
+nU
+nU
+Go
+"}
+(12,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+YG
+YG
+YG
+YG
+xK
+sz
+sz
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+hA
+RU
+JQ
+JQ
+FJ
+YG
+qH
+sM
+zy
+KJ
+qH
+XL
+Xa
+qH
+KJ
+lU
+hw
+zn
+GB
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+KE
+KE
+KE
+KE
+KE
+KE
+pW
+KE
+KE
+KE
+pW
+nU
+nU
+nU
+nU
+nU
+nU
+uy
+nU
+nU
+nU
+nU
+nU
+nU
+uy
+Go
+"}
+(13,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+LC
+QK
+hA
+sz
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+nf
+hA
+hA
+hA
+JQ
+FJ
+YG
+hU
+qH
+qH
+Bg
+XL
+qH
+qH
+xZ
+KJ
+qH
+qH
+vW
+GB
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+KE
+KE
+KE
+KE
+KE
+KE
+wa
+wa
+wa
+wa
+pW
+nU
+nU
+nU
+nU
+nU
+nU
+ra
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+Go
+"}
+(14,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+YG
+Kr
+JQ
+JQ
+of
+of
+of
+of
+of
+JQ
+JQ
+nf
+SB
+IX
+hA
+JQ
+FJ
+YG
+Ix
+qH
+lU
+KJ
+ee
+qH
+qH
+lU
+KJ
+qH
+qH
+ZI
+jx
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+KE
+KE
+KE
+KE
+KE
+KE
+wa
+nD
+zz
+nU
+nU
+nU
+uu
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+Go
+"}
+(15,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+YG
+Kr
+JQ
+JQ
+of
+Hk
+lg
+cb
+JQ
+JQ
+JQ
+JQ
+cb
+IX
+hA
+JQ
+FJ
+YG
+qH
+hw
+qH
+KJ
+NX
+hw
+XL
+qH
+ft
+zn
+qH
+Xw
+jx
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+zz
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+zB
+YT
+yH
+nU
+nU
+nU
+ra
+Go
+"}
+(16,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+YG
+YR
+sz
+JQ
+of
+OV
+ue
+JQ
+JQ
+JQ
+JQ
+JQ
+cb
+IX
+hA
+JQ
+FJ
+YG
+Gv
+qH
+qH
+KJ
+qH
+qH
+qH
+ee
+KJ
+qH
+Rl
+zL
+jx
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+My
+wH
+wH
+wH
+wH
+wH
+wH
+wH
+EH
+Nv
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+ld
+ld
+My
+zz
+zz
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+zB
+Xn
+nU
+Sf
+yH
+nU
+nU
+nU
+Go
+"}
+(17,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+LP
+LP
+LP
+LP
+LP
+LP
+LP
+LP
+LP
+LP
+LP
+LP
+LP
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+YG
+YR
+sz
+sz
+of
+cb
+JQ
+JQ
+cb
+nf
+JQ
+JQ
+hA
+hA
+hA
+JQ
+FJ
+YG
+oF
+yp
+hi
+ws
+jf
+Xa
+qH
+LT
+ws
+VC
+DR
+VC
+jx
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+My
+wH
+wH
+wH
+wH
+wH
+wH
+wH
+fW
+vG
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+ld
+ld
+Uq
+zz
+zz
+nU
+nU
+nU
+nU
+nU
+nU
+Fe
+nU
+nz
+nU
+Vu
+nU
+Na
+nU
+nU
+nU
+Go
+"}
+(18,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+LP
+GA
+bS
+GA
+GA
+GA
+GA
+GA
+GA
+bS
+ye
+GA
+LP
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+YG
+qJ
+sz
+sz
+JQ
+JQ
+JQ
+rg
+Ct
+nf
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+FJ
+YG
+qg
+GB
+GB
+GB
+GB
+YQ
+YQ
+GB
+GB
+jx
+jx
+jx
+jx
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+My
+wH
+wH
+wH
+wH
+wH
+wH
+wH
+gQ
+iH
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+ld
+ld
+My
+zz
+zz
+nU
+nU
+nU
+nU
+nU
+uy
+nU
+nU
+Qm
+IT
+nU
+jG
+ik
+nU
+nU
+nU
+Go
+"}
+(19,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+LP
+bS
+ye
+bS
+GA
+GA
+bS
+GA
+GA
+GA
+GA
+bS
+LP
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+YG
+jq
+hd
+hd
+xg
+xg
+kM
+OQ
+sn
+oR
+JQ
+JQ
+xg
+xg
+xg
+xg
+JC
+IS
+ex
+ex
+ex
+ex
+uL
+qH
+qH
+uL
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+zz
+nU
+nU
+nU
+nU
+EP
+nU
+nU
+nU
+nU
+nU
+Qm
+dc
+ik
+nU
+nU
+nU
+nU
+Go
+"}
+(20,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+LP
+GA
+bS
+go
+uD
+uD
+GO
+uD
+GO
+go
+GA
+bS
+LP
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+LC
+YG
+YG
+YG
+YG
+YG
+YG
+YG
+YG
+YG
+Ox
+Ox
+YG
+YG
+YG
+YG
+YG
+YG
+bd
+bd
+bd
+bd
+GB
+qH
+Xw
+jx
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+KE
+KE
+KE
+KE
+KE
+KE
+pW
+nD
+zz
+YP
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+Go
+"}
+(21,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+LP
+GA
+bS
+uD
+Yp
+Yp
+Yp
+Yp
+Yp
+GO
+GA
+bS
+LP
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Fw
+RC
+Wp
+mB
+CX
+Wp
+Wp
+Xx
+mB
+mB
+Wp
+Fw
+mt
+bp
+Jp
+Jp
+Jp
+GB
+zL
+FD
+jx
+Yz
+Yz
+yg
+JO
+yg
+yg
+IB
+JO
+yg
+yg
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+KE
+KE
+KE
+KE
+KE
+KE
+pW
+pW
+pW
+pW
+pW
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+Go
+"}
+(22,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+LP
+GA
+GA
+uD
+Yp
+hI
+hI
+hI
+Yp
+uD
+GA
+GA
+LP
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+rE
+Wp
+Wp
+mB
+EF
+ed
+Wp
+mB
+Wp
+Wp
+mB
+Fw
+la
+pd
+Qs
+bX
+Ed
+GB
+qH
+Xw
+jx
+Zs
+nc
+RT
+WT
+yg
+ip
+RT
+RT
+WT
+yg
+VR
+VR
+VR
+yg
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+KE
+KE
+KE
+KE
+KE
+KE
+pW
+KE
+KE
+KE
+wa
+Va
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+Go
+"}
+(23,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+LP
+GA
+GA
+GO
+GA
+GA
+GA
+bS
+GA
+GO
+bS
+bS
+LP
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Fw
+Fw
+qR
+GL
+eF
+Kq
+EF
+cK
+GW
+mB
+mB
+Fw
+BA
+pd
+pd
+pd
+Ot
+GB
+qH
+zL
+GB
+RT
+RT
+RT
+vE
+yg
+vE
+xV
+RT
+RT
+yg
+wp
+wp
+wp
+yg
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+pW
+pW
+pW
+pW
+pW
+pW
+pW
+KE
+KE
+KE
+wa
+nU
+nU
+nU
+nU
+nU
+HG
+HG
+HG
+xS
+HG
+nU
+nU
+nU
+Va
+Go
+"}
+(24,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+LP
+GA
+GA
+uD
+GA
+ye
+GA
+bS
+bS
+uD
+bS
+bS
+LP
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Fw
+Fw
+rP
+Kq
+EF
+ed
+Xg
+Ak
+de
+mB
+mB
+Fw
+Ca
+qd
+pd
+xt
+Lu
+GB
+Rr
+Ka
+GB
+RT
+xV
+RT
+tK
+yg
+tK
+nc
+RT
+RT
+yg
+Ar
+aj
+wp
+yg
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+KE
+KE
+KE
+KE
+KE
+KE
+pW
+KE
+KE
+KE
+wa
+nU
+nU
+nU
+nU
+nU
+HG
+rC
+rC
+DG
+HG
+nU
+nU
+nU
+nU
+Go
+"}
+(25,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+cO
+cO
+cO
+cO
+cO
+LP
+GA
+GA
+GO
+GO
+GO
+go
+GO
+GO
+uD
+GA
+GA
+LP
+Dl
+Dl
+Dl
+Dl
+Dl
+Dl
+Dl
+Dl
+Dl
+ex
+ex
+ex
+ex
+Fw
+Wp
+EF
+ed
+eF
+Kq
+mv
+ed
+pJ
+mB
+Le
+Fw
+XG
+tM
+NK
+Qs
+Ot
+GB
+lU
+qH
+GB
+WT
+RT
+RT
+xa
+yg
+xa
+RT
+RT
+WT
+yg
+aj
+aj
+Ar
+yg
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+pW
+pW
+pW
+pW
+pW
+pW
+pW
+pW
+wa
+wa
+wa
+nU
+nU
+nU
+nU
+nU
+HG
+DG
+DG
+DG
+HG
+nU
+nU
+uu
+nU
+Go
+"}
+(26,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+cO
+Jf
+IP
+ui
+ui
+LP
+ye
+GA
+GO
+bS
+bS
+uD
+bS
+GA
+uD
+GA
+sw
+LP
+mG
+Mv
+mG
+Gg
+Mv
+mG
+Gg
+mG
+Dl
+Dl
+HV
+Dl
+Dl
+Fw
+Wp
+eF
+Kq
+EF
+ed
+es
+Kq
+sT
+GL
+mB
+Fw
+bd
+mC
+JM
+wn
+bd
+GB
+YQ
+YQ
+GB
+yg
+yg
+nZ
+yg
+yg
+yg
+nZ
+yg
+yg
+od
+aj
+aj
+wW
+yg
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+pW
+pW
+nU
+nU
+nU
+nU
+nU
+Va
+nU
+nU
+nU
+nU
+nU
+uu
+nU
+nU
+HG
+hR
+DG
+Eo
+HG
+nU
+nU
+nU
+nU
+Go
+"}
+(27,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+cO
+Lo
+PK
+PK
+IP
+LP
+GA
+bS
+GO
+bS
+GO
+uD
+uD
+GA
+GO
+GA
+GA
+LP
+no
+no
+no
+no
+no
+no
+tH
+xG
+no
+no
+no
+no
+no
+ph
+Wp
+EF
+hG
+Vy
+Kq
+jT
+ed
+bC
+Jj
+mB
+FM
+aj
+Ar
+aj
+aj
+aj
+jz
+aj
+aj
+Ar
+aj
+kc
+aj
+aj
+aj
+aj
+aj
+aj
+aj
+aj
+aj
+aj
+jY
+Yz
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+pW
+EP
+nU
+nU
+ra
+nU
+nU
+nU
+nU
+EP
+nU
+nU
+nU
+nU
+nU
+nU
+HG
+HG
+HG
+HG
+HG
+nU
+nU
+nU
+nU
+Go
+"}
+(28,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+cO
+FK
+PK
+PK
+IP
+Mx
+tb
+bS
+eb
+uD
+uD
+lY
+GO
+GO
+eb
+GA
+GA
+Kn
+no
+no
+tH
+no
+no
+no
+no
+no
+tH
+no
+no
+xG
+no
+RY
+Wp
+eF
+Bz
+tC
+ed
+Xg
+Kq
+ad
+GL
+mB
+ii
+aj
+aj
+aj
+aj
+aj
+EQ
+aj
+aj
+aj
+aj
+aj
+aj
+aj
+aj
+aj
+Ar
+aj
+aj
+aj
+aj
+jY
+jY
+Yz
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+uu
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+Go
+"}
+(29,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+cO
+Lo
+PK
+PK
+IP
+LP
+GA
+bS
+uD
+GA
+GO
+uD
+uD
+GA
+uD
+GA
+GA
+LP
+no
+no
+no
+xG
+no
+no
+tH
+no
+no
+no
+no
+no
+no
+Fw
+Wp
+EF
+ed
+eF
+Kq
+mv
+ed
+VU
+Jj
+mB
+FM
+aj
+aj
+kc
+aj
+aj
+aj
+Ar
+aj
+aj
+aj
+aj
+aj
+aj
+aj
+aj
+aj
+aj
+aj
+aj
+wW
+jY
+jY
+Yz
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+nU
+nU
+nU
+nU
+nU
+nU
+uy
+nU
+nU
+nU
+nU
+nU
+nU
+EP
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+Go
+"}
+(30,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+cO
+Jf
+IP
+ar
+ar
+LP
+GA
+bS
+uD
+bS
+GA
+uD
+GA
+GA
+GO
+bS
+GA
+LP
+uT
+Gg
+uT
+Mv
+Gg
+hM
+Gg
+hM
+Dl
+Dl
+Dl
+Dl
+Dl
+Fw
+Jc
+eF
+Kq
+EF
+ed
+es
+Kq
+Aw
+Wp
+Le
+Fw
+yg
+yg
+Ru
+yg
+yg
+yg
+nZ
+yg
+yg
+yg
+uS
+XN
+uS
+yg
+aj
+aj
+aj
+aj
+yg
+yg
+yg
+Yz
+Yz
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+Go
+"}
+(31,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+cO
+cO
+cO
+cO
+cO
+LP
+GA
+GA
+uD
+GO
+uD
+eb
+GO
+uD
+uD
+GA
+bS
+LP
+Dl
+Dl
+Dl
+HV
+Dl
+Dl
+Dl
+Dl
+Dl
+ex
+ex
+ex
+ex
+Fw
+Fw
+fZ
+ed
+eF
+Jj
+jT
+uV
+aG
+Wp
+mB
+Fw
+ip
+RT
+RT
+xa
+yg
+WT
+RT
+RT
+xa
+yg
+KI
+KI
+KI
+yg
+sA
+aj
+aj
+TZ
+yg
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+YP
+nU
+nU
+EP
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+ra
+Go
+"}
+(32,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+LP
+GA
+bS
+uD
+bS
+GA
+bS
+GA
+GA
+GO
+GA
+GA
+LP
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Fw
+Fw
+Te
+Jj
+EF
+ed
+eF
+lB
+Fw
+Wp
+Wp
+Fw
+RT
+RT
+eC
+KX
+yg
+RT
+RT
+RT
+tK
+yg
+Ui
+ll
+Xl
+yg
+Ar
+aj
+aj
+aj
+yg
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ty
+nU
+nU
+nU
+nU
+nU
+nU
+EP
+nU
+nU
+nU
+uu
+nU
+nU
+nU
+nU
+nU
+nU
+ra
+nU
+nU
+nU
+nU
+nU
+uy
+nU
+Go
+"}
+(33,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+LP
+GA
+sw
+uD
+GA
+GA
+bS
+ye
+bS
+GO
+GA
+bS
+LP
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Fw
+uo
+Wp
+mB
+eF
+Kq
+mB
+Wp
+Wp
+mB
+Wp
+Fw
+RT
+RT
+RT
+Fp
+yg
+RT
+RT
+xV
+Fp
+yg
+lE
+ZC
+ks
+yg
+sA
+aj
+aj
+TZ
+yg
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ty
+nU
+nU
+nU
+nU
+nU
+Ya
+Ya
+Ya
+Ya
+Va
+nU
+nU
+nU
+nU
+nU
+nU
+ty
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+Go
+"}
+(34,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+LP
+GA
+GA
+uD
+bS
+GA
+GA
+GA
+GA
+GO
+GA
+GA
+LP
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+LM
+Wp
+Wp
+Wp
+Wp
+Wp
+Wp
+Wp
+mB
+mB
+Wp
+Fw
+WT
+RT
+nc
+WT
+yg
+WT
+RT
+RT
+ip
+yg
+yg
+My
+My
+My
+My
+Uq
+Uq
+My
+My
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ty
+Va
+nU
+nU
+Va
+Ya
+Ya
+Ya
+Ya
+Ya
+Ya
+nU
+nU
+nU
+nU
+nU
+Go
+ty
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+Go
+"}
+(35,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+LP
+bS
+bS
+uD
+jh
+hI
+hI
+hI
+Yp
+GO
+GA
+GA
+LP
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+LM
+LM
+LM
+LM
+Fw
+Bx
+Bx
+Fw
+Fw
+rE
+Fw
+Fw
+yg
+yg
+JO
+yg
+yg
+yg
+JO
+IB
+yg
+yg
+ex
+My
+hZ
+jv
+ld
+ld
+ld
+kZ
+My
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ty
+nU
+nU
+nU
+Ya
+Ya
+Ya
+Ya
+Ya
+Ya
+Ya
+nU
+nU
+nU
+nU
+Va
+Go
+ty
+wQ
+nU
+gt
+nU
+pR
+nU
+nU
+nU
+Go
+"}
+(36,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+LP
+bS
+GA
+uD
+Yp
+Yp
+Yp
+Yp
+Yp
+uD
+GA
+GA
+LP
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Fw
+ht
+ZD
+dD
+ZD
+Fw
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+My
+Ub
+vn
+ld
+ld
+vn
+It
+My
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ty
+nU
+nU
+nU
+Ya
+Ya
+Ya
+Ya
+Ya
+Ya
+Ya
+nU
+nU
+EP
+nU
+Go
+Go
+ty
+nU
+aO
+nU
+aO
+nU
+nU
+nU
+nU
+Go
+"}
+(37,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+LP
+GA
+GA
+eb
+uD
+GO
+GO
+uD
+uD
+eb
+bS
+GA
+LP
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Ud
+ZD
+ZD
+ZD
+ZD
+Fw
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+My
+ld
+ld
+ld
+ld
+vn
+aY
+My
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ty
+ra
+nU
+Va
+Ya
+Ya
+Ya
+Ya
+Ya
+Ya
+Ya
+nU
+nU
+nU
+nU
+Go
+Go
+ty
+BU
+YD
+nU
+YD
+xi
+nU
+nU
+nU
+Go
+"}
+(38,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+LP
+sw
+bS
+GA
+GA
+bS
+sw
+GA
+GA
+GA
+bS
+GA
+LP
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Fw
+Fw
+Fw
+rE
+Fw
+Fw
+ZD
+ZD
+Zc
+dD
+cN
+cN
+cN
+cN
+ep
+ep
+ep
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+My
+yM
+My
+ld
+ld
+vn
+aY
+My
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ty
+EP
+nU
+nU
+Ya
+Ya
+Ya
+Ya
+Ya
+Ya
+Va
+nU
+nU
+uu
+Go
+Go
+Go
+Go
+nU
+nU
+nU
+rh
+nU
+nU
+nU
+Va
+Go
+"}
+(39,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+LP
+GA
+GA
+GA
+GA
+GA
+GA
+bS
+bS
+GA
+GA
+GA
+LP
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+nB
+PE
+PE
+ZD
+ZD
+dD
+ZD
+dD
+dD
+dD
+cN
+EX
+Nh
+zG
+Nh
+Ov
+ep
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Dq
+bJ
+pX
+ld
+ld
+ZO
+UG
+My
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+Go
+nU
+nU
+nU
+Ya
+Ya
+Ya
+Ya
+nU
+nU
+nU
+nU
+Go
+Go
+Go
+Go
+Go
+BU
+aO
+nU
+YD
+Uw
+nU
+nU
+nU
+Go
+"}
+(40,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+LP
+LP
+LP
+LP
+LP
+LP
+LP
+LP
+LP
+LP
+LP
+LP
+LP
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+nB
+PE
+kl
+ZD
+dD
+ZD
+ZD
+dD
+dD
+dD
+cN
+EM
+zG
+zG
+zG
+zG
+ep
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+My
+ez
+Fj
+ld
+ld
+ld
+ld
+My
+MU
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+nU
+nU
+nU
+nU
+nU
+nU
+EP
+nU
+nU
+nU
+Go
+Go
+ex
+ex
+Go
+Go
+nU
+YD
+nU
+aO
+nU
+nU
+nU
+nU
+Go
+"}
+(41,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+nB
+PE
+Cc
+ZD
+dD
+Zc
+dD
+dD
+dD
+dD
+cN
+dZ
+Ks
+zG
+FN
+gX
+ep
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+My
+AO
+Al
+ld
+ld
+ld
+ld
+hV
+ld
+ld
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Ij
+Ye
+wH
+wH
+wH
+wH
+wH
+wH
+My
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+YP
+nU
+EP
+nU
+nU
+nU
+nU
+nU
+nU
+Va
+Go
+Go
+ex
+ex
+Go
+Go
+BU
+YD
+nU
+nU
+xi
+nU
+nU
+nU
+Go
+"}
+(42,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+dD
+dD
+dD
+dD
+MP
+UB
+UB
+TG
+UB
+Qt
+ep
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+My
+zH
+My
+ld
+ld
+ld
+ld
+Uq
+ld
+ld
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+eT
+EL
+wH
+wH
+wH
+wH
+wH
+wH
+My
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+Go
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+Go
+Go
+ex
+ex
+Go
+Go
+nU
+rh
+nU
+YD
+nU
+nU
+nU
+nU
+Go
+"}
+(43,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Fw
+dD
+dD
+dD
+kl
+OD
+fd
+UB
+UB
+UB
+UB
+cN
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+My
+Xt
+ld
+ZO
+ld
+ld
+ld
+hV
+ZO
+ld
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+Dt
+mi
+qh
+wH
+wH
+wH
+wH
+wH
+wH
+My
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ty
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+nU
+Go
+Go
+ex
+ex
+ex
+Go
+Go
+Su
+YD
+Gt
+rh
+Wk
+Go
+nU
+nU
+Go
+"}
+(44,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Fw
+dD
+dD
+dD
+dD
+OD
+UB
+UB
+UB
+Rg
+UB
+Yj
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+My
+qe
+vn
+ld
+ld
+ld
+ld
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+My
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ty
+nU
+uu
+nU
+nU
+nU
+nU
+nU
+Go
+Go
+Go
+ex
+ex
+ex
+Go
+Go
+eN
+eN
+eN
+Iz
+eN
+Go
+uA
+nU
+Go
+"}
+(45,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+lB
+dD
+dD
+dD
+dD
+MP
+vF
+UB
+UB
+UB
+UB
+cN
+ex
+ex
+ex
+ex
+ex
+Mj
+Mj
+Mj
+My
+OB
+No
+ld
+ld
+ld
+pM
+My
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ty
+ty
+nU
+nU
+uy
+nU
+nU
+nU
+Go
+Go
+Go
+ex
+ex
+ex
+Go
+Go
+eN
+Iz
+eN
+tR
+eN
+Go
+Go
+nU
+Go
+"}
+(46,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+LM
+dD
+kl
+dD
+dD
+cN
+mk
+TG
+DE
+Jb
+Fh
+cN
+ex
+ex
+ex
+ex
+ex
+Mj
+NJ
+NJ
+My
+My
+My
+kK
+MD
+Uk
+Cx
+Cx
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+ty
+nU
+nU
+nU
+nU
+nU
+YP
+Go
+Go
+Go
+ex
+ex
+ex
+Go
+Go
+eN
+tR
+eN
+tR
+ZG
+Go
+Go
+nU
+Go
+"}
+(47,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+LM
+ZV
+dD
+dD
+dD
+cN
+cN
+cN
+cN
+cN
+cN
+cN
+ex
+ex
+ex
+ex
+ex
+Mj
+ru
+EN
+eO
+eO
+tJ
+Cn
+KV
+Ul
+pl
+jp
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ty
+ty
+Va
+nU
+nU
+EP
+Go
+Go
+Go
+ex
+ex
+ex
+ex
+Go
+Go
+eN
+ZX
+eN
+ZX
+eN
+Go
+Go
+nU
+Go
+"}
+(48,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+LM
+ZV
+dD
+dD
+dD
+Fw
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Mj
+NJ
+Kv
+nV
+eO
+XP
+KV
+KV
+KV
+ZS
+jp
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+Go
+ex
+ex
+ex
+ex
+Go
+Go
+eN
+tR
+eN
+tR
+eN
+Go
+Go
+uu
+Go
+"}
+(49,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+LM
+ch
+ZV
+yR
+dD
+Fw
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Mj
+NJ
+Kg
+eO
+Ul
+KV
+KV
+Ul
+KV
+KV
+jp
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+Go
+eN
+tR
+eN
+eN
+eN
+Go
+Go
+nU
+Go
+"}
+(50,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+LA
+LA
+co
+OA
+co
+nQ
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Mj
+NJ
+nX
+Jv
+eO
+KV
+KV
+KV
+KV
+Ul
+lm
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+Go
+eN
+ZX
+eN
+tR
+eN
+Go
+Go
+Go
+Go
+"}
+(51,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+nQ
+MZ
+rV
+Vz
+rV
+nQ
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Mj
+BI
+mD
+nX
+eO
+KV
+Ul
+KV
+ZS
+KV
+lG
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+Go
+eN
+tR
+eN
+ZX
+eN
+Go
+ex
+ex
+ex
+"}
+(52,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+nQ
+rV
+rV
+rV
+rV
+nQ
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Mj
+BI
+ZM
+nX
+nX
+dY
+KV
+KV
+KV
+tJ
+lm
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+Go
+eN
+Iz
+eN
+tR
+eN
+Go
+ex
+ex
+ex
+"}
+(53,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+nQ
+nQ
+ME
+rV
+rV
+rV
+nQ
+nQ
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Mj
+BI
+BI
+BI
+NJ
+lm
+TW
+TW
+TW
+lm
+lm
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+Go
+eN
+eN
+eN
+tR
+eN
+Go
+ex
+ex
+ex
+"}
+(54,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+nQ
+EG
+Db
+rV
+rV
+Db
+sd
+nQ
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Mj
+Mj
+Mj
+Mj
+Mj
+lm
+TW
+TW
+TW
+lm
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+Go
+eN
+Iz
+eN
+ZX
+eN
+Go
+ex
+ex
+ex
+"}
+(55,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+nQ
+nQ
+Db
+Db
+UE
+Db
+nQ
+nQ
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+lm
+TW
+TW
+TW
+lm
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+Go
+eN
+tR
+eN
+tR
+eN
+Go
+ex
+ex
+ex
+"}
+(56,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+nQ
+Mk
+Mk
+Mk
+el
+nQ
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+lm
+wC
+wC
+wC
+lm
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+Go
+eN
+Iz
+eN
+Iz
+eN
+Go
+ex
+ex
+ex
+"}
+(57,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+nQ
+nQ
+nQ
+nQ
+nQ
+nQ
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+lm
+wC
+wC
+wC
+lm
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+Go
+eN
+tR
+eN
+tR
+eN
+Go
+ex
+ex
+ex
+"}
+(58,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+lm
+wC
+wC
+wC
+lm
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+Go
+eN
+tR
+eN
+eN
+eN
+Go
+ex
+ex
+ex
+"}
+(59,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+lm
+RF
+RF
+RF
+lm
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+Go
+eN
+tR
+eN
+Iz
+eN
+Go
+ex
+ex
+ex
+"}
+(60,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+lm
+RF
+RF
+RF
+lm
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+Go
+eN
+ZX
+eN
+tR
+eN
+Go
+ex
+ex
+ex
+"}
+(61,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+lm
+RF
+RF
+RF
+lm
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+Go
+eN
+tR
+eN
+Iz
+eN
+Go
+ex
+ex
+ex
+"}
+(62,1,1) = {"
+ex
+Ha
+Ha
+Ha
+Ha
+Ha
+Ha
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+lm
+RD
+RD
+RD
+lm
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+Go
+eN
+eN
+eN
+tR
+eN
+Go
+ex
+ex
+ex
+"}
+(63,1,1) = {"
+ex
+Ha
+WN
+Jm
+Ha
+Ha
+Ha
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+lm
+RD
+RD
+RD
+lm
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+Go
+eN
+tR
+eN
+ZX
+eN
+Go
+ex
+ex
+ex
+"}
+(64,1,1) = {"
+ex
+Ha
+wf
+Ri
+bF
+UM
+Ha
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+lm
+RD
+RD
+RD
+lm
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+Go
+eN
+ZX
+eN
+tR
+eN
+Go
+ex
+ex
+ex
+"}
+(65,1,1) = {"
+ex
+Ha
+wV
+Aj
+Og
+ac
+Ha
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+lm
+KV
+KV
+KV
+jp
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+Go
+eN
+tR
+eN
+tR
+eN
+Go
+ex
+ex
+ex
+"}
+(66,1,1) = {"
+ex
+Ha
+eo
+xI
+oU
+qY
+Ha
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+lm
+KV
+KV
+zP
+jp
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+Go
+eN
+Iz
+eN
+eN
+eN
+Go
+ex
+ex
+ex
+"}
+(67,1,1) = {"
+ex
+Ha
+MF
+qn
+rr
+hx
+Ha
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+lm
+OY
+KV
+EO
+jp
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+Go
+eN
+tR
+eN
+tR
+eN
+Go
+ex
+ex
+ex
+"}
+(68,1,1) = {"
+ex
+Ha
+Ea
+jK
+CW
+BE
+Ha
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+lm
+lm
+lm
+jp
+jp
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+Go
+eN
+ZX
+eN
+ZX
+eN
+Go
+ex
+ex
+ex
+"}
+(69,1,1) = {"
+ex
+Ha
+qO
+uq
+Ha
+Kk
+Ha
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+Go
+eN
+tR
+eN
+tR
+eN
+Go
+ex
+ex
+ex
+"}
+(70,1,1) = {"
+ex
+Ha
+Ha
+Ha
+Ha
+Ha
+Ha
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+Go
+eN
+eN
+eN
+Iz
+eN
+Go
+ex
+ex
+ex
+"}
+(71,1,1) = {"
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+ex
+Go
+Go
+dX
+dX
+dX
+dX
+dX
+Go
+ex
+ex
+ex
+"}
