@@ -513,7 +513,7 @@
 	to_chat(trader2, span_boldnotice("Trade complete!"))
 	
 	// End the session after a short delay
-	addtimer(CALLBACK(src, .proc/end_session), 3 * SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(end_session)), 3 SECONDS)
 
 // Contract UI system
 /datum/villains_contract_ui

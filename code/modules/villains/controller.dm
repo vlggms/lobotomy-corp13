@@ -209,7 +209,7 @@
 	announce_phase("Character Selection")
 
 	// Give players time to select characters
-	phase_timer = addtimer(CALLBACK(src, .proc/finalize_character_selection), 30 * SECONDS, TIMER_STOPPABLE)
+	phase_timer = addtimer(CALLBACK(src, PROC_REF(finalize_character_selection)), 30 SECONDS, TIMER_STOPPABLE)
 
 /datum/villains_controller/proc/announce_phase(phase_name)
 	to_chat(world, span_greenannounce("Villains of the Night: [phase_name] phase has begun!"))
@@ -256,7 +256,7 @@
 
 	// Set timer for phase end
 	var/morning_time = last_eliminated ? 60 : VILLAIN_TIMER_MORNING_MIN
-	phase_timer = addtimer(CALLBACK(src, .proc/change_phase, VILLAIN_PHASE_EVENING), morning_time * SECONDS, TIMER_STOPPABLE)
+	phase_timer = addtimer(CALLBACK(src, PROC_REF(change_phase), VILLAIN_PHASE_EVENING), morning_time SECONDS, TIMER_STOPPABLE)
 
 /datum/villains_controller/proc/start_evening_phase()
 	announce_phase("Evening")
@@ -282,7 +282,7 @@
 			player.stop_observing()
 			UnregisterSignal(player.observing_target, COMSIG_MOVABLE_MOVED)
 	// Open action selection UI
-	phase_timer = addtimer(CALLBACK(src, .proc/change_phase, VILLAIN_PHASE_NIGHTTIME), VILLAIN_TIMER_EVENING * SECONDS, TIMER_STOPPABLE)
+	phase_timer = addtimer(CALLBACK(src, PROC_REF(change_phase), VILLAIN_PHASE_NIGHTTIME), VILLAIN_TIMER_EVENING SECONDS, TIMER_STOPPABLE)
 
 /datum/villains_controller/proc/start_nighttime_phase()
 	announce_phase("Nighttime")
@@ -310,7 +310,7 @@
 	to_chat(living_players, span_notice("• Click on evidence items to mark them as found and send them to the main room"))
 	to_chat(living_players, span_notice("• Gather in the main room when the timer expires to review all found evidence"))
 	
-	phase_timer = addtimer(CALLBACK(src, .proc/change_phase, VILLAIN_PHASE_TRIAL_BRIEFING), VILLAIN_TIMER_INVESTIGATION * SECONDS, TIMER_STOPPABLE)
+	phase_timer = addtimer(CALLBACK(src, PROC_REF(change_phase), VILLAIN_PHASE_TRIAL_BRIEFING), VILLAIN_TIMER_INVESTIGATION SECONDS, TIMER_STOPPABLE)
 
 /datum/villains_controller/proc/start_trial_briefing()
 	// Teleport everyone to main room
@@ -326,7 +326,7 @@
 		door.lock()
 	
 	// Start the 2 minute timer
-	phase_timer = addtimer(CALLBACK(src, .proc/change_phase, VILLAIN_PHASE_ALIBI), 2 * MINUTES, TIMER_STOPPABLE)
+	phase_timer = addtimer(CALLBACK(src, PROC_REF(change_phase), VILLAIN_PHASE_ALIBI), 2 MINUTES, TIMER_STOPPABLE)
 
 /datum/villains_controller/proc/start_alibi_phase()
 	announce_phase("Alibi")
@@ -390,10 +390,10 @@
 	to_chat(living_players - speaker, span_notice("You must whisper while [speaker.name] presents their alibi."))
 	
 	// Set the timer for this player's turn
-	alibi_timer = addtimer(CALLBACK(src, .proc/end_alibi_turn), VILLAIN_TIMER_ALIBI_PER_PLAYER * SECONDS, TIMER_STOPPABLE)
+	alibi_timer = addtimer(CALLBACK(src, PROC_REF(end_alibi_turn)), VILLAIN_TIMER_ALIBI_PER_PLAYER SECONDS, TIMER_STOPPABLE)
 	
 	// Add a 10-second warning
-	addtimer(CALLBACK(src, .proc/alibi_time_warning, speaker), (VILLAIN_TIMER_ALIBI_PER_PLAYER - 10) * SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(alibi_time_warning), speaker), (VILLAIN_TIMER_ALIBI_PER_PLAYER - 10) SECONDS)
 
 /datum/villains_controller/proc/alibi_time_warning(mob/living/simple_animal/hostile/villains_character/speaker)
 	if(current_speaker == speaker)
@@ -428,7 +428,7 @@
 	to_chat(living_players, span_boldannounce("=== DISCUSSION PHASE ==="))
 	to_chat(living_players, span_notice("All players may now speak freely. Discuss the evidence and alibis!"))
 	
-	phase_timer = addtimer(CALLBACK(src, .proc/change_phase, VILLAIN_PHASE_VOTING), VILLAIN_TIMER_DISCUSSION_MIN * SECONDS, TIMER_STOPPABLE)
+	phase_timer = addtimer(CALLBACK(src, PROC_REF(change_phase), VILLAIN_PHASE_VOTING), VILLAIN_TIMER_DISCUSSION_MIN SECONDS, TIMER_STOPPABLE)
 
 /datum/villains_controller/proc/start_voting_phase()
 	announce_phase("Final Voting")
@@ -442,7 +442,7 @@
 	to_chat(living_players, span_notice("You have [VILLAIN_TIMER_VOTING / 60] minutes to submit your vote."))
 	to_chat(living_players, span_warning("You cannot vote for yourself."))
 	
-	phase_timer = addtimer(CALLBACK(src, .proc/change_phase, VILLAIN_PHASE_RESULTS), VILLAIN_TIMER_VOTING * SECONDS, TIMER_STOPPABLE)
+	phase_timer = addtimer(CALLBACK(src, PROC_REF(change_phase), VILLAIN_PHASE_RESULTS), VILLAIN_TIMER_VOTING SECONDS, TIMER_STOPPABLE)
 
 /datum/villains_controller/proc/start_results_phase()
 	announce_phase("Results")
@@ -532,7 +532,7 @@
 			return
 			
 		// Continue to next morning phase after discussion period
-		phase_timer = addtimer(CALLBACK(src, .proc/change_phase, VILLAIN_PHASE_MORNING), VILLAIN_TIMER_RESULTS * SECONDS, TIMER_STOPPABLE)
+		phase_timer = addtimer(CALLBACK(src, PROC_REF(change_phase), VILLAIN_PHASE_MORNING), VILLAIN_TIMER_RESULTS SECONDS, TIMER_STOPPABLE)
 		
 	else
 		// Game ends - check victory conditions
@@ -621,7 +621,7 @@
 	to_chat(world, span_notice("The game has ended. Feel free to discuss!"))
 	
 	// Clean up after a delay
-	addtimer(CALLBACK(src, .proc/cleanup_game), 5 * MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(cleanup_game)), 5 MINUTES)
 
 // Get player by ckey
 /datum/villains_controller/proc/get_player_by_ckey(ckey)
@@ -702,7 +702,7 @@
 	to_chat(world, span_notice("The game area will be cleaned up in 3.5 minutes."))
 	
 	// Clean up after discussion period
-	addtimer(CALLBACK(src, .proc/cleanup_game), VILLAIN_TIMER_RESULTS * SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(cleanup_game)), VILLAIN_TIMER_RESULTS SECONDS)
 	
 	// Reset game state immediately
 	current_phase = VILLAIN_PHASE_SETUP
@@ -2416,7 +2416,7 @@
 
 			// Set new timer
 			if(minutes > 0)
-				phase_timer = addtimer(CALLBACK(src, .proc/handle_phase_timer), minutes * MINUTES, TIMER_STOPPABLE)
+				phase_timer = addtimer(CALLBACK(src, PROC_REF(handle_phase_timer)), minutes MINUTES, TIMER_STOPPABLE)
 				to_chat(user, span_notice("Phase timer set to [minutes] minutes."))
 			else
 				phase_timer = null
@@ -2553,7 +2553,7 @@
 	if(!phase_timer && current_phase == VILLAIN_PHASE_SETUP)
 		log_game("DEBUG: Starting signup timer")
 		to_chat(world, span_greenannounce("Villains of the Night signup has begun! The game will start in 1 minute."))
-		phase_timer = addtimer(CALLBACK(src, .proc/setup_game), 1 * MINUTES, TIMER_STOPPABLE)
+		phase_timer = addtimer(CALLBACK(src, PROC_REF(setup_game)), 1 MINUTES, TIMER_STOPPABLE)
 		log_game("DEBUG: Timer started: [phase_timer]")
 
 // Helper proc for phase timer handling
