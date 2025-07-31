@@ -54,7 +54,7 @@
 
 /atom/movable/screen/ghost/villains
 	name = "Villains Signup"
-	icon_state = "mafia"
+	icon_state = "villains"
 
 /atom/movable/screen/ghost/villains/Click()
 	var/mob/dead/observer/G = usr

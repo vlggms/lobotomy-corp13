@@ -17,6 +17,8 @@ export const VillainsCharacterSheet = (props, context) => {
     current_phase,
     time_remaining,
     victory_points,
+    voting_candidates,
+    current_vote,
   } = data;
 
   return (
@@ -47,6 +49,15 @@ export const VillainsCharacterSheet = (props, context) => {
               passive={passive_ability}
             />
           </Stack.Item>
+          {current_phase === 'voting' && voting_candidates && (
+            <Stack.Item>
+              <VotingSection
+                candidates={voting_candidates}
+                current_vote={current_vote}
+                act={act}
+              />
+            </Stack.Item>
+          )}
           <Stack.Item grow>
             <InventorySection
               inventory={inventory}
@@ -271,4 +282,34 @@ const getActionTypeColor = (type) => {
     'Typeless': 'gray',
   };
   return colors[typeName] || 'white';
+};
+
+const VotingSection = (props) => {
+  const { candidates, current_vote, act } = props;
+
+  return (
+    <Section title="Voting Phase">
+      <Box mb={2} color="yellow">
+        <Icon name="exclamation-triangle" /> Vote for who you think is the villain!
+      </Box>
+      {current_vote && (
+        <Box mb={2} color="lime">
+          <Icon name="check" /> You voted for: {current_vote}
+        </Box>
+      )}
+      <Stack vertical>
+        {candidates.map((candidate) => (
+          <Stack.Item key={candidate.ref}>
+            <Button
+              fluid
+              content={candidate.name}
+              selected={current_vote === candidate.name}
+              onClick={() => act('vote_player', { player_ref: candidate.ref })}
+              icon={current_vote === candidate.name ? "check" : "vote-yea"}
+            />
+          </Stack.Item>
+        ))}
+      </Stack>
+    </Section>
+  );
 };

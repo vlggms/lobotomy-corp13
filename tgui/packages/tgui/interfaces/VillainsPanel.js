@@ -799,11 +799,20 @@ const InvestigationPhase = (props) => {
               p={2}
               style={{ border: '1px solid #444' }}
             >
-              {evidence_list.map((evidence, index) => (
-                <Box key={index} mb={1}>
-                  <Icon name="search" color="yellow" /> {evidence}
-                </Box>
-              ))}
+              {evidence_list.map((evidence, index) => {
+                const isFound = evidence.includes('FOUND');
+                const parts = evidence.split(' - ');
+                return (
+                  <Box key={index} mb={1}>
+                    <Icon name="search" color="yellow" /> {parts[0]}
+                    {parts[1] && (
+                      <Box as="span" color="lime" ml={1}>
+                        {' - ' + parts[1]}
+                      </Box>
+                    )}
+                  </Box>
+                );
+              })}
             </Box>
           </Stack.Item>
         ) : (

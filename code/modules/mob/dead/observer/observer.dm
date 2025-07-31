@@ -980,6 +980,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		log_game("DEBUG: [src] is not an observer")
 		to_chat(usr, span_warning("You must be a ghost to join Villains of the Night!"))
 		return
+	
+	// Check if the round has started
+	if(!SSticker.HasRoundStarted())
+		to_chat(usr, span_warning("You cannot sign up for Villains of the Night before the round starts!"))
+		return
 
 	var/datum/villains_controller/game = GLOB.villains_game
 	log_game("DEBUG: GLOB.villains_game = [game]")

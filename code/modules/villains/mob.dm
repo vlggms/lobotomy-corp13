@@ -89,12 +89,14 @@
 	var/soul_gather_target = null // Warden's target
 	var/judge_target = null // Judgement Bird's target
 	var/false_prophet_used = FALSE // Blue Shepherd ability tracking
+	var/false_shelter_target = null // Fairy-Long-Legs' target to steal from when redirected
 
 	// Item-specific tracking
 	var/smoke_bombed = FALSE // Smoke Bomb effect
 	var/audio_recorded = FALSE // Audio Recorder planted on them
 	var/mob/living/simple_animal/hostile/villains_character/audio_recorder = null // Who is recording them
 	var/has_lucky_coin = FALSE // Lucky Coin protection
+	var/evidence_collection_cooldown = 0 // Prevents spam collecting evidence
 
 /mob/living/simple_animal/hostile/villains_character/Initialize(mapload, datum/villains_character/character, mob/living/carbon/human/ghost_player)
 	. = ..()
@@ -212,25 +214,49 @@
 	if(.)
 		// Check for items at new location
 		var/turf/T = get_turf(src)
-		for(var/obj/item/villains/V in T)
-			// Handle evidence collection during investigation phase
-			if(V.is_evidence && GLOB.villains_game?.current_phase == VILLAIN_PHASE_INVESTIGATION)
-				// Mark as found
-				to_chat(src, span_notice("You find [V] and send it to the main room for analysis."))
-
-				// Get a random open turf in main room
+		
+		// Handle evidence collection during investigation phase with cooldown
+		if(GLOB.villains_game?.current_phase == VILLAIN_PHASE_INVESTIGATION && world.time > evidence_collection_cooldown)
+			// Count evidence items first
+			var/evidence_count = 0
+			var/obj/item/villains/first_evidence
+			for(var/obj/item/villains/V in T)
+				if(V.is_evidence)
+					evidence_count++
+					if(!first_evidence)
+						first_evidence = V
+			
+			if(first_evidence)
+				// Set cooldown based on number of evidence items
+				evidence_collection_cooldown = world.time + (5 * max(1, evidence_count)) // Longer cooldown for multiple items
+				
+				// Process the first evidence item
+				to_chat(src, span_notice("You find [first_evidence] and send it to the main room for analysis."))
+				
+				// Get a random open turf in main room (now cached and efficient)
 				var/turf/target_turf = GLOB.villains_game.get_random_open_turf_in_main_room()
 				if(target_turf)
-					V.forceMove(target_turf)
+					first_evidence.forceMove(target_turf)
 
 				// Update the evidence list to show it was found
 				for(var/i in 1 to length(GLOB.villains_game.evidence_list))
-					if(findtext(GLOB.villains_game.evidence_list[i], V.name))
-						GLOB.villains_game.evidence_list[i] = "[GLOB.villains_game.evidence_list[i]] - <b>FOUND by [name]</b>"
+					if(findtext(GLOB.villains_game.evidence_list[i], first_evidence.name))
+						// Check if already marked as found
+						if(!findtext(GLOB.villains_game.evidence_list[i], "FOUND"))
+							GLOB.villains_game.evidence_list[i] = "[GLOB.villains_game.evidence_list[i]] - FOUND by [name]"
+						else if(!findtext(GLOB.villains_game.evidence_list[i], "[name]"))
+							// Add this player's name if they haven't found it yet
+							GLOB.villains_game.evidence_list[i] = "[GLOB.villains_game.evidence_list[i]], [name]"
 						break
-
-				continue // Don't pick it up, just mark as found
-
+				
+				// Notify about additional evidence
+				if(evidence_count > 1)
+					to_chat(src, span_notice("There are [evidence_count - 1] more evidence items here. Move again to collect them."))
+				
+				return // Don't try to pick up items if we found evidence
+		
+		// Normal item pickup logic
+		for(var/obj/item/villains/V in T)
 			// Skip evidence items in other phases
 			if(V.is_evidence)
 				continue

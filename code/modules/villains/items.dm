@@ -33,7 +33,7 @@
 			. += span_notice("This is an <b style='color:#4169E1'>uncommon</b> item.")
 		if(VILLAIN_ITEM_RARE)
 			. += span_notice("This is a <b style='color:#FFD700'>rare</b> item.")
-	
+
 	// Show action type and cost
 	var/type_name = "Unknown"
 	switch(action_type)
@@ -47,9 +47,9 @@
 			type_name = "Suppressive"
 		if(VILLAIN_ACTION_ELIMINATION)
 			type_name = "Elimination"
-	
+
 	. += span_notice("Action Type: <b>[type_name]</b> | Cost: <b>[action_cost]</b>")
-	
+
 	// Show evidence information during investigation
 	if(freshness == VILLAIN_ITEM_USED)
 		. += span_warning("This item shows signs of recent use!")
@@ -60,7 +60,7 @@
 				. += span_notice("This evidence cannot be picked up. All players may examine it.")
 	else if(freshness == VILLAIN_ITEM_FRESH)
 		. += span_notice("This item appears untouched.")
-	
+
 	// Show if disabled by EMP
 	if(emp_disabled)
 		. += span_danger("This item has been disabled by an EMP!")
@@ -87,10 +87,17 @@
 		animate(alpha = 40, time = 25)
 
 /obj/item/villains/proc/use_item(mob/living/user, mob/living/target, datum/villains_controller/game)
+	log_game("VILLAINS DEBUG: use_item() called for [src.name] by [user] on [target]")
 	freshness = VILLAIN_ITEM_USED
 	update_outline()
 	if(game)
-		game.used_items += src
+		if(!(src in game.used_items)) // Prevent duplicates
+			game.used_items += src
+			log_game("VILLAINS DEBUG: Added [src.name] to used_items list (now [length(game.used_items)] items)")
+		else
+			log_game("VILLAINS DEBUG: [src.name] already in used_items list, skipping")
+	else
+		log_game("VILLAINS DEBUG: No game controller found, item not added to used_items!")
 	return TRUE
 
 /obj/item/villains/attack_hand(mob/user)
@@ -98,16 +105,16 @@
 	if(is_evidence)
 		if(!istype(user, /mob/living/simple_animal/hostile/villains_character))
 			return TRUE
-		
+
 		var/mob/living/simple_animal/hostile/villains_character/V = user
-		
+
 		// Evidence can only be examined, not picked up manually
 		to_chat(V, span_notice("This is evidence from the investigation. You can examine it but cannot pick it up manually."))
 		if(GLOB.villains_game?.current_phase == VILLAIN_PHASE_INVESTIGATION)
 			to_chat(V, span_notice("Walk over evidence to collect it."))
-		
+
 		return TRUE // Block pickup
-	
+
 	// Normal pickup behavior
 	return ..()
 
@@ -117,7 +124,7 @@
 		if(user)
 			user.dropItemToGround(src, TRUE)
 		return FALSE
-	
+
 	. = ..()
 	if(istype(user, /mob/living/simple_animal/hostile/villains_character))
 		var/mob/living/simple_animal/hostile/villains_character/V = user
@@ -492,7 +499,8 @@
 /obj/item/villains/fairy_wine
 	name = "Fairy Wine"
 	desc = "Talk and Trade with the target of your Main Action. Makes your action appear as Talk and Trade to investigators."
-	icon_state = "bottle"
+	icon = 'icons/obj/drinks.dmi'
+	icon_state = "fairy_wine"
 	action_type = VILLAIN_ACTION_TYPELESS
 	action_cost = VILLAIN_ACTION_SECONDARY
 	rarity = VILLAIN_ITEM_RARE
@@ -529,7 +537,7 @@
 	name = "Guardian Drone"
 	desc = "Protects target player from elimination for the night."
 	icon = 'icons/obj/device.dmi'
-	icon_state = "motion"
+	icon_state = "flightpack_boost"
 	action_type = VILLAIN_ACTION_PROTECTIVE
 	action_cost = VILLAIN_ACTION_MAIN
 	rarity = VILLAIN_ITEM_RARE
@@ -605,7 +613,7 @@
 	name = "EMP Device"
 	desc = "Disables all items in target's inventory for the night."
 	icon = 'icons/obj/device.dmi'
-	icon_state = "chameleon"
+	icon_state = "emp"
 	action_type = VILLAIN_ACTION_SUPPRESSIVE
 	action_cost = VILLAIN_ACTION_MAIN
 	rarity = VILLAIN_ITEM_RARE
@@ -645,7 +653,7 @@
 	name = "Lucky Coin"
 	desc = "Flip to avoid one negative effect targeting you."
 	icon = 'icons/obj/economy.dmi'
-	icon_state = "coin_gold"
+	icon_state = "coin_heads"
 	action_type = VILLAIN_ACTION_TYPELESS
 	action_cost = VILLAIN_ACTION_SECONDARY
 	rarity = VILLAIN_ITEM_UNCOMMON

@@ -48,6 +48,15 @@
 	var/list/player_room_assignments = list() // player = room_id
 	var/list/room_landmarks = list() // List of room landmarks found in the map
 	var/turf/main_room_center
+	var/list/main_room_turfs // Cached list of open turfs in main room
+	
+	// Map bounds for efficient turf searching
+	var/map_start_x
+	var/map_start_y
+	var/map_start_z
+	var/map_end_x
+	var/map_end_y
+	var/map_end_z
 	var/datum/map_template/villains/current_map
 	var/datum/map_generator/massdelete/map_deleter
 
@@ -142,10 +151,37 @@
 	var/map_height = current_map.height - 1
 	map_deleter.defineRegion(spawn_area, locate(spawn_area.x + map_width, spawn_area.y + map_height, spawn_area.z), replace = TRUE)
 
-	// Find the villains area in the loaded map
-	villains_area = locate(/area/villains) in world
+	// Find the villains area in the loaded map and store the spawn location
+	// We need to find any area that's a subtype of /area/villains
+	for(var/area/A in world)
+		if(istype(A, /area/villains))
+			villains_area = A
+			break
+	
+	if(!villains_area)
+		log_game("ERROR: No villains area found after loading map!")
+		return FALSE
+	
+	// Store the map bounds for efficient turf searching
+	// The bounds list contains [minx, miny, minz, maxx, maxy, maxz]
+	if(length(bounds) >= 6)
+		map_start_x = bounds[1]
+		map_start_y = bounds[2]
+		map_start_z = bounds[3]
+		map_end_x = bounds[4]
+		map_end_y = bounds[5]
+		map_end_z = bounds[6]
+	else
+		// Fallback if bounds format is different
+		map_start_x = spawn_area.x
+		map_start_y = spawn_area.y
+		map_start_z = spawn_area.z
+		map_end_x = spawn_area.x + map_width
+		map_end_y = spawn_area.y + map_height
+		map_end_z = spawn_area.z
 
 	log_game("Villains map [current_map.name] loaded successfully at [spawn_area.x],[spawn_area.y],[spawn_area.z]")
+	log_game("VILLAINS DEBUG: Map bounds set to: [map_start_x],[map_start_y],[map_start_z] to [map_end_x],[map_end_y],[map_end_z]")
 	to_chat(world, span_notice("Loading map: [current_map.name]"))
 
 	return TRUE
@@ -191,6 +227,8 @@
 			start_nighttime_phase()
 		if(VILLAIN_PHASE_INVESTIGATION)
 			start_investigation_phase()
+		if(VILLAIN_PHASE_TRIAL_BRIEFING)
+			start_trial_briefing()
 		if(VILLAIN_PHASE_ALIBI)
 			start_alibi_phase()
 		if(VILLAIN_PHASE_DISCUSSION)
@@ -272,7 +310,7 @@
 	to_chat(living_players, span_notice("• Click on evidence items to mark them as found and send them to the main room"))
 	to_chat(living_players, span_notice("• Gather in the main room when the timer expires to review all found evidence"))
 	
-	phase_timer = addtimer(CALLBACK(src, .proc/start_trial_briefing), VILLAIN_TIMER_INVESTIGATION SECONDS, TIMER_STOPPABLE)
+	phase_timer = addtimer(CALLBACK(src, .proc/change_phase, VILLAIN_PHASE_TRIAL_BRIEFING), VILLAIN_TIMER_INVESTIGATION SECONDS, TIMER_STOPPABLE)
 
 /datum/villains_controller/proc/start_trial_briefing()
 	// Teleport everyone to main room
@@ -396,6 +434,14 @@
 	announce_phase("Final Voting")
 	current_votes.Cut()
 	voting_phase = TRUE
+	
+	// Alert players how to vote
+	to_chat(living_players, span_boldannounce("=== VOTING PHASE ==="))
+	to_chat(living_players, span_notice("Vote for who you think is the villain!"))
+	to_chat(living_players, span_boldnotice("HOW TO VOTE: Open your Character Sheet to see voting options."))
+	to_chat(living_players, span_notice("You have [VILLAIN_TIMER_VOTING / 60] minutes to submit your vote."))
+	to_chat(living_players, span_warning("You cannot vote for yourself."))
+	
 	phase_timer = addtimer(CALLBACK(src, .proc/change_phase, VILLAIN_PHASE_RESULTS), VILLAIN_TIMER_VOTING SECONDS, TIMER_STOPPABLE)
 
 /datum/villains_controller/proc/start_results_phase()
@@ -849,16 +895,14 @@
 		player.assigned_room.owner = null
 		player.assigned_room = null
 	
-	// Move them to spectator area (main room for now)
+	// Move them to main room before death
 	if(main_room_center)
 		player.forceMove(main_room_center)
 	
-	// Make them a ghost-like observer
-	player.invisibility = INVISIBILITY_OBSERVER
-	player.density = FALSE
-	player.status_flags |= GODMODE
+	// Kill the player
+	to_chat(player, span_notice("You have been removed from the round."))
+	player.death()
 	
-	to_chat(player, span_notice("You have been removed from the round and are now spectating."))
 	return TRUE
 
 // Update victory points for all players
@@ -910,8 +954,28 @@
 	return TRUE
 
 // Helper procs
+/datum/villains_controller/proc/get_villains_turfs()
+	var/list/turfs = list()
+	if(!map_start_x || !map_start_y || !map_start_z || !map_end_x || !map_end_y || !map_end_z)
+		log_game("VILLAINS ERROR: Map bounds not set properly!")
+		return turfs
+		
+	// Use the stored map bounds to efficiently find turfs
+	for(var/x in map_start_x to map_end_x)
+		for(var/y in map_start_y to map_end_y)
+			var/turf/T = locate(x, y, map_start_z)
+			if(!T)
+				continue
+			var/area/A = get_area(T)
+			if(istype(A, /area/villains))
+				turfs += T
+	
+	return turfs
+
 /datum/villains_controller/proc/spawn_morning_items()
+	log_game("VILLAINS DEBUG: spawn_morning_items() called")
 	if(!villains_area)
+		log_game("VILLAINS DEBUG: No villains_area set!")
 		return
 
 	// Categorize spawn locations for better distribution
@@ -922,11 +986,15 @@
 	
 	// Find all item spawn landmarks in the area
 	for(var/obj/effect/landmark/villains/item_spawn/L in GLOB.landmarks_list)
-		if(istype(get_area(L), villains_area))
+		var/area/landmark_area = get_area(L)
+		if(istype(landmark_area, /area/villains))
 			special_spawns += L
 
 	// Get all valid turfs and categorize them
-	var/list/all_turfs = get_area_turfs(villains_area)
+	var/list/all_turfs = get_villains_turfs()
+	
+	log_game("VILLAINS DEBUG: Found [length(all_turfs)] turfs in villains area")
+	
 	for(var/turf/T in all_turfs)
 		if(T.density || locate(/obj/structure) in T)
 			continue // Skip walls and structures
@@ -941,6 +1009,8 @@
 			continue
 		else
 			room_spawns += T
+	
+	log_game("VILLAINS DEBUG: Spawn locations - Main: [length(main_room_spawns)], Hallway: [length(hallway_spawns)], Room: [length(room_spawns)], Special: [length(special_spawns)]")
 
 	// Create distribution lists
 	var/list/common_spawns = list()
@@ -1018,6 +1088,7 @@
 	to_chat(living_players, span_notice("Common items: [common_spawned] | Uncommon items: [uncommon_spawned] | <b style='color:gold'>Rare items: [rare_spawned]</b>"))
 
 /datum/villains_controller/proc/spawn_items_by_rarity(rarity, count, list/possible_spawns, list/used_spawns, min_distance)
+	log_game("VILLAINS DEBUG: spawn_items_by_rarity() - Rarity: [rarity], Count: [count], Possible spawns: [length(possible_spawns)]")
 	// Get all items of this rarity
 	var/list/items_of_rarity = list()
 	var/list/item_types = typesof(/obj/item/villains) - /obj/item/villains
@@ -1027,7 +1098,9 @@
 		if(initial(I.rarity) == rarity)
 			items_of_rarity += item_type
 	
+	log_game("VILLAINS DEBUG: Found [length(items_of_rarity)] items of rarity [rarity]")
 	if(!length(items_of_rarity) || !length(possible_spawns))
+		log_game("VILLAINS DEBUG: No items or spawns available, returning")
 		return
 	
 	// Track spawned item types to limit duplicates
@@ -1039,6 +1112,7 @@
 		// Find a valid spawn location
 		var/turf/spawn_loc = find_valid_spawn(possible_spawns, used_spawns, min_distance)
 		if(!spawn_loc)
+			log_game("VILLAINS DEBUG: No valid spawn location found for item [i] of [count]")
 			continue
 			
 		// Pick an item that hasn't reached duplicate limit
@@ -1053,6 +1127,7 @@
 			
 		var/item_type = pick(available_items)
 		var/obj/item/villains/new_item = new item_type(spawn_loc)
+		log_game("VILLAINS DEBUG: Created [new_item.name] at [spawn_loc.x],[spawn_loc.y],[spawn_loc.z]")
 		spawned_items += new_item
 		used_spawns += spawn_loc
 		spawned_types[item_type] = spawned_types[item_type] ? spawned_types[item_type] + 1 : 1
@@ -1504,6 +1579,37 @@
 				to_chat(player, span_boldnotice("Paranoid: [targeters_count] player\s targeted you last night!"))
 			else
 				to_chat(player, span_notice("Paranoid: Nobody targeted you last night."))
+		
+		// Fairy-Long-Legs' False Shelter - steal from redirected targets
+		if(player.false_shelter_target)
+			var/mob/living/simple_animal/hostile/villains_character/shelter_target = player.false_shelter_target
+			
+			// Check if the target actually performed an action on us (was redirected)
+			var/was_redirected = FALSE
+			for(var/datum/villains_action/action in last_night_actions)
+				if(action.performer == shelter_target && action.target == player)
+					was_redirected = TRUE
+					break
+			
+			if(was_redirected)
+				// Steal a random item
+				var/list/stealable_items = list()
+				for(var/obj/item/villains/I in shelter_target.contents)
+					stealable_items += I
+				
+				if(length(stealable_items))
+					var/obj/item/villains/stolen_item = pick(stealable_items)
+					stolen_item.forceMove(player)
+					if(stolen_item.freshness == VILLAIN_ITEM_FRESH && (stolen_item in shelter_target.fresh_items))
+						shelter_target.fresh_items -= stolen_item
+					to_chat(player, span_boldnotice("Your false shelter steals [stolen_item] from [shelter_target]!"))
+					to_chat(shelter_target, span_warning("[stolen_item] mysteriously disappears under [player]'s umbrella!"))
+				else
+					to_chat(player, span_notice("[shelter_target] had no items to steal."))
+			else
+				to_chat(player, span_notice("[shelter_target] never approached your false shelter."))
+			
+			player.false_shelter_target = null
 
 /datum/villains_controller/proc/get_action_description(list/action_data, mob/living/simple_animal/hostile/villains_character/performer)
 	if(!action_data)
@@ -1534,14 +1640,18 @@
 			return "[action_type] on [target ? target.name : "unknown"]"
 
 /datum/villains_controller/proc/scatter_evidence_items()
+	log_game("VILLAINS DEBUG: scatter_evidence_items() called")
 	if(!villains_area)
+		log_game("VILLAINS DEBUG: No villains_area set!")
 		return
 
 	// Get only hallway turfs that are open and accessible
 	var/list/hallway_turfs = list()
 	var/list/used_turfs = list() // Track used turfs to prevent overlap
 	
-	for(var/turf/T in get_area_turfs(villains_area))
+	// Find all turfs in villains areas efficiently
+	var/list/all_turfs = get_villains_turfs()
+	for(var/turf/T in all_turfs)
 		// Skip dense turfs (walls)
 		if(T.density)
 			continue
@@ -1555,17 +1665,27 @@
 		if(has_blocking)
 			continue
 			
-		var/area/A = get_area(T)
-		if(istype(A, /area/villains/hallway))
+		// Check if it's specifically a hallway area
+		var/area/turf_area = get_area(T)
+		if(istype(turf_area, /area/villains/hallway))
 			hallway_turfs += T
+	
+	log_game("VILLAINS DEBUG: Found [length(hallway_turfs)] hallway turfs for evidence")
 
 	var/list/all_evidence_items = list()
 	var/list/evidence_info = list()
 	
-	// Collect all used items
+	// ONLY collect items that were actually used during the night
+	log_game("VILLAINS DEBUG: Checking [length(used_items)] used items for evidence")
 	for(var/obj/item/villains/I in used_items)
+		if(!I || QDELETED(I))
+			continue
+		if(I in all_evidence_items) // Prevent duplicates
+			log_game("VILLAINS DEBUG: Skipping duplicate evidence item [I.name]")
+			continue
 		all_evidence_items += I
 		evidence_info += "[I.name] (used during night)"
+		log_game("VILLAINS DEBUG: Added [I.name] as evidence (used item)")
 		
 	// Collect items from eliminated player
 	if(last_eliminated)
@@ -1573,45 +1693,46 @@
 			if(victim.name == last_eliminated)
 				// Get all items from the victim
 				for(var/obj/item/villains/I in victim.contents)
+					if(I in all_evidence_items) // Prevent duplicates
+						log_game("VILLAINS DEBUG: Skipping duplicate victim item [I.name]")
+						continue
 					I.forceMove(victim.loc) // Drop at death location first
 					all_evidence_items += I
 					evidence_info += "[I.name] (held by [victim.name])"
 				break
-				
-	// Track all items that were dropped or moved during the night
-	for(var/obj/item/villains/I in world)
-		if(!istype(get_area(I), villains_area))
-			continue
-		if(I in all_evidence_items)
-			continue
-		if(I.freshness == VILLAIN_ITEM_USED || !ismob(I.loc))
-			all_evidence_items += I
-			evidence_info += "[I.name] (found at scene)"
 
-	// Scatter evidence items only in hallways, ensuring no overlap
+	// Store evidence list before scattering
+	evidence_list = evidence_info
+	
+	// If no evidence to scatter, announce and return
+	if(!length(all_evidence_items))
+		to_chat(living_players, span_notice("No evidence items were found to scatter."))
+		log_game("VILLAINS DEBUG: No evidence items to scatter")
+		return
+	
+	log_game("VILLAINS DEBUG: Scattering [length(all_evidence_items)] evidence items")
+
+	// Scatter evidence items ONLY in hallways, one per turf
 	for(var/obj/item/villains/I in all_evidence_items)
 		if(!length(hallway_turfs))
-			// If we run out of hallway space, send directly to main room
-			if(main_room_center)
-				I.forceMove(main_room_center)
-			else
-				break
-		else
-			// Find a turf that hasn't been used yet
-			var/turf/spawn_turf = pick(hallway_turfs)
-			hallway_turfs -= spawn_turf
-			used_turfs += spawn_turf
-			
-			I.forceMove(spawn_turf)
+			// If we run out of hallway space, don't scatter anymore
+			// This prevents items from piling up in main room
+			to_chat(living_players, span_warning("Not enough hallway space to scatter all evidence. Some evidence was lost."))
+			qdel(I) // Delete excess evidence to prevent lag
+			continue
+		
+		// Find a turf that hasn't been used yet
+		var/turf/spawn_turf = pick(hallway_turfs)
+		hallway_turfs -= spawn_turf
+		used_turfs += spawn_turf
+		
+		I.forceMove(spawn_turf)
 		
 		// Mark as evidence
 		I.freshness = VILLAIN_ITEM_USED
 		I.update_outline()
 		// Make items non-pickupable evidence
 		I.is_evidence = TRUE
-		
-	// Store evidence list for display
-	evidence_list = evidence_info
 	
 	to_chat(living_players, span_notice("Evidence has been scattered throughout the hallways. [length(all_evidence_items)] items found."))
 
@@ -1632,10 +1753,24 @@
 		player.forceMove(main_room_center)
 
 /datum/villains_controller/proc/get_random_open_turf_in_main_room()
-	var/list/open_turfs = list()
+	// Cache the main room turfs for efficiency
+	if(!main_room_turfs)
+		cache_main_room_turfs()
 	
-	// Get all turfs in the main room area
-	for(var/turf/T in world)
+	// Pick from cached open turfs
+	if(length(main_room_turfs))
+		return pick(main_room_turfs)
+	
+	// Fallback to main room center if no open turfs found
+	return main_room_center
+
+/datum/villains_controller/proc/cache_main_room_turfs()
+	main_room_turfs = list()
+	
+	// Use the efficient turf finding method
+	var/list/all_turfs = get_villains_turfs()
+	
+	for(var/turf/T in all_turfs)
 		var/area/A = get_area(T)
 		if(!istype(A, /area/villains/main_room))
 			continue
@@ -1652,13 +1787,25 @@
 				break
 		
 		if(!has_blocking)
-			open_turfs += T
+			main_room_turfs += T
+
+/datum/villains_controller/proc/submit_vote(mob/living/simple_animal/hostile/villains_character/voter, mob/living/simple_animal/hostile/villains_character/target)
+	if(!voter || !target)
+		return FALSE
 	
-	if(length(open_turfs))
-		return pick(open_turfs)
+	if(current_phase != VILLAIN_PHASE_VOTING)
+		return FALSE
 	
-	// Fallback to main room center if no open turfs found
-	return main_room_center
+	if(!(voter in living_players) || !(target in living_players))
+		return FALSE
+	
+	if(voter == target)
+		to_chat(voter, span_warning("You cannot vote for yourself!"))
+		return FALSE
+	
+	// Store the vote with voter's ckey as key
+	current_votes[voter.ckey] = target
+	return TRUE
 
 /datum/villains_controller/proc/tally_votes()
 	// Count votes for each player
@@ -1667,7 +1814,11 @@
 	var/list/tied_players = list()
 	
 	// Tally up the votes
-	for(var/mob/living/simple_animal/hostile/villains_character/voted_for in current_votes)
+	for(var/ckey in current_votes)
+		var/mob/living/simple_animal/hostile/villains_character/voted_for = current_votes[ckey]
+		if(!voted_for || !(voted_for in living_players))
+			continue
+			
 		if(!(voted_for in vote_counts))
 			vote_counts[voted_for] = 0
 		vote_counts[voted_for]++
@@ -2026,7 +2177,7 @@
 		)
 	
 	// Investigation phase data
-	if(current_phase == VILLAIN_PHASE_INVESTIGATION || current_phase == VILLAIN_PHASE_ALIBI)
+	if(current_phase == VILLAIN_PHASE_INVESTIGATION || current_phase == VILLAIN_PHASE_TRIAL_BRIEFING || current_phase == VILLAIN_PHASE_ALIBI)
 		data["evidence_list"] = evidence_list
 	
 	// Alibi phase data
@@ -2182,6 +2333,8 @@
 					new_phase = VILLAIN_PHASE_NIGHTTIME
 				if("investigation")
 					new_phase = VILLAIN_PHASE_INVESTIGATION
+				if("trial_briefing")
+					new_phase = VILLAIN_PHASE_TRIAL_BRIEFING
 				if("alibi")
 					new_phase = VILLAIN_PHASE_ALIBI
 				if("discussion")
@@ -2388,6 +2541,12 @@
 				return
 			control_fake_player_action(user)
 			return TRUE
+		
+		if("debug_teleport_evidence")
+			if(!log_action(user, admin_action = TRUE, message_override = "[user] teleported all evidence to main room in Villains game"))
+				return
+			debug_teleport_all_evidence()
+			return TRUE
 
 /datum/villains_controller/proc/start_signup_timer()
 	log_game("DEBUG: start_signup_timer called. phase_timer: [phase_timer], current_phase: [current_phase]")
@@ -2414,7 +2573,9 @@
 			else
 				change_phase(VILLAIN_PHASE_MORNING)
 		if(VILLAIN_PHASE_INVESTIGATION)
-			start_trial_briefing()
+			change_phase(VILLAIN_PHASE_TRIAL_BRIEFING)
+		if(VILLAIN_PHASE_TRIAL_BRIEFING)
+			change_phase(VILLAIN_PHASE_ALIBI)
 		if(VILLAIN_PHASE_ALIBI)
 			change_phase(VILLAIN_PHASE_DISCUSSION)
 		if(VILLAIN_PHASE_DISCUSSION)
@@ -2650,24 +2811,49 @@
 			"data" = action_data
 		)
 
-		// Check for secondary action items
+		// Check for secondary actions (items or character abilities)
 		var/list/secondary_items = list()
 		for(var/obj/item/villains/I in player.contents)
 			if(I.action_cost == VILLAIN_ACTION_SECONDARY)
 				secondary_items += I
+		
+		// Check if character has secondary ability
+		var/has_secondary_ability = FALSE
+		if(player.character_data && player.character_data.active_ability_cost == VILLAIN_ACTION_SECONDARY)
+			has_secondary_ability = TRUE
 
 		// 50% chance to use a secondary action if available
-		if(length(secondary_items) && prob(50))
-			var/obj/item/villains/sec_item = pick(secondary_items)
-			var/mob/living/simple_animal/hostile/villains_character/sec_target = pick(living_players - player)
-
-			player.secondary_action = list(
-				"type" = "use_item",
-				"target" = REF(sec_target),
-				"data" = REF(sec_item)
-			)
-
-			to_chat(world, span_adminnotice("DEBUG: [player.name] will also use [sec_item.name] on [sec_target.name] (secondary)"))
+		if(length(secondary_items) || has_secondary_ability)
+			if(prob(50))
+				// Decide between item or ability
+				if(has_secondary_ability && (!length(secondary_items) || prob(50)))
+					// Use character ability
+					var/mob/living/simple_animal/hostile/villains_character/sec_target = pick(living_players - player)
+					player.secondary_action = list(
+						"type" = "character_ability",
+						"target" = REF(sec_target),
+						"data" = null
+					)
+					to_chat(world, span_adminnotice("DEBUG: [player.name] will use [player.character_data.active_ability_name] on [sec_target.name] (secondary)"))
+				else if(length(secondary_items))
+					// Use item
+					var/obj/item/villains/sec_item = pick(secondary_items)
+					var/mob/living/simple_animal/hostile/villains_character/sec_target = pick(living_players - player)
+					player.secondary_action = list(
+						"type" = "use_item",
+						"target" = REF(sec_target),
+						"data" = REF(sec_item)
+					)
+					to_chat(world, span_adminnotice("DEBUG: [player.name] will use [sec_item.name] on [sec_target.name] (secondary)"))
+			else
+				if(has_secondary_ability && length(secondary_items))
+					to_chat(world, span_adminnotice("DEBUG: [player.name] has secondary ability and items but chose not to use them"))
+				else if(has_secondary_ability)
+					to_chat(world, span_adminnotice("DEBUG: [player.name] has secondary ability but chose not to use it"))
+				else
+					to_chat(world, span_adminnotice("DEBUG: [player.name] has secondary items but chose not to use them"))
+		else
+			to_chat(world, span_adminnotice("DEBUG: [player.name] has no secondary actions available"))
 
 		actions_submitted++
 		to_chat(world, span_adminnotice("DEBUG: [player.name] will [action_choice] targeting [target.name]"))
@@ -3002,6 +3188,7 @@
 	// Clear game area reference
 	villains_area = null
 	main_room_center = null
+	main_room_turfs = null
 	
 	// Final cleanup announcement
 	to_chat(world, span_notice("Villains game area has been cleaned up."))
@@ -3010,6 +3197,38 @@
 	// Delete the controller itself
 	GLOB.villains_game = null
 	qdel(src)
+
+// Debug proc to teleport all evidence to main room
+/datum/villains_controller/proc/debug_teleport_all_evidence()
+	if(current_phase != VILLAIN_PHASE_INVESTIGATION)
+		to_chat(world, span_warning("Can only teleport evidence during investigation phase!"))
+		return
+		
+	// Cache main room turfs if not already done
+	if(!main_room_turfs)
+		cache_main_room_turfs()
+		
+	var/evidence_count = 0
+	// Find all evidence items in the game
+	for(var/obj/item/villains/I in world)
+		if(!istype(get_area(I), /area/villains))
+			continue
+		if(!I.is_evidence)
+			continue
+			
+		// Teleport to main room
+		var/turf/target_turf = get_random_open_turf_in_main_room()
+		if(target_turf)
+			I.forceMove(target_turf)
+			evidence_count++
+			
+			// Update the evidence list if not already marked as found
+			for(var/i in 1 to length(evidence_list))
+				if(findtext(evidence_list[i], I.name) && !findtext(evidence_list[i], "FOUND"))
+					evidence_list[i] = "[evidence_list[i]] - FOUND by ADMIN"
+					break
+	
+	to_chat(world, span_adminnotice("DEBUG: Teleported [evidence_count] evidence items to main room"))
 
 // Trade and contract tracking
 /datum/villains_controller/proc/record_trade(mob/living/simple_animal/hostile/villains_character/trader1, mob/living/simple_animal/hostile/villains_character/trader2, list/items1, list/items2)

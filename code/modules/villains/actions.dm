@@ -17,8 +17,9 @@
 	game = controller
 
 /datum/villains_action/proc/can_perform()
-	if(!performer || !performer.client)
+	if(!performer)
 		return FALSE
+	// Allow fake players (no client) to perform actions
 	if(prevented)
 		return FALSE
 	// Check if the performer is blocked by taser
@@ -198,8 +199,10 @@
 	if(!..())
 		return FALSE
 	if(!used_item)
+		log_game("VILLAINS DEBUG: use_item action has no item!")
 		return FALSE
 
+	log_game("VILLAINS DEBUG: Performing use_item action with [used_item.name] (priority [priority])")
 	return used_item.use_item(performer, target, game)
 
 /datum/villains_action/character_ability
@@ -236,7 +239,7 @@
 /datum/villains_action_queue/proc/process_actions()
 	// Sort actions by priority
 	var/list/sorted_actions = list()
-	for(var/priority in 1 to 5)
+	for(var/priority in 1 to 6) // Include VILLAIN_ACTION_PRIORITY_LOW (6)
 		for(var/datum/villains_action/A in actions)
 			if(A.get_priority() == priority)
 				sorted_actions += A
@@ -271,6 +274,7 @@
 
 	// Process actions in order with delays
 	for(var/datum/villains_action/A in sorted_actions)
+		log_game("VILLAINS DEBUG: Processing action [A.type] with priority [A.get_priority()] by [A.performer ? A.performer.name : "Unknown"]")
 		// Start the action
 		spawn(0)
 			A.perform()

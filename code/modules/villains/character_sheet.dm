@@ -76,6 +76,24 @@
 
 		// Victory points
 		data["victory_points"] = owner.victory_points
+		
+		// Voting phase data
+		if(GLOB.villains_game.current_phase == VILLAIN_PHASE_VOTING)
+			// Get voting candidates
+			var/list/candidates = list()
+			for(var/mob/living/simple_animal/hostile/villains_character/player in GLOB.villains_game.living_players)
+				if(player == owner)
+					continue // Can't vote for yourself
+				candidates += list(list(
+					"name" = player.name,
+					"ref" = REF(player)
+				))
+			data["voting_candidates"] = candidates
+			
+			// Get current vote
+			if(owner.ckey in GLOB.villains_game.current_votes)
+				var/mob/living/simple_animal/hostile/villains_character/voted_for = GLOB.villains_game.current_votes[owner.ckey]
+				data["current_vote"] = voted_for ? voted_for.name : null
 
 	return data
 
@@ -96,4 +114,21 @@
 
 			I.forceMove(get_turf(owner))
 			to_chat(owner, span_notice("You drop [I]."))
+			return TRUE
+			
+		if("vote_player")
+			if(!GLOB.villains_game || GLOB.villains_game.current_phase != VILLAIN_PHASE_VOTING)
+				return
+				
+			var/player_ref = params["player_ref"]
+			if(!player_ref)
+				return
+				
+			var/mob/living/simple_animal/hostile/villains_character/target = locate(player_ref)
+			if(!target || !(target in GLOB.villains_game.living_players))
+				return
+				
+			// Submit the vote
+			GLOB.villains_game.submit_vote(owner, target)
+			to_chat(owner, span_notice("You vote for [target]."))
 			return TRUE

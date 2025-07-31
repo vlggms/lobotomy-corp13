@@ -204,8 +204,9 @@
 /datum/villains_character/all_round_cleaner/on_phase_change(phase, mob/living/user, datum/villains_controller/game)
 	// Night Cleaner passive triggers after nighttime phase ends (either investigation or morning)
 	if((phase == VILLAIN_PHASE_INVESTIGATION || phase == VILLAIN_PHASE_MORNING) && istype(user, /mob/living/simple_animal/hostile/villains_character))
-		// Only trigger if we're coming from nighttime (check if there are used items)
-		if(length(game.used_items))
+		var/mob/living/simple_animal/hostile/villains_character/U = user
+		// Only trigger if we're coming from nighttime (check if there are used items) and user is alive
+		if(length(game.used_items) && U.stat != DEAD)
 			var/list/item_types = list()
 			for(var/obj/item/villains/I in game.used_items)
 				item_types |= I.type
@@ -698,18 +699,8 @@
 	to_chat(user, span_notice("You lure [target] under your umbrella, redirecting their action to you!"))
 	to_chat(target, span_warning("You feel compelled to approach [user]..."))
 	
-	// False Shelter passive - steal a random item
-	var/list/stealable_items = list()
-	for(var/obj/item/villains/I in T.contents)
-		stealable_items += I
-	
-	if(length(stealable_items))
-		var/obj/item/villains/stolen_item = pick(stealable_items)
-		stolen_item.forceMove(U)
-		if(stolen_item.freshness == VILLAIN_ITEM_FRESH && (stolen_item in T.fresh_items))
-			T.fresh_items -= stolen_item
-		to_chat(U, span_notice("Your false shelter steals [stolen_item] from [target]!"))
-		to_chat(T, span_warning("[stolen_item] mysteriously disappears under [user]'s umbrella!"))
+	// Mark target for stealing when their action executes
+	U.false_shelter_target = T
 	
 	return TRUE
 
@@ -765,7 +756,7 @@
 	return TRUE
 
 /datum/villains_character/red_blooded_american/on_phase_change(phase, mob/living/user, datum/villains_controller/game)
-	if(phase == VILLAIN_PHASE_MORNING)
+	if(phase == VILLAIN_PHASE_INVESTIGATION)
 		// Count suppressive and elimination actions
 		var/suppressive_count = 0
 		var/elimination_count = 0
