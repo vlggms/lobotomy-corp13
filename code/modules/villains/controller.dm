@@ -348,15 +348,15 @@
 	
 	// Announce the briefing phase
 	to_chat(living_players, span_boldannounce("=== TRIAL BRIEFING ==="))
-	to_chat(living_players, span_notice("All evidence has been gathered in the main room. You have 2 minutes to review the evidence and discuss before alibis begin."))
+	to_chat(living_players, span_notice("All evidence has been gathered in the main room. You have 30 seconds to review the evidence and discuss before alibis begin."))
 	to_chat(living_players, span_notice("Check your game panel to see the list of evidence found!"))
 	
 	// Lock the main room doors to prevent people from leaving
 	for(var/obj/machinery/door/airlock/door in get_area(main_room_center))
 		door.lock()
 	
-	// Start the 2 minute timer
-	phase_timer = addtimer(CALLBACK(src, PROC_REF(change_phase), VILLAIN_PHASE_ALIBI), 2 MINUTES, TIMER_STOPPABLE)
+	// Start the 30 second timer
+	phase_timer = addtimer(CALLBACK(src, PROC_REF(change_phase), VILLAIN_PHASE_ALIBI), 30 SECONDS, TIMER_STOPPABLE)
 
 /datum/villains_controller/proc/start_alibi_phase()
 	announce_phase("Alibi")
@@ -547,6 +547,9 @@
 	
 	// Clear votes for next round
 	current_votes.Cut()
+	
+	// Clear last_eliminated so morning phase gets full duration
+	last_eliminated = null
 	
 	// Check if game should continue
 	if(length(living_players) >= 5)

@@ -162,15 +162,29 @@
 		return FALSE
 
 	var/mob/living/simple_animal/hostile/villains_character/T = target
+	
+	// Show main action target
 	if(T.main_action)
 		var/target_ref = T.main_action["target"]
 		var/mob/living/simple_animal/hostile/villains_character/action_target = locate(target_ref)
 		if(action_target)
-			to_chat(user, span_notice("[target] is targeting [action_target] with their main action."))
+			to_chat(user, span_notice("[target]'s main action targets: [action_target.name]"))
 		else
-			to_chat(user, span_notice("[target] is targeting themselves with their main action."))
+			to_chat(user, span_notice("[target]'s main action targets: themselves"))
 	else
 		to_chat(user, span_notice("[target] has not selected a main action."))
+	
+	// Show secondary action target
+	if(T.secondary_action)
+		var/target_ref = T.secondary_action["target"]
+		var/mob/living/simple_animal/hostile/villains_character/action_target = locate(target_ref)
+		if(action_target)
+			to_chat(user, span_notice("[target]'s secondary action targets: [action_target.name]"))
+		else
+			to_chat(user, span_notice("[target]'s secondary action targets: themselves"))
+	else
+		to_chat(user, span_notice("[target] has not selected a secondary action."))
+		
 	return TRUE
 
 /obj/item/villains/deepscan_kit

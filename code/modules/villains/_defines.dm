@@ -68,16 +68,16 @@
 #define VILLAIN_PREVENT_ELIMINATION 1
 
 // Phase timers (in seconds)
-#define VILLAIN_TIMER_MORNING_MIN 300 // 5 minutes
-#define VILLAIN_TIMER_MORNING_MAX 600 // 10 minutes
+#define VILLAIN_TIMER_MORNING_MIN 120 // 2 minutes
+#define VILLAIN_TIMER_MORNING_MAX 180 // 3 minutes
 #define VILLAIN_TIMER_EVENING 60 // 1 minute
 #define VILLAIN_TIMER_NIGHTTIME 480 // 8 minutes
-#define VILLAIN_TIMER_INVESTIGATION 300 // 5 minutes
+#define VILLAIN_TIMER_INVESTIGATION 120 // 2 minutes
 #define VILLAIN_TIMER_ALIBI_PER_PLAYER 30 // 30 seconds per player
-#define VILLAIN_TIMER_DISCUSSION_MIN 480 // 8 minutes
-#define VILLAIN_TIMER_DISCUSSION_MAX 840 // 14 minutes
+#define VILLAIN_TIMER_DISCUSSION_MIN 300 // 5 minutes
+#define VILLAIN_TIMER_DISCUSSION_MAX 300 // 5 minutes
 #define VILLAIN_TIMER_VOTING 60 // 1 minute
-#define VILLAIN_TIMER_RESULTS 210 // 3.5 minutes for post-game discussion
+#define VILLAIN_TIMER_RESULTS 90 // 1.5 minutes for post-game discussion
 
 // Victory points
 #define VILLAIN_VICTORY_CORRECT_VOTE 1

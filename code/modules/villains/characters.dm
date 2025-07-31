@@ -787,26 +787,18 @@
 	icon_living = "kikimora"
 	icon_dead = "kikimora"
 
-	active_ability_name = "Cursed Words"
-	active_ability_desc = "Target cannot speak for the rest of the nighttime phase (they can only say 'kiki' or 'mora')."
+	active_ability_name = "Cursed Words (DISABLED)"
+	active_ability_desc = "DISABLED - This ability is currently not functional."
 	active_ability_type = VILLAIN_ACTION_SUPPRESSIVE
 	active_ability_cost = VILLAIN_ACTION_MAIN
 
-	passive_ability_name = "Contagious Curse"
-	passive_ability_desc = "Anyone who hears someone cursed by your 'Cursed Words' action, they will also become cursed. All curses are removed at the start of the morning/investigation phase."
+	passive_ability_name = "Contagious Curse (DISABLED)"
+	passive_ability_desc = "DISABLED - This passive is currently not functional."
 
 /datum/villains_character/kikimora/perform_active_ability(mob/living/user, mob/living/target, datum/villains_controller/game)
-	if(!target || !istype(target, /mob/living/simple_animal/hostile/villains_character))
-		return FALSE
-	
-	var/mob/living/simple_animal/hostile/villains_character/T = target
-	
-	// Apply curse
-	T.cursed_speech = TRUE
-	to_chat(user, span_notice("You curse [target] with corrupted words!"))
-	to_chat(target, span_warning("Your speech feels strange... You can only say 'kiki' or 'mora'!"))
-	
-	return TRUE
+	// DISABLED - Kikimora's ability is broken
+	to_chat(user, span_warning("Your cursed powers seem to have no effect..."))
+	return FALSE
 
 /datum/villains_character/kikimora/on_phase_change(phase, mob/living/user, datum/villains_controller/game)
 	if(phase == VILLAIN_PHASE_MORNING || phase == VILLAIN_PHASE_INVESTIGATION)
@@ -1009,5 +1001,8 @@
 	var/list/characters = list()
 	for(var/path in typesof(/datum/villains_character) - /datum/villains_character)
 		var/datum/villains_character/C = new path
+		// Skip Kikimora - character is disabled
+		if(C.character_id == VILLAIN_CHAR_KIKIMORA)
+			continue
 		characters[C.character_id] = C
 	return characters

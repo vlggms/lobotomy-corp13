@@ -319,7 +319,8 @@
 		// Add whisper prefix if not already whispering
 		message = "# " + message
 
-	// Handle Kikimora's curse
+	// Handle Kikimora's curse - DISABLED
+	/*
 	if(cursed_speech)
 		// Replace all words with kiki or mora
 		var/list/words = splittext(message, " ")
@@ -333,6 +334,7 @@
 			if(hearer != src && !hearer.cursed_speech)
 				hearer.cursed_speech = TRUE
 				to_chat(hearer, span_warning("Hearing the cursed words, you feel your own speech becoming corrupted!"))
+	*/
 
 	return ..(message, bubble_type, spans, sanitize, language, ignore_spam, forced)
 
