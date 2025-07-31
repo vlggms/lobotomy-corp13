@@ -71,10 +71,10 @@ export const VillainsCharacterSheet = (props, context) => {
   );
 };
 
-const GamePhaseStatus = (props) => {
+const GamePhaseStatus = props => {
   const { phase, time_remaining } = props;
 
-  const getPhaseText = (phase) => {
+  const getPhaseText = phase => {
     const phases = {
       setup: 'Game Setup',
       morning: 'Morning Phase',
@@ -109,8 +109,15 @@ const GamePhaseStatus = (props) => {
   );
 };
 
-const CharacterInfo = (props) => {
-  const { name, icon, portrait, portrait_base64, is_villain, victory_points } = props;
+const CharacterInfo = props => {
+  const { 
+    name, 
+    icon, 
+    portrait, 
+    portrait_base64, 
+    is_villain, 
+    victory_points 
+  } = props;
 
   return (
     <Section title="Character Information">
@@ -157,7 +164,7 @@ const CharacterInfo = (props) => {
   );
 };
 
-const AbilitiesSection = (props) => {
+const AbilitiesSection = props => {
   const { active, passive } = props;
 
   return (
@@ -195,11 +202,12 @@ const AbilitiesSection = (props) => {
   );
 };
 
-const InventorySection = (props) => {
+const InventorySection = props => {
   const { inventory, max_items, act } = props;
 
   return (
-    <Section title={`Inventory (${inventory ? inventory.length : 0}/${max_items})`}>
+    <Section 
+      title={`Inventory (${inventory ? inventory.length : 0}/${max_items})`}>
       {inventory && inventory.length > 0 ? (
         <Stack vertical>
           {inventory.map((item, index) => (
@@ -220,7 +228,7 @@ const InventorySection = (props) => {
   );
 };
 
-const ItemCard = (props) => {
+const ItemCard = props => {
   const { item, act } = props;
 
   return (
@@ -259,7 +267,7 @@ const ItemCard = (props) => {
   );
 };
 
-const getActionTypeName = (type) => {
+const getActionTypeName = type => {
   const typeNames = {
     1: 'Suppressive',
     2: 'Protective',
@@ -270,7 +278,7 @@ const getActionTypeName = (type) => {
   return typeNames[type] || type;
 };
 
-const getActionTypeColor = (type) => {
+const getActionTypeColor = type => {
   // Convert numeric type to name if needed
   const typeName = typeof type === 'number' ? getActionTypeName(type) : type;
   
@@ -284,7 +292,7 @@ const getActionTypeColor = (type) => {
   return colors[typeName] || 'white';
 };
 
-const VotingSection = (props) => {
+const VotingSection = props => {
   const { candidates, current_vote, act } = props;
 
   return (
@@ -298,7 +306,7 @@ const VotingSection = (props) => {
         </Box>
       )}
       <Stack vertical>
-        {candidates.map((candidate) => (
+        {candidates.map(candidate => (
           <Stack.Item key={candidate.ref}>
             <Button
               fluid

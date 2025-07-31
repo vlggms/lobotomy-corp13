@@ -86,7 +86,8 @@ export const VillainsPanel = (props, context) => {
               <Stack.Item>
                 <Section title="Evening Phase">
                   <Box color="gray">
-                    You are spectating. Only players with characters can submit actions during the evening phase.
+                    You are spectating. Only players with characters can 
+                    submit actions during the evening phase.
                   </Box>
                 </Section>
               </Stack.Item>
@@ -141,10 +142,17 @@ export const VillainsPanel = (props, context) => {
   );
 };
 
-const GameStatus = (props) => {
-  const { phase, signup_count, min_players, max_players, time_remaining, victory_points } = props;
+const GameStatus = props => {
+  const { 
+    phase, 
+    signup_count, 
+    min_players, 
+    max_players, 
+    time_remaining, 
+    victory_points 
+  } = props;
 
-  const getPhaseText = (phase) => {
+  const getPhaseText = phase => {
     const phases = {
       setup: 'Game Setup',
       morning: 'Morning Phase',
@@ -209,7 +217,7 @@ const GameStatus = (props) => {
   );
 };
 
-const SignupSection = (props) => {
+const SignupSection = props => {
   const { signed_up, signup_count, max_players, act } = props;
 
   return (
@@ -279,7 +287,7 @@ const getActionTypeColor = (type) => {
   return colors[typeName] || 'white';
 };
 
-const CharacterSelection = (props) => {
+const CharacterSelection = props => {
   const { available_characters, selected_character, act } = props;
 
   if (!available_characters || available_characters.length === 0) {
@@ -337,7 +345,8 @@ const CharacterSelection = (props) => {
                         <Stack vertical>
                           <Stack.Item>
                             <Box bold color="yellow">
-                              <Icon name="bolt" /> Active Ability: {character.active_ability.name}
+                              <Icon name="bolt" /> Active Ability: 
+                              {character.active_ability.name}
                             </Box>
                           </Stack.Item>
                           <Stack.Item>
@@ -531,7 +540,7 @@ const EveningActions = (props, context) => {
     inventory = [], 
     living_players = [], 
     is_villain = false, 
-    act 
+    act,
   } = props;
   const [mainAction, setMainAction] = useLocalState(context, 'mainAction', null);
   const [mainTarget, setMainTarget] = useLocalState(context, 'mainTarget', null);
@@ -684,7 +693,7 @@ const EveningActions = (props, context) => {
   );
 };
 
-const ActionDescription = (props) => {
+const ActionDescription = props => {
   const { action, actions, inventory } = props;
 
   let description = '';
@@ -720,7 +729,7 @@ const ActionDescription = (props) => {
   );
 };
 
-const InvestigationPhase = (props) => {
+const InvestigationPhase = props => {
   const { evidence_list, phase, current_speaker, alibi_queue, alibi_time_remaining } = props;
 
   if (phase === 'alibi') {
@@ -838,7 +847,7 @@ const InvestigationPhase = (props) => {
   );
 };
 
-const VotingPhase = (props) => {
+const VotingPhase = props => {
   const { voting_candidates, current_vote, act } = props;
 
   if (!voting_candidates || voting_candidates.length === 0) {
@@ -875,7 +884,7 @@ const VotingPhase = (props) => {
   );
 };
 
-const VoteCard = (props) => {
+const VoteCard = props => {
   const { candidate, isSelected, act } = props;
 
   return (
@@ -1084,7 +1093,7 @@ const DebugControls = (props, context) => {
   );
 };
 
-const ResultsPhase = (props) => {
+const ResultsPhase = props => {
   const { results_players } = props;
 
   return (
