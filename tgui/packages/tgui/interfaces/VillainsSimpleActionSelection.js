@@ -156,8 +156,8 @@ export const VillainsSimpleActionSelection = (props, context) => {
                                     { target_ref: target.ref }
                                   )}
                                   tooltip={
-                                  target.can_target ? null : target.reason
-                                }>
+                                    target.can_target ? null : target.reason
+                                  }>
                                   <Box>
                                     {target.name}
                                     {!!target.is_self && " (You)"}

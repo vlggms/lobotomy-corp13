@@ -402,7 +402,10 @@ const CharacterSelection = props => {
                       content={selected_character === character.id ? 'Selected' : 'Select Character'}
                       icon={selected_character === character.id ? 'check' : 'user'}
                       color={selected_character === character.id ? 'good' : 'default'}
-                      disabled={character.taken || selected_character === character.id}
+                      disabled={
+                        character.taken ||
+                        selected_character === character.id
+                      }
                       onClick={() => act(
                         'select_character',
                         { character_id: character.id }
@@ -610,9 +613,10 @@ const EveningActions = (props, context) => {
   // Build target options
   const targetOptions = Array.isArray(living_players)
     ? living_players.map(player => ({
-    value: player.ref,
-    displayText: player.name,
-  })) : [];
+        value: player.ref,
+        displayText: player.name,
+      }))
+    : [];
 
   const handleSubmit = () => {
     act('submit_evening_actions', {
@@ -629,7 +633,7 @@ const EveningActions = (props, context) => {
         <Stack.Item>
           <Box mb={2}>
             Select your actions for tonight. All actions will be
-    performed during the nighttime phase.
+            performed during the nighttime phase.
           </Box>
         </Stack.Item>
 
@@ -677,8 +681,8 @@ const EveningActions = (props, context) => {
                   width="100%"
                   placeholder="Select secondary action..."
                   disabled={
-                  !secondaryActionOptions ||
-                  secondaryActionOptions.length === 0
+                  !secondaryActionOptions
+                  || secondaryActionOptions.length === 0
                 }
                 />
               </Stack.Item>
@@ -715,7 +719,11 @@ const EveningActions = (props, context) => {
 
         {mainAction && (
           <Stack.Item>
-            <ActionDescription action={mainAction} actions={available_actions} inventory={inventory} />
+            <ActionDescription
+              action={mainAction}
+              actions={available_actions}
+              inventory={inventory}
+            />
           </Stack.Item>
         )}
       </Stack>
@@ -760,7 +768,13 @@ const ActionDescription = props => {
 };
 
 const InvestigationPhase = props => {
-  const { evidence_list, phase, current_speaker, alibi_queue, alibi_time_remaining } = props;
+  const {
+    evidence_list,
+    phase,
+    current_speaker,
+    alibi_queue,
+    alibi_time_remaining,
+  } = props;
 
   if (phase === 'alibi') {
     return (
@@ -859,7 +873,8 @@ const InvestigationPhase = props => {
         ) : (
           <Stack.Item>
             <Box color="gray" italic>
-              No evidence has been found yet. Search the facility during the investigation phase!
+              No evidence has been found yet. Search the facility
+              during the investigation phase!
             </Box>
           </Stack.Item>
         )}
