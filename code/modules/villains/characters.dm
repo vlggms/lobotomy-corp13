@@ -809,7 +809,7 @@
 	return TRUE
 
 /datum/villains_character/kikimora/on_phase_change(phase, mob/living/user, datum/villains_controller/game)
-	if(phase == VILLAIN_PHASE_MORNING)
+	if(phase == VILLAIN_PHASE_MORNING || phase == VILLAIN_PHASE_INVESTIGATION)
 		// Remove all curses
 		for(var/mob/living/simple_animal/hostile/villains_character/player in game.living_players)
 			if(player.cursed_speech)
