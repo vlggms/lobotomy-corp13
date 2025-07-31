@@ -91,7 +91,7 @@ const PlayerInventory = (props, context) => {
           <Box color="good">
             Ready!
           </Box>
-      )
+        )
       }>
       <Stack vertical fill>
         <Stack.Item grow>
