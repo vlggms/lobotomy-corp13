@@ -765,7 +765,7 @@
 	if(healing_cooldown <= world.time)
 		var/turf/where_we_are = get_turf(src)
 		healing_cooldown = world.time + healing_cooldown_time
-		new /obj/effect/area_heal(where_we_are)
+		new /obj/effect/temp_visual/area_heal(where_we_are)
 		for(var/mob/living/carbon/human/H in range(1, where_we_are))
 			if(H.stat != DEAD)
 				to_chat(H, span_nicegreen("The warmth of spring melts away the winter frost and restores you."))
