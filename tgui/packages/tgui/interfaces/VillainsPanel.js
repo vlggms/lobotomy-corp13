@@ -357,8 +357,12 @@ const CharacterSelection = props => {
                             <Box 
                               fontSize="0.9em" 
                               italic 
-                              color={getActionTypeColor(character.active_ability.type)}>
-                              Type: {getActionTypeName(character.active_ability.type)} | 
+                              color={getActionTypeColor(
+                                character.active_ability.type
+                              )}>
+                              Type: {getActionTypeName(
+                                character.active_ability.type
+                              )} | 
                               Cost: {character.active_ability.cost}
                             </Box>
                           </Stack.Item>
@@ -378,7 +382,9 @@ const CharacterSelection = props => {
                         <Stack vertical>
                           <Stack.Item>
                             <Box bold color="cyan">
-                              <Icon name="shield-alt" /> Passive Ability: {character.passive_ability.name}
+                              <Icon name="shield-alt" /> Passive Ability: {
+                                character.passive_ability.name
+                              }
                             </Box>
                           </Stack.Item>
                           <Stack.Item>
@@ -397,7 +403,10 @@ const CharacterSelection = props => {
                       icon={selected_character === character.id ? 'check' : 'user'}
                       color={selected_character === character.id ? 'good' : 'default'}
                       disabled={character.taken || selected_character === character.id}
-                      onClick={() => act('select_character', { character_id: character.id })}
+                      onClick={() => act(
+                        'select_character',
+                        { character_id: character.id }
+                      )}
                       fluid
                     />
                   </Stack.Item>
@@ -599,7 +608,8 @@ const EveningActions = (props, context) => {
   }
 
   // Build target options
-  const targetOptions = Array.isArray(living_players) ? living_players.map(player => ({
+  const targetOptions = Array.isArray(living_players)
+    ? living_players.map(player => ({
     value: player.ref,
     displayText: player.name,
   })) : [];
@@ -618,7 +628,8 @@ const EveningActions = (props, context) => {
       <Stack vertical>
         <Stack.Item>
           <Box mb={2}>
-            Select your actions for tonight. All actions will be performed during the nighttime phase.
+            Select your actions for tonight. All actions will be
+    performed during the nighttime phase.
           </Box>
         </Stack.Item>
 
@@ -629,7 +640,7 @@ const EveningActions = (props, context) => {
               <Dropdown
                 selected={mainAction}
                 options={mainActionOptions || []}
-                onSelected={(value) => setMainAction(value)}
+                onSelected={value => setMainAction(value)}
                 width="100%"
                 placeholder="Select main action..."
                 disabled={!mainActionOptions || mainActionOptions.length === 0}
@@ -640,7 +651,7 @@ const EveningActions = (props, context) => {
                 <Dropdown
                   selected={mainTarget}
                   options={targetOptions || []}
-                  onSelected={(value) => setMainTarget(value)}
+                  onSelected={value => setMainTarget(value)}
                   width="100%"
                   placeholder={
                     targetOptions && targetOptions.length > 0
@@ -662,10 +673,13 @@ const EveningActions = (props, context) => {
                 <Dropdown
                   selected={secondaryAction}
                   options={secondaryActionOptions || []}
-                  onSelected={(value) => setSecondaryAction(value)}
+                  onSelected={value => setSecondaryAction(value)}
                   width="100%"
                   placeholder="Select secondary action..."
-                  disabled={!secondaryActionOptions || secondaryActionOptions.length === 0}
+                  disabled={
+                  !secondaryActionOptions ||
+                  secondaryActionOptions.length === 0
+                }
                 />
               </Stack.Item>
               {secondaryAction && (
@@ -673,13 +687,13 @@ const EveningActions = (props, context) => {
                   <Dropdown
                     selected={secondaryTarget}
                     options={targetOptions || []}
-                    onSelected={(value) => setSecondaryTarget(value)}
+                    onSelected={value => setSecondaryTarget(value)}
                     width="100%"
                     placeholder={
-                    targetOptions && targetOptions.length > 0
-                      ? "Select target..."
-                      : "No targets available"
-                  }
+                      targetOptions && targetOptions.length > 0
+                        ? "Select target..."
+                        : "No targets available"
+                    }
                     disabled={!targetOptions || targetOptions.length === 0}
                   />
                 </Stack.Item>
@@ -770,7 +784,8 @@ const InvestigationPhase = props => {
               
               <Stack.Item>
                 <Box color="gray" italic>
-                  Only {current_speaker.name} may speak normally. All others must whisper.
+                  Only {current_speaker.name} may speak normally.
+                  All others must whisper.
                 </Box>
               </Stack.Item>
             </>
@@ -795,7 +810,8 @@ const InvestigationPhase = props => {
           
           <Stack.Item>
             <Box fontSize="0.9em" color="cyan" mt={2}>
-              <Icon name="info-circle" /> Each player has 30 seconds to present their alibi.
+              <Icon name="info-circle" /> Each player has 30 seconds
+              to present their alibi.
             </Box>
           </Stack.Item>
         </Stack>
@@ -852,9 +868,12 @@ const InvestigationPhase = props => {
           <Stack.Item>
             <Box fontSize="0.9em" color="cyan">
               <Icon name="info-circle" /> Tips:
-              <br />• Look for items with yellow outlines - these were used during the night
-              <br />• Used items are scattered as evidence throughout the facility
-              <br />• Check what items were found to piece together what happened
+              <br />• Look for items with yellow outlines -
+              these were used during the night
+              <br />• Used items are scattered as evidence
+              throughout the facility
+              <br />• Check what items were found to piece
+              together what happened
             </Box>
           </Stack.Item>
         )}
@@ -879,7 +898,8 @@ const VotingPhase = props => {
       <Stack vertical>
         <Stack.Item>
           <Box mb={2}>
-            Select the player you believe to be the villain. Click on their portrait to cast your vote.
+            Select the player you believe to be the villain.
+            Click on their portrait to cast your vote.
           </Box>
         </Stack.Item>
         <Stack.Item>

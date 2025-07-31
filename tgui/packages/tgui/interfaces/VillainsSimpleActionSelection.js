@@ -85,7 +85,9 @@ export const VillainsSimpleActionSelection = (props, context) => {
                                   'select_target',
                                   { target_ref: target.ref }
                                 )}
-                                tooltip={target.can_target ? null : target.reason}>
+                                tooltip={
+                                  target.can_target ? null : target.reason
+                                }>
                                 <Box>
                                   {target.name}
                                   {!!target.is_self && " (You)"}
@@ -153,7 +155,9 @@ export const VillainsSimpleActionSelection = (props, context) => {
                                     'select_secondary_target',
                                     { target_ref: target.ref }
                                   )}
-                                  tooltip={target.can_target ? null : target.reason}>
+                                  tooltip={
+                                  target.can_target ? null : target.reason
+                                }>
                                   <Box>
                                     {target.name}
                                     {!!target.is_self && " (You)"}

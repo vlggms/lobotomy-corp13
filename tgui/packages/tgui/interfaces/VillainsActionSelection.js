@@ -128,8 +128,15 @@ export const VillainsActionSelection = (props, context) => {
                       <Box mt={2} p={1} backgroundColor="rgba(255, 255, 255, 0.1)">
                         <Stack vertical>
                           <Stack.Item>
-                            <Box color={getActionTypeColor(selectedMainActionDetails.type)}>
-                              <Icon name={getActionTypeIcon(selectedMainActionDetails.type)} />
+                            <Box
+                              color={getActionTypeColor(
+                                selectedMainActionDetails.type
+                              )}>
+                              <Icon
+                                name={getActionTypeIcon(
+                                  selectedMainActionDetails.type
+                                )}
+                              />
                               {' Type: '}{selectedMainActionDetails.type}
                             </Box>
                           </Stack.Item>
@@ -198,17 +205,13 @@ export const VillainsActionSelection = (props, context) => {
                           <Stack vertical>
                             <Stack.Item>
                               <Box
-                                color={
-                                  getActionTypeColor(
-                                    selectedSecondaryActionDetails.type
-                                  )
-                                }>
+                                color={getActionTypeColor(
+                                  selectedSecondaryActionDetails.type
+                                )}>
                                 <Icon
-                                  name={
-                                    getActionTypeIcon(
-                                      selectedSecondaryActionDetails.type
-                                    )
-                                  }
+                                  name={getActionTypeIcon(
+                                    selectedSecondaryActionDetails.type
+                                  )}
                                 />
                                 {' Type: '}{selectedSecondaryActionDetails.type}
                               </Box>
