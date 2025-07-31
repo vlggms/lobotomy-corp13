@@ -19,6 +19,10 @@ export const VillainsCharacterSheet = (props, context) => {
     victory_points,
     voting_candidates,
     current_vote,
+    morning_extension_active,
+    morning_extension_voted,
+    morning_extension_vote,
+    is_current_speaker,
   } = data;
 
   return (
@@ -31,6 +35,20 @@ export const VillainsCharacterSheet = (props, context) => {
                 phase={current_phase}
                 time_remaining={time_remaining}
               />
+            </Stack.Item>
+          )}
+          {morning_extension_active && (
+            <Stack.Item>
+              <MorningExtensionVote
+                voted={morning_extension_voted}
+                vote={morning_extension_vote}
+                act={act}
+              />
+            </Stack.Item>
+          )}
+          {current_phase === 'alibi' && is_current_speaker && (
+            <Stack.Item>
+              <AlibiSpeakerControls act={act} />
             </Stack.Item>
           )}
           <Stack.Item>
@@ -320,6 +338,69 @@ const VotingSection = props => {
           </Stack.Item>
         ))}
       </Stack>
+    </Section>
+  );
+};
+
+const MorningExtensionVote = props => {
+  const { voted, vote, act } = props;
+
+  return (
+    <Section title="Morning Extension Vote" fill>
+      <Box mb={2} color="yellow" bold>
+        <Icon name="clock" /> Vote to extend morning phase by 5 minutes!
+      </Box>
+      <Box mb={2} fontSize="0.9em" color="gray">
+        A majority of players must vote YES to pass.
+      </Box>
+      {voted ? (
+        <Box color="lime">
+          <Icon name="check-circle" /> You voted: {vote ? 'YES' : 'NO'}
+        </Box>
+      ) : (
+        <Stack>
+          <Stack.Item grow>
+            <Button
+              fluid
+              content="Vote YES"
+              color="good"
+              icon="check"
+              onClick={() => act('vote_morning_extension', { vote_yes: true })}
+            />
+          </Stack.Item>
+          <Stack.Item grow>
+            <Button
+              fluid
+              content="Vote NO"
+              color="bad"
+              icon="times"
+              onClick={() => act('vote_morning_extension', { vote_yes: false })}
+            />
+          </Stack.Item>
+        </Stack>
+      )}
+    </Section>
+  );
+};
+
+const AlibiSpeakerControls = props => {
+  const { act } = props;
+
+  return (
+    <Section title="Speaking Time" fill>
+      <Box mb={2} color="lime" bold>
+        <Icon name="microphone" /> You are currently speaking!
+      </Box>
+      <Box mb={2} fontSize="0.9em" color="gray">
+        You have exclusive speaking rights. Other players can only whisper.
+      </Box>
+      <Button
+        fluid
+        content="End My Alibi Early"
+        color="orange"
+        icon="stop"
+        onClick={() => act('end_alibi_early')}
+      />
     </Section>
   );
 };

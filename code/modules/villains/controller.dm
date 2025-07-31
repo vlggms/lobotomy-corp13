@@ -30,6 +30,12 @@
 	var/list/current_votes = list()
 	var/voting_phase
 	
+	// Morning extension voting
+	var/morning_extension_timer
+	var/morning_extension_active = FALSE
+	var/list/morning_extension_votes = list() // ckey = TRUE/FALSE
+	var/morning_already_extended = FALSE // To prevent multiple extensions per morning
+	
 	// Alibi phase management
 	var/mob/living/simple_animal/hostile/villains_character/current_speaker
 	var/list/alibi_queue = list()
@@ -254,9 +260,19 @@
 		if(player.character_data)
 			player.character_data.on_phase_change(VILLAIN_PHASE_MORNING, player, src)
 
+	// Reset morning extension flags
+	morning_already_extended = FALSE
+	morning_extension_active = FALSE
+	morning_extension_votes.Cut()
+	
 	// Set timer for phase end
 	var/morning_time = last_eliminated ? 60 : VILLAIN_TIMER_MORNING_MIN
 	phase_timer = addtimer(CALLBACK(src, PROC_REF(change_phase), VILLAIN_PHASE_EVENING), morning_time SECONDS, TIMER_STOPPABLE)
+	
+	// Set timer for morning extension vote (4 minutes into the phase)
+	// Only if morning isn't already shortened due to elimination
+	if(!last_eliminated)
+		morning_extension_timer = addtimer(CALLBACK(src, PROC_REF(start_morning_extension_vote)), 240 SECONDS, TIMER_STOPPABLE)
 
 /datum/villains_controller/proc/start_evening_phase()
 	announce_phase("Evening")
@@ -277,10 +293,24 @@
 		player.main_action = null  // Clear previous action
 		player.secondary_action = null  // Clear previous secondary action
 
-		// Stop Rudolta's observation if active
-		if(player.is_observing)
+		// Handle Rudolta's observation
+		if(player.character_data?.character_id == VILLAIN_CHAR_RUDOLTA && player.observing_target)
+			// Start the actual observation
+			var/mob/living/simple_animal/hostile/villains_character/target = player.observing_target
+			if(target && (target in living_players))
+				player.is_observing = TRUE
+				// Teleport to target's room
+				if(target.assigned_room?.spawn_landmark)
+					player.forceMove(get_turf(target.assigned_room.spawn_landmark))
+				else
+					player.forceMove(get_turf(target))
+				to_chat(player, span_notice("You silently enter [target]'s room and begin observing them..."))
+				// Register to follow their movements
+				player.RegisterSignal(target, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/mob/living/simple_animal/hostile/villains_character, follow_target))
+		// Stop other observations if active
+		else if(player.is_observing)
 			player.stop_observing()
-			UnregisterSignal(player.observing_target, COMSIG_MOVABLE_MOVED)
+			player.UnregisterSignal(player.observing_target, COMSIG_MOVABLE_MOVED)
 	// Open action selection UI
 	phase_timer = addtimer(CALLBACK(src, PROC_REF(change_phase), VILLAIN_PHASE_NIGHTTIME), VILLAIN_TIMER_EVENING SECONDS, TIMER_STOPPABLE)
 
@@ -1580,6 +1610,54 @@
 			else
 				to_chat(player, span_notice("Paranoid: Nobody targeted you last night."))
 		
+		// Rudolta's Observation Results
+		if(player.character_data?.character_id == VILLAIN_CHAR_RUDOLTA && player.is_observing && player.observing_target)
+			var/mob/living/simple_animal/hostile/villains_character/observed = player.observing_target
+			to_chat(player, span_boldnotice("\n=== OBSERVATION REPORT: [observed.name] ==="))
+			
+			// Show their main action
+			if(observed.main_action)
+				var/action_name = observed.main_action["name"]
+				var/target_ref = observed.main_action["target"]
+				if(target_ref)
+					var/mob/living/simple_animal/hostile/villains_character/action_target = locate(target_ref)
+					if(action_target)
+						to_chat(player, span_notice("Main Action: [action_name] targeting [action_target.name]"))
+				else
+					to_chat(player, span_notice("Main Action: [action_name]"))
+			else
+				to_chat(player, span_notice("Main Action: None"))
+			
+			// Show their secondary action
+			if(observed.secondary_action)
+				var/action_name = observed.secondary_action["name"]
+				var/target_ref = observed.secondary_action["target"]
+				if(target_ref)
+					var/mob/living/simple_animal/hostile/villains_character/action_target = locate(target_ref)
+					if(action_target)
+						to_chat(player, span_notice("Secondary Action: [action_name] targeting [action_target.name]"))
+				else
+					to_chat(player, span_notice("Secondary Action: [action_name]"))
+			else
+				to_chat(player, span_notice("Secondary Action: None"))
+			
+			// Show who visited them
+			var/list/visitors = list()
+			if(action_targets[REF(observed)])
+				for(var/list/action_data in action_targets[REF(observed)])
+					var/mob/living/simple_animal/hostile/villains_character/performer = action_data["performer"]
+					if(performer && !(performer.name in visitors))
+						visitors += performer.name
+			if(length(visitors))
+				to_chat(player, span_notice("Was visited by: [visitors.Join(", ")]"))
+			else
+				to_chat(player, span_notice("Was not visited by anyone"))
+			
+			// Clean up observation
+			player.is_observing = FALSE
+			player.UnregisterSignal(observed, COMSIG_MOVABLE_MOVED)
+			player.teleport_to_room()
+		
 		// Fairy-Long-Legs' False Shelter - steal from redirected targets
 		if(player.false_shelter_target)
 			var/mob/living/simple_animal/hostile/villains_character/shelter_target = player.false_shelter_target
@@ -1856,6 +1934,78 @@
 	var/mob/living/simple_animal/hostile/villains_character/eliminated = tied_players[1]
 	to_chat(world, span_userdanger("\n[eliminated.name] has received the most votes and will be eliminated!"))
 	return eliminated
+
+// Morning extension voting procs
+/datum/villains_controller/proc/start_morning_extension_vote()
+	if(morning_already_extended || current_phase != VILLAIN_PHASE_MORNING)
+		return
+		
+	morning_extension_active = TRUE
+	morning_extension_votes.Cut()
+	
+	// Announce the vote to all players
+	to_chat(world, span_boldannounce("\n=== MORNING EXTENSION VOTE ==="))
+	to_chat(world, span_notice("A vote has been initiated to extend the morning phase by 5 minutes!"))
+	to_chat(world, span_notice("Use your Character Sheet to vote YES or NO."))
+	to_chat(world, span_warning("You have 30 seconds to vote."))
+	
+	// Alert all living players
+	for(var/mob/living/simple_animal/hostile/villains_character/player in living_players)
+		to_chat(player, span_userdanger("MORNING EXTENSION VOTE ACTIVE! Check your character sheet to vote!"))
+		player.playsound_local(get_turf(player), 'sound/machines/chime.ogg', 50, TRUE)
+	
+	// Set timer to end the vote after 30 seconds
+	addtimer(CALLBACK(src, PROC_REF(end_morning_extension_vote)), 30 SECONDS)
+
+/datum/villains_controller/proc/submit_morning_extension_vote(mob/living/simple_animal/hostile/villains_character/voter, vote_yes)
+	if(!morning_extension_active || !voter || !(voter in living_players))
+		return FALSE
+		
+	var/ckey = voter.ckey
+	if(!ckey)
+		return FALSE
+		
+	morning_extension_votes[ckey] = vote_yes
+	to_chat(voter, span_notice("Your vote has been recorded: [vote_yes ? "YES" : "NO"]"))
+	return TRUE
+
+/datum/villains_controller/proc/end_morning_extension_vote()
+	if(!morning_extension_active)
+		return
+		
+	morning_extension_active = FALSE
+	
+	// Count votes
+	var/yes_votes = 0
+	var/no_votes = 0
+	for(var/ckey in morning_extension_votes)
+		if(morning_extension_votes[ckey])
+			yes_votes++
+		else
+			no_votes++
+	
+	var/total_votes = yes_votes + no_votes
+	var/total_players = length(living_players)
+	
+	// Announce results
+	to_chat(world, span_boldnotice("\n=== MORNING EXTENSION VOTE RESULTS ==="))
+	to_chat(world, span_notice("YES: [yes_votes] | NO: [no_votes] | Abstained: [total_players - total_votes]"))
+	
+	// Majority of living players must vote yes
+	var/required_votes = round(total_players / 2) + 1
+	if(yes_votes >= required_votes)
+		to_chat(world, span_boldnotice("The vote PASSES! Morning phase extended by 5 minutes!"))
+		morning_already_extended = TRUE
+		
+		// Extend the phase timer
+		if(phase_timer)
+			deltimer(phase_timer)
+			phase_timer = addtimer(CALLBACK(src, PROC_REF(change_phase), VILLAIN_PHASE_EVENING), 300 SECONDS, TIMER_STOPPABLE)
+	else
+		to_chat(world, span_warning("The vote FAILS! Morning phase continues as normal."))
+	
+	// Clear vote data
+	morning_extension_votes.Cut()
 
 // Room management procs
 /datum/villains_controller/proc/setup_rooms()

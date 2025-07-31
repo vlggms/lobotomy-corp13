@@ -415,7 +415,7 @@
 		contract_holder.is_villain = TRUE
 		game.current_villain = contract_holder
 		to_chat(contract_holder, span_userdanger("With the elimination complete, you have become the villain!"))
-		to_chat(contract_holder, span_boldnotice("You must eliminate all other players or remain hidden to win!"))
+		to_chat(contract_holder, span_boldnotice("Your new win condition: Avoid being voted out! You no longer need to eliminate players."))
 	
 	// Clear the contract after use
 	U.elimination_contract = null
@@ -423,7 +423,8 @@
 	
 	// Change win condition for Der Freischütz
 	U.win_condition = "survive"
-	to_chat(user, span_boldnotice("Your contract is fulfilled. You must now help the new villain avoid detection."))
+	to_chat(user, span_boldnotice("Your contract is fulfilled. You have lost your villain status."))
+	to_chat(user, span_notice("Your new win condition: Simply survive to the end of the game."))
 	
 	return TRUE
 
@@ -462,20 +463,12 @@
 		to_chat(user, span_warning("You have already observed [target] before. Choose someone else."))
 		return FALSE
 	
-	// Mark target as observed
+	// Mark target as observed (prevent observing same person twice)
 	U.observed_players += T
-	U.is_observing = TRUE
 	U.observing_target = T
 	
-	// Follow the target
-	U.forceMove(get_turf(T))
-	to_chat(user, span_notice("You silently follow [target], observing their every move..."))
-	
-	// Register to follow their movements
-	U.RegisterSignal(T, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/mob/living/simple_animal/hostile/villains_character, follow_target))
-	
-	// Note: The observation will continue through the night phase
-	// It will be cleaned up during phase changes
+	// The actual observation starts during evening phase
+	to_chat(user, span_notice("You have selected [target] to observe tonight. You will follow them when evening arrives."))
 	
 	return TRUE
 

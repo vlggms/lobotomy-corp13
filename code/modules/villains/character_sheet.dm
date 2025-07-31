@@ -94,6 +94,17 @@
 			if(owner.ckey in GLOB.villains_game.current_votes)
 				var/mob/living/simple_animal/hostile/villains_character/voted_for = GLOB.villains_game.current_votes[owner.ckey]
 				data["current_vote"] = voted_for ? voted_for.name : null
+		
+		// Morning extension vote data
+		if(GLOB.villains_game.morning_extension_active)
+			data["morning_extension_active"] = TRUE
+			data["morning_extension_voted"] = (owner.ckey in GLOB.villains_game.morning_extension_votes)
+			if(data["morning_extension_voted"])
+				data["morning_extension_vote"] = GLOB.villains_game.morning_extension_votes[owner.ckey]
+		
+		// Alibi phase data
+		if(GLOB.villains_game.current_phase == VILLAIN_PHASE_ALIBI)
+			data["is_current_speaker"] = (GLOB.villains_game.current_speaker == owner)
 
 	return data
 
@@ -131,4 +142,29 @@
 			// Submit the vote
 			GLOB.villains_game.submit_vote(owner, target)
 			to_chat(owner, span_notice("You vote for [target]."))
+			return TRUE
+			
+		if("vote_morning_extension")
+			if(!GLOB.villains_game || !GLOB.villains_game.morning_extension_active)
+				return
+				
+			var/vote_yes = params["vote_yes"]
+			if(vote_yes == null)
+				return
+				
+			// Submit the morning extension vote
+			GLOB.villains_game.submit_morning_extension_vote(owner, vote_yes)
+			return TRUE
+			
+		if("end_alibi_early")
+			if(!GLOB.villains_game || GLOB.villains_game.current_phase != VILLAIN_PHASE_ALIBI)
+				return
+				
+			if(GLOB.villains_game.current_speaker != owner)
+				to_chat(owner, span_warning("You are not the current speaker!"))
+				return
+				
+			// End the alibi early
+			GLOB.villains_game.end_alibi_turn()
+			to_chat(owner, span_notice("You ended your alibi early."))
 			return TRUE

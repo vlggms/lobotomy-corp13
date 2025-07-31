@@ -100,6 +100,12 @@
 	else
 		P.forceMove(get_turf(T))
 
+	// Check if anyone is observing the performer (Rudolta)
+	for(var/mob/living/simple_animal/hostile/villains_character/observer in GLOB.villains_game.living_players)
+		if(observer.is_observing && observer.observing_target == P)
+			observer.forceMove(get_turf(P))
+			to_chat(observer, span_notice("You silently follow [P] as they visit [T]..."))
+
 	to_chat(performer, span_notice("You visit [target] to talk and trade..."))
 	to_chat(target, span_notice("[performer] visits you to talk and trade..."))
 
@@ -115,7 +121,7 @@
 		to_chat(P, span_notice("[T]'s restful presence protects you from suppressive actions for the rest of the night!"))
 
 	// Wait for 2 minutes
-	sleep(0.5 MINUTES)
+	sleep(2 MINUTES)
 
 	// End the trade
 	end_talk_trade(session)
@@ -646,6 +652,7 @@
 				
 				to_chat(offerer, span_boldnotice("[owner] accepts your Elimination Contract! You must eliminate [target.name] with Magic Bullet!"))
 				to_chat(owner, span_boldwarning("You accept [offerer]'s Elimination Contract. They must eliminate [target.name]!"))
+				to_chat(owner, span_notice("If [offerer] successfully eliminates [target.name], you will become the new villain!"))
 				
 				// Record contract acceptance
 				if(GLOB.villains_game)
@@ -681,6 +688,11 @@
 			
 			if(owner.elimination_contract)
 				to_chat(owner, span_warning("You already have an active elimination contract with [owner.elimination_contract]!"))
+				return FALSE
+			
+			// Check if only 5 players remain
+			if(GLOB.villains_game && length(GLOB.villains_game.living_players) <= 5)
+				to_chat(owner, span_warning("You cannot offer contracts when there are 5 or fewer players remaining!"))
 				return FALSE
 			
 			owner.trading_with.pending_contracts[owner] = "elimination"

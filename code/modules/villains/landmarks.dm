@@ -80,6 +80,14 @@
 	if(!owner || !spawn_landmark)
 		return FALSE
 	owner.forceMove(get_turf(spawn_landmark))
+	
+	// Check if anyone is observing the owner (Rudolta)
+	if(GLOB.villains_game)
+		for(var/mob/living/simple_animal/hostile/villains_character/observer in GLOB.villains_game.living_players)
+			if(observer.is_observing && observer.observing_target == owner)
+				observer.forceMove(get_turf(spawn_landmark))
+				to_chat(observer, span_notice("You follow [owner] back to their room..."))
+	
 	return TRUE
 
 /datum/villains_room/proc/is_owner_in_room()

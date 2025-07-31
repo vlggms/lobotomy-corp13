@@ -74,6 +74,15 @@
 				"cost" = owner.character_data.active_ability_cost,
 				"desc" = owner.character_data.active_ability_desc
 			))
+		else if(owner.character_data.active_ability_cost == VILLAIN_ACTION_FREE)
+			// Free actions can be used as either main or secondary
+			main_actions += list(list(
+				"id" = "character_ability",
+				"name" = owner.character_data.active_ability_name,
+				"type" = ability_type,
+				"cost" = owner.character_data.active_ability_cost,
+				"desc" = owner.character_data.active_ability_desc + " (Free Action - doesn't consume your action)"
+			))
 	
 	// Puss in Boots special - can Talk/Trade with blessed players as secondary
 	if(owner.character_data?.character_id == VILLAIN_CHAR_PUSSINBOOTS && owner.current_blessing)

@@ -107,6 +107,8 @@
 		key = ghost_player.key
 	var/obj/effect/proc_holder/spell/targeted/night_vision/bloodspell = new
 	AddSpell(bloodspell)
+	// Ensure living players have full opacity
+	alpha = 255
 
 /mob/living/simple_animal/hostile/villains_character/Destroy()
 	// Clean up UI datums
@@ -477,6 +479,9 @@
 		SStgui.close_uis(contract_ui)
 	if(character_sheet_ui)
 		SStgui.close_uis(character_sheet_ui)
+
+	// Make the player appear ghostly
+	alpha = 100
 
 	if(GLOB.villains_game)
 		GLOB.villains_game.handle_death(src)
