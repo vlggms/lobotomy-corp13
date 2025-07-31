@@ -86,13 +86,7 @@ const PlayerInventory = (props, context) => {
     <Section
       title={title}
       fill
-      buttons={
-        ready && (
-          <Box color="good">
-            Ready!
-          </Box>
-        )
-      }>
+      buttons={ready && <Box color="good">Ready!</Box>}>
       <Stack vertical fill>
         <Stack.Item grow>
           <Section title="Inventory" scrollable fill>
