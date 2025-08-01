@@ -142,6 +142,8 @@
 		/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying = 2,
 	)
 	generate_new_mob_time = 90 SECONDS
+	raider = TRUE
+
 	announce = TRUE
 
 /obj/structure/den/rce/mid
@@ -164,7 +166,7 @@
 	generate_new_mob_time = 20 SECONDS
 
 /obj/structure/den/rce/raider
-	max_mobs = 12
+	max_mobs = 20
 	moblist = list(
 		/mob/living/simple_animal/hostile/ordeal/sin_lust = 1,
 		/mob/living/simple_animal/hostile/rce/sapper = 1,
@@ -172,6 +174,7 @@
 		/mob/living/simple_animal/hostile/ordeal/sin_gloom = 1,
 		/mob/living/simple_animal/hostile/ordeal/sin_wrath = 1,
 	)
+	assault_type = SEND_TILL_MAX
 	generate_new_mob_time = 45 SECONDS
 	raider = TRUE
 
