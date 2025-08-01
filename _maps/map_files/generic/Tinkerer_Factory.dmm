@@ -94,7 +94,7 @@
 /area/tinkerer_factory)
 "q" = (
 /obj/structure/sign/poster/contraband/borg_fancy_1,
-/turf/closed/wall/mineral/titanium/survival/pod,
+/turf/closed/indestructible/syndicate,
 /area/tinkerer_factory)
 "r" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
@@ -148,7 +148,7 @@
 	},
 /area/tinkerer_factory)
 "z" = (
-/turf/closed/wall/mineral/titanium/survival/pod,
+/turf/closed/indestructible/syndicate,
 /area/tinkerer_factory)
 "A" = (
 /obj/effect/turf_decal/caution/stand_clear/red,
@@ -160,7 +160,7 @@
 /area/tinkerer_factory)
 "C" = (
 /obj/structure/sign/poster/contraband/borg_fancy_2,
-/turf/closed/wall/mineral/titanium/survival/pod,
+/turf/closed/indestructible/syndicate,
 /area/tinkerer_factory)
 "E" = (
 /obj/structure/fluff/clockwork/alloy_shards,
@@ -182,7 +182,7 @@
 /area/tinkerer_factory)
 "H" = (
 /obj/structure/sign/poster/contraband/free_drone,
-/turf/closed/wall/mineral/titanium/survival/pod,
+/turf/closed/indestructible/syndicate,
 /area/tinkerer_factory)
 "J" = (
 /obj/effect/decal/cleanable/blood/tracks,
@@ -207,7 +207,7 @@
 /obj/structure/sign/plaques/kiddie/perfect_man{
 	desc = "A guide to the exhibit, explaining how recent developments in mindshield implant and cloning technologies by Nanotrasen Corporation have led to the development and the effective immortality of the 'perfect man', the loyal Servant of the Tinkerer."
 	},
-/turf/closed/wall/mineral/titanium/survival/pod,
+/turf/closed/indestructible/syndicate,
 /area/tinkerer_factory)
 "N" = (
 /mob/living/simple_animal/hostile/ui_npc/tinkerer,
@@ -234,7 +234,7 @@
 /area/tinkerer_factory)
 "S" = (
 /obj/structure/sign/poster/official/do_not_question,
-/turf/closed/wall/mineral/titanium/survival/pod,
+/turf/closed/indestructible/syndicate,
 /area/tinkerer_factory)
 "T" = (
 /obj/structure/fluff/clockwork/clockgolem_remains,
@@ -244,7 +244,7 @@
 /area/tinkerer_factory)
 "U" = (
 /obj/structure/sign/plaques/kiddie/perfect_drone,
-/turf/closed/wall/mineral/titanium/survival/pod,
+/turf/closed/indestructible/syndicate,
 /area/tinkerer_factory)
 "V" = (
 /obj/effect/decal/cleanable/dirt/dust,
