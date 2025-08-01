@@ -57,6 +57,8 @@
 	var/barricade_cost = 3
 	// Box selection
 	var/turf/selection_start_point = null
+	// Factory building
+	var/factory_blueprint_cost = 10
 
 /mob/living/simple_animal/hostile/clan/tinkerer/Initialize()
 	. = ..()
@@ -76,6 +78,7 @@
 	AddAbility(new /obj/effect/proc_holder/ability/tinkerer/toggle_lock_mode(null, src))
 	AddAbility(new /obj/effect/proc_holder/ability/tinkerer/release_locks(null, src))
 	AddAbility(new /obj/effect/proc_holder/spell/aimed/tinkerer_build_barricade(null, src))
+	AddAbility(new /obj/effect/proc_holder/ability/tinkerer/build_order(null, src))
 
 /mob/living/simple_animal/hostile/clan/tinkerer/examine(mob/user)
 	. = ..()
@@ -343,6 +346,41 @@
 			return FALSE
 	return TRUE
 
+/mob/living/simple_animal/hostile/clan/tinkerer/proc/BuildFactoryBlueprint()
+	// Check charge
+	if(charge < factory_blueprint_cost)
+		to_chat(src, span_warning("Not enough charge! Need [factory_blueprint_cost] charge."))
+		return FALSE
+	
+	// Check for adjacent construction points
+	var/list/valid_construction_points = list()
+	for(var/turf/T in get_adjacent_open_turfs(src))
+		for(var/obj/O in T)
+			if(IsConstructionPoint(O))
+				// Check if there's already a blueprint here
+				if(locate(/obj/structure/clan_factory/blueprint) in T)
+					continue
+				valid_construction_points[T] = O
+	
+	if(!length(valid_construction_points))
+		to_chat(src, span_warning("No valid construction points found adjacent to you!"))
+		return FALSE
+	
+	// If multiple valid points, use the first one
+	var/turf/chosen_turf
+	var/obj/construction_obj
+	for(var/turf/T in valid_construction_points)
+		chosen_turf = T
+		construction_obj = valid_construction_points[T]
+		break
+	
+	// Deduct charge and create blueprint
+	charge -= factory_blueprint_cost
+	new /obj/structure/clan_factory/blueprint(chosen_turf)
+	visible_message(span_notice("[src] deploys a factory blueprint on [construction_obj]!"))
+	playsound(src, 'sound/effects/phasein.ogg', 50, TRUE)
+	return TRUE
+
 /mob/living/simple_animal/hostile/clan/tinkerer/proc/ProduceUnitAtFactory(unit_type)
 	// Find nearest factory with capacity
 	var/obj/structure/clan_factory/best_factory = null
@@ -499,6 +537,36 @@
 
 	playsound(src, 'sound/machines/ping.ogg', 50, TRUE)
 	visible_message(span_notice("[src] completes production of [unit]!"))
+
+// Factory blueprint structure
+/obj/structure/clan_factory/blueprint
+	name = "factory blueprint"
+	desc = "A holographic blueprint for a factory. Engineers can construct the actual factory here."
+	icon_state = "green_dusk_1"
+	color = "#0066ff"
+	alpha = 150
+	density = FALSE
+	anchored = TRUE
+	max_integrity = 1
+	var/build_time = 5 SECONDS
+
+/obj/structure/clan_factory/blueprint/Initialize()
+	. = ..()
+	// Stop processing since blueprints don't process
+	STOP_PROCESSING(SSobj, src)
+	// Flicker effect
+	animate(src, alpha = 100, time = 10, loop = -1)
+	animate(alpha = 200, time = 10)
+
+/obj/structure/clan_factory/blueprint/attack_hand(mob/user)
+	return
+
+/obj/structure/clan_factory/blueprint/attackby(obj/item/I, mob/user, params)
+	return
+
+/obj/structure/clan_factory/blueprint/examine(mob/user)
+	. = ..()
+	. += span_notice("An engineer can build this into a real factory.")
 
 // Extensions for clan mobs to support commander orders
 /mob/living/simple_animal/hostile/clan
@@ -1064,6 +1132,20 @@
 		linked_tinkerer.barricade_start_point = null
 		// Keep ability active for more barricade lines
 		return FALSE
+
+/obj/effect/proc_holder/ability/tinkerer/build_order
+	name = "Build Order"
+	desc = "Deploy a factory blueprint on an adjacent construction point. Costs 10 charge."
+	action_icon_state = "build_factory"
+	cooldown_time = 3 SECONDS
+
+/obj/effect/proc_holder/ability/tinkerer/build_order/Perform(target, mob/user)
+	..()  // Call parent to handle cooldown
+	if(!linked_tinkerer && istype(user, /mob/living/simple_animal/hostile/clan/tinkerer))
+		linked_tinkerer = user
+	if(!linked_tinkerer)
+		return
+	linked_tinkerer.BuildFactoryBlueprint()
 
 // Clan barricade structures
 /obj/structure/barricade/clan

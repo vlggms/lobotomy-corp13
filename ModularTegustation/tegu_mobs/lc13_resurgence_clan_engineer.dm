@@ -23,7 +23,7 @@
 	clan_charge_cooldown = 4 SECONDS
 	teleport_away = TRUE
 	search_objects = 3
-	wanted_objects = list(/obj/structure/barricade/clan/blueprint)
+	wanted_objects = list(/obj/structure/barricade/clan/blueprint, /obj/structure/clan_factory/blueprint)
 
 	// Engineer specific vars
 	var/can_build_factory = TRUE
@@ -60,6 +60,11 @@
 	// Check if targeting a barricade blueprint
 	if(istype(attacked_target, /obj/structure/barricade/clan/blueprint) && !building)
 		BuildBarricade(attacked_target)
+		return
+	
+	// Check if targeting a factory blueprint
+	if(istype(attacked_target, /obj/structure/clan_factory/blueprint) && !building && commander)
+		BuildFactoryFromBlueprint(attacked_target)
 		return
 
 	return ..()
@@ -138,6 +143,36 @@
 			playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 	else
 		visible_message(span_warning("[src] fails to complete the barricade construction."))
+	
+	building = FALSE
+
+/mob/living/simple_animal/hostile/clan/engineer/proc/BuildFactoryFromBlueprint(obj/structure/clan_factory/blueprint/B)
+	if(!B || building || B.loc == null || !commander)
+		return
+	
+	// Check if this engineer can build factories
+	if(!can_build_factory)
+		visible_message(span_warning("[src] has already built a factory and cannot build another!"))
+		return
+	
+	building = TRUE
+	can_build_factory = FALSE
+	visible_message(span_notice("[src] begins constructing a factory from the blueprint..."))
+	playsound(src, 'sound/items/welder2.ogg', 50, TRUE)
+	
+	if(do_after(src, B.build_time, target = B))
+		if(!QDELETED(B) && B.loc)
+			var/obj/structure/clan_factory/F = new(B.loc)
+			F.owner = commander
+			if(istype(commander, /mob/living/simple_animal/hostile/clan/tinkerer))
+				var/mob/living/simple_animal/hostile/clan/tinkerer/T = commander
+				T.owned_factories += F
+			qdel(B)
+			visible_message(span_notice("[src] completes the factory construction!"))
+			playsound(src, 'sound/machines/ping.ogg', 50, TRUE)
+	else
+		visible_message(span_warning("[src] fails to complete the factory construction."))
+		can_build_factory = TRUE
 	
 	building = FALSE
 
