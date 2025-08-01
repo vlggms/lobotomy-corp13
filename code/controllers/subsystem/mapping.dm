@@ -133,6 +133,7 @@ SUBSYSTEM_DEF(mapping)
 	SSmapping.LoadGroup(errorList, "Manager", "map_files/generic", "Manager.dmm", default_traits = ZTRAITS_CENTCOM)
 	SSmapping.LoadGroup(errorList, "Abnormality", "map_files/generic", "Abnormality_Z.dmm", default_traits = ZTRAITS_CENTCOM)
 	SSmapping.LoadGroup(errorList, "Test Range", "map_files/generic", "Test_Range.dmm", default_traits = ZTRAITS_CENTCOM)
+	SSmapping.LoadGroup(errorList, "Tinkerer Factory", "map_files/generic", "Tinkerer_Factory.dmm", default_traits = ZTRAITS_CENTCOM)
 
 #endif
 	// Add the transit level
