@@ -10,6 +10,7 @@
 #define FACILITY_TRAIT_JOKE_ABNOS "Joke Abnormalities"
 #define FACILITY_TRAIT_VISIBLE_GHOSTS "Visible Ghosts"
 #define FACILITY_TRAIT_DAMAGE_TYPE_SHUFFLE "Damage Type Shuffle"
+#define FACILITY_TRAIT_XP_MOD "XP Modifier"
 
 //Removed ones
 #define FACILITY_TRAIT_FUCKED_SELECTION "Selection Mishap"
