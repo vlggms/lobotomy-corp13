@@ -508,7 +508,6 @@
 		Charge(chargeat = attacked_target, delay = (charge_attack_delay))
 		return
 	. = ..()
-	new /obj/effect/temp_visual/damage_effect/burn(get_turf(target))
 	if(!ishuman(target))
 		return
 	var/mob/living/carbon/human/H = target

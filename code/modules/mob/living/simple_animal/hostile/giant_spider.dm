@@ -55,7 +55,7 @@
 	initial_language_holder = /datum/language_holder/spider
 	maxHealth = 100
 	health = 100
-	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2, BRUTE = 1, BURN = 1, TOX = 1, CLONE = 1, STAMINA = 1, OXY = 1)
+	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2, BRUTE = 1, FIRE = 1, TOX = 1, CLONE = 1, STAMINA = 1, OXY = 1)
 	unsuitable_cold_damage = 20
 	unsuitable_heat_damage = 20
 	obj_damage = 30
@@ -193,7 +193,7 @@
 	melee_damage_lower = 35
 	melee_damage_upper = 40
 	obj_damage = 100
-	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, CLONE = 1, STAMINA = 0, OXY = 1)
+	damage_coeff = list(BRUTE = 1, FIRE = 1, TOX = 1, CLONE = 1, STAMINA = 0, OXY = 1)
 	poison_per_bite = 0
 	move_to_delay = 8
 	speed = 1

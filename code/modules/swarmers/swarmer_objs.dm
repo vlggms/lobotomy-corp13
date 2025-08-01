@@ -20,7 +20,7 @@
 	switch(damage_type)
 		if(BRUTE)
 			playsound(src, 'sound/weapons/egloves.ogg', 80, TRUE)
-		if(BURN)
+		if(FIRE)
 			playsound(src, 'sound/items/welder.ogg', 100, TRUE)
 
 /obj/structure/swarmer/emp_act()

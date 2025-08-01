@@ -1120,7 +1120,10 @@
 
 #undef MOB_HALFSPEED
 
-#define STATUS_EFFECT_LCBURN /datum/status_effect/stacking/lc_burn // Deals true damage every 5 sec, can't be applied to godmode (contained abos)
+/* Deals resistable burn damage every 5 sec, can't be applied to godmode (contained abos)
+	1 stack = 1.5 burn damage. Without resistance to fire, burn damage is reduced by red armor, but ignores 50% of that armor.
+	Remember that refreshing the stack also refreshes the duration! Very large amounts of damage can be dealt this way! */
+#define STATUS_EFFECT_LCBURN /datum/status_effect/stacking/lc_burn
 /datum/status_effect/stacking/lc_burn
 	id = "lc_burn"
 	alert_type = /atom/movable/screen/alert/status_effect/lc_burn
@@ -1132,7 +1135,7 @@
 
 /atom/movable/screen/alert/status_effect/lc_burn
 	name = "Burning"
-	desc = "You're on fire!!"
+	desc = "You're on fire!"
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "lc_burn"
 
@@ -1144,16 +1147,12 @@
 	Update_Burn_Overlay(owner)
 	new_stack = TRUE
 
-//Deals true damage
 /datum/status_effect/stacking/lc_burn/tick()
 	if(!can_have_status())
 		qdel(src)
-	to_chat(owner, "<span class='warning'>The flame consumes you!!</span>")
+	to_chat(owner, "<span class='warning'>The flame consumes you!</span>")
 	owner.playsound_local(owner, 'sound/effects/burn.ogg', 50, TRUE)
-	if(ishuman(owner))
-		owner.apply_damage(stacks, BURN, null, owner.run_armor_check(null, BURN))
-	else
-		owner.apply_damage(stacks*4, BURN, null, owner.run_armor_check(null, BURN)) // x4 on non humans (Average burn stack is 20. 80/5 sec, extra 16 pure dps)
+	DealDamage()
 
 	//Deletes itself after 2 tick if no new burn stack was given
 	if(safety)
@@ -1163,6 +1162,9 @@
 			Update_Burn_Overlay(owner)
 		else
 			qdel(src)
+
+/datum/status_effect/stacking/lc_burn/proc/DealDamage()
+	owner.apply_damage(stacks, FIRE, null, owner.run_armor_check(null, FIRE))
 
 //Update burn appearance
 /datum/status_effect/stacking/lc_burn/proc/Update_Burn_Overlay(mob/living/owner)
@@ -1399,3 +1401,45 @@
 /datum/movespeed_modifier/tremor
 	multiplicative_slowdown = 0
 	variable = TRUE
+
+/* TL;DR its LC_BURN but looks at black armor */
+#define STATUS_EFFECT_DARKFLAME /datum/status_effect/stacking/dark_flame
+/datum/status_effect/stacking/lc_burn/dark_flame
+	id = "dark_flame"
+	alert_type = /atom/movable/screen/alert/status_effect/dark_flame
+
+/atom/movable/screen/alert/status_effect/dark_flame
+	name = "Dark Flame"
+	desc = "Dark flames are scorching your body and mind."
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "dark_flame"
+
+/datum/status_effect/stacking/lc_burn/dark_flame/DealDamage()
+	owner.apply_damage(stacks, FIRE, null, owner.run_armor_check(null, BLACK_DAMAGE))
+	owner.apply_damage(stacks, WHITE_DAMAGE, null, owner.run_armor_check(null, BLACK_DAMAGE))
+
+//Update burn appearance
+/datum/status_effect/stacking/lc_burn/dark_flame/Update_Burn_Overlay(mob/living/owner)
+	if(stacks && !(owner.on_fire) && ishuman(owner))
+		if(stacks >= 15)
+			owner.cut_overlay(mutable_appearance('icons/mob/OnFire.dmi', "darkfire_generic", -FIRE_LAYER))
+			owner.cut_overlay(mutable_appearance('icons/mob/OnFire.dmi', "darkfire_standing", -FIRE_LAYER))
+			owner.add_overlay(mutable_appearance('icons/mob/OnFire.dmi', "darkfire_standing", -FIRE_LAYER))
+		else
+			owner.cut_overlay(mutable_appearance('icons/mob/OnFire.dmi', "darkfire_standing", -FIRE_LAYER))
+			owner.cut_overlay(mutable_appearance('icons/mob/OnFire.dmi', "darkfire_generic", -FIRE_LAYER))
+			owner.add_overlay(mutable_appearance('icons/mob/OnFire.dmi', "darkfire_generic", -FIRE_LAYER))
+
+/datum/status_effect/stacking/lc_burn/dark_flame/on_remove()
+	if(!(owner.on_fire) && ishuman(owner))
+		owner.cut_overlay(mutable_appearance('icons/mob/OnFire.dmi', "darkfire_generic", -FIRE_LAYER))
+		owner.cut_overlay(mutable_appearance('icons/mob/OnFire.dmi', "darkfire_standing", -FIRE_LAYER))
+	..()
+
+//Mob Proc
+/mob/living/proc/apply_dark_flame(stacks)
+	var/datum/status_effect/stacking/lc_burn/B = src.has_status_effect(/datum/status_effect/stacking/lc_burn/dark_flame)
+	if(!B)
+		src.apply_status_effect(/datum/status_effect/stacking/lc_burn/dark_flame, stacks)
+	else
+		B.add_stacks(stacks)

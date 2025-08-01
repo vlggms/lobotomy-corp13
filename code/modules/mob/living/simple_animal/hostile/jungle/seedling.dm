@@ -41,7 +41,7 @@
 	name = "solar energy"
 	icon_state = "seedling"
 	damage = 10
-	damage_type = BURN
+	damage_type = FIRE
 	light_range = 2
 	light_color = LIGHT_COLOR_YELLOW
 	hitsound = 'sound/weapons/sear.ogg'

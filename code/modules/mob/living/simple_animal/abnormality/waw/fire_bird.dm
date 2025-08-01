@@ -57,12 +57,12 @@
 
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 1 SECONDS
-	var/pulse_damage = 10
+	var/pulse_damage = 6
 	var/can_act = TRUE
 	var/dash_cooldown
 	var/dash_cooldown_time = 5 SECONDS
 	var/dash_max = 50
-	var/dash_damage = 220
+	var/dash_damage = 200
 	var/list/been_hit = list()
 
 //Initialize
@@ -150,6 +150,7 @@
 	pulse_cooldown = world.time + pulse_cooldown_time
 	for(var/mob/living/carbon/human/L in livinginview(48, src))
 		L.deal_damage(pulse_damage, RED_DAMAGE)
+		L.deal_damage(pulse_damage * 0.5, FIRE)
 
 /mob/living/simple_animal/hostile/abnormality/fire_bird/proc/retaliatedash()
 	if(dash_cooldown > world.time)
@@ -199,9 +200,10 @@
 				continue
 			visible_message(span_boldwarning("[src] blazes through [L]!"))
 			L.deal_damage(dash_damage, WHITE_DAMAGE)
+			L.deal_damage(dash_damage * 0.1, FIRE)
 			new /obj/effect/temp_visual/cleave(get_turf(L))
 			if(L.sanity_lost) // TODO: TEMPORARY AS HELL
-				L.adjustFireLoss(999)
+				L.deal_damage(999, FIRE)
 			if(!(L in been_hit))
 				been_hit += L
 

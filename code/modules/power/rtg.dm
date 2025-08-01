@@ -80,7 +80,7 @@
 
 /obj/machinery/power/rtg/abductor/bullet_act(obj/projectile/Proj)
 	. = ..()
-	if(!going_kaboom && istype(Proj) && !Proj.nodamage && ((Proj.damage_type == BURN) || (Proj.damage_type == BRUTE)))
+	if(!going_kaboom && istype(Proj) && !Proj.nodamage && ((Proj.damage_type == FIRE) || (Proj.damage_type == BRUTE)))
 		log_bomber(Proj.firer, "triggered a", src, "explosion via projectile")
 		overload()
 

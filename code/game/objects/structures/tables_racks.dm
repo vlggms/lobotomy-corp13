@@ -663,7 +663,7 @@
 				playsound(loc, 'sound/items/dodgeball.ogg', 80, TRUE)
 			else
 				playsound(loc, 'sound/weapons/tap.ogg', 50, TRUE)
-		if(BURN)
+		if(FIRE)
 			playsound(loc, 'sound/items/welder.ogg', 40, TRUE)
 
 /*

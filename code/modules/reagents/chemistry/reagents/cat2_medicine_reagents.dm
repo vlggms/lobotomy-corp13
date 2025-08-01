@@ -434,8 +434,8 @@
 	carbies.adjustToxLoss((harmies+burnies)*0.66)
 	if(show_message)
 		to_chat(carbies, "<span class='danger'>You feel your burns and bruises healing! It stings like hell!</span>")
-	if(HAS_TRAIT_FROM(exposed_mob, TRAIT_HUSK, BURN) && carbies.getFireLoss() < UNHUSK_DAMAGE_THRESHOLD && (carbies.reagents.get_reagent_amount(/datum/reagent/medicine/c2/synthflesh) + reac_volume >= SYNTHFLESH_UNHUSK_AMOUNT))
-		carbies.cure_husk(BURN)
+	if(HAS_TRAIT_FROM(exposed_mob, TRAIT_HUSK, FIRE) && carbies.getFireLoss() < UNHUSK_DAMAGE_THRESHOLD && (carbies.reagents.get_reagent_amount(/datum/reagent/medicine/c2/synthflesh) + reac_volume >= SYNTHFLESH_UNHUSK_AMOUNT))
+		carbies.cure_husk(FIRE)
 		carbies.visible_message("<span class='nicegreen'>A rubbery liquid coats [carbies]'s burns. [carbies] looks a lot healthier!") //we're avoiding using the phrases "burnt flesh" and "burnt skin" here because carbies could be a skeleton or a golem or something
 
 /******ORGAN HEALING******/

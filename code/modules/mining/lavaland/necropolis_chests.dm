@@ -971,7 +971,7 @@
 	slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
 	force = 25
-	damtype = BURN
+	damtype = FIRE
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	hitsound = 'sound/weapons/sear.ogg'
 	var/turf_type = /turf/open/lava/smooth

@@ -62,7 +62,7 @@
 
 	if(!def_zone)
 		return
-	if(damagetype != BURN) //Don't bother if it's not fire.
+	if(damagetype != FIRE) //Don't bother if it's not fire.
 		return
 	if(!is_hitting_zone(def_zone)) //You didn't hit us! ha!
 		return

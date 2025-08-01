@@ -37,7 +37,7 @@
 
 /obj/structure/emergency_shield/play_attack_sound(damage, damage_type = BRUTE)
 	switch(damage_type)
-		if(BURN)
+		if(FIRE)
 			playsound(loc, 'sound/effects/empulse.ogg', 75, TRUE)
 		if(BRUTE)
 			playsound(loc, 'sound/effects/empulse.ogg', 75, TRUE)
@@ -483,7 +483,7 @@
 
 /obj/machinery/shieldwall/play_attack_sound(damage_amount, damage_type = BRUTE)
 	switch(damage_type)
-		if(BURN)
+		if(FIRE)
 			playsound(loc, 'sound/effects/empulse.ogg', 75, TRUE)
 		if(BRUTE)
 			playsound(loc, 'sound/effects/empulse.ogg', 75, TRUE)
@@ -491,7 +491,7 @@
 //the shield wall is immune to damage but it drains the stored power of the generators.
 /obj/machinery/shieldwall/take_damage(damage_amount, damage_type = BRUTE, sound_effect = 1, attack_dir)
 	. = ..()
-	if(damage_type == BRUTE || damage_type == BURN)
+	if(damage_type == BRUTE || damage_type == FIRE)
 		drain_power(damage_amount)
 
 /// succs power from the connected shield wall generator

@@ -70,7 +70,7 @@
 	if(full_heal)
 		target.fully_heal(admin_heal)
 	else if(heal_amount)
-		target.heal_ordered_damage(heal_amount, list(BRUTE, BURN))
+		target.heal_ordered_damage(heal_amount, list(BRUTE, FIRE))
 
 /obj/effect/powerup/health/full
 	name = "mega health pickup"

@@ -28,7 +28,7 @@
 
 	if(QDELETED(src)) //Could have dropped into lava/explosion/chasm/whatever
 		return TRUE
-	if(dam_type == BURN)
+	if(dam_type == FIRE)
 		burn()
 		return TRUE
 	add_mob_blood(C)

@@ -1626,14 +1626,16 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			if(BP)
 				if(BP.receive_damage(damage_amount, 0, wound_bonus = wound_bonus, bare_wound_bonus = bare_wound_bonus, sharpness = sharpness))
 					H.update_damage_overlays()
+				new /obj/effect/temp_visual/damage_effect/red(get_turf(H)) // Since bodypart damage bypasses bruteloss, we just make vfx here.
 			else//no bodypart, we deal damage with a more general method.
 				H.adjustBruteLoss(damage_amount)
-		if(BURN, FIRE, LASER, ENERGY, RAD)
+		if(FIRE, FIRE, LASER, ENERGY, RAD)
 			H.damageoverlaytemp = 20
 			var/damage_amount = forced ? damage : damage * hit_percent * burnmod * H.physiology.burn_mod
 			if(BP)
 				if(BP.receive_damage(0, damage_amount, wound_bonus = wound_bonus, bare_wound_bonus = bare_wound_bonus, sharpness = sharpness))
 					H.update_damage_overlays()
+				new /obj/effect/temp_visual/damage_effect/burn(get_turf(H))
 			else
 				H.adjustFireLoss(damage_amount)
 		if(TOX, BIO)
@@ -1877,7 +1879,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			humi.emote("scream")
 
 		// Apply the damage to all body parts
-		humi.apply_damage(burn_damage, BURN, spread_damage = TRUE)
+		humi.apply_damage(burn_damage, FIRE, spread_damage = TRUE)
 
 	// Apply some burn / brute damage to the body (Dependent if the person is hulk or not)
 	var/is_hulk = HAS_TRAIT(humi, TRAIT_HULK)
@@ -1885,7 +1887,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/cold_damage_limit = bodytemp_cold_damage_limit + (is_hulk ? BODYTEMP_HULK_COLD_DAMAGE_LIMIT_MODIFIER : 0)
 
 	if(humi.coretemperature < cold_damage_limit && !HAS_TRAIT(humi, TRAIT_RESISTCOLD))
-		var/damage_type = is_hulk ? BRUTE : BURN
+		var/damage_type = is_hulk ? BRUTE : FIRE
 		var/damage_mod = coldmod * humi.physiology.cold_mod * (is_hulk ? HULK_COLD_DAMAGE_MOD : 1)
 		switch(humi.coretemperature)
 			if(-INFINITY to 119)
@@ -1936,7 +1938,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	if(humi.bodytemperature > BODYTEMP_HEAT_WOUND_LIMIT + 2800)
 		burn_damage = HEAT_DAMAGE_LEVEL_3
 
-	humi.apply_damage(burn_damage, BURN, bodypart)
+	humi.apply_damage(burn_damage, FIRE, bodypart)
 
 /// Handle the air pressure of the environment
 /datum/species/proc/handle_environment_pressure(datum/gas_mixture/environment, mob/living/carbon/human/H)

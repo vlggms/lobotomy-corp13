@@ -7,7 +7,7 @@
 	switch(damagetype)
 		if(BRUTE)
 			adjustBruteLoss(damage_amount, forced = forced)
-		if(BURN)
+		if(FIRE)
 			adjustFireLoss(damage_amount, forced = forced)
 	return 1
 

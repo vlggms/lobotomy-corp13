@@ -14,7 +14,7 @@
 				playsound(src, 'sound/effects/meteorimpact.ogg', 100, TRUE)
 			else
 				add_dent(WALL_DENT_HIT)
-		if(BURN)
+		if(FIRE)
 			playsound(src, 'sound/items/welder.ogg', 100, TRUE)
 		if(TOX)
 			playsound(src, 'sound/effects/spray2.ogg', 100, TRUE)
@@ -29,7 +29,7 @@
 		play_soundeffect = 1
 	else
 		switch(mecha_attacker.damtype)
-			if(BURN)
+			if(FIRE)
 				playsound(src, 'sound/items/welder.ogg', 50, TRUE)
 			if(TOX)
 				playsound(src, 'sound/effects/spray2.ogg', 50, TRUE)
@@ -52,7 +52,7 @@
 		mecha_attacker.do_attack_animation(src)
 		step_away(src, mecha_attacker, 15)
 		switch(mecha_attacker.damtype)
-			if(BURN)
+			if(FIRE)
 				take_overall_damage(0, rand(mecha_attacker.force * 0.5, mecha_attacker.force))
 				playsound(src, 'sound/items/welder.ogg', 50, TRUE)
 			if(TOX)

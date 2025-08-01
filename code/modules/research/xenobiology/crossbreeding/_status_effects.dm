@@ -881,7 +881,7 @@
 		if(owner.getBruteLoss() > 0)
 			healing_types += BRUTE
 		if(owner.getFireLoss() > 0)
-			healing_types += BURN
+			healing_types += FIRE
 		if(owner.getToxLoss() > 0)
 			healing_types += TOX
 		if(owner.getCloneLoss() > 0)

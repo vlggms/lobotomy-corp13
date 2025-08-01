@@ -7,7 +7,7 @@
 	stop_automated_movement = 1
 	wander = 0
 	healable = 0
-	damage_coeff = list(RED_DAMAGE = 2, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2, BRUTE = 1, BURN = 1, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
+	damage_coeff = list(RED_DAMAGE = 2, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2, BRUTE = 1, FIRE = 1, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	maxbodytemp = INFINITY
 	minbodytemp = 0
@@ -367,7 +367,7 @@
 			..()
 
 /mob/living/simple_animal/bot/bullet_act(obj/projectile/Proj)
-	if(Proj && (Proj.damage_type == BRUTE || Proj.damage_type == BURN))
+	if(Proj && (Proj.damage_type == BRUTE || Proj.damage_type == FIRE))
 		if(prob(75) && Proj.damage > 0)
 			do_sparks(5, TRUE, src)
 	return ..()

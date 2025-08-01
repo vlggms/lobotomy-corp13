@@ -442,7 +442,7 @@
 		treat_me_for += OXY
 
 	if(C.getFireLoss() > heal_threshold)
-		treat_me_for += BURN
+		treat_me_for += FIRE
 
 	if(C.getToxLoss() > heal_threshold)
 		treat_me_for += TOX
@@ -522,7 +522,7 @@
 			potential_methods += BRUTE
 
 		if(C.getFireLoss() > heal_threshold)
-			potential_methods += BURN
+			potential_methods += FIRE
 
 		if(C.getOxyLoss() > (5 + heal_threshold))
 			potential_methods += OXY

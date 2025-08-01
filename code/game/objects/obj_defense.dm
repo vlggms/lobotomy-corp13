@@ -43,7 +43,7 @@
 				playsound(src, 'sound/weapons/smash.ogg', 50, TRUE)
 			else
 				playsound(src, 'sound/weapons/tap.ogg', 50, TRUE)
-		if(BURN)
+		if(FIRE)
 			playsound(src.loc, 'sound/items/welder.ogg', 100, TRUE)
 
 /obj/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
