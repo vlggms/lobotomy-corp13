@@ -70,6 +70,9 @@
 	// Victory tracking
 	var/victory_points = 0
 	var/win_condition = "default" // Can be "default", "survive", etc.
+	
+	// Resource tracking
+	var/candles = 1 // Everyone starts with 1 candle
 
 	// UI datums
 	var/datum/villains_contract_ui/contract_ui
@@ -78,6 +81,7 @@
 	// Character-specific tracking
 	var/mob/living/simple_animal/hostile/villains_character/blessed_by = null // Who blessed this player (Puss in Boots)
 	var/mob/living/simple_animal/hostile/villains_character/current_blessing = null // Who this player has blessed
+	var/used_blessing = FALSE // Track if Puss in Boots has used their blessing
 	var/list/observed_players = list() // Players observed by Rudolta
 	var/mob/living/simple_animal/hostile/villains_character/marked_for_hunting = null // Red Hood's Hunter's Mark target
 	var/cursed_speech = FALSE // Kikimora's curse
@@ -318,6 +322,25 @@
 	if(forced_to_whisper && !findtext(message, "#"))
 		// Add whisper prefix if not already whispering
 		message = "# " + message
+	
+	// Handle audio recording during talk/trade
+	if(audio_recorded && audio_recorder && trading_with)
+		// Check if the audio recorder action actually succeeded
+		var/recorder_action_succeeded = FALSE
+		if(GLOB.villains_game)
+			for(var/datum/villains_action/action in GLOB.villains_game.last_night_actions)
+				if(action.performer == audio_recorder && action.target == src && !action.prevented)
+					var/datum/villains_action/use_item/UI = action
+					if(istype(UI) && UI.used_item && istype(UI.used_item, /obj/item/villains/audio_recorder))
+						recorder_action_succeeded = TRUE
+						break
+		
+		if(recorder_action_succeeded)
+			// Send a snippet of the conversation to the recorder
+			var/snippet = copytext(message, 1, 50) // First 50 characters
+			if(length(message) > 50)
+				snippet += "..."
+			to_chat(audio_recorder, span_notice("Audio Recording: [src] says to [trading_with]: \"[snippet]\""))
 
 	// Handle Kikimora's curse - DISABLED
 	/*

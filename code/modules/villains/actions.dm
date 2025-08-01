@@ -75,6 +75,15 @@
 
 	var/mob/living/simple_animal/hostile/villains_character/P = performer
 	var/mob/living/simple_animal/hostile/villains_character/T = target
+	
+	// Consume candle
+	if(P.candles <= 0)
+		to_chat(P, span_warning("You need at least 1 candle to Talk/Trade!"))
+		completed = TRUE
+		return FALSE
+	
+	P.candles--
+	to_chat(P, span_notice("You consume 1 candle to initiate the Talk/Trade session. ([P.candles] remaining)"))
 
 	// Check if target is already trading
 	if(T.trading_with)

@@ -88,6 +88,12 @@
 
 /obj/item/villains/proc/use_item(mob/living/user, mob/living/target, datum/villains_controller/game)
 	log_game("VILLAINS DEBUG: use_item() called for [src.name] by [user] on [target]")
+	
+	// Check if item is disabled by EMP
+	if(emp_disabled)
+		to_chat(user, span_warning("[src] sparks and fails - it has been disabled by an EMP!"))
+		return FALSE
+	
 	freshness = VILLAIN_ITEM_USED
 	update_outline()
 	if(game)
@@ -694,4 +700,24 @@
 			to_chat(user, span_notice("It lands on tails! Luck is on your side."))
 
 	return TRUE
+
+// Resource Items
+
+/obj/item/villains/candle
+	name = "Candle"
+	desc = "A special candle that provides light and warmth. Can be consumed to gain candle resources."
+	icon = 'icons/obj/candle.dmi'
+	icon_state = "candle1_lit"
+	action_type = VILLAIN_ACTION_TYPELESS
+	action_cost = VILLAIN_ACTION_FREE
+	rarity = VILLAIN_ITEM_RARE
+	
+/obj/item/villains/candle/use_item(mob/living/user, mob/living/target, datum/villains_controller/game)
+	// Candles can't be used directly as an action
+	to_chat(user, span_notice("This candle will be consumed during the evening phase to provide candle resources."))
+	return FALSE
+	
+/obj/item/villains/candle/examine(mob/user)
+	. = ..()
+	. += span_notice("This candle will be automatically consumed during the evening phase to grant 1 candle resource.")
 

@@ -23,6 +23,7 @@ export const VillainsCharacterSheet = (props, context) => {
     morning_extension_voted,
     morning_extension_vote,
     is_current_speaker,
+    candles,
   } = data;
 
   return (
@@ -59,6 +60,7 @@ export const VillainsCharacterSheet = (props, context) => {
               portrait_base64={portrait_base64}
               is_villain={is_villain}
               victory_points={victory_points}
+              candles={candles}
             />
           </Stack.Item>
           <Stack.Item>
@@ -137,6 +139,7 @@ const CharacterInfo = props => {
     portrait_base64, 
     is_villain, 
     victory_points,
+    candles,
   } = props;
 
   return (
@@ -176,6 +179,11 @@ const CharacterInfo = props => {
           {victory_points !== undefined && (
             <Box mt={1}>
               <Icon name="trophy" color="gold" /> Victory Points: {victory_points}
+            </Box>
+          )}
+          {candles !== undefined && (
+            <Box mt={1}>
+              <Icon name="fire" color="orange" /> Candles: {candles}
             </Box>
           )}
         </Stack.Item>

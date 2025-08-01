@@ -32,6 +32,7 @@ export const VillainsActionSelection = (props, context) => {
     main_actions = [],
     secondary_actions = [],
     available_targets = [],
+    secondary_targets = [],
     selected_main_action,
     selected_main_target,
     selected_secondary_action,
@@ -52,31 +53,19 @@ export const VillainsActionSelection = (props, context) => {
   }));
 
   // Filter targets based on restrictions
-  let mainTargetOptions = available_targets.map(target => ({
-    value: target.ref,
-    displayText: target.name,
-  }));
+  const mainTargetOptions = available_targets
+    .filter(target => target.can_target)
+    .map(target => ({
+      value: target.ref,
+      displayText: target.name,
+    }));
 
-  if (main_self_target_only) {
-    // Only allow self-targeting
-    mainTargetOptions = mainTargetOptions.filter(
-      option => available_targets.find(
-        t => t.ref === option.value && t.name === character_name
-      )
-    );
-  } else if (main_no_self_target) {
-    // Remove self from targets
-    mainTargetOptions = mainTargetOptions.filter(
-      option => !available_targets.find(
-        t => t.ref === option.value && t.name === character_name
-      )
-    );
-  }
-
-  const secondaryTargetOptions = available_targets.map(target => ({
-    value: target.ref,
-    displayText: target.name,
-  }));
+  const secondaryTargetOptions = (secondary_targets || available_targets)
+    .filter(target => target.can_target)
+    .map(target => ({
+      value: target.ref,
+      displayText: target.name,
+    }));
 
   // Find selected action details
   const selectedMainActionDetails = main_actions.find(

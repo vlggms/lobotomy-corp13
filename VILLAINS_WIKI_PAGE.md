@@ -81,12 +81,13 @@ Unlike traditional Mafia games, '''nobody dies from voting''' in Villains of the
 
 === Evening Phase (1 minute) ===
 * Everyone locked in their rooms
+* '''Candle items in inventory are consumed to grant candle resources'''
 * Select night actions using "Select Night Actions" verb
 * Choose one '''Main Action''':
-** Talk/Trade - Visit someone for 2 minutes
+** Talk/Trade - Visit someone for 2 minutes '''(Requires 1 Candle)'''
 ** Use Character Ability - Your unique power
 ** Use Item - Activate a main action item
-** Eliminate - Villain only
+** Eliminate - Villain only '''(Cannot be used on the first night)'''
 * Optionally choose one '''Secondary Action''':
 ** Use Item - Activate a secondary action item
 ** Character-specific secondary abilities
@@ -143,7 +144,7 @@ Unlike traditional Mafia games, '''nobody dies from voting''' in Villains of the
 |-
 | '''<center>Queen of Hatred</center> <br> [[File:Queen of Hatred.png|thumb]]''' || <center>'''Arcana Beats - Protective:''' Pick a player. That player will be protected from Direct Eliminations for the night.</center> || <center>'''Hero of Love!''' - You are 50% less likely to be chosen as the Villain</center> || <center>A magical girl who believes in protecting everyone with love and justice. Your protective magic shields one player each night from any direct elimination, making you a valuable ally. However, your pure heart makes you less likely to be chosen as the villain (50% chance), which can be both a blessing and a curse. Best suited for players who enjoy supporting others and building trust networks.</center>
 |-
-| '''<center>Puss in Boots</center>[[File:Puss in Boots.png|thumb]]''' || <center>'''Greetings, Master - Protective:''' The targeted player gains your blessing, making them immune to direct eliminations until you bless another.</center> || <center>'''Inheritance''' - You are able to talk and trade with your blessed players as a Secondary Action.</center> || <center>A devoted feline guardian who bestows powerful blessings. You can permanently protect one player from direct eliminations - but only one at a time. Blessing a new player removes protection from the previous one. Your Inheritance ability lets you talk/trade with blessed players as a secondary action, creating a private communication network. Excellent for players who want to form strong alliances and coordinate protection strategies.</center>
+| '''<center>Puss in Boots</center>[[File:Puss in Boots.png|thumb]]''' || <center>'''Greetings, Master - Protective:''' The targeted player gains your blessing, making them immune to direct eliminations until you bless another.</center> || <center>'''Inheritance''' - You are able to talk and trade with your blessed players as a Secondary Action. '''(Requires 1 Candle)'''</center> || <center>A devoted feline guardian who bestows powerful blessings. You can permanently protect one player from direct eliminations - but only one at a time. Blessing a new player removes protection from the previous one. Your Inheritance ability lets you talk/trade with blessed players as a secondary action (requires 1 candle), creating a private communication network. Excellent for players who want to form strong alliances and coordinate protection strategies.</center>
 |-
 | '''<center>Red Blooded American</center>[[File:Red blooded American.png|thumb]]''' || <center>'''Patriotic Fervor - Protective:''' Forces everyone who targeted your target to target yourself instead.</center> || <center>'''Military Instincts''' - During the investigation phase, you learn the amount of suppressive and elimination actions used last nighttime phase.</center> || <center>A patriotic demon who draws all attention to themselves. Your unique protective ability forces everyone targeting your protected player to target you instead. This can save allies but puts you at great risk. Your Military Instincts reveal the total number of suppressive and elimination actions used each night, helping track dangerous players. Best for brave players who want to be the center of attention while gathering crucial statistics.</center>
 |}
@@ -182,7 +183,7 @@ Unlike traditional Mafia games, '''nobody dies from voting''' in Villains of the
 {| class="wikitable sortable"
 ! Character !! Active Ability !! Passive !! Strategy
 |-
-| '''<center>All-Around Cleaner</center>[[File:Cleaner.png|thumb]]''' || <center>'''Room Cleaning - Investigative:''' Talk and trade with your target for 2 minutes before stealing one random item from their inventory.</center> || <center>'''Night Cleaner''' - After the nighttime phase, you will gain one random item out of the list of items that were used tonight.</center> || <center>A cheerful helper with sticky fingers and opportunistic tendencies. You use your Room Cleaning service as cover to steal items. You can talk and trade with your target for 2 minutes, then automatically steal one random item from them. Your Night Cleaner ability ensures you always have items to work with by granting you a random used item after each night. Ideal for players who enjoy resource manipulation and social deception.</center>
+| '''<center>All-Around Cleaner</center>[[File:Cleaner.png|thumb]]''' || <center>'''Room Cleaning - Investigative:''' Talk and trade with your target for 2 minutes before stealing one random item from their inventory. '''(Requires 1 Candle)'''</center> || <center>'''Night Cleaner''' - After the nighttime phase, you will gain one random item out of the list of items that were used tonight.</center> || <center>A cheerful helper with sticky fingers and opportunistic tendencies. You use your Room Cleaning service as cover to steal items. You can talk and trade with your target for 2 minutes (requires 1 candle), then automatically steal one random item from them. Your Night Cleaner ability ensures you always have items to work with by granting you a random used item after each night. Ideal for players who enjoy resource manipulation and social deception.</center>
 |-
 | '''<center>Fairy Gentleman</center>[[File:Fairy gentleman.png|thumb]]''' || <center>'''Fairy Brew - Investigative:''' Create a 'Fairy Wine' item. This item allows talk and trade with your main action target.</center> || <center>'''Outstanding Charisma''' - When someone uses Fairy Wine, you become alerted and your main action gains the effects of Fairy Wine.</center> || <center>An elegant gentleman who uses his enchanted wine to facilitate social encounters. You create Fairy Wine items that enable talk/trade with targets, but with a twist - you're alerted whenever someone uses your wine, and your own main action gains the wine's effects automatically. This creates a network of information and control. Best for players who enjoy creating alliances and monitoring social interactions.</center>
 |-
@@ -251,6 +252,8 @@ Unlike traditional Mafia games, '''nobody dies from voting''' in Villains of the
 | Lucky Coin || Uncommon || Secondary || Block one negative effect
 |-
 | Fairy Wine || Rare || Secondary || Talk/trade with main target
+|-
+| Candle || Rare || Free || Consumed at evening phase to grant 1 candle resource
 |}
 
 == Action Priority ==
@@ -270,9 +273,22 @@ This means:
 
 == Advanced Mechanics ==
 
+=== Candle Resource System ===
+* '''Starting Candles:''' Everyone begins with 1 candle resource
+* '''Required For:''' 
+** Talk/Trade action (costs 1 candle)
+** All-Around Cleaner's Room Cleaning ability (costs 1 candle)  
+** Puss in Boots' Inheritance ability (costs 1 candle)
+* '''Gaining Candles:'''
+** Find rare Candle items during morning phase
+** During evening phase, all Candle items in inventory are automatically consumed
+** Each Candle item consumed grants 1 candle resource
+* '''No Candles = No Social Actions:''' Without candles, you cannot Talk/Trade or use abilities that require them
+
 === Trading System ===
 * Lasts 2 minutes per session
 * Both players can offer/request items
+* '''Requires 1 candle to initiate'''
 * Special trade interactions:
 ** Der Freischütz can offer elimination contracts
 ** All-Around Cleaner steals after trading
@@ -306,6 +322,7 @@ This means:
 * Form voting blocks with confirmed innocents
 
 === For Villains ===
+* '''Cannot eliminate on the first night''' - use this time to gather information
 * Act helpful to avoid suspicion
 * Build trust before striking
 * Create believable alibis
@@ -316,7 +333,7 @@ This means:
 * Trust no one completely
 
 == Verbs ==
-* '''View Character Sheet''' - See your abilities and items
+* '''View Character Sheet''' - See your abilities, items, and candle resources
 * '''Select Night Actions''' - Choose actions during Evening phase
 * '''Give Item''' - Trade items with nearby players
 * '''Review Contracts''' - Check pending contracts (Der Freischütz)
@@ -350,3 +367,12 @@ A: The villains win! At least one player needs 1+ points for innocents to win.
 
 '''Q: Can Rudolta communicate at all?'''<br>
 A: No speech, but they can use emotes (*wave, *nod, etc).
+
+'''Q: What are candles and why do I need them?'''<br>
+A: Candles are a resource required for Talk/Trade and certain abilities. Everyone starts with 1 candle. Find Candle items to gain more.
+
+'''Q: Can the villain kill on the first night?'''<br>
+A: No. The Eliminate action is disabled on the first night, giving everyone a chance to establish themselves.
+
+'''Q: What happens if I run out of candles?'''<br>
+A: You cannot use Talk/Trade or abilities that require candles (like All-Around Cleaner's Room Cleaning). Plan your candle usage carefully!

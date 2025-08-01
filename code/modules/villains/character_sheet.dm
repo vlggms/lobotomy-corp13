@@ -34,6 +34,9 @@
 	data["is_villain"] = owner.is_villain
 	// Warden can hold 5 items, everyone else 3
 	data["max_items"] = (owner.character_data?.character_id == VILLAIN_CHAR_WARDEN) ? 5 : 3
+	
+	// Resource tracking
+	data["candles"] = owner.candles
 
 	// Active ability
 	if(owner.character_data.active_ability_name)
@@ -123,7 +126,9 @@
 			if(!I || I.loc != owner)
 				return
 
-			I.forceMove(get_turf(owner))
+			// Properly drop the item using the owner's drop method
+			// This ensures the dropped() proc is called correctly
+			owner.dropItemToGround(I)
 			to_chat(owner, span_notice("You drop [I]."))
 			return TRUE
 			

@@ -126,6 +126,14 @@
 	var/mob/living/simple_animal/hostile/villains_character/U = user
 	var/mob/living/simple_animal/hostile/villains_character/T = target
 	
+	// Check and consume candle
+	if(U.candles <= 0)
+		to_chat(U, span_warning("You need at least 1 candle to use Room Cleaning!"))
+		return FALSE
+	
+	U.candles--
+	to_chat(U, span_notice("You consume 1 candle to perform Room Cleaning. ([U.candles] remaining)"))
+	
 	// Check if target is already trading
 	if(T.trading_with)
 		to_chat(U, span_notice("[T] is already trading with someone. Waiting for them to finish..."))
@@ -202,8 +210,10 @@
 	return TRUE
 
 /datum/villains_character/all_round_cleaner/on_phase_change(phase, mob/living/user, datum/villains_controller/game)
+	log_game("VILLAINS DEBUG: All-Around Cleaner on_phase_change called with phase [phase], game=[game ? "EXISTS" : "NULL"]")
 	// Night Cleaner passive triggers after nighttime phase ends (either investigation or morning)
 	if((phase == VILLAIN_PHASE_INVESTIGATION || phase == VILLAIN_PHASE_MORNING) && istype(user, /mob/living/simple_animal/hostile/villains_character))
+		log_game("VILLAINS DEBUG: All-Around Cleaner processing passive, used_items length: [game ? length(game.used_items) : "NO GAME"]")
 		var/mob/living/simple_animal/hostile/villains_character/U = user
 		// Only trigger if we're coming from nighttime (check if there are used items) and user is alive
 		if(length(game.used_items) && U.stat != DEAD)
@@ -217,6 +227,9 @@
 				new_item.freshness = VILLAIN_ITEM_USED
 				new_item.update_outline()
 				to_chat(user, span_notice("While cleaning up, you find [new_item]!"))
+				log_game("VILLAINS DEBUG: All-Around Cleaner received [new_item]")
+		else
+			log_game("VILLAINS DEBUG: All-Around Cleaner passive failed - no used items or player dead")
 
 // Funeral of the Dead Butterflies
 /datum/villains_character/funeral_butterflies
@@ -250,12 +263,15 @@
 	return TRUE
 
 /datum/villains_character/funeral_butterflies/on_phase_change(phase, mob/living/user, datum/villains_controller/game)
+	log_game("VILLAINS DEBUG: Funeral Butterflies on_phase_change called with phase [phase]")
 	if(phase == VILLAIN_PHASE_INVESTIGATION && game.last_eliminated && istype(user, /mob/living/simple_animal/hostile/villains_character))
+		log_game("VILLAINS DEBUG: Funeral Butterflies processing investigation phase passive")
 		// Mercy passive - count visitors to eliminated player
 		var/visitor_count = 0
 		if(game.action_targets[REF(game.last_eliminated)])
 			visitor_count = length(game.action_targets[REF(game.last_eliminated)])
 		
+		log_game("VILLAINS DEBUG: Funeral found [visitor_count] visitors to eliminated player")
 		to_chat(user, span_notice("Your butterflies whisper: [visitor_count] player\s visited the eliminated player last night."))
 
 // Fairy Gentleman
@@ -307,7 +323,7 @@
 /datum/villains_character/puss_in_boots
 	name = "Puss in Boots"
 	character_id = VILLAIN_CHAR_PUSSINBOOTS
-	desc = "A devoted feline guardian who bestows powerful blessings. Puss in Boots can permanently protect one player from direct eliminations with Greetings, Master - but only one at a time. Blessing a new player removes protection from the previous one. Your Inheritance ability lets you talk/trade with blessed players as a secondary action, creating a private communication network. Excellent for players who want to form strong alliances and coordinate protection strategies."
+	desc = "A devoted feline guardian who bestows a powerful blessing. Puss in Boots can permanently protect one player from direct eliminations with Greetings, Master - but only once per game. The blessing lasts the entire game and cannot be transferred. Your Inheritance ability lets you talk/trade with your blessed player as a secondary action, creating a private communication channel. Excellent for players who want to form a strong permanent alliance."
 	portrait = "puss_in_boots"
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "cat_contained"
@@ -315,7 +331,7 @@
 	icon_dead = "cat_dead"
 
 	active_ability_name = "Greetings, Master"
-	active_ability_desc = "The targeted player gains your blessing, making them immune to direct eliminations until you bless another."
+	active_ability_desc = "ONE-TIME USE: The targeted player gains your blessing, making them immune to direct eliminations permanently."
 	active_ability_type = VILLAIN_ACTION_PROTECTIVE
 	active_ability_cost = VILLAIN_ACTION_MAIN
 
@@ -332,19 +348,25 @@
 	var/mob/living/simple_animal/hostile/villains_character/U = user
 	var/mob/living/simple_animal/hostile/villains_character/T = target
 	
+	// Check if ability has already been used this game
+	if(U.used_blessing)
+		to_chat(user, span_warning("You have already used your blessing this game!"))
+		return FALSE
+	
 	// Remove blessing from previous target
 	if(U.current_blessing && U.current_blessing != T)
 		U.current_blessing.blessed_by = null
 		U.current_blessing.remove_protection()
-		to_chat(U.current_blessing, span_warning("You feel [user]'s blessing fade away..."))
+		to_chat(U.current_blessing, span_warning("You feel a protective blessing fade away..."))
 	
 	// Apply new blessing
 	U.current_blessing = T
 	T.blessed_by = U
 	T.apply_protection()
+	U.used_blessing = TRUE // Mark as used
 	
 	to_chat(user, span_notice("You bestow your blessing upon [target], protecting them from elimination!"))
-	to_chat(target, span_boldnotice("[user] blesses you! You are now immune to direct eliminations."))
+	to_chat(target, span_boldnotice("You feel a protective blessing surround you! You are now immune to direct eliminations."))
 	
 	return TRUE
 
@@ -441,7 +463,7 @@
 	base_pixel_x = -16
 
 	active_ability_name = "Observe"
-	active_ability_desc = "During evening, select a player to physically follow during the night."
+	active_ability_desc = "Select a player to physically follow throughout the night. You'll see their actions and who visits them."
 	active_ability_type = VILLAIN_ACTION_TYPELESS
 	active_ability_cost = VILLAIN_ACTION_FREE
 
@@ -466,9 +488,18 @@
 	// Mark target as observed (prevent observing same person twice)
 	U.observed_players += T
 	U.observing_target = T
+	U.is_observing = TRUE
 	
-	// The actual observation starts during evening phase
-	to_chat(user, span_notice("You have selected [target] to observe tonight. You will follow them when evening arrives."))
+	// Immediately start observing (this ability is used during evening)
+	// Teleport to target's room
+	if(T.assigned_room?.spawn_landmark)
+		U.forceMove(get_turf(T.assigned_room.spawn_landmark))
+	else
+		U.forceMove(get_turf(T))
+	to_chat(user, span_notice("You silently enter [target]'s room and begin observing them..."))
+	
+	// Register to follow their movements
+	U.RegisterSignal(T, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/mob/living/simple_animal/hostile/villains_character, follow_target))
 	
 	return TRUE
 
@@ -749,24 +780,19 @@
 	return TRUE
 
 /datum/villains_character/red_blooded_american/on_phase_change(phase, mob/living/user, datum/villains_controller/game)
+	log_game("VILLAINS DEBUG: Red Blooded American on_phase_change called with phase [phase]")
 	if(phase == VILLAIN_PHASE_INVESTIGATION)
+		log_game("VILLAINS DEBUG: Red Blooded American processing investigation phase passive")
 		// Count suppressive and elimination actions
 		var/suppressive_count = 0
 		var/elimination_count = 0
 		
 		for(var/datum/villains_action/action in game.last_night_actions)
-			var/action_category = VILLAIN_ACTION_TYPELESS
+			var/action_category = action.action_type // This is the actual numeric constant
+			log_game("VILLAINS DEBUG: Action [action.name] has action_type [action_category]")
 			
-			if(action.action_type == "character_ability")
-				var/mob/living/simple_animal/hostile/villains_character/P = action.performer
-				if(P?.character_data)
-					action_category = P.character_data.active_ability_type
-			else if(action.action_type == "use_item")
-				var/datum/villains_action/use_item/UI = action
-				if(UI.used_item)
-					action_category = UI.used_item.action_type
-			else if(action.action_type == "eliminate")
-				action_category = VILLAIN_ACTION_ELIMINATION
+			// For character abilities and items, the action_type is already set correctly in their constructors
+			// No need to check strings anymore
 			
 			switch(action_category)
 				if(VILLAIN_ACTION_SUPPRESSIVE)
@@ -846,7 +872,8 @@
 	return TRUE
 
 /datum/villains_character/red_hood/on_phase_change(phase, mob/living/user, datum/villains_controller/game)
-	if(phase == VILLAIN_PHASE_MORNING && istype(user, /mob/living/simple_animal/hostile/villains_character))
+	// Mercenary's Fee triggers on morning phase OR investigation phase (whichever comes first after nighttime)
+	if((phase == VILLAIN_PHASE_MORNING || phase == VILLAIN_PHASE_INVESTIGATION) && istype(user, /mob/living/simple_animal/hostile/villains_character))
 		var/mob/living/simple_animal/hostile/villains_character/U = user
 		if(U.used_hunters_mark)
 			// Steal a random item from another player
@@ -948,7 +975,8 @@
 	return TRUE
 
 /datum/villains_character/blue_shepherd/on_phase_change(phase, mob/living/user, datum/villains_controller/game)
-	if(phase == VILLAIN_PHASE_MORNING && istype(user, /mob/living/simple_animal/hostile/villains_character))
+	// Shepherd's Lies triggers on morning phase OR investigation phase (whichever comes first after nighttime)
+	if((phase == VILLAIN_PHASE_MORNING || phase == VILLAIN_PHASE_INVESTIGATION) && istype(user, /mob/living/simple_animal/hostile/villains_character))
 		// 25% chance for false information
 		var/give_false_info = prob(25)
 		

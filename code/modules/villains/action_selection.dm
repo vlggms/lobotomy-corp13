@@ -36,12 +36,15 @@
 	var/list/secondary_actions = list()
 
 	// Talk/Trade is always available as main action
+	var/candle_text = owner.candles > 0 ? "[owner.candles] candles available" : "No candles!"
 	main_actions += list(list(
 		"id" = "talk_trade",
-		"name" = "Talk/Trade",
+		"name" = "Talk/Trade (Requires 1 Candle)",
 		"type" = "typeless",
 		"cost" = VILLAIN_ACTION_MAIN,
-		"desc" = "Visit another player to talk and trade for 2 minutes"
+		"desc" = "Visit another player to talk and trade for 2 minutes. Consumes 1 candle. ([candle_text])",
+		"disabled" = owner.candles <= 0,
+		"disabled_reason" = "No candles available"
 	))
 
 	// Character ability
@@ -59,13 +62,29 @@
 		
 		// Add to appropriate list based on cost
 		if(owner.character_data.active_ability_cost == VILLAIN_ACTION_MAIN)
-			main_actions += list(list(
+			var/ability_name = owner.character_data.active_ability_name
+			var/ability_desc = owner.character_data.active_ability_desc
+			
+			// Check if this is All-Around Cleaner's Room Cleaning
+			if(owner.character_data.character_id == VILLAIN_CHAR_ALLROUNDCLEANER)
+				var/cleaner_candle_text = owner.candles > 0 ? "[owner.candles] candles available" : "No candles!"
+				ability_name = "Room Cleaning (Requires 1 Candle)"
+				ability_desc = "Talk and trade with your target for 2 minutes before stealing one random item from their inventory. Consumes 1 candle. ([cleaner_candle_text])"
+			
+			var/list/ability_data = list(
 				"id" = "character_ability",
-				"name" = owner.character_data.active_ability_name,
+				"name" = ability_name,
 				"type" = ability_type,
 				"cost" = owner.character_data.active_ability_cost,
-				"desc" = owner.character_data.active_ability_desc
-			))
+				"desc" = ability_desc
+			)
+			
+			// Add disabled state for All-Around Cleaner when no candles
+			if(owner.character_data.character_id == VILLAIN_CHAR_ALLROUNDCLEANER)
+				ability_data["disabled"] = owner.candles <= 0
+				ability_data["disabled_reason"] = "No candles available"
+			
+			main_actions += list(ability_data)
 		else if(owner.character_data.active_ability_cost == VILLAIN_ACTION_SECONDARY)
 			secondary_actions += list(list(
 				"id" = "character_ability",
@@ -86,12 +105,15 @@
 	
 	// Puss in Boots special - can Talk/Trade with blessed players as secondary
 	if(owner.character_data?.character_id == VILLAIN_CHAR_PUSSINBOOTS && owner.current_blessing)
+		var/inheritance_candle_text = owner.candles > 0 ? "[owner.candles] candles available" : "No candles!"
 		secondary_actions += list(list(
 			"id" = "inheritance_trade",
-			"name" = "Inheritance (Talk/Trade with Blessed)",
+			"name" = "Inheritance (Talk/Trade with Blessed - Requires 1 Candle)",
 			"type" = "typeless",
 			"cost" = VILLAIN_ACTION_SECONDARY,
-			"desc" = "Talk and trade with your blessed player"
+			"desc" = "Talk and trade with your blessed player. Consumes 1 candle. ([inheritance_candle_text])",
+			"disabled" = owner.candles <= 0,
+			"disabled_reason" = "No candles available"
 		))
 
 	// Items - separate by cost
@@ -122,13 +144,20 @@
 
 	// Eliminate (villain only) - main action
 	if(owner.is_villain)
-		main_actions += list(list(
+		var/list/eliminate_data = list(
 			"id" = "eliminate",
 			"name" = "Eliminate",
 			"type" = "elimination",
 			"cost" = VILLAIN_ACTION_MAIN,
 			"desc" = "Attempt to eliminate another player"
-		))
+		)
+		
+		// Disable on first night
+		if(GLOB.villains_game?.is_first_night)
+			eliminate_data["disabled"] = TRUE
+			eliminate_data["disabled_reason"] = "Cannot eliminate on the first night"
+		
+		main_actions += list(eliminate_data)
 
 	data["available_actions"] = main_actions
 	data["secondary_actions"] = secondary_actions
@@ -152,6 +181,19 @@
 						can_target = FALSE
 						reason = "You cannot target yourself with this action"
 		
+		// Check item-based restrictions
+		else if(findtext(selected_main_action, "item_"))
+			var/item_ref = copytext(selected_main_action, 6)
+			var/obj/item/villains/I = locate(item_ref)
+			if(I)
+				// Items that can only target self
+				if(istype(I, /obj/item/villains/forcefield_projector) || \
+				   istype(I, /obj/item/villains/smoke_bomb) || \
+				   istype(I, /obj/item/villains/lucky_coin))
+					if(!is_self)
+						can_target = FALSE
+						reason = "This item can only be used on yourself"
+		
 		targets += list(list(
 			"ref" = REF(P),
 			"name" = P.name,
@@ -161,6 +203,42 @@
 		))
 	
 	data["available_targets"] = targets
+	
+	// Build secondary targets with their own restrictions
+	var/list/secondary_targets = list()
+	for(var/mob/living/simple_animal/hostile/villains_character/P in GLOB.villains_game.living_players)
+		var/can_target = TRUE
+		var/reason = ""
+		var/is_self = (P == owner)
+		
+		// Check secondary action restrictions
+		if(selected_secondary_action == "inheritance_trade")
+			// Puss in Boots can only target their blessed player
+			if(owner.character_data?.character_id == VILLAIN_CHAR_PUSSINBOOTS)
+				if(P != owner.current_blessing)
+					can_target = FALSE
+					reason = "You can only use Inheritance on your blessed player"
+		else if(findtext(selected_secondary_action, "item_"))
+			var/item_ref = copytext(selected_secondary_action, 6)
+			var/obj/item/villains/I = locate(item_ref)
+			if(I)
+				// Items that can only target self
+				if(istype(I, /obj/item/villains/forcefield_projector) || \
+				   istype(I, /obj/item/villains/smoke_bomb) || \
+				   istype(I, /obj/item/villains/lucky_coin))
+					if(!is_self)
+						can_target = FALSE
+						reason = "This item can only be used on yourself"
+		
+		secondary_targets += list(list(
+			"ref" = REF(P),
+			"name" = P.name,
+			"is_self" = is_self,
+			"can_target" = can_target,
+			"reason" = reason
+		))
+	
+	data["secondary_targets"] = secondary_targets
 
 	// Current selections
 	data["selected_action"] = selected_main_action
@@ -178,7 +256,8 @@
 
 	switch(action)
 		if("select_action")
-			selected_main_action = params["action_id"]
+			var/action_id = params["action_id"]
+			selected_main_action = action_id
 			// Clear target if changing action
 			selected_main_target = null
 			return TRUE
@@ -188,7 +267,8 @@
 			return TRUE
 			
 		if("select_secondary_action")
-			selected_secondary_action = params["action_id"]
+			var/action_id = params["action_id"]
+			selected_secondary_action = action_id
 			// Clear target if changing action
 			selected_secondary_target = null
 			return TRUE
@@ -207,6 +287,18 @@
 			if(!target || !(target in GLOB.villains_game.living_players))
 				to_chat(owner, span_warning("Invalid target!"))
 				return TRUE
+			
+			// Validate self-targeting restrictions for items
+			if(findtext(selected_main_action, "item_"))
+				var/item_ref = copytext(selected_main_action, 6)
+				var/obj/item/villains/I = locate(item_ref)
+				if(I)
+					if(istype(I, /obj/item/villains/forcefield_projector) || \
+					   istype(I, /obj/item/villains/smoke_bomb) || \
+					   istype(I, /obj/item/villains/lucky_coin))
+						if(target != owner)
+							to_chat(owner, span_warning("This item can only be used on yourself!"))
+							return TRUE
 
 			// Submit to the game controller
 			if(GLOB.villains_game)
@@ -215,10 +307,23 @@
 				var/action_data
 
 				if(selected_main_action == "talk_trade")
+					// Check if player has candles
+					if(owner.candles <= 0)
+						to_chat(owner, span_warning("You need at least 1 candle to Talk/Trade!"))
+						return TRUE
 					action_type = "talk_trade"
 				else if(selected_main_action == "character_ability")
+					// Check if this is All-Around Cleaner's Room Cleaning
+					if(owner.character_data?.character_id == VILLAIN_CHAR_ALLROUNDCLEANER)
+						if(owner.candles <= 0)
+							to_chat(owner, span_warning("You need at least 1 candle to use Room Cleaning!"))
+							return TRUE
 					action_type = "character_ability"
 				else if(selected_main_action == "eliminate")
+					// Check if it's first night
+					if(GLOB.villains_game?.is_first_night)
+						to_chat(owner, span_warning("You cannot eliminate anyone on the first night!"))
+						return TRUE
 					action_type = "eliminate"
 				else if(findtext(selected_main_action, "item_"))
 					action_type = "use_item"
@@ -233,8 +338,31 @@
 				
 				// Handle secondary action if selected
 				if(selected_secondary_action && selected_secondary_target)
-					var/secondary_target = locate(selected_secondary_target)
+					var/mob/living/simple_animal/hostile/villains_character/secondary_target = locate(selected_secondary_target)
 					if(secondary_target && (secondary_target in GLOB.villains_game.living_players))
+						// Validate self-targeting restrictions for secondary items
+						if(findtext(selected_secondary_action, "item_"))
+							var/item_ref = copytext(selected_secondary_action, 6)
+							var/obj/item/villains/I = locate(item_ref)
+							if(I)
+								if(istype(I, /obj/item/villains/forcefield_projector) || \
+								   istype(I, /obj/item/villains/smoke_bomb) || \
+								   istype(I, /obj/item/villains/lucky_coin))
+									if(secondary_target != owner)
+										to_chat(owner, span_warning("This secondary item can only be used on yourself!"))
+										return TRUE
+						
+						// Validate inheritance trade targeting
+						if(selected_secondary_action == "inheritance_trade")
+							if(owner.character_data?.character_id == VILLAIN_CHAR_PUSSINBOOTS)
+								if(secondary_target != owner.current_blessing)
+									to_chat(owner, span_warning("You can only use Inheritance on your blessed player!"))
+									return TRUE
+								// Check if player has candles for inheritance trade
+								if(owner.candles <= 0)
+									to_chat(owner, span_warning("You need at least 1 candle to use Inheritance!"))
+									return TRUE
+						
 						var/secondary_type
 						var/secondary_data
 						

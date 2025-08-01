@@ -53,8 +53,9 @@ export const VillainsSimpleActionSelection = (props, context) => {
                             <Button
                               fluid
                               selected={selected_action === action.id}
+                              disabled={action.disabled}
                               onClick={() => act('select_action', { action_id: action.id })}
-                              tooltip={action.desc}
+                              tooltip={action.disabled ? action.disabled_reason : action.desc}
                               color={action.type === 'elimination' ? 'red' : 'transparent'}>
                               <Stack>
                                 <Stack.Item grow>
@@ -62,6 +63,11 @@ export const VillainsSimpleActionSelection = (props, context) => {
                                   <Box fontSize="0.9em" opacity={0.6}>
                                     {action.type} - {action.cost}
                                   </Box>
+                                  {action.disabled && (
+                                    <Box fontSize="0.8em" color="red">
+                                      {action.disabled_reason}
+                                    </Box>
+                                  )}
                                 </Stack.Item>
                               </Stack>
                             </Button>
@@ -117,11 +123,12 @@ export const VillainsSimpleActionSelection = (props, context) => {
                                   selected_secondary_action
                                     === action.id
                                 }
+                                disabled={action.disabled}
                                 onClick={() => act(
                                   'select_secondary_action',
                                   { action_id: action.id }
                                 )}
-                                tooltip={action.desc}
+                                tooltip={action.disabled ? action.disabled_reason : action.desc}
                                 color="transparent">
                                 <Stack>
                                   <Stack.Item grow>
@@ -129,6 +136,11 @@ export const VillainsSimpleActionSelection = (props, context) => {
                                     <Box fontSize="0.9em" opacity={0.6}>
                                       {action.type} - {action.cost}
                                     </Box>
+                                    {action.disabled && (
+                                      <Box fontSize="0.8em" color="red">
+                                        {action.disabled_reason}
+                                      </Box>
+                                    )}
                                   </Stack.Item>
                                 </Stack>
                               </Button>

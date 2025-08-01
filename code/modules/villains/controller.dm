@@ -16,6 +16,7 @@
 	var/mob/living/simple_animal/hostile/villains_character/current_villain
 	var/last_eliminated
 	var/game_active = FALSE
+	var/is_first_night = TRUE // Track if this is the first night
 
 	// Action queue
 	var/datum/villains_action_queue/action_queue
@@ -276,6 +277,27 @@
 
 /datum/villains_controller/proc/start_evening_phase()
 	announce_phase("Evening")
+	// Clear used items from previous night cycle (after investigation/morning phases have used them)
+	used_items.Cut()
+	
+	// Consume candle items and grant candle resources
+	for(var/mob/living/simple_animal/hostile/villains_character/player in living_players)
+		var/candles_consumed = 0
+		var/list/candles_to_delete = list()
+		
+		// Find all candle items in inventory
+		for(var/obj/item/villains/candle/C in player.contents)
+			candles_to_delete += C
+			candles_consumed++
+		
+		// Delete candle items and grant resources
+		for(var/obj/item/villains/candle/C in candles_to_delete)
+			qdel(C)
+		
+		if(candles_consumed > 0)
+			player.candles += candles_consumed
+			to_chat(player, span_notice("Your [candles_consumed] candle item\s ha\s been consumed, granting you [candles_consumed] candle resource\s! (Total: [player.candles])"))
+	
 	// Teleport players to their rooms
 	teleport_all_to_rooms()
 	// Lock players in rooms
@@ -292,32 +314,27 @@
 		player.forsaken_counter_ready = FALSE  // Reset Forsaken Murder's counter
 		player.main_action = null  // Clear previous action
 		player.secondary_action = null  // Clear previous secondary action
+		// Clear audio recording effects
+		player.audio_recorded = FALSE
+		player.audio_recorder = null
+		player.smoke_bombed = FALSE  // Also reset smoke bomb effect
+		player.has_lucky_coin = FALSE  // Reset lucky coin protection
+		player.drain_monitor_target = null  // Clear any pending investigation tracking
+		player.rangefinder_target = null
 
-		// Handle Rudolta's observation
-		if(player.character_data?.character_id == VILLAIN_CHAR_RUDOLTA && player.observing_target)
-			// Start the actual observation
-			var/mob/living/simple_animal/hostile/villains_character/target = player.observing_target
-			if(target && (target in living_players))
-				player.is_observing = TRUE
-				// Teleport to target's room
-				if(target.assigned_room?.spawn_landmark)
-					player.forceMove(get_turf(target.assigned_room.spawn_landmark))
-				else
-					player.forceMove(get_turf(target))
-				to_chat(player, span_notice("You silently enter [target]'s room and begin observing them..."))
-				// Register to follow their movements
-				player.RegisterSignal(target, COMSIG_MOVABLE_MOVED, TYPE_PROC_REF(/mob/living/simple_animal/hostile/villains_character, follow_target))
-		// Stop other observations if active
-		else if(player.is_observing)
+		// Clean up any active Rudolta observations from previous nights
+		if(player.is_observing && player.observing_target)
 			player.stop_observing()
 			player.UnregisterSignal(player.observing_target, COMSIG_MOVABLE_MOVED)
+			player.is_observing = FALSE
+			player.observing_target = null
 	// Open action selection UI
 	phase_timer = addtimer(CALLBACK(src, PROC_REF(change_phase), VILLAIN_PHASE_NIGHTTIME), VILLAIN_TIMER_EVENING SECONDS, TIMER_STOPPABLE)
 
 /datum/villains_controller/proc/start_nighttime_phase()
 	announce_phase("Nighttime")
-	// Clear used items from previous nights
-	used_items.Cut()
+	// DON'T clear used_items here - we need them for investigation phase passives!
+	// They will be cleared at the start of the NEXT nighttime phase
 	// Process all actions in order
 	process_night_actions()
 
@@ -333,6 +350,14 @@
 	
 	// Scatter evidence items and create residue markers
 	scatter_evidence_items()
+	
+	// Trigger character phase change callbacks for investigation passives
+	for(var/mob/living/simple_animal/hostile/villains_character/player in living_players)
+		if(player.character_data)
+			log_game("VILLAINS DEBUG: Calling on_phase_change for [player.name] ([player.character_data.name]) during investigation phase")
+			player.character_data.on_phase_change(VILLAIN_PHASE_INVESTIGATION, player, src)
+		else
+			log_game("VILLAINS DEBUG: Player [player.name] has no character_data during investigation phase!")
 	
 	// Give instructions
 	to_chat(living_players, span_notice("You have [VILLAIN_TIMER_INVESTIGATION / 60] minutes to search for evidence:"))
@@ -477,6 +502,23 @@
 /datum/villains_controller/proc/start_results_phase()
 	announce_phase("Results")
 	voting_phase = FALSE
+	
+	// Unlock the main room doors that were locked during briefing
+	for(var/obj/machinery/door/airlock/door in get_area(main_room_center))
+		if(door.locked)
+			door.unlock()
+	
+	// Remove all evidence items after voting
+	var/evidence_removed = 0
+	for(var/obj/item/villains/I in world)
+		if(I.is_evidence)
+			evidence_removed++
+			qdel(I)
+	if(evidence_removed > 0)
+		log_game("VILLAINS DEBUG: Removed [evidence_removed] evidence items after voting")
+	
+	// Clear the evidence list
+	evidence_list.Cut()
 	
 	// Tally the votes and determine who was voted
 	var/mob/living/simple_animal/hostile/villains_character/voted_player = tally_votes()
@@ -740,6 +782,7 @@
 	// Reset game state immediately
 	current_phase = VILLAIN_PHASE_SETUP
 	game_active = FALSE
+	is_first_night = TRUE // Reset for next game
 	
 	// Reset all game state
 	GLOB.villains_signup.Cut()
@@ -1297,6 +1340,7 @@
 	for(var/mob/living/simple_animal/hostile/villains_character/player in living_players)
 		for(var/obj/item/villains/I in player.contents)
 			I.freshness = VILLAIN_ITEM_USED
+			I.emp_disabled = FALSE  // Reset EMP status for next night
 			I.update_outline()
 
 /datum/villains_controller/proc/process_night_actions()
@@ -1434,49 +1478,78 @@
 			change_phase(VILLAIN_PHASE_INVESTIGATION)
 		else
 			change_phase(VILLAIN_PHASE_MORNING)
+		
+		// After the first night completes, set the flag to false
+		is_first_night = FALSE
 
 /datum/villains_controller/proc/process_investigative_results()
 	// Process drain monitor and rangefinder results
 	for(var/mob/living/simple_animal/hostile/villains_character/player in living_players)
 		// Drain Monitor - show who targeted someone
 		if(player.drain_monitor_target)
-			var/mob/living/simple_animal/hostile/villains_character/monitored = player.drain_monitor_target
-			var/list/targeters = list()
+			// First check if our drain monitor action actually succeeded
+			var/action_succeeded = FALSE
+			for(var/datum/villains_action/action in last_night_actions)
+				if(action.performer == player && !action.prevented)
+					if(action.action_type == "use_item")
+						var/datum/villains_action/use_item/UI = action
+						if(UI.used_item && istype(UI.used_item, /obj/item/villains/drain_monitor))
+							action_succeeded = TRUE
+							break
+			
+			if(action_succeeded)
+				var/mob/living/simple_animal/hostile/villains_character/monitored = player.drain_monitor_target
+				var/list/targeters = list()
 
-			if(action_targets[REF(monitored)])
-				for(var/list/action_data in action_targets[REF(monitored)])
-					var/mob/living/simple_animal/hostile/villains_character/performer = action_data["performer"]
-					if(performer && !(performer.name in targeters))
-						targeters += performer.name
+				if(action_targets[REF(monitored)])
+					for(var/list/action_data in action_targets[REF(monitored)])
+						var/mob/living/simple_animal/hostile/villains_character/performer = action_data["performer"]
+						if(performer && !(performer.name in targeters))
+							targeters += performer.name
 
-			if(length(targeters))
-				to_chat(player, span_notice("Drain Monitor Results: The following players targeted [monitored]: [targeters.Join(", ")]."))
+				if(length(targeters))
+					to_chat(player, span_notice("Drain Monitor Results: The following players targeted [monitored]: [targeters.Join(", ")]."))
+				else
+					to_chat(player, span_notice("Drain Monitor Results: Nobody targeted [monitored]."))
 			else
-				to_chat(player, span_notice("Drain Monitor Results: Nobody targeted [monitored]."))
-
+				to_chat(player, span_notice("Your Drain Monitor failed to activate."))
+			
 			player.drain_monitor_target = null
 
 		// Rangefinder - show what actions targeted someone
 		if(player.rangefinder_target)
-			var/mob/living/simple_animal/hostile/villains_character/targeted = player.rangefinder_target
-			var/list/action_list = list()
+			// First check if our rangefinder action actually succeeded
+			var/action_succeeded = FALSE
+			for(var/datum/villains_action/action in last_night_actions)
+				if(action.performer == player && !action.prevented)
+					if(action.action_type == "use_item")
+						var/datum/villains_action/use_item/UI = action
+						if(UI.used_item && istype(UI.used_item, /obj/item/villains/rangefinder))
+							action_succeeded = TRUE
+							break
+			
+			if(action_succeeded)
+				var/mob/living/simple_animal/hostile/villains_character/targeted = player.rangefinder_target
+				var/list/action_list = list()
 
-			if(action_targets[REF(targeted)])
-				for(var/list/action_data in action_targets[REF(targeted)])
-					var/mob/living/simple_animal/hostile/villains_character/performer = action_data["performer"]
-					var/datum/villains_action/action = action_data["action"]
-					if(performer && action)
-						// Check if performer used fairy wine
-						if(performer.used_fairy_wine)
-							action_list += "[performer.name] used Talk/Trade"
-						else
-							action_list += "[performer.name] used [action.name]"
+				if(action_targets[REF(targeted)])
+					for(var/list/action_data in action_targets[REF(targeted)])
+						var/mob/living/simple_animal/hostile/villains_character/performer = action_data["performer"]
+						var/datum/villains_action/action = action_data["action"]
+						if(performer && action)
+							// Check if performer used fairy wine
+							if(performer.used_fairy_wine)
+								action_list += "[performer.name] used Talk/Trade"
+							else
+								action_list += "[performer.name] used [action.name]"
 
-			if(length(action_list))
-				to_chat(player, span_notice("Rangefinder Results: The following actions targeted [targeted]: [action_list.Join(", ")]."))
+				if(length(action_list))
+					to_chat(player, span_notice("Rangefinder Results: The following actions targeted [targeted]: [action_list.Join(", ")]."))
+				else
+					to_chat(player, span_notice("Rangefinder Results: No actions targeted [targeted]."))
 			else
-				to_chat(player, span_notice("Rangefinder Results: No actions targeted [targeted]."))
-
+				to_chat(player, span_notice("Your Rangefinder failed to activate."))
+			
 			player.rangefinder_target = null
 
 		// Funeral Butterflies Guidance - show who visited someone (same as Drain Monitor)
@@ -1620,12 +1693,14 @@
 			
 			// Show their main action
 			if(observed.main_action)
-				var/action_name = observed.main_action["name"]
+				var/action_name = get_action_description(observed.main_action, observed)
 				var/target_ref = observed.main_action["target"]
 				if(target_ref)
 					var/mob/living/simple_animal/hostile/villains_character/action_target = locate(target_ref)
 					if(action_target)
 						to_chat(player, span_notice("Main Action: [action_name] targeting [action_target.name]"))
+					else
+						to_chat(player, span_notice("Main Action: [action_name] targeting themselves"))
 				else
 					to_chat(player, span_notice("Main Action: [action_name]"))
 			else
@@ -1633,12 +1708,14 @@
 			
 			// Show their secondary action
 			if(observed.secondary_action)
-				var/action_name = observed.secondary_action["name"]
+				var/action_name = get_action_description(observed.secondary_action, observed)
 				var/target_ref = observed.secondary_action["target"]
 				if(target_ref)
 					var/mob/living/simple_animal/hostile/villains_character/action_target = locate(target_ref)
 					if(action_target)
 						to_chat(player, span_notice("Secondary Action: [action_name] targeting [action_target.name]"))
+					else
+						to_chat(player, span_notice("Secondary Action: [action_name] targeting themselves"))
 				else
 					to_chat(player, span_notice("Secondary Action: [action_name]"))
 			else
@@ -1658,6 +1735,7 @@
 			
 			// Clean up observation
 			player.is_observing = FALSE
+			player.observing_target = null  // Clear the target so we don't re-observe next evening
 			player.UnregisterSignal(observed, COMSIG_MOVABLE_MOVED)
 			player.teleport_to_room()
 		
