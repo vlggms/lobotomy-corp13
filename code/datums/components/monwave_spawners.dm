@@ -145,7 +145,7 @@
 	if(is_wave_announcer)
 		SSgamedirector.AnnounceWave()
 	if(is_raider)
-		SwitchTarget(SSgamedirector.GetRandomTarget())
+		SwitchTarget(SSgamedirector.GetRandomRaiderTarget())
 	return TRUE
 
 //Despawns any idle monsters who lost the wave.

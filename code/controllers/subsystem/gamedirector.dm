@@ -33,6 +33,15 @@ SUBSYSTEM_DEF(gamedirector)
 /datum/controller/subsystem/gamedirector/proc/GetRandomTarget()
 	return pick(rce_targets)
 
+/datum/controller/subsystem/gamedirector/proc/GetRandomRaiderTarget()
+	switch(rand(1, 10))
+		if(1 to 5)
+			return pick(mid_level)
+		if(6 to 9)
+			return pick(high_level)
+		if(10)
+			return pick(low_level)
+
 /datum/controller/subsystem/gamedirector/proc/RegisterAsWaveAnnouncer(datum/component/monwave_spawner/applicant)
 	if(!wave_announcer)
 		wave_announcer = applicant
