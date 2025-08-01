@@ -1,3 +1,7 @@
+/*
+* WARNING THIS CODE IS VERY SLOPPY AND UNOPTIMIZED -IP
+*/
+
 /obj/machinery/factory_machine
 	name = "factory prototype"
 	icon = 'ModularTegustation/Teguicons/expedition_32x32.dmi'
@@ -32,10 +36,8 @@
 	if(I.tool_behaviour == TOOL_CROWBAR && dropped_item)
 		Dissasemble(user, I)
 		return
-
-	if(isobj(I))
-		if(InputItem(I))
-			return
+	if(InputItem(I))
+		return
 	return ..()
 
 //If cooldown is more than world.time do not process TRUE.
@@ -59,6 +61,8 @@
 /obj/machinery/factory_machine/proc/InputItem(atom/movable/target)
 	. = TRUE
 	if(QDELETED(target))
+		return FALSE
+	if(!isobj(target))
 		return FALSE
 
 //If no direction stated, drop output item at location.
@@ -100,7 +104,7 @@
 	. = ..()
 	if(!.)
 		return
-	if(!isobj(target))
+	if(!isitem(target))
 		return FALSE
 	//If not storage type, do not let pass.
 	if(storage_type)
@@ -180,19 +184,15 @@
 	. = ..()
 	if(!.)
 		return
+	//If no current storage and not unloading and target is a item change storage to that target
 	if(!current_storage && !unloading)
 		if(isitem(target))
 			ChangeStorage(target.type)
-
-	if(storage_type)
-		if(!istype(target, storage_type))
-			return FALSE
-
-	if(current_storage < storage_max)
+	//If type matches storage type and not at max storage, store item.
+	if(istype(target, storage_type) && current_storage < storage_max)
 		StoreItem(target)
-	else
-		return FALSE
-	return TRUE
+		return TRUE
+	return FALSE
 
 /obj/machinery/factory_machine/silo/OutputItem(atom/movable/product, direction)
 	if(!current_storage)
@@ -296,8 +296,6 @@
 	return ..()
 
 /obj/machinery/factory_machine/cross/StoreItem(atom/movable/target, special_data)
-	if(!special_data)
-		return FALSE
 	if(special_data in GLOB.cardinals)
 		directional_storage += target
 		directional_storage[target] = special_data
@@ -322,7 +320,7 @@
 			directional_storage -= O
 			continue
 		OutputItem(O, directional_storage[O])
-		if(move_amt > 5)
+		if(move_amt > 10)
 			break
 
 	if(!LAZYLEN(directional_storage))
@@ -335,13 +333,13 @@
 	name = "subterranian conveyor"
 	desc = "entryway to a subterranian conveyor system"
 	icon_state = "tunnel"
+	output_delay = 3 SECONDS
 	dropped_item = /obj/item/tunnel_deployer
-	var/tunnel_timer
 	var/obj/machinery/factory_machine/a_tunnel/linked_tunnel
 
 /obj/machinery/factory_machine/a_tunnel/examine(mob/user)
 	. = ..()
-	. += "Takes 5 seconds to transport 10 items."
+	. += "Takes 3 seconds to transport 10 items."
 
 /obj/machinery/factory_machine/a_tunnel/Destroy()
 	var/turf/T = get_turf(src)
@@ -359,18 +357,37 @@
 			return
 	return ..()
 
-/obj/machinery/factory_machine/a_tunnel/StoreItem(atom/movable/target)
-	target.forceMove(src)
-	if(!tunnel_timer)
-		tunnel_timer = addtimer(CALLBACK(src, PROC_REF(dumpAtOutput)), 5 SECONDS, TIMER_DELETE_ME)
-
 /obj/machinery/factory_machine/a_tunnel/InputItem(atom/movable/target)
+	. = ..()
+	if(!.)
+		return FALSE
 	if(LAZYLEN(contents) > 10 || !linked_tunnel)
 		return FALSE
 	StoreItem(target)
+	return FALSE
+	// Okay so if this returns true and the item is allowed to pass into the object it cannot be forcemoved into the object?
+
+/obj/machinery/factory_machine/a_tunnel/StoreItem(atom/movable/target)
+	target.forceMove(src)
+	begin_processing()
 	return TRUE
 
-/obj/machinery/factory_machine/a_tunnel/proc/dumpAtOutput()
-	var/dumping_output = get_step(linked_tunnel, linked_tunnel.dir)
-	for(var/atom/movable/AM in contents)
-		AM.forceMove(dumping_output)
+/obj/machinery/factory_machine/a_tunnel/process(delta_time)
+	. = ..()
+	if(!.)
+		return
+
+	var/move_amt = 0
+	for(var/O in contents)
+		move_amt++
+		if(!O || O == src)
+			continue
+		dumpAtOutput(O)
+		if(move_amt > 5)
+			break
+
+	if(!LAZYLEN(contents))
+		end_processing()
+
+/obj/machinery/factory_machine/a_tunnel/proc/dumpAtOutput(atom/AM)
+	linked_tunnel.OutputItem(AM,linked_tunnel.dir)
