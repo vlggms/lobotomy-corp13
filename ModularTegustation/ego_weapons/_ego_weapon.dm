@@ -235,10 +235,6 @@
 	if(GLOB.damage_type_shuffler?.is_enabled && IsColorDamageType(damage_type))
 		var/datum/damage_type_shuffler/shuffler = GLOB.damage_type_shuffler
 		var/new_damage_type = shuffler.mapping_offense[damage_type]
-		if(new_damage_type == PALE_DAMAGE && damage_type != PALE_DAMAGE)
-			damage *= shuffler.pale_debuff
-		else if(new_damage_type != PALE_DAMAGE && damage_type == PALE_DAMAGE)
-			damage /= shuffler.pale_debuff
 		damage_type = new_damage_type
 	if(force_multiplier != 1)
 		return span_notice("It deals [round(damage * force_multiplier, 0.1)] [damage_type] damage. (+ [(force_multiplier - 1) * 100]%)")
