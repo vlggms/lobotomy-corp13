@@ -706,7 +706,7 @@
 /turf/open/floor/mineral/plastitanium,
 /area/city/backstreets_room)
 "Vl" = (
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/turf/closed/indestructible/syndicate,
 /area/city/backstreets_room)
 "VI" = (
 /obj/effect/turf_decal/tile/bar,
