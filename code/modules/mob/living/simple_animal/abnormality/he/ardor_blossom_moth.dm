@@ -83,35 +83,47 @@
 /mob/living/simple_animal/hostile/abnormality/ardor_moth/Move()
 	..()
 	for(var/turf/open/T in range(1, src))
-		if(locate(/obj/structure/turf_fire) in T)
-			for(var/obj/structure/turf_fire/floor_fire in T)
+		if(locate(/obj/effect/turf_fire) in T)
+			for(var/obj/effect/turf_fire/floor_fire in T)
 				qdel(floor_fire)
-		new /obj/structure/turf_fire(T)
+		new /obj/effect/turf_fire(T)
 
 /mob/living/simple_animal/hostile/abnormality/ardor_moth/spawn_gibs()
 	return new /obj/effect/decal/cleanable/ash(drop_location(), src)
 
 // Turf Fire
-/obj/structure/turf_fire
+/obj/effect/turf_fire
 	gender = PLURAL
 	name = "fire"
 	desc = "a burning pyre."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "turf_fire"
 	anchored = TRUE
-	density = FALSE
 	layer = TURF_LAYER
 	plane = FLOOR_PLANE
 	base_icon_state = "turf_fire"
+	var/damaging = FALSE
 
-/obj/structure/turf_fire/Initialize()
+/obj/effect/turf_fire/Initialize()
 	. = ..()
 	QDEL_IN(src, 30 SECONDS)
 
 //Red and not burn, burn is a special damage type.
-/obj/structure/turf_fire/Crossed(atom/movable/AM)
+/obj/effect/turf_fire/Crossed(atom/movable/AM)
 	. = ..()
-	if(ishuman(AM))
-		var/mob/living/carbon/human/H = AM
-		H.apply_damage(10, RED_DAMAGE, null, H.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-		H.apply_damage(4, FIRE, null, H.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+	if(!damaging)
+		damaging = TRUE
+		DoDamage()
+
+/obj/effect/turf_fire/proc/DoDamage()
+	var/dealt_damage = FALSE
+	for(var/mob/living/L in get_turf(src))
+		if(ishuman(L))
+			var/mob/living/carbon/human/H = L
+			H.deal_damage(4, FIRE)
+			H.apply_lc_burn(2)
+			dealt_damage = TRUE
+	if(!dealt_damage)
+		damaging = FALSE
+		return
+	addtimer(CALLBACK(src, PROC_REF(DoDamage)), 4)
