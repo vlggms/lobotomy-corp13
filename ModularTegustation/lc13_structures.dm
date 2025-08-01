@@ -182,7 +182,7 @@
 	if(id)
 		target = SSgamedirector.GetTargetById(id)
 	else
-		target = SSgamedirector.GetRandomTarget()
+		target = SSgamedirector.GetRandomRaiderTarget()
 	AddComponent(/datum/component/monwave_spawner, attack_target = target, max_mobs = max_mobs, assault_type = assault_type, new_wave_order = moblist, try_for_announcer = announce, new_wave_cooldown_time = generate_new_mob_time, raider = raider)
 
 /obj/structure/den/rce_defender
