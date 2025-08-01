@@ -2,26 +2,26 @@
 	name = "X-Corp Sapper"
 	desc = "A weird creature, spawned from the Heart after it was filled by X-Corps greed."
 	speak_emote = list("screams", "clicks", "chitters", "barks", "moans", "growls", "meows", "reverberates", "roars", "squeaks", "rattles", "exclaims", "yells", "remarks", "mumbles", "jabbers", "stutters", "seethes")
-	health = 250
-	maxHealth = 250
+	health = 500
+	maxHealth = 500
 	obj_damage = 50
 	icon_state = "mi-go"
 	icon_living = "mi-go"
 	icon_dead = "mi-go-dead"
 	attack_verb_continuous = "lacerates"
 	attack_verb_simple = "lacerate"
-	speed = -0.5
-	rapid_melee = 4
-	melee_damage_type = WHITE_DAMAGE
+	speed = -0.3
+	rapid_melee = 5
+	melee_damage_type = PALE_DAMAGE
 	melee_damage_lower = 1
 	melee_damage_upper = 3
-	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	var/static/list/migo_sounds
 	death_message = "wails as its form turns into a pulpy mush."
 	death_sound = 'sound/voice/hiss6.ogg'
 	var/scream_damage = 20
 	search_objects = 1
-	wanted_objects = list(/obj/structure/barricade/sandbags, /obj/machinery/manned_turret/rcorp)
+	wanted_objects = list(/obj/structure/barricade/sandbags, /obj/machinery/manned_turret/rcorp, /obj/machinery/conveyor)
 	see_in_dark = 8
 
 /mob/living/simple_animal/hostile/rce/sapper/Initialize()
