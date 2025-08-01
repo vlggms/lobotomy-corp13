@@ -143,7 +143,6 @@
 	)
 	generate_new_mob_time = 90 SECONDS
 	raider = TRUE
-
 	announce = TRUE
 
 /obj/structure/den/rce/mid
