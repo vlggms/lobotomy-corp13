@@ -814,6 +814,7 @@
 	action_icon_state = "select_units"
 	base_icon_state = "select_units"
 	active_icon_state = "select_units_on"
+	base_action = /datum/action/spell_action/spell
 	deactive_msg = "You stop selecting units."
 	active_msg = "Click units to select them!"
 	charge_max = 0.5 SECONDS
@@ -825,11 +826,18 @@
 	if(T)
 		linked_tinkerer = T
 
+/obj/effect/proc_holder/spell/aimed/tinkerer_select_unit/can_cast(mob/user = usr)
+	return TRUE
+
 /obj/effect/proc_holder/spell/aimed/tinkerer_select_unit/update_icon()
 	if(!action)
 		return
 	action.button_icon_state = active ? "select_units_on" : "select_units"
 	action.UpdateButtonIcon()
+
+/obj/effect/proc_holder/spell/aimed/tinkerer_select_unit/cast(list/targets, mob/living/user)
+	// Override cast to prevent projectile firing
+	return TRUE
 
 /obj/effect/proc_holder/spell/aimed/tinkerer_select_unit/InterceptClickOn(mob/living/caller, params, atom/target)
 	..()  // Call parent but don't check return value
@@ -870,6 +878,7 @@
 	action_icon_state = "move_order"
 	base_icon_state = "move_order"
 	active_icon_state = "move_order_on"
+	base_action = /datum/action/spell_action/spell
 	deactive_msg = "You cancel the movement order."
 	active_msg = "Click where you want your units to move!"
 	charge_max = 1 SECONDS
@@ -881,11 +890,26 @@
 	if(T)
 		linked_tinkerer = T
 
+/obj/effect/proc_holder/spell/aimed/tinkerer_move_order/can_cast(mob/user = usr)
+	if(!linked_tinkerer)
+		return FALSE
+	if(linked_tinkerer.viewing_mode)
+		return FALSE
+	if(!length(linked_tinkerer.selected_units))
+		return FALSE
+	if(linked_tinkerer.charge < linked_tinkerer.order_move_cost)
+		return FALSE
+	return TRUE
+
 /obj/effect/proc_holder/spell/aimed/tinkerer_move_order/update_icon()
 	if(!action)
 		return
 	action.button_icon_state = active ? "move_order_on" : "move_order"
 	action.UpdateButtonIcon()
+
+/obj/effect/proc_holder/spell/aimed/tinkerer_move_order/cast(list/targets, mob/living/user)
+	// Override cast to prevent projectile firing
+	return TRUE
 
 /obj/effect/proc_holder/spell/aimed/tinkerer_move_order/InterceptClickOn(mob/living/caller, params, atom/target)
 	..()  // Call parent but don't check return value
@@ -901,6 +925,7 @@
 	action_icon_state = "attack_order"
 	base_icon_state = "attack_order"
 	active_icon_state = "attack_order_on"
+	base_action = /datum/action/spell_action/spell
 	deactive_msg = "You cancel the attack order."
 	active_msg = "Click what you want your units to attack!"
 	charge_max = 2 SECONDS
@@ -912,11 +937,27 @@
 	if(T)
 		linked_tinkerer = T
 
+/obj/effect/proc_holder/spell/aimed/tinkerer_attack_order/can_cast(mob/user = usr)
+	if(!linked_tinkerer)
+		return FALSE
+	if(linked_tinkerer.viewing_mode)
+		return FALSE
+	if(!length(linked_tinkerer.selected_units))
+		return FALSE
+	var/cost = linked_tinkerer.hard_lock_mode ? linked_tinkerer.order_attack_cost * 2 : linked_tinkerer.order_attack_cost
+	if(linked_tinkerer.charge < cost)
+		return FALSE
+	return TRUE
+
 /obj/effect/proc_holder/spell/aimed/tinkerer_attack_order/update_icon()
 	if(!action)
 		return
 	action.button_icon_state = active ? "attack_order_on" : "attack_order"
 	action.UpdateButtonIcon()
+
+/obj/effect/proc_holder/spell/aimed/tinkerer_attack_order/cast(list/targets, mob/living/user)
+	// Override cast to prevent projectile firing
+	return TRUE
 
 /obj/effect/proc_holder/spell/aimed/tinkerer_attack_order/InterceptClickOn(mob/living/caller, params, atom/target)
 	..()  // Call parent but don't check return value
@@ -976,6 +1017,7 @@
 	action_icon_state = "build_barricade"
 	base_icon_state = "build_barricade"
 	active_icon_state = "build_barricade"
+	base_action = /datum/action/spell_action/spell
 	deactive_msg = "You cancel barricade construction."
 	active_msg = "Click two points to build a barricade line!"
 	charge_max = 1 SECONDS
@@ -987,11 +1029,18 @@
 	if(T)
 		linked_tinkerer = T
 
+/obj/effect/proc_holder/spell/aimed/tinkerer_build_barricade/can_cast(mob/user = usr)
+	return TRUE
+
 /obj/effect/proc_holder/spell/aimed/tinkerer_build_barricade/update_icon()
 	if(!action)
 		return
 	action.button_icon_state = "build_barricade"
 	action.UpdateButtonIcon()
+
+/obj/effect/proc_holder/spell/aimed/tinkerer_build_barricade/cast(list/targets, mob/living/user)
+	// Override cast to prevent projectile firing
+	return TRUE
 
 /obj/effect/proc_holder/spell/aimed/tinkerer_build_barricade/InterceptClickOn(mob/living/caller, params, atom/target)
 	..()  // Call parent but don't check return value

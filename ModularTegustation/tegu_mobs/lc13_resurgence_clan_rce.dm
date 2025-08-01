@@ -306,9 +306,10 @@
 			L.deal_damage(clamp((15 * (2 ** (8 - dist))), detonate_min_damage, detonate_max_damage), RED_DAMAGE) //15-3840 damage scaling exponentially with distance
 		else
 			L.deal_damage(600 - ((dist > 2 ? dist : 0 )* 75), RED_DAMAGE) //0-600 damage scaling on distance, we don't want it oneshotting mobs
-		for(var/turf/T in view(8, src))
-			for(var/obj/S in T)
-				S.take_damage(clamp((15 * (2 ** (8 - dist))), detonate_object_min_damage, detonate_object_max_damage), RED_DAMAGE)
+	for(var/turf/T in view(8, src))
+		var/obj_dist = get_dist(src, T)
+		for(var/obj/S in T)
+			S.take_damage(clamp((15 * (2 ** (8 - obj_dist))), detonate_object_min_damage, detonate_object_max_damage), RED_DAMAGE)
 	explosion(loc, 0, 0, 1)
 	qdel(D)
 	qdel(src)
