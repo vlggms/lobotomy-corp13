@@ -66,7 +66,7 @@
 	if(!cloak_active)
 		return
 	user.density = FALSE
-	user.invisibility = INVISIBILITY_OBSERVER
+	user.invisibility = 0
 	to_chat(user, span_notice("You are now fully cloaked."))
 
 /obj/item/clothing/suit/armor/ego_gear/city/insurgence_nightwatch/proc/DeactivateCloak(mob/living/user)

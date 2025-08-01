@@ -413,10 +413,17 @@ is that they come. Use whatever methods necessary to fulfill your quota.<br>
 /obj/item/insurgence_paranoia_marker
 	name = "paranoia inducer"
 	desc = "A strange device that emits an unsettling psychic frequency. Used by Insurgence Nightwatch to mark targets."
-	icon = 'icons/obj/device.dmi'
-	icon_state = "signaler"
+	icon = 'icons/obj/abductor.dmi'
+	lefthand_file = 'icons/mob/inhands/antag/abductor_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/antag/abductor_righthand.dmi'
+	icon_state = "wonderprodProbe"
+	inhand_icon_state = "wonderprodProbe"
 	w_class = WEIGHT_CLASS_SMALL
 	var/list/marked_targets = list()
+	var/marking_cooldown = 0
+	var/trigger_cooldown = 0
+	var/marking_cooldown_time = 120 SECONDS
+	var/trigger_cooldown_time = 60 SECONDS
 
 /obj/item/insurgence_paranoia_marker/afterattack(atom/target, mob/user, proximity)
 	. = ..()
@@ -439,18 +446,30 @@ is that they come. Use whatever methods necessary to fulfill your quota.<br>
 	var/datum/status_effect/insurgence_paranoid/P = T.has_status_effect(/datum/status_effect/insurgence_paranoid)
 
 	if(!P)
+		// Check marking cooldown
+		if(world.time < marking_cooldown)
+			to_chat(user, span_warning("The inducer needs [round((marking_cooldown - world.time) / 10)] more seconds to recharge before marking a new target."))
+			return
+
 		// Apply new paranoid effect
 		P = T.apply_status_effect(/datum/status_effect/insurgence_paranoid)
 		if(P)
 			P.marked_by = user
 			marked_targets |= T
+			marking_cooldown = world.time + marking_cooldown_time
 			to_chat(user, span_notice("You mark [T] with paranoia. They will slowly become more vulnerable."))
 	else
 		// Check if fully paranoid
 		if(P.paranoid_level >= 100)
+			// Check trigger cooldown
+			if(world.time < trigger_cooldown)
+				to_chat(user, span_warning("The inducer needs [round((trigger_cooldown - world.time) / 10)] more seconds to recharge before triggering a breakdown."))
+				return
+
 			to_chat(user, span_danger("You trigger [T]'s complete paranoid breakdown!"))
 			visible_message(span_danger("[T] suddenly collapses, overwhelmed by paranoia!"))
 			T.SetSleeping(150) // 15 seconds
+			trigger_cooldown = world.time + trigger_cooldown_time
 			qdel(P)
 		else
 			to_chat(user, span_notice("[T] is already marked. Paranoia level: [P.paranoid_level]%"))
