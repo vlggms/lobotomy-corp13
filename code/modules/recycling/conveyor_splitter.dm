@@ -2,7 +2,7 @@
 	icon = 'icons/obj/recycling.dmi'
 	icon_state = "splitter0"
 	name = "conveyor splitter"
-	desc = "A round-robin conveyor splitter."
+	desc = "A round-robin conveyor splitter. Equally distributes items between enabled directions. \nUse a wrench to change its north/south outputs and a screwdriver to change its east/west outputs."
 	var/directions = 0 // Bitflag N S E W format, eg. SE (technically ES) is 0110 or 6
 	// WESN (MSB) NSEW (LSB) because BYOND fucking sucks
 	// dmi states are SNEW/DURL??????????

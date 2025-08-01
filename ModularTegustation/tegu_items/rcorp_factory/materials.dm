@@ -1,5 +1,5 @@
 /obj/item/factoryitem
-	name = "item selling machine"
+	name = "factory material"
 	desc = "A machine used to sell items to the greater city"
 	icon = 'ModularTegustation/Teguicons/factory.dmi'
 	icon_state = "extract_pack"
