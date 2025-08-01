@@ -72,6 +72,13 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 				addtimer(CALLBACK(src, PROC_REF(endround)), 70 MINUTES)
 				to_chat(world, span_userdanger("Shift will last 70 minutes."))
 
+			//Limbus Labs
+			if("rcorp_factory")
+				addtimer(CALLBACK(src, PROC_REF(roundendwarning)), 100 MINUTES)
+				addtimer(CALLBACK(src, PROC_REF(endround)), 120 MINUTES)
+				to_chat(world, span_userdanger("Destroy the X-Corp Heart within two hours!"))
+				RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(CheckLiving))
+
 			//Fixers
 			if("fixers")
 				addtimer(CALLBACK(src, PROC_REF(roundendwarning)), 80 MINUTES)

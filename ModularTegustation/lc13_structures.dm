@@ -89,10 +89,13 @@
 	anchored = TRUE
 	density = FALSE
 	var/list/moblist = list()
+	var/target
 
 /obj/structure/den/tunnel/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/monwave_spawner, attack_target = get_turf(src), new_wave_order = moblist)
+	if(!target)
+		target = get_turf(src)
+	AddComponent(/datum/component/monwave_spawner, attack_target = target, new_wave_order = moblist)
 
 /obj/structure/den/proc/changeTarget(thing)
 	var/turf/target_turf = get_turf(thing)
@@ -111,6 +114,127 @@
 		/mob/living/simple_animal/hostile/ordeal/steel_dawn = 3,
 		/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying = 1,
 	)
+
+/obj/structure/den/rce
+	name = "X-Corp Attack Pylon"
+	desc = "Best destroy this!"
+	icon_state = "powerpylon"
+	icon = 'icons/obj/hand_of_god_structures.dmi'
+	color = "#FF5522"
+	max_integrity = 500
+	moblist = list(
+		/mob/living/simple_animal/hostile/ordeal/steel_dawn = 2,
+		/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying = 1,
+		/mob/living/simple_animal/hostile/ordeal/green_bot = 1,
+	)
+	var/announce = FALSE
+	var/id
+	var/assault_type = SEND_ONLY_DEFEATED
+	var/max_mobs = 10
+	var/generate_new_mob_time = NONE
+	var/raider = FALSE
+
+/obj/structure/den/rce/announcer
+	max_mobs = 12
+	moblist = list(
+		/mob/living/simple_animal/hostile/rce/sapper = 2,
+		/mob/living/simple_animal/hostile/ordeal/green_bot_big = 2,
+		/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying = 2,
+	)
+	generate_new_mob_time = 90 SECONDS
+	raider = TRUE
+	announce = TRUE
+
+/obj/structure/den/rce/mid
+	max_mobs = 10
+	moblist = list(
+		/mob/living/simple_animal/hostile/ordeal/steel_dawn = 1,
+		/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon = 1,
+		/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying = 1,
+		/mob/living/simple_animal/hostile/ordeal/green_bot = 2,
+	)
+
+/obj/structure/den/rce/high
+	max_mobs = 12
+	moblist = list(
+		/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon = 2,
+		/mob/living/simple_animal/hostile/rce/sapper = 1,
+		/mob/living/simple_animal/hostile/ordeal/green_bot_big = 2,
+		/mob/living/simple_animal/hostile/ordeal/sin_lust = 1,
+	)
+	generate_new_mob_time = 20 SECONDS
+
+/obj/structure/den/rce/raider
+	max_mobs = 20
+	moblist = list(
+		/mob/living/simple_animal/hostile/ordeal/sin_lust = 1,
+		/mob/living/simple_animal/hostile/rce/sapper = 1,
+		/mob/living/simple_animal/hostile/ordeal/sin_pride = 2,
+		/mob/living/simple_animal/hostile/ordeal/sin_gloom = 1,
+		/mob/living/simple_animal/hostile/ordeal/sin_wrath = 1,
+	)
+	assault_type = SEND_TILL_MAX
+	generate_new_mob_time = 45 SECONDS
+	raider = TRUE
+
+/obj/structure/den/rce/Initialize(mapload)
+	. = ..()
+	if(id)
+		target = SSgamedirector.GetTargetById(id)
+	else
+		target = SSgamedirector.GetRandomRaiderTarget()
+	AddComponent(/datum/component/monwave_spawner, attack_target = target, max_mobs = max_mobs, assault_type = assault_type, new_wave_order = moblist, try_for_announcer = announce, new_wave_cooldown_time = generate_new_mob_time, raider = raider)
+
+/obj/structure/den/rce_defender
+	name = "X-Corp Defense Pylon"
+	desc = "Best destroy this!"
+	icon_state = "defensepylon"
+	icon = 'icons/obj/hand_of_god_structures.dmi'
+	color = "#FF0000"
+	max_integrity = 1000
+	moblist = list(
+		/mob/living/simple_animal/hostile/ordeal/steel_dawn = 3,
+		/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying = 1,
+		/mob/living/simple_animal/hostile/ordeal/indigo_dusk = 2,
+		/mob/living/simple_animal/hostile/ordeal/green_bot = 2,
+		/mob/living/simple_animal/hostile/ordeal/green_bot_big = 2,
+		/mob/living/simple_animal/hostile/asteroid/elite/legionnaire = 1,
+	)
+	var/announce = FALSE
+	var/id
+	var/assault_type = SEND_TILL_MAX
+	var/max_mobs = 11
+	var/generate_new_mob_time = NONE
+	var/raider = FALSE
+
+/obj/structure/den/rce_defender/Initialize(mapload)
+	. = ..()
+	if(id)
+		target = SSgamedirector.GetTargetById(id)
+	if(!target)
+		target = get_turf(src)
+	AddComponent(/datum/component/monwave_spawner, attack_target = target, max_mobs = max_mobs, assault_type = assault_type, new_wave_order = moblist, try_for_announcer = announce, new_wave_cooldown_time = generate_new_mob_time, raider = raider)
+
+/obj/structure/den/rce_heart
+	name = "X-Corp Heart"
+	desc = "Best destroy this!"
+	icon_state = "nexus"
+	icon = 'icons/obj/hand_of_god_structures.dmi'
+	color = "#FF0000"
+	max_integrity = 5000
+	moblist = list(
+		/mob/living/simple_animal/hostile/megafauna/legion = 1,
+	)
+
+/obj/structure/den/rce_heart/Initialize(mapload)
+	. = ..()
+	if(!target)
+		target = get_turf(src)
+	AddComponent(/datum/component/monwave_spawner, attack_target = target, new_wave_order = moblist, max_mobs = 1)
+
+/obj/structure/den/rce_heart/Destroy()
+	SSgamedirector.AnnounceVictory()
+	. = ..()
 
 /**
  * List of button counters
