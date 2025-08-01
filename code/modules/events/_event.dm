@@ -63,13 +63,23 @@
 
 	triggering = TRUE
 	if (alert_observers)
-		message_admins("Random Event triggering in 10 seconds: [name] (<a href='byond://?src=[REF(src)];cancel=1'>CANCEL</a>)")
+		//Notify the RO and admemes
+
+		message_admins("Random Event triggering in 40 seconds: [name] (<a href='byond://?src=[REF(src)];cancel=1'>CANCEL</a>)")
 		sleep(100)
+
+		for(var/mob/living/carbon/human/H in GLOB.player_list)
+			if(H.mind?.assigned_role == "Records Officer")
+				message_admins("You hear tidings of: [name]")
+		sleep(300)
+
 		var/gamemode = SSticker.mode.config_tag
 		var/players_amt = get_active_player_count(alive_check = TRUE, afk_check = TRUE, human_check = TRUE)
 		if(!canSpawnEvent(players_amt, gamemode))
 			message_admins("Second pre-condition check for [name] failed, skipping...")
 			return EVENT_INTERRUPTED
+
+
 
 	if(!triggering)
 		return EVENT_CANCELLED	//admin cancelled
@@ -116,7 +126,7 @@
 
 	var/activeFor		= 0	//How long the event has existed. You don't need to change this.
 	var/current_players	= 0 //Amount of of alive, non-AFK human players on server at the time of event start
-	var/fakeable = TRUE		//Can be faked by fake news event.
+	var/fakeable = FALSE	//Can be faked by fake news event.
 
 //Called first before processing.
 //Allows you to setup your event, such as randomly
