@@ -69,13 +69,13 @@
 	AddAbility(new /obj/effect/proc_holder/ability/tinkerer/produce_demolisher(null, src))
 	AddAbility(new /obj/effect/proc_holder/ability/tinkerer/produce_defender(null, src))
 	AddAbility(new /obj/effect/proc_holder/ability/tinkerer/produce_drone(null, src))
-	AddAbility(new /obj/effect/proc_holder/ability/aimed/tinkerer_select_unit(null, src))
-	AddAbility(new /obj/effect/proc_holder/ability/aimed/tinkerer_move_order(null, src))
-	AddAbility(new /obj/effect/proc_holder/ability/aimed/tinkerer_attack_order(null, src))
+	AddAbility(new /obj/effect/proc_holder/spell/aimed/tinkerer_select_unit(null, src))
+	AddAbility(new /obj/effect/proc_holder/spell/aimed/tinkerer_move_order(null, src))
+	AddAbility(new /obj/effect/proc_holder/spell/aimed/tinkerer_attack_order(null, src))
 	AddAbility(new /obj/effect/proc_holder/ability/tinkerer/overclock_order(null, src))
 	AddAbility(new /obj/effect/proc_holder/ability/tinkerer/toggle_lock_mode(null, src))
 	AddAbility(new /obj/effect/proc_holder/ability/tinkerer/release_locks(null, src))
-	AddAbility(new /obj/effect/proc_holder/ability/aimed/tinkerer_build_barricade(null, src))
+	AddAbility(new /obj/effect/proc_holder/spell/aimed/tinkerer_build_barricade(null, src))
 
 /mob/living/simple_animal/hostile/clan/tinkerer/examine(mob/user)
 	. = ..()
@@ -637,7 +637,7 @@
 			if(D.open())
 				return
 			// If we can't open it normally, try to attack it
-			if(can_smash && environment_smash >= ENVIRONMENT_SMASH_STRUCTURES)
+			if(environment_smash >= ENVIRONMENT_SMASH_STRUCTURES)
 				A.attack_animal(src)
 				return
 	return ..()
@@ -807,7 +807,7 @@
 		return
 	linked_tinkerer.ProduceUnitAtFactory(/mob/living/simple_animal/hostile/clan/engineer)
 
-/obj/effect/proc_holder/ability/aimed/tinkerer_select_unit
+/obj/effect/proc_holder/spell/aimed/tinkerer_select_unit
 	name = "Select/Deselect Unit"
 	desc = "Click a unit to select/deselect it, or click two points to box select units."
 	action_icon = 'ModularTegustation/Teguicons/resurgence_actions.dmi'
@@ -816,22 +816,22 @@
 	active_icon_state = "select_units_on"
 	deactive_msg = "You stop selecting units."
 	active_msg = "Click units to select them!"
-	cooldown_time = 0.5 SECONDS
+	charge_max = 0.5 SECONDS
 	projectile_amount = 9999 // Don't run out
 	var/mob/living/simple_animal/hostile/clan/tinkerer/linked_tinkerer
 
-/obj/effect/proc_holder/ability/aimed/tinkerer_select_unit/Initialize(mapload, mob/living/simple_animal/hostile/clan/tinkerer/T)
+/obj/effect/proc_holder/spell/aimed/tinkerer_select_unit/Initialize(mapload, mob/living/simple_animal/hostile/clan/tinkerer/T)
 	. = ..()
 	if(T)
 		linked_tinkerer = T
 
-/obj/effect/proc_holder/ability/aimed/tinkerer_select_unit/update_icon()
+/obj/effect/proc_holder/spell/aimed/tinkerer_select_unit/update_icon()
 	if(!action)
 		return
 	action.button_icon_state = active ? "select_units_on" : "select_units"
 	action.UpdateButtonIcon()
 
-/obj/effect/proc_holder/ability/aimed/tinkerer_select_unit/InterceptClickOn(mob/living/caller, params, atom/target)
+/obj/effect/proc_holder/spell/aimed/tinkerer_select_unit/InterceptClickOn(mob/living/caller, params, atom/target)
 	..()  // Call parent but don't check return value
 	if(!linked_tinkerer)
 		return TRUE
@@ -863,7 +863,7 @@
 		// Keep ability active
 		return FALSE
 
-/obj/effect/proc_holder/ability/aimed/tinkerer_move_order
+/obj/effect/proc_holder/spell/aimed/tinkerer_move_order
 	name = "Movement Order"
 	desc = "Order selected units to move to a location. Costs 2 charge."
 	action_icon = 'ModularTegustation/Teguicons/resurgence_actions.dmi'
@@ -872,29 +872,29 @@
 	active_icon_state = "move_order_on"
 	deactive_msg = "You cancel the movement order."
 	active_msg = "Click where you want your units to move!"
-	cooldown_time = 1 SECONDS
+	charge_max = 1 SECONDS
 	projectile_amount = 9999
 	var/mob/living/simple_animal/hostile/clan/tinkerer/linked_tinkerer
 
-/obj/effect/proc_holder/ability/aimed/tinkerer_move_order/Initialize(mapload, mob/living/simple_animal/hostile/clan/tinkerer/T)
+/obj/effect/proc_holder/spell/aimed/tinkerer_move_order/Initialize(mapload, mob/living/simple_animal/hostile/clan/tinkerer/T)
 	. = ..()
 	if(T)
 		linked_tinkerer = T
 
-/obj/effect/proc_holder/ability/aimed/tinkerer_move_order/update_icon()
+/obj/effect/proc_holder/spell/aimed/tinkerer_move_order/update_icon()
 	if(!action)
 		return
 	action.button_icon_state = active ? "move_order_on" : "move_order"
 	action.UpdateButtonIcon()
 
-/obj/effect/proc_holder/ability/aimed/tinkerer_move_order/InterceptClickOn(mob/living/caller, params, atom/target)
+/obj/effect/proc_holder/spell/aimed/tinkerer_move_order/InterceptClickOn(mob/living/caller, params, atom/target)
 	..()  // Call parent but don't check return value
 	if(!linked_tinkerer || !isturf(target))
 		return TRUE
 	linked_tinkerer.IssueMovementOrder(target)
 	return TRUE
 
-/obj/effect/proc_holder/ability/aimed/tinkerer_attack_order
+/obj/effect/proc_holder/spell/aimed/tinkerer_attack_order
 	name = "Attack Order"
 	desc = "Order selected units to attack a target. Costs 3 charge."
 	action_icon = 'ModularTegustation/Teguicons/resurgence_actions.dmi'
@@ -903,22 +903,22 @@
 	active_icon_state = "attack_order_on"
 	deactive_msg = "You cancel the attack order."
 	active_msg = "Click what you want your units to attack!"
-	cooldown_time = 2 SECONDS
+	charge_max = 2 SECONDS
 	projectile_amount = 9999
 	var/mob/living/simple_animal/hostile/clan/tinkerer/linked_tinkerer
 
-/obj/effect/proc_holder/ability/aimed/tinkerer_attack_order/Initialize(mapload, mob/living/simple_animal/hostile/clan/tinkerer/T)
+/obj/effect/proc_holder/spell/aimed/tinkerer_attack_order/Initialize(mapload, mob/living/simple_animal/hostile/clan/tinkerer/T)
 	. = ..()
 	if(T)
 		linked_tinkerer = T
 
-/obj/effect/proc_holder/ability/aimed/tinkerer_attack_order/update_icon()
+/obj/effect/proc_holder/spell/aimed/tinkerer_attack_order/update_icon()
 	if(!action)
 		return
 	action.button_icon_state = active ? "attack_order_on" : "attack_order"
 	action.UpdateButtonIcon()
 
-/obj/effect/proc_holder/ability/aimed/tinkerer_attack_order/InterceptClickOn(mob/living/caller, params, atom/target)
+/obj/effect/proc_holder/spell/aimed/tinkerer_attack_order/InterceptClickOn(mob/living/caller, params, atom/target)
 	..()  // Call parent but don't check return value
 	if(!linked_tinkerer || !target)
 		return TRUE
@@ -969,7 +969,7 @@
 		return
 	linked_tinkerer.ReleaseAllLocks()
 
-/obj/effect/proc_holder/ability/aimed/tinkerer_build_barricade
+/obj/effect/proc_holder/spell/aimed/tinkerer_build_barricade
 	name = "Build Barricade Line"
 	desc = "Click two points to build a barricade line. Costs 3 charge per barricade."
 	action_icon = 'ModularTegustation/Teguicons/resurgence_actions.dmi'
@@ -978,22 +978,22 @@
 	active_icon_state = "build_barricade"
 	deactive_msg = "You cancel barricade construction."
 	active_msg = "Click two points to build a barricade line!"
-	cooldown_time = 1 SECONDS
+	charge_max = 1 SECONDS
 	projectile_amount = 9999
 	var/mob/living/simple_animal/hostile/clan/tinkerer/linked_tinkerer
 
-/obj/effect/proc_holder/ability/aimed/tinkerer_build_barricade/Initialize(mapload, mob/living/simple_animal/hostile/clan/tinkerer/T)
+/obj/effect/proc_holder/spell/aimed/tinkerer_build_barricade/Initialize(mapload, mob/living/simple_animal/hostile/clan/tinkerer/T)
 	. = ..()
 	if(T)
 		linked_tinkerer = T
 
-/obj/effect/proc_holder/ability/aimed/tinkerer_build_barricade/update_icon()
+/obj/effect/proc_holder/spell/aimed/tinkerer_build_barricade/update_icon()
 	if(!action)
 		return
 	action.button_icon_state = "build_barricade"
 	action.UpdateButtonIcon()
 
-/obj/effect/proc_holder/ability/aimed/tinkerer_build_barricade/InterceptClickOn(mob/living/caller, params, atom/target)
+/obj/effect/proc_holder/spell/aimed/tinkerer_build_barricade/InterceptClickOn(mob/living/caller, params, atom/target)
 	..()  // Call parent but don't check return value
 	if(!linked_tinkerer)
 		return TRUE
