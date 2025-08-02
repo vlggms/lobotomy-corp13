@@ -218,6 +218,9 @@
 /datum/config_entry/string/wikiurl
 	config_entry_value = "http://www.tgstation13.org/wiki"
 
+/datum/config_entry/string/lc13_wikiurl
+	config_entry_value = "https://wiki.lc13.net"
+
 /datum/config_entry/string/forumurl
 	config_entry_value = "http://tgstation13.org/phpBB/index.php"
 

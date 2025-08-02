@@ -548,6 +548,13 @@
 	},
 /turf/open/floor/carpet/black,
 /area/city/backstreets_alley)
+"ck" = (
+/obj/effect/turf_decal/siding/wideplating/dark,
+/mob/living/simple_animal/npc/insurgence_grunt{
+	dir = 4
+	},
+/turf/open/floor/facility/dark,
+/area/city/house)
 "cl" = (
 /obj/structure/table/wood,
 /obj/item/folder{
@@ -6972,6 +6979,7 @@
 /area/city/backstreets_alley)
 "Cc" = (
 /obj/structure/table/reinforced,
+/obj/item/augment_tester,
 /turf/open/floor/facility/dark,
 /area/city/house)
 "Cf" = (
@@ -7842,6 +7850,11 @@
 /obj/effect/spawner/room/backstreets/small_north,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_alley)
+"Gt" = (
+/obj/structure/table/reinforced,
+/obj/item/augment_remover,
+/turf/open/floor/facility/dark,
+/area/city/house)
 "Gv" = (
 /obj/structure/railing{
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
@@ -10602,6 +10615,11 @@
 	},
 /turf/open/floor/plating,
 /area/city/backstreets_alley)
+"Tb" = (
+/obj/effect/turf_decal/siding/wideplating/dark,
+/obj/machinery/augment_fabricator,
+/turf/open/floor/facility/dark,
+/area/city/house)
 "Td" = (
 /obj/structure/mineral_door/wood,
 /turf/open/indestructible/hoteltile,
@@ -46897,7 +46915,7 @@ ZY
 bv
 UQ
 UQ
-lj
+ck
 st
 TI
 Pt
@@ -47154,8 +47172,8 @@ NK
 XG
 UQ
 UQ
-lj
-Cc
+Tb
+Gt
 TI
 Pt
 Pt
