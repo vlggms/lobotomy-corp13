@@ -169,8 +169,11 @@
 
 	var/mob/living/simple_animal/hostile/villains_character/T = target
 	
-	// Show main action target
-	if(T.main_action)
+	// Check if they're currently engaged in trading
+	if(T.trading_with)
+		to_chat(user, span_notice("[target]'s main action targets: [T.trading_with.name]"))
+		// They might still have a secondary action queued
+	else if(T.main_action)
 		var/target_ref = T.main_action["target"]
 		var/mob/living/simple_animal/hostile/villains_character/action_target = locate(target_ref)
 		if(action_target)
@@ -210,6 +213,12 @@
 		return FALSE
 
 	var/mob/living/simple_animal/hostile/villains_character/T = target
+	
+	// Check if they're currently engaged in trading
+	if(T.trading_with)
+		to_chat(user, span_notice("[target]'s main action: Talk/Trade"))
+		return TRUE
+	
 	if(T.main_action)
 		var/action_type = T.main_action["type"]
 		var/action_name = "Unknown"
@@ -227,9 +236,36 @@
 					action_name = "Use Item"
 				if(VILLAIN_ACTION_CHARACTER_ABILITY)
 					action_name = "Character Ability"
-		to_chat(user, span_notice("[target]'s main action: [action_name]"))
+		
+		// Check if the action was blocked
+		if(T.main_action_blocked)
+			to_chat(user, span_notice("[target]'s main action: [action_name] (BLOCKED)"))
+		else
+			to_chat(user, span_notice("[target]'s main action: [action_name]"))
 	else
 		to_chat(user, span_notice("[target] has not selected a main action."))
+	
+	// Check secondary action
+	if(T.secondary_action)
+		var/sec_action_type = T.secondary_action["type"]
+		var/sec_action_name = "Unknown"
+		switch(sec_action_type)
+			if("talk_trade")
+				sec_action_name = "Talk/Trade"
+			if("use_item")
+				sec_action_name = "Use Item"
+			if("character_ability")
+				sec_action_name = "Character Ability"
+			if("inheritance_trade")
+				sec_action_name = "Talk/Trade (Inheritance)"
+		// Check if the secondary action was blocked
+		if(T.secondary_action_blocked)
+			to_chat(user, span_notice("[target]'s secondary action: [sec_action_name] (BLOCKED)"))
+		else
+			to_chat(user, span_notice("[target]'s secondary action: [sec_action_name]"))
+	else
+		to_chat(user, span_notice("[target] has not selected a secondary action."))
+	
 	return TRUE
 
 /obj/item/villains/drain_monitor

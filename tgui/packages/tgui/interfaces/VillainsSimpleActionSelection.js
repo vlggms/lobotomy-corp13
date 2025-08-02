@@ -55,7 +55,11 @@ export const VillainsSimpleActionSelection = (props, context) => {
                               selected={selected_action === action.id}
                               disabled={action.disabled}
                               onClick={() => act('select_action', { action_id: action.id })}
-                              tooltip={action.disabled ? action.disabled_reason : action.desc}
+                              tooltip={
+                                action.disabled
+                                  ? action.disabled_reason
+                                  : action.desc
+                              }
                               color={action.type === 'elimination' ? 'red' : 'transparent'}>
                               <Stack>
                                 <Stack.Item grow>
@@ -128,7 +132,11 @@ export const VillainsSimpleActionSelection = (props, context) => {
                                   'select_secondary_action',
                                   { action_id: action.id }
                                 )}
-                                tooltip={action.disabled ? action.disabled_reason : action.desc}
+                                tooltip={
+                                action.disabled
+                                  ? action.disabled_reason
+                                  : action.desc
+                              }
                                 color="transparent">
                                 <Stack>
                                   <Stack.Item grow>

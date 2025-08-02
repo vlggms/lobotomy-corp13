@@ -1367,6 +1367,40 @@
 				to_chat(soul_target, span_warning("Your soul is being gathered... your secondary item action fails!"))
 				soul_target.secondary_action = null
 
+	// Pre-process redirections (Fairy Longlegs) BEFORE creating action objects
+	for(var/mob/living/simple_animal/hostile/villains_character/player in living_players)
+		if(player.main_action && player.main_action["type"] == "character_ability" && player.character_data?.character_id == VILLAIN_CHAR_FAIRYLONGLEGS)
+			var/target_ref = player.main_action["target"]
+			var/mob/living/simple_animal/hostile/villains_character/redirect_target = locate(target_ref)
+			if(redirect_target && redirect_target.main_action)
+				// Check if this action should not be redirected
+				var/action_type = redirect_target.main_action["type"]
+				var/skip_redirect = FALSE
+				
+				if(action_type == "character_ability" && redirect_target.character_data)
+					// Don't redirect self-targeting abilities
+					if(redirect_target.character_data.character_id == VILLAIN_CHAR_FORSAKENMURDER || redirect_target.character_data.character_id == VILLAIN_CHAR_BLUESHEPHERD)
+						to_chat(player, span_notice("[redirect_target]'s ability targets themselves and cannot be redirected."))
+						to_chat(redirect_target, span_notice("Your self-targeting ability resists [player]'s redirection."))
+						skip_redirect = TRUE
+					// Don't redirect Der Freischütz's Magic Bullet (contract-based)
+					else if(redirect_target.character_data.character_id == VILLAIN_CHAR_DERFREISCHUTZ && redirect_target.elimination_contract)
+						to_chat(player, span_notice("[redirect_target]'s contracted bullet cannot be redirected."))
+						to_chat(redirect_target, span_notice("Your contracted Magic Bullet pierces through [player]'s deception!"))
+						skip_redirect = TRUE
+					// Don't redirect Red Blooded American's Patriotic Fervor (to avoid redirection loops)
+					else if(redirect_target.character_data.character_id == VILLAIN_CHAR_REDBLOODEDAMERICAN)
+						to_chat(player, span_notice("[redirect_target]'s patriotic fervor is too strong to redirect!"))
+						to_chat(redirect_target, span_notice("Your patriotic fervor overpowers [player]'s deception!"))
+						skip_redirect = TRUE
+				
+				if(!skip_redirect)
+					// Perform the redirection
+					redirect_target.main_action["target"] = REF(player)
+					to_chat(player, span_notice("You lure [redirect_target] under your umbrella, redirecting their action to you!"))
+					to_chat(redirect_target, span_warning("You feel compelled to approach [player]..."))
+					player.false_shelter_target = redirect_target
+	
 	// Collect all submitted actions
 	for(var/mob/living/simple_animal/hostile/villains_character/player in living_players)
 		if(player.main_action)
@@ -1539,9 +1573,9 @@
 						if(performer && action)
 							// Check if performer used fairy wine
 							if(performer.used_fairy_wine)
-								action_list += "[performer.name] used Talk/Trade"
+								action_list += "Talk/Trade"
 							else
-								action_list += "[performer.name] used [action.name]"
+								action_list += action.name
 
 				if(length(action_list))
 					to_chat(player, span_notice("Rangefinder Results: The following actions targeted [targeted]: [action_list.Join(", ")]."))

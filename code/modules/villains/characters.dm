@@ -688,6 +688,11 @@
 	name = "Fairy-Long-Legs"
 	character_id = VILLAIN_CHAR_FAIRYLONGLEGS
 	desc = "A deceptive fairy who lures victims under their umbrella. Fairy-Long-Legs excels at disruption - your Deceptive Invitation forces your target to redirect their main action to you instead of their intended target. When someone is redirected to you, False Shelter activates, stealing a random item from them. This creates a powerful trap that disrupts plans while gaining resources. Ideal for players who enjoy controlling the flow of the game and creating chaos."
+	// REDIRECTION MECHANICS:
+	// - Updates both the main_action data AND the queued action object
+	// - Cannot redirect: self-targeting abilities, contract-based abilities, or other redirection abilities
+	// - Specifically blocks: Forsaken Murderer, Blue Shepherd, Der Freischütz (with contract), Red Blooded American
+	// - Works with: Room Cleaning, Observe, protection/elimination abilities, investigation abilities, Puss in Boots blessing
 	portrait = "fairy_long_legs"
 	icon = 'ModularTegustation/Teguicons/64x96.dmi'
 	icon_state = "fairy_longlegs"
@@ -704,28 +709,9 @@
 	passive_ability_desc = "When someone is redirected to you, steal a random item from their inventory."
 
 /datum/villains_character/fairy_longlegs/perform_active_ability(mob/living/user, mob/living/target, datum/villains_controller/game)
-	if(!target || !istype(target, /mob/living/simple_animal/hostile/villains_character))
-		return FALSE
-	
-	if(!istype(user, /mob/living/simple_animal/hostile/villains_character))
-		return FALSE
-	
-	var/mob/living/simple_animal/hostile/villains_character/U = user
-	var/mob/living/simple_animal/hostile/villains_character/T = target
-	
-	// Check if they have a main action to redirect
-	if(!T.main_action)
-		to_chat(user, span_notice("[target] has no action to redirect."))
-		return TRUE
-	
-	// Redirect their main action to target us
-	T.main_action["target"] = REF(U)
-	to_chat(user, span_notice("You lure [target] under your umbrella, redirecting their action to you!"))
-	to_chat(target, span_warning("You feel compelled to approach [user]..."))
-	
-	// Mark target for stealing when their action executes
-	U.false_shelter_target = T
-	
+	// Redirection is now handled in pre-processing phase in process_night_actions()
+	// This ability doesn't need to do anything during action execution
+	// The messages and actual redirection have already happened
 	return TRUE
 
 /datum/villains_character/fairy_longlegs/on_phase_change(phase, mob/living/user, datum/villains_controller/game)
