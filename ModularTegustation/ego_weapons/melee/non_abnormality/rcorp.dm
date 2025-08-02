@@ -241,7 +241,7 @@
 	name = "R-Corporation R-3500 Minigun"
 	desc = "An energy machinegun that is extremely heavy, and fires bullets extremely quickly."
 	icon = 'ModularTegustation/Teguicons/rcorp_weapons.dmi'
-	icon_state = "rabbitmachinegun"
+	icon_state = "trimachinegun"
 	projectile_damage_multiplier = 0.7
 	ammo_type = list(
 		/obj/item/ammo_casing/energy/laser/red/iff,

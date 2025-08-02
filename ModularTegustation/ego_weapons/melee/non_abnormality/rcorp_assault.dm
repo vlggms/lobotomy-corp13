@@ -61,6 +61,14 @@
 		/obj/item/ammo_casing/energy/laser/black,
 		)
 
+/obj/item/gun/energy/e_gun/rabbitdash/small/pale
+	name = "R-Corporation R-2920 'Wakeup Call'"
+	desc = "An energy pistol sometimes used by Rcorp. Fires slower, and deals slightly less damage. Only in pale. \
+		Nicknamed the 'Wakeup Call' by RnD due to this being the last gun produced before the R-3000 series of guns "
+	ammo_type = list(
+		/obj/item/ammo_casing/energy/laser/pale,
+		)
+
 /obj/item/gun/energy/e_gun/rabbitdash/small/tiny
 	name = "R-Corporation R-2025 'Fucker Gun'"
 	desc = "An energy pistol sometimes used by Rcorp. Only in red, and only found in the hands of people who use it as an emergency self-defense weapon. \
@@ -69,14 +77,39 @@
 	fire_delay = 5
 	projectile_damage_multiplier = 0.5
 
+/obj/item/gun/energy/e_gun/rabbitdash/small/tinypale
+	name = "R-Corporation X-29 'Mistake'"
+	desc = "An energy pistol sometimes used by Rcorp. Only in pale, and was an experimental pistol found in the desk drawer of an assistant manager. \
+			To test it's efficacy, The X-29's first round ever fired was into the head of it's creator. The executioner broke their wrist, \
+			and the Assistant Manager survived long enough to be fired."
+	icon_state = "rabbittiny"
+	fire_delay = 7
+	recoil = 4
+	ammo_type = list(
+		/obj/item/ammo_casing/energy/laser/pale,
+		)
 
 /obj/item/gun/energy/e_gun/rabbitdash/shotgun
 	name = "R-Corporation R-2300 'Chungid'"
-	desc = "An energy gun mass-produced by R corporation for the bulk of their force. This slightly updated model can fire a shogun spread."
+	desc = "An energy gun mass-produced by R corporation for the bulk of their force. This slightly updated model can fire a shogun spread of red damage."
 	icon_state = "rabbitshotgun"
 	fire_delay = 10
 	ammo_type = list(
 		/obj/item/ammo_casing/energy/laser/red/shotgun,
+		)
+
+/obj/item/gun/energy/e_gun/rabbitdash/shotgun/white
+	name = "R-Corporation R-2430 'Fatty'"
+	desc = "An energy gun mass-produced by R corporation for the bulk of their force. This slightly updated model can fire a shogun spread of white damage."
+	ammo_type = list(
+		/obj/item/ammo_casing/energy/laser/white/shotgun,
+		)
+
+/obj/item/gun/energy/e_gun/rabbitdash/shotgun/black
+	name = "R-Corporation R-2330 'Moz'"
+	desc = "An energy gun mass-produced by R corporation for the bulk of their force. This slightly updated model can fire a shogun spread of black damage."
+	ammo_type = list(
+		/obj/item/ammo_casing/energy/laser/black/shotgun,
 		)
 
 /obj/item/gun/energy/e_gun/rabbitdash/black
