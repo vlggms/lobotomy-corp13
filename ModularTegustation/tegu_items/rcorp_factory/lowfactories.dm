@@ -37,11 +37,13 @@
 	itemnumber = 2
 	item = /obj/item/stack/sheet/mineral/sandbags/ten
 
-/obj/structure/rcorp_factory/flashlight
-	name = "Flashlight factory"
+/obj/structure/rcorp_factory/medipen
+	name = "Various Medipen factory"
 	desc = "A machine used to craft items."
-	gcost = 2
-	item = /obj/item/flashlight/seclite
+	gcost = 1
+	rcost = 1
+	itemnumber = 4
+	item = /obj/item/reagent_containers/hypospray/medipen/dual
 
 /obj/structure/rcorp_factory/First_aid_l1
 	name = "First Aid factory"

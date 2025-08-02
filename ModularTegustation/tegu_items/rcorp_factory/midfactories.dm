@@ -12,12 +12,13 @@
 	pcost = 2
 	item = /obj/item/clothing/glasses/hud/health
 
-/obj/structure/rcorp_factory/hightractiontiles
-	name = "High Traction Tile factory"
+/obj/structure/rcorp_factory/pouches
+	name = "Misc Pouches factory"
 	desc = "A machine used to craft items."
 	icon_state = "midfactory"
 	bcost = 1
-	item = /obj/item/stack/tile/noslip/fifty
+	pcost = 1
+	item = /obj/effect/landmark/rcorp/pouch
 
 /obj/structure/rcorp_factory/taser
 	name = "Taser factory"

@@ -64,3 +64,10 @@
 	)
 
 
+//Random Pouch
+/obj/effect/landmark/rcorp/pouch
+	possible_items = list(
+		/obj/item/storage/pcorp_pocket/rcorp,
+		/obj/item/storage/pcorp_weapon/rcorp,
+		/obj/item/storage/rcorp_grenade,
+	)
