@@ -221,3 +221,15 @@
 	force = 40
 	wreckage = /obj/structure/mecha_wreckage/durand
 	deflect_chance = 0
+
+/obj/vehicle/sealed/mecha/combat/rhinosmall/Initialize()
+	. = ..()
+	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/rifle(src)
+	ME.attach(src)
+	ME = new /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/rifle/white(src)
+	ME.attach(src)
+	ME = new /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/rifle/black(src)
+	ME.attach(src)
+	ME = new /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/rifle/pale(src)
+	ME.attach(src)
+	max_ammo()
