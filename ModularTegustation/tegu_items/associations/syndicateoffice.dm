@@ -32,7 +32,9 @@
 	name = "Kurokumo Capsule"
 	template_id = "kurokumo_base"
 
-
+/obj/item/structurecapsule/syndicate/thumb_east
+	name = "Thumb East Capsule"
+	template_id = "thumb_east_base"
 
 
 //Office templates
@@ -66,3 +68,8 @@
 	description = "A place for the Kurokumo Clan."
 	mappath = "_maps/templates/syndicate_office/kurokumosake.dmm"
 
+/datum/map_template/shelter/thumb_east
+	name = "Thumb East Base"
+	shelter_id = "thumb_east_base"
+	description = "A place for the thumb's eastern branch."
+	mappath = "_maps/templates/syndicate_office/thumb_east.dmm"
