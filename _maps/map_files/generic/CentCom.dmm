@@ -5563,6 +5563,10 @@
 "Ie" = (
 /turf/closed/indestructible/riveted,
 /area/tdome/arena)
+"Ig" = (
+/obj/effect/landmark/villains_game_area,
+/turf/open/space/basic,
+/area/space)
 "Il" = (
 /turf/closed/indestructible/fakeglass,
 /area/tdome/tdomeobserve)
@@ -56952,7 +56956,7 @@ aa
 aa
 aa
 aa
-aa
+Ig
 aa
 aa
 aa

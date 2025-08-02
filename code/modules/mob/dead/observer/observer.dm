@@ -964,6 +964,39 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		game = create_mafia_game("mafia")
 	game.ui_interact(usr)
 
+/mob/dead/observer/verb/villains_game_signup()
+	set category = "Ghost"
+	set name = "Signup for Villains"
+	set desc = "Sign up for a game of Villains of the Night, a social deduction game where abnormalities hunt the villain among them."
+
+	villains_signup()
+
+/mob/dead/observer/proc/villains_signup()
+	log_game("DEBUG: villains_signup() called for [src] (ckey: [src.ckey])")
+	if(!client)
+		log_game("DEBUG: No client found for [src]")
+		return
+	if(!isobserver(src))
+		log_game("DEBUG: [src] is not an observer")
+		to_chat(usr, span_warning("You must be a ghost to join Villains of the Night!"))
+		return
+	
+	// Check if the round has started
+	if(!SSticker.HasRoundStarted())
+		to_chat(usr, span_warning("You cannot sign up for Villains of the Night before the round starts!"))
+		return
+
+	var/datum/villains_controller/game = GLOB.villains_game
+	log_game("DEBUG: GLOB.villains_game = [game]")
+	if(!game)
+		log_game("DEBUG: Creating new villains controller")
+		game = new /datum/villains_controller()
+		GLOB.villains_game = game
+		log_game("DEBUG: New controller created: [game]")
+
+	log_game("DEBUG: Calling ui_interact for [usr]")
+	game.ui_interact(usr)
+
 /mob/dead/observer/CtrlShiftClick(mob/user)
 	if(isobserver(user) && check_rights(R_SPAWN))
 		change_mob_type( /mob/living/carbon/human , null, null, TRUE) //always delmob, ghosts shouldn't be left lingering
