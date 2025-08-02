@@ -27,7 +27,7 @@
 	job_notice = ""
 
 /datum/job/rcorp_captain/rook
-	title = "Rook Team Captain"
+	title = "Rook Squad Captain"
 	faction = "Station"
 	department_head = list("Commanders")
 	total_positions = 1
