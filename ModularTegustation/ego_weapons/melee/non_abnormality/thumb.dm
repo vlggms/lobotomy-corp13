@@ -189,6 +189,10 @@
 	// Ammo variables.
 	/// Maximum ammo capacity that this weapon can hold.
 	var/max_ammo = 3
+	/// How long does the reload start phase last?
+	var/reload_start_windup = 0.6 SECONDS
+	/// How long does it take to load each individual round?
+	var/reload_load_windup = 0.4 SECONDS
 	/// Does our weapon eject spent cartridges as they're fired (SPENT_INSTANTEJECT) or store them until you attempt to reload (SPENT_RELOADEJECT)?
 	/// SPENT_RELOADEJECT will also eject live rounds when attempting a reload.
 	var/spent_ammo_behaviour = SPENT_INSTANTEJECT
@@ -489,7 +493,7 @@
 	VentHeat(user)
 	ReturnToNormal(user)
 	busy = TRUE
-	if(do_after(user, 0.6 SECONDS, src, progress = TRUE, interaction_key = "thumb_east_reload", max_interact_count = 1))
+	if(do_after(user, reload_start_windup, src, progress = TRUE, interaction_key = "thumb_east_reload", max_interact_count = 1))
 		// If we reached this line, we've started the reload properly now. Being interrupted at this point causes a ReloadFailure(), you will spill the ammo you're loading.
 		// This first block will eject all our spent and unspent ammo if we're using a weapon with SPENT_RELOADEJECT behaviour (the podao).
 		if(spent_ammo_behaviour == SPENT_RELOADEJECT)
@@ -504,7 +508,7 @@
 		// An alternative would be to have a set reload duration and divide it by the amount we're going to load. But that feels weird.
 		// Was also considering giving you a defensive buff while reloading.
 		for(var/i in 1 to amount_to_load)
-			if(do_after(user, (0.4 SECONDS), src, progress = TRUE, interaction_key = "thumb_east_reload", max_interact_count = 1))
+			if(do_after(user, (reload_load_windup), src, progress = TRUE, interaction_key = "thumb_east_reload", max_interact_count = 1))
 				var/obj/item/stack/thumb_east_ammo/new_bullet = ammo_item.split_stack(user, 1)
 				if(new_bullet)
 					// We actually store the round INSIDE the weapon. If the weapon is destroyed we'll drop them.
@@ -883,12 +887,12 @@
 	"If you trigger but miss your lunge, you can still continue the combo by landing a regular hit on-target."
 	motion_values = list(COMBO_NO_AMMO = 1, COMBO_LUNGE = 1, COMBO_ATTACK2 = 1.3, COMBO_FINISHER = 2, COMBO_ATTACK2_AOE = 1, COMBO_FINISHER_AOE = 1.2)
 
-/// Lei Heng's Podao. Players should never ever be given this, it's for staff. Couldn't let the really cool sprite by DWK go to waste.
+/// Lei Heng's Podao. Players should never ever be given this, it's for staff. Couldn't let the really cool sprite by DWK and Potassium_19 go to waste.
 /// It will have a special ability that lets it fire off 6 bullets in a special attack like Furioso or Mirage Storm, but I haven't coded it yet.
 /obj/item/ego_weapon/city/thumb_east/podao/tiantui
 	name = "tiantui star's blade"
 	desc = "A traditional podao fitted with a system to load specialized propellant ammunition. It inspires awe - this isn't a normal blade, is it...?"
-	// Tiantui Star's Blade sprites by DWK
+	// Tiantui Star's Blade obj sprite by Potassium_19 and inhand sprites by DWK
 	icon_state = "thumb_east_tiantuistarblade"
 	inhand_icon_state = "thumb_east_tiantuistarblade"
 	force = 92
