@@ -24,6 +24,14 @@
 	pellets = 3
 	variance = 16
 
+/obj/item/ammo_casing/energy/laser/white/shotgun
+	pellets = 3
+	variance = 16
+
+/obj/item/ammo_casing/energy/laser/black/shotgun
+	pellets = 3
+	variance = 16
+
 /obj/item/ammo_casing/energy/laser/red/beam
 	projectile_type = /obj/projectile/beam/laser/red
 

@@ -70,3 +70,11 @@
 	icon_state = "midfactory"
 	pcost = 2
 	item = /obj/item/storage/First_aid_l2
+
+/obj/structure/rcorp_factory/stims
+	name = "Stimulants factory"
+	desc = "A machine used to craft items."
+	icon_state = "midfactory"
+	pcost = 2
+	itemnumber = 5
+	item = /obj/item/reagent_containers/hypospray/medipen/stimpack
