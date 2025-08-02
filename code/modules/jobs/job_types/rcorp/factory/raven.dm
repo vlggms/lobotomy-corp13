@@ -97,7 +97,7 @@
 
 
 /datum/job/rcorp_captain/raven_factorycap
-	title = "Raven Team Captain"
+	title = "Raven Squad Captain"
 	faction = "Station"
 	department_head = list("Commanders")
 	total_positions = 1

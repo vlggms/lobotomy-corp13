@@ -35,7 +35,7 @@ GLOBAL_LIST_INIT(robin_sergeants, list("Section A", "Section B", "Section C"))
 	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 
 /datum/outfit/job/robin_captain
-	name = "Robin Team Captain"
+	name = "Robin Squad Captain"
 	jobtype = /datum/job/rcorp_captain/robin
 
 	ears = null
