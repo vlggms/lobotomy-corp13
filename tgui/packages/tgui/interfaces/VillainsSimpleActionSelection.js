@@ -133,10 +133,10 @@ export const VillainsSimpleActionSelection = (props, context) => {
                                   { action_id: action.id }
                                 )}
                                 tooltip={
-                                action.disabled
-                                  ? action.disabled_reason
-                                  : action.desc
-                              }
+                                  action.disabled
+                                    ? action.disabled_reason
+                                    : action.desc
+                                }
                                 color="transparent">
                                 <Stack>
                                   <Stack.Item grow>
