@@ -204,6 +204,11 @@
 			if(attribute_requirements[atr] > 40)
 				return FALSE
 		return TRUE
+
+	if(HAS_TRAIT(user, TRAIT_NOEGOWEAPONS))
+		to_chat(user, span_notice("You cannot use [src]!"))
+		return FALSE
+
 	if(!ishuman(user))
 		return FALSE
 
