@@ -123,9 +123,8 @@
 	color = "#FF5522"
 	max_integrity = 500
 	moblist = list(
-		/mob/living/simple_animal/hostile/ordeal/steel_dawn = 2,
-		/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying = 1,
-		/mob/living/simple_animal/hostile/ordeal/green_bot = 1,
+		/mob/living/simple_animal/hostile/xcorp = 4,
+		/mob/living/simple_animal/hostile/xcorp/scout = 1,
 	)
 	var/announce = FALSE
 	var/id
@@ -137,9 +136,10 @@
 /obj/structure/den/rce/announcer
 	max_mobs = 12
 	moblist = list(
-		/mob/living/simple_animal/hostile/rce/sapper = 2,
-		/mob/living/simple_animal/hostile/ordeal/green_bot_big = 2,
-		/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying = 2,
+		/mob/living/simple_animal/hostile/xcorp/dps = 2,
+		/mob/living/simple_animal/hostile/xcorp/sapper = 1,
+		/mob/living/simple_animal/hostile/xcorp/tank = 1,
+		/mob/living/simple_animal/hostile/xcorp/scout = 2,
 	)
 	generate_new_mob_time = 90 SECONDS
 	raider = TRUE
@@ -148,30 +148,30 @@
 /obj/structure/den/rce/mid
 	max_mobs = 10
 	moblist = list(
-		/mob/living/simple_animal/hostile/ordeal/steel_dawn = 1,
-		/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon = 1,
-		/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying = 1,
-		/mob/living/simple_animal/hostile/ordeal/green_bot = 2,
+		/mob/living/simple_animal/hostile/xcorp = 2,
+		/mob/living/simple_animal/hostile/xcorp/dps = 1,
+		/mob/living/simple_animal/hostile/xcorp/tank = 1,
+		/mob/living/simple_animal/hostile/xcorp/scout = 1,
 	)
 
 /obj/structure/den/rce/high
 	max_mobs = 12
 	moblist = list(
-		/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon = 2,
-		/mob/living/simple_animal/hostile/rce/sapper = 1,
-		/mob/living/simple_animal/hostile/ordeal/green_bot_big = 2,
-		/mob/living/simple_animal/hostile/ordeal/sin_lust = 1,
+		/mob/living/simple_animal/hostile/xcorp/scout = 2,
+		/mob/living/simple_animal/hostile/xcorp/sapper = 2,
+		/mob/living/simple_animal/hostile/xcorp/dps = 2,
+		/mob/living/simple_animal/hostile/xcorp/tank = 3,
 	)
 	generate_new_mob_time = 20 SECONDS
 
 /obj/structure/den/rce/raider
 	max_mobs = 20
 	moblist = list(
-		/mob/living/simple_animal/hostile/ordeal/sin_lust = 1,
-		/mob/living/simple_animal/hostile/rce/sapper = 1,
-		/mob/living/simple_animal/hostile/ordeal/sin_pride = 2,
-		/mob/living/simple_animal/hostile/ordeal/sin_gloom = 1,
-		/mob/living/simple_animal/hostile/ordeal/sin_wrath = 1,
+		/mob/living/simple_animal/hostile/xcorp = 2,
+		/mob/living/simple_animal/hostile/xcorp/scout = 1,
+		/mob/living/simple_animal/hostile/xcorp/sapper = 1,
+		/mob/living/simple_animal/hostile/xcorp/tank = 1,
+		/mob/living/simple_animal/hostile/xcorp/dps = 1,
 	)
 	assault_type = SEND_TILL_MAX
 	generate_new_mob_time = 45 SECONDS
@@ -193,12 +193,11 @@
 	color = "#FF0000"
 	max_integrity = 1000
 	moblist = list(
-		/mob/living/simple_animal/hostile/ordeal/steel_dawn = 3,
-		/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying = 1,
-		/mob/living/simple_animal/hostile/ordeal/indigo_dusk = 2,
-		/mob/living/simple_animal/hostile/ordeal/green_bot = 2,
-		/mob/living/simple_animal/hostile/ordeal/green_bot_big = 2,
-		/mob/living/simple_animal/hostile/asteroid/elite/legionnaire = 1,
+		/mob/living/simple_animal/hostile/xcorp = 4,
+		/mob/living/simple_animal/hostile/xcorp/tank = 4,
+		/mob/living/simple_animal/hostile/xcorp/heart = 3,
+		/mob/living/simple_animal/hostile/xcorp/heart/ranged = 2,
+		/mob/living/simple_animal/hostile/xcorp/heart/dps = 1,
 	)
 	var/announce = FALSE
 	var/id
