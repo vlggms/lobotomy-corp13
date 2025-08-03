@@ -30,8 +30,8 @@
 	desc = "A writhing mass of edges, the sin of sophistication."
 	icon = 'icons/mob/eldritch_mobs.dmi'
 	icon_state = "ash_walker"
-	maxHealth = 100
-	health = 100
+	maxHealth = 170
+	health = 170
 	melee_damage_type = BLACK_DAMAGE
 	footstep_type = FOOTSTEP_OBJ_MACHINE
 	rapid_melee = 2
