@@ -25,6 +25,7 @@
 	can_breach = TRUE
 	threat_level = TETH_LEVEL
 	start_qliphoth = 1
+	bad_droprate = 100
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(50, 50, 50, 50, 50),
 		ABNORMALITY_WORK_INSIGHT = list(50, 50, 50, 50, 50),
@@ -52,10 +53,6 @@
 /mob/living/simple_animal/hostile/abnormality/clayman/CanAttack(atom/the_target)
 	melee_damage_type = pick(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 	return ..()
-
-/mob/living/simple_animal/hostile/abnormality/clayman/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
-	datum_reference.qliphoth_change(-1)
 
 /mob/living/simple_animal/hostile/abnormality/clayman/proc/Skitter()
 	visible_message(span_warning("[src] Skitters faster!"), span_notice("you hear the patter of hundreds of clay feet"))

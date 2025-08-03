@@ -32,6 +32,7 @@
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gluttony
 	start_qliphoth = 1
+	bad_droprate = 100
 	max_boxes = 12
 	ego_list = list(
 		/datum/ego_datum/weapon/faelantern,
@@ -96,11 +97,6 @@
 		return
 	if(work_type != ABNORMALITY_WORK_REPRESSION && get_modified_attribute_level(user, TEMPERANCE_ATTRIBUTE) < 40)
 		datum_reference.qliphoth_change(-1)
-
-/mob/living/simple_animal/hostile/abnormality/faelantern/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
-	datum_reference.qliphoth_change(-1)
-	return
 
 /mob/living/simple_animal/hostile/abnormality/faelantern/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
