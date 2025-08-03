@@ -1492,28 +1492,35 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	set waitfor = FALSE
 	return call(source, proctype)(arglist(arguments))
 
-/proc/show_blurb(client/C, duration, blurb_text, fade_time = 5, text_color = "white", outline_color = "black", text_align = "left", screen_location = "LEFT+1,BOTTOM+2")
+/proc/show_blurb(client/C, duration, blurb_text, fade_out_time = 5, fade_in_time = 10, text_color = "white", outline_color = "black", text_align = "left", screen_location = "LEFT+1,BOTTOM+2", marquee = FALSE, outline_width = 1)
 	if(!C)
 		return
 
-	var/style = "font-family: 'Fixedsys'; text-align: [text_align]; color: [text_color]; -dm-text-outline: 1 [outline_color]; font-size: 11px;"
+	var/style = "font-family: 'Fixedsys'; text-align: [text_align]; color: [text_color]; -dm-text-outline: [outline_width] [outline_color]; font-size: 11px;"
 	var/text = blurb_text
 	text = uppertext(text)
 
 	var/obj/effect/overlay/T = new()
 	T.alpha = 0
 	T.maptext_height = 64
-	T.maptext_width = 424
+	T.maptext_width = 544
+	if(marquee)
+		T.maptext_x = -544
+	else
+		T.maptext_x = 0
 	T.layer = FLOAT_LAYER
 	T.plane = HUD_PLANE
 	T.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 	T.screen_loc = screen_location
 
 	C.screen += T
-	animate(T, alpha = 255, time = 10)
+	animate(T, alpha = 255, time = fade_in_time)
 	T.maptext = "<span style=\"[style]\">[text]</span>"
 
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(fade_blurb), C, T, fade_time), duration)
+	if(marquee)
+		animate(T, time = 60, loop = -1, maptext_x = 17*32, flags = ANIMATION_PARALLEL)
+
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(fade_blurb), C, T, fade_out_time), duration)
 
 /proc/fade_blurb(client/C, obj/T, fade_time = 5)
 	animate(T, alpha = 0, time = fade_time)
@@ -1521,10 +1528,47 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	C.screen -= T
 	qdel(T)
 
+/proc/show_letterbox(client/C, duration)
+	var/obj/effect/overlay/T = new()
+	T.alpha = 0
+	T.layer = FLOAT_LAYER
+	T.plane = UNDER_HUD_LAYER
+	T.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+	T.icon = 'icons/effects/fullscreen.dmi'
+	T.icon_state = "letterbox"
+	T.screen_loc = "LEFT+0,BOTTOM+0"
+
+	C.screen += T
+	animate(T, alpha = 250, time = 1)
+
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(fade_letterbox), C, T), duration)
+
+/proc/fade_letterbox(client/C, obj/T, fade_time = 1)
+	animate(T, alpha = 0, time = fade_time)
+	sleep(fade_time)
+	C.screen -= T
+	qdel(T)
+
+/proc/show_sprite(client/C, duration, icon, icon_state, screen_location)
+	var/obj/effect/overlay/T = new()
+	T.alpha = 0
+	T.layer = FLOAT_LAYER
+	T.plane = UNDER_HUD_LAYER
+	T.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+	T.mouse_opacity = 0
+	T.icon = icon
+	T.icon_state = icon_state
+	T.screen_loc = screen_location
+
+	C.screen += T
+	animate(T, alpha = 255, time = 2)
+
+	return T
+
 // Shows a blurb to every client
-/proc/show_global_blurb(duration, blurb_text, fade_time = 5, text_color = "white", outline_color = "black", text_align = "left", screen_location = "LEFT+1,BOTTOM+2")
+/proc/show_global_blurb(duration, blurb_text, fade_out_time = 5, fade_in_time = 10, text_color = "white", outline_color = "black", text_align = "left", screen_location = "LEFT+1,BOTTOM+2", marquee = FALSE, outline_width = 1)
 	for(var/client/C in GLOB.clients)
-		show_blurb(C, duration, blurb_text, fade_time, text_color, outline_color, text_align, screen_location)
+		show_blurb(C, duration, blurb_text, fade_out_time, fade_in_time, text_color, outline_color, text_align, screen_location, marquee, outline_width)
 
 // Animates atom's color over time
 /proc/SetColorOverTime(atom/A, new_color = "#FFFFFF", new_time = 2)

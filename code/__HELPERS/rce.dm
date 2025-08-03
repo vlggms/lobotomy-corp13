@@ -1,0 +1,16 @@
+/proc/show_diediedie(client/C)
+	for(var/i=0, i<=30, i++)
+		sleep(1)
+		show_blurb(C, duration = 10, blurb_text = "DIE", fade_in_time = 1, fade_out_time = 1, text_color = "#960000", outline_width = 0, screen_location = "LEFT+[rand(3,17)],BOTTOM+[rand(3,17)]")
+
+/proc/show_bossblurb(client/C)
+	show_letterbox(C, 600)
+	show_blurb(C, 300, "WARNING - WARNING - WARNING - WARNING - WARNING - WARNING - WARNING", 5, 5, "#960000", "#ffffff", screen_location = "LEFT+0,BOTTOM+3", marquee = TRUE)
+	var/overlay = show_sprite(C, 300, 'ModularTegustation/Teguicons/rce96x96.dmi', "heart", screen_location = "LEFT+7,BOTTOM+6")
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(fade_blurb), C, overlay, 5), 300)
+
+/proc/showoffcoolstuff(client/C)
+	show_letterbox(C, 600)
+	show_blurb(C, 300, "WARNING - WARNING - WARNING - WARNING - WARNING - WARNING", marquee = TRUE)
+	sleep(30)
+	show_diediedie(C)
