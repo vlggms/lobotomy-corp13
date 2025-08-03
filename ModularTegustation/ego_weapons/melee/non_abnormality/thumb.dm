@@ -606,11 +606,17 @@
 		else
 			INVOKE_ASYNC(src, PROC_REF(EjectRound), new_spent_cartridge, user)
 
-/obj/item/ego_weapon/city/thumb_east/proc/VentHeat(mob/living/user)
+/obj/item/ego_weapon/city/thumb_east/proc/VentHeat(mob/living/carbon/human/user)
 	if(overheat > 0)
 		overheat = 0
 		playsound(src, 'sound/effects/ordeals/steel/gcorp_hiss.ogg', 75, FALSE, 4)
 		to_chat(user, span_danger("You vent [src]'s remaining heat to access its ammo storage!"))
+		var/obj/item/clothing/head/thumb_east_hat/unfortunate_hat = user.get_item_by_slot(ITEM_SLOT_HEAD)
+		if(istype(unfortunate_hat))
+			to_chat(user, span_danger("Your [unfortunate_hat.name] burns up from the heat being vented out of your weapon!"))
+			// Placeholder. This animate doesn't actually do anything because the user's icon overlays need to actually get updated... Manually update_body() and update_inv_head() don't seem to work.
+			animate(unfortunate_hat, 1 SECONDS, alpha = 0, color = COLOR_VIVID_RED, pixel_x = 2, pixel_y = 2, easing = CUBIC_EASING)
+			QDEL_IN(unfortunate_hat, 1.1 SECONDS)
 
 ////////////////////////////////////////////////////////////
 // SPECIAL ATTACKS SECTION.
