@@ -47,10 +47,6 @@ GLOBAL_LIST_EMPTY(ego_datums)
 		if(GLOB.damage_type_shuffler?.is_enabled && IsColorDamageType(bullet_damage_type))
 			var/datum/damage_type_shuffler/shuffler = GLOB.damage_type_shuffler
 			var/new_damage_type = shuffler.mapping_offense[bullet_damage_type]
-			if(new_damage_type == PALE_DAMAGE && bullet_damage_type != PALE_DAMAGE)
-				bullet_damage *= shuffler.pale_debuff
-			else if(new_damage_type != PALE_DAMAGE && bullet_damage_type == PALE_DAMAGE)
-				bullet_damage /= shuffler.pale_debuff
 			bullet_damage_type = new_damage_type
 		information["attribute_requirements"] = E.attribute_requirements.Copy()
 		information["attack_info"] = "Its bullets deal [bullet_damage] [bullet_damage_type] damage."
@@ -77,10 +73,6 @@ GLOBAL_LIST_EMPTY(ego_datums)
 	if(GLOB.damage_type_shuffler?.is_enabled && IsColorDamageType(damage_type))
 		var/datum/damage_type_shuffler/shuffler = GLOB.damage_type_shuffler
 		var/new_damage_type = shuffler.mapping_offense[damage_type]
-		if(new_damage_type == PALE_DAMAGE && damage_type != PALE_DAMAGE)
-			damage *= shuffler.pale_debuff
-		else if(new_damage_type != PALE_DAMAGE && damage_type == PALE_DAMAGE)
-			damage /= shuffler.pale_debuff
 		damage_type = new_damage_type
 	information["attack_info"] = "It deals [damage] [damage_type] damage."
 	information["throwforce"] = E.throwforce

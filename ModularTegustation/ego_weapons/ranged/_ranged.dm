@@ -169,10 +169,6 @@
 	if(GLOB.damage_type_shuffler?.is_enabled && IsColorDamageType(damage_type))
 		var/datum/damage_type_shuffler/shuffler = GLOB.damage_type_shuffler
 		var/new_damage_type = shuffler.mapping_offense[damage_type]
-		if(new_damage_type == PALE_DAMAGE && damage_type != PALE_DAMAGE)
-			damage *= shuffler.pale_debuff
-		else if(new_damage_type != PALE_DAMAGE && damage_type == PALE_DAMAGE)
-			damage /= shuffler.pale_debuff
 		damage_type = new_damage_type
 	if(force_multiplier != 1)
 		return span_notice("It deals [round(damage * force_multiplier, 0.1)] [damage_type] damage in melee. (+ [(force_multiplier - 1) * 100]%)")
@@ -186,10 +182,6 @@
 	if(GLOB.damage_type_shuffler?.is_enabled && IsColorDamageType(damage_type))
 		var/datum/damage_type_shuffler/shuffler = GLOB.damage_type_shuffler
 		var/new_damage_type = shuffler.mapping_offense[damage_type]
-		if(new_damage_type == PALE_DAMAGE && damage_type != PALE_DAMAGE)
-			damage = round(last_projectile_damage * shuffler.pale_debuff, 0.1)
-		else if(new_damage_type != PALE_DAMAGE && damage_type == PALE_DAMAGE)
-			damage = round(last_projectile_damage / shuffler.pale_debuff, 0.1)
 		damage_type = new_damage_type
 	if(pellets > 1)	//for shotguns
 		return span_notice("Its bullets deal [damage] x [pellets] [damage_type] damage.[projectile_damage_multiplier != 1 ? " (+ [(projectile_damage_multiplier - 1) * 100]%)" : ""]")
