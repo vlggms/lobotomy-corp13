@@ -8,12 +8,24 @@
 
 /area/rce/rcorp_base
 	name = "R-Corp FOB"
-	icon_state = "green"
+	icon_state = "rce_fob"
 	mood_bonus = 20
 	mood_message = "<span class='nicegreen'>It feels good to be safe at base!</span>\n"
 
 /area/rce/xcorp
 	name = "X-Corp Ruins"
+	icon_state = "red"
+
+/area/rce/xcorp/bossentrance
+	name = "X-Corp Antechamber"
+	icon_state = "red"
+
+/area/rce/xcorp/bosslobby
+	name = "X-Corp Fight Lobby"
+	icon_state = "red"
+
+/area/rce/xcorp/boss
+	name = "X-Corp Heartchamber"
 	icon_state = "red"
 
 /area/rce/xcorp/rce_0_0
