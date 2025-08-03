@@ -25,7 +25,7 @@
 								TEMPERANCE_ATTRIBUTE = 0,
 								JUSTICE_ATTRIBUTE = 100
 								)
-	alt_titles = list("Commander")
+	alt_titles = list()
 	rank_title = "CDR"
 	job_important = "Lead the Rcorp 4th Pack to victory using your command and organizational skills. You are among the highest ranked combatant in the R-Corp mercenary force."
 	job_notice = " Give a briefing and then open the doors to the outside via a button in the officer's room."
