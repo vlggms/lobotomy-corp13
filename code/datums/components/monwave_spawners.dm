@@ -38,7 +38,7 @@
 	var/is_raider = FALSE
 
 //Experimental So i dont have to use the procs all the time
-/datum/component/monwave_spawner/Initialize(attack_target, assault_type = SEND_ONLY_DEFEATED, max_mobs = 10, list/wave_faction = list("hostile", "enemy"), list/new_wave_order, try_for_announcer = FALSE, new_wave_cooldown_time = NONE, raider = FALSE)
+/datum/component/monwave_spawner/Initialize(attack_target, assault_type = SEND_ONLY_DEFEATED, max_mobs = 10, list/wave_faction = list("hostile", "enemy"), list/new_wave_order, try_for_announcer = FALSE, new_wave_cooldown_time = NONE, raider = FALSE, register = FALSE)
 	if(!isstructure(parent) && !ishostile(parent))
 		return COMPONENT_INCOMPATIBLE
 
@@ -54,6 +54,9 @@
 
 	if(!assault_target && assault_pace != SEND_ON_SIGNAL)
 		qdel(src)
+
+	if(register)
+		SSgamedirector.RegisterSpawner(src)
 
 	is_wave_announcer = SSgamedirector.RegisterAsWaveAnnouncer(src)
 
@@ -148,13 +151,6 @@
 		SwitchTarget(SSgamedirector.GetRandomRaiderTarget())
 	return TRUE
 
-//Despawns any idle monsters who lost the wave.
-/datum/component/monwave_spawner/proc/CleanupAssault()
-	for(var/mob/living/simple_animal/hostile/H in last_wave)
-		if(!H.target)
-			H.dust(FALSE)
-	return length(last_wave)
-
 //Generates a path for the Mob Commander
 /datum/component/monwave_spawner/proc/GeneratePath(turf_to_go)
 	var/target_loc = assault_target
@@ -177,6 +173,10 @@
 	var/move_tries = 0
 	var/patrol_move_timer = 0
 	var/list/our_path = list()
+
+/obj/effect/wave_commander/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/point_of_interest)
 
 /obj/effect/wave_commander/proc/DoPath(list/assault_path)
 	our_path = assault_path.Copy()
