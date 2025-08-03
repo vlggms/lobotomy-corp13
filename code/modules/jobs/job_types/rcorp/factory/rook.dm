@@ -73,7 +73,9 @@
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
 	belt = null
 	l_pocket = /obj/item/flashlight/seclite
+	box = null
 
 /datum/outfit/job/rook/captain
 	name = "Rook Squad Captain"
 	jobtype = /datum/job/rcorp_captain/rook
+	box = null

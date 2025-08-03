@@ -298,6 +298,12 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/pod/light,
 /area/rce/rcorp_base)
+"gk" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/delivery,
+/obj/item/storage/pcorp_weapon/rcorp,
+/turf/open/floor/pod/light,
+/area/rce/rcorp_base)
 "gq" = (
 /turf/closed/indestructible/rock,
 /area/rce/xcorp/rce_4_0)
@@ -403,6 +409,12 @@
 "if" = (
 /turf/open/indestructible/necropolis/air,
 /area/rce/xcorp/rce_3_3)
+"im" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/delivery,
+/obj/item/storage/First_aid_l1,
+/turf/open/floor/pod/light,
+/area/rce/rcorp_base)
 "in" = (
 /turf/closed/mineral/ash_rock,
 /area/rce/xcorp/rce_2_2)
@@ -423,11 +435,12 @@
 /area/rce/rcorp_base)
 "iH" = (
 /obj/structure/table/wood,
+/obj/effect/decal/cleanable/dirt,
 /obj/item/food/grown/tobacco,
 /obj/item/food/grown/tobacco,
 /obj/item/food/grown/tobacco,
 /obj/item/clothing/mask/cigarette/pipe,
-/obj/effect/decal/cleanable/dirt,
+/obj/item/lighter,
 /turf/open/floor/pod,
 /area/rce/rcorp_base)
 "iJ" = (
@@ -709,6 +722,7 @@
 /obj/structure/table/abductor,
 /obj/item/stack/sheet/mineral/sandbags/ten,
 /obj/item/clothing/suit/armor/ego_gear/rabbit/officer,
+/obj/item/storage/engi_pouch,
 /turf/open/floor/pod,
 /area/rce/rcorp_base)
 "mK" = (
@@ -808,7 +822,7 @@
 /turf/open/floor/plating/asteroid/basalt,
 /area/rce/xcorp/rce_2_1)
 "nX" = (
-/obj/structure/flora/ash/garden/arid,
+/obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/asteroid,
 /area/rce/rcorp_base)
 "oe" = (
@@ -882,7 +896,7 @@
 /turf/closed/mineral/ash_rock,
 /area/rce/xcorp/rce_0_0)
 "pi" = (
-/obj/structure/flora/ash/cacti,
+/obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/beach/sand,
 /area/rce/xcorp/rce_0_1)
 "pk" = (
@@ -1095,6 +1109,12 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/pod/light,
+/area/rce/rcorp_base)
+"tt" = (
+/obj/item/storage/lockbox/medal/officer,
+/obj/structure/table/abductor,
+/obj/item/storage/pcorp_pocket/rcorp,
+/turf/open/floor/pod,
 /area/rce/rcorp_base)
 "tz" = (
 /turf/open/floor/plating/ironsand,
@@ -1497,7 +1517,7 @@
 /turf/open/floor/pod/light,
 /area/rce/rcorp_base)
 "AJ" = (
-/obj/structure/flora/ash/cacti,
+/obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/beach/sand,
 /area/rce/xcorp/rce_0_0)
 "AK" = (
@@ -1750,6 +1770,10 @@
 "Ej" = (
 /turf/closed/indestructible/necropolis,
 /area/rce/xcorp/rce_2_3)
+"Es" = (
+/obj/effect/landmark/rce_fob,
+/turf/open/floor/plating/asteroid,
+/area/rce/rcorp_base)
 "Et" = (
 /obj/effect/spawner/mobspawner/green_dawn,
 /turf/open/indestructible/necropolis/air,
@@ -1757,6 +1781,10 @@
 "EG" = (
 /turf/open/floor/plating/asteroid/basalt,
 /area/rce/xcorp/rce_1_2)
+"EK" = (
+/obj/machinery/computer/crew,
+/turf/open/floor/pod/light,
+/area/rce/rcorp_base)
 "EQ" = (
 /obj/machinery/conveyor/auto{
 	dir = 8
@@ -1786,10 +1814,6 @@
 "Fj" = (
 /turf/closed/indestructible/rock,
 /area/rce/xcorp/rce_0_0)
-"Fn" = (
-/obj/structure/window/shuttle/survival_pod,
-/turf/closed/wall/mineral/titanium/survival/pod,
-/area/rce/rcorp_base)
 "Fs" = (
 /obj/structure/flora/tree/dead,
 /turf/open/floor/plating/ashplanet/ash,
@@ -2142,6 +2166,10 @@
 /obj/machinery/ntnet_relay,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/rce/rcorp_base)
+"KK" = (
+/obj/machinery/smartfridge/drying_rack,
+/turf/open/floor/pod/light,
+/area/rce/rcorp_base)
 "KQ" = (
 /obj/machinery/conveyor/auto{
 	dir = 8
@@ -2213,6 +2241,7 @@
 /obj/structure/table/abductor,
 /obj/item/storage/firstaid/revival,
 /obj/item/gps,
+/obj/item/storage/pcorp_pocket/rcorp,
 /turf/open/floor/pod,
 /area/rce/rcorp_base)
 "Ms" = (
@@ -2607,6 +2636,13 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/pod/light,
 /area/rce/rcorp_base)
+"SF" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/delivery,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/storage/pcorp_weapon/rcorp,
+/turf/open/floor/pod/light,
+/area/rce/rcorp_base)
 "SO" = (
 /obj/structure/den/rce{
 	id = "southleft"
@@ -2733,6 +2769,7 @@
 /obj/item/clothing/suit/armor/ego_gear/rabbit/grunts{
 	name = "\improper robin captain suit"
 	},
+/obj/item/storage/rcorp_grenade,
 /turf/open/floor/pod,
 /area/rce/rcorp_base)
 "Va" = (
@@ -2776,6 +2813,12 @@
 	req_access_txt = "20"
 	},
 /turf/open/floor/pod,
+/area/rce/rcorp_base)
+"VG" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/delivery,
+/obj/item/storage/rcorp_grenade,
+/turf/open/floor/pod/light,
 /area/rce/rcorp_base)
 "VL" = (
 /obj/effect/light_emitter{
@@ -2864,6 +2907,12 @@
 	},
 /turf/open/floor/pod/light,
 /area/rce/rcorp_base)
+"XL" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/delivery,
+/obj/item/storage/pcorp_pocket/rcorp,
+/turf/open/floor/pod/light,
+/area/rce/rcorp_base)
 "XN" = (
 /obj/structure/sign/warning/hottemp,
 /turf/closed/indestructible/r_wall,
@@ -2872,6 +2921,10 @@
 /obj/structure/flora/rock,
 /turf/open/water,
 /area/rce/xcorp/rce_3_0)
+"XV" = (
+/obj/machinery/door/airlock/survival_pod,
+/turf/open/floor/pod/light,
+/area/rce/rcorp_base)
 "XW" = (
 /obj/structure/rack,
 /obj/item/gun/energy/e_gun/rabbitdash,
@@ -5000,7 +5053,7 @@ Ou
 Ou
 Ou
 Ou
-Ou
+re
 re
 re
 VD
@@ -5257,8 +5310,8 @@ Ou
 Ou
 Ou
 Ou
-Ou
 re
+KK
 jT
 jT
 Gs
@@ -5514,7 +5567,7 @@ Ou
 Ou
 Ou
 Ou
-Ou
+re
 re
 jT
 wf
@@ -6539,11 +6592,11 @@ Ou
 Ou
 Ou
 Ou
-Ou
-Ou
-Ou
 re
-la
+re
+re
+re
+jT
 jT
 jT
 jT
@@ -6796,10 +6849,10 @@ Ou
 Ou
 Ou
 Ou
-Ou
-Ou
-Ou
 re
+zf
+jT
+XV
 jT
 jT
 FC
@@ -7053,10 +7106,10 @@ Ou
 Ou
 Ou
 Ou
-Ou
-Ou
-Ou
 re
+la
+Yy
+MA
 jT
 eF
 zf
@@ -7310,10 +7363,10 @@ Ou
 Ou
 Ou
 Ou
-Ou
-Ou
-Ou
 re
+EK
+jT
+XV
 jT
 jT
 zf
@@ -7567,9 +7620,9 @@ Ou
 Ou
 Ou
 Ou
-Ou
-Ou
-Ou
+re
+re
+re
 re
 ud
 ud
@@ -9373,7 +9426,7 @@ RV
 re
 jT
 re
-kf
+tt
 ge
 re
 OG
@@ -10933,7 +10986,7 @@ ld
 ld
 ld
 ld
-Fn
+MA
 jT
 jT
 jT
@@ -11190,7 +11243,7 @@ ld
 ld
 ld
 ld
-Fn
+MA
 ud
 jT
 jT
@@ -11448,9 +11501,9 @@ ld
 ld
 ld
 re
-Fn
+MA
 Lm
-Fn
+MA
 re
 re
 qH
@@ -15287,10 +15340,10 @@ jB
 MK
 MK
 jT
-jB
+XL
 Wr
 Wr
-Wr
+SF
 Wr
 Wr
 ud
@@ -16826,15 +16879,15 @@ jB
 jB
 jB
 jB
-jB
+gk
 jB
 jT
-jB
-jB
-jB
-jB
-jB
-jB
+VG
+im
+XL
+im
+VG
+gk
 jT
 rE
 rE
@@ -19655,8 +19708,8 @@ ld
 ld
 ld
 ld
-ld
 nX
+ld
 ld
 ld
 ld
@@ -21455,7 +21508,7 @@ nX
 ld
 ld
 ld
-ld
+Es
 ld
 ld
 ld
@@ -25046,7 +25099,7 @@ ld
 ld
 ld
 ld
-ld
+nX
 ld
 ld
 ld
@@ -25561,7 +25614,7 @@ ld
 ld
 ld
 ld
-nX
+ld
 nX
 ld
 ld
@@ -33817,9 +33870,9 @@ Fj
 Fj
 Xm
 Xm
+Xm
+Xm
 AJ
-Xm
-Xm
 Xm
 Ft
 Xm

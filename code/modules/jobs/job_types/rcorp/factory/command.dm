@@ -27,6 +27,7 @@
 	head = /obj/item/clothing/head/beret/tegu/rcorp
 	l_pocket = /obj/item/commandprojector
 	r_hand = null
+	box = null
 
 
 
@@ -67,4 +68,5 @@
 	head = /obj/item/clothing/head/beret/tegu/rcorp
 	l_pocket = /obj/item/commandprojector
 	r_hand = null
+	box = null
 

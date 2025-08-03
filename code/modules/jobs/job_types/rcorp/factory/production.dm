@@ -99,11 +99,14 @@
 	head = null
 	suit = null
 	l_pocket = /obj/item/flashlight/seclite
+	box = null
 
 /datum/outfit/job/production/captain
 	name = "R-Corp Production Officer"
 	jobtype = /datum/job/rcorp_captain/production
+	box = null
 
 /datum/outfit/job/production/acquisition
 	name = "R-Corp Acquisitions Specialist"
 	jobtype = /datum/job/production/acquisition
+	box = null

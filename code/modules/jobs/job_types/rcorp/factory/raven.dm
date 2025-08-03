@@ -45,6 +45,7 @@
 	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/raven
 	belt = null
 	l_pocket = /obj/item/flashlight/seclite
+	box = null
 
 
 /datum/job/raven_mp
@@ -93,6 +94,7 @@
 	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/ravensup
 	belt = null
 	l_pocket = /obj/item/flashlight/seclite
+	box = null
 
 
 
@@ -143,3 +145,4 @@
 	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/ravencap
 	belt = null
 	l_pocket = /obj/item/flashlight/seclite
+	box = null
