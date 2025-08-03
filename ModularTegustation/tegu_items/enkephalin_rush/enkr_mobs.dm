@@ -229,7 +229,7 @@
 	maxHealth = 600
 	health = 600
 	ranged = TRUE
-	ranged_cooldown_time = 5 SECONDS
+	ranged_cooldown_time = 10 SECONDS
 	rapid = 50
 	rapid_fire_delay = 0.4
 	projectilesound = 'sound/weapons/gun/smg/shot.ogg'
@@ -242,6 +242,13 @@
 	attack_sound = 'sound/weapons/fixer/generic/gen1.ogg'
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 0.6)
 	butcher_results = list(/obj/item/food/meat/slab/corroded = 1)
+
+
+/mob/living/simple_animal/hostile/ordeal/tsa_corrosion/AttackingTarget(atom/attacked_target)
+	if(ranged && ranged_cooldown <= world.time)
+		OpenFire(attacked_target)
+		return
+	..()
 
 //Projectiles
 /obj/item/ammo_casing/caseless/bigspread
