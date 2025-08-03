@@ -30,7 +30,7 @@ GLOBAL_VAR_INIT(rcorp_factorymax, 70)
 
 	var/halt_active = FALSE
 	for(var/mob/living/simple_animal/hostile in range(4, get_turf(src)))
-		halt_active = FALSE
+		halt_active = TRUE
 		break
 
 	if(halt_active)
