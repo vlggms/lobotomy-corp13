@@ -563,6 +563,17 @@
 
 //LC13 EFFECTS
 
+/obj/effect/temp_visual/simple_constructing_effect
+	icon = 'icons/effects/effects_rcd.dmi'
+	icon_state = "rcd_shortest"
+	layer = ABOVE_ALL_MOB_LAYER
+	anchored = TRUE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	duration = 50
+
+/obj/effect/temp_visual/simple_constructing_effect/proc/end()
+	qdel(src)
+
 /obj/effect/temp_visual/bee_gas
 	icon_state = "mustard"
 	alpha = 0
