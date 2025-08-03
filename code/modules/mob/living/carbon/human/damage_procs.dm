@@ -10,7 +10,6 @@
 		DamageEffect(amount, RED_DAMAGE)
 	. = ..()
 
-
 /mob/living/carbon/human/adjustWhiteLoss(amount, updating_health = TRUE, forced = FALSE, white_healable = FALSE)
 	var/damage_amt = amount
 	if(sanity_lost && white_healable) // Heal sanity instead.
@@ -48,7 +47,7 @@
 
 /mob/living/carbon/human/adjustFireLoss(amount, updating_health = TRUE, forced = FALSE, required_status)
 	if(stat != DEAD)
-		DamageEffect(amount, BURN)
+		DamageEffect(amount, FIRE)
 	. = ..()
 
 //

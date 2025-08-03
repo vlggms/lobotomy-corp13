@@ -790,7 +790,7 @@ This section is for the crystal monsters variations
 	icon_state = "ice_2"
 	color = COLOR_YELLOW
 	damage = 0
-	damage_type = BURN
+	damage_type = FIRE
 	nodamage = TRUE
 	temperature = -75
 

@@ -7,7 +7,7 @@
 	/// In order of the wound types we're trying to inflict, what sharpness do we need to deal them?
 	var/list/sharps = list(SHARP_NONE, SHARP_EDGED, SHARP_POINTY, SHARP_NONE)
 	/// Since burn wounds need burn damage, duh
-	var/list/dam_types = list(BRUTE, BRUTE, BRUTE, BURN)
+	var/list/dam_types = list(BRUTE, BRUTE, BRUTE, FIRE)
 
 	var/i = 1
 	var/list/iter_test_wound_list
@@ -25,7 +25,7 @@
 			var/threshold = initial(iter_test_wound.threshold_minimum) - threshold_penalty // just enough to guarantee the next tier of wound, given the existing wound threshold penalty
 			if(dam_types[i] == BRUTE)
 				tested_part.receive_damage(WOUND_MINIMUM_DAMAGE, 0, wound_bonus = threshold, sharpness=sharps[i])
-			else if(dam_types[i] == BURN)
+			else if(dam_types[i] == FIRE)
 				tested_part.receive_damage(0, WOUND_MINIMUM_DAMAGE, wound_bonus = threshold, sharpness=sharps[i])
 
 			TEST_ASSERT(length(victim.all_wounds), "Patient has no wounds when one wound is expected. Severity: [initial(iter_test_wound.severity)]")
@@ -46,7 +46,7 @@
 	/// In order of the wound types we're trying to inflict, what sharpness do we need to deal them?
 	var/list/sharps = list(SHARP_NONE, SHARP_EDGED, SHARP_POINTY, SHARP_NONE)
 	/// Since burn wounds need burn damage, duh
-	var/list/dam_types = list(BRUTE, BRUTE, BRUTE, BURN)
+	var/list/dam_types = list(BRUTE, BRUTE, BRUTE, FIRE)
 
 	var/i = 1
 	var/list/iter_test_wound_list
@@ -65,7 +65,7 @@
 			var/threshold = initial(iter_test_wound.threshold_minimum) - threshold_penalty // just enough to guarantee the next tier of wound, given the existing wound threshold penalty
 			if(dam_types[i] == BRUTE)
 				tested_part.receive_damage(WOUND_MINIMUM_DAMAGE, 0, wound_bonus = threshold, sharpness=sharps[i])
-			else if(dam_types[i] == BURN)
+			else if(dam_types[i] == FIRE)
 				tested_part.receive_damage(0, WOUND_MINIMUM_DAMAGE, wound_bonus = threshold, sharpness=sharps[i])
 
 			// so if we just tried to deal a flesh wound, make sure we didn't actually suffer it. We may have suffered a bone wound instead, but we just want to make sure we don't have a flesh wound

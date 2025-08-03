@@ -118,7 +118,7 @@ Difficulty: Extremely Hard
 	armour_penetration = 100
 	speed = 10
 	homing_turn_speed = 30
-	damage_type = BURN
+	damage_type = FIRE
 
 /obj/projectile/frost_orb/on_hit(atom/target, blocked = FALSE)
 	. = ..()

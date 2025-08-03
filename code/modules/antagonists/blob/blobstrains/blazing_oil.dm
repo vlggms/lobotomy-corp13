@@ -18,7 +18,7 @@
 	B.take_damage(1.5, ENERGY)
 
 /datum/blobstrain/reagent/blazing_oil/damage_reaction(obj/structure/blob/B, damage, damage_type)
-	if(damage_type == BURN)
+	if(damage_type == FIRE)
 		for(var/turf/open/T in range(1, B))
 			var/obj/structure/blob/C = locate() in T
 			if(!(C && C.overmind && C.overmind.blobstrain.type == B.overmind.blobstrain.type) && prob(80))
@@ -38,6 +38,6 @@
 	exposed_mob.adjust_fire_stacks(round(reac_volume/10))
 	exposed_mob.IgniteMob()
 	if(exposed_mob)
-		exposed_mob.apply_damage(0.8*reac_volume, BURN, wound_bonus=CANT_WOUND)
+		exposed_mob.apply_damage(0.8*reac_volume, FIRE, wound_bonus=CANT_WOUND)
 	if(iscarbon(exposed_mob))
 		exposed_mob.emote("scream")

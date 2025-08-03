@@ -86,7 +86,7 @@ In all, this is a lot like the monkey code. /N
 		switch(M.melee_damage_type)
 			if(BRUTE)
 				adjustBruteLoss(damage)
-			if(BURN)
+			if(FIRE)
 				adjustFireLoss(damage)
 			if(TOX)
 				adjustToxLoss(damage)

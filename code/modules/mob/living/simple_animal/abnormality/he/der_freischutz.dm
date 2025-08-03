@@ -281,7 +281,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/der_freischutz/proc/FireBullet(atom/target, turf/start_turf, turf/end_turf)
 	playsound(start_turf, 'sound/abnormalities/freischutz/shoot.ogg', 35, 0, 20)
-	var/obj/projectile/ego_bullet/ego_magicbullet/B = new(start_turf) //80 BLACK damage.
+	var/obj/projectile/ego_bullet/ego_magicbullet/abnormality/B = new(start_turf) //80 BLACK damage.
 	B.starting = start_turf
 	B.firer = src
 	B.fired_from = start_turf
@@ -483,7 +483,7 @@
 
 /mob/living/simple_animal/hostile/der_freis_portal/proc/FireBullet(atom/target, turf/start_turf, turf/end_turf)
 	playsound(start_turf, 'sound/abnormalities/freischutz/shoot.ogg', 35, 0, 20)
-	var/obj/projectile/ego_bullet/ego_magicbullet/B = new(start_turf) //80 BLACK damage.
+	var/obj/projectile/ego_bullet/ego_magicbullet/abnormality/B = new(start_turf) //80 BLACK damage.
 	B.starting = start_turf
 	B.firer = src
 	B.fired_from = start_turf

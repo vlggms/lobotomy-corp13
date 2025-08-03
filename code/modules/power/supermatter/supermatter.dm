@@ -854,7 +854,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		if(B.obj_integrity > 100)
 			B.visible_message("<span class='danger'>\The [B] strikes at \the [src] and flinches away!</span>",\
 			"<span class='hear'>You hear a loud crack as you are washed with a wave of heat.</span>")
-			B.take_damage(100, BURN)
+			B.take_damage(100, FIRE)
 		else
 			B.visible_message("<span class='danger'>\The [B] strikes at \the [src] and rapidly flashes to ash.</span>",\
 			"<span class='hear'>You hear a loud crack as you are washed with a wave of heat.</span>")

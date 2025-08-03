@@ -67,7 +67,7 @@
 				playsound(src.loc, 'sound/effects/hit_on_shattered_glass.ogg', 70, TRUE)
 			else
 				playsound(src.loc, 'sound/effects/glasshit.ogg', 75, TRUE)
-		if(BURN)
+		if(FIRE)
 			playsound(src.loc, 'sound/items/welder.ogg', 100, TRUE)
 
 /obj/machinery/computer/obj_break(damage_flag)

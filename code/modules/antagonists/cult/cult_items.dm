@@ -940,7 +940,7 @@
 	if(iscultist(owner))
 		if(istype(hitby, /obj/projectile))
 			var/obj/projectile/P = hitby
-			if(P.damage_type == BRUTE || P.damage_type == BURN)
+			if(P.damage_type == BRUTE || P.damage_type == FIRE)
 				if(P.damage >= 30)
 					var/turf/T = get_turf(owner)
 					T.visible_message("<span class='warning'>The sheer force from [P] shatters the mirror shield!</span>")

@@ -292,22 +292,22 @@
 
 /obj/projectile/beam/lasertag/redtag/kill
 	damage = 20
-	damage_type = BURN
+	damage_type = FIRE
 	hitsound = 'sound/weapons/sear.ogg'
 
 /obj/projectile/beam/lasertag/redtag/hitscan/kill
 	damage = 20
-	damage_type = BURN
+	damage_type = FIRE
 	hitsound = 'sound/weapons/sear.ogg'
 
 //BLUE
 
 /obj/projectile/beam/lasertag/bluetag/kill
 	damage = 20
-	damage_type = BURN
+	damage_type = FIRE
 	hitsound = 'sound/weapons/sear.ogg'
 
 /obj/projectile/beam/lasertag/bluetag/hitscan/kill
 	damage = 20
-	damage_type = BURN
+	damage_type = FIRE
 	hitsound = 'sound/weapons/sear.ogg'

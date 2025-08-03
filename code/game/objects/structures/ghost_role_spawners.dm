@@ -50,7 +50,7 @@
 				playsound(loc, 'sound/effects/attackblob.ogg', 100, TRUE)
 			else
 				playsound(src, 'sound/weapons/tap.ogg', 50, TRUE)
-		if(BURN)
+		if(FIRE)
 			if(damage_amount)
 				playsound(loc, 'sound/items/welder.ogg', 100, TRUE)
 

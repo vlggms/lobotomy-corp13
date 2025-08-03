@@ -139,7 +139,7 @@
 
 /obj/projectile/hallucination/laser
 	name = "laser"
-	damage_type = BURN
+	damage_type = FIRE
 	hal_icon_state = "laser"
 	hal_fire_sound = 'sound/weapons/laser.ogg'
 	hal_hitsound = 'sound/weapons/sear.ogg'
@@ -156,7 +156,7 @@
 
 /obj/projectile/hallucination/taser
 	name = "electrode"
-	damage_type = BURN
+	damage_type = FIRE
 	hal_icon_state = "spark"
 	color = "#FFFF00"
 	hal_fire_sound = 'sound/weapons/taser.ogg'
@@ -205,7 +205,7 @@
 
 /obj/projectile/hallucination/change
 	name = "bolt of change"
-	damage_type = BURN
+	damage_type = FIRE
 	hal_icon_state = "ice_1"
 	hal_fire_sound = 'sound/magic/staff_change.ogg'
 	hal_hitsound = null
@@ -218,7 +218,7 @@
 
 /obj/projectile/hallucination/death
 	name = "bolt of death"
-	damage_type = BURN
+	damage_type = FIRE
 	hal_icon_state = "pulse1_bl"
 	hal_fire_sound = 'sound/magic/wandodeath.ogg'
 	hal_hitsound = null

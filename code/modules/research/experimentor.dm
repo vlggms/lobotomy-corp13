@@ -380,7 +380,7 @@
 			visible_message("<span class='warning'>[src] malfunctions, activating its emergency coolant systems!</span>")
 			throwSmoke(loc)
 			for(var/mob/living/m in oview(1, src))
-				m.apply_damage(5, BURN, pick(BODY_ZONE_HEAD,BODY_ZONE_CHEST,BODY_ZONE_PRECISE_GROIN))
+				m.apply_damage(5, FIRE, pick(BODY_ZONE_HEAD,BODY_ZONE_CHEST,BODY_ZONE_PRECISE_GROIN))
 				investigate_log("Experimentor has dealt minor burn damage to [key_name(m)]", INVESTIGATE_EXPERIMENTOR)
 			ejectItem()
 	////////////////////////////////////////////////////////////////////////////////////////////////

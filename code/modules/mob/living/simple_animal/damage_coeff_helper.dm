@@ -91,7 +91,7 @@
 	switch(resistance)
 		if(BRUTE)
 			unmodified_damage_coeff_datum = unmodified_damage_coeff_datum.setCoeff(brute = value)
-		if(BURN)
+		if(FIRE)
 			unmodified_damage_coeff_datum = unmodified_damage_coeff_datum.setCoeff(fire = value)
 		if(TOX)
 			unmodified_damage_coeff_datum = unmodified_damage_coeff_datum.setCoeff(tox = value)
@@ -154,7 +154,7 @@
 		cached_resistances[BLACK_DAMAGE],\
 		cached_resistances[PALE_DAMAGE],\
 		cached_resistances[BRUTE],\
-		cached_resistances[BURN],\
+		cached_resistances[FIRE],\
 		cached_resistances[TOX],\
 		cached_resistances[CLONE],\
 		cached_resistances[STAMINA],\
