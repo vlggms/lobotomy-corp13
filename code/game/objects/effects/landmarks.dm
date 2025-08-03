@@ -459,6 +459,34 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/start/new_player)
 	GLOB.department_centers += get_turf(src)
 	return INITIALIZE_HINT_QDEL
 
+/obj/effect/landmark/rce_fob
+	name = "RCE FOB"
+
+/obj/effect/landmark/rce_fob/Initialize()
+	. = ..()
+	SSgamedirector.RegisterFOB(src)
+
+/obj/effect/landmark/rce_arena_teleport
+	name = "Combatant Lobby Warp"
+
+/obj/effect/landmark/rce_arena_teleport/Initialize()
+	. = ..()
+	SSgamedirector.RegisterLobby(src)
+
+/obj/effect/landmark/rce_postfight_teleport
+	name = "Heart Victory Warp"
+
+/obj/effect/landmark/rce_postfight_teleport/Initialize()
+	. = ..()
+	SSgamedirector.RegisterVictoryTeleport(src)
+
+/obj/effect/landmark/heartfight_pylon
+	name = "Heart Fight Pylon marker"
+
+/obj/effect/landmark/heartfight_pylon/Initialize()
+	. = ..()
+	SSgamedirector.RegisterHeartfightPylon(src)
+
 /obj/effect/landmark/rce_target
 	name = "X-Corp Attack Target"
 	var/id
@@ -486,6 +514,13 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/start/new_player)
 
 /obj/effect/landmark/rce_target/xcorp_base
 	landmark_type = RCE_TARGET_TYPE_XCORP_BASE
+
+/obj/effect/landmark/rce_spawn/xcorp_heart
+	name = "xcorp heart spawn"
+
+/obj/effect/landmark/rce_spawn/xcorp_heart/Initialize(mapload)
+	..()
+	new /mob/living/simple_animal/hostile/megafauna/xcorp_heart(get_turf(src))
 
 /obj/effect/landmark/abnormality_spawn/training_rabbit
 	name = "training rabbit spawn"
