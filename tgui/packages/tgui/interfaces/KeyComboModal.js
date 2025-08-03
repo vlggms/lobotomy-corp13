@@ -7,7 +7,7 @@ export const KeyComboModal = (props, context) => {
   const [keysPressed, setKeysPressed] = useLocalState(context, 'keysPressed', []);
   const [keyCombo, setKeyCombo] = useLocalState(context, 'keyCombo', '');
 
-  const handleKeyDown = (e) => {
+  const handleKeyDown = e => {
     e.preventDefault();
     e.stopPropagation();
 
@@ -71,7 +71,7 @@ export const KeyComboModal = (props, context) => {
             onKeyDown={handleKeyDown}
             tabIndex={0}
             style={{ outline: 'none' }}
-            ref={(el) => el && el.focus()}>
+            ref={el => el && el.focus()}>
             {keyCombo || 'Press a key...'}
           </Box>
           <Box mt={2}>
