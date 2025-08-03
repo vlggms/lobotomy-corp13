@@ -33,7 +33,7 @@
 
 
 /datum/job/rcorp_captain/commander/factory
-	title = "Base Commander"
+	title = "Executive Officer"
 	trusted_only = FALSE
 	outfit = /datum/outfit/job/commander/factory
 	display_order = 1.1
@@ -46,7 +46,7 @@
 								)
 	access = list(ACCESS_ARMORY, ACCESS_RND, ACCESS_COMMAND, ACCESS_MEDICAL)
 	minimal_access = list(ACCESS_ARMORY, ACCESS_RND, ACCESS_COMMAND, ACCESS_MEDICAL)
-	alt_titles = list()
+	alt_titles = list("Base Commander")
 	rank_title = "LCDR"
 	job_important = "Keep the base producing materials. You are in charge of the Raven, Rook and Production teams."
 	job_notice = ""
@@ -54,7 +54,7 @@
 	req_admin_notify = 1
 
 /datum/outfit/job/commander/factory
-	name = "Base Commander"
+	name = "Executive Officer"
 	jobtype = /datum/job/rcorp_captain/commander/factory
 
 	belt = null

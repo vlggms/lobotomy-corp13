@@ -75,5 +75,5 @@
 	l_pocket = /obj/item/flashlight/seclite
 
 /datum/outfit/job/rook/captain
-	name = "Rook Team Captain"
+	name = "Rook Squad Captain"
 	jobtype = /datum/job/rcorp_captain/rook

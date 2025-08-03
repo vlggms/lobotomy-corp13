@@ -9,7 +9,7 @@
 	selection_color = "#d9b555"
 
 	outfit = /datum/outfit/job/production
-	display_order = 12
+	display_order = 13
 	maptype = "rcorp_factory"
 
 	access = list()
@@ -42,7 +42,7 @@
 	maptype = "rcorp_factory"
 
 	outfit = /datum/outfit/job/production/captain
-	display_order = 11
+	display_order = 12
 
 	access = list(ACCESS_COMMAND)
 	minimal_access = list(ACCESS_COMMAND)
@@ -69,7 +69,7 @@
 	selection_color = "#d9b555"
 
 	outfit = /datum/outfit/job/production/acquisition
-	display_order = 13
+	display_order = 14
 	maptype = "rcorp_factory"
 
 	access = list()

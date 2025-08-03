@@ -2,7 +2,7 @@ GLOBAL_LIST_INIT(robin_sectionleaders, list("Section B", "Section C"))
 GLOBAL_LIST_INIT(robin_sergeants, list("Section A", "Section B", "Section C"))
 
 /datum/job/rcorp_captain/robin
-	title = "Robin Team Captain"
+	title = "Robin Squad Captain"
 	faction = "Station"
 	department_head = list("Commanders")
 	total_positions = 1
