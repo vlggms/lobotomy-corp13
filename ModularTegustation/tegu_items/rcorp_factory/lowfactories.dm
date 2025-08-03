@@ -50,7 +50,6 @@
 	desc = "A machine used to craft items."
 	gcost = 1
 	rcost = 1
-	itemnumber = 2
 	item = /obj/item/storage/First_aid_l1
 
 /obj/structure/rcorp_factory/lowweapon
