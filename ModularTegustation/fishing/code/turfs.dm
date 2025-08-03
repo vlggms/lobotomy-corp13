@@ -4,7 +4,7 @@
 	desc = "Deep Water."
 	icon = 'icons/turf/floors/water.dmi'
 	icon_state = "water_turf1"
-	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
+	//initial_gas_mix = OPENTURF_DEFAULT_ATMOS
 	//This is mostly for AI. CanAllowThrough still makes it passable.
 	density = TRUE
 	bullet_sizzle = TRUE

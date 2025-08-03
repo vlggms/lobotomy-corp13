@@ -34,7 +34,7 @@
 	initial_gas_mix = TCOMMS_ATMOS
 
 /turf/open/floor/plasteel/icemoon
-	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
+	//initial_gas_mix = ICEMOON_DEFAULT_ATMOS
 
 /turf/open/floor/plasteel/dark
 	icon_state = "darkfull"
