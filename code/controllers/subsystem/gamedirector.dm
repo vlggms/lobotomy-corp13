@@ -43,7 +43,7 @@ SUBSYSTEM_DEF(gamedirector)
 			to_chat(world, span_userdanger("There are 20 minutes left to kill the heart!"))
 	return
 
-/datum/controller/subsystem/gamedirector/proc/SetTimes(var/warningtime, var/endtime)
+/datum/controller/subsystem/gamedirector/proc/SetTimes(warningtime, endtime)
 	timestamp_warning = world.time + warningtime
 	timestamp_finalwave = world.time + warningtime - 10 MINUTES
 	timestamp_end = world.time + endtime
