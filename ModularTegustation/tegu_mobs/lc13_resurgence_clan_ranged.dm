@@ -395,12 +395,14 @@
 /mob/living/simple_animal/hostile/clan/siege_walker
 	name = "Clan Siege Walker"
 	desc = "A colossal mechanical war machine, designed to crush everything in its path. Its grinding treads leave nothing but destruction."
-	icon = 'ModularTegustation/Teguicons/96x96.dmi'
-	icon_state = "green_dusk"
-	icon_living = "green_dusk"
-	icon_dead = "green_dusk"
-	pixel_x = -32
-	base_pixel_x = -32
+	icon = 'icons/obj/bike.dmi'
+	icon_state = "speedwagon"
+	icon_living = "speedwagon"
+	icon_dead = "speedwagon"
+	pixel_x = -48
+	pixel_y = -48
+	base_pixel_x = -48
+	base_pixel_y = -48
 	maxHealth = 4000
 	health = 4000
 	move_to_delay = 30 // Very slow
@@ -439,6 +441,9 @@
 /mob/living/simple_animal/hostile/clan/siege_walker/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_MOVE_PHASING, INNATE_TRAIT) // Can move through dense objects
+	// Add the speedwagon cover overlay
+	var/mutable_appearance/overlay = mutable_appearance(icon, "speedwagon_cover", ABOVE_MOB_LAYER)
+	add_overlay(overlay)
 
 /mob/living/simple_animal/hostile/clan/siege_walker/Life()
 	. = ..()
@@ -519,8 +524,8 @@
 		
 	// Countdown warnings
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(priority_announce), "Siege Walker advancing in 3 seconds!", "FINAL WARNING", 'sound/misc/notice1.ogg'), 0)
-	addtimer(CALLBACK(src, PROC_REF(visible_message), span_boldwarning("SIEGE WALKER ADVANCING IN 2...")), 1 SECONDS)
-	addtimer(CALLBACK(src, PROC_REF(visible_message), span_boldwarning("SIEGE WALKER ADVANCING IN 1...")), 2 SECONDS)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, visible_message), span_boldwarning("SIEGE WALKER ADVANCING IN 2...")), 1 SECONDS)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, visible_message), span_boldwarning("SIEGE WALKER ADVANCING IN 1...")), 2 SECONDS)
 		
 	// Start moving after a delay
 	addtimer(CALLBACK(src, PROC_REF(StartMoving)), 3 SECONDS)
@@ -531,7 +536,7 @@
 		
 	moving = TRUE
 	visible_message(span_userdanger("[src] begins its inexorable advance!"))
-	playsound(src, 'sound/vehicles/mecha_step.ogg', 100, TRUE)
+	playsound(src, 'sound/mecha/mechstep.ogg', 100, TRUE)
 	
 	ProcessMovement()
 
@@ -568,7 +573,7 @@
 	moving = FALSE
 	movement_path = list()
 	visible_message(span_notice("[src] comes to a grinding halt."))
-	priority_announce("Siege Walker has reached its destination and stopped moving. Threat level reduced.", "Siege Walker Status", 'sound/misc/notice3.ogg')
+	priority_announce("Siege Walker has reached its destination and stopped moving. Threat level reduced.", "Siege Walker Status", 'sound/misc/notice2.ogg')
 
 /mob/living/simple_animal/hostile/clan/siege_walker/proc/HighlightPath()
 	if(!length(movement_path))
