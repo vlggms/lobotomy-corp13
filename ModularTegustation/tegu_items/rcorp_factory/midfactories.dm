@@ -28,14 +28,6 @@
 	pcost = 1
 	item = /obj/item/powered_gadget/handheld_taser
 
-/obj/structure/rcorp_factory/vitalsprojector
-	name = "Vitals Projector factory"
-	desc = "A machine used to craft items."
-	icon_state = "midfactory"
-	bcost = 1
-	pcost = 1
-	item = /obj/item/powered_gadget/vitals_projector
-
 /obj/structure/rcorp_factory/midweapon
 	name = "Mid-tier Weapons factory"
 	desc = "A machine used to craft items."
