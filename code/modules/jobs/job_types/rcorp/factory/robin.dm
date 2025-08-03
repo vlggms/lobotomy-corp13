@@ -16,8 +16,8 @@ GLOBAL_LIST_INIT(robin_sergeants, list("Section A", "Section B", "Section C"))
 	outfit = /datum/outfit/job/robin_captain
 	display_order = 2
 
-	access = list()
-	minimal_access = list()
+	access = list(ACCESS_COMMAND)
+	minimal_access = list(ACCESS_COMMAND)
 
 	roundstart_attributes = list(
 								FORTITUDE_ATTRIBUTE = 80,
@@ -48,6 +48,7 @@ GLOBAL_LIST_INIT(robin_sergeants, list("Section A", "Section B", "Section C"))
 	suit = null
 	belt = null
 	l_pocket = /obj/item/flashlight/seclite
+	box = null
 
 
 
@@ -113,6 +114,7 @@ GLOBAL_LIST_INIT(robin_sergeants, list("Section A", "Section B", "Section C"))
 	head = null
 	l_pocket = /obj/item/commandprojector
 	r_pocket = /obj/item/flashlight/seclite
+	box = null
 
 
 
@@ -178,6 +180,7 @@ GLOBAL_LIST_INIT(robin_sergeants, list("Section A", "Section B", "Section C"))
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
 	head = null
 	r_pocket = /obj/item/flashlight/seclite
+	box = null
 
 
 /datum/outfit/job/robin
@@ -193,6 +196,7 @@ GLOBAL_LIST_INIT(robin_sergeants, list("Section A", "Section B", "Section C"))
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
 	head = null
 	r_pocket = /obj/item/flashlight/seclite
+	box = null
 
 
 //It's easier as their own jobs than to make a system to slot them into fucking squads
@@ -229,6 +233,7 @@ GLOBAL_LIST_INIT(robin_sergeants, list("Section A", "Section B", "Section C"))
 /datum/outfit/job/robin/a
 	name = "Section A Robin"
 	jobtype = /datum/job/robin
+	box = null
 
 
 /datum/job/robin/b
@@ -241,6 +246,7 @@ GLOBAL_LIST_INIT(robin_sergeants, list("Section A", "Section B", "Section C"))
 /datum/outfit/job/robin/b
 	name = "Section B Robin"
 	jobtype = /datum/job/robin/b
+	box = null
 
 /datum/job/robin/c
 	title = "Section C Robin"
@@ -253,3 +259,4 @@ GLOBAL_LIST_INIT(robin_sergeants, list("Section A", "Section B", "Section C"))
 /datum/outfit/job/robin/c
 	name = "Section C Robin"
 	jobtype = /datum/job/robin/c
+	box = null
