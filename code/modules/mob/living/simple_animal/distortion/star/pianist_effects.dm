@@ -6,7 +6,7 @@
 	icon_state = "music_note_1"
 	layer = ABOVE_MOB_LAYER
 	density = TRUE
-	anchored = TRUE
+	move_resist = MOVE_FORCE_OVERPOWERING
 	opacity = FALSE
 
 	health = 500
