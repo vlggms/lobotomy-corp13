@@ -28,7 +28,7 @@ Set-Location $basedir
 
 function yarn {
   $YarnRelease = Get-ChildItem -Filter ".yarn\releases\yarn-*.cjs" | Select-Object -First 1
-  node ".yarn\releases\$YarnRelease" @Args
+  ./../../tools/bootstrap/node ".yarn\releases\$YarnRelease" @Args
   Throw-On-Native-Failure
 }
 
