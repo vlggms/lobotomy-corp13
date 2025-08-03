@@ -10,12 +10,6 @@ GLOBAL_VAR_INIT(rcorp_factorymax, 70)
 	resistance_flags = INDESTRUCTIBLE
 	var/obj/item = /obj/item/factoryitem/green	//What item you spawn
 	var/active = 0	//What level you have
-	var/difficulty = 1	//Difficulty of enemies spawned
-
-
-/obj/structure/resourcepoint/Initialize()
-	addtimer(CALLBACK(src, PROC_REF(spawn_enemy)), 20 SECONDS)
-	return ..()
 
 /obj/structure/resourcepoint/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
@@ -34,61 +28,18 @@ GLOBAL_VAR_INIT(rcorp_factorymax, 70)
 	if(prob(20) && active<=10)	//To do: make this less random.
 		active+=1
 
-	var/halt_active = TRUE		//We're going to stop shit by default
-	for(var/mob/living/carbon/human/H in range(8, get_turf(src)))
+	var/halt_active = FALSE
+	for(var/mob/living/simple_animal/hostile in range(4, get_turf(src)))
 		halt_active = FALSE
 		break
 
 	if(halt_active)
 		active = 0
+		show_global_blurb(5 SECONDS, "A resource point has stopped production", text_align = "center", screen_location = "LEFT+0,TOP-2")
 		return
 
 	addtimer(CALLBACK(src, PROC_REF(spit_item)), 600/active)
 	new item(src.loc)
-
-/obj/structure/resourcepoint/proc/spawn_enemy()
-	addtimer(CALLBACK(src, PROC_REF(spawn_enemy)), 20 SECONDS)
-	for(var/mob/M in range(8, get_turf(src)))
-		return
-	var/mob_counter = 0
-	for(var/mob/living/simple_animal/hostile/H in GLOB.mob_list)
-		mob_counter++
-	if(mob_counter > GLOB.rcorp_factorymax)
-		return
-	var/mob/living/simple_animal/hostile/to_spawn
-
-	switch(difficulty)
-		if(1 to 4)
-			to_spawn = pick(
-				/mob/living/simple_animal/hostile/ordeal/green_bot,
-				/mob/living/simple_animal/hostile/ordeal/steel_dawn,
-			)
-		if(5 to 8)
-			to_spawn = pick(
-				/mob/living/simple_animal/hostile/ordeal/green_bot_big,
-				/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon,
-			)
-
-		if(9 to INFINITY)
-			if(prob(50))
-				to_spawn = pick(
-					/mob/living/simple_animal/hostile/ordeal/green_bot_big,
-				)
-
-			else
-				to_spawn = pick(
-					/mob/living/simple_animal/hostile/ordeal/steel_dusk,
-					/mob/living/simple_animal/hostile/ordeal/indigo_dusk/red,
-					/mob/living/simple_animal/hostile/ordeal/indigo_dusk/white,
-					/mob/living/simple_animal/hostile/ordeal/indigo_dusk/black,
-					/mob/living/simple_animal/hostile/ordeal/indigo_dusk/pale,
-				)
-
-	if(prob(10))
-		difficulty++
-	var/mob/living/simple_animal/hostile/spawned_enemy = new to_spawn(get_turf(src))
-	spawned_enemy.can_patrol = TRUE
-	spawned_enemy.del_on_death = TRUE
 
 /obj/structure/resourcepoint/red
 	name = "red resource point"
