@@ -11,7 +11,7 @@
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
 	canSmoothWith = list(SMOOTH_GROUP_CLOSED_TURFS)
 	baseturfs = /turf/open/floor/plating
-	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
+	//initial_gas_mix = OPENTURF_DEFAULT_ATMOS
 	environment_type = "waste"
 	turf_type = /turf/open/floor/plating/asteroid
 	defer_change = TRUE
@@ -28,7 +28,7 @@
 	environment_type = "waste"
 	turf_type = /turf/open/floor/plating
 	baseturfs = /turf/open/floor/plating
-	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
+	//initial_gas_mix = OPENTURF_DEFAULT_ATMOS
 	var/risk_level = 1
 	var/mining_time = 20
 	var/list/chem_list
