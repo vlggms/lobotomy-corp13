@@ -25,6 +25,28 @@ GLOBAL_PROTECT(exp_to_update)
 	else
 		return (job_requirement - my_exp)
 
+/datum/job/proc/is_playtime_capped(client/C)
+	if(!C)
+		return 0
+	if(!CONFIG_GET(flag/use_exp_tracking))
+		return 0
+	if(!SSdbcore.Connect())
+		return 0
+	if(!exp_requirements || !exp_type)
+		return 0
+	if(!job_is_xp_locked(src.title))
+		return 0
+	if(exp_max)
+		return 0
+	if(CONFIG_GET(flag/use_exp_restrictions_admin_bypass) && check_rights_for(C,R_ADMIN))
+		return 0
+	var/isexempt = C.prefs.db_flags & DB_FLAG_EXEMPT
+	if(isexempt)
+		return 0
+	var/my_exp = C.calc_exp_type(get_exp_req_type())
+	if(my_exp <= exp_max)
+		return 1
+
 /datum/job/proc/get_exp_req_amount()
 	if(title in (GLOB.command_positions | list("AI")))
 		var/uerhh = CONFIG_GET(number/use_exp_restrictions_heads_hours)
