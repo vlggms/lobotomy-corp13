@@ -688,7 +688,7 @@
 "ta" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/white{
-	dir = sssssssss
+	dir = 1
 	},
 /obj/item/pen,
 /turf/open/floor/plasteel/elevatorshaft,

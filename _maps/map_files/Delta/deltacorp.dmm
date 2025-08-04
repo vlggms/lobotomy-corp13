@@ -1683,9 +1683,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/training)
-"Gt" = (
-/turf/closed/indestructible/reinforced,
-/area/space)
 "GA" = (
 /obj/effect/turf_decal/plaque{
 	alpha = 230;
@@ -19211,7 +19208,7 @@ VZ
 VZ
 sX
 Be
-Gt
+Be
 No
 No
 oH
