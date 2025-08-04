@@ -678,7 +678,7 @@
 	icon_state = "benjamingay"
 	unique_pet = "You pet the benjamin plushie. Gay rights."
 
-/obj/item/toy/plush/bong/pride
+/obj/item/toy/plush/bongbong/pride
 	desc = "A recently made plushie with the colours of a pride flag."
 	icon_state = "bongtrans"
 	unique_pet = "You pet the bong plushie. Trans rights."
