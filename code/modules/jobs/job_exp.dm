@@ -36,7 +36,7 @@ GLOBAL_PROTECT(exp_to_update)
 		return 0
 	if(!job_is_xp_locked(src.title))
 		return 0
-	if(exp_max)
+	if(!exp_max)
 		return 0
 	if(CONFIG_GET(flag/use_exp_restrictions_admin_bypass) && check_rights_for(C,R_ADMIN))
 		return 0
