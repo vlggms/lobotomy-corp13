@@ -312,6 +312,8 @@
 		return JOB_UNAVAILABLE_ACCOUNTAGE
 	if(job.required_playtime_remaining(client))
 		return JOB_UNAVAILABLE_PLAYTIME
+	if(is_playtime_capped(client/C))
+		return JOB_UNAVAILABLE_PLAYTIME
 	if(latejoin && !job.special_check_latejoin(client))
 		return JOB_UNAVAILABLE_GENERIC
 	if(job.trusted_only && !is_trusted_player(client))
