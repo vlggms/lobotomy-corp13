@@ -39,6 +39,18 @@
 	projectile_type = /obj/projectile/beam/laser/heavylaser/red
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 
+/obj/item/ammo_casing/energy/laser/white/heavy
+	projectile_type = /obj/projectile/beam/laser/heavylaser/white
+	fire_sound = 'sound/weapons/lasercannonfire.ogg'
+
+/obj/item/ammo_casing/energy/laser/black/heavy
+	projectile_type = /obj/projectile/beam/laser/heavylaser/black
+	fire_sound = 'sound/weapons/lasercannonfire.ogg'
+
+/obj/item/ammo_casing/energy/laser/pale/heavy
+	projectile_type = /obj/projectile/beam/laser/heavylaser/pale
+	fire_sound = 'sound/weapons/lasercannonfire.ogg'
+
 /obj/item/ammo_casing/energy/laser/red/iff
 	projectile_type = /obj/projectile/beam/laser/iff
 

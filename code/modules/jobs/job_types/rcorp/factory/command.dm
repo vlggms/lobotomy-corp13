@@ -29,6 +29,11 @@
 	r_hand = null
 	box = null
 
+	//Cursed.
+	backpack = /obj/item/storage/backpack/rcorp
+	satchel = /obj/item/storage/backpack/rcorp
+	duffelbag = /obj/item/storage/backpack/rcorp
+
 
 
 
@@ -69,4 +74,7 @@
 	l_pocket = /obj/item/commandprojector
 	r_hand = null
 	box = null
+	backpack = /obj/item/storage/backpack/rcorp
+	satchel = /obj/item/storage/backpack/rcorp
+	duffelbag = /obj/item/storage/backpack/rcorp
 

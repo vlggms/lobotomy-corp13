@@ -18,6 +18,7 @@
 	icon_state = "midfactory"
 	bcost = 1
 	pcost = 1
+	itemnumber = 2
 	item = /obj/effect/landmark/rcorp/pouch
 
 /obj/structure/rcorp_factory/taser

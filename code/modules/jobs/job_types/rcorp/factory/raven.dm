@@ -46,6 +46,9 @@
 	belt = null
 	l_pocket = /obj/item/flashlight/seclite
 	box = null
+	backpack = /obj/item/storage/backpack/rcorp
+	satchel = /obj/item/storage/backpack/rcorp
+	duffelbag = /obj/item/storage/backpack/rcorp
 
 
 /datum/job/raven_mp
@@ -95,6 +98,9 @@
 	belt = null
 	l_pocket = /obj/item/flashlight/seclite
 	box = null
+	backpack = /obj/item/storage/backpack/rcorp
+	satchel = /obj/item/storage/backpack/rcorp
+	duffelbag = /obj/item/storage/backpack/rcorp
 
 
 
@@ -146,3 +152,6 @@
 	belt = null
 	l_pocket = /obj/item/flashlight/seclite
 	box = null
+	backpack = /obj/item/storage/backpack/rcorp
+	satchel = /obj/item/storage/backpack/rcorp
+	duffelbag = /obj/item/storage/backpack/rcorp
