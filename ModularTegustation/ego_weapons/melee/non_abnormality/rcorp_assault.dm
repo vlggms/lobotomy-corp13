@@ -99,14 +99,14 @@
 		)
 
 /obj/item/gun/energy/e_gun/rabbitdash/shotgun/white
-	name = "R-Corporation R-2430 'Fatty'"
+	name = "R-Corporation R-2330 'Fatty'"
 	desc = "An energy gun mass-produced by R corporation for the bulk of their force. This slightly updated model can fire a shogun spread of white damage."
 	ammo_type = list(
 		/obj/item/ammo_casing/energy/laser/white/shotgun,
 		)
 
 /obj/item/gun/energy/e_gun/rabbitdash/shotgun/black
-	name = "R-Corporation R-2330 'Moz'"
+	name = "R-Corporation R-2430 'Moz'"
 	desc = "An energy gun mass-produced by R corporation for the bulk of their force. This slightly updated model can fire a shogun spread of black damage."
 	ammo_type = list(
 		/obj/item/ammo_casing/energy/laser/black/shotgun,
