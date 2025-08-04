@@ -615,6 +615,14 @@
 "lp" = (
 /turf/open/floor/sepia,
 /area/rce/xcorp/rce_1_2)
+"lr" = (
+/obj/structure/rack,
+/obj/item/storage/engi_pouch,
+/obj/item/food/canned/pcorp,
+/obj/item/pickaxe,
+/obj/item/screwdriver,
+/turf/open/floor/pod/light,
+/area/rce/rcorp_base)
 "ls" = (
 /turf/open/lava,
 /area/rce/xcorp/rce_1_1)
@@ -916,14 +924,6 @@
 /obj/effect/spawner/lootdrop/grille_or_trash,
 /turf/open/floor/sepia,
 /area/rce/xcorp/rce_1_2)
-"pA" = (
-/obj/item/clothing/suit/armor/ego_gear/rabbit/reindeerberserk{
-	name = "\improper rook suit"
-	},
-/obj/structure/rack,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/pod/light,
-/area/rce/rcorp_base)
 "pB" = (
 /obj/effect/turf_decal/box/red,
 /obj/effect/turf_decal/delivery/red,
@@ -990,13 +990,6 @@
 /area/rce/xcorp/rce_4_0)
 "re" = (
 /turf/closed/wall/mineral/titanium/survival/pod,
-/area/rce/rcorp_base)
-"ri" = (
-/obj/structure/rack,
-/obj/item/ego_weapon/city/rabbit,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/pickaxe,
-/turf/open/floor/pod/light,
 /area/rce/rcorp_base)
 "rj" = (
 /obj/effect/turf_decal/delivery,
@@ -1524,10 +1517,8 @@
 /area/rce/xcorp/rce_0_0)
 "AK" = (
 /obj/structure/rack,
-/obj/item/ego_weapon/city/rabbit,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/pickaxe,
 /turf/open/floor/pod/light,
 /area/rce/rcorp_base)
 "AN" = (
@@ -1537,13 +1528,6 @@
 	pixel_y = -30
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/pod/light,
-/area/rce/rcorp_base)
-"AP" = (
-/obj/item/clothing/suit/armor/ego_gear/rabbit/reindeerberserk{
-	name = "\improper rook suit"
-	},
-/obj/structure/rack,
 /turf/open/floor/pod/light,
 /area/rce/rcorp_base)
 "AT" = (
@@ -1755,6 +1739,15 @@
 "DU" = (
 /turf/open/floor/plating/asteroid/basalt,
 /area/rce/xcorp/rce_2_1)
+"Eb" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/rack,
+/obj/item/storage/engi_pouch,
+/obj/item/food/canned/pcorp,
+/obj/item/pickaxe,
+/obj/item/screwdriver,
+/turf/open/floor/pod/light,
+/area/rce/rcorp_base)
 "Ed" = (
 /obj/structure/den/rce{
 	id = "northleft"
@@ -1978,14 +1971,11 @@
 /area/rce/xcorp/rce_1_3)
 "Hh" = (
 /obj/structure/rack,
-/obj/item/food/canned/pcorp,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/pod/light,
 /area/rce/rcorp_base)
 "Hi" = (
 /obj/structure/rack,
-/obj/item/ego_weapon/city/rabbit,
-/obj/item/pickaxe,
 /turf/open/floor/pod/light,
 /area/rce/rcorp_base)
 "Hj" = (
@@ -2463,11 +2453,6 @@
 	},
 /turf/open/indestructible/necropolis/air,
 /area/rce/xcorp/rce_0_0)
-"PP" = (
-/obj/structure/rack,
-/obj/item/food/canned/pcorp,
-/turf/open/floor/pod/light,
-/area/rce/rcorp_base)
 "PT" = (
 /obj/structure/closet/secure_closet{
 	icon_state = "lcdr";
@@ -2582,11 +2567,6 @@
 /obj/structure/flora/ash/fern,
 /turf/open/indestructible/necropolis/air,
 /area/rce/xcorp/rce_4_1)
-"RP" = (
-/obj/structure/rack,
-/obj/item/storage/engi_pouch,
-/turf/open/floor/pod/light,
-/area/rce/rcorp_base)
 "RU" = (
 /obj/item/chair/wood,
 /turf/open/floor/wood,
@@ -21012,7 +20992,7 @@ ld
 ld
 ld
 MA
-RP
+Hi
 jT
 jT
 jT
@@ -21269,13 +21249,13 @@ ld
 ld
 ld
 MA
-RP
+Hi
 jT
 ud
 ud
 ud
 ud
-pA
+Hh
 re
 qH
 qH
@@ -21526,13 +21506,13 @@ ld
 ld
 ld
 MA
-RP
-ud
-Hi
-Hi
 Hi
 ud
-pA
+Hi
+Hi
+Hi
+ud
+Hh
 re
 qH
 qH
@@ -21783,13 +21763,13 @@ ld
 ld
 ld
 MA
-RP
+Hi
 jT
 Pq
-ri
+Hh
 AK
 jT
-pA
+Hh
 re
 qH
 qH
@@ -22040,13 +22020,13 @@ ld
 ld
 ld
 MA
-PP
+Hi
 ud
 ud
 VL
 ud
 jT
-pA
+Hh
 re
 qH
 qH
@@ -22297,13 +22277,13 @@ ld
 ld
 ld
 MA
-RP
-jT
-jT
-ud
-jT
-jT
-AP
+re
+lr
+lr
+Eb
+lr
+lr
+re
 re
 qH
 qH

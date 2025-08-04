@@ -100,13 +100,14 @@
 	suit = null
 	l_pocket = /obj/item/flashlight/seclite
 	box = null
+	backpack = /obj/item/storage/backpack/rcorp
+	satchel = /obj/item/storage/backpack/rcorp
+	duffelbag = /obj/item/storage/backpack/rcorp
 
 /datum/outfit/job/production/captain
 	name = "R-Corp Production Officer"
 	jobtype = /datum/job/rcorp_captain/production
-	box = null
 
 /datum/outfit/job/production/acquisition
 	name = "R-Corp Acquisitions Specialist"
 	jobtype = /datum/job/production/acquisition
-	box = null

@@ -32,8 +32,10 @@
 		/obj/item/gun/energy/e_gun/rabbitdash/shotgun/black,
 		/obj/item/gun/energy/e_gun/rabbitdash/heavy,
 		/obj/item/gun/energy/e_gun/rabbitdash/heavysniper,
-		/obj/item/gun/energy/e_gun/rabbit/nopin,	//Mark 1, you CAN get multiple of these but like why
+		/obj/item/gun/energy/e_gun/rabbit/nopin,
 		/obj/item/gun/energy/e_gun/rabbit/minigun/tricolor,
+		/obj/item/minigunpack,
+
 	)
 
 
@@ -65,10 +67,20 @@
 	)
 
 
+/obj/effect/landmark/rcorp/turret
+	possible_items = list(
+		/obj/machinery/manned_turret/rcorp,
+		/obj/machinery/manned_turret/rcorp/red,
+		/obj/machinery/manned_turret/rcorp/white,
+		/obj/machinery/manned_turret/rcorp/black
+	)
+
 //Random Pouch
 /obj/effect/landmark/rcorp/pouch
 	possible_items = list(
 		/obj/item/storage/pcorp_pocket/rcorp,
 		/obj/item/storage/pcorp_weapon/rcorp,
 		/obj/item/storage/rcorp_grenade,
+		/obj/item/storage/material_pouch,
+
 	)
