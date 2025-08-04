@@ -23,6 +23,7 @@
 		/obj/item/gun/energy/e_gun/rabbitdash/shotgun,
 		/obj/item/gun/energy/e_gun/rabbitdash/pale,
 		/obj/item/gun/energy/e_gun/rabbit/minigun,
+		/obj/item/gun/grenadelauncher,
 	)
 
 /obj/effect/landmark/rcorp/highweapon
