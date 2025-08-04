@@ -422,9 +422,9 @@
 
 	// Corruption pulse variables
 	var/meat_pulse_cooldown = 0
-	var/meat_pulse_cooldown_time = 10 SECONDS
+	var/meat_pulse_cooldown_time = 15 SECONDS
 	var/floor_pulse_cooldown = 0
-	var/floor_pulse_cooldown_time = 15 SECONDS
+	var/floor_pulse_cooldown_time = 25 SECONDS
 	var/corruption_range = 1 // Starting range for corruption spread
 
 	// Summoning variables
@@ -697,7 +697,7 @@
 			// Check adjacent turfs for expansion
 			for(var/turf/open/adjacent in orange(1, T))
 				if(!locate(/obj/effect/corrupter_floor) in adjacent)
-					expansion_turfs |= adjacent
+					expansion_turfs += adjacent
 
 	// If no corruption exists, create initial area
 	if(!corrupted_turfs.len)
@@ -708,6 +708,9 @@
 	else
 		// Expand existing corruption
 		for(var/turf/open/T in expansion_turfs)
+			// Double-check no floor effect already exists
+			if(locate(/obj/effect/corrupter_floor) in T)
+				continue
 			if(prob(40) && !locate(/obj/structure/corrupter_meat) in T) // 40% chance to expand to each valid tile, avoid meat structures
 				new /obj/effect/corrupter_floor(T)
 
@@ -831,6 +834,19 @@
 			M.visible_message(span_warning("[M] collapses as its master falls!"))
 			M.death()
 	summoned_mobs.Cut()
+
+	// Clean up all corruption effects
+	visible_message(span_notice("As [src] falls, all traces of corruption begin to fade..."))
+
+	// Remove all meat structures
+	for(var/obj/structure/corrupter_meat/meat in range(15, src))
+		qdel(meat)
+
+	// Remove all floor effects
+	for(var/obj/effect/corrupter_floor/floor in range(15, src))
+		animate(floor, alpha = 0, time = 10)
+		QDEL_IN(floor, 1 SECONDS)
+
 	return ..()
 
 // Red variant of Baba Yaga's warning for Corrupter
