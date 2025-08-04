@@ -1,6 +1,7 @@
 // Resurgence Clan Ranged Units and Special Mobs
 
-// Base ranged clan mob
+// Base ranged clan mob - provides charge system and special attack framework
+// All ranged clan units can build up charge over time and spend it on special abilities
 /mob/living/simple_animal/hostile/clan/ranged
 	name = "Clan Ranged Unit"
 	desc = "A ranged combat unit of the Resurgence Clan."
@@ -12,10 +13,10 @@
 	minimum_distance = 4
 	ranged_cooldown_time = 30
 	projectiletype = /obj/projectile/clan_bullet
-	projectilesound = 'sound/weapons/laser2.ogg'
-	check_friendly_fire = TRUE
+	projectilesound = 'sound/weapons/laser.ogg'
 	charge = 10
 	max_charge = 20
+	teleport_away = TRUE
 	var/special_attack_cost = 5
 	var/special_attack_cooldown = 0
 	var/special_attack_cooldown_time = 10 SECONDS
@@ -30,7 +31,10 @@
 /mob/living/simple_animal/hostile/clan/ranged/proc/SpecialAttack(atom/target)
 	return
 
-// Clan Sniper - Long range, high damage, slow fire rate
+// Clan Sniper - Long range precision unit
+// - Shows a 3-second aiming laser before firing (like last_shot abnormality)
+// - Special ability: Piercing shot that goes through all targets in a line
+// - High damage, slow fire rate, maintains long distance from targets
 /mob/living/simple_animal/hostile/clan/ranged/sniper
 	name = "sniper unit"
 	desc = "A long-range precision unit equipped with a high-powered energy rifle."
@@ -85,7 +89,7 @@
 		QDEL_NULL(current_beam)
 
 	// Check if target is still valid
-	if(!(A in view(vision_range, src)) || stat == DEAD)
+	if(stat == DEAD)
 		can_act = TRUE
 		aiming = FALSE
 		return FALSE
@@ -116,7 +120,10 @@
 	P.fire()
 	playsound(src, 'sound/weapons/laser3.ogg', 100, TRUE)
 
-// Clan Gunner - Medium range, balanced
+// Clan Gunner - Balanced combat unit
+// - Standard ranged attacker with good damage output
+// - Special ability: Burst fire that shoots 3 projectiles rapidly
+// - Fires twice as fast with half damage per shot
 /mob/living/simple_animal/hostile/clan/ranged/gunner
 	name = "gunner unit"
 	desc = "A standard ranged combat unit with a rapid-fire energy weapon."
@@ -156,7 +163,10 @@
 	P.fire()
 	playsound(src, projectilesound, 50, TRUE)
 
-// Clan Rapid Drone - Short range, fast fire rate, low damage
+// Clan Rapid Drone - Suppression fire specialist
+// - Fires in volleys of multiple shots (like green noon ordeal)
+// - Special ability: Overdrive mode with extremely fast fire rate
+// - Low damage per shot but high volume of fire
 /mob/living/simple_animal/hostile/clan/ranged/rapid
 	name = "rapid unit"
 	desc = "A agile unit equipped with a micro-blasters."
@@ -165,12 +175,14 @@
 	health = 300
 	vision_range = 7
 	aggro_vision_range = 7
-	ranged_cooldown_time = 5
+	ranged_cooldown_time = 15 // Time between volleys
 	retreat_distance = 6
 	minimum_distance = 4
 	projectiletype = /obj/projectile/clan_bullet/rapid
 	move_to_delay = 2
 	move_resist = MOVE_FORCE_NORMAL
+	rapid = 3 // Fires 3 shots per volley
+	rapid_fire_delay = 2 // 0.2 seconds between shots in volley
 
 /mob/living/simple_animal/hostile/clan/ranged/rapid/SpecialAttack(atom/target)
 	if(charge < special_attack_cost || world.time < special_attack_cooldown)
@@ -182,11 +194,13 @@
 	visible_message(span_danger("[src] overclocks its weapons!"))
 	playsound(src, 'sound/machines/buzz-two.ogg', 75, TRUE)
 
-	// Temporarily increase fire rate
-	ranged_cooldown_time = 5
+	// Temporarily increase volley size and decrease cooldown
+	rapid = 5 // Fire 5 shots instead of 3
+	ranged_cooldown_time = 8 // Faster volleys
 	addtimer(CALLBACK(src, PROC_REF(ResetFireRate)), 5 SECONDS)
 
 /mob/living/simple_animal/hostile/clan/ranged/rapid/proc/ResetFireRate()
+	rapid = initial(rapid)
 	ranged_cooldown_time = initial(ranged_cooldown_time)
 	visible_message(span_notice("[src]'s weapons return to normal."))
 
@@ -235,7 +249,18 @@
 	damage = 5
 	speed = 0.5
 
-// Bomber Spider
+/obj/projectile/clan_bullet/warper
+	name = "void bolt"
+	icon_state = "purplelaser"
+	damage = 20
+	damage_type = BLACK_DAMAGE
+	speed = 0.8
+
+// Clan Bomber Spider - Suicide unit
+// - Rushes toward targets and explodes on contact
+// - 5 second countdown with rapid beeping before explosion
+// - Deals 500 damage to objects, making it effective against barricades
+// - Self-destructs after exploding
 /mob/living/simple_animal/hostile/clan/bomber_spider
 	name = "bomber spider"
 	desc = "A tiny mechanical spider packed with explosives. It seems to be targeting structures..."
@@ -256,8 +281,9 @@
 	search_objects = 2
 	wanted_objects = list(/obj/structure/barricade, /obj/machinery/manned_turret/rcorp)
 	del_on_death = TRUE
+	teleport_away = TRUE
 	var/primed = FALSE
-	var/explosion_damage = 300
+	var/explosion_damage = 500
 	var/explosion_range = 1
 
 /mob/living/simple_animal/hostile/clan/bomber_spider/Life()
@@ -288,13 +314,13 @@
 	visible_message(span_userdanger("[src] begins to swell and glow!"))
 
 	walk_to(src, 0)
-	animate(src, transform = matrix()*1.8, color = "#FF0000", time = 15)
+	animate(src, transform = matrix()*1.8, color = "#FF0000", time = 50)
 
 	// Start rapid beeping
 	RapidBeep()
 
 	// Explode after delay
-	addtimer(CALLBACK(src, PROC_REF(Detonate)), 1.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(Detonate)), 5 SECONDS)
 
 /mob/living/simple_animal/hostile/clan/bomber_spider/proc/RapidBeep()
 	if(stat == DEAD || !primed)
@@ -326,7 +352,12 @@
 	// Die
 	death()
 
-// Artillery Cannon
+// Clan Artillery - Mobile drop pod launcher
+// - Collects up to 4 hostile mobs by stunning and storing them
+// - Once full, launches all stored mobs via drop pods at a target location
+// - Uses gondola sprite with animated overlay when firing
+// - Runs away from enemies instead of engaging directly
+// - Makes cartoon pop sound when collecting mobs
 /mob/living/simple_animal/hostile/artillery
 	name = "cannon gondola?!"
 	desc = "A massive, slow-moving artillery unit... Wait, are you sure this is the right way to call this thing?"
@@ -560,6 +591,439 @@
 	. += span_notice("Stored mobs: [length(stored_mobs)]/[max_stored_mobs]")
 	if(length(stored_mobs) >= max_stored_mobs)
 		. += span_warning("Artillery is fully loaded and searching for targets!")
+
+// Clan Warper - Area teleportation specialist
+// - Marks a target location and channels for 10 seconds
+// - Creates a 5x5 area around itself marked for teleportation
+// - Teleports all mobs (except self) in the area to the marked location
+// - Shows a magic circle effect while casting (uses fellcircle sprite)
+// - Only uses ability when allies are nearby to teleport
+/mob/living/simple_animal/hostile/clan/ranged/warper
+	name = "warper unit"
+	desc = "A specialized unit with spatial manipulation technology."
+	icon_state = "clan_warper"
+	maxHealth = 500
+	health = 500
+	vision_range = 12
+	aggro_vision_range = 12
+	ranged_cooldown_time = 60 // Long cooldown for powerful ability
+	retreat_distance = 10
+	minimum_distance = 8
+	projectiletype = /obj/projectile/clan_bullet/warper
+	move_to_delay = 4
+	melee_damage_lower = 5
+	melee_damage_upper = 10
+	special_attack_cost = 10 // Costs more charge
+	special_attack_cooldown_time = 30 SECONDS
+	var/obj/effect/warper_mark/current_mark
+	var/casting = FALSE
+	var/list/obj/effect/temp_visual/warper_area/area_markers = list()
+	var/obj/effect/clan_magic_circle/magic_circle
+
+/mob/living/simple_animal/hostile/clan/ranged/warper/Move()
+	if(casting)
+		return FALSE
+	return ..()
+
+/mob/living/simple_animal/hostile/clan/ranged/warper/CanAttack(atom/the_target)
+	if(casting)
+		return FALSE
+	return ..()
+
+/mob/living/simple_animal/hostile/clan/ranged/warper/OpenFire(atom/A)
+	if(casting)
+		return FALSE
+	if(charge >= special_attack_cost && world.time > special_attack_cooldown)
+		if(prob(50)) // Higher chance to use special
+			SpecialAttack(A)
+			return
+	return ..()
+
+/mob/living/simple_animal/hostile/clan/ranged/warper/SpecialAttack(atom/target)
+	if(charge < special_attack_cost || world.time < special_attack_cooldown || casting || !isliving(target))
+		return
+
+	// Check if there are any ally mobs in range to teleport
+	var/found_allies = FALSE
+	for(var/mob/living/L in range(1, src))
+		if(L == src)
+			continue
+		if(faction_check_mob(L))
+			found_allies = TRUE
+			break
+
+	if(!found_allies)
+		return // Don't waste charge if no allies to teleport
+
+	charge -= special_attack_cost
+	special_attack_cooldown = world.time + special_attack_cooldown_time
+
+	// Place mark at target
+	var/turf/target_turf = get_turf(target)
+	visible_message(span_danger("[src] marks [target] for spatial displacement!"))
+	playsound(src, 'sound/magic/blind.ogg', 75, TRUE)
+
+	// Create the destination mark
+	if(current_mark)
+		qdel(current_mark)
+	current_mark = new /obj/effect/warper_mark(target_turf)
+
+	// Start casting
+	casting = TRUE
+
+	// Create magic circle visual effect
+	magic_circle = new /obj/effect/clan_magic_circle(get_turf(src))
+	magic_circle.icon_state = "fellcircle"
+
+	// Adjust circle position and orientation similar to dragonskull
+	var/matrix/M = matrix(magic_circle.transform)
+	M.Translate(0, 16)
+	var/rot_angle = Get_Angle(get_turf(src), target_turf)
+	M.Turn(rot_angle)
+	switch(dir)
+		if(EAST)
+			M.Scale(0.5, 1)
+		if(WEST)
+			M.Scale(0.5, 1)
+		if(NORTH)
+			magic_circle.layer -= 0.2
+	magic_circle.transform = M
+
+	// Create area markers in 5x5 around us
+	var/turf/center = get_turf(src)
+	for(var/turf/T in range(2, center))
+		var/obj/effect/temp_visual/warper_area/W = new(T)
+		area_markers += W
+
+	visible_message(span_userdanger("[src] begins channeling a mass teleportation!"))
+	playsound(src, 'sound/magic/charge.ogg', 100, TRUE)
+
+	// Channel for 10 seconds
+	addtimer(CALLBACK(src, PROC_REF(CompleteTeleport), center), 10 SECONDS)
+
+/mob/living/simple_animal/hostile/clan/ranged/warper/proc/CompleteTeleport(turf/center)
+	if(stat == DEAD || !current_mark)
+		CancelTeleport()
+		return
+
+	// Get all mobs in 5x5 area
+	var/list/teleport_targets = list()
+	for(var/mob/living/L in range(2, center))
+		if(L == src) // Don't teleport self
+			continue
+		teleport_targets += L
+
+	// Teleport effects
+	visible_message(span_hierophant_warning("[src] completes the spatial displacement!"))
+	playsound(src, 'sound/magic/wand_teleport.ogg', 100, TRUE)
+	playsound(current_mark, 'sound/magic/wand_teleport.ogg', 100, TRUE)
+
+	// Teleport each mob
+	var/turf/destination = get_turf(current_mark)
+	for(var/mob/living/L in teleport_targets)
+		INVOKE_ASYNC(src, PROC_REF(TeleportMob), L, destination)
+
+	// Cleanup
+	CancelTeleport()
+
+/mob/living/simple_animal/hostile/clan/ranged/warper/proc/TeleportMob(mob/living/L, turf/destination)
+	// Fade out effect
+	new /obj/effect/temp_visual/dir_setting/cult/phase/out(get_turf(L), L)
+	animate(L, alpha = 0, time = 5, easing = EASE_OUT)
+	sleep(5)
+
+	if(!L || L.stat == DEAD)
+		return
+
+	// Move mob
+	L.forceMove(destination)
+
+	// Fade in effect
+	new /obj/effect/temp_visual/dir_setting/cult/phase(destination, L)
+	animate(L, alpha = 255, time = 5, easing = EASE_IN)
+
+	// Stun on arrival
+	L.Paralyze(20)
+
+/mob/living/simple_animal/hostile/clan/ranged/warper/proc/CancelTeleport()
+	casting = FALSE
+
+	// Clean up magic circle
+	if(magic_circle)
+		qdel(magic_circle)
+		magic_circle = null
+
+	// Clean up markers
+	for(var/obj/effect/E in area_markers)
+		qdel(E)
+	area_markers.Cut()
+
+	if(current_mark)
+		qdel(current_mark)
+		current_mark = null
+
+/mob/living/simple_animal/hostile/clan/ranged/warper/death()
+	CancelTeleport()
+	return ..()
+
+// Visual effects for the warper
+/obj/effect/warper_mark
+	name = "spatial mark"
+	desc = "A glowing mark indicating a teleportation destination."
+	icon = 'icons/effects/eldritch.dmi'
+	icon_state = "blood_cloud_swirl"
+	layer = BELOW_MOB_LAYER
+
+/obj/effect/warper_mark/Initialize()
+	. = ..()
+	animate(src, alpha = 100, time = 5, loop = -1)
+	animate(alpha = 255, time = 5)
+	QDEL_IN(src, 11 SECONDS)
+
+/obj/effect/temp_visual/warper_area
+	name = "displacement field"
+	desc = "Space seems to warp and bend here."
+	icon = 'icons/effects/cult_effects.dmi'
+	icon_state = "floorglow_looping"
+	layer = BELOW_MOB_LAYER
+	duration = 11 SECONDS
+	alpha = 100
+
+/obj/effect/temp_visual/warper_area/Initialize()
+	. = ..()
+	animate(src, alpha = 50, time = 10, loop = -1)
+	animate(alpha = 150, time = 10)
+
+// Magic circle effect for warper
+/obj/effect/clan_magic_circle
+	name = "magic circle"
+	desc = "A circle of red magic featuring a six-pointed star"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "fellcircle"
+	pixel_x = 8
+	base_pixel_x = 8
+	pixel_y = 8
+	base_pixel_y = 8
+	layer = ABOVE_MOB_LAYER
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
+// Clan Harpooner - Chain specialist that captures and drags targets
+// - Fires chain harpoons at human targets
+// - Chained targets cannot move away and are pulled 1 tile/second
+// - Drags victims for 15 seconds before violently dropping them
+// - Final drop deals 50 RED damage and knocks down for 3 seconds
+// - Chain breaks if target dies or breaks line of sight
+// - Can only chain one target at a time
+/mob/living/simple_animal/hostile/clan/ranged/harpooner
+	name = "harpooner unit"
+	desc = "A specialized ranged unit equipped with chain harpoons for capturing targets."
+	icon_state = "clan_harpooner"
+	maxHealth = 600
+	health = 600
+	vision_range = 10
+	aggro_vision_range = 10
+	ranged_cooldown_time = 8
+	retreat_distance = 6
+	minimum_distance = 5
+	projectiletype = /obj/projectile/clan_bullet/medium
+	move_to_delay = 3
+	melee_damage_lower = 10
+	melee_damage_upper = 15
+	teleport_away = TRUE
+
+	// Chain variables
+	var/mob/living/carbon/human/chained_target = null
+	var/datum/beam/chain_beam
+	var/chain_pull_timer
+	var/chain_start_time
+	var/chain_duration = 15 SECONDS
+	var/pull_delay = 10 // 1 second between pulls
+	var/harpoon_cooldown = 0
+	var/harpoon_cooldown_time = 20 SECONDS
+	var/final_damage = 50 // RED damage on drop
+
+/mob/living/simple_animal/hostile/clan/ranged/harpooner/OpenFire(atom/A)
+	if(chained_target)
+		return FALSE // Can't shoot while pulling someone
+
+	// Use harpoon on humans, regular shots on others
+	if(ishuman(A) && world.time > harpoon_cooldown)
+		FireHarpoon(A)
+		return
+
+	return ..()
+
+/mob/living/simple_animal/hostile/clan/ranged/harpooner/proc/FireHarpoon(atom/target)
+	if(chained_target || world.time < harpoon_cooldown)
+		return
+
+	visible_message(span_danger("[src] fires a chain harpoon at [target]!"))
+	playsound(src, 'sound/weapons/chainhit.ogg', 75, TRUE)
+
+	var/obj/projectile/clan_bullet/harpoon/H = new(get_turf(src))
+	H.firer = src
+	H.preparePixelProjectile(target, src)
+	H.fire()
+
+	harpoon_cooldown = world.time + harpoon_cooldown_time
+
+/mob/living/simple_animal/hostile/clan/ranged/harpooner/proc/BeginChainPull(mob/living/carbon/human/target)
+	if(chained_target)
+		return
+
+	chained_target = target
+	chain_start_time = world.time
+
+	// Apply chained status
+	var/datum/status_effect/harpooner_chained/C = chained_target.has_status_effect(/datum/status_effect/harpooner_chained)
+	if(!C)
+		C = chained_target.apply_status_effect(/datum/status_effect/harpooner_chained)
+		C.harpooner = src
+
+	visible_message(span_warning("[src] has caught [chained_target] with their harpoon!"))
+
+	UpdateChainVisuals()
+	PullLoop()
+
+/mob/living/simple_animal/hostile/clan/ranged/harpooner/proc/PullLoop()
+	if(!chained_target || chained_target.stat == DEAD || !can_see(src, chained_target, 14))
+		ReleaseTarget()
+		return
+
+	// Check if 15 seconds have passed
+	if(world.time >= chain_start_time + chain_duration)
+		DropTarget()
+		return
+
+	// Check distance
+	var/dist = get_dist(src, chained_target)
+	if(dist < 2)
+		DropTarget()
+		return
+
+	// Pull the target
+	var/turf/T = get_turf(src)
+	chained_target.throw_at(T, 1, 2, src)
+	playsound(chained_target, 'sound/weapons/chainhit.ogg', 40, TRUE)
+
+	UpdateChainVisuals()
+
+	// Schedule next pull
+	chain_pull_timer = addtimer(CALLBACK(src, PROC_REF(PullLoop)), pull_delay, TIMER_STOPPABLE)
+
+/mob/living/simple_animal/hostile/clan/ranged/harpooner/proc/DropTarget()
+	if(!chained_target)
+		return
+
+	visible_message(span_danger("[src] violently drops [chained_target]!"))
+	playsound(chained_target, 'sound/effects/meteorimpact.ogg', 75, TRUE)
+
+	// Deal damage and knockdown
+	chained_target.apply_damage(final_damage, RED_DAMAGE, null, chained_target.run_armor_check(null, RED_DAMAGE))
+	chained_target.Knockdown(30)
+
+	// Visual effect
+	new /obj/effect/temp_visual/kinetic_blast(get_turf(chained_target))
+
+	ReleaseTarget()
+
+/mob/living/simple_animal/hostile/clan/ranged/harpooner/proc/UpdateChainVisuals()
+	if(!chained_target)
+		if(chain_beam)
+			QDEL_NULL(chain_beam)
+		return
+
+	if(!chain_beam)
+		chain_beam = Beam(chained_target, icon_state = "chain")
+
+/mob/living/simple_animal/hostile/clan/ranged/harpooner/proc/ReleaseTarget()
+	if(!chained_target)
+		return
+
+	chained_target.remove_status_effect(/datum/status_effect/harpooner_chained)
+	chained_target = null
+	UpdateChainVisuals()
+
+	if(chain_pull_timer)
+		deltimer(chain_pull_timer)
+		chain_pull_timer = null
+
+/mob/living/simple_animal/hostile/clan/ranged/harpooner/death()
+	ReleaseTarget()
+	return ..()
+
+/mob/living/simple_animal/hostile/clan/ranged/harpooner/Destroy()
+	ReleaseTarget()
+	return ..()
+
+// Harpoon projectile
+/obj/projectile/clan_bullet/harpoon
+	name = "chain harpoon"
+	icon_state = "chain_bolt"
+	damage = 20
+	damage_type = RED_DAMAGE
+	speed = 0.5
+	var/chain
+
+/obj/projectile/clan_bullet/harpoon/fire(setAngle)
+	if(firer)
+		chain = firer.Beam(src, icon_state = "chain")
+	..()
+
+/obj/projectile/clan_bullet/harpoon/Destroy()
+	qdel(chain)
+	return ..()
+
+/obj/projectile/clan_bullet/harpoon/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		var/mob/living/simple_animal/hostile/clan/ranged/harpooner/harpooner = firer
+		if(istype(harpooner) && get_dist(target, firer) < 15)
+			harpooner.BeginChainPull(H)
+
+// Status effect for chained targets
+/datum/status_effect/harpooner_chained
+	id = "harpooner_chained"
+	status_type = STATUS_EFFECT_UNIQUE
+	alert_type = /atom/movable/screen/alert/status_effect/harpooner_chained
+	var/mob/living/simple_animal/hostile/clan/ranged/harpooner/harpooner
+	var/view_range = 7
+
+/atom/movable/screen/alert/status_effect/harpooner_chained
+	name = "Harpooned"
+	desc = "You've been caught by a clan harpooner! You can't run away!"
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "locked"
+
+/datum/status_effect/harpooner_chained/on_apply()
+	. = ..()
+	RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(check_movement))
+	to_chat(owner, span_userdanger("You've been harpooned! You can't escape!"))
+
+/datum/status_effect/harpooner_chained/on_remove()
+	UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)
+	to_chat(owner, span_notice("The harpoon releases you."))
+	. = ..()
+
+/datum/status_effect/harpooner_chained/proc/check_movement(mob/living/carbon/human/H, turf/NewLoc)
+	SIGNAL_HANDLER
+
+	if(!istype(H) || !harpooner)
+		return
+
+	// Check if still in view
+	if(!(H in view(view_range, harpooner)))
+		H.remove_status_effect(/datum/status_effect/harpooner_chained)
+		return
+
+	// Prevent moving away
+	var/current_dist = get_dist(harpooner, H)
+	var/new_dist = get_dist(harpooner, NewLoc)
+
+	if(new_dist > current_dist)
+		to_chat(H, span_warning("The chain prevents you from moving further away!"))
+		return COMPONENT_MOVABLE_BLOCK_PRE_MOVE
 
 // // Siege Walker - Massive crushing unit that collects mobs
 // /mob/living/simple_animal/hostile/clan/siege_walker
