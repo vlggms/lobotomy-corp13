@@ -5981,6 +5981,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/central)
+"Tw" = (
+/obj/machinery/holopad,
+/turf/open/floor/carpet/red,
+/area/department_main/discipline)
 "Ty" = (
 /obj/machinery/status_display/evac{
 	pixel_y = 32
@@ -37653,7 +37657,7 @@ ZL
 uW
 ac
 dl
-TL
+Tw
 TL
 uI
 CT
