@@ -24,4 +24,5 @@ GLOBAL_LIST_INIT(small_ego, list (
 	/obj/item/ego_weapon/city/awl,
 	/obj/item/ego_weapon/city/wcorp/hatchet,
 	/obj/item/ego_weapon/ranged/city/fullstop/deagle,
+	/obj/item/ego_weapon/city/rabbit/throwing,
 ))

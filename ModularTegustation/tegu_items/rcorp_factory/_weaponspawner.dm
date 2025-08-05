@@ -46,6 +46,7 @@
 		/obj/item/ego_weapon/city/rabbit/black,
 		/obj/item/ego_weapon/city/rabbit/pale,
 		/obj/item/ego_weapon/city/rabbit_rush,
+		/obj/item/ego_weapon/city/rabbit/throwing,
 	)
 
 /obj/effect/landmark/rcorp/pistol
@@ -56,6 +57,16 @@
 		/obj/item/gun/energy/e_gun/rabbitdash/small/pale,
 		/obj/item/gun/energy/e_gun/rabbitdash/small/tinypale,
 	)
+
+/obj/effect/landmark/rcorp/pistol2
+	possible_items = list(
+		/obj/item/gun/energy/e_gun/rabbitdash/small/smg,
+		/obj/item/gun/energy/e_gun/rabbitdash/small/smg/white,
+		/obj/item/gun/energy/e_gun/rabbitdash/small/smg/black,
+		/obj/item/gun/energy/e_gun/rabbitdash/small/pale,
+		/obj/item/gun/energy/e_gun/rabbitdash/small/tinypale,
+	)
+
 
 
 /obj/effect/landmark/rcorp/grenade

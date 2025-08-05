@@ -117,6 +117,13 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/rce/rcorp_base)
+"cg" = (
+/obj/structure/den/rce{
+	id = "fobnorth";
+	assault_type = 2
+	},
+/turf/open/indestructible/necropolis/air,
+/area/rce/xcorp/rce_2_3)
 "ci" = (
 /obj/effect/gibspawner/robot,
 /turf/open/floor/wood,
@@ -212,7 +219,7 @@
 /obj/machinery/conveyor/auto{
 	dir = 4
 	},
-/obj/structure/rcorp_factory/toolbelt,
+/obj/structure/rcorp_factory/melee2,
 /turf/open/floor/facility/halls,
 /area/rce/rcorp_base)
 "eg" = (
@@ -301,6 +308,7 @@
 "gk" = (
 /obj/structure/rack,
 /obj/effect/turf_decal/delivery,
+/obj/item/storage/pcorp_weapon/rcorp,
 /obj/item/storage/pcorp_weapon/rcorp,
 /turf/open/floor/pod/light,
 /area/rce/rcorp_base)
@@ -406,12 +414,18 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/rce/xcorp/rce_2_2)
+"hY" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/manned_turret/rcorp/rook,
+/turf/open/floor/pod/light,
+/area/rce/rcorp_base)
 "if" = (
 /turf/open/indestructible/necropolis/air,
 /area/rce/xcorp/rce_3_3)
 "im" = (
 /obj/structure/rack,
 /obj/effect/turf_decal/delivery,
+/obj/item/storage/First_aid_l1,
 /obj/item/storage/First_aid_l1,
 /turf/open/floor/pod/light,
 /area/rce/rcorp_base)
@@ -617,10 +631,10 @@
 /area/rce/xcorp/rce_1_2)
 "lr" = (
 /obj/structure/rack,
-/obj/item/storage/engi_pouch,
 /obj/item/food/canned/pcorp,
 /obj/item/pickaxe,
 /obj/item/screwdriver,
+/obj/item/storage/engi_pouch,
 /turf/open/floor/pod/light,
 /area/rce/rcorp_base)
 "ls" = (
@@ -942,6 +956,13 @@
 /obj/structure/flora/ausbushes/grassybush,
 /turf/open/water/jungle,
 /area/rce/xcorp/rce_2_3)
+"pJ" = (
+/obj/structure/den/rce{
+	id = "fobnorth";
+	assault_type = 2
+	},
+/turf/open/indestructible/necropolis/air,
+/area/rce/xcorp/rce_1_3)
 "pN" = (
 /obj/structure/table/wood,
 /obj/item/food/canned/pcorp_burger,
@@ -1056,6 +1077,14 @@
 /obj/effect/gibspawner/generic,
 /turf/open/indestructible/necropolis/air,
 /area/rce/xcorp/rce_4_1)
+"si" = (
+/obj/structure/rack,
+/obj/item/food/canned/pcorp,
+/obj/item/pickaxe,
+/obj/item/screwdriver,
+/obj/item/storage/sandbag_pouch,
+/turf/open/floor/pod/light,
+/area/rce/rcorp_base)
 "sj" = (
 /turf/closed/indestructible/rock,
 /area/rce/xcorp/rce_4_2)
@@ -1192,6 +1221,9 @@
 /obj/machinery/telecomms/bus/preset_four,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/rce/rcorp_base)
+"ve" = (
+/turf/open/indestructible/necropolis/air,
+/area/rce/xcorp/rce_1_3)
 "vj" = (
 /obj/structure/den/rce/raider,
 /turf/open/indestructible/necropolis/air,
@@ -1598,6 +1630,10 @@
 /obj/item/storage/backpack/duffelbag/med/upgradedsurgery,
 /turf/open/floor/pod/light,
 /area/rce/rcorp_base)
+"BW" = (
+/obj/machinery/manned_turret/rcorp/rook,
+/turf/open/floor/pod/light,
+/area/rce/rcorp_base)
 "BX" = (
 /turf/open/floor/plating/asteroid/basalt,
 /area/rce/xcorp/rce_2_2)
@@ -1742,10 +1778,10 @@
 "Eb" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/rack,
-/obj/item/storage/engi_pouch,
 /obj/item/food/canned/pcorp,
 /obj/item/pickaxe,
 /obj/item/screwdriver,
+/obj/item/storage/engi_pouch,
 /turf/open/floor/pod/light,
 /area/rce/rcorp_base)
 "Ed" = (
@@ -2068,6 +2104,13 @@
 /obj/structure/flora/ash/tall_shroom,
 /turf/open/floor/plating/ashplanet/ash,
 /area/rce/xcorp/rce_2_1)
+"IQ" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/delivery,
+/obj/item/storage/rcorp_grenade,
+/obj/item/storage/rcorp_grenade,
+/turf/open/floor/pod/light,
+/area/rce/rcorp_base)
 "Jd" = (
 /obj/structure/window/plasma/reinforced/plastitanium,
 /turf/open/floor/plating,
@@ -2388,6 +2431,12 @@
 	},
 /turf/open/floor/wood,
 /area/rce/xcorp/rce_2_3)
+"OL" = (
+/obj/structure/table/abductor,
+/obj/item/storage/rcorp_grenade,
+/obj/effect/landmark/rcorp/grenade,
+/turf/open/floor/pod,
+/area/rce/rcorp_base)
 "OQ" = (
 /obj/effect/landmark/latejoin,
 /turf/open/floor/pod/light,
@@ -2466,7 +2515,7 @@
 /obj/item/binoculars,
 /obj/item/clothing/suit/armor/ego_gear/rcorp_officer,
 /obj/item/clothing/under/mercenary/camo,
-/obj/item/ego_weapon/city/rabbit/white,
+/obj/item/ego_weapon/city/zweihander/knife/lcdr,
 /turf/open/floor/pod,
 /area/rce/rcorp_base)
 "Qn" = (
@@ -2479,6 +2528,14 @@
 /obj/structure/closet/secure_closet/bar,
 /turf/open/floor/wood,
 /area/rce/xcorp/rce_2_2)
+"Qt" = (
+/obj/structure/rack,
+/obj/effect/turf_decal/delivery,
+/obj/item/ego_weapon/city/rabbit/throwing,
+/obj/item/ego_weapon/city/rabbit/throwing,
+/obj/item/storage/knife_pouch,
+/turf/open/floor/pod/light,
+/area/rce/rcorp_base)
 "QA" = (
 /obj/machinery/door/airlock/survival_pod{
 	name = "raven MP prep";
@@ -2621,13 +2678,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/pod/light,
 /area/rce/rcorp_base)
-"SF" = (
-/obj/structure/rack,
-/obj/effect/turf_decal/delivery,
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/item/storage/pcorp_weapon/rcorp,
-/turf/open/floor/pod/light,
-/area/rce/rcorp_base)
 "SO" = (
 /obj/structure/den/rce{
 	id = "southleft"
@@ -2754,7 +2804,6 @@
 /obj/item/clothing/suit/armor/ego_gear/rabbit/grunts{
 	name = "\improper robin captain suit"
 	},
-/obj/item/storage/rcorp_grenade,
 /turf/open/floor/pod,
 /area/rce/rcorp_base)
 "Va" = (
@@ -2802,7 +2851,8 @@
 "VG" = (
 /obj/structure/rack,
 /obj/effect/turf_decal/delivery,
-/obj/item/storage/rcorp_grenade,
+/obj/item/storage/material_pouch,
+/obj/item/storage/material_pouch,
 /turf/open/floor/pod/light,
 /area/rce/rcorp_base)
 "VL" = (
@@ -2895,6 +2945,7 @@
 "XL" = (
 /obj/structure/rack,
 /obj/effect/turf_decal/delivery,
+/obj/item/storage/pcorp_pocket/rcorp,
 /obj/item/storage/pcorp_pocket/rcorp,
 /turf/open/floor/pod/light,
 /area/rce/rcorp_base)
@@ -8897,7 +8948,7 @@ PT
 re
 jT
 re
-Bi
+OL
 DM
 re
 jT
@@ -15325,10 +15376,10 @@ jB
 MK
 MK
 jT
-XL
+jB
 Wr
 Wr
-SF
+Wr
 Wr
 Wr
 ud
@@ -16864,11 +16915,11 @@ jB
 jB
 jB
 jB
-gk
+jB
 jB
 jT
-VG
-im
+IQ
+Qt
 XL
 im
 VG
@@ -20998,7 +21049,7 @@ jT
 jT
 jT
 Kl
-Hh
+hY
 re
 qH
 qH
@@ -21255,7 +21306,7 @@ ud
 ud
 ud
 ud
-Hh
+BW
 re
 qH
 qH
@@ -21512,7 +21563,7 @@ Hi
 Hi
 Hi
 ud
-Hh
+hY
 re
 qH
 qH
@@ -21769,7 +21820,7 @@ Pq
 Hh
 AK
 jT
-Hh
+hY
 re
 qH
 qH
@@ -22026,7 +22077,7 @@ ud
 VL
 ud
 jT
-Hh
+hY
 re
 qH
 qH
@@ -22279,9 +22330,9 @@ ld
 MA
 re
 lr
-lr
+si
 Eb
-lr
+si
 lr
 re
 re
@@ -39170,7 +39221,7 @@ Wg
 Wg
 Iq
 Wg
-Wg
+ve
 Wg
 Wg
 Wg
@@ -39426,9 +39477,9 @@ Iq
 Jf
 Iq
 Wg
-Wg
-Wg
-Wg
+ve
+ve
+ve
 Wg
 Wg
 GG
@@ -39683,10 +39734,10 @@ Iq
 Wg
 TC
 Wg
-Wg
-Wg
-Wg
-Wg
+ve
+ve
+ve
+ve
 Wg
 Wg
 Wg
@@ -39939,11 +39990,11 @@ Iq
 Wg
 Fe
 Wg
-Wg
-Wg
-Wg
-Wg
-Wg
+ve
+ve
+pJ
+ve
+ve
 Wg
 Wg
 Wg
@@ -40197,9 +40248,9 @@ Wg
 Wg
 Wg
 Wg
-Wg
-Wg
-Wg
+ve
+ve
+ve
 dL
 Iq
 Wg
@@ -40455,7 +40506,7 @@ Wg
 Wg
 Wg
 Wg
-Wg
+ve
 Wg
 Wg
 Wg
@@ -42499,9 +42550,9 @@ fd
 fd
 fd
 fd
-fd
-fd
-fd
+Ej
+Ej
+Ej
 fd
 gP
 gP
@@ -42753,12 +42804,12 @@ qH
 qH
 qH
 fd
-fd
-fd
-fd
-fd
-fd
-fd
+Ej
+Ej
+Ej
+Ej
+Gh
+Ej
 gP
 gP
 gP
@@ -43010,12 +43061,12 @@ qH
 qH
 qH
 fd
-fd
-fd
-fd
-fd
-fd
-fd
+Ej
+Gh
+Gh
+Gh
+Gh
+Gh
 gP
 gP
 gP
@@ -43267,12 +43318,12 @@ qH
 qH
 qH
 fd
-fd
-fd
-fd
-fd
-fd
-fd
+Ej
+Gh
+Gh
+cg
+Gh
+Gh
 gP
 gP
 wL
@@ -43524,12 +43575,12 @@ qH
 qH
 qH
 fd
-fd
-fd
-fd
-fd
-fd
-fd
+Ej
+Gh
+Gh
+Gh
+Gh
+gP
 gP
 gP
 wL
@@ -43781,12 +43832,12 @@ qH
 qH
 qH
 fd
-fd
-fd
-fd
-fd
-fd
-fd
+Ej
+Ej
+Gh
+Gh
+Gh
+gP
 gP
 gP
 gP
@@ -44039,11 +44090,11 @@ qH
 qH
 fd
 fd
-fd
-fd
-fd
-fd
-fd
+Ej
+Ej
+Gh
+Gh
+Ej
 gP
 gP
 gP
@@ -44297,10 +44348,10 @@ qH
 fd
 fd
 fd
-fd
-fd
-fd
-fd
+Ej
+Ej
+Ej
+Ej
 oJ
 oJ
 OK

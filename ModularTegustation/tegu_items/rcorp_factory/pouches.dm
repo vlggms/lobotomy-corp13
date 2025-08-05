@@ -188,3 +188,23 @@
 /obj/item/storage/material_pouch/PopulateContents()
 	new /obj/item/gun/energy/e_gun/rabbitdash/small/tiny(src)
 	new /obj/item/stack/sheet/mineral/sandbags/ten(src)
+
+/obj/item/storage/knife_pouch
+	name = "Knife Pouch"
+	desc = "You wear this on your pocket and can put throwing knives into it."
+	icon_state = "rknives"
+	inhand_icon_state = "rknives"
+	slot_flags = ITEM_SLOT_POCKETS
+	w_class = WEIGHT_CLASS_BULKY
+	resistance_flags = NONE
+	max_integrity = 300
+
+/obj/item/storage/knife_pouch/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_combined_w_class = 21
+	STR.max_w_class = WEIGHT_CLASS_BULKY
+	STR.max_items = 3
+	STR.set_holdable(list(
+		/obj/item/ego_weapon/city/rabbit/throwing,
+		))
