@@ -101,6 +101,7 @@
 	l_pocket = /obj/item/flashlight/seclite
 	box = null
 	back = /obj/item/storage/backpack/rcorp
+	ignore_pack = TRUE
 
 /datum/outfit/job/production/captain
 	name = "R-Corp Production Officer"
