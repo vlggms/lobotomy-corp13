@@ -68,6 +68,7 @@
 	ears = null
 	glasses = null
 	uniform = /obj/item/clothing/under/suit/lobotomy/rabbit
+	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/reindeerberserk
 	shoes = /obj/item/clothing/shoes/combat
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
@@ -75,6 +76,7 @@
 	l_pocket = /obj/item/flashlight/seclite
 	box = null
 	back = /obj/item/storage/backpack/rcorp
+	ignore_pack = TRUE
 
 /datum/outfit/job/rook/captain
 	name = "Rook Squad Captain"

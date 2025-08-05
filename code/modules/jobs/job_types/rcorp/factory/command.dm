@@ -31,6 +31,7 @@
 
 	//Cursed.
 	back = /obj/item/storage/backpack/rcorp
+	ignore_pack = TRUE
 
 
 
@@ -73,4 +74,5 @@
 	r_hand = null
 	box = null
 	back = /obj/item/storage/backpack/rcorp
+	ignore_pack = TRUE
 

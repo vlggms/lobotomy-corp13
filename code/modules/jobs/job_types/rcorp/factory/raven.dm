@@ -47,6 +47,7 @@
 	l_pocket = /obj/item/flashlight/seclite
 	box = null
 	back = /obj/item/storage/backpack/rcorp
+	ignore_pack = TRUE
 
 
 /datum/job/raven_mp
@@ -97,6 +98,7 @@
 	l_pocket = /obj/item/flashlight/seclite
 	box = null
 	back = /obj/item/storage/backpack/rcorp
+	ignore_pack = TRUE
 
 
 /datum/job/rcorp_captain/raven_factorycap
@@ -148,3 +150,4 @@
 	l_pocket = /obj/item/flashlight/seclite
 	box = null
 	back = /obj/item/storage/backpack/rcorp
+	ignore_pack = TRUE
