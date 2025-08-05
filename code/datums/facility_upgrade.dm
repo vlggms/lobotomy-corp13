@@ -232,23 +232,6 @@
 /datum/facility_upgrade/regnenerator_healing/DisplayValue()
 	return "+[value]% healing"
 
-/datum/facility_upgrade/meltdown_increase
-	name = UPGRADE_MELTDOWN_INCREASE
-	category = "Facility"
-	value = 0
-	max_value = 3
-	info = " - This upgrade inceases the amount of <b>Works</b> needed for a Qliphoth Meltdown by 1 per upgrade.<br> - This upgrade additionally increases the time limit of <b>Post Midnight Core Suppressions</b> by 20 Minutes per upgrade."
-
-/datum/facility_upgrade/meltdown_increase/Upgrade()
-	value = min(max_value, value + 1)
-	. = ..()
-	cost += 1
-
-/datum/facility_upgrade/meltdown_increase/DisplayValue()
-	if (value > 1)
-		return "+[value] extra works"
-	return "+[value] extra work"
-
 /datum/facility_upgrade/agent_spawn_stats_bonus
 	name = UPGRADE_AGENT_STATS
 	category = "Facility"
