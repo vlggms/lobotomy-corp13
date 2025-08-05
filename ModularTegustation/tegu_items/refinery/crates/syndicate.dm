@@ -125,7 +125,7 @@
 		/obj/item/clothing/suit/armor/ego_gear/city/thumb_capo,
 
 		// Kurokumo Blade - used by all its members.
-		/obj/item/ego_weapon/city/kurokumo/weak,
+		/obj/item/ego_weapon/city/kurokumo,
 		// Kurokumo Kimono - used by the Captain. Bad numbers but makes you speedy.
 		/obj/item/clothing/suit/armor/ego_gear/city/kurokumo/captain,
 	)
