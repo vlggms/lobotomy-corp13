@@ -116,7 +116,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 
 /datum/controller/subsystem/lobotomy_corp/proc/SetGoal()
 	var/player_mod = length(GLOB.player_list) * 0.2
-	box_goal = clamp(round(7500 * player_mod), 3000, 36000)
+	box_goal = clamp(round(5000 * player_mod), 3000, 36000)
 
 	if(SSmaptype.maptype in SSmaptype.lc_maps)
 		//Here's the anouncement for the trait.
@@ -276,7 +276,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	qliphoth_meter = 0
 	var/abno_amount = length(all_abnormality_datums)
 	var/player_count = AvailableAgentCount()
-	qliphoth_max = round((player_count > 1 ? 4 : 3) + round(player_count*1.35) + GLOB.Sephirahordealspeed + GetFacilityUpgradeValue(UPGRADE_MELTDOWN_INCREASE)) // Some extra help on non solo rounds
+	qliphoth_max = round((player_count > 1 ? 4 : 3) + player_count + GLOB.Sephirahordealspeed + GetFacilityUpgradeValue(UPGRADE_MELTDOWN_INCREASE)) // Some extra help on non solo rounds
 	qliphoth_state += 1
 	for(var/datum/abnormality/A in all_abnormality_datums)
 		if(istype(A.current))
