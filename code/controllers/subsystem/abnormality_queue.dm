@@ -68,7 +68,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 /datum/controller/subsystem/abnormality_queue/proc/SpawnAbno()
 	// Earlier in the game, abnormalities will spawn faster and then slow down a bit
 	previous_abno_spawn = world.time
-	next_abno_spawn = world.time + next_abno_spawn_time + ((min(16, spawned_abnos) - 6) * 6) SECONDS
+	next_abno_spawn = world.time + next_abno_spawn_time + ((min(16, spawned_abnos) - round(rooms_start * 0.5)) * 8) SECONDS
 
 	if(!length(GLOB.abnormality_room_spawners))
 		return
