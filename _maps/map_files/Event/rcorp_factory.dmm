@@ -956,13 +956,6 @@
 /obj/structure/flora/ausbushes/grassybush,
 /turf/open/water/jungle,
 /area/rce/xcorp/rce_2_3)
-"pJ" = (
-/obj/structure/den/rce{
-	id = "fobnorth";
-	assault_type = 2
-	},
-/turf/open/indestructible/necropolis/air,
-/area/rce/xcorp/rce_1_3)
 "pN" = (
 /obj/structure/table/wood,
 /obj/item/food/canned/pcorp_burger,
@@ -1222,7 +1215,8 @@
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/rce/rcorp_base)
 "ve" = (
-/turf/open/indestructible/necropolis/air,
+/obj/structure/limitedresourcepoint/red,
+/turf/open/floor/grass,
 /area/rce/xcorp/rce_1_3)
 "vj" = (
 /obj/structure/den/rce/raider,
@@ -39221,7 +39215,7 @@ Wg
 Wg
 Iq
 Wg
-ve
+Wg
 Wg
 Wg
 Wg
@@ -39477,9 +39471,9 @@ Iq
 Jf
 Iq
 Wg
+Iq
 ve
-ve
-ve
+Wg
 Wg
 Wg
 GG
@@ -39734,10 +39728,10 @@ Iq
 Wg
 TC
 Wg
-ve
-ve
-ve
-ve
+Wg
+Wg
+Wg
+Wg
 Wg
 Wg
 Wg
@@ -39990,11 +39984,11 @@ Iq
 Wg
 Fe
 Wg
-ve
-ve
-pJ
-ve
-ve
+Wg
+Wg
+Iq
+Wg
+Wg
 Wg
 Wg
 Wg
@@ -40248,9 +40242,9 @@ Wg
 Wg
 Wg
 Wg
-ve
-ve
-ve
+Wg
+Wg
+Wg
 dL
 Iq
 Wg
@@ -40506,7 +40500,7 @@ Wg
 Wg
 Wg
 Wg
-ve
+Wg
 Wg
 Wg
 Wg
