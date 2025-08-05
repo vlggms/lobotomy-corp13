@@ -118,10 +118,7 @@ GLOBAL_LIST_INIT(robin_sergeants, list("Section A", "Section B", "Section C"))
 	l_pocket = /obj/item/commandprojector
 	r_pocket = /obj/item/flashlight/seclite
 	box = null
-	backpack = /obj/item/storage/backpack/rcorp
-	satchel = /obj/item/storage/backpack/rcorp
-	duffelbag = /obj/item/storage/backpack/rcorp
-
+	back = /obj/item/storage/backpack/rcorp
 
 
 /datum/job/robin_sergeant
@@ -187,9 +184,7 @@ GLOBAL_LIST_INIT(robin_sergeants, list("Section A", "Section B", "Section C"))
 	head = null
 	r_pocket = /obj/item/flashlight/seclite
 	box = null
-	backpack = /obj/item/storage/backpack/rcorp
-	satchel = /obj/item/storage/backpack/rcorp
-	duffelbag = /obj/item/storage/backpack/rcorp
+	back = /obj/item/storage/backpack/rcorp
 
 
 /datum/outfit/job/robin
@@ -206,9 +201,7 @@ GLOBAL_LIST_INIT(robin_sergeants, list("Section A", "Section B", "Section C"))
 	head = null
 	r_pocket = /obj/item/flashlight/seclite
 	box = null
-	backpack = /obj/item/storage/backpack/rcorp
-	satchel = /obj/item/storage/backpack/rcorp
-	duffelbag = /obj/item/storage/backpack/rcorp
+	back = /obj/item/storage/backpack/rcorp
 
 
 //It's easier as their own jobs than to make a system to slot them into fucking squads

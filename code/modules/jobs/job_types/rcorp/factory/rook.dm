@@ -74,9 +74,7 @@
 	belt = null
 	l_pocket = /obj/item/flashlight/seclite
 	box = null
-	backpack = /obj/item/storage/backpack/rcorp
-	satchel = /obj/item/storage/backpack/rcorp
-	duffelbag = /obj/item/storage/backpack/rcorp
+	back = /obj/item/storage/backpack/rcorp
 
 /datum/outfit/job/rook/captain
 	name = "Rook Squad Captain"
