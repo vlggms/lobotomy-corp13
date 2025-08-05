@@ -110,8 +110,6 @@
 	///Job abbreviation used when humans talk on radio. If null should not add anything to radio messages
 	var/job_abbreviation
 
-	///Forces you to have a specific backpack
-	var/ignore_pack
 
 /datum/job/New()
 	. = ..()
@@ -316,6 +314,9 @@
 	var/duffelbag = /obj/item/storage/backpack/duffelbag
 
 	var/pda_slot = ITEM_SLOT_BELT
+
+	///Forces you to have a specific backpack
+	var/ignore_pack
 
 /datum/outfit/job/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	if(!ignore_pack)
