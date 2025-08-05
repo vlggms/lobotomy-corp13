@@ -1083,7 +1083,7 @@
 "Ej" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/white{
-	dir = sssssssss
+	dir = 1
 	},
 /obj/item/hourglass,
 /turf/open/floor/plasteel/elevatorshaft,
@@ -1776,7 +1776,7 @@
 /obj/structure/window,
 /obj/structure/sign/button_counter/directional/north,
 /obj/effect/turf_decal/siding/white{
-	dir = sssssssss
+	dir = 1
 	},
 /obj/effect/turf_decal/siding/white{
 	dir = 1
