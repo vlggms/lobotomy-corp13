@@ -52,7 +52,7 @@
 	//Some Variables cannibalized from helper
 	var/charge_check_time = 1 SECONDS
 	var/teleport_cooldown
-	var/dash_num = 50	//Mostly a safeguard
+	var/dash_num = 100000	//Mostly a safeguard
 	var/list/been_hit = list()
 	var/can_act = TRUE
 	var/initial_charge_damage = 800
