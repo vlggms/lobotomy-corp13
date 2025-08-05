@@ -51,12 +51,12 @@
 	bcost = 2
 	item = /obj/item/ego_weapon/city/rabbit_blade
 
-/obj/structure/rcorp_factory/toolbelt
-	name = "Toolbelt factory"
+/obj/structure/rcorp_factory/pistol2
+	name = "Sidearm factory"
 	desc = "A machine used to craft items."
 	icon_state = "midfactory"
 	pcost = 2
-	item = /obj/item/storage/belt/utility/full
+	item = /obj/effect/landmark/rcorp/pistol2
 
 /obj/structure/rcorp_factory/firstaid2
 	name = "First Aid L2 Pouch factory"

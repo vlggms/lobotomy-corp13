@@ -37,6 +37,7 @@
 		/obj/item/ammo_casing/energy/laser/white,
 		)
 
+//Pistols
 /obj/item/gun/energy/e_gun/rabbitdash/small
 	name = "R-Corporation R-2020 'Little Iron'"
 	desc = "An energy pistol sometimes used by Rcorp. Fires slower, and deals slightly less damage. Only in red."
@@ -80,14 +81,51 @@
 /obj/item/gun/energy/e_gun/rabbitdash/small/tinypale
 	name = "R-Corporation X-29 'Mistake'"
 	desc = "An energy pistol sometimes used by Rcorp. Only in pale, and was an experimental pistol found in the desk drawer of an assistant manager. \
-			To test it's efficacy, The X-29's first round ever fired was into the head of it's creator. The executioner broke their wrist, \
-			and the Assistant Manager survived long enough to be fired."
+			To test it's efficacy, The X-29's first round ever fired was a failure, as the user broke their own wrist."
 	icon_state = "rabbittiny"
 	fire_delay = 7
 	recoil = 4
 	ammo_type = list(
 		/obj/item/ammo_casing/energy/laser/pale,
 		)
+
+//SMGs
+/obj/item/gun/energy/e_gun/rabbitdash/small/smg
+	name = "R-Corporation R-2540 'Hellspit'"
+	desc = "An energy SMG created by Rcorp. A micro Mark 1, and deals slightly less damage. Only in red. \
+		Was created when a need for fully automatic rifle came up among R-Corp staff."
+	icon_state = "rabbitsmall"
+	projectile_damage_multiplier = 0.8
+	weapon_weight = WEAPON_MEDIUM
+
+/obj/item/gun/energy/e_gun/rabbitdash/small/smg/Initialize()
+	. = ..()
+	AddComponent(/datum/component/automatic_fire, 0.16 SECONDS)
+
+
+/obj/item/gun/energy/e_gun/rabbitdash/small/smg/white
+	name = "R-Corporation R-2550 'Skid'"
+	desc = "An energy pistol sometimes used by Rcorp. Fires slower, and deals slightly less damage. Only in white."
+	ammo_type = list(
+		/obj/item/ammo_casing/energy/laser/white,
+		)
+
+/obj/item/gun/energy/e_gun/rabbitdash/small/smg/black
+	name = "R-Corporation R-2560 'Dreamland'"
+	desc = "An energy pistol sometimes used by Rcorp. Fires slower, and deals slightly less damage. Only in black."
+	ammo_type = list(
+		/obj/item/ammo_casing/energy/laser/black,
+		)
+
+/obj/item/gun/energy/e_gun/rabbitdash/small/smg/pale
+	name = "R-Corporation R-2950 'Icemilk Magic'"
+	desc = "An energy pistol sometimes used by Rcorp. Fires slower, and deals slightly less damage. Only in pale."
+	ammo_type = list(
+		/obj/item/ammo_casing/energy/laser/pale,
+		)
+
+
+
 
 /obj/item/gun/energy/e_gun/rabbitdash/shotgun
 	name = "R-Corporation R-2300 'Chungid'"
@@ -209,7 +247,7 @@
 
 /obj/item/ego_weapon/city/rabbit/pale
 	name = "R-1P R-Corp Blade"
-	desc = "A small blade used by R-corp. This one deals only black damage. \
+	desc = "A small blade used by R-corp. This one deals only pale damage. \
 				After the commercial and operational failure of the R-1B Rabbit blade, plans for this weapon were found in the designer's desk. \
 				Rather than toss the design, Ravens were sent to silence the designer. This weapon was put into production shortly after, \
 				in an attempt to both recoup costs, and create a breakthrough in pale damage technology. This weapon's technology was later used \
@@ -217,3 +255,12 @@
 	force = 35
 	icon_state = "rabbitknife_pale"
 	damtype = PALE_DAMAGE
+
+/obj/item/ego_weapon/city/rabbit/throwing
+	name = "R-1T R-Corp Blade"
+	desc = "A small blade used by R-corp. This one deals only red damage. \
+				Created quickly after the R-1R, this knife is rather good when thrown, but is a servicable melee weapon."
+	force = 25
+	throwforce = 80
+	icon_state = "rabbitthrowing"
+
