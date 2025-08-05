@@ -12,13 +12,15 @@
 				continue
 		. += H
 
-/// Returns amount of available agents that can work (Also Suppression Agents if suppressioncount = TRUE)
-/proc/AvailableAgentCount(suppressioncount = FALSE)
+/// Returns amount of available agents that can work
+/proc/AvailableAgentCount()
 	. = 0
-	for(var/mob/living/carbon/human/H in AllLivingAgents(suppressioncount))
+	for(var/mob/living/carbon/human/H in AllLivingAgents(FALSE))
 		if(!H.client)
 			continue
 		if(!H.mind)
+			continue
+		if(!is_station_level(H.z))
 			continue
 		. += 1
 
