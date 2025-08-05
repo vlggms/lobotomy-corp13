@@ -20,7 +20,6 @@
 /mob/living/simple_animal/hostile/clan/scout/greed/Move()
 	. = ..()
 	if(prob(20))
-		new /obj/effect/decal/cleanable/blood/gibs(loc)
 		playsound(src, 'sound/effects/footstep/slime1.ogg', 15, TRUE)
 
 // Greed Touched Defender
@@ -192,11 +191,6 @@
 	damage_coeff = list(BRUTE = 0.8, RED_DAMAGE = 0.9, WHITE_DAMAGE = 1.1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.5)
 	silk_results = list(/obj/item/stack/sheet/silk/azure_advanced = 1)
 	teleport_away = TRUE
-
-// Heartbeat sounds instead of beeping
-/mob/living/simple_animal/hostile/clan/bomber_spider/greed/RapidBeep()
-	playsound(src, 'sound/effects/heart_beat.ogg', 50, TRUE)
-	visible_message(span_warning("[src] pulses with an organic heartbeat!"))
 
 // Flesh explosion
 /mob/living/simple_animal/hostile/clan/bomber_spider/greed/Detonate()
