@@ -2,8 +2,8 @@
 /datum/job/command/sephirah
 	title = "Sephirah"
 	outfit = /datum/outfit/job/sephirah
-	total_positions = 3
-	spawn_positions = 3
+	total_positions = 0
+	spawn_positions = 0
 	display_order = JOB_DISPLAY_ORDER_SEPHIRAH
 	trusted_only = TRUE
 	access = list(ACCESS_NETWORK, ACCESS_COMMAND, ACCESS_MANAGER) // Network is the trusted chat gamer access
