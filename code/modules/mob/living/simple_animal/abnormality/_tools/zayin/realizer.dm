@@ -148,3 +148,15 @@
 	user.put_in_hands(new_item)
 	to_chat(user, span_nicegreen("You retrieve [new_item] from the [src]!"))
 	playsound(get_turf(src), 'sound/magic/clockwork/ratvar_attack.ogg', 50, TRUE)
+
+	// Award achievements for specific realizations
+	if(user.client)
+		// Yin Yang achievement
+		if(istype(new_item, /obj/item/clothing/suit/armor/ego_gear/realization/duality_yang) || istype(new_item, /obj/item/clothing/suit/armor/ego_gear/realization/duality_yin))
+			user.client.give_award(/datum/award/achievement/lc13/yin_yang, user)
+		// Carmen/Benjamin achievement from plushies
+		if(istype(new_item, /obj/item/toy/plush/carmen) || istype(new_item, /obj/item/toy/plush/benjamin))
+			user.client.give_award(/datum/award/achievement/lc13/carmen_benjamin, user)
+		// Ayin achievement from Paradise Lost
+		if(istype(new_item, /obj/item/toy/plush/ayin))
+			user.client.give_award(/datum/award/achievement/lc13/ayin_realized, user)

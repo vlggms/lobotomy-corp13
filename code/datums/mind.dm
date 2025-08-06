@@ -91,6 +91,19 @@
 	///Assoc list of key active addictions and value amount of cycles that it has been active.
 	var/list/active_addictions
 
+	/// Number of PE boxes refined by this player for achievement tracking
+	var/pe_boxes_refined = 0
+	/// Number of times silk has been obtained for achievement tracking
+	var/silk_harvested = 0
+	/// Number of weapons forged as workshop attendant
+	var/weapons_forged = 0
+	/// Number of abnormality kills as records officer
+	var/records_officer_kills = 0
+	/// Number of successful 680 mHz codes in a row
+	var/mhz_codes_streak = 0
+	/// Number of times FAN has been triggered on this character
+	var/fan_triggers = 0
+
 /datum/mind/New(_key)
 	key = _key
 	martial_art = default_martial_art

@@ -15,6 +15,10 @@
 		C.scramble_list = list()
 	// Reward!
 	SSlobotomy_corp.AddLobPoints(10, "[CONTROL_CORE_SUPPRESSION] completion reward")
+	// Award achievement for completing Malkuth's core suppression
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		if(H.stat != DEAD)
+			H.client?.give_award(/datum/award/achievement/lc13/suppress_malkuth, H)
 	return ..()
 
 // On lobotomy_corp meltdown event

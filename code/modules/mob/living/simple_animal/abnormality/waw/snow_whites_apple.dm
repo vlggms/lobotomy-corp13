@@ -490,6 +490,8 @@
 	if(prob(10))
 		//it would be uncouth for the vines to hinder one gifted by the princess.
 		to_chat(lonely, span_nicegreen("The branches open a path."))
+	// Award achievement for experiencing the special interaction
+	lonely.client?.give_award(/datum/award/achievement/lc13/swa_interaction, lonely)
 	if(lonelyhealth <= 30 && lonely.stat != DEAD)
 		lonely.adjustBruteLoss(-1)
 		if(prob(2))

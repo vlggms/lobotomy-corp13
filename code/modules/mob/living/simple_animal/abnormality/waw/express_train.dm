@@ -170,6 +170,10 @@
 				seg.forceMove(get_step(seg, seg.dir))
 		damageTiles()
 
+/mob/living/simple_animal/hostile/abnormality/express_train/proc/CheckTrainSurvival(mob/living/carbon/human/H)
+	if(H && H.stat != DEAD)
+		H.client?.give_award(/datum/award/achievement/lc13/train_survivor, H)
+
 /mob/living/simple_animal/hostile/abnormality/express_train/proc/damageTiles()
 	for(var/obj/effect/expresstrain/seg in segments)
 		// I wanted to use bound_width and bound_height. For some GOD FORSAKEN REASON, they don't work. Welcome to hell.
@@ -190,6 +194,10 @@
 						playsound(get_turf(seg), 'sound/abnormalities/expresstrain/express_whistle.ogg', 100, 0, 40)
 					seg.noise = 1
 				M.deal_damage(400, BLACK_DAMAGE)
+				// Award achievement for getting hit by hell train and surviving
+				if(ishuman(M) && M.stat != DEAD)
+					var/mob/living/carbon/human/H = M
+					addtimer(CALLBACK(src, PROC_REF(CheckTrainSurvival), H), 3 SECONDS)
 				var/atom/throw_target = locate(M)
 				throw_target = locate(M.x, M.y + pick(rand(-8, -5), rand(5, 8)), M.z)
 				if(!M.anchored)

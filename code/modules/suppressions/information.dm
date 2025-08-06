@@ -17,6 +17,10 @@
 /datum/suppression/information/End(silent = FALSE)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START)
 	SSlobotomy_corp.box_work_multiplier *= 1.25
+	// Award achievement for completing Yesod's core suppression
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		if(H.stat != DEAD)
+			H.client?.give_award(/datum/award/achievement/lc13/suppress_yesod, H)
 	return ..()
 
 // Increase gibberish value every time an ordeal occurs

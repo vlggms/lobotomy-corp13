@@ -235,6 +235,11 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/AttackingTarget(atom/attacked_target)
+	// Check for friendly kill achievement
+	if(friendly && ishuman(attacked_target))
+		var/mob/living/carbon/human/H = attacked_target
+		if(H.stat == DEAD && H.client)
+			H.client.give_award(/datum/award/achievement/lc13/friendly_qoh_kill, H)
 	if(!target)
 		GiveTarget(attacked_target)
 	return OpenFire(attacked_target)

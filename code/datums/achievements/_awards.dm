@@ -67,7 +67,7 @@
 
 /// Difficulty levels for achievements
 #define ACHIEVEMENT_EASY "Easy"
-#define ACHIEVEMENT_NORMAL "Normal"  
+#define ACHIEVEMENT_NORMAL "Normal"
 #define ACHIEVEMENT_HARD "Hard"
 #define ACHIEVEMENT_VERYHARD "Very Hard"
 #define ACHIEVEMENT_HARDEST "Hardest"
@@ -77,6 +77,9 @@
 	desc = "Achievement for epic people"
 	/// Difficulty of this achievement
 	var/difficulty = ACHIEVEMENT_NORMAL
+	/// Title to display in examine text - should make sense in "Their specialization is [title]!"
+	/// If not set, falls back to using the achievement name
+	var/title
 
 /datum/award/achievement/get_metadata_row()
 	. = ..()

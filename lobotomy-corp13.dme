@@ -451,6 +451,7 @@
 #include "code\datums\achievements\boss_achievements.dm"
 #include "code\datums\achievements\boss_scores.dm"
 #include "code\datums\achievements\LC13_achievements.dm"
+#include "code\datums\achievements\LC13_achievements_extended.dm"
 #include "code\datums\achievements\mafia_achievements.dm"
 #include "code\datums\achievements\misc_achievements.dm"
 #include "code\datums\achievements\misc_scores.dm"

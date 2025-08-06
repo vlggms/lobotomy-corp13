@@ -445,6 +445,10 @@
 	if(target.NAKED_NESTED)
 		var/obj/item/organ/naked_nest/C = target.NAKED_NESTED
 		C.SerpentsPoison(target, TRUE)
+		// Award achievement for curing Naked Nest infection with cure
+		if(ishuman(target))
+			var/mob/living/carbon/human/H = target
+			H.client?.give_award(/datum/award/achievement/lc13/naked_nest_cure_with, H)
 		C.Remove(target)
 
 #undef NAKED_NESTED

@@ -23,6 +23,10 @@
 		R.regeneration_amount += 3
 	for(var/obj/machinery/sleeper/S in GLOB.sleepers)
 		S.set_machine_stat(S.machine_stat & (~BROKEN))
+	// Award achievement for completing Netzach's core suppression
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		if(H.stat != DEAD)
+			H.client?.give_award(/datum/award/achievement/lc13/suppress_netzach, H)
 	return ..()
 
 // On lobotomy_corp meltdown event

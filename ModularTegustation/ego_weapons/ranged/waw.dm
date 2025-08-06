@@ -799,6 +799,12 @@
 		return
 	SpinAnimation(speed = 2, loops = 1, segments = 3, parallel = TRUE)//the abno version should always spin
 	B.damage *= 2
+
+	// Award achievement for using Fell Bullet's shotgun interaction (portal shooting)
+	if(B.firer && ishuman(B.firer))
+		var/mob/living/carbon/human/shooter = B.firer
+		shooter.client?.give_award(/datum/award/achievement/lc13/fell_bullet, shooter)
+
 	var/turf/real_target = get_link_target_turf()
 	for(var/obj/effect/portal/fellbullet/P in real_target)
 		P.SpinAnimation(speed = 5, loops = 1, segments = 3, parallel = TRUE)

@@ -26,6 +26,10 @@
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_FINISHED)
 	SSlobotomy_corp.melt_work_multiplier += 1
 	SSlobotomy_corp.manager_bullet_area = 1 // Bullets will activate in a 3x3 AOE
+	// Award achievement for completing Tiphereth's core suppression
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		if(H.stat != DEAD)
+			H.client?.give_award(/datum/award/achievement/lc13/suppress_tiphereth, H)
 	return ..()
 
 /datum/suppression/command/proc/OnQlipMeltdown(datum/source, ordeal = FALSE)

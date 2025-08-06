@@ -37,6 +37,10 @@
 	affected_mobs = null
 	for(var/datum/job/agent/J in SSjob.occupations)
 		J.normal_attribute_level += 5 // This allows agents to spawn with 100 in all stats
+	// Award achievement for completing Hod's core suppression
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		if(H.stat != DEAD)
+			H.client?.give_award(/datum/award/achievement/lc13/suppress_hod, H)
 	return ..()
 
 // When a new employee spawns in

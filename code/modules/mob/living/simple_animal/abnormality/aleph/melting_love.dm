@@ -229,6 +229,12 @@
 	if(work_type == ABNORMALITY_WORK_REPRESSION)
 		to_chat(gifted_human, span_userdanger("[src] didn't like that!"))
 		datum_reference.qliphoth_change(-1)
+		// Check if they survive the repression for achievement
+		addtimer(CALLBACK(src, PROC_REF(CheckSurvivalAchievement), user), 5 SECONDS)
+
+/mob/living/simple_animal/hostile/abnormality/melting_love/proc/CheckSurvivalAchievement(mob/living/carbon/human/user)
+	if(user && user.stat != DEAD && user.client)
+		user.client.give_award(/datum/award/achievement/lc13/melting_love_blessing_repress, user)
 
 /* Checking if bigslime is dead or not and apply a damage buff if yes */
 /mob/living/simple_animal/hostile/abnormality/melting_love/proc/SlimeDeath(datum/source, gibbed)

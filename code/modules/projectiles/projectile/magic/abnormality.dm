@@ -56,6 +56,16 @@
 	damage = 25
 	spread = 15
 
+/obj/projectile/hatred/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	if(ishuman(target) && ishuman(firer))
+		var/mob/living/carbon/human/H = target
+		if(istype(firer, /mob/living/simple_animal/hostile/abnormality/hatred_queen))
+			var/mob/living/simple_animal/hostile/abnormality/hatred_queen/QOH = firer
+			if(QOH.friendly && H.stat == DEAD && H.client)
+				// Award achievement for getting killed by friendly Queen of Hatred
+				H.client.give_award(/datum/award/achievement/lc13/friendly_qoh_kill, H)
+
 /obj/projectile/melting_blob
 	name = "slime projectile"
 	desc = "A glob of infectious slime. It's going for your heart."

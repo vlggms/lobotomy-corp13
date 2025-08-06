@@ -117,6 +117,11 @@
 		if(current_movement_num < 6)
 			sound_to_playing_players_on_level("sound/abnormalities/silentorchestra/movement[current_movement_num].ogg", movement_volume, zlevel = z)
 			if(current_movement_num == 5)
+				// Award achievement to all humans who heard the full performance
+				for(var/mob/living/carbon/human/listener in GLOB.player_list)
+					if(listener.z == z && listener.stat != DEAD && get_dist(listener, src) <= symphony_range)
+						listener.client?.give_award(/datum/award/achievement/lc13/orchestra_listener, listener)
+
 				for(var/mob/living/carbon/human/H in livinginrange(symphony_range, get_turf(src)))
 					if(H.sanity_lost || (H.sanityhealth < H.maxSanity * 0.5))
 						var/obj/item/bodypart/head/head = H.get_bodypart("head")

@@ -136,7 +136,30 @@
 
 /mob/living/simple_animal/hostile/abnormality/big_wolf/death(gibbed)
 	update_icon()
+
+	// Check for Red Hood nearby to award achievements
+	var/mob/living/simple_animal/hostile/abnormality/red_hood/nearby_red = locate() in view(7, src)
+	var/list/saved_humans = list()
+
+	// Check who's in the stomach before spewing
+	for(var/mob/living/carbon/human/H in contents)
+		if(H.client)
+			saved_humans += H
+
 	SpewStomach()
+
+	// Award achievements to those who were saved
+	for(var/mob/living/carbon/human/saved in saved_humans)
+		if(nearby_red)
+			// Award achievement for being saved by Red Hood
+			saved.client?.give_award(/datum/award/achievement/lc13/red_hood_saved, saved)
+
+		// Award achievement to nearby humans who helped kill the wolf
+		for(var/mob/living/carbon/human/potential_savior in view(5, src))
+			if(potential_savior != saved && potential_savior.stat != DEAD && potential_savior.client)
+				potential_savior.client?.give_award(/datum/award/achievement/lc13/wolf_savior, potential_savior)
+				break // Only award to one savior
+
 	density = FALSE
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)

@@ -44,6 +44,10 @@
 		QDEL_NULL(S)
 	affected_statuses = null
 	new /datum/welfare_reward_tracker() // Gives the reward to late-joiners after it ends
+	// Award achievement for completing Chesed's core suppression
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		if(H.stat != DEAD)
+			H.client?.give_award(/datum/award/achievement/lc13/suppress_chesed, H)
 	return ..()
 
 // When a new employee spawns in

@@ -144,6 +144,10 @@
 
 /obj/structure/holohoop/proc/ChaosDunk()
 	show_global_blurb(50, "Chaos Dunk")
+	// Award achievement to all players who witnessed the Chaos Dunk
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		if(H.stat != DEAD && H.client)
+			H.client.give_award(/datum/award/achievement/lc13/chaos_dunk, H)
 	Explode()
 	Cinematic(CINEMATIC_CHAOS_DUNK, world)
 

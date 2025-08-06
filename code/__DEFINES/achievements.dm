@@ -71,16 +71,21 @@
 #define MEDAL_RED_HOOD_SAVED "Red Hood Rescue"
 #define MEDAL_GOLDEN_APPLE_BREACH "Golden Mischief"
 #define MEDAL_ORCHESTRA_LISTENER "Orchestra Audience"
+#define MEDAL_HAMMER_ACTIVATE "Light Activated"
 #define MEDAL_NOTHING_SURVIVOR "Nothing Survivor"
+#define MEDAL_PUNISHING_BIRD_INNOCENT "Innocent Victim"
 #define MEDAL_ONE_SIN_CONFESSION "One Sin"
 #define MEDAL_HAMMER_KILL_WN "Hammer Justice"
 #define MEDAL_SNOW_QUEEN_RESCUE "Ice Breaker"
 #define MEDAL_SNOW_QUEEN_FROZEN "Honored Ice"
 #define MEDAL_MELTING_LOVE_SURVIVOR "Love Survivor"
+#define MEDAL_NAKED_NEST_CURE_WITHOUT "Natural Recovery"
+#define MEDAL_NAKED_NEST_CURE_WITH "Medical Treatment"
 
 // Death Achievements
 #define MEDAL_QUEEN_HATRED_DEATH "Friendly Fire"
 #define MEDAL_CUCKOO_DEATH "Cuckoo Clock"
+#define MEDAL_BLUBBERING_TOAD_DEATH "Toad Victim"
 
 // Combat Achievements
 #define MEDAL_RESANE_AGENTS "Mind Healer"
@@ -131,6 +136,15 @@
 // Stat Achievements
 #define MEDAL_VIRTUE_200_SINGLE "Virtuous"
 #define MEDAL_VIRTUE_200_ALL "Paragon"
+#define MEDAL_MELTING_LOVE_BLESSING_REPRESS "Tough Love"
+#define MEDAL_KILL_WN_PINK_MIDNIGHT "Twilight Slayer"
+#define MEDAL_MHZ_CODES "Radio Savant"
+#define MEDAL_FRIENDLY_QOH_KILL "Friendly Fire"
+#define MEDAL_BALD_ROUND "Bald is Awesome"
+#define MEDAL_CLERK_HIGH_EGO "Above My Pay Grade"
+#define MEDAL_CARMEN_BENJAMIN "Lost Companions"
+#define MEDAL_AYIN_REALIZED "Paradise Found"
+#define MEDAL_MAKE_METH "How"
 
 // Round Events
 #define MEDAL_BALD_NUKE "Bald Witness"
@@ -161,9 +175,9 @@
 #define MEDAL_CLERK_WEAPON "Armed Clerk"
 
 // Miscellaneous Achievements
-#define MEDAL_MAKE_METH "How?"
 #define MEDAL_FELL_BULLET "Fell Bullet"
 #define MEDAL_SWA_INTERACTION "SWA Special"
+#define MEDAL_BLUBBERING_TOAD_RELEASE "Toad Liberator"
 
 //Skill medal hub IDs
 #define MEDAL_LEGENDARY_MINER		"Legendary Miner"

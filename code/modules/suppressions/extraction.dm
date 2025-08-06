@@ -19,6 +19,10 @@
 	..()
 	SSlobotomy_corp.core_suppression_state = max(SSlobotomy_corp.core_suppression_state, 3)
 	SSticker.news_report = max(SSticker.news_report, CORE_SUPPRESSED_ARBITER_DEAD)
+	// Award achievement for completing Binah's core suppression
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		if(H.stat != DEAD)
+			H.client?.give_award(/datum/award/achievement/lc13/suppress_binah, H)
 
 /datum/suppression/extraction/proc/OnArbiterDeath(datum/source)
 	SIGNAL_HANDLER

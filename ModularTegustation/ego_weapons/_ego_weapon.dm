@@ -218,6 +218,17 @@
 			return FALSE
 	if(!SpecialEgoCheck(H))
 		return FALSE
+
+	// Check for clerk achievement - if clerk is using a weapon with requirements (non-ZAYIN/TETH)
+	if(H.mind && H.mind.assigned_role == "Clerk")
+		var/has_requirements = FALSE
+		for(var/atr in attribute_requirements)
+			if(attribute_requirements[atr] > 0)
+				has_requirements = TRUE
+				break
+		if(has_requirements && H.client)
+			H.client.give_award(/datum/award/achievement/lc13/clerk_high_ego, H)
+
 	return TRUE
 
 /obj/item/ego_weapon/proc/SpecialEgoCheck(mob/living/carbon/human/H)

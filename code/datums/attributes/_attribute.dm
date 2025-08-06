@@ -47,6 +47,21 @@ GLOBAL_LIST_INIT(attribute_types, list(
 	return round(level) + initial_stat_value
 
 /datum/attribute/proc/on_update(mob/living/carbon/user)
+	// Check for virtue achievements
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(get_modified_level() >= 200)
+			H.client?.give_award(/datum/award/achievement/lc13/virtue_200_single, H)
+
+			// Check if all virtues are 200+
+			var/all_200 = TRUE
+			for(var/attr_name in H.attributes)
+				var/datum/attribute/attr = H.attributes[attr_name]
+				if(attr.get_modified_level() < 200)
+					all_200 = FALSE
+					break
+			if(all_200)
+				H.client?.give_award(/datum/award/achievement/lc13/virtue_200_all, H)
 	return
 
 /datum/attribute/proc/adjust_level(mob/living/carbon/human/user, addition)

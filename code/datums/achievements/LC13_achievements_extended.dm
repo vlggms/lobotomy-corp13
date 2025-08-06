@@ -78,12 +78,26 @@
 	icon = "silent_orchestra"
 	difficulty = ACHIEVEMENT_NORMAL
 
+/datum/award/achievement/lc13/hammer_activate
+	name = "Light Activated"
+	desc = "Activate Hammer of Light."
+	database_id = MEDAL_HAMMER_ACTIVATE
+	icon = "hammer_light"
+	difficulty = ACHIEVEMENT_EASY
+
 /datum/award/achievement/lc13/nothing_survivor
 	name = "Nothing Survivor"
 	desc = "Survive a non-instinct/attachment work on Nothing There."
 	database_id = MEDAL_NOTHING_SURVIVOR
 	icon = "nothing_there"
 	difficulty = ACHIEVEMENT_HARD
+
+/datum/award/achievement/lc13/punishing_bird_innocent
+	name = "Innocent Victim"
+	desc = "Die to Punishing Bird without having enraged it beforehand."
+	database_id = MEDAL_PUNISHING_BIRD_INNOCENT
+	icon = "punishing_bird"
+	difficulty = ACHIEVEMENT_NORMAL
 
 /datum/award/achievement/lc13/one_sin_confession
 	name = "One Sin"
@@ -120,6 +134,20 @@
 	icon = "melting_love"
 	difficulty = ACHIEVEMENT_VERYHARD
 
+/datum/award/achievement/lc13/naked_nest_cure_without
+	name = "Natural Recovery"
+	desc = "Cure Naked Nest infection without a cure."
+	database_id = MEDAL_NAKED_NEST_CURE_WITHOUT
+	icon = "naked_nest"
+	difficulty = ACHIEVEMENT_HARD
+
+/datum/award/achievement/lc13/naked_nest_cure_with
+	name = "Medical Treatment"
+	desc = "Cure Naked Nest infection with a cure."
+	database_id = MEDAL_NAKED_NEST_CURE_WITH
+	icon = "naked_nest"
+	difficulty = ACHIEVEMENT_EASY
+
 //=================================
 // DEATH ACHIEVEMENTS
 //=================================
@@ -137,6 +165,13 @@
 	database_id = MEDAL_CUCKOO_DEATH
 	icon = "cuckoo_clock"
 	difficulty = ACHIEVEMENT_NORMAL
+
+/datum/award/achievement/lc13/blubbering_toad_death
+	name = "Toad Victim"
+	desc = "Die to Blubbering Toad."
+	database_id = MEDAL_BLUBBERING_TOAD_DEATH
+	icon = "blubbering_toad"
+	difficulty = ACHIEVEMENT_EASY
 
 //=================================
 // COMBAT ACHIEVEMENTS
@@ -212,8 +247,15 @@
 	icon = "fan"
 	difficulty = ACHIEVEMENT_NORMAL
 
+/datum/award/achievement/lc13/damage_pbird
+	name = "Bird Harmer"
+	desc = "Damage Punishing Bird."
+	database_id = MEDAL_DAMAGE_PBIRD
+	icon = "punishing_bird"
+	difficulty = ACHIEVEMENT_EASY
+
 /datum/award/achievement/lc13/kill_pbird
-	name = "Bird Killer"
+	name = "Punished Bird"
 	desc = "Kill Punishing Bird."
 	database_id = MEDAL_KILL_PBIRD
 	icon = "punishing_bird"
@@ -411,6 +453,69 @@
 	icon = "paragon"
 	difficulty = ACHIEVEMENT_HARD
 
+/datum/award/achievement/lc13/melting_love_blessing_repress
+	name = "Tough Love"
+	desc = "Repress Melting Love whilst having her blessing - and survive."
+	database_id = MEDAL_MELTING_LOVE_BLESSING_REPRESS
+	icon = "melting_love_tough"
+	difficulty = ACHIEVEMENT_HARD
+
+/datum/award/achievement/lc13/kill_wn_pink_midnight
+	name = "Twilight Slayer"
+	desc = "Kill WhiteNight during a pink midnight."
+	database_id = MEDAL_KILL_WN_PINK_MIDNIGHT
+	icon = "twilight_slayer"
+	difficulty = ACHIEVEMENT_HARD
+
+/datum/award/achievement/lc13/mhz_codes
+	name = "Radio Savant"
+	desc = "Successfully hear and type 680 mHz codes 5 times in a row."
+	database_id = MEDAL_MHZ_CODES
+	icon = "radio_savant"
+	difficulty = ACHIEVEMENT_HARD
+
+/datum/award/achievement/lc13/friendly_qoh_kill
+	name = "Friendly Fire"
+	desc = "Get killed by friendly breach Queen of Hatred."
+	database_id = MEDAL_FRIENDLY_QOH_KILL
+	icon = "friendly_fire"
+	difficulty = ACHIEVEMENT_HARD
+
+/datum/award/achievement/lc13/bald_round
+	name = "Bald is Awesome!"
+	desc = "Be in a round where Bald balds everyone in the facility."
+	database_id = MEDAL_BALD_ROUND
+	icon = "bald_awesome"
+	difficulty = ACHIEVEMENT_NORMAL
+
+/datum/award/achievement/lc13/clerk_high_ego
+	name = "Above My Pay Grade"
+	desc = "As a clerk role, use a weapon that isn't ZAYIN or TETH."
+	database_id = MEDAL_CLERK_HIGH_EGO
+	icon = "clerk_high_ego"
+	difficulty = ACHIEVEMENT_NORMAL
+
+/datum/award/achievement/lc13/carmen_benjamin
+	name = "Lost Companions"
+	desc = "Realize Carmen/Benjamin from their respective plushies."
+	database_id = MEDAL_CARMEN_BENJAMIN
+	icon = "lost_companions"
+	difficulty = ACHIEVEMENT_EASY
+
+/datum/award/achievement/lc13/ayin_realized
+	name = "Paradise Found"
+	desc = "Realize Ayin from Paradise Lost's weapon."
+	database_id = MEDAL_AYIN_REALIZED
+	icon = "paradise_found"
+	difficulty = ACHIEVEMENT_EASY
+
+/datum/award/achievement/lc13/make_meth
+	name = "How?"
+	desc = "Make meth."
+	database_id = MEDAL_MAKE_METH
+	icon = "how_meth"
+	difficulty = ACHIEVEMENT_HARDEST
+
 //=================================
 // ROUND EVENTS
 //=================================
@@ -581,3 +686,10 @@
 	database_id = MEDAL_SWA_INTERACTION
 	icon = "swa"
 	difficulty = ACHIEVEMENT_NORMAL
+
+/datum/award/achievement/lc13/blubbering_toad_release
+	name = "Toad Liberator"
+	desc = "Let Blubbering Toad out."
+	database_id = MEDAL_BLUBBERING_TOAD_RELEASE
+	icon = "blubbering_toad"
+	difficulty = ACHIEVEMENT_EASY
