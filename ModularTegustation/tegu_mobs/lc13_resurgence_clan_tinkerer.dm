@@ -1,3 +1,9 @@
+//////////////
+// TINKERER
+//////////////
+// Commander unit that controls other clan units via RTS-style interface
+// Can build factories and barricades, produce units, and issue orders
+// Has viewing mode for scouting and charge system for abilities
 /mob/living/simple_animal/hostile/clan/tinkerer
 	name = "Tinkerer"
 	desc = "A mechanical engineer with multiple manipulator arms... It appears to have 'Resurgence Clan' etched on their back..."
@@ -32,7 +38,7 @@
 	melee_damage_lower = 0
 	melee_damage_upper = 0
 
-	// Tinkerer specific vars
+	// Command and control variables
 	var/viewing_mode = FALSE
 	var/list/selected_units = list()
 	var/max_selected_units = 5
@@ -44,7 +50,7 @@
 	var/viewing_alpha = 0
 	var/viewing_speed_modifier = 0.3
 	var/hard_lock_mode = FALSE // Toggle between passive and hard lock on for attack orders
-	// List of object types that count as construction points
+	// Construction point types for factory placement
 	var/list/construction_point_types = list(
 		/obj/structure/table,
 		/obj/structure/rack,
@@ -52,12 +58,12 @@
 		/obj/machinery/vending,
 		/obj/structure/closet
 	)
-	// Barricade building
+	// Barricade construction variables
 	var/turf/barricade_start_point = null
 	var/barricade_cost = 3
-	// Box selection
+	// Unit selection variables
 	var/turf/selection_start_point = null
-	// Factory building
+	// Factory construction variables
 	var/factory_blueprint_cost = 10
 
 /mob/living/simple_animal/hostile/clan/tinkerer/Initialize()
@@ -404,7 +410,7 @@
 	best_factory.ProduceUnit(unit_type)
 	return TRUE
 
-// Override to prevent attacking
+// Tinkerer cannot attack directly
 /mob/living/simple_animal/hostile/clan/tinkerer/CanAttack(atom/the_target)
 	return FALSE
 
@@ -419,7 +425,11 @@
 		unit.commander_died()
 	. = ..()
 
-// Factory structure
+//////////////
+// FACTORY STRUCTURE
+//////////////
+// Production facility that creates clan units
+// Each factory has limited capacity based on unit costs
 /obj/structure/clan_factory
 	name = "Resurgence Clan Factory"
 	desc = "A compact automated production facility."
@@ -538,7 +548,10 @@
 	playsound(src, 'sound/machines/ping.ogg', 50, TRUE)
 	visible_message(span_notice("[src] completes production of [unit]!"))
 
-// Factory blueprint structure
+//////////////
+// FACTORY BLUEPRINT
+//////////////
+// Holographic blueprint that engineers can build into real factory
 /obj/structure/clan_factory/blueprint
 	name = "factory blueprint"
 	desc = "A holographic blueprint for a factory. Engineers can construct the actual factory here."
@@ -568,7 +581,10 @@
 	. = ..()
 	. += span_notice("An engineer can build this into a real factory.")
 
-// Extensions for clan mobs to support commander orders
+//////////////
+// COMMANDER SYSTEM EXTENSIONS
+//////////////
+// Extensions to base clan mobs for commander control
 /mob/living/simple_animal/hostile/clan
 	var/mob/living/simple_animal/hostile/clan/tinkerer/commander
 	var/obj/structure/clan_factory/factory
@@ -693,7 +709,7 @@
 	stat_attack = initial(stat_attack)
 	LoseTarget()
 
-// Override Bump to handle doors
+// Door handling for ordered units
 /mob/living/simple_animal/hostile/clan/Bump(atom/A)
 	// Handle doors if we have an order
 	if(order_target && door_bump_cooldown < world.time)
@@ -710,7 +726,7 @@
 				return
 	return ..()
 
-// Override Move to ensure we move towards our order target
+// Movement order pathfinding
 /mob/living/simple_animal/hostile/clan/Move(atom/newloc, dir, step_x, step_y)
 	. = ..()
 	// If we have a movement order and we're stuck, try a different path
@@ -734,19 +750,19 @@
 				var/new_dir = pick(possible_dirs)
 				return Move(get_step(src, new_dir), new_dir)
 
-// Override target listing for hard lock units
+// Hard lock targeting override
 /mob/living/simple_animal/hostile/clan/ListTargets()
 	if(hard_lock && hard_lock_target && !QDELETED(hard_lock_target))
 		return list(hard_lock_target)
 	return ..()
 
-// Override to prevent switching targets when hard locked
+// Target persistence for hard lock
 /mob/living/simple_animal/hostile/clan/PickTarget(list/Targets)
 	if(hard_lock && hard_lock_target && (hard_lock_target in Targets))
 		return hard_lock_target
 	return ..()
 
-// Override to only allow attacking specific faction targets
+// Faction attack target filtering
 /mob/living/simple_animal/hostile/clan/CanAttack(atom/the_target)
 	// If we have a faction attack target, only allow attacking that specific target
 	if(faction_attack_target && isliving(the_target))
@@ -755,7 +771,9 @@
 			return FALSE
 	return ..()
 
-// Visual indicator for selected units
+//////////////
+// VISUAL EFFECTS
+//////////////
 /obj/effect/overlay/selected_indicator
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shield-old"
@@ -764,14 +782,19 @@
 	color = "#00FF00"
 	alpha = 100
 
-// Movement speed modifiers
+//////////////
+// SPEED MODIFIERS
+//////////////
 /datum/movespeed_modifier/tinkerer_viewing
 	multiplicative_slowdown = 0.3
 
 /datum/movespeed_modifier/overclock
 	multiplicative_slowdown = -0.5
 
-// Tinkerer abilities
+//////////////
+// TINKERER ABILITIES
+//////////////
+// All ability procs for the tinkerer commander unit
 /obj/effect/proc_holder/ability/tinkerer
 	name = "Tinkerer Ability"
 	desc = "You shouldn't see this"
@@ -1147,7 +1170,10 @@
 		return
 	linked_tinkerer.BuildFactoryBlueprint()
 
-// Clan barricade structures
+//////////////
+// BARRICADE STRUCTURES
+//////////////
+// Defensive structures that block enemies but allow clan units through
 /obj/structure/barricade/clan
 	name = "clan barricade"
 	desc = "A sturdy mechanical barricade constructed by the Resurgence Clan."
@@ -1187,3 +1213,221 @@
 
 /obj/structure/barricade/clan/blueprint/attackby(obj/item/I, mob/user, params)
 	return
+
+//////////////
+// ENGINEER
+//////////////
+// Support unit that builds barricades and factories from blueprints
+// Repairs damaged structures and has slow but steady combat capability
+// Essential for establishing defensive positions
+/mob/living/simple_animal/hostile/clan/engineer
+	name = "Clan Engineer"
+	desc = "A construction-specialized machine with building tools... It appears to have 'Resurgence Clan' etched on their back..."
+	icon = 'ModularTegustation/Teguicons/resurgence_32x48.dmi'
+	icon_state = "clan_citzen_1"
+	icon_living = "clan_citzen_1"
+	icon_dead = "clan_citzen_dead"
+	health = 400
+	maxHealth = 400
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2)
+	attack_sound = 'sound/items/welder.ogg'
+	silk_results = list(/obj/item/stack/sheet/silk/azure_simple = 1)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 2)
+	melee_damage_lower = 5
+	melee_damage_upper = 10
+	robust_searching = TRUE
+	stat_attack = CONSCIOUS
+	vision_range = 8
+	aggro_vision_range = 8
+	move_to_delay = 3.5
+	charge = 0
+	max_charge = 5
+	clan_charge_cooldown = 4 SECONDS
+	teleport_away = TRUE
+	search_objects = 3
+	wanted_objects = list(/obj/structure/barricade/clan/blueprint, /obj/structure/clan_factory/blueprint)
+
+	// Building and repair variables
+	var/can_build_factory = TRUE
+	var/building = FALSE
+	var/build_time = 5 SECONDS
+	var/barricade_build_time = 2 SECONDS
+
+/mob/living/simple_animal/hostile/clan/engineer/examine(mob/user)
+	. = ..()
+	if(commander)
+		. += span_notice("Controlled by [commander].")
+	if(can_build_factory)
+		. += span_notice("Ready to construct a factory at a resource point.")
+
+/mob/living/simple_animal/hostile/clan/engineer/AttackingTarget(atom/attacked_target)
+	if(!attacked_target)
+		attacked_target = target
+
+	// Check if targeting a resource point to build factory
+	if(istype(attacked_target, /obj/structure/resource_point) && can_build_factory && commander)
+		StartFactoryConstruction(attacked_target)
+		return
+	
+	// Check if targeting a construction point object
+	if(can_build_factory && commander && isobj(attacked_target))
+		var/obj/O = attacked_target
+		// Check if our commander (who must be a tinkerer) recognizes this as a construction point
+		if(istype(commander, /mob/living/simple_animal/hostile/clan/tinkerer))
+			var/mob/living/simple_animal/hostile/clan/tinkerer/T = commander
+			if(T.IsConstructionPoint(O))
+				StartFactoryConstructionOnObject(O)
+				return
+	
+	// Check if targeting a barricade blueprint
+	if(istype(attacked_target, /obj/structure/barricade/clan/blueprint) && !building)
+		BuildBarricade(attacked_target)
+		return
+	
+	// Check if targeting a factory blueprint
+	if(istype(attacked_target, /obj/structure/clan_factory/blueprint) && !building && commander)
+		BuildFactoryFromBlueprint(attacked_target)
+		return
+
+	return ..()
+
+// Resource point factory construction
+/mob/living/simple_animal/hostile/clan/engineer/proc/StartFactoryConstruction(obj/structure/resource_point/R)
+	if(!R || !can_build_factory || building || !commander)
+		return
+
+	// Check if there's already a factory here
+	for(var/obj/structure/clan_factory/F in R.loc)
+		to_chat(commander, span_warning("There is already a factory at this location!"))
+		return
+
+	building = TRUE
+	can_build_factory = FALSE
+	visible_message(span_notice("[src] begins constructing a factory..."))
+	playsound(src, 'sound/items/welder2.ogg', 50, TRUE)
+
+	if(do_after(src, build_time, target = R))
+		var/obj/structure/clan_factory/F = new(R.loc)
+		F.owner = commander
+		commander.owned_factories += F
+		visible_message(span_notice("[src] completes the factory construction!"))
+		playsound(src, 'sound/machines/ping.ogg', 50, TRUE)
+	else
+		visible_message(span_warning("[src] fails to complete the construction."))
+		can_build_factory = TRUE
+
+	building = FALSE
+
+/mob/living/simple_animal/hostile/clan/engineer/proc/StartFactoryConstructionOnObject(obj/O)
+	if(!O || !can_build_factory || building || !commander)
+		return
+
+	var/turf/T = get_turf(O)
+	if(!T)
+		return
+
+	// Check if there's already a factory here
+	for(var/obj/structure/clan_factory/F in T)
+		to_chat(commander, span_warning("There is already a factory at this location!"))
+		return
+
+	building = TRUE
+	can_build_factory = FALSE
+	visible_message(span_notice("[src] begins constructing a factory on [O]..."))
+	playsound(src, 'sound/items/welder2.ogg', 50, TRUE)
+
+	if(do_after(src, build_time, target = O))
+		var/obj/structure/clan_factory/F = new(T)
+		F.owner = commander
+		commander.owned_factories += F
+		visible_message(span_notice("[src] completes the factory construction on [O]!"))
+		playsound(src, 'sound/machines/ping.ogg', 50, TRUE)
+		// Delete the construction point object
+		qdel(O)
+	else
+		visible_message(span_warning("[src] fails to complete the construction."))
+		can_build_factory = TRUE
+
+	building = FALSE
+
+// Construction system - builds blueprints into structures
+/mob/living/simple_animal/hostile/clan/engineer/proc/BuildBarricade(obj/structure/barricade/clan/blueprint/B)
+	if(!B || building || B.loc == null)
+		return
+	
+	building = TRUE
+	visible_message(span_notice("[src] begins constructing a barricade..."))
+	playsound(src, 'sound/items/welder.ogg', 50, TRUE)
+	
+	if(do_after(src, barricade_build_time, target = B))
+		if(!QDELETED(B) && B.loc)
+			new /obj/structure/barricade/clan(B.loc)
+			qdel(B)
+			visible_message(span_notice("[src] completes the barricade construction!"))
+			playsound(src, 'sound/machines/click.ogg', 50, TRUE)
+	else
+		visible_message(span_warning("[src] fails to complete the barricade construction."))
+	
+	building = FALSE
+
+// Factory construction from blueprint
+/mob/living/simple_animal/hostile/clan/engineer/proc/BuildFactoryFromBlueprint(obj/structure/clan_factory/blueprint/B)
+	if(!B || building || B.loc == null || !commander)
+		return
+	
+	// Check if this engineer can build factories
+	if(!can_build_factory)
+		visible_message(span_warning("[src] has already built a factory and cannot build another!"))
+		return
+	
+	building = TRUE
+	can_build_factory = FALSE
+	visible_message(span_notice("[src] begins constructing a factory from the blueprint..."))
+	playsound(src, 'sound/items/welder2.ogg', 50, TRUE)
+	
+	if(do_after(src, B.build_time, target = B))
+		if(!QDELETED(B) && B.loc)
+			var/obj/structure/clan_factory/F = new(B.loc)
+			F.owner = commander
+			if(istype(commander, /mob/living/simple_animal/hostile/clan/tinkerer))
+				var/mob/living/simple_animal/hostile/clan/tinkerer/T = commander
+				T.owned_factories += F
+			qdel(B)
+			visible_message(span_notice("[src] completes the factory construction!"))
+			playsound(src, 'sound/machines/ping.ogg', 50, TRUE)
+	else
+		visible_message(span_warning("[src] fails to complete the factory construction."))
+		can_build_factory = TRUE
+	
+	building = FALSE
+
+// Override to handle attack orders on construction points
+/mob/living/simple_animal/hostile/clan/engineer/ReceiveAttackOrder(atom/target, is_hard_lock = FALSE)
+	// Check if we're ordered to attack a construction point
+	if(can_build_factory && commander && isobj(target))
+		var/obj/O = target
+		// Check if our commander recognizes this as a construction point
+		if(istype(commander, /mob/living/simple_animal/hostile/clan/tinkerer))
+			var/mob/living/simple_animal/hostile/clan/tinkerer/T = commander
+			if(T.IsConstructionPoint(O))
+				// Add it to our wanted objects temporarily
+				if(!wanted_objects)
+					wanted_objects = list()
+				wanted_objects += O.type
+				addtimer(CALLBACK(src, PROC_REF(RemoveWantedObject), O.type), 30 SECONDS)
+				// Enable object searching
+				search_objects = 3
+	
+	// Call parent to handle the rest
+	return ..()
+
+// Resource point structure
+/obj/structure/resource_point
+	name = "Resource Point"
+	desc = "A strategic location suitable for construction."
+	icon = 'icons/obj/structures.dmi'
+	icon_state = "x4"
+	density = FALSE
+	anchored = TRUE
+	resistance_flags = INDESTRUCTIBLE
+	alpha = 128

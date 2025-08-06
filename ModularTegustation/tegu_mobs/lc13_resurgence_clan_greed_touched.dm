@@ -1,8 +1,15 @@
-// Greed Touched Clan Units - Corrupted by flesh and greed
+//////////////
+// GREED TOUCHED CLAN UNITS
+//////////////
+// Corrupted variants of standard clan units
 // All units have been twisted by an unknown corruption, mixing their mechanical forms with pulsating flesh
-// MELEE UNITS FROM lc13_resurgence_clan_mobs.dm
+// Stats are generally improved but units leave corruption behind
 
-// Greed Touched Scout
+//////////////
+// GREED TOUCHED MELEE UNITS
+//////////////
+
+// Scout variant - faster with flesh appendages
 /mob/living/simple_animal/hostile/clan/scout/greed
 	name = "greed touched scout"
 	desc = "Once a swift reconnaissance unit, now its legs have been replaced with grotesque flesh appendages that pulse with each movement. Veins of corruption spread across its sensors."
@@ -13,16 +20,15 @@
 	health = 330 // Slightly more health
 	maxHealth = 330
 	teleport_away = TRUE
-	attack_sound = 'sound/effects/wounds/crackandbleed.ogg'
 	footstep_type = FOOTSTEP_MOB_SLIME
 
-// Leave blood trail when moving
+// Blood trail effect
 /mob/living/simple_animal/hostile/clan/scout/greed/Move()
 	. = ..()
 	if(prob(20))
 		playsound(src, 'sound/effects/footstep/slime1.ogg', 15, TRUE)
 
-// Greed Touched Defender
+// Defender variant - bone-like protrusions form shield
 /mob/living/simple_animal/hostile/clan/defender/greed
 	name = "greed touched defender"
 	desc = "Its protective plating has been consumed by flesh growths. Bone-like protrusions form a grotesque shield, while its joints leak a viscous fluid."
@@ -35,7 +41,7 @@
 	teleport_away = TRUE
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 
-// When locking, create bone spikes
+// Bone spike effect on lock
 /mob/living/simple_animal/hostile/clan/defender/greed/Lock()
 	. = ..()
 	playsound(src, 'sound/effects/wounds/crack1.ogg', 50, TRUE)
@@ -43,7 +49,7 @@
 		if(prob(30))
 			new /obj/effect/temp_visual/cult/sparks(T)
 
-// Greed Touched Drone
+// Drone variant - corrupted healing systems
 /mob/living/simple_animal/hostile/clan/drone/greed
 	name = "greed touched drone"
 	desc = "The healing systems have been corrupted, now pulsing with unholy energy. Flesh tendrils extend from its frame, writhing as it seeks to 'heal' others with its corruption."
@@ -55,16 +61,14 @@
 	maxHealth = 440
 	teleport_away = TRUE
 
-// Corrupted healing effects
+// Corruption particles on heal
 /mob/living/simple_animal/hostile/clan/drone/greed/on_beam_tick(mob/living/target)
 	. = ..()
-	if(prob(20))
+	if(prob(5))
 		new /obj/effect/temp_visual/cult/sparks(get_turf(target))
-		playsound(target, 'sound/effects/blobattack.ogg', 15, TRUE)
+		playsound(src, 'sound/abnormalities/nothingthere/disguise.ogg', 5, TRUE)
 
-// DEMOLISHER FROM lc13_resurgence_clan_rce.dm
-
-// Greed Touched Demolisher
+// Demolisher variant - organic battering rams
 /mob/living/simple_animal/hostile/clan/demolisher/greed
 	name = "greed touched demolisher"
 	desc = "A siege unit consumed by greed. Flesh has fused with its demolition equipment, creating organic battering rams. Each strike leaves behind traces of corruption."
@@ -76,16 +80,18 @@
 	maxHealth = 1650
 	teleport_away = TRUE
 
-// Organic demolition sounds and corruption spreading
+// Spreads corruption on demolish
 /mob/living/simple_animal/hostile/clan/demolisher/greed/demolish(atom/fool)
 	. = ..()
 	playsound(fool, 'sound/effects/splat.ogg', 75, TRUE)
 	if(prob(25))
 		new /obj/effect/decal/cleanable/blood/splatter(get_turf(fool))
 
-// ASSASSIN FROM lc13_resurgence_clan_assassin.dm
+//////////////
+// GREED TOUCHED SPECIAL UNITS
+//////////////
 
-// Greed Touched Assassin
+// Assassin variant - flesh tendrils for impossible movement
 /mob/living/simple_animal/hostile/clan/assassin/greed
 	name = "greed touched assassin"
 	desc = "Stealth systems corrupted by flesh make it even more terrifying. Tendrils of meat allow it to move in impossible ways, while its blade drips with viscous corruption."
@@ -99,21 +105,23 @@
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	backstab_damage = 175
 
-// Flesh tendrils instead of smoke when stealthing
+// Flesh effects on stealth
 /mob/living/simple_animal/hostile/clan/assassin/greed/EnterStealth()
 	. = ..()
-	playsound(src, 'sound/effects/blobattack.ogg', 30, TRUE)
+	playsound(src, 'sound/abnormalities/nothingthere/disguise.ogg', 40, TRUE)
 	new /obj/effect/temp_visual/cult/sparks(get_turf(src))
 
-// Dripping corruption when backstabbing
+// Corruption on backstab
 /mob/living/simple_animal/hostile/clan/assassin/greed/PerformBackstab(mob/living/L)
 	. = ..()
 	new /obj/effect/decal/cleanable/blood/drip(get_turf(L))
 	L.visible_message(span_danger("Viscous fluid drips from [L]'s wounds!"))
 
-// RANGED UNITS FROM lc13_resurgence_clan_ranged.dm
+//////////////
+// GREED TOUCHED RANGED UNITS
+//////////////
 
-// Greed Touched Sniper
+// Sniper variant - grotesque flesh eye for targeting
 /mob/living/simple_animal/hostile/clan/ranged/sniper/greed
 	name = "greed touched sniper"
 	desc = "Its precision optics have been replaced by a grotesque eye of flesh. The weapon barrel is wrapped in pulsating meat that guides each shot with unnatural accuracy."
@@ -126,13 +134,13 @@
 	teleport_away = TRUE
 	projectilesound = 'sound/weapons/lasercannonfire.ogg'
 
-// Flesh eye pulsates when aiming
+// Pulsating eye effect
 /mob/living/simple_animal/hostile/clan/ranged/sniper/greed/PrepareToFire(atom/A)
 	. = ..()
 	playsound(src, 'sound/abnormalities/nothingthere/disguise.ogg', 40, TRUE)
 	visible_message(span_warning("[src]'s flesh eye pulsates grotesquely as it locks onto [A]!"))
 
-// Greed Touched Gunner
+// Gunner variant - multiple flesh weapon barrels
 /mob/living/simple_animal/hostile/clan/ranged/gunner/greed
 	name = "greed touched gunner"
 	desc = "Multiple flesh growths have sprouted additional weapon barrels. Each fires independently, creating a horrifying barrage of corrupted projectiles."
@@ -146,7 +154,7 @@
 	projectilesound = 'sound/weapons/taser2.ogg'
 	projectiletype = /obj/projectile/clan_bullet/greed_gunner
 
-// Greed corrupted projectile
+// Gunner corrupted projectile
 /obj/projectile/clan_bullet/greed_gunner
 	name = "corrupted bolt"
 	icon_state = "toxin"
@@ -154,7 +162,7 @@
 	damage_type = RED_DAMAGE
 	color = "#7CFC00"
 
-// Greed Touched Rapid Drone
+// Rapid variant - writhing mass of organic barrels
 /mob/living/simple_animal/hostile/clan/ranged/rapid/greed
 	name = "greed touched rapid drone"
 	desc = "Flesh tendrils have merged with its weapon systems, creating a writhing mass of organic barrels that spray corrupted energy in all directions."
@@ -168,7 +176,7 @@
 	projectilesound = 'sound/weapons/pulse3.ogg'
 	projectiletype = /obj/projectile/clan_bullet/greed_rapid
 
-// Flesh tendrils writhe when firing
+// Writhing effect on fire
 /mob/living/simple_animal/hostile/clan/ranged/rapid/greed/OpenFire(atom/A)
 	. = ..()
 	if(prob(30))
@@ -180,7 +188,7 @@
 	damage = 5
 	damage_type = RED_DAMAGE
 
-// Greed Touched Bomber Spider
+// Bomber Spider variant - organic explosive core
 /mob/living/simple_animal/hostile/clan/bomber_spider/greed
 	name = "greed touched bomber spider"
 	desc = "Its explosive core has been infused with organic matter. The countdown is accompanied by the sound of a beating heart, growing faster until detonation."
@@ -192,7 +200,7 @@
 	silk_results = list(/obj/item/stack/sheet/silk/azure_advanced = 1)
 	teleport_away = TRUE
 
-// Flesh explosion
+// Gibs on explosion
 /mob/living/simple_animal/hostile/clan/bomber_spider/greed/Detonate()
 	. = ..()
 	for(var/turf/T in range(2, src))
@@ -200,7 +208,7 @@
 			new /obj/effect/decal/cleanable/blood/gibs(T)
 
 
-// Greed Touched Warper
+// Warper variant - corrupted space-warping
 /mob/living/simple_animal/hostile/clan/ranged/warper/greed
 	name = "greed touched warper"
 	desc = "Space-warping technology has been corrupted by flesh. Its teleportation circles now drip with viscous fluids, and those transported report feeling... changed."
@@ -212,7 +220,7 @@
 	maxHealth = 550
 	teleport_away = TRUE
 
-// Corrupted teleportation effects with chanting
+// Corrupted warper special attack with chanting
 /mob/living/simple_animal/hostile/clan/ranged/warper/greed/SpecialAttack(atom/target)
 	if(charge < special_attack_cost || world.time < special_attack_cooldown || casting || !isliving(target))
 		return
@@ -273,12 +281,12 @@
 		area_markers += W
 
 	visible_message(span_userdanger("[src] begins channeling a mass teleportation!"))
-	playsound(src, 'sound/magic/charge.ogg', 100, TRUE)
+	playsound(src, 'sound/abnormalities/nothingthere/disguise.ogg', 75, TRUE)
 
 	// Channel for 10 seconds
 	addtimer(CALLBACK(src, PROC_REF(CompleteTeleport), center), 10 SECONDS)
 
-// Corrupted oath chanting
+// Chanting procedure
 /mob/living/simple_animal/hostile/clan/ranged/warper/greed/proc/ChantCorruptedOath()
 	var/list/corrupted_chant = list(
 		"Flesh of my flesh, hear my call...",
@@ -303,7 +311,7 @@
 		playsound(src, chosen_sound, 50, TRUE)
 		sleep(20) // 2 seconds between each line
 
-// Victims feel corrupted after teleport
+// Disgust effect on teleport
 /mob/living/simple_animal/hostile/clan/ranged/warper/greed/TeleportMob(mob/living/L, turf/destination)
 	. = ..()
 	if(ishuman(L))
@@ -311,7 +319,7 @@
 		H.adjust_disgust(20)
 		to_chat(H, span_warning("You feel... different after that teleportation."))
 
-// Greed Touched Harpooner
+// Harpooner variant - organic tentacle launcher
 /mob/living/simple_animal/hostile/clan/ranged/harpooner/greed
 	name = "greed touched harpooner"
 	desc = "Its harpoon launcher has become a grotesque orifice. The chains are now organic tendrils that burrow into victims, dragging them to their doom."
@@ -338,7 +346,7 @@
 
 	harpoon_cooldown = world.time + harpoon_cooldown_time
 
-// Organic tentacle projectile for greed touched harpooner
+// Tentacle projectile
 /obj/projectile/clan_tentacle
 	name = "flesh tentacle"
 	icon_state = "tentacle_end"
@@ -375,7 +383,7 @@
 			return PROJECTILE_PIERCE_HIT
 	return ..()
 
-// Override the chain beam visual for greed touched
+// Tentacle chain visual
 /mob/living/simple_animal/hostile/clan/ranged/harpooner/greed/UpdateChainVisuals()
 	if(!chained_target)
 		if(chain_beam)
@@ -388,8 +396,8 @@
 //////////////
 // GREED TOUCHED CORRUPTER
 //////////////
-// A mob that spawns invisible with a warning indicator, then drops from above dealing area damage
-// Corrupted version has flesh-like appearance and leaves corruption behind
+// Drops from above, spawns minions, spreads corruption
+// Creates meat structures and corrupted floor that damages enemies
 /mob/living/simple_animal/hostile/clan/ranged/corrupter/greed
 	name = "greed touched corrupter"
 	desc = "A horrifying fusion of corrupted flesh and dark technology. Reality itself seems to reject its presence."
@@ -591,7 +599,7 @@
 	SummonDefenders()
 	summon_cooldown = world.time + summon_cooldown_time
 
-// Override Life() to handle corruption pulses
+// Corruption pulse management
 /mob/living/simple_animal/hostile/clan/ranged/corrupter/greed/Life()
 	. = ..()
 	if(!spawn_complete || stat == DEAD)
@@ -622,7 +630,7 @@
 		RecallSummons()
 		recall_cooldown = world.time + recall_cooldown_time
 
-// Create or spread corrupted meat structures
+// Meat pulse - creates expanding corruption
 /mob/living/simple_animal/hostile/clan/ranged/corrupter/greed/proc/MeatPulse()
 	visible_message(span_warning("[src] pulses with corrupted energy!"))
 	playsound(src, 'sound/abnormalities/nothingthere/heartbeat.ogg', 75, TRUE)
@@ -676,7 +684,7 @@
 					continue
 				new /obj/structure/corrupter_meat(T)
 
-// Create or spread necropolis floor effect
+// Floor pulse - creates damaging floor effect
 /mob/living/simple_animal/hostile/clan/ranged/corrupter/greed/proc/FloorPulse()
 	visible_message(span_danger("[src] releases a wave of deep corruption!"))
 	playsound(src, 'sound/effects/curse6.ogg', 100, TRUE)
@@ -708,7 +716,11 @@
 			if(prob(40) && !locate(/obj/structure/corrupter_meat) in T) // 40% chance to expand to each valid tile, avoid meat structures
 				new /obj/effect/corrupter_floor(T)
 
-// Corrupted meat structure that deals WHITE damage
+//////////////
+// CORRUPTION EFFECTS
+//////////////
+
+// Meat structure - deals WHITE damage on contact
 /obj/structure/corrupter_meat
 	name = "corrupted flesh"
 	desc = "Pulsating corrupted meat that seems to hunger for life."
@@ -727,7 +739,7 @@
 			H.deal_damage(5, WHITE_DAMAGE)
 			to_chat(H, span_warning("The corrupted flesh burns your mind as you step on it!"))
 
-// Visual effect for corrupted floor (cosmetic only)
+// Floor effect - visual corruption indicator
 /obj/effect/corrupter_floor
 	name = "corrupted ground"
 	desc = "The ground here has been deeply corrupted."
@@ -745,7 +757,7 @@
 	alpha = 0
 	animate(src, alpha = 255, time = 10)
 
-// Summon defender mobs
+// Summon system - creates greed touched units
 /mob/living/simple_animal/hostile/clan/ranged/corrupter/greed/proc/SummonDefenders()
 	if(summoned_mobs.len >= max_summons)
 		return
@@ -803,7 +815,7 @@
 	if(spawned > 0)
 		visible_message(span_danger("[src] calls forth [spawned] corrupted defender\s!"))
 
-// Recall all summons to the corrupter
+// Recall summons to corrupter
 /mob/living/simple_animal/hostile/clan/ranged/corrupter/greed/proc/RecallSummons()
 	var/recalled = 0
 	for(var/mob/living/simple_animal/hostile/clan/M in summoned_mobs)
@@ -820,7 +832,7 @@
 		visible_message(span_warning("[src] releases a pulse, calling its minions back!"))
 		playsound(src, 'sound/effects/curse1.ogg', 75, TRUE)
 
-// Clean up summons on death
+// Death cleanup - removes all corruption
 /mob/living/simple_animal/hostile/clan/ranged/corrupter/greed/death()
 	// Kill all summoned mobs
 	for(var/mob/living/M in summoned_mobs)
@@ -843,7 +855,7 @@
 
 	return ..()
 
-// Red variant of Baba Yaga's warning for Corrupter
+// Warning indicator - 5 second red warning
 /obj/effect/temp_visual/giantwarning/red
 	duration = 5 SECONDS
 	color = "#FF0000"
