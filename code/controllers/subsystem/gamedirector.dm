@@ -22,30 +22,36 @@ SUBSYSTEM_DEF(gamedirector)
 	var/list/mob/living/combatants = list()
 	var/obj/structure/rce_portal/portal
 	var/fightstage = PHASE_NOT_STARTED
+	var/gamestage = PHASE_PRE_INIT
 	var/rematch = FALSE
-	var/timestamp_warning
-	var/timestamp_finalwave
-	var/timestamp_end
+	var/timestamp_warning = 50000 // Stop announcing shit on other modes dumbass
+	var/timestamp_finalwave = 50000
+	var/timestamp_end = 50000
 
 /datum/controller/subsystem/gamedirector/Initialize()
 	. = ..()
 	if(SSmaptype.maptype != "rcorp_factory")
 		wait = 5 HOURS // Changing the flags to make the subsystem not run requires a MC restart, so we do this :3
+		gamestage = PHASE_NOT_RCE
+	gamestage = PHASE_NORMAL_GAME
 
 /datum/controller/subsystem/gamedirector/fire(resumed = FALSE)
-	if(fightstage != PHASE_FIGHT && SSticker.current_state != GAME_STATE_FINISHED)
-		if(world.time > timestamp_end)
+	if(fightstage != PHASE_FIGHT && SSticker.current_state != GAME_STATE_FINISHED && gamestage < PHASE_NOT_RCE)
+		if(world.time > timestamp_end && gamestage < PHASE_ENDROUND)
 			to_chat(world, span_userdanger("R-Corp HQ has ordered immediate retreat!"))
-		else if(world.time > timestamp_finalwave)
+			gamestage = PHASE_ENDROUND
+		else if(world.time > timestamp_finalwave && gamestage < PHASE_LASTWAVE_PASSED)
 			to_chat(world, span_userdanger("A huge wave of zombies is approaching!"))
+			gamestage = PHASE_LASTWAVE_PASSED
 			StartLastWave()
-		else if(world.time > timestamp_warning)
+		else if(world.time > timestamp_warning && gamestage < PHASE_WARNING_PASSED)
 			to_chat(world, span_userdanger("There are 20 minutes left to kill the heart!"))
+			gamestage = PHASE_WARNING_PASSED
 	return
 
 /datum/controller/subsystem/gamedirector/proc/SetTimes(warningtime, endtime)
 	timestamp_warning = world.time + warningtime
-	timestamp_finalwave = world.time + warningtime - 10 MINUTES
+	timestamp_finalwave = world.time + warningtime + 10 MINUTES
 	timestamp_end = world.time + endtime
 
 /datum/controller/subsystem/gamedirector/proc/GetRandomTarget()
