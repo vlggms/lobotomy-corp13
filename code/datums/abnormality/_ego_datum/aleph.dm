@@ -149,7 +149,7 @@
 	cost = 100
 
 /datum/ego_datum/weapon/willing
-	item_path = /obj/item/ego_weapon/willing
+	item_path = /obj/item/ego_weapon/wield/willing
 	cost = 100
 
 // Army In Black - Pink
