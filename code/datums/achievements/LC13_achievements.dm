@@ -22,6 +22,7 @@
 	desc = "One of your characters survived a full shift as a L corp employee."
 	database_id = MEDAL_LCORPWORLD
 	icon = "lcorp"
+	difficulty = ACHIEVEMENT_EASY
 
 /datum/award/achievement/lc13/scorpworld
 	name = "A Shrimple Arrangement"
@@ -35,6 +36,7 @@
 	desc = "End the shift forever marked by the the monster of the Black Forest."
 	database_id = MEDAL_TWILIGHT
 	icon = "twilight"
+	difficulty = ACHIEVEMENT_HARD
 
 //LC13 Bosses
 /datum/award/achievement/lc13/white_night
@@ -42,30 +44,35 @@
 	desc = "Slay T-03-46 and prevent divine judgement."
 	database_id = BOSS_MEDAL_WHITENIGHT
 	icon = "whitenight"
+	difficulty = ACHIEVEMENT_HARD
 
 /datum/award/achievement/lc13/ambermidnight
 	name = "Eternal Meal"
 	desc = "Defend the facility from an insatiable swarm."
 	database_id = BOSS_MEDAL_AMBERMIDNIGHT
 	icon = "amber"
+	difficulty = ACHIEVEMENT_NORMAL
 
 /datum/award/achievement/lc13/greenmidnight
 	name = "Last Helix"
 	desc = "Save the facility from being cleansed."
 	database_id = BOSS_MEDAL_GREENMIDNIGHT
 	icon = "green"
+	difficulty = ACHIEVEMENT_NORMAL
 
 /datum/award/achievement/lc13/violetmidnight
 	name = "The God Delusion"
 	desc = "Defend the facility from an enigmatic force."
 	database_id = BOSS_MEDAL_VIOLETMIDNIGHT
 	icon = "violet"
+	difficulty = ACHIEVEMENT_NORMAL
 
 /datum/award/achievement/lc13/whitemidnight
 	name = "The Claw"
 	desc = "Relive the worst day of the founders life."
 	database_id = BOSS_MEDAL_WHITEMIDNIGHT
 	icon = "claw"
+	difficulty = ACHIEVEMENT_NORMAL
 
 //City achievements
 /datum/award/achievement/lc13/city
