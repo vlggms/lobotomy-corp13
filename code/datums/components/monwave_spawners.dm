@@ -156,7 +156,7 @@
 	var/target_loc = assault_target
 	if(turf_to_go)
 		target_loc = get_turf(turf_to_go)
-	assult_path = get_path_to(parent, target_loc, /turf/proc/Distance_cardinal, 0, 200)
+	assult_path = get_path_to(parent, target_loc, /turf/proc/Distance_cardinal, 0, 400)
 
 /datum/component/monwave_spawner/proc/SwitchTarget(target)
 	assault_target = get_turf(target)
