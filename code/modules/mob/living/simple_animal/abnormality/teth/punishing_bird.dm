@@ -188,6 +188,11 @@
 		if(client && obj_damage <= 0 && L.health <= maxHealth*0.45) // User controlled AND not transformed - can't kill things
 			to_chat(src, span_warning("You can't keep punishing them!"))
 			return
+		// Achievement for dying to Punishing Bird without enraging it
+		if(ishuman(L) && !bird_angry && L.stat == DEAD)
+			var/mob/living/carbon/human/H = L
+			if(H.client)
+				H.client.player_details.achievements.unlock(/datum/award/achievement/lc13/die_to_pbird, H)
 		..()
 		if(obj_damage <= 0) // Not transformed
 			if(ishuman(L))
@@ -252,6 +257,11 @@
 	if((health < maxHealth * 0.9) && (obj_damage <= 0))
 		enemies = list() // This is done so it stops attacking random people that punched it before transformation
 		TransformRed()
+		// Achievement for damaging Punishing Bird
+		if(ishuman(A))
+			var/mob/living/carbon/human/H = A
+			if(H.client)
+				H.client.player_details.achievements.unlock(/datum/award/achievement/lc13/damage_pbird, H)
 
 	if(isliving(A))
 		var/mob/living/M = A

@@ -137,3 +137,39 @@
 	desc = "You've eliminated all the rat scavengers."
 	database_id = MEDAL_NUKE_RATS_GENOCIDE
 	icon = "rats_genocide"
+
+//Abnormality interaction achievements
+/datum/award/achievement/lc13/die_to_toad
+	name = "Oops"
+	desc = "Die to Blubbering Toad."
+	database_id = MEDAL_DIE_TO_TOAD
+	icon = "blubbering_toad"
+	difficulty = ACHIEVEMENT_EASY
+
+/datum/award/achievement/lc13/free_toad
+	name = "Freedom for Toad"
+	desc = "Let Blubbering Toad out of containment."
+	database_id = MEDAL_FREE_TOAD
+	icon = "blubbering_toad"
+	difficulty = ACHIEVEMENT_EASY
+
+/datum/award/achievement/lc13/die_to_pbird
+	name = "Small Beak, Big Pain"
+	desc = "Die to Punishing Bird without enraging it."
+	database_id = MEDAL_DIE_TO_PBIRD
+	icon = "punishing_bird"
+	difficulty = ACHIEVEMENT_NORMAL
+
+/datum/award/achievement/lc13/activate_hammer
+	name = "Divine Intervention"
+	desc = "Activate the Hammer of Light."
+	database_id = MEDAL_ACTIVATE_HAMMER
+	icon = "hammer_light"
+	difficulty = ACHIEVEMENT_NORMAL
+
+/datum/award/achievement/lc13/damage_pbird
+	name = "Don't Poke the Bird"
+	desc = "Damage Punishing Bird and face the consequences."
+	database_id = MEDAL_DAMAGE_PBIRD
+	icon = "punishing_bird"
+	difficulty = ACHIEVEMENT_EASY
