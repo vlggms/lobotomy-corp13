@@ -21,12 +21,12 @@
 	. = ..()
 	if(!.)
 		return FALSE
+	var/aoe = 14
+	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+	var/justicemod = 1 + userjust / 100
+	aoe *= justicemod
+	aoe *= force_multiplier
 	for(var/mob/living/L in hearers(1, target_turf))
-		var/aoe = 14
-		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-		var/justicemod = 1 + userjust / 100
-		aoe *= justicemod
-		aoe *= force_multiplier
 		if(L == user || ishuman(L))
 			continue
 		L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
@@ -994,6 +994,8 @@
 	addtimer(CALLBACK(src, PROC_REF(SiphonDrain), user), siphon_time)
 
 /obj/item/ego_weapon/dipsia/proc/SiphonDrain(mob/user)
+	if(!siphoning)
+		return
 	var/datum/component/bloodfeast/bloodfeast = GetComponent(/datum/component/bloodfeast)
 	AdjustThirst(-10)
 	if(bloodfeast.blood_amount < 1)
@@ -1176,6 +1178,7 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 	damtype = PALE_DAMAGE
+	stuntime = 4
 	var/mark_damage
 	var/mark_type = RED_DAMAGE
 
@@ -1184,7 +1187,7 @@
 	if(!CanUseEgo(user))
 		return
 	..()
-	if(do_after(user, 4, src))
+	if(do_after(user, 2, src))
 		playsound(loc, hitsound, 120, TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
 		target.visible_message(span_danger("[user] markes [target]!"), \
 						span_userdanger("[user] marks you!"), COMBAT_MESSAGE_RANGE, user)
@@ -2151,7 +2154,7 @@
 	name = "wind-up"
 	desc = "Yes, we can rewind your wasted time. \
 	Just wind it up, close your eyes, and count to ten. When you open them, you will be standing at the exact moment you wished to be in."
-	special = "Use in hand to charge this weapon, up to four times. Deals very little damage when uncharged."
+	special = "Use in hand to charge this weapon, up to four times. Deals extra damage when charged fully and used until empty."
 	icon_state = "windup"
 	force = 10
 	attack_speed = 0.5
@@ -2163,6 +2166,7 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 	var/charges = 0
+	var/max_charges = 4
 
 /obj/item/ego_weapon/windup/attack(mob/living/M, mob/living/user)
 	if(!CanUseEgo(user))
@@ -2184,11 +2188,13 @@
 		to_chat(user,span_warning("You can't crank it any further!"))
 		return
 	if(do_after(user, (8 + (charges * 4)), src))
-		charges = min(charges + 1, 4)
+		charges = min(charges + 1, max_charges)
 		force = (charges * 10 + 5)
 		to_chat(user,span_warning("You crank the [src]."))
 		playsound(src.loc, 'sound/abnormalities/clock/clank.ogg', 75, TRUE)
 		PlayChargeSound()
+		if(charges < max_charges)
+			attack_self(user)
 
 /obj/item/ego_weapon/windup/proc/PlayChargeSound()
 	set waitfor = FALSE

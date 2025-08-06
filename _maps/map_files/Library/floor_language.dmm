@@ -293,10 +293,6 @@
 /area/library_floors/floor_language)
 "GM" = (
 /obj/item/toy/plush/gebura,
-/obj/item/ego_weapon/mimicry/kali{
-	pixel_y = 5;
-	pixel_x = 20
-	},
 /obj/item/clothing/mask/cigarette{
 	pixel_x = -14;
 	pixel_y = 1

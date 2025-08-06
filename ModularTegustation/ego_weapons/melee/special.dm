@@ -214,10 +214,8 @@
 	hitsound = 'sound/weapons/fixer/generic/fist2.ogg'
 	icon_state = "greed"
 	force = 20
+	knockback = null
 	finisher_on = FALSE
-	var/dash_cooldown
-	var/dash_cooldown_time = 3 SECONDS
-	var/dash_range = 7
 	var/combo = 0
 	var/combo_time
 	var/combo_wait = 10
@@ -231,6 +229,7 @@
 	if(!CanUseEgo(user))
 		return
 	if(finisher_on)
+		force = 60
 		..()
 		return
 	if(world.time > combo_time)
@@ -253,31 +252,14 @@
 	if(finisher_on)
 		to_chat(user,span_warning("You will now perform a combo attack instead of a heavy attack."))
 		finisher_on = FALSE
-		force = 20
+		force = initial(force)
+		knockback = null
 		return
 
 	to_chat(user,span_warning("You will now perform a heavy attack instead of a combo attack."))
-	finisher_on =TRUE
+	finisher_on = TRUE
+	knockback = KNOCKBACK_LIGHT
 	force = 60
-
-/obj/item/ego_weapon/goldrush/nihil/afterattack(atom/A, mob/living/user, proximity_flag, params)
-	if(!CanUseEgo(user))
-		return
-	if(!isliving(A))
-		return
-	if(dash_cooldown > world.time)
-		to_chat(user, "<span class='warning'>Your dash is still recharging!")
-		return
-	if((get_dist(user, A) < 4) || (!(can_see(user, A, dash_range))))
-		return
-	..()
-	dash_cooldown = world.time + dash_cooldown_time
-	for(var/i in 2 to get_dist(user, A))
-		step_towards(user,A)
-	if((get_dist(user, A) < 2))
-		playsound(src, 'sound/weapons/fwoosh.ogg', 300, FALSE, 9)
-		A.attackby(src,user)
-	to_chat(user, "<span class='warning'>You dash to [A]!")
 
 /obj/item/ego_weapon/shield/despair_nihil
 	name = "meaningless despair"

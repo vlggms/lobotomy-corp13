@@ -20,6 +20,22 @@
 	var/ranged_cooldown_time = 0.8 SECONDS
 	var/ranged_damage = 40
 
+/obj/item/ego_weapon/paradise/attack(mob/living/M, mob/living/user)
+	var/turf/target_turf = get_turf(M)
+	. = ..()
+	if(!.)
+		return FALSE
+	var/aoe = 35
+	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+	var/justicemod = 1 + userjust / 100
+	aoe *= justicemod
+	aoe *= force_multiplier
+	for(var/mob/living/L in oview(2, target_turf))
+		if(L == user || ishuman(L))
+			continue
+		L.apply_damage(aoe, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+		new /obj/effect/temp_visual/smash_effect(get_turf(L))
+
 /obj/item/ego_weapon/paradise/afterattack(atom/A, mob/living/user, proximity_flag, params)
 	if(ranged_cooldown > world.time)
 		return
@@ -159,8 +175,8 @@
 	name = "mimicry"
 	desc = "The yearning to imitate the human form is sloppily reflected on the E.G.O, \
 	as if it were a reminder that it should remain a mere desire."
-	special = "This weapon heals you on hit."
-	icon_state = "mimicry"
+	special = "This weapon heals you on hit. Use this weapon in hand to swap between forms. The spear has higher reach, the scythe deals extra damage in an area."
+	icon_state = "mimicry_sword"
 	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
 	inhand_x_dimension = 64
@@ -177,13 +193,41 @@
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
 							)
+	var/mob/current_holder
+	var/form = "whip"
+	var/list/weapon_list = list(
+		"sword" = list(36, 1, 1, list("tears", "slices", "mutilates"), list("tear", "slice","mutilate"), 'sound/abnormalities/nothingthere/attack.ogg'),
+		"spear" = list(46, 1.4, 2, list("pierces", "stabs", "perforates"), list("pierce", "stab", "perforate"), 'sound/weapons/ego/mimicry_stab.ogg'),
+		"scythe" = list(30, 1.6, 2, list("tears", "slices", "mutilates"), list("tear", "slice","mutilate"), 'sound/abnormalities/nothingthere/goodbye_attack.ogg')
+		)
 
+/obj/item/ego_weapon/mimicry/Initialize()
+	. = ..()
+	AddElement(/datum/element/update_icon_updates_onmob)
 
-/obj/item/ego_weapon/mimicry/attack(mob/living/target, mob/living/carbon/human/user)
+/obj/item/ego_weapon/mimicry/attack_self(mob/user)
+	. = ..()
 	if(!CanUseEgo(user))
 		return
+	SwitchForm(user)
+
+/obj/item/ego_weapon/mimicry/equipped(mob/user, slot)
+	. = ..()
+	if(!user)
+		return
+	current_holder = user
+
+/obj/item/ego_weapon/mimicry/dropped(mob/user)
+	. = ..()
+	current_holder = null
+
+/obj/item/ego_weapon/mimicry/attack(mob/living/target, mob/living/carbon/human/user)
+	. = ..()
+	if(!.)
+		return
+
 	if(!(target.status_flags & GODMODE) && target.stat != DEAD)
-		var/heal_amt = force*0.15
+		var/heal_amt = force*0.10
 		if(isanimal(target))
 			var/mob/living/simple_animal/S = target
 			if(S.damage_coeff.getCoeff(damtype) > 0)
@@ -191,16 +235,78 @@
 			else
 				heal_amt = 0
 		user.adjustBruteLoss(-heal_amt)
-	..()
+	if(form != "scythe")
+		return
+
+	var/list/been_hit = list(target)
+	var/turf/end_turf = get_ranged_target_turf_direct(user, target, 3, 0)
+	for(var/turf/T in getline(user, end_turf))
+		if(user in T)
+			continue
+		for(var/turf/T2 in view(T,1))
+			new /obj/effect/temp_visual/nt_goodbye(T2)
+			for(var/mob/living/L in T2)
+				var/aoe = 15
+				var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+				var/justicemod = 1 + userjust/100
+				aoe*=justicemod
+				aoe*=force_multiplier
+				if(L == user || ishuman(L))
+					continue
+				been_hit = user.HurtInTurf(T2, been_hit, aoe, RED_DAMAGE, hurt_mechs = TRUE, hurt_structure = TRUE)
 
 /obj/item/ego_weapon/mimicry/get_clamped_volume()
 	return 40
+
+// Radial menu
+/obj/item/ego_weapon/mimicry/proc/SwitchForm(mob/user)
+	var/list/armament_icons = list(
+		"sword" = image(icon = src.icon, icon_state = "mimicry_sword"),
+		"spear"  = image(icon = src.icon, icon_state = "mimicry_spear"),
+		"scythe"  = image(icon = src.icon, icon_state = "mimicry_scythe")
+	)
+	armament_icons = sortList(armament_icons)
+	var/choice = show_radial_menu(user, src , armament_icons, custom_check = CALLBACK(src, PROC_REF(CheckMenu), user), radius = 42, require_near = TRUE)
+	if(!choice || !CheckMenu(user))
+		return
+	form = choice
+	Transform()
+
+/obj/item/ego_weapon/mimicry/proc/CheckMenu(mob/user)
+	if(!istype(user))
+		return FALSE
+	if(QDELETED(src))
+		return FALSE
+	if(user.incapacitated() || !user.is_holding(src))
+		return FALSE
+	return TRUE
+
+/obj/item/ego_weapon/mimicry/proc/Transform()
+	icon_state = "mimicry_[form]"
+	update_icon_state()
+	if(current_holder)
+		to_chat(current_holder,span_notice("[src] suddenly transforms!"))
+		current_holder.update_inv_hands()
+		current_holder.playsound_local(current_holder, 'sound/effects/blobattack.ogg', 75, FALSE)
+	force = weapon_list[form][1]
+	attack_speed = weapon_list[form][2]
+	reach = weapon_list[form][3]
+	attack_verb_continuous = weapon_list[form][4]
+	attack_verb_simple = weapon_list[form][5]
+	hitsound = weapon_list[form][6]
+	if(reach > 1)
+		stuntime = 5
+		swingstyle = WEAPONSWING_THRUST
+	else
+		stuntime = 0
+		swingstyle = WEAPONSWING_SMALLSWEEP
 
 /obj/item/ego_weapon/twilight
 	name = "twilight"
 	desc = "Just like how the ever-watching eyes, the scale that could measure any and all sin, \
 	and the beak that could swallow everything protected the peace of the Black Forest... \
 	The wielder of this armament may also bring peace as they did."
+	special = "This weapon can attack from a distance on a cooldown and perform a large area attack when used in hand."
 	icon_state = "twilight"
 	worn_icon_state = "twilight"
 	force = 20
@@ -215,6 +321,41 @@
 							TEMPERANCE_ATTRIBUTE = 120,
 							JUSTICE_ATTRIBUTE = 120
 							)
+	var/ranged_cooldown_time = 5 SECONDS
+	var/ranged_cooldown
+	var/aoe_cooldown_time = 3 SECONDS
+	var/aoe_cooldown
+	var/max_targets = 10 // Max targets for the AOE. 30 projectiles is a lot.
+
+/obj/item/ego_weapon/twilight/afterattack(atom/A, mob/living/user, proximity_flag, params) // Special melee attack from up to 10 tiles away
+	if(!CanUseEgo(user))
+		return
+	if(ranged_cooldown > world.time)
+		return
+	if(!isliving(A))
+		return
+	var/target_turf = get_turf(A)
+	if((get_dist(user, target_turf) < 2) || (get_dist(user, target_turf) > 10))
+		return
+	var/mob/living/the_target = A
+	force *= 1.5
+	playsound(the_target, hitsound, get_clamped_volume(), TRUE, -1)
+	var/turf/landing_turf = get_step(target_turf, pick(1,2,4,5,6,8,9,10))
+	if(!isopenturf(landing_turf))
+		landing_turf = target_turf
+	get_thrust_turfs(A, user)
+	get_sweep_turfs(A, user)
+	the_target.attacked_by(src, user)
+	for(var/damage_type in list(WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE))
+		damtype = damage_type
+		the_target.attacked_by(src, user)
+	damtype = initial(damtype)
+	force = initial(force)
+	var/attacktime = (CLICK_CD_MELEE * attack_speed * 1.5)
+	user.changeNext_move(attacktime)
+	user.Immobilize(attacktime + 0.2)
+	new /obj/effect/temp_visual/weapon_stun(get_turf(user))
+	ranged_cooldown = world.time + ranged_cooldown_time
 
 /obj/item/ego_weapon/twilight/attack(mob/living/M, mob/living/user)
 	if(!CanUseEgo(user))
@@ -230,21 +371,86 @@
 		return span_notice("It deals [round((force * 4) * force_multiplier)] red, white, black and pale damage combined. (+ [(force_multiplier - 1) * 100]%)")
 	return span_notice("It deals [force * 4] red, white, black and pale damage combined.")
 
+/obj/item/ego_weapon/twilight/attack_self(mob/user) //spin attack with knockback
+	if(!CanUseEgo(user))
+		return
+	if(aoe_cooldown > world.time)
+		to_chat(user, span_notice("This ability is on cooldown."))
+		return
+	var/list/candidates = list()
+	var/current_targets = 0
+	for(var/mob/living/L in view(8, user))
+		if(user.faction_check_mob(L, FALSE))
+			continue
+		if(L.stat == DEAD)
+			continue
+		if(current_targets >= max_targets)
+			return
+		candidates += L
+		current_targets += 1
+	if(!LAZYLEN(candidates))
+		return
+	aoe_cooldown = aoe_cooldown_time + world.time
+	playsound(user, 'sound/abnormalities/apocalypse/pre_attack.ogg', 75, FALSE, 4)
+	for(var/mob/living/C in candidates)
+		C.add_filter("target_outline", 1, drop_shadow_filter(color = "#8eff6c", size = 2))
+		addtimer(CALLBACK(C, TYPE_PROC_REF(/atom, remove_filter),"target_outline"), 30)
+		user.add_filter("user_outline", 1, drop_shadow_filter(color = "#04080FAA", size = -8))
+		addtimer(CALLBACK(user, TYPE_PROC_REF(/atom, remove_filter),"user_outline"), 30)
+	if(!do_after(user, 30, src))
+		return
+	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+	var/justicemod = 1 + userjust/100
+	var/newdamage = (force * 1.2)
+	newdamage *= justicemod
+	newdamage *= force_multiplier
+	for(var/i = 1 to 3 * length(candidates))
+		var/atom/PT
+		PT = pick(candidates)
+		var/turf/T = get_step(get_turf(PT), pick(GLOB.alldirs))
+		var/obj/projectile/ego_twilight/P = new(T)
+		P.damage = newdamage
+		P.starting = T
+		P.firer = user
+		P.fired_from = T
+		P.yo = PT.y - T.y
+		P.xo = PT.x - T.x
+		P.original = PT
+		P.preparePixelProjectile(PT, T)
+		P.set_homing_target(PT)
+		addtimer(CALLBACK (P, TYPE_PROC_REF(/obj/projectile, fire)), 0.5 SECONDS)
+	playsound(user, 'sound/abnormalities/apocalypse/fire.ogg', 50, FALSE, 12)
+
+/obj/projectile/ego_twilight
+	name = "light"
+	icon_state = "apocalypse"
+	damage_type = BLACK_DAMAGE
+	damage = 10
+	alpha = 0
+	spread = 45
+	projectile_phasing = (ALL & (~PASSMOB))
+
+/obj/projectile/ego_twilight/Initialize()
+	. = ..()
+	animate(src, alpha = 255, pixel_x = rand(-10,10), pixel_y = rand(-10,10), time = 0.3 SECONDS)
+
 /obj/item/ego_weapon/goldrush
 	name = "gold rush"
 	desc = "The weapon of someone who can swing their weight around like a truck"
 	special = "This weapon deals its damage after a short windup."
 	icon_state = "gold_rush"
+	hitsound = 'sound/weapons/fixer/generic/gen2.ogg'
 	force = 70
+	damtype = RED_DAMAGE
+	knockback = KNOCKBACK_LIGHT
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 80,
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
 							)
-	var/goldrush_damage = 140
 	var/finisher_on = TRUE //this is for a subtype, it should NEVER be false on this item.
-	damtype = RED_DAMAGE
+	var/variable_stuntime = 10
 
 //Replaces the normal attack with the gigafuck punch
 /obj/item/ego_weapon/goldrush/attack(mob/living/target, mob/living/user)
@@ -253,25 +459,17 @@
 	if(!finisher_on)
 		..()
 		return
-	if(do_after(user, 4, target))
+	if(do_after(user, 2, target))
 
 		target.visible_message(span_danger("[user] rears up and slams into [target]!"), \
 						span_userdanger("[user] punches you with everything you got!!"), vision_distance = COMBAT_MESSAGE_RANGE, ignored_mobs = user)
 		to_chat(user, span_danger("You throw your entire body into this punch!"))
-		goldrush_damage = force
-		//I gotta regrab  justice here
-		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-		var/justicemod = 1 + userjust/100
-		goldrush_damage *= justicemod
-		goldrush_damage *= force_multiplier
-
 		if(ishuman(target))
-			goldrush_damage = 25
-
-		target.apply_damage(goldrush_damage, RED_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)		//MASSIVE fuckoff punch
-
-		playsound(src, 'sound/weapons/fixer/generic/gen2.ogg', 50, TRUE)
-		goldrush_damage = initial(goldrush_damage)
+			force = 25
+		stuntime = variable_stuntime
+		..()
+		force = initial(force)
+		stuntime = initial(stuntime)
 	else
 		to_chat(user, "<span class='spider'><b>Your attack was interrupted!</b></span>")
 		return
@@ -289,10 +487,10 @@
 /obj/item/ego_weapon/smile
 	name = "smile"
 	desc = "The monstrous mouth opens wide to devour the target, its hunger insatiable."
-	special = "This weapon instantly kills targets below 10% health"	//To make it more unique, if it's too strong
+	special = "This weapon instantly consumes targets below 5% health and attacks faster or slower depending on how \"hungry\" is it."	//To make it more unique, if it's too strong
 	icon_state = "smile"
-	force = 58 //Slightly less damage, has an ability
-	attack_speed = 1.6
+	force = 35 //~70 at max nourishment.
+	attack_speed = 1
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("slams", "attacks")
 	attack_verb_simple = list("slam", "attack")
@@ -306,17 +504,132 @@
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
 							)
+	var/nourishment = 0
+	var/can_spin = TRUE
+	var/spinning = FALSE
+	var/aoe_range = 2
+	var/multiplier = 0
+	var/hunger_time = 5 SECONDS
+	var/draining = FALSE
+	var/hunger_timer
+
+/obj/item/ego_weapon/smile/examine(mob/user)
+	. = ..()
+	switch(multiplier)
+		if(0)
+			. += "It seems famished, the user will attack faster but deal less damage."
+		if(1 to 1.5)
+			. += "It seems hungry, the user's attack speed and damage will be in the middle range."
+		if(1.6)
+			. += "It seems full, the user will attack more slowly but deal more damage per hit."
+
 
 /obj/item/ego_weapon/smile/attack(mob/living/target, mob/living/carbon/human/user)
 	if(!CanUseEgo(user))
 		return
+	if(!can_spin)
+		return FALSE
 	. = ..()
-	if((target.health <= target.maxHealth * 0.1 || target.stat == DEAD) && !(target.status_flags & GODMODE))	//Makes up for the lack of damage by automatically killing things under 10% HP
+	can_spin = FALSE
+	addtimer(CALLBACK(src, PROC_REF(spin_reset)), 13)
+	if((target.health <= target.maxHealth * 0.05 || target.stat == DEAD) && !(target.status_flags & GODMODE))	//Makes up for the lack of damage by automatically killing things under 10% HP
 		target.gib()
-		user.adjustBruteLoss(-user.maxHealth * 0.15)	//Heal 15% HP. Moved here from the armor, because that's a nightmare to code
+		adjust_nourishment(100)
+	else
+		adjust_nourishment(10)
+
+/obj/item/ego_weapon/smile/proc/adjust_nourishment(amount_changed)
+	nourishment = clamp(nourishment + amount_changed, 0, 100)
+	switch(nourishment)
+		if(0 to 49)
+			multiplier = 0
+			aoe_range = 1
+		if(50 to 70)
+			multiplier = 1.2
+			aoe_range = 2
+		if(71 to 94)
+			multiplier = 1.4
+			aoe_range = 3
+		if(95 to 100)
+			multiplier = 1.6
+			aoe_range = 4
+	if(!multiplier)
+		force = initial(force)
+		attack_speed = initial(attack_speed)
+		return
+	force = initial(force) * multiplier
+	attack_speed = initial(attack_speed) * multiplier
+
+/obj/item/ego_weapon/smile/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if(!user)
+		return
+	if(draining)
+		return
+	draining = TRUE
+	HungerDrain()
+
+/obj/item/ego_weapon/smile/proc/HungerDrain()
+	adjust_nourishment(-5)
+	hunger_timer = addtimer(CALLBACK(src, PROC_REF(HungerDrain)), hunger_time, TIMER_STOPPABLE)
+
+/obj/item/ego_weapon/smile/proc/spin_reset()
+	can_spin = TRUE
+
+/obj/item/ego_weapon/smile/attack_self(mob/user) //spin attack with knockback
+	if(!CanUseEgo(user))
+		return
+	if(!can_spin)
+		to_chat(user,span_warning("You attacked too recently."))
+		return
+	can_spin = FALSE
+
+	if(do_after(user, (attack_speed * 8), src))
+		animate(user, alpha = 1,pixel_x = 0, pixel_z = 16, time = 0.1 SECONDS)
+		user.pixel_z = 16
+		sleep(0.5 SECONDS)
+		if(QDELETED(user))
+			spin_reset()
+			return
+		animate(user, alpha = 255,pixel_x = 0, pixel_z = -16, time = 0.1 SECONDS)
+		user.pixel_z = 0
+		var/aoe = force
+		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+		var/justicemod = 1 + userjust/100
+		var/firsthit = TRUE
+		aoe*=justicemod
+		aoe*=force_multiplier
+		var/has_eaten = FALSE
+		if(aoe_range >= 4)
+			playsound(user, 'sound/abnormalities/mountain/slam.ogg', 50, TRUE, -1)
+		else
+			playsound(user, 'sound/weapons/ego/hammer.ogg', 50, TRUE, -1)
+		for(var/turf/T in orange(aoe_range, user))
+			var/obj/effect/temp_visual/smash_effect/the_effect = new(T)
+			the_effect.color = COLOR_ALMOST_BLACK
+		for(var/mob/living/L in range(aoe_range, user)) //knocks enemies away from you
+			if(L == user || ishuman(L))
+				continue
+			L.apply_damage(aoe, damtype, null, L.run_armor_check(null, damtype), spread_damage = TRUE)
+			if(firsthit)
+				aoe = (aoe / 2)
+				firsthit = FALSE
+			if((L.health <= L.maxHealth * 0.05 || L.stat == DEAD) && !(L.status_flags & GODMODE))	//Makes up for the lack of damage by automatically killing things under 10% HP
+				L.gib()
+				has_eaten = TRUE
+				continue
+			var/throw_target = get_edge_target_turf(L, get_dir(L, get_step_away(L, src)))
+			if(!L.anchored)
+				var/whack_speed = (prob(60) ? 1 : 4)
+				L.throw_at(throw_target, rand(1, 2), whack_speed, user)
+		if(!has_eaten)
+			adjust_nourishment(-100)
+		spin_reset()
+		return
+	addtimer(CALLBACK(src, PROC_REF(spin_reset)), attack_speed * 8)
 
 /obj/item/ego_weapon/smile/get_clamped_volume()
-	return 50
+	return clamp(force * 4, 30, 100)// Add the item's force to its weight class and multiply by 4, then clamp the value between 30 and 100
 
 /obj/item/ego_weapon/smile/suicide_act(mob/living/carbon/user)
 	. = ..()
@@ -324,6 +637,10 @@
 	playsound(user, 'sound/weapons/ego/hammer.ogg', 50, TRUE, -1)
 	user.gib()
 	return MANUAL_SUICIDE
+
+/obj/item/ego_weapon/smile/Destroy(mob/user)
+	. = ..()
+	deltimer(hunger_timer)
 
 /obj/item/ego_weapon/blooming
 	name = "blooming"
@@ -953,19 +1270,18 @@
 	icon_state = "spicebush"
 	duration = 10
 
-
-//temporary
-/obj/item/ego_weapon/willing
+/obj/item/ego_weapon/wield/willing
 	name = "the flesh is willing"
 	desc = "And really nothing will stop it."
 	icon_state = "willing"
-	force = 55	//Still lower DPS
-	attack_speed = 1.4
+	force = 40
 	damtype = RED_DAMAGE
-	knockback = KNOCKBACK_LIGHT
+	wielded_attack_speed = 1.8
+	wielded_force = 65
+	should_slow = TRUE
 	attack_verb_continuous = list("bashes", "clubs")
 	attack_verb_simple = list("bashes", "clubs")
-	hitsound = 'sound/weapons/fixer/generic/club1.ogg'
+	hitsound = 'sound/weapons/fixer/generic/baton1.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -973,13 +1289,26 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 
+/obj/item/ego_weapon/wield/willing/OnWield(obj/item/source, mob/user)
+	hitsound = 'sound/weapons/fixer/generic/baton2.ogg'
+	knockback = KNOCKBACK_MEDIUM
+	stuntime = 5
+	return ..()
+
+/obj/item/ego_weapon/wield/willing/on_unwield(obj/item/source, mob/user)
+	hitsound = 'sound/weapons/fixer/generic/baton1.ogg'
+	knockback = null
+	stuntime = 0
+	return ..()
+
+
 /obj/item/ego_weapon/mockery
 	name = "mockery"
 	desc = "...If I earned a name, will I get to receive love and hate from you? \
 	Will you remember me as that name, as someone whom you cared for?"
-	special = "Use this weapon in hand to swap between forms. The whip has higher reach, the hammer deals damage in an area, and the bat knocks back enemies."
+	special = "Heals some sanity on hit. Use this weapon in hand to swap between forms. The whip has higher reach, the hammer deals damage in an area, and the bat knocks back enemies."
 	icon_state = "mockery_whip"
-	force = 18
+	force = 17
 	attack_speed = 0.5
 	reach = 3
 	damtype = BLACK_DAMAGE
@@ -995,10 +1324,10 @@
 	var/mob/current_holder
 	var/form = "whip"
 	var/list/weapon_list = list(
-		"whip" = list(18, 0.5, 3, list("lacerates", "disciplines"), list("lacerate", "discipline"), 'sound/weapons/whip.ogg'),
-		"sword" = list(40, 1, 1, list("tears", "slices", "mutilates"), list("tear", "slice","mutilate"), 'sound/weapons/fixer/generic/blade4.ogg'),
-		"hammer" = list(20, 1.4, 1, list("crushes"), list("crush"), 'sound/weapons/fixer/generic/baton2.ogg'),
-		"bat" = list(60, 1.6, 1, list("bludgeons", "bashes"), list("bludgeon", "bash"), 'sound/weapons/fixer/generic/gen1.ogg')
+		"whip" = list(17, 0.5, 3, list("lacerates", "disciplines"), list("lacerate", "discipline"), 'sound/weapons/whip.ogg'),
+		"sword" = list(35, 1, 1, list("tears", "slices", "mutilates"), list("tear", "slice","mutilate"), 'sound/weapons/fixer/generic/blade4.ogg'),
+		"hammer" = list(22, 1.4, 1, list("crushes"), list("crush"), 'sound/weapons/fixer/generic/baton2.ogg'),
+		"bat" = list(50, 1.6, 1, list("bludgeons", "bashes"), list("bludgeon", "bash"), 'sound/weapons/fixer/generic/gen1.ogg')
 		)
 
 /obj/item/ego_weapon/mockery/Initialize()
@@ -1022,14 +1351,19 @@
 	current_holder = null
 
 /obj/item/ego_weapon/mockery/attack(mob/living/target, mob/living/carbon/human/user)
-	if(form == "bat")
-		knockback = KNOCKBACK_LIGHT
-	else
-		knockback = FALSE
-
 	. = ..()
 	if(!.)
 		return
+
+	if(!(target.status_flags & GODMODE) && target.stat != DEAD)
+		var/heal_amt = force*0.10
+		if(isanimal(target))
+			var/mob/living/simple_animal/S = target
+			if(S.damage_coeff.getCoeff(damtype) > 0)
+				heal_amt *= S.damage_coeff.getCoeff(damtype)
+			else
+				heal_amt = 0
+		user.adjustSanityLoss(-heal_amt)
 
 	if(form != "hammer")
 		return
@@ -1084,6 +1418,11 @@
 	attack_verb_continuous = weapon_list[form][4]
 	attack_verb_simple = weapon_list[form][5]
 	hitsound = weapon_list[form][6]
+	if(form == "bat")
+		knockback = KNOCKBACK_LIGHT
+	else
+		knockback = null
+
 
 /obj/item/ego_weapon/oberon
 	name = "fairy king"
