@@ -156,7 +156,7 @@
 		Alt-Click to toggle speech. Crtl-Click to set your own speech."
 	action_icon_state = "arcana0"
 	base_icon_state = "arcana"
-	cooldown_time = 3 MINUTES
+	cooldown_time = 1 MINUTES
 	base_action = /datum/action/spell_action/ability/item/ego_arcana_slave
 
 	var/list/spawned_effects = list()
@@ -226,7 +226,7 @@
 	beamloop.start(user)
 	beamloop.max_loops = 0
 	var/beam_stage = 1
-	var/beam_damage = 10
+	var/beam_damage = 16
 	var/justice = get_attribute_level(H, JUSTICE_ATTRIBUTE)
 	justice /= 100
 	justice++
@@ -235,7 +235,7 @@
 		addtimer(CALLBACK(H, TYPE_PROC_REF(/atom/movable, say), "ARCANA SLAVE!"))
 	for(var/o = 1 to 50) // Half duration but gets Justice Mod
 		var/list/already_hit = list()
-		if(accumulated_beam_damage >= 150 && beam_stage < 2)
+		if(accumulated_beam_damage >= 225 && beam_stage < 2)
 			beam_stage = 2
 			beam_damage *= 1.5
 			var/matrix/M = matrix()
@@ -246,7 +246,7 @@
 			for(var/mob/living/L in range(beam_stage-1, TF))
 				if(L.status_flags & GODMODE)
 					continue
-				if(L == src) //stop hitting yourself
+				if(L == user) //stop hitting yourself
 					continue
 				if(L in already_hit)
 					continue
@@ -254,12 +254,14 @@
 					continue
 				already_hit += L
 				if(H.faction_check_mob(L))
-					if(L.stat < DEAD && L.stat > CONSCIOUS) // unhealthy but not dead
-						L.adjustBruteLoss(-3*justice)
+					if(L.stat < DEAD) // Small bit of healing to all our living allies.
+						L.adjustBruteLoss(-1.5*justice)
+						if(L.stat > CONSCIOUS) // But more effective on softcrit/hardcrit allies.
+							L.adjustBruteLoss(-1.5*justice)
 					if(ishuman(L))
 						var/mob/living/carbon/human/LH = L
 						if(LH.sanity_lost)
-							LH.adjustSanityLoss(-3*justice)
+							LH.adjustSanityLoss(-12*justice) // Pretty fast resaning, but this only applies to insanes
 					continue
 				L.apply_damage(beam_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
 				accumulated_beam_damage += beam_damage
