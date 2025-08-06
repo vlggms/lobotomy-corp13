@@ -859,3 +859,49 @@
 /obj/effect/temp_visual/giantwarning/red
 	duration = 5 SECONDS
 	color = "#FF0000"
+
+//////////////
+// RESURGENCE TAPE - X-CORP CAVE EXPEDITION
+//////////////
+/obj/item/tape/resurgence/xcorp_caves
+	name = "Tinkerer's Log: Cave Expedition"
+	desc = "A magnetic tape that can hold up to ten minutes of content. It appears to have 'X-Corp Resource Acquisition' written on it's back. The tape is stained with something viscous..."
+	icon_state = "tape_red"
+	storedinfo = list(
+		"Metallic footsteps echo through cave tunnels, accompanied by the sound of drilling equipment...",
+		span_game_say(span_name("Scout") + span_message(" says,") + " &quot;Ti-inke-er, we ha-ave fo-ound X-Co-orp ma-arkings on the-e wa-alls...&quot;"),
+		span_game_say(span_name("The Tinkerer") + span_message(" says,") + " &quot;Excellent. Their mining equipment should still be salvageable after that collapse.&quot;"),
+		span_game_say(span_name("The Tinkerer") + span_message(" says,") + " &quot;Send the defenders ahead to clear any debris. We need those industrial drills.&quot;"),
+		"Sounds of heavy machinery moving deeper into the cave...",
+		span_game_say(span_name("Defender") + span_message(" reports,") + " &quot;Path cle-ear. But... stran-ange growths on walls... They pu-ulse...&quot;"),
+		span_game_say(span_name("The Tinkerer") + span_message(" says,") + " &quot;Just scrape them off with your shields. Clear a path for the others.&quot;"),
+		"Sounds of metal scraping against wet organic matter...",
+		span_game_say(span_name("Defender") + span_message(" alarmed,") + " &quot;It's sti-icking to my shie-eld! Spre-eading up my ar-arm!&quot;"),
+		span_game_say(span_name("The Tinkerer") + span_message(" irritated,") + " &quot;Then use the drones to burn it off. We don't have time for this.&quot;"),
+		"Sounds of flames, followed by mechanical screaming...",
+		span_game_say(span_name("Drone") + span_message(" panicking,") + " &quot;The fla-ames ma-ade it wor-orse! It's gro-owing fas-aster!&quot;"),
+		span_game_say(span_name("Scout") + span_message(" reports,") + " &quot;De-ead X-Co-orp wor-orkers ahead... but they-ey have the sa-ame growths...&quot;"),
+		span_game_say(span_name("The Tinkerer") + span_message(" says,") + " &quot;Perfect. Study the corpses. If X-Corp workers survived long enough to get this deep, there must be a way to resist it.&quot;"),
+		span_game_say(span_name("The Tinkerer") + span_message(" commands,") + " &quot;Scouts, examine the bodies closely. Find what protected them.&quot;"),
+		"Multiple scouts moving toward the bodies...",
+		span_game_say(span_name("Scout") + span_message(" horrified,") + " &quot;They-ey're not dea-ead! THE-EY'RE NOT DEA-EAD!&quot;"),
+		"A sickening crunch as the 'corpses' grab the scouts...",
+		span_game_say(span_name("Scout") + span_message(" screams,") + " &quot;IT'S IN-INSIDE ME! GET IT OU-OUT!&quot;"),
+		span_game_say(span_name("The Tinkerer") + span_message(" urgently,") + " &quot;Cut off the infected parts! Use your drills! Don't let it spread!&quot;"),
+		span_game_say(span_name("Demolisher") + span_message(" says,") + " &quot;Dri-illing into Scou-out Seven... But the gro-owth is spre-eading to my dri-ills!&quot;"),
+		span_game_say(span_name("The Tinkerer") + span_message(" frustrated,") + " &quot;Then use explosives! Blast the infected units before—&quot;"),
+		"A massive explosion echoes through the cave...",
+		span_game_say(span_name("Defender") + span_message(" corrupted voice,") + " &quot;The explo-osion... spre-ead the spo-ores... every-yone is... cha-anging...&quot;"),
+		span_game_say(span_name("The Tinkerer") + span_message(" realizing,") + " &quot;No... Every solution just made it worse... EVERYONE RETREAT!&quot;"),
+		span_game_say(span_name("Corrupted Units") + span_message(" in unison,") + " &quot;Too... la-ate... Tin-nke-rer... Your ord-ders... led us... to perfe-ection...&quot;"),
+		span_game_say(span_name("The Tinkerer") + span_message(" desperately,") + " &quot;Remaining units! Seal the tunnel! NOW!&quot;"),
+		"Sound of The Tinkerer's mechanical legs rapidly retreating as the cave collapses...",
+		span_game_say(span_name("The Tinkerer") + span_message(" says to recorder,") + " &quot;Lost forty-three units. Every order I gave... only accelerated the infection.&quot;"),
+		span_game_say(span_name("The Tinkerer") + span_message(" bitterly,") + " &quot;Scraping spread it. Fire made it grow. Drilling gave it new hosts. Explosives... scattered it everywhere.&quot;"),
+		span_game_say(span_name("The Tinkerer") + span_message(" coldly,") + " &quot;X-Corp set a trap. They knew someone would try to salvage their equipment.&quot;"),
+		span_game_say(span_name("The Tinkerer") + span_message(" says,") + " &quot;But they underestimated me. I'll build new units. Better ones. Ones that won't fail me.&quot;"),
+		"In the distance, corrupted mechanical voices echo from the sealed cave...",
+		span_game_say(span_name("Greed Touched Defenders") + span_message(" distantly moaning,") + " &quot;We... fol-lowed... your... ord-ders... perfectly... Tin-nke-rer...&quot;"),
+		"The tape cuts to static as wet, mechanical sounds grow closer to the surface..."
+	)
+	timestamp = list(2, 5, 9, 13, 16, 19, 23, 26, 29, 33, 36, 39, 43, 46, 49, 52, 55, 58, 61, 64, 67, 70, 73, 76, 79, 82, 85, 88, 91, 94, 97, 100, 103, 106, 109, 112, 115)
