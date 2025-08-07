@@ -36,13 +36,13 @@
 	butcher_results = list(/obj/item/raw_anomaly_core/bluespace = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 2)
 	silk_results = list(/obj/item/stack/sheet/silk/azure_simple = 1)
-	
+
 	// Charge system variables
 	var/charge = 5
 	var/max_charge = 10
 	var/clan_charge_cooldown = 2 SECONDS
 	var/last_charge_update = 0
-	
+
 	// Teleport on death
 	var/teleport_away = FALSE
 
@@ -81,7 +81,6 @@
 
 /mob/living/simple_animal/hostile/clan/Life()
 	. = ..()
-
 	if (last_charge_update < world.time - clan_charge_cooldown)
 		last_charge_update = world.time
 		GainCharge()
@@ -115,6 +114,13 @@
 			if (!(user in GLOB.marked_players ))
 				GLOB.marked_players += user
 				say(attacked_line)
+
+/mob/living/simple_animal/hostile/clan/death(gibbed)
+	. = ..()
+	if (teleport_away)
+		playsound(src, 'sound/effects/ordeals/white/pale_teleport_out.ogg', 25, TRUE)
+		new /obj/effect/temp_visual/beam_out(get_turf(src))
+		qdel(src)
 
 // NPC dialogue interaction
 /mob/living/simple_animal/hostile/clan/examine(mob/user)
