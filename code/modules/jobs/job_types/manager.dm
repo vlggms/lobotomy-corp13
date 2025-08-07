@@ -14,8 +14,8 @@
 
 	outfit = /datum/outfit/job/manager
 
-	access = list(ACCESS_COMMAND, ACCESS_MANAGER) // LC13:To-Do
-	minimal_access = list(ACCESS_COMMAND, ACCESS_MANAGER)
+	access = list(ACCESS_COMMAND, ACCESS_MANAGER, ACCESS_SECURITY) // LC13:To-Do
+	minimal_access = list(ACCESS_COMMAND, ACCESS_MANAGER, ACCESS_SECURITY)
 	departments = DEPARTMENT_COMMAND
 
 	job_attribute_limit = 60
