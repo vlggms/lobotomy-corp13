@@ -83,6 +83,11 @@ GLOBAL_LIST_EMPTY(PDAs)
 	var/overlays_x_offset = 0	//x offset to use for certain overlays
 
 	var/underline_flag = TRUE //flag for underline
+	
+	// Livestream variables
+	var/obj/item/ego_weapon/city/cinqwest_selfiestick/watching_stream = null
+	var/mob/pre_stream_perspective = null
+	var/stream_nickname = null // Custom nickname for stream chat
 
 /obj/item/pda/suicide_act(mob/living/carbon/user)
 	var/deathMessage = msg_input(user)
@@ -255,6 +260,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 				dat += "<li><a href='byond://?src=[REF(src)];choice=1'>[PDAIMG(notes)]Notekeeper</a></li>"
 				dat += "<li><a href='byond://?src=[REF(src)];choice=2'>[PDAIMG(mail)]Messenger</a></li>"
 				dat += "<li><a href='byond://?src=[REF(src)];choice=6'>[PDAIMG(skills)]Skill Tracker</a></li>"
+				dat += "<li><a href='byond://?src=[REF(src)];choice=7'>[PDAIMG(status)]Watch Livestreams</a></li>"
 
 				if (cartridge)
 					if (cartridge.access & CART_CLOWN)
@@ -389,6 +395,26 @@ GLOBAL_LIST_EMPTY(PDAs)
 						if (lvl_num >= length(SKILL_EXP_LIST) && !(type in targetmind.skills_rewarded))
 							dat += "<br><a href='byond://?src=[REF(src)];choice=SkillReward;skill=[type]'>Contact the Professional [S.title] Association</a>"
 						dat += "</li></ul>"
+			if(7) // Livestream viewer
+				dat += "<h4>Livestream Settings</h4>"
+				dat += "Stream Nickname: <a href='byond://?src=[REF(src)];choice=set_nickname'>[stream_nickname ? stream_nickname : owner]</a><br><br>"
+				
+				dat += "<h4>Available Livestreams</h4>"
+				if(!GLOB.active_selfie_sticks || !GLOB.active_selfie_sticks.len)
+					dat += "No active livestreams found.<br>"
+				else
+					dat += "<ul>"
+					for(var/obj/item/ego_weapon/city/cinqwest_selfiestick/S in GLOB.active_selfie_sticks)
+						if(S.streamer)
+							var/viewer_count = S.viewers.len
+							dat += "<li><a href='byond://?src=[REF(src)];choice=watch_stream;stream=[REF(S)]'>"
+							dat += "[S.streamer.name]'s stream</a> ([viewer_count] viewers)</li>"
+					dat += "</ul>"
+				
+				if(watching_stream)
+					dat += "<br><b>Currently watching: [watching_stream.streamer ? watching_stream.streamer.name : "Unknown"]</b>"
+					dat += "<br><a href='byond://?src=[REF(src)];choice=stop_watching'>Stop Watching</a>"
+					dat += "<br><a href='byond://?src=[REF(src)];choice=open_chat'>Open Chat</a>"
 			if(21)
 				dat += "<h4>[PDAIMG(mail)] SpaceMessenger V3.9.6</h4>"
 				dat += "<a href='byond://?src=[REF(src)];choice=Clear'>[PDAIMG(blank)]Clear Messages</a>"
@@ -541,6 +567,14 @@ GLOBAL_LIST_EMPTY(PDAs)
 				mode = 3
 				if(!silent)
 					playsound(src, 'sound/machines/terminal_select.ogg', 15, TRUE)
+			if("6")//Skill tracker
+				mode = 6
+				if(!silent)
+					playsound(src, 'sound/machines/terminal_select.ogg', 15, TRUE)
+			if("7") // Open livestream menu
+				mode = 7
+				if(!silent)
+					playsound(src, 'sound/machines/terminal_select.ogg', 15, TRUE)
 			if("4")//Redirects to hub
 				mode = 0
 				if(!silent)
@@ -660,6 +694,30 @@ GLOBAL_LIST_EMPTY(PDAs)
 								M.open()
 							else
 								M.close()
+
+//LIVESTREAM FUNCTIONS===================================
+
+			if("set_nickname")
+				var/new_nick = input(U, "Enter your stream nickname (3-20 characters):", "Set Nickname", stream_nickname) as text|null
+				if(new_nick)
+					new_nick = strip_html(new_nick)
+					if(length(new_nick) >= 3 && length(new_nick) <= 20)
+						stream_nickname = new_nick
+						to_chat(U, span_notice("Stream nickname set to: [stream_nickname]"))
+					else
+						to_chat(U, span_warning("Nickname must be 3-20 characters!"))
+			
+			if("watch_stream")
+				var/obj/item/ego_weapon/city/cinqwest_selfiestick/S = locate(href_list["stream"])
+				if(S && (S in GLOB.active_selfie_sticks))
+					start_watching(S, U)
+			
+			if("stop_watching")
+				stop_watching()
+			
+			if("open_chat")
+				if(watching_stream)
+					watching_stream.show_chat_window(U)
 
 //pAI FUNCTIONS===================================
 
@@ -1245,6 +1303,70 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 /obj/item/pda/proc/pda_no_detonate()
 	return COMPONENT_PDA_NO_DETONATE
+
+// Livestream functions
+/obj/item/pda/proc/start_watching(obj/item/ego_weapon/city/cinqwest_selfiestick/stream, mob/user)
+	if(watching_stream)
+		stop_watching()
+	
+	watching_stream = stream
+	stream.viewers += src
+	pre_stream_perspective = user.client.eye
+	user.reset_perspective(stream)
+	to_chat(user, span_notice("You start watching [stream.streamer.name]'s livestream."))
+	
+	// Auto-open chat window
+	stream.show_chat_window(user)
+	
+	// Announce viewer joined
+	var/nickname = stream_nickname ? stream_nickname : owner
+	stream.receive_chat(user, "System", "[nickname] joined the stream!", 0)
+	
+	// Notify viewer about audio relay
+	to_chat(user, span_notice("You can now hear everything happening near the stream!"))
+	to_chat(user, span_notice("Speech from the stream will be marked with \[STREAM\]."))
+
+/obj/item/pda/proc/stop_watching(mob/override_user = null)
+	if(!watching_stream)
+		return
+	
+	// Use the override_user if provided (e.g., from dropped()), otherwise try to get from loc
+	var/mob/user = override_user || (ismob(loc) ? loc : null)
+	if(user && user.client)
+		user.reset_perspective(pre_stream_perspective)
+		to_chat(user, span_notice("You stop watching the livestream."))
+		
+		// Close chat window
+		user << browse(null, "window=[watching_stream.chat_window_id]")
+		
+		// Announce viewer left
+		var/nickname = stream_nickname ? stream_nickname : owner
+		watching_stream.receive_chat(user, "System", "[nickname] left the stream!", 0)
+	
+	watching_stream.viewers -= src
+	watching_stream = null
+	pre_stream_perspective = null
+
+/obj/item/pda/check_eye(mob/user)
+	. = ..()
+	if(watching_stream)
+		// Stop watching if PDA is dropped or user moves
+		if(loc != user || user.incapacitated())
+			stop_watching(user) // Pass the user to ensure camera resets properly
+			return FALSE
+	return .
+
+/obj/item/pda/dropped(mob/user)
+	..()
+	if(watching_stream)
+		stop_watching(user) // Pass the user who dropped the PDA
+
+/obj/item/pda/Moved(atom/OldLoc, Dir)
+	. = ..()
+	if(watching_stream && ismob(loc))
+		var/mob/M = loc
+		if(M.loc != OldLoc) // User moved
+			stop_watching(M) // Pass the user who is holding the PDA
 
 #undef PDA_SCANNER_NONE
 #undef PDA_SCANNER_MEDICAL
