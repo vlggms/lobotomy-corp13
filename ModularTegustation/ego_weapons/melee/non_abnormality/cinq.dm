@@ -84,6 +84,7 @@
 	desc = "A long rapier used by the director of cinq association section 5"
 	special = "Use this weapon in hand to hop backwards. Your next attack has 2 range and deals triple damage"
 	icon_state = "cinq_five"
+	inhand_icon_state = "cinq"
 	force = 40
 	attack_speed = 0.72
 
@@ -101,7 +102,8 @@
 	name = "cinq section 4 rapier"
 	desc = "A long rapier used by the fixers of cinq association section 4"
 	special = "Use this weapon in hand to hop backwards. Your next attack has 2 range and deals double damage"
-	icon_state = "cinq_five"
+	icon_state = "cinq_four"
+	inhand_icon_state = "cinq"
 	force = 48
 	attack_speed = 1.3
 
@@ -111,7 +113,8 @@
 	name = "cinq section 4 director rapier"
 	desc = "A long rapier used by the director of cinq association section 4"
 	special = "Use this weapon in hand to hop backwards. Your next attack has 2 range and deals double damage"
-	icon_state = "cinq_five"
+	icon_state = "cinq_fourdirector"
+	inhand_icon_state = "cinq"
 	force = 75
 	attack_speed = 1.3
 
