@@ -63,7 +63,7 @@
 	var/cold_level_1_damage = COLD_GAS_DAMAGE_LEVEL_1 //Keep in mind with gas damage levels, you can set these to be negative, if you want someone to heal, instead.
 	var/cold_level_2_damage = COLD_GAS_DAMAGE_LEVEL_2
 	var/cold_level_3_damage = COLD_GAS_DAMAGE_LEVEL_3
-	var/cold_damage_type = BURN
+	var/cold_damage_type = FIRE
 
 	var/hot_message = "your face burning and a searing heat"
 	var/heat_level_1_threshold = 360
@@ -72,7 +72,7 @@
 	var/heat_level_1_damage = HEAT_GAS_DAMAGE_LEVEL_1
 	var/heat_level_2_damage = HEAT_GAS_DAMAGE_LEVEL_2
 	var/heat_level_3_damage = HEAT_GAS_DAMAGE_LEVEL_3
-	var/heat_damage_type = BURN
+	var/heat_damage_type = FIRE
 
 	var/crit_stabilizing_reagent = /datum/reagent/medicine/epinephrine
 

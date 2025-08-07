@@ -202,6 +202,11 @@
 /datum/reagent/water/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume)//Splashing people with water can help put them out!
 	. = ..()
 	if(methods & TOUCH)
+		//LC13 Code: Funny Felinid Code
+		if(isfelinid(exposed_mob))
+			var/mob/living/carbon/human/H = exposed_mob
+			H.adjustSanityLoss(50)
+			to_chat(H, span_warning("Ack! Water!"))
 		exposed_mob.extinguish_mob() // extinguish removes all fire stacks
 
 /datum/reagent/water/on_mob_life(mob/living/carbon/M)

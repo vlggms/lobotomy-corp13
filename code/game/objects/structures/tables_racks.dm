@@ -107,10 +107,10 @@
 	if(locate(/obj/structure/table) in get_turf(mover))
 		return TRUE
 
-/obj/structure/table/CanAStarPass(ID, dir, caller)
+/obj/structure/table/CanAStarPass(ID, dir, requester)
 	. = !density
-	if(ismovable(caller))
-		var/atom/movable/mover = caller
+	if(ismovable(requester))
+		var/atom/movable/mover = requester
 		. = . || (mover.pass_flags & PASSTABLE)
 
 /obj/structure/table/proc/tableplace(mob/living/user, mob/living/pushed_mob)
@@ -663,7 +663,7 @@
 				playsound(loc, 'sound/items/dodgeball.ogg', 80, TRUE)
 			else
 				playsound(loc, 'sound/weapons/tap.ogg', 50, TRUE)
-		if(BURN)
+		if(FIRE)
 			playsound(loc, 'sound/items/welder.ogg', 40, TRUE)
 
 /*

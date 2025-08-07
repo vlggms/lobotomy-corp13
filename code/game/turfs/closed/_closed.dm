@@ -50,6 +50,22 @@
 	baseturfs = /turf/closed/indestructible/sandstone
 	smoothing_flags = SMOOTH_BITMASK
 
+/turf/closed/indestructible/rust
+	name = "rusted wall"
+	desc = "A rusted metal wall."
+	icon = 'icons/turf/walls/rusty_wall.dmi'
+	icon_state = "rusty_wall-0"
+	base_icon_state = "rusty_wall"
+	smoothing_flags = SMOOTH_BITMASK
+
+/turf/closed/indestructible/r_wall
+	name = "rusted reinforced wall"
+	desc = "A huge chunk of rusted reinforced metal."
+	icon = 'icons/turf/walls/rusty_reinforced_wall.dmi'
+	icon_state = "rusty_reinforced_wall-0"
+	base_icon_state = "rusty_reinforced_wall"
+	smoothing_flags = SMOOTH_BITMASK
+
 /turf/closed/indestructible/oldshuttle/corner
 	icon_state = "corner"
 
@@ -162,6 +178,8 @@
 	to_chat(user, "<span class='notice'>The poster falls down!</span>")
 	D.roll_and_drop(get_turf(user))
 
+/turf/closed/indestructible/reinforced/old
+	icon = 'icons/turf/walls/facility_old.dmi'
 
 /turf/closed/indestructible/riveted
 	icon = 'icons/turf/walls/riveted.dmi'

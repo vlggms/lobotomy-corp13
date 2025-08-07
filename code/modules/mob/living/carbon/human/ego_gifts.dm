@@ -531,6 +531,19 @@
 	justice_bonus = 3
 	slot = HELMET
 
+/datum/ego_gifts/desert
+	name = "Desert Wind"
+	icon_state = "desert"
+	temperance_bonus = 2
+	slot = EYE
+
+/datum/ego_gifts/white_gossypium //intentionally made to suck. Ties later into the abno's mechanics + it's a riff on how hated the Limbus gift is
+	name = "White Gossypium"
+	icon_state = "white_gossypium"
+	fortitude_bonus = 2
+	prudence_bonus = 2
+	temperance_bonus = -5
+	justice_bonus = 2
 
 /**
  * HE EGO Gifts

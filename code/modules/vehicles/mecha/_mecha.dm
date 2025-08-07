@@ -390,7 +390,7 @@
 			if(cabin_air && cabin_air.return_volume()>0)
 				cabin_air.temperature = min(6000+T0C, cabin_air.return_temperature()+rand(5,7.5)*delta_time)
 				if(cabin_air.return_temperature() > max_temperature/2)
-					take_damage(delta_time*2/round(max_temperature/cabin_air.return_temperature(),0.1), BURN, 0)
+					take_damage(delta_time*2/round(max_temperature/cabin_air.return_temperature(),0.1), FIRE, 0)
 
 		if(internal_damage & MECHA_INT_TEMP_CONTROL)
 			internal_temp_regulation = 0
@@ -787,7 +787,7 @@
 			to_chat(user, "[B.get_mecha_info()]")
 			break
 		//Nothing like a big, red link to make the player feel powerful!
-		to_chat(user, "<a href='?src=[REF(user)];ai_take_control=[REF(src)]'><span class='userdanger'>ASSUME DIRECT CONTROL?</span></a><br>")
+		to_chat(user, "<a href='byond://?src=[REF(user)];ai_take_control=[REF(src)]'><span class='userdanger'>ASSUME DIRECT CONTROL?</span></a><br>")
 	else
 		examine(user)
 		if(length(return_drivers()) > 0)
@@ -801,7 +801,7 @@
 		if(!can_control_mech)
 			to_chat(user, "<span class='warning'>You cannot control exosuits without AI control beacons installed.</span>")
 			return
-		to_chat(user, "<a href='?src=[REF(user)];ai_take_control=[REF(src)]'><span class='boldnotice'>Take control of exosuit?</span></a><br>")
+		to_chat(user, "<a href='byond://?src=[REF(user)];ai_take_control=[REF(src)]'><span class='boldnotice'>Take control of exosuit?</span></a><br>")
 
 /obj/vehicle/sealed/mecha/transfer_ai(interaction, mob/user, mob/living/silicon/ai/AI, obj/item/aicard/card)
 	. = ..()

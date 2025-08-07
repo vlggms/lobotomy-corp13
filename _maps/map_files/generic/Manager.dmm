@@ -116,6 +116,7 @@
 /obj/structure/table/glass,
 /obj/item/work_console_upgrade/chemical_extraction_attachment,
 /obj/item/work_console_upgrade/chemical_extraction_attachment,
+/obj/item/work_console_upgrade/chemical_extraction_attachment,
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/manager)
 "cY" = (
@@ -311,6 +312,12 @@
 /obj/item/clothing/glasses/science,
 /obj/item/clothing/glasses/science{
 	pixel_y = -3
+	},
+/turf/open/floor/plasteel/white,
+/area/facility_hallway/manager)
+"fx" = (
+/obj/structure/chair/office{
+	dir = 8
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/manager)
@@ -515,6 +522,10 @@
 /area/department_main/manager)
 "iv" = (
 /obj/structure/closet/crate/science/abnochem_startercrate,
+/obj/item/clothing/suit/armor/ego_gear/limbus_labs/chem{
+	name = "chemist labcoat"
+	},
+/obj/item/clothing/head/beret/tegu/chem,
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/manager)
 "ix" = (
@@ -910,7 +921,9 @@
 /area/facility_hallway/manager)
 "nY" = (
 /obj/structure/table/glass,
-/obj/item/reagent_containers/syringe,
+/obj/item/hand_labeler,
+/obj/item/hand_labeler_refill,
+/obj/item/hand_labeler_refill,
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/manager)
 "ob" = (
@@ -1168,6 +1181,7 @@
 /obj/structure/closet,
 /obj/item/storage/box/syringes,
 /obj/item/storage/box/syringes,
+/obj/item/storage/box/beakers,
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/manager)
 "rF" = (
@@ -2428,6 +2442,7 @@
 /area/facility_hallway/manager)
 "JI" = (
 /obj/structure/closet/secure_closet/personal,
+/obj/item/clothing/head/helmet/danteh,
 /turf/open/floor/plasteel/showroomfloor,
 /area/facility_hallway/manager)
 "JS" = (
@@ -2440,9 +2455,11 @@
 	dir = 1;
 	light_color = "#333333"
 	},
-/obj/machinery/jukebox,
 /obj/effect/turf_decal/siding/wood{
 	dir = 6
+	},
+/obj/machinery/jukebox{
+	req_access = list()
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/manager)
@@ -2460,7 +2477,7 @@
 /area/facility_hallway/manager)
 "Kh" = (
 /obj/structure/table/glass,
-/obj/item/storage/box/beakers,
+/obj/item/storage/bag/chemistry,
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/manager)
 "Kl" = (
@@ -2613,6 +2630,10 @@
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/railing,
 /turf/open/floor/plasteel/dark,
+/area/facility_hallway/manager)
+"ND" = (
+/obj/structure/sign/departments/chemistry/pharmacy,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/manager)
 "NF" = (
 /obj/effect/turf_decal/siding/blue{
@@ -2894,11 +2915,7 @@
 /turf/open/floor/carpet/black,
 /area/facility_hallway/manager)
 "Tu" = (
-/obj/structure/table/glass,
-/obj/item/clothing/suit/armor/ego_gear/limbus_labs/chem{
-	name = "chemist labcoat"
-	},
-/obj/item/clothing/head/beret/tegu/chem,
+/obj/machinery/computer/extraction_cargo/chemistry,
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/manager)
 "Ty" = (
@@ -3060,7 +3077,8 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/item/work_console_upgrade/chemical_extraction_attachment,
+/obj/item/storage/box/pillbottles,
+/obj/item/storage/box/pillbottles,
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/manager)
 "WI" = (
@@ -8336,7 +8354,7 @@ Qf
 Qf
 Qf
 YQ
-YQ
+ND
 wz
 JT
 Vb
@@ -8537,7 +8555,7 @@ XL
 XL
 YQ
 Tu
-Xy
+fx
 Kh
 Xy
 HZ

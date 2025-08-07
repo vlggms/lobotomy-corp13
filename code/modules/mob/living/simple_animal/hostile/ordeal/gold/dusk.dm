@@ -8,9 +8,9 @@
 	icon_state = "centipede"
 	icon_living = "centipede"
 	icon_dead = "centipede_dead"
-	faction = list("gold_ordeal")
-	maxHealth = 1800
-	health = 1800
+	faction = list("gold_ordeal", "thunder_variant")
+	maxHealth = 1400
+	health = 1400
 	melee_damage_type = BLACK_DAMAGE
 	melee_damage_lower = 15
 	melee_damage_upper = 25
@@ -152,12 +152,12 @@
 	icon_state = "thunder_warrior"
 	icon_living = "thunder_warrior"
 	icon_dead = "thunder_warrior_dead"
-	faction = list("gold_ordeal")
-	maxHealth = 900
-	health = 900
+	faction = list("gold_ordeal", "thunder_variant")
+	maxHealth = 600
+	health = 600
 	melee_damage_type = BLACK_DAMAGE
-	melee_damage_lower = 20
-	melee_damage_upper = 25
+	melee_damage_lower = 15
+	melee_damage_upper = 20
 	attack_verb_continuous = "chops"
 	attack_verb_simple = "chop"
 	attack_sound = 'sound/abnormalities/thunderbird/tbird_zombieattack.ogg'
@@ -174,6 +174,49 @@
 	var/recharge_cooldown_time = 10 SECONDS
 	var/charge_level = 0
 	var/charge_level_cap = 20
+	var/dash_cooldown = 0
+	var/dash_cooldown_time = 4 SECONDS
+	var/charge_progress = 0
+
+/mob/living/simple_animal/hostile/ordeal/thunderbird_corrosion/Moved(atom/OldLoc, Dir, Forced = FALSE)
+	. = ..()
+	charge_progress += 1
+	if(charge_progress >= 10)
+		charge_progress = 0
+		AdjustCharge(1)
+
+/mob/living/simple_animal/hostile/ordeal/thunderbird_corrosion/OpenFire(atom/A)
+	var/dist = get_dist(target, src)
+	if(dist < 3)
+		return ..()
+	if(dash_cooldown <= world.time && !current_beam)
+		var/chance_to_dash = 25
+		if(dist <= (charge_level * 0.5))
+			chance_to_dash = 100
+		if(prob(chance_to_dash) && dash_cooldown <= world.time)
+			dash_cooldown = world.time + dash_cooldown_time
+			Dash(target, dist)
+			return
+	return ..()
+
+/mob/living/simple_animal/hostile/ordeal/thunderbird_corrosion/proc/Dash(atom/A, dist) // We move up to 10 tiles, using our charge as a battery.
+	var/list/target_line = getline(A, src) // can we reach them in the first place?
+	var/available_turf
+	for(var/turf/line_turf in target_line)
+		if(line_turf.is_blocked_turf(exclude_mobs = TRUE))
+			available_turf = FALSE
+			break
+		available_turf = TRUE
+	if(!available_turf)
+		return
+	AdjustCharge(-dist)
+	var/turf/oldturf = get_turf(src)
+	for(var/i in 2 to dist)
+		step_towards(src,A)
+	if((get_dist(src, A) < 2))
+		A.attack_animal(src)
+	current_beam = Beam(oldturf, icon_state="lightning[rand(1,12)]", time = 0.5 SECONDS)
+	playsound(get_turf(src), 'sound/weapons/fixer/generic/energyfinisher1.ogg', 75, 1)
 
 /mob/living/simple_animal/hostile/ordeal/thunderbird_corrosion/proc/AdjustCharge(addition)
 	if(addition > 0 && charge_level < charge_level_cap)
@@ -193,17 +236,13 @@
 	. = ..()
 	if(!isliving(attacked_target))
 		return
-	var/mob/living/L = attacked_target
-	if(charge_level) // We deal up to 20 more damage, 1 for every point of charge.
-		L.deal_damage(charge_level, BLACK_DAMAGE)
-		playsound(get_turf(src), 'sound/weapons/fixer/generic/energyfinisher1.ogg', 75, 1)
-		to_chat(L,span_danger("The [src] unleashes its charge!"))
-		AdjustCharge(-charge_level)
+	AdjustCharge(1)
 	if(!ishuman(attacked_target))
 		return
 	var/mob/living/carbon/human/H = attacked_target
 	if(H.stat >= SOFT_CRIT || H.health < 0)
 		Convert(H)
+		AdjustCharge(20) // full charge on a kill
 
 /mob/living/simple_animal/hostile/ordeal/thunderbird_corrosion/proc/Convert(mob/living/carbon/human/H)
 	if(!istype(H))
@@ -231,7 +270,7 @@
 	icon_state = "680_ham_actor"
 	icon_living = "680_ham_actor"
 	icon_dead = "ham_actor_dead"
-	faction = list("gold_ordeal")
+	faction = list("gold_ordeal", "thunder_variant")
 	maxHealth = 1500
 	health = 1500
 	melee_damage_type = BLACK_DAMAGE
@@ -302,6 +341,7 @@
 			if(found_radio) //You can take off your radio to reduce the damage
 				L.deal_damage(8, WHITE_DAMAGE)
 				L.playsound_local(get_turf(L), "[radio_sound]",100)
+				to_chat(L,span_danger("You hear unsettling sounds come out of your radio!"))
 			L.deal_damage(4, WHITE_DAMAGE)
 
 /mob/living/simple_animal/hostile/ordeal/KHz_corrosion/proc/Screech()
@@ -344,3 +384,133 @@
 		return
 	if(screech_cooldown <= world.time)
 		Screech()
+
+/mob/living/simple_animal/hostile/ordeal/thunderbird_corrosion_boss
+	name = "Thunder Chieftain"
+	desc = "A disciplinary officer, heavily corrupted by an abnormality."
+	icon = 'ModularTegustation/Teguicons/64x64.dmi'
+	icon_state = "thunder_warrior"
+	icon_living = "thunder_warrior"
+	icon_dead = "thunder_warrior_dead"
+	pixel_x = -16
+	base_pixel_x = -16
+	faction = list("gold_ordeal", "thunder_variant")
+	maxHealth = 2500
+	health = 2500
+	death_sound = 'sound/effects/limbus_death.ogg'
+	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.7)
+	butcher_results = list(/obj/item/food/meat/slab/corroded = 2)
+	var/list/spawned_mobs = list()
+	var/recharge_cooldown
+	var/recharge_cooldown_time = 10 SECONDS
+	/// List of mobs that have been hit by the revival field to avoid double effect
+	var/list/been_hit = list()
+	var/lightning_aoe_cooldown
+	var/lightning_aoe_cooldown_base = 30 SECONDS
+	var/lightning_aoe_damage = 80 // Black damage, scales with distance
+	var/lightning_aoe_range = 80
+	var/minimum_bolts = 3
+	var/current_bolts = 3
+
+/mob/living/simple_animal/hostile/ordeal/thunderbird_corrosion_boss/Initialize(mapload)
+	. = ..()
+	var/list/units_to_add = list(
+		/mob/living/simple_animal/hostile/ordeal/thunderbird_corrosion = 4
+		)
+	AddComponent(/datum/component/ai_leadership, units_to_add, 8, TRUE)
+	lightning_aoe_cooldown = (world.time + 10 SECONDS) // No instant charge, that would be bad.
+
+/mob/living/simple_animal/hostile/ordeal/thunderbird_corrosion_boss/Life()
+	. = ..()
+	if(!.) // Dead
+		return FALSE
+	if(lightning_aoe_cooldown < world.time)
+		ThunderWave()
+
+/mob/living/simple_animal/hostile/ordeal/thunderbird_corrosion_boss/AttackingTarget()
+	return FALSE
+
+/mob/living/simple_animal/hostile/ordeal/thunderbird_corrosion_boss/Move()
+	return FALSE
+
+/mob/living/simple_animal/hostile/ordeal/thunderbird_corrosion_boss/bullet_act(obj/projectile/P)
+	visible_message(span_warning("The [P] sizzles away as it strikes an invisible barrier!"))
+	return FALSE
+
+/mob/living/simple_animal/hostile/ordeal/thunderbird_corrosion_boss/proc/ThunderWave(range_override = null)
+	if(lightning_aoe_cooldown > world.time)
+		return
+	if(range_override == null)
+		range_override = lightning_aoe_range
+	lightning_aoe_cooldown = (world.time + lightning_aoe_cooldown_base)
+	been_hit = list()
+	playsound(src, "sound/effects/ordeals/gold/weather_thunder_[pick(0,3)].ogg", 100, FALSE, range_override)
+	var/turf/target_c = get_turf(src)
+	var/list/turf_list = list()
+	var/spawning_effects = FALSE
+	for(var/i = 1 to range_override)
+		turf_list = (target_c.y - i > 0 			? getline(locate(max(target_c.x - i, 1), target_c.y - i, target_c.z), locate(min(target_c.x + i - 1, world.maxx), target_c.y - i, target_c.z)) : list()) +\
+					(target_c.x + i <= world.maxx ? getline(locate(target_c.x + i, max(target_c.y - i, 1), target_c.z), locate(target_c.x + i, min(target_c.y + i - 1, world.maxy), target_c.z)) : list()) +\
+					(target_c.y + i <= world.maxy ? getline(locate(min(target_c.x + i, world.maxx), target_c.y + i, target_c.z), locate(max(target_c.x - i + 1, 1), target_c.y + i, target_c.z)) : list()) +\
+					(target_c.x - i > 0 			? getline(locate(target_c.x - i, min(target_c.y + i, world.maxy), target_c.z), locate(target_c.x - i, max(target_c.y - i + 1, 1), target_c.z)) : list())
+		if((i % 3) == 0)
+			spawning_effects = TRUE
+		else
+			spawning_effects = FALSE
+		for(var/turf/open/T in turf_list)
+			CHECK_TICK
+			if(spawning_effects)
+				new /obj/effect/temp_visual/impact_effect/ion(T)
+			for(var/mob/living/L in T)
+				INVOKE_ASYNC(src, PROC_REF(ThunderStrike), L, i)
+		SLEEP_CHECK_DEATH(1.5)
+	current_bolts = minimum_bolts
+
+/mob/living/simple_animal/hostile/ordeal/thunderbird_corrosion_boss/proc/ThunderStrike(mob/living/L, attack_range = 1)
+	if(L in been_hit)
+		return
+	been_hit += L
+	if(L.status_flags & GODMODE)
+		return
+	if(!faction_check_mob(L, TRUE))
+		if(ishuman(L))// Thunderbolts only damage humans
+			FireShell(L)
+		return
+	if(istype(L, /mob/living/simple_animal/hostile/ordeal/centipede_corrosion) || istype(L, /mob/living/simple_animal/hostile/ordeal/thunderbird_corrosion))
+		var/mob/living/simple_animal/hostile/ordeal/thunderbird_corrosion/targetmob = L // It might not always be this type, but we need to call their proc
+		targetmob.AdjustCharge(20) // A full battery. Oh no.
+	to_chat(L, span_notice("You feel energized!"))
+	if(L.bruteloss > L.maxHealth)
+		L.adjustBruteLoss(-(L.maxHealth * 0.2) - (L.bruteloss - L.maxHealth)) // recover 20% of hp on revive
+		L.revive(full_heal = FALSE, admin_revive = TRUE)
+	L.adjustBruteLoss(-100)
+	playsound(get_turf(L), 'sound/abnormalities/thunderbird/tbird_charge.ogg', 15, 1, 4)
+	L.add_overlay(icon('icons/effects/effects.dmi', "electricity"))
+	addtimer(CALLBACK(L, TYPE_PROC_REF(/atom, cut_overlay), \
+							icon('icons/effects/effects.dmi', "electricity")), 55)
+
+//thunderbolts
+/mob/living/simple_animal/hostile/ordeal/thunderbird_corrosion_boss/proc/FireShell(mob/living/L)
+	if(!current_bolts && prob(75))
+		return
+	var/obj/effect/thunderbolt/big/E = new(get_turf(L.loc))
+	E.master = src
+	current_bolts -= 1
+
+/obj/effect/thunderbolt/big
+	icon = 'icons/effects/64x64.dmi'
+	pixel_x = -16
+	base_pixel_x = -16
+	pixel_y = -16
+	base_pixel_y = -16
+	duration = 5 SECONDS
+	range = 3
+	boom_damage = 65
+
+/obj/effect/thunderbolt/big/Explode() // random visual lightning
+	var/bolts = 4
+	for(var/turf/T in oview(3, src))
+		if(prob(15) && bolts)
+			new /obj/effect/temp_visual/tbirdlightning(get_turf(T))
+			bolts -= 1
+	..()

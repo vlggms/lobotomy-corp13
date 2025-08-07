@@ -729,11 +729,6 @@
 	},
 /turf/open/floor/plasteel/checker,
 /area/city/backstreets_room)
-"SS" = (
-/obj/structure/table/reinforced,
-/obj/item/ego_weapon/ranged/city/thumb/weak,
-/turf/open/floor/engine,
-/area/city/backstreets_room)
 "TM" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
@@ -1538,10 +1533,10 @@ WP
 Zw
 Zw
 Ya
-SS
+YL
 Zw
 Zw
-SS
+YL
 zZ
 FH
 lB

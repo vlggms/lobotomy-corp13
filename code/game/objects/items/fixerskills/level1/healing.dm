@@ -8,6 +8,7 @@
 
 /datum/action/cooldown/healing
 	name = "Healing"
+	desc = "Heals the HP of all other humans around you."
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "healing"
 	cooldown_time = 30 SECONDS
@@ -22,6 +23,8 @@
 		return FALSE
 
 	for(var/mob/living/carbon/human/H in view(2, get_turf(src)))
+		if(H == owner)
+			continue
 		if(H.stat >= HARD_CRIT)
 			continue
 		H.adjustBruteLoss(-healamount)	//Healing for those around.
@@ -38,6 +41,7 @@
 
 /datum/action/cooldown/soothing
 	name = "Soothing"
+	desc = "Heals the SP all other humans around you."
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "soothing"
 	cooldown_time = 30 SECONDS
@@ -52,6 +56,8 @@
 		return FALSE
 
 	for(var/mob/living/carbon/human/H in view(2, get_turf(src)))
+		if(H == owner)
+			continue
 		if(H.stat >= HARD_CRIT)
 			continue
 		H.adjustSanityLoss(-healamount)	//Healing for those around.
@@ -69,6 +75,7 @@
 
 /datum/action/cooldown/curing
 	name = "Curing"
+	desc = "Heals both HP and SP all other humans around you."
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "curing"
 	cooldown_time = 30 SECONDS
@@ -83,6 +90,8 @@
 		return FALSE
 
 	for(var/mob/living/carbon/human/H in view(2, get_turf(src)))
+		if(H == owner)
+			continue
 		if(H.stat >= HARD_CRIT)
 			continue
 		H.adjustSanityLoss(-healamount)	//Healing for those around.

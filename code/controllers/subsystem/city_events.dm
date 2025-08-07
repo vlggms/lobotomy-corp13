@@ -19,6 +19,8 @@ SUBSYSTEM_DEF(cityevents)
 	var/list/generated = list()	//Which ckeys have generated stats
 	var/wavetime 		//How many waves have spawned? each wave increases the # of enemies by about 5%. One wave is every 5 minutes
 
+	var/list/processing
+
 /datum/controller/subsystem/cityevents/Initialize(timeofday)
 
 	..()
@@ -58,11 +60,12 @@ SUBSYSTEM_DEF(cityevents)
 	total_events += pick(neutral_events)
 	total_events += pick(neutral_events)
 	total_events += pick("money")			//Always get money
+	total_events += pick("tresmetal")		//Materials for the peacekeepers to upgrade
 
+	processing = subtypesof(/mob/living/simple_animal/hostile/distortion)
 	//Set available distortion
-	var/list/processing = subtypesof(/mob/living/simple_animal/hostile/distortion)
 	for(var/mob/living/simple_animal/hostile/distortion/A in processing)
-		if(A.can_spawn == 0)
+		if(initial(A.can_spawn) == 0)
 			return
 		distortions_available += A
 
@@ -89,7 +92,7 @@ SUBSYSTEM_DEF(cityevents)
 		if("shrimps")
 			spawnatlandmark(/mob/living/simple_animal/hostile/shrimp, 20)
 		if("beaks")
-			spawnatlandmark(/mob/living/simple_animal/hostile/ordeal/bigBirdEye, 10)
+			spawnatlandmark(/mob/living/simple_animal/hostile/ordeal/bigbird_eye, 10)
 		if("drones")
 			spawnatlandmark(/mob/living/simple_animal/hostile/kcorp/drone, -10)//extremely low chance
 		if("lovetowneasy")
@@ -105,7 +108,15 @@ SUBSYSTEM_DEF(cityevents)
 		if("money")
 			spawnitem(/obj/item/stack/spacecash/c50, 50)
 		if("tresmetal")
-			spawnitem(/obj/item/tresmetal, 10)	//very rare, could fetch you a good price.
+			spawnitem(pick(
+			/obj/item/tresmetal/steel,
+			/obj/item/tresmetal/cobalt,
+			/obj/item/tresmetal/copper,
+			/obj/item/tresmetal/bloodiron,
+			/obj/item/tresmetal/goldsteel,
+			/obj/item/tresmetal/silversteel,
+			/obj/item/tresmetal/electrum,
+			/obj/item/tresmetal/darksteel), 5)	//Metal that can upgrade peacekeepers
 		if("hppens")
 			spawnitem(/obj/item/reagent_containers/hypospray/medipen/salacid, 50)
 		if("sppens")
@@ -144,18 +155,22 @@ SUBSYSTEM_DEF(cityevents)
 		if(jobpicked <= 2)
 			if(istype(processing, /datum/job/scavenger))
 				processing.total_positions +=1
+				deadchat_broadcast("A Rat job slot has just opened, respawn to play.", message_type=DEADCHAT_ANNOUNCEMENT)
 
 		if(jobpicked == 3)
 			if(istype(processing, /datum/job/associateroaming))
 				processing.total_positions +=1
+				deadchat_broadcast("An Association Roamer job slot has just opened, respawn to play.", message_type=DEADCHAT_ANNOUNCEMENT)
 
 		if(jobpicked == 4)
 			if(istype(processing, /datum/job/roamingsalsu))
 				processing.total_positions += 1
+				deadchat_broadcast("A Blade Lineage Salsu job slot has just opened, respawn to play.", message_type=DEADCHAT_ANNOUNCEMENT)
 
 		if(jobpicked == 5)
 			if(istype(processing, /datum/job/butcher))
 				processing.total_positions += 1
+				deadchat_broadcast("A Backstreet Butcher job slot has just opened, respawn to play.", message_type=DEADCHAT_ANNOUNCEMENT)
 
 /datum/controller/subsystem/cityevents/proc/Boss()
 	minor_announce("Warning, large hostile detected. Suppression required.", "Local Activity Alert:", TRUE)

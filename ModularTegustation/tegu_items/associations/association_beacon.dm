@@ -34,6 +34,11 @@
 	new /obj/item/clothing/suit/armor/ego_gear/city/zweiriot(src)
 	new /obj/item/clothing/suit/armor/ego_gear/city/zweivet(src)
 	new /obj/item/clothing/suit/armor/ego_gear/city/zweileader(src)
+	new /obj/item/assoc_skill_granter/zwei(src)
+	new /obj/item/assoc_skill_granter/zwei(src)
+	new /obj/item/assoc_skill_granter/zwei(src)
+	new /obj/item/assoc_skill_granter/zwei/veteran(src)
+	new /obj/item/assoc_skill_granter/zwei/director(src)
 
 
 //Liu Asso
@@ -42,16 +47,21 @@
 	desc = "A kit from Section 1 containing Liu association gear."
 
 /obj/item/storage/box/association/liu/PopulateContents()
-	new /obj/item/ego_weapon/city/liu/fire/section5(src)
-	new /obj/item/ego_weapon/city/liu/fire/section5(src)
-	new /obj/item/ego_weapon/city/liu/fire/section5(src)
-	new /obj/item/ego_weapon/city/liu/fire/section5/vet(src)
-	new /obj/item/ego_weapon/city/liu/fire/section5/vet(src)
+	new /obj/item/ego_weapon/city/liu/fist(src)
+	new /obj/item/ego_weapon/city/liu/fist(src)
+	new /obj/item/ego_weapon/city/liu/fist(src)
+	new /obj/item/ego_weapon/city/liu/fist/vet(src)
+	new /obj/item/ego_weapon/city/liu/fist/vet(src)
 	new /obj/item/clothing/suit/armor/ego_gear/city/liu/section5(src)
 	new /obj/item/clothing/suit/armor/ego_gear/city/liu/section5(src)
 	new /obj/item/clothing/suit/armor/ego_gear/city/liu/section5(src)
 	new /obj/item/clothing/suit/armor/ego_gear/city/liuvet/section5(src)
 	new /obj/item/clothing/suit/armor/ego_gear/city/liuleader/section5(src)
+	new /obj/item/assoc_skill_granter/liu(src)
+	new /obj/item/assoc_skill_granter/liu(src)
+	new /obj/item/assoc_skill_granter/liu(src)
+	new /obj/item/assoc_skill_granter/liu/veteran(src)
+	new /obj/item/assoc_skill_granter/liu/director(src)
 
 //Seven Asso
 /obj/item/storage/box/association/seven
@@ -70,6 +80,11 @@
 	new /obj/item/clothing/suit/armor/ego_gear/city/sevenrecon(src)
 	new /obj/item/clothing/suit/armor/ego_gear/city/sevenvet(src)
 	new /obj/item/clothing/suit/armor/ego_gear/city/sevendirector(src)
+	new /obj/item/assoc_skill_granter/seven(src)
+	new /obj/item/assoc_skill_granter/seven(src)
+	new /obj/item/assoc_skill_granter/seven(src)
+	new /obj/item/assoc_skill_granter/seven/veteran(src)
+	new /obj/item/assoc_skill_granter/seven/director(src)
 	new /obj/item/binoculars(src)
 	new /obj/item/binoculars(src)
 

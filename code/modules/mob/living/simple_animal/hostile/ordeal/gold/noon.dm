@@ -215,6 +215,8 @@
 
 /mob/living/simple_animal/hostile/ordeal/white_lake_corrosion/proc/CallForHelp(mob/living/attacker)
 	for(var/mob/living/simple_animal/hostile/ordeal/silentgirl_corrosion/girls in view(10, src))
+		if(girls.stat == DEAD)
+			continue
 		girls.TryTransform(attacker)
 		girls.current_target = attacker
 		girls.GiveTarget(attacker)
@@ -257,8 +259,8 @@
 	maxHealth = 600
 	health = 600
 	melee_damage_type = PALE_DAMAGE
-	melee_damage_lower = 12
-	melee_damage_upper = 18
+	melee_damage_lower = 8
+	melee_damage_upper = 12
 	attack_sound = 'sound/weapons/fixer/generic/nail1.ogg'
 	death_sound = 'sound/effects/limbus_death.ogg'
 	attack_verb_continuous = "stabs"
@@ -268,6 +270,14 @@
 	var/vengeful = FALSE
 	var/current_target = null
 	var/finishing = FALSE
+
+/mob/living/simple_animal/hostile/ordeal/silentgirl_corrosion/Bumped(atom/A)
+	..()
+	if(ishuman(A))
+		if(!vengeful && A != current_target)
+			TryTransform(A)
+			current_target = A
+			GiveTarget(A)
 
 /mob/living/simple_animal/hostile/ordeal/silentgirl_corrosion/CanAttack(atom/the_target)
 	if(finishing)

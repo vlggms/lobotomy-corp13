@@ -69,8 +69,10 @@
  * * resistances - An associative list of damage types to be changed. See: list(RED_DAMAGE = 100, WHITE_DAMAGE = 50)
  */
 /mob/living/simple_animal/proc/ChangeResistances(list/resistances = list())
-	for(var/DT in resistances)
-		ChangeResistance(DT, resistances[DT], FALSE)
+	if(!islist(resistances))
+		CRASH("Non list passed to ChangeResistances.")
+	unmodified_damage_coeff_datum = unmodified_damage_coeff_datum.setCoeff(resistances[RED_DAMAGE], resistances[WHITE_DAMAGE], resistances[BLACK_DAMAGE],
+		resistances[PALE_DAMAGE], resistances[BRUTE], resistances[FIRE], resistances[TOX], resistances[CLONE], resistances[STAMINA], resistances[OXY])
 	UpdateResistances()
 	return
 
@@ -89,7 +91,7 @@
 	switch(resistance)
 		if(BRUTE)
 			unmodified_damage_coeff_datum = unmodified_damage_coeff_datum.setCoeff(brute = value)
-		if(BURN)
+		if(FIRE)
 			unmodified_damage_coeff_datum = unmodified_damage_coeff_datum.setCoeff(fire = value)
 		if(TOX)
 			unmodified_damage_coeff_datum = unmodified_damage_coeff_datum.setCoeff(tox = value)
@@ -152,7 +154,7 @@
 		cached_resistances[BLACK_DAMAGE],\
 		cached_resistances[PALE_DAMAGE],\
 		cached_resistances[BRUTE],\
-		cached_resistances[BURN],\
+		cached_resistances[FIRE],\
 		cached_resistances[TOX],\
 		cached_resistances[CLONE],\
 		cached_resistances[STAMINA],\

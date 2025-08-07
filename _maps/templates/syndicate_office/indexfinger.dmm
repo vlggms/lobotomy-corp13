@@ -2,8 +2,6 @@
 "aa" = (
 /obj/item/clothing/suit/armor/ego_gear/city/index,
 /obj/item/ego_weapon/city/fakeindex,
-/obj/item/clothing/suit/armor/ego_gear/city/index,
-/obj/item/ego_weapon/city/fakeindex,
 /obj/effect/turf_decal/tile/blue{
 	color = "#3234B9";
 	dir = 4
@@ -1274,15 +1272,13 @@
 /area/city/backstreets_room)
 "Tc" = (
 /obj/structure/table/greyscale,
-/obj/item/stack/spacecash/c10000,
-/obj/item/stack/spacecash/c10000,
-/obj/item/stack/spacecash/c10000,
 /obj/item/shears,
 /obj/machinery/light{
 	dir = 8;
 	pixel_x = -9;
 	pixel_y = 4
 	},
+/obj/item/stack/spacecash/c10000,
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/city/backstreets_room)
 "Tw" = (

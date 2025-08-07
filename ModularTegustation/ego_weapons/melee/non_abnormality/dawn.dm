@@ -5,7 +5,7 @@
 	special = "Hit one enemy, then the other to unleash a weak aoe attack."
 	icon_state = "philip"
 	inhand_icon_state = "philip"
-	damtype = RED_DAMAGE
+	damtype = WHITE_DAMAGE
 	swingstyle = WEAPONSWING_LARGESWEEP
 
 	attack_verb_continuous = list("bashes", "crushes")
@@ -20,6 +20,11 @@
 	)
 
 /obj/item/ego_weapon/city/dawn/attack(mob/living/target, mob/living/user)
+	//Happens before the attack so you need to do another attack.
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		if(H.sanity_lost)
+			H.death()
 	..()
 	//not if they're dead
 	if(target.stat == DEAD)

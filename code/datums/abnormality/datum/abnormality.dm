@@ -188,12 +188,18 @@
 			attribute_given = clamp(((maximum_attribute_level / (user_attribute_level * 0.25)) * (0.25 + (pe / max_boxes))), 0, 16)
 			if((user_attribute_level + attribute_given + 1) >= maximum_attribute_level) // Already/Will/Should be at maximum.
 				attribute_given = max(0, maximum_attribute_level - user_attribute_level)
+				//This player trait gives you a +1 to each work
+				if(HAS_TRAIT(user, TRAIT_BONUS_EXP))
+					attribute_given ++
 			if(attribute_given == 0)
 				if(was_melting)
 					attribute_given = threat_level * SSlobotomy_corp.melt_work_multiplier
 				else
 					to_chat(user, span_warning("You don't feel like you've learned anything from this!"))
+			if(HAS_TRAIT(user, TRAIT_BONUS_EXP))
+				attribute_given ++
 			user.adjust_attribute_level(attribute_type, attribute_given)
+
 	if(console?.tutorial) //don't run logging-related code if tutorial console
 		return
 	var/user_job_title = "Unidentified Employee"
@@ -224,7 +230,13 @@
 		if (understanding == max_understanding) // Checks for max understanding after the fact
 			current.gift_chance *= 1.5
 			SSlobotomy_corp.understood_abnos++
-			SSlobotomy_corp.AddLobPoints(MAX_ABNO_LOB_POINTS / SSabnormality_queue.rooms_start, "Abnormality Understanding")
+			var/mult = 1
+			if (GetFacilityUpgradeValue(UPGRADE_RECORDS_2))
+				mult = 1.5
+			if(SSabnormality_queue.rooms_start)//Fixes an Enkephalin Rush runtime
+				SSlobotomy_corp.AddLobPoints(MAX_ABNO_LOB_POINTS / SSabnormality_queue.rooms_start * mult, "Abnormality Understanding")
+			else
+				SSlobotomy_corp.AddLobPoints(mult)
 			observation_ready = TRUE
 	else if(understanding == max_understanding && percent < 0) // If we're max and we reduce, undo the count.
 		understanding = clamp((understanding + (max_understanding*percent/100)), 0, max_understanding)

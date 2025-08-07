@@ -1,6 +1,9 @@
 /mob/living/carbon/human/getarmor(def_zone, type)
 	var/armorval = 0
 	var/organnum = 0
+	if(GLOB.damage_type_shuffler?.is_enabled && IsColorDamageType(type))
+		var/datum/damage_type_shuffler/shuffler = GLOB.damage_type_shuffler
+		type = shuffler.mapping_defense[shuffler.mapping_offense[type]]
 
 	if(def_zone)
 		if(isbodypart(def_zone))
@@ -232,13 +235,13 @@
 		else if(!M.client || prob(5)) // only natural monkeys get to stun reliably, (they only do it occasionaly)
 			playsound(loc, 'sound/weapons/pierce.ogg', 25, TRUE, -1)
 			if (src.IsKnockdown() && !src.IsParalyzed())
-				Paralyze(40)
+				// Paralyze(40)
 				log_combat(M, src, "pinned")
 				visible_message(span_danger("[M] pins [src] down!"), \
 								span_userdanger("[M] pins you down!"), span_hear("You hear shuffling and a muffled groan!"), null, M)
 				to_chat(M, span_danger("You pin [src] down!"))
 			else
-				Knockdown(30)
+				// Knockdown(30)
 				log_combat(M, src, "tackled")
 				visible_message(span_danger("[M] tackles [src] down!"), \
 								span_userdanger("[M] tackles you down!"), span_hear("You hear aggressive shuffling followed by a loud thud!"), null, M)
@@ -748,9 +751,9 @@
 
 		for(var/obj/item/I in LB.embedded_objects)
 			if(I.isEmbedHarmless())
-				combined_msg += "\t <a href='?src=[REF(src)];embedded_object=[REF(I)];embedded_limb=[REF(LB)]' class='warning'>There is \a [I] stuck to your [LB.name]!</a>"
+				combined_msg += "\t <a href='byond://?src=[REF(src)];embedded_object=[REF(I)];embedded_limb=[REF(LB)]' class='warning'>There is \a [I] stuck to your [LB.name]!</a>"
 			else
-				combined_msg += "\t <a href='?src=[REF(src)];embedded_object=[REF(I)];embedded_limb=[REF(LB)]' class='warning'>There is \a [I] embedded in your [LB.name]!</a>"
+				combined_msg += "\t <a href='byond://?src=[REF(src)];embedded_object=[REF(I)];embedded_limb=[REF(LB)]' class='warning'>There is \a [I] embedded in your [LB.name]!</a>"
 
 	for(var/t in missing)
 		combined_msg += span_boldannounce("Your [parse_zone(t)] is missing!")
@@ -860,7 +863,7 @@
 	to_chat(src, combined_msg.Join("\n"))
 
 /mob/living/carbon/human/damage_clothes(damage_amount, damage_type = BRUTE, def_zone)
-	if(damage_type != BRUTE && damage_type != BURN)
+	if(damage_type != BRUTE && damage_type != FIRE)
 		return
 	damage_amount *= 0.5 //0.5 multiplier for balance reason, we don't want clothes to be too easily destroyed
 	var/list/torn_items = list()

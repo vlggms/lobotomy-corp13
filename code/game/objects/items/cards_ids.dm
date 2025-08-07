@@ -135,7 +135,7 @@
 
 /obj/item/card/id/proc/insert_money(obj/item/I, mob/user)
 	var/physical_currency
-	if(istype(I, /obj/item/stack/spacecash) || istype(I, /obj/item/coin))
+	if(istype(I, /obj/item/stack/spacecash) || (istype(I, /obj/item/coin) && !istype(I, /obj/item/coin/casino_token)))
 		physical_currency = TRUE
 
 	if(!registered_account)
@@ -825,3 +825,4 @@ update_label()
 
 /obj/item/card/id/departmental_budget/AltClick(mob/living/user)
 	registered_account.bank_card_talk(span_warning("Withdrawing is not compatible with this card design."), TRUE) //prevents the vault bank machine being useless and putting money from the budget to your card to go over personal crates
+

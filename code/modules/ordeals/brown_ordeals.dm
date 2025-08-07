@@ -25,8 +25,8 @@
 
 /datum/ordeal/brown_dawn/Run() // So basically we want to spawn a crap ton of enemies - Identical to simplespawn, but one type per group
 	..()
-	var/place_player_mod = round(GLOB.clients.len * place_player_multiplicator) // Ten players add a new spot
-	var/spawn_player_mod = round(GLOB.clients.len * spawn_player_multiplicator)
+	var/place_player_mod = round(length(AllLivingAgents(TRUE)) * place_player_multiplicator) // Ten players add a new spot
+	var/spawn_player_mod = round(length(AllLivingAgents(TRUE)) * spawn_player_multiplicator)
 	if(!LAZYLEN(GLOB.xeno_spawn))
 		message_admins("No xeno spawns found when spawning in ordeal!")
 		return
@@ -53,3 +53,34 @@
 			var/mob/living/simple_animal/hostile/ordeal/M = new spawning(deploy_spot)
 			ordeal_mobs += M
 			M.ordeal_reference = src
+
+/datum/ordeal/specificcommanders/brown_noon
+	name = "The Noon of Brown"
+	flavor_name = "Pandæmonium"
+	announce_text = "Only those who define their own fate are awakened to their own dream."
+	end_announce_text = "It is pointless to waste your time on those whose path has ended."
+	level = 2
+	reward_percent = 0.15
+	announce_sound = 'sound/effects/ordeals/brown_start.ogg'
+	end_sound = 'sound/effects/ordeals/brown_end.ogg'
+	color = "#69350b"
+	potential_types = list(
+		/mob/living/simple_animal/hostile/ordeal/sin_gluttony/noon,
+		/mob/living/simple_animal/hostile/ordeal/sin_sloth/noon,
+		/mob/living/simple_animal/hostile/ordeal/sin_gloom/noon,
+		/mob/living/simple_animal/hostile/ordeal/sin_pride/noon,
+		/mob/living/simple_animal/hostile/ordeal/sin_lust/noon,
+		/mob/living/simple_animal/hostile/ordeal/sin_wrath/noon,
+	)
+
+	grunttype = list(
+		/mob/living/simple_animal/hostile/ordeal/sin_gluttony,
+		/mob/living/simple_animal/hostile/ordeal/sin_sloth,
+		/mob/living/simple_animal/hostile/ordeal/sin_gloom,
+		/mob/living/simple_animal/hostile/ordeal/sin_pride,
+		/mob/living/simple_animal/hostile/ordeal/sin_lust,
+		/mob/living/simple_animal/hostile/ordeal/sin_wrath,
+	)
+
+/datum/ordeal/specificcommanders/brown_noon/spawngrunts(turf/T, list/grunttype, spawn_amount = 7)
+	..() // Just changing spawn_amount

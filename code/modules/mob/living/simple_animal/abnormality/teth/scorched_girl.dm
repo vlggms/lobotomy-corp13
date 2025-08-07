@@ -53,7 +53,7 @@
 	/// Current cooldown for the players
 	var/boom_cooldown
 	/// Amount of RED damage done on explosion
-	var/boom_damage = 250
+	var/boom_damage = 150
 	patrol_cooldown_time = 10 SECONDS //Scorched be zooming
 
 	attack_action_types = list(
@@ -147,8 +147,12 @@
 	playsound(get_turf(src), 'sound/abnormalities/scorchedgirl/explosion.ogg', 125, 0, 8)
 	for(var/mob/living/carbon/human/H in view(7, src))
 		H.deal_damage(boom_damage, RED_DAMAGE)
+		H.deal_damage(boom_damage * 0.5, FIRE)
 		if(H.health < 0)
 			H.gib()
+	if(SSmaptype.maptype == "limbus_labs")
+		for(var/obj/structure/obstacle in view(2, src))
+			obstacle.take_damage(boom_damage, RED_DAMAGE)
 	new /obj/effect/temp_visual/explosion(get_turf(src))
 	var/datum/effect_system/smoke_spread/S = new
 	S.set_up(7, get_turf(src))

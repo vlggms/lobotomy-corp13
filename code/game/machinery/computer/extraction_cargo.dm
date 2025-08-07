@@ -8,7 +8,7 @@
 /obj/machinery/computer/extraction_cargo
 	name = "corporate trade console"
 	desc = "Used to purchase supplies at the expense of energy."
-	icon_screen = "supply"
+	icon_screen = "extraction_cargo"
 	resistance_flags = INDESTRUCTIBLE
 	var/selected_level = CAT_GADGET
 
@@ -57,15 +57,15 @@
 		new /datum/data/extraction_cargo("Mental-Stabilizer Medi-Pen ",	/obj/item/reagent_containers/hypospray/medipen/mental,				50, CAT_MEDICAL) = 1,
 		new /datum/data/extraction_cargo("Standard First-Aid Kit ",		/obj/item/storage/firstaid/regular,									250, CAT_MEDICAL) = 1,
 		new /datum/data/extraction_cargo("Naked Nest Cure Vial ",		/obj/item/serpentspoison,											400, CAT_MEDICAL) = 1,
-		new /datum/data/extraction_cargo("Orange Tree Flamer",			/obj/item/ego_weapon/ranged/flammenwerfer,								500, CAT_MEDICAL) = 1,
+		new /datum/data/extraction_cargo("Orange Tree Flamer",			/obj/item/ego_weapon/ranged/flammenwerfer,							500, CAT_MEDICAL) = 1,
 		new /datum/data/extraction_cargo("Prosthetic Limb Crate ",		/obj/structure/closet/crate/freezer/surplus_limbs,					500, CAT_MEDICAL) = 1,
 		new /datum/data/extraction_cargo("Assorted Medi-Pen Kit ",		/obj/item/storage/firstaid/revival,									500, CAT_MEDICAL) = 1,
 
 		//Resources - Raw PE, ETC. Abnochem stuff goes here too. This is one use items to further LC13 systems
-		new /datum/data/extraction_cargo("Blue Filter ",				/obj/item/refiner_filter/blue,										10, CAT_RESOURCE) = 1,
-		new /datum/data/extraction_cargo("Green Filter ",				/obj/item/refiner_filter/green,										10, CAT_RESOURCE) = 1,
-		new /datum/data/extraction_cargo("Red Filter ",					/obj/item/refiner_filter/red,										10, CAT_RESOURCE) = 1,
-		new /datum/data/extraction_cargo("Yellow Filter ",				/obj/item/refiner_filter/yellow,									10, CAT_RESOURCE) = 1,
+		new /datum/data/extraction_cargo("Blue Filter ",				/obj/item/refiner_filter/blue,										5, CAT_RESOURCE) = 1,
+		new /datum/data/extraction_cargo("Green Filter ",				/obj/item/refiner_filter/green,										5, CAT_RESOURCE) = 1,
+		new /datum/data/extraction_cargo("Red Filter ",					/obj/item/refiner_filter/red,										5, CAT_RESOURCE) = 1,
+		new /datum/data/extraction_cargo("Yellow Filter ",				/obj/item/refiner_filter/yellow,									5, CAT_RESOURCE) = 1,
 		new /datum/data/extraction_cargo("Raw PE Box ",					/obj/item/rawpe,													50, CAT_RESOURCE) = 1,
 		new /datum/data/extraction_cargo("Chemical Extraction Upgrade ",/obj/item/work_console_upgrade/chemical_extraction_attachment,		150, CAT_RESOURCE) = 1,
 		new /datum/data/extraction_cargo("Workchance Calculator Upgrade ",/obj/item/work_console_upgrade/work_prediction_attachment,		200, CAT_RESOURCE) = 1,
@@ -164,7 +164,12 @@
 				playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
 				return FALSE
 			new product_datum.equipment_path(get_turf(src))
+
+			//So we have to adjust the available boxes down but adjust the goal boxes up. Why?
+			//Adjusting the available boxes adjusts the goal. This is just the best way to do it
 			SSlobotomy_corp.AdjustAvailableBoxes(-1 * product_datum.cost)
+			if(!SSlobotomy_corp.goal_reached)	//Okay, funny bug, if you have your goal eached and add goal boxes, then it adds to available boxes.
+				SSlobotomy_corp.AdjustGoalBoxes(product_datum.cost)		//Normal
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 			updateUsrDialog()
 			return TRUE

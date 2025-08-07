@@ -305,7 +305,7 @@
 	melee_damage_lower = 10
 	melee_damage_upper = 15
 	force_threshold = 10 //lots of fat to cushion blows.
-	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, CLONE = 2, STAMINA = 0, OXY = 1)
+	damage_coeff = list(BRUTE = 1, FIRE = 1, TOX = 1, CLONE = 2, STAMINA = 0, OXY = 1)
 	attack_verb_continuous = "slams"
 	attack_verb_simple = "slam"
 	loot = list(/obj/effect/gibspawner/xeno/bodypartless, /obj/effect/gibspawner/generic, /obj/effect/gibspawner/generic/animal, /obj/effect/gibspawner/human/bodypartless)
@@ -412,7 +412,7 @@
 		user.icon_state = "glutton_tongue"
 		add_ranged_ability(user, span_notice("Your throat muscles tense up. <B>Left-click to regurgitate a funny morsel!</B>"), TRUE)
 
-/obj/effect/proc_holder/regurgitate/InterceptClickOn(mob/living/caller, params, atom/target)
+/obj/effect/proc_holder/regurgitate/InterceptClickOn(mob/living/requester, params, atom/target)
 	. = ..()
 
 	if(.)

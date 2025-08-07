@@ -331,7 +331,7 @@
 	if(.)
 		user.visible_message("<span class='notice'>[user] lights \the [src].</span>", "<span class='notice'>You light \the [src]!</span>")
 		force = on_damage
-		damtype = BURN
+		damtype = FIRE
 		START_PROCESSING(SSobj, src)
 
 /obj/item/flashlight/flare/get_temperature()
@@ -359,6 +359,7 @@
 	desc = "A mining lantern."
 	light_range = 6			// luminosity when on
 	light_system = MOVABLE_LIGHT
+	custom_price = 300
 
 /obj/item/flashlight/lantern/heirloom_moth
 	name = "old lantern"

@@ -912,7 +912,7 @@
 	name = "perfect meat"
 	desc = "An awful jiggling chunk of meat cut from the hide of a worm. It tastes foul and has the texture of spoiled jelly."
 	icon_state = "wormmeat"
-	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/yuck = 5)
+	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/yuck = 5, /datum/reagent/amber = 5)
 	tastes = list("slime" = 1, "jelly" = 1)
 	foodtypes = MEAT | RAW | TOXIC | GROSS
 

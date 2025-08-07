@@ -87,12 +87,12 @@
 /datum/ego_datum/weapon/solemnvow
 	item_category = "Weapon (Black Pistol)"
 	item_path = /obj/item/ego_weapon/ranged/pistol/solemnvow
-	cost = 35
+	cost = 50
 
 /datum/ego_datum/weapon/solemnlament
 	item_category = "Weapon (White Pistol)"
 	item_path = /obj/item/ego_weapon/ranged/pistol/solemnlament
-	cost = 35
+	cost = 50
 
 // General Bee - Loyalty & Praetorian
 /datum/ego_datum/weapon/loyalty
@@ -351,7 +351,7 @@
 	cost = 50
 
 /datum/ego_datum/weapon/discord
-	item_path = /obj/item/ego_weapon/discord
+	item_path = /obj/item/ego_weapon/wield/discord
 	cost = 50
 
 // Little Red Riding Hood Mercenary - Crimson Scar & Crimson Claw
@@ -505,4 +505,35 @@
 //Weapon is aleph
 /datum/ego_datum/armor/havana
 	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/havana
+	cost = 50
+
+// Burrowing Heaven - Heaven
+// This Abnormality does not exist. At least its EGO does.
+/datum/ego_datum/weapon/heaven
+	item_path = /obj/item/ego_weapon/heaven
+	cost = 50
+
+/datum/ego_datum/armor/heaven
+	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/heaven
+	cost = 50
+
+// Der Fluchutze - Fell Bullet & Shotgun
+/datum/ego_datum/weapon/fellbullet
+	item_category = "Weapon (Rifle)"
+	item_path = /obj/item/ego_weapon/ranged/fellbullet
+	cost = 50
+
+/datum/ego_datum/weapon/fellscatter
+	item_category = "Weapon (Shotgun)"
+	item_path = /obj/item/ego_weapon/ranged/fellscatter
+	cost = 50
+
+// Spiral of Contempt - Contempt, Awe
+/datum/ego_datum/weapon/contempt
+	item_path = /obj/item/ego_weapon/contempt
+	cost = 50
+
+// Unknown Little Prince Aberration - Tiara
+/datum/ego_datum/armor/tiara
+	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/tiara
 	cost = 50

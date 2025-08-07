@@ -62,6 +62,9 @@
 	/// A lazily initiated "food" version of the clothing for moths
 	var/obj/item/food/clothing/moth_snack
 
+	/// Exclusive to LC13 - Toggles whether or not fire armor shows up in tags. Hides the armor value from the player if automatically generated.
+	var/fire_display = TRUE
+
 /obj/item/clothing/Initialize()
 	if((clothing_flags & VOICEBOX_TOGGLABLE))
 		actions_types += /datum/action/item_action/toggle_voice_box
@@ -72,6 +75,13 @@
 		LoadComponent(/datum/component/bloodysoles)
 	if(!icon_state)
 		item_flags |= ABSTRACT
+	var/burnvalue = armor.getRating(FIRE)
+	if(!burnvalue)
+		var/redvalue = armor.getRating(RED_DAMAGE)
+		if(redvalue > 0)
+			redvalue = (redvalue * 0.5)
+		armor = armor.modifyRating(FIRE = redvalue)
+		fire_display = FALSE
 
 /obj/item/clothing/MouseDrop(atom/over_object)
 	. = ..()
@@ -178,7 +188,7 @@
  * Arguments:
  * * def_zone: The bodypart zone in question
  * * damage_amount: Incoming damage
- * * damage_type: BRUTE or BURN
+ * * damage_type: BRUTE or FIRE
  * * armour_penetration: If the attack had armour_penetration
  */
 /obj/item/clothing/proc/take_damage_zone(def_zone, damage_amount, damage_type, armour_penetration)
@@ -304,7 +314,7 @@
 		else
 			how_cool_are_your_threads += "[src]'s storage opens when dragged to yourself.\n"
 		if (pockets.can_hold?.len) // If pocket type can hold anything, vs only specific items
-			how_cool_are_your_threads += "[src] can store [pockets.max_items] <a href='?src=[REF(src)];show_valid_pocket_items=1'>item\s</a>.\n"
+			how_cool_are_your_threads += "[src] can store [pockets.max_items] <a href='byond://?src=[REF(src)];show_valid_pocket_items=1'>item\s</a>.\n"
 		else
 			how_cool_are_your_threads += "[src] can store [pockets.max_items] item\s that are [weightclass2text(pockets.max_w_class)] or smaller.\n"
 		if(pockets.quickdraw)
@@ -316,24 +326,34 @@
 
 	if(LAZYLEN(armor_list))
 		armor_list.Cut()
-	if(armor.red)
-		armor_list += list("RED" = armor.red)
-	if(armor.white)
-		armor_list += list("WHITE" = armor.white)
-	if(armor.black)
-		armor_list += list("BLACK" = armor.black)
-	if(armor.pale)
-		armor_list += list("PALE" = armor.pale)
+	var/red_armor = armor.red
+	var/white_armor = armor.white
+	var/black_armor = armor.black
+	var/pale_armor = armor.pale
+	if(GLOB.damage_type_shuffler?.is_enabled)
+		var/list/mapping = GLOB.damage_type_shuffler.mapping_defense
+		red_armor = armor.getRating(mapping[RED_DAMAGE])
+		white_armor = armor.getRating(mapping[WHITE_DAMAGE])
+		black_armor = armor.getRating(mapping[BLACK_DAMAGE])
+		pale_armor = armor.getRating(mapping[PALE_DAMAGE])
+	if(red_armor)
+		armor_list += list("RED" = red_armor)
+	if(white_armor)
+		armor_list += list("WHITE" = white_armor)
+	if(black_armor)
+		armor_list += list("BLACK" = black_armor)
+	if(pale_armor)
+		armor_list += list("PALE" = pale_armor)
 
 	if(LAZYLEN(durability_list))
 		durability_list.Cut()
-	if(armor.fire)
+	if(armor.fire && fire_display)
 		durability_list += list("FIRE" = armor.fire)
 	if(armor.acid)
 		durability_list += list("ACID" = armor.acid)
 
 	if(LAZYLEN(armor_list) || LAZYLEN(durability_list))
-		. += "<span class='notice'>It has a <a href='?src=[REF(src)];list_armor=1'>tag</a> listing its protection classes, and a <a href='?src=[REF(src)];explain=1'>tag</a> explaining the armor system.</span>"
+		. += "<span class='notice'>It has a <a href='byond://?src=[REF(src)];list_armor=1'>tag</a> listing its protection classes, and a <a href='byond://?src=[REF(src)];explain=1'>tag</a> explaining the armor system.</span>"
 
 /obj/item/clothing/Topic(href, href_list)
 	. = ..()
@@ -361,6 +381,7 @@
 		readout += "\nYou can add numbers together by putting the symbols in descending order from left to right. You’d add all of the symbols’ individual values together to get the total value. For example, VI is 5 + 1 or 6."
 		readout += "\nYou can also subtract numbers from each other by placing a symbol with a smaller value to the left of one with a larger value. The value of the smaller symbol is subtracted from that of the larger symbol to get the total value, so IV is 5 - 1, or 4."
 		readout += "\nExamples: \nIX = 10-1 = 9. \nVI = 5+1 = 6. \nVIII = 5+1+1+1 = 8."
+		readout += "\nAdditionally, all armors that have an armor value for red damage will have half (if positive) of that value in an armor value for fire damage if not explicitly indicated."
 		to_chat(usr, "[readout.Join()]")
 
 /**

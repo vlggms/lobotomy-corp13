@@ -1521,12 +1521,13 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	H.send_item_attack_message(I, user, hit_area, affecting)
 
 	var/justice_mod = 1 + (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE)/100)
-	var/damage = I.force * justice_mod
+	var/damage = I.force
+	if(!(SSmaptype.maptype in SSmaptype.citymaps))
+		damage *= justice_mod
 	if(istype(I, /obj/item/ego_weapon))
 		var/obj/item/ego_weapon/theweapon = I
 		damage *= theweapon.force_multiplier
 	apply_damage((damage * weakness), I.damtype, def_zone, armor_block, H, wound_bonus = Iwound_bonus, bare_wound_bonus = I.bare_wound_bonus, sharpness = I.get_sharpness(), white_healable = TRUE)
-
 	if(!I.force)
 		return FALSE //item force is zero
 
@@ -1591,6 +1592,14 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	return TRUE
 
 /datum/species/proc/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, forced = FALSE, spread_damage = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE, white_healable = FALSE)
+	if(GLOB.damage_type_shuffler?.is_enabled && IsColorDamageType(damagetype))
+		var/datum/damage_type_shuffler/shuffler = GLOB.damage_type_shuffler
+		var new_damage_type = shuffler.mapping_offense[damagetype]
+		if(new_damage_type == PALE_DAMAGE && damagetype != PALE_DAMAGE)
+			damage *= shuffler.pale_debuff
+		else if(new_damage_type != PALE_DAMAGE && damagetype == PALE_DAMAGE)
+			damage /= shuffler.pale_debuff
+		damagetype = new_damage_type
 	var/signal_return = SEND_SIGNAL(H, COMSIG_MOB_APPLY_DAMGE, damage, damagetype, def_zone, wound_bonus, bare_wound_bonus, sharpness)
 	if(signal_return & COMPONENT_MOB_DENY_DAMAGE)
 		return FALSE
@@ -1617,14 +1626,16 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			if(BP)
 				if(BP.receive_damage(damage_amount, 0, wound_bonus = wound_bonus, bare_wound_bonus = bare_wound_bonus, sharpness = sharpness))
 					H.update_damage_overlays()
+				new /obj/effect/temp_visual/damage_effect/red(get_turf(H)) // Since bodypart damage bypasses bruteloss, we just make vfx here.
 			else//no bodypart, we deal damage with a more general method.
 				H.adjustBruteLoss(damage_amount)
-		if(BURN, FIRE, LASER, ENERGY, RAD)
+		if(FIRE, FIRE, LASER, ENERGY, RAD)
 			H.damageoverlaytemp = 20
 			var/damage_amount = forced ? damage : damage * hit_percent * burnmod * H.physiology.burn_mod
 			if(BP)
 				if(BP.receive_damage(0, damage_amount, wound_bonus = wound_bonus, bare_wound_bonus = bare_wound_bonus, sharpness = sharpness))
 					H.update_damage_overlays()
+				new /obj/effect/temp_visual/damage_effect/burn(get_turf(H))
 			else
 				H.adjustFireLoss(damage_amount)
 		if(TOX, BIO)
@@ -1868,7 +1879,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			humi.emote("scream")
 
 		// Apply the damage to all body parts
-		humi.apply_damage(burn_damage, BURN, spread_damage = TRUE)
+		humi.apply_damage(burn_damage, FIRE, spread_damage = TRUE)
 
 	// Apply some burn / brute damage to the body (Dependent if the person is hulk or not)
 	var/is_hulk = HAS_TRAIT(humi, TRAIT_HULK)
@@ -1876,7 +1887,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/cold_damage_limit = bodytemp_cold_damage_limit + (is_hulk ? BODYTEMP_HULK_COLD_DAMAGE_LIMIT_MODIFIER : 0)
 
 	if(humi.coretemperature < cold_damage_limit && !HAS_TRAIT(humi, TRAIT_RESISTCOLD))
-		var/damage_type = is_hulk ? BRUTE : BURN
+		var/damage_type = is_hulk ? BRUTE : FIRE
 		var/damage_mod = coldmod * humi.physiology.cold_mod * (is_hulk ? HULK_COLD_DAMAGE_MOD : 1)
 		switch(humi.coretemperature)
 			if(-INFINITY to 119)
@@ -1927,7 +1938,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	if(humi.bodytemperature > BODYTEMP_HEAT_WOUND_LIMIT + 2800)
 		burn_damage = HEAT_DAMAGE_LEVEL_3
 
-	humi.apply_damage(burn_damage, BURN, bodypart)
+	humi.apply_damage(burn_damage, FIRE, bodypart)
 
 /// Handle the air pressure of the environment
 /datum/species/proc/handle_environment_pressure(datum/gas_mixture/environment, mob/living/carbon/human/H)
@@ -2037,10 +2048,15 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 		if(thermal_protection >= FIRE_IMMUNITY_MAX_TEMP_PROTECT && !no_protection)
 			return
+	////////////////////////////////////////
+	//Fire raising temperature is disabled//
+	////////////////////////////////////////
+/*
 		if(thermal_protection >= FIRE_SUIT_MAX_TEMP_PROTECT && !no_protection)
 			H.adjust_bodytemperature(11)
 		else
 			H.adjust_bodytemperature(BODYTEMP_HEATING_MAX + (H.fire_stacks * 12))
+*/
 
 /datum/species/proc/CanIgniteMob(mob/living/carbon/human/H)
 	if(HAS_TRAIT(H, TRAIT_NOFIRE))

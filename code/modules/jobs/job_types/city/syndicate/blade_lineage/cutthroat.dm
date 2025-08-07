@@ -39,7 +39,7 @@
 	//Don't spawn these goobers without a director.
 	for(var/datum/job/processing in SSjob.occupations)
 		if(istype(processing, /datum/job/salsu))
-			processing.total_positions = 2
+			processing.total_positions = 3
 
 	//Someone for them to fight, and give the fixers a scare.
 		if(istype(processing, /datum/job/butcher))
@@ -55,5 +55,5 @@
 	ears = /obj/item/radio/headset/syndicatecity/heads
 	uniform = /obj/item/clothing/under/suit/lobotomy/plain
 	glasses = /obj/item/clothing/glasses/sunglasses
-	backpack_contents = list(/obj/item/structurecapsule/syndicate/bladelineage)
+	backpack_contents = list(/obj/item/structurecapsule/syndicate/bladelineage, /obj/item/office_marker/syndicate)
 	shoes = /obj/item/clothing/shoes/laceup

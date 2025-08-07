@@ -4,6 +4,11 @@
 	icon_state = "mirror"
 	var/list/gazers = list()
 
+	ego_list = list(
+		/datum/ego_datum/weapon/mirror,
+		/datum/ego_datum/armor/mirror,
+	)
+
 /obj/structure/toolabnormality/mirror/attack_hand(mob/living/carbon/human/user)
 	. = ..()
 
@@ -20,6 +25,9 @@
 		var/addition = rand(-20, 20)
 		if(user in gazers) // Why are you rerolling your stats twice!?
 			addition -= 10
+		for(var/upgradecheck in GLOB.jcorp_upgrades)
+			if(upgradecheck == "Tool Gacha")
+				addition += 5
 		user.adjust_attribute_level(attribute, addition)
 		total_addition += addition
 

@@ -7,6 +7,7 @@
 
 /datum/action/innate/bulletproof
 	name = "Bulletproof"
+	desc = "Make yourself immune to most bullets, but take more physical damage."
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "shield_off"
 	var/datum/martial_art/bulletproof/MA = new /datum/martial_art/bulletproof
@@ -39,4 +40,7 @@
 
 /datum/martial_art/bulletproof/on_projectile_hit(mob/living/A, obj/projectile/P, def_zone)
 	to_chat(A, span_notice("You blocked a bullet."))
-	return BULLET_ACT_BLOCK
+	if(!P.ignore_bulletproof)
+		return BULLET_ACT_BLOCK
+	to_chat(A, span_userdanger("Your armor has been pierced!"))
+	..()

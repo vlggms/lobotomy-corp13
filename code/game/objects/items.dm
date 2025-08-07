@@ -225,7 +225,7 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 		item_flags |= FORCE_STRING_OVERRIDE
 
 	if(!hitsound)
-		if(damtype == BURN)
+		if(damtype == FIRE)
 			hitsound = 'sound/items/welder.ogg'
 		if(damtype in list(BRUTE, RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE))
 			hitsound = "swing_hit"
@@ -759,7 +759,7 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	return sharpness
 
 /obj/item/proc/get_dismember_sound()
-	if(damtype == BURN)
+	if(damtype == FIRE)
 		. = 'sound/weapons/sear.ogg'
 	else
 		. = "desecration"

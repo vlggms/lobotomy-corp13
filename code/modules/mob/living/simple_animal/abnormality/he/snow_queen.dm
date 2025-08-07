@@ -22,7 +22,7 @@
 	health = 1500
 	blood_volume = 0
 	move_to_delay = 5
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.1, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.8) //ASK SOMEONE GOOD AT BALANCING ABOUT THIS -IP
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.1, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.8, FIRE = 2) //ASK SOMEONE GOOD AT BALANCING ABOUT THIS -IP
 	base_pixel_x = -16
 	pixel_x = -16
 	can_breach = TRUE
@@ -765,7 +765,7 @@
 	if(healing_cooldown <= world.time)
 		var/turf/where_we_are = get_turf(src)
 		healing_cooldown = world.time + healing_cooldown_time
-		new /obj/effect/area_heal(where_we_are)
+		new /obj/effect/temp_visual/area_heal(where_we_are)
 		for(var/mob/living/carbon/human/H in range(1, where_we_are))
 			if(H.stat != DEAD)
 				to_chat(H, span_nicegreen("The warmth of spring melts away the winter frost and restores you."))

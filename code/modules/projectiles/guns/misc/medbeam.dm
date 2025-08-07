@@ -60,6 +60,9 @@
 	if(istype(user) && (user?.mind?.assigned_role in banned_roles))
 		to_chat(user, "<span class='notice'>You don't know how to use this.</span>")
 		return
+	if(istype(user) && (user?.mind?.has_antag_datum(/datum/antagonist/wizard/arbiter/rcorp)))
+		to_chat(user, "<span class='notice'>You wouldn't stoop so low as to use the weapons of those below you.</span>") //You are an arbiter not a medic
+		return FALSE
 
 	if(isliving(user))
 		add_fingerprint(user)

@@ -8,7 +8,7 @@
 	icon_state = "priest_wings_closed"
 	icon_living = "priest_wings_closed"
 	icon_dead = "none"
-	faction = list("city", "hostile")
+	faction = list("hostile")
 	turns_per_move = 1
 	maxHealth = 10000
 	health = 10000
@@ -136,6 +136,19 @@
 	pixel_x = -16
 	base_pixel_x = -16
 
+/mob/living/simple_animal/npc/tinkerer/Life()
+	. = ..()
+	if(!.)
+		return FALSE
+	AwardTinkererAchievement() // Always check for new players to award achievement
+	if(!speaking && pulse_cooldown < world.time)
+		LookForPlayer() // Only trigger speech if not already speaking
+
+/mob/living/simple_animal/npc/tinkerer/proc/AwardTinkererAchievement()
+	for(var/mob/living/carbon/human/L in livinginview(5, src))
+		if(L.ckey && L.client)
+			L.client.give_award(/datum/award/achievement/lc13/city/tinkerer_encounter, L)
+
 /mob/living/simple_animal/npc/tinkerer/Move()
 	return FALSE
 
@@ -155,6 +168,19 @@
 	speech_span = SPAN_ROBOT
 	pixel_x = -16
 	base_pixel_x = -16
+
+/mob/living/simple_animal/npc/tinkerer_speech/Life()
+	. = ..()
+	if(!.)
+		return FALSE
+	AwardTinkererAchievement() // Always check for new players to award achievement
+	if(!speaking && pulse_cooldown < world.time)
+		LookForPlayer() // Only trigger speech if not already speaking
+
+/mob/living/simple_animal/npc/tinkerer_speech/proc/AwardTinkererAchievement()
+	for(var/mob/living/carbon/human/L in view(5, src))
+		if(L.ckey && L.client)
+			L.client.give_award(/datum/award/achievement/lc13/city/tinkerer_encounter, L)
 
 /mob/living/simple_animal/npc/tinkerer_speech/Move()
 	return FALSE

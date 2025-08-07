@@ -249,7 +249,7 @@
 				playsound(loc, 'sound/weapons/smash.ogg', 50, TRUE)
 			else
 				playsound(src, 'sound/weapons/tap.ogg', 50, TRUE)
-		if(BURN)
+		if(FIRE)
 			playsound(src.loc, 'sound/items/welder.ogg', 100, TRUE)
 
 /obj/machinery/door/emp_act(severity)

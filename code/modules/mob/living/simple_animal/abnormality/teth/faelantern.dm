@@ -196,7 +196,7 @@
 		victim.apply_damage(lure_damage, WHITE_DAMAGE)
 		if(victim in lured_list || victim.stat >= SOFT_CRIT)
 			continue
-		if(get_attribute_level(victim, TEMPERANCE_ATTRIBUTE) > 40)
+		if(get_attribute_level(victim, TEMPERANCE_ATTRIBUTE) >= 40)
 			continue
 		victim.apply_status_effect(STATUS_EFFECT_FAIRYLURE)
 		lured_list += victim

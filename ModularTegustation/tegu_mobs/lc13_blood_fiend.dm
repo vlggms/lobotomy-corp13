@@ -31,6 +31,12 @@
 	var/drain_cooldown_time = 50
 	var/bleed_stacks = 2
 	var/leap_bleed_stacks = 5
+	var/drop_outfit = TRUE
+
+/mob/living/simple_animal/hostile/humanoid/blood/fiend/Initialize()
+	. = ..()
+	if(SSmaptype.maptype == "wcorp")
+		drop_outfit = FALSE
 
 /mob/living/simple_animal/hostile/humanoid/blood/fiend/proc/AdjustBloodFeast(amount)
 	if(stat != DEAD)
@@ -42,8 +48,9 @@
 		return
 
 /mob/living/simple_animal/hostile/humanoid/blood/fiend/death(gibbed)
-	if(prob(20))
-		new /obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak (get_turf(src))
+	if(drop_outfit)
+		if(prob(20))
+			new /obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak (get_turf(src))
 	. = ..()
 
 /mob/living/simple_animal/hostile/humanoid/blood/fiend/proc/Drain()
@@ -227,7 +234,7 @@
 	ChangeResistances(list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.3))
 	blood_target = target
 	blood_target.apply_status_effect(/datum/status_effect/bloodhold)
-	blood_target.faction += "city"
+	blood_target.faction += "hostile"
 	can_act = FALSE
 	var/list/dirs_to_land = shuffle(list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
 	var/list/dir_overlays = list()
@@ -271,7 +278,7 @@
 	for (var/i in 1 to 3)
 		blood_target.cut_overlay(dir_overlays[i])
 		if (stat == DEAD)
-			blood_target.faction -= "city"
+			blood_target.faction -= "hostile"
 			continue
 		animate(src, alpha = 1,pixel_x = 16, pixel_z = 0, time = 0.1 SECONDS)
 		src.pixel_x = 16
@@ -288,7 +295,7 @@
 			say("ROT AWAY!!!")
 		Dash(blood_target)
 		sleep(0.25 SECONDS)
-	blood_target.faction -= "city"
+	blood_target.faction -= "hostile"
 	if (!cutter_hit)
 		var/mutable_appearance/colored_overlay = mutable_appearance(icon, "small_stagger", layer + 0.1)
 		add_overlay(colored_overlay)
@@ -417,6 +424,12 @@
 	var/bleed_stacks = 1
 	var/explosion_damage = 10
 	var/explosion_bleed = 5
+	var/drop_meat = TRUE
+
+/mob/living/simple_animal/hostile/humanoid/blood/bag/Initialize()
+	. = ..()
+	if(SSmaptype.maptype == "wcorp")
+		drop_meat = FALSE
 
 /mob/living/simple_animal/hostile/humanoid/blood/bag/AttackingTarget(atom/attacked_target)
 	. = ..()
@@ -445,10 +458,11 @@
 	walk_to(src, 0)
 	animate(src, transform = matrix()*1.8, color = "#FF0000", time = 15)
 	addtimer(CALLBACK(src, PROC_REF(DeathExplosion)), 15)
-	new /obj/item/food/meat/slab/crimson (get_turf(src))
-	new /obj/item/food/meat/slab/crimson (get_turf(src))
-	if(prob(10))
-		new /obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak/masquerade_coat (get_turf(src))
+	if(drop_meat)
+		new /obj/item/food/meat/slab/crimson (get_turf(src))
+		new /obj/item/food/meat/slab/crimson (get_turf(src))
+		if(prob(10))
+			new /obj/item/clothing/suit/armor/ego_gear/city/masquerade_cloak/masquerade_coat (get_turf(src))
 	QDEL_IN(src, 15)
 	..()
 

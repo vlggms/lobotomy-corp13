@@ -29,7 +29,12 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 		var/obj/effect/proc_holder/spell/targeted/night_vision/bloodspell = new
 		A.AddSpell(bloodspell)
 		if(!(SSmaptype.maptype in SSmaptype.citymaps))
-			A.faction += "hostile"
+			if(SSmaptype.maptype == "limbus_labs")
+				if(!A.client)
+					A.faction += "hostile"
+
+			else
+				A.faction += "hostile"
 
 	if(SSmaptype.maptype in SSmaptype.autoend)
 		switch(SSmaptype.maptype)
@@ -53,12 +58,12 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 						addtimer(CALLBACK(src, PROC_REF(drawround)), 40 MINUTES)
 						to_chat(world, span_userdanger("Round will end in a draw after 40 minutes."))
 				addtimer(CALLBACK(src, PROC_REF(rcorp_announce)), 3 MINUTES)
-				addtimer(CALLBACK(src, PROC_REF(ClearIncorpBarriers)), 10 MINUTES)
-				minor_announce("WARNING, The facility gates will open in T-15 Minutes." , "R-Corp Intelligence Office")
-				addtimer(CALLBACK(src, PROC_REF(rcorp_opendoor)), 15 MINUTES)
-				addtimer(CALLBACK(src, PROC_REF(facility_warning_1)), 5 MINUTES)
-				addtimer(CALLBACK(src, PROC_REF(facility_warning_2)), 10 MINUTES)
-				addtimer(CALLBACK(src, PROC_REF(facility_warning_3)), 14 MINUTES)
+				addtimer(CALLBACK(src, PROC_REF(ClearIncorpBarriers)), 12 MINUTES)
+				minor_announce("WARNING, The facility gates will open in T-12 Minutes." , "R-Corp Intelligence Office")
+				addtimer(CALLBACK(src, PROC_REF(rcorp_opendoor)), 12 MINUTES)
+				addtimer(CALLBACK(src, PROC_REF(facility_warning_1)), 2 MINUTES)
+				addtimer(CALLBACK(src, PROC_REF(facility_warning_2)), 7 MINUTES)
+				addtimer(CALLBACK(src, PROC_REF(facility_warning_3)), 11 MINUTES)
 				RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(CheckLiving))
 
 			//Limbus Labs
@@ -80,7 +85,7 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 				addtimer(CALLBACK(src, PROC_REF(counterincrease)), 3 MINUTES)
 				to_chat(world, span_userdanger("Players will be victorius 20 minutes."))
 
-				switch(rand(1,4))
+				switch(rand(1,5))
 					if(1)
 						GLOB.wcorp_enemy_faction = "lovetown"
 					if(2)
@@ -89,6 +94,8 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 						GLOB.wcorp_enemy_faction = "peccatulum"
 					if(4)
 						GLOB.wcorp_enemy_faction = "shrimp"
+					if(5)
+						GLOB.wcorp_enemy_faction = "bloodfiends"
 
 				RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(CheckLiving))
 
@@ -162,7 +169,6 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 		if("payload_abno")
 			announcement_type = "Intelligence has located a dangerous specimen moving towards your location. Prevent it from escaping at all costs."
 	minor_announce("[announcement_type]" , "R-Corp Intelligence Office")
-	minor_announce("WARNING, The facility gates will open in T-12 Minutes." , "R-Corp Intelligence Office")
 
 /datum/game_mode/combat/proc/rcorp_opendoor()
 	for(var/obj/machinery/button/door/indestructible/rcorp/M in GLOB.machines)

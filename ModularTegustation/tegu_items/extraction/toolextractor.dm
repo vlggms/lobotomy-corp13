@@ -9,6 +9,11 @@
 	var/ego_selection
 	var/ego_array
 
+/obj/item/extraction/tool_extractor/examine(mob/user)
+	. = ..()
+	if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_1))
+		. += span_notice( "This tool seems to be upgraded, reducing the cost needed to extract by 20%.")
+
 /obj/item/extraction/tool_extractor/Initialize()
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_WORK_COMPLETED, PROC_REF(WorkCharge))
@@ -70,8 +75,11 @@
 	ego_selection = input(user, "Which E.G.O will you extract?") as null|anything in P.ego_list
 	if(!ego_selection)
 		return
+	var/cost_multi = 1
+	if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_1))
+		cost_multi = 0.8 // 20% cheaper
 	var/datum/ego_datum/D = ego_selection
-	var/enkephalin_cost = initial(D.cost)
+	var/enkephalin_cost = initial(D.cost) * cost_multi
 	var/loot = initial(D.item_path)
 	switch(alert("This E.G.O. requires [D.cost] NE to extract. Confirm Extraction?",,"Yes","No"))
 		if("Yes")

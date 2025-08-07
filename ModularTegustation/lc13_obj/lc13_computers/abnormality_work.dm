@@ -1,6 +1,7 @@
 /obj/machinery/computer/abnormality
 	name = "abnormality work console"
 	desc = "Used to perform various tasks with the abnormalities."
+	icon_screen = "abnormality_work"
 	resistance_flags = INDESTRUCTIBLE
 
 	/// Datum reference of the abnormality this console is related to
@@ -228,9 +229,14 @@
 	var/work_speed = 2 SECONDS / (1 + ((get_modified_attribute_level(user, TEMPERANCE_ATTRIBUTE) + datum_reference.understanding) / 100))
 	switch(work_bonus)
 		if(EXTRACTION_KEY)
-			work_speed *= 0.9 //10% faster work
+			if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_1))
+				work_speed *= 0.8 //20% faster work
+			else
+				work_speed *= 0.9 //10% faster work
 		if(EXTRACTION_LOCK)
 			work_speed *= 1.2 //20% slower work
+			if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_1))
+				work_chance += 5 //but +5% work chance
 	work_speed /= user.physiology.work_speed_mod
 	var/success_boxes = 0
 	var/total_boxes = 0
@@ -317,10 +323,7 @@
 		datum_reference.work_complete(user, work_type, pe, work_speed*datum_reference.max_boxes, was_melting, canceled)
 		if(recorded) //neither rabbit nor tutorial calls this
 			SSlobotomy_corp.WorkComplete(pe, (meltdown_time <= 0))
-	if(mechanical_upgrades["abnochem"])
-		chem_charges += 1
-	else
-		chem_charges = min(chem_charges + 0.2, 10)
+	chem_charges ++
 	meltdown_time = 0
 	datum_reference.working = FALSE
 	return TRUE

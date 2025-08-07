@@ -25,10 +25,11 @@
 		//The office stuff
 		/obj/item/structurecapsule/fixer = 1,	//fishing
 		/obj/item/structurecapsule/fixer/combat = 2,
-		/obj/item/structurecapsule/fixer/protection = 2,
+		/obj/item/structurecapsule/fixer/delivery = 1,
 		/obj/item/structurecapsule/fixer/workshop = 1,
 		/obj/item/structurecapsule/fixer/recon = 1,
 		/obj/item/structurecapsule/fixer/peacekeeper = 1,
+		/obj/item/structurecapsule/fixer/contract = 1,
 
 		//Boxes cost you an extra 700
 		/obj/item/storage/box/fixer/wedge = 1,
@@ -123,6 +124,7 @@
 	products = list(
 		/obj/item/flashlight/seclite = 100,
 		/obj/item/attribute_increase/fixer = 1500,
+		/obj/item/attribute_increase/fixer/office = 1500,
 		/obj/item/radio/headset = 200,
 		/obj/item/crowbar = 100,
 		/obj/item/clothing/suit/armor/ego_gear/city/misc/lone = 100,
@@ -136,6 +138,7 @@
 		/obj/item/reagent_containers/hypospray/medipen/mental = 100,
 		/obj/item/reagent_containers/hypospray/medipen/salacid = 100,
 		/obj/item/gps/fixer = 100,
+		/obj/item/pinpointer/coordinate = 20,
 	)
 
 	premium = list(
@@ -147,20 +150,22 @@
 		/obj/item/book/granter/action/skill/assault = 100,
 		/obj/item/book/granter/action/skill/retreat = 100,
 		/obj/item/book/granter/action/skill/smokedash = 100,
-		/obj/item/book/granter/action/skill/skulk = 100,
 		/obj/item/book/granter/action/skill/healing = 100,
 		/obj/item/book/granter/action/skill/soothing = 100,
 		/obj/item/book/granter/action/skill/curing = 100,
 		/obj/item/book/granter/action/skill/hunkerdown = 100,
 		/obj/item/book/granter/action/skill/firstaid = 100,
 		/obj/item/book/granter/action/skill/meditation = 100,
+		/obj/item/book/granter/action/skill/mark = 100,
+		/obj/item/book/granter/action/skill/light = 100,
 		//Level 2
-		/obj/item/book/granter/action/skill/shockwave = 100,
 		/obj/item/book/granter/action/skill/butcher = 100,
 		/obj/item/book/granter/action/skill/confusion = 100,
 		/obj/item/book/granter/action/skill/solarflare = 100,
 		/obj/item/book/granter/action/skill/lifesteal = 100,
 		/obj/item/book/granter/action/skill/lockpick = 100,
+		/obj/item/book/granter/action/skill/skulk = 100,
+		/obj/item/book/granter/action/skill/autoloader = 100,
 		//Level 3
 		/obj/item/book/granter/action/skill/healthhud = 100,
 		/obj/item/book/granter/action/skill/bulletproof = 100,
@@ -168,11 +173,10 @@
 		/obj/item/book/granter/action/skill/fleetfoot = 100,
 		//Level 4
 		/obj/item/book/granter/action/skill/timestop = 100,
-		/obj/item/book/granter/action/skill/reraise = 100,
+		/obj/item/book/granter/action/skill/shockwave = 100,
 		/obj/item/book/granter/action/skill/dismember = 100,
 		/obj/item/book/granter/action/skill/warbanner = 100,
 		/obj/item/book/granter/action/skill/warcry = 100,
-		/obj/item/book/granter/action/skill/nuke = 100,
 	)
 
 	default_price = 300
@@ -252,7 +256,7 @@
 		/obj/item/organ/cyberimp/arm/briefcase = 100,
 		/obj/item/organ/cyberimp/arm/surgery = 100,
 		/obj/item/organ/cyberimp/arm/overdrive = 100,
-		/obj/item/organ/cyberimp/arm/observation = 100,
+		/obj/item/organ/eyes/robotic/infofixer = 100,
 		/obj/item/extra_arm = 100,
 		/obj/item/extra_arm/double = 100,
 	)

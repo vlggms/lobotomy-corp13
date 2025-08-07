@@ -142,6 +142,45 @@
 	variable = TRUE
 	multiplicative_slowdown = 1.5
 
+/obj/projectile/clown_throw_rcorp
+	name = "blade"
+	desc = "A blade thrown maliciously"
+	icon_state = "clown"
+	damage_type = RED_DAMAGE
+	nodamage = TRUE
+	damage = 0
+	projectile_piercing = PASSMOB
+	ricochets_max = 2
+	ricochet_chance = 100
+	ricochet_decay_chance = 1
+	ricochet_decay_damage = 2
+	ricochet_auto_aim_range = 3
+	ricochet_incidence_leeway = 0
+
+/obj/projectile/clown_throw_rcorp/Initialize()
+	. = ..()
+	SpinAnimation()
+
+/obj/projectile/clown_throw_rcorp/check_ricochet_flag(atom/A)
+	if(istype(A, /turf/closed))
+		return TRUE
+	return FALSE
+
+/obj/projectile/clown_throw_rcorp/on_hit(atom/target, blocked = FALSE)
+	if(ishuman(target))
+		damage = 5
+		nodamage = FALSE
+		var/mob/living/carbon/human/H = target
+		H.apply_lc_bleed(6)
+		H.add_movespeed_modifier(/datum/movespeed_modifier/clowned)
+		addtimer(CALLBACK(H, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/clowned), 1 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+		qdel(src)
+
+	if(istype(target, /mob/living))
+		to_chat(target, "The [src] flies right passed you!")
+		return
+	..()
+
 /obj/projectile/bride_bolts
 	name = "mind bolts"
 	desc = "A magic white bolt, enchanted to protect or to avenge the sculptor."
@@ -165,16 +204,19 @@
 	desc = "Report this to a dev"
 	icon_state = "mountain"
 	damage_type = RED_DAMAGE
-
 	damage = 45
 
 /obj/projectile/season_projectile/Moved(atom/OldLoc, Dir)
 	. = ..()
+	if(!istype(firer, /mob/living/simple_animal/hostile/abnormality/seasons))
+		return
+	var/mob/living/simple_animal/hostile/abnormality/seasons/source = firer
 	if(!isturf(loc) || isspaceturf(loc))
 		return
-	if(locate(/obj/effect/season_turf/temporary) in get_turf(src))
+	if(locate(/obj/effect/season_turf) in get_turf(src))
 		return
-	new /obj/effect/season_turf/temporary(get_turf(src))
+	var/obj/effect/season_turf/newturf = new(get_turf(src))
+	source.spawned_turfs += newturf
 
 /obj/projectile/season_projectile/spring
 	name = "burr"
@@ -230,26 +272,35 @@
 	icon = 'icons/obj/ego_weapons.dmi'
 	icon_state = "warring2_firey"
 	damage_type = BLACK_DAMAGE
-
-	damage = 45
+	damage = 20
 
 /obj/projectile/thunder_tomahawk/Initialize()
 	. = ..()
 	SpinAnimation()
 
-/obj/projectile/beam/water_jet //it's just a reskin for gold ordeals
+/obj/projectile/beam/water_jet
 	name = "water jet"
 	icon_state = "snapshot"
 	hitsound = null
-	damage = 10
+	damage = 0
 	damage_type = WHITE_DAMAGE
-
 	hitscan = TRUE
+	projectile_piercing = PASSMOB
 	muzzle_type = /obj/effect/projectile/muzzle/laser/snapshot
 	tracer_type = /obj/effect/projectile/tracer/laser/snapshot
 	impact_type = /obj/effect/projectile/impact/laser/snapshot
 	wound_bonus = -100
 	bare_wound_bonus = -100
+
+/obj/projectile/beam/water_jet/on_hit(atom/target, blocked = FALSE)
+	if(isliving(target) && isliving(firer))
+		var/mob/living/T = target
+		var/mob/living/F = firer
+		if(faction_check(F.faction, T.faction, FALSE))
+			return
+	damage = 10 // Using nodamage var does not work for this purpose
+	. = ..()
+	qdel(src)
 
 /obj/projectile/hunter_blade
 	name = "hunter's scythe"
@@ -386,3 +437,25 @@
 	. = ..()
 	hitsound = "sound/weapons/ego/rapier[pick(1,2)].ogg"
 	animate(src, alpha = 255, time = 3)
+
+/obj/projectile/nosferatu_bat
+	name = "bat"
+	icon_state = "bat"
+	damage = 25
+	hitsound = 'sound/abnormalities/nosferatu/bat_attack.ogg'
+	var/mob/living/simple_animal/hostile/abnormality/nosferatu/owner = null
+
+/obj/projectile/nosferatu_bat/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	var/guaranteed_spawn = FALSE
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		if(H.stat == DEAD)
+			return
+		var/obj/effect/decal/cleanable/blood/B = new(get_turf(src))
+		B.bloodiness = 200 // 200 Blood for nosferatu or its minions to collect
+		guaranteed_spawn = TRUE
+	if(owner)
+		if(!guaranteed_spawn && prob(75))
+			return
+		owner.BatSpawn(target)

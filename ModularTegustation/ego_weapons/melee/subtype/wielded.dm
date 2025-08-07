@@ -14,11 +14,13 @@
 	var/wielded_anti_justice_multiplier = 1
 	//holder stuff and unwield stuff
 	var/mob/current_holder
+	var/two_hands_required = FALSE
 	var/should_unwield_cooldown = FALSE
 	var/unwield_time = 3 SECONDS
 	var/unwield_cooldown
 	//text
 	var/wield_stats = "This weapon can be two-handed."
+	var/forced_wield_stats = "This weapon requires both hands to be wielded."
 	var/wield_special = null
 
 /obj/item/ego_weapon/wield/Initialize()
@@ -28,11 +30,14 @@
 
 /obj/item/ego_weapon/wield/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/two_handed, force_unwielded=initial(force), force_wielded=wielded_force)
+	AddComponent(/datum/component/two_handed, force_unwielded=initial(force), force_wielded=wielded_force, require_twohands=two_hands_required)
 
 /obj/item/ego_weapon/wield/examine(mob/user)
 	. = ..()
-	. += span_notice(wield_stats)
+	if(two_hands_required)
+		. += span_notice(forced_wield_stats)
+	else
+		. += span_notice(wield_stats)
 	if(wield_special)
 		. += span_notice(wield_special)
 
@@ -61,8 +66,10 @@
 	current_holder = null
 
 /obj/item/ego_weapon/wield/attack_self(mob/user)
-	if (should_unwield_cooldown && unwield_cooldown > world.time)
-		to_chat(user, span_userdanger("You wielded [src] to recently!"))
+	if(two_hands_required)
+		return
+	if(should_unwield_cooldown && unwield_cooldown > world.time)
+		to_chat(user, span_userdanger("You wielded [src] too recently!"))
 		return
 	. = ..()
 

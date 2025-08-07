@@ -9,6 +9,7 @@
 		/obj/item/clothing/suit/armor/ego_gear/city/zweijunior,
 		/obj/item/ego_weapon/city/zweihander,
 		/obj/item/ego_weapon/city/zweihander/knife,
+		/obj/item/ego_weapon/city/zweiwest,
 		/obj/item/clothing/suit/armor/ego_gear/city/zwei,
 		/obj/item/clothing/suit/armor/ego_gear/city/zweiriot,
 		/obj/item/clothing/suit/armor/ego_gear/city/zweiwest,
@@ -27,10 +28,12 @@
 		/obj/item/ego_weapon/city/liu/fist,
 		/obj/item/clothing/suit/armor/ego_gear/city/cinq,
 		/obj/item/ego_weapon/city/cinq,
+		/obj/item/clothing/suit/armor/ego_gear/city/devyat_suit/weak,
 	)
 
 	rareloot =	list(
 		/obj/item/ego_weapon/city/zweihander/vet,
+		/obj/item/ego_weapon/city/zweiwest/vet,
 		/obj/item/clothing/suit/armor/ego_gear/city/zweivet,
 		/obj/item/clothing/suit/armor/ego_gear/city/zweiwestvet,
 		/obj/item/ego_weapon/city/shi_assassin/sakura,
@@ -49,6 +52,9 @@
 		/obj/item/clothing/suit/armor/ego_gear/city/liuvet/section2,
 		/obj/item/clothing/suit/armor/ego_gear/city/liuvet/section5,
 		/obj/item/ego_weapon/city/liu/fist/vet,
+		/obj/item/ego_weapon/city/devyat_trunk,
+		/obj/item/ego_weapon/city/devyat_trunk/demo,
+		/obj/item/clothing/suit/armor/ego_gear/city/devyat_suit,
 	)
 
 	veryrareloot =	list(
@@ -67,6 +73,7 @@
 	rarechance = 30
 	lootlist =	list(
 		/obj/item/clothing/suit/armor/ego_gear/city/zweijunior,
+		/obj/item/ego_weapon/city/zweiwest,
 		/obj/item/ego_weapon/city/zweihander,
 		/obj/item/ego_weapon/city/zweihander/knife,
 		/obj/item/clothing/suit/armor/ego_gear/city/zwei,
@@ -76,6 +83,7 @@
 	)
 
 	rareloot =	list(
+		/obj/item/ego_weapon/city/zweiwest/vet,
 		/obj/item/ego_weapon/city/zweihander/vet,
 		/obj/item/clothing/suit/armor/ego_gear/city/zweiwestvet,
 		/obj/item/clothing/suit/armor/ego_gear/city/zweiwestleader,

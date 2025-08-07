@@ -42,6 +42,16 @@
 #define BOSS_MEDAL_GREENMIDNIGHT "Green Midnight"
 #define BOSS_MEDAL_VIOLETMIDNIGHT "Violet Midnight"
 #define BOSS_MEDAL_WHITEMIDNIGHT "White Midnight"
+#define MEDAL_TINKERER_ENCOUNTER "Tinkerer Encounter"
+#define MEDAL_RESURGENCE_TAPE "Resurgence Tape"
+#define MEDAL_RESURGENCE_VILLAGE "Resurgence Village"
+#define MEDAL_PARCEL_DELIVERY "Parcel Master"
+#define MEDAL_ERIC_QUEST_ACCEPT "Eric Quest Accept"
+#define MEDAL_ERIC_QUEST_COMPLETE "Eric Quest Complete"
+#define MEDAL_MUTANT_CLOWN_BOSS "Mutant Clown Boss"
+#define MEDAL_RAT_LEADER_QUEST "Rat Leader Quest"
+#define MEDAL_CLAN_GENOCIDE "Clan Genocide"
+#define MEDAL_NUKE_RATS_GENOCIDE "Nuke Rats Genocide"
 
 //Skill medal hub IDs
 #define MEDAL_LEGENDARY_MINER		"Legendary Miner"

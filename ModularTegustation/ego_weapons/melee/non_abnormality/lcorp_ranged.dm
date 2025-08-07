@@ -50,7 +50,7 @@
 /obj/item/ego_weapon/ranged/city/lcorp/examine(mob/user)
 	. = ..()
 	if(user.mind)
-		if(user.mind.assigned_role in list("Disciplinary Officer", "Emergency Response Agent"))
+		if(user.mind.assigned_role in list("Disciplinary Officer", "Combat Research Agent"))
 			. += span_notice("Due to your abilties, you get a +20 to your stats when equipping this weapon.")
 	if(!installed_shard)
 		. += span_warning("This weapon can be enhanced with an egoshard.")

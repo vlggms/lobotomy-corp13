@@ -495,6 +495,7 @@ No Ability	250
 	icon_state = "farmwatch"
 	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 70, BLACK_DAMAGE = 40, PALE_DAMAGE = 60)
 	hat = /obj/item/clothing/head/ego_hat/farmwatch_hat
+	realized_ability = /obj/effect/proc_holder/ability/ego_assimilation/farmwatch
 
 /obj/item/clothing/head/ego_hat/farmwatch_hat
 	name = "farmwatch"
@@ -506,6 +507,7 @@ No Ability	250
 	desc = "I've always wished to be a bud. Soon to bloom, bearing a scent within."
 	icon_state = "spicebush"
 	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 70, BLACK_DAMAGE = 70, PALE_DAMAGE = 60)
+	realized_ability = /obj/effect/proc_holder/ability/ego_assimilation/spicebush
 
 /obj/item/clothing/suit/armor/ego_gear/realization/desperation
 	name = "Scorching Desperation"
@@ -519,3 +521,4 @@ No Ability	250
 	desc = "We must find the Pallid Whale! Look alive, men! Spring! Roar!"
 	icon_state = "gasharpoon"
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 70, BLACK_DAMAGE = 20, PALE_DAMAGE = 80)//230, required for the corresponding weapon abilities
+	realized_ability = /obj/effect/proc_holder/ability/ego_assimilation/gasharpoon

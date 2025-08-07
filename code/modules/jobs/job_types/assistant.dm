@@ -50,14 +50,19 @@ GLOBAL_LIST_EMPTY(spawned_clerks)
 	else	//Don't buff them if they can work jesus
 		outfit_owner.set_attribute_limit(130)
 
-	for(var/upgradecheck in GLOB.lcorp_upgrades)
-		if(upgradecheck == "Clerk Buff")
-			outfit_owner.set_attribute_limit(40)
-			outfit_owner.adjust_all_attribute_levels(40)
-
 	if(SSmaptype.chosen_trait == FACILITY_TRAIT_ABNO_BLITZ)
 		outfit_owner.set_attribute_limit(40)
 		outfit_owner.adjust_all_attribute_levels(40)
+
+
+	for(var/upgradecheck in GLOB.lcorp_upgrades)
+		if(upgradecheck == "Clerk Buff")
+			if(SSmaptype.chosen_trait == FACILITY_TRAIT_ABNO_BLITZ)
+				outfit_owner.set_attribute_limit(60)
+				outfit_owner.adjust_all_attribute_levels(60)
+				return
+			outfit_owner.set_attribute_limit(40)
+			outfit_owner.adjust_all_attribute_levels(40)
 
 	if(outfit_owner.ckey in GLOB.spawned_clerks)
 		return

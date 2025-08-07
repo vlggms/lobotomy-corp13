@@ -40,9 +40,9 @@
 	desc = "A kit from containing Dawn office gear."
 
 /obj/item/storage/box/fixer/dawn/PopulateContents()
-	new /obj/item/ego_weapon/city/dawn/sword/white(src)
-	new /obj/item/ego_weapon/city/dawn/cello/white(src)
-	new /obj/item/ego_weapon/city/dawn/zwei/white(src)
+	new /obj/item/ego_weapon/city/dawn/sword(src)
+	new /obj/item/ego_weapon/city/dawn/cello(src)
+	new /obj/item/ego_weapon/city/dawn/zwei(src)
 	new /obj/item/clothing/suit/armor/ego_gear/city/dawnleader(src)
 	new /obj/item/clothing/suit/armor/ego_gear/city/dawn(src)
 	new /obj/item/clothing/suit/armor/ego_gear/city/dawn(src)

@@ -3,7 +3,7 @@
 
 /datum/action/cooldown/blitz
 	name = "Blitz"
-	desc = "Increase movespeed greatly and decrease defenses for 5 seconds. Costs 10SP"
+	desc = "Increase movespeed greatly and decrease defenses for 5 seconds."
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "retreat"
 	cooldown_time = 20 SECONDS

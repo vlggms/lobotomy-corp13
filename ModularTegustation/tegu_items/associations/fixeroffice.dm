@@ -74,10 +74,9 @@
 	name = "Combat Office Capsule"
 	template_id = "combatfixers_office"
 
-
-/obj/item/structurecapsule/fixer/protection
-	name = "Protection Office Capsule"
-	template_id = "protectionfixers_office"
+/obj/item/structurecapsule/fixer/delivery
+	name = "Delivery Office Capsule"
+	template_id = "deliveryfixers_office"
 
 /obj/item/structurecapsule/fixer/workshop
 	name = "Workshop Office Capsule"
@@ -91,7 +90,9 @@
 	name = "Peacekeeper Office Capsule"
 	template_id = "peacekeeperfixers_office"
 
-
+/obj/item/structurecapsule/fixer/contract
+	name = "Contract Office Capsule"
+	template_id = "contractfixers_office"
 
 
 //Office templates
@@ -107,11 +108,11 @@
 	description = "A fixer office made for combat oriented fixers."
 	mappath = "_maps/templates/fixer_office/combatfixers.dmm"
 
-/datum/map_template/shelter/protectionfixers
+/datum/map_template/shelter/deliveryfixers
 	name = "Protection Office"
-	shelter_id = "protectionfixers_office"
-	description = "A fixer office made for protection oriented fixers."
-	mappath = "_maps/templates/fixer_office/protectionfixers.dmm"
+	shelter_id = "deliveryfixers_office"
+	description = "A fixer office made for delivery oriented fixers."
+	mappath = "_maps/templates/fixer_office/deliveryfixers.dmm"
 
 /datum/map_template/shelter/workshopfixers
 	name = "Workshop Office"
@@ -131,7 +132,11 @@
 	description = "A fixer office made for peacekeeping oriented fixers."
 	mappath = "_maps/templates/fixer_office/peacekeepingfixers.dmm"
 
-
+/datum/map_template/shelter/contractfixers
+	name = "Contract Office"
+	shelter_id = "contractfixers_office"
+	description = "A fixer office made for contract oriented fixers."
+	mappath = "_maps/templates/fixer_office/contractfixers.dmm"
 
 
 

@@ -79,7 +79,8 @@
 /obj/item/ego_weapon/city/bladelineage
 	name = "blade lineage katana"
 	desc = "A blade that is standard among blade lineage."
-	special = "Use this weapon in hand to immobilize yourself for 3 seconds and deal 5x damage on the next attack within 5 seconds."
+	special = "Use this weapon in hand to immobilize yourself for 3 seconds and deal 5x damage on the next attack within 5 seconds. This empowered attack also deals 2% more damage per 1% of your missing HP, on top of the 5x damage. \
+	This weapon allows you to resist differing levels of lethal damage while using it's active ability when worn with it's corresponding armor."
 	icon_state = "blade_lineage"
 	inhand_icon_state = "blade_lineage"
 	force = 46
@@ -111,10 +112,30 @@
 	user.Immobilize(3 SECONDS)
 	to_chat(user, span_userdanger("Yield my flesh."))
 	force*=multiplier
+	force*=(1 + (user.health/user.maxHealth)*2)
+
+	var/obj/item/clothing/suit/armor/ego_gear/city/blade_lineage_salsu/S = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	var/obj/item/clothing/suit/armor/ego_gear/city/blade_lineage_cutthroat/C = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	var/obj/item/clothing/suit/armor/ego_gear/city/blade_lineage_admin/R = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+
+	if(istype(S))
+		ADD_TRAIT(user, TRAIT_NOSOFTCRIT, "unrelenting")
+
+	if(istype(C))
+		ADD_TRAIT(user, TRAIT_NOHARDCRIT, "unrelenting")
+		ADD_TRAIT(user, TRAIT_NOSOFTCRIT, "unrelenting")
+
+	if(istype(R))
+		ADD_TRAIT(user, TRAIT_NODEATH, "unrelenting")
+		ADD_TRAIT(user, TRAIT_NOHARDCRIT, "unrelenting")
+		ADD_TRAIT(user, TRAIT_NOSOFTCRIT, "unrelenting")
 
 	addtimer(CALLBACK(src, PROC_REF(Return), user), 5 SECONDS)
 
 /obj/item/ego_weapon/city/bladelineage/attack(mob/living/target, mob/living/carbon/human/user)
+	REMOVE_TRAIT(user, TRAIT_NODEATH, "unrelenting")
+	REMOVE_TRAIT(user, TRAIT_NOHARDCRIT, "unrelenting")
+	REMOVE_TRAIT(user, TRAIT_NOSOFTCRIT, "unrelenting")
 	..()
 	if(force != initial(force))
 		to_chat(user, span_userdanger("To claim their bones."))
@@ -124,3 +145,18 @@
 	force = initial(force)
 	ready = TRUE
 	to_chat(user, span_notice("Your blade is ready."))
+	REMOVE_TRAIT(user, TRAIT_NODEATH, "unrelenting")
+	REMOVE_TRAIT(user, TRAIT_NOHARDCRIT, "unrelenting")
+	REMOVE_TRAIT(user, TRAIT_NOSOFTCRIT, "unrelenting")
+
+
+/obj/item/ego_weapon/city/bladelineage/Initialize()
+	..()
+	if(SSmaptype.maptype == "city")
+
+		attribute_requirements = list(
+								FORTITUDE_ATTRIBUTE = 60,
+								PRUDENCE_ATTRIBUTE = 60,
+								TEMPERANCE_ATTRIBUTE = 60,
+								JUSTICE_ATTRIBUTE = 60
+								)

@@ -250,8 +250,8 @@
 		return
 
 	var/mob/living/carbon/patient = exposed_mob
-	if(reac_volume >= 5 && HAS_TRAIT_FROM(patient, TRAIT_HUSK, BURN) && patient.getFireLoss() < UNHUSK_DAMAGE_THRESHOLD) //One carp yields 12u rezadone.
-		patient.cure_husk(BURN)
+	if(reac_volume >= 5 && HAS_TRAIT_FROM(patient, TRAIT_HUSK, FIRE) && patient.getFireLoss() < UNHUSK_DAMAGE_THRESHOLD) //One carp yields 12u rezadone.
+		patient.cure_husk(FIRE)
 		patient.visible_message("<span class='nicegreen'>[patient]'s body rapidly absorbs moisture from the environment, taking on a more healthy appearance.</span>")
 
 /datum/reagent/medicine/spaceacillin
@@ -376,19 +376,21 @@
 	overdose_threshold = 30
 	var/healing = 0.5
 
-/datum/reagent/medicine/omnizine/on_mob_life(mob/living/M)
+/datum/reagent/medicine/omnizine/on_mob_life(mob/living/carbon/human/M)
 	M.adjustToxLoss(-healing*REM, 0)
 	M.adjustOxyLoss(-healing*REM, 0)
 	M.adjustBruteLoss(-healing*REM, 0)
+	M.adjustSanityLoss(-healing*REM, 0)
 	M.adjustFireLoss(-healing*REM, 0)
 	..()
 	. = 1
 
-/datum/reagent/medicine/omnizine/overdose_process(mob/living/M)
+/datum/reagent/medicine/omnizine/overdose_process(mob/living/carbon/human/M)
 	M.adjustToxLoss(1.5*REM, 0)
 	M.adjustOxyLoss(1.5*REM, 0)
 	M.adjustBruteLoss(1.5*REM, FALSE, FALSE, BODYPART_ORGANIC)
 	M.adjustFireLoss(1.5*REM, FALSE, FALSE, BODYPART_ORGANIC)
+	M.adjustSanityLoss(1.5*REM, 0)
 	..()
 	. = 1
 

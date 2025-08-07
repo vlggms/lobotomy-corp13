@@ -25,6 +25,12 @@
 /mob/living/simple_animal/hostile/abnormality/helper/Initialize()
 	if(IsCombatMap())
 		stuntime = 2 SECONDS
+		dash_num = 250
+		dash_damage = 60
+		dash_speed = 0.75
+		dash_attack_volune = 25
+		dash_move_min_volune = 10
+		dash_move_max_volune = 20
 	return ..()
 
 //Frag needs a little damage buff
@@ -41,6 +47,10 @@
 		move_to_delay = 2.3
 		melee_damage_lower = 20
 		melee_damage_upper = 20
+		ranged_cooldown_time = 1.5 SECONDS
+		projectiletype = /obj/projectile/clown_throw_rcorp
+		finishing_small_damage = 12
+		finishing_big_damage = 80
 	return ..()
 
 
@@ -115,6 +125,14 @@
 	if(SSmaptype.maptype == "rcorp")
 		heal_percent_per_second = 0.01275
 		r_corp_regen_start = 0.5
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/yin/Initialize()
+	if(IsCombatMap())
+		pulse_cooldown = 8 SECONDS
+		move_to_delay = 5
+		UpdateSpeed()
+		ranged = TRUE
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/greed_king/Initialize()

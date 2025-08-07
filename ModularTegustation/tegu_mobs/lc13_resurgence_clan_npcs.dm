@@ -1,5 +1,3 @@
-GLOBAL_LIST_EMPTY(marked_players)
-
 /mob/living/simple_animal/hostile/clan_npc
 	name = "Quiet Citzen?"
 	desc = "A humanoid looking machine... It appears to have 'Resurgence Clan' etched on their back..."
@@ -37,77 +35,59 @@ GLOBAL_LIST_EMPTY(marked_players)
 	butcher_results = list(/obj/item/food/meat/slab/robot = 3)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 1)
 	silk_results = list(/obj/item/stack/sheet/silk/azure_simple = 1)
-	var/attacked_line = "Wha-at are you do-oing... GE-ET AWAY!"
-	var/mark_once_attacked = TRUE
+	attacked_line = "Wha-at are you do-oing... GE-ET AWAY!"
+	starting_looting_line = "He-ey... Wha-at are you doing?"
+	ending_looting_line = "Gua-ards! We-e got a the-eif here!"
+	mark_once_attacked = TRUE
 	density = FALSE
 
 /mob/living/simple_animal/hostile/clan_npc/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_CRATE_LOOTING_STARTED, PROC_REF(on_seeing_looting_started))
-	RegisterSignal(SSdcs, COMSIG_CRATE_LOOTING_ENDED, PROC_REF(on_seeing_looting_ended))
-
-/mob/living/simple_animal/hostile/clan_npc/proc/on_seeing_looting_started(datum/source, mob/living/user, obj/crate)
-	SIGNAL_HANDLER
-	if (check_visible(user, crate) && stat != DEAD && !target)
-		addtimer(CALLBACK(src, PROC_REF(Talk)), 0)
-
-/mob/living/simple_animal/hostile/clan_npc/proc/on_seeing_looting_ended(datum/source, mob/living/user, obj/crate)
-	SIGNAL_HANDLER
-	if (check_visible(user, crate) && stat != DEAD && !target)
-		addtimer(CALLBACK(src, PROC_REF(Theif_Talk)), 0)
-		if (!(user in GLOB.marked_players ))
-			GLOB.marked_players += user
-
-/mob/living/simple_animal/hostile/clan_npc/proc/Talk()
-	say("Um... What are you doing?")
-
-/mob/living/simple_animal/hostile/clan_npc/proc/Theif_Talk()
-	say("Guards! We got a theif here!")
-
-/mob/living/simple_animal/hostile/clan_npc/proc/check_visible(mob/living/user, obj/crate)
-	var/user_visible = (user in view(vision_range, src))
-	var/crate_visible = (crate in view(vision_range, src))
-	return user_visible && crate_visible
+	GLOB.clan_npc_list += src
 
 /mob/living/simple_animal/hostile/clan_npc/Destroy()
-	UnregisterSignal(SSdcs, COMSIG_CRATE_LOOTING_STARTED)
-	UnregisterSignal(SSdcs, COMSIG_CRATE_LOOTING_ENDED)
+	GLOB.clan_npc_list -= src
 	return ..()
 
-
-/mob/living/simple_animal/hostile/clan_npc/CanAttack(atom/the_target)
-	if (the_target in GLOB.marked_players)
-		if (istype(the_target, /mob/living))
-			var/mob/living/L = the_target
-			if (L.stat == DEAD)
-				return FALSE
-		return TRUE
+/mob/living/simple_animal/hostile/clan_npc/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
-
-/mob/living/simple_animal/hostile/clan_npc/bullet_act(obj/projectile/P)
-	. = ..()
-	if(mark_once_attacked)
-		if(P.firer && get_dist(src, P.firer) <= aggro_vision_range)
-			if (!(P.firer in GLOB.marked_players ))
-				GLOB.marked_players += P.firer
-				say(attacked_line)
+	// Track who damaged this clan NPC
+	if(user && user.client && !(user in GLOB.clan_npc_killers))
+		GLOB.clan_npc_killers += user
 
 /mob/living/simple_animal/hostile/clan_npc/attack_hand(mob/living/carbon/M)
 	if(!stat && M.a_intent == INTENT_HELP && !client)
 		manual_emote("looks away, avoiding [M]'s gaze...")
-
-/mob/living/simple_animal/hostile/clan_npc/attackby(obj/item/O, mob/user, params)
+		return
 	. = ..()
-	if(mark_once_attacked)
-		if(ishuman(user))
-			if (O.force > 0)
-				if (!(user in GLOB.marked_players ))
-					GLOB.marked_players += user
-					say(attacked_line)
-		else
-			if (!(user in GLOB.marked_players ))
-				GLOB.marked_players += user
-				say(attacked_line)
+	// Track who damaged this clan NPC
+	if(M && M.client && M.a_intent == INTENT_HARM && !(M in GLOB.clan_npc_killers))
+		GLOB.clan_npc_killers += M
+
+/mob/living/simple_animal/hostile/clan_npc/bullet_act(obj/projectile/P, def_zone, piercing_hit = FALSE)
+	. = ..()
+	// Track who shot this clan NPC
+	if(P.firer && isliving(P.firer))
+		var/mob/living/L = P.firer
+		if(L.client && !(L in GLOB.clan_npc_killers))
+			GLOB.clan_npc_killers += L
+
+/mob/living/simple_animal/hostile/clan_npc/death(gibbed)
+	. = ..()
+	// Check if all clan NPCs are dead
+	var/all_dead = TRUE
+	for(var/mob/living/simple_animal/hostile/clan_npc/C in GLOB.clan_npc_list)
+		if(C != src && C.stat != DEAD)
+			all_dead = FALSE
+			break
+	
+	if(all_dead && GLOB.clan_npc_killers.len)
+		// Award achievement to all players who participated in killing clan NPCs
+		for(var/mob/living/L in GLOB.clan_npc_killers)
+			if(L.client)
+				L.client.give_award(/datum/award/achievement/lc13/city/clan_genocide, L)
+		// Clear the killers list after awarding
+		GLOB.clan_npc_killers.Cut()
 
 /mob/living/simple_animal/hostile/clan_npc/info
 	name = "Talkative Citzen?"

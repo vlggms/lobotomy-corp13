@@ -54,7 +54,6 @@
 	desc = "The noises take you back to the very moment of the day that everyone had forgotten."
 	icon_state = "noise"
 	inhand_icon_state = "noise"
-	special = "This weapon fires 5 pellets."
 	force = 14
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_noise
@@ -186,7 +185,6 @@
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	special = "This weapon fires 4 pellets."
 	force = 18
 	attack_speed = 1.3
 	projectile_path = /obj/projectile/ego_bullet/ego_patriot
@@ -271,3 +269,21 @@
 /obj/item/ego_weapon/ranged/pistol/tough/SpecialGearRequirements()
 	return "\n<span class='warning'>The user must have clean hairstyle.</span>"
 
+/obj/item/ego_weapon/ranged/adjustment
+	name = "adjustment"
+	desc = "An arm cannon that is comfortable and easy to aim and fire with."
+	icon_state = "adjustment"
+	inhand_icon_state = "adjustment"
+	special = "This gun deals more damage to panicking targets."
+	force = 18
+	attack_speed = 1.3
+	damtype = WHITE_DAMAGE
+	projectile_path = /obj/projectile/ego_bullet/ego_adjustment
+	weapon_weight = WEAPON_HEAVY
+	spread = 5
+	shotsleft = 30
+	autofire = 0.25 SECONDS
+	reloadtime = 2.1 SECONDS
+	fire_sound = 'sound/weapons/ego/star.ogg'
+	vary_fire_sound = TRUE
+	fire_sound_volume = 25

@@ -6,7 +6,7 @@
 
 /obj/structure/closet/secure_closet/record/PopulateContents()
 	..()
-	new /obj/effect/spawner/bundle/combat_pages(src)
+//	new /obj/effect/spawner/bundle/combat_pages(src)
 
 	new /obj/item/records/timestop(src)
 	new /obj/item/records/information(src)
@@ -22,7 +22,7 @@
 
 /obj/structure/closet/secure_closet/discipline/PopulateContents()
 	..()
-	new /obj/effect/spawner/bundle/combat_pages(src)
+//	new /obj/effect/spawner/bundle/combat_pages(src)
 	new /obj/item/clothing/suit/armor/ego_gear/disc_off(src)
 
 
@@ -37,3 +37,6 @@
 			/obj/item/combat_page/level2,
 		)
 
+//Doing it here to avoid conflicts if anything in the future touches medical.dm
+/obj/structure/closet/secure_closet/medical2/city
+	req_access = list(ACCESS_MEDICAL)

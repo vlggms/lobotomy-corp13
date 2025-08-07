@@ -32,14 +32,16 @@
 	start_qliphoth = 2
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 45,
-		ABNORMALITY_WORK_INSIGHT = 30,
+		ABNORMALITY_WORK_INSIGHT = 35,
 		ABNORMALITY_WORK_ATTACHMENT = 0,
-		ABNORMALITY_WORK_REPRESSION = list(55, 55, 55, 60, 60),
+		ABNORMALITY_WORK_REPRESSION = list(60, 60, 60, 55, 55),
 	)
 	max_boxes = 14
 	work_damage_amount = 6
 	work_damage_type = RED_DAMAGE
-	chem_type = /datum/reagent/abnormality/sin/wrath
+	chem_type = /datum/reagent/abnormality/red_blooded
+	harvest_phrase = span_notice("You take a blood sample from %ABNO. The blood fizzles inside the %VESSEL.")
+	harvest_phrase_third = "%PERSON fills %VESSEL with a blood sample from %ABNO."
 
 	ego_list = list(
 		/datum/ego_datum/weapon/patriot,
@@ -206,3 +208,14 @@
 	damage_type = RED_DAMAGE
 
 	damage = 18
+
+/datum/reagent/abnormality/red_blooded
+	name = "Boiling Red Blood"
+	description = "Cherry red blood that is constantly boiling. It'll burn going down but it motives you to keep fighting."
+	color = "#D2042D"
+	health_restore = -1
+	sanity_restore = 0.2
+	metabolization_rate = 0.8 * REAGENTS_METABOLISM
+	stat_changes = list(0, 0, 0, 5) //damages your HP but boosts justice and lightly heals SP.
+
+

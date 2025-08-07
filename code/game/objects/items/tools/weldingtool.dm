@@ -83,7 +83,7 @@
 	//Welders left on now use up fuel, but lets not have them run out quite that fast
 		if(1)
 			force = 15
-			damtype = BURN
+			damtype = FIRE
 			burned_fuel_for += delta_time
 			if(burned_fuel_for >= WELDER_FUEL_BURN_INTERVAL)
 				use(1)
@@ -229,7 +229,7 @@
 			to_chat(user, "<span class='notice'>You switch [src] on.</span>")
 			playsound(loc, acti_sound, 50, TRUE)
 			force = 15
-			damtype = BURN
+			damtype = FIRE
 			hitsound = 'sound/items/welder.ogg'
 			update_icon()
 			START_PROCESSING(SSobj, src)

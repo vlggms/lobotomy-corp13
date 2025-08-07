@@ -7,7 +7,7 @@
 	anchored = FALSE
 	health = 25
 	maxHealth = 25
-	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2, BRUTE = 0.5, BURN = 0.7, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2, BRUTE = 0.5, FIRE = 0.7, TOX = 0, CLONE = 0, STAMINA = 0, OXY = 0)
 	pass_flags = PASSMOB | PASSFLAPS
 
 	radio_key = /obj/item/encryptionkey/secbot //AI Priv + Security
@@ -133,7 +133,7 @@ Status: []<BR>
 Behaviour controls are [locked ? "locked" : "unlocked"]<BR>
 Maintenance panel panel is [open ? "opened" : "closed"]"},
 
-"<A href='?src=[REF(src)];power=1'>[on ? "On" : "Off"]</A>" )
+"<A href='byond://?src=[REF(src)];power=1'>[on ? "On" : "Off"]</A>" )
 
 	if(!locked || issilicon(user) || isAdminGhostAI(user))
 		dat += text({"<BR>
@@ -144,12 +144,12 @@ Operating Mode: []<BR>
 Report Arrests[]<BR>
 Auto Patrol: []"},
 
-"<A href='?src=[REF(src)];operation=idcheck'>[idcheck ? "Yes" : "No"]</A>",
-"<A href='?src=[REF(src)];operation=weaponscheck'>[weaponscheck ? "Yes" : "No"]</A>",
-"<A href='?src=[REF(src)];operation=ignorerec'>[check_records ? "Yes" : "No"]</A>",
-"<A href='?src=[REF(src)];operation=switchmode'>[arrest_type ? "Detain" : "Arrest"]</A>",
-"<A href='?src=[REF(src)];operation=declarearrests'>[declare_arrests ? "Yes" : "No"]</A>",
-"<A href='?src=[REF(src)];operation=patrol'>[auto_patrol ? "On" : "Off"]</A>" )
+"<A href='byond://?src=[REF(src)];operation=idcheck'>[idcheck ? "Yes" : "No"]</A>",
+"<A href='byond://?src=[REF(src)];operation=weaponscheck'>[weaponscheck ? "Yes" : "No"]</A>",
+"<A href='byond://?src=[REF(src)];operation=ignorerec'>[check_records ? "Yes" : "No"]</A>",
+"<A href='byond://?src=[REF(src)];operation=switchmode'>[arrest_type ? "Detain" : "Arrest"]</A>",
+"<A href='byond://?src=[REF(src)];operation=declarearrests'>[declare_arrests ? "Yes" : "No"]</A>",
+"<A href='byond://?src=[REF(src)];operation=patrol'>[auto_patrol ? "On" : "Off"]</A>" )
 
 	return	dat
 
@@ -237,7 +237,7 @@ Auto Patrol: []"},
 
 /mob/living/simple_animal/bot/secbot/bullet_act(obj/projectile/Proj)
 	if(istype(Proj , /obj/projectile/beam)||istype(Proj, /obj/projectile/bullet))
-		if((Proj.damage_type == BURN) || (Proj.damage_type == BRUTE))
+		if((Proj.damage_type == FIRE) || (Proj.damage_type == BRUTE))
 			if(!Proj.nodamage && Proj.damage < src.health && ishuman(Proj.firer))
 				retaliate(Proj.firer)
 	return ..()

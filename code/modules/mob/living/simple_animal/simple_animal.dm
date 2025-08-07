@@ -241,7 +241,7 @@
 	//LC13 Check. If it's the citymap, they all gain a faction
 	if(SSmaptype.maptype in SSmaptype.citymaps)
 		if(city_faction)
-			faction += "city"
+			faction += "hostile"
 
 	if(istype(loc, /obj/item/paper/fluff)) // Happens when records are being initialized, lets not make un-necessary blockers
 		return
@@ -258,6 +258,17 @@
 					continue
 				projectile_blockers += new /mob/living/simple_animal/projectile_blocker_dummy(locate(i, j, z), src)
 		RegisterSignal(src, COMSIG_ATOM_DIR_CHANGE, PROC_REF(OnDirChange))
+
+	if(damage_coeff.getCoeff(FIRE) == 1) // LC13 burn armor calculator. Looks at red armor, and ignores up to 50% of armor. deals full damage to mobs weak to red
+		var/red_mod = damage_coeff.getCoeff(RED_DAMAGE)
+		switch(red_mod)
+			if(-INFINITY to 0)
+				red_mod = red_mod
+			if(0.001 to 0.5)
+				red_mod = red_mod * 1.5
+			if(0.5 to 1)
+				red_mod = (((1 - red_mod) / 2) + red_mod) // 50% armor ignore
+		ChangeResistances(list(FIRE = red_mod))
 
 /mob/living/simple_animal/proc/SetOccupiedTiles(down = 0, up = 0, left = 0, right = 0)
 	occupied_tiles_down = down

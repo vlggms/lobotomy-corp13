@@ -5,8 +5,8 @@
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "mailbox"
 	portrait = "pile_of_mail"
-	maxHealth = 100
-	health = 100
+	maxHealth = 600
+	health = 600
 	threat_level = ZAYIN_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 60,
@@ -23,6 +23,14 @@
 	gift_message = "A postage stamp makes its way to your hands. Without thinking, you stick it on your cheek."
 
 	max_boxes = 12
+
+	ranged = TRUE
+	ranged_cooldown_time = 3 SECONDS
+	rapid = 3
+	rapid_fire_delay = 8
+	check_friendly_fire = FALSE
+	projectiletype = /obj/projectile/mailshuriken
+	projectilesound = 'sound/items/handling/paper_pickup.ogg'
 
 	ego_list = list(
 		/datum/ego_datum/weapon/letter_opener,
@@ -49,6 +57,12 @@
 		/obj/item/mailpaper/hatred,
 		/obj/item/mailpaper/trapped/flashbang,
 	)
+
+/mob/living/simple_animal/hostile/abnormality/mailpile/AttackingTarget()
+	return FALSE
+
+/mob/living/simple_animal/hostile/abnormality/mailpile/Move()
+	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/mailpile/Destroy()
 	for(var/obj/effect/VFX in spawned_effects)
@@ -504,3 +518,10 @@
 	new /obj/effect/pod_landingzone(get_turf(user), pod)
 	to_chat(user, span_notice("Your [initial(item_type?.name)] is on it's way!"))
 	qdel(src)
+
+/obj/projectile/mailshuriken
+	name = "paper shuriken"
+	desc = "a shuriken made from paper."
+	icon_state = "shuriken_paper"
+	damage_type = RED_DAMAGE
+	damage = 10

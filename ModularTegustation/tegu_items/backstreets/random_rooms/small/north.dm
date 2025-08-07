@@ -70,3 +70,8 @@
     name = "Wellcheers Interrogation - Small North"
     room_id = "wellcheers_interrogation"
     mappath = "_maps/RandomRooms/backstreets/small_north/wellcheers_interrogation.dmm"
+
+/datum/map_template/random_room/backstreets/small_north/gamba_shrine
+	name = "Gamba Shrine - Small North"
+	room_id = "gamba_shrine"
+	mappath = "_maps/RandomRooms/backstreets/small_north/gamba_shrine.dmm"

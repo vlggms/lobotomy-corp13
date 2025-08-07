@@ -73,7 +73,11 @@
 	anchored = 1;
 	light_on = 1
 	},
-/obj/item/ego_weapon/city/bladelineage/city,
+/obj/item/ego_weapon/city/bladelineage{
+	name = "prestigious blade lineage katana";
+	desc = "This blade shimmers in city light despite its bloody past. Claim their lives swordman.";
+	force = 50
+	},
 /turf/open/floor/stone{
 	color = "#ccc8c0"
 	},
@@ -606,7 +610,11 @@
 /obj/structure/chair/wood{
 	dir = 8
 	},
-/obj/item/ego_weapon/city/bladelineage/city,
+/obj/item/ego_weapon/city/bladelineage{
+	name = "prestigious blade lineage katana";
+	desc = "This blade shimmers in city light despite its bloody past. Claim their lives swordman.";
+	force = 50
+	},
 /turf/open/floor/stone{
 	color = "#ccc8c0"
 	},

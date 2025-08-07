@@ -22,12 +22,42 @@
 	icon_state = "plastic"
 	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 10, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
 
+/obj/item/clothing/suit/armor/ego_gear/tools/mirror
+	name = "mirror"
+	desc = "The only thing reflected on this mirror is people."
+	icon_state = "mirror"
+	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 10, PALE_DAMAGE = 0)
+
+/obj/item/clothing/suit/armor/ego_gear/tools/promise
+	name = "belief and promise"
+	desc = "However, all that those promises yielded was only hollowness and betrayal."
+	icon_state = "promise"
+	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 10, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+
 //TETH
 /obj/item/clothing/suit/armor/ego_gear/tools/aspiration
 	name = "aspiration"
 	desc = "Excessive aspiration would bring about unwarranted frenzy."
 	icon_state = "aspiration"
 	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0) // 20
+
+/obj/item/clothing/suit/armor/ego_gear/tools/adjustment
+	name = "adjustment"
+	desc = "Armor that protects the psyche by dulling intellect. Just beware of the side effects."
+	icon_state = "adjustment"
+	armor = list(RED_DAMAGE = -10, WHITE_DAMAGE = 40, BLACK_DAMAGE = -10, PALE_DAMAGE = -20) // 20
+
+/obj/item/clothing/suit/armor/ego_gear/tools/philia
+	name = "philia"
+	desc = "A suit that wouldn't be out of place if worn on a stage."
+	icon_state = "philia"
+	armor = list(RED_DAMAGE = -30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 20, PALE_DAMAGE = 0) // 20
+
+/obj/item/clothing/suit/armor/ego_gear/tools/luminosity
+	name = "luminosity"
+	desc = "Armor that truly shines when born by those in need."
+	icon_state = "luminosity"
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = -20, BLACK_DAMAGE = -20, PALE_DAMAGE = 0) // 20
 
 //HE
 /obj/item/clothing/suit/armor/ego_gear/tools/swindle
@@ -36,7 +66,8 @@
 	icon_state = "swindle"
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = -20, BLACK_DAMAGE = -20, PALE_DAMAGE = 0) // 20
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 40)
+							FORTITUDE_ATTRIBUTE = 40
+							)
 
 /obj/item/clothing/suit/armor/ego_gear/tools/ringing
 	name = "ringing"
@@ -89,7 +120,8 @@
 	name = "wind-up"
 	desc = "Humanity has conquered disease and nature. Now we have come far enough to harness time itself."
 	icon_state = "windup"
-	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 50, BLACK_DAMAGE = 10, PALE_DAMAGE = 70) // 140
+	//This used to be 1/5/1/7 but it invalidated literally every other waw EGO for pale armor.
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 40, BLACK_DAMAGE = 30, PALE_DAMAGE = 40) // 140
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 80
 							)

@@ -49,7 +49,7 @@
 	var/hitsound_off = 'sound/weapons/tap.ogg'
 	var/force_on = 15
 	var/throwforce_on = 15
-	var/damtype_on = BURN
+	var/damtype_on = FIRE
 	flags_inv = HIDEEARS|HIDEHAIR
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0,ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
 	light_range = 2 //luminosity when on

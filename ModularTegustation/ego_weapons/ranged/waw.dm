@@ -3,7 +3,6 @@
 	desc = "In here, you're with us. Forever."
 	icon_state = "correctional"
 	inhand_icon_state = "correctional"
-	special = "This weapon fires 6 pellets."
 	force = 33
 	damtype = BLACK_DAMAGE
 	attack_speed = 1.3
@@ -108,7 +107,7 @@
 	if(istype(Z))
 		cached_multiplier = projectile_damage_multiplier
 		projectile_damage_multiplier *= 2.5
-		fire_delay = 15
+		fire_delay = 8
 	..()
 
 
@@ -141,7 +140,7 @@
 	var/obj/item/clothing/suit/armor/ego_gear/realization/eulogy/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(istype(Z))
 		cached_multiplier = projectile_damage_multiplier
-		projectile_damage_multiplier *= 2.5
+		projectile_damage_multiplier *= 1.25
 	return ..()
 
 /obj/item/ego_weapon/ranged/pistol/solemnlament/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, temporary_damage_multiplier = 1)
@@ -178,7 +177,7 @@
 	var/obj/item/clothing/suit/armor/ego_gear/realization/eulogy/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(istype(Z))
 		cached_multiplier = projectile_damage_multiplier
-		projectile_damage_multiplier *= 2.5
+		projectile_damage_multiplier *= 1.25
 	return ..()
 
 /obj/item/ego_weapon/ranged/pistol/solemnvow/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, temporary_damage_multiplier = 1)
@@ -247,7 +246,6 @@
 	weapon_weight = WEAPON_MEDIUM
 	pellets = 3
 	variance = 14
-	special = "This weapon fires 3 pellets."
 	fire_delay = 7
 	shotsleft = 9
 	reloadtime = 1 SECONDS
@@ -300,11 +298,11 @@
 	desc = "All the power of magic bullet, in a smaller package."
 	icon_state = "magic_pistol"
 	inhand_icon_state = "magic_pistol"
-	special = "This weapon pierces all targets. This weapon fires faster with the matching armor"
+	special = "This weapon pierces most targets. This weapon fires and reloads faster with the matching armor"
 	force = 17
 	damtype = BLACK_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_magicpistol
-	fire_delay = 6
+	fire_delay = 7
 	shotsleft = 7
 	reloadtime = 1.2 SECONDS
 	fire_sound = 'sound/abnormalities/freischutz/shoot.ogg'
@@ -321,11 +319,20 @@
 	var/obj/item/clothing/suit/armor/ego_gear/he/magicbullet/Y = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	var/obj/item/clothing/suit/armor/ego_gear/realization/bigiron/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(istype(Y))
-		fire_delay = 8
+		fire_delay = 5
 	if(istype(Z))
 		cached_multiplier = projectile_damage_multiplier
 		projectile_damage_multiplier *= 2.5
-		fire_delay = 8
+		fire_delay = 5
+	..()
+
+/obj/item/ego_weapon/ranged/pistol/magic_pistol/reload_ego(mob/user)
+	var/mob/living/carbon/human/myman = user
+	var/obj/item/clothing/suit/armor/ego_gear/he/magicbullet/Y = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	var/obj/item/clothing/suit/armor/ego_gear/realization/bigiron/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	reloadtime = initial(reloadtime)
+	if(istype(Y) || istype(Z))
+		reloadtime = 0.8 SECONDS
 	..()
 
 /obj/item/ego_weapon/ranged/pistol/laststop
@@ -513,7 +520,8 @@
 	desc = "Time for a feast! Enjoy the blood-red night imbued with madness to your heart’s content!"
 	icon_state = "banquet"
 	inhand_icon_state = "banquet"
-	special = "This weapon uses HP to reload and heals you on a melee hit."
+	special = "This weapon can use stored blood to fire without reloading. \
+		Blood can be collected by attacking using this as a melee weapon."
 	force = 36
 	damtype = BLACK_DAMAGE
 	attack_speed = 1.8
@@ -527,33 +535,45 @@
 							FORTITUDE_ATTRIBUTE = 60,
 							TEMPERANCE_ATTRIBUTE = 60
 	)
+	var/bloodshot_ready = TRUE
+
+/obj/item/ego_weapon/ranged/banquet/Initialize()
+	. = ..()
+	AddComponent(/datum/component/bloodfeast, siphon = TRUE, range = 2, starting = 150, threshold = 1500, max_amount = 1500)
+
+/obj/item/ego_weapon/ranged/banquet/examine(mob/user)
+	. = ..()
+	var/datum/component/bloodfeast/bloodfeast = GetComponent(/datum/component/bloodfeast)
+	if(bloodfeast) // dont want to succ blood while contained
+		. += "It has [bloodfeast.blood_amount] units of stored blood."
+
+/obj/item/ego_weapon/ranged/banquet/proc/AdjustThirst(blood_amount)
+	var/datum/component/bloodfeast/bloodfeast = GetComponent(/datum/component/bloodfeast)
+	bloodfeast.AdjustBlood(blood_amount)
+	if(bloodfeast.blood_amount >= 150)
+		bloodshot_ready = TRUE
+		return
+	bloodshot_ready = FALSE
 
 /obj/item/ego_weapon/ranged/banquet/attack(mob/living/target, mob/living/carbon/human/user)
 	if(!CanUseEgo(user))
 		return
 	if(!(target.status_flags & GODMODE) && target.stat != DEAD)
-		var/heal_amt = force*0.10
-		if(isanimal(target))
-			var/mob/living/simple_animal/S = target
-			if(S.damage_coeff.getCoeff(damtype) > 0)
-				heal_amt *= S.damage_coeff.getCoeff(damtype)
-			else
-				heal_amt = 0
-		user.adjustBruteLoss(-heal_amt)
-	return ..()
+		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+		var/justicemod = 1 + userjust/100
+		AdjustThirst(force * justicemod)
+	..()
 
-/obj/item/ego_weapon/ranged/banquet/reload_ego(mob/user)
-	is_reloading = TRUE
-	to_chat(user,span_notice("You start loading a new magazine."))
-	playsound(src, 'sound/weapons/gun/general/slide_lock_1.ogg', 50, TRUE)
-	if(do_after(user, reloadtime, src)) //gotta reload
-		playsound(src, 'sound/weapons/gun/general/bolt_rack.ogg', 50, TRUE)
-		if(isliving(user))
-			var/mob/living/the_gunner = user
-			the_gunner.adjustBruteLoss(3 * (initial(shotsleft) - shotsleft)) // Lose 3 * shots spent in hp
-		shotsleft = initial(shotsleft)
-	is_reloading = FALSE
-	forced_melee = FALSE //no longer forced to resort to melee
+/obj/item/ego_weapon/ranged/banquet/can_shoot()
+	if(bloodshot_ready)
+		forced_melee = FALSE
+		return TRUE
+	..()
+
+/obj/item/ego_weapon/ranged/banquet/process_chamber()
+	if(bloodshot_ready && !shotsleft)
+		AdjustThirst(-150)
+	..()
 
 /obj/item/ego_weapon/ranged/blind_rage
 	name = "Blind Fire"
@@ -676,3 +696,212 @@
 			new /obj/effect/temp_visual/cloud_swirl(get_turf(L)) //placeholder
 			to_chat(creator, span_warning("You feel a itch towards [get_area(L)]."))
 			qdel(src)
+
+/obj/item/ego_weapon/ranged/fellbullet
+	name = "fell bullet"
+	desc = "A Lee-Einfeld bolt-action rifle that fires cursed bullets."
+	icon_state = "fell_bullet"
+	inhand_icon_state = "fell_bullet"
+	special = "This weapon fires extremely slowly. \
+		This weapon pierces all targets. \
+		Activate in your hand to create a portal, which can be fired into. \
+		Attempting to fire with an empty chamber will reload the weapon. \
+		You can manually reload this weapon by pressing ALT + left mouse button."
+	force = 28
+	damtype = RED_DAMAGE
+	projectile_path = /obj/projectile/ego_bullet/ego_fellbullet
+	weapon_weight = WEAPON_HEAVY
+	fire_delay = 20
+	shotsleft = 1
+	reloadtime = 0.5 SECONDS
+	fire_sound = 'sound/abnormalities/fluchschutze/fell_bullet.ogg'
+	var/portaling = FALSE
+	var/portal_cooldown
+	var/portal_cooldown_time = 15 SECONDS
+	var/obj/effect/portal/myportal
+
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 80
+							)
+
+/obj/item/ego_weapon/ranged/fellbullet/AltClick(mob/user)
+	..()
+	if(semicd)
+		return
+	return reload_ego(user)
+
+/obj/item/ego_weapon/ranged/fellbullet/afterattack(atom/target, mob/living/user, flag, params)
+	if(!CanUseEgo(user))
+		return
+	if(portaling)
+		portaling = FALSE
+		if(!LAZYLEN(get_path_to(src,target, TYPE_PROC_REF(/turf, Distance), 0, 24)))
+			to_chat(user, span_notice("Target unreachable."))
+			return
+		var/obj/effect/portal/fellbullet/P1 = new(user)
+		var/obj/effect/portal/fellbullet/P2 = new(get_turf(target))
+		P1.link_portal(P2)
+		P2.link_portal(P1)
+		playsound(src, 'sound/abnormalities/fluchschutze/fell_magic.ogg', 50, TRUE)
+		portal_cooldown = world.time + portal_cooldown_time
+		myportal = P1
+		return
+	if(semicd)//stops firing speed anomalies
+		return
+	if(!can_shoot())
+		reload_ego(user)
+	..()
+	if(!myportal)//If myportal hasn't initialized yet, this prevents it from runtiming.
+		return
+	if(myportal.loc && !is_reloading)//hide the portal
+		myportal.forceMove(user)
+
+/obj/item/ego_weapon/ranged/fellbullet/shoot_with_empty_chamber(mob/living/user as mob|obj)
+	//do nothing
+
+/obj/item/ego_weapon/ranged/fellbullet/attack_self(mob/user)
+	if(portaling)
+		portaling = FALSE
+		to_chat(user,span_notice("You will no longer create a circle."))
+		return
+	if(portal_cooldown > world.time)
+		to_chat(user,span_warning("You cannot create a magic circle yet!"))
+		return
+	portaling = TRUE
+	to_chat(user,span_notice("You will now create a magic circle at your target."))
+
+/obj/item/ego_weapon/ranged/fellbullet/reload_ego(mob/user)
+	if(is_reloading)
+		return
+	if(myportal in user)//is it not qdeleted?
+		myportal.forceMove(get_turf(user))//move the portal to your turf, line 733 removes it later.
+		playsound(src, 'sound/abnormalities/fluchschutze/fell_portal.ogg', 50, FALSE)
+	is_reloading = TRUE
+	to_chat(user,span_notice("You chamber a round into [src]."))
+	playsound(src, 'sound/abnormalities/fluchschutze/fell_aim.ogg', 50, TRUE)
+	if(do_after(user, reloadtime, src)) //gotta reload
+		shotsleft = initial(shotsleft)
+		forced_melee = FALSE //no longer forced to resort to melee
+	is_reloading = FALSE
+
+/obj/effect/portal/fellbullet
+	name = "magic circle"
+	desc = "A circle of red magic featuring a six-pointed star "
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "fellcircle"
+	teleport_channel = TELEPORT_CHANNEL_FREE
+
+/obj/effect/portal/fellbullet/teleport(atom/movable/M, force = FALSE)
+	if(!istype(M, /obj/projectile/ego_bullet/ego_fellbullet))
+		return
+	var/obj/projectile/ego_bullet/ego_fellbullet/B = M
+	if(B.damage > 80)
+		return
+	SpinAnimation(speed = 2, loops = 1, segments = 3, parallel = TRUE)//the abno version should always spin
+	B.damage *= 2
+	var/turf/real_target = get_link_target_turf()
+	for(var/obj/effect/portal/fellbullet/P in real_target)
+		P.SpinAnimation(speed = 5, loops = 1, segments = 3, parallel = TRUE)
+		playsound(P, 'sound/abnormalities/fluchschutze/fell_portal.ogg', 50, TRUE)
+		playsound(P, 'sound/abnormalities/fluchschutze/fell_bullet2.ogg', 50, TRUE)
+	..()
+
+/obj/effect/portal/fellbullet/attack_hand(mob/user)
+//the parent behavior will pull you towards it
+
+/obj/effect/portal/fellbullet/Initialize()
+	INVOKE_ASYNC(src, PROC_REF(DoAnimation))//60% uptime
+	return ..()
+
+/obj/effect/portal/fellbullet/proc/DoAnimation()
+	sleep(10 SECONDS)
+	animate(src, alpha = 0, time = 1 SECONDS)
+	QDEL_IN(src, 1 SECONDS)
+
+/obj/item/ego_weapon/ranged/fellscatter
+	name = "fell scatter"
+	desc = "A bolt-action rifle fitted with a wider barrel. It fires cursed shells."
+	icon_state = "fell_scatter"
+	//TODO: inhands
+	special = "Activate in your hand to load a magical slug. \
+	The slug will penetrate most targets. Shooting a human will deal half damage and produce a special effect. \
+	You can manually reload this weapon by pressing ALT + left mouse button."
+	force = 28
+	damtype = RED_DAMAGE
+	projectile_path = /obj/projectile/ego_bullet/ego_fellscatter
+	weapon_weight = WEAPON_HEAVY
+	pellets = 7
+	variance = 10
+	fire_delay = 15
+	shotsleft = 4
+	reloadtime = 0.5 SECONDS
+	fire_sound = 'sound/abnormalities/fluchschutze/fell_scatter.ogg'
+	var/special_ammo = FALSE
+	var/portal_cooldown
+	var/portal_cooldown_time = 15 SECONDS
+	var/ammo_2 = /obj/projectile/ego_bullet/special_fellbullet
+
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 80
+							)
+
+/obj/item/ego_weapon/ranged/fellscatter/AltClick(mob/user)
+	..()
+	if(semicd)
+		return
+	return reload_ego(user)
+
+/obj/item/ego_weapon/ranged/fellscatter/afterattack(atom/target, mob/living/user, flag, params)
+	if(!CanUseEgo(user))
+		return
+	if(semicd)//stops firing speed anomalies
+		return
+	if(!can_shoot())
+		reload_ego(user)
+		return
+	..()
+	if(special_ammo)
+		ChangeAmmo(user, special_ammo = TRUE)
+		special_ammo = FALSE
+
+/obj/item/ego_weapon/ranged/fellscatter/reload_ego(mob/user)
+	if(shotsleft == initial(shotsleft))
+		return
+	is_reloading = TRUE
+	to_chat(user,"<span class='notice'>You start loading a bullet.</span>")
+	if(do_after(user, reloadtime, src)) //gotta reload
+		playsound(src, 'sound/weapons/gun/shotgun/insert_shell.ogg', 50, TRUE)
+		shotsleft +=1
+		reload_ego(user)
+	is_reloading = FALSE
+
+/obj/item/ego_weapon/ranged/fellscatter/attack_self(mob/user)
+	if(special_ammo)
+		to_chat(user,span_notice("You remove the slug from [src]."))
+		ChangeAmmo(special_ammo = TRUE)
+		special_ammo = FALSE
+		return
+	if(shotsleft > 1)
+		playsound(user, 'sound/weapons/gun/general/mag_bullet_remove.ogg', 50, TRUE)
+		to_chat(user,span_notice("You discard your shells."))
+		shotsleft = 0
+	ChangeAmmo(user, special_ammo = FALSE)
+	special_ammo = TRUE
+	to_chat(user,span_notice("You will now fire a magical slug."))
+
+/obj/item/ego_weapon/ranged/fellscatter/proc/ChangeAmmo(mob/living/user, special_ammo)
+	if(special_ammo)
+		fire_sound = initial(fire_sound)
+		shotsleft = 0
+		pellets = initial(pellets)
+		variance = initial(variance)
+		projectile_path = initial(projectile_path)
+	else
+		if(!do_after(user, 2 SECONDS, src))
+			return
+		fire_sound = 'sound/abnormalities/fluchschutze/fell_bullet.ogg'
+		pellets = 1
+		variance  = 0
+		shotsleft = 1
+		projectile_path = ammo_2
+		playsound(src, 'sound/abnormalities/fluchschutze/fell_aim.ogg', 50, TRUE)

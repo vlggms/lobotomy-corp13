@@ -7,6 +7,8 @@
 	custom_premium_price = 600
 
 /datum/action/cooldown/hunkerdown
+	name = "Hunker Down"
+	desc = "Increases armor and decreases movement for 10 seconds."
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "hunkerdown"
 	cooldown_time = 30 SECONDS
@@ -49,9 +51,12 @@
 	custom_premium_price = 600
 
 /datum/action/cooldown/firstaid
+	name = "First Aid"
+	desc = "Increases armor and immobilizes you for 5 seconds, then heals for HP."
 	cooldown_time = 1 MINUTES
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "firstaid"
+	var/healamount = 30
 
 
 /datum/action/cooldown/firstaid/Trigger()
@@ -75,7 +80,7 @@
 	human.physiology.white_mod /= 0.8
 	human.physiology.black_mod /= 0.8
 	human.physiology.pale_mod /= 0.8
-	human.adjustBruteLoss(-30) //Heals you
+	human.adjustBruteLoss(-healamount) //Heals you
 	new /obj/effect/temp_visual/heal(get_turf(owner), "#FF4444")
 
 
@@ -88,9 +93,12 @@
 	custom_premium_price = 600
 
 /datum/action/cooldown/meditation
+	name = "Meditation"
+	desc = "Increases armor and immobilizes you for 5 seconds, then heals for SP."
 	cooldown_time = 1 MINUTES
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "meditation"
+	var/healamount = 30
 
 
 /datum/action/cooldown/meditation/Trigger()
@@ -113,5 +121,5 @@
 	human.physiology.white_mod /= 0.8
 	human.physiology.black_mod /= 0.8
 	human.physiology.pale_mod /= 0.8
-	human.adjustSanityLoss(-30) //Heals you
+	human.adjustSanityLoss(-healamount) //Heals you
 	new /obj/effect/temp_visual/heal(get_turf(owner), "#6E6EFF")

@@ -55,10 +55,10 @@
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "ct" = (
-/turf/closed/indestructible/fakedoor{
-	desc = "Too bad the door is broken.";
-	name = "Arcade Plush Storage"
+/obj/structure/delivery_door{
+	density = 1
 	},
+/turf/closed/indestructible/reinforced,
 /area/city/backstreets_alley)
 "cB" = (
 /obj/structure/spider/stickyweb/genetic,
@@ -181,11 +181,6 @@
 /obj/machinery/light/broken,
 /turf/open/floor/plating/rust,
 /area/city/backstreets_room)
-"jv" = (
-/turf/closed/indestructible/fakedoor{
-	name = "Malfunctioning Door"
-	},
-/area/city/backstreets_alley)
 "jw" = (
 /obj/effect/portal/permanent/one_way{
 	id = "path_15";
@@ -9191,7 +9186,7 @@ UZ
 UZ
 UZ
 UZ
-jv
+ct
 LM
 LM
 Yt
@@ -9562,14 +9557,14 @@ Xj
 se
 iW
 iW
-jv
+ct
 iW
 iW
 iW
-jv
+ct
 iW
 iW
-jv
+ct
 iW
 iW
 iW
@@ -9914,7 +9909,7 @@ Yt
 XV
 Xj
 se
-jv
+ct
 UZ
 UZ
 UZ
@@ -11459,7 +11454,7 @@ iW
 iW
 iW
 iW
-jv
+ct
 iW
 iW
 iW
@@ -11598,7 +11593,7 @@ UZ
 iW
 xr
 LM
-jv
+ct
 UZ
 UZ
 UZ
@@ -11861,7 +11856,7 @@ UZ
 UZ
 UZ
 UZ
-jv
+ct
 Vu
 Xj
 se
@@ -12252,7 +12247,7 @@ UZ
 UZ
 UZ
 UZ
-jv
+ct
 LM
 LM
 iW
@@ -12557,7 +12552,7 @@ iW
 XV
 Xj
 se
-jv
+ct
 UZ
 UZ
 UZ
@@ -12860,7 +12855,7 @@ UZ
 UZ
 UZ
 UZ
-jv
+ct
 XV
 Xj
 se
@@ -13366,7 +13361,7 @@ Xj
 Xj
 Xj
 se
-jv
+ct
 UZ
 UZ
 UZ
@@ -14113,7 +14108,7 @@ Xj
 se
 iW
 iW
-jv
+ct
 iW
 iW
 UZ
@@ -14329,7 +14324,7 @@ UZ
 UZ
 UZ
 UZ
-jv
+ct
 XV
 Xj
 Xj
@@ -14456,7 +14451,7 @@ UZ
 UZ
 UZ
 UZ
-jv
+ct
 LM
 LM
 LM
@@ -15799,7 +15794,7 @@ iW
 XV
 Xj
 se
-jv
+ct
 UZ
 UZ
 UZ
@@ -16113,7 +16108,7 @@ iW
 XV
 Xj
 se
-jv
+ct
 UZ
 UZ
 UZ
@@ -16123,7 +16118,7 @@ UZ
 UZ
 UZ
 UZ
-jv
+ct
 LM
 LM
 iW
@@ -16208,7 +16203,7 @@ UZ
 UZ
 UZ
 UZ
-jv
+ct
 LM
 LM
 Yt
@@ -16788,7 +16783,7 @@ LM
 iW
 iW
 iW
-jv
+ct
 iW
 iW
 iW
@@ -16886,7 +16881,7 @@ Yt
 UZ
 UZ
 UZ
-jv
+ct
 XV
 Xj
 se
@@ -17115,7 +17110,7 @@ se
 iW
 UZ
 UZ
-jv
+ct
 LM
 LM
 iW
@@ -17569,7 +17564,7 @@ iW
 iW
 iW
 iW
-jv
+ct
 iW
 iW
 iW
@@ -17753,7 +17748,7 @@ UZ
 UZ
 UZ
 UZ
-jv
+ct
 LM
 LM
 iW
@@ -18303,7 +18298,7 @@ iW
 XV
 Xj
 se
-jv
+ct
 UZ
 UZ
 UZ
@@ -18414,7 +18409,7 @@ iW
 XV
 Xj
 ux
-jv
+iW
 UZ
 UZ
 UZ
@@ -18974,7 +18969,7 @@ UZ
 UZ
 UZ
 UZ
-jv
+ct
 RK
 LM
 iW
@@ -19957,7 +19952,7 @@ UZ
 UZ
 UZ
 UZ
-jv
+ct
 LM
 LM
 iW
@@ -20243,7 +20238,7 @@ UZ
 iW
 LM
 LM
-jv
+ct
 UZ
 UZ
 UZ
@@ -20744,7 +20739,7 @@ iW
 iW
 iW
 iW
-jv
+ct
 iW
 iW
 iW
@@ -21085,7 +21080,7 @@ iW
 iW
 LM
 LM
-jv
+ct
 UZ
 UZ
 UZ
@@ -21227,7 +21222,7 @@ UZ
 UZ
 UZ
 UZ
-jv
+ct
 LM
 LM
 iW
@@ -21569,7 +21564,7 @@ iW
 iW
 iW
 iW
-jv
+ct
 iW
 iW
 iW
@@ -21637,7 +21632,7 @@ UZ
 UZ
 UZ
 UZ
-jv
+ct
 LM
 LM
 iW
@@ -21912,7 +21907,7 @@ iW
 iW
 iW
 iW
-jv
+ct
 iW
 iW
 iW
@@ -22420,7 +22415,7 @@ LM
 iW
 iW
 iW
-jv
+ct
 iW
 iW
 iW
@@ -22470,10 +22465,10 @@ UZ
 UZ
 UZ
 UZ
-jv
+ct
 LM
 LM
-jv
+ct
 UZ
 UZ
 UZ
@@ -22759,7 +22754,7 @@ iW
 iW
 iW
 iW
-jv
+ct
 iW
 iW
 iW
@@ -23020,7 +23015,7 @@ iW
 iW
 iW
 iW
-jv
+ct
 iW
 iW
 iW
@@ -23895,7 +23890,7 @@ UZ
 UZ
 UZ
 UZ
-jv
+ct
 XV
 Xj
 se
@@ -24043,7 +24038,7 @@ Yt
 XV
 Xj
 QF
-jv
+ct
 UZ
 UZ
 UZ
@@ -26152,7 +26147,7 @@ Yt
 XV
 Xj
 QF
-jv
+ct
 UZ
 UZ
 UZ
@@ -26197,7 +26192,7 @@ UZ
 iW
 LM
 LM
-jv
+ct
 UZ
 iW
 Xj
@@ -26374,7 +26369,7 @@ Yt
 XV
 Xj
 QF
-jv
+ct
 UZ
 UZ
 UZ
@@ -27127,7 +27122,7 @@ iW
 iW
 iW
 iW
-jv
+ct
 iW
 iW
 iW
@@ -27137,7 +27132,7 @@ iW
 iW
 iW
 iW
-jv
+ct
 iW
 iW
 iW
@@ -28530,7 +28525,7 @@ iW
 iW
 iW
 iW
-jv
+ct
 iW
 iW
 iW
@@ -28542,7 +28537,7 @@ iW
 iW
 iW
 iW
-jv
+ct
 iW
 iW
 iW

@@ -69,14 +69,16 @@
 		for(var/mob/living/L in T.contents)
 			if(L in beenHit)
 				continue
-			L.apply_damage(160, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			L.apply_damage(140, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			L.apply_dark_flame(14)
 			beenHit |= L
 			visible_message("<span class='boldwarning'>[src] pierces through [L]!</span>")
 			to_chat(L, "<span class='userdanger'>[src] slams through you!</span>")
 		for(var/mob/living/L in nearMiss)
 			if(L in beenHit)
 				continue
-			L.apply_damage(80, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			L.apply_damage(70, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			L.apply_dark_flame(6)
 			beenHit |= L
 			visible_message("<span class='warning'>[src] just barely brushes past [L]!</span>")
 			to_chat(L, "<span class='danger'>[src] grazes your side!</span>")
@@ -278,19 +280,4 @@
 	desc = "Looks like the terrain is being shifted by an abnormality."
 	layer = POINT_LAYER
 	alpha = 150
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-
-/obj/effect/area_heal
-	name = "large healing aura"
-	desc = "A large area of restorative energy."
-	icon = 'ModularTegustation/Teguicons/lc13_effects64x64.dmi'
-	icon_state = "healarea_fade"
-	pixel_x = -16
-	base_pixel_x = -16
-	pixel_y = -16
-	base_pixel_y = -16
-	density = FALSE
-	anchored = TRUE
-	layer = BELOW_MOB_LAYER
-	alpha = 200
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT

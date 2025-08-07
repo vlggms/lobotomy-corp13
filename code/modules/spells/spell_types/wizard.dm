@@ -24,6 +24,8 @@
 	nodamage = FALSE
 	paralyze = 60
 	hitsound = 'sound/magic/mm_hit.ogg'
+	damage = 5
+	damage_type = WHITE_DAMAGE
 
 	trail = TRUE
 	trail_lifespan = 5

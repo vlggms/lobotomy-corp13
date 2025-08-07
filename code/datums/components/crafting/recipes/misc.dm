@@ -193,3 +193,10 @@
 	reqs = list(/obj/item/tank/internals/oxygen = 2, /obj/item/extinguisher = 1, /obj/item/pipe = 3, /obj/item/stack/cable_coil = MAXCOIL)
 	category = CAT_MISC
 	tools = list(TOOL_WRENCH, TOOL_WELDER, TOOL_WIRECUTTER)
+
+/datum/crafting_recipe/apocplush
+	name = "Apocalypse Plushie"
+	result = /obj/item/toy/plush/apocbird
+	time = 10
+	reqs = list(/obj/item/toy/plush/jbird = 1, /obj/item/toy/plush/pbird = 1, /obj/item/toy/plush/bigbird = 1)
+	category = CAT_MISC

@@ -114,10 +114,12 @@
 	info = {"<h1><center>F-09-148</center></h1>	<br>
 	Name : Dr. Jekyll's Tincture<br>
 	Risk Class : WAW	<br>
-	- The employee who uses the abnormality will experience a temporary loss of mental fortitude until the concoction is returned. <br>
-	- If the user drinks F-09-148, their SP drops below 50%, and they will experience a personality shift and hereby referred to as F-09-148-1.<br>
-	- F-09-148-1 was identical to the employee but with different attributes. F-09-148-01 became violent during every panic scenario recorded.<br>
-	- F-09-148-1 returned to normal when SP was raised to 100%, but would regress back into F-09-148-1 if F-09-148 was drunk again."}
+	- An employee must be at least level 3 to use this abnormality with any effect.<br>
+	- The employee who uses the abnormality will gain a shared consciousness with a hostile entity.<br>
+	- The employee who willingly shares their consciousness will lose 25% of their sanity, and continue to lose sanity over time, until left on the brink.<br>
+	- While consciousness is shared, employees gain JUSTICE proportional to sanity lost.<br>
+	- If anyone who utilizes F-09-148 panics, they may experience a personality shift and hereby referred to as F-09-148-1, or "Mr.Hyde" by some users.<br>
+	- F-09-148-01 became murderous and violent during every panic scenario recorded."}
 
 //All-Natural Snake Oil
 /obj/item/paper/fluff/info/tool/snake_oil

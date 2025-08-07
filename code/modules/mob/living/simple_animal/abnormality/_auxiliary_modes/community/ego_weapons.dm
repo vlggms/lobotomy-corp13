@@ -1,7 +1,7 @@
 // ZAYIN
 /obj/item/ego_weapon/support/dragon_staff
 	name = "dragon's staff"
-	desc = "A staff built from stained wood tipped with a strange, twisted skull. It reminds you of the tales your father regaled you with long ago."
+	desc = "A staff built from stained wood tipped with a strange, twisted skull. It reminds you of the the tall tales a father would tell."
 	special = "Use this weapon in your hand when wearing matching armor to shield nearby humans from 50 white damage."
 	icon_state = "dragon_staff"
 	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_weapons.dmi'
@@ -18,147 +18,12 @@
 	for(var/mob/living/carbon/human/L in livinginview(8, user))
 		if((!ishuman(L)) || L.stat == DEAD || L == user)
 			continue
-		to_chat(L, span_warning("[user] shields you from WHITE damage!"))
-		L.apply_status_effect(/datum/status_effect/interventionshield/white)
+		to_chat(L, span_warning("[user] casts BARKSKIN!"))
+		L.apply_status_effect(/datum/status_effect/interventionshield/perfect)
 
 // TETH
 
 // HE
-/obj/item/ego_weapon/desert
-	name = "desert wind"
-	desc = "Some old bandages that look like they have been worn for a long time."
-	icon_state = "desert"
-	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_weapons.dmi'
-	lefthand_file = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_lefthand.dmi'
-	righthand_file = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_righthand.dmi'
-	force = 21
-	attack_speed = 0.7
-	hitsound = 'sound/weapons/fixer/generic/fist1.ogg'
-	attribute_requirements = list(
-							JUSTICE_ATTRIBUTE = 40
-							)
-	var/chain = 0
-	var/activated
-	var/dash_range = 5
-	var/combo_time
-	var/combo_wait = 10
-
-/obj/item/ego_weapon/desert/AltClick(mob/user)
-	if(HAS_TRAIT(src, TRAIT_NODROP))
-		REMOVE_TRAIT(src, TRAIT_NODROP, SPECIAL)
-		to_chat(user, span_notice("You loosen the [src]."))
-		return
-	ADD_TRAIT(src, TRAIT_NODROP, SPECIAL)
-	to_chat(user, span_notice("You tightly attach [src] to your body."))
-
-
-/obj/item/ego_weapon/desert/examine(mob/user)
-	. = ..()
-	. += span_notice("You can use alt+click to bind this weapon to your hand so that it does not drop.")
-	. += span_notice("This weapon has light and heavy attacks. Use in hand to activate a heavy attack. Combos are as follows:")
-	. += span_notice("LLL - 3 Hit fast combo, ending in a quick finisher.")
-	. += span_notice("H 	 - Heavy drop kick attack with high range that briefly leaves you stunned.")
-	. += span_notice("LH 	 - An open palm strike that knocks back the target.")
-	. += span_notice("LLH 	 - High Damage combo, last hit ends in a 2.5x damage boost with no windup.")
-
-/obj/item/ego_weapon/desert/attack_self(mob/living/carbon/user)
-	if(world.time > combo_time)
-		chain = 0
-	if(activated)
-		activated = FALSE
-		to_chat(user, span_danger("You revoke your preparation of a heavy attack."))
-	else
-		activated = TRUE
-		to_chat(user, span_danger("You prep a heavy attack!"))
-
-
-/obj/item/ego_weapon/desert/attack(mob/living/target, mob/living/user)
-	if(!CanUseEgo(user))
-		return
-
-	if(world.time > combo_time)
-		chain = 0
-	combo_time = world.time + combo_wait
-
-	var/during_windup //can't attack during windup
-	if(during_windup)
-		return
-
-	//Setting chain and attack speed to 0
-	chain+=1
-	attack_speed = initial(attack_speed)
-
-	//Teh Chain of attacks. See the examine for what each chain does.
-
-	switch(chain)
-		if(1)
-			if(activated) //H - Drop Kick attack
-				to_chat(user, span_danger("You leap at your target."))
-				step_towards(user,target)
-				stuntime = 20
-				force *= 3
-				hitsound = 'sound/weapons/fixer/oldboys.ogg'
-				user.Knockdown(10)
-				knockback(target, user)
-
-		if(2)
-			if(activated) //LH - Knockback Palm Strike
-				to_chat(user, span_danger("You strike with your palm."))
-				hitsound = 'sound/weapons/fixer/generic/gen2.ogg'
-				knockback(target, user)
-				force *= 1.5
-
-		if(3)
-			if(activated) //LLH - Heavy hitting finisher
-				to_chat(user, span_danger("You strike a critical blow."))
-				during_windup = TRUE
-				force *= 2.5
-				hitsound = 'sound/weapons/fixer/generic/gen2.ogg'
-			else
-				force *= 0.7
-				attack_speed = 0.3
-				hitsound = 'sound/weapons/fixer/generic/dodge2.ogg'
-				user.spin(20, 1)
-			chain=0
-
-
-	//Special attacks are slower.
-	if(attack_speed == initial(attack_speed) && activated)
-		attack_speed = 2
-	. = ..()
-
-	//Reset Everything
-	if(activated)
-		chain=0
-		to_chat(user, span_danger("Your chain is reset."))
-		activated = FALSE
-	force = initial(force)
-	hitsound = initial(hitsound)
-	stuntime = initial(stuntime)
-
-/obj/item/ego_weapon/desert/proc/knockback(mob/living/target, mob/living/user)
-	var/atom/throw_target = get_edge_target_turf(target, user.dir)
-	if(!target.anchored)
-		var/whack_speed = (prob(60) ? 1 : 4)
-		target.throw_at(throw_target, rand(1, 3), whack_speed, user)
-
-/obj/item/ego_weapon/desert/afterattack(atom/A, mob/living/user, proximity_flag, params)
-	if(!CanUseEgo(user))
-		return
-	if(!isliving(A))
-		return
-	if(!activated || chain > 0)
-		return
-	if((get_dist(user, A) < 2) || (!(can_see(user, A, dash_range))))
-		return
-	..()
-	for(var/i in 2 to get_dist(user, A))
-		step_towards(user,A)
-	if((get_dist(user, A) < 2))
-		A.attackby(src,user)
-	playsound(src, 'sound/weapons/fixer/generic/dodge.ogg', 50, FALSE, 9)
-	to_chat(user, "<span class='warning'>You dash to [A]!")
-
 /obj/item/ego_weapon/security_ego
 	name = "security"
 	desc = "Those who would give up essential liberty, to purchase a little temporary safety, deserve neither liberty nor safety."
@@ -193,7 +58,7 @@
 /obj/item/ego_weapon/sunspit
 	name = "sunspit"
 	desc = "Goodness gracious, great mauls of fire!"
-	special = "Use in hand to prepare a powerful area attack. This attack becomes more powerful when charged."
+	special = "Use in hand to prepare a powerful area attack. This attack requires charge to use, but deals armor-piercing burn damage."
 	icon_state = "sunspit"
 	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_weapons.dmi'
 	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
@@ -248,7 +113,7 @@
 	if(!can_spin)
 		to_chat(user,span_warning("You attacked too recently."))
 		return
-	if(do_after(user, 12, src))
+	if(do_after(user, 8, src))
 		charge_amount -= charge_cost
 		addtimer(CALLBACK(src, PROC_REF(spin_reset)), 12)
 		playsound(src, 'sound/abnormalities/seasons/summer_attack.ogg', 75, FALSE, 4)
@@ -288,12 +153,12 @@
 		playsound(T, 'sound/weapons/fixer/generic/fire3.ogg', 30, TRUE, 3)
 		new /obj/effect/temp_visual/smash_effect(T)
 		new /obj/effect/temp_visual/fire/fast(T)
-		been_hit = user.HurtInTurf(T, been_hit, aoe_damage, RED_DAMAGE, check_faction = TRUE)
+		been_hit = user.HurtInTurf(T, been_hit, aoe_damage, FIRE, check_faction = TRUE)
 
 /obj/item/ego_weapon/sunspit/get_clamped_volume()
 	return 40
 
-/obj/item/ego_weapon/furrows//TODO: function as a mining tool. Add to mining subtype PR
+/obj/item/ego_weapon/furrows
 	name = "furrows"
 	desc = "A rusty pick-mattock caked in mud. Its texture is heavily decayed, as if it had been buried for a long time."
 	icon_state = "furrows"
@@ -305,6 +170,9 @@
 	attack_verb_continuous = list("bashes", "jabs", "picks", "impales", "spikes")
 	attack_verb_simple = list("bash", "jab", "pick", "impale", "spike")
 	hitsound = 'sound/weapons/fixer/generic/gen1.ogg'
+	usesound = 'sound/effects/picaxe1.ogg'
+	toolspeed = 0.1
+	tool_behaviour = TOOL_MINING
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 60

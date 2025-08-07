@@ -14,7 +14,7 @@
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	health = 250
 	maxHealth = 250
-	damage_coeff = list(BRUTE = 0.7, BURN = 0.7, TOX = 1, CLONE = 2, STAMINA = 0, OXY = 1)
+	damage_coeff = list(BRUTE = 0.7, FIRE = 0.7, TOX = 1, CLONE = 2, STAMINA = 0, OXY = 1)
 	melee_damage_lower = 25
 	melee_damage_upper = 25
 	obj_damage = 40
@@ -74,7 +74,7 @@
 	else
 		add_ranged_ability(user, span_notice("You prepare your pimp-tentacle. <B>Left-click to slap a target!</B>"), TRUE)
 
-/obj/effect/proc_holder/tentacle_slap/InterceptClickOn(mob/living/caller, params, atom/target)
+/obj/effect/proc_holder/tentacle_slap/InterceptClickOn(mob/living/requester, params, atom/target)
 	. = ..()
 	if(.)
 		return
@@ -83,7 +83,7 @@
 		remove_ranged_ability()
 		return
 
-	if(!caller.Adjacent(target))
+	if(!requester.Adjacent(target))
 		return
 
 	if(!isliving(target))

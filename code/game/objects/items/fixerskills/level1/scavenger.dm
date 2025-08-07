@@ -8,6 +8,7 @@
 
 /datum/action/cooldown/smokedash
 	name = "Smokedash"
+	desc = "Increases movement speed and drops a smoke bomb at your feet."
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "smokedash"
 	cooldown_time = 30 SECONDS
@@ -33,21 +34,22 @@
 	StartCooldown()
 
 
-//Skulk
-/obj/item/book/granter/action/skill/skulk
-	granted_action = /datum/action/cooldown/skulk
-	actionname = "Skulk"
-	name = "Level 1 Skill: Skulk"
+//Mark
+/obj/item/book/granter/action/skill/mark
+	granted_action = /datum/action/cooldown/mark
+	actionname = "Mark"
+	name = "Level 1 Skill: Mark"
 	level = 1
-	custom_premium_price = 600
+	custom_premium_price = 0
 
-/datum/action/cooldown/skulk
-	name = "Skulk"
+/datum/action/cooldown/mark
+	name = "Mark"
+	desc = "Drops a small marker at your feet."
 	icon_icon = 'icons/hud/screen_skills.dmi'
-	button_icon_state = "skulk"
-	cooldown_time = 30 SECONDS
+	button_icon_state = "mark"
+	cooldown_time = 7 SECONDS
 
-/datum/action/cooldown/skulk/Trigger()
+/datum/action/cooldown/mark/Trigger()
 	. = ..()
 	if(!.)
 		return FALSE
@@ -55,10 +57,34 @@
 	if (owner.stat == DEAD)
 		return FALSE
 
-	//become invisible
-	owner.alpha = 15
-	addtimer(CALLBACK(src, PROC_REF(Recall),), 10 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+	new /obj/structure/marker_beacon (get_turf(owner))
 	StartCooldown()
 
-/datum/action/cooldown/skulk/proc/Recall()
-	owner.alpha = 255
+
+//Mark
+/obj/item/book/granter/action/skill/light
+	granted_action = /datum/action/cooldown/light
+	actionname = "Light"
+	name = "Level 1 Skill: Light"
+	level = 1
+	custom_premium_price = 600
+
+/datum/action/cooldown/light
+	name = "Light"
+	desc = "Create a flare to give you light."
+	icon_icon = 'icons/hud/screen_skills.dmi'
+	button_icon_state = "light"
+	cooldown_time = 30 SECONDS
+
+/datum/action/cooldown/light/Trigger()
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if (owner.stat == DEAD)
+		return FALSE
+
+	var/obj/item/flashlight/flare/F = new (get_turf(owner))
+	F.attack_self(owner)
+	StartCooldown()
+

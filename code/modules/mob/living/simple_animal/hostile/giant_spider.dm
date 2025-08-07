@@ -46,20 +46,22 @@
 	speed = 0
 	turns_per_move = 5
 	see_in_dark = 4
-	butcher_results = list(/obj/item/food/meat/slab/spider = 2, /obj/item/food/spiderleg = 8)
+	butcher_results = list(/obj/item/food/meat/slab/buggy = 2, /obj/item/food/meat/slab/spider = 2, /obj/item/food/spiderleg = 8)
+	silk_results = list(/obj/item/stack/sheet/silk/steel_simple = 2, /obj/item/stack/sheet/silk/steel_advanced = 1)
 	response_help_continuous = "pets"
 	response_help_simple = "pet"
 	response_disarm_continuous = "gently pushes aside"
 	response_disarm_simple = "gently push aside"
 	initial_language_holder = /datum/language_holder/spider
-	maxHealth = 80
-	health = 80
-	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, CLONE = 1, STAMINA = 1, OXY = 1)
+	maxHealth = 100
+	health = 100
+	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2, BRUTE = 1, FIRE = 1, TOX = 1, CLONE = 1, STAMINA = 1, OXY = 1)
 	unsuitable_cold_damage = 20
 	unsuitable_heat_damage = 20
 	obj_damage = 30
-	melee_damage_lower = 20
-	melee_damage_upper = 25
+	melee_damage_lower = 10
+	melee_damage_upper = 15
+	melee_damage_type = RED_DAMAGE
 	a_intent = INTENT_HARM
 	faction = list("spiders")
 	pass_flags = PASSTABLE
@@ -191,7 +193,7 @@
 	melee_damage_lower = 35
 	melee_damage_upper = 40
 	obj_damage = 100
-	damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, CLONE = 1, STAMINA = 0, OXY = 1)
+	damage_coeff = list(BRUTE = 1, FIRE = 1, TOX = 1, CLONE = 1, STAMINA = 0, OXY = 1)
 	poison_per_bite = 0
 	move_to_delay = 8
 	speed = 1
@@ -413,7 +415,7 @@
 		add_ranged_ability(user, message, TRUE)
 		return TRUE
 
-/obj/effect/proc_holder/wrap/InterceptClickOn(mob/living/caller, params, atom/target)
+/obj/effect/proc_holder/wrap/InterceptClickOn(mob/living/requester, params, atom/target)
 	if(..())
 		return
 	if(ranged_ability_user.incapacitated() || !istype(ranged_ability_user, /mob/living/simple_animal/hostile/poison/giant_spider/midwife))
@@ -474,7 +476,7 @@
 		add_ranged_ability(user, message, TRUE)
 		return 1
 
-/obj/effect/proc_holder/tarantula_charge/InterceptClickOn(mob/living/caller, params, atom/target)
+/obj/effect/proc_holder/tarantula_charge/InterceptClickOn(mob/living/requester, params, atom/target)
 	if(..())
 		return
 	if(ranged_ability_user.incapacitated() || !istype(ranged_ability_user, /mob/living/simple_animal/hostile/poison/giant_spider/tarantula))

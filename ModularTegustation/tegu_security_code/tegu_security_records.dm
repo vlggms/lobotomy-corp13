@@ -113,10 +113,10 @@
 	temp = ""
 	if(check_input_clearance(usr, TRUE))
 		temp += "<h5><b>Are you sure you wish to delete all Security records?</b></h5><br>"
-		temp += "<a href='?src=[REF(src)];choice=Purge All Records'>Yes</a><br>"
-		temp += "<a href='?src=[REF(src)];choice=Clear Screen'>No</a>"
+		temp += "<a href='byond://?src=[REF(src)];choice=Purge All Records'>Yes</a><br>"
+		temp += "<a href='byond://?src=[REF(src)];choice=Clear Screen'>No</a>"
 	else
-		temp += "<a href='?src=[REF(src)];choice=Clear Screen'><b>[SEC_RECORD_BAD_CLEARANCE]</b></a>"
+		temp += "<a href='byond://?src=[REF(src)];choice=Clear Screen'><b>[SEC_RECORD_BAD_CLEARANCE]</b></a>"
 	return temp
 
 
@@ -124,9 +124,9 @@
 	temp = ""
 	if(check_input_clearance(usr, TRUE))
 		temp = "<h5><b>Are you sure you wish to delete the record ([type])?</b></h5><br>"
-		temp += "<a href='?src=[REF(src)];choice=Delete Record ([type]) Execute'>Yes</a><br>"
-		temp += "<a href='?src=[REF(src)];choice=Clear Screen'>No</a>"
+		temp += "<a href='byond://?src=[REF(src)];choice=Delete Record ([type]) Execute'>Yes</a><br>"
+		temp += "<a href='byond://?src=[REF(src)];choice=Clear Screen'>No</a>"
 	else
-		temp += "<a href='?src=[REF(src)];choice=Clear Screen'><b>[SEC_RECORD_BAD_CLEARANCE]</b></a>"
+		temp += "<a href='byond://?src=[REF(src)];choice=Clear Screen'><b>[SEC_RECORD_BAD_CLEARANCE]</b></a>"
 
 	return temp

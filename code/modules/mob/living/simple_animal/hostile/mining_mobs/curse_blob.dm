@@ -14,7 +14,7 @@
 	health = 40
 	melee_damage_lower = 10
 	melee_damage_upper = 10
-	melee_damage_type = BURN
+	melee_damage_type = FIRE
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
 	attack_sound = 'sound/effects/curseattack.ogg'

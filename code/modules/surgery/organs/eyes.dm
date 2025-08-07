@@ -177,6 +177,16 @@
 	flash_protect = FLASH_PROTECTION_SENSITIVE
 	see_in_dark = 8
 
+/obj/item/organ/eyes/robotic/infofixer
+	name = "high-information eyes"
+	desc = "Many fixers who work in dangerous locations swear by these cybernetic eyes' ability to detect threats ahead of time."
+	eye_color = "F00"
+	sight_flags = SEE_MOBS | SEE_TURFS
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+	flash_protect = FLASH_PROTECTION_SENSITIVE
+	see_in_dark = 8
+	custom_premium_price = 1800
+
 /obj/item/organ/eyes/robotic/flashlight
 	name = "flashlight eyes"
 	desc = "It's two flashlights rigged together with some wire. Why would you put these in someone's head?"

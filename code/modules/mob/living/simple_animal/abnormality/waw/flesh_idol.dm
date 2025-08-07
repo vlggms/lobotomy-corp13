@@ -15,7 +15,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 55,
 		ABNORMALITY_WORK_REPRESSION = 55,
 	)
-	start_qliphoth = 1
+	start_qliphoth = 4
 	max_boxes = 20
 	work_damage_amount = 0		//Work damage is later
 	work_damage_type = RED_DAMAGE
@@ -36,8 +36,8 @@
 		"Keep praying" = list(FALSE, "If God truly loves us, he'll show us a sign."),
 	)
 
-	var/work_count = 0
-	var/breach_count = 4	//when do you breach?
+	var/counter_interval = 5 MINUTES
+	var/next_counter_gain //What was the next time you gain Qlip?
 	var/reset_time = 1 MINUTES
 	var/damage_amount = 7
 	var/run_num = 2		//How many things you breach
@@ -52,16 +52,21 @@
 		/mob/living/simple_animal/hostile/abnormality/crying_children,
 	)
 
+/mob/living/simple_animal/hostile/abnormality/flesh_idol/Initialize()
+	. = ..()
+	next_counter_gain = world.time + counter_interval
+
+/mob/living/simple_animal/hostile/abnormality/flesh_idol/Life()
+	. = ..()
+	if(next_counter_gain < world.time)
+		datum_reference.qliphoth_change(1)
+		next_counter_gain = world.time + counter_interval
+
 /mob/living/simple_animal/hostile/abnormality/flesh_idol/WorkComplete(mob/living/carbon/human/user, work_type, pe)
 	..()
-	work_count += 1
 	//heal amount = the PE you made
 	var/heal_amount = pe*2
-
-	if(work_count >= breach_count)
-		work_count = 0
-		datum_reference.qliphoth_change(-1)
-		heal_amount = pe*4
+	datum_reference.qliphoth_change(-1)
 
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		if(H.stat != DEAD)

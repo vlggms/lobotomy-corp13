@@ -15,6 +15,11 @@
 	*/
 	var/meltdowntimer_increase = 30
 
+/obj/item/records/meltdown_extend/examine(mob/user)
+	. = ..()
+	if (GetFacilityUpgradeValue(UPGRADE_RECORDS_1))
+		. += span_notice("This watch seems to be upgraded, its additional meltdown time is doubled.")
+
 /obj/item/records/meltdown_extend/watch_action(mob/user)
 	//Shadow var to count if we were successful in getting a computer in are view
 	var/CA_count = 0
@@ -31,7 +36,10 @@
 			*/
 			if(CA.can_meltdown && CA.meltdown && CA.meltdown_time > 0)
 				//The watch itself has the time increase, we grab it and add that (in seconds)
-				CA.meltdown_time += meltdowntimer_increase
+				var/fake_meltdowntimer_increase = meltdowntimer_increase
+				if (GetFacilityUpgradeValue(UPGRADE_RECORDS_1))
+					fake_meltdowntimer_increase *= 2
+				CA.meltdown_time += fake_meltdowntimer_increase
 				//Give feedback and tell the user how much time left
 				to_chat(user, span_warning("You increase the time left untill a meltdown to: [CA.meltdown_time] on [CA.datum_reference.name]'s console."))
 				//This was a successful use of the watch, add it to the console counter

@@ -1,5 +1,5 @@
 #define MAX_DAMAGE_SUFFERED 250
-
+GLOBAL_LIST_EMPTY(marked_players)
 /mob/living/simple_animal/hostile
 	faction = list("hostile")
 	stop_automated_movement_when_pulled = 0
@@ -91,6 +91,13 @@
 	// Return to spawn point if target lost
 	var/return_to_origin = FALSE
 
+	//If the mob is a part of a faction
+	var/mark_once_attacked = FALSE
+	var/attacked_line = "You will pay for this!"
+	var/starting_looting_line = "Hand off, that is ours."
+	var/ending_looting_line = "That's it, you asked for this."
+	var/list/glob_faction = list()
+
 /mob/living/simple_animal/hostile/Initialize()
 	/*Update Speed overrides set speed and sets it
 		to the equivilent of move_to_delay. Basically
@@ -112,8 +119,92 @@
 	if (return_to_origin)
 		AddComponent(/datum/component/return_to_origin)
 
+	if(mark_once_attacked)
+		RegisterSignal(SSdcs, COMSIG_CRATE_LOOTING_STARTED, PROC_REF(on_seeing_looting_started))
+		RegisterSignal(SSdcs, COMSIG_CRATE_LOOTING_ENDED, PROC_REF(on_seeing_looting_ended))
+
+	glob_faction = GLOB.marked_players
+
+/mob/living/simple_animal/hostile/proc/on_seeing_looting_started(datum/source, mob/living/user, obj/crate)
+	SIGNAL_HANDLER
+	if (check_visible(user, crate) && stat != DEAD && !target)
+		addtimer(CALLBACK(src, PROC_REF(Talk)), 0)
+
+/mob/living/simple_animal/hostile/proc/on_seeing_looting_ended(datum/source, mob/living/user, obj/crate)
+	SIGNAL_HANDLER
+	if (check_visible(user, crate) && stat != DEAD && !target)
+		addtimer(CALLBACK(src, PROC_REF(Theif_Talk)), 0)
+		if (!(user in glob_faction))
+			glob_faction += user
+
+/mob/living/simple_animal/hostile/proc/Talk()
+	say(starting_looting_line)
+
+/mob/living/simple_animal/hostile/proc/Theif_Talk()
+	say(ending_looting_line)
+
+/mob/living/simple_animal/hostile/proc/check_visible(mob/living/user, obj/crate)
+	var/user_visible = (user in view(vision_range, src))
+	var/crate_visible = (crate in view(vision_range, src))
+	return user_visible && crate_visible
+
+/mob/living/simple_animal/hostile/bullet_act(obj/projectile/P)
+	. = ..()
+	if(mark_once_attacked)
+		if(P.firer && get_dist(src, P.firer) <= aggro_vision_range)
+			if(!ishostile(P.firer))
+				if (!(P.firer in glob_faction))
+					glob_faction += P.firer
+					say(attacked_line)
+
+	// Track damage for nuke rats achievement
+	if(glob_faction == GLOB.nuke_rats_players && P.firer && isliving(P.firer))
+		var/mob/living/L = P.firer
+		if(L.client && !(L in GLOB.nuke_rats_killers))
+			GLOB.nuke_rats_killers += L
+
+/mob/living/simple_animal/hostile/attackby(obj/item/O, mob/user, params)
+	. = ..()
+	if(mark_once_attacked)
+		if(ishuman(user))
+			if (O.force > 0)
+				if (!(user in glob_faction ))
+					glob_faction += user
+					say(attacked_line)
+		else
+			if (!(user in glob_faction ))
+				glob_faction += user
+				say(attacked_line)
+
+	// Track damage for nuke rats achievement
+	if(glob_faction == GLOB.nuke_rats_players && user && user.client && !(user in GLOB.nuke_rats_killers))
+		GLOB.nuke_rats_killers += user
+
 /mob/living/simple_animal/hostile/Destroy()
 	targets_from = null
+	if(mark_once_attacked)
+		UnregisterSignal(SSdcs, COMSIG_CRATE_LOOTING_STARTED)
+		UnregisterSignal(SSdcs, COMSIG_CRATE_LOOTING_ENDED)
+	return ..()
+
+/mob/living/simple_animal/hostile/death(gibbed)
+	// Check for nuke rats achievement
+	if(glob_faction == GLOB.nuke_rats_players)
+		// Check if all nuke rats are dead
+		var/all_dead = TRUE
+		for(var/mob/living/simple_animal/hostile/H in GLOB.mob_living_list)
+			if(H != src && H.stat != DEAD && H.glob_faction == GLOB.nuke_rats_players)
+				all_dead = FALSE
+				break
+
+		if(all_dead && GLOB.nuke_rats_killers.len)
+			// Award achievement to all players who participated in killing nuke rats
+			for(var/mob/living/L in GLOB.nuke_rats_killers)
+				if(L.client)
+					L.client.give_award(/datum/award/achievement/lc13/city/nuke_rats_genocide, L)
+			// Clear the killers list after awarding
+			GLOB.nuke_rats_killers.Cut()
+
 	return ..()
 
 /mob/living/simple_animal/hostile/Life()
@@ -296,7 +387,7 @@
 /mob/living/proc/DamageEffect(damage, damtype)
 	if(damage > 0)
 		switch(damtype)
-			if(RED_DAMAGE)
+			if(RED_DAMAGE, BRUTE)
 				return new /obj/effect/temp_visual/damage_effect/red(get_turf(src))
 			if(WHITE_DAMAGE)
 				return new /obj/effect/temp_visual/damage_effect/white(get_turf(src))
@@ -304,7 +395,7 @@
 				return new /obj/effect/temp_visual/damage_effect/black(get_turf(src))
 			if(PALE_DAMAGE)
 				return new /obj/effect/temp_visual/damage_effect/pale(get_turf(src))
-			if(BURN)
+			if(FIRE)
 				return new /obj/effect/temp_visual/damage_effect/burn(get_turf(src))
 			if(TOX)
 				return new /obj/effect/temp_visual/damage_effect/tox(get_turf(src))
@@ -324,7 +415,7 @@
 			dam_effect.transform *= damage_effect_scale
 		return dam_effect
 	switch(damtype)
-		if(RED_DAMAGE)
+		if(RED_DAMAGE, BRUTE)
 			dam_effect = new /obj/effect/temp_visual/damage_effect/red(get_turf(src))
 		if(WHITE_DAMAGE)
 			dam_effect = new /obj/effect/temp_visual/damage_effect/white(get_turf(src))
@@ -332,7 +423,7 @@
 			dam_effect = new /obj/effect/temp_visual/damage_effect/black(get_turf(src))
 		if(PALE_DAMAGE)
 			dam_effect = new /obj/effect/temp_visual/damage_effect/pale(get_turf(src))
-		if(BURN)
+		if(FIRE)
 			dam_effect = new /obj/effect/temp_visual/damage_effect/burn(get_turf(src))
 		if(TOX)
 			dam_effect = new /obj/effect/temp_visual/damage_effect/tox(get_turf(src))
@@ -344,6 +435,12 @@
 		dam_effect.pixel_x += rand(-occupied_tiles_left_current * 32, occupied_tiles_right_current * 32)
 		dam_effect.pixel_y += rand(-occupied_tiles_down_current * 32, occupied_tiles_up_current * 32)
 	return dam_effect
+
+/mob/living/simple_animal/hostile/adjustBruteLoss(amount, updating_health, forced)
+	var/was_alive = stat != DEAD
+	. = ..()
+	if(was_alive)
+		DamageEffect(., BRUTE)
 
 /mob/living/simple_animal/hostile/adjustRedLoss(amount, updating_health, forced)
 	var/was_alive = stat != DEAD
@@ -373,7 +470,7 @@
 	var/was_alive = stat != DEAD
 	. = ..()
 	if(was_alive)
-		DamageEffect(., BURN)
+		DamageEffect(., FIRE)
 
 /mob/living/simple_animal/hostile/adjustToxLoss(amount, updating_health, forced)
 	var/was_alive = stat != DEAD
@@ -509,6 +606,10 @@
 			var/mob/living/L = the_target
 			if(!L.CanBeAttacked(src))
 				return FALSE
+
+			if(mark_once_attacked)
+				if (the_target in glob_faction)
+					return TRUE
 
 			var/faction_check = faction_check_mob(L)
 			if(robust_searching)
@@ -846,6 +947,14 @@
 	return TRUE
 
 /mob/living/simple_animal/hostile/proc/AttackingTarget(atom/attacked_target)
+	if(client)
+		if(target == src)
+			to_chat(src, span_warning("You almost attack yourself, but then decide against it."))
+			return
+		if(SSmaptype.maptype == "rcorp" && faction_check_mob(target, FALSE))
+			to_chat(src, span_warning("You almost attack your teammate, but then decide against it."))
+			return
+
 	if(!attacked_target)
 		attacked_target = target
 	if(!AttackCondition(attacked_target))

@@ -12,6 +12,7 @@
 	pixel_x = -16
 	base_pixel_x = -16
 	fear_level = WAW_LEVEL
+	can_spawn = TRUE
 	move_to_delay = 3
 	damage_coeff = list(RED_DAMAGE = 0.2, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.5)
 	melee_damage_lower = 25
