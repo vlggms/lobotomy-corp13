@@ -156,7 +156,7 @@ GLOBAL_LIST_EMPTY(marked_players)
 				if (!(P.firer in glob_faction))
 					glob_faction += P.firer
 					say(attacked_line)
-	
+
 	// Track damage for nuke rats achievement
 	if(glob_faction == GLOB.nuke_rats_players && P.firer && isliving(P.firer))
 		var/mob/living/L = P.firer
@@ -175,7 +175,7 @@ GLOBAL_LIST_EMPTY(marked_players)
 			if (!(user in glob_faction ))
 				glob_faction += user
 				say(attacked_line)
-	
+
 	// Track damage for nuke rats achievement
 	if(glob_faction == GLOB.nuke_rats_players && user && user.client && !(user in GLOB.nuke_rats_killers))
 		GLOB.nuke_rats_killers += user
@@ -196,7 +196,7 @@ GLOBAL_LIST_EMPTY(marked_players)
 			if(H != src && H.stat != DEAD && H.glob_faction == GLOB.nuke_rats_players)
 				all_dead = FALSE
 				break
-		
+
 		if(all_dead && GLOB.nuke_rats_killers.len)
 			// Award achievement to all players who participated in killing nuke rats
 			for(var/mob/living/L in GLOB.nuke_rats_killers)
@@ -204,7 +204,7 @@ GLOBAL_LIST_EMPTY(marked_players)
 					L.client.give_award(/datum/award/achievement/lc13/city/nuke_rats_genocide, L)
 			// Clear the killers list after awarding
 			GLOB.nuke_rats_killers.Cut()
-	
+
 	return ..()
 
 /mob/living/simple_animal/hostile/Life()
@@ -387,7 +387,7 @@ GLOBAL_LIST_EMPTY(marked_players)
 /mob/living/proc/DamageEffect(damage, damtype)
 	if(damage > 0)
 		switch(damtype)
-			if(RED_DAMAGE)
+			if(RED_DAMAGE, BRUTE)
 				return new /obj/effect/temp_visual/damage_effect/red(get_turf(src))
 			if(WHITE_DAMAGE)
 				return new /obj/effect/temp_visual/damage_effect/white(get_turf(src))
@@ -395,7 +395,7 @@ GLOBAL_LIST_EMPTY(marked_players)
 				return new /obj/effect/temp_visual/damage_effect/black(get_turf(src))
 			if(PALE_DAMAGE)
 				return new /obj/effect/temp_visual/damage_effect/pale(get_turf(src))
-			if(BURN)
+			if(FIRE)
 				return new /obj/effect/temp_visual/damage_effect/burn(get_turf(src))
 			if(TOX)
 				return new /obj/effect/temp_visual/damage_effect/tox(get_turf(src))
@@ -415,7 +415,7 @@ GLOBAL_LIST_EMPTY(marked_players)
 			dam_effect.transform *= damage_effect_scale
 		return dam_effect
 	switch(damtype)
-		if(RED_DAMAGE)
+		if(RED_DAMAGE, BRUTE)
 			dam_effect = new /obj/effect/temp_visual/damage_effect/red(get_turf(src))
 		if(WHITE_DAMAGE)
 			dam_effect = new /obj/effect/temp_visual/damage_effect/white(get_turf(src))
@@ -423,7 +423,7 @@ GLOBAL_LIST_EMPTY(marked_players)
 			dam_effect = new /obj/effect/temp_visual/damage_effect/black(get_turf(src))
 		if(PALE_DAMAGE)
 			dam_effect = new /obj/effect/temp_visual/damage_effect/pale(get_turf(src))
-		if(BURN)
+		if(FIRE)
 			dam_effect = new /obj/effect/temp_visual/damage_effect/burn(get_turf(src))
 		if(TOX)
 			dam_effect = new /obj/effect/temp_visual/damage_effect/tox(get_turf(src))
@@ -435,6 +435,12 @@ GLOBAL_LIST_EMPTY(marked_players)
 		dam_effect.pixel_x += rand(-occupied_tiles_left_current * 32, occupied_tiles_right_current * 32)
 		dam_effect.pixel_y += rand(-occupied_tiles_down_current * 32, occupied_tiles_up_current * 32)
 	return dam_effect
+
+/mob/living/simple_animal/hostile/adjustBruteLoss(amount, updating_health, forced)
+	var/was_alive = stat != DEAD
+	. = ..()
+	if(was_alive)
+		DamageEffect(., BRUTE)
 
 /mob/living/simple_animal/hostile/adjustRedLoss(amount, updating_health, forced)
 	var/was_alive = stat != DEAD
@@ -464,7 +470,7 @@ GLOBAL_LIST_EMPTY(marked_players)
 	var/was_alive = stat != DEAD
 	. = ..()
 	if(was_alive)
-		DamageEffect(., BURN)
+		DamageEffect(., FIRE)
 
 /mob/living/simple_animal/hostile/adjustToxLoss(amount, updating_health, forced)
 	var/was_alive = stat != DEAD
@@ -941,6 +947,14 @@ GLOBAL_LIST_EMPTY(marked_players)
 	return TRUE
 
 /mob/living/simple_animal/hostile/proc/AttackingTarget(atom/attacked_target)
+	if(client)
+		if(target == src)
+			to_chat(src, span_warning("You almost attack yourself, but then decide against it."))
+			return
+		if(SSmaptype.maptype == "rcorp" && faction_check_mob(target, FALSE))
+			to_chat(src, span_warning("You almost attack your teammate, but then decide against it."))
+			return
+
 	if(!attacked_target)
 		attacked_target = target
 	if(!AttackCondition(attacked_target))

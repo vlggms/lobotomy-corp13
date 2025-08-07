@@ -6,7 +6,7 @@
 /// Physical fracturing and warping of the material.
 #define BRUTE		"brute"
 /// Scorching and charring of the material.
-#define BURN		"fire"
+#define FIRE		"fire"
 /// Poisoning. Mostly caused by reagents.
 #define TOX			"toxin"
 /// Suffocation.
@@ -33,8 +33,6 @@
 #define BIO			"bio"
 /// Involves ionizing radiation.
 #define RAD			"rad"
-/// Involves fire or temperature extremes.
-#define FIRE		"fire"
 /// Involves corrosive substances.
 #define ACID		"acid"
 /// Involves magic.

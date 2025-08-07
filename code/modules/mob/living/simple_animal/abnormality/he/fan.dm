@@ -46,6 +46,11 @@
 	var/safework = FALSE //Safe if the abnormality was melting
 	var/successcount
 	var/turned_off = FALSE
+	var/list/opposed_weather_list = list(
+		/datum/weather/thunderstorm,
+		/datum/weather/fog,
+		/datum/weather/freezing_wind
+		)
 
 /mob/living/simple_animal/hostile/abnormality/fan/examine(mob/user)
 	. = ..()
@@ -129,6 +134,12 @@
 	if(!turned_off)
 		datum_reference.qliphoth_change(1)
 		return
+
+	for(var/W in SSweather.processing) // Supernatural weather should prevent the AC being turned off from making it hot.
+		var/datum/weather/V = W
+		if(V.type in opposed_weather_list)
+			return
+
 	for(var/mob/living/carbon/human/L in GLOB.player_list)
 		if(z != L.z || L.stat >= HARD_CRIT) // on a different Z level or dead
 			continue
@@ -173,7 +184,7 @@
 		return
 	if(stacks <= 10)
 		return
-	owner.deal_damage((stacks / 5), RED_DAMAGE)
+	owner.deal_damage((stacks / 8), FIRE)
 	owner.playsound_local(owner, 'sound/effects/burn.ogg', 25, TRUE)
 
 /datum/status_effect/stacking/fanhot/on_remove()
@@ -189,6 +200,5 @@
 		return
 	var/mob/living/carbon/human/status_holder = owner
 	to_chat(status_holder, span_warning("IT'S TOO HOT!"))
-	status_holder.adjust_fire_stacks(15)
-	status_holder.IgniteMob()
-	stacks -= 5
+	owner.apply_lc_burn(10)
+	stacks -= 10

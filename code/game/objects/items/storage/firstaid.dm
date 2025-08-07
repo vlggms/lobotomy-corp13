@@ -156,7 +156,7 @@
 	desc = "A specialized medical kit for when the toxins lab <i>-spontaneously-</i> burns down."
 	icon_state = "ointment"
 	inhand_icon_state = "firstaid-ointment"
-	damagetype_healed = BURN
+	damagetype_healed = FIRE
 
 /obj/item/storage/firstaid/fire/suicide_act(mob/living/carbon/user)
 	user.visible_message(span_suicide("[user] begins rubbing \the [src] against [user.p_them()]self! It looks like [user.p_theyre()] trying to start a fire!"))

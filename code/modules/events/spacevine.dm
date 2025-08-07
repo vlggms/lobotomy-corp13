@@ -126,7 +126,7 @@
 	return 1
 
 /datum/spacevine_mutation/fire_proof/on_hit(obj/structure/spacevine/holder, mob/hitter, obj/item/I, expected_damage)
-	if(I && I.damtype == BURN)
+	if(I && I.damtype == FIRE)
 		. = 0
 	else
 		. = expected_damage
@@ -381,7 +381,7 @@
 	var/damage_dealt = I.force
 	if(I.get_sharpness())
 		damage_dealt *= 4
-	if(I.damtype == BURN)
+	if(I.damtype == FIRE)
 		damage_dealt *= 4
 
 	for(var/datum/spacevine_mutation/SM in mutations)
@@ -395,7 +395,7 @@
 				playsound(src, 'sound/weapons/slash.ogg', 50, TRUE)
 			else
 				playsound(src, 'sound/weapons/tap.ogg', 50, TRUE)
-		if(BURN)
+		if(FIRE)
 			playsound(src.loc, 'sound/items/welder.ogg', 100, TRUE)
 
 /obj/structure/spacevine/Crossed(atom/movable/AM)

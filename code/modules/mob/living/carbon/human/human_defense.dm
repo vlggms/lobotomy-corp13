@@ -863,7 +863,7 @@
 	to_chat(src, combined_msg.Join("\n"))
 
 /mob/living/carbon/human/damage_clothes(damage_amount, damage_type = BRUTE, def_zone)
-	if(damage_type != BRUTE && damage_type != BURN)
+	if(damage_type != BRUTE && damage_type != FIRE)
 		return
 	damage_amount *= 0.5 //0.5 multiplier for balance reason, we don't want clothes to be too easily destroyed
 	var/list/torn_items = list()

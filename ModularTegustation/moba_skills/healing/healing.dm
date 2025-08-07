@@ -1,7 +1,7 @@
 //Curing
 /datum/action/cooldown/agent_healing
 	name = "Healing"
-	desc = "Heal all humans in a 5 tile radius (except the user) by 15 HP."
+	desc = "Heal all humans in a 5 tile radius (except the user) by 10% of their max HP."
 	icon_icon = 'icons/hud/screen_skills.dmi'
 	button_icon_state = "healing"
 	cooldown_time = 30 SECONDS

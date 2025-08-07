@@ -138,7 +138,7 @@
 	name = "bolt of change"
 	icon_state = "ice_1"
 	damage = 0
-	damage_type = BURN
+	damage_type = FIRE
 	nodamage = TRUE
 
 /obj/projectile/magic/change/on_hit(atom/change)
@@ -307,7 +307,7 @@
 	name = "bolt of animation"
 	icon_state = "red_1"
 	damage = 0
-	damage_type = BURN
+	damage_type = FIRE
 	nodamage = TRUE
 
 /obj/projectile/magic/animate/on_hit(atom/target, blocked = FALSE)
@@ -352,7 +352,7 @@
 	name = "blade energy"
 	icon_state = "lavastaff"
 	damage = 15
-	damage_type = BURN
+	damage_type = FIRE
 	dismemberment = 50
 	nodamage = FALSE
 
@@ -369,7 +369,7 @@
 	name = "arcane bolt"
 	icon_state = "arcane_barrage"
 	damage = 20
-	damage_type = BURN
+	damage_type = FIRE
 	nodamage = FALSE
 	armour_penetration = 0
 	hitsound = 'sound/weapons/barragespellhit.ogg'
@@ -612,7 +612,7 @@
 	name = "lightning bolt"
 	icon_state = "tesla_projectile"	//Better sprites are REALLY needed and appreciated!~
 	damage = 15
-	damage_type = BURN
+	damage_type = FIRE
 	nodamage = FALSE
 	speed = 0.3
 
@@ -728,7 +728,7 @@
 	name = "bolt of chills"
 	icon_state = "ice_2"
 	damage = 0
-	damage_type = BURN
+	damage_type = FIRE
 	nodamage = FALSE
 	armour_penetration = 100
 	temperature = -200 // Cools you down greatly per hit

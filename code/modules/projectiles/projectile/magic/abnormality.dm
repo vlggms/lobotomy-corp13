@@ -204,16 +204,19 @@
 	desc = "Report this to a dev"
 	icon_state = "mountain"
 	damage_type = RED_DAMAGE
-
 	damage = 45
 
 /obj/projectile/season_projectile/Moved(atom/OldLoc, Dir)
 	. = ..()
+	if(!istype(firer, /mob/living/simple_animal/hostile/abnormality/seasons))
+		return
+	var/mob/living/simple_animal/hostile/abnormality/seasons/source = firer
 	if(!isturf(loc) || isspaceturf(loc))
 		return
-	if(locate(/obj/effect/season_turf/temporary) in get_turf(src))
+	if(locate(/obj/effect/season_turf) in get_turf(src))
 		return
-	new /obj/effect/season_turf/temporary(get_turf(src))
+	var/obj/effect/season_turf/newturf = new(get_turf(src))
+	source.spawned_turfs += newturf
 
 /obj/projectile/season_projectile/spring
 	name = "burr"

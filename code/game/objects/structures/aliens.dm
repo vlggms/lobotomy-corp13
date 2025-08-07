@@ -15,7 +15,7 @@
 	switch(damage_type)
 		if(BRUTE)
 			damage_amount *= 0.25
-		if(BURN)
+		if(FIRE)
 			damage_amount *= 2
 	. = ..()
 
@@ -26,7 +26,7 @@
 				playsound(loc, 'sound/effects/attackblob.ogg', 100, TRUE)
 			else
 				playsound(src, 'sound/weapons/tap.ogg', 50, TRUE)
-		if(BURN)
+		if(FIRE)
 			if(damage_amount)
 				playsound(loc, 'sound/items/welder.ogg', 100, TRUE)
 
@@ -202,7 +202,7 @@
 	return exposed_temperature > 300
 
 /obj/structure/alien/weeds/atmos_expose(datum/gas_mixture/air, exposed_temperature)
-	take_damage(5, BURN, 0)
+	take_damage(5, FIRE, 0)
 
 //Weed nodes
 /obj/structure/alien/weeds/node
@@ -358,7 +358,7 @@
 	return exposed_temperature > 500
 
 /obj/structure/alien/egg/atmos_expose(datum/gas_mixture/air, exposed_temperature)
-	take_damage(5, BURN, 0)
+	take_damage(5, FIRE, 0)
 
 /obj/structure/alien/egg/obj_break(damage_flag)
 	if(!(flags_1 & NODECONSTRUCT_1))

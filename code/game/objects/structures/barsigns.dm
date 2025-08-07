@@ -55,7 +55,7 @@
 	switch(damage_type)
 		if(BRUTE)
 			playsound(src.loc, 'sound/effects/glasshit.ogg', 75, TRUE)
-		if(BURN)
+		if(FIRE)
 			playsound(src.loc, 'sound/items/welder.ogg', 100, TRUE)
 
 /obj/structure/sign/barsign/attack_ai(mob/user)

@@ -39,7 +39,7 @@ GLOBAL_LIST_EMPTY(dead_players_during_shift)
 
 	if(SSticker.HasRoundStarted())
 		SSblackbox.ReportDeath(src)
-		log_message("has died (BRUTE: [src.getBruteLoss()], BURN: [src.getFireLoss()], TOX: [src.getToxLoss()], OXY: [src.getOxyLoss()], CLONE: [src.getCloneLoss()])", LOG_ATTACK)
+		log_message("has died (BRUTE: [src.getBruteLoss()], FIRE: [src.getFireLoss()], TOX: [src.getToxLoss()], OXY: [src.getOxyLoss()], CLONE: [src.getCloneLoss()])", LOG_ATTACK)
 
 	med_hud_set_sanity() // Change it to death state
 	to_chat(src, span_warning("You have died. To continue playing, use the \"Respawn\" verb in the OOC tab."))

@@ -4873,7 +4873,6 @@
 /turf/open/indestructible/white,
 /area/city/shop)
 "Jy" = (
-/obj/item/storage/toolbox/mechanical,
 /obj/structure/closet,
 /obj/item/ego_weapon/city/district23,
 /obj/machinery/light/small,
@@ -6422,16 +6421,6 @@
 /obj/item/clothing/suit/apron,
 /turf/open/indestructible/white,
 /area/city/shop)
-"Ur" = (
-/obj/structure/delivery_door{
-	density = 1;
-	desc = "A mailbox for this house.";
-	icon = 'icons/obj/votebox.dmi';
-	icon_state = "votebox_maint";
-	name = "mail box"
-	},
-/turf/closed/indestructible/reinforced,
-/area/space)
 "Us" = (
 /obj/structure/chair/office/light,
 /turf/open/floor/plasteel/white,
@@ -40627,7 +40616,7 @@ Gz
 wX
 zA
 It
-Ur
+xO
 Hz
 Hz
 lV
