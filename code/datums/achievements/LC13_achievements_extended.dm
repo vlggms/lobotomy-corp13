@@ -5,21 +5,24 @@
 //=================================
 
 /datum/award/achievement/lc13/silk_collector
-	name = "Silk Collector"
+	name = "The Legend of the Silksong" // Alternative: "Will Make Fine Silk?"
+	title = "the Legend of the Silksong"
 	desc = "Obtain silk from mobs 120 times."
 	database_id = MEDAL_SILK_COLLECTOR
 	icon = "spider_bud"
 	difficulty = ACHIEVEMENT_HARD
 
 /datum/award/achievement/lc13/weapon_forger
-	name = "Master Forger"
+	name = "Workshop Meister" // Alternative: "Respectable Workshop"
+	title = "a Workshop Meister"
 	desc = "Forge 50 weapons as a workshop attendant on City of Light."
 	database_id = MEDAL_WEAPON_FORGER
 	icon = "workshop"
 	difficulty = ACHIEVEMENT_HARD
 
 /datum/award/achievement/lc13/plushie_feeder
-	name = "Plushie Feeder"
+	name = "Plushie Cooking 101" // Alternative: "Soup from a Plush"
+	title = "a Plushie Chef"
 	desc = "Feed a plushie to Basilisoup."
 	database_id = MEDAL_PLUSHIE_FEEDER
 	icon = "basilisoup"
@@ -280,7 +283,8 @@
 	difficulty = ACHIEVEMENT_VERYHARD
 
 /datum/award/achievement/lc13/yin_yang
-	name = "Duality Master"
+	name = "Duality"
+	title = "a Duality Master"
 	desc = "Realize either Harmony of Duality or Duality of Harmony."
 	database_id = MEDAL_YIN_YANG
 	icon = "yin_yang"
@@ -441,76 +445,87 @@
 
 /datum/award/achievement/lc13/virtue_200_single
 	name = "Virtuous"
+	title = "being Virtuous"
 	desc = "Achieve a rating of equal or greater than 200 in one virtue (gifts count)."
 	database_id = MEDAL_VIRTUE_200_SINGLE
 	icon = "virtue"
 	difficulty = ACHIEVEMENT_NORMAL
 
 /datum/award/achievement/lc13/virtue_200_all
-	name = "Paragon"
+	name = "Most Virtuous"
+	title = "the Most Virtuous"
 	desc = "Achieve a rating of equal or greater than 200 in all virtues (gifts count)."
 	database_id = MEDAL_VIRTUE_200_ALL
 	icon = "paragon"
 	difficulty = ACHIEVEMENT_HARD
 
 /datum/award/achievement/lc13/melting_love_blessing_repress
-	name = "Tough Love"
+	name = "Begone Thot!"
+	title = "saying Begone Thot"
 	desc = "Repress Melting Love whilst having her blessing - and survive."
 	database_id = MEDAL_MELTING_LOVE_BLESSING_REPRESS
 	icon = "melting_love_tough"
 	difficulty = ACHIEVEMENT_HARD
 
 /datum/award/achievement/lc13/kill_wn_pink_midnight
-	name = "Twilight Slayer"
+	name = "A Night Everlasting" // Alternative: "DOOM, Hell on Facility"
+	title = "a Night Everlasting"
 	desc = "Kill WhiteNight during a pink midnight."
 	database_id = MEDAL_KILL_WN_PINK_MIDNIGHT
 	icon = "twilight_slayer"
 	difficulty = ACHIEVEMENT_HARD
 
 /datum/award/achievement/lc13/mhz_codes
-	name = "Radio Savant"
+	name = "Charlie Alpha November Yankee Oscar Uniform Hotel Echo Alpha Romeo"
+	title = "a Radio Operator"
 	desc = "Successfully hear and type 680 mHz codes 5 times in a row."
 	database_id = MEDAL_MHZ_CODES
 	icon = "radio_savant"
 	difficulty = ACHIEVEMENT_HARD
 
 /datum/award/achievement/lc13/friendly_qoh_kill
-	name = "Friendly Fire"
+	name = "Villain of the Day" // Alternative: "Villain Beware!!!"
+	title = "the Villain of the Day"
 	desc = "Get killed by friendly breach Queen of Hatred."
 	database_id = MEDAL_FRIENDLY_QOH_KILL
 	icon = "friendly_fire"
 	difficulty = ACHIEVEMENT_HARD
 
 /datum/award/achievement/lc13/bald_round
-	name = "Bald is Awesome!"
+	name = "Now We're Awesome"
+	title = "being Awesome Now"
 	desc = "Be in a round where Bald balds everyone in the facility."
 	database_id = MEDAL_BALD_ROUND
 	icon = "bald_awesome"
 	difficulty = ACHIEVEMENT_NORMAL
 
 /datum/award/achievement/lc13/clerk_high_ego
-	name = "Above My Pay Grade"
+	name = "Breaking the Limits"
+	title = "a Limit Breaker"
 	desc = "As a clerk role, use a weapon that isn't ZAYIN or TETH."
 	database_id = MEDAL_CLERK_HIGH_EGO
 	icon = "clerk_high_ego"
 	difficulty = ACHIEVEMENT_NORMAL
 
 /datum/award/achievement/lc13/carmen_benjamin
-	name = "Lost Companions"
+	name = "A Friend from the Past"
+	title = "a Friend from the Past"
 	desc = "Realize Carmen/Benjamin from their respective plushies."
 	database_id = MEDAL_CARMEN_BENJAMIN
 	icon = "lost_companions"
 	difficulty = ACHIEVEMENT_EASY
 
 /datum/award/achievement/lc13/ayin_realized
-	name = "Paradise Found"
+	name = "One God"
+	title = "the One God"
 	desc = "Realize Ayin from Paradise Lost's weapon."
 	database_id = MEDAL_AYIN_REALIZED
 	icon = "paradise_found"
 	difficulty = ACHIEVEMENT_EASY
 
 /datum/award/achievement/lc13/make_meth
-	name = "How?"
+	name = "Breaking Bong"
+	title = "a Breaking Bong Expert"
 	desc = "Make meth."
 	database_id = MEDAL_MAKE_METH
 	icon = "how_meth"
