@@ -831,7 +831,10 @@
 "fd" = (
 /obj/structure/rack,
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/lootcrate/hana,
+/obj/structure/lootcrate/money{
+	lootlist = list(/obj/item/stack/spacecash/c200);
+	rareloot = list(/obj/item/stack/spacecash/c200)
+	},
 /turf/open/floor/wood,
 /area/city)
 "fe" = (
@@ -7541,7 +7544,10 @@
 /obj/structure/table{
 	color = "#875300"
 	},
-/obj/structure/lootcrate/hana,
+/obj/structure/lootcrate/money{
+	lootlist = list(/obj/item/stack/spacecash/c200);
+	rareloot = list(/obj/item/stack/spacecash/c200)
+	},
 /turf/open/floor/plating/rust,
 /area/city/shop)
 "Wd" = (
@@ -17572,7 +17578,7 @@ gO
 Vr
 oY
 Vr
-aq
+fd
 fk
 en
 aq
@@ -18403,7 +18409,7 @@ ka
 ka
 ka
 HV
-vx
+xR
 tU
 vx
 ka
