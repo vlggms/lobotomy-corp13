@@ -48,7 +48,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	// What ordeal level is being rolled for
 	var/next_ordeal_level = 1
 	// Minimum time for each ordeal level to occur. If requirement is not met - normal meltdown will occur
-	var/list/ordeal_timelock = list(20 MINUTES, 40 MINUTES, 60 MINUTES, 90 MINUTES, 0, 0, 0, 0, 0)
+	var/list/ordeal_timelock = list(10 MINUTES, 25 MINUTES, 45 MINUTES, 60 MINUTES, 0, 0, 0, 0, 0)
 	// Datum of the chosen ordeal. It's stored so manager can know what's about to happen
 	var/datum/ordeal/next_ordeal = null
 	/// List of currently running ordeals
@@ -116,7 +116,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 
 /datum/controller/subsystem/lobotomy_corp/proc/SetGoal()
 	var/player_mod = length(GLOB.player_list) * 0.2
-	box_goal = clamp(round(7500 * player_mod), 3000, 36000)
+	box_goal = clamp(round(5000 * player_mod), 3000, 36000)
 
 	if(SSmaptype.maptype in SSmaptype.lc_maps)
 		//Here's the anouncement for the trait.
@@ -276,11 +276,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	qliphoth_meter = 0
 	var/abno_amount = length(all_abnormality_datums)
 	var/player_count = AvailableAgentCount()
-	var/total_count = AvailableAgentCount(suppressioncount = TRUE)
-	var/suppression_modifier = 1
-	if(player_count != total_count)
-		suppression_modifier = 1.3
-	qliphoth_max = round((player_count > 1 ? 4 : 3) + player_count*1.5*suppression_modifier + GLOB.Sephirahordealspeed + GetFacilityUpgradeValue(UPGRADE_MELTDOWN_INCREASE)) // Some extra help on non solo rounds
+	qliphoth_max = round((player_count > 1 ? 4 : 3) + player_count + GLOB.Sephirahordealspeed + GetFacilityUpgradeValue(UPGRADE_MELTDOWN_INCREASE)) // Some extra help on non solo rounds
 	qliphoth_state += 1
 	for(var/datum/abnormality/A in all_abnormality_datums)
 		if(istype(A.current))
@@ -358,7 +354,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		return FALSE
 	next_ordeal = pick(available_ordeals)
 	all_ordeals[next_ordeal_level] -= next_ordeal
-	next_ordeal_time = max(3, qliphoth_state + next_ordeal.delay + (next_ordeal.random_delay ? rand(-1, 1) : 0))
+	next_ordeal_time = max(3, qliphoth_state + next_ordeal.delay)
 	next_ordeal_level += 1 // Increase difficulty!
 	for(var/obj/structure/sign/ordealmonitor/O in GLOB.lobotomy_devices)
 		O.update_icon()
