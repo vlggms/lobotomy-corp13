@@ -206,7 +206,7 @@
 //Freezing time.
 /mob/living/simple_animal/hostile/distortion/timeripper/proc/Timestop()
 	say("Your time is mine!")
-	SLEEP_CHECK_DEATH(12)
+	SLEEP_CHECK_DEATH(1.2 SECONDS)
 	new /obj/effect/timestop(get_turf(src), 5, 40, list(src))
 	can_act = TRUE
 
