@@ -15,7 +15,7 @@
 		"You have reached this place after such a long time...",
 		"Let your body and mind rest. You must be exhausted...",
 		)
-	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 10 SECONDS, blurb_text, 1 SECONDS, "white", "black", "left", "CENTER-6,BOTTOM+2")
+	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 10 SECONDS, blurb_text, 1 SECONDS, "white", "black", "center", "CENTER-6,BOTTOM+2")
 	return ..()
 
 /* Combined cores go here */
@@ -86,7 +86,7 @@
 		)
 	for(var/i = 1 to length(blurb_list))
 		var/blurb_text = blurb_list[i]
-		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 10 SECONDS, blurb_text, 1 SECONDS, "white", "black", "left", "CENTER-6,BOTTOM+2"), i * 11 SECONDS)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 10 SECONDS, blurb_text, 1 SECONDS, "white", "black", "center", "CENTER-6,BOTTOM+2"), i * 11 SECONDS)
 	// Create our cores
 	running_cores += new /datum/suppression/control
 	// Less scuffed words in announcements
@@ -108,7 +108,7 @@
 
 /datum/suppression/combination/keter_day47/End(silent = FALSE)
 	var/blurb_text = "You will overcome this despair if you just wake up and smell the roses. You still have a chance."
-	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 10 SECONDS, blurb_text, 1 SECONDS, "white", "black", "left", "CENTER-6,BOTTOM+2")
+	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 10 SECONDS, blurb_text, 1 SECONDS, "white", "black", "center", "CENTER-6,BOTTOM+2")
 	return ..()
 
 // Day 48 - Central Command, Welfare, Disciplinary
@@ -141,7 +141,7 @@
 		)
 	for(var/i = 1 to length(blurb_list))
 		var/blurb_text = blurb_list[i]
-		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 10 SECONDS, blurb_text, 1 SECONDS, "white", "black", "left", "CENTER-6,BOTTOM+2"), i * 11 SECONDS)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 10 SECONDS, blurb_text, 1 SECONDS, "white", "black", "center", "CENTER-6,BOTTOM+2"), i * 11 SECONDS)
 	// Create our cores
 	// Less scuffed words in announcements
 	var/datum/suppression/command/C = new
@@ -163,7 +163,7 @@
 
 /datum/suppression/combination/keter_day48/End(silent = FALSE)
 	var/blurb_text = "You will reach tomorrow. You can overcome this regret and atonement."
-	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 10 SECONDS, blurb_text, 1 SECONDS, "white", "black", "left", "CENTER-6,BOTTOM+2")
+	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 10 SECONDS, blurb_text, 1 SECONDS, "white", "black", "center", "CENTER-6,BOTTOM+2")
 	return ..()
 
 // Day 49 - Records and Extraction
@@ -202,7 +202,7 @@
 		)
 	for(var/i = 1 to length(blurb_list))
 		var/blurb_text = blurb_list[i]
-		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 10 SECONDS, blurb_text, 1 SECONDS, "white", "black", "left", "CENTER-6,BOTTOM+2"), i * 11 SECONDS)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 10 SECONDS, blurb_text, 1 SECONDS, "white", "black", "center", "CENTER-6,BOTTOM+2"), i * 11 SECONDS)
 	// More fucked up chaos
 	var/datum/suppression/records/R = new
 	R.teleport_interval = 30 SECONDS
@@ -218,7 +218,7 @@
 /datum/suppression/combination/keter_day49/End(silent = FALSE)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_ORDEAL_END)
 	var/blurb_text = "So you refuse to join me, and instead choose to move toward the unpredictable future?"
-	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 10 SECONDS, blurb_text, 1 SECONDS, "white", "black", "left", "CENTER-6,BOTTOM+2")
+	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 10 SECONDS, blurb_text, 1 SECONDS, "white", "black", "center", "CENTER-6,BOTTOM+2")
 	return ..()
 
 /datum/suppression/combination/keter_day49/proc/OnOrdealEnd(datum/source, datum/ordeal/O)
@@ -239,7 +239,7 @@
 		"If you cannot defeat me, you shall be crushed by the Head and its ruthless Claws yet again.",
 		"What do you think you will accomplish on your own, even after breaking out of this prison?",
 		)
-	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 5 SECONDS, blurb_text, 1 SECONDS, "black", "yellow", "left", "CENTER-6,BOTTOM+2")
+	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 5 SECONDS, blurb_text, 1 SECONDS, "black", "yellow", "center", "CENTER-6,BOTTOM+2")
 	var/mob/living/simple_animal/hostile/megafauna/arbiter/A = new(T)
 	// A bit nerfed, so you don't suffer like you are in hell, okay?
 	A.maxHealth = round(A.maxHealth * 0.6)
@@ -287,4 +287,4 @@
 		)
 	for(var/i = 1 to length(blurb_list))
 		var/blurb_text = blurb_list[i]
-		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 10 SECONDS, blurb_text, 1 SECONDS, "white", "black", "left", "CENTER-6,BOTTOM+2"), i * 11 SECONDS)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 10 SECONDS, blurb_text, 1 SECONDS, "white", "black", "center", "CENTER-6,BOTTOM+2"), i * 11 SECONDS)

@@ -1492,7 +1492,7 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	set waitfor = FALSE
 	return call(source, proctype)(arglist(arguments))
 
-/proc/show_blurb(client/C, duration, blurb_text, fade_time = 5, text_color = "white", outline_color = "black", text_align = "left", screen_location = "LEFT+1,BOTTOM+2")
+/proc/show_blurb(client/C, duration, blurb_text, fade_time = 5, text_color = "white", outline_color = "black", text_align = "center", screen_location = "LEFT+1,BOTTOM+2")
 	if(!C)
 		return
 
