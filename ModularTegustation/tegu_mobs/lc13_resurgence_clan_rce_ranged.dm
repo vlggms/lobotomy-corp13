@@ -245,7 +245,6 @@
 	name = "piercing energy bolt"
 	damage = 60
 	speed = 0.3
-	movement_type = PHASING
 
 /obj/projectile/clan_bullet/medium
 	damage = 15
