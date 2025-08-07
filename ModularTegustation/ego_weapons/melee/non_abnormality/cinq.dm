@@ -107,6 +107,13 @@
 	force = 48
 	attack_speed = 1.3
 
+/obj/item/ego_weapon/city/cinq/section4/west
+	name = "cinq west rapier"
+	desc = "A long rapier used by the fixers of cinq west association, comes with a free selfie stick."
+
+/obj/item/ego_weapon/city/cinq/section4/west/Initialize(mapload)
+	. = ..()
+	new /obj/item/ego_weapon/city/cinqwest_selfiestick(get_turf(src))
 
 //Section 4, Sinclair's blade
 /obj/item/ego_weapon/city/cinq/section4/director

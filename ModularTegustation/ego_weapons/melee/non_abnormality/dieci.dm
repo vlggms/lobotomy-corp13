@@ -3,7 +3,7 @@
 	name = "dieci combat gloves"
 	icon_state = "dieci_glove"
 	inhand_icon_state = "yun_fist"
-	desc = "A gauntlet used by Liu Sections 4,5 and 6. Requires martial arts training to make use of."
+	desc = "A gauntlet used by Dieci Association. Requires martial arts training to make use of."
 	force = 20
 	attack_speed = 0.7
 	attribute_requirements = list(
