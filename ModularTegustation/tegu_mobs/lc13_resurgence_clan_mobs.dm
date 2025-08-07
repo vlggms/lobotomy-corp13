@@ -81,7 +81,6 @@
 
 /mob/living/simple_animal/hostile/clan/Life()
 	. = ..()
-
 	if (last_charge_update < world.time - clan_charge_cooldown)
 		last_charge_update = world.time
 		GainCharge()
