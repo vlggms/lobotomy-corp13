@@ -1496,7 +1496,7 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	if(!C)
 		return
 
-	var/style = "font-family: 'Fixedsys'; text-align: [text_align]; color: [text_color]; -dm-text-outline: 1 [outline_color]; font-size: 11px;"
+	var/style = "font-family: 'Better VCR'; text-align: [text_align]; color: [text_color]; -dm-text-outline: 1 [outline_color]; font-size: 11px;"
 	var/text = blurb_text
 	text = uppertext(text)
 
