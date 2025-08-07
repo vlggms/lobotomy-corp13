@@ -773,7 +773,7 @@
         // TETH
 	/mob/living/simple_animal/hostile/abnormality/scorched_girl = /obj/item/toy/plush/scorched,
 	/mob/living/simple_animal/hostile/abnormality/punishing_bird = /obj/item/toy/plush/pbird,
-	/mob/living/simple_animal/hostile/abnormality/void_dream = /obj/item/toy/plush/voiddream,
+	/mob/living/simple_animal/hostile/abnormality/voiddream = /obj/item/toy/plush/voiddream,
 
 		// HE
 	/mob/living/simple_animal/hostile/abnormality/pinocchio = /obj/item/toy/plush/pinocchio,
