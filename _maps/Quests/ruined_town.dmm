@@ -2069,11 +2069,6 @@
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plating/rust,
 /area/city)
-"nA" = (
-/obj/structure/lootcrate/hana,
-/obj/structure/lootcrate/hana,
-/turf/open/floor/plating/asteroid/basalt/wasteland,
-/area/city)
 "nD" = (
 /obj/structure/table/anvil{
 	pixel_y = 17;
@@ -17577,7 +17572,7 @@ gO
 Vr
 oY
 Vr
-fd
+aq
 fk
 en
 aq
@@ -18408,7 +18403,7 @@ ka
 ka
 ka
 HV
-nA
+vx
 tU
 vx
 ka

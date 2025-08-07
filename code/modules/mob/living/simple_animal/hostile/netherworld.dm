@@ -91,8 +91,8 @@
 	name = "mi-go"
 	desc = "A pinkish, fungoid crustacean-like creature with numerous pairs of clawed appendages and a head covered with waving antennae."
 	speak_emote = list("screams", "clicks", "chitters", "barks", "moans", "growls", "meows", "reverberates", "roars", "squeaks", "rattles", "exclaims", "yells", "remarks", "mumbles", "jabbers", "stutters", "seethes")
-	health = 250
-	maxHealth = 250
+	health = 300
+	maxHealth = 300
 	icon_state = "mi-go"
 	icon_living = "mi-go"
 	icon_dead = "mi-go-dead"
@@ -101,7 +101,7 @@
 	speed = -0.5
 	rapid_melee = 4
 	melee_damage_type = WHITE_DAMAGE
-	melee_damage_lower = 1
+	melee_damage_lower = 3
 	melee_damage_upper = 3
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	butcher_results = list(/obj/item/food/meat/slab/fruit = 1)
