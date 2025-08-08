@@ -34,6 +34,13 @@
 
 	/// Dictionary of job sub-typepath to template changes dictionary
 	var/job_changes = list()
+	
+	/// If this map has multiple submaps to choose from
+	var/has_submaps = FALSE
+	/// List of available submaps if pick_one was set
+	var/list/available_submaps = list()
+	/// Custom display names for submaps (optional)
+	var/list/submap_display_names = list()
 
 /proc/load_map_config(filename = "data/next_map.json", default_to_box, delete_after, error_if_missing = TRUE)
 	var/datum/map_config/config = new
@@ -98,6 +105,17 @@
 	else
 		log_world("map_file missing from json!")
 		return
+
+	if (json["pick_one"] && islist(map_file))
+		has_submaps = TRUE
+		var/list/L = map_file
+		available_submaps = L.Copy()
+		// Don't pick yet - will be decided by vote
+		
+		// Load custom display names if provided
+		if(json["submap_names"] && islist(json["submap_names"]))
+			var/list/names = json["submap_names"]
+			submap_display_names = names.Copy()
 
 	if (islist(json["shuttles"]))
 		var/list/L = json["shuttles"]
@@ -164,4 +182,39 @@
 		. += "_maps/[map_path]/[file]"
 
 /datum/map_config/proc/MakeNextMap()
+	// If we have a selected submap, we need to write a new JSON with just that file
+	if(has_submaps && istext(map_file))
+		var/json_value = list(
+			"version" = MAP_CURRENT_VERSION,
+			"map_name" = map_name,
+			"map_path" = map_path,
+			"map_file" = map_file, // This is now a single file, not a list
+			"shuttles" = shuttles,
+			"traits" = traits,
+			"space_ruin_levels" = space_ruin_levels,
+			"space_empty_levels" = space_empty_levels,
+			"minetype" = minetype
+		)
+		
+		if(faction)
+			json_value["faction"] = faction
+		if(job_changes && length(job_changes))
+			json_value["job_changes"] = job_changes
+		if(SSmaptype?.maptype)
+			json_value["maptype"] = SSmaptype.maptype
+			
+		// Remove old file and write new one
+		if(fexists("data/next_map.json"))
+			fdel("data/next_map.json")
+		text2file(json_encode(json_value), "data/next_map.json")
+		return TRUE
+		
+	// Default behavior - just copy the file
 	return config_filename == "data/next_map.json" || fcopy(config_filename, "data/next_map.json")
+
+/datum/map_config/proc/SetSelectedSubmap(selected_file)
+	if(!has_submaps || !(selected_file in available_submaps))
+		return FALSE
+	map_file = selected_file
+	// Keep has_submaps and available_submaps intact so admins can change selection later
+	return TRUE
