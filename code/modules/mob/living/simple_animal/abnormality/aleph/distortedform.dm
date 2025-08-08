@@ -334,6 +334,10 @@
 	sound_to_playing_players_on_level("sound/abnormalities/distortedform/screech2.ogg", 85, zlevel = z)
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/death(gibbed)
+	// Award achievement for killing Distorted Form
+	for(var/mob/living/carbon/human/H in view(7, src))
+		if(H.stat != DEAD)
+			H.client?.give_award(/datum/award/achievement/lc13/kill_distorted, H)
 	if(changed)
 		ChangeForm()
 	can_act = FALSE

@@ -42,6 +42,10 @@
 		C.swap = new
 		C.visible_message(span_notice("[C] has received a new ability!"))
 		playsound(get_turf(C), 'sound/machines/ping.ogg', 25, TRUE)
+	// Award achievement for completing Hokma's core suppression
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		if(H.stat != DEAD)
+			H.client?.give_award(/datum/award/achievement/lc13/suppress_hokma, H)
 	return ..()
 
 /datum/suppression/records/proc/OnQlipMeltdown(datum/source, ordeal = FALSE)

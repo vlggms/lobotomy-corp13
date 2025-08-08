@@ -222,6 +222,11 @@
 		return
 	if(!M.IsVocal())
 		return
+
+	// Check for uwu achievement
+	if(ishuman(M) && findtext(lowertext(message), "uwu"))
+		var/mob/living/carbon/human/H = M
+		H.client?.give_award(/datum/award/achievement/lc13/uwu_radio, H)
 	if(LAZYLEN(radio_sounds)) //Sephora - Radios make small static sounds now.
 		var/sound_channel = SSsounds.random_available_channel()
 		var/radio_sound = pick(radio_sounds)

@@ -179,6 +179,8 @@
 	chosen_arms = new /obj/item/ego_weapon/hammer_light(get_turf(user))
 	user.put_in_hands(chosen_arms, forced = TRUE)
 	hammer_present = FALSE
+	// Achievement for activating Hammer of Light
+	user.client?.give_award(/datum/award/achievement/lc13/hammer_activate, user)
 	playsound(get_turf(src), "[pick(pickup_sounds)]", 75, 0, -9)
 	ADD_TRAIT(user, TRAIT_COMBATFEAR_IMMUNE, "Abnormality")
 	ADD_TRAIT(user, TRAIT_WORK_FORBIDDEN, "Abnormality")

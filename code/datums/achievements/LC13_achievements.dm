@@ -22,6 +22,7 @@
 	desc = "One of your characters survived a full shift as a L corp employee."
 	database_id = MEDAL_LCORPWORLD
 	icon = "lcorp"
+	difficulty = ACHIEVEMENT_EASY
 
 /datum/award/achievement/lc13/scorpworld
 	name = "A Shrimple Arrangement"
@@ -35,6 +36,7 @@
 	desc = "End the shift forever marked by the the monster of the Black Forest."
 	database_id = MEDAL_TWILIGHT
 	icon = "twilight"
+	difficulty = ACHIEVEMENT_HARD
 
 //LC13 Bosses
 /datum/award/achievement/lc13/white_night
@@ -42,30 +44,35 @@
 	desc = "Slay T-03-46 and prevent divine judgement."
 	database_id = BOSS_MEDAL_WHITENIGHT
 	icon = "whitenight"
+	difficulty = ACHIEVEMENT_HARD
 
 /datum/award/achievement/lc13/ambermidnight
 	name = "Eternal Meal"
 	desc = "Defend the facility from an insatiable swarm."
 	database_id = BOSS_MEDAL_AMBERMIDNIGHT
 	icon = "amber"
+	difficulty = ACHIEVEMENT_NORMAL
 
 /datum/award/achievement/lc13/greenmidnight
 	name = "Last Helix"
 	desc = "Save the facility from being cleansed."
 	database_id = BOSS_MEDAL_GREENMIDNIGHT
 	icon = "green"
+	difficulty = ACHIEVEMENT_NORMAL
 
 /datum/award/achievement/lc13/violetmidnight
 	name = "The God Delusion"
 	desc = "Defend the facility from an enigmatic force."
 	database_id = BOSS_MEDAL_VIOLETMIDNIGHT
 	icon = "violet"
+	difficulty = ACHIEVEMENT_NORMAL
 
 /datum/award/achievement/lc13/whitemidnight
 	name = "The Claw"
 	desc = "Relive the worst day of the founders life."
 	database_id = BOSS_MEDAL_WHITEMIDNIGHT
 	icon = "claw"
+	difficulty = ACHIEVEMENT_NORMAL
 
 //City achievements
 /datum/award/achievement/lc13/city
@@ -130,3 +137,39 @@
 	desc = "You've eliminated all the rat scavengers."
 	database_id = MEDAL_NUKE_RATS_GENOCIDE
 	icon = "rats_genocide"
+
+//Abnormality interaction achievements
+/datum/award/achievement/lc13/die_to_toad
+	name = "Oops"
+	desc = "Die to Blubbering Toad."
+	database_id = MEDAL_DIE_TO_TOAD
+	icon = "blubbering_toad"
+	difficulty = ACHIEVEMENT_EASY
+
+/datum/award/achievement/lc13/free_toad
+	name = "Freedom for Toad"
+	desc = "Let Blubbering Toad out of containment."
+	database_id = MEDAL_FREE_TOAD
+	icon = "blubbering_toad"
+	difficulty = ACHIEVEMENT_EASY
+
+/datum/award/achievement/lc13/die_to_pbird
+	name = "Small Beak, Big Pain"
+	desc = "Die to Punishing Bird without enraging it."
+	database_id = MEDAL_DIE_TO_PBIRD
+	icon = "punishing_bird"
+	difficulty = ACHIEVEMENT_NORMAL
+
+/datum/award/achievement/lc13/activate_hammer
+	name = "Divine Intervention"
+	desc = "Activate the Hammer of Light."
+	database_id = MEDAL_ACTIVATE_HAMMER
+	icon = "hammer_light"
+	difficulty = ACHIEVEMENT_NORMAL
+
+/datum/award/achievement/lc13/damage_pbird
+	name = "Don't Poke the Bird"
+	desc = "Damage Punishing Bird and face the consequences."
+	database_id = MEDAL_DAMAGE_PBIRD
+	icon = "punishing_bird"
+	difficulty = ACHIEVEMENT_EASY

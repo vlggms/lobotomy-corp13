@@ -20,6 +20,15 @@
 
 	. = list("<span class='info'>*---------*\nThis is <EM>[!obscure_name ? name : "Unknown"]</EM>!")
 
+	// Achievement specialization display
+	if(client && client.prefs && client.prefs.chosen_achievement)
+		var/achievement_type = client.prefs.chosen_achievement
+		if(SSachievements.achievements[achievement_type])
+			var/datum/award/achievement/A = SSachievements.achievements[achievement_type]
+			var/color = A.get_difficulty_color()
+			var/display_text = A.title ? A.title : A.name
+			. += "Their specialization is <span style='color: [color]'>[display_text]</span>!"
+
 	if(obscure_examine)
 		return list("<span class='warning'>You're struggling to make out any details...")
 

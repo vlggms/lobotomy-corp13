@@ -188,6 +188,10 @@
 		if(client && obj_damage <= 0 && L.health <= maxHealth*0.45) // User controlled AND not transformed - can't kill things
 			to_chat(src, span_warning("You can't keep punishing them!"))
 			return
+		// Achievement for dying to Punishing Bird without enraging it
+		if(ishuman(L) && !bird_angry && L.health <= 0 && L.stat != DEAD)
+			var/mob/living/carbon/human/H = L
+			H.client?.give_award(/datum/award/achievement/lc13/punishing_bird_innocent, H)
 		..()
 		if(obj_damage <= 0) // Not transformed
 			if(ishuman(L))
@@ -210,6 +214,10 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/death(gibbed)
+	// Award achievement to all nearby humans for killing Punishing Bird
+	for(var/mob/living/carbon/human/H in view(7, src))
+		if(H.stat != DEAD)
+			H.client?.give_award(/datum/award/achievement/lc13/kill_pbird, H)
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
 	..()
@@ -252,6 +260,11 @@
 	if((health < maxHealth * 0.9) && (obj_damage <= 0))
 		enemies = list() // This is done so it stops attacking random people that punched it before transformation
 		TransformRed()
+		// Achievement for damaging Punishing Bird
+		if(ishuman(A))
+			var/mob/living/carbon/human/H = A
+			if(H.client)
+				H.client.player_details.achievements.unlock(/datum/award/achievement/lc13/damage_pbird, H)
 
 	if(isliving(A))
 		var/mob/living/M = A
@@ -287,6 +300,10 @@
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/attackby(obj/item/I, mob/living/user, params)
 	..()
+	// Award achievement for damaging Punishing Bird
+	if(ishuman(user) && health < maxHealth)
+		var/mob/living/carbon/human/H = user
+		H.client?.give_award(/datum/award/achievement/lc13/damage_pbird, H)
 	Retaliate(user)
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/BreachEffect(mob/living/carbon/human/user, breach_type)

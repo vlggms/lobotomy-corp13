@@ -69,6 +69,12 @@
 
 	active = TRUE
 
+	// Track weapon forging for achievement (workshop attendant only)
+	if(user && user.mind && user.mind.assigned_role == "Workshop Attendant")
+		user.mind.weapons_forged++
+		if(user.mind.weapons_forged >= 50)
+			user.client?.give_award(/datum/award/achievement/lc13/weapon_forger, user)
+
 	//Modify these
 	force *= mod.forcemod
 	true_force *= mod.forcemod
@@ -148,6 +154,11 @@
 		level_xp = weapon_lv * xp_per_level
 		force *= 1.1
 		true_force *= 1.1
+
+		// Award achievement for maxing out a workshop weapon
+		if(weapon_lv >= max_lv && ishuman(user))
+			var/mob/living/carbon/human/H = user
+			H.client?.give_award(/datum/award/achievement/lc13/workshop_max, H)
 
 //This only is used for fishing weapons
 /obj/item/ego_weapon/template/proc/CheckHoroscope()

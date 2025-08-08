@@ -80,8 +80,17 @@
 			H.adjustSanityLoss(-10)
 			to_chat(H, span_notice("You feel a pleasant sound."))
 
+		// Track consecutive successful 680 mHz codes for achievement
+		if(user.mind)
+			user.mind.mhz_codes_streak++
+			if(user.mind.mhz_codes_streak >= 5)
+				user.client?.give_award(/datum/award/achievement/lc13/mhz_codes, user)
+
 	//If you fuck it up
 	else if(bitcalculator != input && bitcalculator != 0 && isopen)
+		// Reset the streak on failure
+		if(user.mind)
+			user.mind.mhz_codes_streak = 0
 		for(var/mob/living/carbon/human/H in GLOB.player_list)
 			if(z != H.z)
 				continue
