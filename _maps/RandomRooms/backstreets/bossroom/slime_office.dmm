@@ -448,7 +448,6 @@
 /obj/item/slimepotion/slime_reviver,
 /obj/item/slimepotion/slime_reviver,
 /obj/item/slimepotion/slime_reviver,
-/obj/item/slimepotion/transference,
 /mob/living/simple_animal/hostile/illusion/escape{
 	maxHealth = 500;
 	health = 500

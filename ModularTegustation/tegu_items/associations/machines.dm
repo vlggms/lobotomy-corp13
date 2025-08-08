@@ -287,6 +287,12 @@ GLOBAL_LIST_EMPTY(loaded_quest_z_levels)
 	var/map_name = "ruined_town_floor"
 	var/ticket_name = "Dilapidated Town"
 
+/obj/item/quest_ticket/temple_motus
+	name = "'Temple of Motus' ticket"
+	map = "_maps/Quests/lost_adventures.dmm"
+	map_name = "temple_floor"
+	ticket_name = "Temple of Motus"
+
 /obj/machinery/computer/shuttle/quests_console
 
 /obj/machinery/computer/shuttle/quests_console/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock)
