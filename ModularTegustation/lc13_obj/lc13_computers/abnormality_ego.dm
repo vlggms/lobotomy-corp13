@@ -5,7 +5,6 @@
 	resistance_flags = INDESTRUCTIBLE
 	/// Currently selected(shown) level of abnormalities whose EGO will be on the interface
 	var/selected_level = ZAYIN_LEVEL
-	var/delay = 15 SECONDS
 
 /obj/machinery/computer/ego_purchase/examine(mob/user)
 	. = ..()
@@ -76,12 +75,10 @@
 				return FALSE
 			if(usr.mind.assigned_role == "Extraction Officer")
 				new E.item_path(get_turf(src))
-				to_chat(usr, span_notice("[E.item_path] has been dispensed!"))
+				to_chat(usr, span_notice("[E.name] has been dispensed!"))
 
 			else
-				if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_2))
-					delay = initial(delay)/2
-				addtimer(CALLBACK(src, PROC_REF(ShipOut), E.item_path),delay)
+				ShipOut(E.item_path)
 				audible_message(span_notice("[usr.name] has purchased a [E.name]"))
 
 			A.stored_boxes -= E.cost * mult

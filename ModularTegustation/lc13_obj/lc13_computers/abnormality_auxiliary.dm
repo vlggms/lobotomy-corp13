@@ -93,6 +93,15 @@
 	popup.open()
 	return
 
+/obj/machinery/computer/abnormality_auxiliary/proc/CheckForManager()
+	for(var/mob/living/carbon/human/H in GLOB.human_list)
+		if(!H.ckey)
+			continue
+		if(H.mind.assigned_role == "Manager")
+			break
+			return TRUE
+	return FALSE
+
 /obj/machinery/computer/abnormality_auxiliary/Topic(href, href_list)
 	. = ..()
 	if(href_list["switch_style"])
@@ -138,7 +147,7 @@
 				to_chat(usr, span_warning("A core suppression is already in the progress!"))
 				selected_core_type = null
 				return FALSE
-			if(usr.mind.assigned_role != "Manager")
+			if(usr.mind.assigned_role != "Manager" && CheckForManager())
 				to_chat(usr, span_warning("Only the Manager can start a Core Suppression!"))
 				playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
 				return FALSE
@@ -416,7 +425,7 @@
 				return
 			if(istype(SSlobotomy_corp.core_suppression))
 				CRASH("[src] has attempted to activate a core suppression via TGUI whilst its not possible!")
-			if(usr.mind.assigned_role != "Manager")
+			if(usr.mind.assigned_role != "Manager" && CheckForManager())
 				to_chat(usr, span_warning("Only the Manager can start a Core Suppression!"))
 				playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
 				return
