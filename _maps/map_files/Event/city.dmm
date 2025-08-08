@@ -1740,7 +1740,7 @@
 "na" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "citycheckpoint";
-	name = "Outskirts - Facility Checkpoint Door"
+	name = "Ruins - Facility Checkpoint Door"
 	},
 /turf/open/floor/plating/ashplanet/rocky{
 	layer = 1.98
@@ -4431,13 +4431,13 @@
 /obj/structure/table,
 /obj/machinery/button/door/indestructible{
 	id = "outskirtslockdown";
-	name = "Outskirts Lockdown Button";
+	name = "Ruins Lockdown Button";
 	pixel_y = 7;
 	req_access_txt = "20"
 	},
 /obj/machinery/button/door/indestructible{
 	id = "citycheckpoint";
-	name = "Outskirts - Facility Checkpoint Button";
+	name = "Ruins - Facility Checkpoint Button";
 	pixel_y = -3;
 	req_access_txt = "20"
 	},
@@ -6476,13 +6476,13 @@
 /obj/structure/table,
 /obj/machinery/button/door/indestructible{
 	id = "outskirtslockdown";
-	name = "Outskirts Lockdown Button";
+	name = "Ruins Lockdown Button";
 	pixel_y = 7;
 	req_access_txt = "69"
 	},
 /obj/machinery/button/door/indestructible{
 	id = "citycheckpoint";
-	name = "Outskirts - Facility Checkpoint Button";
+	name = "Ruins - Facility Checkpoint Button";
 	pixel_y = -3;
 	req_access_txt = "69"
 	},
@@ -6562,7 +6562,7 @@
 "Vg" = (
 /obj/machinery/door/poddoor{
 	id = "outskirtslockdown";
-	name = "Outskirts Lockdown Door"
+	name = "Ruins Lockdown Door"
 	},
 /turf/open/floor/plating/ashplanet/rocky{
 	layer = 1.98

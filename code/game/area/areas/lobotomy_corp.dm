@@ -268,6 +268,7 @@
 	has_gravity = STANDARD_GRAVITY
 	sound_environment = SOUND_AREA_STANDARD_STATION
 	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
+	var/in_city = TRUE
 
 /area/city/house
 	name = "Employee Housing"
@@ -277,30 +278,35 @@
 
 /area/city/outskirts
 	name = "Outskirts"
+	in_city = FALSE
 
 /area/city/outskirts/rcorp_base
 	name = "R-Corp Base"
+	in_city = FALSE
 
 /area/city/fixers
 	name = "Fixer Office"
 
 
-//Areas for backstreets
+//Areas for ruins
 
 /area/city/backstreets_checkpoint
-	name = "Backstreets Checkpoint"
+	name = "Ruins Checkpoint"
 
 /area/city/backstreets_alley
-	name = "Backstreets Alley"
+	name = "Ruins Alley"
 	icon_state = "hallA"
+	in_city = FALSE
 
 /area/city/backstreets_room
-	name = "Backstreets Room"
+	name = "Ruins Room"
 	icon_state = "hallA"
+	in_city = FALSE
 
 /area/city/backstreets_room/resurgence_village
 	name = "Resurgence Clan Village"
 	ambientsounds = list('sound/ambience/resurgence_village1.ogg')
+	in_city = FALSE
 
 /area/city/backstreets_room/resurgence_village/Entered(atom/movable/M)
 	set waitfor = FALSE

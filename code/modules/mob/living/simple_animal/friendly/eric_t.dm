@@ -46,6 +46,9 @@
 	// Load scenes
 	scene_manager.load_scenes(get_eric_scenes())
 
+/mob/living/simple_animal/hostile/ui_npc/eric_t/handle_automated_action()
+	return
+
 /mob/living/simple_animal/hostile/ui_npc/eric_t/update_player_variables(mob/user)
 	. = ..()
 	if(!user)
