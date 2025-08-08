@@ -98,7 +98,6 @@
 		if(!H.ckey)
 			continue
 		if(H.mind.assigned_role == "Manager")
-			break
 			return TRUE
 	return FALSE
 
