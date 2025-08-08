@@ -196,6 +196,7 @@
 	normal_attribute_level = 20
 	minimal_player_age = 0
 	exp_requirements = 0
+	exp_max = 900
 	job_important = "\
 		You are an Agent Intern. \
 		Your main goal is to learn how to work on Abnormalities and assist in suppressions. \

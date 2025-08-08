@@ -891,7 +891,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	popup.open(FALSE)
 	onclose(user, "capturekeypress", src)
 
-/datum/preferences/proc/SetChoices(mob/user, limit = 17, list/splitJobs = list("Chief Engineer"), widthPerColumn = 295, height = 620)
+/datum/preferences/proc/SetChoices(mob/user, limit = 17, list/splitJobs = list("Chief Engineer"), widthPerColumn = 328, height = 620)
 	if(!SSjob)
 		return
 
@@ -952,6 +952,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if(required_playtime_remaining)
 				HTML += "<font color=red>[rank]</font></td><td><font color=red> \[ [get_exp_format(required_playtime_remaining)] as [job.get_exp_req_type()] \] </font></td></tr>"
 				continue
+
+			var/is_playtime_capped = job.is_playtime_capped(user.client)
+			if(is_playtime_capped)
+				HTML += "<font color=orange>\[TOO EXPERIENCED\]</font></td><td></td></tr>"
+				continue
+
 			if(!job.player_old_enough(user.client))
 				var/available_in_days = job.available_in_days(user.client)
 				HTML += "<font color=red>[rank]</font></td><td><font color=red> \[IN [(available_in_days)] DAYS\]</font></td></tr>"

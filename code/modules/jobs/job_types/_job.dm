@@ -59,6 +59,7 @@
 	var/outfit = null
 
 	var/exp_requirements = 0
+	var/exp_max = 0
 
 	var/exp_type = ""
 	var/exp_type_department = ""
