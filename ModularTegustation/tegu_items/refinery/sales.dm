@@ -39,10 +39,10 @@
 		to_chat(user, span_notice("You load PE into the machine."))
 		qdel(I)
 		if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_2))
-			power_timer = round(power_timer * 0.5)
+			power_timer = round(power_timer * 0.33)
 			if(!boosted)//prevents wierd jank and desycing
 				boosted = TRUE
-				crate_timer = round(crate_timer * 0.5)
+				crate_timer = round(crate_timer * 0.33)
 		counter()
 
 		add_overlay("full")
