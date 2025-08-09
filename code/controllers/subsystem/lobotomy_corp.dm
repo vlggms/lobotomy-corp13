@@ -118,11 +118,11 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	var/player_mod = length(GLOB.player_list) * 0.2
 	box_goal = clamp(round(5000 * player_mod), 3000, 36000)
 
-	if(SSmaptype.maptype in SSmaptype.lc_maps)
+	//if(SSmaptype.maptype in SSmaptype.lc_maps)
 		//Here's the anouncement for the trait.
-		priority_announce("This shift is a ''[SSmaptype.chosen_trait]'' Shift. All staff is to be advised..", \
-						"HQ Control", sound = 'sound/machines/dun_don_alert.ogg')
-		return TRUE
+		//priority_announce("This shift is a ''[SSmaptype.chosen_trait]'' Shift. All staff is to be advised..", \
+		//				"HQ Control", sound = 'sound/machines/dun_don_alert.ogg')
+		//return TRUE
 
 /datum/controller/subsystem/lobotomy_corp/proc/InitializeOrdeals()
 	// Build ordeals global list
