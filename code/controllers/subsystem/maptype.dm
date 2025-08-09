@@ -72,20 +72,6 @@ SUBSYSTEM_DEF(maptype)
 
 /datum/controller/subsystem/maptype/Initialize()
 	..()
-	if(SSmaptype.maptype in SSmaptype.lc_maps)
-		if(prob(100))	//100% chance to not run a station trait
-			return
-		chosen_trait = pickweight(lc_trait)
-		switch(chosen_trait)
-			if(FACILITY_TRAIT_VISIBLE_GHOSTS)
-				var/msg = span_warning("You suddenly feel extremely obvious...")
-				set_observer_default_invisibility(0, msg)
-			if(FACILITY_TRAIT_DAMAGE_TYPE_SHUFFLE)
-				GLOB.damage_type_shuffler.is_enabled = TRUE
-
-			if(FACILITY_TRAIT_PLAYABLES)
-				if(!SSlobotomy_corp.enable_possession)
-					SSlobotomy_corp.enable_possession = TRUE
 
 	//Badda Bing Badda Da. This makes the latejoin menu cleaner
 	switch(SSmaptype.maptype)
