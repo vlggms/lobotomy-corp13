@@ -98,8 +98,6 @@
 
 
 /obj/item/bodypart/Initialize(mapload)
-	if(SSmaptype.chosen_trait == FACILITY_TRAIT_CALLBACK)
-		max_damage = max_damage_callback
 	. = ..()
 	if(can_be_disabled)
 		RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_PARALYSIS), PROC_REF(on_paralysis_trait_gain))

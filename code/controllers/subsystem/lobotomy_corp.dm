@@ -128,18 +128,11 @@ SUBSYSTEM_DEF(lobotomy_corp)
 			continue
 		all_ordeals[O.level] += O
 
-	if(SSmaptype.chosen_trait == FACILITY_TRAIT_ABNO_BLITZ)
-		next_ordeal_level = 3
-		ordeal_timelock = list(0, 0, 30 MINUTES, 50 MINUTES, 0, 0, 0, 0, 0)
 	RollOrdeal()
 	return TRUE
 
 // Called when any normal midnight ends
 /datum/controller/subsystem/lobotomy_corp/proc/PickPotentialSuppressions(announce = FALSE, extra_core = FALSE)
-	if(SSmaptype.chosen_trait == FACILITY_TRAIT_ABNO_BLITZ)
-		priority_announce("This shift is a 'Blitz' Shift. Cores have been disabled.", \
-						"Core Suppression", sound = 'sound/machines/dun_don_alert.ogg')
-		return
 	if(istype(core_suppression))
 		return
 	var/obj/machinery/computer/abnormality_auxiliary/aux_cons = locate() in GLOB.lobotomy_devices
@@ -278,9 +271,8 @@ SUBSYSTEM_DEF(lobotomy_corp)
 			A.current.OnQliphothEvent()
 	var/ran_ordeal = FALSE
 	if(qliphoth_state + 1 >= next_ordeal_time) // If ordeal is supposed to happen on the meltdown after that one
-		if(SSmaptype.chosen_trait != FACILITY_TRAIT_ABNO_BLITZ)
-			if(istype(next_ordeal) && ordeal_timelock[next_ordeal.level] > ROUNDTIME) // And it's on timelock
-				next_ordeal_time += 1 // So it does not appear on the ordeal monitors until timelock is off
+		if(istype(next_ordeal) && ordeal_timelock[next_ordeal.level] > ROUNDTIME) // And it's on timelock
+			next_ordeal_time += 1 // So it does not appear on the ordeal monitors until timelock is off
 	if(qliphoth_state >= next_ordeal_time)
 		if(OrdealEvent())
 			ran_ordeal = TRUE

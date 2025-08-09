@@ -546,13 +546,6 @@
 	if(reach>1)
 		msg += span_notice("This weapon has a reach of [reach].")
 
-	if(SSmaptype.chosen_trait == FACILITY_TRAIT_CRITICAL_HITS)
-		if(crit_multiplier!=1)
-			msg += span_notice("This weapon has a crit rate of [crit_multiplier]x  normal.")
-
-	if(crit_info)
-		msg += span_notice("[crit_info]")
-
 	if(throwforce>force)
 		msg += span_notice("This weapon deals [throwforce] [damtype] damage when thrown.")
 

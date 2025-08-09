@@ -47,7 +47,6 @@
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 80
 							)
-	crit_multiplier = 1.5
 
 // All ALEPH joke E.G.O
 //The Chaos Dunk

@@ -66,7 +66,6 @@
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 100
 							)
-	crit_multiplier = 0	//No crits for you, you have the combo system.
 
 	var/combo = 0
 	/// Maximum world.time after which combo is reset
@@ -124,7 +123,6 @@
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
 							)
-	crit_multiplier = 0	//No crits for you, you have the combo system.
 
 	var/combo = 0 // I am copy-pasting justitia "combo" system and nobody can stop me
 	var/combo_time
@@ -217,7 +215,6 @@
 							TEMPERANCE_ATTRIBUTE = 120,
 							JUSTICE_ATTRIBUTE = 120
 							)
-	crit_multiplier = 0	//It's twlilight
 
 /obj/item/ego_weapon/twilight/attack(mob/living/M, mob/living/user)
 	if(!CanUseEgo(user))
@@ -248,7 +245,6 @@
 	var/goldrush_damage = 140
 	var/finisher_on = TRUE //this is for a subtype, it should NEVER be false on this item.
 	damtype = RED_DAMAGE
-	crit_multiplier = 0	//Can't crit anyways.
 
 //Replaces the normal attack with the gigafuck punch
 /obj/item/ego_weapon/goldrush/attack(mob/living/target, mob/living/user)
@@ -560,7 +556,6 @@
 	attack_verb_continuous = list("cuts", "attacks", "slashes")
 	attack_verb_simple = list("cut", "attack", "slash")
 	hitsound = 'sound/weapons/rapierhit.ogg'
-	crit_multiplier = 0	//does multi-damage
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 100,

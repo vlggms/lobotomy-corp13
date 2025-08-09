@@ -40,66 +40,30 @@
 		if("Control")
 			ears = /obj/item/radio/headset/headset_control
 			accessory = /obj/item/clothing/accessory/armband/lobotomy
-			if(SSmaptype.chosen_trait == FACILITY_TRAIT_DEPARTMENTAL_BUFFS)
-				outfit_owner.add_movespeed_modifier(/datum/movespeed_modifier/assault)	//They should REALLY never get this NGL
-				to_chat(M, "<b>Due to your chosen department, you get a 10% movespeed bonus.</b>")
 		if("Command")
 			ears = /obj/item/radio/headset/headset_command
 			accessory = /obj/item/clothing/accessory/armband/lobotomy/command
-			if(SSmaptype.chosen_trait == FACILITY_TRAIT_DEPARTMENTAL_BUFFS)
-				to_chat(M, "<b>Due to your chosen department, you get +3 to all stats.</b>")
-				outfit_owner.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 3)
-				outfit_owner.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 3)
-				outfit_owner.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 3)
-				outfit_owner.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 3)
 		if("Information")
 			ears = /obj/item/radio/headset/headset_information
 			accessory = /obj/item/clothing/accessory/armband/lobotomy/info
-			if(SSmaptype.chosen_trait == FACILITY_TRAIT_DEPARTMENTAL_BUFFS)
-				to_chat(M, "<b>Due to your chosen department, you get a +10 Work speed and rate bonus.</b>")
-				outfit_owner.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, 10)
 		if("Safety")
 			ears = /obj/item/radio/headset/headset_safety
 			accessory = /obj/item/clothing/accessory/armband/lobotomy/safety
-			if(SSmaptype.chosen_trait == FACILITY_TRAIT_DEPARTMENTAL_BUFFS)
-				to_chat(M, "<b>Due to your chosen department, you get a +10 Fortitude and Prudence buff.</b>")
-				outfit_owner.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 10)
-				outfit_owner.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 10)
 		if("Disciplinary")
 			ears = /obj/item/radio/headset/headset_discipline
 			accessory = /obj/item/clothing/accessory/armband/lobotomy/discipline
-			if(SSmaptype.chosen_trait == FACILITY_TRAIT_DEPARTMENTAL_BUFFS)
-				to_chat(M, "<b>Due to your chosen department, you get a +15% damage bonus.</b>")
-				ADD_TRAIT(outfit_owner, TRAIT_STRONG_MELEE, JOB_TRAIT)
 		if("Welfare")
 			ears = /obj/item/radio/headset/headset_welfare
 			accessory = /obj/item/clothing/accessory/armband/lobotomy/welfare
-			if(SSmaptype.chosen_trait == FACILITY_TRAIT_DEPARTMENTAL_BUFFS)
-				to_chat(M, "<b>Due to your chosen department, you get a +7% defense bonus.</b>")
-				outfit_owner.physiology.red_mod /= 1.07
-				outfit_owner.physiology.white_mod /= 1.07
-				outfit_owner.physiology.black_mod /= 1.07
-				outfit_owner.physiology.pale_mod /= 1.07
 		if("Extraction")
 			ears = /obj/item/radio/headset/headset_extraction
 			accessory = /obj/item/clothing/accessory/armband/lobotomy/extraction
-			if(SSmaptype.chosen_trait == FACILITY_TRAIT_DEPARTMENTAL_BUFFS)
-				to_chat(M, "<b>Due to your chosen department, you get a +5 Max HP, SP and Justice bonus.</b>")
-				outfit_owner.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, 5)
-				outfit_owner.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, 5)
-				outfit_owner.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, 5)
 		if("Record")
 			ears = /obj/item/radio/headset/headset_records
 			accessory = /obj/item/clothing/accessory/armband/lobotomy/records
-			if(SSmaptype.chosen_trait == FACILITY_TRAIT_DEPARTMENTAL_BUFFS)
-				to_chat(M, "<b>Due to your chosen department, you get an attribute limit of 150.</b>")
-				job_attribute_limit = 150
-
 		else //Pick a department or get training.
 			ears = /obj/item/radio/headset/headset_training
 			accessory = /obj/item/clothing/accessory/armband/lobotomy/training
-			if(SSmaptype.chosen_trait == FACILITY_TRAIT_DEPARTMENTAL_BUFFS)
-				ADD_TRAIT(outfit_owner, TRAIT_BONUS_EXP, JOB_TRAIT)
 
 	if(accessory)
 		var/obj/item/clothing/under/U = outfit_owner.w_uniform
@@ -121,9 +85,6 @@
 	// how full the facility is, from 0 abnormalities out of 24 cells being 0% and 24/24 cells being 100%
 	if(GLOB.lobotomy_damages)//Enkephalin Rush baby!
 		facility_full_percentage = 100 * (GLOB.lobotomy_repairs / GLOB.lobotomy_damages)
-
-	if(SSmaptype.chosen_trait == FACILITY_TRAIT_ABNO_BLITZ)	//blitz needs you with higher stats
-		set_attribute *= 4
 
 	else
 		switch(facility_full_percentage)
@@ -178,7 +139,6 @@
 	shoes = /obj/item/clothing/shoes/laceup
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
-	l_hand = /obj/item/class_chooser
 
 	backpack_contents = list(
 		/obj/item/melee/classic_baton,
