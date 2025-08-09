@@ -22,25 +22,36 @@ GLOBAL_LIST_INIT(command_positions, list(
 	"Thumb Sottocapo",
 	"Kurokumo Kashira",
 
-	// R-corp Fourth Pack
+	// R-corp Officers
 	"Ground Commander",
 	"Lieutenant Commander",
 	"Operations Officer",
+	"Assault Commander",
+	"Base Commander",
+	"Support Officer",
+	"Operations Commander",
+	"Executive Officer",
+
+	// R-corp Captains
 	"Rabbit Squad Captain",
 	"Reindeer Squad Captain",
 	"Rhino Squad Captain",
 	"Raven Squad Captain",
-
-	// R-corp Fifth Pack
-	"Assault Commander",
-	"Base Commander",
-	"Support Officer",
+	//5th Pack
 	"Rat Squad Leader",
 	"Rooster Squad Leader",
 	"Raccoon Squad Leader",
 	"Roadrunner Squad Leader",
+	//6th Pack
+	"Robin Squad Captain",
+	"Robin Section Leader",
+	"Raven Squad Captain",
+	"Rook Squad Captain",
+	"Production Officer",
 
-	// W-corp stuff
+
+
+	//Wcorp stuff
 	"W-Corp Representative",
 	"W-Corp L3 Squad Captain",
 
@@ -110,6 +121,13 @@ GLOBAL_LIST_INIT(service_positions, list(
 	// LCB Labs
 	"LC Chef",
 	"LC Janitor",
+
+
+	//R-Corp Sixth Pack
+	"R-Corp Acquisitions Specialist",
+	"R-Corp Production Specialist",
+	"R-Corp Raven MP",
+	"R-Corp Messenger Raven",
 	))
 
 
@@ -135,6 +153,14 @@ GLOBAL_LIST_INIT(security_positions, list(
 	"Damage Mitigation Officer",
 	"Damage Exasperation Officer",
 	"Internal Police",
+
+	//Sixth Pack
+	"Robin Section Leader",
+	"Robin Squad Sergeant",
+	"Section A Robin",
+	"Section B Robin",
+	"Section C Robin",
+	"R-Corp Rook",
 	))
 
 
@@ -188,6 +214,14 @@ GLOBAL_LIST_INIT(r_corp_positions, list(
 	"R-Corp Raccoon Spy",
 	"R-Corp Raccoon Sniper",
 	"R-Corp Roadrunner",
+
+	//Sixth Pack
+	"Robin Section Leader",
+	"Robin Squad Sergeant",
+	"Section A Robin",
+	"Section B Robin",
+	"Section C Robin",
+	"R-Corp Rook",
 ))
 
 GLOBAL_LIST_INIT(hana_positions, list(

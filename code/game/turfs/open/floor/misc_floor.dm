@@ -158,11 +158,11 @@
 
 /turf/open/floor/bronze/lavaland
 	planetary_atmos = TRUE
-	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
+	//initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 
 /turf/open/floor/bronze/icemoon
 	planetary_atmos = TRUE
-	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
+	//initial_gas_mix = ICEMOON_DEFAULT_ATMOS
 
 /turf/open/floor/white
 	name = "white floor"
@@ -200,7 +200,7 @@
 	icon_state = "plating_rust"
 
 /turf/open/floor/plating/rust/plasma
-	initial_gas_mix = "plasma=104;TEMP=293.15"
+	//initial_gas_mix = "plasma=104;TEMP=293.15"
 
 /turf/open/floor/plating/rust/rust_heretic_act()
 	return

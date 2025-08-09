@@ -4,25 +4,25 @@
 */
 
 #define SEND_ON_SIGNAL 1
-#define SEND_ON_WAVE 2
-#define SEND_TILL_MAX 3
+#define SEND_TILL_MAX 2 // Send mobs the moment the wave is assembled
+#define SEND_ONLY_DEFEATED 3 // Send mobs only if the previous wave is dead
 
 /datum/component/monwave_spawner
 	var/assault_pace
 	//Cooldowns for procs.
-	var/resume_cooldown = 0
 	var/generate_wave_cooldown = 0
-	var/generate_wave_cooldown_time = 5 SECONDS
+	var/generate_wave_cooldown_time = 30 SECONDS
 	//Our assault target
 	var/assault_target
 	//Leader of the assault
 	var/obj/effect/wave_commander/wave_leader
 	//Max amount of mobs we can spawn
-	var/max_existing_mobs = 30
+	var/max_existing_mobs = 10
+	var/current_existing_mobs = 0
 	//Who did we spawn and check if they dont exist anymore.
 	var/list/existing_mobs = list()
 	//Faction our spawned creatures belong to
-	var/list/faction = list("hostile")
+	var/list/faction = list("hostile", "enemy")
 	//Last wave of soldiers
 	var/list/last_wave = list()
 	//current wave of soldiers
@@ -32,9 +32,13 @@
 	var/list/wave_composition = list()
 	//Path to target
 	var/list/assult_path = list()
+	//Are we the wave announcer?
+	var/is_wave_announcer = FALSE
+	var/delete_on_death = TRUE
+	var/is_raider = FALSE
 
 //Experimental So i dont have to use the procs all the time
-/datum/component/monwave_spawner/Initialize(attack_target, assault_type = SEND_ON_WAVE, max_mobs = 30, list/wave_faction = list("hostile"), list/new_wave_order)
+/datum/component/monwave_spawner/Initialize(attack_target, assault_type = SEND_ONLY_DEFEATED, max_mobs = 10, list/wave_faction = list("hostile", "enemy"), list/new_wave_order, try_for_announcer = FALSE, new_wave_cooldown_time = NONE, raider = FALSE, register = FALSE)
 	if(!isstructure(parent) && !ishostile(parent))
 		return COMPONENT_INCOMPATIBLE
 
@@ -45,8 +49,22 @@
 	if(new_wave_order)
 		wave_order = new_wave_order.Copy()
 
+	if(new_wave_cooldown_time)
+		generate_wave_cooldown_time = new_wave_cooldown_time
+
 	if(!assault_target && assault_pace != SEND_ON_SIGNAL)
 		qdel(src)
+
+	if(register)
+		SSgamedirector.RegisterSpawner(src)
+
+	is_wave_announcer = SSgamedirector.RegisterAsWaveAnnouncer(src)
+
+	is_raider = raider
+
+	addtimer(CALLBACK(src, PROC_REF(LateInitialize)))
+
+/datum/component/monwave_spawner/proc/LateInitialize()
 	GeneratePath()
 	BeginProcessing()
 
@@ -54,11 +72,7 @@
 	if(!parent || !assault_target)
 		qdel(src)
 		return
-	if(length(last_wave) && world.time >= resume_cooldown)
-		CleanupAssault()
-		resume_cooldown = world.time + (1 MINUTES)
-		return
-	if(world.time >= generate_wave_cooldown)
+	if(current_existing_mobs < max_existing_mobs && world.time >= generate_wave_cooldown)
 		GenerateWave()
 		generate_wave_cooldown = world.time + generate_wave_cooldown_time
 		return
@@ -74,7 +88,7 @@
 /datum/component/monwave_spawner/proc/GenerateWave()
 	if(!length(wave_composition))
 		if(assault_target)
-			if(assault_pace != SEND_TILL_MAX && length(last_wave))
+			if(assault_pace == SEND_ONLY_DEFEATED && length(last_wave))
 				return FALSE
 			return StartAssault(assault_target)
 		return FALSE
@@ -90,6 +104,7 @@
 	if(!wave_leader && LeaderQualifications(spawned_mob))
 		wave_leader = spawned_mob
 	current_wave += spawned_mob
+	current_existing_mobs += 1
 	spawned_mob.faction = faction.Copy()
 	RegisterSignal(spawned_mob, COMSIG_LIVING_DEATH, PROC_REF(MinionSlain))
 	return spawned_mob
@@ -99,6 +114,10 @@
 
 	last_wave -= M
 	current_wave -= M
+	current_existing_mobs -= 1
+
+	if(delete_on_death)
+		qdel(M)
 
 //Leader Modularization if you want to make only certain mobs leaders.
 /datum/component/monwave_spawner/proc/LeaderQualifications(mob/living/simple_animal/hostile/recruit)
@@ -126,21 +145,22 @@
 	wave_composition = LAZYCOPY(wave_order)
 	last_wave = LAZYCOPY(current_wave)
 	LAZYCLEARLIST(current_wave)
+	if(is_wave_announcer)
+		SSgamedirector.AnnounceWave()
+	if(is_raider)
+		SwitchTarget(SSgamedirector.GetRandomRaiderTarget())
 	return TRUE
-
-//Despawns any idle monsters who lost the wave.
-/datum/component/monwave_spawner/proc/CleanupAssault()
-	for(var/mob/living/simple_animal/hostile/H in last_wave)
-		if(!H.target)
-			H.dust(FALSE)
-	return length(last_wave)
 
 //Generates a path for the Mob Commander
 /datum/component/monwave_spawner/proc/GeneratePath(turf_to_go)
 	var/target_loc = assault_target
 	if(turf_to_go)
 		target_loc = get_turf(turf_to_go)
-	assult_path = get_path_to(parent, target_loc, /turf/proc/Distance_cardinal, 0, 200)
+	assult_path = get_path_to(parent, target_loc, /turf/proc/Distance_cardinal, 0, 400)
+
+/datum/component/monwave_spawner/proc/SwitchTarget(target)
+	assault_target = get_turf(target)
+	GeneratePath()
 
 //Invisible Effect only visible to ghosts. Uses a altered form of Hostile Patrol Code -IP
 /obj/effect/wave_commander
@@ -153,6 +173,10 @@
 	var/move_tries = 0
 	var/patrol_move_timer = 0
 	var/list/our_path = list()
+
+/obj/effect/wave_commander/Initialize(mapload)
+	. = ..()
+	AddElement(/datum/element/point_of_interest)
 
 /obj/effect/wave_commander/proc/DoPath(list/assault_path)
 	our_path = assault_path.Copy()

@@ -73,7 +73,8 @@
 				finishing = FALSE
 				return
 			playsound(get_turf(src), 'sound/effects/ordeals/green/final_stab.ogg', 50, 1)
-			TH.gib()
+			if(SSmaptype.maptype != "rcorp_factory")
+				TH.gib()
 			finishing = FALSE
 
 /mob/living/simple_animal/hostile/ordeal/green_bot/spawn_gibs()

@@ -8,7 +8,7 @@
 
 /turf/open/floor/plating/icemoon
 	icon_state = "plating"
-	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
+	//initial_gas_mix = ICEMOON_DEFAULT_ATMOS
 
 /turf/open/floor/plating/abductor
 	name = "alien floor"
@@ -217,7 +217,7 @@
 	icon = 'icons/turf/floors/ice_turf.dmi'
 	icon_state = "ice_turf-0"
 	base_icon_state = "ice_turf-0"
-	initial_gas_mix = FROZEN_ATMOS
+	//initial_gas_mix = FROZEN_ATMOS
 	temperature = 180
 	planetary_atmos = TRUE
 	baseturfs = /turf/open/floor/plating/ice
@@ -250,7 +250,7 @@
 	return
 
 /turf/open/floor/plating/ice/icemoon
-	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
+	//initial_gas_mix = ICEMOON_DEFAULT_ATMOS
 	slowdown = 0
 
 /turf/open/floor/plating/snowed
@@ -259,7 +259,7 @@
 	icon = 'icons/turf/snow.dmi'
 	icon_state = "snowplating"
 	base_icon_state = "snowplating"
-	initial_gas_mix = FROZEN_ATMOS
+	//initial_gas_mix = FROZEN_ATMOS
 	temperature = 180
 	attachment_holes = FALSE
 	planetary_atmos = TRUE
@@ -269,10 +269,10 @@
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 
 /turf/open/floor/plating/snowed/cavern
-	initial_gas_mix = "n2=82;plasma=24;TEMP=120"
+	//initial_gas_mix = "n2=82;plasma=24;TEMP=120"
 
 /turf/open/floor/plating/snowed/icemoon
-	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
+	//initial_gas_mix = ICEMOON_DEFAULT_ATMOS
 
 /turf/open/floor/plating/snowed/smoothed
 	icon = 'icons/turf/floors/snow_turf.dmi'
@@ -287,7 +287,7 @@
 	temperature = 255.37
 
 /turf/open/floor/plating/snowed/smoothed/icemoon
-	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
+	//initial_gas_mix = ICEMOON_DEFAULT_ATMOS
 
 /turf/open/floor/plating/grass
 	name = "grass"
@@ -318,7 +318,7 @@
 		icon = smooth_icon
 
 /turf/open/floor/plating/grass/lavaland
-	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
+	//initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 
 /turf/open/floor/plating/sandy_dirt
 	gender = PLURAL

@@ -51,6 +51,8 @@
 			return TRUE
 		return FALSE
 
+/obj/structure/barricade/CanAStarPass(ID, dir, requester)
+	return TRUE
 
 
 /////BARRICADE TYPES///////

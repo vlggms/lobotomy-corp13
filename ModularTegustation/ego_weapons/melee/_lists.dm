@@ -13,6 +13,7 @@ GLOBAL_LIST_INIT(small_ego, list (
 	/obj/item/ego_weapon/ranged/arcadia/judge,
 
 	//Non-EGO weapons
+	/obj/item/gun/energy/e_gun/rabbitdash/small,
 	/obj/item/ego_weapon/city/ncorp_mark,
 	/obj/item/ego_weapon/city/ncorp_nail,
 	/obj/item/ego_weapon/city/ncorp_brassnail,
@@ -23,4 +24,5 @@ GLOBAL_LIST_INIT(small_ego, list (
 	/obj/item/ego_weapon/city/awl,
 	/obj/item/ego_weapon/city/wcorp/hatchet,
 	/obj/item/ego_weapon/ranged/city/fullstop/deagle,
+	/obj/item/ego_weapon/city/rabbit/throwing,
 ))

@@ -75,7 +75,7 @@
 /turf/open/indestructible/cult
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "cult"
-	initial_gas_mix = OPENTURF_LOW_PRESSURE
+	//initial_gas_mix = OPENTURF_LOW_PRESSURE
 
 /datum/action/innate/megafauna_attack/blood_dash
 	name = "Blood Dash"

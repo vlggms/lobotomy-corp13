@@ -384,6 +384,11 @@
 		"Assault Commander", "Base Commander", "Support Officer", "Rat Squad Leader", "Rooster Squad Leader", "Raccoon Squad Leader", "Roadrunner Squad Leader",
 		"R-Corp Rat", "R-Corp Rooster", "R-Corp Raccoon Spy", "R-Corp Raccoon Sniper", "R-Corp Roadrunner",
 
+		//6th Pack
+		"Operations Commander",	"Executive Officer", "Robin Squad Captain", "Robin Section Leader", "Raven Squad Captain", "Rook Squad Captain", "Production Officer",
+		"R-Corp Acquisitions Specialist", "R-Corp Production Specialist", "R-Corp Raven MP", "R-Corp Messenger Raven",
+		"Robin Section Leader", "Robin Squad Sergeant", "Section A Robin", "Section B Robin", "Section C Robin", "R-Corp Rook",
+
 		//LC Labs
 		"Chief Medical Officer", "Surgeon", "Nurse Practitioner", "Pharmacist", "Emergency Medical Technician", "Lead Researcher", "Senior Researcher", "Information Systems Tech",
 		"Researcher", "LC Staff", "District Manager", "LC Asset Protection", "High Security Commander", "Low Security Commander", "High Security Officer", "Low Security Officer",

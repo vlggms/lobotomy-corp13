@@ -201,6 +201,7 @@
 /obj/item/gun/energy/e_gun/rabbit/captain
 	name = "R-Corporation R-4000 'Mark 3'"
 	desc = "An energy gun produced especially for the rabbit captain. This weapon can be fired with one hand."
+	icon = 'ModularTegustation/Teguicons/rcorp_weapons.dmi'
 	icon_state = "rabbitcaptain"
 	inhand_icon_state = "rabbith1"
 	weapon_weight = WEAPON_LIGHT
@@ -220,6 +221,7 @@
 /obj/item/gun/energy/e_gun/rabbit/minigun
 	name = "R-Corporation X-15 Minigun"
 	desc = "An energy machinegun that is extremely heavy, and fires bullets extremely quickly."
+	icon = 'ModularTegustation/Teguicons/rcorp_weapons.dmi'
 	icon_state = "rabbitmachinegun"
 	ammo_type = list(
 		/obj/item/ammo_casing/energy/laser/red,
@@ -238,7 +240,8 @@
 /obj/item/gun/energy/e_gun/rabbit/minigun/tricolor
 	name = "R-Corporation R-3500 Minigun"
 	desc = "An energy machinegun that is extremely heavy, and fires bullets extremely quickly."
-	icon_state = "rabbitmachinegun"
+	icon = 'ModularTegustation/Teguicons/rcorp_weapons.dmi'
+	icon_state = "trimachinegun"
 	projectile_damage_multiplier = 0.7
 	ammo_type = list(
 		/obj/item/ammo_casing/energy/laser/red/iff,
@@ -250,6 +253,7 @@
 	name = "rush dagger"
 	desc = "A high-frequency combat blade made for use against abnormalities and other threats in Lobotomy Corporation and the outskirts. This only has one mode"
 	special = "Use in hand to activate teleport mode. Click on a target in teleport mode to do a teleport attack."
+	icon = 'ModularTegustation/Teguicons/rcorp_weapons.dmi'
 	icon_state = "rabbitdash"
 	inhand_icon_state = "rabbit_katana"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'

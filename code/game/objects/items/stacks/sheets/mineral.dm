@@ -62,6 +62,7 @@ GLOBAL_LIST_INIT(sandstone_recipes, list ( \
 	novariants = TRUE
 	bypassmode = TRUE
 	merge_type = /obj/item/stack/sheet/mineral/sandbags
+	w_class = WEIGHT_CLASS_BULKY
 
 GLOBAL_LIST_INIT(sandbag_recipes, list ( \
 	new/datum/stack_recipe("sandbags", /obj/structure/barricade/sandbags, 1, time = 8, one_per_turf = 1, on_floor = 1), \

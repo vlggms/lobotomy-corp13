@@ -49,7 +49,7 @@
 								)
 	access = list(ACCESS_ARMORY, ACCESS_RND, ACCESS_COMMAND, ACCESS_MEDICAL)
 	minimal_access = list(ACCESS_ARMORY, ACCESS_RND, ACCESS_COMMAND, ACCESS_MEDICAL)
-	alt_titles = list("Base Commander", "Senior Officer")
+	alt_titles = list()
 	rank_title = "CPT"
 	job_important = "You are the right hand man to the Assault Commander. Take care of the base, and protect it from hostiles. \
 		If you are caught on the frontline, and the comms get ."

@@ -149,7 +149,7 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 /turf/open/openspace/icemoon
 	name = "ice chasm"
 	baseturfs = /turf/open/openspace/icemoon
-	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
+	//initial_gas_mix = ICEMOON_DEFAULT_ATMOS
 	planetary_atmos = TRUE
 	var/replacement_turf = /turf/open/floor/plating/asteroid/snow/icemoon
 

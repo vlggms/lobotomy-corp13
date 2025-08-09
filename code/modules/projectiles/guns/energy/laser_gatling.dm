@@ -2,7 +2,7 @@
 
 //The ammo/gun is stored in a back slot item
 /obj/item/minigunpack
-	name = "backpack power source"
+	name = "X-18 Heavy Minigun"
 	desc = "The massive external power source for the laser gatling gun."
 	icon = 'icons/obj/guns/minigun.dmi'
 	icon_state = "holstered"
@@ -106,7 +106,10 @@
 	w_class = WEIGHT_CLASS_HUGE
 	custom_materials = null
 	weapon_weight = WEAPON_HEAVY
-	ammo_type = list(/obj/item/ammo_casing/energy/laser/minigun)
+	projectile_damage_multiplier = 0.7
+	ammo_type = list(
+		/obj/item/ammo_casing/energy/laser/red/heavy,
+		)
 	cell_type = /obj/item/stock_parts/cell/crap
 	item_flags = NEEDS_PERMIT | SLOWS_WHILE_IN_HAND
 	can_charge = FALSE

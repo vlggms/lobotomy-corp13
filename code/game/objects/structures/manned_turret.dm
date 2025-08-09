@@ -1,4 +1,5 @@
-/////// MANNED TURRET ////////
+/// DEPLOYABLE TURRET (FORMERLY MANNED TURRET)
+//All of this file is five year old shitcode, and I'm too scared to touch more than I have to
 
 /obj/machinery/manned_turret
 	name = "machine gun turret"
@@ -13,14 +14,28 @@
 	layer = ABOVE_MOB_LAYER
 	var/view_range = 2.5
 	var/cooldown = 0
+	/// The projectile that the turret fires
 	var/projectile_type = /obj/projectile/bullet/manned_turret
+	/// Delay between shots in a burst
 	var/rate_of_fire = 1
+	/// Number of shots fired from one click
 	var/number_of_shots = 40
-	var/cooldown_duration = 90
+	/// How long it takes for the gun to allow firing after a burst
+	var/cooldown_duration = 9 SECONDS
 	var/atom/target
 	var/turf/target_turf
 	var/warned = FALSE
 	var/list/calculated_projectile_vars
+	/// Sound to play at the end of a burst
+	var/overheatsound = 'sound/weapons/sear.ogg'
+	/// Sound to play when firing
+	var/firesound = 'sound/weapons/gun/smg/shot.ogg'
+	/// If using a wrench on the turret will start undeploying it
+	var/can_be_undeployed = FALSE
+	/// What gets spawned if the object is undeployed
+	var/obj/spawned_on_undeploy
+	/// How long it takes for a wrench user to undeploy the object
+	var/undeploy_time = 3 SECONDS
 
 /obj/machinery/manned_turret/Destroy()
 	target = null
@@ -39,7 +54,7 @@
 		buckled_mob.pixel_y = buckled_mob.base_pixel_y
 		if(buckled_mob.client)
 			buckled_mob.client.view_size.resetToDefault()
-	anchored = initial(anchored)
+	set_anchored(FALSE)
 	. = ..()
 	STOP_PROCESSING(SSfastprocess, src)
 
@@ -56,14 +71,14 @@
 			if(M.dropItemToGround(I))
 				var/obj/item/gun_control/TC = new(src)
 				M.put_in_hands(TC)
-		else	//Entries in the list should only ever be items or null, so if it's not an item, we can assume it's an empty hand
+		else //Entries in the list should only ever be items or null, so if it's not an item, we can assume it's an empty hand
 			var/obj/item/gun_control/TC = new(src)
 			M.put_in_hands(TC)
 	M.pixel_y = 14
 	layer = ABOVE_MOB_LAYER
 	setDir(SOUTH)
 	playsound(src,'sound/mecha/mechmove01.ogg', 50, TRUE)
-	anchored = TRUE
+	set_anchored(TRUE)
 	if(M.client)
 		M.client.view_size.setTo(view_range)
 	START_PROCESSING(SSfastprocess, src)
@@ -78,13 +93,14 @@
 	var/mob/living/controller = buckled_mobs[1]
 	if(!istype(controller))
 		return FALSE
-	var/client/C = controller.client
-	if(C)
-		var/atom/A = C.mouseObject
-		var/turf/T = get_turf(A)
-		if(istype(T))	//They're hovering over something in the map.
-			direction_track(controller, T)
-			calculated_projectile_vars = calculate_projectile_angle_and_pixel_offsets(controller, C.mouseParams)
+	var/client/controlling_client = controller.client
+	if(controlling_client)
+		var/modifiers = params2list(controlling_client.mouseParams)
+		var/atom/target_atom = controlling_client.mouseObject
+		var/turf/target_turf = get_turf(target_atom)
+		if(istype(target_turf)) //They're hovering over something in the map.
+			direction_track(controller, target_turf)
+			calculated_projectile_vars = calculate_projectile_angle_and_pixel_offsets(controller, modifiers)
 
 /obj/machinery/manned_turret/proc/direction_track(mob/user, atom/targeted)
 	if(user.incapacitated())
@@ -132,7 +148,7 @@
 	if(world.time < cooldown)
 		if(!warned && world.time > (cooldown - cooldown_duration + rate_of_fire*number_of_shots)) // To capture the window where one is done firing
 			warned = TRUE
-			playsound(src, 'sound/weapons/sear.ogg', 100, TRUE)
+			playsound(src, overheatsound, 100, TRUE)
 		return
 	else
 		cooldown = world.time + cooldown_duration
@@ -147,26 +163,18 @@
 /obj/machinery/manned_turret/proc/fire_helper(mob/user)
 	if(user.incapacitated() || !(user in buckled_mobs))
 		return
-	update_positioning()						//REFRESH MOUSE TRACKING!!
+	update_positioning() //REFRESH MOUSE TRACKING!!
 	var/turf/targets_from = get_turf(src)
 	if(QDELETED(target))
 		target = target_turf
-	var/obj/projectile/P = new projectile_type(targets_from)
-	P.starting = targets_from
-	P.firer = user
-	P.original = target
-	playsound(src, 'sound/weapons/gun/smg/shot.ogg', 75, TRUE)
-	P.xo = target.x - targets_from.x
-	P.yo = target.y - targets_from.y
-	P.Angle = calculated_projectile_vars[1] + rand(-9, 9)
-	P.p_x = calculated_projectile_vars[2]
-	P.p_y = calculated_projectile_vars[3]
-	P.fire()
+	var/obj/projectile/projectile_to_fire = new projectile_type
+	playsound(src, firesound, 75, TRUE)
+	projectile_to_fire.preparePixelProjectile(target, targets_from)
+	projectile_to_fire.fire()
 
 /obj/machinery/manned_turret/ultimate  // Admin-only proof of concept for autoclicker automatics
 	name = "Infinity Gun"
 	view_range = 12
-	projectile_type = /obj/projectile/bullet/manned_turret
 
 /obj/machinery/manned_turret/ultimate/checkfire(atom/targeted_atom, mob/user)
 	target = targeted_atom
@@ -174,6 +182,8 @@
 		return
 	target_turf = get_turf(target)
 	fire_helper(user)
+
+
 
 /obj/item/gun_control
 	name = "turret controls"
@@ -210,7 +220,8 @@
 
 /obj/item/gun_control/afterattack(atom/targeted_atom, mob/user, flag, params)
 	. = ..()
+	var/modifiers = params2list(params)
 	var/obj/machinery/manned_turret/E = user.buckled
-	E.calculated_projectile_vars = calculate_projectile_angle_and_pixel_offsets(user, params)
+	E.calculated_projectile_vars = calculate_projectile_angle_and_pixel_offsets(user, modifiers)
 	E.direction_track(user, targeted_atom)
 	E.checkfire(targeted_atom, user)

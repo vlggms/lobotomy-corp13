@@ -1,3 +1,8 @@
+//////////////
+// BASE CLAN MOB
+//////////////
+// Base type for all Resurgence Clan units
+// Provides charge system, teleport on death, and core clan functionality
 /mob/living/simple_animal/hostile/clan
 	name = "Clan Member..."
 	desc = "You should not bee seeing this!"
@@ -31,12 +36,17 @@
 	butcher_results = list(/obj/item/raw_anomaly_core/bluespace = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 2)
 	silk_results = list(/obj/item/stack/sheet/silk/azure_simple = 1)
+
+	// Charge system variables
 	var/charge = 5
 	var/max_charge = 10
 	var/clan_charge_cooldown = 2 SECONDS
 	var/last_charge_update = 0
 
-//Talking Stuff
+	// Teleport on death
+	var/teleport_away = FALSE
+
+	// Dialogue and NPC interaction
 	var/can_protect = FALSE
 	var/wants_to_talk = FALSE
 
@@ -53,7 +63,7 @@
 	var/speaking = FALSE
 	attacked_line = "Oh-h... You messe-ed up now..."
 
-//Normal Clan Stuff
+// Core clan methods
 /mob/living/simple_animal/hostile/clan/spawn_gibs()
 	new /obj/effect/gibspawner/scrap_metal(drop_location(), src)
 
@@ -71,12 +81,11 @@
 
 /mob/living/simple_animal/hostile/clan/Life()
 	. = ..()
-
 	if (last_charge_update < world.time - clan_charge_cooldown)
 		last_charge_update = world.time
 		GainCharge()
 
-//Guard Stuff
+// Aggro marking system for NPCs
 /mob/living/simple_animal/hostile/clan/CanAttack(atom/the_target)
 	if ((the_target in GLOB.marked_players) && can_protect)
 		if (istype(the_target, /mob/living))
@@ -106,7 +115,14 @@
 				GLOB.marked_players += user
 				say(attacked_line)
 
-//Npc Stuff
+/mob/living/simple_animal/hostile/clan/death(gibbed)
+	. = ..()
+	if (teleport_away)
+		playsound(src, 'sound/effects/ordeals/white/pale_teleport_out.ogg', 25, TRUE)
+		new /obj/effect/temp_visual/beam_out(get_turf(src))
+		qdel(src)
+
+// NPC dialogue interaction
 /mob/living/simple_animal/hostile/clan/examine(mob/user)
 	. = ..()
 	if(can_protect && wants_to_talk)
@@ -158,7 +174,10 @@
 			say(S)
 		SLEEP_CHECK_DEATH(default_delay)
 
-//Clan Member: Scout
+//////////////
+// SCOUT
+//////////////
+// Fast melee unit that gains speed and attack rate as charge builds
 /mob/living/simple_animal/hostile/clan/scout
 	name = "Scout"
 	desc = "A humanoid looking machine wielding a spear... It appears to have 'Resurgence Clan' etched on their back..."
@@ -203,7 +222,10 @@
 	cut_overlays()
 	charge = 0
 
-//Clan Member: Defender
+//////////////
+// DEFENDER
+//////////////
+// Tank unit that can lock down areas with electric fields
 /mob/living/simple_animal/hostile/clan/defender
 	name = "Defender"
 	desc = "A humanoid looking machine with two shields... It appears to have 'Resurgence Clan' etched on their back..."
@@ -399,6 +421,10 @@
 	UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)
 	return ..()
 
+//////////////
+// DRONE
+//////////////
+// Support unit that heals allies with beam technology
 /mob/living/simple_animal/hostile/clan/drone
 	name = "Drone"
 	desc = "A drone hovering above the ground... It appears to have 'Resurgence Clan' etched on their back..."
@@ -555,7 +581,7 @@
 			ai_controller.current_movement_target = target
 
 
-// Beams from Priest Code
+// Healing beam system
 /mob/living/simple_animal/hostile/clan/drone/proc/create_beam(mob/living/target)
 	current_beam = Beam(target, icon_state="medbeam", time=INFINITY, maxdistance=healing_range * 2, beam_type=/obj/effect/ebeam/medical)
 
@@ -590,6 +616,7 @@
 			C.GainCharge()
 	return
 
+// Village variant - peaceful version with different appearance
 /mob/living/simple_animal/hostile/clan/drone/village
 	icon_state = "clan_drone_normal"
 	icon_living = "clan_drone_normal"
@@ -600,6 +627,7 @@
 	. = ..()
 	faction = list("village")
 
+// Craftable drone book - allows players to create their own support drone
 /obj/item/book/granter/crafting_recipe/clan_drone
 	name = "Tinkerer's Blueprints: Reforged Drone"
 	desc = "A book that teaches you how to create your own drones, which are able to heal you!"
@@ -610,6 +638,7 @@
 	icon_state = "clan_book"
 	remarks = list("Wow, Do they really need to yap about how much they hate humans?", "Oh? So that is what I can use these cores for...", "Huh, it says here that 'They are infact fixed, they don't break walls anymore.'", "Oh dear... How dusty is this book?", "Yes... Yes? Do I really need to know what types of hats I could place on them?", "I wonder how effective this drone will be...")
 
+// Crafting recipe for player-controlled drone
 /datum/crafting_recipe/drone_reforged
 	name = "Reforged, Resurgence Clan Drone"
 	result = /mob/living/simple_animal/hostile/clan/drone/reforged
@@ -618,6 +647,7 @@
 	category = CAT_ROBOT
 	always_available = FALSE
 
+// Player-crafted drone - weaker but controllable
 /mob/living/simple_animal/hostile/clan/drone/reforged
 	name = "Reforged Drone"
 	desc = "A drone hovering above the ground... It appears to have 'Resurgence Clan' scratched out on their back..."
