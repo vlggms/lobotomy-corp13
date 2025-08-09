@@ -38,11 +38,6 @@
 	// how full the facility is, from 0 abnormalities out of 24 cells being 0% and 24/24 cells being 100%
 
 
-	if(SSmaptype.chosen_trait == FACILITY_TRAIT_ABNO_BLITZ)	//Need more stats during abno blitz.
-		set_attribute *= 4
-		set_attribute += GetFacilityUpgradeValue(UPGRADE_AGENT_STATS)
-
-
 	else		//Only check percentage if it's NOT blitz mode
 		switch(facility_full_percentage)
 			if(15 to 29) // Shouldn't be anything more than TETHs (4 Abnormalities)

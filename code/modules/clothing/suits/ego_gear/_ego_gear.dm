@@ -28,8 +28,6 @@
 		var/obj/effect/proc_holder/ability/neck_ability/NA = new(null, neck)
 		var/datum/action/spell_action/ability/item/N = NA.action
 		N.SetItem(src)
-	if(SSmaptype.chosen_trait == FACILITY_TRAIT_CALLBACK)
-		w_class = WEIGHT_CLASS_NORMAL			//Callback to when we had stupid 10 Egos in bag
 
 /obj/item/clothing/suit/armor/ego_gear/mob_can_equip(mob/living/M, mob/living/equipper, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
 	if(!ishuman(M))
