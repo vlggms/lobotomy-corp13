@@ -47,16 +47,10 @@
 /turf/open/floor/wood,
 /area/facility_hallway/manager)
 "bB" = (
-/obj/structure/filingcabinet/wawinfo{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet/alephinfo,
-/obj/structure/filingcabinet/toolinfo{
-	pixel_x = 10
-	},
 /obj/effect/turf_decal/siding/brown{
 	dir = 5
 	},
+/obj/effect/mapping_helpers/records_spawner/second,
 /turf/open/floor/carpet/orange,
 /area/facility_hallway/manager)
 "bG" = (
@@ -187,17 +181,11 @@
 /turf/open/floor/facility/dark,
 /area/department_main/manager)
 "dK" = (
-/obj/structure/filingcabinet/zayininfo{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet/tethinfo,
-/obj/structure/filingcabinet/heinfo{
-	pixel_x = 10
-	},
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
 	dir = 10
 	},
+/obj/effect/mapping_helpers/records_spawner,
 /turf/open/floor/carpet/royalblack,
 /area/facility_hallway/manager)
 "dL" = (
@@ -1125,16 +1113,10 @@
 /turf/open/floor/carpet/royalblack,
 /area/facility_hallway/manager)
 "qZ" = (
-/obj/structure/filingcabinet/zayininfo{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet/tethinfo,
-/obj/structure/filingcabinet/heinfo{
-	pixel_x = 10
-	},
 /obj/effect/turf_decal/siding/brown{
 	dir = 6
 	},
+/obj/effect/mapping_helpers/records_spawner,
 /turf/open/floor/carpet/orange,
 /area/facility_hallway/manager)
 "rg" = (
@@ -1919,13 +1901,7 @@
 /turf/open/floor/facility/dark,
 /area/department_main/manager)
 "AZ" = (
-/obj/structure/filingcabinet/wawinfo{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet/alephinfo,
-/obj/structure/filingcabinet/toolinfo{
-	pixel_x = 10
-	},
+/obj/effect/mapping_helpers/records_spawner/second,
 /turf/open/floor/facility/dark,
 /area/department_main/manager)
 "Bi" = (
@@ -2180,17 +2156,11 @@
 /turf/open/floor/wood,
 /area/department_main/manager)
 "FL" = (
-/obj/structure/filingcabinet/wawinfo{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet/alephinfo,
-/obj/structure/filingcabinet/toolinfo{
-	pixel_x = 10
-	},
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
 	dir = 6
 	},
+/obj/effect/mapping_helpers/records_spawner/second,
 /turf/open/floor/carpet/royalblack,
 /area/facility_hallway/manager)
 "FY" = (
@@ -2274,13 +2244,7 @@
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/manager)
 "GO" = (
-/obj/structure/filingcabinet/zayininfo{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet/tethinfo,
-/obj/structure/filingcabinet/heinfo{
-	pixel_x = 10
-	},
+/obj/effect/mapping_helpers/records_spawner,
 /turf/open/floor/facility/dark,
 /area/department_main/manager)
 "Hj" = (
@@ -2416,16 +2380,10 @@
 /turf/open/floor/carpet/green,
 /area/facility_hallway/manager)
 "IK" = (
-/obj/structure/filingcabinet/wawinfo{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet/alephinfo,
-/obj/structure/filingcabinet/toolinfo{
-	pixel_x = 10
-	},
 /obj/effect/turf_decal/siding/green{
 	dir = 5
 	},
+/obj/effect/mapping_helpers/records_spawner/second,
 /turf/open/floor/carpet/green,
 /area/facility_hallway/manager)
 "IM" = (
@@ -3431,13 +3389,7 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/facility_hallway/manager)
 "ZI" = (
-/obj/structure/filingcabinet/zayininfo{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet/tethinfo,
-/obj/structure/filingcabinet/heinfo{
-	pixel_x = 10
-	},
+/obj/effect/mapping_helpers/records_spawner,
 /turf/open/floor/carpet/green,
 /area/facility_hallway/manager)
 "ZU" = (

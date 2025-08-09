@@ -262,6 +262,9 @@ SUBSYSTEM_DEF(ticker)
 			else
 				mode = new /datum/game_mode/management/classic
 
+		for(var/obj/structure/filingcabinet/smart/cabinet in GLOB.records_cabinets)
+			cabinet.spawn_records()
+
 		if(SSevents.holidays && SSevents.holidays[APRIL_FOOLS]) //runs in April 1st
 			mode = new /datum/game_mode/management/joke
 
