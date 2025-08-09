@@ -4,6 +4,9 @@
 //This has been deshittified. Thank you for your service.
 //-Kitsunemitsu
 
+//This sucks ass
+//-Crabby
+
 SUBSYSTEM_DEF(maptype)
 	name = "Map Type"
 	flags = SS_NO_FIRE
@@ -70,7 +73,7 @@ SUBSYSTEM_DEF(maptype)
 /datum/controller/subsystem/maptype/Initialize()
 	..()
 	if(SSmaptype.maptype in SSmaptype.lc_maps)
-		if(prob(40))	//40% chance to not run a station trait
+		if(prob(100))	//100% chance to not run a station trait
 			return
 		chosen_trait = pickweight(lc_trait)
 		switch(chosen_trait)
