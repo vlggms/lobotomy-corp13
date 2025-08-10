@@ -5,8 +5,8 @@
 	icon = 'ModularTegustation/Teguicons/96x64.dmi'
 	icon_state = "sisters"
 	portrait = "drowned_sisters"
-	maxHealth = 400
-	health = 400
+	maxHealth = 80
+	health = 80
 	threat_level = TETH_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 50,
@@ -15,7 +15,7 @@
 		ABNORMALITY_WORK_REPRESSION = 20,
 	)
 	start_qliphoth = 3
-	work_damage_amount = 5		//Calculated later
+	work_damage_amount = 3 //Calculated later
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gloom
 	pixel_x = -32
@@ -40,11 +40,12 @@
 	var/breaching = FALSE
 
 //Work Mechanics
-/mob/living/simple_animal/hostile/abnormality/drownedsisters/AttemptWork(mob/living/carbon/human/user, work_type)	//Deals scaling work damage based off your stats.
+//Deals scaling work damage based off your stats.
+/mob/living/simple_animal/hostile/abnormality/drownedsisters/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(breaching)
 		return FALSE
-	work_damage_amount = (get_attribute_level(user, PRUDENCE_ATTRIBUTE) -60) * -0.5
-	work_damage_amount = max(5, work_damage_amount)	//So you don't get healing
+	work_damage_amount = (get_attribute_level(user, PRUDENCE_ATTRIBUTE) -60) * -0.2
+	work_damage_amount = max(3, work_damage_amount)	//So you don't get healing
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/drownedsisters/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
@@ -69,7 +70,7 @@
 		return
 	to_chat(user, span_userdanger("You are attacked by an invisible assailant!"))
 	playsound(get_turf(src), 'sound/abnormalities/jangsan/tigerbite.ogg', 75, 0)
-	user.deal_damage(200, RED_DAMAGE, null)
+	user.deal_damage(50, RED_DAMAGE, null)
 	if(user.health < 0 || user.stat == DEAD)
 		user.gib()
 	return

@@ -8,8 +8,8 @@
 	portrait = "red_blooded_american"
 	var/icon_furious = "american_idle_injured"
 	del_on_death = TRUE
-	maxHealth = 825
-	health = 825
+	maxHealth = 160
+	health = 160
 	rapid_melee = 1
 	melee_queue_distance = 2
 	move_to_delay = 4
@@ -23,8 +23,8 @@
 	casingtype = /obj/item/ammo_casing/caseless/true_patriot
 	projectilesound = 'sound/weapons/gun/shotgun/shot.ogg'
 	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
-	melee_damage_lower = 10
-	melee_damage_upper = 15
+	melee_damage_lower = 4
+	melee_damage_upper = 6
 	faction = list("hostile")
 	speak_emote = list("snarls")
 	can_breach = TRUE
@@ -37,7 +37,7 @@
 		ABNORMALITY_WORK_REPRESSION = list(60, 60, 60, 55, 55),
 	)
 	max_boxes = 14
-	work_damage_amount = 6
+	work_damage_amount = 3
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/red_blooded
 	harvest_phrase = span_notice("You take a blood sample from %ABNO. The blood fizzles inside the %VESSEL.")
@@ -102,7 +102,7 @@
 		You passively reload 1 ammo every 2 seconds, but you can also reload 1 ammo by hitting humans or mechs.</b>")
 
 /mob/living/simple_animal/hostile/abnormality/redblooded/AttemptWork(mob/living/carbon/human/user, work_type)
-	work_damage_amount = 6 + bloodlust
+	work_damage_amount = 3 + bloodlust
 	if(work_type == ABNORMALITY_WORK_REPRESSION)
 		say(pick(fighting_quotes))
 		bloodlust +=2
@@ -193,7 +193,7 @@
 	desc = "100% real, surplus military ammo."
 	damage_type = RED_DAMAGE
 
-	damage = 8
+	damage = 2
 
 /obj/item/ammo_casing/caseless/rcorp_true_patriot
 	name = "true patriot casing"
@@ -207,7 +207,7 @@
 	desc = "100% real, surplus military ammo."
 	damage_type = RED_DAMAGE
 
-	damage = 18
+	damage = 4
 
 /datum/reagent/abnormality/red_blooded
 	name = "Boiling Red Blood"
