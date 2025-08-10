@@ -9,7 +9,7 @@
 	icon_state = "match"
 	inhand_icon_state = "match"
 	special = "This weapon does AOE damage."
-	force = 23
+	force = 8
 	attack_speed = 1.8
 	projectile_path = /obj/projectile/ego_bullet/ego_match
 	weapon_weight = WEAPON_HEAVY
@@ -24,7 +24,7 @@
 	the weapon has high firepower despite its small size."
 	icon_state = "beak"
 	inhand_icon_state = "beak"
-	force = 14
+	force = 5
 	projectile_path = /obj/projectile/ego_bullet/ego_beak
 	weapon_weight = WEAPON_MEDIUM
 	spread = 10
@@ -38,7 +38,7 @@
 	desc = "A heavy revolver that fires at a surprisingly fast rate, and is deadly accurate."
 	icon_state = "beakmagnum"
 	inhand_icon_state = "beakmagnum"
-	force = 8
+	force = 5
 	special = "This weapon has pinpoint accuracy when dual wielded."
 	projectile_path = /obj/projectile/ego_bullet/ego_beakmagnum
 	fire_delay = 10
@@ -54,7 +54,7 @@
 	desc = "The noises take you back to the very moment of the day that everyone had forgotten."
 	icon_state = "noise"
 	inhand_icon_state = "noise"
-	force = 14
+	force = 5
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_noise
 	weapon_weight = WEAPON_HEAVY
@@ -70,7 +70,7 @@
 	desc = "A classic blue revolver, that gives you feelings of loneliness."
 	icon_state = "solitude"
 	inhand_icon_state = "solitude"
-	force = 8
+	force = 5
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_solitude
 	fire_delay = 10
@@ -86,7 +86,7 @@
 	When throbbing emotions surge up from time to time, it's best to simply cover the face."
 	icon_state = "shy"
 	inhand_icon_state = "shy"
-	force = 8
+	force = 5
 	damtype = BLACK_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_shy
 	fire_sound = 'sound/effects/meatslap.ogg'
@@ -100,7 +100,7 @@
 	desc = "And when the crying stops, dawn will break."
 	icon_state = "dream"
 	inhand_icon_state = "dream"
-	force = 14
+	force = 5
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_dream
 	weapon_weight = WEAPON_HEAVY
@@ -112,7 +112,7 @@
 	desc = "The pain of creation! The pain! The pain!"
 	icon_state = "page"
 	inhand_icon_state = "page"
-	force = 14
+	force = 5
 	damtype = BLACK_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_page
 	weapon_weight = WEAPON_HEAVY
@@ -127,7 +127,7 @@
 	icon_state = "snapshot"
 	inhand_icon_state = "snapshot"
 	special = "This weapon fires a hitscan beam."
-	force = 14
+	force = 5
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/beam/snapshot
 	weapon_weight = WEAPON_HEAVY
@@ -140,7 +140,7 @@
 	icon_state = "wishing_cairn"
 	inhand_icon_state = "wishing_cairn"
 	special = "This weapon has a combo system with a short range."
-	force = 14
+	force = 5
 	damtype = BLACK_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_wishing
 	weapon_weight = WEAPON_HEAVY
@@ -164,7 +164,7 @@
 	icon_state = "aspiration"
 	inhand_icon_state = "aspiration"
 	special = "This weapon fires a hitscan beam at the cost of health. \n Upon hitting an ally, this weapon heals the target,"
-	force = 14
+	force = 5
 	projectile_path = /obj/projectile/ego_bullet/ego_aspiration
 	weapon_weight = WEAPON_HEAVY
 	autofire = 0.5 SECONDS
@@ -185,7 +185,7 @@
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	force = 18
+	force = 5
 	attack_speed = 1.3
 	projectile_path = /obj/projectile/ego_bullet/ego_patriot
 	pellets = 4
@@ -275,7 +275,7 @@
 	icon_state = "adjustment"
 	inhand_icon_state = "adjustment"
 	special = "This gun deals more damage to panicking targets."
-	force = 18
+	force = 5
 	attack_speed = 1.3
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_adjustment
