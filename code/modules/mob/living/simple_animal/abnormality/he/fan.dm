@@ -6,8 +6,8 @@
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "fan"
 	portrait = "fan"
-	maxHealth = 400
-	health = 400
+	maxHealth = 100
+	health = 100
 	speak_emote = list("states")
 	speech_span = SPAN_ROBOT
 	threat_level = HE_LEVEL
@@ -182,9 +182,9 @@
 	. = ..()
 	if(!stacks_added)
 		return
-	if(stacks <= 10)
+	if(stacks < 10)
 		return
-	owner.deal_damage((stacks / 8), FIRE)
+	owner.deal_damage((stacks / 10), FIRE)
 	owner.playsound_local(owner, 'sound/effects/burn.ogg', 25, TRUE)
 
 /datum/status_effect/stacking/fanhot/on_remove()

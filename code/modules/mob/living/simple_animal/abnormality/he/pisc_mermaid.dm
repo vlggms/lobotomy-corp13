@@ -13,14 +13,14 @@
 	death_sound = 'sound/abnormalities/piscinemermaid/waterjump.ogg'
 	attack_sound = 'sound/abnormalities/piscinemermaid/splashattack.ogg'
 	del_on_death = FALSE
-	maxHealth = 1500
-	health = 1500
+	maxHealth = 300
+	health = 300
 	pixel_x = -12
 	base_pixel_x = -12
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2) //not that bad without a lover
 	rapid_melee = 2
-	melee_damage_lower = 15
-	melee_damage_upper = 20 //really subpar damage and speed but most of her damage is oxyloss anyway
+	melee_damage_lower = 3
+	melee_damage_upper = 4 //really subpar damage and speed but most of her damage is oxyloss anyway
 	stat_attack = HARD_CRIT
 	can_breach = TRUE
 	threat_level = HE_LEVEL
@@ -32,7 +32,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(40, 45, 55, 55, 55),
 		ABNORMALITY_WORK_REPRESSION = list(40, 50, 60, 60, 60),
 	)
-	work_damage_amount = 10
+	work_damage_amount = 5
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/lust
 	melee_damage_type = BLACK_DAMAGE
@@ -191,7 +191,7 @@
 				if(faction_check(src.faction, H.faction)) // I LOVE NESTING IF STATEMENTS
 					continue
 			//if there's no love target, they suffocate everyone they can see but you can just get out of her view to stop it
-			H.adjustOxyLoss(3, updating_health=TRUE, forced=TRUE)
+			H.adjustOxyLoss(2, updating_health=TRUE, forced=TRUE)
 			new /obj/effect/temp_visual/mermaid_drowning(get_turf(H))
 		return
 
@@ -201,7 +201,7 @@
 		love_target = null
 		return
 	//Not having a cooldown on the oxyloss sounds bad, but people's breathing is dictated by Life(), so it's actually the perfect pace of oxyloss
-	love_target.adjustOxyLoss(2.5, updating_health=TRUE, forced=TRUE)
+	love_target.adjustOxyLoss(1.5, updating_health=TRUE, forced=TRUE)
 	new /obj/effect/temp_visual/mermaid_drowning(get_turf(love_target))
 
 /mob/living/simple_animal/hostile/abnormality/pisc_mermaid/attackby(obj/item/W, mob/user, params)

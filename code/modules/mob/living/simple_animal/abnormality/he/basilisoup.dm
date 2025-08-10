@@ -8,16 +8,16 @@
 	portrait = "basilisoup"
 	pixel_x = -32
 	base_pixel_x = -32
-	maxHealth = 1600 // Quite high HP
-	health = 1600
+	maxHealth = 300 // Quite high HP
+	health = 300
 	move_to_delay = 4 //High range, and thus slow
 	rapid_melee = 1
 	melee_reach = 2 // Long neck = long range
 	ranged = TRUE
 	threat_level = HE_LEVEL
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.5, FIRE = 0.6)
-	melee_damage_lower = 22
-	melee_damage_upper = 30
+	melee_damage_lower = 7
+	melee_damage_upper = 8
 	melee_damage_type = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
 	attack_sound = 'sound/abnormalities/mountain/bite.ogg'
@@ -32,7 +32,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 30,
 		ABNORMALITY_WORK_REPRESSION = 10,
 	)
-	work_damage_amount = 10
+	work_damage_amount = 5
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/lust
 
@@ -62,7 +62,7 @@
 	var/dash_cooldown = 0
 	var/dash_cooldown_time = 8 SECONDS
 	/// Damage dealt with a charge hit, this is intentionally a bit on the low side
-	var/charge_damage = 50
+	var/charge_damage = 10
 	/// Those hit by the charge won't be hit again by the same charge
 	var/list/been_hit = list()
 	/// The soup connected to us

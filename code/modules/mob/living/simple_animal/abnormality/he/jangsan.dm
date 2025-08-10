@@ -13,8 +13,8 @@
 	pixel_x = -16
 	base_pixel_x = -16
 	ranged = TRUE
-	maxHealth = 1200
-	health = 1200
+	maxHealth = 300
+	health = 300
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2)
 	see_in_dark = 10
 	stat_attack = HARD_CRIT
@@ -28,15 +28,15 @@
 		ABNORMALITY_WORK_ATTACHMENT = 60,
 		ABNORMALITY_WORK_REPRESSION = 60,
 	)
-	work_damage_amount = 10
+	work_damage_amount = 5
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gluttony
 
 //Only done to non-humans, objects, and strong(er) agents
 	attack_sound = 'sound/abnormalities/jangsan/tigerbite.ogg'
 	melee_damage_type = RED_DAMAGE
-	melee_damage_lower = 40
-	melee_damage_upper = 60
+	melee_damage_lower = 8
+	melee_damage_upper = 12
 
 	ego_list = list(
 		/datum/ego_datum/weapon/maneater,
@@ -55,7 +55,7 @@
 			Flowers are my friends and I shall pluck them all."),
 	)
 
-	var/bullet_threshold = 40
+	var/bullet_threshold = 10
 //breach related
 	var/teleport_cooldown
 	var/teleport_cooldown_time = 120 SECONDS

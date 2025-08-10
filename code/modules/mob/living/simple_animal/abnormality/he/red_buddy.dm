@@ -9,8 +9,8 @@
 	del_on_death = FALSE
 	pixel_x = -8
 	base_pixel_x = -8
-	maxHealth = 2200 //Tanky but hurts itself every now and then to make up for it
-	health = 2200
+	maxHealth = 400 //Tanky but hurts itself every now and then to make up for it
+	health = 400
 	move_to_delay = 5
 	stop_automated_movement_when_pulled = TRUE
 	rapid_melee = 1
@@ -24,8 +24,8 @@
 		ABNORMALITY_WORK_REPRESSION = list(20, 55, 60, 60, 60),
 	)
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.5)
-	melee_damage_lower = 35
-	melee_damage_upper = 70 //has a wide range, he can critically hit you
+	melee_damage_lower = 8
+	melee_damage_upper = 12 //has a wide range, he can critically hit you
 	melee_damage_type = RED_DAMAGE
 	stat_attack = HARD_CRIT
 	work_damage_amount = 0 //his work damage now is entirely related to suffering
@@ -170,7 +170,7 @@
 		return
 
 	if(can_see(src, master_abno, 10) && !awakened)
-		maxHealth = maxHealth * 3 //6600 HP, a LOT but gets hurt by shepherd's slash a metric ton to counter act it
+		maxHealth *= 3 //6600 HP, a LOT but gets hurt by shepherd's slash a metric ton to counter act it
 		set_health(health * 3)
 		awakened = TRUE
 		awakened_master = master_abno
@@ -185,8 +185,8 @@
 		update_health_hud()
 		awoo_cooldown_time = 15 SECONDS //awoo now only triggers when buddy takes 10% of their health instead of every X seconds but still has a min cooldown
 		awoo_cooldown = 0 //resets the awoo cooldown too
-		melee_damage_lower = 60
-		melee_damage_upper = 80
+		melee_damage_lower *= 2
+		melee_damage_upper *= 2
 		ChangeMoveToDelayBy(-1) //this doesn't matter as much as you'd think because he can't move before shepherd
 		vision_range = 3
 		aggro_vision_range = 3 //red buddy should only move for things it can actually reach, in this case somewhat within shepherd's reach
@@ -225,7 +225,7 @@
 		if(L.stat == DEAD)
 			continue
 		if(L == awakened_master)
-			awakened_master.adjustHealth(150) //800 damage in total, takes approximatively 8 howls to take shepherd down
+			awakened_master.adjustHealth(35) // Takes approximatively 8 howls to take shepherd down
 		L.deal_damage(10, WHITE_DAMAGE)
 		heard_awoo = TRUE
 	if(health >= 75 && heard_awoo && !abused)
@@ -252,11 +252,11 @@
 
 /mob/living/simple_animal/hostile/abnormality/red_buddy/death(gibbed)
 	if(awakened_master)
-		awakened_master.melee_damage_lower = 10
-		awakened_master.melee_damage_upper = 15
-		awakened_master.slash_damage = 20
+		awakened_master.melee_damage_lower = initial(awakened_master.melee_damage_lower)
+		awakened_master.melee_damage_upper = initial(awakened_master.melee_damage_upper)
+		awakened_master.slash_damage = initial(awakened_master.slash_damage)
 		awakened_master.ChangeMoveToDelayBy(-0.8) //we severely nerf shepherd's damage but make him way faster on buddy's death, it's last one tango.
-		awakened_master.say("A wolf. A wolf. Why won't you believe me? it's right there. IT WAS RIGHT THERE!")
+		awakened_master.say("A wolf. A wolf. Why won't you believe me? It's right there. IT WAS RIGHT THERE!")
 	awakened_master = null
 	density = FALSE
 	animate(src, alpha = 0, time = 10 SECONDS)

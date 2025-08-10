@@ -9,12 +9,12 @@
 	portrait = "norinori"
 	speak_emote = list("meows")
 	ranged = TRUE
-	maxHealth = 1200
-	health = 1200
+	maxHealth = 200
+	health = 200
 	attack_sound = 'sound/weapons/slashmiss.ogg'
 	melee_damage_type = RED_DAMAGE
-	melee_damage_lower = 20
-	melee_damage_upper = 25
+	melee_damage_lower = 4
+	melee_damage_upper = 5
 	rapid_melee = 1 //we change this later
 	melee_reach = 1
 	ranged = TRUE
@@ -31,7 +31,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = -80,
 		ABNORMALITY_WORK_REPRESSION = 35,
 	)
-	work_damage_amount = 10
+	work_damage_amount = 5
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gluttony
 
@@ -169,7 +169,7 @@
 		icon_state = IsContained() ? initial(icon_state) : icon_aggro
 		return
 	user.visible_message(span_warning("[src] mutilates [user]!"), span_userdanger("[src] mutilates you!"))
-	user.deal_damage(3000, RED_DAMAGE)
+	user.deal_damage(1000, RED_DAMAGE)
 	playsound(user, 'sound/abnormalities/helper/attack.ogg', 100, FALSE, 4)
 	attack_sound = initial(attack_sound)
 	if(user.stat == DEAD)
@@ -208,7 +208,7 @@
 	attack_sound = 'sound/abnormalities/helper/attack.ogg'
 	ChangeResistances(list(RED_DAMAGE = 0.1, WHITE_DAMAGE = 1.1, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 1.6))
 	can_act = TRUE
-	rapid_melee = 3
+	rapid_melee = 4
 	melee_reach = 3
 	icon_state = "norinori_transformed"
 

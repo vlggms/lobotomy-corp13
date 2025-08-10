@@ -5,8 +5,8 @@
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "porrcubus_inert"
 	portrait = "porccubus"
-	maxHealth = 1500
-	health = 1500
+	maxHealth = 300
+	health = 300
 	pixel_x = -10
 	base_pixel_x = -10
 	threat_level = HE_LEVEL
@@ -20,11 +20,11 @@
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.5)
 	ranged = TRUE
 	ranged_cooldown_time = 15 SECONDS //will dash at people if they get out of range but not too often
-	melee_damage_lower = 15
-	melee_damage_upper = 20
+	melee_damage_lower = 3
+	melee_damage_upper = 4
 	rapid_melee = 3 //you can withdraw out of its range very easily so it needs to be a little harder to melee it
 	melee_reach = 2
-	work_damage_amount = 12
+	work_damage_amount = 5
 	can_patrol = FALSE //it can't move anyway but why not
 	stat_attack = HARD_CRIT
 	work_damage_type = BLACK_DAMAGE
@@ -143,7 +143,7 @@
 	PA.withdrawal_cooldown_time = 1 SECONDS
 	PA.withdrawal_cooldown_time = 1 SECONDS
 	if(nirvana)
-		PA.sanity_gain = 60 //this basically instantly snaps them out of insanity and they get to play god for like 2 minute
+		PA.sanity_gain = 20 //this basically instantly snaps them out of insanity and they get to play god for like 2 minute
 
 //Breach Code
 //Porccubus can't actually move so it's more of a "bring your friend to beat it to death it isn't going anywhere" type of thing.
@@ -299,8 +299,8 @@
 	alert_type = /atom/movable/screen/alert/status_effect/porccubus_addiction
 	var/withdrawal_cooldown
 	var/withdrawal_cooldown_time = 60 SECONDS
-	var/tolerance_sanity_gain = 60
-	var/sanity_gain = 60
+	var/tolerance_sanity_gain = 40
+	var/sanity_gain = 40
 	var/attribute_gain = 30
 	var/previous_addict = FALSE
 	var/mob/living/carbon/human/addict
