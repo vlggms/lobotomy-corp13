@@ -6,12 +6,12 @@
 	icon_living = "fairy"
 	portrait = "fairy_festival"
 	core_icon = "fairy"
-	maxHealth = 800
-	health = 800
+	maxHealth = 200
+	health = 200
 	move_to_delay = 5
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1.3, PALE_DAMAGE = 2)
-	melee_damage_lower = 8
-	melee_damage_upper = 15
+	melee_damage_lower = 2
+	melee_damage_upper = 4
 	stat_attack = DEAD
 	attack_sound = 'sound/abnormalities/fairyfestival/fairyqueen_hit.ogg'
 	is_flying_animal = TRUE
@@ -22,7 +22,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(70, 60, 50, 50, 50),
 		ABNORMALITY_WORK_REPRESSION = list(50, 40, 30, 30, 30),
 	)
-	work_damage_amount = 6
+	work_damage_amount = 2
 	work_damage_type = RED_DAMAGE
 	max_boxes = 10
 

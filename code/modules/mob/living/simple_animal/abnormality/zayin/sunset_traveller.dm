@@ -4,8 +4,8 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "sunset"
 	portrait = "sunset_traveller"
-	maxHealth = 400
-	health = 400
+	maxHealth = 80
+	health = 80
 	threat_level = ZAYIN_LEVEL
 
 	work_chances = list(
@@ -15,7 +15,7 @@
 		ABNORMALITY_WORK_REPRESSION = 50,
 	)
 	max_boxes = 8
-	work_damage_amount = 5
+	work_damage_amount = 2
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/lust
 	light_color = COLOR_ORANGE
