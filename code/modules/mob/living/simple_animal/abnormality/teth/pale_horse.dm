@@ -25,7 +25,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 55,
 		ABNORMALITY_WORK_REPRESSION = list(70, 65, 60, 50, 50),
 	)
-	work_damage_amount = 3
+	work_damage_amount = 6
 	work_damage_type = PALE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gloom
 
@@ -56,7 +56,7 @@
 	//attack
 	var/mob/living/set_target
 	var/pulse_range = 11 //fairly large area - enough to breach several abnormalities
-	var/fog_damage = 2
+	var/fog_damage = 4
 	var/ash_damage = 20
 
 //work stuff
