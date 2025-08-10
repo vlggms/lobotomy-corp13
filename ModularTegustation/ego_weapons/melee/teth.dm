@@ -12,7 +12,7 @@
 	desc = "The spear often tries to lead the wielder into a long and endless realm of mind, \
 	but they must try to not be swayed by it."
 	icon_state = "fragment"
-	force = 10
+	force = 12
 	reach = 2		//Has 2 Square Reach.
 	stuntime = 5	//Longer reach, gives you a short stun.
 	attack_speed = 1.2
@@ -26,7 +26,7 @@
 	name = "horn"
 	desc = "As the horn digs deep into the enemy's heart, it will turn blood red to show off the glamor that she couldn't in her life."
 	icon_state = "horn"
-	force = 8
+	force = 10
 	throwforce = 15		//You can only hold two so go nuts.
 	throw_speed = 5
 	throw_range = 7
@@ -39,7 +39,7 @@
 	name = "dear lutemia"
 	desc = "Don't you want your cares to go away?"
 	icon_state = "lutemia"
-	force = 8
+	force = 10
 	attack_speed = 1
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
@@ -61,7 +61,7 @@
 	name = "red eyes"
 	desc = "It is likely able to hear, touch, smell, as well as see. And most importantly, taste."
 	icon_state = "eyes"
-	force = 10 //Still less DPS, replaces baseball bat
+	force = 16 //Still less DPS, replaces baseball bat
 	attack_speed = 1.6
 	damtype = RED_DAMAGE
 	knockback = KNOCKBACK_LIGHT
@@ -74,7 +74,7 @@
 	desc = "The flesh cleanly cut by a sharp tool creates a grotesque pattern with the bloodstains on the suit."
 	special = "Use this weapon in hand to dodgeroll."
 	icon_state = "wrist"
-	force = 8
+	force = 5
 	attack_speed = 0.5
 	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = WHITE_DAMAGE
@@ -97,7 +97,7 @@
 	name = "regret"
 	desc = "Before swinging this weapon, expressing one’s condolences for the demise of the inmate who couldn't even have a funeral would be nice."
 	icon_state = "regret"
-	force = 12				//Lots of damage, way less DPS
+	force = 20				//Lots of damage, way less DPS
 	damtype = RED_DAMAGE
 	attack_speed = 2 // Really Slow. This is the slowest teth we have, +0.4 to Eyes 1.6
 	attack_verb_continuous = list("smashes", "bludgeons", "crushes")
@@ -111,7 +111,7 @@
 	desc = "The flesh cleanly cut by a sharp tool creates a grotesque pattern with the bloodstains on the suit."
 	special = "Upon throwing, this weapon returns to the user."
 	icon_state = "blossoms"
-	force = 6
+	force = 8
 	throwforce = 10
 	throw_speed = 1
 	throw_range = 7
@@ -132,7 +132,7 @@
 	desc = "One may think, 'How can a weapon drawn from such a cute Abnormality be any good?' \
 		However, the claws are actually quite durable and sharp."
 	icon_state = "cute"
-	force = 6
+	force = 5
 	attack_speed = 0.5
 	damtype = RED_DAMAGE
 	swingstyle = WEAPONSWING_LARGESWEEP
@@ -157,7 +157,7 @@
 	desc = "It all returns to nothing."
 	special = "Use this weapon in hand to take damage and teleport to a random department."
 	icon_state = "sorrow"
-	force = 10					//Bad DPS, can teleport
+	force = 12					//Bad DPS, can teleport
 	attack_speed = 1.5
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("cleaves", "cuts")
@@ -184,7 +184,7 @@
 	desc = "Look to your sisters, and fight in sorority."
 	special = "Use this weapon in hand to deal a small portion of damage to people around you and heal their sanity slightly."
 	icon_state = "sorority"
-	force = 6					//Also a support weapon
+	force = 8					//Also a support weapon
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("zaps", "prods")
 	attack_verb_simple = list("zap", "prod")
@@ -202,7 +202,7 @@
 	name = "magic bean"
 	desc = "We may never find out what lies at the top, but perhaps those who made it are doing well up there."
 	icon_state = "bean"
-	force = 6
+	force = 8
 	damtype = BLACK_DAMAGE
 	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_verb_continuous = list("slices", "slashes", "stabs")
@@ -220,7 +220,7 @@
 	inhand_y_dimension = 64
 	var/icon_on = "hearth_glow"
 	var/icon_off = "hearth"
-	force = 6
+	force = 12
 	attack_speed = 1.2
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("swipes", "slashes")
@@ -231,7 +231,7 @@
 							)
 	var/ranged_cooldown
 	var/ranged_cooldown_time = 1.3 SECONDS
-	var/ranged_damage = 20
+	var/ranged_damage = 10
 
 	//light_system = MOVABLE_LIGHT_DIRECTIONAL
 	//light_color = COLOR_ORANGE
@@ -280,7 +280,7 @@
 	special = "Attack nearby turfs to create traps. Remote mode can trigger traps from a distance. \
 	Automatic mode places traps that trigger when enemies walk over them. Use in hand to switch between modes."
 	icon_state = "lantern"
-	force = 12
+	force = 15
 	attack_speed = 1.5
 	damtype = BLACK_DAMAGE
 	hitsound = 'sound/weapons/fixer/generic/gen1.ogg'
@@ -330,7 +330,7 @@
 	icon_state = "mini_lantern" //temp visual
 	layer = ABOVE_ALL_MOB_LAYER
 	duration = 60 SECONDS
-	var/resonance_damage = 30
+	var/resonance_damage = 15
 	var/damage_multiplier = 1
 	var/mob/creator
 	var/obj/item/ego_weapon/lantern/res
@@ -396,7 +396,7 @@
 	name = "sloshing"
 	desc = "It hits just right! Let's help ourselves to some wine when we come back!"
 	icon_state = "sloshing"
-	force = 12
+	force = 20
 	attack_speed = 2
 	damtype = WHITE_DAMAGE
 	hitsound = 'sound/abnormalities/fairygentleman/ego_sloshing.ogg'
@@ -434,7 +434,7 @@
 	icon_state = "capote"
 	worn_icon = 'icons/obj/clothing/belt_overlays.dmi'
 	worn_icon_state = "capote"
-	force = 8
+	force = 10
 	attack_speed = 1
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
@@ -532,7 +532,7 @@
 	name = "sanitizer"
 	desc = "It's very shocking."
 	icon_state = "sanitizer"
-	force = 12
+	force = 16
 	attack_speed = 1.6
 	damtype = BLACK_DAMAGE
 	knockback = KNOCKBACK_LIGHT
@@ -548,7 +548,7 @@
 	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
 	inhand_x_dimension = 96
 	inhand_y_dimension = 96
-	force = 8
+	force = 18
 	reach = 2		//Has 2 Square Reach.
 	stuntime = 6	//Longer reach, gives you a short stun.
 	attack_speed = 1.8// really slow
@@ -564,7 +564,7 @@
 	lefthand_file = 'icons/mob/inhands/96x96_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
 	damtype = WHITE_DAMAGE
-	force = 6
+	force = 16
 	inhand_x_dimension = 96
 	inhand_y_dimension = 96
 	attack_speed = 2
@@ -572,8 +572,8 @@
 	attack_verb_simple = list("stab", "impale")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
 	reach = 1
-	force_cap = 20
-	force_per_tile = 5
+	force_cap = 30
+	force_per_tile = 2
 	pierce_force_cost = 20
 	charge_speed_cap = 2
 	couch_cooldown_time = 3 SECONDS
@@ -582,7 +582,7 @@
 	name = "kiki mora"
 	desc = "Many would speak her name."
 	icon_state = "kikimora"
-	force = 12
+	force = 16
 	attack_speed = 1.6
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("beats", "smacks")
@@ -593,7 +593,7 @@
 	name = "denial"
 	desc = "Unregulated ingestion of Enkephalin may cause a wide range of unverified psychopathological symptoms."
 	icon_state = "denial"
-	force = 12
+	force = 15
 	damtype = RED_DAMAGE
 	attack_speed = 1.5
 	attack_verb_continuous = list("smashes", "bludgeons", "crushes")
@@ -616,7 +616,7 @@
 	desc = "Clay and flesh are both mediums for expression."
 	icon_state = "creativefreedom"
 	special = "This weapon slows after hit on windup."
-	force = 5
+	force = 8
 	damtype = PALE_DAMAGE
 	hitsound = 'sound/weapons/bladeslice.ogg'
 
@@ -635,7 +635,7 @@
 	name = "white gossypium"
 	desc = "Like a straw, this vine seeks to suck the blood out of your veins."
 	icon_state = "white_gossypium"
-	force = 8
+	force = 18
 	reach = 4 //has 4 square reach
 	attack_speed = 2.2 //a TETH whip should probably be slower than Eris
 	damtype = RED_DAMAGE
