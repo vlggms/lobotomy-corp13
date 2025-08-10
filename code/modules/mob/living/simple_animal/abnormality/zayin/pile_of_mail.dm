@@ -5,8 +5,8 @@
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "mailbox"
 	portrait = "pile_of_mail"
-	maxHealth = 600
-	health = 600
+	maxHealth = 150
+	health = 150
 	threat_level = ZAYIN_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 60,
@@ -15,7 +15,7 @@
 		ABNORMALITY_WORK_REPRESSION = 40,
 	)
 
-	work_damage_amount = 5
+	work_damage_amount = 2
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/pride
 
@@ -524,4 +524,4 @@
 	desc = "a shuriken made from paper."
 	icon_state = "shuriken_paper"
 	damage_type = RED_DAMAGE
-	damage = 10
+	damage = 2

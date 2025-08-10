@@ -5,7 +5,7 @@
 	color = "#FF0000"
 	toxpwr = 0
 	taste_description = "gasoline"
-	var/damage = 5
+	var/damage = 2
 	var/damtype = RED_DAMAGE
 
 /datum/reagent/toxin/lc13_toxin/on_mob_life(mob/living/carbon/M)
@@ -19,12 +19,12 @@
 
 /datum/reagent/toxin/lc13_toxin/weak
 	name = "Diluted Red Toxin"
-	damage = 2
+	damage = 1
 	toxpwr = 0.1
 
 /datum/reagent/toxin/lc13_toxin/strong
 	name = "Concentrated Red Toxin"
-	damage = 10
+	damage = 5
 	toxpwr = 0.5
 
 /datum/reagent/toxin/lc13_toxin/white
@@ -36,12 +36,12 @@
 
 /datum/reagent/toxin/lc13_toxin/white/weak
 	name = "Diluted White Toxin"
-	damage = 2
+	damage = 1
 	toxpwr = 0.1
 
 /datum/reagent/toxin/lc13_toxin/white/strong
 	name = "Concentrated White Toxin"
-	damage = 10
+	damage = 5
 	toxpwr = 0.5
 
 /datum/reagent/toxin/lc13_toxin/black
@@ -54,12 +54,12 @@
 
 /datum/reagent/toxin/lc13_toxin/black/weak
 	name = "Diluted Black Toxin"
-	damage = 2
+	damage = 1
 	toxpwr = 0.1
 
 /datum/reagent/toxin/lc13_toxin/black/strong
 	name = "Concentrated Black Toxin"
-	damage = 10
+	damage = 5
 	toxpwr = 0.5
 
 /datum/reagent/toxin/lc13_toxin/pale
@@ -69,12 +69,11 @@
 	color = "#3FCDBD"
 	taste_description = "bleach"
 	damtype = PALE_DAMAGE
-	damage = 1
 	toxpwr = 0.2
 
 /datum/reagent/toxin/lc13_toxin/pale/weak
 	name = "Diluted Pale Toxin"
-	damage = 0.5
+	damage = 1
 	toxpwr = 0.1
 
 /datum/reagent/toxin/lc13_toxin/pale/strong

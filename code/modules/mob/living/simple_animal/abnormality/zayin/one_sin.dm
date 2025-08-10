@@ -8,8 +8,8 @@
 	maxHealth = 777
 	health = 777
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
-	melee_damage_lower = 8
-	melee_damage_upper = 15
+	melee_damage_lower = 3
+	melee_damage_upper = 5
 	melee_damage_type = WHITE_DAMAGE
 	attack_sound = 'sound/abnormalities/onesin/onesin_attack.ogg'
 	attack_verb_continuous = "smites"
@@ -23,7 +23,7 @@
 		ABNORMALITY_WORK_REPRESSION = list(50, 40, 30, 30, 30),
 		"Confess" = 50,
 	)
-	work_damage_amount = 6
+	work_damage_amount = 2
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(

@@ -10,8 +10,8 @@
 	var/icon_active = "sleeping_active"
 	can_buckle = TRUE
 	buckle_lying = 90
-	maxHealth = 450
-	health = 450
+	maxHealth = 120
+	health = 120
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	del_on_death = FALSE
 	threat_level = ZAYIN_LEVEL
@@ -21,7 +21,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 50,
 		ABNORMALITY_WORK_REPRESSION = 70,
 	)
-	work_damage_amount = 6
+	work_damage_amount = 2
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/sloth
 

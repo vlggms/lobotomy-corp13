@@ -9,8 +9,8 @@
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
 	icon_state = "quiet_day"
 	core_icon = "quiet_day"
-	maxHealth = 451
-	health = 451
+	maxHealth = 75
+	health = 75
 	blood_volume = 0
 	threat_level = ZAYIN_LEVEL
 	faction = list("hostile", "neutral")
@@ -21,7 +21,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 60,
 		ABNORMALITY_WORK_REPRESSION = 60,
 	)
-	work_damage_amount = 5
+	work_damage_amount = 2
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gloom
 
