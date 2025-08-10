@@ -5,10 +5,10 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "reaper"
 	portrait = "missed_reaper"
-	maxHealth = 400
-	health = 400
-	melee_damage_lower = 35
-	melee_damage_upper = 45
+	maxHealth = 100
+	health = 100
+	melee_damage_lower = 7
+	melee_damage_upper = 9
 	melee_damage_type = PALE_DAMAGE
 	attack_verb_continuous = "pierces"
 	attack_verb_simple = "pierce"

@@ -4,8 +4,8 @@
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
 	icon_state = "fetus"
 	portrait = "nameless_fetus"
-	maxHealth = 400
-	health = 400
+	maxHealth = 100
+	health = 100
 	threat_level = HE_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(40, 50, 60, 60, 60),
@@ -18,7 +18,7 @@
 	base_pixel_x = -8
 
 	max_boxes = 16
-	work_damage_amount = 7
+	work_damage_amount = 5
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gluttony
 
@@ -51,7 +51,7 @@
 	check_players()
 	check_range()
 
-	//Are they nearby?
+//Are they nearby?
 /mob/living/simple_animal/hostile/abnormality/fetus/proc/check_range()
 	if(calling && Adjacent(calling))
 		calling.gib()
@@ -103,16 +103,16 @@
 
 	//Babies crying hurts your head
 	SLEEP_CHECK_DEATH(3)
-	for(var/mob/living/L in urange(10, src))
+	for(var/mob/living/L in urange(20, src))
 		if(faction_check_mob(L, FALSE))
 			continue
 		if(L.stat == DEAD)
 			continue
 		to_chat(L, span_warning("The crying hurts your head..."))
-		L.deal_damage(20, WHITE_DAMAGE)
-		L.playsound_local(get_turf(L), 'sound/abnormalities/fetus/crying.ogg', 50, FALSE)
+		L.deal_damage(10, WHITE_DAMAGE)
+		L.playsound_local(get_step(L, get_dir(L, src)), 'sound/abnormalities/fetus/crying.ogg', 50, FALSE)
 
-	addtimer(CALLBACK(src, PROC_REF(check_players)), 30 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(check_players)), 20 SECONDS)
 
 
 /* Work effects */

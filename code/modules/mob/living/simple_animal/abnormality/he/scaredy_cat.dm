@@ -7,8 +7,8 @@
 	icon_dead = "scaredy_dead"
 	portrait = "scaredy_cat"
 	del_on_death = FALSE
-	maxHealth = 800 //Lower health because he can revive indefinitely
-	health = 800
+	maxHealth = 150 //Lower health because he can revive indefinitely
+	health = 150
 	rapid_melee = 1
 	move_to_delay = 1.7
 	damage_coeff = list(RED_DAMAGE = 4, WHITE_DAMAGE = 4, BLACK_DAMAGE = 4, PALE_DAMAGE = 4)
@@ -30,7 +30,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(40, 50, 55, 55, 55),
 		ABNORMALITY_WORK_REPRESSION = list(20, 30, 40, 40, 40),
 	)
-	work_damage_amount = 7 //Shit damage because it's a small cat
+	work_damage_amount = 4 //Shit damage because it's a small cat
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gluttony
 	can_patrol = FALSE
@@ -199,8 +199,8 @@
 ///If scaredy cat becomes a big boy or a baby boy
 /mob/living/simple_animal/hostile/abnormality/scaredy_cat/proc/Courage(courage)
 	if(courage)
-		melee_damage_lower = 15
-		melee_damage_upper = 20
+		melee_damage_lower = 3
+		melee_damage_upper = 4
 		ChangeResistances(list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 2, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0.5))
 		icon = 'ModularTegustation/Teguicons/48x48.dmi'
 		icon_living = "cat_courage"

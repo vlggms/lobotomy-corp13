@@ -7,8 +7,8 @@
 	base_pixel_x = -16
 	icon_state = "siren"
 	portrait = "siren"
-	maxHealth = 1000
-	health = 1000
+	maxHealth = 200
+	health = 200
 	speak_emote = list("plays")
 	threat_level = HE_LEVEL
 	start_qliphoth = 5
@@ -19,7 +19,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 40,
 		ABNORMALITY_WORK_REPRESSION = 50,
 	)
-	work_damage_amount = 11
+	work_damage_amount = 5
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/sloth
 

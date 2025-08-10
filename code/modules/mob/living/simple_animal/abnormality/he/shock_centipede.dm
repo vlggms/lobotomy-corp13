@@ -6,16 +6,16 @@
 	icon_state = "shock_centipede"
 	icon_living = "shock_centipede"
 	portrait = "shock_centipede"
-	maxHealth = 1700
-	health = 1700
+	maxHealth = 320
+	health = 320
 	rapid_melee = 3
 	ranged = TRUE
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
 	attack_sound = 'sound/abnormalities/laetitia/spider_attack.ogg'
 	stat_attack = HARD_CRIT
-	melee_damage_lower = 3
-	melee_damage_upper = 4
+	melee_damage_lower = 1
+	melee_damage_upper = 2
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2)
 	speak_emote = list("screeches")
 	speech_span = SPAN_ROBOT
@@ -33,7 +33,7 @@
 						ABNORMALITY_WORK_ATTACHMENT = 10,
 						ABNORMALITY_WORK_REPRESSION = list(75, 75, 95, 95, 95)
 						)
-	work_damage_amount = 6
+	work_damage_amount = 5
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gloom
 
@@ -89,7 +89,7 @@
 	var/immortal = FALSE
 
 // Attack vars
-	var/coil_discharge_aoe_damage = 35
+	var/coil_discharge_aoe_damage = 7
 	var/coil_discharge_aoe_damagetype = BLACK_DAMAGE
 	var/coil_discharge_aoe_stun_duration = 50
 	var/coil_discharge_aoe_missed_charge_loss = 3
@@ -97,13 +97,13 @@
 	var/coil_shield_broken_selfstun_duration = 40
 
 	var/immortal_damagetype = BLACK_DAMAGE
-	var/immortal_melee_damage_upper = 6
-	var/immortal_melee_damage_lower = 5
+	var/immortal_melee_damage_upper = 3
+	var/immortal_melee_damage_lower = 2
 	var/immortal_countdown_duration = 30
 
 	var/tail_attack_cooldown = 0
 	var/tail_attack_cooldown_time = 80
-	var/tailattack_damage = 20
+	var/tailattack_damage = 4
 	var/tailattack_damagetype = BLACK_DAMAGE
 	var/tailattack_windup = 15
 	var/tailattack_charge_per_target = 3
@@ -115,13 +115,13 @@
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/AttemptWork(mob/living/carbon/human/user, work_type)
 	//Temp too high, random damage type time.
 	if(get_attribute_level(user, JUSTICE_ATTRIBUTE) <= 60)
-		work_damage_amount = 14
+		work_damage_amount = 7
 	if(datum_reference?.qliphoth_meter == 1)
 		work_damage_type = BLACK_DAMAGE
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
-	work_damage_amount = 6
+	work_damage_amount = 5
 	work_damage_type = RED_DAMAGE
 
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/proc/CheckQliphoth(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
