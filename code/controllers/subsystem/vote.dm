@@ -176,14 +176,10 @@ SUBSYSTEM_DEF(vote)
 		return FALSE
 	// If user has already voted, remove their specific vote
 	if(usr.ckey in voted)
-		if(usr.client.patreon.has_access(ACCESS_SENIOR_AGENT_RANK))	//Patreons get double mapvote
-			choices[choices[vote]]--
 		choices[choices[choice_by_ckey[usr.ckey]]]--
 	else
 		voted += usr.ckey
 	choice_by_ckey[usr.ckey] = vote
-	if(usr.client.patreon.has_access(ACCESS_SENIOR_AGENT_RANK))	//Patreons get double mapvote
-		choices[choices[vote]]++
 	choices[choices[vote]]++
 	return vote
 
