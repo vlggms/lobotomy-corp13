@@ -1,21 +1,21 @@
 /obj/projectile/ego_bullet/ego_soda
 	name = "9mm soda bullet"
-	damage = 11
+	damage = 3
 	damage_type = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_clerk
 	name = "9mm bullet"
-	damage = 5
+	damage = 2
 	damage_type = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_nostalgia
 	name = "nostalgia"
-	damage = 20
+	damage = 8
 	damage_type = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_nightshade
 	name = "nightshade dart"
-	damage = 11
+	damage = 6
 	damage_type = BLACK_DAMAGE
 
 /obj/projectile/ego_bullet/ego_nightshade/healing
@@ -45,11 +45,11 @@
 /obj/projectile/ego_bullet/ego_bucket
 	name = "stone"
 	icon_state = "wishing_rock"
-	damage = 20
+	damage = 10
 	damage_type = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_oceanic
 	name = "oceanic"
-	damage = 11		//Worse than tough lol
+	damage = 6		//Worse than tough lol
 	damage_type = WHITE_DAMAGE
 
