@@ -5,8 +5,8 @@
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "crumbling"
 	portrait = "crumbling_armor"
-	maxHealth = 600
-	health = 600
+	maxHealth = 120
+	health = 120
 	start_qliphoth = 3
 	threat_level = TETH_LEVEL
 	work_chances = list(
@@ -15,7 +15,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 0,
 		ABNORMALITY_WORK_REPRESSION = list(60, 60, 65, 65, 70),
 	)
-	work_damage_amount = 5
+	work_damage_amount = 3
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/wrath
 
@@ -199,7 +199,7 @@
 	status_type = STATUS_EFFECT_UNIQUE
 	duration = 1 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/cowardice
-	var/punishment_damage = 25
+	var/punishment_damage = 4
 
 /atom/movable/screen/alert/status_effect/cowardice
 	name = "Cowardice"

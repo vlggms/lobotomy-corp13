@@ -7,8 +7,8 @@
 	portrait = "void_dream"
 	del_on_death = TRUE
 	is_flying_animal = TRUE
-	maxHealth = 600
-	health = 600
+	maxHealth = 120
+	health = 120
 	rapid_melee = 2
 	move_to_delay = 6
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)
@@ -26,7 +26,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 60,
 		ABNORMALITY_WORK_REPRESSION = 20,
 	)
-	work_damage_amount = 6
+	work_damage_amount = 3
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/sloth
 
@@ -47,7 +47,7 @@
 	)
 
 	var/punched = FALSE
-	var/pulse_damage = 50
+	var/pulse_damage = 15
 	var/ability_cooldown
 	var/ability_cooldown_time = 12 SECONDS
 
@@ -192,7 +192,7 @@
 	var/mob/living/carbon/human/H = target
 	if(H.IsSleeping())
 		return
-	H.SetSleeping(30 SECONDS) // Used to be a full minute
+	H.SetSleeping(20 SECONDS) // Used to be a full minute
 	var/datum/status_effect/incapacitating/sleeping/S = H.IsSleeping()
 	S.remove_on_damage = TRUE
 	playsound(get_turf(H), 'sound/abnormalities/voiddream/skill.ogg', 50, TRUE)

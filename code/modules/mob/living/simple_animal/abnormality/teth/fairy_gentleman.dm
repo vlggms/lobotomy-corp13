@@ -5,15 +5,15 @@
 	icon_state = "fairy_gentleman"
 	core_icon = "fairygentleman_egg"
 	portrait = "fairy_gentleman"
-	maxHealth = 900
-	health = 900
+	maxHealth = 200
+	health = 200
 	ranged = TRUE
 	rapid_melee = 1
 	melee_queue_distance = 2
 	move_to_delay = 5
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
-	melee_damage_lower = 6
-	melee_damage_upper = 12
+	melee_damage_lower = 2
+	melee_damage_upper = 4
 	melee_damage_type = WHITE_DAMAGE  //Low damage - makes you drunk on a hit
 	stat_attack = HARD_CRIT
 	attack_sound = 'sound/abnormalities/fairygentleman/ego_sloshing.ogg'
@@ -30,7 +30,7 @@
 	)
 	pixel_x = -34
 	base_pixel_x = -34
-	work_damage_amount = 8
+	work_damage_amount = 3
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/sloth
 
@@ -58,7 +58,7 @@
 	var/can_act = TRUE
 	var/jump_cooldown = 0
 	var/jump_cooldown_time = 8 SECONDS
-	var/jump_damage = 30
+	var/jump_damage = 10
 	var/jump_sound = 'sound/abnormalities/fairygentleman/jump.ogg'
 	var/jump_aoe = 1
 

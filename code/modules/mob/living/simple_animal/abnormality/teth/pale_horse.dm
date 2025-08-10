@@ -10,8 +10,8 @@
 	portrait = "pale_horse"
 	speak_emote = list("neighs")
 	threat_level = TETH_LEVEL
-	maxHealth = 800
-	health = 800
+	maxHealth = 150
+	health = 150
 	pixel_x = -16
 	base_pixel_x = -16
 	stat_attack = DEAD
@@ -56,7 +56,7 @@
 	//attack
 	var/mob/living/set_target
 	var/pulse_range = 11 //fairly large area - enough to breach several abnormalities
-	var/fog_damage = 3
+	var/fog_damage = 2
 	var/ash_damage = 20
 
 //work stuff
@@ -69,7 +69,7 @@
 	if(user.health < (user.maxHealth * 0.5))
 		return
 	else
-		user.deal_damage(4, PALE_DAMAGE)
+		user.deal_damage(work_damage_amount, PALE_DAMAGE)
 
 /mob/living/simple_animal/hostile/abnormality/pale_horse/Initialize()
 	. = ..()
