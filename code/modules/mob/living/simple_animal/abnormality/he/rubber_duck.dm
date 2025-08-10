@@ -6,8 +6,8 @@
 	icon_state = "duckcontained"
 	icon_living = "duckcontained"
 	portrait = "rubber_duck"
-	maxHealth = 50
-	health = 50
+	maxHealth = 15
+	health = 15
 	attack_verb_continuous = "quacks"
 	attack_verb_simple = "quacks"
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
@@ -24,7 +24,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(30, 20, 10, 0, 0),
 		ABNORMALITY_WORK_REPRESSION = list(30, 20, 10, 0, 0),
 	)
-	work_damage_amount = 10
+	work_damage_amount = 5
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(

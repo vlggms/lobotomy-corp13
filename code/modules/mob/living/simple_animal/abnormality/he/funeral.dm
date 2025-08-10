@@ -7,8 +7,8 @@
 	icon_dead = "funeral_dead"
 	portrait = "funeral"
 	del_on_death = FALSE
-	maxHealth = 1350 //I am a menace to society.
-	health = 1350
+	maxHealth = 350
+	health = 350
 	blood_volume = 0
 
 	ranged = TRUE
@@ -30,7 +30,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 0,
 		ABNORMALITY_WORK_REPRESSION = list(0, 0, 60, 60, 60),
 	)
-	work_damage_amount = 12
+	work_damage_amount = 5
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gloom
 	max_boxes = 16
@@ -64,10 +64,10 @@
 
 	var/gun_cooldown
 	var/gun_cooldown_time = 4 SECONDS
-	var/gun_damage = 60
+	var/gun_damage = 20
 	var/swarm_cooldown
 	var/swarm_cooldown_time = 20 SECONDS
-	var/swarm_damage = 13 // 10 seconds, 13 damage 40 times = 520 total
+	var/swarm_damage = 5 // 10 seconds, 5 damage 40 times = 200 total
 	var/swarm_length = 24
 	var/swarm_width = 3
 	var/list/swarm_killed = list()

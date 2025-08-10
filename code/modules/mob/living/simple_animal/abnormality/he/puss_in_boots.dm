@@ -9,15 +9,15 @@
 	var/icon_friendly = "cat_breached_friendly"
 	icon_dead = "cat_breached"  //defeated icon? Maybe someday.
 	portrait = "puss_in_boots"
-	maxHealth = 1000
-	health = 1000
+	maxHealth = 200
+	health = 200
 	threat_level = HE_LEVEL
 	faction = list("neutral")
 	del_on_death = FALSE
 	attack_sound = 'sound/weapons/ego/rapier1.ogg'
 	melee_damage_type = RED_DAMAGE
-	melee_damage_lower = 5
-	melee_damage_upper = 15
+	melee_damage_lower = 2
+	melee_damage_upper = 4
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
 	rapid_melee = 4
@@ -30,7 +30,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 45,
 		ABNORMALITY_WORK_REPRESSION = list(50, 45, 40, 40, 40),
 	)
-	work_damage_amount = 10
+	work_damage_amount = 5
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/pride
 
@@ -291,7 +291,7 @@
 	target.apply_damage(50, PALE_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE) //50% of your health in red damage
 	to_chat(target, span_danger("[src] is trying to cut you in half!"))
 	if(!ishuman(target))
-		target.deal_damage(100, PALE_DAMAGE) //bit more than usual DPS in pale damage
+		target.deal_damage(50, PALE_DAMAGE)
 		return
 	if(target.health > 0)
 		return

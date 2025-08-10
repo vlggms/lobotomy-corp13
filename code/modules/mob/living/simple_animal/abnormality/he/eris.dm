@@ -6,14 +6,14 @@
 	icon_living = "eris"
 	core_icon = "eris_egg"
 	portrait = "eris"
-	maxHealth = 1100
-	health = 1100
+	maxHealth = 300
+	health = 300
 	ranged = TRUE
 	attack_verb_continuous = "claws"
 	attack_verb_simple = "claw"
 	stat_attack = HARD_CRIT
-	melee_damage_lower = 11
-	melee_damage_upper = 12
+	melee_damage_lower = 3
+	melee_damage_upper = 5
 	move_to_delay = 2.6
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1)
 	speak_emote = list("croons")
@@ -29,7 +29,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 70,
 		ABNORMALITY_WORK_REPRESSION = list(50, 55, 55, 50, 45),
 	)
-	work_damage_amount = 10
+	work_damage_amount = 5
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/lust
 
@@ -194,8 +194,8 @@
 	for(var/mob/living/H in view(10, get_turf(src)))
 		if(H.stat >= SOFT_CRIT)
 			continue
-		//Shamelessly fucking stolen from risk of rain's teddy bear. Maxes out at 20.
-		var/healamount = 20 * (TOUGHER_TIMES(girlboss_level))
+		//Shamelessly fucking stolen from risk of rain's teddy bear.
+		var/healamount = 2 * (TOUGHER_TIMES(girlboss_level))
 		H.adjustBruteLoss(-healamount)	//Healing for those around.
 		new /obj/effect/temp_visual/heal(get_turf(H), "#FF4444")
 
@@ -205,14 +205,14 @@
 	if(!ishuman(Proj.firer))
 		return
 	var/mob/living/carbon/human/H = Proj.firer
-	H.deal_damage(40*(TOUGHER_TIMES(girlboss_level)), WHITE_DAMAGE)
+	H.deal_damage(3*(TOUGHER_TIMES(girlboss_level)), WHITE_DAMAGE)
 
 
 /mob/living/simple_animal/hostile/abnormality/eris/attacked_by(obj/item/I, mob/living/user)
 	..()
 	if(!user)
 		return
-	user.deal_damage(40*(TOUGHER_TIMES(girlboss_level)), WHITE_DAMAGE)
+	user.deal_damage(3*(TOUGHER_TIMES(girlboss_level)), WHITE_DAMAGE)
 
 
 //Okay, but here's the work effects

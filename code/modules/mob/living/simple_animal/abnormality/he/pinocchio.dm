@@ -6,8 +6,8 @@
 	icon_state = "pinocchio"
 	icon_living = "pinocchio"
 	portrait = "pinocchio"
-	maxHealth = 600
-	health = 600
+	maxHealth = 120
+	health = 120
 	threat_level = HE_LEVEL
 	can_breach = TRUE
 	start_qliphoth = 1
@@ -21,7 +21,7 @@
 	)
 
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.9, FIRE = 1.5)
-	work_damage_amount = 8
+	work_damage_amount = 5
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/envy
 	max_boxes = 16
@@ -314,8 +314,8 @@
 	species_traits = list(NO_UNDERWEAR,NOBLOOD,NOEYESPRITES)
 	inherent_traits = list(TRAIT_ADVANCEDTOOLUSER,TRAIT_NOMETABOLISM,TRAIT_TOXIMMUNE,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_GENELESS,\
 	TRAIT_NOHUNGER,TRAIT_XENO_IMMUNE,TRAIT_NOCLONELOSS,TRAIT_LIGHT_STEP,TRAIT_BRUTEPALE,TRAIT_BRUTESANITY, TRAIT_TRUE_NIGHT_VISION,)
-	punchdamagelow = 10
-	punchdamagehigh = 15
+	punchdamagelow = 3
+	punchdamagehigh = 4
 	bodypart_overides = list(
 	BODY_ZONE_L_ARM = /obj/item/bodypart/l_arm/puppet,\
 	BODY_ZONE_R_ARM = /obj/item/bodypart/r_arm/puppet,\

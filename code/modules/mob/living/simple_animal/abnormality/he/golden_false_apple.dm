@@ -22,8 +22,8 @@
 	del_on_death = FALSE
 	death_message = "falls over."
 	death_sound = 'sound/abnormalities/goldenapple/Gold_Attack2.ogg'
-	maxHealth = 1200
-	health = 1200
+	maxHealth = 300
+	health = 300
 	light_color = "D4FAF37"
 	light_range = 5
 	light_power = 7
@@ -32,8 +32,8 @@
 	attack_verb_simple = "tackle"
 	attack_sound = "sound/abnormalities/goldenapple/Gold_Attack.ogg"
 	stat_attack = HARD_CRIT
-	melee_damage_lower = 10
-	melee_damage_upper = 15
+	melee_damage_lower = 3
+	melee_damage_upper = 5
 	melee_damage_type = RED_DAMAGE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2)
 	speak_emote = list("states")
@@ -49,7 +49,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 0,
 		ABNORMALITY_WORK_REPRESSION = list(0, 0, 15, 30, 45),
 	)
-	work_damage_amount = 12//decently high due to mechanics
+	work_damage_amount = 5
 	work_damage_type = RED_DAMAGE
 	max_boxes = 18
 
