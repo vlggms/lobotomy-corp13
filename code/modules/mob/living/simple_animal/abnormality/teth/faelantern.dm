@@ -8,8 +8,8 @@
 	icon_dead = "faelantern_egg"
 	core_icon = "faelantern_egg"
 	portrait = "faelantern"
-	maxHealth = 1200
-	health = 1200
+	maxHealth = 300
+	health = 300
 	blood_volume = 0
 	base_pixel_x = -16
 	pixel_x = -16
@@ -28,7 +28,7 @@
 	ranged = TRUE
 	ranged_cooldown_time = 1.5 SECONDS
 
-	work_damage_amount = 5
+	work_damage_amount = 3
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gluttony
 	start_qliphoth = 1
@@ -64,9 +64,7 @@
 	var/fairy_health = 1200
 	var/lure_cooldown
 	var/lure_cooldown_time = 30 SECONDS
-	var/lure_damage = 20
-	var/stab_cooldown
-	var/stab_cooldown_time = 30
+	var/lure_damage = 5
 	var/lured_list = list()
 
 /mob/living/simple_animal/hostile/abnormality/faelantern/AttackingTarget(atom/attacked_target)
@@ -132,10 +130,10 @@
 	if(stat == DEAD)
 		return
 	if(fairy_enabled)
-		if(health < (fairy_health - 120))//the fairy effectively has 120 hp
+		if(health < (fairy_health - 30))//the fairy effectively has 30 hp
 			fairy_enabled = FALSE
 			Uproot()
-			adjustBruteLoss(-120)
+			adjustBruteLoss(-30)
 			med_hud_set_health()
 			med_hud_set_status()
 			update_health_hud()
@@ -244,7 +242,7 @@
 	pull_force = INFINITY
 	generic_canpass = FALSE
 	movement_type = PHASING | FLYING
-	var/root_damage = 20 //Red Damage
+	var/root_damage = 5 //Red Damage
 	layer = POINT_LAYER	//We want this HIGH. SUPER HIGH. We want it so that you can absolutely, guaranteed, see exactly what is about to hit you.
 
 /obj/effect/root/faelantern/Initialize()

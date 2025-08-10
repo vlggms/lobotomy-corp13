@@ -11,12 +11,12 @@
 	threat_level = TETH_LEVEL
 	can_breach = TRUE
 	del_on_death = FALSE
-	maxHealth = 600
-	health = 600
+	maxHealth = 150
+	health = 150
 	move_to_delay = 5
 	damage_coeff = list(RED_DAMAGE = 0.9, WHITE_DAMAGE = 0.9, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)
-	melee_damage_lower = 15
-	melee_damage_upper = 20
+	melee_damage_lower = 4
+	melee_damage_upper = 6
 	melee_damage_type = RED_DAMAGE
 	melee_queue_distance = 1
 	retreat_distance = 0
@@ -34,7 +34,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(70, 70, 80, 80, 90),
 		ABNORMALITY_WORK_REPRESSION = list(60, 60, 50, 40, 40),
 	)
-	work_damage_amount = 5
+	work_damage_amount = 3
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/envy
 
@@ -58,7 +58,7 @@
 			But at the last minute, you are pulled away by another agent to safety."),
 	)
 
-	var/ranged_damage = 15
+	var/ranged_damage = 5
 	var/damage_dealt = 0
 	var/list/counter1 = list() //from FAN, although changed
 	var/list/counter2 = list()
