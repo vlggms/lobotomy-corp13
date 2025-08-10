@@ -4,8 +4,8 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 /mob/living/simple_animal/hostile/abnormality/pink_shoes
 	name = "Pink Shoes"
 	desc = "A pair of girly pink shoes."
-	health = 1500
-	maxHealth = 1500
+	health = 500
+	maxHealth = 500
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "pinkshoes"
 	icon_living = "pinkshoes_breach"
@@ -26,13 +26,13 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 						ABNORMALITY_WORK_ATTACHMENT = list(80, 50, 50, 40, 30),
 						ABNORMALITY_WORK_REPRESSION = list(50, 60, 50, 55, 60)
 						)
-	work_damage_amount = 9
+	work_damage_amount = 5
 	work_damage_type = WHITE_DAMAGE
 	del_on_death = FALSE
 	death_message = "falls, leaving tattered ribbons."
 	attack_sound = 'sound/abnormalities/pinkshoes/Pinkshoes_Attack.ogg'
-	melee_damage_lower = 10
-	melee_damage_upper = 15
+	melee_damage_lower = 6
+	melee_damage_upper = 8
 	melee_damage_type = WHITE_DAMAGE
 	ego_list = list(
 		/datum/ego_datum/weapon/roseate,
@@ -250,13 +250,13 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 		special_possessee.update_icon()
 		special_possessee.gear = 10
 		special_possessee.UpdateGear()
-		special_possessee.gear_health = 2000
+		special_possessee.gear_health = 0.5
 		special_possessee.name = pick("Clippity-cloppity", "Tap-tap", "Twinkle")+pick("? Tap away!", "? Thoroughly?!", "? Sprinkle Spinny!?")
 	else
 		RibbonVisual(user)
-	user.maxHealth += 1500
-	user.melee_damage_lower += 7
-	user.melee_damage_upper += 15
+	user.maxHealth += 500
+	user.melee_damage_lower += 3
+	user.melee_damage_upper += 4
 	user.revive(full_heal = TRUE, admin_revive = FALSE)
 	user.desc += "Wait, are those pink shoes?"
 	user.faction = faction
@@ -502,13 +502,13 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 	attack_verb_continuous = "attacks"
 	attack_verb_simple = "attack"
 	attack_sound = 'sound/abnormalities/pinkshoes/Pinkshoes_Attack.ogg'
-	health = 250
-	maxHealth = 250
+	health = 50
+	maxHealth = 50
 	obj_damage = 300
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	melee_damage_type = WHITE_DAMAGE
-	melee_damage_lower = 5
-	melee_damage_upper = 10
+	melee_damage_lower = 4
+	melee_damage_upper = 6
 	speed = 5
 	move_to_delay = 5
 	stat_attack = HARD_CRIT
@@ -718,7 +718,7 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 	pull_force = INFINITY
 	generic_canpass = FALSE
 	movement_type = PHASING | FLYING
-	var/root_damage = 15 //White Damage
+	var/root_damage = 5 //White Damage
 	var/mob/living/simple_animal/hostile/abnormality/pink_shoes/master
 	layer = POINT_LAYER
 

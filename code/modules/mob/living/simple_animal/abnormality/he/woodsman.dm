@@ -6,14 +6,14 @@
 	icon_living = "woodsman_breach"
 	portrait = "woodsman"
 	layer = BELOW_OBJ_LAYER
-	maxHealth = 1433
-	health = 1433
+	maxHealth = 300
+	health = 300
 	ranged = TRUE
 	attack_verb_continuous = "chops"
 	attack_verb_simple = "chop"
 	attack_sound = 'sound/abnormalities/woodsman/woodsman_attack.ogg'
-	melee_damage_lower = 15
-	melee_damage_upper = 30
+	melee_damage_lower = 3
+	melee_damage_upper = 6
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
 	vision_range = 14
 	aggro_vision_range = 20
@@ -27,7 +27,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(50, 60, 70, 80, 90),
 		ABNORMALITY_WORK_REPRESSION = 45,
 	)
-	work_damage_amount = 10
+	work_damage_amount = 5
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/sloth
 	move_to_delay = 4
@@ -61,8 +61,8 @@
 	var/flurry_delay = 1.5 SECONDS
 	var/flurry_pause = 0.25 SECONDS
 	var/flurry_count = 7
-	var/flurry_small = 12
-	var/flurry_big = 60 // It was requested that he beats their ass harder
+	var/flurry_small = 5
+	var/flurry_big = 12 // It was requested that he beats their ass harder
 	var/flurry_length = 3
 	var/flurry_width = 2
 	var/can_act = TRUE
@@ -152,7 +152,7 @@
 	name = "chained axe"
 	icon_state = "wood_axe_animated"
 	damage_type = RED_DAMAGE
-	damage = 30
+	damage = 6
 	hitsound = 'sound/effects/splat.ogg'
 	var/chain
 
@@ -388,8 +388,8 @@
 	RampingUpdate()
 
 /mob/living/simple_animal/hostile/abnormality/woodsman/proc/RampingUpdate()
-	melee_damage_lower = initial_melee_damage_lower + (ramping * 3)
-	melee_damage_upper = initial_melee_damage_upper + (ramping * 3)
+	melee_damage_lower = initial_melee_damage_lower + ramping
+	melee_damage_upper = initial_melee_damage_upper + ramping
 	flurry_delay = initial_flurry_delay - (ramping * 0.1) SECONDS
 	flurry_pause = initial_flurry_pause - (ramping * 0.01) SECONDS
 	ChangeMoveToDelay(initial_move_to_delay - (ramping * 0.22))

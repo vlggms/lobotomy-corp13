@@ -8,12 +8,12 @@
 	pixel_x = -16
 	base_pixel_x = -16
 	del_on_death = TRUE
-	maxHealth = 1800 //It's fucking slow as hell, and you can beat it to death if you're alone for free
-	health = 1800
+	maxHealth = 350 //It's fucking slow as hell, and you can beat it to death if you're alone for free
+	health = 350
 	move_to_delay = 5
 	damage_coeff = list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.7)
-	melee_damage_lower = 40		//Yeah it's super slow, and you're not gonna get hit by it too often
-	melee_damage_upper = 48
+	melee_damage_lower = 8		//Yeah it's super slow, and you're not gonna get hit by it too often
+	melee_damage_upper = 9
 	melee_damage_type = RED_DAMAGE
 	stat_attack = HARD_CRIT
 	attack_sound = 'sound/abnormalities/scarecrow/attack.ogg'
@@ -28,7 +28,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(40, 40, 40, 30, 20),
 		ABNORMALITY_WORK_REPRESSION = list(40, 45, 50, 55, 60),
 	)
-	work_damage_amount = 7
+	work_damage_amount = 5
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/wrath
 

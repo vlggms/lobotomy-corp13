@@ -12,8 +12,8 @@
 	base_pixel_y = -16
 	del_on_death = FALSE
 	death_message = "falls to the ground, deactivating."
-	maxHealth = 1000
-	health = 1000
+	maxHealth = 200
+	health = 200
 	blood_volume = 0
 	rapid_melee = 4
 	ranged = TRUE
@@ -21,8 +21,8 @@
 	attack_verb_simple = "slash"
 	attack_sound = 'sound/abnormalities/helper/attack.ogg'
 	stat_attack = HARD_CRIT
-	melee_damage_lower = 20
-	melee_damage_upper = 25
+	melee_damage_lower = 4
+	melee_damage_upper = 5
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
 	speak_emote = list("states")
 	speech_span = SPAN_ROBOT
@@ -37,7 +37,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(35, 40, 40, 35, 35),
 		ABNORMALITY_WORK_REPRESSION = list(50, 55, 55, 50, 45),
 	)
-	work_damage_amount = 10
+	work_damage_amount = 5
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/wrath
 
@@ -70,7 +70,7 @@
 	var/list/been_hit = list() // Don't get hit twice.
 	var/stuntime = 3 SECONDS
 	var/dir_to_target
-	var/dash_damage = 60
+	var/dash_damage = 15
 	var/dash_speed = 1
 	var/clogged_blades_time = 1
 	var/dash_attack_volune = 75
