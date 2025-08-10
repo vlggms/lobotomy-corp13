@@ -7,8 +7,8 @@
 	icon_state = "oracle"
 	icon_living = "oracle"
 	portrait = "oracle"
-	maxHealth = 1500
-	health = 1500
+	maxHealth = 300
+	health = 300
 	damage_coeff = list(RED_DAMAGE = 2, WHITE_DAMAGE = 0, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
 	threat_level = ZAYIN_LEVEL
 	work_chances = list(
@@ -18,7 +18,7 @@
 		ABNORMALITY_WORK_REPRESSION = 80,
 		"Fall Asleep" = 100,
 	)
-	work_damage_amount = 5
+	work_damage_amount = 2
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/wrath
 

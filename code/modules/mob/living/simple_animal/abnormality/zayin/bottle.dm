@@ -7,8 +7,8 @@
 	icon_state = "bottle1"
 	icon_living = "bottle1"
 	portrait = "bottle"
-	maxHealth = 800
-	health = 800
+	maxHealth = 200
+	health = 200
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2)
 	threat_level = ZAYIN_LEVEL
 	work_chances = list( //In the comic they work on it. They say you can do any work as long as you don't eat the cake
@@ -19,7 +19,7 @@
 		"Dining" = 100, //You can instead decide to eat the cake.
 		"Drink" = 100, //Or Drink the water
 	)
-	work_damage_amount = 6
+	work_damage_amount = 2
 	work_damage_type = BLACK_DAMAGE
 
 	ego_list = list(
@@ -34,8 +34,8 @@
 	verb_say = "begs"
 	move_to_delay = 5
 
-	melee_damage_lower = 4
-	melee_damage_upper = 8
+	melee_damage_lower = 2
+	melee_damage_upper = 4
 	melee_damage_type = WHITE_DAMAGE
 
 	attack_verb_continuous = "begs"
