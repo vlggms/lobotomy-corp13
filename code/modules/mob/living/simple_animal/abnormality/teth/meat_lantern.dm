@@ -5,8 +5,8 @@
 	icon_state = "lantern"
 	icon_living = "lantern"
 	portrait = "meat_lantern"
-	maxHealth = 900
-	health = 900
+	maxHealth = 250
+	health = 250
 	base_pixel_x = -16
 	pixel_x = -16
 	threat_level = TETH_LEVEL
@@ -23,7 +23,7 @@
 	del_on_death = FALSE
 	death_message = "explodes in a shower of gore."
 
-	work_damage_amount = 5
+	work_damage_amount = 3
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/sloth
 	start_qliphoth = 1
@@ -49,7 +49,7 @@
 	var/detect_range = 1
 	var/chop_cooldown
 	var/chop_cooldown_time = 4 SECONDS
-	var/chop_damage = 400
+	var/chop_damage = 80
 
 /mob/living/simple_animal/hostile/abnormality/meat_lantern/PostSpawn()
 	. = ..()

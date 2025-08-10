@@ -9,8 +9,8 @@
 	base_pixel_x = -32
 	pixel_y = -32
 	base_pixel_y = -32
-	maxHealth = 400
-	health = 400
+	maxHealth = 100
+	health = 100
 	blood_volume = 0
 	start_qliphoth = 4
 	threat_level = TETH_LEVEL
@@ -20,7 +20,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(20, 10, 0, 0, 0),
 		ABNORMALITY_WORK_REPRESSION = list(55, 55, 60, 60, 60),
 	)
-	work_damage_amount = 5
+	work_damage_amount = 3
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/wrath
 
@@ -94,7 +94,7 @@
 		if(faction_check_mob(L, FALSE) || L.z != z || L.stat == DEAD)
 			continue
 		new /obj/effect/temp_visual/dir_setting/ninja(get_turf(L))
-		L.deal_damage(20, WHITE_DAMAGE)
+		L.deal_damage(6, WHITE_DAMAGE)
 
 
 //We're gonna make it a weather that affects all hallways.
@@ -116,4 +116,4 @@
 
 /datum/weather/mhz/weather_act(mob/living/carbon/human/L)
 	if(ishuman(L))
-		L.deal_damage(5, WHITE_DAMAGE)
+		L.deal_damage(2, WHITE_DAMAGE)

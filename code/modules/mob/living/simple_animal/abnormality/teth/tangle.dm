@@ -5,8 +5,8 @@
 	icon_state = "tangle"
 	icon_living = "tangle"
 	portrait = "tangle"
-	maxHealth = 1600
-	health = 1600
+	maxHealth = 400
+	health = 400
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	melee_damage_lower = 0		//Doesn't attack
 	melee_damage_upper = 0
@@ -23,7 +23,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(50, 50, 40, 40, 40),
 		ABNORMALITY_WORK_REPRESSION = list(50, 50, 40, 40, 40),
 	)
-	work_damage_amount = 5
+	work_damage_amount = 3
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/sloth
 	ego_list = list(

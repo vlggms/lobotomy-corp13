@@ -12,15 +12,15 @@
 	del_on_death = FALSE
 	pixel_x = -16
 	base_pixel_x = -16
-	maxHealth = 1500 //it's a teddy bear that's been abused all its life, it should have some HP. It also has two pieces of rank bump equipment.
-	health = 1500
+	maxHealth = 400
+	health = 400
 	rapid_melee = 1
 	melee_queue_distance = 3
 	move_to_delay = 5 // it's tanky for a TETH. It should be slow.
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
 	can_breach = TRUE
-	melee_damage_lower = 12
-	melee_damage_upper = 18
+	melee_damage_lower = 4
+	melee_damage_upper = 5
 	melee_damage_type = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
 	attack_sound = 'sound/weapons/ego/mace1.ogg'
@@ -36,9 +36,9 @@
 		ABNORMALITY_WORK_INSTINCT = 55,
 		ABNORMALITY_WORK_INSIGHT = 55,
 		ABNORMALITY_WORK_ATTACHMENT = 60,
-		ABNORMALITY_WORK_REPRESSION = 10 //It's already been hurt enough, man! if you do this, we're not longer friends!
-	) //only one person can work on it with these rates so they're higher than normal. everyone else will only get low/common rates.
-	work_damage_amount = 5
+		ABNORMALITY_WORK_REPRESSION = 10,
+		)
+	work_damage_amount = 3
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/envy //all of its EGO is envy. makes sense to me.
 	ego_list = list(
@@ -55,11 +55,11 @@
 
 	var/bearfriended //the one who can work on it safely
 	var/mob/living/carbon/human/hug_victim = null
-	var/release_threshold = 100 //Total raw damage needed to break a player out of a grab (from any source)
+	var/release_threshold = 20 //Total raw damage needed to break a player out of a grab (from any source)
 	var/release_damage = 0
 	var/hug_progress = 0
-	var/hug_damage = 8
-	var/crush_damage = 3
+	var/hug_damage = 4
+	var/crush_damage = 2
 	var/can_act = TRUE
 
 //Work Mechanics
