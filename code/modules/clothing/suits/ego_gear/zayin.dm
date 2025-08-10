@@ -1,8 +1,4 @@
-// ZAYIN Armor should be kept below 10 total armor.
-
-/* Lead Developer's note:
-Think before you code!
-Any attempt to code risk class armor will result in a 10 day Github ban.*/
+// ZAYIN Armor should be kept at 10 total armor.
 
 /*Developer's note - All LC13 armor has 50% of its red_damage armor as fire armor by default. */
 
