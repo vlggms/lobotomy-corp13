@@ -527,7 +527,7 @@
 		return FALSE
 	var/mob/living/L = AM
 	L.deal_damage(damage_dealt, BLACK_DAMAGE)
-	new /obj/effect/temp_visual/damage_effect/black(get_turf(L))
+	new /obj/effect/temp_visual/damage_effect/black(get_turf(L), damage_dealt)
 
 /obj/effect/gibspawner/generic/silent/liquid_miasma
 	gibtypes = list(/obj/effect/decal/cleanable/liquid_miasma)
