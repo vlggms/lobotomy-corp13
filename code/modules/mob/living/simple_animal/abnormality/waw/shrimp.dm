@@ -17,7 +17,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 30,
 		ABNORMALITY_WORK_REPRESSION = -100,	//He's a snobby shrimp dude.
 	)
-	work_damage_amount = 11
+	work_damage_amount = 7
 	work_damage_type = WHITE_DAMAGE	//He insults you
 	chem_type = /datum/reagent/abnormality/sin/pride
 
@@ -182,12 +182,12 @@
 	icon_living = "wellcheers"
 	icon_dead = "wellcheers_dead"
 	faction = list("shrimp")
-	health = 400
-	maxHealth = 400
+	health = 100
+	maxHealth = 100
 	melee_damage_type = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)
-	melee_damage_lower = 24
-	melee_damage_upper = 27
+	melee_damage_lower = 5
+	melee_damage_upper = 6
 	robust_searching = TRUE
 	stat_attack = HARD_CRIT
 	del_on_death = TRUE
@@ -213,12 +213,12 @@
 	icon_living = "wellcheers_bad"
 	icon_dead = "wellcheers_bad_dead"
 	faction = list("shrimp")
-	health = 500	//They're here to help
-	maxHealth = 500
+	health = 120 //They're here to help
+	maxHealth = 120
 	melee_damage_type = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)
-	melee_damage_lower = 14
-	melee_damage_upper = 18
+	melee_damage_lower = 3
+	melee_damage_upper = 4
 	robust_searching = TRUE
 	stat_attack = HARD_CRIT
 	del_on_death = TRUE
