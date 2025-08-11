@@ -3,7 +3,7 @@
 	desc = "In here, you're with us. Forever."
 	icon_state = "correctional"
 	inhand_icon_state = "correctional"
-	force = 33
+	force = 16
 	damtype = BLACK_DAMAGE
 	attack_speed = 1.3
 	projectile_path = /obj/projectile/ego_bullet/ego_correctional
@@ -26,7 +26,7 @@
 	The projectiles relive the legacy of the kingdom as they travel toward the target."
 	icon_state = "hornet"
 	inhand_icon_state = "hornet"
-	force = 28
+	force = 14
 	projectile_path = /obj/projectile/ego_bullet/ego_hornet
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/weapons/gun/rifle/leveraction.ogg'
@@ -45,7 +45,7 @@
 	icon_state = "hatred"
 	inhand_icon_state = "hatred"
 	special = "This weapon heals humans that it hits."
-	force = 28
+	force = 14
 	damtype = BLACK_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_hatred
 	weapon_weight = WEAPON_HEAVY
@@ -81,7 +81,7 @@
 	special = "This weapon fires extremely slowly. \
 		This weapon pierces all targets. \
 		This weapon gets a firespeed bonus when wearing the matching armor."
-	force = 28
+	force = 14
 	damtype = BLACK_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_magicbullet
 	weapon_weight = WEAPON_HEAVY
@@ -121,7 +121,7 @@
 	icon_state = "solemnlament"
 	inhand_icon_state = "solemnlament"
 	special = "Firing both solemn lament and solemn vow at the same time will increase damage by 1.5x"
-	force = 17
+	force = 8
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_solemnlament
 	fire_delay = 5
@@ -158,7 +158,7 @@
 	icon_state = "solemnvow"
 	inhand_icon_state = "solemnvow"
 	special = "Firing both solemn lament and solemn vow at the same time will increase damage by 1.5x"
-	force = 17
+	force = 8
 	damtype = BLACK_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_solemnvow
 	fire_delay = 5
@@ -193,7 +193,7 @@
 	desc = "Courtesy of the 16th Ego rifleman's brigade."
 	icon_state = "loyalty"
 	inhand_icon_state = "loyalty"
-	force = 28
+	force = 14
 	projectile_path = /obj/projectile/ego_bullet/ego_loyalty/iff
 	weapon_weight = WEAPON_HEAVY
 	spread = 26
@@ -213,7 +213,7 @@
 	icon_state = "executive"
 	inhand_icon_state = "executive"
 	special = "This gun scales with justice."
-	force = 12
+	force = 6
 	damtype = PALE_DAMAGE
 	burst_size = 1
 	fire_delay = 5
@@ -241,7 +241,7 @@
 	desc = "With steel in one hand and gunpowder in the other, there's nothing to fear in this place."
 	icon_state = "crimsonscar"
 	inhand_icon_state = "crimsonscar"
-	force = 17
+	force = 8
 	projectile_path = /obj/projectile/ego_bullet/ego_crimson
 	weapon_weight = WEAPON_MEDIUM
 	pellets = 3
@@ -261,7 +261,7 @@
 	icon_state = "ecstasy"
 	inhand_icon_state = "ecstasy"
 	special = "This weapon fires slow bullets with limited range."
-	force = 28
+	force = 14
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_ecstasy
 	weapon_weight = WEAPON_MEDIUM
@@ -281,7 +281,7 @@
 	icon_state = "praetorian"
 	inhand_icon_state = "executive"
 	special = "This weapon fires IFF bullets."
-	force = 28
+	force = 14
 	projectile_path = /obj/projectile/ego_bullet/ego_praetorian
 	fire_sound = 'sound/weapons/gun/pistol/tp17.ogg'
 	autofire = 0.12 SECONDS
@@ -299,7 +299,7 @@
 	icon_state = "magic_pistol"
 	inhand_icon_state = "magic_pistol"
 	special = "This weapon pierces most targets. This weapon fires and reloads faster with the matching armor"
-	force = 17
+	force = 8
 	damtype = BLACK_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_magicpistol
 	fire_delay = 7
@@ -340,7 +340,7 @@
 	desc = "There are no clocks to alert the arrival times."
 	icon_state = "laststop"
 	inhand_icon_state = "laststop"
-	force = 17
+	force = 8
 	projectile_path = /obj/projectile/ego_bullet/ego_laststop
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 5
@@ -356,7 +356,7 @@
 	desc = "Go ahead and rattle 'em boys."
 	icon_state = "intentions"
 	inhand_icon_state = "intentions"
-	force = 17
+	force = 8
 	projectile_path = /obj/projectile/ego_bullet/ego_intention
 	weapon_weight = WEAPON_MEDIUM
 	spread = 40
@@ -374,7 +374,7 @@
 			The arrowhead is dull and sprouts flowers of vivid color wherever it strikes."
 	icon_state = "aroma"
 	inhand_icon_state = "aroma"
-	force = 28
+	force = 14
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_aroma
 	weapon_weight = WEAPON_HEAVY
@@ -391,7 +391,7 @@
 	icon_state = "assonance"
 	inhand_icon_state = "assonance"
 	special = "This weapon fires a hitscan beam. \nUpon hitting an enemy, this weapon heals a nearby Discord weapon user."
-	force = 28
+	force = 14
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/beam/assonance
 	weapon_weight = WEAPON_HEAVY
@@ -413,7 +413,7 @@
 	projectile_path = /obj/projectile/ego_bullet/ego_feather
 	weapon_weight = WEAPON_HEAVY
 	special = "This weapon is highly effective in melee."
-	force = 42
+	force = 21
 	damtype = WHITE_DAMAGE
 	fire_delay = 12
 	attribute_requirements = list(
@@ -426,7 +426,7 @@
 	desc = "A chunk of the naked nest inigrated with a launching mechanism."
 	icon_state = "exuviae"
 	inhand_icon_state = "exuviae"
-	force = 33
+	force = 16
 	attack_speed = 1.3
 	projectile_path = /obj/projectile/ego_bullet/ego_exuviae
 	weapon_weight = WEAPON_HEAVY
@@ -446,7 +446,7 @@
 	icon_state = "warring"
 	inhand_icon_state = "warring"
 	special = "This weapon can unleash a special attack by loading a second arrow."
-	force = 28
+	force = 14
 	damtype = BLACK_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_warring
 	weapon_weight = WEAPON_HEAVY
@@ -522,7 +522,7 @@
 	inhand_icon_state = "banquet"
 	special = "This weapon can use stored blood to fire without reloading. \
 		Blood can be collected by attacking using this as a melee weapon."
-	force = 36
+	force = 18
 	damtype = BLACK_DAMAGE
 	attack_speed = 1.8
 	projectile_path = /obj/projectile/ego_bullet/ego_banquet
@@ -581,7 +581,7 @@
 	icon_state = "blind_gun"
 	special = "This weapon fires burning bullets. Watch out for friendly fire!"
 	projectile_path = /obj/projectile/ego_bullet/ego_blind_rage
-	force = 28
+	force = 14
 	damtype = BLACK_DAMAGE
 	weapon_weight = WEAPON_HEAVY
 	pellets = 4
@@ -601,7 +601,7 @@
 			The arrowhead is dull and sprouts flowers of vivid color wherever it strikes."
 	icon_state = "wife"
 	inhand_icon_state = "wife"
-	force = 28
+	force = 14
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_bride
 	weapon_weight = WEAPON_HEAVY
@@ -619,7 +619,7 @@
 	desc = "If no one had come in to get me, I would have stayed in that room, not even realizing the passing time."
 	icon_state = "innocence_gun"
 	inhand_icon_state = "innocence_gun"
-	force = 17
+	force = 8
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_innocence
 	fire_sound = 'sound/abnormalities/orangetree/ding.ogg'
@@ -640,7 +640,7 @@
 	worn_icon_state = "hypocrisy"
 	special = "Use this weapon in hand to place a trap that inflicts \
 		50 RED damage and alerts the user of the area it was triggered."
-	force = 28
+	force = 14
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_hypocrisy
 	weapon_weight = WEAPON_HEAVY
@@ -692,7 +692,7 @@
 		var/mob/living/L = AM
 		if(!faction_check(faction, L.faction))
 			playsound(get_turf(src), 'sound/machines/clockcult/steam_whoosh.ogg', 10, 1)
-			L.apply_damage(50, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = FALSE)
+			L.apply_damage(20, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = FALSE)
 			new /obj/effect/temp_visual/cloud_swirl(get_turf(L)) //placeholder
 			to_chat(creator, span_warning("You feel a itch towards [get_area(L)]."))
 			qdel(src)
@@ -707,7 +707,7 @@
 		Activate in your hand to create a portal, which can be fired into. \
 		Attempting to fire with an empty chamber will reload the weapon. \
 		You can manually reload this weapon by pressing ALT + left mouse button."
-	force = 28
+	force = 14
 	damtype = RED_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_fellbullet
 	weapon_weight = WEAPON_HEAVY
@@ -795,7 +795,7 @@
 	if(!istype(M, /obj/projectile/ego_bullet/ego_fellbullet))
 		return
 	var/obj/projectile/ego_bullet/ego_fellbullet/B = M
-	if(B.damage > 80)
+	if(B.damage > 40)
 		return
 	SpinAnimation(speed = 2, loops = 1, segments = 3, parallel = TRUE)//the abno version should always spin
 	B.damage *= 2
@@ -826,7 +826,7 @@
 	special = "Activate in your hand to load a magical slug. \
 	The slug will penetrate most targets. Shooting a human will deal half damage and produce a special effect. \
 	You can manually reload this weapon by pressing ALT + left mouse button."
-	force = 28
+	force = 14
 	damtype = RED_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_fellscatter
 	weapon_weight = WEAPON_HEAVY

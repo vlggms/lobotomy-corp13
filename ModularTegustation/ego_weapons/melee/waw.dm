@@ -5,7 +5,7 @@
 	special = "This weapon attacks all non-humans in an AOE. \
 			This weapon deals double damage on direct attack."
 	icon_state = "lamp"
-	force = 25
+	force = 24
 	attack_speed = 1.3
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("slams", "attacks")
@@ -40,7 +40,7 @@
 	special = "This weapon has a combo system. To turn off this combo system, use in hand. \
 			This weapon has a fast attack speed"
 	icon_state = "despair"
-	force = 20
+	force = 18
 	damtype = WHITE_DAMAGE
 	swingstyle = WEAPONSWING_THRUST
 	attack_verb_continuous = list("stabs", "attacks", "slashes")
@@ -99,7 +99,7 @@
 	desc = "When one is oppressed, sometimes they try to break free."
 	special = "Use in hand to unlock its full power."
 	icon_state = "totalitarianism"
-	force = 80
+	force = 72
 	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_speed = 3
 	damtype = RED_DAMAGE
@@ -113,13 +113,13 @@
 
 /obj/item/ego_weapon/totalitarianism/attack(mob/living/M, mob/living/user)
 	..()
-	force = 80
+	force = 72
 	charged = FALSE
 
 /obj/item/ego_weapon/totalitarianism/attack_self(mob/user)
 	if(do_after(user, 12, src))
 		charged = TRUE
-		force = 120	//FULL POWER
+		force = 96	//FULL POWER
 		to_chat(user,span_warning("You put your strength behind this attack."))
 
 /obj/item/ego_weapon/totalitarianism/get_clamped_volume()
@@ -130,7 +130,7 @@
 	desc = "Even light forms of contraint can be considered totalitarianism"
 	special = "This weapon builds up charge on every hit. Use the weapon in hand to charge the blade."
 	icon_state = "oppression"
-	force = 13
+	force = 8
 	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_speed = 0.3
 	damtype = BLACK_DAMAGE
@@ -157,11 +157,11 @@
 	meter += meter_counter
 	meter_counter += 1
 
-	meter = min(meter, 60)
+	meter = min(meter, 40)
 	..()
 	if(charged == TRUE)
 		charged = FALSE
-		force = 15
+		force = 8
 		meter_counter = 0
 
 /obj/item/ego_weapon/remorse
@@ -173,7 +173,7 @@
 	special = "Use this weapon in hand to change its mode. \
 		The Nail mode marks targets for death. \
 		The Hammer mode deals bonus damage to all marked."
-	force = 30	//Does more damage later.
+	force = 20	//Does more damage later.
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("Smashes", "Pierces", "Cracks")
 	attack_verb_simple = list("Smash", "Pierce", "Crack")
@@ -183,7 +183,7 @@
 							JUSTICE_ATTRIBUTE = 60
 							)
 	var/list/targets = list()
-	var/ranged_damage = 60	//Fuckload of white on ability. Be careful!
+	var/ranged_damage = 40	//Fuckload of white on ability. Be careful!
 	var/mode = FALSE		//False for nail, true for hammer
 
 /obj/item/ego_weapon/remorse/attack(mob/living/M, mob/living/user)
@@ -222,7 +222,7 @@
 	special = "Use it in hand to activate ranged attack."
 	icon_state = "crimsonclaw"
 	special = "This weapon hits faster than usual."
-	force = 17
+	force = 12
 	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_speed = 0.5
 	damtype = RED_DAMAGE
@@ -236,7 +236,7 @@
 	var/combo_wait = 20
 	// "Throwing" attack
 	var/special_attack = FALSE
-	var/special_damage = 100
+	var/special_damage = 50
 	var/special_cooldown
 	var/special_cooldown_time = 8 SECONDS
 	var/special_checks_faction = FALSE
@@ -328,7 +328,7 @@
 	desc = "Time flows as life does, and life goes as time does."
 	special = "This weapon deals an absurd amount of damage on the 13th hit."
 	icon_state = "thirteen"
-	force = 28
+	force = 20
 	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = PALE_DAMAGE
 	attack_verb_continuous = list("cuts", "attacks", "slashes")
@@ -350,7 +350,7 @@
 	combo_time = world.time + combo_wait
 	if(combo >= 13)
 		combo = 0
-		force = get_modified_attribute_level(user, JUSTICE_ATTRIBUTE)
+		force = get_modified_attribute_level(user, JUSTICE_ATTRIBUTE) * 0.5
 		new /obj/effect/temp_visual/thirteen(get_turf(M))
 		playsound(src, 'sound/weapons/ego/price_of_silence.ogg', 25, FALSE, 9)
 	..()
@@ -366,7 +366,7 @@
 				will hit all hostiles in a 3 tile range around the user. If vine burst is used at 30% sanity the damage is \
 				increased by 50% but will hit allies due to the intense hatred of F-04-42 influencing the user."
 	icon_state = "green_stem"
-	force = 52 //original 8-16
+	force = 24
 	reach = 2		//Has 2 Square Reach.
 	stuntime = 5	//Longer reach, gives you a short stun.
 	damtype = BLACK_DAMAGE
@@ -389,7 +389,7 @@
 	*/
 	var/channeling_duration_start = 1 SECONDS
 	var/channeling_cycle_max = 6
-	var/vine_damage = 40
+	var/vine_damage = 20
 
 /obj/item/ego_weapon/stem/attack_self(mob/living/user)
 	. = ..()
@@ -444,7 +444,7 @@
 	only when the apple shrivels up and attracts lowly creatures."
 	special = "This weapon has a ranged attack."
 	icon_state = "ebony_stem"
-	force = 35
+	force = 24
 	damtype = BLACK_DAMAGE
 	swingstyle = WEAPONSWING_THRUST
 	attack_verb_continuous = list("admonishes", "rectifies", "conquers")
@@ -456,7 +456,7 @@
 							)
 	var/ranged_cooldown
 	var/ranged_cooldown_time = 1.2 SECONDS
-	var/ranged_damage = 60
+	var/ranged_damage = 20
 
 /obj/item/ego_weapon/ebony_stem/afterattack(atom/A, mob/living/user, proximity_flag, params)
 	if(ranged_cooldown > world.time)
@@ -486,7 +486,7 @@
 	special = "This weapon has a unique combo system and attacks twice per click.\n \
 		Press Z to do a spinning attack, and click on a distant target to dash towards them in a cardinal direction."
 	icon_state = "wings"
-	force = 10
+	force = 12
 	attack_speed = 0.6
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("slashes", "claws")
@@ -498,7 +498,7 @@
 	var/hit_count = 0
 	var/max_count = 16
 	var/special_cost = 4
-	var/special_force = 20
+	var/special_force = 10
 	var/special_combo = 0
 	var/special_combo_mult = 0.2
 	var/decay_time = 3 SECONDS
@@ -660,7 +660,7 @@
 	desc = "A round of applause, for the clowns who joined us for tonight’s show!"
 	special = "This weapon can be combined with its sister blade to create a new weapon."
 	icon_state = "mirth"
-	force = 15
+	force = 12
 	attack_speed = 0.5
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("cuts", "attacks", "slashes")
@@ -708,7 +708,7 @@
 	dash_cooldown = world.time + dash_cooldown_time
 	for(var/i in 2 to get_dist(user, A))
 		step_towards(user,A)
-	if((get_dist(user, A) < 2))
+	if(get_dist(user, A) < 2)
 		A.attackby(src,user)
 	playsound(src, 'sound/abnormalities/clownsmiling/jumpscare.ogg', 50, FALSE, 9)
 	to_chat(user, "<span class='warning'>You dash to [A]!")
@@ -719,7 +719,7 @@
 	I thought it was a tool. Just that moment."
 	special = "This weapon can be combined with its sister blade to create a new weapon."
 	icon_state = "malice"
-	force = 15
+	force = 12
 	attack_speed = 0.5
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("cuts", "attacks", "slashes")
@@ -767,7 +767,7 @@
 	dash_cooldown = world.time + dash_cooldown_time
 	for(var/i in 2 to get_dist(user, A))
 		step_towards(user,A)
-	if((get_dist(user, A) < 2))
+	if(get_dist(user, A) < 2)
 		A.attackby(src,user)
 	playsound(src, 'sound/abnormalities/clownsmiling/jumpscare.ogg', 50, FALSE, 9)
 	to_chat(user, "<span class='warning'>You dash to [A]!")
@@ -778,7 +778,7 @@
 	All that was left is a worn parasol it once treasured."
 	special = "This weapon has a small windup before blocking, and performs a counterattack upon a successful block."
 	icon_state = "swan_closed"
-	force = 17
+	force = 10
 	attack_speed = 0.5
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("bashs", "whaps", "beats", "prods", "pokes")
@@ -855,7 +855,7 @@
 /obj/projectile/ego_bullet/swan
 	name = "mass of goo"
 	icon_state = "neurotoxin"
-	damage = 30
+	damage = 16
 	damage_type = BLACK_DAMAGE
 
 	hitsound = 'sound/abnormalities/wrath_servant/small_smash1.ogg'
@@ -866,7 +866,7 @@
 	desc = "The serpentine ornament is loyal to the original owner’s taste. The snake’s open mouth represents the endless yearning for music."
 	special = "Use this weapon in hand to heal the sanity of those around you."
 	icon_state = "moonlight"
-	force = 32					//One of the best support weapons. Does HE damage in its stead.
+	force = 20
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("beats", "jabs")
 	attack_verb_simple = list("beat", "jab")
@@ -897,10 +897,10 @@
 	name = "heaven"
 	desc = "As it spreads its wings for an old god, a heaven just for you burrows its way."
 	icon_state = "heaven"
-	force = 60
+	force = 24
 	reach = 2		//Has 2 Square Reach.
 	stuntime = 5	//Longer reach, gives you a short stun.
-	throwforce = 90		//It costs like 50 PE I guess you can go nuts
+	throwforce = 40
 	throw_speed = 5
 	throw_range = 7
 	damtype = RED_DAMAGE
@@ -920,7 +920,7 @@
 	It lights the employee's heart, shines like a star, and steadily tames them."
 	special = "Upon hit the targets WHITE vulnerability is increased by 0.2."
 	icon_state = "spore"
-	force = 42		//Quite low as WAW coz the armor rend effect		//Kirie Edit, Now it has immobilize, so it does more damage.
+	force = 24
 	reach = 2		//Has 2 Square Reach.
 	stuntime = 5	//Longer reach, gives you a short stun.
 	damtype = WHITE_DAMAGE
@@ -947,7 +947,7 @@
 	desc = "The thirst will never truly be quenched."
 	special = "This weapon heals you on hit. Using this weapon in hand can toggle enhanced health drain using collected blood."
 	icon_state = "dipsia"
-	force = 32
+	force = 24
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
@@ -1028,7 +1028,7 @@
 	desc = "Look on my Works, ye Mighty, and despair!"
 	special = "This weapon can remove petrification."
 	icon_state = "pharaoh"
-	force = 19
+	force = 12
 	attack_speed = 0.5
 	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = WHITE_DAMAGE
@@ -1060,7 +1060,7 @@
 	name = "Blind Rage"
 	desc = "Those who suffer injustice tend to lash out at all those around them."
 	icon_state = "blind_rage"
-	force = 40
+	force = 32
 	attack_speed = 1.2
 	special = "This weapon possesses a devastating Red AND Black damage AoE. Be careful!"
 	damtype = RED_DAMAGE
@@ -1072,7 +1072,7 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 
-	var/aoe_damage = 15
+	var/aoe_damage = 7
 	var/aoe_damage_type = BLACK_DAMAGE
 	var/aoe_range = 2
 	var/attacks = 0
@@ -1130,7 +1130,7 @@
 	icon_state = "heart"
 	special = "Hit yourself to heal HP to others within 10 metres."
 	inhand_icon_state = "bloodbath"
-	force = 30
+	force = 22
 	damtype = RED_DAMAGE
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attribute_requirements = list(FORTITUDE_ATTRIBUTE = 80)
@@ -1143,7 +1143,7 @@
 		for(var/mob/living/carbon/human/L in range(10, user))
 			if(L==user)
 				continue
-			L.adjustBruteLoss(-15)
+			L.adjustBruteLoss(-10)
 			new /obj/effect/temp_visual/healing(get_turf(L))
 
 /obj/item/ego_weapon/diffraction
@@ -1151,7 +1151,7 @@
 	desc = "Many employees have sustained injuries from erroneous calculation."
 	special = "This weapon deals double damage to targets under 40% HP."
 	icon_state = "diffraction"
-	force = 38
+	force = 20
 	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("slices", "cuts")
@@ -1170,7 +1170,7 @@
 	desc = "A giant novelty pen."
 	special = "This weapon marks enemies with a random damage type. They take that damage after 5 seconds."
 	icon_state = "infinity"
-	force = 30	//Does more damage for being harder to use.
+	force = 24
 	hitsound = 'sound/abnormalities/book/scribble.ogg'
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 80
@@ -1236,7 +1236,7 @@
 	desc = "The rings attached to the cane represent the middle way and the Six Paramitas."
 	special = "Use this weapon in your hand to damage every non-human within reach."
 	icon_state = "amrita"
-	force = 60
+	force = 24
 	reach = 2		//Has 2 Square Reach.
 	stuntime = 5	//Longer reach, gives you a short stun.
 	throw_speed = 5
@@ -1302,8 +1302,8 @@
 	desc = "The existence of evil proves the existence of good, just as light proves the existence of darkness."
 	special = "This weapon attacks thrice in rapid succession when being wielded.\nAttacks with this weapon will heal a nearby ally using Assonance."
 	icon_state = "discord"
-	force = 30
-	wielded_force = 27
+	force = 19
+	wielded_force = 22
 	attack_speed = 0.8
 	wielded_attack_speed = 0.8
 	attribute_requirements = list(
@@ -1339,9 +1339,9 @@
 	log_combat(user, target, pick(attack_verb_continuous), src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
 
 /obj/item/ego_weapon/wield/discord/proc/Harmony(mob/living/carbon/human/user)
-	var/heal_amount = 5
+	var/heal_amount = 4
 	if(wielded)
-		heal_amount = 4
+		heal_amount = 3
 	for(var/mob/living/carbon/human/Yang in view(7, user))
 		var/obj/item/ego_weapon/ranged/assonance/A = Yang.get_active_held_item()
 		if(istype(A, /obj/item/ego_weapon/ranged/assonance))
@@ -1356,7 +1356,7 @@
 	name = "innocence"
 	desc = "But why is it about ‘innocence’? After countless assumptions and careful research, we learned that it could be defined as \[REDACTED\]."
 	icon_state = "innocence"
-	force = 72
+	force = 68
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("shoves", "bashes")
 	attack_verb_simple = list("shove", "bash")
@@ -1375,7 +1375,7 @@
 	desc = "Stay frozen... And there will be no pain."
 	special = "This weapon can be used to perform a jump attack after a short wind-up."
 	icon_state = "rimeshank"
-	force = 75
+	force = 44
 	attack_speed = 2
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("slams", "attacks")
@@ -1438,7 +1438,7 @@
 		user.pixel_z = 0
 
 /obj/item/ego_weapon/rimeshank/proc/JumpAttack(atom/A, mob/living/user, proximity_flag, params)
-	force = 25
+	force = 20
 	A.attackby(src,user)
 	force = initial(force)
 	can_attack = FALSE
@@ -1446,7 +1446,7 @@
 	for(var/mob/living/L in range(2, A))
 		if(L.z != user.z) // Not on our level
 			continue
-		var/aoe = 25
+		var/aoe = 15
 		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 		var/justicemod = 1 + userjust/100
 		aoe*=justicemod
@@ -1462,7 +1462,7 @@
 	desc = "The frothing madness of the revving engine brings a fleeting warmth to your hands and heart alike."
 	special = "This weapon hits 4 times for every hit"
 	icon_state = "animalism"
-	force = 12
+	force = 10
 	attack_speed = 1.3
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("slices", "saws", "rips")
@@ -1493,7 +1493,7 @@
 	desc = "A saber from the deepest sea, meant for a groom's mortality."
 	special = "Use this weapon in hand to dodgeroll."
 	icon_state = "psychic"
-	force = 13
+	force = 8
 	attack_speed = 0.3
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("stabs", "attacks", "slashes")
@@ -1518,7 +1518,7 @@
 	desc = "I should’ve said that I'm sorry that I let go of your hand and apologized, even if it didn't mean anything."
 	special = "This weapon can be used to dash to a target."
 	icon_state = "grasp"
-	force = 16
+	force = 12
 	attack_speed = 0.5
 	damtype = PALE_DAMAGE
 	attack_verb_continuous = list("cuts", "attacks", "slashes")
@@ -1561,7 +1561,7 @@
 	dash_cooldown = world.time + dash_cooldown_time
 	for(var/i in 2 to get_dist(user, A))
 		step_towards(user,A)
-	if((get_dist(user, A) < 2))
+	if(get_dist(user, A) < 2)
 		A.attackby(src,user)
 	playsound(src, 'sound/weapons/fwoosh.ogg', 300, FALSE, 9)
 	to_chat(user, "<span class='warning'>You dash to [A]!")
@@ -1571,7 +1571,7 @@
 	desc = "Once upon a time, these claws would cut open the bellies of numerous creatures and tear apart their guts."
 	special = "Preform an additional attack of 75% damage when at half health."
 	icon_state = "cobalt"
-	force = 24
+	force = 12
 	attack_speed = 0.5
 	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = RED_DAMAGE
@@ -1610,7 +1610,7 @@
 	if(prob(25))
 		wolf.visible_message(span_warning("[wolf] claws [those_we_rend] in a blind frenzy!"), span_warning("You swipe your claws at [those_we_rend]!"))
 	if(ishuman(wolf))
-		force = 16
+		force = 9
 		playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
 		wolf.do_attack_animation(those_we_rend)
 		those_we_rend.attacked_by(src, wolf)
@@ -1624,7 +1624,7 @@
 	One day, he picks up a mask from the street and goes on to impulsively murder all the people that he knows."
 	special = "This weapon can store damage dealt for later healing."
 	icon_state = "scenario"
-	force = 38
+	force = 24
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("disrespects", "sullies")
 	attack_verb_simple = list("disrespect", "sully")
@@ -1646,7 +1646,7 @@
 	if(!CanUseEgo(user))
 		return
 	if(!(target.status_flags & GODMODE) && target.stat != DEAD)
-		var/heal_amt = force*0.05
+		var/heal_amt = force*0.025
 		if(isanimal(target))
 			var/mob/living/simple_animal/S = target
 			if(S.damage_coeff.getCoeff(damtype) > 0)
@@ -1680,7 +1680,7 @@
 	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
 	inhand_x_dimension = 96
 	inhand_y_dimension = 96
-	force = 42
+	force = 24
 	reach = 2		//Has 2 Square Reach.
 	stuntime = 5	//Longer reach, gives you a short stun.
 	damtype = RED_DAMAGE
@@ -1691,19 +1691,19 @@
 							FORTITUDE_ATTRIBUTE = 80
 							)
 	couch_cooldown_time = 4 SECONDS
-	force_cap = 70 //double base damage
-	force_per_tile = 5 //if I can read, this means you need to cross 14 tiles for max damage
-	pierce_force_cost = 20
+	force_cap = 48 //double base damage
+	force_per_tile = 3 //if I can read, this means you need to cross 8 tiles for max damage
+	pierce_force_cost = 12
 
 /obj/item/ego_weapon/warring
 	name = "warring"
 	desc = "It was a good day to die, but everybody did."
 	special = "Upon throwing, this weapon returns to the user. Throwing will activate the charge effect."
 	icon_state = "warring2"
-	force = 28
+	force = 20
 	attack_speed = 0.8
 	swingstyle = WEAPONSWING_LARGESWEEP
-	throwforce = 55
+	throwforce = 40
 	throw_speed = 1
 	throw_range = 7
 	damtype = BLACK_DAMAGE
@@ -1781,7 +1781,7 @@
 	desc = "The most racking pangs succeeded: a grinding in the bones, deadly nausea, and a horror of the spirit that cannot be exceeded at the hour of birth or death."
 	special = "Activate this weapon in hand to take a syringe, empowering it at the cost of taking damage."
 	icon_state = "hyde"
-	force = 25
+	force = 20
 	attack_speed = 0.8
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("punches", "slaps", "scratches")
@@ -1806,7 +1806,7 @@
 	playsound(get_turf(src),'sound/effects/limbus_death.ogg', 75, 1)//YEOWCH!
 	icon_state = ("hyde_" + chosen_style)
 	update_icon_state()
-	force = 42
+	force = 28
 	switch(chosen_style)
 		if("red")
 			user.apply_damage(50, RED_DAMAGE, null, user.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
@@ -1887,7 +1887,7 @@
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	force = 40
+	force = 24
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("lashes", "punishes", "whips", "slaps", "lacerates")
 	attack_verb_simple = list("lash", "punish","whip", "slap", "lacerate")
@@ -1913,7 +1913,7 @@
 			L.adjustSanityLoss(-heal_amount)
 			new /obj/effect/temp_visual/healing(get_turf(L))
 
-/obj/item/ego_weapon/blind_obsession//When I saw that Ishmael's version was an anchor I thought "hey would it be funny if it was a throwing weapon with aoe".
+/obj/item/ego_weapon/blind_obsession
 	name = "blind obsession"
 	desc = "All hands, full speed toward where the lights flicker. The waves... will lay waste to everything in our way."
 	special = "This weapon requires two hands to use. \
@@ -1925,9 +1925,9 @@
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	force = 80
+	force = 60
 	attack_speed = 2.5
-	throwforce = 80
+	throwforce = 60
 	throw_speed = 1
 	throw_range = 9
 	damtype = RED_DAMAGE
@@ -1999,7 +1999,7 @@
 	if(do_after(user, 12, src))
 		charged = TRUE
 		speed_slowdown = 1
-		throwforce = 100//TIME TO DIE!
+		throwforce = 80
 		to_chat(user,span_warning("You put your strength behind this attack."))
 		power_timer = addtimer(CALLBACK(src, PROC_REF(PowerReset)), 3 SECONDS, TIMER_STOPPABLE)//prevents storing 3 powered up anchors and unloading all of them at once
 
@@ -2007,7 +2007,7 @@
 	to_chat(user, span_warning("You lose your balance while holding [src]."))
 	charged = FALSE
 	speed_slowdown = 0
-	throwforce = 80
+	throwforce = 60
 	deltimer(power_timer)
 	thrown = FALSE
 
@@ -2026,7 +2026,7 @@
 	deltimer(power_timer)
 	playsound(src, 'sound/weapons/ego/hammer.ogg', 300, FALSE, 9)
 	if(charged)
-		var/damage = 75
+		var/damage = 40
 		if(ishuman(thrownby))
 			damage *= 1 + (get_modified_attribute_level(thrownby, JUSTICE_ATTRIBUTE))/100
 			damage *= force_multiplier
@@ -2042,13 +2042,13 @@
 	multiplicative_slowdown = 0
 	variable = TRUE
 
-/obj/item/ego_weapon/abyssal_route //An ungodly love child of sword sharpened with tears and fluid sac
-	name = "abyssal route"//old korean name I think
+/obj/item/ego_weapon/abyssal_route
+	name = "abyssal route"
 	desc = "I am the only one who moves in these waves. ... Shatter."
 	special = "This weapon has a combo system ending with a dive attack. To turn off this combo system, use in hand. \
 			This weapon has a fast attack speed"
 	icon_state = "abyssal_route"
-	force = 18
+	force = 16
 	damtype = BLACK_DAMAGE
 	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_verb_continuous = list("stabs", "attacks", "slashes")
@@ -2135,7 +2135,7 @@
 	for(var/mob/living/L in range(1, user))
 		if(L.z != user.z) // Not on our level
 			continue
-		var/aoe = 40
+		var/aoe = 20
 		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 		var/justicemod = 1 + userjust/100
 		aoe*=justicemod
@@ -2209,7 +2209,7 @@
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	force = 54
+	force = 40
 	attack_speed = 1.6
 	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = RED_DAMAGE
@@ -2228,7 +2228,7 @@
 	name = "ya sunyata tad rupam"
 	desc = "One. Two. The weight of your Karma returns with each rumbling of the earth."
 	icon_state = "sunyata"
-	force = 40
+	force = 28
 	attack_speed = 1.2
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("smacks", "slaps", "attacks", "pokes")
@@ -2258,7 +2258,7 @@
 		can_spin = TRUE
 		addtimer(CALLBACK(src, PROC_REF(spin_reset)), 12)
 		playsound(src, 'sound/abnormalities/myformempties/MFEattack.ogg', 75, FALSE, 4)//get a proper sound for this
-		var/aoe = 40
+		var/aoe = 20
 		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 		var/justicemod = 1 + userjust/100
 		aoe*=force_multiplier
@@ -2286,7 +2286,7 @@
 	desc = "Even the scum of the earth can be molded into something useful with time and pressure."
 	icon_state = "shell"
 	special = "This weapon also covers enemies in muck that deals WHITE Damage over time. The thrust can apply this effect an additional tile from where you click."
-	force = 60
+	force = 24
 	reach = 2
 	stuntime = 5
 	damtype = RED_DAMAGE
@@ -2361,7 +2361,7 @@
 	. = ..()
 	for(var/mob/living/victim in orange(2, src))
 		if(faction_check(victim.faction, owner.faction))
-			victim.deal_damage(10, WHITE_DAMAGE)
+			victim.deal_damage(5, WHITE_DAMAGE)
 	if(prob(40))
 		playsound(owner, 'sound/abnormalities/ambling pearl/goo effect.ogg', 40)
 
@@ -2392,7 +2392,7 @@
 	name = "contempt, awe"
 	desc = "From the excavated brain, geysers of hatred and contempt erupt. It's as if those feelings were inside you all along."
 	icon_state = "contempt"
-	force = 50
+	force = 24
 	reach = 2
 	stuntime = 5
 	throwforce = 80
@@ -2445,7 +2445,6 @@
 		to_chat(user,span_warning("Your [src] now menances with spikes of gold."))
 		playsound(src, 'sound/abnormalities/spiral_contempt/spiral_whine.ogg', 20, FALSE)
 		return
-
 
 /obj/item/ego_weapon/contempt/get_clamped_volume()
 	return 25
