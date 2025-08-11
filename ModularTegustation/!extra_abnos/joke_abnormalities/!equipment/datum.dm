@@ -19,6 +19,22 @@ Keep things balanced if they aren't going to be admin only.  - Coxswain
 //He
 
 //Waw
+//Skub - Pro-Skub, Anti-Skub
+/datum/ego_datum/weapon/pro_skub
+	item_path = /obj/item/ego_weapon/pro_skub
+	cost = 50
+
+/datum/ego_datum/weapon/anti_skub
+	item_path = /obj/item/ego_weapon/ranged/anti_skub
+	cost = 50
+
+/datum/ego_datum/armor/pro_skub
+	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/pro_skub
+	cost = 50
+
+/datum/ego_datum/armor/anti_skub
+	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/anti_skub
+	cost = 50
 
 //Aleph
 // Buff Rudolta - Ultimate Christmas

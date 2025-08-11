@@ -45,3 +45,39 @@
 	icon_state = "patty"
 	damage = 4
 	damage_type = RED_DAMAGE
+
+// WAW
+/obj/item/ego_weapon/ranged/anti_skub
+	name = "anti-skub"
+	desc = "A weapon easily created from schematics posted on illicit internet forums."
+	icon = 'ModularTegustation/Teguicons/joke_abnos/joke_weapons.dmi'
+	icon_state = "anti_skub"
+	lefthand_file = 'icons/mob/inhands/misc/food_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/misc/food_righthand.dmi'
+	inhand_icon_state = "beer"
+	special = "This weapon deals AOE damage."
+	force = 15
+	attack_speed = 1.2
+	damtype = RED_DAMAGE
+	projectile_path = /obj/projectile/ego_bullet/skub
+	weapon_weight = WEAPON_HEAVY
+	fire_delay = 15
+	fire_sound = 'sound/weapons/fixer/generic/dodge.ogg'
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 80
+							)
+
+/obj/projectile/ego_bullet/skub
+	name = "skub cocktail"
+	icon = 'ModularTegustation/Teguicons/joke_abnos/joke_weapons.dmi'
+	icon_state = "anti_skub2"
+	damage = 20
+	damage_type = RED_DAMAGE
+	hitsound = "shatter"
+
+/obj/projectile/ego_bullet/skub/on_hit(atom/target, blocked = FALSE)
+	..()
+	for(var/mob/living/L in view(1, target))
+		new /obj/effect/temp_visual/fire/fast(get_turf(L))
+		L.apply_damage(20, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+	return BULLET_ACT_HIT

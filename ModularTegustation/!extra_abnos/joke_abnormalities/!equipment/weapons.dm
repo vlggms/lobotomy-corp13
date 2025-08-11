@@ -5,6 +5,21 @@
 // All HE joke E.G.O
 
 // All WAW joke E.G.O
+/obj/item/ego_weapon/pro_skub
+	name = "pro-skub"
+	desc = "A battle-sign powered by ferverent love for one's skub."
+	icon = 'ModularTegustation/Teguicons/joke_abnos/joke_weapons.dmi'
+	icon_state = "pro_skub"
+	force = 25
+	reach = 2
+	stuntime = 3
+	damtype = WHITE_DAMAGE
+	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
+	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
+	hitsound = "swing_hit"
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 80
+							)
 
 // All ALEPH joke E.G.O
 //The Chaos Dunk
