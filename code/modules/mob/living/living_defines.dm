@@ -27,7 +27,7 @@
 	var/crit_threshold = HEALTH_THRESHOLD_CRIT /// when the mob goes from "normal" to crit
 	var/sanityhealth = 100 // Sanity health. Humans go insane when it reaches 0
 	var/sanityloss = 0
-	var/maxSanity = 100
+	var/maxSanity = MAX_LIVING_HEALTH
 	///When the mob enters hard critical state and is fully incapacitated.
 	var/hardcrit_threshold = HEALTH_THRESHOLD_FULLCRIT
 	var/death_threshold = HEALTH_THRESHOLD_DEAD
