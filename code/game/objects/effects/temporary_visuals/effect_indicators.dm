@@ -28,10 +28,11 @@
 	pixel_x = rand(-12, 12)
 	pixel_y = rand(-9, 9)
 	if(isnum(damage_count))
+		maptext_x = 2
 		maptext_height = 128 //32x4
 		maptext_width = 128
-		var/style = "font-family: 'Better VCR'; font-size: 4px; -dm-text-outline: 1px black; color: [style_text_color];"
-		maptext = "<span style=\"[style]\">[round(damage_count, 0.5)]</span>"
+		var/style = "font-family: 'Better VCR'; font-size: 5px; -dm-text-outline: 1px black; color: [style_text_color];"
+		maptext = "<span style=\"[style]\">[round(damage_count)]</span>"
 	animate(src, pixel_x = pixel_x + rand(1, 4), pixel_y = pixel_y + 10, alpha = 0, time = rand(8, 12), easing = SINE_EASING)
 	return ..()
 
