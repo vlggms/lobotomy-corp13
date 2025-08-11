@@ -8,8 +8,8 @@
 	portrait = "greed_king"
 	pixel_x = -16
 	base_pixel_x = -16
-	maxHealth = 3200
-	health = 3200
+	maxHealth = 1000
+	health = 1000
 	ranged = TRUE
 	attack_verb_continuous = "chomps"
 	attack_verb_simple = "chomps"
@@ -18,8 +18,8 @@
 	vision_range = 14
 	aggro_vision_range = 20
 	stat_attack = HARD_CRIT
-	melee_damage_lower = 60	//Shouldn't really attack unless a player in controlling it, I guess.
-	melee_damage_upper = 80
+	melee_damage_lower = 20	//Shouldn't really attack unless a player in controlling it, I guess.
+	melee_damage_upper = 30
 	attack_sound = 'sound/abnormalities/kog/GreedHit1.ogg'
 	can_breach = TRUE
 	threat_level = WAW_LEVEL
@@ -30,7 +30,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 50, 50, 55),
 		ABNORMALITY_WORK_REPRESSION = list(0, 0, 40, 40, 40),
 	)
-	work_damage_amount = 10
+	work_damage_amount = 7
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gluttony
 
@@ -55,7 +55,7 @@
 	var/dash_num = 100000	//Mostly a safeguard
 	var/list/been_hit = list()
 	var/can_act = TRUE
-	var/initial_charge_damage = 800
+	var/initial_charge_damage = 200
 	var/growing_charge_damage = 0
 
 	var/nihil_present = FALSE
@@ -232,13 +232,13 @@
 				if(ishuman(L))
 					L.deal_damage(charge_damage, RED_DAMAGE)
 				else
-					L.adjustRedLoss(80)
+					L.adjustRedLoss(100)
 				if(L.stat >= HARD_CRIT)
 					L.gib()
 				playsound(L, 'sound/abnormalities/kog/GreedHit1.ogg', 20, 1)
 				playsound(L, 'sound/abnormalities/kog/GreedHit2.ogg', 50, 1)
 				for(var/obj/vehicle/V in new_hits)
-					V.take_damage(80, RED_DAMAGE, attack_sound)
+					V.take_damage(100, RED_DAMAGE, attack_sound)
 					V.visible_message(span_boldwarning("[src] crunches [V]!"))
 					playsound(V, 'sound/abnormalities/kog/GreedHit1.ogg', 40, 1)
 					playsound(V, 'sound/abnormalities/kog/GreedHit2.ogg', 30, 1)
@@ -248,7 +248,7 @@
 				L.visible_message(span_boldwarning("[src] smashes [L]!"), span_userdanger("[src] smashes you with her massive fist!"))
 				playsound(L, attack_sound, 75, 1)
 				new /obj/effect/temp_visual/kinetic_blast(get_turf(L))
-				L.adjustRedLoss(80)
+				L.adjustRedLoss(100)
 				if(L.stat >= HARD_CRIT)
 					L.gib()
 				playsound(L, 'sound/abnormalities/kog/GreedHit1.ogg', 20, 1)

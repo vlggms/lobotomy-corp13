@@ -15,8 +15,8 @@
 	ranged_cooldown_time = 2 SECONDS
 	minimum_distance = 2
 
-	maxHealth = 2000
-	health = 2000
+	maxHealth = 800
+	health = 800
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.5)
 	stat_attack = HARD_CRIT
 	can_breach = TRUE
@@ -33,7 +33,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 50,
 		ABNORMALITY_WORK_REPRESSION = list(40, 40, 40, 35, 30),
 	)
-	work_damage_amount = 10
+	work_damage_amount = 7
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/lust
 

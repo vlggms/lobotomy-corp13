@@ -122,7 +122,7 @@
 	. = ..()
 	message_simple = initial(message_simple)
 	if(. && user.death_sound)
-		if(!user.can_speak_vocal() || user.oxyloss >= 50)
+		if(!user.can_speak_vocal() || user.oxyloss >= -HEALTH_THRESHOLD_DEAD * 0.75)
 			return //stop the sound if oxyloss too high/cant speak
 		playsound(user, user.death_sound, 200, TRUE, TRUE)
 

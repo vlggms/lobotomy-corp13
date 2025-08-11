@@ -16,8 +16,8 @@ It has now been over four months. Now we get her for real. -Coxswain
 	del_on_death = TRUE
 	pixel_x = -8
 	base_pixel_x = -8
-	maxHealth = 2400 // More health than standard
-	health = 2400 // Since she was apparently too easy to suppress
+	maxHealth = 950 // More health than standard
+	health = 950 // Since she was apparently too easy to suppress
 	rapid_melee = 2
 	speed = 0.5
 	threat_level = WAW_LEVEL
@@ -30,12 +30,12 @@ It has now been over four months. Now we get her for real. -Coxswain
 		)
 	damage_coeff = list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 1.5) // Fuck you, blue shepherd.
 	ranged = TRUE
-	melee_damage_lower = 30
-	melee_damage_upper = 45
+	melee_damage_lower = 12
+	melee_damage_upper = 14
 	attack_action_types = list(/datum/action/innate/abnormality_attack/find_target, /datum/action/innate/abnormality_attack/catch_breath, /datum/action/innate/abnormality_attack/hollowpoint_shell, /datum/action/innate/abnormality_attack/strike_without_hesitation)
 	melee_damage_type = RED_DAMAGE
 	stat_attack = HARD_CRIT
-	work_damage_amount = 10
+	work_damage_amount = 7
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/pride
 	patrol_cooldown_time = 10 SECONDS // She's restless
@@ -118,13 +118,13 @@ It has now been over four months. Now we get her for real. -Coxswain
 	var/gun_cooldown = 5 SECONDS
 	var/gun_multishot_pause = 2.5 // How long to pause between shots in a volley
 	var/bullet_additional = 0 // How many extra times to shoot
-	var/bullet_damage = 30 // How much damage each hollowpoint shell does
+	var/bullet_damage = 12 // How much damage each hollowpoint shell does
 
 	var/throw_timer = 0
 	var/throw_cooldown = 11 SECONDS
 	var/throw_amount = 3 // How many blades to throw at once
 	var/throw_cone = 25 // Total firing angle of all red's projectiles.
-	var/throw_damage = 40 // Damage of each thrown blade
+	var/throw_damage = 18 // Damage of each thrown blade
 	var/leaving = FALSE
 
 	var/list/wolf_encounter_lines = list( // Encountering Big and Will Be Bad Wolf

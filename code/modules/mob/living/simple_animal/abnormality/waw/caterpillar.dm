@@ -7,14 +7,14 @@
 	portrait = "caterpillar"
 	pixel_x = -16
 	base_pixel_x = -16
-	maxHealth = 2300
-	health = 2300
+	maxHealth = 700
+	health = 700
 	ranged = TRUE
 	attack_verb_continuous = "scolds"
 	attack_verb_simple = "scold"
 	stat_attack = HARD_CRIT
-	melee_damage_lower = 11
-	melee_damage_upper = 12
+	melee_damage_lower = 3
+	melee_damage_upper = 4
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0)
 	speak_emote = list("flutters")
 
