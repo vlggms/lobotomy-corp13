@@ -1,8 +1,8 @@
 /mob/living/simple_animal/hostile/abnormality/silentorchestra
 	name = "The Silent Orchestra"
 	desc = "From break and ruin, the most beautiful performance begins."
-	health = 4000
-	maxHealth = 4000
+	health = 2000
+	maxHealth = 2000
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "silent"
 	icon_living = "silent"
@@ -17,7 +17,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 40, 40, 50),
 		ABNORMALITY_WORK_REPRESSION = list(0, 0, 10, 20, 30),
 	)
-	work_damage_amount = 16
+	work_damage_amount = 9
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/sloth
 	good_hater = TRUE
@@ -47,7 +47,7 @@
 	/// Range of the damage
 	var/symphony_range = 20
 	/// Amount of white damage every tick
-	var/symphony_damage = 10
+	var/symphony_damage = 4
 	/// When to perform next movement
 	var/next_movement_time
 	/// Current movement
