@@ -3,8 +3,8 @@
 /mob/living/simple_animal/hostile/abnormality/nothing_there
 	name = "Nothing There"
 	desc = "A wicked creature that consists of various human body parts and organs."
-	health = 4000
-	maxHealth = 4000
+	health = 2000
+	maxHealth = 2000
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
 	attack_sound = 'sound/weapons/slash.ogg'
@@ -15,8 +15,8 @@
 	portrait = "nothing_there"
 	melee_damage_type = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.2)
-	melee_damage_lower = 55
-	melee_damage_upper = 65
+	melee_damage_lower = 18
+	melee_damage_upper = 21
 	move_to_delay = 3
 	ranged = TRUE
 	pixel_x = -8
@@ -32,7 +32,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 50,
 		ABNORMALITY_WORK_REPRESSION = 0,
 	)
-	work_damage_amount = 16
+	work_damage_amount = 9
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/envy
 
@@ -71,10 +71,10 @@
 
 	var/hello_cooldown
 	var/hello_cooldown_time = 6 SECONDS
-	var/hello_damage = 120
+	var/hello_damage = 40
 	var/goodbye_cooldown
 	var/goodbye_cooldown_time = 20 SECONDS
-	var/goodbye_damage = 500
+	var/goodbye_damage = 150
 
 	var/last_heal_time = 0
 	var/heal_percent_per_second = 0.0085
@@ -321,8 +321,8 @@
 			SetOccupiedTiles(up = 1)
 			ChangeResistances(list(WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.8))
 			can_act = TRUE
-			melee_damage_lower = 65
-			melee_damage_upper = 75
+			melee_damage_lower = 25
+			melee_damage_upper = 35
 			ChangeMoveToDelayBy(1.5)
 			heartbeat.stop()
 			breachloop.start()
