@@ -1,18 +1,18 @@
 /obj/projectile/ego_bullet/ego_correctional
 	name = "correctional"
-	damage = 10
+	damage = 5
 	damage_type = BLACK_DAMAGE
 
 /obj/projectile/ego_bullet/ego_hornet
 	name = "hornet"
-	damage = 55
+	damage = 25
 	damage_type = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_hatred
 	name = "magic beam"
 	icon_state = "qoh1"
 	damage_type = BLACK_DAMAGE
-	damage = 50
+	damage = 25
 	spread = 10
 
 /obj/projectile/ego_bullet/ego_hatred/on_hit(atom/target, blocked = FALSE)
@@ -47,7 +47,7 @@
 /obj/projectile/ego_bullet/ego_magicbullet
 	name = "magic bullet"
 	icon_state = "magic_bullet"
-	damage = 80
+	damage = 40
 	speed = 0.1
 	damage_type = BLACK_DAMAGE
 	projectile_piercing = PASSMOB
@@ -55,7 +55,7 @@
 	hit_nondense_targets = TRUE
 
 /obj/projectile/ego_bullet/ego_magicbullet/abnormality
-	damage = 70 // Lower damage, inflicts a status effect.
+	damage = 35 // Lower damage, inflicts a status effect.
 
 /obj/projectile/ego_bullet/ego_magicbullet/abnormality/on_hit(atom/target, blocked = FALSE, pierce_hit)
 	if(istype(target, /mob/living/simple_animal/hostile/der_freis_portal))
@@ -71,14 +71,14 @@
 /obj/projectile/ego_bullet/ego_solemnlament
 	name = "solemn lament"
 	icon_state = "whitefly"
-	damage = 35
+	damage = 17
 	speed = 0.35
 	damage_type = WHITE_DAMAGE
 
 /obj/projectile/ego_bullet/ego_solemnvow
 	name = "solemn vow"
 	icon_state = "blackfly"
-	damage = 35
+	damage =17
 	speed = 0.35
 	damage_type = BLACK_DAMAGE
 
@@ -86,13 +86,13 @@
 /obj/projectile/ego_bullet/ego_loyalty // not actually used at the moment
 	name = "loyalty"
 	icon_state = "loyalty"
-	damage = 4
+	damage = 2
 	speed = 0.2
 	damage_type = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_loyalty/iff
 	name = "loyalty IFF"
-	damage = 3
+	damage = 1.5
 	nodamage = TRUE	//Damage is calculated later
 	projectile_piercing = PASSMOB
 
@@ -107,20 +107,20 @@
 
 /obj/projectile/ego_bullet/ego_executive
 	name = "executive"
-	damage = 12
+	damage = 6
 	damage_type = PALE_DAMAGE	//hehe
 
 
 /obj/projectile/ego_bullet/ego_crimson
 	name = "crimson"
-	damage = 14
+	damage = 7
 	damage_type = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_ecstasy
 	name = "ecstasy"
 	icon_state = "ecstasy"
 	damage_type = WHITE_DAMAGE
-	damage = 7
+	damage = 4
 	speed = 1.3
 	range = 6
 
@@ -132,7 +132,7 @@
 /obj/projectile/ego_bullet/ego_praetorian
 	name = "praetorian"
 	icon_state = "loyalty"
-	damage = 3
+	damage = 1.5
 	nodamage = TRUE	//Damage is calculated later
 	damage_type = RED_DAMAGE
 	projectile_piercing = PASSMOB
@@ -170,7 +170,7 @@
 /obj/projectile/ego_bullet/ego_magicpistol
 	name = "magic pistol"
 	icon_state = "magic_bullet"
-	damage = 40
+	damage = 20
 	speed = 0.1
 	damage_type = BLACK_DAMAGE
 	projectile_piercing = PASSMOB
@@ -178,20 +178,20 @@
 //tommygun
 /obj/projectile/ego_bullet/ego_intention
 	name = "good intentions"
-	damage = 5
+	damage = 3
 	speed = 0.2
 	damage_type = RED_DAMAGE
 
 //laststop
 /obj/projectile/ego_bullet/ego_laststop
 	name = "laststop"
-	damage = 145
+	damage = 75
 	damage_type = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_aroma
 	name = "aroma"
 	icon_state = "arrow_aroma"
-	damage = 140
+	damage = 70
 	damage_type = WHITE_DAMAGE
 
 //Assonance, our one hitscan laser
@@ -199,7 +199,7 @@
 	name = "assonance"
 	icon_state = "omnilaser"
 	hitsound = null
-	damage = 50
+	damage = 25
 	damage_type = WHITE_DAMAGE
 	hitscan = TRUE
 	muzzle_type = /obj/effect/projectile/muzzle/laser/white
@@ -232,7 +232,7 @@
 /obj/projectile/ego_bullet/ego_feather
 	name = "feather"
 	icon_state = "lava"
-	damage = 40
+	damage = 20
 	damage_type = WHITE_DAMAGE
 	homing = TRUE
 	speed = 1.5
@@ -243,7 +243,7 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "nakednest_serpent"
 	desc = "A sterile naked nest serpent"
-	damage = 120
+	damage = 60
 	damage_type = RED_DAMAGE
 	hitsound = "sound/effects/wounds/pierce1.ogg"
 
@@ -259,7 +259,7 @@
 /obj/projectile/ego_bullet/ego_warring
 	name = "feather of valor"
 	icon_state = "arrow"
-	damage = 75
+	damage = 37
 	damage_type = BLACK_DAMAGE
 
 /obj/projectile/ego_bullet/ego_warring/on_hit(atom/target, blocked = FALSE)
@@ -278,7 +278,7 @@
 	name = "feather of valor"
 	icon_state = "lava"
 	hitsound = null
-	damage = 125
+	damage = 62
 	damage_type = BLACK_DAMAGE
 	hitscan = TRUE
 	muzzle_type = /obj/effect/projectile/muzzle/laser/warring
@@ -309,14 +309,14 @@
 /obj/projectile/ego_bullet/ego_banquet
 	name = "banquet"
 	icon_state = "pulse0"
-	damage = 120
+	damage = 60
 	damage_type = BLACK_DAMAGE
 
 
 /obj/projectile/ego_bullet/ego_blind_rage
 	name = "blind rage"
 	icon_state = "blind_rage"
-	damage = 15
+	damage = 7
 	damage_type = BLACK_DAMAGE
 
 /obj/projectile/ego_bullet/ego_blind_rage/on_hit(atom/target, blocked, pierce_hit)
@@ -329,7 +329,7 @@
 /obj/projectile/ego_bullet/ego_innocence
 	name = "innocence"
 	icon_state = "energy"
-	damage = 7 //Can dual wield, full auto
+	damage = 3 //Can dual wield, full auto
 	damage_type = WHITE_DAMAGE
 
 
@@ -337,25 +337,25 @@
 	name = "hypocrisy"
 	icon_state = "arrow_greyscale"
 	color = "#AAFF00"
-	damage = 90 //50 damage is transfered to the spawnable trap
+	damage = 45 //20 damage is transfered to the spawnable trap
 	damage_type = RED_DAMAGE
 
 
 /obj/projectile/ego_bullet/ego_bride
 	name = "bride"
 	icon_state = "bride"
-	damage = 55
+	damage = 27
 	damage_type = WHITE_DAMAGE
 
 /obj/projectile/ego_bullet/ego_supershotgun
 	name = "super shotgun"
-	damage = 10
+	damage = 5
 	damage_type = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_fellbullet
 	name = "fell bullet"
 	icon_state = "fell_bullet"
-	damage = 40
+	damage = 20
 	speed = 0.1
 	damage_type = RED_DAMAGE
 	projectile_piercing = PASSMOB
@@ -364,21 +364,21 @@
 
 /obj/projectile/ego_bullet/ego_fellscatter
 	name = "fell pellet"
-	damage = 10//7 pellets
+	damage = 5//7 pellets
 	damage_type = RED_DAMAGE
 	spread = 50
 
 /obj/projectile/ego_bullet/ego_fellscatter/greater
 	name = "fell pellet"
 	icon_state = "fell_pellet"
-	damage = 20//generated by friendly fire effect
+	damage = 10//generated by friendly fire effect
 	damage_type = RED_DAMAGE
 	spread = 50
 
 /obj/projectile/ego_bullet/special_fellbullet
 	name = "fell bullet"
 	icon_state = "fell_bullet"
-	damage = 80
+	damage = 40
 	speed = 0.1
 	damage_type = RED_DAMAGE
 	projectile_piercing = PASSMOB
@@ -412,7 +412,7 @@
 	var/pellets = 7
 	var/shotsleft = 4
 	var/angle = 0
-	var/damage = 80
+	var/damage = 40
 	var/damage_mult = 1
 
 /obj/effect/fellcircle/Initialize()
@@ -421,8 +421,8 @@
 
 /obj/effect/fellcircle/proc/FireBullets(angle, damage)
 	playsound(src, 'sound/abnormalities/fluchschutze/fell_portal.ogg', 50, FALSE)
-	if(damage > 80)//the damage of the slug that produced this effect
-		damage_mult = (damage/80)//convert this into a decimal we can multiply the bullet's damage with
+	if(damage > 40)//the damage of the slug that produced this effect
+		damage_mult = (damage/40)//convert this into a decimal we can multiply the bullet's damage with
 	sleep(1 SECONDS)
 	animate(src, alpha = 0, time = 4 SECONDS)
 	for(var/i = 0, i < shotsleft, i++)
