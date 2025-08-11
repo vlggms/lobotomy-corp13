@@ -5,7 +5,7 @@
 	special = "This weapon attacks all non-humans in an AOE. \
 			This weapon deals double damage on direct attack."
 	icon_state = "lamp"
-	force = 24
+	force = 12 // Does +14 with AOE
 	attack_speed = 1.3
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("slams", "attacks")
@@ -22,7 +22,7 @@
 	if(!.)
 		return FALSE
 	for(var/mob/living/L in hearers(1, target_turf))
-		var/aoe = 25
+		var/aoe = 14
 		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 		var/justicemod = 1 + userjust / 100
 		aoe *= justicemod
