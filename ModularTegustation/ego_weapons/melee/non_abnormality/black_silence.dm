@@ -33,21 +33,6 @@
 	var/list/unlocked_list = list()
 	var/iff = TRUE
 
-
-/obj/item/ego_weapon/black_silence_gloves/examine(mob/user)
-	. = ..()
-	if(user.mind)
-		if(user.mind.assigned_role in list("Disciplinary Officer", "Combat Research Agent")) //These guys get a bonus to equipping gacha.
-			. += span_notice("Due to your abilities, you get a -20 reduction to stat requirements when equipping this weapon.")
-
-/obj/item/ego_weapon/black_silence_gloves/CanUseEgo(mob/living/user)
-	if(user.mind)
-		if(user.mind.assigned_role in list("Disciplinary Officer", "Combat Research Agent")) //These guys get a bonus to equipping gacha.
-			equip_bonus = 20
-		else
-			equip_bonus = 0
-	. = ..()
-
 /obj/item/ego_weapon/black_silence_gloves/equipped(mob/user, slot)
 	. = ..()
 	if(!user)
@@ -204,7 +189,7 @@
 	icon_state = "zelkova"
 
 	special_cooldown_time = 12
-	force = 90
+	force = 45
 	var/weapon
 	var/reduction = 0
 	var/special_check = FALSE
@@ -256,7 +241,7 @@
 	special = "SHIFT+CLICK to perform 3 consecutive dash attacks on the enemy. Successful attacks reduces the dash cooldown"
 	icon_state = "ranga"
 	attack_speed = 0.3
-	force = 25
+	force = 12
 	attack_verb_continuous = list("stabs", "maims", "claws", "slices", "pummels", "mutilates")
 	attack_verb_simple = list("stab", "maim", "claw", "slice", "pummel", "mutilate")
 	special_cooldown_time = 150
@@ -276,7 +261,7 @@
 	var/mob/living/L = target
 	var/turf/F = get_turf(L)
 	new /obj/effect/temp_visual/smash_effect(F)
-	L.apply_damage(80, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+	L.apply_damage(40, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
 	exchange_cooldown -= 20
 	switch(dash_count)
 		if(0)
@@ -313,7 +298,7 @@
 	attack_verb_continuous = list("smashes", "smacks", "bashes")
 	attack_verb_simple = list("smash", "smacks", "bashes")
 	hitsound = 'sound/weapons/black_silence/mace.ogg'
-	force = 80 // parry weapon
+	force = 40 // parry weapon
 	attack_speed = 1
 	var/block = 0
 	var/block_success
@@ -362,12 +347,12 @@
 
 /obj/item/ego_weapon/black_silence_gloves/old_boys/proc/BlockFail(mob/living/carbon/human/user)
 	to_chat(user,span_warning("Your stance is widened."))
-	force = 50
+	force = 25
 	addtimer(CALLBACK(src, PROC_REF(RemoveDebuff), user), 2 SECONDS)
 
 /obj/item/ego_weapon/black_silence_gloves/old_boys/proc/RemoveDebuff(mob/living/carbon/human/user)
 	to_chat(user,span_nicegreen("You recollect your stance."))
-	force = 80
+	force = 40
 
 /obj/item/ego_weapon/black_silence_gloves/old_boys/proc/AnnounceBlock(mob/living/carbon/human/source, damage, damagetype, def_zone)
 	SIGNAL_HANDLER
@@ -381,7 +366,7 @@
 
 /obj/item/ego_weapon/black_silence_gloves/old_boys/attack(mob/living/M, mob/living/user)
 	if(parry_buff)
-		force = 130
+		force = 65
 		hitsound = 'sound/weapons/black_silence/greatsword.ogg'
 		exchange_cooldown -= 50
 	..()
@@ -390,7 +375,7 @@
 		if(!M.anchored)
 			var/whack_speed = (prob(60) ? 1 : 4)
 			M.throw_at(throw_target, rand(1, 2), whack_speed, user)
-		force = 80
+		force = 40
 		hitsound = 'sound/weapons/black_silence/mace.ogg'
 		parry_buff = FALSE
 	else
@@ -404,7 +389,7 @@
 	icon_state = "allas"
 	attack_verb_continuous = list("pokes", "jabs", "pierces", "gores")
 	attack_verb_simple = list("poke", "jab", "pierce", "gore")
-	force = 90
+	force = 45
 	reach = 2
 	attack_speed = 1
 	stuntime = 5
@@ -422,7 +407,7 @@
 	dash(user, target_turf)
 	for(var/turf/T in getline(user, target_turf))
 		line_turfs += T
-	force = 70 + (5*min(line_turfs.len, 8))
+	force = 35 + (3*min(line_turfs.len, 8))
 	hitsound = 'sound/weapons/black_silence/duelsword_strong.ogg'
 	exchange_cooldown -= 80
 	attack(target, user)
@@ -432,7 +417,7 @@
 	if(!.)
 		return FALSE
 	exchange_cooldown -= 20
-	force = 70
+	force = 35
 	hitsound = 'sound/weapons/ego/spear1.ogg'
 	if(isliving(M))
 		var/mob/living/simple_animal/target = M
@@ -446,7 +431,7 @@
 	desc = "LongSword once belonged to the Black Silence."
 	special = "SHIFT+CLICK to perform judgm- air slash (has 3 stacks, resets to 3 each cooldown). Performing an attack between 1.8-2.2 seconds greatly increases damage."
 	icon_state = "mook"
-	force = 75
+	force = 37
 	attack_verb_continuous = list("attacks", "slashes", "cuts", "slices")
 	attack_verb_simple = list("attack", "slash", "cut", "slice")
 	hitsound = 'sound/weapons/ego/sword1.ogg'
@@ -470,7 +455,7 @@
 		playsound(T, 'sound/weapons/black_silence/longsword_atk.ogg', 50, 1)
 		for (var/i = 0; i < 3; i++)
 			new /obj/effect/temp_visual/smash_effect(T)
-			for(var/mob/living/L in user.HurtInTurf(T, list(), 50, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
+			for(var/mob/living/L in user.HurtInTurf(T, list(), 25, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
 				exchange_cooldown -= 10
 			sleep(0.25 SECONDS)
 
@@ -479,11 +464,11 @@
 		return
 	concentration_time = concentration_time - world.time
 	if(concentration_time > 0 && concentration_time < 5)
-		force = 200
+		force = 100
 		hitsound = 'sound/weapons/black_silence/longsword_fin.ogg'
 		exchange_cooldown -= 50
 	else
-		force = 75
+		force = 37
 		hitsound = 'sound/weapons/ego/sword1.ogg'
 		exchange_cooldown -= 10
 	..()
@@ -591,7 +576,7 @@
 	var/atom/throw_target = get_edge_target_turf(target, user.dir)
 	for(var/turf/T in area_of_effect)
 		new /obj/effect/temp_visual/smash_effect(T)
-		var/list/new_hits = user.HurtInTurf(T, been_hit, 100, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE) - been_hit
+		var/list/new_hits = user.HurtInTurf(T, been_hit, 50, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE) - been_hit
 		been_hit += new_hits
 		for(var/mob/living/L in new_hits)
 			if(!L.anchored)
@@ -639,7 +624,7 @@
 
 /obj/projectile/ego_bullet/atelier_logic
 	name = "atelier logic"
-	damage = 80
+	damage = 40
 	speed = 0.3
 	icon_state = "logic"
 	damage_type = BLACK_DAMAGE
@@ -667,7 +652,7 @@
 	attack_verb_continuous = list("attacks", "slashes", "cuts", "slices")
 	attack_verb_simple = list("attack", "slash", "cut", "slice")
 	attack_speed = 1.5
-	force = 80 //this is just for breaking objects
+	force = 40 //this is just for breaking objects
 	special_cooldown_time = 30 SECONDS
 	hitsound = 'sound/weapons/black_silence/durandal_up.ogg'
 	var/finisher = FALSE
@@ -688,13 +673,13 @@
 	if(combo_time <= world.time)
 		combo_count = 0
 	if(finisher)
-		force = 100 + (40*combo_count)
+		force = 50 + (20*combo_count)
 		exchange_cooldown -= (30*combo_count)
 		hitsound = 'sound/weapons/black_silence/durandal_strong.ogg'
 		var/turf/T = get_turf(M)
 		new /obj/effect/temp_visual/smash_effect(T)
 	else
-		force = 80 + (5*combo_count)
+		force = 40 + (3*combo_count)
 		exchange_cooldown -= 10
 		hitsound = 'sound/weapons/black_silence/durandal_up.ogg'
 	..()
@@ -712,7 +697,7 @@
 	icon_state = "crystal"
 	attack_verb_continuous = list("attacks", "slashes", "cuts", "slices")
 	attack_verb_simple = list("attack", "slash", "cut", "slice")
-	force = 50
+	force = 25
 	hitsound = 'sound/weapons/ego/sword1.ogg'
 	var/dash_count = 0
 	var/combo = 0
@@ -759,12 +744,12 @@
 	dash(user, target_turf)
 	playsound(user, 'sound/weapons/black_silence/duelsword.ogg', 50, 1)
 	if(dash_count < 1)
-		L.apply_damage(60, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+		L.apply_damage(30, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
 		addtimer(CALLBACK(src, PROC_REF(dash_attack), user, target), 5)
 		new /obj/effect/temp_visual/smash_effect(F)
 		dash_count += 1
 	else
-		L.apply_damage(100, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+		L.apply_damage(50, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
 		new /obj/effect/temp_visual/smash_effect(F)
 		exchange_cooldown -= 30
 		dash_count = 0
@@ -805,7 +790,7 @@
 	attack_verb_continuous = list("attacks", "smashes", "cleaves", "slashes")
 	attack_verb_simple = list("attack", "smash", "cleave", "slash")
 	attack_speed = 2
-	force = 100
+	force = 50
 	hitsound = 'sound/weapons/ego/twilight.ogg'
 	special_cooldown_time = 5 SECONDS
 	var/aoe_length = 4
@@ -892,7 +877,7 @@
 		var/list/been_hit = list()
 		for(var/turf/T in area_of_effect)
 			new /obj/effect/temp_visual/smash_effect(T)
-			var/list/new_hits = user.HurtInTurf(T, been_hit, 300, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE) - been_hit
+			var/list/new_hits = user.HurtInTurf(T, been_hit, 150, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE) - been_hit
 			been_hit += new_hits
 			for(var/mob/living/L in new_hits)
 				var/atom/throw_target = get_edge_target_turf(target, get_dir(user, L))
@@ -1043,7 +1028,7 @@
 	new /obj/effect/temp_visual/smash_effect(T)
 	if(!target.anchored)
 		target.Move(target_turf)
-	L.apply_damage(1500, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE)) //this went on for 5 sec, so 300 DPS as the final attack
+	L.apply_damage(750, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE)) //this went on for 5 sec, so 150 DPS as the final attack
 	sleep(10)
 
 	furioso_end(user, target)

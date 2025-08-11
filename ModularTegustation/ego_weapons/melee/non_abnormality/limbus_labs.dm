@@ -6,10 +6,10 @@
 	inhand_icon_state = "lccb_pistol"
 	icon = 'icons/obj/limbus_weapons.dmi'
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
-	force = 8
+	force = 4
 	attack_speed = 0.5
 	weapon_weight = WEAPON_LIGHT
-	projectile_path = /obj/projectile/ego_bullet/tendamage
+	projectile_path = /obj/projectile/ego_bullet/fivedamage
 	shotsleft = 13
 	reloadtime = 1 SECONDS
 	fire_delay = 5
@@ -21,11 +21,11 @@
 	icon_state = "lccb_burstpistol"
 	inhand_icon_state = "lccb_pistol"
 	icon = 'icons/obj/limbus_weapons.dmi'
-	force = 8
+	force = 4
 	attack_speed = 0.5
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	weapon_weight = WEAPON_LIGHT
-	projectile_path = /obj/projectile/ego_bullet/tendamage
+	projectile_path = /obj/projectile/ego_bullet/fivedamage
 	spread = 30
 	shotsleft = 13
 	reloadtime = 1.5 SECONDS
@@ -39,10 +39,10 @@
 	inhand_icon_state = "lccb_magnum"
 	icon = 'icons/obj/limbus_weapons.dmi'
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
-	force = 8
+	force = 4
 	attack_speed = 0.5
 	weapon_weight = WEAPON_HEAVY
-	projectile_path = /obj/projectile/ego_bullet/tendamage
+	projectile_path = /obj/projectile/ego_bullet/fivedamage
 	projectile_damage_multiplier = 6 //60 damage per bullet
 	shotsleft = 6
 	reloadtime = 3 SECONDS
@@ -55,9 +55,9 @@
 	icon_state = "lccb_smg"
 	inhand_icon_state = "lccb_smg"
 	icon = 'icons/obj/limbus_weapons.dmi'
-	force = 14
+	force = 7
 	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
-	projectile_path = /obj/projectile/ego_bullet/tendamage
+	projectile_path = /obj/projectile/ego_bullet/fivedamage
 	spread = 30
 	shotsleft = 30
 	reloadtime = 2.7 SECONDS
@@ -70,16 +70,16 @@
 	icon_state = "lccb_shotgun"
 	inhand_icon_state = "lccb_shotgun"
 	icon = 'icons/obj/limbus_weapons.dmi'
-	force = 14
-	projectile_path = /obj/projectile/ego_bullet/tendamage // total 40 damage
+	force = 7
+	projectile_path = /obj/projectile/ego_bullet/fivedamage // total 20 damage
 	pellets = 8
 	variance = 16
-	projectile_damage_multiplier = 0.5 //5 damage per bullet
+	projectile_damage_multiplier = 0.5 //2.5 damage per bullet
 	fire_delay = 10
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
 	shotsleft = 7
 	reloadtime = 3.2 SECONDS
-	force = 10	//You have knockback
+	force = 5	//You have knockback
 	damtype = RED_DAMAGE
 
 
@@ -102,7 +102,7 @@
 	icon_state = "lccb_shield"
 	lefthand_file = 'ModularTegustation/Teguicons/lc13_left.dmi'
 	righthand_file = 'ModularTegustation/Teguicons/lc13_right.dmi'
-	force = 20
+	force = 10
 	slowdown = 0.7
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("shoves", "bashes")
@@ -132,7 +132,7 @@
 	special = "This weapon has knockback."
 	icon_state = "lccb_baton"
 	icon = 'icons/obj/limbus_weapons.dmi'
-	force = 54	//You're hitting shit with your baton
+	force = 27	//You're hitting shit with your baton
 	attack_speed = 2
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("bashes", "clubs")

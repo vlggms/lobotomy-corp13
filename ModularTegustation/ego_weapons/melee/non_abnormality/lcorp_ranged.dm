@@ -4,9 +4,9 @@
 
 /obj/projectile/ego_bullet/lcorp
 	name = "bullet"
-	damage = 4
+	damage = 2
 	damage_type = RED_DAMAGE
-	var/list/damage_tier = list(11,20,30,55,90) //These numbers are just for reference
+	var/list/damage_tier = list(2,4,6,9,18) //These numbers are just for reference
 
 /obj/projectile/ego_bullet/lcorp/fire(angle, atom/direct_target)
 	if(fired_from)
@@ -20,13 +20,13 @@
 
 /obj/projectile/ego_bullet/lcorp/pistol
 	name = "bullet"
-	damage = 11
-	damage_tier = list(11,20,30,55,90)
+	damage = 5
+	damage_tier = list(5,10,15,20,30)
 
 /obj/projectile/ego_bullet/lcorp/automatic
 	name = "bullet"
-	damage = 2
-	damage_tier = list(2,4,6,9,15)
+	damage = 1
+	damage_tier = list(1,2,4,6,9)
 
 ///////////////////////
 //ERA/AGENT EQUIPMENT//
@@ -99,7 +99,7 @@
 	special = "This weapon has pinpoint accuracy when dual wielded."
 	projectile_path = /obj/projectile/ego_bullet/lcorp/pistol
 	attack_speed = 0.5
-	force = 6
+	force = 3
 	fire_delay = 10
 	shotsleft = 7
 	reloadtime = 2.1 SECONDS
@@ -120,7 +120,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	projectile_path = /obj/projectile/ego_bullet/lcorp/automatic
 	attack_speed = 0.5
-	force = 6
+	force = 3
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	vary_fire_sound = FALSE
 	shotsleft = 20
@@ -145,7 +145,7 @@
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
 	attack_speed = 0.5
-	force = 6
+	force = 3
 	w_class = WEIGHT_CLASS_NORMAL
 	projectile_path = /obj/projectile/ego_bullet/ego_clerk
 	burst_size = 1

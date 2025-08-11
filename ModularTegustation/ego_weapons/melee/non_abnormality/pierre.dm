@@ -5,7 +5,7 @@
 	desc = "A cleaver found in the backstreets of district 23. This one is rusted, but still performs it's functions."
 	special = "This weapon heals you on hit."
 	icon_state = "jack"
-	force = 28
+	force = 14
 	attack_speed = 2
 	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = RED_DAMAGE
@@ -32,7 +32,7 @@
 	name = "district 23 carving knife"
 	desc = "A carving knife found in the backstreets of district 23. This one is rusted, and seems to require a bit of skill to wield.."
 	icon_state = "pierre"
-	force = 24
+	force = 12
 	attack_speed = 1
 	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
 	attack_verb_simple = list("slash", "slice", "rip", "cut")

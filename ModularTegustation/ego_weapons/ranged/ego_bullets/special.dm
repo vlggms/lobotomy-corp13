@@ -72,6 +72,6 @@
 	H.IgniteMob()
 	return BULLET_ACT_HIT
 
-/obj/projectile/ego_bullet/tendamage
+/obj/projectile/ego_bullet/fivedamage
 	name = "bullet"
-	damage = 10
+	damage = 5

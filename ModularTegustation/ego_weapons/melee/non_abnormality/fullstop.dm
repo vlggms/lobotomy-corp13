@@ -4,8 +4,8 @@
 	desc = "a template for fullstop."
 	icon_state = "fullstop"
 	inhand_icon_state = "fullstop"
-	force = 14
-	projectile_path = /obj/projectile/ego_bullet/tendamage	//Does 10 damage
+	force = 7
+	projectile_path = /obj/projectile/ego_bullet/fivedamage	//Does 10 damage
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
 	special = "Use in hand to reload"
@@ -18,7 +18,7 @@
 	desc = "A heavy rifle. Guns like these are expensive in the City. You could buy a whole other weapon of good quality with the money for this one's bullets."
 	icon_state = "fullstop"
 	inhand_icon_state = "fullstop"
-	force = 20
+	force = 10
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
 	shotsleft = 30
 	autofire = 0.12 SECONDS
@@ -35,7 +35,7 @@
 	desc = "A fullstop pistol. Looks familiar."
 	icon_state = "fullstoppistol"
 	inhand_icon_state = "fullstopsniper"
-	force = 12
+	force = 6
 	attack_speed = 0.5
 	shotsleft = 17
 	fire_delay = 5
@@ -52,7 +52,7 @@
 	desc = "A sniper rifle. Despite the cost and heavy regulations, you could still kill someone stealthily from a good distance with this."
 	icon_state = "fullstopsniper"
 	inhand_icon_state = "fullstopsniper"
-	force = 20
+	force = 10
 	fire_sound = 'sound/weapons/gun/sniper/shot.ogg'
 	zoom_amt = 10 //Long range, enough to see in front of you, but no tiles behind you.
 	zoomable = TRUE
@@ -72,7 +72,7 @@
 	desc = "An expensive pistol. Keep your hands steady. It's not over yet."
 	icon_state = "fullstopdeagle"
 	inhand_icon_state = "fullstopdeagle"
-	force = 17
+	force = 8
 	attack_speed = 0.5
 	weapon_weight = WEAPON_LIGHT
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'

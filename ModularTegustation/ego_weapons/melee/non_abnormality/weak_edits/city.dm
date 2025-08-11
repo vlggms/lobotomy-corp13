@@ -5,7 +5,7 @@
 	special = "Attack a human to stun them after a period of time."
 	icon_state = "protection_baton"
 	inhand_icon_state = "protection_baton"
-	force = 30
+	force = 15
 	attribute_requirements = list()
 
 
@@ -16,7 +16,7 @@
 	desc = "A sheathed sword used by index recruits."
 	icon_state = "index"
 	inhand_icon_state = "index"
-	force = 20
+	force = 10
 	damtype = PALE_DAMAGE
 
 	attack_verb_continuous = list("smacks", "hammers", "beats")
@@ -47,7 +47,7 @@
 	attack_verb_continuous = list("slices", "slashes", "stabs")
 	attack_verb_simple = list("slice", "slash", "stab")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	force = 45
+	force = 22
 	attribute_requirements = list(
 		FORTITUDE_ATTRIBUTE = 80,
 		PRUDENCE_ATTRIBUTE = 80,
@@ -75,7 +75,7 @@
 	desc = "A dagger used by index proxies."
 	icon_state = "indexdagger"
 	inhand_icon_state = "indexdagger"
-	force = 30
+	force = 15
 	attack_speed = 0.5
 
 
@@ -92,7 +92,7 @@
 	attack_verb_continuous = list("cleaves", "cuts")
 	attack_verb_simple = list("cleaves", "cuts")
 	hitsound = 'sound/weapons/fixer/generic/finisher1.ogg'
-	force = 70
+	force = 35
 	attack_speed = 2
 	attribute_requirements = list(
 		FORTITUDE_ATTRIBUTE = 100,
@@ -105,7 +105,7 @@
 //Blade Lineage
 /obj/item/ego_weapon/city/bladelineage/city
 	special = "Use this weapon in hand to immobilize yourself for 3 seconds and deal 3x damage on the next attack within 5 seconds. This empowered attack also deals 2% more damage per 1% of your missing HP, on top of the 3x damage."
-	force = 30
+	force = 15
 	attribute_requirements = list(
 		FORTITUDE_ATTRIBUTE = 60,
 		PRUDENCE_ATTRIBUTE = 60,
@@ -116,7 +116,7 @@
 
 //Kurokumo
 /obj/item/ego_weapon/city/kurokumo/weak
-	force = 52
+	force = 26
 	attribute_requirements = list(
 		FORTITUDE_ATTRIBUTE = 60,
 		PRUDENCE_ATTRIBUTE = 60,
@@ -126,9 +126,9 @@
 
 //Thumb
 /obj/item/ego_weapon/ranged/city/thumb/city
-	force = 35
+	force = 17
 	projectile_damage_multiplier = 1
-	projectile_path = /obj/projectile/ego_bullet/citythumb // does 30 damage (odd, there's no force mod on this one)
+	projectile_path = /obj/projectile/ego_bullet/citythumb // does 15 damage (odd, there's no force mod on this one)
 	attribute_requirements = list(
 		FORTITUDE_ATTRIBUTE = 60,
 		PRUDENCE_ATTRIBUTE = 60,
@@ -137,16 +137,16 @@
 	)
 
 /obj/projectile/ego_bullet/citythumb
-	damage = 30
+	damage = 15
 	damage_type = RED_DAMAGE
 	armour_penetration = 50 //50% True Damage. Ignores 50% of armor
 	ignore_bulletproof = TRUE
 
 //Capo
 /obj/item/ego_weapon/ranged/city/thumb/capo/city
-	force = 44
+	force = 22
 	projectile_damage_multiplier = 1
-	projectile_path = /obj/projectile/ego_bullet/citythumb/capo // does 30 damage (odd, there's no force mod on this one)
+	projectile_path = /obj/projectile/ego_bullet/citythumb/capo // does 22 damage (odd, there's no force mod on this one)
 	attribute_requirements = list(
 		FORTITUDE_ATTRIBUTE = 80,
 		PRUDENCE_ATTRIBUTE = 80,
@@ -155,11 +155,11 @@
 	)
 
 /obj/projectile/ego_bullet/citythumb/capo
-	damage = 45
+	damage = 22
 
 //Sottocapo
 /obj/item/ego_weapon/ranged/city/thumb/sottocapo/city
-	force = 10	//It's a pistol
+	force = 5 //It's a pistol
 	projectile_damage_multiplier = 1
 	projectile_path = /obj/projectile/ego_bullet/citythumb/sottocapo // total 80 AP damage
 	pellets = 8
@@ -177,7 +177,7 @@
 
 //wepaons are kinda uninteresting
 /obj/item/ego_weapon/city/thumbmelee/weak
-	force = 52
+	force = 26
 	attribute_requirements = list(
 		FORTITUDE_ATTRIBUTE = 80,
 		PRUDENCE_ATTRIBUTE = 80,
@@ -186,7 +186,7 @@
 	)
 
 /obj/item/ego_weapon/city/thumbcane/weak
-	force = 70
+	force = 35
 	attribute_requirements = list(
 		FORTITUDE_ATTRIBUTE = 100,
 		PRUDENCE_ATTRIBUTE = 100,

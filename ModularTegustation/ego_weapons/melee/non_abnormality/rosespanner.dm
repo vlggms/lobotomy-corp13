@@ -4,7 +4,7 @@
 	desc = "A template for the rosespanner workshop"
 	icon_state = "rosespanner"
 	inhand_icon_state = "rosespanner"
-	force = 18
+	force = 9
 	damtype = RED_DAMAGE
 
 	attack_verb_continuous = list("bashes", "crushes")
@@ -67,7 +67,7 @@
 	desc = "A hammer from the rosespanner workshop. Fits in your EGO belt."
 	icon_state = "rosespanner_minihammer"
 	inhand_icon_state = "rosespanner_minihammer"
-	force = 44
+	force = 22
 	attack_speed = 1
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
@@ -84,7 +84,7 @@
 	desc = "A hammer from the rosespanner workshop"
 	icon_state = "rosespanner_hammer"
 	inhand_icon_state = "rosespanner_hammer"
-	force = 88	//Slow but rosespanners a detriment, so
+	force = 44	//Slow but rosespanners a detriment, so
 	attack_speed = 2
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
@@ -101,7 +101,7 @@
 	desc = "A spear from the rosespanner workshop"
 	icon_state = "rosespanner_spear"
 	inhand_icon_state = "rosespanner_spear"
-	force = 60	//Slow but rosespanners a detriment, so
+	force = 30	//Slow but rosespanners a detriment, so
 	attack_speed = 1.2
 	reach = 2
 	stuntime = 5
