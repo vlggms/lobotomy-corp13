@@ -4,7 +4,7 @@
 	icon_state = "prank"
 	worn_icon_state = "prank"
 	inhand_icon_state = "prank"
-	force = 20
+	force = 10
 	damtype = BLACK_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_prank
 	weapon_weight = WEAPON_HEAVY
@@ -21,7 +21,7 @@
 	desc = "A magnum pistol featuring excellent burst firing potential."
 	icon_state = "gaze"
 	inhand_icon_state = "gaze"
-	force = 12
+	force = 6
 	projectile_path = /obj/projectile/ego_bullet/ego_gaze
 	fire_delay = 10
 	shotsleft = 8
@@ -42,7 +42,7 @@
 	special = "Use in hand to turn on homing mode. This mode fires slower, but homes in on a random target within 15 metres.	\
 			WARNING: This feature is not accurate."
 	projectile_path = /obj/projectile/ego_bullet/ego_galaxy
-	force = 20
+	force = 10
 	damtype = BLACK_DAMAGE
 	fire_delay = 15
 	fire_sound = 'sound/magic/wand_teleport.ogg'
@@ -76,7 +76,7 @@
 	special = "This weapon will sometimes jam. \
 			Use this weapon in hand to unjam it. \
 			this weapon fires faster and in a bigger burst for 15 seconds after being unjammed."
-	force = 20
+	force = 10
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_unrequited
 	fire_delay = 3
@@ -149,7 +149,7 @@
 	icon_state = "harmony"
 	inhand_icon_state = "harmony"
 	special = "This weapon fires bouncing, piercing shots. On hitting an insane person, deals 4x damage and stops bouncing."
-	force = 30
+	force = 15
 	damtype = WHITE_DAMAGE
 	attack_speed = 1.8
 	projectile_path = /obj/projectile/ego_bullet/ego_harmony
@@ -170,7 +170,7 @@
 	desc = "It's an old wooden longrifle."
 	icon_state = "transmission"
 	inhand_icon_state = "transmission"
-	force = 20
+	force = 10
 	projectile_path = /obj/projectile/ego_bullet/ego_transmission
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 5
@@ -186,7 +186,7 @@
 	desc = "Nothing beats the classics."
 	icon_state = "song"
 	inhand_icon_state = "song"
-	force = 20
+	force = 10
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_song
 	fire_sound = 'sound/weapons/gun/pistol/shot_alt.ogg'
@@ -204,7 +204,7 @@
 	desc = "The past is far behind us."
 	icon_state = "songmini"
 	inhand_icon_state = "songmini"
-	force = 12
+	force = 6
 	damtype = WHITE_DAMAGE
 	pellets = 4
 	variance = 20
@@ -223,7 +223,7 @@
 	desc = "Hair has grown on the crossbow as if to express that the woman’s dejection will never be forgotten."
 	icon_state = "screamingwedge"
 	inhand_icon_state = "screamingwedge"
-	force = 20
+	force = 10
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_wedge
 	weapon_weight = WEAPON_HEAVY
@@ -243,7 +243,7 @@
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
 	special = "This weapon fires dice that deal varying amounts of damage."
-	force = 12
+	force = 6
 	projectile_path = /obj/projectile/ego_bullet/ego_swindle
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 5
@@ -260,7 +260,7 @@
 	icon_state = "ringing"
 	inhand_icon_state = "ringing"
 	special = "This weapon can be used as a megaphone."
-	force = 20
+	force = 10
 	damtype = BLACK_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_ringing
 	weapon_weight = WEAPON_HEAVY
@@ -299,7 +299,7 @@
 	icon_state = "syrinx"
 	inhand_icon_state = "syrinx"
 	special = "This weapon fires slow bullets with limited range."
-	force = 20
+	force = 10
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_syrinx
 	weapon_weight = WEAPON_MEDIUM
@@ -318,7 +318,7 @@
 	desc = "Though I can't guide you... I can offer a warm embrace."
 	icon_state = "ardor_star"
 	inhand_icon_state = "ardor_star"
-	force = 30
+	force = 15
 	attack_speed = 1.8
 	projectile_path = /obj/projectile/ego_bullet/ardor_star
 	weapon_weight = WEAPON_HEAVY
@@ -372,7 +372,7 @@
 	desc = "Soft to the touch, as if it's made of rubber"
 	icon_state = "squeak"
 	inhand_icon_state = "squeak"
-	force = 18
+	force = 9
 	projectile_path = /obj/projectile/ego_bullet/ego_squeak
 	weapon_weight = WEAPON_MEDIUM
 	spread = 10
