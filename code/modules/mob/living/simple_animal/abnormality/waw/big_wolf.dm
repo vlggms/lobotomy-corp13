@@ -16,8 +16,8 @@
 	pixel_x = -16
 	base_pixel_x = -16
 
-	maxHealth = 2500
-	health = 2500
+	maxHealth = 900
+	health = 900
 	del_on_death = FALSE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1)
 	see_in_dark = 10
@@ -38,12 +38,12 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(45, 50, 50, 55, 55),
 		ABNORMALITY_WORK_REPRESSION = 0,
 	)
-	work_damage_amount = 12
+	work_damage_amount = 7
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gluttony
 	melee_damage_type = RED_DAMAGE
-	melee_damage_lower = 20
-	melee_damage_upper = 40
+	melee_damage_lower = 9
+	melee_damage_upper = 12
 	attack_sound = 'sound/abnormalities/big_wolf/Wolf_Scratch.ogg'
 
 	attack_action_types = list(
@@ -316,9 +316,9 @@
 				if(isclosedturf(T))
 					continue
 				new /obj/effect/temp_visual/slice(T)
-				hit_mob = HurtInTurf(T, hit_mob, 50, RED_DAMAGE, null, TRUE, FALSE, TRUE, hurt_structure = TRUE)
+				hit_mob = HurtInTurf(T, hit_mob, 15, RED_DAMAGE, null, TRUE, FALSE, TRUE, hurt_structure = TRUE)
 				for(var/mob/living/simple_animal/hostile/abnormality/red_hood/mercenary in hit_mob)
-					mercenary.deal_damage(100, RED_DAMAGE) //triple damge to red
+					mercenary.deal_damage(50, RED_DAMAGE) //triple damge to red
 	can_act = TRUE
 
 //Used in Steel noons for if they are allowed to fly through something.
@@ -357,15 +357,15 @@
 				if(mercenary.IsContained())
 					mercenary.BreachEffect()
 				mercenary.priority_target = src
-				mercenary.deal_damage(150, WHITE_DAMAGE) //She takes triple damage from the wolf, becauser her resistances are high
+				mercenary.deal_damage(50, WHITE_DAMAGE) //She takes triple damage from the wolf, becauser her resistances are high
 				mercenary.RageUpdate(2)
 			if(faction_check_mob(L, FALSE))
 				continue
 			if(L.stat == DEAD)
 				continue
-			L.deal_damage(50, WHITE_DAMAGE)
+			L.deal_damage(15, WHITE_DAMAGE)
 		for(var/obj/vehicle/V in turfs_to_check)
-			V.take_damage(50, WHITE_DAMAGE)
+			V.take_damage(15, WHITE_DAMAGE)
 		playsound(get_turf(src), 'sound/abnormalities/big_wolf/Wolf_Howl.ogg', 30, 0, 4)
 	cut_overlay(visual_overlay)
 	can_act = TRUE

@@ -8,13 +8,13 @@
 	var/icon_aggro = "pretamonk"
 	icon_dead = "pretamonk"
 	portrait = "clouded_monk"
-	maxHealth = 2500
-	health = 2500
+	maxHealth = 700
+	health = 700
 	rapid_melee = 2
 	ranged = TRUE
 	damage_coeff = list(BRUTE = 1.0, RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.5)
-	melee_damage_lower = 30
-	melee_damage_upper = 45
+	melee_damage_lower = 11
+	melee_damage_upper = 14
 	obj_damage = 22 //otherwise his charge just destroys everything
 	melee_damage_type = RED_DAMAGE
 	see_in_dark = 10
@@ -32,7 +32,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(20, 45, 45, 45, 45),
 		ABNORMALITY_WORK_REPRESSION = list(40, 20, 40, 40, 40),
 	)
-	work_damage_amount = 10
+	work_damage_amount = 7
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gluttony
 
@@ -56,11 +56,11 @@
 	var/monk_charge_cooldown = 0
 	var/monk_charge_cooldown_time = 6 SECONDS
 	var/deathcount
-	var/heal_amount = 250
-	var/charge_damage = 350
+	var/heal_amount = 60
+	var/charge_damage = 90
 	var/eaten = FALSE
 	var/damage_taken
-	var/slam_damage = 100
+	var/slam_damage = 30
 
 	attack_action_types = list(
 		/datum/action/innate/abnormality_attack/toggle/monk_charge,
@@ -159,7 +159,7 @@
 		return
 	if(. > 0)
 		damage_taken += .
-	if(damage_taken >= 200 && !charge_ready)
+	if(damage_taken >= maxHealth * 0.2 && !charge_ready)
 		charge_ready = TRUE
 		to_chat(src, span_userdanger("YOU ARE READY TO CHARGE!"))
 
