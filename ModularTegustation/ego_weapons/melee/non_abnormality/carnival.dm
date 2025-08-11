@@ -4,7 +4,7 @@
 	icon_state = "carnival_spear"
 	inhand_icon_state = "carnival_spear"
 	special = "Deal double damage to mobs of the backstreets. This weapon also stuns target humans, if the user and the target human are alone."
-	force = 35
+	force = 17
 	reach = 2
 	attack_speed = 1
 	stuntime = 5
@@ -56,5 +56,5 @@
 
 /obj/item/ego_weapon/city/carnival_spear/weak
 	name = "Worn-down Carnival Spear"
-	force = 22
+	force = 11
 	attribute_requirements = list()

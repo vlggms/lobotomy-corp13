@@ -4,7 +4,7 @@
 	desc = "An elegant cane. There's the logo of a life insurance company on the top."
 	special = "On kill, heal yourself and get a small payday. 20% of the force is done as pale."
 	icon_state = "miraecane"
-	force = 50
+	force = 25
 	damtype = WHITE_DAMAGE	//Also does a small bit of pale, because lawyers hurt your mind and soul.
 
 	attack_verb_continuous = list("bashes", "crushes")
@@ -34,7 +34,7 @@
 		//10% chance for this
 		if(prob(boxchance))
 			new /obj/item/rawpe(get_turf(src))
-		user.adjustBruteLoss(-50)
+		user.adjustBruteLoss(-25)
 
 
 //Grade 3, but does less damage with a way better payout
@@ -42,7 +42,7 @@
 	name = "mirae life insurance package"
 	desc = "Life insurance papers that are extremely hefty, should get you a good payout."
 	icon_state = "insurance"
-	force = 45
+	force = 22
 	damtype = WHITE_DAMAGE	//Also does a small bit of pale, because lawyers eat your soul.
 
 	ahn_amount = 700

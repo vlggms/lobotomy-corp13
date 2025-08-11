@@ -7,7 +7,7 @@
 	icon = 'icons/obj/limbus_weapons.dmi'
 	lefthand_file = 'icons/mob/inhands/weapons/limbus_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/limbus_righthand.dmi'
-	force = 7
+	force = 3
 	attack_speed = 0.3
 	damtype = WHITE_DAMAGE
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -32,7 +32,7 @@
 	icon = 'icons/obj/limbus_weapons.dmi'
 	lefthand_file = 'icons/mob/inhands/weapons/limbus_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/limbus_righthand.dmi'
-	force = 33
+	force = 16
 	attack_speed = 1.6
 	damtype = WHITE_DAMAGE
 	swingstyle = WEAPONSWING_LARGESWEEP
@@ -59,7 +59,7 @@
 	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
 	inhand_x_dimension = 96
 	inhand_y_dimension = 96
-	force = 38
+	force = 19
 	reach = 2		//Has 2 Square Reach.
 	stuntime = 5
 	attack_speed = 1.6// really slow
@@ -77,7 +77,7 @@
 	lefthand_file = 'icons/mob/inhands/weapons/limbus_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/limbus_righthand.dmi'
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	force = 12
+	force = 6
 	attack_speed = 0.5
 	damtype = BLACK_DAMAGE
 	swingstyle = WEAPONSWING_LARGESWEEP
@@ -103,7 +103,7 @@
 	icon = 'icons/obj/limbus_weapons.dmi'
 	lefthand_file = 'icons/mob/inhands/weapons/limbus_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/limbus_righthand.dmi'
-	force = 11
+	force = 5
 	attack_speed = 0.5
 	damtype = RED_DAMAGE
 
@@ -115,7 +115,7 @@
 	icon = 'icons/obj/limbus_weapons.dmi'
 	lefthand_file = 'icons/mob/inhands/weapons/limbus_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/limbus_righthand.dmi'
-	force = 22
+	force = 11
 	reach = 2		//Has 2 Square Reach.
 	attack_speed = 1.2
 	damtype = WHITE_DAMAGE
@@ -131,7 +131,7 @@
 	icon = 'icons/obj/limbus_weapons.dmi'
 	lefthand_file = 'icons/mob/inhands/weapons/limbus_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/limbus_righthand.dmi'
-	force = 35
+	force = 17
 	attack_speed = 1.6
 	damtype = BLACK_DAMAGE
 
@@ -154,7 +154,7 @@
 	icon = 'icons/obj/limbus_weapons.dmi'
 	lefthand_file = 'icons/mob/inhands/weapons/limbus_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/limbus_righthand.dmi'
-	force = 33				//Lots of damage, way less DPS
+	force = 16 //Lots of damage, way less DPS
 	damtype = WHITE_DAMAGE
 
 	attack_speed = 2 // Really Slow
@@ -169,7 +169,7 @@
 	icon = 'icons/obj/limbus_weapons.dmi'
 	lefthand_file = 'icons/mob/inhands/weapons/limbus_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/limbus_righthand.dmi'
-	force = 40
+	force = 20
 	damtype = WHITE_DAMAGE
 
 	attack_verb_continuous = list("shoves", "bashes")
@@ -188,8 +188,8 @@
 	icon = 'icons/obj/limbus_weapons.dmi'
 	lefthand_file = 'icons/mob/inhands/weapons/limbus_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/limbus_righthand.dmi'
-	force = 22
-	throwforce = 50
+	force = 11
+	throwforce = 25
 	throw_speed = 1
 	throw_range = 7
 	damtype = RED_DAMAGE
@@ -212,7 +212,7 @@
 	icon = 'icons/obj/limbus_weapons.dmi'
 	lefthand_file = 'icons/mob/inhands/weapons/limbus_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/limbus_righthand.dmi'
-	force = 22
+	force = 11
 	reach = 2		//Has 2 Square Reach.
 	attack_speed = 1.2
 	damtype = RED_DAMAGE
@@ -229,7 +229,7 @@
 	icon = 'icons/obj/limbus_weapons.dmi'
 	lefthand_file = 'icons/mob/inhands/weapons/limbus_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/limbus_righthand.dmi'
-	force = 19
+	force = 9
 	damtype = RED_DAMAGE
 	swingstyle = WEAPONSWING_LARGESWEEP
 
@@ -280,7 +280,7 @@
 	icon = 'icons/obj/limbus_weapons.dmi'
 	lefthand_file = 'icons/mob/inhands/weapons/limbus_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/limbus_righthand.dmi'
-	force = 38				//Lots of damage, way less DPS
+	force = 19 // Lots of damage, way less DPS
 	damtype = BLACK_DAMAGE
 
 	attack_speed = 2 // Really Slow

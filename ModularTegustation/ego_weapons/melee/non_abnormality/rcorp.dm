@@ -5,8 +5,8 @@
 	inhand_icon_state = "rabbit_katana"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	force = 35
-	throwforce = 24
+	force = 17
+	throwforce = 12
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb_continuous = list("stabs", "slices")
 	attack_verb_simple = list("stab", "slice")
@@ -20,7 +20,7 @@
 
 /obj/item/ego_weapon/city/rabbit_blade/Initialize()
 	if(SSmaptype.maptype == "rcorp")
-		rcorp_buff = 20
+		rcorp_buff = 10
 		force += rcorp_buff
 	return ..()
 
@@ -44,13 +44,13 @@
 			damtype = WHITE_DAMAGE
 		if(WHITE_DAMAGE)
 			damtype = BLACK_DAMAGE
-			force = rcorp_buff + 30
+			force = rcorp_buff + 15
 		if(BLACK_DAMAGE)
 			damtype = PALE_DAMAGE
-			force = rcorp_buff + 25
+			force = rcorp_buff + 12
 		if(PALE_DAMAGE)
 			damtype = RED_DAMAGE
-			force = rcorp_buff + 35
+			force = rcorp_buff + 17
 	to_chat(user, span_notice("\The [src] will now deal [damtype] damage."))
 	playsound(src, 'sound/items/screwdriver2.ogg', 50, TRUE)
 
@@ -62,7 +62,7 @@
 	inhand_icon_state = "multiverse"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	force = 50
+	force = 25
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 100,
@@ -92,7 +92,7 @@
 	inhand_icon_state = "staffofstorms"
 	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
-	force = 40
+	force = 20
 	damtype = WHITE_DAMAGE
 
 	attribute_requirements = list(
@@ -140,7 +140,7 @@
 /obj/item/ego_weapon/city/reindeer/captain
 	name = "R-corp reindeer captain staff"
 	icon_state = "rcorp_captainstaff"
-	force = 60
+	force = 30
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -254,8 +254,8 @@
 	inhand_icon_state = "rabbit_katana"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	force = 20
-	throwforce = 24
+	force = 10
+	throwforce = 12
 	damtype = PALE_DAMAGE
 
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -272,7 +272,7 @@
 
 /obj/item/ego_weapon/city/rabbit_rush/Initialize()
 	if(SSmaptype.maptype == "rcorp")
-		rcorp_buff = 20
+		rcorp_buff = 10
 		force += rcorp_buff
 	return ..()
 

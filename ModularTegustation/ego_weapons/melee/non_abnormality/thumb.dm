@@ -4,10 +4,10 @@
 	desc = "A 5 round magazine rifle used by The Thumb."
 	icon_state = "thumb_soldato"
 	inhand_icon_state = "thumb_soldato"
-	force = 30
+	force = 15
 	reach = 2	//It's a spear.
 	attack_speed = 1.2
-	projectile_path = /obj/projectile/ego_bullet/tendamage	//Does 10 damage
+	projectile_path = /obj/projectile/ego_bullet/fivedamage	//Does 10 damage
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
 	special = "Attack an enemy with your bayonet to reload."
@@ -33,7 +33,7 @@
 	desc = "A rifle used by thumb Capos. The gun is inlaid with silver."
 	icon_state = "thumb_capo"
 	inhand_icon_state = "thumb_capo"
-	force = 50
+	force = 25
 	projectile_damage_multiplier = 5		//50 damage per bullet
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
@@ -48,8 +48,8 @@
 	desc = "A handgun used by thumb sottocapos. While expensive, it's power is rarely matched among syndicates."
 	icon_state = "thumb_sottocapo"
 	inhand_icon_state = "thumb_sottocapo"
-	force = 20	//It's a pistol
-	projectile_path = /obj/projectile/ego_bullet/tendamage // does 30 damage (odd, there's no force mod on this one)
+	force = 10	//It's a pistol
+	projectile_path = /obj/projectile/ego_bullet/fivedamage // does 30 damage (odd, there's no force mod on this one)
 	weapon_weight = WEAPON_MEDIUM
 	pellets = 8
 	variance = 16
@@ -65,7 +65,7 @@
 	name = "thumb brass knuckles"
 	desc = "An pair of dusters sometimes used by thumb capos."
 	icon_state = "thumb_duster"
-	force = 44
+	force = 22
 	damtype = RED_DAMAGE
 
 	attack_verb_continuous = list("beats")
@@ -76,7 +76,7 @@
 	name = "thumb sottocapo cane"
 	desc = "An cane used by thumb sottocapos."
 	icon_state = "thumb_cane"
-	force = 65
+	force = 32
 	damtype = RED_DAMAGE
 
 	attack_verb_continuous = list("beats")

@@ -43,7 +43,7 @@
 	desc = "A plain sword. Oddly enough, there's a broken heating mechanism in the hilt."
 	icon_state = "philip"
 	inhand_icon_state = "philip"
-	force = 35
+	force = 17
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
@@ -55,7 +55,7 @@
 	desc = "A cello case custom-made for a fixer of the Dawn Office. The inside is filled with extendable blades..."
 	icon_state = "yuna"
 	inhand_icon_state = "yuna"
-	force = 40		//Bigger range, less force
+	force = 20		//Bigger range, less force
 	attack_speed = 1.5
 	aoe_range = 5
 	swingstyle = WEAPONSWING_SMALLSWEEP
@@ -66,7 +66,7 @@
 	desc = "A zweihander fitted with a heating mechanism. The blade burns your enemy."
 	icon_state = "salvador"
 	inhand_icon_state = "salvador"
-	force = 50		//Bigger range, less force
+	force = 25		//Bigger range, less force
 	attack_speed = 2
 	aoe_range = 7
 	hitsound = 'sound/weapons/bladeslice.ogg'

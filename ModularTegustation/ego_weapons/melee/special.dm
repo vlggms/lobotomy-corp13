@@ -28,6 +28,7 @@
 	damtype = initial(damtype)
 	var/userfort = (get_attribute_level(user, FORTITUDE_ATTRIBUTE))
 	var/fortitude_mod = clamp((userfort - 40) / 4 + 2, 0, 50) // 3 at 40 fortitude, 17 at 100 fortitude
+	var/extra_mod = fortitude_mod * 0.5
 	var/list/search_area = user.contents.Copy()
 	for(var/obj/item/storage/spare_space in search_area)
 		search_area |= spare_space.contents

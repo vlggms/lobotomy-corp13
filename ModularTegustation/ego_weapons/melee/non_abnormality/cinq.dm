@@ -4,7 +4,7 @@
 	desc = "A long rapier."
 	special = "Use this weapon in hand to hop backwards. Your next attack has 2 range, and you deal double damage for 3 seconds."
 	icon_state = "cinq"
-	force = 28
+	force = 14
 	damtype = RED_DAMAGE
 	swingstyle = WEAPONSWING_THRUST
 
