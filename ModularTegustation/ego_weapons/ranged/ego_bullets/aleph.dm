@@ -1,14 +1,14 @@
 /obj/projectile/ego_bullet/star
 	name = "star"
 	icon_state = "star"
-	damage = 28 // Multiplied by 1.5x when at high SP
+	damage = 14 // Multiplied by 1.5x when at high SP
 	damage_type = WHITE_DAMAGE
 
 /obj/projectile/ego_bullet/adoration
 	name = "slime projectile"
 	icon_state = "slime"
 	desc = "A glob of infectious slime. It's going for your heart."
-	damage = 40	//Fires 3
+	damage = 20	//Fires 3
 	speed = 0.8
 	damage_type = BLACK_DAMAGE
 	hitsound = "sound/effects/footstep/slime1.ogg"
@@ -32,14 +32,14 @@
 	. = ..()
 	for(var/mob/living/L in view(2, target))
 		new /obj/effect/temp_visual/revenant/cracks(get_turf(L))
-		L.apply_damage(50, BLACK_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		L.apply_damage(25, BLACK_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 	return BULLET_ACT_HIT
 
 /obj/projectile/ego_bullet/nihil
 	name = "dark energy"
 	icon_state = "nihil"
 	desc = "Just looking at it seems to suck the life out of you..."
-	damage = 35	//Fires 4 +10 damage per upgrade, up to 75
+	damage = 18 //Fires 4 +10 damage per upgrade, up to 75
 	speed = 0.7
 	damage_type = WHITE_DAMAGE
 
@@ -82,19 +82,19 @@
 	. = ..()
 	if(powers[1] == "hearts")
 		icon_list += "heart"
-		damage += 10
+		damage += 7
 	if(powers[2] == "spades")
 		icon_list += "spade"
 		damage_list += PALE_DAMAGE
-		damage += 10
+		damage += 5
 	if(powers[3] == "diamonds")
 		icon_list += "diamond"
 		damage_list += RED_DAMAGE
-		damage += 10
+		damage += 5
 	if(powers[4] == "clubs")
 		icon_list += "club"
 		damage_list += BLACK_DAMAGE
-		damage += 10
+		damage += 5
 
 	if(length(icon_list) > 0)
 		icon_state = "nihil_[pick(icon_list)]"
@@ -105,11 +105,11 @@
 
 /obj/projectile/ego_bullet/pink
 	name = "heart-piercing bullet"
-	damage = 130
+	damage = 65
 	damage_type = WHITE_DAMAGE
 
 	hitscan = TRUE
-	damage_falloff_tile = 5//the damage ramps up; 5 extra damage per tile. Maximum range is about 32 tiles, dealing 290 damage
+	damage_falloff_tile = 2.5//the damage ramps up; 2.5 extra damage per tile. Maximum range is about 32 tiles, dealing 145 damage
 
 /obj/projectile/ego_bullet/pink/on_hit(atom/target, blocked = FALSE, pierce_hit)
 	new /obj/effect/temp_visual/friend_hearts(get_turf(target))//looks better than impact_effect_type and works
@@ -117,13 +117,13 @@
 
 /obj/projectile/ego_bullet/arcadia
 	name = "arcadia"
-	damage = 140 // VERY high damage
+	damage = 70 // VERY high damage
 	damage_type = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_hookah
 	name = "havana"
 	icon_state = "smoke"
-	damage = 6
+	damage = 3
 	damage_type = PALE_DAMAGE
 	speed = 2
 	range = 6
