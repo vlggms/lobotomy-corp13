@@ -16,8 +16,8 @@
 	base_pixel_x = -16
 
 	ranged = TRUE
-	maxHealth = 2000
-	health = 2000
+	maxHealth = 1200
+	health = 1200
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5)
 	see_in_dark = 10
 	stat_attack = HARD_CRIT
@@ -32,7 +32,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(40, 45, 50, 55, 55),
 		ABNORMALITY_WORK_REPRESSION = list(25, 20, 15, 10, 0),
 	)
-	work_damage_amount = 10
+	work_damage_amount = 7
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gluttony
 
@@ -42,8 +42,8 @@
 
 	// This stuff is only done to non-humans and objects
 	melee_damage_type = BLACK_DAMAGE
-	melee_damage_lower = 100
-	melee_damage_upper = 100
+	melee_damage_lower = 40
+	melee_damage_upper = 40
 
 	ego_list = list(
 		/datum/ego_datum/weapon/lamp,

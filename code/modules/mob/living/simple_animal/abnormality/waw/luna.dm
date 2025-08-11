@@ -1,13 +1,12 @@
 #define STATUS_EFFECT_LUNAR /datum/status_effect/lunar
-//I will remind you all that this technically does NOT breach.	-Kirie
 /mob/living/simple_animal/hostile/abnormality/luna
 	name = "\proper Il Pianto della Luna"
 	desc = "A piano, with a woman sitting on the stool next to it"
 	icon = 'ModularTegustation/Teguicons/96x48.dmi'
 	icon_state = "dellaluna"
 	portrait = "luna"
-	maxHealth = 4000
-	health = 4000
+	maxHealth = 1000
+	health = 1000
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	start_qliphoth = 3
 	threat_level = WAW_LEVEL
@@ -20,7 +19,7 @@
 	)
 	pixel_x = -32
 	base_pixel_x = -32
-	work_damage_amount = 10
+	work_damage_amount = 7
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/sloth
 	max_boxes = 20
@@ -154,12 +153,12 @@
 	icon_state = "luna"
 	base_pixel_x = -8
 	pixel_x = -8
-	health = 2600
-	maxHealth = 2600
+	health = 900
+	maxHealth = 900
 	melee_damage_type = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
-	melee_damage_lower = 32
-	melee_damage_upper = 41
+	melee_damage_lower = 10
+	melee_damage_upper = 12
 	rapid_melee = 2
 	robust_searching = TRUE
 	ranged = TRUE
@@ -172,7 +171,7 @@
 	var/aoeactive
 	var/canaoe = TRUE
 	var/aoerange = 5
-	var/aoedamage = 60
+	var/aoedamage = 30
 
 //mob/living/simple_animal/hostile/luna/Initialize()
 //Cannot figure out how to make this stop

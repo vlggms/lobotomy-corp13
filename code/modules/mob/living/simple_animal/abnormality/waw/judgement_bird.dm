@@ -17,8 +17,8 @@
 	ranged = TRUE
 	minimum_distance = 6
 
-	maxHealth = 2000
-	health = 2000
+	maxHealth = 800
+	health = 800
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
 	see_in_dark = 10
 	stat_attack = HARD_CRIT
@@ -33,7 +33,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(20, 20, 35, 45, 45),
 		ABNORMALITY_WORK_REPRESSION = 0,
 	)
-	work_damage_amount = 10
+	work_damage_amount = 12
 	work_damage_type = PALE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/wrath
 
@@ -61,10 +61,9 @@
 
 	var/judgement_cooldown = 10 SECONDS
 	var/judgement_cooldown_base = 10 SECONDS
-	var/judgement_damage = 45
+	var/judgement_damage = 70
 	var/judgement_range = 12
 	var/judging = FALSE
-	var/list/birdlist = list()
 
 /datum/action/innate/abnormality_attack/judgement
 	name = "Judgement"
@@ -111,7 +110,11 @@
 			if(L.stat == DEAD)
 				continue
 			new /obj/effect/temp_visual/judgement(get_turf(L))
-			L.deal_damage(judgement_damage, PALE_DAMAGE)
+			var/dealt_damage = judgement_damage
+			var/dist = get_dist(src, L)
+			if(dist > 5)
+				dealt_damage -= (dist - 5) * 5
+			L.deal_damage(dealt_damage, PALE_DAMAGE)
 
 	else
 		for(var/mob/living/L in urange(judgement_range, src))
@@ -120,7 +123,11 @@
 			if(L.stat == DEAD)
 				continue
 			new /obj/effect/temp_visual/judgement(get_turf(L))
-			L.deal_damage(judgement_damage, PALE_DAMAGE)
+			var/dealt_damage = judgement_damage
+			var/dist = get_dist(src, L)
+			if(dist > 5)
+				dealt_damage -= (dist - 5) * 5
+			L.deal_damage(dealt_damage, PALE_DAMAGE)
 
 			if(L.stat == DEAD)	//Gotta fucking check again in case it kills you. Real moment
 				if(!IsCombatMap())
@@ -132,10 +139,6 @@
 					N.buckle_mob(L)
 					playsound(get_turf(L), 'sound/abnormalities/judgementbird/kill.ogg', 75, 0, 7)
 					playsound(get_turf(L), 'sound/abnormalities/judgementbird/hang.ogg', 100, 0, 7)
-					var/mob/living/simple_animal/hostile/runawaybird/V = new(get_turf(L))
-					birdlist+=V
-					V = new(get_turf(L))
-					birdlist+=V
 
 	for(var/obj/vehicle/V in urange(judgement_range, src))
 		for(var/mob/living/occupant in V.occupants)
@@ -144,7 +147,11 @@
 			if(occupant.stat == DEAD)
 				continue
 			new /obj/effect/temp_visual/judgement(get_turf(V))
-			occupant.deal_damage(judgement_damage, PALE_DAMAGE)
+			var/dealt_damage = judgement_damage
+			var/dist = get_dist(src, V)
+			if(dist > 5)
+				dealt_damage -= (dist - 5) * 5
+			occupant.deal_damage(dealt_damage, PALE_DAMAGE)
 
 	icon_state = icon_living
 	judging = FALSE
@@ -166,83 +173,14 @@
 /mob/living/simple_animal/hostile/abnormality/judgement_bird/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
 	if(IsCombatMap())
-		judgement_damage = 65
+		judgement_damage = 100
 		return
 
-	var/mob/living/simple_animal/hostile/runawaybird/V = new(get_turf(src))
-	birdlist+=V
-	V = new(get_turf(src))
-	birdlist+=V
-	V = new(get_turf(src))
-	birdlist+=V
-
-//Kill all burds
 //Burd down
 /mob/living/simple_animal/hostile/abnormality/judgement_bird/death(gibbed)
-	for(var/mob/living/V in birdlist)
-		V.death()
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
 	..()
-
-//Runaway birds - Mini Simple Smile, 2 spawned after Jbird kills a player, and 2 on spawn.
-/mob/living/simple_animal/hostile/runawaybird
-	name = "runaway crow"
-	desc = "A crow that has a menacing appearance.."
-	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
-	icon_state = "runaway_bird"
-	icon_living = "runaway_bird"
-	pass_flags = PASSTABLE
-	is_flying_animal = TRUE
-	density = FALSE
-	status_flags = MUST_HIT_PROJECTILE
-	health = 100
-	maxHealth = 100
-	melee_damage_lower = 5
-	melee_damage_upper = 8
-	melee_damage_type = PALE_DAMAGE
-	obj_damage = 0
-	environment_smash = ENVIRONMENT_SMASH_NONE
-	attack_verb_continuous = "pecks"
-	attack_verb_simple = "peck"
-	attack_sound = 'sound/weapons/fixer/generic/nail1.ogg'
-	mob_size = MOB_SIZE_TINY
-	del_on_death = TRUE
-	a_intent = INTENT_HELP
-	can_patrol = TRUE
-	ranged = 1
-	retreat_distance = 3
-	minimum_distance = 1
-
-/mob/living/simple_animal/hostile/nosferatu_mob/OpenFire(atom/A)
-	visible_message(span_danger("<b>[src]</b> taunts [A]!"))
-	ranged_cooldown = world.time + ranged_cooldown_time
-
-/mob/living/simple_animal/hostile/runawaybird/AttackingTarget(atom/attacked_target)
-	. = ..()
-	if(ishuman(attacked_target))
-		var/mob/living/carbon/human/L = attacked_target
-		L.Knockdown(20)
-		var/obj/item/held = L.get_active_held_item()
-		if(SSmaptype.maptype == "office")
-			return
-		L.dropItemToGround(held) //Drop weapon
-
-/mob/living/simple_animal/hostile/runawaybird/patrol_select()
-	var/list/target_turfs = list()
-	for(var/mob/living/simple_animal/hostile/abnormality/judgement_bird/J in GLOB.mob_list)
-		if(J.z != z) // Not on our level
-			continue
-		if(get_dist(src, J) < 6) // Unnecessary for this distance
-			continue
-		target_turfs += get_turf(J)
-	if(!LAZYLEN(target_turfs))
-		return ..()
-	var/turf/target_turf = pick(target_turfs)
-	if(istype(target_turf))
-		patrol_path = get_path_to(src, target_turf, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 200)
-		return
-	return ..()
 
 //On-kill visual effect
 /obj/structure/jbird_noose

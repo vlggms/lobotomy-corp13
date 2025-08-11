@@ -11,13 +11,13 @@
 	pixel_y = 64
 	base_pixel_y = 64
 	speak_emote = list("honks")
-	maxHealth = 1800
-	health = 1800
+	maxHealth = 600
+	health = 600
 	rapid_melee = 4
 	melee_queue_distance = 4
 	damage_coeff = list(BRUTE = 1.0, RED_DAMAGE = 1.0, WHITE_DAMAGE = 1.0, BLACK_DAMAGE = 1.3, PALE_DAMAGE = 1.5)
-	melee_damage_lower = 15
-	melee_damage_upper = 15
+	melee_damage_lower = 5
+	melee_damage_upper = 6
 	melee_damage_type = RED_DAMAGE
 	see_in_dark = 10
 	stat_attack = DEAD
@@ -38,7 +38,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(50, 55, 60, 65, 65),
 		ABNORMALITY_WORK_REPRESSION = 35,
 	)
-	work_damage_amount = 12
+	work_damage_amount = 7
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gluttony
 	good_hater = TRUE
@@ -76,8 +76,8 @@
 	del_on_death = FALSE //for explosions
 	var/finishing = FALSE
 	var/step = FALSE
-	var/finishing_small_damage = 5
-	var/finishing_big_damage = 30
+	var/finishing_small_damage = 3
+	var/finishing_big_damage = 15
 
 /mob/living/simple_animal/hostile/abnormality/clown/Login()
 	. = ..()
@@ -204,7 +204,7 @@
 	playsound(get_turf(src), 'sound/abnormalities/clownsmiling/announcedead.ogg', 75, 1)
 	for(var/mob/living/L in view(5, src))
 		if(!faction_check_mob(L))
-			L.deal_damage(25, RED_DAMAGE)
+			L.deal_damage(10, RED_DAMAGE)
 			if(IsCombatMap())
 				L.apply_lc_bleed(30)
 	new /obj/effect/particle_effect/foam(get_turf(src))
