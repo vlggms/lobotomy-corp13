@@ -9,7 +9,7 @@
 	inhand_icon_state = "star"
 	special = "This gun scales with remaining SP."
 
-	force = 33
+	force = 13
 	damtype = WHITE_DAMAGE
 	attack_speed = 0.5
 
@@ -56,7 +56,7 @@
 	inhand_icon_state = "adoration"
 	special = "Use in hand to swap between AOE, DOT and shotgun modes."
 
-	force = 56
+	force = 20
 	damtype = BLACK_DAMAGE
 
 	projectile_path = /obj/projectile/ego_bullet/adoration
@@ -108,7 +108,7 @@
 	desc = "Having decided to trust its own intuition, the jester spake the names of everyone it had met on that path with each step it took."
 	icon_state = "nihil"
 	inhand_icon_state = "nihil"
-	force = 56
+	force = 20
 	damtype = BLACK_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/nihil
 	weapon_weight = WEAPON_HEAVY
@@ -183,7 +183,7 @@
 	icon_state = "pink"
 	inhand_icon_state = "pink"
 	special = "This weapon has a scope, and fires projectiles with zero travel time. Damage dealt is increased when hitting targets further away. Middle mouse button click/alt click to zoom in that direction."
-	force = 56
+	force = 20
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/pink
 	weapon_weight = WEAPON_HEAVY
@@ -261,7 +261,7 @@
 	icon_state = "arcadia"
 	inhand_icon_state = "arcadia"
 	special = "Use in hand to load bullets."
-	force = 56
+	force = 20
 	projectile_path = /obj/projectile/ego_bullet/arcadia
 	weapon_weight = WEAPON_HEAVY
 	spread = 5
@@ -297,7 +297,7 @@
 	desc = "You will be judged; as I have."
 	icon_state = "judge"
 	inhand_icon_state = "judge"
-	force = 56
+	force = 20
 	damtype = WHITE_DAMAGE
 	weapon_weight = WEAPON_MEDIUM	//Cannot be dual wielded
 	recoil = 2
@@ -313,7 +313,7 @@
 	desc = "Within it's simple design lies a lot of struggle"
 	icon_state = "havana"
 	inhand_icon_state = "havana"
-	force = 20
+	force = 12
 	damtype = PALE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_hookah
 	weapon_weight = WEAPON_HEAVY
