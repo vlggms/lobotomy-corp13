@@ -5,13 +5,13 @@
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "giftdeliverypackage3"
 	icon_living = "giftdeliverypackage3"
-	maxHealth = 200
-	health = 200
+	maxHealth = 80
+	health = 80
 	gender = NEUTER
 	mob_biotypes = NONE
 	move_to_delay = 4
-	melee_damage_lower = 10
-	melee_damage_upper = 15
+	melee_damage_lower = 4
+	melee_damage_upper = 6
 	attack_sound = 'sound/effects/ordeals/crimson/noon_bite.ogg'
 	emote_taunt = list("growls")
 	taunt_chance = 15
@@ -88,7 +88,7 @@
 	for(var/mob/living/L in range(15, target_c))
 		if(faction_check_mob(L))
 			continue
-		L.apply_damage(33, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))
+		L.apply_damage(10, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))
 	for(var/obj/machinery/computer/abnormality/A in urange(15, target_c))
 		if(A.can_meltdown && !A.meltdown && A.datum_reference && A.datum_reference.current && A.datum_reference.qliphoth_meter)
 			A.datum_reference.qliphoth_change(pick(-999))

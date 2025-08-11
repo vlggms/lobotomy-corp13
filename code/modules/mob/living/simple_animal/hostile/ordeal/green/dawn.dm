@@ -1,5 +1,5 @@
 /mob/living/simple_animal/hostile/ordeal/green_bot
-	name = "doubt alpha"
+	name = "doubt"
 	desc = "A slim robot with a spear in place of its hand."
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "green_bot"
@@ -8,12 +8,12 @@
 	faction = list("green_ordeal")
 	gender = NEUTER
 	mob_biotypes = MOB_ROBOTIC
-	maxHealth = 400
-	health = 400
+	maxHealth = 120
+	health = 120
 	speed = 2
 	move_to_delay = 3.5
-	melee_damage_lower = 22
-	melee_damage_upper = 26
+	melee_damage_lower = 6
+	melee_damage_upper = 8
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/effects/ordeals/green/stab.ogg'
@@ -67,7 +67,7 @@
 				SLEEP_CHECK_DEATH(3)
 				TH.attack_animal(src)
 				for(var/mob/living/carbon/human/H in view(7, get_turf(src)))
-					H.apply_damage(7, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+					H.apply_damage(3, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 			if(!targets_from.Adjacent(TH) || QDELETED(TH) || TH.health > 0)
 				finishing = FALSE
 				return
@@ -102,8 +102,8 @@
 	icon_state = "green_bot_b"
 	icon_living = "green_bot_b"
 	move_to_delay = 3
-	melee_damage_lower = 14
-	melee_damage_upper = 16
+	melee_damage_lower = 3
+	melee_damage_upper = 4
 
 /mob/living/simple_animal/hostile/ordeal/green_bot/syringe/AttackingTarget(atom/attacked_target)
 	if(finishing)
@@ -129,12 +129,11 @@
 	icon_living = "green_bot_c"
 	rapid_melee = 3
 	move_to_delay = 4
-	melee_damage_lower = 9
-	melee_damage_upper = 13
+	melee_damage_lower = 2
+	melee_damage_upper = 3
 
 /mob/living/simple_animal/hostile/ordeal/green_bot/fast/factory/death(gibbed)
 	density = FALSE
 	animate(src, alpha = 0, time = 5 SECONDS)
 	QDEL_IN(src, 5 SECONDS)
 	..()
-

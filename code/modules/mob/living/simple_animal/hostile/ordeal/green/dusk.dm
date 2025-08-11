@@ -10,8 +10,8 @@
 	faction = list("green_ordeal")
 	gender = NEUTER
 	mob_biotypes = MOB_ROBOTIC
-	maxHealth = 3000
-	health = 3000
+	maxHealth = 1000
+	health = 1000
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
 	butcher_results = list(/obj/item/food/meat/slab/robot = 3)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 2)
@@ -19,7 +19,7 @@
 						/obj/item/stack/sheet/silk/green_advanced = 2,
 						/obj/item/stack/sheet/silk/green_simple = 4)
 	death_sound = 'sound/effects/ordeals/green/dusk_dead.ogg'
-	var/spawn_progress = 18 //spawn ready to produce robots
+	var/spawn_progress = 14 //spawn ready to produce robots
 	var/list/spawned_mobs = list()
 	var/producing = FALSE
 
@@ -55,7 +55,7 @@
 	update_icon()
 	if(length(spawned_mobs) >= 9)
 		return
-	if(spawn_progress < 20)
+	if(spawn_progress < 15)
 		spawn_progress += 1
 		return
 	Produce()
@@ -95,13 +95,13 @@
 	if(stat == DEAD)
 		return
 	switch(spawn_progress)
-		if(-INFINITY to 4)
+		if(-INFINITY to 3)
 			icon_state = "green_dusk_1"
-		if(5 to 9)
+		if(4 to 7)
 			icon_state = "green_dusk_2"
-		if(10 to 14)
+		if(8 to 12)
 			icon_state = "green_dusk_3"
-		if(15 to INFINITY)
+		if(13 to INFINITY)
 			icon_state = "green_dusk_4"
 
 /mob/living/simple_animal/hostile/ordeal/green_dusk/update_overlays()
@@ -112,13 +112,13 @@
 
 	var/mutable_appearance/progress_overlay = mutable_appearance(icon, "progress_1")
 	switch(spawn_progress)
-		if(1 to 4)
+		if(1 to 3)
 			progress_overlay.icon_state = "progress_1"
-		if(5 to 9)
+		if(4 to 7)
 			progress_overlay.icon_state = "progress_2"
-		if(10 to 14)
+		if(8 to 12)
 			progress_overlay.icon_state = "progress_3"
-		if(15 to INFINITY)
+		if(13 to INFINITY)
 			progress_overlay.icon_state = "progress_4"
 
 	. += progress_overlay

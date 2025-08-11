@@ -14,8 +14,8 @@
 	faction = list("green_ordeal")
 	gender = NEUTER
 	mob_biotypes = MOB_ROBOTIC
-	maxHealth = 40000
-	health = 40000
+	maxHealth = 18000
+	health = 18000
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1)
 	butcher_results = list(/obj/item/food/meat/slab/robot = 22)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 16)
@@ -32,7 +32,7 @@
 	var/list/beams = list()
 	var/list/hit_line = list()
 	/// Amount of black damage per damage tick dealt to all living enemies
-	var/laser_damage = 65
+	var/laser_damage = 25
 	var/max_lasers = 6
 	/// Amount of damage ticks laser will do
 	var/max_laser_repeats = 40
@@ -259,7 +259,7 @@
 // placing it on Life() like Waxing does, but I only wanted it to happen while the Helix was firing.
 /mob/living/simple_animal/hostile/ordeal/green_midnight/proc/FireLaserBarrage(list/valid_turfs)
 	for(var/turf/unfortunate_turf in valid_turfs)
-		if(prob(6))
+		if(prob(9))
 			addtimer(CALLBACK(src, PROC_REF(FireMiniLaser), unfortunate_turf), rand(1, 50))
 
 
@@ -286,7 +286,7 @@
 	playsound(src, 'sound/weapons/fixer/generic/rcorp4.ogg', 15, FALSE, 4)
 	for(var/mob/living/H in src.loc)
 		if(!faction_check(H.faction, list("green_ordeal")))
-			H.apply_damage(55, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE))
+			H.apply_damage(25, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE))
 			to_chat(H, span_userdanger("You're hit by [src.name]!"))
 
 /// This laser hits in a 3 tile radius (the epicenter and its adjacent tiles).
@@ -318,10 +318,10 @@
 			if(!faction_check(H.faction, list("green_ordeal")))
 				H.apply_damage(50, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE))
 				to_chat(H, span_userdanger("You're hit by [src.name]!"))
-			shake_camera(H, 6, 1.5)
+			shake_camera(H, 3, 1.5)
 
 		else
-			shake_camera(H, 4, 0.7)
+			shake_camera(H, 2, 0.7)
 	var/datum/effect_system/spark_spread/explosion_sparks = new /datum/effect_system/spark_spread
 	explosion_sparks.set_up(7, 0, loc)
 	explosion_sparks.start()
@@ -465,5 +465,5 @@
 	style = STYLE_HELIX
 	bluespace = TRUE
 	explosionSize = list(0,0,0,0)
-	max_integrity = 5000 //I'd rather the players not instakill the mobs by destroying the pods
+	max_integrity = 1500
 	delays = list(POD_TRANSIT = 3 SECONDS, POD_FALLING = 0.2 SECONDS, POD_OPENING = 2.5 SECONDS, POD_LEAVING = 0.7 SECONDS)
