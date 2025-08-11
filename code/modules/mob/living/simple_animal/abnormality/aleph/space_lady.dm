@@ -6,8 +6,8 @@
 	icon_living = "space"
 	portrait = "space"
 	del_on_death = TRUE
-	maxHealth = 3200
-	health = 3200
+	maxHealth = 1600
+	health = 1600
 	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 1)
 	faction = list("hostile")
 	can_breach = TRUE
@@ -21,7 +21,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(40, 40, 40, 45, 45),
 		ABNORMALITY_WORK_REPRESSION = list(0, 0, 30, 30, 30),
 	)
-	work_damage_amount = 16	//Half white, half black damage
+	work_damage_amount = 9	//Half white, half black damage
 	work_damage_type = list(WHITE_DAMAGE, BLACK_DAMAGE)
 	chem_type = /datum/reagent/abnormality/sin/gluttony	//Literally a black hole (and a white hole I guess)
 
@@ -50,7 +50,7 @@
 
 	var/explosion_timer = 2 SECONDS
 	var/explosion_state = 3
-	var/explosion_damage = 100
+	var/explosion_damage = 30
 	var/can_act = TRUE
 	var/negative_range = 10
 
@@ -273,7 +273,7 @@
 			continue
 		new /obj/effect/temp_visual/revenant(T)
 		for(var/mob/living/carbon/human/L in T)
-			L.deal_damage(100, WHITE_DAMAGE)
+			L.deal_damage(30, WHITE_DAMAGE)
 
 
 /obj/projectile/black_hole
@@ -292,7 +292,7 @@
 			continue
 		new /obj/effect/temp_visual/revenant(T)
 		for(var/mob/living/carbon/human/L in T)
-			L.deal_damage(100, BLACK_DAMAGE)
+			L.deal_damage(30, BLACK_DAMAGE)
 
 /obj/projectile/loos_bullet
 	name = "white beam"
@@ -300,7 +300,7 @@
 	desc = "A beam of white light."
 	hitsound = "sound/effects/footstep/slime1.ogg"
 	speed = 5		//very slow bullets
-	damage = 40		//She fires a lot of them
+	damage = 12		//She fires a lot of them
 	damage_type = WHITE_DAMAGE
 	spread = 360	//Fires in a 360 Degree radius
 	white_healing = FALSE

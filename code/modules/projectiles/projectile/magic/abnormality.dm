@@ -95,7 +95,7 @@
 
 /obj/projectile/melting_blob/enraged
 	desc = "A glob of infectious slime. It's going for your heart, It seems bigger..."
-	damage = 40
+	damage = 12
 	stamina = 40 // Ranged cooldown is 5 seconds on ML, so it theoretically cannot stam crit
 
 /obj/projectile/mountain_spit
@@ -103,7 +103,7 @@
 	desc = "Gross, disgusting spit."
 	icon_state = "mountain"
 	damage_type = BLACK_DAMAGE
-	damage = 15 // Launches 16(48) of those, for a whooping 240(720) black damage
+	damage = 5 // Launches 16(48) of those, for a whooping 80(240) black damage
 	spread = 60
 	slur = 3
 	eyeblur = 3
@@ -395,7 +395,7 @@
 	name = "bone round"
 	icon_state = "bonebullet"
 	damage_type = RED_DAMAGE
-	damage = 10 //rapid fire/shotgun fire
+	damage = 4 //rapid fire/shotgun fire
 	spread = 30
 	projectile_piercing = PASSMOB
 	nodamage = TRUE	//Damage is calculated later
@@ -420,7 +420,7 @@
 /obj/projectile/bonebullet/bonebullet_piercing
 	name = "bone sniper round"
 	icon_state = "bonebullet_long"
-	damage = 100
+	damage = 35
 	speed = 0.4
 
 /obj/projectile/frost_splinter

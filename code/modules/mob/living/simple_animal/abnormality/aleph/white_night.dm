@@ -3,8 +3,8 @@ GLOBAL_LIST_EMPTY(apostles)
 /mob/living/simple_animal/hostile/abnormality/white_night
 	name = "WhiteNight"
 	desc = "The heavens' wrath. Say your prayers, heretic, the day has come."
-	health = 15000
-	maxHealth = 15000
+	health = 12000
+	maxHealth = 12000
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "white_night"
 	icon_living = "white_night"
@@ -33,7 +33,7 @@ GLOBAL_LIST_EMPTY(apostles)
 		ABNORMALITY_WORK_ATTACHMENT = list(30, 30, 35, 40, 45),
 		ABNORMALITY_WORK_REPRESSION = list(30, 30, 35, 40, 45),
 	)
-	work_damage_amount = 14
+	work_damage_amount = 8
 	work_damage_type = PALE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/wrath
 	can_patrol = FALSE
@@ -256,8 +256,8 @@ GLOBAL_LIST_EMPTY(apostles)
 /mob/living/simple_animal/hostile/apostle
 	name = "apostle"
 	desc = "An apostle."
-	health = 2000
-	maxHealth = 2000
+	health = 1000
+	maxHealth = 1000
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
 	attack_sound = 'sound/abnormalities/whitenight/scythe.ogg'
@@ -270,8 +270,8 @@ GLOBAL_LIST_EMPTY(apostles)
 	friendly_verb_simple = "stare down"
 	speak_emote = list("says")
 	melee_damage_type = RED_DAMAGE
-	melee_damage_lower = 35
-	melee_damage_upper = 45
+	melee_damage_lower = 12
+	melee_damage_upper = 15
 	obj_damage = 400
 	ranged = TRUE
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
@@ -336,7 +336,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	var/scythe_cooldown
 	var/scythe_cooldown_time = 10 SECONDS
 	var/scythe_range = 2
-	var/scythe_damage = 250
+	var/scythe_damage = 180
 	var/scythe_damage_type = RED_DAMAGE
 
 /mob/living/simple_animal/hostile/apostle/scythe/OpenFire()
@@ -367,8 +367,8 @@ GLOBAL_LIST_EMPTY(apostles)
 
 /mob/living/simple_animal/hostile/apostle/scythe/guardian
 	name = "guardian apostle"
-	health = 3000
-	maxHealth = 3000
+	health = 1000
+	maxHealth = 1000
 	move_to_delay = 7
 	melee_damage_type = PALE_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5)
@@ -433,7 +433,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	var/spear_cooldown
 	var/spear_cooldown_time = 10 SECONDS
 	var/spear_max = 50
-	var/spear_damage = 300
+	var/spear_damage = 250
 	var/list/been_hit = list()
 
 /mob/living/simple_animal/hostile/apostle/spear/OpenFire()
@@ -507,13 +507,13 @@ GLOBAL_LIST_EMPTY(apostles)
 	attack_verb_continuous = "bashes"
 	attack_verb_simple = "bash"
 	minimum_distance = 4
-	melee_damage_lower = 25
-	melee_damage_upper = 35
+	melee_damage_lower = 10
+	melee_damage_upper = 15
 	melee_damage_type = BLACK_DAMAGE // Okay, look, they aren't really meant to melee anyway
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
 	var/staff_cooldown
 	var/staff_cooldown_time = 20 SECONDS
-	var/staff_damage = 20
+	var/staff_damage = 10
 	var/hit_ticks = 60
 	var/datum/looping_sound/apostle_beam/beamloop
 
