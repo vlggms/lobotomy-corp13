@@ -14,6 +14,27 @@
 // All HE joke E.G.O
 
 // All WAW joke E.G.O
+/obj/item/clothing/suit/armor/ego_gear/waw/pro_skub
+	name = "pro-skub"
+	desc = "Skub!"
+	icon_state = "pro_skub"
+	icon = 'ModularTegustation/Teguicons/joke_abnos/joke_armor.dmi'
+	worn_icon = 'ModularTegustation/Teguicons/joke_abnos/joke_worn.dmi'
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 60, BLACK_DAMAGE = 20, PALE_DAMAGE = 30)  // 140
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 80
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/waw/anti_skub
+	name = "anti-skub"
+	desc = "Fuck skub!"
+	icon_state = "anti_skub"
+	icon = 'ModularTegustation/Teguicons/joke_abnos/joke_armor.dmi'
+	worn_icon = 'ModularTegustation/Teguicons/joke_abnos/joke_worn.dmi'
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 20, BLACK_DAMAGE = 60, PALE_DAMAGE = 30)  // 140
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 80
+							)
 
 // All ALEPH joke E.G.O
 /obj/item/clothing/suit/armor/ego_gear/aleph/chaosdunk

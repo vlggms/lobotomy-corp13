@@ -4016,6 +4016,7 @@
 #include "ModularTegustation\!extra_abnos\joke_abnormalities\aleph\barkley.dm"
 #include "ModularTegustation\!extra_abnos\joke_abnormalities\aleph\buffdolta.dm"
 #include "ModularTegustation\!extra_abnos\joke_abnormalities\aleph\wild_ride.dm"
+#include "ModularTegustation\!extra_abnos\joke_abnormalities\waw\skub.dm"
 #include "ModularTegustation\!extra_abnos\joke_abnormalities\zayin\riblin.dm"
 #include "ModularTegustation\altjobtitles\altjobtitles.dm"
 #include "ModularTegustation\altjobtitles\LC13.dm"
