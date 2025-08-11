@@ -20,43 +20,62 @@
 /obj/effect/temp_visual/damage_effect
 	icon = 'ModularTegustation/Teguicons/lc13_coloreffect.dmi'
 	layer = ABOVE_ALL_MOB_LAYER
-	//Icon state is actually the base icon for intilization
+	duration = 12
+	var/style_text_color = "#FFFFFF"
 
-/obj/effect/temp_visual/damage_effect/Initialize(mapload)
+/obj/effect/temp_visual/damage_effect/Initialize(mapload, damage_count)
 	icon_state = "[icon_state][rand(1,2)]"
-	pixel_x = rand(-12, 12)
+	pixel_x = rand(-16, 8)
 	pixel_y = rand(-9, 9)
+	if(isnum(damage_count))
+		maptext_x = 22
+		maptext_y = 10
+		maptext_height = 32
+		maptext_width = 32
+		var/style = "font-family: 'Better VCR'; font-size: 5px; -dm-text-outline: 1px black; color: [style_text_color];"
+		maptext = "<span style=\"[style]\">[round(damage_count)]</span>"
+	animate(src, pixel_x = pixel_x + rand(1, 4), pixel_y = pixel_y + 10, alpha = 0, time = rand(8, 12), easing = SINE_EASING)
 	return ..()
 
 /obj/effect/temp_visual/damage_effect/red
 	icon_state = "dam_red"
+	style_text_color = "#FF0000"
 
 /obj/effect/temp_visual/damage_effect/white
 	icon_state = "dam_white"
+	style_text_color = "#DEDDB6"
 
 /obj/effect/temp_visual/damage_effect/black
 	icon_state = "dam_black"
+	style_text_color = "#8A4091"
 
 /obj/effect/temp_visual/damage_effect/pale
 	icon_state = "dam_pale"
+	style_text_color = "#80C8ff"
 
 /obj/effect/temp_visual/damage_effect/burn
 	icon_state = "dam_burn"
+	style_text_color = "#F2961D"
 
 /obj/effect/temp_visual/damage_effect/tox
 	icon_state = "dam_tox"
+	style_text_color = "#1A8709"
 
 /obj/effect/temp_visual/damage_effect/bleed
 	icon_state = "dam_bleed"
+	style_text_color = "#FF0000"
 
 /obj/effect/temp_visual/damage_effect/tremor
 	icon_state = "tremor"
+	style_text_color = "#D0E329"
 
 /obj/effect/temp_visual/damage_effect/sinking
 	icon_state = "sinking"
+	style_text_color = "#298CE3"
 
 /obj/effect/temp_visual/damage_effect/rupture
 	icon_state = "rupture"
+	style_text_color = "#80C8ff"
 
 //Stuntime visual for when you're stunned by your weapon, so you know what happened.
 /obj/effect/temp_visual/weapon_stun
