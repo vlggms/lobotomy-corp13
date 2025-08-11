@@ -25,12 +25,13 @@
 
 /obj/effect/temp_visual/damage_effect/Initialize(mapload, damage_count)
 	icon_state = "[icon_state][rand(1,2)]"
-	pixel_x = rand(-12, 12)
+	pixel_x = rand(-16, 8)
 	pixel_y = rand(-9, 9)
 	if(isnum(damage_count))
-		maptext_x = 8
-		maptext_height = 128 //32x4
-		maptext_width = 128
+		maptext_x = 22
+		maptext_y = 10
+		maptext_height = 32
+		maptext_width = 32
 		var/style = "font-family: 'Better VCR'; font-size: 5px; -dm-text-outline: 1px black; color: [style_text_color];"
 		maptext = "<span style=\"[style]\">[round(damage_count)]</span>"
 	animate(src, pixel_x = pixel_x + rand(1, 4), pixel_y = pixel_y + 10, alpha = 0, time = rand(8, 12), easing = SINE_EASING)
