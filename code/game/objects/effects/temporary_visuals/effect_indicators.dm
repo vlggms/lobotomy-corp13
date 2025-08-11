@@ -28,7 +28,7 @@
 	pixel_x = rand(-12, 12)
 	pixel_y = rand(-9, 9)
 	if(isnum(damage_count))
-		maptext_x = 2
+		maptext_x = 8
 		maptext_height = 128 //32x4
 		maptext_width = 128
 		var/style = "font-family: 'Better VCR'; font-size: 5px; -dm-text-outline: 1px black; color: [style_text_color];"
