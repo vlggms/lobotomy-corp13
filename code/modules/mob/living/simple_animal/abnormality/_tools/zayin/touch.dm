@@ -28,7 +28,8 @@
 
 	cooldown = world.time + 60 SECONDS // Spam prevention
 	for(var/mob/M in GLOB.player_list)
-		to_chat(M, span_narsie("[uppertext(user.real_name)] WILL PUSH DON'T TOUCH ME[round_end ? "" : " TO BREACH ABNORMALITIES"]."))
+		to_chat(M, span_hypnophrase("[uppertext(user.real_name)] WILL PUSH DON'T TOUCH ME[round_end ? "" : " TO BREACH ABNORMALITIES"]."))
+		playsound(src, 'sound/machines/terminal_prompt.ogg', 50, FALSE)
 
 	if(round_end)
 		bastards += user.ckey
