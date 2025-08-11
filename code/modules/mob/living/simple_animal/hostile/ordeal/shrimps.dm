@@ -7,12 +7,12 @@
 	icon_living = "wellcheers_bad"
 	icon_dead = "wellcheers_bad_dead"
 	faction = list("shrimp")
-	health = 500	//They're here to help
-	maxHealth = 500
+	health = 120	//They're here to help
+	maxHealth = 120
 	melee_damage_type = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)
-	melee_damage_lower = 14
-	melee_damage_upper = 18
+	melee_damage_lower = 7
+	melee_damage_upper = 8
 	robust_searching = TRUE
 	stat_attack = HARD_CRIT
 	del_on_death = TRUE
@@ -50,13 +50,13 @@
 	icon_living = "wellcheers_ripped"
 	icon_dead = "wellcheers_ripped_dead"
 	faction = list("shrimp")
-	health = 1337
-	maxHealth = 1337
+	health = 350
+	maxHealth = 350
 	melee_damage_type = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
-	melee_damage_lower = 20
 	move_to_delay = 4
-	melee_damage_upper = 24
+	melee_damage_lower = 10
+	melee_damage_upper = 12
 	robust_searching = TRUE
 	stat_attack = HARD_CRIT
 	del_on_death = TRUE
@@ -85,12 +85,12 @@
 	icon_living = "wellcheers"
 	icon_dead = "wellcheers_dead"
 	faction = list("shrimp")
-	health = 400
-	maxHealth = 400
+	health = 120
+	maxHealth = 120
 	melee_damage_type = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)
-	melee_damage_lower = 24
-	melee_damage_upper = 27
+	melee_damage_lower = 8
+	melee_damage_upper = 10
 	robust_searching = TRUE
 	stat_attack = HARD_CRIT
 	del_on_death = TRUE
@@ -115,12 +115,12 @@
 	icon_living = "wellcheers_bad"
 	icon_dead = "wellcheers_bad_dead"
 	faction = list("shrimp")
-	health = 500
-	maxHealth = 500
+	health = 150
+	maxHealth = 150
 	melee_damage_type = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)
-	melee_damage_lower = 14
-	melee_damage_upper = 18
+	melee_damage_lower = 7
+	melee_damage_upper = 9
 	robust_searching = TRUE
 	stat_attack = HARD_CRIT
 	del_on_death = TRUE
@@ -150,12 +150,12 @@
 	icon_living = "wellcheers_bad"
 	icon_dead = "wellcheers_bad_dead"
 	faction = list("shrimp")
-	health = 500	//They're here to help
-	maxHealth = 500
+	health = 150	//They're here to help
+	maxHealth = 150
 	melee_damage_type = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)
-	melee_damage_lower = 14
-	melee_damage_upper = 18
+	melee_damage_lower = 7
+	melee_damage_upper = 9
 	robust_searching = TRUE
 	stat_attack = HARD_CRIT
 	del_on_death = TRUE
@@ -179,11 +179,11 @@
 /mob/living/simple_animal/hostile/ordeal/salmon_dusk
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	faction = list("shrimp")
-	health = 1000
-	maxHealth = 1000
+	health = 240
+	maxHealth = 240
 	melee_damage_type = RED_DAMAGE
-	melee_damage_lower = 14
-	melee_damage_upper = 18
+	melee_damage_lower = 7
+	melee_damage_upper = 9
 	robust_searching = TRUE
 	stat_attack = HARD_CRIT
 	del_on_death = TRUE
@@ -280,8 +280,8 @@
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 0.8)
 	rapid_melee = 4
 	move_to_delay = 2.4
-	melee_damage_lower = 10
-	melee_damage_upper = 12
+	melee_damage_lower = 5
+	melee_damage_upper = 6
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slashes"
 	attack_sound = 'sound/weapons/purple_tear/stab2.ogg'
@@ -347,12 +347,12 @@
 	desc = "A Shrimp Corp taboo hunter. Will a star of the city fall tonight?"
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "wellcheers_rambo"
-	maxHealth = 4000
-	health = 4000
+	maxHealth = 1000
+	health = 1000
 	move_to_delay = 3
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1)
-	melee_damage_lower = 35
-	melee_damage_upper = 50
+	melee_damage_lower = 12
+	melee_damage_upper = 14
 	melee_damage_type = RED_DAMAGE
 	stat_attack = HARD_CRIT
 	rapid_melee = 2

@@ -7,8 +7,8 @@
 	icon_living = "crimson_clown"
 	icon_dead = "crimson_clown_dead"
 	faction = list("crimson_ordeal")
-	maxHealth = 100
-	health = 100
+	maxHealth = 35
+	health = 35
 	speed = 1
 	density = FALSE
 	search_objects = 3
@@ -19,6 +19,7 @@
 	/// When it hits console 12 times - reduce qliphoth and teleport
 	var/console_attack_counter = 0
 	var/teleporting = FALSE
+	var/next_escape_health_mod = 0.9
 
 /mob/living/simple_animal/hostile/ordeal/crimson_clown/Life()
 	. = ..()
@@ -49,9 +50,17 @@
 			visible_message(span_warning("[CA]'s screen produces an error!"))
 			playsound(get_turf(CA), 'sound/machines/terminal_error.ogg', 50, 1)
 			CA.datum_reference.qliphoth_change(-1, src)
+			LoseTarget()
 			TeleportAway()
 		return
 	return ..()
+
+/mob/living/simple_animal/hostile/ordeal/crimson_clown/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
+	. = ..()
+	if(!stat && health < maxHealth * next_escape_health_mod)
+		next_escape_health_mod -= 0.3
+		LoseTarget()
+		TeleportAway()
 
 /mob/living/simple_animal/hostile/ordeal/crimson_clown/death(gibbed)
 	animate(src, transform = matrix()*1.8, color = "#FF0000", time = 15)
@@ -60,6 +69,8 @@
 
 /mob/living/simple_animal/hostile/ordeal/crimson_clown/proc/TeleportAway()
 	if(teleporting)
+		return
+	if(stat)
 		return
 	teleporting = TRUE
 	var/list/potential_computers = list()
@@ -90,8 +101,7 @@
 	visible_message(span_danger("[src] suddenly explodes!"))
 	for(var/mob/living/L in view(5, src))
 		if(!faction_check_mob(L))
-			L.apply_damage(35, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
-	new /obj/item/food/meat/slab/crimson (get_turf(src))
+			L.apply_damage(10, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
 	gib()
 
 // Crimson noon
@@ -103,12 +113,12 @@
 	icon_living = "crimson_noon"
 	icon_dead = "crimson_noon_dead"
 	faction = list("crimson_ordeal")
-	maxHealth = 1000
-	health = 1000
+	maxHealth = 350
+	health = 350
 	pixel_x = -8
 	base_pixel_x = -8
-	melee_damage_lower = 18
-	melee_damage_upper = 20
+	melee_damage_lower = 6
+	melee_damage_upper = 8
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
 	attack_sound = 'sound/effects/ordeals/crimson/noon_bite.ogg'
@@ -170,12 +180,12 @@
 	icon_living = "crimson_dusk"
 	icon_dead = "crimson_dusk_dead"
 	faction = list("crimson_ordeal")
-	maxHealth = 2000
-	health = 2000
+	maxHealth = 800
+	health = 800
 	pixel_x = -16
 	base_pixel_x = -16
-	melee_damage_lower = 32
-	melee_damage_upper = 36
+	melee_damage_lower = 12
+	melee_damage_upper = 14
 	move_to_delay = 5
 	ranged = TRUE
 	attack_verb_continuous = "slashes"
@@ -294,7 +304,7 @@
 			to_chat(L, span_userdanger("[src] rolls past you!"))
 			var/turf/LT = get_turf(L)
 			new /obj/effect/temp_visual/kinetic_blast(LT)
-			L.apply_damage(50, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+			L.apply_damage(20, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
 			if(!(L in been_hit))
 				been_hit += L
 	addtimer(CALLBACK(src, PROC_REF(do_roll), move_dir, (times_ran + 1)), 1.5)
@@ -308,12 +318,12 @@
 	icon_state = "crimson_midnight"
 	icon_dead = "crimson_midnight"
 	faction = list("crimson_ordeal")
-	maxHealth = 10000
-	health = 10000
+	maxHealth = 4000
+	health = 4000
 	pixel_x = -16
 	base_pixel_x = -16
-	melee_damage_lower = 15
-	melee_damage_upper = 30
+	melee_damage_lower = 12
+	melee_damage_upper = 16
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
 	attack_sound = 'sound/effects/ordeals/amber/dusk_attack.ogg'
@@ -327,7 +337,7 @@
 	var/can_act = TRUE
 	var/bite_width = 1
 	var/bite_length = 3
-	var/bite_damage = 30
+	var/bite_damage = 20
 
 /mob/living/simple_animal/hostile/ordeal/crimson_tent/Initialize()
 	. = ..()
@@ -379,7 +389,7 @@
 		B.bloodiness = 100
 	for(var/mob/living/L in view(5, src))
 		if(!faction_check_mob(L))
-			L.apply_damage(700, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+			L.apply_damage(200, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
 	gib()
 
 /mob/living/simple_animal/hostile/ordeal/crimson_tent/AttackingTarget(atom/attacked_target)
@@ -500,12 +510,12 @@
 	icon_living = "crimson_midnight"
 	icon_dead = "crimson_midnight"
 	faction = list("crimson_ordeal")
-	maxHealth = 3000
-	health = 3000
+	maxHealth = 1000
+	health = 1000
 	pixel_x = -16
 	base_pixel_x = -16
-	melee_damage_lower = 48
-	melee_damage_upper = 56
+	melee_damage_lower = 18
+	melee_damage_upper = 20
 	move_to_delay = 4
 	attack_verb_continuous = "punches"
 	attack_verb_simple = "punch"
@@ -547,8 +557,9 @@
 // Dawn
 /mob/living/simple_animal/hostile/ordeal/crimson_clown/spawned //Weaker variant that dies in 60 seconds
 	name = "a cacophony of smiles"
-	maxHealth = 50
-	health = 50
+	maxHealth = 10
+	health = 10
+	next_escape_health_mod = 0
 
 /mob/living/simple_animal/hostile/ordeal/crimson_clown/spawned/Initialize() //this should effectively limit how many are active at a time
 	. = ..()

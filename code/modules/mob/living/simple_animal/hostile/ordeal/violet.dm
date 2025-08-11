@@ -9,8 +9,8 @@
 	base_pixel_x = -8
 	pixel_x = -8
 	faction = list("violet_ordeal")
-	maxHealth = 250
-	health = 250
+	maxHealth = 80
+	health = 80
 	speed = 4
 	move_to_delay = 5
 	butcher_results = list(/obj/item/food/meat/slab/fruit = 1)
@@ -74,7 +74,7 @@
 	for(var/mob/living/L in view(2, src))
 		if(!faction_check_mob(L))
 			new /obj/effect/temp_visual/revenant(get_turf(L))
-			L.apply_damage(5, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+			L.apply_damage(2, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
 	return TRUE
 
 /mob/living/simple_animal/hostile/ordeal/violet_fruit/proc/ReleaseDeathGas()
@@ -91,7 +91,7 @@
 	for(var/mob/living/L in livinginrange(15, target_c))
 		if(faction_check_mob(L))
 			continue
-		L.apply_damage(33, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))
+		L.apply_damage(12, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))
 	for(var/obj/machinery/computer/abnormality/A in urange(15, target_c))
 		if(A.can_meltdown && !A.meltdown && A.datum_reference && A.datum_reference.current && A.datum_reference.qliphoth_meter)
 			A.datum_reference.qliphoth_change(pick(-999))
@@ -107,8 +107,8 @@
 	base_pixel_x = -8
 	pixel_x = -8
 	faction = list("violet_ordeal")
-	maxHealth = 1400
-	health = 1400
+	maxHealth = 440
+	health = 440
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
 
 	var/next_pulse = INFINITY
@@ -136,7 +136,7 @@
 	for(var/mob/living/L in view(2, src))
 		if(!faction_check_mob(L))
 			new /obj/effect/temp_visual/revenant(get_turf(L))
-			L.apply_damage(9, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+			L.apply_damage(3, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
 
 /mob/living/simple_animal/hostile/ordeal/violet_monolith/death(gibbed)
 	density = FALSE
@@ -159,8 +159,8 @@
 		new /obj/effect/temp_visual/small_smoke/halfsecond(T)
 	for(var/mob/living/L in view(4, src))
 		if(!faction_check_mob(L))
-			var/distance_decrease = get_dist(src, L) * 20
-			L.apply_damage((150 - distance_decrease), RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+			var/distance_decrease = get_dist(src, L) * 10
+			L.apply_damage((60 - distance_decrease), RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
 			if(L.health < 0)
 				L.gib()
 	SLEEP_CHECK_DEATH(5)
@@ -194,8 +194,8 @@
 	base_pixel_x = -16
 	pixel_x = -16
 	faction = list("violet_ordeal", "hostile")
-	maxHealth = 15000
-	health = 15000
+	maxHealth = 5000
+	health = 5000
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	death_message = "falls apart."
 	death_sound = 'sound/effects/ordeals/violet/midnight_dead.ogg'
@@ -212,7 +212,7 @@
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/Initialize()
 	. = ..()
 	ability_cooldown = world.time + rand(5 SECONDS, ability_cooldown_time)
-	retaliation_health = maxHealth * 0.7
+	retaliation_health = maxHealth * 0.8
 
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/Destroy()
 	for(var/T in created_objects)
@@ -241,7 +241,7 @@
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/apply_damage(damage, damagetype, def_zone, blocked, forced, spread_damage, wound_bonus, bare_wound_bonus, sharpness, white_healable)
 	. = ..()
 	if(health < retaliation_health)
-		retaliation_health -= maxHealth * 0.3
+		retaliation_health -= maxHealth * 0.2
 		Retaliation()
 
 /// Called in Life() when off cooldown
@@ -291,7 +291,7 @@
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/red
 	damage_coeff = list(RED_DAMAGE = -1, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1)
 
-	var/attack_damage = 220 // Dealt once if hit
+	var/attack_damage = 100 // Dealt once if hit
 	var/list/been_hit = list()
 	RVP = new(1865)
 
@@ -368,7 +368,7 @@
 	icon_dead = "violet_midnightw_dead"
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = -1, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1.2)
 
-	var/attack_damage = 150
+	var/attack_damage = 60
 	var/list/been_hit = list()
 	RVP = new(1400)
 
@@ -458,7 +458,7 @@
 	icon_dead = "violet_midnightb_dead"
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 1, BLACK_DAMAGE = -1, PALE_DAMAGE = 0.7)
 
-	var/attack_damage = 220
+	var/attack_damage = 80
 	var/list/been_hit = list()
 	RVP = new(1000)
 

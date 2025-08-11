@@ -7,12 +7,12 @@
 	icon_state = "fixer_b"
 	icon_living = "fixer_b"
 	faction = list("hostile", "Head")
-	maxHealth = 3000
-	health = 3000
+	maxHealth = 1200
+	health = 1200
 	melee_damage_type = BLACK_DAMAGE
 	rapid_melee = 2
-	melee_damage_lower = 30
-	melee_damage_upper = 40
+	melee_damage_lower = 12
+	melee_damage_upper = 14
 	move_to_delay = 2.6
 	ranged = TRUE
 	attack_verb_continuous = "bashes"
@@ -27,14 +27,14 @@
 	var/busy = FALSE
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 20 SECONDS
-	var/pulse_damage = 18 // Dealt consistently across the entire room 5 times
+	var/pulse_damage = 6 // Dealt consistently across the entire room 5 times
 	/// Default range of triggering meltdowns during pulse attack
 	var/pulse_range = 24
 	/// The actual range of triggering meltdowns. Gets decreased with each attack during pulse attack
 	var/current_pulse_range = 24
 	var/hammer_cooldown
 	var/hammer_cooldown_time = 6 SECONDS
-	var/hammer_damage = 200
+	var/hammer_damage = 80
 	var/list/been_hit = list()
 
 /mob/living/simple_animal/hostile/ordeal/black_fixer/Initialize()
@@ -129,7 +129,7 @@
 	name = "kunai"
 	icon_state = "blackfixer"
 	hitsound = 'sound/effects/ordeals/white/black_kunai.ogg'
-	damage = 30
+	damage = 10
 	damage_type = BLACK_DAMAGE
 
 // White Fixer
@@ -141,8 +141,8 @@
 	icon_living = "fixer_w"
 	icon_dead = "fixer_w_dead"
 	faction = list("hostile", "Head")
-	maxHealth = 3000
-	health = 3000
+	maxHealth = 1200
+	health = 1200
 	move_to_delay = 5
 	ranged_ignores_vision = TRUE
 	ranged = TRUE
@@ -155,20 +155,20 @@
 	can_patrol = TRUE
 
 	var/can_act = TRUE
-	/// When this reaches 480 - begins reflecting damage
+	/// When this reaches 240 - begins reflecting damage
 	var/damage_taken = 0
 	var/damage_reflection = FALSE
 	var/beam_cooldown
 	var/beam_cooldown_time = 8 SECONDS
 	/// White damage dealt on direct hit by beam
-	var/beam_direct_damage = 250
+	var/beam_direct_damage = 120
 	/// White damage dealt every 0.5 seconds to those standing in the beam's smoke
-	var/beam_overtime_damage = 30
+	var/beam_overtime_damage = 10
 	var/list/been_hit = list()
 	var/circle_cooldown
 	var/circle_cooldown_time = 30 SECONDS
 	var/circle_radius = 24
-	var/circle_overtime_damage = 70
+	var/circle_overtime_damage = 30
 
 	var/datum/reusable_visual_pool/RVP = new(1420)
 
@@ -215,7 +215,7 @@
 	. = ..()
 	if(. > 0)
 		damage_taken += .
-	if(damage_taken >= 480 && !damage_reflection)
+	if(damage_taken >= 240 && !damage_reflection)
 		StartReflecting()
 
 /mob/living/simple_animal/hostile/ordeal/white_fixer/proc/LongBeam(target)
@@ -364,12 +364,12 @@
 	icon_state = "fixer_r"
 	icon_living = "fixer_r"
 	faction = list("hostile", "Head")
-	maxHealth = 3000
-	health = 3000
+	maxHealth = 1200
+	health = 1200
 	melee_damage_type = RED_DAMAGE
 	rapid_melee = 4
-	melee_damage_lower = 15
-	melee_damage_upper = 35
+	melee_damage_lower = 6
+	melee_damage_upper = 8
 	move_to_delay = 2.2
 	ranged = TRUE
 	attack_verb_continuous = "slashes"
@@ -383,12 +383,12 @@
 	var/busy = FALSE
 	var/multislash_cooldown
 	var/multislash_cooldown_time = 4 SECONDS
-	var/multislash_damage = 60
+	var/multislash_damage = 30
 	var/multislash_range = 6
 	var/beam_cooldown
 	var/beam_cooldown_time = 10 SECONDS
 	/// Red damage dealt on direct hit by the beam
-	var/beam_damage = 300
+	var/beam_damage = 120
 
 /mob/living/simple_animal/hostile/ordeal/red_fixer/Initialize()
 	. = ..()
@@ -398,7 +398,7 @@
 	. = ..()
 	if(!.) // Dead
 		return FALSE
-	if(!busy && beam_cooldown + 15 SECONDS < world.time && prob(10)) // Didn't use beam in a long time and there's no target
+	if(!busy && beam_cooldown + 10 SECONDS < world.time && prob(20)) // Didn't use beam in a long time and there's no target
 		var/turf/T = pick(GLOB.department_centers)
 		LaserBeam(T)
 
@@ -501,11 +501,11 @@
 	icon_state = "fixer_p"
 	icon_living = "fixer_p"
 	faction = list("hostile", "Head")
-	maxHealth = 4000
-	health = 4000
+	maxHealth = 1800
+	health = 1800
 	melee_damage_type = PALE_DAMAGE
-	melee_damage_lower = 30
-	melee_damage_upper = 40
+	melee_damage_lower = 16
+	melee_damage_upper = 18
 	rapid_melee = 3
 	minimum_distance = 2
 	ranged = TRUE

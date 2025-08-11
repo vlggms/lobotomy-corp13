@@ -9,13 +9,13 @@
 	icon_dead = "gcorp_corpse"
 	faction = list("Gene_Corp")
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_BUG
-	maxHealth = 220
-	health = 220
+	maxHealth = 70
+	health = 70
 	melee_damage_type = RED_DAMAGE
 	vision_range = 8
 	move_to_delay = 2.2
-	melee_damage_lower = 10
-	melee_damage_upper = 13
+	melee_damage_lower = 4
+	melee_damage_upper = 6
 	wander = FALSE
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
@@ -38,9 +38,9 @@
 	. = ..()
 	//Passive regen when below 50% health.
 	if(health <= maxHealth*0.5 && stat != DEAD)
-		adjustBruteLoss(-2)
+		adjustBruteLoss(-1)
 		if(!target)
-			adjustBruteLoss(-6)
+			adjustBruteLoss(-3)
 
 	//Soldiers when off duty will let eachother move around.
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/Aggro()
@@ -59,8 +59,8 @@
 	icon_living = "gcorp5"
 	icon_dead = "gcorp_corpse2"
 	death_message = "salutes weakly before falling."
-	maxHealth = 1000	//Effectively have 750 HP
-	health = 1000		//Effectively have 750 HP
+	maxHealth = 330
+	health = 330
 	rapid_melee = 2
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.8)
 	attack_verb_continuous = "slashes"
@@ -70,9 +70,10 @@
 	silk_results = list(/obj/item/stack/sheet/silk/steel_simple = 2, /obj/item/stack/sheet/silk/steel_advanced = 1)
 
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/AttackingTarget(atom/attacked_target)
-	adjustBruteLoss(-10)
+	adjustBruteLoss(-3)
 	if(health <= maxHealth * 0.25 && stat != DEAD && prob(75))
 		walk_to(src, 0)
+		move_to_delay = 3.3
 		say("FOR G CORP!!!")
 		animate(src, transform = matrix()*1.8, color = "#FF0000", time = 15)
 		addtimer(CALLBACK(src, PROC_REF(DeathExplosion)), 15)
@@ -85,7 +86,7 @@
 	new /obj/effect/temp_visual/explosion(get_turf(src))
 	playsound(loc, 'sound/effects/ordeals/steel/gcorp_boom.ogg', 60, TRUE)
 	for(var/mob/living/L in ohearers(3, src))
-		L.apply_damage(60, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+		L.apply_damage(20, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
 
 	//Buff allies, all of these buffs only activate once.
 	//Buff the grunts around you when you die
@@ -95,10 +96,10 @@
 		Y.say("FOR G CORP!!!")
 
 		//increase damage
-		Y.melee_damage_lower = 18
-		Y.melee_damage_upper = 22
+		Y.melee_damage_lower *= 1.5
+		Y.melee_damage_upper *= 1.5
 		//And heal 50%
-		Y.adjustBruteLoss(-maxHealth*0.5)
+		Y.adjustBruteLoss(-Y.maxHealth*0.5)
 
 	//And any manager
 	for(var/mob/living/simple_animal/hostile/ordeal/steel_dusk/Z in ohearers(7, src))
@@ -154,7 +155,7 @@
 		ArialSupport()
 	else
 		visible_message(span_notice("[src] crashes to the ground."))
-		apply_damage(100, RED_DAMAGE, null, run_armor_check(null, RED_DAMAGE))
+		apply_damage(30, RED_DAMAGE, null, run_armor_check(null, RED_DAMAGE))
 	//return to the ground
 	density = TRUE
 	layer = initial(layer)
@@ -181,12 +182,12 @@
 
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying/proc/SweepAttack(mob/living/sweeptarget)
 	sweeptarget.visible_message(span_danger("[src] slams into [sweeptarget]!"), span_userdanger("[src] slams into you!"))
-	sweeptarget.apply_damage(30, RED_DAMAGE, null, run_armor_check(null, RED_DAMAGE))
+	sweeptarget.apply_damage(10, RED_DAMAGE, null, run_armor_check(null, RED_DAMAGE))
 	playsound(get_turf(src), 'sound/effects/meteorimpact.ogg', 50, TRUE)
 	if(sweeptarget.mob_size <= MOB_SIZE_HUMAN)
 		DoKnockback(sweeptarget, src, get_dir(src, sweeptarget))
-		shake_camera(sweeptarget, 4, 3)
-		shake_camera(src, 2, 3)
+		shake_camera(sweeptarget, 2, 3)
+		shake_camera(src, 1, 3)
 
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying/proc/DoKnockback(atom/target, mob/thrower, throw_dir) //stolen from the knockback component since this happens only once
 	if(!ismovable(target) || throw_dir == null)
@@ -212,10 +213,10 @@
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_BUG
 	ranged_cooldown_time = 15 SECONDS
 	a_intent = INTENT_HELP
-	maxHealth = 1300
-	health = 1300
-	melee_damage_lower = 40
-	melee_damage_upper = 57
+	maxHealth = 450
+	health = 450
+	melee_damage_lower = 12
+	melee_damage_upper = 14
 	vision_range = 12
 	move_to_delay = 3
 	ranged = TRUE
@@ -256,9 +257,9 @@
 /mob/living/simple_animal/hostile/ordeal/steel_dusk/Life()
 	. = ..()
 	if(health <= maxHealth*0.5 && stat != DEAD)
-		adjustBruteLoss(-2)
+		adjustBruteLoss(-1)
 		if(!target)
-			adjustBruteLoss(-6)
+			adjustBruteLoss(-3)
 
 /mob/living/simple_animal/hostile/ordeal/steel_dusk/handle_automated_action()
 	. = ..()
@@ -336,4 +337,4 @@
 	new /obj/effect/temp_visual/screech(get_turf(src))
 	for(var/mob/living/L in oview(10, src))
 		if(!faction_check_mob(L))
-			L.apply_damage(120, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			L.apply_damage(40, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)

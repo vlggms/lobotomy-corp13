@@ -7,13 +7,13 @@
 	icon_living = "amber_bug"
 	icon_dead = "amber_bug_dead"
 	faction = list("amber_ordeal")
-	maxHealth = 80
-	health = 80
+	maxHealth = 30
+	health = 30
 	speed = 2
 	rapid_melee = 2
 	density = FALSE
-	melee_damage_lower = 4
-	melee_damage_upper = 6
+	melee_damage_lower = 2
+	melee_damage_upper = 4
 	turns_per_move = 2
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
@@ -183,12 +183,12 @@
 
 //A variation of the amber dawn that will eat corpses to grow stronger.
 /mob/living/simple_animal/hostile/ordeal/amber_bug/hungriest_one
-	name = "Hungriest One"
+	name = "incomplete food"
 	desc = "This one looks like it'll eat anything that moves."
-	maxHealth = 150
-	health = 150
-	melee_damage_lower = 9
-	melee_damage_upper = 12
+	maxHealth = 50
+	health = 50
+	melee_damage_lower = 3
+	melee_damage_upper = 5
 	color = "#a51f08"
 	can_infect = FALSE
 	stat_attack = DEAD
@@ -355,7 +355,7 @@
 	var/bug_spawned = feeding_stage + 2 //Should go 3,4,5 bugs then explode, for a total of 12 bugs per body over 4.5 minutes.
 	feeding_duration = world.time + (feeding_interval)
 	feeding_stage++
-	H.apply_damage(feeding_stage * 10, RED_DAMAGE, null, H.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+	H.apply_damage(feeding_stage * 3, RED_DAMAGE, null, H.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 	visible_message(span_danger("[feeding_stage] bugs eat their way out of [H]'s body!"))
 	playsound(get_turf(src), 'sound/effects/ordeals/amber/dawn_dig_out.ogg', 25, 1)
 	if(H.stat != DEAD)
@@ -375,14 +375,14 @@
 	icon_living = "amber_dusk"
 	icon_dead = "amber_dusk_dead"
 	faction = list("amber_ordeal")
-	maxHealth = 2200
-	health = 2200
+	maxHealth = 600
+	health = 600
 	speed = 4
 	move_to_delay = 7
 	density = FALSE
 	status_flags = CANPUSH | MUST_HIT_PROJECTILE
-	melee_damage_lower = 100
-	melee_damage_upper = 115 // If you get hit by them it's a major skill issue
+	melee_damage_lower = 40
+	melee_damage_upper = 45 // If you get hit by them it's a major skill issue
 	pixel_x = -16
 	base_pixel_x = -16
 	butcher_results = list(/obj/item/food/meat/slab/worm = 3)
@@ -553,7 +553,7 @@
 	animate(D, alpha = 0, transform = matrix()*1.5, time = 5)
 	for(var/mob/living/L in view(1, src))
 		if(!faction_check_mob(L))
-			L.apply_damage(75, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+			L.apply_damage(25, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
 
 	burrow_cooldown = world.time + burrow_cooldown_time
 	burrowing = FALSE
@@ -582,8 +582,8 @@
 /mob/living/simple_animal/hostile/ordeal/amber_midnight
 	name = "eternal meal"
 	desc = "A giant insect-like creature with a ton of sharp rocky teeth."
-	health = 15000
-	maxHealth = 15000
+	health = 5000
+	maxHealth = 5000
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.8)
 	icon = 'ModularTegustation/Teguicons/224x128.dmi'
 	icon_state = "ambermidnight"
@@ -723,8 +723,8 @@
 	for(var/mob/living/L in view(7, src))
 		if(faction_check_mob(L))
 			continue
-		var/distance_decrease = get_dist(src, L) * 85
-		L.apply_damage((1000 - distance_decrease), RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+		var/distance_decrease = get_dist(src, L) * 40
+		L.apply_damage((400 - distance_decrease), RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
 		if(L.health < 0)
 			L.gib()
 	SLEEP_CHECK_DEATH(5)

@@ -7,11 +7,11 @@
 	icon_living = "slothsin"
 	icon_dead = "slothsin_dead"
 	faction = list("brown_ordeal")
-	maxHealth = 100
-	health = 100
+	maxHealth = 30
+	health = 30
 	melee_damage_type = RED_DAMAGE
-	melee_damage_lower = 5
-	melee_damage_upper = 10
+	melee_damage_lower = 2
+	melee_damage_upper = 4
 	attack_verb_continuous = "bashes"
 	attack_verb_simple = "bashes"
 	attack_sound = 'sound/effects/ordeals/brown/rock_attack.ogg'
@@ -26,7 +26,7 @@
 	var/can_act = TRUE
 	var/jump_range = 7
 	var/jump_aoe = 1
-	var/jump_damage = 20
+	var/jump_damage = 8
 	var/jump_pixels = 30
 	var/jump_tremor = 5
 	var/jump_tremor_burst = 10
@@ -103,12 +103,12 @@
 	icon_living = "gluttonysin"
 	icon_dead = "gluttonysin_dead"
 	faction = list("brown_ordeal")
-	maxHealth = 80
-	health = 80
+	maxHealth = 25
+	health = 25
 	melee_damage_type = RED_DAMAGE
 	rapid_melee = 3
-	melee_damage_lower = 2
-	melee_damage_upper = 4
+	melee_damage_lower = 1
+	melee_damage_upper = 2
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
 	attack_sound = 'sound/effects/ordeals/brown/flower_attack.ogg'
@@ -165,11 +165,11 @@
 	icon_living = "gloomsin"
 	icon_dead = "gloomsin_dead"
 	faction = list("brown_ordeal")
-	maxHealth = 100
-	health = 100
+	maxHealth = 35
+	health = 35
 	melee_damage_type = WHITE_DAMAGE
-	melee_damage_lower = 25
-	melee_damage_upper = 35
+	melee_damage_lower = 7
+	melee_damage_upper = 8
 	attack_verb_continuous = "bashes"
 	attack_verb_simple = "bashes"
 	attack_sound = 'sound/effects/ordeals/brown/flea_attack.ogg'
@@ -184,7 +184,7 @@
 	projectiletype = /obj/projectile/beam/water_jet
 	projectilesound = 'sound/effects/ordeals/brown/flea_attack.ogg'
 	var/can_act = TRUE
-	var/sinking_damage = 10
+	var/sinking_damage = 5
 
 /mob/living/simple_animal/hostile/ordeal/sin_gloom/Move()
 	if(!can_act)
@@ -244,12 +244,12 @@
 	icon_living = "pridesin"
 	icon_dead = "pridesin_dead"
 	faction = list("brown_ordeal")
-	maxHealth = 60
-	health = 60
+	maxHealth = 20
+	health = 20
 	melee_damage_type = BLACK_DAMAGE
 	rapid_melee = 2
-	melee_damage_lower = 7
-	melee_damage_upper = 14
+	melee_damage_lower = 4
+	melee_damage_upper = 6
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
 	attack_sound = 'sound/weapons/ego/sword1.ogg'
@@ -263,7 +263,7 @@
 	var/extra_dash_distance = 3
 	var/dash_cooldown = 0
 	var/dash_cooldown_time = 6 SECONDS
-	var/dash_damage = 40
+	var/dash_damage = 10
 	var/dash_range = 1
 	var/list/been_hit = list() // Don't get hit twice.
 	var/charging_icon = "pridesin_charge"
@@ -372,13 +372,13 @@
 	pixel_x = -16
 	base_pixel_x = -16
 	faction = list("brown_ordeal")
-	maxHealth = 200
-	health = 200
+	maxHealth = 80
+	health = 80
 	speed = 3
 	move_to_delay = 8
 	melee_damage_type = RED_DAMAGE
-	melee_damage_lower = 10
-	melee_damage_upper = 15
+	melee_damage_lower = 3
+	melee_damage_upper = 5
 	attack_verb_continuous = "bashes"
 	attack_verb_simple = "bashes"
 	attack_sound = 'sound/effects/ordeals/brown/cromer_slam.ogg'
@@ -389,7 +389,7 @@
 	ranged = TRUE
 	var/block_chance = 10
 	var/can_act = TRUE
-	var/ability_damage = 25
+	var/ability_damage = 7
 	var/ability_cooldown
 	var/ability_cooldown_time = 6 SECONDS
 	var/bleed_stacks = 5
@@ -478,11 +478,11 @@
 	pixel_x = -8
 	base_pixel_x = -8
 	faction = list("brown_ordeal")
-	maxHealth = 80
-	health = 80
+	maxHealth = 30
+	health = 30
 	melee_damage_type = BLACK_DAMAGE
-	melee_damage_lower = 2
-	melee_damage_upper = 6
+	melee_damage_lower = 1
+	melee_damage_upper = 3
 	melee_reach = 3 // Will try to attack from this distance
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
@@ -495,7 +495,7 @@
 	var/charge_ready = TRUE
 	var/charging
 	var/revving_charge = FALSE
-	var/charge_damage = 30
+	var/charge_damage = 10
 	var/charge_attack_cooldown = 0
 	var/charge_attack_cooldown_time = 1 SECONDS
 	var/charge_attack_delay = 10

@@ -2,13 +2,13 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_dead = "sweeper_dead"
 	faction = list("indigo_ordeal")
-	maxHealth = 1500
-	health = 1500
+	maxHealth = 600
+	health = 600
 	stat_attack = DEAD
 	melee_damage_type = RED_DAMAGE
 	rapid_melee = 1
-	melee_damage_lower = 13
-	melee_damage_upper = 17
+	melee_damage_lower = 5
+	melee_damage_upper = 7
 	butcher_results = list(/obj/item/food/meat/slab/sweeper = 2)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sweeper = 1)
 	silk_results = list(/obj/item/stack/sheet/silk/indigo_elegant = 1,
@@ -22,14 +22,14 @@
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/white
 	name = "\proper Commander Adelheide"
-	maxHealth = 2100
-	health = 2100
+	maxHealth = 700
+	health = 700
 	desc = "A tall humanoid with a white greatsword."
 	icon_state = "adelheide"
 	icon_living = "adelheide"
 	melee_damage_type = WHITE_DAMAGE
-	melee_damage_lower = 42
-	melee_damage_upper = 55
+	melee_damage_lower = 16
+	melee_damage_upper = 18
 	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0.7)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sweeper = 1)
 
@@ -51,8 +51,8 @@
 	icon_state = "maria"
 	icon_living = "maria"
 	melee_damage_type = BLACK_DAMAGE
-	melee_damage_lower = 42
-	melee_damage_upper = 55
+	melee_damage_lower = 16
+	melee_damage_upper = 18
 	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sweeper = 1)
 
@@ -139,8 +139,8 @@
 	icon_living = "matriarch"
 	icon_dead = "matriarch_dead"
 	faction = list("indigo_ordeal")
-	maxHealth = 5000
-	health = 5000
+	maxHealth = 1600
+	health = 1600
 	stat_attack = DEAD
 	pixel_x = -16
 	base_pixel_x = -16
@@ -148,8 +148,8 @@
 	move_to_delay = 3
 	speed = 3
 	rapid_melee = 2
-	melee_damage_lower = 60
-	melee_damage_upper = 60
+	melee_damage_lower = 20
+	melee_damage_upper = 24
 	ranged = TRUE
 	butcher_results = list(/obj/item/food/meat/slab/sweeper = 4)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sweeper = 3)
@@ -172,12 +172,12 @@
 	//How often does she slam?
 	var/slam_cooldown = 3
 	var/slam_current = 3
-	var/slam_damage = 100
+	var/slam_damage = 35
 	var/slamming = FALSE
 
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 10 SECONDS
-	var/pulse_damage = 10 // More over time
+	var/pulse_damage = 4 // More over time
 
 	//Spawning sweepers
 	var/pissed_count
@@ -370,8 +370,8 @@
 	ChangeResistances(list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 1))
 	ChangeMoveToDelayBy(phasespeedchange)
 	rapid_melee += 2
-	melee_damage_lower -= 15
-	melee_damage_upper -= 15
+	melee_damage_lower -= 5
+	melee_damage_upper -= 5
 
 	pulse_cooldown_time = 4 SECONDS
 	slam_cooldown = 10
@@ -433,13 +433,13 @@
 	icon_living = "indigo_dawn"
 	icon_dead = "indigo_dawn_dead"
 	faction = list("indigo_ordeal")
-	maxHealth = 110
-	health = 110
+	maxHealth = 40
+	health = 40
 	move_to_delay = 1.3	//Super fast, but squishy and weak.
 	stat_attack = HARD_CRIT
 	melee_damage_type = BLACK_DAMAGE
-	melee_damage_lower = 21
-	melee_damage_upper = 24
+	melee_damage_lower = 5
+	melee_damage_upper = 7
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
