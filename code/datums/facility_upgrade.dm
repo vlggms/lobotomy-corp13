@@ -183,16 +183,14 @@
 /datum/facility_upgrade/bullet_shield_increase
 	name = UPGRADE_BULLET_SHIELD_HEALTH
 	category = "Bullet Upgrades"
-	value = 20
-	max_value = 80
+	value = 40
+	max_value = 100
 	requires_one_of = list(RED_BULLET, WHITE_BULLET, BLACK_BULLET, PALE_BULLET)
 	info = " - This upgrade inceases the Health of all <b>Shield Bullets</b> by 10 HP per upgrade."
 
 /datum/facility_upgrade/bullet_shield_increase/Upgrade()
 	value = min(max_value, value + 10)
-	. = ..()
-	if((value % 20) == 0)
-		cost += 1
+	return ..()
 
 /datum/facility_upgrade/yellow_bullet_buff
 	name = UPGRADE_YELLOW_BULLET
