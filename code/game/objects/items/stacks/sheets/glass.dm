@@ -256,8 +256,8 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 	icon = 'icons/obj/shards.dmi'
 	icon_state = "large"
 	w_class = WEIGHT_CLASS_TINY
-	force = 5
-	throwforce = 10
+	force = 2
+	throwforce = 4
 	inhand_icon_state = "shard-glass"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
