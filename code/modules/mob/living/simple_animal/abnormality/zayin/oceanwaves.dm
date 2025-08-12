@@ -172,7 +172,7 @@
 	icon = 'icons/obj/drinks.dmi'
 	icon_state = "oceanbreeze"
 	spread = 15
-	damage = 40
+	damage = 15
 	var/item_type = null
 
 /obj/projectile/oceanic/on_hit(atom/target, blocked = FALSE)
