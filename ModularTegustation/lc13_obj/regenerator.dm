@@ -12,7 +12,7 @@
 	var/alert_icon = "regen_alert"
 
 	/// How many HP and SP we restore on each process tick
-	var/regeneration_amount = 3
+	var/regeneration_amount = 6
 	/// Pre-declared variable
 	var/modified = FALSE // Whether or not the regenerator is currently undergoing modified action
 	var/hp_bonus = 0
@@ -74,7 +74,7 @@
 		var/hp_amt = regen_amt+hp_bonus
 		var/sp_amt = regen_amt+sp_bonus
 		H.adjustBruteLoss(-H.maxHealth * (hp_amt/100))
-		H.adjustFireLoss(-H.maxHealth * (hp_amt/1000))	//Heals at 1/10th speed. Supposed to be slower healing than brute and sanity
+		H.adjustFireLoss(-H.maxHealth * (hp_amt/100))
 		H.adjustSanityLoss(-H.maxSanity * (sp_amt/100))
 	if(icon_state != "regen" && !Threat)
 		icon_state = initial(icon_state)
