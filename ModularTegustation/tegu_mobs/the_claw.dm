@@ -1,8 +1,8 @@
 /mob/living/simple_animal/hostile/megafauna/claw
 	name = "Claw"
 	desc = "A strange humanoid creature with several gadgets attached to it."
-	health = 8000
-	maxHealth = 8000
+	health = 4000
+	maxHealth = 4000
 	damage_coeff = list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.4)
 	attack_verb_continuous = "slices"
 	attack_verb_simple = "slice"
@@ -18,8 +18,8 @@
 	movement_type = GROUND
 	speak_emote = list("says")
 	melee_damage_type = RED_DAMAGE
-	melee_damage_lower = 75 // Assuming everyone has at least 0.5 red armor
-	melee_damage_upper = 85
+	melee_damage_lower = 35 // Assuming everyone has at least 0.5 red armor
+	melee_damage_upper = 45
 	stat_attack = HARD_CRIT
 	rapid_melee = 2
 	ranged = TRUE
@@ -42,13 +42,13 @@
 							   /datum/action/innate/megafauna_attack/tri_serum,
 							   )
 	var/charging = FALSE
-	var/dash_damage = 100
+	var/dash_damage = 50
 	var/dash_num_short = 5
 	var/dash_num_long = 18
-	var/serumA_damage = 60
-	var/wide_slash_damage = 150
+	var/serumA_damage = 30
+	var/wide_slash_damage = 75
 	var/wide_slash_range = 5
-	var/wide_slash_angle = 120
+	var/wide_slash_angle = 60
 
 	var/dash_cooldown = 0
 	var/dash_cooldown_time = 5 // cooldown_time * distance:
@@ -139,6 +139,11 @@
 		ordeal_reference.OnMobDeath(src)
 		ordeal_reference = null
 	..()
+
+/mob/living/simple_animal/hostile/megafauna/claw/AttackingTarget(atom/attacked_target)
+	if(charging)
+		return FALSE
+	return ..()
 
 /mob/living/simple_animal/hostile/megafauna/claw/OpenFire()
 	if(charging)
@@ -261,7 +266,7 @@
 		if(faction_check_mob(L))
 			continue
 		to_chat(target, span_userdanger("\The [src] eviscerates you!"))
-		L.apply_damage(75, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+		L.apply_damage(40, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
 		new /obj/effect/temp_visual/cleave(get_turf(L))
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/TargetSerumW(mob/living/L)
@@ -338,7 +343,7 @@
 			SLEEP_CHECK_DEATH(4)
 	if(istype(L) && !QDELETED(L))
 		to_chat(L, span_userdanger("\The [src] slashes you, finally releasing you from his grasp!"))
-		L.apply_damage(50, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+		L.apply_damage(25, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
 		GiveTarget(L)
 	charging = FALSE
 
