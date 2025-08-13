@@ -704,6 +704,7 @@
 		friendly = FALSE
 	death_counter = 0
 	if(friendly)
+		icon_state = "hatred_breach"
 		friendly = TRUE
 		ADD_TRAIT(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT)
 		fear_level = TETH_LEVEL
