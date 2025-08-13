@@ -86,7 +86,7 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 		message = CompileText(arrival, user, rank)
 	else if(message_type == "NEWHEAD" && newheadToggle)
 		message = CompileText(newhead, user, rank)
-	else if(message_type == "ABNO" && newabnoToggle)
+	else if(message_type == "NEWABNO" && newabnoToggle)
 		message = CompileText(newabno, user, rank)
 	else if(message_type == "CRYOSTORAGE")
 		message = "[user][rank ? ", [rank]" : ""] has been moved to cryo storage."
