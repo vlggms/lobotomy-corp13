@@ -46,7 +46,7 @@
 		ACM.c_tag = "Containment zone: [abno_datum.name]"
 	if(con_panel && GLOB.announcement_systems.len)
 		var/obj/machinery/announcement_system/AS = pick(GLOB.announcement_systems)
-		AS.announce("NEWABNO", abno_datum.name, con_panel.icon_state)
+		AS.announce("NEWABNO", abno_datum.name, con_panel.icon_state, list())
 	SSabnormality_queue.PostSpawn()
 	SSlobotomy_corp.NewAbnormality(abno_datum)
 
