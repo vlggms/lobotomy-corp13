@@ -287,7 +287,6 @@
 	name = "L-Corp care package"
 
 /obj/item/storage/box/corporation/lcorp/PopulateContents()
-	new /obj/item/work_console_upgrade/work_meltdown_screen(src)
 	new /obj/item/ego_gift_extractor(src)
 	new /obj/item/trait_injector/clerk_fear_immunity_injector(src)
 	new /obj/item/trait_injector/agent_workchance_trait_injector(src)

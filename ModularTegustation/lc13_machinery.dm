@@ -16,38 +16,11 @@
 	density = FALSE
 	use_power = 0
 	var/obj/machinery/computer/abnormality/linked_console
-	var/work
-	var/relative_location
 
 /obj/machinery/containment_panel/Initialize()
 	. = ..()
-	var/turf/closest_department
-	for(var/turf/T in GLOB.department_centers)
-		if(T.z != z)
-			continue
-		if(!istype(T.loc, /area/department_main))
-			continue
-		if(!closest_department)
-			closest_department = T
-			continue
-		if(get_dist(T, src) > get_dist(closest_department, src))
-			continue
-		closest_department = T
-	var/direction = "in an unknown direction"
-	var/xdif = closest_department.x - src.x
-	var/ydif = closest_department.y - src.y
-	if(abs(xdif) > abs(ydif))
-		if(xdif < 0)
-			direction = "East"
-		else
-			direction = "West"
-	else
-		if(ydif < 0)
-			direction = "North"
-		else
-			direction = "South"
-	relative_location = "[get_dist(closest_department, src)] meters [direction] from [closest_department.loc.name]."
-	icon_state = replacetext("[closest_department.loc.type]", "/area/department_main/", "")
+	var/turf/T = get_step(src, SOUTH)
+	icon_state = replacetext("[T.loc.type]", "/area/facility_hallway/", "")
 
 /obj/machinery/containment_panel/proc/console_status(obj/machinery/computer/abnormality/linked_console)
 	cut_overlays()
@@ -142,7 +115,7 @@
 	LAZYCLEARLIST(abnormalities)
 	for(var/obj/machinery/containment_panel/C in GLOB.machines)
 		if(C.linked_console)
-			LAZYADD(abnormalities, "[C.AbnormalityInfo()]: [C.relative_location]")
+			LAZYADD(abnormalities, "[C.AbnormalityInfo()]: [capitalize(C.icon_state)]")
 	sortList(abnormalities)
 
 	/*---------------\

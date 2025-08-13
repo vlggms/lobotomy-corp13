@@ -21,6 +21,8 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 	var/arrivalToggle = 1
 	var/newhead = "%PERSON, %RANK, is the department head."
 	var/newheadToggle = 1
+	var/newabno = "Abnormality '%PERSON' has been delivered to %RANK department."
+	var/newabnoToggle = 1
 
 	var/greenlight = "Light_Green"
 	var/pinklight = "Light_Pink"
@@ -84,6 +86,8 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 		message = CompileText(arrival, user, rank)
 	else if(message_type == "NEWHEAD" && newheadToggle)
 		message = CompileText(newhead, user, rank)
+	else if(message_type == "ABNO" && newabnoToggle)
+		message = CompileText(newabno, user, rank)
 	else if(message_type == "CRYOSTORAGE")
 		message = "[user][rank ? ", [rank]" : ""] has been moved to cryo storage."
 	else if(message_type == "ARRIVALS_BROKEN")
@@ -134,11 +138,21 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 			if(NewMessage)
 				newhead = NewMessage
 				log_game("The head announcement was updated: [NewMessage] by:[key_name(usr)]")
+		if("NewAbnoText")
+			var/NewMessage = trim(html_encode(param["newText"]), MAX_MESSAGE_LEN)
+			if(!usr.canUseTopic(src, !issilicon(usr)))
+				return
+			if(NewMessage)
+				newabno = NewMessage
+				log_game("The abno delivery announcement was updated: [NewMessage] by:[key_name(usr)]")
 		if("NewheadToggle")
 			newheadToggle = !newheadToggle
 			update_icon()
 		if("ArrivalToggle")
 			arrivalToggle = !arrivalToggle
+			update_icon()
+		if("NewAbnoToggle")
+			newabnoToggle = !arrivalToggle
 			update_icon()
 	add_fingerprint(usr)
 
