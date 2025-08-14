@@ -365,7 +365,7 @@
 		if(MELTDOWN_CYAN)
 			blurb_text = "Your immaturity is to blame."
 			INVOKE_ASYNC(src, PROC_REF(FirePillarStorm))
-	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 5 SECONDS, blurb_text, 1 SECONDS, "black", "yellow", "left", "CENTER,BOTTOM+2")
+	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 5 SECONDS, blurb_text, 1 SECONDS, "black", "yellow", "center", "CENTER-6,BOTTOM+2")
 
 /mob/living/simple_animal/hostile/megafauna/arbiter/proc/HandledMeltdownEffect()
 	playsound(get_turf(src), 'sound/magic/arbiter/meltdown_clear_all.ogg', 50, TRUE, 24)
@@ -373,11 +373,11 @@
 	var/last_stage = life_stage
 	switch(current_meltdown_type)
 		if(MELTDOWN_GRAY)
-			INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 5 SECONDS, "I am fading.", 1 SECONDS, "black", "yellow", "left", "CENTER,BOTTOM+2")
+			INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 5 SECONDS, "I am fading.", 1 SECONDS, "black", "yellow", "center", "CENTER-6,BOTTOM+2")
 			ChangeResistances(list(RED_DAMAGE = 2, WHITE_DAMAGE = 2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2))
 			SLEEP_CHECK_DEATH(10 SECONDS)
 		if(MELTDOWN_GOLD)
-			INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 5 SECONDS, "The sandman calls me.", 1 SECONDS, "black", "yellow", "left", "CENTER,BOTTOM+2")
+			INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 5 SECONDS, "The sandman calls me.", 1 SECONDS, "black", "yellow", "center", "CENTER-6,BOTTOM+2")
 			var/check_count = 0
 			while(charging) // In case meltdowns get cleared mid-ability
 				if(check_count > 4)
@@ -389,9 +389,9 @@
 			SLEEP_CHECK_DEATH(10 SECONDS)
 			charging = FALSE
 		if(MELTDOWN_PURPLE)
-			INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 5 SECONDS, "The waves will rock the shore again.", 1 SECONDS, "black", "yellow", "left", "CENTER,BOTTOM+2")
+			INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 5 SECONDS, "The waves will rock the shore again.", 1 SECONDS, "black", "yellow", "center", "CENTER-6,BOTTOM+2")
 		if(MELTDOWN_CYAN)
-			INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 5 SECONDS, "Excellent.", 1 SECONDS, "black", "yellow", "left", "CENTER,BOTTOM+2")
+			INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 5 SECONDS, "Excellent.", 1 SECONDS, "black", "yellow", "center", "CENTER-6,BOTTOM+2")
 			INVOKE_ASYNC(src, PROC_REF(StopPillarStorm))
 
 	if(last_stage == life_stage)
@@ -405,7 +405,7 @@
 
 	SLEEP_CHECK_DEATH(2 SECONDS)
 
-	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 5 SECONDS, pick("I'll open the door if I must.", "Let us sink here together."), 1 SECONDS, "black", "yellow", "left", "CENTER,BOTTOM+2")
+	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 5 SECONDS, pick("I'll open the door if I must.", "Let us sink here together."), 1 SECONDS, "black", "yellow", "center", "CENTER-6,BOTTOM+2")
 	stop_storm_effect = FALSE
 	INVOKE_ASYNC(src, PROC_REF(PillarStormEffect))
 

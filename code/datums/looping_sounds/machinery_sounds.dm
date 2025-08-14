@@ -97,7 +97,7 @@
 	extra_range = -11
 	falloff_distance = 1
 	falloff_exponent = 5
-	volume = 50
+	volume = 20
 
 /datum/looping_sound/computer
 	start_sound = 'sound/machines/computer/computer_start.ogg'
@@ -107,7 +107,7 @@
 	mid_length = 1.8 SECONDS
 	end_sound = 'sound/machines/computer/computer_end.ogg'
 	end_volume = 10
-	volume = 2
+	volume = 5
 	falloff_exponent = 5 //Ultra quiet very fast
 	extra_range = -12
 	falloff_distance = 1 //Instant falloff after initial tile

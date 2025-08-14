@@ -337,52 +337,31 @@
 		black_armor = armor.getRating(mapping[BLACK_DAMAGE])
 		pale_armor = armor.getRating(mapping[PALE_DAMAGE])
 	if(red_armor)
-		armor_list += list("RED" = red_armor)
+		armor_list["RED"] = red_armor
 	if(white_armor)
-		armor_list += list("WHITE" = white_armor)
+		armor_list["WHITE"] = white_armor
 	if(black_armor)
-		armor_list += list("BLACK" = black_armor)
+		armor_list["BLACK"] = black_armor
 	if(pale_armor)
-		armor_list += list("PALE" = pale_armor)
+		armor_list["PALE"] = pale_armor
 
 	if(LAZYLEN(durability_list))
 		durability_list.Cut()
 	if(armor.fire && fire_display)
-		durability_list += list("FIRE" = armor.fire)
+		durability_list["FIRE"] = armor.fire
 	if(armor.acid)
-		durability_list += list("ACID" = armor.acid)
+		durability_list["ACID"] = armor.acid
 
-	if(LAZYLEN(armor_list) || LAZYLEN(durability_list))
-		. += "<span class='notice'>It has a <a href='byond://?src=[REF(src)];list_armor=1'>tag</a> listing its protection classes, and a <a href='byond://?src=[REF(src)];explain=1'>tag</a> explaining the armor system.</span>"
-
-/obj/item/clothing/Topic(href, href_list)
-	. = ..()
-
-	if(href_list["list_armor"])
-		var/list/readout = list("<span class='notice'><u><b>PROTECTION CLASSES (I-X)</u></b>")
-		if(LAZYLEN(armor_list))
-			readout += "\n<b>ARMOR</b>"
-			for(var/dam_type in armor_list)
-				var/armor_amount = armor_list[dam_type]
-				readout += "\n[dam_type] [armor_to_protection_class(armor_amount)]" //e.g. BOMB IV
-		if(LAZYLEN(durability_list))
-			readout += "\n<b>DURABILITY</b>"
-			for(var/dam_type in durability_list)
-				var/durability_amount = durability_list[dam_type]
-				readout += "\n[dam_type] [armor_to_protection_class(durability_amount)]" //e.g. FIRE II
-		readout += "</span>"
-
-		to_chat(usr, "[readout.Join()]")
-
-	if(href_list["explain"])
-		var/list/readout = list("<span class='notice'><u><b>ROMAN NUMERAL ARMOR SYSTEM</u></b>")
-		readout += "\nThis system is a % of damage resisted, multiplied by 10. Each 1 armor is 10% resisted."
-		readout += "\nThe Roman numeral system uses only seven symbols: I, V, X, L, C, D, and M. To read the armor values, you need to know: I represents the number 1, V represents 5, X is 10."
-		readout += "\nYou can add numbers together by putting the symbols in descending order from left to right. You’d add all of the symbols’ individual values together to get the total value. For example, VI is 5 + 1 or 6."
-		readout += "\nYou can also subtract numbers from each other by placing a symbol with a smaller value to the left of one with a larger value. The value of the smaller symbol is subtracted from that of the larger symbol to get the total value, so IV is 5 - 1, or 4."
-		readout += "\nExamples: \nIX = 10-1 = 9. \nVI = 5+1 = 6. \nVIII = 5+1+1+1 = 8."
-		readout += "\nAdditionally, all armors that have an armor value for red damage will have half (if positive) of that value in an armor value for fire damage if not explicitly indicated."
-		to_chat(usr, "[readout.Join()]")
+	if(LAZYLEN(armor_list))
+		. += "<b>ARMOR RATING</b>"
+		for(var/dam_type in armor_list)
+			var/armor_value = 1 - round(armor_list[dam_type], 10) / 100
+			. += "[dam_type]: [armor_value]"
+	if(LAZYLEN(durability_list))
+		. += "<b>DURABILITY</b>"
+		for(var/dam_type in durability_list)
+			var/armor_value = 1 - round(durability_list[dam_type], 10) / 100
+			. += "[dam_type]: [armor_value]"
 
 /**
  * Rounds armor_value to nearest 10, divides it by 10 and then expresses it in roman numerals up to 10

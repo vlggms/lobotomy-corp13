@@ -35,7 +35,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 	/// World time at which new abnormality will be spawned
 	var/next_abno_spawn = INFINITY
 	/// Wait time for next abno spawn; This time is further affected by amount of abnos in facility
-	var/next_abno_spawn_time = 6 MINUTES
+	var/next_abno_spawn_time = 5 MINUTES
 	/// Tracks if the current pick is forced
 	var/fucked_it_lets_rolled = FALSE
 	/// Due to Managers not passing the Litmus Test, divine approval is now necessary for red roll
@@ -54,9 +54,6 @@ SUBSYSTEM_DEF(abnormality_queue)
 		flags |= SS_NO_FIRE
 		return ..() // Sleepy time
 
-	if(SSmaptype.chosen_trait == FACILITY_TRAIT_ABNO_BLITZ)
-		next_abno_spawn_time/=2
-
 	RegisterSignal(SSdcs, COMSIG_GLOB_ORDEAL_END, PROC_REF(OnOrdealEnd))
 	next_abno_spawn_time -= min(2, rooms_start * 0.05) MINUTES // 20 rooms will decrease wait time by 1 Minute
 	return ..()
@@ -68,7 +65,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 /datum/controller/subsystem/abnormality_queue/proc/SpawnAbno()
 	// Earlier in the game, abnormalities will spawn faster and then slow down a bit
 	previous_abno_spawn = world.time
-	next_abno_spawn = world.time + next_abno_spawn_time + ((min(16, spawned_abnos) - 6) * 9) SECONDS
+	next_abno_spawn = world.time + next_abno_spawn_time + ((min(16, spawned_abnos) - floor(rooms_start * 0.5)) * 8) SECONDS
 
 	if(!length(GLOB.abnormality_room_spawners))
 		return
@@ -86,20 +83,6 @@ SUBSYSTEM_DEF(abnormality_queue)
 
 // Abno level selection
 /datum/controller/subsystem/abnormality_queue/proc/SelectAvailableLevels()
-
-	//For the blitz gamemode, only pick Waw and Aleph enemies. There should only be 80+ agents here
-	if(SSmaptype.chosen_trait == FACILITY_TRAIT_ABNO_BLITZ)
-		if(spawned_abnos >= rooms_start * 0.5)
-			available_levels = list(WAW_LEVEL, ALEPH_LEVEL)
-		else
-			available_levels = list(WAW_LEVEL)
-
-		// Roll the abnos from available levels
-		if(!ispath(queued_abnormality) && length(possible_abnormalities))
-			PickAbno()
-
-		return	//And return
-
 
 	// ALEPH and WAW
 	if(spawned_abnos >= rooms_start * 0.75)

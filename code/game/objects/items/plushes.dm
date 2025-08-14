@@ -657,6 +657,11 @@
 	gender = FEMALE
 	squeak_override = list('sound/abnormalities/scorchedgirl/pre_ability.ogg'=1)
 
+/obj/item/toy/plush/voiddream
+	name = "void dream plushie"
+	desc = "A plushie depicting a sleepy sheep of some kind. Just looking at it makes you tired."
+	icon_state = "voiddream"
+
 /obj/item/toy/plush/pinocchio
 	name = "pinocchio plushie"
 	desc = "A plushie depicting pinocchio."

@@ -22,18 +22,11 @@
 	//How long do you stun on hit?
 	var/stuntime = 0
 
-	//Crits are here, multiplicative chance
-	crit_multiplier = 1
-	var/crit_info
-
 /obj/item/ego_weapon/Initialize()
 	. = ..()
 	if(swingstyle == WEAPONSWING_SMALLSWEEP && reach > 1)
 		swingstyle = WEAPONSWING_THRUST
 	RegisterSignal(src, COMSIG_OBJ_PAINTED, PROC_REF(GetSwingColor))
-	if(SSmaptype.chosen_trait == FACILITY_TRAIT_CALLBACK)
-		w_class = WEIGHT_CLASS_NORMAL			//Callback to when we had stupid 10 Egos in bag
-
 
 /obj/item/ego_weapon/attack(mob/living/target, mob/living/user)
 	if(!CanUseEgo(user))
@@ -75,13 +68,6 @@
 	if(!CanUseEgo(user))
 		return FALSE
 	. = ..()
-	if(HAS_TRAIT(user, TRAIT_WEAK_MELEE))
-		if(!attack_speed)
-			user.changeNext_move(CLICK_CD_MELEE * 1.2)
-		else
-			user.changeNext_move(CLICK_CD_MELEE * attack_speed*1.2)
-		return TRUE
-
 	if(attack_speed)
 		user.changeNext_move(CLICK_CD_MELEE * attack_speed)
 	return TRUE
@@ -125,12 +111,6 @@
 		return
 	if(reach>1)
 		. += span_notice("This weapon has a reach of [reach].")
-	if(SSmaptype.chosen_trait == FACILITY_TRAIT_CRITICAL_HITS)
-		if(crit_multiplier!=1)
-			. += span_notice("This weapon has a crit rate of [crit_multiplier]x  normal.")
-
-		if(crit_info)
-			. += span_notice("[crit_info]")
 
 	if(throwforce>force)
 		. += span_notice("This weapon deals [throwforce] [damtype] damage when thrown.")
@@ -204,6 +184,11 @@
 			if(attribute_requirements[atr] > 40)
 				return FALSE
 		return TRUE
+
+	if(HAS_TRAIT(user, TRAIT_NOEGOWEAPONS))
+		to_chat(user, span_notice("You cannot use [src]!"))
+		return FALSE
+
 	if(!ishuman(user))
 		return FALSE
 
@@ -224,9 +209,6 @@
 	return TRUE
 
 /obj/item/ego_weapon/proc/SpecialGearRequirements()
-	return
-
-/obj/item/ego_weapon/proc/CritEffect(mob/living/target, mob/living/user)
 	return
 
 /obj/item/ego_weapon/proc/EgoAttackInfo(mob/user)

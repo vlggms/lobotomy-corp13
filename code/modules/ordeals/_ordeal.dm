@@ -58,8 +58,7 @@
 	SSlobotomy_corp.AdjustAvailableBoxes(total_reward)
 	SSlobotomy_corp.current_ordeals -= src
 
-	if(SSmaptype.chosen_trait != FACILITY_TRAIT_ABNO_BLITZ)
-		SSlobotomy_corp.ordeal_stats += 5
+	SSlobotomy_corp.ordeal_stats += 5
 	for(var/mob/living/carbon/human/person as anything in SSabnormality_queue.active_suppression_agents)
 		if(!istype(person) || QDELETED(person)) // gibbed or cryo'd, we no longer care about them
 			SSabnormality_queue.active_suppression_agents -= person

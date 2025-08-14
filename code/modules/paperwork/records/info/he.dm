@@ -584,3 +584,17 @@
 	abno_info = list(
 		"When another abnormality breached, the Qliphoth counter lowered.",
 		"F-02-182 returned to it's containment after 5 minutes.")
+
+//Pink Shoes
+/obj/item/paper/fluff/info/he/pink_shoes
+	abno_type = /mob/living/simple_animal/hostile/abnormality/pink_shoes
+	abno_code = "F-04-147"//F-04-10-13 in LCB
+	abno_info = list(
+		"Employees with temperance level 1 immediately panicked after working on Pink Shoes.",
+		"When the qliphoth counter became 0, Pink Shoes escaped and wove ribbons in the surrounding area.",
+		"When Pink Shoes escaped, it attacked indiscriminately, and any hostile entities attacked would wear them.",
+		"Employees who panic while working on Pink Shoes will decide to wear them.",
+		"Agent Acacia who wore Pink Shoes was asphyxiated during suppression.",
+		"Employees who crossed the ribbons were occasionally bound by them, having their prudence and temperance temporarily reduced.",
+		"Employees with a high temperance attribute were unlikely to be bound by ribbons.",
+		"Employees who perished on the ribbons became entities regarded as F-04-147-01.")

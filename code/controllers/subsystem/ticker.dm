@@ -251,22 +251,12 @@ SUBSYSTEM_DEF(ticker)
 			mode = new /datum/game_mode/combat
 	else
 
-		switch(SSmaptype.chosen_trait)
-			if(FACILITY_TRAIT_JOKE_ABNOS)
-				mode = new /datum/game_mode/management/joke
-			if(FACILITY_TRAIT_FUCKED_SELECTION)
-				var/choosingmode = pick(
-							/datum/game_mode/management/pure,
-							/datum/game_mode/management/branch)
-				mode = new choosingmode
-			else
-				mode = new /datum/game_mode/management/classic
-
-		for(var/obj/structure/filingcabinet/smart/cabinet in GLOB.records_cabinets)
-			cabinet.spawn_records()
-
+		mode = new /datum/game_mode/management/classic
 		if(SSevents.holidays && SSevents.holidays[APRIL_FOOLS]) //runs in April 1st
 			mode = new /datum/game_mode/management/joke
+
+	for(var/obj/structure/filingcabinet/smart/cabinet in GLOB.records_cabinets)
+		cabinet.spawn_records()
 
 	CHECK_TICK
 

@@ -28,8 +28,6 @@
 		var/obj/effect/proc_holder/ability/neck_ability/NA = new(null, neck)
 		var/datum/action/spell_action/ability/item/N = NA.action
 		N.SetItem(src)
-	if(SSmaptype.chosen_trait == FACILITY_TRAIT_CALLBACK)
-		w_class = WEIGHT_CLASS_NORMAL			//Callback to when we had stupid 10 Egos in bag
 
 /obj/item/clothing/suit/armor/ego_gear/mob_can_equip(mob/living/M, mob/living/equipper, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
 	if(!ishuman(M))
@@ -119,7 +117,6 @@
 		else if(CanUseEgo(user))	//It's green if you can use it
 			. += span_nicegreen("It has <a href='byond://?src=[REF(src)];list_attributes=1'>certain requirements</a> for the wearer.")
 		else				//and red if you cannot use it
-			. += span_danger("You cannot use this EGO!")
 			. += span_danger("It has <a href='byond://?src=[REF(src)];list_attributes=1'>certain requirements</a> for the wearer.")
 
 /obj/item/clothing/suit/armor/ego_gear/Topic(href, href_list)

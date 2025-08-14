@@ -39,10 +39,10 @@
 		to_chat(user, span_notice("You load PE into the machine."))
 		qdel(I)
 		if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_2))
-			power_timer = round(power_timer * 0.5)
 			if(!boosted)//prevents wierd jank and desycing
 				boosted = TRUE
-				crate_timer = round(crate_timer * 0.5)
+				power_timer = round(initial(power_timer) * 0.33)
+				crate_timer = round(initial(crate_timer) * 0.33)
 		counter()
 
 		add_overlay("full")
@@ -56,6 +56,8 @@
 	//Box is done
 	if(power_timer <= 0)
 		power_timer = initial(power_timer)
+		if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_2))
+			power_timer = round(power_timer * 0.33)
 		generating = FALSE
 		visible_message(span_notice("Payment has arrived from [src]"))
 		cut_overlays()
@@ -77,7 +79,7 @@
 	if(crate_timer  <= 0)
 		crate_timer = initial(crate_timer)
 		if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_2))
-			crate_timer = round(crate_timer * 0.5)
+			crate_timer = round(crate_timer * 0.33)
 		new crate(get_turf(src))
 
 	if(generating == TRUE)

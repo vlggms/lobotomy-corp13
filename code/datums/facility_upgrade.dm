@@ -361,7 +361,7 @@
 
 /datum/facility_upgrade/specialization/tier_2/extraction
 	name = UPGRADE_EXTRACTION_2
-	info = " - Extraction Officer can extract EGO 15% cheaper.<br> - Cuts the shipment delay and PE selling time in half"
+	info = " - Extraction Officer can extract EGO 15% cheaper.<br> - Makes PE selling time 3 times as fast!"
 	requires_one_of = list(UPGRADE_EXTRACTION_1)
 	requires_none_of = list(UPGRADE_DISCIPLINARY_2, UPGRADE_RECORDS_2)
 

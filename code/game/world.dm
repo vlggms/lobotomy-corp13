@@ -290,7 +290,7 @@ GLOBAL_VAR(restart_counter)
 		s += ")<br>"
 
 		s += "<br>Map: <b>\[[SSmapping.config?.map_name || "Loading..."]</b>\]"
-		s += "<br>Roleplay: \[<b>[CONFIG_GET(string/serverrplevel)]</b>"
+		s += "<br>\[<b>Gameplay Focus</b>"
 		// NOTE: If this is the LAST THING to be added to the description, then it'll end with a ] anyway. So don't include it here
 
 	status = s

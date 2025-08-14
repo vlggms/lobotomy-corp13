@@ -7,13 +7,15 @@ SUBSYSTEM_DEF(cityevents)
 	var/list/itemdrops = list()
 	var/list/distortion = list()
 	var/list/lights = list()
+	var/list/active_raiders = list()
 	var/daystatus = TRUE	//True to darken lights, false to lighten them
+	var/raiding = FALSE
 	var/globalillumination = 1
 	var/list/total_events = list()
 	var/list/distortions_available = list()
 	var/helpful_events = list("chickens", "money", "tresmetal", "hppens", "sppens")
-	var/harmful_events = list("drones", "beaks", "shrimps", "lovetowneasy", "lovetownhard")
-	var/ordeal_events = list("sweepers", "scouts", "bots", "gbugs")
+	var/harmful_events = list("drones", "shrimps", "lovetowneasy", "lovetownhard")
+	var/ordeal_events = list("sweepers", "scouts", "bots", "gbugs", "bloodbag", "clan") //Harmful Events, but they give meat?
 	var/neutral_events = list("swag")
 	var/boss_events = list("sweeper", "lovetown", "factory", "gcorp")
 	var/list/generated = list()	//Which ckeys have generated stats
@@ -53,14 +55,13 @@ SUBSYSTEM_DEF(cityevents)
 	total_events += pick(helpful_events)
 	total_events += pick(helpful_events)
 	total_events += pick(helpful_events)
-	total_events += pick(harmful_events)
-	total_events += pick(ordeal_events)
-	total_events += pick(ordeal_events)
-//	total_events += pick(ordeal_events)
 	total_events += pick(neutral_events)
 	total_events += pick(neutral_events)
 	total_events += pick("money")			//Always get money
 	total_events += pick("tresmetal")		//Materials for the peacekeepers to upgrade
+	total_events += pick(harmful_events)
+	total_events += pick(ordeal_events)
+	total_events += pick(ordeal_events)
 
 	processing = subtypesof(/mob/living/simple_animal/hostile/distortion)
 	//Set available distortion
@@ -79,6 +80,7 @@ SUBSYSTEM_DEF(cityevents)
 		chosen_event = pick(total_events)
 
 	switch (chosen_event)
+		//Ordeal events
 		if("sweepers")
 			spawnatlandmark(/mob/living/simple_animal/hostile/ordeal/indigo_noon, 20)
 		if("scouts")
@@ -87,12 +89,14 @@ SUBSYSTEM_DEF(cityevents)
 			spawnatlandmark(/mob/living/simple_animal/hostile/ordeal/green_bot, 10)
 		if("gbugs")
 			spawnatlandmark(/mob/living/simple_animal/hostile/ordeal/steel_dawn, 30)
+		if("clan")
+			spawnatlandmark(/mob/living/simple_animal/hostile/clan/scout, 10)
+		if("bloodbag")
+			spawnatlandmark(/mob/living/simple_animal/hostile/humanoid/blood/bag, 10)
 
 		//Harmful events
 		if("shrimps")
 			spawnatlandmark(/mob/living/simple_animal/hostile/shrimp, 20)
-		if("beaks")
-			spawnatlandmark(/mob/living/simple_animal/hostile/ordeal/bigbird_eye, 10)
 		if("drones")
 			spawnatlandmark(/mob/living/simple_animal/hostile/kcorp/drone, -10)//extremely low chance
 		if("lovetowneasy")
@@ -129,18 +133,45 @@ SUBSYSTEM_DEF(cityevents)
 	if(prob(50))
 		JobAddition()
 
-//Spawning Mobs, always spawns 3.
+//Spawning Mobs, can spawn up to 3
 /datum/controller/subsystem/cityevents/proc/spawnatlandmark(mob/living/L, chance)
-	chance += wavetime*5
+	chance += wavetime*2
+	if(chance > 90)
+		chance = 90
 	for(var/J in spawners)
 		if(!prob(chance))
 			continue
 		new /obj/effect/bloodpool(get_turf(J))
 		sleep(10)
 		//This is less intensive than a loop
-		new L (get_turf(J))
-		new L (get_turf(J))
-		new L (get_turf(J))
+
+		var/mob/living/mob1 = new L (get_turf(J))
+		if(ishostile(mob1))
+			var/mob/living/simple_animal/hostile/hostilemob1 = mob1
+			hostilemob1.guaranteed_butcher_results[/obj/item/stack/spacecash/c100] = 2
+			active_raiders += hostilemob1
+
+		if(prob(75))
+			var/mob/living/mob2 = new L (get_turf(J))
+			if(ishostile(mob2))
+				var/mob/living/simple_animal/hostile/hostilemob2 = mob2
+				hostilemob2.guaranteed_butcher_results[/obj/item/stack/spacecash/c100] = 2
+				active_raiders += hostilemob2
+
+		if(prob(50))
+			var/mob/living/mob3 = new L (get_turf(J))
+			if(ishostile(mob3))
+				var/mob/living/simple_animal/hostile/hostilemob3 = mob3
+				hostilemob3.guaranteed_butcher_results[/obj/item/stack/spacecash/c100] = 2
+				active_raiders += hostilemob3
+
+	addtimer(CALLBACK(src, PROC_REF(remove_raiders)), 3 MINUTES)
+
+/datum/controller/subsystem/cityevents/proc/remove_raiders()
+	for(var/mob/living/L in active_raiders)
+		active_raiders -= L
+		if (L.stat != DEAD)
+			qdel(L)
 
 //Spawning items
 /datum/controller/subsystem/cityevents/proc/spawnitem(obj/item/I, chance)
