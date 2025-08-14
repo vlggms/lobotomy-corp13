@@ -255,6 +255,9 @@ SUBSYSTEM_DEF(ticker)
 		if(SSevents.holidays && SSevents.holidays[APRIL_FOOLS]) //runs in April 1st
 			mode = new /datum/game_mode/management/joke
 
+	for(var/obj/structure/filingcabinet/smart/cabinet in GLOB.records_cabinets)
+		cabinet.spawn_records()
+
 	CHECK_TICK
 
 	//Configure mode and assign player to special mode stuff

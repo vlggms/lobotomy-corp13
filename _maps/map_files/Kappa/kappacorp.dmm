@@ -6190,15 +6190,7 @@
 /turf/open/floor/pod/light,
 /area/facility_hallway/information)
 "DG" = (
-/obj/structure/filingcabinet/zayininfo{
-	density = 0;
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet/tethinfo,
-/obj/structure/filingcabinet/heinfo{
-	density = 0;
-	pixel_x = 10
-	},
+/obj/effect/mapping_helpers/records_spawner,
 /turf/open/floor/pod/dark,
 /area/facility_hallway/records)
 "DJ" = (
@@ -9778,15 +9770,7 @@
 	},
 /area/facility_hallway/safety)
 "UL" = (
-/obj/structure/filingcabinet/wawinfo{
-	density = 0;
-	pixel_x = -11
-	},
-/obj/structure/filingcabinet/alephinfo,
-/obj/structure/filingcabinet/toolinfo{
-	density = 0;
-	pixel_x = 10
-	},
+/obj/effect/mapping_helpers/records_spawner/second,
 /turf/open/floor/pod/dark,
 /area/facility_hallway/records)
 "UP" = (
