@@ -6813,13 +6813,7 @@
 /turf/closed/indestructible/rock,
 /area/facility_hallway/control)
 "yP" = (
-/obj/structure/filingcabinet/zayininfo{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet/tethinfo,
-/obj/structure/filingcabinet/heinfo{
-	pixel_x = 10
-	},
+/obj/effect/mapping_helpers/records_spawner,
 /turf/closed/mineral/random/facility/briah,
 /area/department_main/records)
 "yS" = (
@@ -7081,15 +7075,7 @@
 /turf/open/floor/circuit/green,
 /area/facility_hallway/control)
 "zO" = (
-/obj/structure/filingcabinet/wawinfo{
-	pixel_x = -11
-	},
-/obj/structure/filingcabinet/alephinfo{
-	pixel_x = -1
-	},
-/obj/structure/filingcabinet/toolinfo{
-	pixel_x = 9
-	},
+/obj/effect/mapping_helpers/records_spawner/second,
 /turf/closed/mineral/random/facility/briah,
 /area/department_main/records)
 "zP" = (
@@ -8434,13 +8420,7 @@
 /obj/machinery/newscaster/security_unit{
 	pixel_y = 32
 	},
-/obj/structure/filingcabinet/zayininfo{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet/tethinfo,
-/obj/structure/filingcabinet/heinfo{
-	pixel_x = 10
-	},
+/obj/effect/mapping_helpers/records_spawner,
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
@@ -12524,13 +12504,7 @@
 /turf/closed/indestructible/reinforced/old,
 /area/department_main/control)
 "TB" = (
-/obj/structure/filingcabinet/wawinfo{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet/alephinfo,
-/obj/structure/filingcabinet/toolinfo{
-	pixel_x = 10
-	},
+/obj/effect/mapping_helpers/records_spawner/second,
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
