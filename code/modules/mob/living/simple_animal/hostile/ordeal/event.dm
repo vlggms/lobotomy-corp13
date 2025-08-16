@@ -1,3 +1,4 @@
+// Holidays - Christmas
 // Shameless copy of mimics. Later ordeals can have gnomes
 /mob/living/simple_animal/hostile/ordeal/present
 	name = "christmas gift"
