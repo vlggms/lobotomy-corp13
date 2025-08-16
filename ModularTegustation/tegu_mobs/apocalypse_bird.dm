@@ -15,9 +15,9 @@
 	light_power = 12 // Spooky
 	movement_type = GROUND
 	speak_emote = list("says")
-	melee_damage_type = RED_DAMAGE
-	melee_damage_lower = 75 // Assuming everyone has at least 0.5 red armor
-	melee_damage_upper = 85
+	melee_damage_type = BLACK_DAMAGE
+	melee_damage_lower = 35 // Assuming everyone has at least 0.5 red armor
+	melee_damage_upper = 45
 	pixel_x = -96
 	base_pixel_x = -96
 	offsets_pixel_x = list("south" = -96, "north" = -96, "west" = -96, "east" = -96)
@@ -47,7 +47,7 @@
 	var/slam_cooldown
 	var/slam_cooldown_time = 6 SECONDS
 	/// Amount of black damage done on the slam attack.
-	var/slam_damage = 120
+	var/slam_damage = 60
 	/// List of locations we'll go through first when teleporting
 	var/list/teleport_priority = list()
 	var/teleport_cooldown
@@ -60,7 +60,7 @@
 	var/list/enchanted_list = list()
 	var/big_possible = TRUE
 	/// Amount of red damage done by beak attack
-	var/bite_damage = 230
+	var/bite_damage = 115
 	var/bite_possible = TRUE
 	var/bite_width = 2
 	var/bite_length = 14
@@ -392,8 +392,8 @@
 	pixel_x = -8
 	base_pixel_x = -8
 	faction = list("Apocalypse", "hostile")
-	maxHealth = 15000
-	health = 15000
+	maxHealth = 6400
+	health = 6400
 	move_resist = MOVE_FORCE_STRONG
 	pull_force = MOVE_FORCE_STRONG
 	mob_size = MOB_SIZE_HUGE
@@ -455,7 +455,9 @@
 	icon_living = "egg_arm"
 	icon_damaged = "egg_arm_damaged"
 	icon_dead = "egg_arm_dead"
-	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = -2)
+	maxHealth = 9900
+	health = 9900
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = -2)
 	blurb_text = "A head that looked up to the cosmos has been lowered."
 
 /mob/living/simple_animal/apocalypse_egg/arm/death(gibbed)
