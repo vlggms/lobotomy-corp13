@@ -3,7 +3,7 @@
 	name = "rat hammer"
 	desc = "A hammer sometimes found in the hands of rats. This one belonged to a rat who lost nearly everything to sweepers."
 	icon_state = "rathammer"
-	force = 18
+	force = 9
 	damtype = RED_DAMAGE
 
 	attack_verb_continuous = list("smacks", "hammers", "beats")
@@ -13,7 +13,7 @@
 	name = "rat combat knife"
 	desc = "A combat knife sometimes found in the hands of rats. This one belonged to a rat who once had a dream of something bigger."
 	icon_state = "ratknife"
-	force = 9
+	force = 4
 	attack_speed = 0.5
 	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_verb_continuous = list("slices", "slashes", "stabs")
@@ -24,7 +24,7 @@
 	name = "rat scalpel"
 	desc = "A combat scalpel sometimes found in the hands of rats. This one belonged to a rat who gave up a dream of a better future."
 	icon_state = "ratscalpel"
-	force = 20
+	force = 10
 	attack_speed = 1.2
 	attack_verb_continuous = list("slices", "slashes", "stabs")
 	attack_verb_simple = list("slice", "slash", "stab")
@@ -35,8 +35,8 @@
 	desc = "It's a brick."
 	special = "Fits into an EGO belt."
 	icon_state = "ratbrick"
-	force = 6
-	throwforce = 50
+	force = 3
+	throwforce = 25
 	attack_speed = 0.8
 	attack_verb_continuous = list("bricks", "smashes", "shatters")
 	attack_verb_simple = list("brick", "smash", "shatter")
@@ -51,7 +51,7 @@
 	name = "pipe"
 	desc = "It's a pipe. It would hurt if you hit someone over the head with it."
 	icon_state = "ratpipe"
-	force = 55
+	force = 27
 	attack_speed = 3
 	damtype = RED_DAMAGE
 
@@ -91,7 +91,7 @@
 		return ..()
 	if(prob(50))
 		to_chat(user,span_warning("You pinch your fingers in the weapon."))
-		user.apply_damage(5, RED_DAMAGE, null, user.run_armor_check(null, RED_DAMAGE))
+		user.apply_damage(2, RED_DAMAGE, null, user.run_armor_check(null, RED_DAMAGE))
 		return FALSE
 	return ..()
 

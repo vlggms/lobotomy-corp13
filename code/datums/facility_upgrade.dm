@@ -163,20 +163,18 @@
 	. = ..()
 	cost = min(max_cost, cost + 1)
 
-//Healing bullets ended up being too much, and managers basically neglected shield bullets for them.
-//I'm hoping to keep them as a way to emergency mitigate HP and bring players out of crit and not instantly heal 60% HP. -Kitsunemitsu/Kirie
 /datum/facility_upgrade/bullet_heal_increase
 	name = UPGRADE_BULLET_HEAL
 	category = "Bullet Upgrades"
-	value = 0.1
-	max_value = 0.3
+	value = 0.2
+	max_value = 0.5
 	requires_one_of = list(HP_BULLET, SP_BULLET)
+	cost = 2
 	info = " - This upgrade inceases the % healing of <b>HP, SP, and Dual Bullets</b> by +10% per upgrade."
 
 /datum/facility_upgrade/bullet_heal_increase/Upgrade()
 	value = min(max_value, value + 0.1)
-	. = ..()
-	cost += 2
+	return ..()
 
 /datum/facility_upgrade/bullet_heal_increase/DisplayValue()
 	return "[value * 100]%"
@@ -185,20 +183,14 @@
 /datum/facility_upgrade/bullet_shield_increase
 	name = UPGRADE_BULLET_SHIELD_HEALTH
 	category = "Bullet Upgrades"
-	value = 50
-	max_value = 200
+	value = 40
+	max_value = 100
 	requires_one_of = list(RED_BULLET, WHITE_BULLET, BLACK_BULLET, PALE_BULLET)
-	info = " - This upgrade inceases the Health of all <b>Shield Bullets</b> by 25 HP per upgrade."
-
-/datum/facility_upgrade/bullet_shield_increase/New()
-	. = ..()
-	max_value = DEFAULT_HUMAN_MAX_HEALTH + (100 * FORTITUDE_MOD)
-	value = max_value * 0.25
+	info = " - This upgrade inceases the Health of all <b>Shield Bullets</b> by 10 HP per upgrade."
 
 /datum/facility_upgrade/bullet_shield_increase/Upgrade()
-	value = min(max_value, value + (max_value * 0.125))
-	. = ..()
-	cost += 1
+	value = min(max_value, value + 10)
+	return ..()
 
 /datum/facility_upgrade/yellow_bullet_buff
 	name = UPGRADE_YELLOW_BULLET

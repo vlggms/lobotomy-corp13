@@ -4,7 +4,7 @@
 	desc = "A chainsword used by the Molar Office. It's heavy, and well made."
 	special = "On kill, heal 30 sanity."
 	icon_state = "mika"
-	force = 44
+	force = 22
 	damtype = RED_DAMAGE
 
 	attack_verb_continuous = list("slices", "saws", "rips")
@@ -25,14 +25,14 @@
 		living = TRUE
 	..()
 	if(target.stat == DEAD && living)
-		user.adjustSanityLoss(-30)
+		user.adjustSanityLoss(-15)
 		living = FALSE
 
 /obj/item/ego_weapon/city/molar/olga
 	name = "molar chainknife"
 	desc = "A short chainsword used by the Molar Office's leader. Its chain sings with the speed it moves at."
 	icon_state = "olga"
-	force = 37
+	force = 18
 	attack_speed = 0.7
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,

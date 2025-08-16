@@ -8,8 +8,8 @@
 	icon_living = "nosferatu"
 	var/icon_aggro = "nosferatu_breach"
 	portrait = "nosferatu"
-	maxHealth = 2000
-	health = 2000
+	maxHealth = 800
+	health = 800
 	move_to_delay = 6
 	rapid_melee = 1
 	threat_level = WAW_LEVEL
@@ -20,11 +20,11 @@
 		ABNORMALITY_WORK_REPRESSION = list(0, 0, 45, 50, 50),
 	)
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1.5)
-	melee_damage_lower = 35
-	melee_damage_upper = 45 //has a wide range, he can critically hit you
+	melee_damage_lower = 7
+	melee_damage_upper = 11 //has a wide range, he can critically hit you
 	melee_damage_type = RED_DAMAGE
 	stat_attack = HARD_CRIT
-	work_damage_amount = 8
+	work_damage_amount = 7
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/envy
 	attack_verb_continuous = "claws"
@@ -66,7 +66,7 @@
 	var/bloodlust_cooldown = 4
 	var/banquet_cooldown
 	var/banquet_cooldown_time = 12 SECONDS
-	var/banquet_damage = 100
+	var/banquet_damage = 35
 	var/banquet_range = 3
 	var/can_act = TRUE
 	var/berzerk = FALSE
@@ -516,12 +516,12 @@
 	attack_verb_simple = "bite"
 	attack_sound = 'sound/abnormalities/nosferatu/bat_attack.ogg'
 	del_on_death = TRUE
-	health = 300
-	maxHealth = 300
+	health = 60
+	maxHealth = 60
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 1.8, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 2)
 	melee_damage_type = RED_DAMAGE
-	melee_damage_lower = 5
-	melee_damage_upper = 20
+	melee_damage_lower = 2
+	melee_damage_upper = 4
 	move_to_delay = 1.3 //very fast, very weak.
 	stat_attack = HARD_CRIT
 	ranged = TRUE

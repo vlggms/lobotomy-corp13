@@ -1,8 +1,8 @@
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar
 	name = "Doomsday Calendar"
 	desc = "Likely a tool for predicting a date of some kind, judging from the many letters carved on the bricks."
-	health = 2012
-	maxHealth = 2012
+	health = 400
+	maxHealth = 400
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "doomsday_inert"
 	icon_living = "doomsday_inert"
@@ -26,7 +26,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 20,
 		ABNORMALITY_WORK_REPRESSION = 50,
 	)
-	work_damage_amount = 8
+	work_damage_amount = 5
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/wrath
 	can_patrol = FALSE
@@ -60,13 +60,13 @@
 	var/flavor_dist = 40
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 2 SECONDS
-	var/pulse_damage = 5
+	var/pulse_damage = 2
 	var/bonusRed = 0
 	var/next_phase_time
 	var/next_phase_time_cooldown = 45 SECONDS
 	var/current_phase_num = -1
 	var/aflame_range = 5//it goes up if ignored
-	var/aflame_damage = 20
+	var/aflame_damage = 6
 	var/gibtime = 5
 	var/is_fed = FALSE
 	var/is_firey = FALSE
@@ -296,9 +296,9 @@
 	if(IsContained())
 		return
 	if(!is_fed)
-		pulse_damage += 2
+		pulse_damage += 1
 		aflame_range += 5
-		aflame_damage += 20
+		aflame_damage += 3
 	doll_count_maximum += 1
 	is_fed = FALSE
 
@@ -316,7 +316,7 @@
 		to_chat(user, span_nicegreen("[src] is sated by your offering!"))
 		M.gib()
 		is_fed = TRUE
-		adjustBruteLoss(100)
+		adjustBruteLoss(50)
 		pulse_damage -= 1
 		playsound(get_turf(src),'sound/effects/limbus_death.ogg', 50, 1)
 		AddModifier(/datum/dc_change/sacrificed)
@@ -335,13 +335,13 @@
 	attack_verb_simple = "claw"
 	attack_sound = 'sound/abnormalities/doomsdaycalendar/Doomsday_Slash.ogg'
 	/*Stats*/
-	health = 200
-	maxHealth = 200
+	health = 50
+	maxHealth = 50
 	obj_damage = 50
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1.5)
 	melee_damage_type = RED_DAMAGE
-	melee_damage_lower = 12
-	melee_damage_upper = 15
+	melee_damage_lower = 4
+	melee_damage_upper = 6
 	move_to_delay = 3
 	robust_searching = TRUE
 	stat_attack = HARD_CRIT

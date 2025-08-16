@@ -12,7 +12,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 10,
 		ABNORMALITY_WORK_REPRESSION = 10
 			)
-	work_damage_amount = 16
+	work_damage_amount = 9
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/sloth
 	start_qliphoth = 3
@@ -148,8 +148,8 @@
 	icon = 'ModularTegustation/Teguicons/32x64.dmi'
 	icon_state = "sun_pillar"
 	icon_living = "sun_pillar"
-	health = 2500
-	maxHealth = 2500
+	health = 800
+	maxHealth = 800
 	melee_damage_lower = 0
 	melee_damage_upper = 0
 	melee_damage_type = PALE_DAMAGE
@@ -211,7 +211,7 @@
 /obj/effect/temp_visual/blacksun_laser/proc/blowup()
 	playsound(src, 'sound/weapons/laser.ogg', 10, FALSE, 4)
 	for(var/mob/living/carbon/human/H in src.loc)
-		H.deal_damage(60, WHITE_DAMAGE)
+		H.deal_damage(20, WHITE_DAMAGE)
 		H.deal_damage(30, PALE_DAMAGE)
 		if(H.sanity_lost)
 			H.gib()

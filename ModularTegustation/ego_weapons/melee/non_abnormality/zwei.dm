@@ -7,7 +7,7 @@
 	desc = "A zweihander used by the zwei association."
 	special = "Use in hand to buff your defense, and those of everyone around you."
 	icon_state = "zwei"
-	force = 55
+	force = 27
 	attack_speed = 2
 	damtype = RED_DAMAGE
 	swingstyle = WEAPONSWING_LARGESWEEP
@@ -82,7 +82,7 @@
 	name = "veteran zweihander"
 	desc = "A zweihander used by veterans of the zwei association."
 	icon_state = "zwei_vet"
-	force = 80
+	force = 40
 	defense_buff_self = 0.3
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
@@ -96,7 +96,7 @@
 	name = "einhander"
 	desc = "A shortsword used by some zwei personnel."
 	icon_state = "zwei_mini"
-	force = 32
+	force = 16
 	attack_speed = 1
 
 //Noreqs for the ERT
@@ -113,7 +113,7 @@
 	special = "Attack a human to stun them after a period of time."
 	icon_state = "zwei_baton"
 	inhand_icon_state = "zwei_baton"
-	force = 40
+	force = 20
 	attack_speed = 2
 	damtype = RED_DAMAGE
 
@@ -147,7 +147,7 @@
 	special = "If used at 2 range you will lunge fowards then block, if you fail to lunge you will hesitate."
 	icon_state = "zweiwest"
 	inhand_icon_state = "zweiwest"
-	force = 50
+	force = 25
 	reach = 2
 	attack_speed = 2
 	damtype = RED_DAMAGE
@@ -222,7 +222,7 @@
 	desc = "A bulky rectangular greatsword used by the veterans of the zwei of the west."
 	icon_state = "zweiwest_fat"
 	inhand_icon_state = "zweiwest_fat"
-	force = 72
+	force = 36
 	defense_buff = 0.5
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,

@@ -4,8 +4,8 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "book_0"
 	portrait = "book"
-	maxHealth = 600
-	health = 600
+	maxHealth = 120
+	health = 120
 	blood_volume = 0
 	start_qliphoth = 2
 	threat_level = TETH_LEVEL
@@ -15,7 +15,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 40,
 		ABNORMALITY_WORK_REPRESSION = 30,
 	)
-	work_damage_amount = 6
+	work_damage_amount = 3
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/pride
 
@@ -68,7 +68,7 @@
 				icon_state = "book_[wordcount]"
 
 /mob/living/simple_animal/hostile/abnormality/book/AttemptWork(mob/living/carbon/human/user, work_type)
-	work_damage_amount = 6 + (wordcount * 2)
+	work_damage_amount = 3 + wordcount
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/book/WorkChance(mob/living/carbon/human/user, chance, work_type)

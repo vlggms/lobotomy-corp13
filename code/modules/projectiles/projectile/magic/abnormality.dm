@@ -40,7 +40,7 @@
 	name = "light"
 	icon_state = "apocalypse"
 	damage_type = BLACK_DAMAGE
-	damage = 30
+	damage = 10
 	alpha = 0
 	spread = 45
 	projectile_phasing = (ALL & (~PASSMOB))
@@ -53,7 +53,7 @@
 	name = "magic beam"
 	icon_state = "qoh1"
 	damage_type = BLACK_DAMAGE
-	damage = 25
+	damage = 7
 	spread = 15
 
 /obj/projectile/melting_blob
@@ -63,7 +63,7 @@
 	hitsound = 'sound/abnormalities/meltinglove/ranged_hit.ogg'
 	damage_type = BLACK_DAMAGE
 
-	damage = 30 // Mainly a disabling tool, to pursue escaping opponents
+	damage = 10 // Mainly a disabling tool, to pursue escaping opponents
 	spread = 5
 	slur = 5
 	eyeblur = 5
@@ -95,7 +95,7 @@
 
 /obj/projectile/melting_blob/enraged
 	desc = "A glob of infectious slime. It's going for your heart, It seems bigger..."
-	damage = 40
+	damage = 15
 	stamina = 40 // Ranged cooldown is 5 seconds on ML, so it theoretically cannot stam crit
 
 /obj/projectile/mountain_spit
@@ -103,7 +103,7 @@
 	desc = "Gross, disgusting spit."
 	icon_state = "mountain"
 	damage_type = BLACK_DAMAGE
-	damage = 15 // Launches 16(48) of those, for a whooping 240(720) black damage
+	damage = 6 // Launches 16(48) of those, for a whooping 96(288) black damage
 	spread = 60
 	slur = 3
 	eyeblur = 3
@@ -124,7 +124,7 @@
 	desc = "A blade thrown maliciously"
 	icon_state = "clown"
 	damage_type = RED_DAMAGE
-	damage = 5
+	damage = 3
 
 /obj/projectile/clown_throw/Initialize()
 	. = ..()
@@ -168,7 +168,7 @@
 
 /obj/projectile/clown_throw_rcorp/on_hit(atom/target, blocked = FALSE)
 	if(ishuman(target))
-		damage = 5
+		damage = 3
 		nodamage = FALSE
 		var/mob/living/carbon/human/H = target
 		H.apply_lc_bleed(6)
@@ -187,7 +187,7 @@
 	icon_state = "bride_bolt"
 	damage_type = WHITE_DAMAGE
 
-	damage = 25
+	damage = 10
 	spread = 10
 
 /obj/projectile/bride_bolts_enraged
@@ -196,7 +196,7 @@
 	icon_state = "bride_bolt_enraged"
 	damage_type = WHITE_DAMAGE
 
-	damage = 50
+	damage = 20
 	spread = 5
 
 /obj/projectile/season_projectile
@@ -204,7 +204,7 @@
 	desc = "Report this to a dev"
 	icon_state = "mountain"
 	damage_type = RED_DAMAGE
-	damage = 45
+	damage = 9
 
 /obj/projectile/season_projectile/Moved(atom/OldLoc, Dir)
 	. = ..()
@@ -244,14 +244,14 @@
 	desc = "A sharp-looking icicle"
 	icon_state = "ice_2"
 	damage_type = PALE_DAMAGE
-	damage = 35
+	damage = 25
 
 /obj/projectile/actor
 	name = "bullet"
 	icon_state = "bullet"
 	desc = "causes a lot of pain"
 	damage_type = WHITE_DAMAGE
-	damage = 10
+	damage = 5
 
 /obj/projectile/actor/on_hit(target)
 	. = ..()
@@ -272,7 +272,7 @@
 	icon = 'icons/obj/ego_weapons.dmi'
 	icon_state = "warring2_firey"
 	damage_type = BLACK_DAMAGE
-	damage = 20
+	damage = 10
 
 /obj/projectile/thunder_tomahawk/Initialize()
 	. = ..()
@@ -298,7 +298,7 @@
 		var/mob/living/F = firer
 		if(faction_check(F.faction, T.faction, FALSE))
 			return
-	damage = 10 // Using nodamage var does not work for this purpose
+	damage = 5 // Using nodamage var does not work for this purpose
 	. = ..()
 	qdel(src)
 
@@ -333,7 +333,7 @@
 	name = "dark energy"
 	icon_state = "nihil"
 	desc = "Just looking at it seems to suck the life out of you..."
-	damage = 25 //Fires 4
+	damage = 7 //Fires 4
 	damage_type = WHITE_DAMAGE //deals both white and red
 	projectile_piercing = PASSMOB
 	hitsound = 'sound/abnormalities/nihil/filter.ogg'
@@ -352,7 +352,7 @@
 	icon_state = "extinguish"
 	hitsound = 'sound/abnormalities/ichthys/jump.ogg'
 	damage_type = BLACK_DAMAGE
-	damage = 4
+	damage = 2
 	spread = 60
 	slur = 3
 	eyeblur = 3
@@ -395,7 +395,7 @@
 	name = "bone round"
 	icon_state = "bonebullet"
 	damage_type = RED_DAMAGE
-	damage = 10 //rapid fire/shotgun fire
+	damage = 5 //rapid fire/shotgun fire
 	spread = 30
 	projectile_piercing = PASSMOB
 	nodamage = TRUE	//Damage is calculated later
@@ -420,7 +420,7 @@
 /obj/projectile/bonebullet/bonebullet_piercing
 	name = "bone sniper round"
 	icon_state = "bonebullet_long"
-	damage = 100
+	damage = 40
 	speed = 0.4
 
 /obj/projectile/frost_splinter
@@ -428,7 +428,7 @@
 	desc = "A large shard of ice."
 	icon_state = "ice_2"
 	damage_type = RED_DAMAGE
-	damage = 40
+	damage = 15
 	speed = 3
 	alpha = 0
 	spread = 20
@@ -441,7 +441,7 @@
 /obj/projectile/nosferatu_bat
 	name = "bat"
 	icon_state = "bat"
-	damage = 25
+	damage = 5
 	hitsound = 'sound/abnormalities/nosferatu/bat_attack.ogg'
 	var/mob/living/simple_animal/hostile/abnormality/nosferatu/owner = null
 

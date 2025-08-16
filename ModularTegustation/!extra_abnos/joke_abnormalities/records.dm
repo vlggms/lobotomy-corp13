@@ -16,7 +16,7 @@
 //WAW
 //Skub
 /obj/item/paper/fluff/info/joke/skub
-	abno_type = /mob/living/simple_animal/hostile/abnormality/riblin
+	abno_type = /mob/living/simple_animal/hostile/abnormality/skub
 	abno_code = "O-04-741"
 	abno_info = list(
 		"When the work result was Bad, the Qliphoth Counter lowered.",

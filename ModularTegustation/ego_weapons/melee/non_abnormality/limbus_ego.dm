@@ -8,7 +8,7 @@
 	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
 	inhand_x_dimension = 96
 	inhand_y_dimension = 96
-	force = 70
+	force = 35
 	reach = 2 //Has 2 Square Reach.
 	stuntime = 5
 	attack_speed = 3 // really slow
@@ -18,12 +18,12 @@
 	attack_verb_simple = list("bludgeon", "whack")
 	hitsound = 'sound/weapons/fixer/generic/spear3.ogg'
 	couch_cooldown_time = 4 SECONDS
-	force_cap = 90
-	force_per_tile = 5
+	force_cap = 45
+	force_per_tile = 3
 	speed_per_tile = 0.3
 	pierce_threshold = 0.8
 	pierce_speed_cost = 1.0
-	pierce_force_cost = 15
+	pierce_force_cost = 10
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 60,
@@ -54,7 +54,7 @@
 	inhand_icon_state = "shiv"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	force = 24
+	force = 12
 	attack_speed = 0.5 //this shit goes FAST
 	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = WHITE_DAMAGE

@@ -7,8 +7,8 @@
 	portrait = "ppodae"
 	pixel_x = -8
 	base_pixel_x = -8
-	maxHealth = 550 //fast but low hp abno
-	health = 550
+	maxHealth = 120 //fast but low hp abno
+	health = 120
 	threat_level = TETH_LEVEL
 	move_to_delay = 1
 	faction = list("hostile")
@@ -20,7 +20,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 40,
 		ABNORMALITY_WORK_REPRESSION = list(40, 40, 30, 30, 30),
 	)
-	work_damage_amount = 6
+	work_damage_amount = 3
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/wrath
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
@@ -44,8 +44,8 @@
 		"A puppy" = list(FALSE, "It's the cutest puppy I've ever seen."),
 	)
 
-	var/smash_damage_low = 16
-	var/smash_damage_high = 28
+	var/smash_damage_low = 4
+	var/smash_damage_high = 8
 	var/smash_length = 2
 	var/smash_width = 1
 	var/can_act = TRUE

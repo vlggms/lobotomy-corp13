@@ -68,7 +68,7 @@
 	desc = "A baton issued by L-Corp to those who cannot utilize E.G.O."
 	swingstyle = WEAPONSWING_LARGESWEEP
 	hitsound = 'sound/weapons/fixer/generic/baton1.ogg'
-	force = 22
+	force = 11
 	custom_price = 100
 
 
@@ -77,7 +77,7 @@
 	icon_state = "machete"
 	desc = "A sharp machete issued by L-Corp to those who cannot utilize E.G.O."
 	hitsound = 'sound/weapons/fixer/generic/sword2.ogg'
-	force = 13
+	force = 6
 	attack_speed = 0.5
 	custom_price = 100
 
@@ -92,7 +92,7 @@
 	desc = "A heavy club issued by L-Corp to those who cannot utilize E.G.O."
 	swingstyle = WEAPONSWING_LARGESWEEP
 	hitsound = 'sound/weapons/fixer/generic/club2.ogg'
-	force = 35 //Still less DPS, replaces baseball bat
+	force = 14 //Still less DPS, replaces baseball bat
 	attack_speed = 1.6
 	knockback = KNOCKBACK_LIGHT
 	custom_price = 100
@@ -110,7 +110,7 @@
 	icon = 'ModularTegustation/Teguicons/lcorp_weapons.dmi'
 	lefthand_file = 'ModularTegustation/Teguicons/lcorp_left.dmi'
 	righthand_file = 'ModularTegustation/Teguicons/lcorp_right.dmi'
-	force = 28
+	force = 10
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("shoves", "bashes")
 	attack_verb_simple = list("shove", "bash")
@@ -223,7 +223,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/security_righthand.dmi'
 	slot_flags = ITEM_SLOT_BELT
-	force = 12 //9 hit crit
+	force = 4
 	w_class = WEIGHT_CLASS_NORMAL
 
 	var/cooldown_check = 0 // Used interally, you don't want to modify
@@ -231,7 +231,7 @@
 	var/cooldown = 30 // Default wait time until can stun again.
 	var/knockdown_time_carbon = (2 SECONDS) // Knockdown length for carbons. Only used when targeting legs.
 	var/stun_time_silicon = (5 SECONDS) // If enabled, how long do we stun silicons.
-	var/stamina_damage = 55 // Do we deal stamina damage.
+	var/stamina_damage = 25 // Do we deal stamina damage.
 	var/stunarmor_penetration = 1 // A modifier from 0 to 1. How much armor we can ignore. Less = Ignores more armor.
 	var/affect_silicon = FALSE // Does it stun silicons.
 	var/on_sound // "On" sound, played when switching between able to stun or not.

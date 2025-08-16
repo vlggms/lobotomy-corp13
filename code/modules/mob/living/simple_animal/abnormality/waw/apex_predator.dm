@@ -10,13 +10,13 @@
 	base_pixel_x = -16
 
 
-	maxHealth = 1600
-	health = 1600
+	maxHealth = 600
+	health = 600
 	density = FALSE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.2, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	ranged = TRUE
-	melee_damage_lower = 30
-	melee_damage_upper = 40
+	melee_damage_lower = 12
+	melee_damage_upper = 15
 	move_to_delay = 3
 
 	melee_damage_type = RED_DAMAGE
@@ -37,7 +37,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(25, 20, 15, 10, 0),
 		ABNORMALITY_WORK_REPRESSION = list(0, 0, 50, 55, 55),
 	)
-	work_damage_amount = 10
+	work_damage_amount = 7
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/apex_predator
 	harvest_phrase = span_notice("A cloudy liquid leaks from %ABNO, stinking of burnt plastic. You collect it using %VESSEL.")
@@ -64,7 +64,7 @@
 
 	var/revealed = TRUE
 	var/can_act = TRUE
-	var/backstab_damage = 200
+	var/backstab_damage = 60
 	var/agent_status //Used for insanity
 
 	var/jumping	//Used so it can only start one jump at once
@@ -72,7 +72,7 @@
 
 	var/jump_cooldown
 	var/jump_cooldown_time = 5 SECONDS
-	var/jump_damage = 60
+	var/jump_damage = 15
 
 	var/recloak_time = 0
 	var/recloak_time_cooldown = 30 SECONDS
@@ -103,7 +103,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/apex_predator/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(user.health != user.maxHealth)
-		work_damage_amount = 20
+		work_damage_amount = 10
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/apex_predator/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)

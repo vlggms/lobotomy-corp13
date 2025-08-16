@@ -11,8 +11,8 @@
 	del_on_death = FALSE
 	gender = NEUTER
 	threat_level = WAW_LEVEL
-	maxHealth = 2000
-	health = 2000
+	maxHealth = 800
+	health = 800
 	max_boxes = 16
 	pixel_x = -16
 	base_pixel_x = -16
@@ -23,7 +23,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(0, 10, 20, 20, 20),
 		ABNORMALITY_WORK_REPRESSION = 0,
 	)
-	work_damage_amount = 6
+	work_damage_amount = 7
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/lust	///Of course the gregnant ID is a lust one.
 	can_breach = TRUE
@@ -306,7 +306,7 @@
 	pull_force = INFINITY
 	generic_canpass = FALSE
 	movement_type = PHASING | FLYING
-	var/boom_damage = 45
+	var/boom_damage = 15
 	var/grabbed
 	layer = POINT_LAYER//Sprite should always be visible
 
@@ -349,7 +349,7 @@
 	generic_canpass = FALSE
 	movement_type = PHASING | FLYING
 	damtype = BLACK_DAMAGE
-	var/root_damage = 30 //Black Damage
+	var/root_damage = 10 //Black Damage
 	layer = POINT_LAYER//should always be visible.
 
 /obj/effect/roseRoot/Initialize()

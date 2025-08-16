@@ -8,14 +8,14 @@
 	icon_dead = "ebonyqueen_dead"
 	core_icon = "ebonyqueen_dead"
 	portrait = "ebony_queen"
-	maxHealth = 2000
-	health = 2000
+	maxHealth = 700
+	health = 700
 	pixel_x = -16
 	base_pixel_x = -16
 	blood_volume = 0
 	melee_damage_type = BLACK_DAMAGE
-	melee_damage_lower = 35
-	melee_damage_upper = 45
+	melee_damage_lower = 10
+	melee_damage_upper = 12
 	speed = 6
 	move_to_delay = 6
 	ranged = TRUE
@@ -41,7 +41,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 40, 40, 40),
 		ABNORMALITY_WORK_REPRESSION = list(20, 30, 55, 55, 60),
 	)
-	work_damage_amount = 8
+	work_damage_amount = 7
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gluttony
 
@@ -267,7 +267,7 @@
 	icon_state = "vines"
 	duration = 6
 	layer = RIPPLE_LAYER	//We want this HIGH. SUPER HIGH. We want it so that you can absolutely, guaranteed, see exactly what is about to hit you.
-	var/root_damage = 65 //Black Damage
+	var/root_damage = 15 //Black Damage
 	var/mob/living/caster //who made this, anyway
 
 /obj/effect/temp_visual/root/Initialize(mapload, new_caster)

@@ -4,7 +4,7 @@
 	name = "axe gang axe"
 	desc = "An axe used by the axe gangs of the backstreets."
 	icon_state = "axe_grunt"
-	force = 32
+	force = 16
 	attack_speed = 1.4
 	damtype = RED_DAMAGE
 
@@ -16,7 +16,7 @@
 	name = "axe gang heavy axe"
 	desc = "An axe used by the gang leaders of the of the backstreet's Axe Gang."
 	icon_state = "axe_gang"
-	force = 42
+	force = 21
 	attribute_requirements = list(
 		FORTITUDE_ATTRIBUTE = 60,
 		PRUDENCE_ATTRIBUTE = 40,

@@ -2,7 +2,7 @@
 	name = "echo weapon"
 	desc = "You should not see this."
 	icon_state = "miraecane"
-	force = 50
+	force = 25
 	damtype = WHITE_DAMAGE
 
 	attack_verb_continuous = list("slashes", "cuts")
@@ -22,7 +22,7 @@
 		When using both sodom and gomorrah, increase their attack speed by 0.2"
 	hitsound = 'sound/weapons/fixer/generic/knife3.ogg'
 	icon_state = "sodom"
-	force = 18
+	force = 9
 	attack_speed = 0.5
 	damtype = WHITE_DAMAGE
 	var/attack_speed_buff = 0.2
@@ -70,7 +70,7 @@
 	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
 	lefthand_file = 'ModularTegustation/Teguicons/lc13_left.dmi'
 	righthand_file = 'ModularTegustation/Teguicons/lc13_right.dmi'
-	force = 30
+	force = 15
 	attack_speed = 1.5
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("bashes", "hammers", "smacks")
@@ -118,7 +118,7 @@
 	desc = "Experiences have shaped me this way."
 	icon_state = "iria"
 	special = "When attacking while using both iria and eria, deal 0.3 more damage and increase the knockback caused by iria."
-	force = 45
+	force = 22
 	attack_speed = 1.5
 	damtype = BLACK_DAMAGE
 	var/damage_multiplier = 1.3
@@ -151,7 +151,7 @@
 	desc = "A heavy spear decorated with vibrant patterns on the head. Etched with the name 'Helios' on the grip."
 	special = "This weapon inflicts burn on hit."
 	icon_state = "sunstrike"
-	force = 42
+	force = 21
 	attack_speed = 1.5
 	reach = 2
 	stuntime = 5

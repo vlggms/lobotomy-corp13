@@ -7,8 +7,8 @@
 	icon_living = "al_fine"
 	icon_dead = "al_fine_dead"
 	faction = list("gold_ordeal")
-	maxHealth = 4000 //it's a boss, more or less
-	health = 4000
+	maxHealth = 1400 //it's a boss, more or less
+	health = 1400
 	death_sound = 'sound/effects/limbus_death.ogg'
 	damage_coeff = list(RED_DAMAGE = 0.2, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 0.2)
 	butcher_results = list(/obj/item/food/meat/slab/corroded = 1)
@@ -16,7 +16,7 @@
 	/// Range of the damage
 	var/symphony_range = 20
 	/// Amount of white damage every tick
-	var/symphony_damage = 10
+	var/symphony_damage = 5
 	/// When to perform next movement
 	var/next_movement_time
 	/// Current movement

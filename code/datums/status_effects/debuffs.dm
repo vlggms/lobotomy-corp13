@@ -504,7 +504,7 @@
 	underlay_file = 'icons/effects/bleed.dmi'
 	overlay_state = "bleed"
 	underlay_state = "bleed"
-	var/bleed_damage = 200
+	var/bleed_damage = 40
 
 /datum/status_effect/stacking/saw_bleed/fadeout_effect()
 	new /obj/effect/temp_visual/bleed(get_turf(owner))
@@ -521,7 +521,7 @@
 	id = "bloodletting"
 	stack_threshold = 7
 	max_stacks = 7
-	bleed_damage = 20
+	bleed_damage = 5
 
 /datum/status_effect/neck_slice
 	id = "neck_slice"
@@ -1164,7 +1164,7 @@
 			qdel(src)
 
 /datum/status_effect/stacking/lc_burn/proc/DealDamage()
-	owner.apply_damage(stacks, FIRE, null, owner.run_armor_check(null, FIRE))
+	owner.apply_damage(max(1, stacks * 0.25), FIRE, null, owner.run_armor_check(null, FIRE))
 
 //Update burn appearance
 /datum/status_effect/stacking/lc_burn/proc/Update_Burn_Overlay(mob/living/owner)
@@ -1232,7 +1232,7 @@
 			B = new /obj/effect/decal/cleanable/blood(get_turf(owner))
 			B.bloodiness = 100
 	if(ishuman(owner))
-		owner.adjustBruteLoss(max(0, stacks))
+		owner.adjustBruteLoss(max(stacks * 0.25, 1))
 	else
 		owner.adjustBruteLoss(stacks*4) // x4 on non humans
 	new /obj/effect/temp_visual/damage_effect/bleed(get_turf(owner))
@@ -1310,7 +1310,7 @@
 
 /datum/status_effect/stacking/pallid_noise/tick()//TODO:change this to golden apple's life tick for less lag
 	if(!ishuman(owner))
-		owner.apply_damage(stacks * 5, WHITE_DAMAGE, null, owner.run_armor_check(null, WHITE_DAMAGE))
+		owner.apply_damage(stacks, WHITE_DAMAGE, null, owner.run_armor_check(null, WHITE_DAMAGE))
 		return
 	var/mob/living/carbon/human/status_holder = owner
 	status_holder.adjustSanityLoss(stacks * stacks)//sanity damage is the # of stacks squared

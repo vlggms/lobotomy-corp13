@@ -25,7 +25,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(50, 50, 50, 50, 55),
 		ABNORMALITY_WORK_REPRESSION = 20,
 	)
-	work_damage_amount = 12
+	work_damage_amount = 7
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/sloth
 
@@ -166,8 +166,8 @@
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "sapling"
 	icon_living = "sapling"
-	maxHealth = 800
-	health = 800
+	maxHealth = 200
+	health = 200
 	can_patrol = FALSE
 	wander = 0
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.8)
@@ -261,7 +261,7 @@
 
 
 /obj/effect/particle_effect/smoke/parasite_tree/proc/smoke_mob_effect(mob/living/carbon/human/M)
-	M.deal_damage(30, WHITE_DAMAGE)
+	M.deal_damage(10, WHITE_DAMAGE)
 	if(prob(15))
 		M.emote("cough")
 	if(M.sanity_lost)
@@ -376,7 +376,7 @@
 /datum/status_effect/display/parasite_tree_curse/proc/TransformOverride(mob/living/carbon/human/H)
 	if(H && H.has_status_effect(/datum/status_effect/display/melting_love_blessing))
 		to_chat(H, span_warning("You feel the pink slime dissolve your flesh before it becomes wood."))
-		H.deal_damage(800, BLACK_DAMAGE)
+		H.deal_damage(400, BLACK_DAMAGE)
 		H.remove_status_effect(/datum/status_effect/display/melting_love_blessing)
 		if(!H || H.stat == DEAD)
 			return TRUE

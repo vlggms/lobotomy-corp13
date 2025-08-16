@@ -5,7 +5,7 @@
 	desc = "A small blade, easy to keep with you. It would be nice to have on hand in a casino brawl."
 	special = "Use this weapon in hand to cut your HP by 20%. Next attack within 5 seconds deals 3x damage. This weapon fits in an EGO belt."
 	icon_state = "jeong_fixer"
-	force = 30
+	force = 15
 	attack_speed = 0.7
 	damtype = BLACK_DAMAGE
 	swingstyle = WEAPONSWING_LARGESWEEP
@@ -51,7 +51,7 @@
 	name = "jeong's office katana"
 	desc = "A long blade, lightweight and easy to move with. It would be simple to break up a fight with this."
 	icon_state = "jeong_long"
-	force = 70
+	force = 35
 	attack_speed = 1.5
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,

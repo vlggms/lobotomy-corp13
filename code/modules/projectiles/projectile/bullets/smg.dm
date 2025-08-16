@@ -45,7 +45,7 @@
 	embedding = null
 
 /obj/projectile/bullet/c9x19mm/greenbot
-	damage = 6
+	damage = 2
 	speed = 0.4
 
 /obj/projectile/bullet/c9x19mm/greenbot/city

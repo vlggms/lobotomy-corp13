@@ -10,8 +10,8 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 	icon_state = "singingmachine_closed_clean"
 	icon_living = "singingmachine_closed_clean"
 	portrait = "singing_machine"
-	maxHealth = 3000
-	health = 3000
+	maxHealth = 600
+	health = 600
 	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1)
 	speak_emote = list("sings")
 	threat_level = HE_LEVEL
@@ -23,7 +23,7 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 		ABNORMALITY_WORK_REPRESSION = 40,
 	)
 	// Adjusted the work chances a little to really funnel people through Instinct work. You can do other stuff... sort of.
-	work_damage_amount = 12
+	work_damage_amount = 5
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gluttony
 	ego_list = list(
@@ -50,13 +50,13 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 	var/cleanliness = "clean"
 	var/statChecked = 0
 	var/bonusRed = 0
-	var/grindRed = 4
-	var/minceRed = 8
+	var/grindRed = 2
+	var/minceRed = 4
 	var/playTiming = 5 SECONDS
 	var/playLength = 60 SECONDS
 	var/playStatus = 0
 	var/playRange = 20
-	var/noiseFactor = 2
+	var/noiseFactor = 1
 	var/datum/looping_sound/singing_grinding/grindNoise
 	var/datum/looping_sound/singing_music/musicNoise
 	var/list/musicalAddicts = list()

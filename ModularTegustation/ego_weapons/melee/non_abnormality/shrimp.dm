@@ -6,7 +6,7 @@
 	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
 	icon_state = "sodaminigun"
 	inhand_icon_state = "sodaminigun"
-	force = 31
+	force = 15
 	attack_speed = 1.8
 	projectile_path = /obj/projectile/ego_bullet/ego_soda
 	weapon_weight = WEAPON_HEAVY
@@ -30,7 +30,7 @@
 	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
 	icon_state = "sodaassault"
 	inhand_icon_state = "sodaassault"
-	force = 11
+	force = 5
 	projectile_path = /obj/projectile/ego_bullet/ego_soda
 	weapon_weight = WEAPON_HEAVY
 	burst_size = 3
@@ -43,7 +43,7 @@
 	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
 	icon_state = "sodaminigun"
 	inhand_icon_state = "sodaminigun"
-	force = 105
+	force = 52
 	attack_speed = 1.7
 	projectile_path = /obj/projectile/ego_bullet/ego_soda
 	weapon_weight = WEAPON_HEAVY

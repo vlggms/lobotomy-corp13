@@ -5,7 +5,7 @@
 	special = "Use on an N corp hammer to change its damage. \
 		This weapon is single use."
 	icon_state = "mark"
-	force = 40
+	force = 20
 	damtype = RED_DAMAGE
 
 	attack_verb_continuous = list("marks")
@@ -40,7 +40,7 @@
 	special = "Hit an enemy with this weapon to mark it. \
 		Hit this weapon with an N-Corp hammer to hurt all marked enemies."
 	icon_state = "kleinnagel"
-	force = 18
+	force = 9
 	damtype = RED_DAMAGE
 
 	attack_verb_continuous = list("jabs", "stabs")
@@ -68,7 +68,7 @@
 	name = "MittleNagel"
 	desc = "A large nail used by senior Ncorp inquisitors."
 	icon_state = "mittlenagel"
-	force = 37
+	force = 18
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 60,
@@ -80,7 +80,7 @@
 	name = "GrossNagel"
 	desc = "A huge nail used by Ncorp captains."
 	icon_state = "grossnagel"
-	force = 50
+	force = 25
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -92,7 +92,7 @@
 	name = "Nagel der Gerechten"
 	desc = "A huge nail used by The One Who Grips."
 	icon_state = "gripnagel"
-	force = 50
+	force = 25
 	damtype = WHITE_DAMAGE
 
 	attribute_requirements = list(
@@ -110,7 +110,7 @@
 	special = "Use a mark on this weapon to change its damage type. \
 		This weapon doubles as an N-Corp hammer"
 	icon_state = "kleinhammer"
-	force = 30
+	force = 15
 	attack_speed = 1.5
 	damtype = RED_DAMAGE
 
@@ -145,7 +145,7 @@
 	name = "MittelHammer"
 	desc = "A large hammer used by senior Ncorp inquisitors."
 	icon_state = "mittlehammer"
-	force = 60
+	force = 30
 	hitsound = 'sound/weapons/ego/shield1.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
@@ -158,7 +158,7 @@
 	name = "GrossHand"
 	desc = "A metal fist used by Ncorp captains."
 	icon_state = "grosshand"
-	force = 60
+	force = 30
 	attack_speed = 1
 	hitsound = 'sound/weapons/fixer/generic/fist2.ogg'
 	attribute_requirements = list(
@@ -173,7 +173,7 @@
 	name = "Hand der Gerechten"
 	desc = "A steel fist used by Ncorp captains, to bring the light of justice to heretics in need of it."
 	icon_state = "grip"
-	force = 60
+	force = 30
 	attack_speed = 1
 	damtype = WHITE_DAMAGE
 
@@ -193,7 +193,7 @@
 	special = "Hit an enemy with this weapon to gain nails. \
 		Hit this weapon with an N-Corp hammer to increase the damage of it's next attack by 10% for each nail on this weapon."
 	icon_state = "messingnagel"
-	force = 18
+	force = 9
 	damtype = RED_DAMAGE
 	swingstyle = WEAPONSWING_THRUST
 
@@ -201,7 +201,7 @@
 	attack_verb_simple = list("jab", "stab")
 	hitsound = 'sound/weapons/fixer/generic/nail1.ogg'
 	var/nails
-	var/nail_limit = 100
+	var/nail_limit = 50
 
 /obj/item/ego_weapon/city/ncorp_brassnail/attack(mob/living/target, mob/living/user)
 	..()
@@ -227,7 +227,7 @@
 	name = "Elektrumnagel"
 	desc = "A large electrum nail used by senior Ncorp inquisitors."
 	icon_state = "elektrumnagel"
-	force = 37
+	force = 18
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 60,
@@ -239,7 +239,7 @@
 	name = "GoldNagel"
 	desc = "A huge nail used by Ncorp captains."
 	icon_state = "goldnagel"
-	force = 50
+	force = 25
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -252,7 +252,7 @@
 	name = "RoseNagel"
 	desc = "A huge nail used by Ncorp grand inquisitors."
 	icon_state = "rosenagel"
-	force = 50
+	force = 25
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 80,

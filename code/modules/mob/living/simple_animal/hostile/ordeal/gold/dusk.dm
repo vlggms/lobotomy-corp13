@@ -9,11 +9,11 @@
 	icon_living = "centipede"
 	icon_dead = "centipede_dead"
 	faction = list("gold_ordeal", "thunder_variant")
-	maxHealth = 1400
-	health = 1400
+	maxHealth = 500
+	health = 500
 	melee_damage_type = BLACK_DAMAGE
-	melee_damage_lower = 15
-	melee_damage_upper = 25
+	melee_damage_lower = 5
+	melee_damage_upper = 7
 	attack_verb_continuous = "shocks"
 	attack_verb_simple = "shock"
 	attack_sound = 'sound/abnormalities/thunderbird/tbird_peck.ogg'
@@ -79,7 +79,7 @@
 
 /mob/living/simple_animal/hostile/ordeal/centipede_corrosion/proc/PulseHit(turf/T)
 	new /obj/effect/temp_visual/smash_effect(T)
-	HurtInTurf(T, list(), 5, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
+	HurtInTurf(T, list(), 3, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
 	for(var/mob/living/simple_animal/hostile/ordeal/thunderbird_corrosion/TB in T)
 		if(TB.charge_level >= TB.charge_level_cap)
 			continue
@@ -139,7 +139,7 @@
 		AdjustCharge(charge_level_cap)
 		pulse_cooldown_time = 60 SECONDS
 	bruteloss = 0 //Prevents overkilling
-	adjustBruteLoss(-25 * charge_level)
+	adjustBruteLoss(-10 * charge_level)
 	icon_state = "centipede_blocking"
 	SLEEP_CHECK_DEATH(4 SECONDS)
 	can_act = TRUE
@@ -153,11 +153,11 @@
 	icon_living = "thunder_warrior"
 	icon_dead = "thunder_warrior_dead"
 	faction = list("gold_ordeal", "thunder_variant")
-	maxHealth = 600
-	health = 600
+	maxHealth = 200
+	health = 200
 	melee_damage_type = BLACK_DAMAGE
-	melee_damage_lower = 15
-	melee_damage_upper = 20
+	melee_damage_lower = 5
+	melee_damage_upper = 7
 	attack_verb_continuous = "chops"
 	attack_verb_simple = "chop"
 	attack_sound = 'sound/abnormalities/thunderbird/tbird_zombieattack.ogg'
@@ -213,7 +213,7 @@
 	var/turf/oldturf = get_turf(src)
 	for(var/i in 2 to dist)
 		step_towards(src,A)
-	if((get_dist(src, A) < 2))
+	if(get_dist(src, A) < 2)
 		A.attack_animal(src)
 	current_beam = Beam(oldturf, icon_state="lightning[rand(1,12)]", time = 0.5 SECONDS)
 	playsound(get_turf(src), 'sound/weapons/fixer/generic/energyfinisher1.ogg', 75, 1)
@@ -271,11 +271,11 @@
 	icon_living = "680_ham_actor"
 	icon_dead = "ham_actor_dead"
 	faction = list("gold_ordeal", "thunder_variant")
-	maxHealth = 1500
-	health = 1500
+	maxHealth = 500
+	health = 500
 	melee_damage_type = BLACK_DAMAGE
-	melee_damage_lower = 10 //they're support, so they deal low damage
-	melee_damage_upper = 15
+	melee_damage_lower = 3 //they're support, so they deal low damage
+	melee_damage_upper = 4
 	attack_verb_continuous = "shocks"
 	attack_verb_simple = "shock"
 	attack_sound = 'sound/abnormalities/thunderbird/tbird_peck.ogg'
@@ -339,10 +339,10 @@
 				found_radio = TRUE
 		if(!faction_check_mob(L))
 			if(found_radio) //You can take off your radio to reduce the damage
-				L.deal_damage(8, WHITE_DAMAGE)
+				L.deal_damage(4, WHITE_DAMAGE)
 				L.playsound_local(get_turf(L), "[radio_sound]",100)
 				to_chat(L,span_danger("You hear unsettling sounds come out of your radio!"))
-			L.deal_damage(4, WHITE_DAMAGE)
+			L.deal_damage(2, WHITE_DAMAGE)
 
 /mob/living/simple_animal/hostile/ordeal/KHz_corrosion/proc/Screech()
 	if(screech_cooldown > world.time)
@@ -363,7 +363,7 @@
 		return
 	var/list/been_hit = list()
 	for(var/turf/T in view(7, src))
-		HurtInTurf(T, been_hit, 25, WHITE_DAMAGE, null, TRUE, FALSE, TRUE, hurt_hidden = TRUE)
+		HurtInTurf(T, been_hit, 10, WHITE_DAMAGE, null, TRUE, FALSE, TRUE, hurt_hidden = TRUE)
 	sleep(3)
 	if(QDELETED(src) || stat == DEAD)
 		if(!QDELETED(src))
@@ -395,8 +395,8 @@
 	pixel_x = -16
 	base_pixel_x = -16
 	faction = list("gold_ordeal", "thunder_variant")
-	maxHealth = 2500
-	health = 2500
+	maxHealth = 800
+	health = 800
 	death_sound = 'sound/effects/limbus_death.ogg'
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.7)
 	butcher_results = list(/obj/item/food/meat/slab/corroded = 2)
@@ -407,7 +407,7 @@
 	var/list/been_hit = list()
 	var/lightning_aoe_cooldown
 	var/lightning_aoe_cooldown_base = 30 SECONDS
-	var/lightning_aoe_damage = 80 // Black damage, scales with distance
+	var/lightning_aoe_damage = 30 // Black damage, scales with distance
 	var/lightning_aoe_range = 80
 	var/minimum_bolts = 3
 	var/current_bolts = 3
@@ -483,7 +483,7 @@
 	if(L.bruteloss > L.maxHealth)
 		L.adjustBruteLoss(-(L.maxHealth * 0.2) - (L.bruteloss - L.maxHealth)) // recover 20% of hp on revive
 		L.revive(full_heal = FALSE, admin_revive = TRUE)
-	L.adjustBruteLoss(-100)
+	L.adjustBruteLoss(-40)
 	playsound(get_turf(L), 'sound/abnormalities/thunderbird/tbird_charge.ogg', 15, 1, 4)
 	L.add_overlay(icon('icons/effects/effects.dmi', "electricity"))
 	addtimer(CALLBACK(L, TYPE_PROC_REF(/atom, cut_overlay), \
@@ -505,7 +505,7 @@
 	base_pixel_y = -16
 	duration = 5 SECONDS
 	range = 3
-	boom_damage = 65
+	boom_damage = 30
 
 /obj/effect/thunderbolt/big/Explode() // random visual lightning
 	var/bolts = 4

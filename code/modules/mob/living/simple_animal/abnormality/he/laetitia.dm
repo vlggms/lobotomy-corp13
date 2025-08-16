@@ -5,8 +5,8 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "laetitia"
 	portrait = "laetitia"
-	maxHealth = 1500
-	health = 1500
+	maxHealth = 300
+	health = 300
 	threat_level = HE_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(40, 45, 50, 50, 50),
@@ -14,13 +14,13 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(60, 60, 60, 65, 65),
 		ABNORMALITY_WORK_REPRESSION = 0,
 	)
-	work_damage_amount = 8
+	work_damage_amount = 5
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/lust
 	max_boxes = 16 // Accurate to base game
 	melee_damage_type = WHITE_DAMAGE
 	melee_damage_lower = 1
-	melee_damage_upper = 5
+	melee_damage_upper = 2
 	attack_verb_continuous = "slaps"
 	attack_verb_simple = "slap"
 
@@ -123,7 +123,7 @@
 	icon_state = "prank_gift"
 	var/opening = FALSE
 	var/oneuse = TRUE
-	var/basepower = 25
+	var/basepower = 5
 	var/strength = 1
 
 /obj/item/laetitia_gift/attack_self(mob/user)
@@ -200,14 +200,14 @@
 	icon_state = "witchfriend"
 	icon_living = "witchfriend"
 	icon_dead = "witchfriend_dead"
-	maxHealth = 800
-	health = 800
+	maxHealth = 150
+	health = 150
 	pixel_x = -16
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1)
 	melee_damage_type = RED_DAMAGE
 	stat_attack = HARD_CRIT
-	melee_damage_lower = 20
-	melee_damage_upper = 30
+	melee_damage_lower = 4
+	melee_damage_upper = 6
 	faction = list("hostile", "laetitia")
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
@@ -287,7 +287,7 @@
 	var/atom/throw_target = get_edge_target_turf(status_holder, rand_dir)
 	if(!status_holder.anchored)
 		status_holder.throw_at(throw_target, rand(1, 3), 7, status_holder)
-	status_holder.deal_damage(200, RED_DAMAGE)//Usually a kill, you can block it if you're good
+	status_holder.deal_damage(50, RED_DAMAGE)//Usually a kill, you can block it if you're good
 
 /datum/status_effect/pranked/proc/TriggerPrank()
 	//immediately set to 10 seconds, don't shorten if less than 10 seconds remaining

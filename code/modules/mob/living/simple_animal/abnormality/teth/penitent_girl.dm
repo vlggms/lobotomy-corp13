@@ -7,8 +7,8 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "penitent"
 	portrait = "penitent"
-	maxHealth = 400
-	health = 400
+	maxHealth = 100
+	health = 100
 	threat_level = TETH_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 50,
@@ -17,7 +17,7 @@
 		ABNORMALITY_WORK_REPRESSION = 50,
 	)
 	is_flying_animal = TRUE
-	work_damage_amount = 6
+	work_damage_amount = 3
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gloom
 
@@ -50,7 +50,7 @@
 	// you are going to cut your own leg off
 	work_damage_type = initial(work_damage_type)
 	if((get_attribute_level(user, TEMPERANCE_ATTRIBUTE) < 40) && (get_attribute_level(user, PRUDENCE_ATTRIBUTE) < 40))
-		user.deal_damage(250, WHITE_DAMAGE) //DIE!
+		user.deal_damage(50, WHITE_DAMAGE) //DIE!
 
 	if(user.sanity_lost)
 		user.apply_status_effect(STATUS_EFFECT_PENITENCE)

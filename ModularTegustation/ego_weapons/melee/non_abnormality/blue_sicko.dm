@@ -8,7 +8,7 @@
 		If your Vibration matches the target's, you resonate. This deals Pale Damage instead of White Damage and deals more of it."
 	icon_state = "reverberation"
 	inhand_icon_state = "reverberation"
-	force = 60 // 85 DPS w/o Vibration, 128 with.
+	force = 30 // 45 DPS w/o Vibration, 64 with.
 	damtype = WHITE_DAMAGE
 
 	attack_speed = 0.7
@@ -34,7 +34,7 @@
 		"One that can be played indefinitely, even if there seems to be an end!",
 		"So you will take the honor of remembering the first note of this everlasting performance…",
 	)
-	var/finale_damage = 200
+	var/finale_damage = 120
 
 /obj/item/ego_weapon/city/reverberation/Initialize()
 	. = ..()
@@ -74,7 +74,7 @@
 		if(S.stacks == vibration)
 			damtype = PALE_DAMAGE
 
-			force = 90
+			force = 45
 			hitsound = "sound/weapons/fixer/reverb_strong[rand(1, 2)].ogg"
 			VFX = new /obj/effect/temp_visual/reverb_slash/vertical(get_turf(user))
 	if(!VFX)
@@ -89,7 +89,7 @@
 	. = ..()
 	damtype = WHITE_DAMAGE
 
-	force = 60
+	force = 30
 	hitsound = temp_sound
 	if(!. || target.stat == DEAD)
 		return
@@ -235,7 +235,7 @@
 /// Antagonist version, switches faction for easy use.
 /obj/item/ego_weapon/city/reverberation/antag
 	var/list/old_faction = list()
-	finale_damage = 80 // meant to hit people
+	finale_damage = 40 // meant to hit people
 
 /obj/item/ego_weapon/city/reverberation/antag/equipped(mob/user, slot, initial)
 	. = ..()

@@ -9,8 +9,8 @@ GLOBAL_LIST_EMPTY(meat_list)
 	portrait = "last_shot"
 	pixel_x = -8
 	base_pixel_x = -8
-	maxHealth = 3100
-	health = 3100
+	maxHealth = 2200
+	health = 2200
 	threat_level = ALEPH_LEVEL
 
 	work_chances = list( //Calculated later
@@ -20,7 +20,7 @@ GLOBAL_LIST_EMPTY(meat_list)
 		ABNORMALITY_WORK_REPRESSION = 40,
 	)
 
-	work_damage_amount = 5		//Damage is low, could be doubled or quadrupled.
+	work_damage_amount = 9
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/last_shot
 	harvest_phrase = span_notice("You peel off some rotten flesh off the floor surrounding %ABNO and collect it in %VESSEL.")
@@ -269,12 +269,12 @@ GLOBAL_LIST_EMPTY(meat_list)
 	icon_state = "meatboi"
 	icon_living = "meatboi"
 	faction = list("hostile")
-	health = 800
-	maxHealth = 800
+	health = 250
+	maxHealth = 250
 	melee_damage_type = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2)
-	melee_damage_lower = 15
-	melee_damage_upper = 20
+	melee_damage_lower = 5
+	melee_damage_upper = 10
 	robust_searching = TRUE
 	stat_attack = HARD_CRIT
 	attack_verb_continuous = "glomps"
@@ -299,10 +299,10 @@ GLOBAL_LIST_EMPTY(meat_list)
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "meatboi_rifle"
 	icon_living = "meatboi_rifle"
-	health = 400
-	maxHealth = 400
-	melee_damage_lower = 20
-	melee_damage_upper = 25
+	health = 150
+	maxHealth = 150
+	melee_damage_lower = 7
+	melee_damage_upper = 9
 	ranged = 1
 	retreat_distance = 3
 	minimum_distance = 4
@@ -361,10 +361,10 @@ GLOBAL_LIST_EMPTY(meat_list)
 	desc = "A writhing ball of flesh, vaguely humanoid in shape. This one has a shotgun."
 	icon_state = "meatboi_shotgun"
 	icon_living = "meatboi_shotgun"
-	health = 600
-	maxHealth = 600
-	melee_damage_lower = 30
-	melee_damage_upper = 45
+	health = 200
+	maxHealth = 200
+	melee_damage_lower = 10
+	melee_damage_upper = 15
 	projectiletype = null
 	casingtype = /obj/item/ammo_casing/caseless/last_shot
 	rapid = 1
@@ -379,8 +379,8 @@ GLOBAL_LIST_EMPTY(meat_list)
 	desc = "A writhing ball of flesh, vaguely humanoid in shape. This one has a sniper rifle."
 	icon_state = "meatboi_sniper"
 	icon_living = "meatboi_sniper"
-	health = 300
-	maxHealth = 300
+	health = 100
+	maxHealth = 100
 	retreat_distance = 5
 	minimum_distance = 4
 	projectiletype = /obj/projectile/bonebullet/bonebullet_piercing

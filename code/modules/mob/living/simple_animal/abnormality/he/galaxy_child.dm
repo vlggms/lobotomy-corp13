@@ -5,8 +5,8 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "galaxy"
 	portrait = "galaxy_child"
-	maxHealth = 650
-	health = 650
+	maxHealth = 150
+	health = 150
 	threat_level = HE_LEVEL
 	start_qliphoth = 5
 	work_chances = list(
@@ -15,7 +15,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 45,
 		ABNORMALITY_WORK_REPRESSION = 45,
 	)
-	work_damage_amount = 8
+	work_damage_amount = 5
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gloom
 	max_boxes = 16
@@ -49,7 +49,7 @@
 	var/healing_per_second = 0
 
 	/// How much more damage we deal per a person that befriends us
-	var/damage_mod = 60
+	var/damage_mod = 15
 	/// The current amount of damage we deal to pebble users when exploding
 	var/damage_amount = 0
 

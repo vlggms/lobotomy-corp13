@@ -3,7 +3,7 @@
 	name = "wedge office spear"
 	desc = "A black, ornate spear. Some say it pierces any weakness... Though that may just be what the office who used these says."
 	icon_state = "wedge"
-	force = 74
+	force = 37
 	reach = 2		//Has 2 Square Reach.
 	attack_speed = 1
 	stuntime = 5
@@ -23,7 +23,7 @@
 	name = "fixer blade"
 	desc = "A common fixer blade, mass-produced and easy to use."
 	icon_state = "fixer_blade"
-	force = 20
+	force = 10
 	damtype = RED_DAMAGE
 
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -35,7 +35,7 @@
 	name = "fixer greatsword"
 	desc = "A heftier variant of the more common fixer blade."
 	icon_state = "fixer_greatsword"
-	force = 36
+	force = 18
 	attack_speed = 2
 	damtype = RED_DAMAGE
 
@@ -48,7 +48,7 @@
 	name = "fixer hammer"
 	desc = "A poorly balanced hammer used by many fixers."
 	icon_state = "fixer_hammer"
-	force = 32
+	force = 16
 	attack_speed = 1.4
 	damtype = RED_DAMAGE
 
@@ -74,7 +74,7 @@
 	playsound(user, mode ? 'sound/weapons/magin.ogg' : 'sound/weapons/magout.ogg', 40, TRUE)
 	if(mode == 0)
 		mode = 1
-		force = 21
+		force = 10
 		icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
 		return
 	mode = 0

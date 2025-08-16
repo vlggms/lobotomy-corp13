@@ -15,15 +15,15 @@
 
 	threat_level = ZAYIN_LEVEL
 	chem_type = /datum/reagent/abnormality/sin/gloom
-	maxHealth = 1400 //megahuge stats, almost as strong as a WAW.
-	health = 1400
+	maxHealth = 400
+	health = 400
 	can_breach = TRUE
 	melee_damage_type = BLACK_DAMAGE
 	stat_attack = DEAD
 	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 2)
 	move_to_delay = 3
-	melee_damage_lower = 35
-	melee_damage_upper = 45
+	melee_damage_lower = 2
+	melee_damage_upper = 4
 	max_boxes = 10
 	ranged = TRUE
 	attack_sound = 'sound/abnormalities/blubbering_toad/attack.ogg'
@@ -36,7 +36,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(50, 40, 30, 30, 30),
 		ABNORMALITY_WORK_REPRESSION = list(70, 30, 30, 30, 30),
 	)
-	work_damage_amount = 6
+	work_damage_amount = 2
 	work_damage_type = BLACK_DAMAGE
 
 	// Petting

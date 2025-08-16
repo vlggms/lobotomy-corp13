@@ -7,11 +7,11 @@
 	icon_living = "amurdad_corrosion"
 	icon_dead = "amurdad_corrosion_dead"
 	faction = list("gold_ordeal")
-	maxHealth = 400
-	health = 400
+	maxHealth = 120
+	health = 120
 	melee_damage_type = BLACK_DAMAGE
-	melee_damage_lower = 14
-	melee_damage_upper = 14
+	melee_damage_lower = 5
+	melee_damage_upper = 7
 	pixel_x = -8
 	base_pixel_x = -8
 	attack_verb_continuous = "bashes"
@@ -43,12 +43,12 @@
 	icon_living = "beanstalk"
 	icon_dead = "beanstalk_dead"
 	faction = list("gold_ordeal")
-	maxHealth = 220
-	health = 220
+	maxHealth = 60
+	health = 60
 	melee_reach = 2 //Spear = long range
 	melee_damage_type = BLACK_DAMAGE
-	melee_damage_lower = 7
-	melee_damage_upper = 10
+	melee_damage_lower = 3
+	melee_damage_upper = 5
 	attack_sound = 'sound/weapons/ego/spear1.ogg'
 	death_sound = 'sound/effects/limbus_death.ogg'
 	attack_verb_continuous = "stabs"

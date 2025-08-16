@@ -9,9 +9,9 @@
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_BELT
-	force = 5
+	force = 3
 	w_class = WEIGHT_CLASS_TINY
-	throwforce = 5
+	throwforce = 3
 	throw_speed = 3
 	throw_range = 5
 	custom_materials = list(/datum/material/iron=75)
@@ -98,9 +98,9 @@
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	custom_materials = list(/datum/material/iron=150,/datum/material/silver=50,/datum/material/titanium=25) //done for balance reasons, making them high value for research, but harder to get
-	force = 8 //might or might not be too high, subject to change
+	force = 4 //might or might not be too high, subject to change
 	w_class = WEIGHT_CLASS_SMALL
-	throwforce = 8
+	throwforce = 4
 	throw_speed = 2
 	throw_range = 3//it's heavier than a screw driver/wrench, so it does more damage, but can't be thrown as far
 	attack_verb_continuous = list("drills", "screws", "jabs", "whacks")

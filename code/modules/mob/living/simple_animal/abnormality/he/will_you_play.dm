@@ -5,15 +5,15 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "willyouplay"
 	portrait = "will_you_play"
-	maxHealth = 600
-	health = 600
+	maxHealth = 120
+	health = 120
 	threat_level = HE_LEVEL
 	work_chances = list(
 		"Rock" = 60,
 		"Paper" = 60,
 		"Scissors" = 60,
 	)
-	work_damage_amount = 10
+	work_damage_amount = 5
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/wrath
 	max_boxes = 15
@@ -98,7 +98,7 @@
 //Player wins RPS, loses an arm tho
 /mob/living/simple_animal/hostile/abnormality/willyouplay/proc/Win(mob/living/carbon/human/user, work_type)
 	say("You lose.")
-	user.deal_damage(80, RED_DAMAGE)
+	user.deal_damage(20, RED_DAMAGE)
 	IncreaseStats(user, 1, FALSE)
 
 	//Less than 80 fort and you lose an arm
@@ -112,7 +112,7 @@
 			return
 
 /mob/living/simple_animal/hostile/abnormality/willyouplay/proc/Lose(mob/living/carbon/human/user, work_type)
-	var/statgain
+	var/statgain = 0
 	if(user == last_worked)
 		statgain = -2
 

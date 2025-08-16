@@ -19,7 +19,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 45, 45, 50),
 		ABNORMALITY_WORK_REPRESSION = list(40, 40, 40, 40, 40),
 	)
-	work_damage_amount = 14
+	work_damage_amount = 7
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/pride
 	max_boxes = 22
@@ -268,11 +268,11 @@
 	icon_living = "nakednest_minion"
 	icon_dead = "nakednest_miniondead"
 	death_message = "collapses into a unrecognizable pile of scales, shredded clothing, and broken serpents."
-	melee_damage_lower = 10
-	melee_damage_upper = 30
+	melee_damage_lower = 8
+	melee_damage_upper = 12
 	melee_damage_type = RED_DAMAGE
-	maxHealth = 300
-	health = 300
+	maxHealth = 150
+	health = 150
 	stat_attack = CONSCIOUS //When you are put into crit the nested will continue to transform into a nest. I thought about having the nested infest you if your in crit but that seemed a bit too cruel.
 	damage_coeff = list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
 	mob_size = MOB_SIZE_HUMAN

@@ -142,7 +142,7 @@
 	special = "SHIFT + CLICK to sheathe the blade and prepare a powered up strike." //Violet Blade Card
 	icon_state = "ptslash"
 	inhand_icon_state = "ptslash"
-	force = 45
+	force = 22
 	attack_speed = 0.5
 	damtype = RED_DAMAGE //Iori's quite physical with this stance
 
@@ -178,7 +178,7 @@
 	special = "SHIFT + CLICK to sheathe the blade and prepare a devestating blow that weakens your enemy." //Laceration Card
 	icon_state = "ptpierce"
 	inhand_icon_state = "ptpierce"
-	force = 90
+	force = 45
 	attack_speed = 1
 	damtype = WHITE_DAMAGE //tbh white does not fit but also i don't think Iori should use pale, thats Blue Sicko's job
 	swingstyle = WEAPONSWING_THRUST
@@ -255,7 +255,7 @@
 	righthand_file = 'ModularTegustation/Teguicons/lc13_right_64x64.dmi'
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	force = 135
+	force = 67
 	attack_speed = 1.5
 	damtype = BLACK_DAMAGE //Blunt stance deals both high damage and stagger damage
 
@@ -323,7 +323,7 @@
 	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
 	lefthand_file = 'ModularTegustation/Teguicons/lc13_left.dmi'
 	righthand_file = 'ModularTegustation/Teguicons/lc13_right.dmi'
-	force = 90 //I mean its the block stance, you're not really supposed to attack here
+	force = 45 //I mean its the block stance, you're not really supposed to attack here
 	attack_speed = 1.5
 	var/block = 0
 	var/block_success
@@ -376,12 +376,12 @@
 
 /obj/item/ego_weapon/city/pt/guard/proc/BlockFail(mob/living/carbon/human/user)
 	to_chat(user,span_warning("Your stance is widened."))
-	force = 50
+	force = 25
 	addtimer(CALLBACK(src, PROC_REF(RemoveDebuff), user), 2 SECONDS)
 
 /obj/item/ego_weapon/city/pt/guard/proc/RemoveDebuff(mob/living/carbon/human/user)
 	to_chat(user,span_nicegreen("You recollect your stance."))
-	force = 90
+	force = 45
 
 /obj/item/ego_weapon/city/pt/guard/proc/AnnounceBlock(mob/living/carbon/human/source, damage, damagetype, def_zone)
 	SIGNAL_HANDLER
@@ -436,7 +436,7 @@
 	righthand_file = 'ModularTegustation/Teguicons/lc13_right.dmi'
 	inhand_x_dimension = 32
 	inhand_y_dimension = 32
-	force = 45
+	force = 22
 	damtype = RED_DAMAGE
 
 	attack_verb_continuous = list("slashes", "rends")
@@ -454,7 +454,7 @@
 	righthand_file = 'ModularTegustation/Teguicons/lc13_right_64x64.dmi'
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	force = 135
+	force = 67
 	damtype = BLACK_DAMAGE
 
 	attack_verb_continuous = list("bludgeons", "smacks")
@@ -472,7 +472,7 @@
 	righthand_file = 'ModularTegustation/Teguicons/lc13_right.dmi'
 	inhand_x_dimension = 32
 	inhand_y_dimension = 32
-	force = 90
+	force = 45
 	damtype = WHITE_DAMAGE
 
 	attack_verb_continuous = list("pierces", "stabs")

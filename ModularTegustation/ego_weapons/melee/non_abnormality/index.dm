@@ -6,7 +6,7 @@
 	desc = "A sheathed sword used by index recruits."
 	icon_state = "index"
 	inhand_icon_state = "index"
-	force = 37
+	force = 18
 	damtype = PALE_DAMAGE
 	swingstyle = WEAPONSWING_LARGESWEEP
 
@@ -88,7 +88,7 @@
 	attack_verb_continuous = list("slices", "slashes", "stabs")
 	attack_verb_simple = list("slice", "slash", "stab")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	force = 56
+	force = 28
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -108,7 +108,7 @@
 	inhand_y_dimension = 64
 	hitsound = 'sound/weapons/fixer/generic/nail1.ogg'
 	reach = 2
-	force = 64
+	force = 32
 	stuntime = 5
 	swingstyle = WEAPONSWING_THRUST
 
@@ -125,7 +125,7 @@
 	attack_verb_continuous = list("cleaves", "cuts")
 	attack_verb_simple = list("cleaves", "cuts")
 	hitsound = 'sound/weapons/fixer/generic/finisher1.ogg'
-	force = 130
+	force = 65
 	attack_speed = 2
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
