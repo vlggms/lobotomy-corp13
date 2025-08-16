@@ -15,6 +15,13 @@ Keep things balanced if they aren't going to be admin only.  - Coxswain
 	cost = 12
 
 //Teth
+/datum/ego_datum/weapon/an_ego
+	item_path = /obj/item/ego_weapon/an_ego
+	cost = 20
+
+/datum/ego_datum/armor/an_ego
+	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/an_ego
+	cost = 20
 
 //He
 

@@ -1,6 +1,33 @@
 //All ZAYIN joke E.G.O
 
 // All TETH joke E.G.O
+/obj/item/ego_weapon/an_ego
+	name = "an ego"
+	desc = "A weapon that can be used to attack things. Unfortunately, it is missing textures because you failed to install Counter-Strike : Source."
+	special = "Use this weapon in hand to perform an ability."
+	icon_state = "an_ego"
+	icon = 'ModularTegustation/Teguicons/joke_abnos/joke_weapons.dmi'
+	lefthand_file = 'ModularTegustation/Teguicons/joke_abnos/joke_lefthand.dmi'
+	righthand_file = 'ModularTegustation/Teguicons/joke_abnos/joke_righthand.dmi'
+	force = 10
+	damtype = WHITE_DAMAGE
+	attack_verb_continuous = list("attacks", "attacks", "attacks")
+	attack_verb_simple = list("attack", "attack", "attack")
+	var/random_sound_list = list( // Random goofy sounds
+		'sound/effects/yem.ogg',
+		'sound/effects/wow.ogg',
+		'sound/effects/gong.ogg',
+		'sound/effects/adminhelp.ogg',
+		'sound/effects/meow1.ogg',
+		'sound/effects/meltdownAlert.ogg',
+		'sound/effects/pray.ogg',
+		'sound/effects/sanity_lost.ogg',
+		'sound/effects/tremorburst.ogg',
+	)
+
+/obj/item/ego_weapon/an_ego/attack_self(mob/user)
+	if(do_after(user, 12, src))
+		playsound(get_turf(user), "[pick(random_sound_list)]", 50, TRUE)
 
 // All HE joke E.G.O
 

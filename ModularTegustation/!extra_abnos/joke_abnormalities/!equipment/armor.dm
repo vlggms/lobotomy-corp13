@@ -10,6 +10,12 @@
 	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = -10, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
 
 // All TETH joke E.G.O
+/obj/item/clothing/suit/armor/ego_gear/teth/an_ego
+	name = "an ego"
+	desc = "An ambiguous error block that turns into armor when it makes prolonged contact with a human torso. Generally not useful and also kind of hard to look at."
+	icon = 'ModularTegustation/Teguicons/joke_abnos/joke_armor.dmi'
+	worn_icon = 'ModularTegustation/Teguicons/joke_abnos/joke_worn.dmi'
+	armor = list(RED_DAMAGE = -10, WHITE_DAMAGE = -10, BLACK_DAMAGE = 0, PALE_DAMAGE = 40) // Has horrible stat spread
 
 // All HE joke E.G.O
 

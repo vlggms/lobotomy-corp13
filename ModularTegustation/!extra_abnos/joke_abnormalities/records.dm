@@ -14,6 +14,16 @@
 //He
 
 //WAW
+//Skub
+/obj/item/paper/fluff/info/joke/skub
+	abno_type = /mob/living/simple_animal/hostile/abnormality/skub
+	abno_code = "O-04-741"
+	abno_info = list(
+		"When the work result was Bad, the Qliphoth Counter lowered.",
+		"When the work result was Normal, the Qliphoth Counter lowered with a normal probability.",
+		"Following any work attempt or meltdown, all staff became radicalized with skub-related beliefs.",
+		"When the qliphoth counter reached 0, a riot occured for 30 seconds.",
+	)
 
 //ALEPH
 //Charles Barkley Shut Up And Jam Gaiden: Part 1 of the Hoopz Barkley Saga
