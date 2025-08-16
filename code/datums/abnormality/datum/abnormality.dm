@@ -309,8 +309,6 @@
 					acquired_chance += 3
 				if(ALEPH_LEVEL)
 					acquired_chance += 3
-		if(EXTRACTION_LOCK)
-			acquired_chance -= 15
 	if(overload_chance[user.ckey])
 		acquired_chance += overload_chance[user.ckey]
 	return clamp(acquired_chance, 0, 100)
