@@ -1,3 +1,4 @@
+// Green dawn
 /mob/living/simple_animal/hostile/ordeal/green_bot
 	name = "doubt alpha"
 	desc = "A slim robot with a spear in place of its hand."

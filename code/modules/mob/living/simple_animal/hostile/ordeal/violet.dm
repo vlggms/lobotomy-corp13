@@ -1,3 +1,189 @@
+// Violet dawn
+/mob/living/simple_animal/hostile/ordeal/violet_fruit
+	name = "fruit of understanding"
+	desc = "A round purple creature. It is constantly leaking mind-damaging gas."
+	icon = 'ModularTegustation/Teguicons/48x32.dmi'
+	icon_state = "violet_fruit"
+	icon_living = "violet_fruit"
+	icon_dead = "violet_fruit_dead"
+	base_pixel_x = -8
+	pixel_x = -8
+	faction = list("violet_ordeal")
+	maxHealth = 250
+	health = 250
+	speed = 4
+	move_to_delay = 5
+	butcher_results = list(/obj/item/food/meat/slab/fruit = 1)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/fruit = 1)
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+	blood_volume = BLOOD_VOLUME_NORMAL
+	var/list/enemies = list() //copying retaliate code cause i dont know how else to inherit it
+
+/mob/living/simple_animal/hostile/ordeal/violet_fruit/Initialize()
+	. = ..()
+	addtimer(CALLBACK(src, PROC_REF(ReleaseDeathGas)), rand(60 SECONDS, 65 SECONDS))
+
+/mob/living/simple_animal/hostile/ordeal/violet_fruit/Found(atom/A)
+	if(isliving(A))
+		var/mob/living/L = A
+		if(!L.stat)
+			return L
+		else
+			enemies -= L
+	else if(ismecha(A))
+		var/obj/vehicle/sealed/mecha/M = A
+		if(LAZYLEN(M.occupants))
+			return A
+
+/mob/living/simple_animal/hostile/ordeal/violet_fruit/ListTargets()
+	if(!length(enemies))
+		return list()
+	var/list/see = ..()
+	see &= enemies // Remove all entries that aren't in enemies
+	return see
+
+/mob/living/simple_animal/hostile/ordeal/violet_fruit/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
+	. = ..()
+	if(. > 0 && stat == CONSCIOUS)
+		Retaliate()
+
+/mob/living/simple_animal/hostile/ordeal/violet_fruit/proc/Retaliate()
+	var/list/around = view(src, vision_range)
+
+	for(var/atom/movable/A in around)
+		if(A == src)
+			continue
+		if(isliving(A))
+			var/mob/living/M = A
+			if(faction_check_mob(M) && attack_same || !faction_check_mob(M))
+				enemies |= M
+		else if(ismecha(A))
+			var/obj/vehicle/sealed/mecha/M = A
+			if(LAZYLEN(M.occupants))
+				enemies |= M
+				enemies |= M.occupants
+
+/mob/living/simple_animal/hostile/ordeal/violet_fruit/AttackingTarget()
+	return
+
+/mob/living/simple_animal/hostile/ordeal/violet_fruit/Life()
+	. = ..()
+	if(!.) // Dead
+		return FALSE
+	new /obj/effect/temp_visual/small_smoke/second/fruit(get_turf(src))
+	for(var/mob/living/L in view(2, src))
+		if(!faction_check_mob(L))
+			new /obj/effect/temp_visual/revenant(get_turf(L))
+			L.apply_damage(5, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+	return TRUE
+
+/mob/living/simple_animal/hostile/ordeal/violet_fruit/proc/ReleaseDeathGas()
+	if(stat == DEAD)
+		return
+	var/turf/target_c = get_turf(src)
+	var/list/turf_list = spiral_range_turfs(15, target_c)
+	visible_message(span_danger("[src] releases a cloud of nauseating gas!"))
+	playsound(target_c, 'sound/effects/ordeals/violet/fruit_suicide.ogg', 50, 1, 16)
+	adjustWhiteLoss(maxHealth) // Die
+	for(var/turf/open/T in turf_list)
+		if(prob(25))
+			new /obj/effect/temp_visual/revenant(T)
+	for(var/mob/living/L in livinginrange(15, target_c))
+		if(faction_check_mob(L))
+			continue
+		L.apply_damage(33, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))
+	for(var/obj/machinery/computer/abnormality/A in urange(15, target_c))
+		if(A.can_meltdown && !A.meltdown && A.datum_reference && A.datum_reference.current && A.datum_reference.qliphoth_meter)
+			A.datum_reference.qliphoth_change(pick(-999))
+
+// Violet noon
+/mob/living/simple_animal/hostile/ordeal/violet_monolith
+	name = "grant us love"
+	desc = "A dark monolith structure with incomprehensible writing on it."
+	icon = 'ModularTegustation/Teguicons/48x64.dmi'
+	icon_state = "violet_noon"
+	icon_living = "violet_noon"
+	icon_dead = "violet_noon_dead"
+	base_pixel_x = -8
+	pixel_x = -8
+	faction = list("violet_ordeal")
+	maxHealth = 1400
+	health = 1400
+	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
+
+	var/next_pulse = INFINITY
+
+/mob/living/simple_animal/hostile/ordeal/violet_monolith/Initialize()
+	. = ..()
+	next_pulse = world.time + 30 SECONDS
+	addtimer(CALLBACK(src, PROC_REF(FallDown)))
+
+/mob/living/simple_animal/hostile/ordeal/violet_monolith/CanAttack(atom/the_target)
+	return FALSE
+
+/mob/living/simple_animal/hostile/ordeal/violet_monolith/Move()
+	return FALSE
+
+/mob/living/simple_animal/hostile/ordeal/violet_monolith/Life()
+	. = ..()
+	if(!.) // Dead
+		return FALSE
+	if(icon_state != "violet_noon_attack")
+		return
+	if(world.time > next_pulse)
+		PulseAttack()
+		return
+	for(var/mob/living/L in view(2, src))
+		if(!faction_check_mob(L))
+			new /obj/effect/temp_visual/revenant(get_turf(L))
+			L.apply_damage(9, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+
+/mob/living/simple_animal/hostile/ordeal/violet_monolith/death(gibbed)
+	density = FALSE
+	animate(src, alpha = 0, time = 10 SECONDS)
+	QDEL_IN(src, 10 SECONDS)
+	..()
+
+/mob/living/simple_animal/hostile/ordeal/violet_monolith/proc/FallDown()
+	pixel_z = 128
+	alpha = 0
+	density = FALSE
+	animate(src, pixel_z = 0, alpha = 255, time = 10)
+	SLEEP_CHECK_DEATH(10)
+	density = TRUE
+	visible_message(span_danger("[src] drops down from the ceiling!"))
+	playsound(get_turf(src), 'sound/effects/ordeals/violet/monolith_down.ogg', 65, 1)
+	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(get_turf(src), src)
+	animate(D, alpha = 0, transform = matrix()*2, time = 5)
+	for(var/turf/open/T in view(4, src))
+		new /obj/effect/temp_visual/small_smoke/halfsecond(T)
+	for(var/mob/living/L in view(4, src))
+		if(!faction_check_mob(L))
+			var/distance_decrease = get_dist(src, L) * 20
+			L.apply_damage((150 - distance_decrease), RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+			if(L.health < 0)
+				L.gib()
+	SLEEP_CHECK_DEATH(5)
+	icon_state = "violet_noon_attack"
+
+/mob/living/simple_animal/hostile/ordeal/violet_monolith/proc/PulseAttack()
+	next_pulse = world.time + 15 SECONDS
+	icon_state = "violet_noon_ability"
+	for(var/i = 1 to 3)
+		var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(get_turf(src), src)
+		animate(D, alpha = 0, transform = matrix()*1.5, time = 7)
+		SLEEP_CHECK_DEATH(8)
+	var/obj/machinery/computer/abnormality/CA
+	var/list/potential_computers = list()
+	for(var/obj/machinery/computer/abnormality/A in urange(24, src))
+		if(A.can_meltdown && !A.meltdown && A.datum_reference && A.datum_reference.current && A.datum_reference.qliphoth_meter)
+			potential_computers += A
+	if(LAZYLEN(potential_computers))
+		CA = pick(potential_computers)
+		CA.datum_reference.qliphoth_change(-1)
+	icon_state = "violet_noon_attack"
+
+// Violet midnight
 /mob/living/simple_animal/hostile/ordeal/violet_midnight
 	name = "god delusion"
 	desc = "A shrine dedicated to unknown god from another dimension."
