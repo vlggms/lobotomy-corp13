@@ -14,6 +14,7 @@
 	var/mob/living/simple_animal/hostile/abnormality/abno_path = SSabnormality_queue.queued_abnormality
 	var/datum/abnormality/abno_datum
 	var/obj/machinery/computer/abnormality/room_console
+	var/obj/machinery/containment_panel/con_panel
 	if(!ispath(abno_path))
 		CRASH("Abnormality room spawned with wrong mob path.")
 	for(var/turf/TF in list_o_turfs)
@@ -34,6 +35,7 @@
 			room_console.LinkPanel(C)
 			C.console_status(room_console)
 			C.name = "\proper [C.linked_console.datum_reference.name]'s containment panel"
+			con_panel = C
 			break
 	for(var/obj/machinery/door/airlock/AR in allObjects)
 		abno_datum.door = AR
@@ -42,6 +44,9 @@
 	for(var/obj/machinery/camera/ACM in allObjects)
 		abno_datum.camera = ACM
 		ACM.c_tag = "Containment zone: [abno_datum.name]"
+	if(con_panel && GLOB.announcement_systems.len)
+		var/obj/machinery/announcement_system/AS = pick(GLOB.announcement_systems)
+		AS.announce("NEWABNO", abno_datum.name, con_panel.icon_state, list())
 	SSabnormality_queue.PostSpawn()
 	SSlobotomy_corp.NewAbnormality(abno_datum)
 
