@@ -9,7 +9,7 @@
 	melee_damage_lower = 6
 	melee_damage_upper = 8
 	melee_reach = 2 // Now it has reach attacks
-	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 2, PALE_DAMAGE = 1.5)
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.5)
 	butcher_results = list(/obj/item/food/meat/slab/sinnew = 2)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sinnew = 2)
 	move_to_delay = 6
@@ -33,7 +33,7 @@
 	health = 200
 	melee_damage_lower = 4
 	melee_damage_upper = 6
-	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 2, PALE_DAMAGE = 1.5)
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.5)
 	butcher_results = list(/obj/item/food/meat/slab/sinnew = 2)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sinnew = 2)
 	rupture_damage = 3
@@ -138,7 +138,7 @@
 	health = 250
 	melee_damage_lower = 14
 	melee_damage_upper = 16
-	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.5)
 	butcher_results = list(/obj/item/food/meat/slab/sinnew = 2)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sinnew = 2)
 	ranged_cooldown_time = 10 SECONDS
@@ -200,7 +200,7 @@
 	melee_damage_lower = 3
 	melee_damage_upper = 5
 	melee_reach = 2
-	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5)
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.5)
 	butcher_results = list(/obj/item/food/meat/slab/sinnew = 2)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sinnew = 2)
 	dash_cooldown_time = 4 SECONDS
@@ -219,7 +219,7 @@
 	move_to_delay = 10
 	melee_damage_lower = 8
 	melee_damage_upper = 10
-	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 2, PALE_DAMAGE = 1.5)
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.5)
 	butcher_results = list(/obj/item/food/meat/slab/sinnew = 2)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sinnew = 2)
 	block_chance = 50
@@ -239,7 +239,7 @@
 	health = 200
 	melee_damage_lower = 4
 	melee_damage_upper = 8
-	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5)
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.5)
 	butcher_results = list(/obj/item/food/meat/slab/sinnew = 2)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sinnew = 2)
 	burn_stacks = 10
@@ -264,5 +264,5 @@
 		if(ishuman(L))
 			var/mob/living/carbon/human/H = L
 			H.apply_lc_burn(floor(burn_stacks * 0.5))
-		L.apply_damage(charge_damage * 0.4, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		L.apply_damage(charge_damage * 0.4, melee_damage_type, null, L.run_armor_check(null, melee_damage_type), spread_damage = TRUE)
 		playsound(L, 'sound/effects/ordeals/brown/cromer_slam.ogg', 75, 1)
