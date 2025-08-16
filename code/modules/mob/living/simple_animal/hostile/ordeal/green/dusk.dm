@@ -1,4 +1,3 @@
-// Green dusk
 /mob/living/simple_animal/hostile/ordeal/green_dusk
 	name = "where we must reach"
 	desc = "A factory-like structure, constantly producing ancient robots."

@@ -1,5 +1,3 @@
-
-// Green noon
 /mob/living/simple_animal/hostile/ordeal/green_bot_big
 	name = "process of understanding"
 	desc = "A big robot with a saw and a machine gun in place of its hands."
