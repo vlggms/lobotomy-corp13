@@ -407,6 +407,13 @@
 	icon_state = "binah"
 	gender = FEMALE
 
+/obj/item/toy/plush/binah/fire_act(exposed_temperature, exposed_volume)
+	. = ..()
+	// Award achievement for burning a Binah plush
+	for(var/mob/living/carbon/human/H in view(7, src))
+		if(H.stat != DEAD)
+			H.client?.give_award(/datum/award/achievement/lc13/burn_binah_plush, H)
+
 /obj/item/toy/plush/angela
 	name = "angela plushie"
 	desc = "A plushie depicting Lobotomy Corporation's AI."

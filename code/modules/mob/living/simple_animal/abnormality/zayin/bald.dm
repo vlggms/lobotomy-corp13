@@ -83,6 +83,10 @@
 			for(var/mob/living/carbon/human/H in GLOB.human_list)
 				if(H.z == z)
 					do_bald(H)
+			// Award achievement for bald round
+			for(var/mob/living/carbon/human/H in GLOB.player_list)
+				if(H.client)
+					H.client.give_award(/datum/award/achievement/lc13/bald_round, H)
 
 /mob/living/simple_animal/hostile/abnormality/bald/BreachEffect(mob/living/carbon/human/user, breach_type)
 	if(breach_type == BREACH_PINK)

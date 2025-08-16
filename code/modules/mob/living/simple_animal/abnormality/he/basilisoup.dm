@@ -356,6 +356,10 @@
 			squeaky.play_squeak()
 		else
 			playsound(src, 'sound/effects/bubbles.ogg', 80, TRUE, -3)
+		// Award achievement for feeding plushie to Basilisoup
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			H.client?.give_award(/datum/award/achievement/lc13/plushie_feeder, H)
 		qdel(wack)
 		return
 	if(istype(wack, /obj/item/food))

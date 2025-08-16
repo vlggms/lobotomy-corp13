@@ -21,6 +21,9 @@
 	//TRUE is for loaded
 	var/loaded = FALSE
 
+	// Track who loaded the PE for achievement
+	var/mob/living/carbon/human/loader = null
+
 /obj/structure/refinery/Initialize()
 	. = ..()
 	GLOB.lobotomy_devices += src
@@ -35,6 +38,8 @@
 	if(istype(I, /obj/item/rawpe))
 		if(!loaded)
 			loaded = TRUE
+			if(ishuman(user))
+				loader = user
 			to_chat(user, span_notice("You load PE into the machine."))
 			qdel(I)
 			blackjack = rand(2,21)
@@ -83,9 +88,23 @@
 		new /obj/item/refinedpe(get_turf(src))
 		visible_message(span_notice("The refinery finishes refining a box."))
 
+		// Track PE boxes refined for achievement (player-specific)
+		if(loader && loader.mind)
+			loader.mind.pe_boxes_refined++
+			if(loader.mind.pe_boxes_refined >= 100)
+				loader.client?.give_award(/datum/award/achievement/lc13/pe_refiner, loader)
+
 		//If you complete the refinery minigame, you can
 		if(!blackjack && prob(30))
 			new /obj/item/refinedpe(get_turf(src))
+			// Count bonus boxes too for the player who loaded it
+			if(loader && loader.mind)
+				loader.mind.pe_boxes_refined++
+				if(loader.mind.pe_boxes_refined >= 100)
+					loader.client?.give_award(/datum/award/achievement/lc13/pe_refiner, loader)
+
+		// Clear the loader reference
+		loader = null
 
 	if(loaded)
 		addtimer(CALLBACK(src, PROC_REF(counter)), 1 SECONDS)

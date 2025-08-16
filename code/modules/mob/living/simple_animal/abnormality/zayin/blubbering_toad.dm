@@ -128,6 +128,9 @@
 		tongue_damage = 5
 		broken = TRUE
 	SetIdiot(user)
+	// Achievement for letting Blubbering Toad out
+	if(user && user.client && breach_type == BREACH_NORMAL)
+		user.client.player_details.achievements.unlock(/datum/award/achievement/lc13/free_toad, user)
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/blubbering_toad/attack_hand(mob/living/carbon/human/user)
@@ -248,6 +251,9 @@
 		return
 	..()
 	var/mob/living/carbon/human/H = attacked_target
+	// Achievement for dying to Blubbering Toad
+	if(H.stat == DEAD && H.client)
+		H.client.player_details.achievements.unlock(/datum/award/achievement/lc13/die_to_toad, H)
 	if(H.sanity_lost) //prevents hitting the same guy in an infinite loop
 		melee_damage_type = BLACK_DAMAGE
 	if(H.health < 0)

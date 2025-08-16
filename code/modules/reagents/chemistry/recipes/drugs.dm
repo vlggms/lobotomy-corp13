@@ -19,6 +19,18 @@
 	required_reagents = list(/datum/reagent/medicine/ephedrine = 1, /datum/reagent/iodine = 1, /datum/reagent/phosphorus = 1, /datum/reagent/hydrogen = 1)
 	required_temp = 374
 
+/datum/chemical_reaction/methamphetamine/on_reaction(datum/reagents/holder, created_volume, is_cold_recipe)
+	. = ..()
+	// Award achievement for making meth
+	if(ishuman(holder.my_atom.loc))
+		var/mob/living/carbon/human/H = holder.my_atom.loc
+		H.client?.give_award(/datum/award/achievement/lc13/make_meth, H)
+	else if(istype(holder.my_atom, /obj/item/reagent_containers))
+		var/obj/item/reagent_containers/RC = holder.my_atom
+		if(ishuman(RC.loc))
+			var/mob/living/carbon/human/H = RC.loc
+			H.client?.give_award(/datum/award/achievement/lc13/make_meth, H)
+
 /datum/chemical_reaction/bath_salts
 	results = list(/datum/reagent/drug/bath_salts = 7)
 	required_reagents = list(/datum/reagent/toxin/bad_food = 1, /datum/reagent/saltpetre = 1, /datum/reagent/consumable/nutriment = 1, /datum/reagent/space_cleaner = 1, /datum/reagent/consumable/enzyme = 1, /datum/reagent/consumable/tea = 1, /datum/reagent/mercury = 1)

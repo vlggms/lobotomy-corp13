@@ -67,6 +67,12 @@
 	successcount+=1
 
 /mob/living/simple_animal/hostile/abnormality/fan/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
+	// Track FAN triggers for achievement
+	if(user.mind)
+		user.mind.fan_triggers++
+		if(user.mind.fan_triggers >= 5)
+			user.client?.give_award(/datum/award/achievement/lc13/fan_trigger, user)
+
 	if(user in danger)
 		if(safework)
 			to_chat(user, span_notice("You don't feel quite as tempted this time."))

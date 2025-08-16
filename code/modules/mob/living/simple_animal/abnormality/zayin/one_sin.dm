@@ -91,6 +91,8 @@
 				WN.heretics = list()
 				to_chat(WN, span_colossus("The twelfth has betrayed us..."))
 				WN.loot = list() // No loot for you!
+				// Award achievement for killing WhiteNight by confessing
+				user.client?.give_award(/datum/award/achievement/lc13/one_sin_confession, user)
 				var/curr_health = WN.health
 				for(var/i = 1 to 12)
 					sleep(1.5 SECONDS)

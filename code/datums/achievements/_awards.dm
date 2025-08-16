@@ -65,9 +65,21 @@
 /datum/award/proc/on_unlock(mob/user)
 	return
 
+/// Difficulty levels for achievements
+#define ACHIEVEMENT_EASY "Easy"
+#define ACHIEVEMENT_NORMAL "Normal"
+#define ACHIEVEMENT_HARD "Hard"
+#define ACHIEVEMENT_VERYHARD "Very Hard"
+#define ACHIEVEMENT_HARDEST "Hardest"
+
 ///Achievements are one-off awards for usually doing cool things.
 /datum/award/achievement
 	desc = "Achievement for epic people"
+	/// Difficulty of this achievement
+	var/difficulty = ACHIEVEMENT_NORMAL
+	/// Title to display in examine text - should make sense in "Their specialization is [title]!"
+	/// If not set, falls back to using the achievement name
+	var/title
 
 /datum/award/achievement/get_metadata_row()
 	. = ..()
@@ -79,6 +91,22 @@
 /datum/award/achievement/on_unlock(mob/user)
 	. = ..()
 	to_chat(user, span_greenannounce("<B>Achievement unlocked: [name]!</B>"))
+
+/// Returns the hex color associated with this achievement's difficulty
+/datum/award/achievement/proc/get_difficulty_color()
+	switch(difficulty)
+		if(ACHIEVEMENT_EASY)
+			return "#ADD8E6" // Pale blue
+		if(ACHIEVEMENT_NORMAL)
+			return "#00FF00" // Green
+		if(ACHIEVEMENT_HARD)
+			return "#FF0000" // Red
+		if(ACHIEVEMENT_VERYHARD)
+			return "#800080" // Purple
+		if(ACHIEVEMENT_HARDEST)
+			return "#FFA500" // Orange
+		else
+			return "#00FF00" // Default to green
 
 ///Scores are for leaderboarded things, such as killcount of a specific boss
 /datum/award/score

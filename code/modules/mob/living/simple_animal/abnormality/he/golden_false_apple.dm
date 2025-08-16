@@ -189,6 +189,10 @@
 			if(do_after(user, 2 SECONDS, target = user))
 				datum_reference.qliphoth_change(-2)
 				DigestPerson()//becomes its "berserk" form; without an argument it defaults to "Yuri"
+				// Award achievement for breaching Golden Apple with Yuri plushie
+				if(ishuman(user))
+					var/mob/living/carbon/human/H = user
+					H.client?.give_award(/datum/award/achievement/lc13/golden_apple_breach, H)
 				qdel(I)
 				return
 			to_chat(user, span_notice("You feel relieved, as if something weird and terrible was about to happen."))
