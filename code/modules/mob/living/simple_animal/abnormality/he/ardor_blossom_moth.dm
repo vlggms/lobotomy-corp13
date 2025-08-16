@@ -7,16 +7,16 @@
 	icon_state = "blossom_moth"
 	icon_living = "blossom_moth"
 	portrait = "blossom_moth"
-	maxHealth = 1200
-	health = 1200
+	maxHealth = 300
+	health = 300
 	blood_volume = 0
 	ranged = TRUE
 	attack_verb_continuous = "sears"
 	attack_verb_simple = "sear"
 	is_flying_animal = TRUE
 	stat_attack = HARD_CRIT
-	melee_damage_lower = 11
-	melee_damage_upper = 12
+	melee_damage_lower = 4
+	melee_damage_upper = 6
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 2, FIRE = 0.2)
 	speak_emote = list("flutters")
 	vision_range = 14
@@ -32,7 +32,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 20,
 		ABNORMALITY_WORK_REPRESSION = 50,
 	)
-	work_damage_amount = 7
+	work_damage_amount = 5
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/wrath
 	patrol_cooldown_time = 3 SECONDS
@@ -103,6 +103,7 @@
 	plane = FLOOR_PLANE
 	base_icon_state = "turf_fire"
 	var/damaging = FALSE
+	var/damage = 2
 
 /obj/effect/turf_fire/Initialize()
 	. = ..()
@@ -120,7 +121,7 @@
 	for(var/mob/living/L in get_turf(src))
 		if(ishuman(L))
 			var/mob/living/carbon/human/H = L
-			H.deal_damage(4, FIRE)
+			H.deal_damage(damage, FIRE)
 			H.apply_lc_burn(2)
 			dealt_damage = TRUE
 	if(!dealt_damage)

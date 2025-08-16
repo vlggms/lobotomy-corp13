@@ -25,8 +25,8 @@
 	base_pixel_x = -16
 
 	//suppression info
-	maxHealth = 2000
-	health = 2000
+	maxHealth = 700
+	health = 700
 	move_to_delay = 4
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.7)
 
@@ -41,7 +41,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(10, 10, 5, 5, 15),
 		ABNORMALITY_WORK_REPRESSION = list(50, 45, 50, 55, 55),
 	)
-	work_damage_amount = 10
+	work_damage_amount = 7
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/wrath
 
@@ -68,8 +68,8 @@
 	//Melee stats
 	attack_sound = 'sound/abnormalities/thunderbird/tbird_peck.ogg'
 	stat_attack = HARD_CRIT
-	melee_damage_lower = 10
-	melee_damage_upper = 15
+	melee_damage_lower = 4
+	melee_damage_upper = 6
 	melee_damage_type = BLACK_DAMAGE
 	rapid_melee = 2
 	attack_verb_continuous = "pecks"
@@ -147,7 +147,7 @@
 	QDEL_IN(src, 10 SECONDS)
 	..()
 
-//fires bombs that deal 45 black damage towards anyone within 1 tile, they also turn the dead and dying into zombies.
+//fires bombs that deal 10 black damage towards anyone within 1 tile, they also turn the dead and dying into zombies.
 /mob/living/simple_animal/hostile/abnormality/thunder_bird/Life()
 	. = ..()
 	if(!.) // Dead
@@ -212,7 +212,7 @@
 			playsound(L, attack_sound, 75, 1)
 			var/turf/LT = get_turf(L)
 			new /obj/effect/temp_visual/kinetic_blast(LT)
-			L.deal_damage(100, BLACK_DAMAGE)
+			L.deal_damage(30, BLACK_DAMAGE)
 			if(ishuman(L))
 				var/mob/living/carbon/human/H = L
 				H.electrocute_act(1, src, flags = SHOCK_NOSTUN)
@@ -224,7 +224,7 @@
 		visible_message(span_boldwarning("[src] runs through [V]!"))
 		to_chat(V.occupants, span_userdanger("[src] rushes past you, arcing electricity throughout the way!"))
 		playsound(V, attack_sound, 75, 1)
-		V.take_damage(100, BLACK_DAMAGE, attack_dir = get_dir(V, src))
+		V.take_damage(30, BLACK_DAMAGE, attack_dir = get_dir(V, src))
 		been_hit += V
 	addtimer(CALLBACK(src, PROC_REF(do_dash), move_dir, (times_ran + 1)), 1)
 
@@ -234,7 +234,7 @@
 	. = ..()
 	if(user.health > (user.maxHealth*0.8))
 		datum_reference.qliphoth_change(1)
-		user.deal_damage(45, BLACK_DAMAGE)
+		user.deal_damage(10, BLACK_DAMAGE)
 		playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, TRUE)
 		say(pick(thunder_bird_lines))
 		user.electrocute_act(1, src, flags = SHOCK_NOSTUN)
@@ -291,7 +291,7 @@
 	pull_force = INFINITY
 	generic_canpass = FALSE
 	movement_type = PHASING | FLYING
-	var/boom_damage = 50
+	var/boom_damage = 15
 	layer = POINT_LAYER	//Sprite should always be visible
 	var/mob/living/simple_animal/hostile/abnormality/thunder_bird/master
 	var/duration = 3 SECONDS
@@ -355,13 +355,13 @@
 	attack_sound = 'sound/abnormalities/thunderbird/tbird_zombieattack.ogg'
 
 	/*Zombie Stats */
-	health = 250//subject to change; they all die when thunderbird is suppressed
-	maxHealth = 250
+	health = 50//subject to change; they all die when thunderbird is suppressed
+	maxHealth = 50
 	obj_damage = 60
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
 	melee_damage_type = BLACK_DAMAGE
-	melee_damage_lower = 20
-	melee_damage_upper = 30
+	melee_damage_lower = 6
+	melee_damage_upper = 8
 	speed = 5
 	move_to_delay = 3
 	robust_searching = TRUE

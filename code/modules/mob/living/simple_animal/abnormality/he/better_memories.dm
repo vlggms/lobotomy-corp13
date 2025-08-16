@@ -25,7 +25,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(20, 20, 40, 50, 50),
 		ABNORMALITY_WORK_REPRESSION = list(60, 65, 40, 20, 20)
 		)
-	work_damage_amount = 10
+	work_damage_amount = 5
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/sloth
 
@@ -112,12 +112,12 @@
 	icon_state = "better_memories_a"
 	base_pixel_x = -16
 	pixel_x = -16
-	health = 1000
-	maxHealth = 1000
+	health = 150
+	maxHealth = 150
 	melee_damage_type = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
-	melee_damage_lower = 4
-	melee_damage_upper = 8
+	melee_damage_lower = 2
+	melee_damage_upper = 4
 	rapid_melee = 2
 	move_to_delay = 2
 	robust_searching = TRUE
@@ -551,7 +551,7 @@
 	var/mob/living/carbon/human/L = owner
 	if(L.sanity_lost || L.stat == DEAD)
 		qdel(src)
-	L.deal_damage(10, WHITE_DAMAGE)
+	L.deal_damage(2, WHITE_DAMAGE)
 	//Unsure if these statements explain what is happening to your character but its enough. -IP
 	to_chat(owner, pick(
 		span_warning("You have trouble recalling your life before this job."),

@@ -86,16 +86,16 @@
 		return
 
 	if(ContractedUser(user, work_type))
-		. /= 2
+		. *= 0.5
 
 	return
 
 /mob/living/simple_animal/hostile/abnormality/contract/AttemptWork(mob/living/carbon/human/user, work_type)
 	work_damage_amount = initial(work_damage_amount)
 	if(ContractedUser(user, work_type) && .)
-		work_damage_amount /= 3
+		work_damage_amount *= 0.3
 	if(user in total_havers)
-		work_damage_amount /= 1.2
+		work_damage_amount *= 0.8
 		say("Yes, yes... I remember the contract.")
 
 	. = ..()

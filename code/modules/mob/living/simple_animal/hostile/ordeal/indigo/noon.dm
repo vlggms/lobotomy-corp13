@@ -7,13 +7,13 @@
 	icon_living = "sweeper_1"
 	icon_dead = "sweeper_dead"
 	faction = list("indigo_ordeal")
-	maxHealth = 500
-	health = 500
+	maxHealth = 160
+	health = 160
 	move_to_delay = 4
 	stat_attack = DEAD
 	melee_damage_type = BLACK_DAMAGE
-	melee_damage_lower = 20
-	melee_damage_upper = 24
+	melee_damage_lower = 6
+	melee_damage_upper = 8
 	butcher_results = list(/obj/item/food/meat/slab/sweeper = 2)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sweeper = 1)
 	attack_verb_continuous = "stabs"
@@ -121,16 +121,16 @@
 /// This subtype moves faster, attacks faster, deals less damage per hit, and has access to a dash attack.
 /// Uses the lanky sweeper sprite made by insiteparaful.
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/lanky
-	health = 300
-	maxHealth = 300
+	health = 100
+	maxHealth = 100
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "sweeper_limbus"
 	icon_living = "sweeper_limbus"
 	desc = "A humanoid creature wearing metallic armor. It has bloodied hooks in its hands.\nThis one seems to move with far more agility than its peers."
 	move_to_delay = 2.7
 	rapid_melee = 2
-	melee_damage_lower = 11
-	melee_damage_upper = 13
+	melee_damage_lower = 4
+	melee_damage_upper = 6
 	simple_mob_flags = SILENCE_RANGED_MESSAGE
 	/// This shouldn't matter until it goes into evasive mode.
 	dodge_prob = 40
@@ -147,7 +147,7 @@
 	/// Sweep the Backstreets ability range in tiles.
 	var/dash_range = 3
 	/// Sweep the Backstreets healing per human hit.
-	var/dash_healing = 80
+	var/dash_healing = 20
 	/// Are we currently during the dash windup phase?
 	var/dash_preparing = FALSE
 	/// Are we currently dashing?

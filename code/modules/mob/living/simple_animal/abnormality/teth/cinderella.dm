@@ -6,8 +6,8 @@
 	icon_state = "cinderella_1"
 	icon_living = "cinderella_1"
 	portrait = "cinderella"
-	maxHealth = 800
-	health = 800
+	maxHealth = 200
+	health = 200
 	start_qliphoth = 1
 	threat_level = TETH_LEVEL
 	work_chances = list(
@@ -18,7 +18,7 @@
 	)
 	pixel_x = -16
 	base_pixel_x = -16
-	work_damage_amount = 5
+	work_damage_amount = 3
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/lust
 	ego_list = list(
@@ -155,7 +155,7 @@
 					else
 						playsound(get_turf(seg), 'sound/abnormalities/cinderella/horse2.ogg', 100, 0, 40)
 					seg.noise = 1
-				M.deal_damage(80, WHITE_DAMAGE)
+				M.deal_damage(20, WHITE_DAMAGE)
 				if(ishuman(M))
 					var/mob/living/carbon/human/C = M
 					if(C.sanity_lost)

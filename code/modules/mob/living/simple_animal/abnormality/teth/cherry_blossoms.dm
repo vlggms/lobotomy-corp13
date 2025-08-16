@@ -9,8 +9,8 @@
 	base_pixel_x = -48
 	pixel_y = -16
 	base_pixel_y = -16
-	maxHealth = 600
-	health = 600
+	maxHealth = 150
+	health = 150
 	threat_level = TETH_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 40,
@@ -19,7 +19,7 @@
 		ABNORMALITY_WORK_REPRESSION = 20,
 	)
 	start_qliphoth = 3
-	work_damage_amount = 5
+	work_damage_amount = 3
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/lust
 	good_hater = TRUE

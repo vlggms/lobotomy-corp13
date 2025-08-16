@@ -10,8 +10,8 @@
 	base_pixel_x = -16
 
 	ranged = TRUE
-	maxHealth = 2000
-	health = 2000
+	maxHealth = 700
+	health = 700
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	stat_attack = HARD_CRIT
 	death_sound = 'sound/abnormalities/dreamingcurrent/dead.ogg'
@@ -24,7 +24,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(45, 45, 45, 50, 55),
 		ABNORMALITY_WORK_REPRESSION = 45,
 	)
-	work_damage_amount = 10
+	work_damage_amount = 7
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gluttony
 
@@ -57,7 +57,7 @@
 	var/charging = FALSE
 	var/dash_cooldown
 	var/dash_cooldown_time = 8 SECONDS
-	var/dash_damage = 200
+	var/dash_damage = 120
 	/// Delay between each subsequent move when charging
 	var/dash_speed = 0.8
 	/// How many paths do we create between several landmarks?

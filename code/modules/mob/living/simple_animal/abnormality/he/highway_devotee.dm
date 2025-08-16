@@ -5,8 +5,8 @@
 	icon_state = "highway_devotee"
 	icon_living = "highway_devotee"
 	portrait = "highway_devotee"
-	maxHealth = 1200
-	health = 1200
+	maxHealth = 300
+	health = 300
 	ranged = TRUE
 	attack_verb_continuous = "scorns"
 	attack_verb_simple = "scorn"
@@ -24,7 +24,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(30, 20, 10, 0, 0),
 		ABNORMALITY_WORK_REPRESSION = list(30, 20, 10, 0, 0),
 	)
-	work_damage_amount = 11
+	work_damage_amount = 5
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/sloth
 

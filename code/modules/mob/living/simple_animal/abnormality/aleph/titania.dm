@@ -6,8 +6,8 @@
 	icon_state = "titania"
 	icon_living = "titania"
 	portrait = "titania"
-	maxHealth = 3500
-	health = 3500
+	maxHealth = 1750
+	health = 1750
 	is_flying_animal = TRUE
 	threat_level = ALEPH_LEVEL
 	work_chances = list(
@@ -19,13 +19,13 @@
 	start_qliphoth = 3
 	move_to_delay = 4
 
-	work_damage_amount = 16
+	work_damage_amount = 9
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/lust
 	can_breach = TRUE
 
-	melee_damage_lower = 92
-	melee_damage_upper = 99		//Will never one shot you.
+	melee_damage_lower = 30
+	melee_damage_upper = 33		//Will never one shot you.
 	melee_damage_type = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1)
 	stat_attack = HARD_CRIT
@@ -57,7 +57,7 @@
 	var/list/laws = list("melee", "ranged", "fairy", "armor", "nemesis", "ranged fairy")
 	var/currentlaw
 	var/nextlaw
-	var/law_damage = 30		//Take damage, idiot
+	var/law_damage = 10		//Take damage, idiot
 	var/law_timer = 60 SECONDS
 	var/law_startup = 3 SECONDS
 	//Oberon stuff
@@ -103,7 +103,7 @@
 
 	if(istype(H) && H.stat == DEAD && H == nemesis)		//Does she slay Oberon personally? If so, get buffed.
 		ChangeMoveToDelayBy(-1)
-		melee_damage_lower = 110
+		melee_damage_lower = 110//pale damage
 		melee_damage_upper = 140
 		adjustBruteLoss(-maxHealth, forced = TRUE) // Round 2, baby
 

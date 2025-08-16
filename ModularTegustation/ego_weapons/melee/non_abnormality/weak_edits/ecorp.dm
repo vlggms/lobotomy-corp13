@@ -1,6 +1,6 @@
 //Wedge
 /obj/item/ego_weapon/city/wedge/weak
-	force = 35
+	force = 17
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 60,

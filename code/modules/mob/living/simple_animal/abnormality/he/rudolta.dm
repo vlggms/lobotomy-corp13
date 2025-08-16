@@ -8,8 +8,8 @@
 	icon_living = "rudolta"
 	icon_dead = "rudolta_dead"
 	portrait = "rudolta"
-	maxHealth = 1200
-	health = 1200
+	maxHealth = 250
+	health = 250
 	pixel_x = -16
 	base_pixel_x = -16
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2, FIRE = 1.5)
@@ -25,7 +25,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(40, 50, 50, 45, 40),
 		ABNORMALITY_WORK_REPRESSION = 0,
 	)
-	work_damage_amount = 10
+	work_damage_amount = 5
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/sloth
 	friendly_verb_continuous = "scorns"
@@ -54,7 +54,7 @@
 
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 1.8 SECONDS
-	var/pulse_damage = 20
+	var/pulse_damage = 5
 
 /mob/living/simple_animal/hostile/abnormality/rudolta/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()

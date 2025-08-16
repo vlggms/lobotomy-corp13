@@ -5,8 +5,8 @@
 	icon_state = "cube"
 	icon_living = "cube"
 	portrait = "cube"
-	maxHealth = 50
-	health = 50
+	maxHealth = 25
+	health = 25
 	is_flying_animal = TRUE
 	threat_level = TETH_LEVEL
 	move_to_delay = 6
@@ -16,7 +16,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 70,
 		ABNORMALITY_WORK_REPRESSION = 30,
 	)
-	work_damage_amount = 4
+	work_damage_amount = 2
 	work_damage_type = WHITE_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1)
 	can_breach = TRUE

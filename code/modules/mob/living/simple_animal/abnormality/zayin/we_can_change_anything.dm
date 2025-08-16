@@ -5,8 +5,8 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "wecanchange"
 	portrait = "we_can_change_anything"
-	maxHealth = 1000
-	health = 1000
+	maxHealth = 250
+	health = 250
 	threat_level = ZAYIN_LEVEL
 	damage_coeff = list(RED_DAMAGE = 2, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.5)
 	work_chances = list(
@@ -102,7 +102,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/we_can_change_anything/Worktick(mob/living/carbon/human/user)
 	if(!sacrifice)
-		user.deal_damage(5, RED_DAMAGE) // say goodbye to your kneecaps chucklenuts!
+		user.deal_damage(1, RED_DAMAGE) // say goodbye to your kneecaps chucklenuts!
 	else
 		do_shaky_animation(1)
 		playsound(get_turf(src), 'sound/abnormalities/we_can_change_anything/change_generate.ogg', 30, FALSE)
@@ -111,8 +111,8 @@
 				ramping_speed -= 0.2
 			if(8 to 20)
 				ramping_speed -= 0.5
-		user.deal_damage(8, RED_DAMAGE) // say goodbye to a bit more than your kneecaps... (total damage is 800 RED).
-		total_damage += 8
+		user.deal_damage(1, RED_DAMAGE) // say goodbye to a bit more than your kneecaps... (total damage is 100 RED).
+		total_damage += 1
 
 /mob/living/simple_animal/hostile/abnormality/we_can_change_anything/SpeedWorktickOverride(mob/living/carbon/human/user, work_speed, init_work_speed, work_type)
 	if(!sacrifice)
@@ -125,7 +125,7 @@
 	else
 		playsound(src, 'sound/abnormalities/we_can_change_anything/change_gas.ogg', 50, TRUE)
 		sacrifice = FALSE
-		var/energy_generated = round(10 ** ( (total_damage/100) * 0.375) ) // exponential formula, caps out at 800 damage, generating 1000 PE.
+		var/energy_generated = round(10 ** (total_damage * 0.003)) // exponential formula, caps out at 100 damage, generating 1000 PE.
 
 		if(user.health <= 0)
 			qdel(user) //reduced to atoms

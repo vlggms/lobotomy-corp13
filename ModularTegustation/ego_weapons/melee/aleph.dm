@@ -5,7 +5,7 @@
 	special = "This weapon has a ranged attack."
 	icon_state = "paradise"
 	worn_icon_state = "paradise"
-	force = 70
+	force = 40
 	damtype = PALE_DAMAGE
 	attack_verb_continuous = list("purges", "purifies")
 	attack_verb_simple = list("purge", "purify")
@@ -18,7 +18,7 @@
 	)
 	var/ranged_cooldown
 	var/ranged_cooldown_time = 0.8 SECONDS
-	var/ranged_damage = 70
+	var/ranged_damage = 40
 
 /obj/item/ego_weapon/paradise/afterattack(atom/A, mob/living/user, proximity_flag, params)
 	if(ranged_cooldown > world.time)
@@ -55,7 +55,7 @@
 	desc = "A sharp sword covered in bandages. It may be able to not only cut flesh but trace of sins as well."
 	special = "This weapon has a combo system."
 	icon_state = "justitia"
-	force = 25
+	force = 14
 	damtype = PALE_DAMAGE
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
@@ -93,7 +93,7 @@
 			user.changeNext_move(CLICK_CD_MELEE * 1.2)
 			var/turf/T = get_turf(M)
 			new /obj/effect/temp_visual/justitia_effect(T)
-			user.HurtInTurf(T, list(), 50, PALE_DAMAGE)
+			user.HurtInTurf(T, list(), 26, PALE_DAMAGE)
 		else
 			hitsound = 'sound/weapons/ego/justitia1.ogg'
 			user.changeNext_move(CLICK_CD_MELEE * 0.4)
@@ -110,7 +110,7 @@
 	If there were a score for this song, it would be one that sings of the apocalypse."
 	special = "This weapon has a combo system, but only on a single enemy."
 	icon_state = "da_capo"
-	force = 40 // It attacks very fast
+	force = 20 // It attacks very fast
 	attack_speed = 0.5
 	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = WHITE_DAMAGE
@@ -165,7 +165,7 @@
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	force = 65
+	force = 35
 	damtype = RED_DAMAGE
 	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
@@ -203,7 +203,7 @@
 	The wielder of this armament may also bring peace as they did."
 	icon_state = "twilight"
 	worn_icon_state = "twilight"
-	force = 35
+	force = 20
 	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = RED_DAMAGE // It's all damage types, actually
 	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
@@ -235,7 +235,7 @@
 	desc = "The weapon of someone who can swing their weight around like a truck"
 	special = "This weapon deals its damage after a short windup."
 	icon_state = "gold_rush"
-	force = 140
+	force = 70
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -266,7 +266,7 @@
 		goldrush_damage *= force_multiplier
 
 		if(ishuman(target))
-			goldrush_damage = 50
+			goldrush_damage = 25
 
 		target.apply_damage(goldrush_damage, RED_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)		//MASSIVE fuckoff punch
 
@@ -291,7 +291,7 @@
 	desc = "The monstrous mouth opens wide to devour the target, its hunger insatiable."
 	special = "This weapon instantly kills targets below 10% health"	//To make it more unique, if it's too strong
 	icon_state = "smile"
-	force = 110 //Slightly less damage, has an ability
+	force = 58 //Slightly less damage, has an ability
 	attack_speed = 1.6
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("slams", "attacks")
@@ -330,7 +330,7 @@
 	desc = "A rose is a rose, by any other name."
 	special = "Use this weapon to change its damage type between red, white and pale."	//like a different rabbit knife. No black though
 	icon_state = "rosered"
-	force = 80 //Less damage, can swap damage type
+	force = 40 //Less damage, can swap damage type
 	damtype = RED_DAMAGE
 	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_verb_continuous = list("cuts", "slices")
@@ -347,15 +347,15 @@
 	switch(damtype)
 		if(RED_DAMAGE)
 			damtype = WHITE_DAMAGE
-			force = 70 //Prefers red, you can swap to white if needed
+			force = 40 //Prefers red, you can swap to white if needed
 			icon_state = "rosewhite"
 		if(WHITE_DAMAGE)
 			damtype = PALE_DAMAGE
-			force = 50
+			force = 30
 			icon_state = "rosepale"
 		if(PALE_DAMAGE)
 			damtype = RED_DAMAGE
-			force = 80
+			force = 40
 			icon_state = "rosered"
 	to_chat(user, span_notice("[src] will now deal [force] [damtype] damage."))
 	playsound(src, 'sound/items/screwdriver2.ogg', 50, TRUE)
@@ -367,7 +367,7 @@
 	special = "Using it in hand will activate its special ability. To perform this attack - click on a distant target."
 	icon_state = "censored"
 	worn_icon_state = "censored"
-	force = 70	//there's a focus on the ranged attack here.
+	force = 35	//there's a focus on the ranged attack here.
 	damtype = BLACK_DAMAGE
 	swingstyle = WEAPONSWING_THRUST
 	attack_verb_continuous = list("attacks")
@@ -381,7 +381,7 @@
 							)
 
 	var/special_attack = FALSE
-	var/special_damage = 240
+	var/special_damage = 120
 	var/special_cooldown
 	var/special_cooldown_time = 10 SECONDS
 	var/special_checks_faction = TRUE
@@ -441,7 +441,7 @@
 	desc = "The course of true love never did run smooth."
 	special = "Hitting enemies will mark them. Hitting marked enemies will give different buffs depending on attack type."
 	icon_state = "soulmate"
-	force = 40
+	force = 20
 	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = RED_DAMAGE
 	attack_speed = 0.8
@@ -495,7 +495,7 @@
 			return
 		var/obj/projectile/ego_bullet/gunblade/G = new /obj/projectile/ego_bullet/gunblade(proj_turf)
 		if(gunbuff)
-			G.damage = 90
+			G.damage = 45
 			G.icon_state = "red_laser"
 			playsound(user, 'sound/weapons/ionrifle.ogg', 100, TRUE)
 		else
@@ -541,7 +541,7 @@
 
 /obj/projectile/ego_bullet/gunblade
 	name = "energy bullet"
-	damage = 60
+	damage = 30
 	damage_type = RED_DAMAGE
 	icon_state = "ice_1"
 
@@ -550,7 +550,7 @@
 	desc = "It hails from realms whose mere existence stuns the brain and numbs us with the black extra-cosmic gulfs it throws open before our frenzied eyes."
 	special = "Use this weapon in hand to dash. Attack after a dash for an AOE."
 	icon_state = "space"
-	force = 50	//Half white, half black.
+	force = 25	//Half white, half black.
 	damtype = WHITE_DAMAGE
 	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_verb_continuous = list("cuts", "attacks", "slashes")
@@ -632,7 +632,7 @@
 	desc = "If you are reading this let a developer know."
 	special = "This E.G.O. will transform to match the seasons."
 	icon_state = "spring"
-	force = 80
+	force = 40
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs")
 	attack_verb_simple = list("poke", "jab")
@@ -640,13 +640,13 @@
 	var/current_season = "winter"
 	var/mob/current_holder
 	var/list/season_list = list(
-		"spring" = list(80, 1, 1, list("bashes", "bludgeons"), list("bash", "bludgeon"), 'sound/weapons/fixer/generic/gen1.ogg', "vernal equinox", WHITE_DAMAGE, WHITE_DAMAGE,
+		"spring" = list(40, 1, 1, list("bashes", "bludgeons"), list("bash", "bludgeon"), 'sound/weapons/fixer/generic/gen1.ogg', "vernal equinox", WHITE_DAMAGE, WHITE_DAMAGE,
 		"A gigantic, thorny bouquet of roses."),
-		"summer" = list(120, 1.6, 1, list("tears", "slices", "mutilates"), list("tear", "slice","mutilate"), 'sound/abnormalities/seasons/summer_attack.ogg', "summer solstice", RED_DAMAGE, RED_DAMAGE,
+		"summer" = list(60, 1.6, 1, list("tears", "slices", "mutilates"), list("tear", "slice","mutilate"), 'sound/abnormalities/seasons/summer_attack.ogg', "summer solstice", RED_DAMAGE, RED_DAMAGE,
 		"Looks some sort of axe or bladed mace. An unbearable amount of heat comes off of it."),
-		"fall" = list(100, 1.2, 1, list("crushes", "burns"), list("crush", "burn"), 'sound/abnormalities/seasons/fall_attack.ogg', "autumnal equinox",BLACK_DAMAGE ,BLACK_DAMAGE,
+		"fall" = list(50, 1.2, 1, list("crushes", "burns"), list("crush", "burn"), 'sound/abnormalities/seasons/fall_attack.ogg', "autumnal equinox",BLACK_DAMAGE ,BLACK_DAMAGE,
 		"In nature, a light is often used as a simple but effective lure. This weapon follows the same premise."),
-		"winter" = list(80, 1, 2, list("skewers", "jabs"), list("skewer", "jab"), 'sound/abnormalities/seasons/winter_attack.ogg', "winter solstice",PALE_DAMAGE ,PALE_DAMAGE,
+		"winter" = list(40, 1, 2, list("skewers", "jabs"), list("skewer", "jab"), 'sound/abnormalities/seasons/winter_attack.ogg', "winter solstice",PALE_DAMAGE ,PALE_DAMAGE,
 		"This odd weapon is akin to the biting cold of the north.")
 		)
 	var/transforming = TRUE
@@ -732,7 +732,7 @@
 	desc = "The fragile human mind is fated to twist and distort."
 	special = "This weapon requires two hands to use and always blocks ranged attacks."
 	icon_state = "distortion"
-	force = 35 //Twilight but lower in terms of damage
+	force = 20 //Twilight but lower in terms of damage
 	attack_speed = 1.8
 	damtype = RED_DAMAGE
 	knockback = KNOCKBACK_MEDIUM
@@ -802,7 +802,7 @@
 	desc = "What use is technology that cannot change the world?"
 	special = "Activate this weapon in your hand to plant 4 trees of desire. Killing them with this weapon restores HP and sanity."
 	icon_state = "farmwatch"
-	force = 84
+	force = 50
 	attack_speed = 1.3
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("slashes", "slices", "rips", "cuts", "reaps")
@@ -822,10 +822,10 @@
 		return
 	if(istype(target, /mob/living/simple_animal/hostile/farmwatch_plant))
 		if (force <= (initial(force) * 2))
-			force += 22//this is a bit over one fourth of 84. Keeps nice whole numbers on examine text
+			force += 25//this is a bit over one half of 50. Keeps nice whole numbers on examine text
 		playsound(src, 'sound/weapons/ego/farmwatch_tree.ogg', 200, 1)
-		user.adjustBruteLoss(-10)
-		user.adjustSanityLoss(-15)
+		user.adjustBruteLoss(-8)
+		user.adjustSanityLoss(-12)
 		to_chat(user, span_notice("You reap the fruits of your labor!"))
 		..()
 		return
@@ -860,7 +860,7 @@
 	icon_state = "spicebush"
 	worn_icon = 'icons/obj/clothing/belt_overlays.dmi'
 	worn_icon_state = "spicebush"
-	force = 70
+	force = 35
 	reach = 2
 	attack_speed = 1.2
 	damtype = WHITE_DAMAGE
@@ -911,7 +911,7 @@
 	hitsound = 'sound/weapons/slap.ogg'
 	var/ranged_cooldown
 	var/ranged_cooldown_time = 1 SECONDS
-	var/ranged_damage = 70
+	var/ranged_damage = 35
 
 /obj/item/ego_weapon/spicebush/fan/proc/ResetIcons()
 	playsound(src, 'sound/weapons/ego/spicebush_openfan.ogg', 50, TRUE)
@@ -959,7 +959,7 @@
 	name = "the flesh is willing"
 	desc = "And really nothing will stop it."
 	icon_state = "willing"
-	force = 105	//Still lower DPS
+	force = 55	//Still lower DPS
 	attack_speed = 1.4
 	damtype = RED_DAMAGE
 	knockback = KNOCKBACK_LIGHT
@@ -979,7 +979,7 @@
 	Will you remember me as that name, as someone whom you cared for?"
 	special = "Use this weapon in hand to swap between forms. The whip has higher reach, the hammer deals damage in an area, and the bat knocks back enemies."
 	icon_state = "mockery_whip"
-	force = 35
+	force = 18
 	attack_speed = 0.5
 	reach = 3
 	damtype = BLACK_DAMAGE
@@ -995,10 +995,10 @@
 	var/mob/current_holder
 	var/form = "whip"
 	var/list/weapon_list = list(
-		"whip" = list(35, 0.5, 3, list("lacerates", "disciplines"), list("lacerate", "discipline"), 'sound/weapons/whip.ogg'),
-		"sword" = list(80, 1, 1, list("tears", "slices", "mutilates"), list("tear", "slice","mutilate"), 'sound/weapons/fixer/generic/blade4.ogg'),
-		"hammer" = list(40, 1.4, 1, list("crushes"), list("crush"), 'sound/weapons/fixer/generic/baton2.ogg'),
-		"bat" = list(120, 1.6, 1, list("bludgeons", "bashes"), list("bludgeon", "bash"), 'sound/weapons/fixer/generic/gen1.ogg')
+		"whip" = list(18, 0.5, 3, list("lacerates", "disciplines"), list("lacerate", "discipline"), 'sound/weapons/whip.ogg'),
+		"sword" = list(40, 1, 1, list("tears", "slices", "mutilates"), list("tear", "slice","mutilate"), 'sound/weapons/fixer/generic/blade4.ogg'),
+		"hammer" = list(20, 1.4, 1, list("crushes"), list("crush"), 'sound/weapons/fixer/generic/baton2.ogg'),
+		"bat" = list(60, 1.6, 1, list("bludgeons", "bashes"), list("bludgeon", "bash"), 'sound/weapons/fixer/generic/gen1.ogg')
 		)
 
 /obj/item/ego_weapon/mockery/Initialize()
@@ -1086,7 +1086,7 @@
 	hitsound = weapon_list[form][6]
 
 /obj/item/ego_weapon/oberon
-	name = "oberon"
+	name = "fairy king"
 	desc = "Then yes, I am the Oberon you seek."
 	special = "Use this weapon in hand to swap between forms. This form has higher reach, hits 3 times, and builds up attack speed before unleasheing a powerful burst of damage."
 	icon_state = "oberon_whip"
@@ -1094,7 +1094,7 @@
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	force = 30
+	force = 20
 	attack_speed = 0.8
 	reach = 3
 	damtype = BLACK_DAMAGE
@@ -1110,11 +1110,11 @@
 	var/mob/current_holder
 	var/form = "whip"
 	var/list/weapon_list = list(
-		"whip" = list(30, 0.8, 3, list("lacerates", "disciplines"), list("lacerate", "discipline"), 'sound/weapons/whip.ogg', BLACK_DAMAGE, "This form has higher reach, hits 3 times, and builds up attack speed before unleasheing a powerful burst of damage."),
-		"sword" = list(55, 0.8, 1, list("tears", "slices", "mutilates"), list("tear", "slice","mutilate"), 'sound/weapons/fixer/generic/blade4.ogg', BLACK_DAMAGE, "This form can fire a projectile and does both RED DAMAGE and BLACK DAMAGE."),
-		"hammer" = list(55, 1.4, 1, list("crushes"), list("crush"), 'sound/weapons/fixer/generic/baton2.ogg', BLACK_DAMAGE, "This form deals damage in an area and incease the RED and BLACK vulnerability by 0.2 to everything in that area."),
-		"bat" = list(160, 1.6, 1, list("bludgeons", "bashes"), list("bludgeon", "bash"), 'sound/weapons/fixer/generic/gen1.ogg', RED_DAMAGE, "This form does RED DAMAGE and knocks back enemies."),
-		"scythe" = list(100, 1.2, 1, list("slashes", "slices", "rips", "cuts"), list("slash", "slice", "rip", "cut"), 'sound/abnormalities/nothingthere/attack.ogg', RED_DAMAGE, "This form does RED DAMAGE and does 50% more damage when hitting targets below 50% health.")
+		"whip" = list(20, 0.8, 3, list("lacerates", "disciplines"), list("lacerate", "discipline"), 'sound/weapons/whip.ogg', BLACK_DAMAGE, "This form has higher reach, hits 3 times, and builds up attack speed before unleasheing a powerful burst of damage."),
+		"sword" = list(30, 0.8, 1, list("tears", "slices", "mutilates"), list("tear", "slice","mutilate"), 'sound/weapons/fixer/generic/blade4.ogg', BLACK_DAMAGE, "This form can fire a projectile and does both RED DAMAGE and BLACK DAMAGE."),
+		"hammer" = list(25, 1.4, 1, list("crushes"), list("crush"), 'sound/weapons/fixer/generic/baton2.ogg', BLACK_DAMAGE, "This form deals damage in an area and incease the RED and BLACK vulnerability by 0.2 to everything in that area."),
+		"bat" = list(80, 1.6, 1, list("bludgeons", "bashes"), list("bludgeon", "bash"), 'sound/weapons/fixer/generic/gen1.ogg', RED_DAMAGE, "This form does RED DAMAGE and knocks back enemies."),
+		"scythe" = list(50, 1.2, 1, list("slashes", "slices", "rips", "cuts"), list("slash", "slice", "rip", "cut"), 'sound/abnormalities/nothingthere/attack.ogg', RED_DAMAGE, "This form does RED DAMAGE and does 50% more damage when hitting targets below 50% health.")
 		)
 	var/gun_cooldown
 	var/gun_cooldown_time = 1 SECONDS
@@ -1163,9 +1163,9 @@
 			if(target.health <= (target.maxHealth * 0.5))
 				playsound(get_turf(target), 'sound/abnormalities/nothingthere/goodbye_attack.ogg', 75, 0, 7)
 				new /obj/effect/temp_visual/nobody_grab(get_turf(target))
-				force = 150
+				force = 75
 			else
-				force = 100
+				force = 50
 
 		if("bat")
 			knockback = KNOCKBACK_MEDIUM
@@ -1230,7 +1230,7 @@
 	playsound(user, 'sound/abnormalities/woodsman/woodsman_prepare.ogg', 50, 0, 3)
 	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 	var/justicemod = 1 + userjust/100
-	var/smash_damage = 170
+	var/smash_damage = 85
 	smash_damage *= justicemod
 	sleep(0.5 SECONDS)
 	for(var/i = 0; i < 3; i++)
@@ -1258,7 +1258,7 @@
 				if(!isturf(proj_turf))
 					return
 				var/obj/projectile/ego_bullet/gunblade/G = new /obj/projectile/ego_bullet/gunblade(proj_turf)
-				G.damage = 90
+				G.damage = 45
 				G.icon_state = "red_laser"
 				playsound(user, 'sound/weapons/ionrifle.ogg', 100, TRUE)
 				G.firer = user
@@ -1318,7 +1318,7 @@
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	force = 70
+	force = 35
 	attack_speed = 1.2
 	damtype = PALE_DAMAGE
 	attack_verb_continuous = list("stabs", "jabs", "slaps", "skewers")
@@ -1343,9 +1343,9 @@
 	var/burst_size = 5
 	var/matching_armor = /obj/item/clothing/suit/armor/ego_gear/realization/gasharpoon
 	var/list/weapon_list = list(
-		"pip" = list(40, 1.6, 1, 'sound/weapons/ego/gasharpoon_piphit.ogg', "You burn the E.G.O of the innocent deckhand."),
-		"starbuck" = list(70, 1, 1, 'sound/weapons/ego/gasharpoon_starbuckhit.ogg', "Your burn the E.G.O of your first mate."),
-		"queeqeg" = list(70, 1.6, 2, 'sound/weapons/ego/gasharpoon_queehit.ogg', "You burn the E.G.O of the indominable harpooneer.")
+		"pip" = list(20, 1.6, 1, 'sound/weapons/ego/gasharpoon_piphit.ogg', "You burn the E.G.O of the innocent deckhand."),
+		"starbuck" = list(35, 1, 1, 'sound/weapons/ego/gasharpoon_starbuckhit.ogg', "Your burn the E.G.O of your first mate."),
+		"queeqeg" = list(35, 1.6, 2, 'sound/weapons/ego/gasharpoon_queehit.ogg', "You burn the E.G.O of the indominable harpooneer.")
 		)
 
 /obj/item/ego_weapon/shield/gasharpoon/Initialize()
@@ -1371,7 +1371,7 @@
 	if(form != "pip")//pip form gets an AOE attack
 		return
 	for(var/mob/living/L in view(1, M))
-		var/aoe = 30
+		var/aoe = 15
 		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 		var/justicemod = 1 + userjust/100
 		aoe*=justicemod
@@ -1431,7 +1431,7 @@
 
 /obj/item/ego_weapon/shield/gasharpoon/AnnounceBlock(mob/living/carbon/user)//block
 	..()
-	var/aoe = 5
+	var/aoe = 3
 	var/userfort = (get_modified_attribute_level(user, FORTITUDE_ATTRIBUTE))
 	var/fortmod = 1 + userfort/100
 	aoe*=fortmod
@@ -1529,7 +1529,7 @@
 /obj/projectile/ego_bullet/gasharpoon
 	name = "harpoon"
 	icon_state = "gasharpoon"
-	damage = 25
+	damage = 15
 	damage_type = PALE_DAMAGE
 	hitsound = "sound/weapons/ego/gasharpoon_bullet_impact.ogg"
 
@@ -1544,11 +1544,11 @@
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	force = 90
+	force = 45
 	damtype = WHITE_DAMAGE
 	wielded_attack_speed = 0.5
 	wielded_reach = 2
-	wielded_force = 52
+	wielded_force = 27
 	attack_speed = 1.2
 	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
 	attack_verb_simple = list("slash", "slice", "rip", "cut")

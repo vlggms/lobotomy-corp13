@@ -16,7 +16,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 35,
 		ABNORMALITY_WORK_REPRESSION = 35,
 	)
-	work_damage_amount = 8
+	work_damage_amount = 7
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/sloth
 	pixel_x = -16
@@ -189,7 +189,7 @@
 					else
 						playsound(get_turf(seg), 'sound/abnormalities/expresstrain/express_whistle.ogg', 100, 0, 40)
 					seg.noise = 1
-				M.deal_damage(400, BLACK_DAMAGE)
+				M.deal_damage(100, BLACK_DAMAGE)
 				var/atom/throw_target = locate(M)
 				throw_target = locate(M.x, M.y + pick(rand(-8, -5), rand(5, 8)), M.z)
 				if(!M.anchored)

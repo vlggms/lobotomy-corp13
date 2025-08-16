@@ -15,13 +15,6 @@ Keep things balanced if they aren't going to be admin only.  - Coxswain
 	cost = 12
 
 //Teth
-/datum/ego_datum/weapon/an_ego
-	item_path = /obj/item/ego_weapon/an_ego
-	cost = 20
-
-/datum/ego_datum/armor/an_ego
-	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/an_ego
-	cost = 20
 
 //He
 
@@ -66,19 +59,6 @@ Keep things balanced if they aren't going to be admin only.  - Coxswain
 /datum/ego_datum/weapon/violet_curse
 	item_path = /obj/item/ego_weapon/violet_curse
 	cost = 100
-
-//Sukuna - robes
-/datum/ego_datum/armor/sukuna
-	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/sukuna
-	cost = 200
-
-/datum/ego_datum/weapon/sukuna
-	item_path = /obj/item/ego_weapon/sukuna
-	cost = 200
-
-/datum/ego_datum/armor/sandals
-	item_path = /obj/item/clothing/shoes/sandal/sukuna
-	cost = 20
 
 // The Ride Never Ends - Wild Ride
 /datum/ego_datum/weapon/wild_ride

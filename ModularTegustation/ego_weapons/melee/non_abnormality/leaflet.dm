@@ -3,7 +3,7 @@
 	name = "leaflet base"
 	desc = "The Leaflet template."
 	icon_state = "leaflet"
-	force = 20
+	force = 10
 	damtype = RED_DAMAGE
 
 	attack_verb_continuous = list("bashes", "crushes")
@@ -20,7 +20,7 @@
 
 /obj/item/ego_weapon/city/leaflet/examine(mob/user)
 	. = ..()
-	. +="When durability runs out, deal significantly less damage. Use in hand to increase durability."
+	. += "When durability runs out, deal significantly less damage. Use in hand to increase durability."
 	. += "Durability: [durability]/[initial(durability)]."
 
 /obj/item/ego_weapon/city/leaflet/attack_self(mob/living/carbon/human/user)
@@ -50,7 +50,7 @@
 	name = "leaflet round hammer"
 	desc = "A serviceable round hammer manufactured by the Leaflet Workshop. Fixers can buy these for a modest price."
 	icon_state = "leaflet_round"
-	force = 44
+	force = 22
 
 //The Knockback version
 /obj/item/ego_weapon/city/leaflet/wide
@@ -58,7 +58,7 @@
 	desc = "A A serviceable wide hammer manufactured by the Leaflet Workshop. Fixers can buy these for a modest price."
 	special = "This weapon knocks the enemy back on hit."
 	icon_state = "leaflet_wide"
-	force = 44
+	force = 22
 	attack_speed = 1.2
 
 /obj/item/ego_weapon/city/leaflet/wide/attack(mob/living/target, mob/living/carbon/human/user)
@@ -73,7 +73,7 @@
 	name = "leaflet square hammer"
 	desc = "A quality square hammer manufactured by the Leaflet Workshop. Rumors say syndicates can buy these for a high price."
 	icon_state = "leaflet_hammer"
-	force = 55
+	force = 27
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 60,

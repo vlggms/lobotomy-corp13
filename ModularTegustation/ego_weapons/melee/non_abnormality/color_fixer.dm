@@ -9,7 +9,7 @@
 	righthand_file = 'ModularTegustation/Teguicons/lc13_right_64x64.dmi'
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	force = 90
+	force = 45
 	damtype = RED_DAMAGE
 
 	attack_verb_continuous = list("bashes", "crushes")
@@ -77,7 +77,7 @@
 	inhand_icon_state = "mimisword"
 	lefthand_file = 'ModularTegustation/Teguicons/lc13_left_64x64.dmi'
 	righthand_file = 'ModularTegustation/Teguicons/lc13_right_64x64.dmi'
-	force = 100
+	force = 50
 	attack_speed = 1.2
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 120,

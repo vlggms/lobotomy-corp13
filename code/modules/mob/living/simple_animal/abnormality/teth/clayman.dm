@@ -7,15 +7,15 @@
 	icon_dead = "bluro"
 	portrait = "bluro"
 	del_on_death = TRUE
-	maxHealth = 1000
-	health = 1000
+	maxHealth = 200
+	health = 200
 	ranged = TRUE
 	rapid_melee = 1
 	melee_queue_distance = 2
 	move_to_delay = 3
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
-	melee_damage_lower = 10
-	melee_damage_upper = 12
+	melee_damage_lower = 3
+	melee_damage_upper = 4
 	melee_damage_type = RED_DAMAGE
 	attack_sound = 'sound/effects/hit_kick.ogg'
 	attack_verb_continuous = "smashes"
@@ -43,10 +43,9 @@
 	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
 
 /mob/living/simple_animal/hostile/abnormality/clayman/WorktickFailure(mob/living/carbon/human/user)
-	var/list/damtypes = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
-	var/damage = pick(damtypes)
-	work_damage_type = damage
-	user.deal_damage(6, damage)
+	var/dtype = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
+	work_damage_type = dtype
+	user.deal_damage(2, dtype)
 	WorkDamageEffect()
 
 /mob/living/simple_animal/hostile/abnormality/clayman/CanAttack(atom/the_target)

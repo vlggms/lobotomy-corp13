@@ -14,7 +14,7 @@
 	desc = "Mind if I take them?"
 	special = "This weapon grows more powerful as you do, but its potential is limited if you possess any other EGO weapons."
 	icon_state = "eyeball1"
-	force = 20
+	force = 12
 	damtype = BLACK_DAMAGE
 
 	attack_verb_continuous = list("cuts", "smacks", "bashes")
@@ -27,8 +27,8 @@
 	force = initial(force)
 	damtype = initial(damtype)
 	var/userfort = (get_attribute_level(user, FORTITUDE_ATTRIBUTE))
-	var/fortitude_mod = clamp((userfort - 40) / 2 + 2, 0, 50) // 2 at 40 fortitude, 12 at 60 fortitude, 22 at 80 fortitude, 32 at 100 fortitude
-	var/extra_mod = clamp((userfort - 80) * 1.3 + 2, 0, 28) // 2 at 80 fortitude, 28 at 100 fortitude
+	var/fortitude_mod = clamp((userfort - 40) / 4 + 2, 0, 50) // 3 at 40 fortitude, 17 at 100 fortitude
+	var/extra_mod = fortitude_mod * 0.5
 	var/list/search_area = user.contents.Copy()
 	for(var/obj/item/storage/spare_space in search_area)
 		search_area |= spare_space.contents
@@ -40,7 +40,7 @@
 			continue
 		extra_mod = 0
 		break
-	force = 20 + fortitude_mod + extra_mod
+	force = 12 + fortitude_mod
 	if(extra_mod > 0)
 		var/resistance = target.run_armor_check(null, damtype)
 		icon_state = "eyeball2"				// Cool sprite
@@ -54,7 +54,7 @@
 	else
 		icon_state = "eyeball1" //Cool sprite gone
 	if(ishuman(target))
-		force *= 1.3 //I've seen Catt one shot someone, This is also only a detriment lol
+		force *= 1.3
 	return ..()
 
 //Pile of Mail
@@ -62,7 +62,7 @@
 	name = "envelope"
 	desc = "Heavy satchel filled to the brim with letters."
 	icon_state = "mailsatchel"
-	force = 12
+	force = 6
 	attack_speed = 1.2
 	damtype = WHITE_DAMAGE
 
@@ -73,8 +73,8 @@
 /obj/item/ego_weapon/mail_satchel/attack(atom/A, mob/living/user, proximity_flag, params)
 	force = initial(force)
 	var/usertemp = (get_attribute_level(user, TEMPERANCE_ATTRIBUTE))
-	var/temperance_mod = clamp((usertemp - 20) / 3 + 2, 0, 20)
-	force = 12 + temperance_mod
+	var/temperance_mod = clamp((usertemp - 20) / 4 + 2, 0, 14)
+	force = 6 + temperance_mod
 	if(prob(30))
 		new /obj/effect/temp_visual/maildecal(get_turf(A))
 
@@ -89,7 +89,7 @@
 	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
 	inhand_x_dimension = 96
 	inhand_y_dimension = 96
-	force = 50
+	force = 20
 	reach = 2		//Has 2 Square Reach.
 	stuntime = 5	//Longer reach, gives you a short stun.
 	attack_speed = 1.4// slow
@@ -128,7 +128,7 @@
 	desc = "Just open up the machine, step inside, and press the button to make it shut. Now everything will be just fine.."
 	special = "This weapon builds up the amount of times it hits as you attack, at maximum speed it will damage you per hit, increasing more and more, use it in hands."
 	icon_state = "iron_maiden"
-	force = 25 //DPS of 25, 50, 75, 100 at each ramping level
+	force = 10 //DPS of 10, 20, 30, 40 at each ramping level
 	damtype = RED_DAMAGE
 
 	attack_verb_continuous = list("clamps")
@@ -140,7 +140,7 @@
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
 							)
-	var/ramping_speed = 0 //maximum of 20
+	var/ramping_speed = 0 //maximum of 10
 	var/ramping_damage = 0 //no maximum, will stack as long as people are attacking with it.
 
 /obj/item/ego_weapon/iron_maiden/Initialize()
@@ -171,7 +171,7 @@
 /obj/item/ego_weapon/iron_maiden/attack(mob/living/target, mob/living/user)
 	if(!..())
 		return
-	if (ramping_speed < 20)
+	if (ramping_speed < 10)
 		ramping_speed += 1
 	else
 		ramping_damage += 0.02
@@ -213,7 +213,7 @@
 	special = "This weapon deals its damage after a short windup, unless combo is enabled."
 	hitsound = 'sound/weapons/fixer/generic/fist2.ogg'
 	icon_state = "greed"
-	force = 40
+	force = 20
 	finisher_on = FALSE
 	var/dash_cooldown
 	var/dash_cooldown_time = 3 SECONDS
@@ -253,12 +253,12 @@
 	if(finisher_on)
 		to_chat(user,span_warning("You will now perform a combo attack instead of a heavy attack."))
 		finisher_on = FALSE
-		force = 40
+		force = 20
 		return
 
 	to_chat(user,span_warning("You will now perform a heavy attack instead of a combo attack."))
 	finisher_on =TRUE
-	force = 140
+	force = 60
 
 /obj/item/ego_weapon/goldrush/nihil/afterattack(atom/A, mob/living/user, proximity_flag, params)
 	if(!CanUseEgo(user))
@@ -285,7 +285,7 @@
 	The swords will eventually point at those she could not protect."
 	special = "This weapon has a combo system."
 	icon_state = "despair_nihil"
-	force = 40
+	force = 20
 	attack_speed = 1
 	damtype = WHITE_DAMAGE
 
@@ -333,7 +333,7 @@
 	desc = "The Servant of Wrath valued justice and balance more than anyone, but she began sharing knowledge with the \
 	Hermit - an enemy of her realm, becoming friends with her in secret."
 	icon_state = "wrath"
-	force = 80
+	force = 40
 	attack_speed = 1.2
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
@@ -341,7 +341,7 @@
 							TEMPERANCE_ATTRIBUTE = 100,
 							JUSTICE_ATTRIBUTE = 80
 							)
-	aoe_damage = 30
+	aoe_damage = 20
 	aoe_range = 3
 
 /obj/item/ego_weapon/blind_rage/nihil/attackby(obj/item/I, mob/living/user, params)
@@ -354,7 +354,7 @@
 	name = "rookie dagger"
 	desc = "E.G.O intended for Agent Education"
 	icon_state = "rookie"
-	force = 7
+	force = 3
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("cuts", "stabs", "slashes")
 	attack_verb_simple = list("cuts", "stabs", "slashes")

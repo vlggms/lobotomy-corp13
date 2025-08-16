@@ -4,8 +4,8 @@
 	icon = 'ModularTegustation/Teguicons/96x48.dmi'
 	icon_state = "ladyfacingthewall"
 	portrait = "lady_facing_the_wall"
-	maxHealth = 400
-	health = 400
+	maxHealth = 200
+	health = 200
 	threat_level = TETH_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(55, 55, 55, 55, 55),
@@ -16,12 +16,12 @@
 	pixel_x = -32
 	base_pixel_x = -8
 
-	work_damage_amount = 7
+	work_damage_amount = 3
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/sloth
 	start_qliphoth = 2
 	var/scream_range = 10
-	var/scream_damage = 45
+	var/scream_damage = 25
 	ego_list = list(
 		/datum/ego_datum/weapon/wedge,
 		/datum/ego_datum/armor/wedge,

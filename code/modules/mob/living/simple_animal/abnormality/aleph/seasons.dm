@@ -20,13 +20,13 @@
 	can_breach = TRUE
 	threat_level = ALEPH_LEVEL
 	fear_level = ALEPH_LEVEL
-	health = 4000
-	maxHealth = 4000
+	health = 2000
+	maxHealth = 2000
 	obj_damage = 600
 	damage_coeff = list(RED_DAMAGE = 1.1, WHITE_DAMAGE = -1, BLACK_DAMAGE = 1.1, PALE_DAMAGE = 1.1)
 	melee_damage_type = WHITE_DAMAGE
-	melee_damage_lower = 35
-	melee_damage_upper = 45
+	melee_damage_lower = 12
+	melee_damage_upper = 15
 	speed = 3
 	move_to_delay = 4
 	is_flying_animal = FALSE
@@ -38,7 +38,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(5, 10, 15, 50, 55),
 		ABNORMALITY_WORK_REPRESSION = list(5, 10, 15, 50, 55),
 	)
-	work_damage_amount = 14
+	work_damage_amount = 8
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/wrath
 
@@ -122,15 +122,15 @@
 	var/work_timer
 	// Breach Vars
 	var/can_act = TRUE
-	var/slam_damage = 200
+	var/slam_damage = 60
 	var/slam_cooldown
 	var/slam_cooldown_time = 20 SECONDS
-	var/cone_attack_damage = 90
+	var/cone_attack_damage = 30
 	var/cone_attack_cooldown
 	var/cone_attack_cooldown_time = 10 SECONDS
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 4 SECONDS
-	var/pulse_damage = 15
+	var/pulse_damage = 5
 	// Turf Tracker
 	var/list/spawned_turfs = list()
 
@@ -254,7 +254,7 @@
 		name = season_stats[current_season][3]
 		desc = season_stats[current_season][5]
 	if(current_season == "winter")
-		cone_attack_damage = 75
+		cone_attack_damage = 25
 		slam_damage = 125
 		pulse_damage = 10
 	else
@@ -269,7 +269,7 @@
 	Transform()
 	can_breach = FALSE
 	fear_level = WAW_LEVEL
-	work_damage_amount = 7
+	work_damage_amount = 8
 	start_qliphoth = 1
 	datum_reference.qliphoth_meter_max = 5
 	datum_reference.qliphoth_change(4)
@@ -283,7 +283,7 @@
 	Transform()
 	can_breach = TRUE
 	fear_level = ALEPH_LEVEL
-	work_damage_amount = 14
+	work_damage_amount = 9
 	datum_reference.qliphoth_meter_max = 1
 	datum_reference.qliphoth_change(1)
 	is_flying_animal = FALSE
@@ -814,11 +814,11 @@
 		if(ishuman(L))
 			var/mob/living/carbon/human/H = L
 			if(current_season == "summer")
-				H.deal_damage(6, FIRE)
+				H.deal_damage(2, FIRE)
 				H.apply_lc_burn(3)
 				dealt_damage = TRUE
 			else if(current_season == "spring")
-				H.apply_damage(10, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = FALSE)
+				H.apply_damage(4, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = FALSE)
 	if(!dealt_damage)
 		damaging = FALSE
 		return

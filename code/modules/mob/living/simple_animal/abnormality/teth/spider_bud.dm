@@ -4,8 +4,8 @@
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
 	icon_state = "spider_closed"
 	portrait = "spider_bud"
-	maxHealth = 1500
-	health = 1500
+	maxHealth = 300
+	health = 300
 	threat_level = TETH_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(60, 60, 65, 65, 65),
@@ -17,7 +17,7 @@
 	pixel_x = -8
 	base_pixel_x = -8
 
-	work_damage_amount = 7
+	work_damage_amount = 3
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/lust	//Limbus Company Red Eyes EGO
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
@@ -144,14 +144,14 @@
 	icon_state = "spider_minion"
 	icon_living = "spider_minion"
 	base_pixel_x = -8
-	maxHealth = 300
-	health = 300
+	maxHealth = 50
+	health = 50
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
 	faction = list("hostile", "spider")
-	melee_damage_lower = 3
-	melee_damage_upper = 7
+	melee_damage_lower = 2
+	melee_damage_upper = 4
 	melee_damage_type = RED_DAMAGE
 	obj_damage = 3
 	attack_sound = 'sound/effects/ordeals/amber/dawn_dead.ogg'

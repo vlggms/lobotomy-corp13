@@ -8,8 +8,8 @@
 	icon_state = "white_lake"
 	icon_living = "white_lake"
 	portrait = "white_lake"
-	maxHealth = 600
-	health = 600
+	maxHealth = 120
+	health = 120
 	threat_level = HE_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 0,
@@ -17,7 +17,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 50,
 		ABNORMALITY_WORK_REPRESSION = 40,
 	)
-	work_damage_amount = 10
+	work_damage_amount = 5
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/lust
 	//Has the weapon been given out?
@@ -77,7 +77,7 @@
 	set waitfor = FALSE
 	new /obj/effect/temp_visual/whitelake(get_turf(H))
 	var/userfort = (get_attribute_level(H, FORTITUDE_ATTRIBUTE))
-	var/damage_dealt = clamp((0 + (userfort / 2)), 30, 65)//deals between 30 and 60 white damage depending on your fortitude attribute when applied.
+	var/damage_dealt = clamp((0 + (userfort / 10)), 6, 13)//deals between 6 and 13 white damage depending on your fortitude attribute when applied.
 	H.deal_damage(damage_dealt, WHITE_DAMAGE)
 
 /mob/living/simple_animal/hostile/abnormality/whitelake/proc/TurnChampion(mob/living/carbon/human/H)

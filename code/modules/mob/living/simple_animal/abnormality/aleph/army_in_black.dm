@@ -36,7 +36,7 @@ GLOBAL_LIST_EMPTY(army)
 		ABNORMALITY_WORK_REPRESSION = 30,
 		"Protection" = 0, //shouldn't attempt to generate any PE
 	)
-	work_damage_amount = 17
+	work_damage_amount = 9
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/wrath
 
@@ -68,7 +68,7 @@ GLOBAL_LIST_EMPTY(army)
 	var/protected_targets = list()
 	var/summoned_army = list()//hostile unit list
 	var/boom_radius = 20
-	var/boom_damage = 70
+	var/boom_damage = 45
 	var/adds_max = 1
 
 /***Simple mob procs***/
@@ -208,8 +208,8 @@ GLOBAL_LIST_EMPTY(army)
 	attack_verb_simple = "attack"
 	attack_sound = 'sound/abnormalities/armyinblack/pink_heal.ogg'
 	/*Core stats*/
-	health = 900
-	maxHealth = 900
+	health = 450
+	maxHealth = 450
 	obj_damage = 50
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 1.0, PALE_DAMAGE = 0.8)
 	ranged = TRUE
@@ -223,7 +223,7 @@ GLOBAL_LIST_EMPTY(army)
 	var/list/fear_affected = list()
 	var/shot_cooldown
 	var/shot_cooldown_time = 5 SECONDS
-	var/boom_damage = 70
+	var/boom_damage = 45
 	var/targetted_beacon
 	var/list/moving_path
 
@@ -293,7 +293,7 @@ GLOBAL_LIST_EMPTY(army)
 			continue
 		if(HAS_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE))
 			continue
-		H.adjustSanityLoss(H.maxSanity*0.3)
+		H.adjustSanityLoss(H.maxSanity*0.2)
 		fear_affected += H
 		if(H.sanity_lost)
 			continue
@@ -350,7 +350,7 @@ GLOBAL_LIST_EMPTY(army)
 	for(var/mob/living/L in view(4, src))
 		if(faction_check_mob(L))
 			continue
-		L.deal_damage(50, BLACK_DAMAGE)
+		L.deal_damage(25, BLACK_DAMAGE)
 	playsound(get_turf(src), 'sound/abnormalities/armyinblack/black_attack.ogg', 100, 0, 8)
 	shot_cooldown = world.time + shot_cooldown_time
 

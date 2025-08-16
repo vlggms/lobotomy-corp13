@@ -7,13 +7,13 @@
 	icon_living = "smile"
 	portrait = "simple_smile"
 	del_on_death = TRUE
-	maxHealth = 400		//He's a little shit.
-	health = 400
+	maxHealth = 100
+	health = 100
 	rapid_melee = 2
 	move_to_delay = 2
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
-	melee_damage_lower = 5
-	melee_damage_upper = 5
+	melee_damage_lower = 2
+	melee_damage_upper = 3
 	is_flying_animal = TRUE
 	melee_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/lust
@@ -34,7 +34,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 85,
 		ABNORMALITY_WORK_REPRESSION = 85,
 	)
-	work_damage_amount = 5
+	work_damage_amount = 3
 	work_damage_type = BLACK_DAMAGE
 
 	ego_list = list(

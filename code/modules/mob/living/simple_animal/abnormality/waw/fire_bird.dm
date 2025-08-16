@@ -9,8 +9,8 @@
 	icon_living = "firebird_active"
 	portrait = "fire_bird"
 	threat_level = WAW_LEVEL
-	maxHealth = 2000
-	health = 2000
+	maxHealth = 700
+	health = 700
 	max_boxes = 24
 	pixel_x = -32
 	base_pixel_x = -32
@@ -22,7 +22,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(45, 45, 40, 40, 50),
 		ABNORMALITY_WORK_REPRESSION = list(45, 45, 40, 40, 50),
 	)
-	work_damage_amount = 10
+	work_damage_amount = 7
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/lust
 	good_hater = TRUE
@@ -57,12 +57,12 @@
 
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 1 SECONDS
-	var/pulse_damage = 6
+	var/pulse_damage = 2
 	var/can_act = TRUE
 	var/dash_cooldown
 	var/dash_cooldown_time = 5 SECONDS
 	var/dash_max = 50
-	var/dash_damage = 200
+	var/dash_damage = 50
 	var/list/been_hit = list()
 
 //Initialize
@@ -92,17 +92,17 @@
 	. = ..()
 	switch(datum_reference?.qliphoth_meter)
 		if(1)
-			work_damage_amount = 20
+			work_damage_amount = 11
 			light_range = 10
 			light_power = 20
 			update_light()
 		if(2)
-			work_damage_amount = 15
+			work_damage_amount = 9
 			light_range = 2
 			light_power = 10
 			update_light()
 		else
-			work_damage_amount = 10
+			work_damage_amount = 7
 			light_range = 0
 			light_power = 0
 			update_light()

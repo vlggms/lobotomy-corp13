@@ -6,8 +6,8 @@
 	portrait = "red_queen"
 	pixel_x = -8
 	base_pixel_x = -8
-	maxHealth = 650
-	health = 650
+	maxHealth = 150
+	health = 150
 	threat_level = HE_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 65,
@@ -15,7 +15,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 65,
 		ABNORMALITY_WORK_REPRESSION = 65,
 	)
-	work_damage_amount = 20			//Unlikely to hurt you but if she ever does she'll fuck you
+	work_damage_amount = 7			//Unlikely to hurt you but if she ever does she'll fuck you
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/sloth
 
@@ -51,7 +51,7 @@
 		if(prob(20))
 			//The Red Queen is fickle, if you're unlucky, fuck you.
 			user.visible_message(span_warning("An invisible blade slices through [user]'s neck!"))
-			user.deal_damage(200, RED_DAMAGE)
+			user.deal_damage(50, RED_DAMAGE)
 			new /obj/effect/temp_visual/slice(get_turf(user))
 
 			//Fitting sound, I want something crunchy, and also very loud so everyone knows

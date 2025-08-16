@@ -4,17 +4,17 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	pixel_x = -24
 	base_pixel_x = -24
-	maxHealth = 900
-	health = 900
-	melee_damage_lower = 10
-	melee_damage_upper = 15
+	maxHealth = 250
+	health = 250
+	melee_damage_lower = 6
+	melee_damage_upper = 8
 	melee_reach = 2 // Now it has reach attacks
-	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.5)
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 2, PALE_DAMAGE = 1.5)
 	butcher_results = list(/obj/item/food/meat/slab/sinnew = 2)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sinnew = 2)
 	move_to_delay = 6
 	jump_aoe = 3
-	jump_damage = 35
+	jump_damage = 15
 	jump_pixels = 8
 	jump_tremor = 10
 	attack_tremor = 2
@@ -29,18 +29,18 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	pixel_x = -24
 	base_pixel_x = -24
-	maxHealth = 600
-	health = 600
+	maxHealth = 200
+	health = 200
 	melee_damage_lower = 4
-	melee_damage_upper = 8
-	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.5)
+	melee_damage_upper = 6
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 2, PALE_DAMAGE = 1.5)
 	butcher_results = list(/obj/item/food/meat/slab/sinnew = 2)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sinnew = 2)
-	rupture_damage = 4
+	rupture_damage = 3
 	dismember_probability = 100
 	var/mob/living/carbon/human/grab_victim = null
 	var/can_act = TRUE
-	var/release_threshold = 200 //Total raw damage needed to break a player out of a grab (from any source)
+	var/release_threshold = 60 //Total raw damage needed to break a player out of a grab (from any source)
 	var/release_damage = 0
 	var/grab_progress = 0
 
@@ -88,7 +88,7 @@
 		ReleaseGrab()
 		return
 	do_attack_animation(get_step(src, dir), no_effect = TRUE)
-	grab_victim.deal_damage(melee_damage_upper, melee_damage_type)
+	grab_victim.deal_damage(melee_damage_upper, RED_DAMAGE)
 	new /obj/effect/temp_visual/damage_effect/rupture(get_turf(src))
 	grab_victim.deal_damage(rupture_damage, BRUTE)
 	grab_victim.Immobilize(10)
@@ -134,11 +134,11 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	pixel_x = -24
 	base_pixel_x = -24
-	maxHealth = 750
-	health = 750
-	melee_damage_lower = 55
-	melee_damage_upper = 75
-	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.5)
+	maxHealth = 250
+	health = 250
+	melee_damage_lower = 14
+	melee_damage_upper = 16
+	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
 	butcher_results = list(/obj/item/food/meat/slab/sinnew = 2)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sinnew = 2)
 	ranged_cooldown_time = 10 SECONDS
@@ -193,19 +193,19 @@
 	pixel_x = -24
 	base_pixel_x = -24
 	icon_dead = "pridesin_dead"
-	maxHealth = 450
-	health = 450
+	maxHealth = 150
+	health = 150
 	rapid_melee = 3
 	move_to_delay = 5
 	melee_damage_lower = 3
-	melee_damage_upper = 9
+	melee_damage_upper = 5
 	melee_reach = 2
-	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.5)
+	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5)
 	butcher_results = list(/obj/item/food/meat/slab/sinnew = 2)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sinnew = 2)
 	dash_cooldown_time = 4 SECONDS
 	extra_dash_distance = 6
-	dash_damage = 60
+	dash_damage = 20
 	dash_range = 2
 
 /mob/living/simple_animal/hostile/ordeal/sin_lust/noon
@@ -214,17 +214,17 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	pixel_x = -24
 	base_pixel_x = -24
-	maxHealth = 900
-	health = 900
+	maxHealth = 300
+	health = 300
 	move_to_delay = 10
-	melee_damage_lower = 20
-	melee_damage_upper = 30
-	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.5)
+	melee_damage_lower = 8
+	melee_damage_upper = 10
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 2, PALE_DAMAGE = 1.5)
 	butcher_results = list(/obj/item/food/meat/slab/sinnew = 2)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sinnew = 2)
 	block_chance = 50
 	bleed_stacks = 10
-	ability_damage = 50
+	ability_damage = 15
 	ability_range = 10
 	ability_cooldown_time = 3 SECONDS
 	ability_delay = 0.3 SECONDS
@@ -235,15 +235,15 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	pixel_x = -16
 	base_pixel_x = -16
-	maxHealth = 600
-	health = 600
+	maxHealth = 200
+	health = 200
 	melee_damage_lower = 4
-	melee_damage_upper = 20
-	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.5)
+	melee_damage_upper = 8
+	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5)
 	butcher_results = list(/obj/item/food/meat/slab/sinnew = 2)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sinnew = 2)
 	burn_stacks = 10
-	charge_damage = 35
+	charge_damage = 12
 	charge_attack_delay = 7
 	charging_speed = 0.8
 
@@ -264,5 +264,5 @@
 		if(ishuman(L))
 			var/mob/living/carbon/human/H = L
 			H.apply_lc_burn(floor(burn_stacks * 0.5))
-		L.apply_damage(charge_damage * 0.40,melee_damage_type, null, L.run_armor_check(null, melee_damage_type), spread_damage = TRUE)
+		L.apply_damage(charge_damage * 0.4, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 		playsound(L, 'sound/effects/ordeals/brown/cromer_slam.ogg', 75, 1)

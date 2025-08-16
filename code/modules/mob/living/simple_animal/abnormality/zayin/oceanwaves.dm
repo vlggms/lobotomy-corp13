@@ -4,8 +4,8 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "oceanicwaves"
 	portrait = "oceanicwaves"
-	maxHealth = 600
-	health = 600
+	maxHealth = 200
+	health = 200
 	threat_level = ZAYIN_LEVEL
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.8)
 	speak_emote = list("advertises")
@@ -16,7 +16,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 50,
 		ABNORMALITY_WORK_REPRESSION = 50,
 	)
-	work_damage_amount = 5
+	work_damage_amount = 2
 	work_damage_type = RED_DAMAGE
 	max_boxes = 10
 	success_boxes = 9
@@ -172,7 +172,7 @@
 	icon = 'icons/obj/drinks.dmi'
 	icon_state = "oceanbreeze"
 	spread = 15
-	damage = 40
+	damage = 15
 	var/item_type = null
 
 /obj/projectile/oceanic/on_hit(atom/target, blocked = FALSE)

@@ -13,7 +13,7 @@
 				Use weapon in hand to see stored target, and its current health."
 	icon_state = "sevenassociation"
 	inhand_icon_state = "sevenassociation"
-	force = 36
+	force = 18
 	damtype = BLACK_DAMAGE
 	swingstyle = WEAPONSWING_LARGESWEEP
 
@@ -84,7 +84,7 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
-	force = 45
+	force = 22
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -101,7 +101,7 @@
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
-	force = 63
+	force = 31
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 100,
@@ -117,7 +117,7 @@
 				Use weapon in hand to see stored target, and its current health."
 	icon_state = "sevenassociation_cane"
 	inhand_icon_state = "sevenassociation_cane"
-	force = 56	//Faster info gain,
+	force = 28	//Faster info gain,
 	hit_target = 3
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
@@ -133,7 +133,7 @@
 	special = "This weapon does 35% more damage when attacking the same target more than once."
 	icon_state = "sevenfencing"
 	hitsound = 'sound/weapons/rapierhit.ogg'
-	force = 38
+	force = 19
 	damtype = BLACK_DAMAGE
 	swingstyle = WEAPONSWING_THRUST
 
@@ -161,7 +161,7 @@
 	name = "seven association veteran fencing foil"
 	desc = "A fencing foil used by seven association veterans to destroy singular targets."
 	icon_state = "sevenfencing_vet"
-	force = 45
+	force = 22
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -174,7 +174,7 @@
 	desc = "A small, mailbreaking dagger used as a sidearm by specific seven association veterans."
 	special = "This weapon does 35% more damage when attacking the same target more than once. This weapon fits in an EGO belt."
 	icon_state = "sevenfencing_dagger"
-	force = 32
+	force = 16
 	attack_speed = 0.5
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,

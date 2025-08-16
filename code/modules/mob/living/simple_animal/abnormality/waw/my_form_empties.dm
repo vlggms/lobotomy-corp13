@@ -12,8 +12,8 @@
 	pixel_x = -16
 	base_pixel_x = -16
 
-	maxHealth = 2000
-	health = 2000
+	maxHealth = 700
+	health = 700
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.4, PALE_DAMAGE = 1)
 
 	threat_level = WAW_LEVEL
@@ -26,7 +26,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 25,
 		ABNORMALITY_WORK_REPRESSION = list(0, 0, 45, 50, 55),
 	)
-	work_damage_amount = 10
+	work_damage_amount = 7
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/lust
 
@@ -57,10 +57,10 @@
 
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 12 SECONDS
-	var/pulse_damage = 5//this mainly applies karma
+	var/pulse_damage = 3//this mainly applies karma
 
 	var/staff_range = 1
-	var/staff_damage = 60
+	var/staff_damage = 20
 	var/obj/effect/myform_staff/staff
 
 	var/datum/looping_sound/my_form_empties/soundloop

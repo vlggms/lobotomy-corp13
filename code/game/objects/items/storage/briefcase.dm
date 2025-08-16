@@ -5,7 +5,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/briefcase_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/briefcase_righthand.dmi'
 	flags_1 = CONDUCT_1
-	force = 8
+	force = 4
 	hitsound = "swing_hit"
 	throw_speed = 2
 	throw_range = 4
@@ -37,7 +37,7 @@
 
 /obj/item/storage/briefcase/sniperbundle
 	desc = "Its label reads \"genuine hardened Captain leather\", but suspiciously has no other tags or branding. Smells like L'Air du Temps."
-	force = 10
+	force = 5
 
 /obj/item/storage/briefcase/sniperbundle/PopulateContents()
 	..() // in case you need any paperwork done after your rampage

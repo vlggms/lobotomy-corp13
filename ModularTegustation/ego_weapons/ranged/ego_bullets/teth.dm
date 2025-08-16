@@ -1,52 +1,53 @@
 /obj/projectile/ego_bullet/ego_match
 	name = "match"
 	icon_state = "pulse0"
-	damage = 35 // Direct hit
+	damage = 10 // Direct hit
 	damage_type = RED_DAMAGE
+	var/aoe_damage = 6
 
 /obj/projectile/ego_bullet/ego_match/on_hit(atom/target, blocked = FALSE)
 	..()
 	for(var/mob/living/L in view(1, target))
 		new /obj/effect/temp_visual/fire/fast(get_turf(L))
-		L.apply_damage(25, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		L.apply_damage(aoe_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 	return BULLET_ACT_HIT
 
 /obj/projectile/ego_bullet/ego_beak
 	name = "beak"
-	damage = 4
+	damage = 2
 	damage_type = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_noise
 	name = "noise"
-	damage = 10
+	damage = 4
 	damage_type = WHITE_DAMAGE
 
 /obj/projectile/ego_bullet/ego_solitude
 	name = "solitude"
-	damage = 40	//Slow as balls
+	damage = 12
 	damage_type = WHITE_DAMAGE
 
 /obj/projectile/ego_bullet/ego_beakmagnum
 	name = "beak"
-	damage = 30	//entirely accurate. should have 32 DPS, it suffers.
+	damage = 12
 	damage_type = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_shy
 	name = "today's expression"
-	damage = 4 //Can dual wield, full auto
+	damage = 2 //Can dual wield, full auto
 	damage_type = BLACK_DAMAGE
 
 /obj/projectile/ego_bullet/ego_dream
 	name = "dream"
 	icon_state = "energy2"
-	damage = 6
+	damage = 3
 	speed = 1.5
 	damage_type = WHITE_DAMAGE
 
 
 /obj/projectile/ego_bullet/ego_page
 	name = "page"
-	damage = 20
+	damage = 6
 	damage_type = BLACK_DAMAGE
 
 
@@ -55,7 +56,7 @@
 	name = "snapshot"
 	icon_state = "snapshot"
 	hitsound = null
-	damage = 18
+	damage = 6
 	damage_type = WHITE_DAMAGE
 
 	hitscan = TRUE
@@ -80,7 +81,7 @@
 /obj/projectile/ego_bullet/ego_wishing
 	name = "stone"
 	icon_state = "wishing_rock"
-	damage = 5
+	damage = 1
 	damage_type = BLACK_DAMAGE
 
 
@@ -93,14 +94,14 @@
 /obj/projectile/ego_bullet/ego_wishing2
 	name = "kunai"
 	icon_state = "wishing_kunai"
-	damage = 10
+	damage = 3
 	damage_type = BLACK_DAMAGE
 
 
 /obj/projectile/ego_bullet/ego_aspiration
 	name = "aspiration"
 	icon_state = "lava"
-	damage = 25
+	damage = 8
 	damage_type = RED_DAMAGE
 
 	hitscan = TRUE
@@ -124,13 +125,13 @@
 
 /obj/projectile/ego_bullet/ego_patriot
 	name = "patriot"
-	damage = 15
+	damage = 6
 	damage_type = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_luckdraw
 	name = "luck of the draw"
 	icon_state = "drawcard"
-	damage = 18
+	damage = 6
 	damage_type = WHITE_DAMAGE
 	projectile_piercing = PASSMOB
 	speed = 0.45
@@ -139,7 +140,7 @@
 
 /obj/projectile/ego_bullet/ego_tough
 	name = "9mm tough bullet"
-	damage = 16 // Being bald is the optimal gameplay choice!
+	damage = 5 // Being bald is the optimal gameplay choice!
 	damage_type = WHITE_DAMAGE
 
 
@@ -147,7 +148,7 @@
 	name = "magic beam"
 	icon_state = "antimagic"
 	damage_type = WHITE_DAMAGE
-	damage = 10
+	damage = 4
 	spread = 10
 
 /obj/projectile/ego_bullet/ego_adjustment/on_hit(atom/target, blocked = FALSE)

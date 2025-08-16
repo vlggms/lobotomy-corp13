@@ -1,4 +1,3 @@
-//Yeah so this midnight is supposed to be weak as shit.
 /mob/living/simple_animal/hostile/ordeal/pink_midnight
 	name = "A Party Everlasting"
 	desc = "An overturned teacup, a party everlasting."
@@ -9,11 +8,11 @@
 	layer = LARGE_MOB_LAYER
 	pixel_x = -16
 	base_pixel_x = -16
-	maxHealth = 2000
-	health = 2000
+	maxHealth = 1000
+	health = 1000
 	melee_damage_type = PALE_DAMAGE
 	rapid_melee = 2
-	melee_damage_lower = 14
+	melee_damage_lower = 12
 	melee_damage_upper = 14
 	attack_verb_continuous = "bashes"
 	attack_verb_simple = "bashes"

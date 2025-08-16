@@ -7,8 +7,8 @@
 	icon_living = "lake_corrosion"
 	icon_dead = "lake_corrosion_dead"
 	faction = list("gold_ordeal")
-	maxHealth = 2500 //it's a boss, more or less
-	health = 2500
+	maxHealth = 600 //it's a boss, more or less
+	health = 600
 	melee_damage_type = PALE_DAMAGE
 	melee_damage_lower = 14
 	melee_damage_upper = 18
@@ -256,8 +256,8 @@
 	icon_living = "silent_girl_corrosion"
 	icon_dead = "silent_girl_corrosion_dead"
 	faction = list("gold_ordeal")
-	maxHealth = 600
-	health = 600
+	maxHealth = 200
+	health = 200
 	melee_damage_type = PALE_DAMAGE
 	melee_damage_lower = 8
 	melee_damage_upper = 12
@@ -321,7 +321,7 @@
 				SLEEP_CHECK_DEATH(3)
 				TH.attack_animal(src)
 				for(var/mob/living/carbon/human/H in view(7, get_turf(src)))
-					H.deal_damage(15, WHITE_DAMAGE)
+					H.deal_damage(7, WHITE_DAMAGE)
 			if(!targets_from.Adjacent(TH) || QDELETED(TH) || TH.health > 0)
 				finishing = FALSE
 				return

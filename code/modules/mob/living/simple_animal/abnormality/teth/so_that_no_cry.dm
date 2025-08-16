@@ -7,13 +7,13 @@
 	icon_state = "so_that_no_cry"
 	icon_living = "so_that_no_cry"
 	portrait = "so_that_no_cry"
-	maxHealth = 1200 //High health, can be stunned.
-	health = 1200
+	maxHealth = 300 //High health, can be stunned.
+	health = 300
 	rapid_melee = 2
 	move_to_delay = 3
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
-	melee_damage_lower = 6
-	melee_damage_upper = 12
+	melee_damage_lower = 3
+	melee_damage_upper = 4
 	melee_damage_type = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
 	attack_sound = 'sound/abnormalities/so_that_no_cry/attack.ogg'
@@ -28,7 +28,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 0,
 		ABNORMALITY_WORK_REPRESSION = 60,
 	)
-	work_damage_amount = 8
+	work_damage_amount = 3
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/lust
 	base_pixel_x = -12
@@ -176,7 +176,7 @@
 		return
 	if(!can_act)
 		return
-	if(damage_taken > 400 && !damage_reflection)
+	if(damage_taken > maxHealth * 0.4 && !damage_reflection)
 		StartReflecting()
 
 /mob/living/simple_animal/hostile/abnormality/so_that_no_cry/proc/StartReflecting()

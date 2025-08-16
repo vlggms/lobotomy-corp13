@@ -6,8 +6,8 @@
 	icon_living = "derfreischutz"
 	icon_dead = "derfreischutz"
 	portrait = "der_freischutz"
-	maxHealth = 900
-	health = 900
+	maxHealth = 150
+	health = 150
 	ranged = TRUE
 	minimum_distance = 10
 	retreat_distance = 2
@@ -24,7 +24,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 30, // Can you believe he has actual attachment work rates in LC proper, despite that you can't do attachment work on him there?
 		ABNORMALITY_WORK_REPRESSION = list(0, 0, 60, 60, 60),
 	)
-	work_damage_amount = 8 // This was halved what it should be.
+	work_damage_amount = 5
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/pride
 
@@ -50,7 +50,7 @@
 	var/bullet_cooldown_time = 7 SECONDS
 	var/bullet_fire_delay = 1.5 SECONDS
 	var/bullet_max_range = 50
-	var/bullet_damage = 80
+	var/bullet_damage = 50
 	var/list/portals = list()
 	var/zoomed = FALSE
 	var/max_portals = 7
@@ -423,8 +423,8 @@
 	icon_state = "freicircle3"
 	icon_living = "freicircle3"
 	var/icon_selected = "freicircle2"
-	maxHealth = 1000
-	health = 1000
+	maxHealth = 100
+	health = 100
 	can_patrol = FALSE
 	wander = 0
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
@@ -441,7 +441,7 @@
 	var/bullet_cooldown_time = 7 SECONDS
 	var/bullet_fire_delay = 1.5 SECONDS
 	var/bullet_max_range = 50
-	var/bullet_damage = 150
+	var/bullet_damage = 40
 
 	var/mob/living/simple_animal/hostile/abnormality/der_freischutz/connected_abno
 	var/datum/component/orbiter/self_orbiter

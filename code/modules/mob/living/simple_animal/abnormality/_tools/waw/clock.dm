@@ -19,7 +19,6 @@
 		/mob/living/simple_animal/hostile/abnormality/white_night,
 		/mob/living/simple_animal/hostile/abnormality/distortedform,
 		/mob/living/simple_animal/hostile/abnormality/nihil,
-		/mob/living/simple_animal/hostile/abnormality/sukuna,
 	)
 
 	ego_list = list(

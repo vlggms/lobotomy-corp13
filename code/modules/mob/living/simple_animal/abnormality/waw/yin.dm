@@ -8,8 +8,8 @@
 	icon_dead = "yin_slain"
 	portrait = "yin"
 	is_flying_animal = TRUE
-	maxHealth = 1600
-	health = 1600
+	maxHealth = 800
+	health = 800
 	move_to_delay = 7
 	pixel_x = -16
 	base_pixel_x = -16
@@ -21,7 +21,7 @@
 	can_breach = TRUE
 	start_qliphoth = 2
 	threat_level = WAW_LEVEL
-	work_damage_amount = 10
+	work_damage_amount = 7
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/envy
 	work_chances = list(
@@ -61,8 +61,8 @@
 
 	//Melee
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0, PALE_DAMAGE = 1)
-	melee_damage_lower = 60 // Doesn't actually swing individually
-	melee_damage_upper = 60
+	melee_damage_lower = 11 // Doesn't actually swing individually
+	melee_damage_upper = 12
 	melee_damage_type = BLACK_DAMAGE
 
 	//Ranged
@@ -72,7 +72,7 @@
 
 	COOLDOWN_DECLARE(pulse)
 	var/pulse_cooldown = 5 SECONDS
-	var/pulse_damage = 40
+	var/pulse_damage = 20
 	var/pulse_distance = 4
 
 	var/busy = FALSE
@@ -397,7 +397,7 @@
 /obj/effect/temp_visual/revenant/cracks/yin
 	icon_state = "yincracks"
 	duration = 9
-	var/damage = 60
+	var/damage = 20
 	var/list/faction = list("hostile")
 
 /obj/effect/temp_visual/revenant/cracks/yin/Destroy()

@@ -17,12 +17,12 @@
 	base_pixel_x = -32
 	move_to_delay = 3
 	rapid_melee = 2
-	melee_damage_lower = 25
-	melee_damage_upper = 35
+	melee_damage_lower = 9
+	melee_damage_upper = 10
 	melee_damage_type = RED_DAMAGE
 	is_flying_animal = TRUE
-	maxHealth = 2000
-	health = 2000
+	maxHealth = 800
+	health = 800
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
 	stat_attack = HARD_CRIT
 	death_sound = 'sound/abnormalities/dreamingcurrent/dead.ogg'
@@ -84,7 +84,7 @@
 	var/diving = FALSE
 	var/dive_cooldown
 	var/dive_cooldown_time = 15 SECONDS
-	var/dive_damage = 100
+	var/dive_damage = 40
 	//The amount of flotsams that should spawn in the hallways when it breaches
 	var/tube_spawn_amount = 6
 	var/list/spawned_flotsams = list()

@@ -12,11 +12,11 @@
 	icon_living = "envysin"
 	icon_dead = "envysin_dead"
 	faction = list("brown_ordeal")
-	maxHealth = 100
-	health = 100
+	maxHealth = 35
+	health = 35
 	melee_damage_type = RED_DAMAGE
-	melee_damage_lower = 9
-	melee_damage_upper = 15
+	melee_damage_lower = 4
+	melee_damage_upper = 6
 	attack_verb_continuous = "bashes"
 	attack_verb_simple = "bashes"
 	attack_sound = 'sound/weapons/fixer/generic/club3.ogg'

@@ -6,15 +6,15 @@
 	icon_living = "warden"
 	icon_dead = "warden_dead"
 	portrait = "warden"
-	maxHealth = 2100
-	health = 2100
+	maxHealth = 750
+	health = 750
 	pixel_x = -8
 	base_pixel_x = -8
 	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1.5)
 
 	move_to_delay = 4
-	melee_damage_lower = 70
-	melee_damage_upper = 70
+	melee_damage_lower = 15
+	melee_damage_upper = 16
 	melee_damage_type = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
 	attack_sound = 'sound/weapons/slashmiss.ogg'
@@ -69,7 +69,7 @@
 	var/new_black_resistance = 0.4
 	var/new_pale_resistance = 1.5
 
-	var/damage_down = 5
+	var/damage_down = 2
 
 /mob/living/simple_animal/hostile/abnormality/warden/Login()
 	. = ..()
@@ -77,7 +77,7 @@
 		<b>|Soul Guard|: You are immune to all projectiles.<br>\
 		<br>\
 		|Soul Warden|: If you attack a corpse, you will dust it, heal and gain a stack of “Captured Soul”<br>\
-		For each stack of “Captured Soul”, you become faster, deal 10 less melee damage and take 50% more damage.</b>")
+		For each stack of “Captured Soul”, you become faster, deal 2 less melee damage and take 50% more damage.</b>")
 
 /mob/living/simple_animal/hostile/abnormality/warden/AttackingTarget(atom/attacked_target)
 	. = ..()
@@ -111,12 +111,12 @@
 
 			if(move_to_delay>1)
 				ChangeMoveToDelayBy(0.75, TRUE)
-				if(melee_damage_lower > 30)
+				if(melee_damage_lower > 4)
 					melee_damage_lower -= damage_down
 				if(IsCombatMap())
-					if(melee_damage_upper > 30)
+					if(melee_damage_upper > 4)
 						melee_damage_upper -= damage_down
-			adjustBruteLoss(-(maxHealth*0.2)) // Heals 20% HP, fuck you that's why. Still not as bad as judgement or big bird
+			adjustBruteLoss(-(maxHealth*0.2)) // Heals 20% HP.
 
 			finishing = FALSE
 			icon_state = "warden"

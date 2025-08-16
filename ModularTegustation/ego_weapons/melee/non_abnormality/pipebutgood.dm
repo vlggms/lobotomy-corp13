@@ -2,7 +2,7 @@
 	name = "REAL pipe"
 	desc = "Did you pray today?"
 	icon_state = "ratpipe"
-	force = 500
+	force = 250
 	attack_speed = 2
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("pipes", "smashes", "shatters", "bans")

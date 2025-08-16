@@ -4,7 +4,7 @@
 	name = "streetlight greatsword"
 	desc = "A greatsword used by a fixer with big shoes to fill.'Maybe... I should have told her how I felt.'"
 	icon_state = "streetlight_greatsword"
-	force = 36
+	force = 18
 	attack_speed = 2
 	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = RED_DAMAGE
@@ -20,7 +20,7 @@
 	name = "streetlight office bat"
 	desc = "A yellow and black bat, its metal is warm to the touch. Is it with the warmth of friends, or the hatred of those who've had something taken from them?"
 	icon_state = "streetlight_bat"
-	force = 30
+	force = 15
 	attack_speed = 1.5
 	damtype = RED_DAMAGE
 
@@ -41,7 +41,7 @@
 	desc = "A  baton compatible with Zwei techniques. It carries a sense of regret..."
 	icon_state = "streetlight_founder"
 	inhand_icon_state = "streetlight_founder"
-	force = 32
+	force = 16
 	damtype = BLACK_DAMAGE
 	swingstyle = WEAPONSWING_SMALLSWEEP
 

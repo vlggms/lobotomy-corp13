@@ -5,8 +5,8 @@
 	icon_state = "skin_prophet"
 	core_icon = "prophet_egg"
 	portrait = "skin_prophet"
-	maxHealth = 600
-	health = 600
+	maxHealth = 140
+	health = 140
 	threat_level = TETH_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(70, 60, 50, 50, 40),
@@ -14,7 +14,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 0,
 		ABNORMALITY_WORK_REPRESSION = 0,
 	)
-	work_damage_amount = 6	//Gets more later
+	work_damage_amount = 3	//Gets more later
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(

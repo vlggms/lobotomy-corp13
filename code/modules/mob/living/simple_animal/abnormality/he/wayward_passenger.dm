@@ -8,16 +8,16 @@
 	core_icon = "waywardpass_egg"
 	portrait = "wayward_passenger"
 	del_on_death = FALSE
-	maxHealth = 1200
-	health = 1200
+	maxHealth = 220
+	health = 220
 
 	move_to_delay = 4
 	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1.5)//lovetown residents LOVE physical pain, so highly resistant to black and red
 	stat_attack = HARD_CRIT
 
 	ranged = TRUE
-	melee_damage_lower = 20
-	melee_damage_upper = 24
+	melee_damage_lower = 4
+	melee_damage_upper = 5
 	melee_damage_type = RED_DAMAGE
 	attack_sound = 'sound/abnormalities/wayward_passenger/attack2.ogg'
 	can_breach = TRUE
@@ -32,7 +32,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 30,
 		ABNORMALITY_WORK_REPRESSION = list(55, 60, 60, 60, 55),
 	)
-	work_damage_amount = 11
+	work_damage_amount = 5
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/envy
 	fear_level = WAW_LEVEL
@@ -277,7 +277,7 @@
 			playsound(L, attack_sound, 75, 1)
 			var/turf/LT = get_turf(L)
 			new /obj/effect/temp_visual/kinetic_blast(LT)
-			L.deal_damage(60, RED_DAMAGE)
+			L.deal_damage(12, RED_DAMAGE)
 			been_hit += L
 	for(var/obj/vehicle/sealed/mecha/V in turfs_to_hit)
 		if(V in been_hit)
@@ -286,7 +286,7 @@
 		to_chat(V.occupants, span_userdanger("[src] rushes past you, searing your mech with its blades!"))
 		playsound(V, attack_sound, 75, 1)
 		new /obj/effect/temp_visual/kinetic_blast(get_turf(V))
-		V.take_damage(60, RED_DAMAGE, attack_dir = get_dir(V, src))
+		V.take_damage(12, RED_DAMAGE, attack_dir = get_dir(V, src))
 		been_hit += V
 	addtimer(CALLBACK(src, PROC_REF(Do_Dash), move_dir, (times_ran + 1)), 1)
 

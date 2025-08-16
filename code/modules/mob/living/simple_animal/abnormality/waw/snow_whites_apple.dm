@@ -8,8 +8,8 @@
 	icon_living = "snowwhitesapple_inert"
 	icon_dead = "snowwhitesapple_dead"
 	portrait = "snow_whites_apple"
-	maxHealth = 1600
-	health = 1600
+	maxHealth = 600
+	health = 600
 	blood_volume = 0
 	obj_damage = 0
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.0, BLACK_DAMAGE = 0, PALE_DAMAGE = 1.5)
@@ -36,7 +36,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 0, 0, 0),
 		ABNORMALITY_WORK_REPRESSION = list(20, 30, 55, 55, 60),
 	)
-	work_damage_amount = 8
+	work_damage_amount = 7
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/envy
 
@@ -250,7 +250,7 @@
 /mob/living/simple_animal/hostile/abnormality/snow_whites_apple/proc/VineSpike()
 	playsound(get_turf(src), projectilesound, 30)
 	for(var/obj/structure/spreading/apple_vine/W in view(vision_range, src))
-		var/list/did_we_hit = HurtInTurf(get_turf(W), list(), 30, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
+		var/list/did_we_hit = HurtInTurf(get_turf(W), list(), 10, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
 		if(did_we_hit.len)
 			W.VineAttack(pick(did_we_hit))
 
@@ -526,7 +526,7 @@
 	max_integrity = 45
 	obj_integrity = 45
 	expand_cooldown = 8 SECONDS
-	conflict_damage = 30
+	conflict_damage = 10
 	old_growth = TRUE
 
 /obj/structure/spreading/apple_vine/proc/VineBarrier(vine_angle, single_spawn)

@@ -7,7 +7,7 @@
 	var/stat_requirement = 60 //Stat requirements should match the E.G.O. tier +20, similar to city equipment
 	//Weapon stats
 	var/damage_type = RED_DAMAGE
-	var/base_damage = 30 //Base damage of the tier
+	var/base_damage = 15 //Base damage of the tier
 	var/tier = 1 //used to figure out gun damage
 	//Armor stats
 	var/red_bonus = 20 //50 from the base of 20 in red, so 70
@@ -52,7 +52,7 @@
 	name = "red egoshard"
 	desc = "A small egoshard."
 	tier = 2
-	base_damage = 40
+	base_damage = 20
 	stat_requirement = 80
 	red_bonus = 40 //100 from the base of 20 in red, so 120
 	white_bonus = 20
@@ -84,7 +84,7 @@
 	name = "red egoshard"
 	desc = "A decently sized egoshard."
 	tier = 3
-	base_damage = 60
+	base_damage = 30
 	stat_requirement = 100
 	red_bonus = 50 //160 from the base of 20 in red, so 180
 	white_bonus = 30
@@ -116,7 +116,7 @@
 	name = "pale egoshard"
 	icon_state = "egoshard_p"
 	damage_type = PALE_DAMAGE
-	base_damage = 45
+	base_damage = 22
 	red_bonus = 20 //160 from the base of 20 in red, so 180
 	white_bonus = 30
 	black_bonus = 40
@@ -127,7 +127,7 @@
 	name = "flawless red egoshard"
 	desc = "A pretty egoshard."
 	tier = 4
-	base_damage = 80
+	base_damage = 40
 	stat_requirement = 120
 	red_bonus = 60 //220 from the base of 20 in red, so 240
 	white_bonus = 60
@@ -159,7 +159,7 @@
 	name = "flawless pale egoshard"
 	icon_state = "egoshard_p"
 	damage_type = PALE_DAMAGE
-	base_damage = 60
+	base_damage = 30
 	red_bonus = 20 //220 from the base of 20 in red, so 240
 	white_bonus = 60
 	black_bonus = 60
@@ -171,7 +171,7 @@
 	name = "perfect red egoshard"
 	desc = "An expensive-looking egoshard."
 	tier = 5
-	base_damage = 100
+	base_damage = 50
 	stat_requirement = 140
 	red_bonus = 60 //280 from the base of 20 in red, so 300
 	white_bonus = 70
@@ -200,7 +200,7 @@
 	name = "perfect pale egoshard"
 	icon_state = "egoshard_p"
 	damage_type = PALE_DAMAGE
-	base_damage = 80
+	base_damage = 40
 	red_bonus = 50 //280 from the base of 20 in red, so 300
 	white_bonus = 80
 	black_bonus = 70

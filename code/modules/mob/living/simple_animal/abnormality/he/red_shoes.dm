@@ -2,8 +2,8 @@
 /mob/living/simple_animal/hostile/abnormality/red_shoes
 	name = "Red Shoes"
 	desc = "A pair of elegant red women's shoes. The design is antique, but there is no telling where and how they were made."
-	health = 800
-	maxHealth = 800
+	health = 150
+	maxHealth = 150
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "redshoes"
 	icon_living = "redshoes"
@@ -20,14 +20,14 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(99, 99, 50, 40, 30),
 		ABNORMALITY_WORK_REPRESSION = 0,
 	)
-	work_damage_amount = 10
+	work_damage_amount = 5
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/wrath
 	del_on_death = FALSE
 	death_message = "crumples into a pile of bones."
 	attack_sound = 'sound/abnormalities/redshoes/RedShoes_Attack.ogg'
-	melee_damage_lower = 15
-	melee_damage_upper = 30
+	melee_damage_lower = 3
+	melee_damage_upper = 6
 	melee_damage_type = RED_DAMAGE
 	move_to_delay = 2
 	rapid_melee = 2
@@ -373,8 +373,8 @@
 /mob/living/simple_animal/hostile/red_shoe
 	name = "Red Shoe"
 	desc = "Teeth and leg bones jut out of this ragged shoe, as if the wearer's will was made manifest."
-	health = 800
-	maxHealth = 800
+	health = 200
+	maxHealth = 200
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "redshoes_breach2"
 	icon_living = "redshoes_breach2"
@@ -384,8 +384,8 @@
 	del_on_death = TRUE
 	death_message = "crumples into a pile of bones."
 	attack_sound = 'sound/abnormalities/redshoes/RedShoes_Attack.ogg'
-	melee_damage_lower = 15
-	melee_damage_upper = 30
+	melee_damage_lower = 3
+	melee_damage_upper = 6
 	melee_damage_type = RED_DAMAGE
 	speed = 1
 	move_to_delay = 3

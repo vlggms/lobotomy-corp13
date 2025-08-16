@@ -12,7 +12,7 @@
 	righthand_file = 'ModularTegustation/Teguicons/devyat_right.dmi'
 	icon_state = "s_polu"
 	inhand_icon_state = "s_polu"
-	force = 28 //Cityweapons says that that 32 DPS is a normal amount for HE weapons, and since this weapon can ramp up, I am reducing it by a little bit.
+	force = 14
 	slot_flags = ITEM_SLOT_BACK
 	damtype = BLACK_DAMAGE
 	attribute_requirements = list(
@@ -28,7 +28,7 @@
 	var/combat_mode = FALSE
 	var/can_attack = TRUE
 	var/owner = null
-	var/theif_damage = 40
+	var/theif_damage = 20
 
 	var/courier_trunk = 0
 	var/passive_courier_trunk_add = 3
@@ -317,7 +317,7 @@
 	worn_icon_state = "b_polu"
 	icon_state = "b_polu"
 	inhand_icon_state = "b_polu"
-	force = 42
+	force = 21
 	slot_flags = ITEM_SLOT_BACK
 	attack_speed = 1.5
 	attack_verb_continuous = list("bludgeons", "smacks")

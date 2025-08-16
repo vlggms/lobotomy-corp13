@@ -1,8 +1,8 @@
 /mob/living/simple_animal/hostile/abnormality/kqe
 	name = "KQE-1J-23"
 	desc = "A mechanical puppet composed of metal plates, lights, and integrated circuits. Bare wires protrude with its every movement."
-	health = 1500
-	maxHealth = 1500
+	health = 350
+	maxHealth = 350
 	attack_verb_continuous = "whips"
 	attack_verb_simple = "whip"
 	attack_sound = 'sound/abnormalities/kqe/hitsound1.ogg'
@@ -17,8 +17,8 @@
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.2)
 	speak_emote = list("states")
 	speech_span = SPAN_ROBOT
-	melee_damage_lower = 20
-	melee_damage_upper = 25
+	melee_damage_lower = 4
+	melee_damage_upper = 5
 	move_to_delay = 3
 	ranged = TRUE
 	pixel_x = -24
@@ -36,7 +36,7 @@
 		"Write GOODBYE" = 0,
 		"Write DUMBASS" = 0,
 	)
-	work_damage_amount = 10
+	work_damage_amount = 5
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/envy
 
@@ -76,12 +76,12 @@
 	var/can_act = TRUE
 	var/grab_cooldown
 	var/grab_cooldown_time = 15 SECONDS
-	var/grab_damage = 120
+	var/grab_damage = 30
 	var/work_penalty = FALSE
 	var/question = FALSE
 	var/work_count = 0
 	var/heart = FALSE
-	var/heart_threshold = 700
+	var/heart_threshold = 0.5
 
 	//PLAYABLE ATTACKS
 	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/kqe_grab_toggle)
@@ -111,7 +111,7 @@
 	. = ..()
 	if(!.) // Dead
 		return FALSE
-	if(health >= heart_threshold)
+	if(health >= maxHealth * heart_threshold)
 		return
 	if(!heart)
 		revive(full_heal = TRUE, admin_revive = FALSE)//fully heal and spawn a heart
@@ -283,7 +283,7 @@
 	pull_force = INFINITY
 	generic_canpass = FALSE
 	movement_type = PHASING | FLYING
-	var/boom_damage = 90
+	var/boom_damage = 20
 	var/grabbed
 	layer = POINT_LAYER//Sprite should always be visible
 
@@ -335,8 +335,8 @@
 	icon_living = "kqe_heart"
 	icon_dead = "kqe_egg"
 	/*Stats*/
-	health = 1000
-	maxHealth = 1000
+	health = 200
+	maxHealth = 200
 	obj_damage = 50
 	damage_coeff = list(RED_DAMAGE = 2, WHITE_DAMAGE = 2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
 	speed = 5

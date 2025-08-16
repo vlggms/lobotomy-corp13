@@ -11,8 +11,8 @@
 	pixel_y = -16
 	base_pixel_y = -16
 
-	maxHealth = 1200
-	health = 1200
+	maxHealth = 800
+	health = 800
 	blood_volume = 0
 	density = FALSE
 	damage_coeff = list(RED_DAMAGE = 0, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
@@ -29,7 +29,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 40, 40, 40),
 		ABNORMALITY_WORK_REPRESSION = list(0, 0, 40, 40, 40),
 	)
-	work_damage_amount = 10
+	work_damage_amount = 7
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/sloth
 
@@ -50,7 +50,7 @@
 	)
 
 	var/cooldown_time = 3
-	var/aoe_damage = 12
+	var/aoe_damage = 6
 
 /mob/living/simple_animal/hostile/abnormality/dimensional_refraction/proc/Melter()
 	for(var/mob/living/L in livinginview(1, src))

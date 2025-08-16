@@ -3,8 +3,8 @@
 	desc = "A towering figure with a revolver for a head. It's seated in front of a poker table."
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "dealerdamned"
-	maxHealth = 400
-	health = 400
+	maxHealth = 100
+	health = 100
 	threat_level = TETH_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 35,
@@ -13,7 +13,7 @@
 		ABNORMALITY_WORK_REPRESSION = 25,
 		"Gamble" = 100
 	)
-	work_damage_amount = 6
+	work_damage_amount = 3
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gluttony
 	speak_emote = list("states")

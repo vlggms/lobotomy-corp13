@@ -9,15 +9,15 @@
 	portrait = "headless_icthys"
 	pixel_x = -16
 	base_pixel_x = -16
-	maxHealth = 1200
-	health = 1200
+	maxHealth = 300
+	health = 300
 	ranged = TRUE
 	attack_verb_continuous = "slaps"
 	attack_verb_simple = "slap"
 	attack_sound = 'sound/abnormalities/ichthys/slap.ogg'
 	stat_attack = HARD_CRIT
-	melee_damage_lower = 20
-	melee_damage_upper = 35
+	melee_damage_lower = 7
+	melee_damage_upper = 9
 	rapid_melee = 1
 	melee_queue_distance = 2
 	melee_damage_type = BLACK_DAMAGE
@@ -33,7 +33,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(50, 55, 55, 50, 45),
 		ABNORMALITY_WORK_REPRESSION = list(35, 40, 40, 35, 35),
 	)
-	work_damage_amount = 10
+	work_damage_amount = 5
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gloom
 
@@ -56,14 +56,14 @@
 	var/can_act = TRUE
 	var/jump_cooldown = 0
 	var/jump_cooldown_time = 8 SECONDS
-	var/jump_damage = 50
+	var/jump_damage = 10
 	var/jump_sound = 'sound/abnormalities/ichthys/hammer2.ogg'
 	var/jump_aoe = 2
 	var/cannon_cooldown = 0
 	var/cannon_cooldown_time = 30 SECONDS
 	var/enraged = FALSE
 // Blood beam vars ripped off of Queen of hatred
-	var/beam_damage = 25
+	var/beam_damage = 5
 	var/beam_maximum_ticks = 20
 	var/datum/beam/current_beam
 
@@ -236,12 +236,12 @@
 	src.visible_message(span_userdanger("[src] looks angry!"))
 	enraged = TRUE
 	icon_state = "[icon_state]" + "_enraged"
-	melee_damage_lower = 25
-	melee_damage_upper = 44
+	melee_damage_lower *= 2
+	melee_damage_upper *= 2
 	jump_cooldown_time = 6 SECONDS
-	jump_damage = 62
+	jump_damage *= 2
 	cannon_cooldown_time = 22.5 SECONDS
-	beam_damage = 31
+	beam_damage *= 2
 	attack_sound = 'sound/abnormalities/ichthys/hardslap.ogg'
 	jump_sound = 'sound/abnormalities/ichthys/hammer3.ogg'
 	jump_aoe = 3

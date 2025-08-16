@@ -5,8 +5,8 @@
 	icon_state = "training_rabbit"
 	icon_living = "training_rabbit"
 	portrait = "training_rabbit"
-	maxHealth = 14 //hit with baton twice
-	health = 14
+	maxHealth = 20
+	health = 20
 	threat_level = TETH_LEVEL
 	fear_level = 0 //rabbit not scary
 	move_to_delay = 16

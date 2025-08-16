@@ -56,9 +56,6 @@
 	. = ..()
 	if(SSmaptype.maptype == "limbus_labs")
 		faction = list("neutral", "bird")
-		var/mob/living/simple_animal/hostile/runawaybird/V = new(get_turf(src))
-		birdlist+=V
-		V = new(get_turf(src))
 
 /mob/living/simple_animal/hostile/abnormality/galaxy_child/Initialize()
 	. = ..()

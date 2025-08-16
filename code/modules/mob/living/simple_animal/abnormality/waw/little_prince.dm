@@ -193,13 +193,13 @@
 	icon_dead = "little_princeminion"
 	base_pixel_x = -16
 	pixel_x = -16
-	health = 1500
-	maxHealth = 1500
+	health = 500
+	maxHealth = 500
 	move_to_delay = 3
 	melee_damage_type = BLACK_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
-	melee_damage_lower = 40
-	melee_damage_upper = 50		//slow melee and has nothing else.
+	melee_damage_lower = 15
+	melee_damage_upper = 20		//slow melee and has nothing else.
 	stat_attack = HARD_CRIT
 	death_sound = 'sound/abnormalities/littleprince/Prince_Death.ogg'
 	attack_verb_continuous = "smashes"

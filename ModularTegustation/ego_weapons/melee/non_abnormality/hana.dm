@@ -4,7 +4,7 @@
 	desc = "The weapons system used by hana association"
 	special = "Use this weapon to change its mode between spear, sword and fist."	//like a different rabbit knife. No black though
 	icon_state = "hana_sword"
-	force = 50
+	force = 25
 	damtype = PALE_DAMAGE
 
 	attack_verb_continuous = list("cuts", "slices")
@@ -30,7 +30,7 @@
 			attack_verb_simple = list("stab", "pierce")
 
 			reach = 2
-			force = 60
+			force = 30
 			stuntime = 5
 
 		if(2)
@@ -42,7 +42,7 @@
 			attack_verb_simple = list("smash", "beat")
 
 			reach = 1
-			force = 70
+			force = 45
 			attack_speed = 1.5
 			stuntime = 0
 
@@ -54,7 +54,7 @@
 			attack_verb_continuous = list("cuts", "slices")
 			attack_verb_simple = list("cuts", "slices")
 
-			force = 50
+			force = 25
 			attack_speed = 1
 			stuntime = 0
 

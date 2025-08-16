@@ -5,8 +5,8 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "radio"
 	portrait = "khz"
-	maxHealth = 400
-	health = 400
+	maxHealth = 100
+	health = 100
 	threat_level = HE_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 40,
@@ -16,7 +16,7 @@
 		"Input One" = 0,		//These should never be used, but it's here for brevity
 		"Input Zero" = 0,
 	)
-	work_damage_amount = 12
+	work_damage_amount = 5
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/envy
 
@@ -77,7 +77,7 @@
 	//Heal everyone and reset the bit calculator
 	if(bitcalculator == input && isopen)
 		for(var/mob/living/carbon/human/H in GLOB.player_list)
-			H.adjustSanityLoss(-10)
+			H.adjustSanityLoss(-5)
 			to_chat(H, span_notice("You feel a pleasant sound."))
 
 	//If you fuck it up
@@ -85,7 +85,7 @@
 		for(var/mob/living/carbon/human/H in GLOB.player_list)
 			if(z != H.z)
 				continue
-			H.adjustSanityLoss(30)
+			H.adjustSanityLoss(20)
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(H), pick(GLOB.alldirs))
 			to_chat(H, span_notice("You feel a crackling noise in your head."))
 	bitcalculator = 0

@@ -4,16 +4,16 @@
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "bloodbath"
 	portrait = "blood_bath"
-	maxHealth = 1000
-	health = 1000
+	maxHealth = 200
+	health = 200
 	rapid_melee = 1
 	melee_queue_distance = 2
 	move_to_delay = 3
 	attack_sound = 'sound/abnormalities/ichthys/slap.ogg'
 	attack_verb_continuous = "mauls"
 	attack_verb_simple = "maul"
-	melee_damage_lower = 10
-	melee_damage_upper = 18
+	melee_damage_lower = 3
+	melee_damage_upper = 5
 	melee_damage_type = WHITE_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 1.6, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.4, PALE_DAMAGE = 1.5)
 	ranged = TRUE
@@ -24,7 +24,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 60,
 		ABNORMALITY_WORK_REPRESSION = list(30, 20, 10, 0, 0),
 	)
-	work_damage_amount = 8
+	work_damage_amount = 3
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/pride
 	max_boxes = 14
@@ -85,9 +85,9 @@
 	if(breach_type != BREACH_MINING && breach_type != BREACH_PINK)
 		return
 	if(breach_type == BREACH_PINK)
-		maxHealth = 4000
-		melee_damage_lower = 20
-		melee_damage_upper = 40
+		maxHealth = 400
+		melee_damage_lower = 5
+		melee_damage_upper = 7
 	..()
 	icon_state = "bloodbath_DF"
 	pixel_x = -8
@@ -114,7 +114,7 @@
 	for(var/turf/T in view(3, src))
 		var/obj/effect/temp_visual/small_smoke/halfsecond/FX =  new(T)
 		FX.color = "#b52e19"
-		for(var/mob/living/carbon/human/H in HurtInTurf(T, list(), 50, WHITE_DAMAGE, null, null, TRUE, FALSE, TRUE, FALSE, TRUE, TRUE))
+		for(var/mob/living/carbon/human/H in HurtInTurf(T, list(), 10, WHITE_DAMAGE, null, null, TRUE, FALSE, TRUE, FALSE, TRUE, TRUE))
 			if(H.sanity_lost)
 				H.gib()
 	playsound(get_turf(src), 'sound/abnormalities/bloodbath/Bloodbath_EyeOn.ogg', 125, FALSE, 6)

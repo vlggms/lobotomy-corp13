@@ -6,15 +6,15 @@
 	icon_state = "rudolta_buff"
 	icon_living = "rudolta_buff"
 	icon_dead = "rudolta_buff_dead"
-	maxHealth = 4000
-	health = 4000
+	maxHealth = 1200
+	health = 1200
 	del_on_death = FALSE
 	pixel_x = -16
 	base_pixel_x = -16
 	damage_coeff = list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.8)
 	melee_damage_type = RED_DAMAGE
-	melee_damage_lower = 75
-	melee_damage_upper = 85
+	melee_damage_lower = 20
+	melee_damage_upper = 25
 	rapid_melee = 2
 	ranged = TRUE
 	attack_verb_continuous = "punches"
@@ -50,7 +50,7 @@
 	// Onrush vars
 	var/onrush_cooldown
 	var/onrush_cooldown_time = 10 SECONDS
-	var/onrush_damage = 150
+	var/onrush_damage = 30
 	var/onrush_max_iterations = 6
 	var/onrush_min_delay = 3
 	var/onrush_max_delay = 6
@@ -64,7 +64,7 @@
 	// Sleigh slam vars
 	var/slam_cooldown
 	var/slam_cooldown_time = 20 SECONDS
-	var/slam_damage = 250
+	var/slam_damage = 50
 
 /datum/action/innate/abnormality_attack/rudolta_buff_onrush
 	name = "Onrush"

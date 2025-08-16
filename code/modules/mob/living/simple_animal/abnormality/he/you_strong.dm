@@ -5,8 +5,8 @@
 	icon_state = "you_strong_pause"
 	icon_living = "you_strong_pause"
 	portrait = "grown_strong"
-	maxHealth = 2000
-	health = 2000
+	maxHealth = 400
+	health = 400
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0)
 	threat_level = HE_LEVEL
 	start_qliphoth = 3
@@ -18,7 +18,7 @@
 		"YES" = 0,
 		"NO" = 0,
 	)
-	work_damage_amount = 8
+	work_damage_amount = 5
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/envy
 	ego_list = list(
@@ -238,7 +238,7 @@
 	prosthetic.replace_limb(M)
 	manual_emote("makes a grinding noise.")
 	M.emote("scream")
-	M.deal_damage(50, BRUTE) // Bro your [X] just got chopped off, no armor's gonna resist that.
+	M.deal_damage(10, BRUTE) // Bro your [X] just got chopped off, no armor's gonna resist that.
 	to_chat(M, span_notice("Your [old_part.name] has been replaced!"))
 	qdel(old_part)
 	M.regenerate_icons()
@@ -255,13 +255,13 @@
 	icon_state = "grown_strong"
 	icon_living = "grown_strong"
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
-	maxHealth = 500
-	health = 500
+	maxHealth = 100
+	health = 100
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0)
 
 	move_to_delay = 5
-	melee_damage_lower = 3
-	melee_damage_upper = 5
+	melee_damage_lower = 2
+	melee_damage_upper = 4
 	melee_damage_type = RED_DAMAGE
 
 	attack_sound = "swing_hit"
@@ -279,7 +279,7 @@
 	var/gear_cooldown = 1 MINUTES
 	//tracks speed change even if altered by other speed modifiers.
 	var/gear_speed = 0
-	var/gear_health = 200//The maximum HP you can trigger surgery with, pink shoes modifies this.
+	var/gear_health = 0.25 // The percentage of maximum HP you can trigger surgery with, pink shoes modifies this.
 	var/can_act = TRUE//necessary sanity for spin attacks
 
 /mob/living/simple_animal/hostile/grown_strong/Move(atom/newloc, dir, step_x, step_y)
@@ -302,8 +302,8 @@
 
 /mob/living/simple_animal/hostile/grown_strong/proc/UpdateGear()
 	manual_emote("shifts into [gear]\th gear!")
-	melee_damage_lower = 3*gear
-	melee_damage_upper = 5*gear
+	melee_damage_lower = 3 * max(1, gear*0.75)
+	melee_damage_upper = 5 * max(1, gear*0.75)
 	//Reset the speed. First proc changes this only with 0.
 	ChangeMoveToDelayBy(gear_speed)
 	//Calculate speed change.
@@ -318,11 +318,11 @@
 		return
 	gear = clamp(gear + rand(-1, 3), 1, 10)
 	UpdateGear()
-	src.apply_damage(150, BRUTE, null, 0, spread_damage = TRUE)// OOF OUCH MY BONES
+	src.apply_damage(30, BRUTE, null, 0, spread_damage = TRUE)// OOF OUCH MY BONES
 	COOLDOWN_START(src, gear_shift, gear_cooldown)
 
 /mob/living/simple_animal/hostile/grown_strong/death(gibbed)
-	if(maxHealth > gear_health)
+	if(maxHealth > initial(maxHealth) * gear_health)
 		INVOKE_ASYNC(src, PROC_REF(Undie))
 		return FALSE
 	visible_message(span_notice("[src] explodes into a mess of plastic and gore!"))
@@ -332,7 +332,7 @@
 
 /mob/living/simple_animal/hostile/grown_strong/proc/Undie()
 	manual_emote("shudders to a hault, insides whirling...")
-	src.maxHealth = max(maxHealth - 100, 200)
+	src.maxHealth = max(maxHealth - initial(maxHealth) * 0.2, initial(maxHealth))
 	src.adjustBruteLoss(-9999)
 	status_flags |= GODMODE
 	SLEEP_CHECK_DEATH(3 SECONDS)

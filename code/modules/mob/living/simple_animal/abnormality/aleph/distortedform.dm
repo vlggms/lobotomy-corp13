@@ -7,8 +7,8 @@
 	name = "Distorted Form"
 	desc = "A manmade horror beyond description."
 	icon = 'ModularTegustation/Teguicons/128x128.dmi'
-	maxHealth = 20000
-	health = 20000
+	maxHealth = 10000
+	health = 10000
 	attack_verb_continuous = "attacks"
 	attack_verb_simple = "attack"
 	attack_sound = 'sound/abnormalities/distortedform/slam.ogg'
@@ -21,8 +21,8 @@
 	portrait = "distortedform"
 	melee_damage_type = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.8)
-	melee_damage_lower = 55
-	melee_damage_upper = 65
+	melee_damage_lower = 20
+	melee_damage_upper = 25
 	move_to_delay = 3
 	ranged = TRUE
 	pixel_x = -48
@@ -37,7 +37,7 @@
 		ABNORMALITY_WORK_REPRESSION = list(0, 0, 0, 50, 55),
 	)
 	start_qliphoth = 3
-	work_damage_amount = 16
+	work_damage_amount = 9
 	work_damage_type = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 	chem_type = /datum/reagent/abnormality/sin/lust
 
@@ -524,8 +524,8 @@
 	melee_damage_type = RED_DAMAGE
 	ChangeResistances(list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.8))
 	ChangeMoveToDelay(3)
-	melee_damage_lower = 55
-	melee_damage_upper = 65
+	melee_damage_lower = 20
+	melee_damage_upper = 25
 	rapid_melee = 1
 	can_move = FALSE
 	can_attack = TRUE
@@ -595,7 +595,7 @@
 	SLEEP_CHECK_DEATH(10)
 	for(var/turf/T in area_of_effect)
 		new /obj/effect/temp_visual/small_smoke/halfsecond(T)
-		for(var/mob/living/carbon/human/H in HurtInTurf(T, list(), 150, WHITE_DAMAGE, null, null, TRUE, FALSE, TRUE, FALSE, TRUE, TRUE))
+		for(var/mob/living/carbon/human/H in HurtInTurf(T, list(), 50, WHITE_DAMAGE, null, null, TRUE, FALSE, TRUE, FALSE, TRUE, TRUE))
 			if(H.health <= 0)
 				H.gib()
 	playsound(get_turf(src), 'ModularTegustation/Tegusounds/claw/prepare.ogg', 50, 0, 5)
@@ -624,7 +624,7 @@
 	for(var/turf/T in area_of_effect)
 		var/obj/effect/temp_visual/smash_effect/bloodeffect =  new(T)
 		bloodeffect.color = "#b52e19"
-		for(var/mob/living/carbon/human/H in HurtInTurf(T, list(), 150, RED_DAMAGE, null, null, TRUE, FALSE, TRUE, FALSE, TRUE, TRUE))
+		for(var/mob/living/carbon/human/H in HurtInTurf(T, list(), 50, RED_DAMAGE, null, null, TRUE, FALSE, TRUE, FALSE, TRUE, TRUE))
 			if(H.sanity_lost)
 				H.gib()
 	playsound(get_turf(src), 'sound/abnormalities/apocalypse/slam.ogg', 50, 0, 5)
@@ -706,7 +706,7 @@
 	if(LAZYLEN(target_list))
 		target_list += target
 		for(var/mob/living/L in target_list)
-			L.deal_damage(300, BLACK_DAMAGE) //You - you are probably going to die!
+			L.deal_damage(100, BLACK_DAMAGE) //You - you are probably going to die!
 			if(L.health < 0)
 				L.gib() //maybe someday we'll have a cool acid melting animation for this
 
@@ -789,8 +789,8 @@
 	attack_verb_simple = "strike"
 	attack_sound = 'sound/abnormalities/nothingthere/attack.ogg'
 	ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.8))
-	melee_damage_lower = 65
-	melee_damage_upper = 75
+	melee_damage_lower = 25
+	melee_damage_upper = 30
 	ChangeMoveToDelay(4.5)
 	can_move = TRUE
 	addtimer(CALLBACK(src, PROC_REF(Goodbye)), 30)
@@ -805,7 +805,7 @@
 	SLEEP_CHECK_DEATH(8)
 	for(var/turf/T in view(2, src))
 		new /obj/effect/temp_visual/nt_goodbye(T)
-		for(var/mob/living/L in HurtInTurf(T, list(), 500, RED_DAMAGE, null, null, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE))
+		for(var/mob/living/L in HurtInTurf(T, list(), 150, RED_DAMAGE, null, null, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE))
 			if(L.health < 0)
 				L.gib()
 	playsound(get_turf(src), 'sound/abnormalities/nothingthere/goodbye_attack.ogg', 75, FALSE, 7)
@@ -840,7 +840,7 @@
 			if(TF.density)
 				continue
 			new /obj/effect/temp_visual/smash_effect(TF)
-			been_hit = HurtInTurf(TF, been_hit, 120, RED_DAMAGE, null, null, TRUE, FALSE, TRUE, TRUE)
+			been_hit = HurtInTurf(TF, been_hit, 40, RED_DAMAGE, null, null, TRUE, FALSE, TRUE, TRUE)
 	for(var/mob/living/L in been_hit)
 		if(L.health < 0)
 			L.gib()
@@ -859,8 +859,8 @@
 	pixel_x = 0
 	base_pixel_x = 0
 	attack_sound = 'sound/weapons/ego/rapier1.ogg'
-	melee_damage_lower = 17
-	melee_damage_upper = 25
+	melee_damage_lower = 10
+	melee_damage_upper = 15
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
 	rapid_melee = 4
@@ -936,7 +936,7 @@
 	if(!ishuman(target))
 		target.deal_damage(150, PALE_DAMAGE) //bit more than usual DPS in pale damage
 		return
-	target.deal_damage(500, RED_DAMAGE) //You are probably going to die!
+	target.deal_damage(150, RED_DAMAGE) //You are probably going to die!
 	if(target.health > 0)
 		return
 	var/mob/living/carbon/human/H = target
@@ -1139,7 +1139,7 @@
 	forceMove(T)
 	for(var/turf/TF in view(1, T))
 		new /obj/effect/temp_visual/small_smoke/halfsecond(TF)
-		var/list/new_hits = HurtInTurf(T, been_hit, 250, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE) - been_hit
+		var/list/new_hits = HurtInTurf(T, been_hit, 75, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE) - been_hit
 		been_hit += new_hits
 		for(var/mob/living/L in new_hits)
 			visible_message(span_boldwarning("[src] runs through [L]!"), span_nicegreen("You impaled heretic [L]!"))
@@ -1189,7 +1189,7 @@
 			if(TF.density)
 				continue
 			new /obj/effect/temp_visual/smash_effect(TF)
-			been_hit = HurtInTurf(TF, been_hit, 80, RED_DAMAGE, null, null, TRUE, FALSE, TRUE, TRUE)
+			been_hit = HurtInTurf(TF, been_hit, 35, RED_DAMAGE, null, null, TRUE, FALSE, TRUE, TRUE)
 	for(var/mob/living/L in been_hit)
 		if(L.health < 0)
 			if(!ishuman(L))
@@ -1249,7 +1249,7 @@
 		for(var/mob/living/L in T)
 			if(faction_check_mob(L))
 				continue
-			L.deal_damage(50, BLACK_DAMAGE)
+			L.deal_damage(20, BLACK_DAMAGE)
 			if(ishuman(L))
 				var/mob/living/carbon/human/H = L
 				if(H.sanity_lost)
@@ -1274,7 +1274,7 @@
 				continue
 			if(faction_check_mob(L))
 				continue
-			L.deal_damage(30, BLACK_DAMAGE)
+			L.deal_damage(12, BLACK_DAMAGE)
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
 			if(!L.anchored)
 				var/whack_speed = (prob(60) ? 1 : 4)
@@ -1294,8 +1294,8 @@
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "bloodbath_DF"
 	ChangeResistances(list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.8))
-	melee_damage_lower = 65
-	melee_damage_upper = 75
+	melee_damage_lower = 20
+	melee_damage_upper = 25
 	ChangeMoveToDelay(4.5)
 	melee_damage_type = WHITE_DAMAGE
 	pixel_x = -8
@@ -1494,7 +1494,7 @@
 				H.Paralyze(20)
 				H.adjust_blindness(16)
 				to_chat(L, span_userdanger("MY EYES!!!"))
-				H.apply_damage(100, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+				H.apply_damage(30, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 				if(H.sanity_lost) // They can't deal with being bald
 					H.dust()
 	if(!attack_chain)
@@ -1555,7 +1555,7 @@
 	been_hit += L
 	if(!(faction_check in L.faction))
 		playsound(L.loc, 'sound/effects/burn.ogg', 50 - attack_range, TRUE, -1)
-		var/dealt_damage = max(5, 75 - (attack_range))
+		var/dealt_damage = max(5, 25 - (attack_range))
 		L.deal_damage(dealt_damage, RED_DAMAGE)
 		if(ishuman(L) && dealt_damage > 25)
 			L.emote("scream")
@@ -1586,7 +1586,7 @@
 			continue
 		if(faction_check_mob(L))
 			continue
-		L.deal_damage((75 - get_dist(src, L)), WHITE_DAMAGE)
+		L.deal_damage((25 - get_dist(src, L)), WHITE_DAMAGE)
 		flash_color(L, flash_color = COLOR_BLUE_LIGHT, flash_time = 70)
 		if(!ishuman(L))
 			continue
@@ -1738,7 +1738,7 @@
 	for(var/mob/living/L in livinginview(8, src))
 		if(faction_check_mob(L))
 			continue
-		L.deal_damage((300 - (16 * get_dist(src, L))), BLACK_DAMAGE)
+		L.deal_damage((100 - (5 * get_dist(src, L))), BLACK_DAMAGE)
 	SLEEP_CHECK_DEATH(2 SECONDS)
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/ApocJudge()
@@ -1823,7 +1823,7 @@
 	animate(D, alpha = 0, transform = matrix()*2, time = 5)
 	for(var/turf/T in view(1, src))
 		new /obj/effect/temp_visual/small_smoke/halfsecond(T)
-		for(var/mob/living/carbon/human/H in HurtInTurf(T, list(), 100, RED_DAMAGE, null, null, TRUE, FALSE, TRUE, FALSE, TRUE, TRUE))
+		for(var/mob/living/carbon/human/H in HurtInTurf(T, list(), 33, RED_DAMAGE, null, null, TRUE, FALSE, TRUE, FALSE, TRUE, TRUE))
 			if(H.health <= 0)
 				H.gib()
 
@@ -1843,7 +1843,7 @@
 	animate(D, alpha = 0, transform = matrix()*2, time = 5)
 	for(var/turf/T in view(4, src))
 		new /obj/effect/temp_visual/small_smoke/halfsecond(T)
-		for(var/mob/living/carbon/human/H in HurtInTurf(T, list(), 150, BLACK_DAMAGE, null, null, TRUE, FALSE, TRUE, FALSE, TRUE, TRUE))
+		for(var/mob/living/carbon/human/H in HurtInTurf(T, list(), 50, BLACK_DAMAGE, null, null, TRUE, FALSE, TRUE, FALSE, TRUE, TRUE))
 			if(H.health <= 0)
 				H.gib()
 
@@ -1873,7 +1873,7 @@
 			continue
 		var/dist = get_dist(src, L)
 		if(ishuman(L)) //Different damage formulae for humans vs mobs
-			L.deal_damage(clamp((15 * (2 ** (8 - dist))), 15, 4000), RED_DAMAGE) //15-3840 damage scaling exponentially with distance
+			L.deal_damage(clamp((4 * (2 ** (8 - dist))), 15, 4000), RED_DAMAGE) //4-1024 damage scaling exponentially with distance
 		else
 			L.deal_damage(600 - ((dist > 2 ? dist : 0 )* 75), RED_DAMAGE) //0-600 damage scaling on distance, we don't want it oneshotting mobs
 		if(L.health < 0)

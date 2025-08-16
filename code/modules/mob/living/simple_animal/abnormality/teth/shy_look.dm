@@ -10,8 +10,8 @@
 	pixel_x = -16
 	base_pixel_x = -16
 
-	maxHealth = 666
-	health = 666
+	maxHealth = 120
+	health = 120
 	move_to_delay = 5
 	melee_damage_upper = 1
 	melee_damage_type = BLACK_DAMAGE
@@ -22,7 +22,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(50, 45, 45, 40, 40),
 		ABNORMALITY_WORK_REPRESSION = list(50, 45, 45, 40, 40),
 	)
-	work_damage_amount = 8
+	work_damage_amount = 3
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/pride
 

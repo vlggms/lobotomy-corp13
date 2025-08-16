@@ -460,9 +460,9 @@
 		holder.remove_reagent(/datum/reagent/medicine/sal_acid, 1)
 		return
 	if(M.getBruteLoss() > (M.maxHealth*0.25))
-		M.adjustBruteLoss(-4*REM, 0)
+		M.adjustBruteLoss(-2*REM, 0)
 	else
-		M.adjustBruteLoss(-1*REM, 0)
+		M.adjustBruteLoss(-0.5*REM, 0)
 	..()
 	. = 1
 

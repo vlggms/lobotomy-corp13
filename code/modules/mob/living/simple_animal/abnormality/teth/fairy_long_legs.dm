@@ -10,13 +10,13 @@
 	del_on_death = FALSE
 	pixel_x = -16
 	base_pixel_x = -16
-	maxHealth = 900
-	health = 900
+	maxHealth = 200
+	health = 200
 	rapid_melee = 0.5
 	move_to_delay = 4
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
-	melee_damage_lower = 12
-	melee_damage_upper = 16
+	melee_damage_lower = 3
+	melee_damage_upper = 5
 	melee_damage_type = RED_DAMAGE
 	stat_attack = HARD_CRIT
 	attack_sound = 'sound/abnormalities/fairy_longlegs/attack.ogg'
@@ -32,7 +32,7 @@
 		ABNORMALITY_WORK_REPRESSION = 0,
 		"Take cover" = 0,
 	)
-	work_damage_amount = 5
+	work_damage_amount = 3
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gluttony
 	death_message = "coalesces into a primordial egg."
@@ -151,7 +151,7 @@
 	user.visible_message(span_warning("You feel a stinging pain in your chest, is that...blood?!"))
 	icon_state = "fairy_longlegs_healing"
 	playsound(get_turf(src), 'sound/abnormalities/fairy_longlegs/heal.ogg', 50, 1)
-	user.deal_damage(100, RED_DAMAGE)
+	user.deal_damage(30, RED_DAMAGE)
 	for(var/obj/effect/rainy_effect/rain in range(3, src))
 		rain.End(FALSE)
 	sleep(1.5 SECONDS)
@@ -166,7 +166,7 @@
 	finishing = TRUE
 	icon_state = "fairy_longlegs_healing"
 	playsound(get_turf(src), 'sound/abnormalities/fairy_longlegs/heal.ogg', 50, 1)
-	adjustBruteLoss(-(maxHealth*0.04)) //recovers 38 health per hit
+	adjustBruteLoss(-(maxHealth*0.04))
 	..()
 	SLEEP_CHECK_DEATH(15)
 	icon_state = "fairy_longlegs"
@@ -192,5 +192,5 @@
 	if(healing)
 		for(var/mob/living/carbon/human/H in get_turf(src))
 			to_chat(H, span_nicegreen("The rain is oddly reinvigorating."))
-			H.adjustBruteLoss(-80)
+			H.adjustBruteLoss(-20)
 	QDEL_IN(src, 50)

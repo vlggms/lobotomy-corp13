@@ -15,8 +15,8 @@
 	del_on_death = FALSE
 	pixel_x = -8
 	base_pixel_x = -8
-	maxHealth = 1200
-	health = 1200
+	maxHealth = 300
+	health = 300
 	rapid_melee = 2
 	move_force = MOVE_FORCE_NORMAL + 1 //I couldn't make it the same as the normal move_force_strong without shepherd pushing tables which looked weird
 	threat_level = HE_LEVEL
@@ -28,11 +28,11 @@
 		"Release" = 100,
 	)
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.5)
-	melee_damage_lower = 22
-	melee_damage_upper = 30
+	melee_damage_lower = 6
+	melee_damage_upper = 8
 	melee_damage_type = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
-	work_damage_amount = 10
+	work_damage_amount = 5
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/pride
 	attack_verb_continuous = "cuts"
@@ -65,7 +65,7 @@
 	var/death_counter //He won't go off a timer, he'll go off deaths. Takes 8 for him.
 	var/slash_current = 4
 	var/slash_cooldown = 4
-	var/slash_damage = 40
+	var/slash_damage = 8
 	var/slashing = FALSE
 	var/range = 2
 	var/hired = FALSE
@@ -123,7 +123,7 @@
 	var/no_counter = FALSE
 	var/sidesteping = FALSE
 	var/countering = FALSE
-	var/counter_damage = 20
+	var/counter_damage = 5
 	//PLAYABLES ATTACKS
 	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/sheperd_spin_toggle, /datum/action/cooldown/evade, /datum/action/cooldown/parry)
 
@@ -388,11 +388,11 @@
 		awakened_buddy = buddy_abno
 		awakened = TRUE //ho god ho fuck
 		slash_cooldown = 3
-		slash_damage = 50
-		melee_damage_lower = 30
-		melee_damage_upper = 40
+		slash_damage = 10
+		melee_damage_lower = 8
+		melee_damage_upper = 10
 		ChangeMoveToDelayBy(-0.5)
-		maxHealth = maxHealth * 4 //5000 health, will get hurt by buddy's howl to make up for the high health
+		maxHealth = maxHealth * 4
 		set_health(health * 4)
 		med_hud_set_health()
 		med_hud_set_status()

@@ -14,13 +14,13 @@
 	attack_verb_simple = "glomp"
 	/* Stats */
 	threat_level = ALEPH_LEVEL
-	health = 4000
-	maxHealth = 4000
+	health = 1500
+	maxHealth = 1500
 	obj_damage = 60
 	damage_coeff = list(RED_DAMAGE = -1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0.8)
 	melee_damage_type = BLACK_DAMAGE
-	melee_damage_lower = 55
-	melee_damage_upper = 60 // AOE damage increases it drastically
+	melee_damage_lower = 15
+	melee_damage_upper = 20 // AOE damage increases it drastically
 	projectiletype = /obj/projectile/melting_blob
 	ranged = TRUE
 	stat_attack = DEAD
@@ -36,7 +36,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(20, 30, 40, 50, 55),
 		ABNORMALITY_WORK_REPRESSION = list(0, 0, 0, 0, 0),
 	)
-	work_damage_amount = 14
+	work_damage_amount = 9
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/lust
 	/* Sounds */
@@ -216,7 +216,7 @@
 /mob/living/simple_animal/hostile/abnormality/melting_love/proc/DissolveGifted(mob/living/carbon/C)
 	to_chat(C, span_userdanger("You feel like you are about to burst!"))
 	C.emote("scream")
-	C.deal_damage(800, BLACK_DAMAGE)
+	C.deal_damage(270, BLACK_DAMAGE)
 	C.remove_status_effect(STATUS_EFFECT_MELTYLOVE)
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/proc/UnregisterGiftedSignals(mob/living/carbon/human/user)
@@ -243,8 +243,8 @@
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/proc/Empower()
 	ChangeMoveToDelayBy(-0.5)
-	melee_damage_lower = 80
-	melee_damage_upper = 85
+	melee_damage_lower = 27
+	melee_damage_upper = 32
 	projectiletype = /obj/projectile/melting_blob/enraged
 	adjustBruteLoss(-maxHealth, forced = TRUE)
 	desc += " It looks angry."
@@ -266,13 +266,13 @@
 	attack_verb_continuous = "glomps"
 	attack_verb_simple = "glomp"
 	/* Stats */
-	health = 400
-	maxHealth = 400
+	health = 200
+	maxHealth = 200
 	obj_damage = 60
 	damage_coeff = list(RED_DAMAGE = -1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
 	melee_damage_type = BLACK_DAMAGE
-	melee_damage_lower = 20
-	melee_damage_upper = 25
+	melee_damage_lower = 10
+	melee_damage_upper = 15
 	rapid_melee = 2
 	speed = 2
 	move_to_delay = 3
@@ -285,9 +285,9 @@
 	del_on_death = TRUE
 	var/spawn_sound = 'sound/abnormalities/meltinglove/pawn_convert.ogg'
 	var/statuschance = 25
-	var/death_damage = 20
+	var/death_damage = 10
 	var/death_slime_range = 1
-	var/decay_damage = 20
+	var/decay_damage = 10
 	var/decay_timer = 4
 
 /mob/living/simple_animal/hostile/slime/Login()
@@ -365,10 +365,10 @@
 	pixel_x = -8
 	base_pixel_x = -8
 	/* Stats */
-	health = 2000
-	maxHealth = 2000
-	melee_damage_lower = 35
-	melee_damage_upper = 40
+	health = 800
+	maxHealth = 800
+	melee_damage_lower = 12
+	melee_damage_upper = 20
 	spawn_sound = 'sound/abnormalities/meltinglove/pawn_big_convert.ogg'
 	statuschance = 75
 

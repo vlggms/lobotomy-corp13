@@ -5,15 +5,15 @@
 	icon_state = "cleaner"
 	icon_living = "cleaner"
 	portrait = "cleaner"
-	maxHealth = 800
-	health = 800
+	maxHealth = 150
+	health = 150
 	ranged = TRUE
 	attack_verb_continuous = "cleans"
 	attack_verb_simple = "cleans"
 	attack_sound = 'sound/abnormalities/helper/attack.ogg'
 	stat_attack = HARD_CRIT
-	melee_damage_lower = 11
-	melee_damage_upper = 12
+	melee_damage_lower = 4
+	melee_damage_upper = 6
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.7, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
 	speak_emote = list("states")
 	speech_span = SPAN_ROBOT
@@ -30,7 +30,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(35, 40, 40, 35, 35),
 		ABNORMALITY_WORK_REPRESSION = list(0, 0, -30, -60, -90),
 	)
-	work_damage_amount = 7
+	work_damage_amount = 3
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/wrath
 
@@ -66,7 +66,7 @@
 			\"I will keep living an ordinary life, the same as now, just as assigned to me.\""),
 	)
 
-	var/bumpdamage = 10
+	var/bumpdamage = 4
 
 /mob/living/simple_animal/hostile/abnormality/cleaner/Move()
 	..()

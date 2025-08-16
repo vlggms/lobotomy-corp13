@@ -62,7 +62,7 @@ SUBSYSTEM_DEF(traumas)
 			/mob/living/simple_animal/hostile/abnormality/judgement_bird, /mob/living/simple_animal/hostile/abnormality/fire_bird, /mob/living/simple_animal/hostile/abnormality/thunder_bird,
 			/mob/living/simple_animal/hostile/megafauna/apocalypse_bird, /mob/living/simple_animal/hostile/runawaybird
 		)),
-		"anime" = typecacheof(list(/mob/living/simple_animal/hostile/guardian, /mob/living/simple_animal/hostile/abnormality/sukuna, /mob/living/simple_animal/hostile/abnormality/hatred_queen)),
+		"anime" = typecacheof(list(/mob/living/simple_animal/hostile/guardian, /mob/living/simple_animal/hostile/abnormality/hatred_queen)),
 		"insects" = typecacheof(list(/mob/living/simple_animal/hostile/cockroach, /mob/living/simple_animal/hostile/poison/bees, /mob/living/simple_animal/hostile/ordeal/steel_dawn,
 			/mob/living/simple_animal/hostile/ordeal/steel_dusk, /mob/living/simple_animal/hostile/ordeal/amber_bug, /mob/living/simple_animal/hostile/ordeal/amber_dusk, /mob/living/simple_animal/hostile/ordeal/amber_midnight
 		))

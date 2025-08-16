@@ -1,23 +1,23 @@
 /obj/projectile/ego_bullet/ego_prank
 	name = "prank"
-	damage = 30
+	damage = 10
 	damage_type = BLACK_DAMAGE
 
 /obj/projectile/ego_bullet/ego_transmission
 	name = "transmission"
-	damage = 30
+	damage = 10
 	damage_type = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_gaze
 	name = "gaze"
-	damage = 70 //Slow as balls
+	damage = 22 //Slow as balls
 	damage_type = RED_DAMAGE
 
 //Homing weapon with no homing
 /obj/projectile/ego_bullet/ego_galaxy
 	name = "galaxy"
 	icon_state = "magicm"
-	damage = 45
+	damage = 14
 	damage_type = BLACK_DAMAGE
 	speed = 1.5
 
@@ -49,14 +49,14 @@
 
 /obj/projectile/ego_bullet/ego_unrequited
 	name = "unrequited"
-	damage = 18
+	damage = 6
 	damage_type = WHITE_DAMAGE
 
 /obj/projectile/ego_bullet/ego_harmony
 	name = "harmony"
 	icon_state = "harmony"
 	nondirectional_sprite = TRUE
-	damage = 16
+	damage = 5
 	damage_type = WHITE_DAMAGE
 	speed = 1.3
 	projectile_piercing = PASSMOB
@@ -92,22 +92,22 @@
 
 /obj/projectile/ego_bullet/ego_song
 	name = "song"
-	damage = 6
+	damage = 2
 	damage_type = WHITE_DAMAGE
 
 /obj/projectile/ego_bullet/ego_songmini
 	name = "song"
-	damage = 2 //4 pellets
+	damage = 0.8 //4 pellets
 	damage_type = WHITE_DAMAGE
 
 /obj/projectile/ego_bullet/ego_wedge
 	name = "screaming"
-	damage = 30
+	damage = 10
 	damage_type = WHITE_DAMAGE
 
 /obj/projectile/ego_bullet/replica
 	name = "sinewy claw"
-	damage = 30
+	damage = 10
 	damage_type = BLACK_DAMAGE
 	hitscan = TRUE
 	muzzle_type = /obj/effect/projectile/tracer/laser/replica
@@ -140,12 +140,12 @@
 
 /obj/projectile/ego_bullet/ego_swindle/Initialize()
 	. = ..()
-	damage = pick(5, 10, 25, 30, 35, 45)
+	damage = rand(3, 15)
 
 /obj/projectile/ego_bullet/ego_ringing
 	name = "ringing"
 	icon_state = "energy2"
-	damage = 7
+	damage = 3
 	damage_type = BLACK_DAMAGE
 
 /obj/projectile/ego_bullet/ego_syrinx
@@ -153,7 +153,7 @@
 	icon_state = "ecstasy"
 	damage_type = WHITE_DAMAGE
 	color = COLOR_GREEN
-	damage = 7
+	damage = 3
 	speed = 1.3
 	range = 6
 
@@ -161,10 +161,10 @@
 	name = "ardor blossom star"
 	icon_state = "gaussstrong"
 	damage_type = RED_DAMAGE
-	damage = 85
+	damage = 26
 	projectile_piercing = PASSMOB
 
 /obj/projectile/ego_bullet/ego_squeak
 	name = "squeak"
-	damage = 7
+	damage = 3
 	damage_type = RED_DAMAGE

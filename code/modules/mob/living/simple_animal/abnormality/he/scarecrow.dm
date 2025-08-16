@@ -7,13 +7,13 @@
 	icon_dead = "scarecrow_dead"
 	portrait = "scarecrow"
 	del_on_death = FALSE
-	maxHealth = 1000
-	health = 1000
+	maxHealth = 200
+	health = 200
 	rapid_melee = 2
 	move_to_delay = 3
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)
-	melee_damage_lower = 20
-	melee_damage_upper = 24
+	melee_damage_lower = 4
+	melee_damage_upper = 5
 	melee_damage_type = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
 	attack_sound = 'sound/abnormalities/scarecrow/attack.ogg'
@@ -28,7 +28,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 45,
 		ABNORMALITY_WORK_REPRESSION = 45,
 	)
-	work_damage_amount = 10
+	work_damage_amount = 5
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/envy
 	death_message = "stops moving, with its torso rotating forwards."
@@ -87,8 +87,8 @@
 	var/punishment_speed = 6
 	var/speed_duration = 60
 	var/weaken_duration = 30
-	var/min_dam_buff = 25
-	var/max_dam_buff = 30
+	var/min_dam_buff = 5
+	var/max_dam_buff = 10
 	var/min_dam_old
 	var/max_dam_old
 	var/old_speed
@@ -131,7 +131,7 @@
 			H.melee_damage_lower = min_dam_old
 			H.melee_damage_upper = max_dam_old
 			H.move_to_delay = punishment_speed
-			H.deal_damage(100, WHITE_DAMAGE)
+			H.deal_damage(20, WHITE_DAMAGE)
 			H.color = null
 			H.manual_emote("starts slowing down...")
 			to_chat(H, span_userdanger("No... I need that wisdom..."))

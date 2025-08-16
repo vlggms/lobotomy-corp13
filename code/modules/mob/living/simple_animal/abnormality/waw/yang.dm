@@ -8,8 +8,8 @@
 	icon_dead = "yang_slain"
 	portrait = "yang"
 	is_flying_animal = TRUE
-	maxHealth = 800	//It is helpful and therefore weak.
-	health = 800
+	maxHealth = 300	//It is helpful and therefore weak.
+	health = 300
 	move_to_delay = 7
 	pixel_x = -16
 	base_pixel_x = -16
@@ -21,7 +21,7 @@
 	can_breach = TRUE
 	start_qliphoth = 2
 	threat_level = WAW_LEVEL
-	work_damage_amount = 11
+	work_damage_amount = 7
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/envy
 	work_chances = list(
@@ -48,8 +48,8 @@
 
 	//Melee
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 1.7, PALE_DAMAGE = 2)
-	melee_damage_lower = 30
-	melee_damage_upper = 30
+	melee_damage_lower = 9
+	melee_damage_upper = 10
 	melee_damage_type = WHITE_DAMAGE
 	faction = list("neutral")	//Doesn't attack until attacked.
 
@@ -71,7 +71,7 @@
 			If you can't accept the goodness in yourself, you're not ready to accept the goodness of the world."),
 	)
 
-	var/explosion_damage = 150
+	var/explosion_damage = 50
 	var/explosion_timer = 7 SECONDS
 	var/explosion_range = 15
 	var/exploding = FALSE
@@ -206,7 +206,7 @@
 	name = "yang beam"
 	icon_state = "omnilaser"
 	hitscan = TRUE
-	damage = 70
+	damage = 20
 	damage_type = WHITE_DAMAGE
 	muzzle_type = /obj/effect/projectile/muzzle/laser/white
 	tracer_type = /obj/effect/projectile/tracer/laser/white

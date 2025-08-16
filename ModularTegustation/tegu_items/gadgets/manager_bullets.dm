@@ -50,7 +50,7 @@
 	alert_type = null
 	var/inherentarmorcheck
 	var/statuseffectvisual = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "red_shield")
-	var/shieldhealth = 100
+	var/shieldhealth = 50
 	var/damagetaken = 0
 	var/list/respectivedamage = list(RED_DAMAGE)
 	var/faltering = 0

@@ -18,8 +18,8 @@
 	retreat_distance = 1
 	minimum_distance = 2
 
-	maxHealth = 2000
-	health = 2000
+	maxHealth = 800
+	health = 800
 	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 1.5)
 	stat_attack = HARD_CRIT
 	ranged_cooldown_time = 12
@@ -40,7 +40,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(50, 50, 55, 55, 60),
 		ABNORMALITY_WORK_REPRESSION = list(20, 20, 20, 0, 0),
 	)
-	work_damage_amount = 7
+	work_damage_amount = 5
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/lust
 
@@ -84,10 +84,10 @@
 	var/beam_startup = 2 SECONDS
 	var/beats_cooldown
 	var/beats_cooldown_time = 15 SECONDS
-	var/beats_damage = 250
+	var/beats_damage = 50
 	var/list/beats_hit = list()
 	/// BLACK damage done in line each 0.5 second
-	var/beam_damage = 10
+	var/beam_damage = 4
 	var/beam_maximum_ticks = 60
 	var/datum/looping_sound/qoh_beam/beamloop
 	var/datum/beam/current_beam
@@ -95,7 +95,7 @@
 	//Breach vars
 	var/friendly = TRUE
 	var/hp_teleport_counter = 3
-	var/explode_damage = 60 // Boosted from 35 due to Indication she's gonna be there. It's a legit skill issue now.
+	var/explode_damage = 15
 	var/breach_max_death = 0
 	//Nihil Related
 	var/nihil_present = FALSE
@@ -468,13 +468,13 @@
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, say), "ARCANA SLAVE!"))
 		icon_state = "hatredbeats"
 	else
-		accumulated_beam_damage = 150
+		accumulated_beam_damage = 50
 	for(var/h = 1 to beam_maximum_ticks)
 		var/list/already_hit = list()
 		if(!friendly)
 			h += 19
 		if((h >= 40))
-			if(accumulated_beam_damage >= 300)
+			if(accumulated_beam_damage >= 100)
 				if(beam_stage < 3)
 					beam_stage = 3
 					beam_damage_final *= 1.5
@@ -483,7 +483,7 @@
 					current_beam.visuals.transform = M
 					current_beam.visuals.color = COLOR_SOFT_RED
 		else if((h >= 20))
-			if(accumulated_beam_damage >= 150)
+			if(accumulated_beam_damage >= 50)
 				if(beam_stage < 2)
 					beam_stage = 2
 					beam_damage_final *= 1.5

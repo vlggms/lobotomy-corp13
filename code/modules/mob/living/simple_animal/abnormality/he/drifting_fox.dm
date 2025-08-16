@@ -17,13 +17,13 @@
 	base_pixel_x = -24
 	base_pixel_y = -26
 	del_on_death = FALSE
-	maxHealth = 1000
-	health = 1000
+	maxHealth = 200
+	health = 200
 	rapid_melee = 2
 	move_to_delay = 7
 	damage_coeff = list( RED_DAMAGE = 0.9, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5 )
-	melee_damage_lower = 5
-	melee_damage_upper = 15 // Idea taken from the old PR, have a large damage range to immitate its fucked rolls and crit chance.
+	melee_damage_lower = 2
+	melee_damage_upper = 8
 	melee_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gluttony
 	stat_attack = HARD_CRIT
@@ -39,7 +39,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(15, 20, 25, 30, 35),
 		ABNORMALITY_WORK_REPRESSION = 15,
 	)
-	work_damage_amount = 10
+	work_damage_amount = 5
 	work_damage_type = BLACK_DAMAGE
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
@@ -196,7 +196,7 @@
 /mob/living/simple_animal/hostile/umbrella/death(gibbed)
 	visible_message(span_notice("[src] falls to the ground as the umbrella closes in on itself!"))
 	if(friend)
-		friend.deal_damage(100, BLACK_DAMAGE)
+		friend.deal_damage(50, BLACK_DAMAGE)
 		friend.move_to_delay = clamp(move_to_delay + 1, 3, 7) //Slowdown
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
@@ -235,7 +235,7 @@
 	SLEEP_CHECK_DEATH(6)
 	for(var/turf/T in view(1, target_turf))
 		new /obj/effect/temp_visual/small_smoke/halfsecond(T)
-		for(var/mob/living/carbon/human/H in HurtInTurf(T, list(), 15, BLACK_DAMAGE, null, TRUE, FALSE, TRUE, FALSE, TRUE, TRUE))
+		for(var/mob/living/carbon/human/H in HurtInTurf(T, list(), 5, BLACK_DAMAGE, null, TRUE, FALSE, TRUE, FALSE, TRUE, TRUE))
 			H.apply_status_effect(STATUS_EFFECT_FALSEKIND)
 	playsound(target_turf, 'sound/abnormalities/drifting_fox/fox_umbrella.ogg', 25, TRUE, 4)
 	ranged_cooldown = world.time + ranged_cooldown_time

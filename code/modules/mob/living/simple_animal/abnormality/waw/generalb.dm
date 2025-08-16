@@ -16,7 +16,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 0,						//DO NOT FUCK THE BEEGIRL
 		ABNORMALITY_WORK_REPRESSION = list(0, 0, 40, 40, 40),
 	)
-	work_damage_amount = 10
+	work_damage_amount = 7
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/pride
 	ego_list = list(
@@ -26,12 +26,11 @@
 	)
 	gift_type =  /datum/ego_gifts/loyalty
 	loot = list(/obj/item/clothing/suit/armor/ego_gear/aleph/praetorian) // Don't think it was dropping before, this should make it do so
-	//She doesn't usually breach. However, when she does, she's practically an Aleph-level threat. She's also really slow, and should pack a punch.
-	health = 3000
-	maxHealth = 3000
+	health = 1000
+	maxHealth = 1000
 	damage_coeff = list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
-	melee_damage_lower = 40
-	melee_damage_upper = 52
+	melee_damage_lower = 12
+	melee_damage_upper = 16
 	melee_damage_type = RED_DAMAGE
 	stat_attack = HARD_CRIT
 
@@ -265,12 +264,12 @@
 	icon_living = "soldier_bee"
 	base_pixel_x = -8
 	pixel_x = -8
-	health = 450
-	maxHealth = 450
+	health = 150
+	maxHealth = 150
 	melee_damage_type = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
-	melee_damage_lower = 14
-	melee_damage_upper = 18
+	melee_damage_lower = 5
+	melee_damage_upper = 7
 	rapid_melee = 2
 	obj_damage = 200
 	robust_searching = TRUE
@@ -473,7 +472,7 @@
 	pull_force = INFINITY
 	generic_canpass = FALSE
 	movement_type = PHASING | FLYING
-	var/boom_damage = 160 //Half Red, Half Black
+	var/boom_damage = 50 //Half Red, Half Black
 	var/list/faction = list("hostile")
 	layer = POINT_LAYER	//We want this HIGH. SUPER HIGH. We want it so that you can absolutely, guaranteed, see exactly what is about to hit you.
 

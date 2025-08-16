@@ -5,8 +5,8 @@
 	icon_state = "shadow"
 	icon_living = "shadow"
 	portrait = "shadow"
-	maxHealth = 75
-	health = 75
+	maxHealth = 35
+	health = 35
 	threat_level = TETH_LEVEL
 	fear_level = 0
 	move_to_delay = 5
@@ -16,10 +16,10 @@
 		ABNORMALITY_WORK_ATTACHMENT = 80,
 		ABNORMALITY_WORK_REPRESSION = 50,
 	)
-	melee_damage_lower = 4
-	melee_damage_upper = 6
+	melee_damage_lower = 2
+	melee_damage_upper = 4
 	melee_damage_type = BLACK_DAMAGE
-	work_damage_amount = 4
+	work_damage_amount = 2
 	work_damage_type = BLACK_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5)
 	can_breach = TRUE

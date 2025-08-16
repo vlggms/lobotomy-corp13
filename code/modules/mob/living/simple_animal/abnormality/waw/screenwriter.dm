@@ -11,8 +11,8 @@ Defeating the murderer also surpresses the abnormality.
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "screenwriter"
 	portrait = "screenwriter"
-	maxHealth = 4000
-	health = 4000
+	maxHealth = 1000
+	health = 1000
 	damage_coeff = list(RED_DAMAGE = 1.3, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.3, PALE_DAMAGE = 1.5)
 	faction = list("hostile")
 	threat_level = WAW_LEVEL
@@ -33,7 +33,7 @@ Defeating the murderer also surpresses the abnormality.
 		"Violence" = JUSTICE_ATTRIBUTE,
 	)
 	max_boxes = 24
-	work_damage_amount = 12
+	work_damage_amount = 7
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gluttony
 
@@ -387,7 +387,7 @@ Defeating the murderer also surpresses the abnormality.
 		playsound(get_turf(human_pawn), 'sound/weapons/fixer/generic/nail1.ogg', 100, FALSE, 4)
 		human_pawn.adjustBruteLoss(400)
 		human_pawn.jitteriness = 0
-		var/sanity_damage = get_user_level(human_pawn) * 70
+		var/sanity_damage = get_user_level(human_pawn) * 15
 		for(var/mob/living/carbon/human/H in view(7, human_pawn))
 			if(HAS_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE))
 				continue

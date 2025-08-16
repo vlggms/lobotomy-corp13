@@ -7,13 +7,13 @@
 	icon_living = "indigo_dawn"
 	icon_dead = "indigo_dawn_dead"
 	faction = list("indigo_ordeal")
-	maxHealth = 110
-	health = 110
+	maxHealth = 35
+	health = 35
 	move_to_delay = 1.3	//Super fast, but squishy and weak.
 	stat_attack = DEAD
 	melee_damage_type = BLACK_DAMAGE
-	melee_damage_lower = 10
-	melee_damage_upper = 12
+	melee_damage_lower = 3
+	melee_damage_upper = 4
 	butcher_results = list(/obj/item/food/meat/slab/sweeper = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sweeper = 1)
 	attack_verb_continuous = "stabs"

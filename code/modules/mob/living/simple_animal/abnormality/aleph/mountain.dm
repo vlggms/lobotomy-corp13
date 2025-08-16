@@ -6,13 +6,13 @@
 	icon_living = "mosb"
 	icon_dead = "mosb_dead"
 	portrait = "mountain"
-	maxHealth = 1500
-	health = 1500
+	maxHealth = 500
+	health = 500
 	pixel_x = -16
 	base_pixel_x = -16
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.5)
-	melee_damage_lower = 25
-	melee_damage_upper = 35
+	melee_damage_lower = 7
+	melee_damage_upper = 11
 	melee_damage_type = RED_DAMAGE
 	rapid_melee = 2
 	stat_attack = DEAD
@@ -32,7 +32,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 0,
 		ABNORMALITY_WORK_REPRESSION = list(0, 0, 0, 50, 55),
 	)
-	work_damage_amount = 16
+	work_damage_amount = 9
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gluttony
 
@@ -63,10 +63,10 @@
 	var/phase = 1
 	var/scream_cooldown
 	var/scream_cooldown_time = 6 SECONDS
-	var/scream_damage = 40
+	var/scream_damage = 20
 	var/slam_cooldown
 	var/slam_cooldown_time = 2 SECONDS
-	var/slam_damage = 30
+	var/slam_damage = 10
 	var/spit_cooldown
 	var/spit_cooldown_time = 8 SECONDS
 	/// Actually it fires this amount thrice, so, multiply it by 3 to get actual amount
@@ -227,7 +227,7 @@
 			if(phase < 3 && SSmaptype.maptype != "limbus_labs")
 				playsound(get_turf(src), 'sound/abnormalities/mountain/level_up.ogg', 75, 1)
 				adjustHealth(-5000)
-				maxHealth += 1000
+				maxHealth *= 2
 				phase += 1
 				belly = 0
 			icon = 'ModularTegustation/Teguicons/96x96.dmi'
@@ -248,7 +248,7 @@
 		return FALSE
 	playsound(get_turf(src), 'sound/abnormalities/mountain/level_down.ogg', 75, 1)
 	adjustHealth(-5000)
-	maxHealth -= 1000
+	maxHealth /= 2
 	phase -= 1
 	icon_living = "mosb_breach"
 	if(phase == 1)

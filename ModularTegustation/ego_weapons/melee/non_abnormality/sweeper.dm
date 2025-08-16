@@ -4,7 +4,7 @@
 	desc = "A hook cut off a sweeper. When night comes in the backstreets..."
 	special = "Attack dead bodies to heal."
 	icon_state = "sweeper_hook"
-	force = 27
+	force = 13
 	damtype = BLACK_DAMAGE
 
 	attack_verb_continuous = list("stabs")
@@ -29,7 +29,7 @@
 	name = "sweeper_sickle"
 	desc = "A sickle cut off a sweeper captain. When night comes in the backstreets..."
 	icon_state = "sweeper_sickle"
-	force = 37
+	force = 18
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -41,7 +41,7 @@
 	name = "sweeper hooksword"
 	desc = "A hooksword cut off a sweeper captain. When night comes in the backstreets..."
 	icon_state = "sweeper_hooksword"
-	force = 55
+	force = 27
 	attack_speed = 1.6
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
@@ -54,7 +54,7 @@
 	name = "sweeper claw"
 	desc = "A claw cut off a sweeper captain. When night comes in the backstreets..."
 	icon_state = "sweeper_claw"
-	force = 24
+	force = 12
 	attack_speed = 0.6
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,

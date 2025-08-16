@@ -5,8 +5,8 @@
 	icon_state = "kikimora"
 	icon_living = "kikimora"
 	icon_dead = "kikimora"
-	maxHealth = 1300
-	health = 1300
+	maxHealth = 300
+	health = 300
 	rapid_melee = 1
 	melee_queue_distance = 2
 	move_to_delay = 3
@@ -19,13 +19,13 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(50, 50, 40, 40, 40),
 		ABNORMALITY_WORK_REPRESSION = list(30, 20, 0, -80, -80),
 	)
-	work_damage_amount = 6
+	work_damage_amount = 3
 	work_damage_type = WHITE_DAMAGE
 	death_message = "falls over."
 	ego_list = list(
-	/datum/ego_datum/weapon/kikimora,
-	/datum/ego_datum/armor/kikimora,
-	)
+		/datum/ego_datum/weapon/kikimora,
+		/datum/ego_datum/armor/kikimora,
+		)
 	gift_type = null
 	//envy due to being a curse
 	chem_type = /datum/reagent/abnormality/sin/envy

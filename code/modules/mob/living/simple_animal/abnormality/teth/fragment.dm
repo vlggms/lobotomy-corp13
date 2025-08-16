@@ -7,12 +7,12 @@
 	icon_state = "fragment"
 	icon_living = "fragment"
 	portrait = "fragment"
-	maxHealth = 800
-	health = 800
+	maxHealth = 200
+	health = 200
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	ranged = TRUE
-	melee_damage_lower = 8
-	melee_damage_upper = 12
+	melee_damage_lower = 2
+	melee_damage_upper = 4
 	rapid_melee = 2
 	melee_damage_type = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
@@ -29,7 +29,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(60, 60, 50, 50, 50),
 		ABNORMALITY_WORK_REPRESSION = list(50, 50, 40, 40, 40),
 	)
-	work_damage_amount = 5
+	work_damage_amount = 3
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/envy
 

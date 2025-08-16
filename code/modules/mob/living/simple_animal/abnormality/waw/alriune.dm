@@ -10,8 +10,8 @@
 	pixel_x = -8
 	base_pixel_x = -8
 
-	maxHealth = 2000
-	health = 2000
+	maxHealth = 800
+	health = 800
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1.5)
 
 	threat_level = WAW_LEVEL
@@ -24,7 +24,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 40, 35, 30),
 		ABNORMALITY_WORK_REPRESSION = list(0, 0, 35, 30, 25),
 	)
-	work_damage_amount = 10
+	work_damage_amount = 7
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/pride
 	good_hater = TRUE
@@ -49,7 +49,7 @@
 	/// Delay used for petals_next
 	var/petals_next_time = 5 SECONDS
 	/// Amount of white damage done to everyone in view by the attack
-	var/pulse_damage = 180
+	var/pulse_damage = 60
 
 	ego_list = list(
 		/datum/ego_datum/weapon/aroma,

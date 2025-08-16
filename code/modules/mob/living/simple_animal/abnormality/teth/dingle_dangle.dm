@@ -5,8 +5,8 @@
 	icon = 'ModularTegustation/Teguicons/64x96.dmi'
 	icon_state = "dangle"
 	portrait = "dingle_dangle"
-	maxHealth = 600
-	health = 600
+	maxHealth = 120
+	health = 120
 	threat_level = TETH_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(70, 60, 40, 40, 40),
@@ -17,7 +17,7 @@
 	start_qliphoth = 3
 	pixel_x = -16
 	base_pixel_x = -16
-	work_damage_amount = 8
+	work_damage_amount = 3
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/envy
 

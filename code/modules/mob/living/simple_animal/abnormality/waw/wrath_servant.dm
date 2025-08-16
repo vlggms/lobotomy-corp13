@@ -14,8 +14,8 @@
 	gender = FEMALE
 
 	ranged = TRUE
-	maxHealth = 1800
-	health = 1800
+	maxHealth = 600
+	health = 600
 	damage_coeff = list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1.5)
 
 	move_to_delay = 6
@@ -31,13 +31,13 @@
 		ABNORMALITY_WORK_REPRESSION = list(30, 30, 40, 40, 50),
 		"Request" = 100,
 	)
-	work_damage_amount = 12
+	work_damage_amount = 7
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/wrath
 
 	melee_damage_type = RED_DAMAGE
-	melee_damage_lower = 30
-	melee_damage_upper = 45
+	melee_damage_lower = 8
+	melee_damage_upper = 9
 	rapid_melee = 2
 	attack_sound = 'sound/abnormalities/wrath_servant/small_smash1.ogg'
 	stat_attack = HARD_CRIT
@@ -77,7 +77,7 @@
 	var/dash_cooldown = 15 SECONDS
 	COOLDOWN_DECLARE(smash)
 	var/smash_cooldown = 30 SECONDS
-	var/smash_damage = 40
+	var/smash_damage = 10
 	var/smash_damage_type = RED_DAMAGE
 	COOLDOWN_DECLARE(stun)
 	var/stunned_cooldown = 20 SECONDS
@@ -266,11 +266,11 @@
 	if(!isliving(attacked_target) || (get_dist(attacked_target, src) > 1))
 		return
 	var/mob/living/L = attacked_target
-	L.deal_damage(rand(10, 15), BLACK_DAMAGE)
+	L.deal_damage(rand(3, 5), BLACK_DAMAGE)
 	if(!istype(attacked_target, /mob/living/simple_animal/hostile/azure_hermit))
 		return
 	var/mob/living/simple_animal/hostile/azure_hermit/AZ = attacked_target
-	if(AZ.health > 120)
+	if(AZ.health > 40)
 		return
 	PerformEnding(AZ)
 
@@ -670,8 +670,8 @@
 	faction = list("hostile", "azure")
 	can_patrol = TRUE
 
-	maxHealth = 1500
-	health = 1500
+	maxHealth = 500
+	health = 500
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.2)
 
 	alpha = 0
@@ -684,8 +684,8 @@
 	ranged = TRUE
 	ranged_cooldown = 15 SECONDS
 
-	melee_damage_lower = 25
-	melee_damage_upper = 40
+	melee_damage_lower = 7
+	melee_damage_upper = 8
 	rapid_melee = 2
 	melee_damage_type = WHITE_DAMAGE
 	attack_sound = 'sound/abnormalities/wrath_servant/hermit_attack.ogg'
@@ -732,9 +732,9 @@
 		var/mob/living/simple_animal/hostile/abnormality/wrath_servant/SW = attacked_target
 		if(SW.stunned)
 			return
-		if(SW.health > 400)
+		if(SW.health > 100)
 			playsound(SW, 'sound/abnormalities/wrath_servant/hermit_attack_hard.ogg', 75, FALSE, 15, falloff_distance = 5)
-			SW.deal_damage(100, WHITE_DAMAGE) // We win these
+			SW.deal_damage(30, WHITE_DAMAGE) // We win these
 			var/list/show_area = list()
 			show_area |= view(3, src)
 			for(var/turf/sT in show_area)
@@ -810,7 +810,7 @@
 	for(var/mob/living/L in livinginview(4, src))
 		if(faction_check_mob(L))
 			continue
-		L.deal_damage(60, WHITE_DAMAGE)
+		L.deal_damage(15, WHITE_DAMAGE)
 	can_act = TRUE
 	return
 
@@ -851,8 +851,8 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "stave"
 	icon_living = "stave"
-	maxHealth = 250
-	health = 250
+	maxHealth = 50
+	health = 50
 	death_message = "crumples to dust."
 
 	a_intent = INTENT_HARM
@@ -864,8 +864,8 @@
 
 	move_to_delay = 4
 
-	melee_damage_lower = 10
-	melee_damage_upper = 20
+	melee_damage_lower = 3
+	melee_damage_upper = 4
 	melee_damage_type = RED_DAMAGE
 	rapid_melee = 2
 	stat_attack = HARD_CRIT
@@ -968,7 +968,7 @@
 	if(!isliving(owner))
 		return
 	var/mob/living/status_holder = owner
-	status_holder.deal_damage(5, BLACK_DAMAGE)
+	status_holder.deal_damage(1, BLACK_DAMAGE)
 	if(!ishuman(status_holder))
 		return
 	if((status_holder.sanityhealth <= 0) || (status_holder.health <= 0))

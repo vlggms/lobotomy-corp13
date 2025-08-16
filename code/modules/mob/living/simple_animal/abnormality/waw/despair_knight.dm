@@ -13,8 +13,8 @@
 	ranged = TRUE
 	ranged_cooldown_time = 3 SECONDS
 	minimum_distance = 2
-	maxHealth = 2000
-	health = 2000
+	maxHealth = 700
+	health = 700
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 1.0, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.5)
 	stat_attack = HARD_CRIT
 	del_on_death = FALSE
@@ -31,7 +31,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(50, 50, 55, 55, 60),
 		ABNORMALITY_WORK_REPRESSION = list(40, 40, 40, 35, 30),
 	)
-	work_damage_amount = 10
+	work_damage_amount = 7
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gloom
 

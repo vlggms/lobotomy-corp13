@@ -2,8 +2,8 @@
 /mob/living/simple_animal/hostile/abnormality/nobody_is
 	name = "Nobody Is"
 	desc = "A mirror embedded in gross pink flesh."
-	health = 3000
-	maxHealth = 3000
+	health = 1500
+	maxHealth = 1500
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
 	attack_sound = 'sound/weapons/slash.ogg'
@@ -14,8 +14,8 @@
 	portrait = "nobody_is"
 	melee_damage_type = BLACK_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 1.2)
-	melee_damage_lower = 30
-	melee_damage_upper = 50
+	melee_damage_lower = 12
+	melee_damage_upper = 18
 	move_to_delay = 3
 	melee_reach = 2
 	ranged = TRUE
@@ -29,7 +29,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 50,
 		ABNORMALITY_WORK_REPRESSION = 0,
 	)
-	work_damage_amount = 16
+	work_damage_amount = 9
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gloom
 
@@ -75,15 +75,15 @@
 	//Breach Variables
 	var/whip_attack_cooldown
 	var/whip_attack_cooldown_time = 6 SECONDS
-	var/whip_damage = 25
+	var/whip_damage = 15
 	var/whip_count = 4
 	var/grab_cooldown
 	var/grab_cooldown_time = 20 SECONDS
 	var/grab_windup_time = 16
-	var/grab_damage = 200 //The amount dealt when grabbing someone, twice if they aren't grabbed for whatever reason
-	var/strangle_damage = 50 //dealt over time to whoever is grabbed
+	var/grab_damage = 75 //The amount dealt when grabbing someone, twice if they aren't grabbed for whatever reason
+	var/strangle_damage = 20 //dealt over time to whoever is grabbed
 	var/mob/living/carbon/human/grab_victim = null
-	var/release_threshold = 500 //Total raw damage needed to break a player out of a grab (from any source)
+	var/release_threshold = 250 //Total raw damage needed to break a player out of a grab (from any source)
 	var/release_damage = 0
 	var/last_heal_time = 0
 	var/heal_percent_per_second = 0.0045
@@ -93,8 +93,8 @@
 
 	//Oberon shit
 	var/oberon_mode = FALSE
-	var/grab_damage_oberon = 140
-	var/strangle_damage_oberon = 35
+	var/grab_damage_oberon = 50
+	var/strangle_damage_oberon = 15
 	var/melee_damage_oberon = 15
 	var/mob/living/simple_animal/hostile/abnormality/titania/abno_host
 	var/obj/effect/titania_aura/fairy_aura
@@ -212,7 +212,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(solo_punish)
-		work_damage_amount = 22
+		work_damage_amount = 15
 		return ..()
 	work_damage_amount = initial(work_damage_amount)
 	return ..()
@@ -388,10 +388,10 @@
 	heal_percent_per_second = 0.00425//half of what it was when it had just 5k hp
 	maxHealth = 10000
 	adjustBruteLoss(-maxHealth, forced = TRUE) // It's not over yet!.
-	melee_damage_lower = 45
-	melee_damage_upper = 65
-	grab_damage = 140
-	strangle_damage = 35
+	melee_damage_lower = 15
+	melee_damage_upper = 20
+	grab_damage = 50
+	strangle_damage = 15
 	whip_damage = 15
 	whip_count = 6
 	name = "Oberon"
@@ -793,14 +793,14 @@
 	attack_verb_simple = "strike"
 	attack_sound = 'sound/abnormalities/nothingthere/attack.ogg'
 	ChangeResistances(list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0, PALE_DAMAGE = 0.8)) //Damage, resistances, and cooldowns all go to the roof
-	maxHealth = 4000
-	melee_damage_lower = 65
-	melee_damage_upper = 75
+	maxHealth = 2000
+	melee_damage_lower = 20
+	melee_damage_upper = 25
 	current_stage = 3
 	melee_reach = 1
 	whip_count = 8
-	grab_damage = 250
-	strangle_damage = 70
+	grab_damage = 55
+	strangle_damage = 25
 	grab_cooldown_time = 12 SECONDS
 	grab_windup_time = 12
 	whip_attack_cooldown_time = 5 SECONDS

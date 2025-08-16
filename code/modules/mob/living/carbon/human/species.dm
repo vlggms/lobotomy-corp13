@@ -99,7 +99,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	///Lowest possible punch damage this species can give. If this is set to 0, punches will always miss.
 	var/punchdamagelow = 1
 	///Highest possible punch damage this species can give.
-	var/punchdamagehigh = 6
+	var/punchdamagehigh = 2
 	///Base electrocution coefficient.  Basically a multiplier for damage from electrocutions.
 	var/siemens_coeff = 1
 	///What kind of damage overlays (if any) appear on our species when wounded? If this is "", does not add an overlay.

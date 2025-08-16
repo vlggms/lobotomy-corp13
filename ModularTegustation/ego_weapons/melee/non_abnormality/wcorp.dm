@@ -4,7 +4,7 @@
 	desc = "A glowing blue baton used by W corp employees."
 	icon_state = "wbatong"
 	inhand_icon_state = "wbatong"
-	force = 18
+	force = 9
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("bashes", "crushes")
 	attack_verb_simple = list("bash", "crush")
@@ -24,7 +24,7 @@
 	desc = "A glowing blue fist used by senior W corp staff."
 	icon_state = "wcorp_fist"
 	inhand_icon_state = "wcorp_fist"
-	force = 40
+	force = 20
 	attack_verb_continuous = list("bashes", "crushes")
 	attack_verb_simple = list("bash", "crush")
 	attribute_requirements = list(
@@ -50,7 +50,7 @@
 	desc = "A glowing blue axe used by senior W corp staff."
 	icon_state = "wcorp_axe"
 	inhand_icon_state = "wcorp_axe"
-	force = 67
+	force = 33
 	attack_speed = 2
 	attack_verb_continuous = list("cleaves", "cuts")
 	attack_verb_simple = list("cleave", "cut")
@@ -77,7 +77,7 @@
 	desc = "A glowing blue spear used by senior W corp staff."
 	icon_state = "wcorp_spear"
 	inhand_icon_state = "wcorp_spear"
-	force = 60
+	force = 30
 	reach = 2
 	attack_speed = 1
 	stuntime = 5
@@ -114,7 +114,7 @@
 	desc = "A glowing blue dagger used by senior W corp staff."
 	icon_state = "wcorp_dagger"
 	inhand_icon_state = "wcorp_dagger"
-	force = 22
+	force = 11
 	attack_speed = 0.5
 
 	attack_verb_continuous = list("slices", "stabs")
@@ -155,7 +155,7 @@
 	righthand_file = 'ModularTegustation/Teguicons/lc13_right_64x64.dmi'
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	force = 34	//Slowing is massive.
+	force = 17	//Slowing is massive.
 	attack_speed = 1
 	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_verb_continuous = list("cleaves", "slashes", "carves")
@@ -182,7 +182,7 @@
 	desc = "A glowing blue W-Corp warhammer once used by senior W-Corp staff. This one's seen some after-market modifications."
 	icon_state = "wcorp_hammer"
 	inhand_icon_state = "wcorp_hammer"
-	force = 80
+	force = 40
 	attack_speed = 2
 	attack_verb_continuous = list("smashes", "crushes", "shatters")
 	attack_verb_simple = list("smash", "crush", "shatter")
@@ -219,7 +219,7 @@
 	desc = "A glowing blue W-Corp blade used to project barriers. The glowing end is dangerous, and can slice through about anything"
 	icon_state = "wcorp_sword"
 	inhand_icon_state = "wcorp_sword"
-	force = 35 //Meant originally as a support device, used as a mace in a pinch.
+	force = 17 //Meant originally as a support device, used as a mace in a pinch.
 	attack_verb_continuous = list("cleaves", "cuts")
 	attack_verb_simple = list("cleave", "cut")
 	attribute_requirements = list(
@@ -252,7 +252,7 @@
 	righthand_file = 'ModularTegustation/Teguicons/lc13_right_64x64.dmi'
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	force = 50
+	force = 25
 	reach = 2
 	stuntime = 5
 
@@ -283,5 +283,5 @@
 	desc = "A glowing blue W-Corp battleaxe used to project barriers."
 	icon_state = "wcorp_battleaxe"
 	inhand_icon_state = "wcorp_battleaxe"
-	force = 45
+	force = 22
 	attack_speed = 1.5

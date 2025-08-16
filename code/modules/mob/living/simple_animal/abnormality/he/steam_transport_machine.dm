@@ -8,8 +8,8 @@
 	core_icon = "steammachine_egg"
 	portrait = "steam_transport_machine"
 	del_on_death = FALSE
-	maxHealth = 1600
-	health = 1600
+	maxHealth = 320
+	health = 320
 	blood_volume = 0
 	ranged = TRUE
 	attack_sound = 'sound/abnormalities/steam/attack.ogg'
@@ -25,8 +25,8 @@
 	rapid_melee = 1
 	melee_queue_distance = 2
 	move_to_delay = 5
-	melee_damage_lower = 20
-	melee_damage_upper = 35
+	melee_damage_lower = 5
+	melee_damage_upper = 7
 	melee_damage_type = RED_DAMAGE
 	threat_level = HE_LEVEL
 	start_qliphoth = 4
@@ -36,7 +36,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 0,
 		ABNORMALITY_WORK_REPRESSION = 60,
 	)
-	work_damage_amount = 9
+	work_damage_amount = 5
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/sloth
 
@@ -70,7 +70,7 @@
 	)
 
 	var/gear = 0
-	var/steam_damage = 5
+	var/steam_damage = 2
 	var/steam_venting = FALSE
 	var/can_act = TRUE
 	var/guntimer
@@ -117,9 +117,9 @@
 			BLACK_DAMAGE = (2 - (gear * 0.1)),
 			PALE_DAMAGE = (1.5 - (gear * 0.1)),
 		))
-		melee_damage_lower = (20 + (4 * gear))
-		melee_damage_upper = (35 + (4 * gear))
-		steam_damage = (5 + (1.5 * gear))
+		melee_damage_lower = (5 + (2 * gear))
+		melee_damage_upper = (7 + (2 * gear))
+		steam_damage = (2 + (1.5 * gear))
 	else
 		ChangeResistances(list(
 			RED_DAMAGE = (0.5 - (gear * 0.1)),
@@ -127,13 +127,13 @@
 			BLACK_DAMAGE = (2 - (gear * 0.1)),
 			PALE_DAMAGE = (1.5 - (gear * 0.1)),
 		))
-		melee_damage_lower = (20 + (10 * gear))
-		melee_damage_upper = (35 + (10 * gear))
-		steam_damage = (5 + (3 * gear))
+		melee_damage_lower = (4 + (4 * gear))
+		melee_damage_upper = (7 + (4 * gear))
+		steam_damage = (2 + (3 * gear))
 	var/oldhealth = maxHealth
 	maxHealth = (1600 + (400 * gear))
 	adjustBruteLoss(oldhealth - maxHealth) //Heals 400 health in a gear shift if it's already breached
-	work_damage_amount = (9 + (2 * gear))
+	work_damage_amount = (5 + (2 * gear))
 	ranged_cooldown_time = (40 - (5 * gear))
 	start_qliphoth = (max(1,(4 - gear)))
 	if(datum_reference.qliphoth_meter > start_qliphoth) //we want to bring the qliphoth down to the new maximum
@@ -243,6 +243,6 @@
 	name = "steam"
 	icon_state = "smoke"
 	hitsound = 'sound/machines/clockcult/steam_whoosh.ogg'
-	damage = 4
+	damage = 1
 	speed = 0.4
 	damage_type = RED_DAMAGE

@@ -15,12 +15,12 @@
 	/* Stats */
 	threat_level = ALEPH_LEVEL
 	fear_level = ALEPH_LEVEL + 3
-	health = 4000
-	maxHealth = 4000
+	health = 1500
+	maxHealth = 1500
 	damage_coeff = list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1)
 	melee_damage_type = BLACK_DAMAGE
-	melee_damage_lower = 75
-	melee_damage_upper = 85
+	melee_damage_lower = 23
+	melee_damage_upper = 26
 	move_to_delay = 3
 	ranged = TRUE
 	/* Works */
@@ -33,7 +33,7 @@
 		ABNORMALITY_WORK_REPRESSION = 0,
 		"Sacrifice" = 999,
 	)
-	work_damage_amount = 14
+	work_damage_amount = 8
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gluttony
 
@@ -55,7 +55,7 @@
 	)
 
 	var/can_act = TRUE
-	var/ability_damage = 150
+	var/ability_damage = 50
 	var/ability_cooldown
 	var/ability_cooldown_time = 10 SECONDS
 

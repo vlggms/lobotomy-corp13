@@ -16,7 +16,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 0,
 		ABNORMALITY_WORK_REPRESSION = 0,
 	)
-	work_damage_amount = 4
+	work_damage_amount = 2
 	work_damage_type = BLACK_DAMAGE
 
 	melee_damage_lower = -1

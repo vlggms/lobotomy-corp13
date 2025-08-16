@@ -8,53 +8,20 @@ Kirie*/
 	lefthand_file = 'ModularTegustation/Teguicons/lc13_left.dmi'
 	righthand_file = 'ModularTegustation/Teguicons/lc13_right.dmi'
 
-
-//City weapons have extremely high requirements. These people will be able to use them a little earlier.
-/obj/item/ego_weapon/city/examine(mob/user)
-	. = ..()
-	if(user.mind)
-		if(user.mind.assigned_role in list("Disciplinary Officer", "Combat Research Agent")) //These guys get a bonus to equipping gacha.
-			. += span_notice("Due to your abilities, you get a -20 reduction to stat requirements when equipping this weapon.")
-
-/obj/item/ego_weapon/city/CanUseEgo(mob/living/user)
-	if(user.mind)
-		if(user.mind.assigned_role in list("Disciplinary Officer", "Combat Research Agent")) //These guys get a bonus to equipping gacha.
-			equip_bonus = 20
-		else
-			equip_bonus = 0
-	. = ..()
-
-
-
 /obj/item/ego_weapon/ranged/city
 	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
 	lefthand_file = 'ModularTegustation/Teguicons/lc13_left.dmi'
 	righthand_file = 'ModularTegustation/Teguicons/lc13_right.dmi'
 
-/obj/item/ego_weapon/ranged/city/examine(mob/user)
-	. = ..()
-	if(user.mind)
-		if(user.mind.assigned_role in list("Disciplinary Officer", "Combat Research Agent")) //These guys get a bonus to equipping gacha.
-			. += span_notice("Due to your abilities, you get a -20 reduction to stat requirements when equipping this weapon.")
-
-/obj/item/ego_weapon/ranged/city/CanUseEgo(mob/living/user)
-	if(user.mind)
-		if(user.mind.assigned_role in list("Disciplinary Officer", "Combat Research Agent")) //These guys get a bonus to equipping gacha.
-			equip_bonus = 20
-		else
-			equip_bonus = 0
-	. = ..()
-
-
 /*This place has different balance, from grade 1 to 8
-Grade 8 - 18 DPS 			No requirements; all garbage
-Grade 7 - 22 DPS (Teth)		No requirements
-Grade 6 - 32 DPS (He)		60/40/40/40 requirements
-Grade 5 - 44 DPS (Waw)		80/60/60/60 requirements
-Grade 4 - 52 DPS			100/80/80/60 requirements
-Grade 3 - 65 DPS			100/100/80/80 requirements
-Grade 2 - 80 DPS (Aleph)	120/100/100/100 requirements
-Grade 1 - 100 DPS 			120/120/120/120 requirements
+Grade 8 - 9 DPS 			No requirements; all garbage
+Grade 7 - 12 DPS (Teth)		No requirements
+Grade 6 - 16 DPS (He)		60/40/40/40 requirements
+Grade 5 - 22 DPS (Waw)		80/60/60/60 requirements
+Grade 4 - 26 DPS			100/80/80/60 requirements
+Grade 3 - 32 DPS			100/100/80/80 requirements
+Grade 2 - 40 DPS (Aleph)	120/100/100/100 requirements
+Grade 1 - 50 DPS 			120/120/120/120 requirements
 
 
 

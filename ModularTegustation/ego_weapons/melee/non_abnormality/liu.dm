@@ -21,7 +21,7 @@
 	name = "liu blade"
 	desc = "A blade used by junior fixers of Liu Section 1 and Section 2."
 	icon_state = "liublade"
-	force = 28
+	force = 14
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 40,
@@ -49,7 +49,7 @@
 	name = "liu flaming glove"
 	desc = "A fiery fist used by some veteran fixers of Liu Section 1 and Section 2."
 	icon_state = "liuglove"
-	force = 35
+	force = 17
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 60,
@@ -62,7 +62,7 @@
 	name = "liu spear"
 	desc = "A spear used by veteran fixers of Liu Section 1 and Section 2, and is used by the director of Liu Section 2."
 	icon_state = "liuspear"
-	force = 60
+	force = 30
 	reach = 2
 	stuntime = 5
 	attack_speed = 1
@@ -79,7 +79,7 @@
 	name = "liu director sword"
 	desc = "The personal sword found in the hands of the director of Liu Section 1."
 	icon_state = "liusword"
-	force = 67
+	force = 33
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 120,
 							PRUDENCE_ATTRIBUTE = 100,
@@ -95,7 +95,7 @@
 	name = "liu combat gloves"
 	icon_state = "liufist"
 	desc = "A gauntlet used by Liu Sections 4,5 and 6. Requires martial arts training to make use of."
-	force = 20
+	force = 10
 	attack_speed = 0.7
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
@@ -243,7 +243,7 @@
 /obj/item/ego_weapon/city/liu/fist/vet
 	name = "liu veteran combat gloves"
 	icon_state = "liufist_vet"
-	force = 32
+	force = 16
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 80,

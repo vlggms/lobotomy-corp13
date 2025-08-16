@@ -1,3 +1,5 @@
+
+// Green noon
 /mob/living/simple_animal/hostile/ordeal/green_bot_big
 	name = "process of understanding"
 	desc = "A big robot with a saw and a machine gun in place of its hands."
@@ -10,12 +12,12 @@
 	base_pixel_x = -8
 	gender = NEUTER
 	mob_biotypes = MOB_ROBOTIC
-	maxHealth = 900
-	health = 900
+	maxHealth = 300
+	health = 300
 	speed = 3
 	move_to_delay = 6
-	melee_damage_lower = 22 // Full damage is done on the entire turf of target
-	melee_damage_upper = 26
+	melee_damage_lower = 8 // Full damage is done on the entire turf of target
+	melee_damage_upper = 10
 	attack_verb_continuous = "saws"
 	attack_verb_simple = "saw"
 	attack_sound = 'sound/effects/ordeals/green/saw.ogg'
@@ -87,7 +89,7 @@
 			if(!T)
 				return
 			new /obj/effect/temp_visual/saw_effect(T)
-			HurtInTurf(T, list(), 8, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
+			HurtInTurf(T, list(), 4, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
 			SLEEP_CHECK_DEATH(1)
 
 /mob/living/simple_animal/hostile/ordeal/green_bot_big/spawn_gibs()
@@ -102,7 +104,7 @@
 	playsound(get_turf(src), 'sound/effects/ordeals/green/cooldown.ogg', 50, FALSE)
 	for(var/i = 1 to 8)
 		new /obj/effect/temp_visual/green_noon_reload(get_turf(src))
-		SLEEP_CHECK_DEATH(8)
+		SLEEP_CHECK_DEATH(6)
 	fire_count = 0
 	reloading = FALSE
 	icon_state = icon_living

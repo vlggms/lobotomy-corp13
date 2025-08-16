@@ -11,8 +11,8 @@
 	del_on_death = TRUE
 	pixel_x = -16
 	base_pixel_x = -16
-	maxHealth = 1200
-	health = 1200
+	maxHealth = 300
+	health = 300
 	blood_volume = 0
 	density = FALSE
 	damage_coeff = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
@@ -29,7 +29,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 60,
 		ABNORMALITY_WORK_REPRESSION = list(40, 20, -20, -20, -20),
 	)
-	work_damage_amount = 10
+	work_damage_amount = 4
 	work_damage_type = RED_DAMAGE
 
 	ego_list = list(

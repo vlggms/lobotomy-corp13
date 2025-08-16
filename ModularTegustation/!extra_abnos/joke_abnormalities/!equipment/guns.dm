@@ -6,7 +6,7 @@
 	special = "Use this weapon in your hand when wearing matching armor to create food for people nearby."
 	icon = 'ModularTegustation/Teguicons/joke_abnos/joke_weapons.dmi'
 	icon_state = "mcrib"
-	force = 6
+	force = 3
 	projectile_path = /obj/projectile/ego_bullet/ego_mcrib
 	burst_size = 1
 	fire_delay = 10
@@ -43,9 +43,10 @@
 	name = "mcrib"
 	icon = 'icons/obj/food/food.dmi'
 	icon_state = "patty"
-	damage = 10
+	damage = 4
 	damage_type = RED_DAMAGE
 
+// WAW
 /obj/item/ego_weapon/ranged/anti_skub
 	name = "anti-skub"
 	desc = "A weapon easily created from schematics posted on illicit internet forums."
@@ -55,7 +56,7 @@
 	righthand_file = 'icons/mob/inhands/misc/food_righthand.dmi'
 	inhand_icon_state = "beer"
 	special = "This weapon deals AOE damage."
-	force = 33
+	force = 15
 	attack_speed = 1.2
 	damtype = RED_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/skub
@@ -70,7 +71,7 @@
 	name = "skub cocktail"
 	icon = 'ModularTegustation/Teguicons/joke_abnos/joke_weapons.dmi'
 	icon_state = "anti_skub2"
-	damage = 45
+	damage = 20
 	damage_type = RED_DAMAGE
 	hitsound = "shatter"
 
@@ -78,5 +79,5 @@
 	..()
 	for(var/mob/living/L in view(1, target))
 		new /obj/effect/temp_visual/fire/fast(get_turf(L))
-		L.apply_damage(45, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		L.apply_damage(20, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 	return BULLET_ACT_HIT

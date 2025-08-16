@@ -6,7 +6,7 @@
 	special = "This deals a random damage amount between 50% and 100% of max damage. Untreated sanity damage will lower the minimum down to 10% depending on severity."
 	icon_state = "tingtang_shank"
 	inhand_icon_state = "tingtang_shank"
-	force = 27
+	force = 13
 	attack_speed = 1
 	damtype = WHITE_DAMAGE //Almost everyone and their mother in this god forsaken district does something with sanity.
 
@@ -27,7 +27,7 @@
 	desc = "It's quite heavy, clearly made for throwing your weight around."
 	icon_state = "tingtang_cleaver"
 	inhand_icon_state = "tingtang_cleaver"
-	force = 40
+	force = 20
 	attack_speed = 1.5
 	hitsound = 'sound/weapons/fixer/generic/blade5.ogg'
 
@@ -36,7 +36,7 @@
 	desc = "A heavy pipe that you're pretty sure used to belong in a car."
 	icon_state = "tingtang_pipe"
 	inhand_icon_state = "tingtang_pipe"
-	force = 54
+	force = 27
 	attack_speed = 2
 	attack_verb_continuous = list("smacks", "bludgeons", "beats")
 	attack_verb_simple = list("smack", "bludgeon", "beat")
@@ -47,7 +47,7 @@
 	desc = "The finger hook at the end lets you pull off some sick tricks. If you had the skill."
 	icon_state = "tingtang_knife"
 	inhand_icon_state = "tingtang_knife"
-	force = 37
+	force = 18
 	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_speed = 1
 	hitsound = 'sound/weapons/fixer/generic/knife1.ogg'
@@ -65,7 +65,7 @@
 	special = "This weapon gains 1 poise for every attack. 1 poise gives you a 2% chance to crit at 3x damage, stacking linearly. Critical hits reduce poise to 0."
 	icon_state = "maracas"
 	inhand_icon_state = "maracas"
-	force = 22
+	force = 11
 	damtype = WHITE_DAMAGE
 
 	attack_verb_continuous = list("bashes", "clubs")
@@ -107,7 +107,7 @@
 	special = "On kill, heal 15 sanity."
 	icon_state = "mariachi_blades"
 	inhand_icon_state = "mariachi_blades"
-	force = 22
+	force = 11
 	damtype = WHITE_DAMAGE
 
 	attack_verb_continuous = list("slashes", "slices")
@@ -131,7 +131,7 @@
 	desc = "A pair of maracas used by the leader of Los Mariachis."
 	icon_state = "dualmaracas"
 	inhand_icon_state = "dualmaracas"
-	force = 19		//Double the maracas twice the attack speed.
+	force = 9		//Double the maracas twice the attack speed.
 	attack_speed = 0.5
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
@@ -146,7 +146,7 @@
 	desc = "A pair of glowing maracas used by the leader of Los Mariachis. Only seen by the no longer living."
 	icon_state = "dualmaracas_boss"
 	inhand_icon_state = "dualmaracas_boss"
-	force = 25
+	force = 12
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 60,

@@ -5,8 +5,8 @@
 	icon_state = "fairies"
 	icon_living = "fairies"
 	portrait = "fairies"
-	maxHealth = 50
-	health = 50
+	maxHealth = 20
+	health = 20
 	is_flying_animal = TRUE
 	threat_level = TETH_LEVEL
 	fear_level = 0
@@ -17,8 +17,8 @@
 		ABNORMALITY_WORK_ATTACHMENT = 40,
 		ABNORMALITY_WORK_REPRESSION = 50,
 	)
-	melee_damage_lower = 3
-	melee_damage_upper = 5
+	melee_damage_lower = 1
+	melee_damage_upper = 2
 	melee_damage_type = PALE_DAMAGE
 	work_damage_amount = 2
 	work_damage_type = PALE_DAMAGE

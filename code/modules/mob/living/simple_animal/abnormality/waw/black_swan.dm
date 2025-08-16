@@ -12,8 +12,8 @@
 	var/icon_aggro = "blackswan_closed"
 	portrait = "black_swan"
 	del_on_death = FALSE
-	maxHealth = 3000
-	health = 3000
+	maxHealth = 1000
+	health = 1000
 	ranged_cooldown_time = 10 SECONDS
 
 	move_to_delay = 4
@@ -27,8 +27,8 @@
 	vision_range = 14
 	aggro_vision_range = 20
 	melee_damage_type = RED_DAMAGE
-	melee_damage_lower = 20
-	melee_damage_upper = 40
+	melee_damage_lower = 9
+	melee_damage_upper = 12
 	threat_level = WAW_LEVEL
 	attack_sound = 'sound/abnormalities/blackswan/sis_bash.ogg'
 	attack_verb_continuous = "twacks"
@@ -40,7 +40,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 0,
 		ABNORMALITY_WORK_REPRESSION = list(0, 0, 45, 50, 55),
 	)
-	work_damage_amount = 12
+	work_damage_amount = 7
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/pride
 	death_message = "weeps a green sludge while clutching her brooch."
@@ -255,7 +255,7 @@
 		new /obj/effect/temp_visual/fragment_song(get_turf(src))
 		var/list/turfs_to_check = orange(9, src)
 		for(var/obj/vehicle/sealed/mecha/V in turfs_to_check)
-			V.take_damage(70, WHITE_DAMAGE)
+			V.take_damage(25, WHITE_DAMAGE)
 		for(var/mob/living/L in turfs_to_check)
 			if(isabnormalitymob(L))
 				var/mob/living/simple_animal/hostile/abnormality/maybe_brothers = L
@@ -266,7 +266,7 @@
 				continue
 			if(L.stat == DEAD)
 				continue
-			L.deal_damage(70, WHITE_DAMAGE)
+			L.deal_damage(25, WHITE_DAMAGE)
 		playsound(get_turf(src), 'sound/abnormalities/blackswan/sis_roar.ogg', 30, 0, 4)
 	cut_overlay(visual_overlay)
 	can_act = TRUE

@@ -53,7 +53,7 @@
 	desc = "A mace meant to purify the evil thoughts."
 	special = "Use this weapon in your hand when wearing matching armor to heal the SP of others nearby."
 	icon_state = "penitence"
-	force = 14
+	force = 6
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("smacks", "strikes", "beats")
 	attack_verb_simple = list("smack", "strike", "beat")
@@ -76,7 +76,7 @@
 	desc = "You, now in wonderland!"
 	special = "Use this weapon in your hand when wearing matching armor to create food for people nearby."
 	icon_state = "little_alice"
-	force = 14
+	force = 6
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("slices", "slashes", "stabs")
 	attack_verb_simple = list("slices", "slashes", "stabs")
@@ -102,7 +102,7 @@
 	desc = "If an agent can show that they are competent, then they may be able to draw Fairy Festival’s attention.."
 	icon_state = "wingbeat"
 	special = "Use this weapon in your hand when wearing matching armor to heal the HP of others nearby."
-	force = 14
+	force = 6
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("smacks", "strikes", "beats")
 	attack_verb_simple = list("smack", "strike", "beat")
@@ -133,7 +133,7 @@
 	desc = "A hammer made with the desire to change anything"
 	special = "Attack a friendly human while wearing matching armor to heal their HP slightly."
 	icon_state = "change"
-	force = 14
+	force = 6
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("slams", "strikes", "smashes")
 	attack_verb_simple = list("slam", "strike", "smash")
@@ -160,7 +160,7 @@
 	desc = "Knock the daylights out of 'em!"
 	special = "Use this weapon in your hand when wearing matching armor to heal the HP and SP of others nearby. Using this ability will briefly put you to sleep."
 	icon_state = "doze"
-	force = 14
+	force = 6
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("slams", "strikes", "smashes")
 	attack_verb_simple = list("slam", "strike", "smash")
@@ -192,7 +192,7 @@
 	desc = "I accepted the offer and paid the price."
 	special = "Use this weapon in your hand when wearing matching armor to generate weak pale shields for others nearby."
 	icon_state = "evening"
-	force = 12
+	force = 5
 	damtype = PALE_DAMAGE
 	attack_verb_continuous = list("slams", "strikes", "smashes")
 	attack_verb_simple = list("slam", "strike", "smash")
@@ -235,7 +235,7 @@
 	desc = "Cry with me..."
 	special = "Attack a friendly human while wearing matching armor to heal their HP and SP by a small amount."
 	icon_state = "cavernous_wailing"
-	force = 14
+	force = 6
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("slams", "strikes", "smashes")
 	attack_verb_simple = list("slam", "strike", "smash")
@@ -264,7 +264,7 @@
 	desc = "Trusty aid of a mailman."
 	special = "Use this weapon in your hand when wearing matching armor to send a secret letter to a person of your choice."
 	icon_state = "letteropener"
-	force = 14
+	force = 6
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("slices", "slashes", "stabs")
 	attack_verb_simple = list("slices", "slashes", "stabs")
@@ -326,7 +326,7 @@
 	name = "eclipse of scarlet moths"
 	desc = "It's beautiful."
 	icon_state = "eclipse"
-	force = 14
+	force = 6
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("slices", "slashes", "stabs")
 	attack_verb_simple = list("slice", "slash", "stab")
@@ -337,7 +337,7 @@
 	desc = "A mysterious worn-out tool used for operations."
 	special = "Attack a friendly human while wearing matching armor to buff their JUSTICE by the amount of damage you would have dealt."
 	icon_state = "plastic"
-	force = 14
+	force = 6
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("smacks", "strikes", "beats")
 	attack_verb_simple = list("smack", "strike", "beat")
@@ -418,7 +418,7 @@
 	desc = "You've pressed it numerous times and you still have something you want to know about it?"
 	special = "Attack an enemy while wearing matching armor to make them lose interest in you. Might also just make them angry."
 	icon_state = "touch"
-	force = 14
+	force = 6
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("sprays", "hoses", "mists", "drizzles")
 	attack_verb_simple = list("spray", "hose", "mist", "drizzle")
@@ -442,8 +442,8 @@
 	name = "belief and promise"
 	desc = "If you make an attempt with an austere heart devoid of desire or expectation, you may receive an unexpected reward."
 	icon_state = "promise"
-	force = 14
-	throwforce = 25
+	force = 6
+	throwforce = 10
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("slices", "slashes", "stabs")
 	attack_verb_simple = list("slice", "slash", "stab")
@@ -462,7 +462,7 @@
 	name = "mirror"
 	desc = "Those who face themselves in the mirror may appear the same, but in actuality, they have become completely different people."
 	icon_state = "mirror"
-	force = 14
+	force = 6
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("slices", "slashes", "stabs")
 	attack_verb_simple = list("slice", "slash", "stab")

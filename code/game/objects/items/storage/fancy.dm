@@ -148,7 +148,7 @@
 	icon_type = "candle"
 	inhand_icon_state = "candlebox5"
 	worn_icon_state = "cigpack"
-	throwforce = 2
+	throwforce = 1
 	slot_flags = ITEM_SLOT_BELT
 	spawn_type = /obj/item/candle
 	fancy_open = TRUE

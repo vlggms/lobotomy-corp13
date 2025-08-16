@@ -13,14 +13,14 @@
 	response_disarm_continuous = "flails at"
 	response_disarm_simple = "flail at"
 	density = FALSE
-	maxHealth = 600
-	health = 600
+	maxHealth = 120
+	health = 120
 	damage_coeff = list(RED_DAMAGE = 2, WHITE_DAMAGE = 2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
 	see_in_dark = 10
 	move_to_delay = 2
-	harm_intent_damage = 10
+	harm_intent_damage = 5
 	melee_damage_lower = 1
-	melee_damage_upper = 2
+	melee_damage_upper = 1
 	rapid_melee = 2
 	stat_attack = SOFT_CRIT
 	attack_verb_continuous = "bites"
@@ -43,7 +43,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(55, 55, 50, 50, 50),
 		ABNORMALITY_WORK_REPRESSION = list(30, 20, 10, 0, 0),
 	)
-	work_damage_amount = 5
+	work_damage_amount = 3
 	work_damage_type = RED_DAMAGE
 
 	ego_list = list(
@@ -72,9 +72,9 @@
 	var/list/already_punished = list()
 	var/bird_angry = FALSE
 	/// Melee damage done to simple mobs when enraged
-	var/angry_damage = 100
+	var/angry_damage = 200
 	/// Melee damage done to humans when enraged
-	var/angry_damage_human = 500
+	var/angry_damage_human = 1200
 
 	var/death_timer
 
@@ -193,7 +193,7 @@
 			if(ishuman(L))
 				var/mob/living/carbon/human/H = L
 				if(H.sanity_lost)
-					H.adjustSanityLoss(-10) // Heal sanity
+					H.adjustSanityLoss(-4) // Heal sanity
 					return
 			if(prob(5) || L.health < L.maxHealth*0.5)
 				if(L in enemies)

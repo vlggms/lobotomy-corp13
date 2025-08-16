@@ -1,8 +1,8 @@
 /mob/living/simple_animal/hostile/abnormality/bluestar
 	name = "Blue Star"
 	desc = "Floating heart-shaped object. It's alive, and soon you will become one with it."
-	health = 4000
-	maxHealth = 4000
+	health = 2200
+	maxHealth = 2200
 	pixel_x = -32
 	base_pixel_x = -32
 	pixel_y = -16
@@ -27,7 +27,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 0,
 		ABNORMALITY_WORK_REPRESSION = 40,
 	)
-	work_damage_amount = 16
+	work_damage_amount = 9
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gloom
 	can_patrol = FALSE
@@ -58,8 +58,8 @@
 	)
 
 	var/pulse_cooldown
-	var/pulse_cooldown_time = 12 SECONDS
-	var/pulse_damage = 120 // Scales with distance; Ideally, you shouldn't be able to outheal it with white V armor or less
+	var/pulse_cooldown_time = 8 SECONDS
+	var/pulse_damage = 30 // Scales with distance; Ideally, you shouldn't be able to outheal it with white V armor or less
 
 	var/datum/looping_sound/bluestar/soundloop
 
@@ -100,7 +100,8 @@
 			continue
 		if(faction_check_mob(L))
 			continue
-		L.deal_damage((pulse_damage - get_dist(src, L)), WHITE_DAMAGE)
+		var/falloff = (0.3 * (get_dist(src, L)))//1 damage for every 3 tiles
+		L.deal_damage(pulse_damage - falloff, WHITE_DAMAGE)
 		flash_color(L, flash_color = COLOR_BLUE_LIGHT, flash_time = 70)
 		if(!ishuman(L))
 			continue

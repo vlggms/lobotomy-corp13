@@ -11,13 +11,13 @@
 	pixel_x = -16
 	base_pixel_x = -16
 	ranged = TRUE
-	maxHealth = 2000
-	health = 2000
+	maxHealth = 700
+	health = 700
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.5)
 	stat_attack = HARD_CRIT
 	move_to_delay = 4
-	melee_damage_lower = 70
-	melee_damage_upper = 100
+	melee_damage_lower = 16
+	melee_damage_upper = 18
 	attack_sound = 'sound/abnormalities/sphinx/attack.ogg'
 	attack_action_types = list(/datum/action/cooldown/sphinx_gaze, /datum/action/cooldown/sphinx_quake)
 	can_breach = TRUE
@@ -30,7 +30,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 15,
 		ABNORMALITY_WORK_REPRESSION = list(5, 10, 25, 25, 30),
 	)
-	work_damage_amount = 12
+	work_damage_amount = 7
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/wrath
 
@@ -81,7 +81,7 @@
 	var/curse_cooldown_time = 12 SECONDS
 	var/quake_cooldown
 	var/quake_cooldown_time = 6 SECONDS
-	var/quake_damage = 20
+	var/quake_damage = 6
 
 //Playables buttons
 	attack_action_types = list(
@@ -471,7 +471,7 @@
 	icon_state = "rockwarning"
 	duration = 10
 	layer = RIPPLE_LAYER // We want this HIGH. SUPER HIGH. We want it so that you can absolutely, guaranteed, see exactly what is about to hit you.
-	var/damage = 40 //Red Damage
+	var/damage = 12 //Red Damage
 	var/mob/living/caster // who made this, anyway
 
 /obj/effect/temp_visual/rockwarning/Initialize(mapload, new_caster)

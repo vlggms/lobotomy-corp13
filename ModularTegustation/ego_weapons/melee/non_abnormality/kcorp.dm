@@ -3,7 +3,7 @@
 	desc = "A green baton used by K corp employees."
 	icon_state = "kbatong"
 	inhand_icon_state = "kbatong"
-	force = 22
+	force = 11
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("bashes", "crushes")
 	attack_verb_simple = list("bash", "crush")
@@ -13,7 +13,7 @@
 	desc = "A green axe used by K corp employees."
 	icon_state = "kaxe"
 	inhand_icon_state = "kaxe"
-	force = 35
+	force = 17
 	attack_speed = 1.7
 	attack_verb_continuous = list("bashes", "crushes", "cleaves")
 	attack_verb_simple = list("bash", "crush", "cleave")
@@ -28,7 +28,7 @@
 	righthand_file = 'ModularTegustation/Teguicons/lc13_right_64x64.dmi'
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	force = 62
+	force = 31
 	reach = 2
 	stuntime = 5
 	attack_speed = 1
@@ -52,7 +52,7 @@
 	righthand_file = 'ModularTegustation/Teguicons/lc13_right_64x64.dmi'
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	force = 32
+	force = 16
 	reach = 2
 	attack_speed = 0.6
 	stuntime = 5
@@ -76,7 +76,7 @@
 	icon_state = "kshield"
 	lefthand_file = 'ModularTegustation/Teguicons/lc13_left.dmi'
 	righthand_file = 'ModularTegustation/Teguicons/lc13_right.dmi'
-	force = 15
+	force = 7
 	slowdown = 0.7
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("shoves", "bashes")
@@ -97,7 +97,7 @@
 	inhand_icon_state = "kpistol"
 	lefthand_file = 'ModularTegustation/Teguicons/lc13_left.dmi'
 	righthand_file = 'ModularTegustation/Teguicons/lc13_right.dmi'
-	force = 8
+	force = 4
 	projectile_path = /obj/projectile/ego_bullet/ego_kcorp
 	fire_delay = 5
 	shotsleft = 12
@@ -126,7 +126,7 @@
 	desc = "A lime green machinepistol used by Kcorp."
 	icon_state = "ksmg"
 	inhand_icon_state = "ksmg"
-	force = 17
+	force = 8
 	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
 	autofire = 0.08 SECONDS
 	fire_delay = 1
@@ -145,7 +145,7 @@
 	desc = "A short grenade launcher used by Kcorp."
 	icon_state = "kgrenade"
 	inhand_icon_state = "kgrenade"
-	force = 17
+	force = 8
 	projectile_path = /obj/projectile/ego_bullet/ego_knade
 	fire_delay = 7
 	shotsleft = 6

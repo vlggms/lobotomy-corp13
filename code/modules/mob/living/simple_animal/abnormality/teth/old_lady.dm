@@ -4,8 +4,8 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "old_lady"
 	portrait = "old_lady"
-	maxHealth = 400
-	health = 400
+	maxHealth = 80
+	health = 80
 	threat_level = TETH_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(45, 45, 40, 40, 40),
@@ -15,7 +15,7 @@
 		"Clear Solitude" = -100,
 	)
 	start_qliphoth = 4
-	work_damage_amount = 6
+	work_damage_amount = 3
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gloom
 	ego_list = list(
