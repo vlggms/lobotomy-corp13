@@ -1,4 +1,3 @@
-// Green midnight
 /mob/living/simple_animal/hostile/ordeal/green_midnight
 	name = "helix of the end"
 	desc = "A colossal metallic structure with a large amount of laser weaponry beneath its shell."
