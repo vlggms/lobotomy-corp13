@@ -76,7 +76,7 @@
 
 /obj/item/clothing/suit/armor/ego_gear/ordeal/god_delusion//240 total can shift between 4 different armor modes once
 	name = "Delusionist's end"
-	desc = "A runic armor with a colorless crystal in its center/"
+	desc = "A runic armor with a colorless crystal in its center."
 	icon_state = "delusion_none"
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 60) // 240
 	attribute_requirements = list(
