@@ -7,19 +7,42 @@
 	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_weapons.dmi'
 	lefthand_file = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_lefthand.dmi'
 	righthand_file = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_righthand.dmi'
-	force = 16
+	force = 6
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("bashes", "whacks", "smacks")
 	attack_verb_simple = list("bash", "whack", "smack")
 	matching_armor = /obj/item/clothing/suit/armor/ego_gear/zayin/dragon_staff
 	ability_cooldown_time = 30 SECONDS
+	use_message = "You prepare a protective spell!"
 
 /obj/item/ego_weapon/support/dragon_staff/Pulse(mob/living/carbon/human/user)
-	for(var/mob/living/carbon/human/L in livinginview(8, user))
-		if((!ishuman(L)) || L.stat == DEAD || L == user)
-			continue
-		to_chat(L, span_warning("[user] casts BARKSKIN!"))
-		L.apply_status_effect(/datum/status_effect/interventionshield/perfect)
+	AdjustCircle(user)
+	if(do_after(user, 12, src))
+		playsound(user, 'sound/abnormalities/faelantern/faelantern_breach.ogg', 100)
+		to_chat(user, span_warning("[user] casts MASS BARKSKIN!"))
+		for(var/mob/living/carbon/human/L in livinginview(8, user))
+			if((!ishuman(L)) || L.stat == DEAD)
+				continue
+			L.apply_status_effect(/datum/status_effect/interventionshield/perfect)
+
+/obj/item/ego_weapon/support/dragon_staff/proc/AdjustCircle(mob/living/carbon/human/user)
+	playsound(user, 'sound/abnormalities/hatredqueen/attack.ogg', 100)
+	var/obj/effect/dragon_circle/S = new(get_turf(src))
+	QDEL_IN(S, 1.2 SECONDS)
+	var/matrix/M = matrix(S.transform)
+	M.Translate(-8, 0)
+	if(user.dir != SOUTH)
+		S.layer -= 0.2
+	switch(user.dir)
+		if(EAST)
+			M.Scale(0.5, 1)
+			M.Translate(12, -8)
+		if(WEST)
+			M.Scale(0.5, 1)
+			M.Translate(-20, -8)
+		if(SOUTH)
+			M.Translate(0, -8)
+	S.transform = M
 
 // TETH
 
@@ -31,7 +54,7 @@
 	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_weapons.dmi'
 	lefthand_file = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_lefthand.dmi'
 	righthand_file = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_righthand.dmi'
-	force = 25
+	force = 16
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("bashes", "jabs", "smacks")
 	attack_verb_simple = list("bash", "jab", "smack")
@@ -65,7 +88,7 @@
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	force = 54
+	force = 37
 	attack_speed = 1.6
 	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = RED_DAMAGE
@@ -84,7 +107,7 @@
 	successfull_activation = "You release your charge!"
 	var/can_spin = TRUE
 	var/spinning = FALSE
-	var/aoe_damage = 54
+	var/aoe_damage = 37
 	var/aoe_size = 2
 	var/wide_slash_angle = 290
 	var/current_orientation = 1
@@ -165,7 +188,7 @@
 	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_weapons.dmi'
 	lefthand_file = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_lefthand.dmi'
 	righthand_file = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_righthand.dmi'
-	force = 40
+	force = 24
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("bashes", "jabs", "picks", "impales", "spikes")
 	attack_verb_simple = list("bash", "jab", "pick", "impale", "spike")
@@ -189,7 +212,7 @@
 	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_weapons.dmi'
 	worn_icon = 'icons/obj/clothing/belt_overlays.dmi'
 	worn_icon_state = "combust"
-	force = 80 // Quite high with passive buffs, but deals pure damage to yourself
+	force = 40 // Quite high with passive buffs, but deals pure damage to yourself
 	attack_speed = 0.8
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("slashes", "stabs", "scorches")
@@ -208,7 +231,7 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 	var/special_attack = FALSE
-	var/special_damage = 100
+	var/special_damage = 54
 	var/special_cooldown
 	var/special_cooldown_time = 10 SECONDS
 	var/special_checks_faction = TRUE
@@ -275,7 +298,7 @@
 				continue
 			if(special_checks_faction && source.faction_check_mob(L))
 				continue
-			L.apply_damage(20, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			L.apply_damage(10, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 			L.apply_lc_burn(2)
 	..()
 
@@ -301,7 +324,7 @@
 	special_cooldown = world.time + special_cooldown_time
 
 	Check_Burn(user)
-	var/extra_damage = 10 // Extra damage each 10 stacks, maxed at 320
+	var/extra_damage = 5 // Extra damage each 10 stacks, maxed at 320
 	for(var/i = 0, i < round(burn_stack/10), i++)
 		extra_damage = extra_damage * 2
 
@@ -349,8 +372,8 @@
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	force = 98
-	wielded_force = 98
+	force = 32
+	wielded_force = 32
 	reach = 2		//Has 2 Square Reach.
 	wielded_reach = 2
 	attack_speed = 0.9
@@ -412,7 +435,7 @@
 /obj/projectile/ego_bullet/ochre
 	name = "ochre sheet"
 	icon_state = "ochre"
-	damage = 80
+	damage = 40
 	damage_type = RED_DAMAGE
 	hitsound = 'sound/weapons/fixer/generic/nail2.ogg'
 
@@ -427,7 +450,7 @@
 	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
 	inhand_x_dimension = 96
 	inhand_y_dimension = 96
-	force = 120
+	force = 76
 	reach = 2		//Has 2 Square Reach.
 	stuntime = 6	//Longer reach, gives you a short stun.
 	attack_speed = 1.8// really slow
@@ -527,7 +550,7 @@
 		return FALSE
 	var/mob/living/L = AM
 	L.deal_damage(damage_dealt, BLACK_DAMAGE)
-	new /obj/effect/temp_visual/damage_effect/black(get_turf(L), damage_dealt)
+	new /obj/effect/temp_visual/damage_effect/black(get_turf(L))
 
 /obj/effect/gibspawner/generic/silent/liquid_miasma
 	gibtypes = list(/obj/effect/decal/cleanable/liquid_miasma)
@@ -549,6 +572,7 @@
 	lefthand_file = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_lefthand.dmi'
 	righthand_file = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_righthand.dmi'
 	force = 14 // VERY fast attacks potentially
+	attack_speed = 0.6
 	damtype = BLACK_DAMAGE
 	swingstyle = WEAPONSWING_THRUST
 	attack_verb_continuous = list("stabs", "attacks", "slashes")
@@ -649,7 +673,7 @@
 	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_weapons.dmi'
 	lefthand_file = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_lefthand.dmi'
 	righthand_file = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_righthand.dmi'
-	force = 70
+	force = 40
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("bashes", "jabs", "smacks")
 	attack_verb_simple = list("bash", "jab", "smack")

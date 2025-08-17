@@ -24,7 +24,7 @@
 
 /datum/reagent/toxin/lc13_toxin/strong
 	name = "Concentrated Red Toxin"
-	damage = 5
+	damage = 4
 	toxpwr = 0.5
 
 /datum/reagent/toxin/lc13_toxin/white
@@ -41,7 +41,7 @@
 
 /datum/reagent/toxin/lc13_toxin/white/strong
 	name = "Concentrated White Toxin"
-	damage = 5
+	damage = 4
 	toxpwr = 0.5
 
 /datum/reagent/toxin/lc13_toxin/black
@@ -59,7 +59,7 @@
 
 /datum/reagent/toxin/lc13_toxin/black/strong
 	name = "Concentrated Black Toxin"
-	damage = 5
+	damage = 4
 	toxpwr = 0.5
 
 /datum/reagent/toxin/lc13_toxin/pale
