@@ -39,21 +39,34 @@
 
 /obj/item/clothing/suit/armor/ego_gear/ordeal/painful_purpose
 	name = "Painful purpose"
-	desc = "A heavy armor made as solace of the end of all."
+	desc = "A heavy armor made as solace of the end of all. Offers better protection at the cost of a speed drop."
+	hat = /obj/item/clothing/head/ego_hat/helmet/painful_purpose
+	neck = /obj/item/clothing/neck/ego_neck/painful_purpose
 	icon_state = "painful_purpose"
-	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 50, BLACK_DAMAGE = 40, PALE_DAMAGE = 70) // 240
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 60, BLACK_DAMAGE = 50, PALE_DAMAGE = 70) // 260
+	slowdown = 0.3
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 80,
+							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 100,
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
 							)
 
+/obj/item/clothing/head/ego_hat/helmet/painful_purpose
+	name = "Painful purpose helmet"
+	desc = "A helmet made of metal and lights.."
+	icon_state = "painful_purpose"
+
+/obj/item/clothing/neck/ego_neck/painful_purpose
+	name = "Painful purpose cape"
+	desc = "A cape thats more of a shield due to its material."
+	icon_state = "painful_purpose"
+
 /obj/item/clothing/suit/armor/ego_gear/ordeal/meaningless_march
 	name = "Meaningless march"
 	desc = "Want to know how I got these scars?"
 	icon_state = "meaningless_march"
-	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 70, BLACK_DAMAGE = 50, PALE_DAMAGE = 40) // 230
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 70, BLACK_DAMAGE = 50, PALE_DAMAGE = 40) // 240
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -61,22 +74,11 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/ordeal/god_delusion
+/obj/item/clothing/suit/armor/ego_gear/ordeal/god_delusion//240 total can shift between 4 different armor modes once
 	name = "Delusionist's end"
-	desc = "An eerie glow emanates from it."
-	icon_state = "delusion_black"
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 60, BLACK_DAMAGE = 80, PALE_DAMAGE = 60) // 200
-	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 80,
-							PRUDENCE_ATTRIBUTE = 80,
-							TEMPERANCE_ATTRIBUTE = 100,
-							JUSTICE_ATTRIBUTE = 80
-							)
-//unused version of it
-/obj/item/clothing/suit/armor/ego_gear/ordeal/god_delusion/true_god//200 total can shift between 4 armor modes with a 120 second cooldown. A sidegrade to season greeting with both having 4 forms and an 8 in one damage type per form but delusionist's end has much worse total armor but has the ability to freely switch with its ability.
-	name = "True Delusionist's end"
-	desc = "This is a placeholder."
-	icon_state = "delusion_red"
+	desc = "A runic armor with a colorless crystal in its center/"
+	icon_state = "delusion_none"
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 60) // 240
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 100,
@@ -84,51 +86,55 @@
 							JUSTICE_ATTRIBUTE = 100
 							)
 	var/mob/current_holder
-	var/current_damage = "red"
+	var/current_damage = null
 	var/list/damage_list = list(
-		"red" = list("A runic armor with an eerie red glow."),
-		"white" = list("A runic armor with an eerie white glow."),
-		"black" = list("A runic armor with an eerie black glow."),
-		"pale" = list("A runic armor with an eerie pale glow.")
+		"red" = "A runic armor with an eerie red glow.",
+		"white" = "A runic armor with an eerie white glow.",
+		"black" = "A runic armor with an eerie black glow.",
+		"pale" = "A runic armor with an eerie pale glow."
 		)
 
-/obj/item/clothing/suit/armor/ego_gear/ordeal/god_delusion/true_god/Initialize()
+/obj/item/clothing/suit/armor/ego_gear/ordeal/god_delusion/examine(mob/user)
+	. = ..()
+	if (!current_damage)
+		. += span_notice("This armor has a one time use ability to change its resistances.")
+
+/obj/item/clothing/suit/armor/ego_gear/ordeal/god_delusion/Initialize()
 	. = ..()
 	AddElement(/datum/element/update_icon_updates_onmob)
-	Transform()
 	var/obj/effect/proc_holder/ability/AS = new /obj/effect/proc_holder/ability/god_delusion
 	var/datum/action/spell_action/ability/item/A = AS.action
 	A.SetItem(src)
 
-/obj/item/clothing/suit/armor/ego_gear/ordeal/god_delusion/true_god/equipped(mob/living/carbon/human/user, slot)
+/obj/item/clothing/suit/armor/ego_gear/ordeal/god_delusion/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
 	if(!user)
 		return
 	current_holder = user
 
-/obj/item/clothing/suit/armor/ego_gear/ordeal/god_delusion/true_god/dropped(mob/user)
+/obj/item/clothing/suit/armor/ego_gear/ordeal/god_delusion/dropped(mob/user)
 	. = ..()
 	current_holder = null
 
-/obj/item/clothing/suit/armor/ego_gear/ordeal/god_delusion/true_god/proc/Transform()
+/obj/item/clothing/suit/armor/ego_gear/ordeal/god_delusion/proc/Transform()
 	icon_state = "delusion_[current_damage]"
 	update_icon_state()
 	if(current_holder)
 		current_holder.update_inv_wear_suit()
 		to_chat(current_holder, span_notice("[src] suddenly shifts color!"))
-	desc = damage_list[current_damage][1]
+	desc = damage_list[current_damage]
 	switch(current_damage)
 		if("red")
-			src.armor = getArmor(red = 80, white = 60, black = 0, pale = 60)
+			src.armor = getArmor(red = 80, white = 60, black = 40, pale = 60)
 			playsound(get_turf(src), 'sound/effects/ordeals/violet/midnight_red_attack.ogg', 50, FALSE, 32)
 		if("white")
-			src.armor = getArmor(red = 60, white = 80, black = 60, pale = 0)
+			src.armor = getArmor(red = 60, white = 80, black = 60, pale = 40)
 			playsound(get_turf(src), 'sound/effects/ordeals/violet/midnight_white_attack.ogg', 50, FALSE, 32)
 		if("black")
-			src.armor = getArmor(red = 0, white = 60, black = 80, pale = 60)
+			src.armor = getArmor(red = 40, white = 60, black = 80, pale = 60)
 			playsound(get_turf(src), 'sound/effects/ordeals/violet/midnight_black_attack1.ogg', 50, FALSE, 32)
 		if("pale")
-			src.armor = getArmor(red = 60, white = 0, black = 60, pale = 80)
+			src.armor = getArmor(red = 60, white = 40, black = 60, pale = 80)
 			playsound(get_turf(src), 'sound/effects/ordeals/violet/midnight_pale_attack.ogg', 50, FALSE, 32)
 
 // Radial menu
@@ -151,10 +157,11 @@
 	var/choice = show_radial_menu(user, user , armament_icons, custom_check = CALLBACK(src, PROC_REF(CheckMenu), user), radius = 42, require_near = TRUE)
 	if(!choice || !CheckMenu(user))
 		return
-	var/obj/item/clothing/suit/armor/ego_gear/ordeal/god_delusion/true_god/T = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	var/obj/item/clothing/suit/armor/ego_gear/ordeal/god_delusion/T = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(istype(T))
 		T.current_damage = choice
 		T.Transform()
+		Destroy()
 	return ..()
 
 /obj/effect/proc_holder/ability/god_delusion/proc/CheckMenu(mob/user)
