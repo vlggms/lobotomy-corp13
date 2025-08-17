@@ -175,7 +175,7 @@
 /turf/closed/mineral/random/facility/proc/MiningEvent(user)
 	if(prob(40))//damage events
 		if(prob(40))//cave-in
-			var/explosion_damage = (risk_level * 30)
+			var/explosion_damage = (risk_level * 10)
 			visible_message(span_danger("Chunks of rubble cave in around you!"))
 			playsound(get_turf(src), 'sound/effects/lc13_environment/day_50/Shake_Start.ogg', 60, TRUE)
 			for(var/turf/T in view(4, src))
@@ -185,7 +185,7 @@
 				R.boom_damage = explosion_damage
 			return
 		if(prob(20))//earthquake
-			var/explosion_damage = (risk_level * 15)
+			var/explosion_damage = (risk_level * 5)
 			visible_message(span_danger("The ground starts shaking!"))
 			playsound(get_turf(src), 'sound/effects/lc13_environment/day_50/Shake_Move.ogg', 60, TRUE)
 			for(var/mob/living/L in view(12, src))
@@ -197,7 +197,7 @@
 					H.Stun(3 SECONDS)
 			return
 		if(prob(100 - (risk_level * 15)))//explode
-			var/explosion_damage = (risk_level * 20)
+			var/explosion_damage = (risk_level * 7)
 			visible_message(span_danger("[src] suddenly explodes!"))
 			new /obj/effect/temp_visual/explosion(get_turf(src))
 			playsound(get_turf(src), 'sound/effects/ordeals/steel/gcorp_boom.ogg', 60, TRUE)

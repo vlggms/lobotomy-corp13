@@ -617,7 +617,10 @@
 "ck" = (
 /mob/living/simple_animal/hostile/bear{
 	desc = "Big & Scary";
-	name = "Big, Scary Bear"
+	name = "Big, Scary Bear";
+	health = 40;
+	melee_damage_lower = 5;
+	melee_damage_upper = 10
 	},
 /turf/open/floor/plating/asteroid,
 /area/surface_ruins/underground)

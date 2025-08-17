@@ -8,8 +8,8 @@
 	portrait = "wellcheers"
 	layer = BELOW_OBJ_LAYER
 	threat_level = ZAYIN_LEVEL
-	maxHealth = 200
-	health = 200
+	maxHealth = 100
+	health = 100
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(70, 70, 60, 60, 60),

@@ -9,12 +9,12 @@
 	icon_living = "everything_there"
 	icon_dead = "dead_generic"
 	faction = list("gold_ordeal")
-	maxHealth = 3000
-	health = 3000
+	maxHealth = 1500
+	health = 1500
 	pixel_x = -8
 	base_pixel_x = -8
-	melee_damage_lower = 24
-	melee_damage_upper = 30
+	melee_damage_lower = 12
+	melee_damage_upper = 15
 	rapid_melee = 2
 	attack_verb_continuous = "slices"
 	attack_verb_simple = "slice"
@@ -31,7 +31,7 @@
 	var/damage_reflection = FALSE
 	var/hello_cooldown
 	var/hello_cooldown_time = 6 SECONDS
-	var/hello_damage = 120
+	var/hello_damage = 60
 
 /mob/living/simple_animal/hostile/ordeal/NT_corrosion/proc/ReflectDamage(mob/living/attacker, attack_type = RED_DAMAGE, damage)
 	if(damage < 1)
@@ -182,10 +182,10 @@
 	icon_living = "wriggling_beast"
 	icon_dead = "dead_generic"
 	faction = list("gold_ordeal")
-	maxHealth = 2500
-	health = 2500
-	melee_damage_lower = 30
-	melee_damage_upper = 35
+	maxHealth = 1250
+	health = 1250
+	melee_damage_lower = 15
+	melee_damage_upper = 20
 	melee_damage_type = BLACK_DAMAGE
 	attack_verb_continuous = "bashes"
 	attack_verb_simple = "bash"
@@ -196,8 +196,8 @@
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human = 1)
 	move_to_delay = 4
 	var/poison_releasing = FALSE
-	var/poison_damage = 20
-	var/applied_venom = 3
+	var/poison_damage = 12
+	var/applied_venom = 2
 	var/poison_range = 3
 	var/can_act = TRUE
 	var/guntimer
@@ -333,15 +333,15 @@
 	icon_state = "slithering_beast"
 	icon_living = "slithering_beast"
 	icon_dead = "dead_generic"
-	maxHealth = 4000
-	health = 4000
-	melee_damage_lower = 40
-	melee_damage_upper = 50
+	maxHealth = 2000
+	health = 2000
+	melee_damage_lower = 20
+	melee_damage_upper = 25
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0, PALE_DAMAGE = 1.3)
 	poison_range = 6
-	poison_damage = 25
+	poison_damage = 15
 	rapid = 2
-	applied_venom = 5
+	applied_venom = 3
 
 /mob/living/simple_animal/hostile/ordeal/dog_corrosion
 	name = "crawling inquisitor"
@@ -352,12 +352,12 @@
 	icon_dead = "dead_generic"
 	var/icon_aggro = "crawling_beast"
 	faction = list("gold_ordeal")
-	maxHealth = 2000
-	health = 2000
+	maxHealth = 1000
+	health = 1000
 	pixel_x = -8
 	base_pixel_x = -8
-	melee_damage_lower = 16
-	melee_damage_upper = 18
+	melee_damage_lower = 8
+	melee_damage_upper = 9
 	rapid_melee = 3
 	attack_verb_continuous = "slices"
 	attack_verb_simple = "slice"
@@ -376,10 +376,10 @@
 	var/dash_count = 2
 	var/current_dash = 1
 	var/list/been_hit = list() // Don't get hit twice.
-	var/heal_amount = 250
+	var/heal_amount = 125
 	var/damage_taken
-	var/damage_threshold = 450
-	var/dash_damage = 80
+	var/damage_threshold = 225
+	var/dash_damage = 40
 	var/charge_sound = 'sound/effects/ordeals/gold/growl1.ogg'
 	var/gibbing = TRUE
 
@@ -508,10 +508,10 @@
 	icon_state = "ravenous_beast"
 	icon_living = "ravenous_beast"
 	faction = list("gold_ordeal")
-	maxHealth = 3000
-	health = 3000
-	melee_damage_lower = 18
-	melee_damage_upper = 20
+	maxHealth = 1500
+	health = 1500
+	melee_damage_lower = 9
+	melee_damage_upper = 10
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.3)
 	butcher_results = list(/obj/item/food/meat/slab/human = 3)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human = 1)
@@ -528,7 +528,7 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "extinguish"
 	hitsound = 'sound/abnormalities/ichthys/jump.ogg'
-	damage = 20
+	damage = 15
 	speed = 0.7
 	damage_type = BLACK_DAMAGE
 	color = "#218a18"
@@ -537,4 +537,4 @@
 	. = ..()
 	if(isliving(target))
 		var/mob/living/H = target
-		H.apply_venom(3)
+		H.apply_venom(2)

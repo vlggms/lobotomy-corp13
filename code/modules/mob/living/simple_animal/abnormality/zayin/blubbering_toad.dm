@@ -122,9 +122,9 @@
 		angry = TRUE
 	if(breach_type == BREACH_MINING)//nerfed to a ZAYIN statline since this is something you'll typically fight roundstart
 		name = "Weakened [name]"
-		maxHealth = 400
-		melee_damage_lower = 4
-		melee_damage_upper = 8
+		maxHealth = 75
+		melee_damage_lower = 2
+		melee_damage_upper = 4
 		tongue_damage = 5
 		broken = TRUE
 	SetIdiot(user)
