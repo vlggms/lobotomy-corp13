@@ -146,6 +146,12 @@
 		datum_reference.qliphoth_change(-1)
 	return TRUE
 
+/mob/living/simple_animal/hostile/abnormality/punishing_bird/EscapeConfinement()
+	if(!isturf(targets_from.loc) && targets_from.loc != null)//Did someone put us in something?
+		if(istype(targets_from.loc, /mob/living/simple_animal/forest_portal) || istype(targets_from.loc, /mob/living/simple_animal/hostile/megafauna/apocalypse_bird))
+			return
+	. = ..()
+
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/Life()
 	if(..())
 		if((obj_damage > 0) || client) // Already transformed or mob controlled
@@ -168,6 +174,8 @@
 			pecking_targets |= le_target
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/AttackingTarget(atom/attacked_target)
+	if(in_apoc)
+		return FALSE
 	if(ishuman(attacked_target) && bird_angry)
 		melee_damage_lower = angry_damage_human
 		melee_damage_upper = angry_damage_human
