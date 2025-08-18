@@ -174,8 +174,6 @@
 			pecking_targets |= le_target
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/AttackingTarget(atom/attacked_target)
-	if(in_apoc)
-		return FALSE
 	if(ishuman(attacked_target) && bird_angry)
 		melee_damage_lower = angry_damage_human
 		melee_damage_upper = angry_damage_human
