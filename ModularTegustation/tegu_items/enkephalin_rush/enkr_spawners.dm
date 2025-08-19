@@ -50,6 +50,12 @@
 
 /obj/effect/spawner/map_enemy/Initialize()
 	if(!map_enemy)
+		switch(SSmaptype.map_tags)
+			if("whales")
+				spawner_types = list(/datum/enemy/brown)
+				//spawner_types += /datum/enemy/whales
+			if("wineberrycreek")
+				spawner_types += /datum/enemy/gold//Make wineberry abnos their own enemy type later. This currently doubles their odds of appearing.
 		map_enemy = pick(spawner_types)
 	var/datum/enemy/myenemy = new map_enemy()
 	if(istype(myenemy,/datum/enemy))
@@ -214,7 +220,6 @@
 	max_spawns = 1
 	mobspawn_table = list(
 		/mob/living/simple_animal/hostile/doomsday_doll = 10,
-		/mob/living/simple_animal/hostile/runawaybird = 5,//judgement bird minion
 		/mob/living/simple_animal/hostile/azure_stave = 1,//servant of wrath minion
 		)
 

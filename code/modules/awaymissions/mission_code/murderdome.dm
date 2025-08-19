@@ -8,6 +8,10 @@
 	flags_1 = PREVENT_CLICK_UNDER_1 | NODECONSTRUCT_1
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
+/obj/structure/window/reinforced/fulltile/indestructable/attackby(obj/item/I, mob/living/user, params)//you can't screwdriver or disassemble it in any way
+	if(!can_be_reached(user))
+		return
+
 /obj/structure/grille/indestructable
 	flags_1 = CONDUCT_1 | NODECONSTRUCT_1
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF

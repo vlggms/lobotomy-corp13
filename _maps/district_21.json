@@ -1,9 +1,9 @@
 {
 	"version": 1,
-	"map_name": "District 4",
+	"map_name": "District 21",
 	"map_path": "map_files/Enkephalin_Rush",
 	"map_file": [
-		"district_4.dmm"
+		"district_21.dmm"
 	],
 	"traits": [
 		{
@@ -14,5 +14,5 @@
 	"space_empty_levels": 0,
 	"minetype": "none",
 	"maptype": "enkephalin_rush",
-	"map_tags": ["wineberrycreek"]
+	"map_tags":  ["whales"]
 }
