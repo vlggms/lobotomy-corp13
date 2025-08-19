@@ -99,6 +99,11 @@
 		C.deconstruct()
 	..()
 
+/obj/structure/lattice/catwalk/indestructible
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	obj_flags = BLOCK_Z_OUT_DOWN | BLOCK_Z_IN_UP
+	max_integrity = 9001
+
 /obj/structure/lattice/lava
 	name = "heatproof support lattice"
 	desc = "A specialized support beam for building across lava. Watch your step."

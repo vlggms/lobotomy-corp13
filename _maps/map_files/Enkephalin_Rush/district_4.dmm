@@ -614,16 +614,6 @@
 	},
 /turf/open/floor/plating,
 /area/facility_hallway/command)
-"ck" = (
-/mob/living/simple_animal/hostile/bear{
-	desc = "Big & Scary";
-	name = "Big, Scary Bear";
-	health = 40;
-	melee_damage_lower = 5;
-	melee_damage_upper = 10
-	},
-/turf/open/floor/plating/asteroid,
-/area/surface_ruins/underground)
 "cm" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -1232,6 +1222,16 @@
 	},
 /turf/open/floor/plating/rust,
 /area/facility_hallway/command)
+"eA" = (
+/obj/machinery/newscaster/security_unit{
+	pixel_y = 32
+	},
+/obj/effect/mapping_helpers/records_spawner,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/department_main/manager)
 "eB" = (
 /turf/open/floor/plasteel/dark,
 /area/city)
@@ -1907,6 +1907,10 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/facility_hallway/safety)
+"hg" = (
+/obj/effect/mapping_helpers/records_spawner/second,
+/turf/closed/mineral/random/facility/briah,
+/area/department_main/records)
 "hh" = (
 /obj/structure/rack,
 /obj/machinery/camera/autoname{
@@ -2117,20 +2121,6 @@
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
-"hP" = (
-/obj/effect/turf_decal/siding/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/plaque{
-	icon_state = "LC33"
-	},
-/obj/structure/table/glass,
-/obj/structure/table/glass,
-/obj/item/storage/belt/ego,
-/obj/item/storage/belt/ego,
-/obj/item/storage/belt/ego,
-/turf/open/floor/carpet,
-/area/facility_hallway/control)
 "hR" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -2753,6 +2743,13 @@
 /obj/structure/table_frame/wood,
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
+"kh" = (
+/obj/effect/turf_decal/plaque{
+	alpha = 230;
+	icon_state = "LC18"
+	},
+/turf/open/floor/carpet/red,
+/area/facility_hallway/control)
 "ki" = (
 /obj/machinery/telecomms/server/presets/common,
 /turf/open/floor/circuit/telecomms/mainframe,
@@ -4412,6 +4409,14 @@
 /obj/item/shears,
 /turf/open/floor/plating,
 /area/department_main/safety)
+"pX" = (
+/obj/machinery/light,
+/obj/item/kirbyplants{
+	anchored = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/circuit/green,
+/area/facility_hallway/control)
 "pY" = (
 /obj/effect/turf_decal/siding/red/corner{
 	dir = 4
@@ -5431,6 +5436,16 @@
 "tT" = (
 /turf/open/floor/plating/rust,
 /area/facility_hallway/safety)
+"tU" = (
+/mob/living/simple_animal/hostile/bear{
+	desc = "Big & Scary";
+	name = "Big, Scary Bear";
+	health = 40;
+	melee_damage_lower = 5;
+	melee_damage_upper = 10
+	},
+/turf/open/floor/plating/asteroid,
+/area/surface_ruins/underground)
 "tV" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
@@ -5715,6 +5730,13 @@
 /obj/structure/sign/poster/lobotomycorp/attributes,
 /turf/closed/indestructible/reinforced/old,
 /area/department_main/command)
+"uV" = (
+/obj/effect/mapping_helpers/records_spawner/second,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/department_main/manager)
 "uW" = (
 /turf/open/floor/plating/rust,
 /area/city/backstreets_alley)
@@ -6194,25 +6216,6 @@
 "wz" = (
 /turf/open/floor/plating/rust,
 /area/department_main/extraction)
-"wA" = (
-/obj/effect/turf_decal/plaque{
-	alpha = 230;
-	icon_state = "LC23"
-	},
-/obj/effect/turf_decal/plaque{
-	alpha = 230;
-	icon_state = "LC23"
-	},
-/obj/effect/turf_decal/plaque{
-	alpha = 230;
-	icon_state = "LC23"
-	},
-/obj/effect/turf_decal/plaque{
-	alpha = 230;
-	icon_state = "LC18"
-	},
-/turf/open/floor/carpet/red,
-/area/facility_hallway/control)
 "wD" = (
 /turf/closed/indestructible/reinforced/old,
 /area/facility_hallway/information)
@@ -6815,10 +6818,6 @@
 "yO" = (
 /turf/closed/indestructible/rock,
 /area/facility_hallway/control)
-"yP" = (
-/obj/effect/mapping_helpers/records_spawner,
-/turf/closed/mineral/random/facility/briah,
-/area/department_main/records)
 "yS" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/closed/indestructible/reinforced/old,
@@ -7077,10 +7076,6 @@
 	},
 /turf/open/floor/circuit/green,
 /area/facility_hallway/control)
-"zO" = (
-/obj/effect/mapping_helpers/records_spawner/second,
-/turf/closed/mineral/random/facility/briah,
-/area/department_main/records)
 "zP" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/broken,
@@ -8419,16 +8414,6 @@
 /obj/effect/mob_spawn/human/manager,
 /turf/open/floor/pod,
 /area/facility_hallway/manager)
-"EH" = (
-/obj/machinery/newscaster/security_unit{
-	pixel_y = 32
-	},
-/obj/effect/mapping_helpers/records_spawner,
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/department_main/manager)
 "EI" = (
 /obj/effect/turf_decal/siding/blue/corner{
 	dir = 8
@@ -9162,6 +9147,15 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/facility/dark,
 /area/department_main/discipline)
+"Hw" = (
+/obj/effect/turf_decal/siding/blue{
+	dir = 4
+	},
+/obj/machinery/computer/operating{
+	dir = 8
+	},
+/turf/open/floor/facility/white,
+/area/city)
 "Hx" = (
 /obj/structure/rack,
 /obj/item/reagent_containers/hypospray/medipen/salacid,
@@ -9271,15 +9265,6 @@
 	},
 /turf/open/floor/wood,
 /area/department_main/manager)
-"HS" = (
-/obj/effect/turf_decal/plaque{
-	alpha = 230;
-	icon_state = "LC27"
-	},
-/obj/structure/chair/office,
-/obj/structure/chair/office,
-/turf/open/floor/carpet/red,
-/area/facility_hallway/control)
 "HU" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/disposalpipe/trunk,
@@ -12506,13 +12491,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/closed/indestructible/reinforced/old,
 /area/department_main/control)
-"TB" = (
-/obj/effect/mapping_helpers/records_spawner/second,
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/department_main/manager)
 "TC" = (
 /obj/effect/turf_decal/siding/red,
 /obj/effect/decal/cleanable/dirt,
@@ -12666,12 +12644,24 @@
 /obj/effect/turf_decal/siding/brown,
 /turf/open/floor/plating/rust,
 /area/facility_hallway/training)
+"TY" = (
+/obj/effect/turf_decal/plaque{
+	alpha = 230;
+	icon_state = "LC27"
+	},
+/obj/structure/chair/office,
+/turf/open/floor/carpet/red,
+/area/facility_hallway/control)
 "TZ" = (
 /obj/effect/turf_decal/plaque{
 	icon_state = "LC1"
 	},
 /turf/closed/mineral/random/facility/briah,
 /area/department_main/command)
+"Ua" = (
+/obj/effect/mapping_helpers/records_spawner,
+/turf/closed/mineral/random/facility/briah,
+/area/department_main/records)
 "Ub" = (
 /obj/effect/spawner/lootdrop/maintenance,
 /obj/effect/turf_decal/siding/yellow/corner,
@@ -12846,6 +12836,19 @@
 	},
 /turf/open/floor/plating,
 /area/department_main/training)
+"UJ" = (
+/obj/effect/turf_decal/siding/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/plaque{
+	icon_state = "LC33"
+	},
+/obj/structure/table/glass,
+/obj/item/storage/belt/ego,
+/obj/item/storage/belt/ego,
+/obj/item/storage/belt/ego,
+/turf/open/floor/carpet,
+/area/facility_hallway/control)
 "UK" = (
 /obj/structure/table,
 /obj/structure/lootcrate/l_corp,
@@ -13587,15 +13590,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
 /area/city)
-"XA" = (
-/obj/machinery/computer/operating{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/blue{
-	dir = 4
-	},
-/turf/open/floor/facility/white,
-/area/city)
 "XB" = (
 /obj/machinery/computer/arcade,
 /turf/open/floor/plasteel/grimy,
@@ -13726,15 +13720,6 @@
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/wood,
 /area/department_main/command)
-"Yb" = (
-/obj/machinery/light,
-/obj/machinery/light,
-/obj/item/kirbyplants{
-	anchored = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/circuit/green,
-/area/facility_hallway/control)
 "Yc" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 8
@@ -45206,7 +45191,7 @@ CQ
 pC
 pC
 pC
-ck
+tU
 pC
 pC
 CQ
@@ -51177,7 +51162,7 @@ PI
 Gl
 Rp
 vi
-XA
+Hw
 Yj
 Vb
 Rp
@@ -52235,7 +52220,7 @@ cW
 oS
 uF
 bQ
-EH
+eA
 bR
 bR
 bR
@@ -52492,7 +52477,7 @@ uF
 FF
 uF
 Bo
-TB
+uV
 bR
 bR
 bR
@@ -52945,7 +52930,7 @@ Jy
 Vh
 LN
 Am
-HS
+TY
 xX
 rZ
 RP
@@ -53200,12 +53185,12 @@ yX
 TC
 wt
 Ep
-wA
+kh
 Dr
 hx
-hP
+UJ
 rZ
-Yb
+pX
 yF
 bu
 bu
@@ -54703,8 +54688,8 @@ QT
 mC
 uY
 sV
-yP
-zO
+Ua
+hg
 QT
 ZL
 ZL

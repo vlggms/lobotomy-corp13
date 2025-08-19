@@ -972,6 +972,14 @@
 /obj/item/food/meat/slab/sinnew/MakeGrillable()
 	AddComponent(/datum/component/grillable, /obj/item/food/meat/steak/meatproduct, rand(30 SECONDS, 90 SECONDS), TRUE, TRUE) // too lazy to add a new sprite
 
+/obj/item/food/meat/slab/pallid
+	name = "pallid waste"
+	desc = "Nasty, meaty dross scraped off god knows where. It's extremely tough and stringy; you probably shouldn't eat this."
+	icon_state = "pallidmeat"
+	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/toxin/pallidwaste = 10)
+	tastes = list("fish guts" = 1, "tough meat" = 1)
+	foodtypes = MEAT | RAW | TOXIC | GROSS
+
 ////////////////////////////////////// MEAT STEAKS ///////////////////////////////////////////////////////////
 
 /obj/item/food/meat/steak

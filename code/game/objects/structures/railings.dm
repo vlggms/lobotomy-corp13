@@ -3,7 +3,7 @@
 	desc = "Basic railing meant to protect idiots like you from falling."
 	icon = 'icons/obj/fluff.dmi'
 	icon_state = "railing"
-	density = TRUE
+	density = FALSE
 	anchored = TRUE
 
 	var/climbable = TRUE
@@ -64,7 +64,7 @@
 	. = ..()
 	if(get_dir(loc, target) & dir)
 		var/checking = FLYING | FLOATING
-		return . || mover.throwing || mover.movement_type & checking
+		return FALSE || mover.throwing || mover.movement_type & checking
 	return TRUE
 
 /obj/structure/railing/CanAStarPass(ID, to_dir, requester)
@@ -84,7 +84,7 @@
 	..()
 	if(get_dir(loc, target) & dir)
 		var/checking = PHASING | FLYING | FLOATING
-		return !density || mover.throwing || mover.movement_type & checking || mover.move_force >= MOVE_FORCE_EXTREMELY_STRONG
+		return FALSE || mover.throwing || mover.movement_type & checking || mover.move_force >= MOVE_FORCE_EXTREMELY_STRONG
 	return TRUE
 
 /obj/structure/railing/corner/CheckExit()
@@ -108,6 +108,20 @@
 
 /obj/structure/railing/proc/after_rotation(mob/user,rotation_type)
 	add_fingerprint(user)
+
+/obj/structure/railing/indestructible
+	desc = "Advanced railing meant to protect idiots like you from falling."
+	obj_flags = NONE
+	resistance_flags = INDESTRUCTIBLE
+
+/obj/structure/railing/indestructible/wirecutter_act(mob/living/user, obj/item/I)
+	//You can't break these
+
+/obj/structure/railing/indestructible/CheckExit(atom/movable/mover, turf/target)//Doesn't let you throw things over it- prevents suicide by weapons like wrist cutter
+	if(get_dir(loc, target) & dir)
+		var/checking = PHASING | FLYING | FLOATING
+		return FALSE || mover.movement_type & checking || mover.move_force >= MOVE_FORCE_EXTREMELY_STRONG
+	return TRUE
 
 // Variant of railing that takes the form of a floor riser. Functionally identical in many respects, except that they only face one way.
 // Sucks that so much had to be duplicated, but these shouldn't be possible to construct, deconstruct, or rotate, so I had to go one layer up.

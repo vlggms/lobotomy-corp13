@@ -168,3 +168,29 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/button_counter, 32)
 			. += span_info("Good work!")
 		if(11 to INFINITY)
 			. += span_info("Incredible!")
+
+/obj/structure/pallid//floor waste
+	name = "pallid waste"
+	desc = "A pale, fleshy substance that reeks of fish."
+	icon = 'ModularTegustation/Teguicons/lc13_structures.dmi'
+	icon_state = "pallid"
+	max_integrity = 5
+	anchored = TRUE
+	density = FALSE
+	layer = LOW_OBJ_LAYER
+
+/obj/structure/pallid/Crossed(atom/movable/AM)
+	. = ..()
+	if(ishuman(AM))
+		var/mob/living/carbon/human/H = AM
+		if(prob(5))
+			H.Immobilize(5)
+			to_chat(H, span_warning("You stumble over the uneven terrain!"))
+
+/obj/structure/pallid/Destroy()
+	if(prob(30))
+		new /obj/item/food/meat/slab/pallid(loc)
+	..()
+
+/obj/structure/pallid/grate
+	icon_state = "pallid_grate"

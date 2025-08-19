@@ -459,3 +459,12 @@
 		if(!guaranteed_spawn && prob(75))
 			return
 		owner.BatSpawn(target)
+
+/obj/projectile/water_ball
+	name = "water"
+	desc = "A glob of salty water."
+	icon_state = "water"
+	damage_type = BLACK_DAMAGE
+	damage = 5
+	alpha = 120
+	spread = 5

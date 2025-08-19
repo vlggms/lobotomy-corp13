@@ -50,18 +50,9 @@
 		baseturfs = /turf/open/floor/plating/rust
 	if(prob(30))
 		risk_level += 1
-		mining_time *= 1.5
+		mining_time = clamp((mining_time * 1.5), 20, 300)
 	..()
 	return INITIALIZE_HINT_NORMAL
-
-/turf/closed/mineral/random/facility/Change_Ore(ore_type, random = 0)
-	. = ..()
-	if(mineralType)
-		smooth_icon = 'icons/turf/walls/rock_wall.dmi'
-		icon = 'icons/turf/walls/rock_wall.dmi'
-		icon_state = "rock_wall-0"
-		base_icon_state = "rock_wall"
-		smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
 
 /turf/closed/mineral/random/facility//assiyah, ZAYIN-TETH level
 	mineralChance = 10
@@ -387,3 +378,31 @@
 	desc = "This rubble produces strong enkephalin readings."
 	abnospawner = TRUE
 	event_chance = 0
+
+/turf/closed/mineral/random/facility/pallid
+	name = "pallid rubble"
+	icon_state = "pallid"
+	smooth_icon = 'icons/turf/walls/pallid_wall.dmi'
+	base_icon_state = "rock_wall"
+
+/turf/closed/mineral/random/facility/pallid/abnormality
+	name = "shifty rubble"//you need to varedit the threat levels
+	desc = "This rubble produces strong enkephalin readings."
+	abnospawner = TRUE
+	event_chance = 0
+
+/turf/closed/mineral/random/facility/pallid/briah//HE-WAW level
+	mineralChance = 15
+	mineralSpawnChanceList = list(
+		/obj/item/stack/ore/uranium = 3, /obj/item/stack/ore/diamond = 2, /obj/item/stack/ore/gold = 3, /obj/item/stack/ore/silver = 5,
+		/obj/item/stack/ore/ironscrap = 20, /obj/item/stack/ore/glassrubble = 30, /obj/item/stack/ore/plastic = 30, /obj/item/stack/ore/plasteel = 15)
+	risk_level = 3
+	mining_time = 120
+
+/turf/closed/mineral/random/facility/pallid/atzliuth//WAW-ALEPH level
+	mineralChance = 20
+	mineralSpawnChanceList = list(
+		/obj/item/stack/ore/uranium = 5, /obj/item/stack/ore/diamond = 10, /obj/item/stack/ore/gold = 5, /obj/item/stack/ore/silver = 5,
+		/obj/item/stack/ore/ironscrap = 10, /obj/item/stack/ore/glassrubble = 5, /obj/item/stack/ore/plastic = 15, /obj/item/stack/ore/plasteel = 30)
+	risk_level = 4
+	mining_time = 240
