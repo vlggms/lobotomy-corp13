@@ -1995,7 +1995,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	Instead of having Saly Acid, Mental Stabilizer, and Epipherine, it contains Chloral Hydrate, Mute Toxin, and Grape Wellcheers respectively."
 	item = /obj/item/reagent_containers/hypospray/emais/syndi
 	cost = 6
-	restricted_roles = list("Clerk", "Operations Officer", "Support Officer", "Agent Support Clerk", "Facility Support Clerk") //Same roles that can use it.
+	restricted_roles = list("Clerk", "Operations Officer", "Support Officer") //Same roles that can use it.
 
 // Pointless
 /datum/uplink_item/badass

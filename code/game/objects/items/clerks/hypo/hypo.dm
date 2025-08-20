@@ -168,7 +168,7 @@
 		H.add_upgrade(src,user)
 
 /obj/item/reagent_containers/hypospray/emais/proc/clerk_check(mob/living/carbon/human/H)
-	var/list/allowed_roles = list("Clerk", "Operations Officer", "Support Officer", "Agent Support Clerk", "Facility Support Clerk")
+	var/list/allowed_roles = list("Clerk", "Operations Officer", "Support Officer")
 	var/datum/status_effect/chosen/C = H.has_status_effect(/datum/status_effect/chosen)
 	if(C)
 		to_chat(H, span_warning("A mysterious force prevents you from using this!"))
