@@ -64,7 +64,7 @@
 
 	var/charging = FALSE
 	/// Arbiter is only defeated after dying with life_stage at 3
-	var/life_stage = 3
+	var/life_stage = 1
 	/// What type of meltdown is currently going on
 	var/current_meltdown_type
 	/// What types of meltdown can we use
