@@ -355,17 +355,17 @@
 			meltdown_text = "Meltdown of Waves has occured in containment zones of the following abnormalities:"
 			var/list/spawn_turfs = GLOB.xeno_spawn.Copy()
 			for (var/i = 0 to wave_count)
-			if(!LAZYLEN(spawn_turfs)) //if list empty, recopy xeno spawns
-				spawn_turfs = GLOB.xeno_spawn.Copy()
-			var/X = pick_n_take(spawn_turfs)
-			var/turf/T = get_turf(X)
-			var/list/deployment_area = list()
-			var/turf/deploy_spot = T //spot you are being deployed
-			if(LAZYLEN(deployment_area)) //if deployment zone is empty just spawn at xeno spawn
-				deploy_spot = pick_n_take(deployment_area)
-			var/obj/effect/black_wave/W = new get_turf(deploy_spot)
-			waves += W
-			W.binah= src
+				if(!list(spawn_turfs)) //if list empty, recopy xeno spawns
+					spawn_turfs = GLOB.xeno_spawn.Copy()
+				var/X = pick_n_take(spawn_turfs)
+				var/turf/T = get_turf(X)
+				var/list/deployment_area = list()
+				var/turf/deploy_spot = T //spot you are being deployed
+				if(LAZYLEN(deployment_area)) //if deployment zone is empty just spawn at xeno spawn
+					deploy_spot = pick_n_take(deployment_area)
+				var/obj/effect/black_wave/W = new get_turf(deploy_spot)
+				waves += W
+				W.binah= src
 		if(MELTDOWN_CYAN)
 			meltdown_text = "Meltdown of Pillars has occured in containment zones of the following abnormalities:"
 			meltdown_min_time = 45
