@@ -604,6 +604,7 @@
 	var/charge_damage = 80
 	var/duration = 4 MINUTES
 	var/mob/living/simple_animal/hostile/megafauna/arbiter/binah = null
+
 /obj/effect/black_wave/Initialize()
 	. = ..()
 	duration += world.time
@@ -615,7 +616,9 @@
 		Remove()
 
 /obj/effect/black_wave/proc/Remove()
-	binah.waves -= src
+	if(binah)
+		binah.waves -= src
+		binah = null
 	animate(src, time = (5 SECONDS), alpha = 0)
 	QDEL_IN(src, 5 SECONDS)
 
