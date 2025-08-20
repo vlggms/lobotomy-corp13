@@ -355,7 +355,7 @@
 			meltdown_text = "Meltdown of Waves has occured in containment zones of the following abnormalities:"
 			var/list/spawn_turfs = GLOB.xeno_spawn.Copy()
 			for (var/i = 0 to wave_count)
-				if(!list(spawn_turfs)) //if list empty, recopy xeno spawns
+				if(!length(spawn_turfs)) //if list empty, recopy xeno spawns
 					spawn_turfs = GLOB.xeno_spawn.Copy()
 				var/X = pick_n_take(spawn_turfs)
 				var/turf/T = get_turf(X)
