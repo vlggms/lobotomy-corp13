@@ -7,16 +7,16 @@
 	icon_living = "slothsin"
 	icon_dead = "slothsin_dead"
 	faction = list("brown_ordeal")
-	maxHealth = 30
-	health = 30
-	melee_damage_type = RED_DAMAGE
+	maxHealth = 50
+	health = 50
+	melee_damage_type = BLACK_DAMAGE
 	melee_damage_lower = 2
 	melee_damage_upper = 4
 	attack_verb_continuous = "bashes"
 	attack_verb_simple = "bashes"
 	attack_sound = 'sound/effects/ordeals/brown/rock_attack.ogg'
 	death_sound = 'sound/effects/ordeals/brown/rock_dead.ogg'
-	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2)
+	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.5)
 	butcher_results = list(/obj/item/food/meat/slab/sinnew = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sinnew = 1)
 	ranged = TRUE
@@ -80,13 +80,13 @@
 			for(var/mob/living/L in T)
 				if(faction_check_mob(L))
 					continue
-				L.deal_damage(jump_damage, RED_DAMAGE)
+				L.deal_damage(jump_damage, melee_damage_type)
 				if(L.health < 0)
 					L.gib()
 					continue
 				L.apply_lc_tremor(jump_tremor, jump_tremor_burst)
 			for(var/obj/vehicle/sealed/mecha/V in T)
-				V.take_damage(jump_damage, RED_DAMAGE)
+				V.take_damage(jump_damage, melee_damage_type)
 		can_act = TRUE
 		jump_cooldown = world.time + jump_cooldown_time
 
@@ -105,7 +105,7 @@
 	faction = list("brown_ordeal")
 	maxHealth = 25
 	health = 25
-	melee_damage_type = RED_DAMAGE
+	melee_damage_type = BLACK_DAMAGE
 	rapid_melee = 3
 	melee_damage_lower = 1
 	melee_damage_upper = 2
@@ -113,7 +113,7 @@
 	attack_verb_simple = "bite"
 	attack_sound = 'sound/effects/ordeals/brown/flower_attack.ogg'
 	death_sound = 'sound/effects/limbus_death.ogg'
-	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2)
+	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.5)
 	butcher_results = list(/obj/item/food/meat/slab/sinnew = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sinnew = 1)
 	stat_attack = DEAD
@@ -167,14 +167,14 @@
 	faction = list("brown_ordeal")
 	maxHealth = 35
 	health = 35
-	melee_damage_type = WHITE_DAMAGE
+	melee_damage_type = BLACK_DAMAGE
 	melee_damage_lower = 7
 	melee_damage_upper = 8
 	attack_verb_continuous = "bashes"
 	attack_verb_simple = "bashes"
 	attack_sound = 'sound/effects/ordeals/brown/flea_attack.ogg'
 	death_sound = 'sound/effects/ordeals/brown/flea_dead.ogg'
-	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2)
+	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.5)
 	butcher_results = list(/obj/item/food/meat/slab/sinnew = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sinnew = 1)
 	is_flying_animal = TRUE
@@ -224,7 +224,7 @@
 				var/mob/living/carbon/human/H = L
 				H.adjustSanityLoss(sinking_damage)
 			else
-				L.deal_damage(sinking_damage, WHITE_DAMAGE)
+				L.deal_damage(sinking_damage, melee_damage_type)
 		for(var/obj/vehicle/sealed/mecha/V in T)
 			V.take_damage(damage_dealt, melee_damage_type)
 	SLEEP_CHECK_DEATH(8)
@@ -254,7 +254,7 @@
 	attack_verb_simple = "slash"
 	attack_sound = 'sound/weapons/ego/sword1.ogg'
 	death_sound = 'sound/effects/ordeals/brown/dead_generic.ogg'
-	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 2)
+	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.5)
 	butcher_results = list(/obj/item/food/meat/slab/sinnew = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sinnew = 1)
 	ranged = TRUE
@@ -376,14 +376,14 @@
 	health = 80
 	speed = 3
 	move_to_delay = 8
-	melee_damage_type = RED_DAMAGE
+	melee_damage_type = BLACK_DAMAGE
 	melee_damage_lower = 3
 	melee_damage_upper = 5
 	attack_verb_continuous = "bashes"
 	attack_verb_simple = "bashes"
 	attack_sound = 'sound/effects/ordeals/brown/cromer_slam.ogg'
 	death_sound = 'sound/effects/limbus_death.ogg'
-	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2)
+	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.5)
 	butcher_results = list(/obj/item/food/meat/slab/sinnew = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sinnew = 1)
 	ranged = TRUE
@@ -463,7 +463,7 @@
 	Beam(T, "tentacle", time = 10)
 	playsound(src, 'sound/weapons/ego/censored1.ogg', 75, FALSE, 5)
 	for(var/turf/TT in turf_list)
-		for(var/mob/living/L in HurtInTurf(TT, list(), ability_damage, RED_DAMAGE, null, TRUE, FALSE, TRUE, hurt_structure = TRUE))
+		for(var/mob/living/L in HurtInTurf(TT, list(), ability_damage, melee_damage_type, null, TRUE, FALSE, TRUE, hurt_structure = TRUE))
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
 			L.apply_lc_bleed(15)
 	can_act = TRUE
@@ -488,7 +488,7 @@
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/effects/ordeals/brown/tentacle_attack.ogg'
 	death_sound = 'sound/effects/ordeals/brown/dead_generic.ogg'
-	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 2)
+	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.5)
 	butcher_results = list(/obj/item/food/meat/slab/sinnew = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sinnew = 1)
 	var/burn_stacks = 5
@@ -579,7 +579,7 @@
 				if(ishuman(L))
 					var/mob/living/carbon/human/H = L
 					H.apply_lc_burn(burn_stacks)
-				L.deal_damage(charge_damage, RED_DAMAGE)
+				L.deal_damage(charge_damage, melee_damage_type)
 				if(L.health < 0)
 					L.gib()
 					playsound(src, 'sound/effects/ordeals/brown/tentacle_explode.ogg', 75, 1)
@@ -589,7 +589,7 @@
 				ResetCharge()
 		else if(isvehicle(A))
 			var/obj/vehicle/V = A
-			V.take_damage(charge_damage*1.5, RED_DAMAGE)
+			V.take_damage(charge_damage*1.5, melee_damage_type)
 			for(var/mob/living/occupant in V.occupants)
 				to_chat(occupant, span_userdanger("Your [V.name] is bit by [src]!"))
 			EndCharge(FALSE)
