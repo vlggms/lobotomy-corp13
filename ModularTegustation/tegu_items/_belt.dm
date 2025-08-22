@@ -20,7 +20,6 @@
 		/obj/item/deepscanner,
 		/obj/item/safety_kit,
 		/obj/item/clerkbot_gadget,
-		/obj/item/device/plushie_extractor,
 		/obj/item/reagent_containers/hypospray/emais,
 		/obj/item/forcefield_projector
 		))

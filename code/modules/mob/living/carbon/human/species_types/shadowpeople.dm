@@ -26,9 +26,7 @@
 			H.heal_overall_damage(1,1, 0, BODYPART_ORGANIC)
 
 /datum/species/shadow/check_roundstart_eligible()
-	if(SSevents.holidays && SSevents.holidays[HALLOWEEN])
-		return TRUE
-	return ..()
+	return FALSE // Noob trap during h'ween, disabled until someone fixes that.
 
 /datum/species/shadow/nightmare
 	name = "Nightmare"
