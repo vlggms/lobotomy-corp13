@@ -152,9 +152,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	///Language that will be used for some of the strings
 	var/client_language = CLIENT_LANGUAGE_ENGLISH
 
-	// Lore Stuff - Currently unused...
-	///What does the player think of TerraGov.
-	var/terragov_relation = RELATION_NEUTRAL
+	// Lore Stuff
+	///Player's Home district. Lobotomy Corporation by default
+	var/home_district = DISTRICT12
+	var/home_wealth = IMPOVERISHED
 
 	/// Preference about the user's prefered auxiliary console TGUI
 	var/auxiliary_console_tgui = TRUE
@@ -289,8 +290,35 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>Preferred Sephirah Box Color:</b> <span style='border: 1px solid #161616; background-color: #[prefered_sephirah_boxcolor];'>&nbsp;&nbsp;&nbsp;</span> <a href='byond://?_src_=prefs;preference=seph_boxcolor;task=input'>Change</a><BR>"
 			dat += "<br>"
 
-			dat += "<h2>Background Information:</h2>"
-			dat += "<a href='byond://?_src_=prefs;preference=govrelation;task=input'><b>Government Relation:</b> [terragov_relation]</a><BR></td>"
+			dat += "<h2>Backstory Information:</h2>"
+			dat += "<a href='byond://?_src_=prefs;preference=district;task=input'><b>Home District:</b> [home_district]</a><BR>"
+			dat += "<a href='byond://?_src_=prefs;preference=wealth;task=input'><b>Economical Status:</b> [home_wealth]</a><BR>"
+			var/new_output = ""
+			var/wealthcheck = FALSE
+			if(home_wealth == WEALTHY)
+				wealthcheck = TRUE
+			switch(home_district)
+				if(DISTRICT8)
+					new_output += "the [wealthcheck ? "courts underneath the artificial skies" : "sprawling, restructuring backstreets"] of Hongyuan"
+				if(DISTRICT9)
+					new_output += "[wealthcheck ? "I Corp's Nest" : "the Streets of Music"]"
+				if(DISTRICT10)
+					new_output += "the Nest of Gambling"
+				if(DISTRICT18)
+					new_output += "a military life within an R Corporation Fortress"
+				if(DISTRICT21)
+					new_output += "[wealthcheck ? "a boathouse on the artificial shore bordering the Outskirts" : "one of the five Portships upon the Great Lake"]"
+				if(DISTRICT23)
+					new_output += "[wealthcheck ? "W Corp's Nest" : "the cannibalism-ridden Streets of Flavor"]"
+				if(DISTRICT24)
+					new_output += "[wealthcheck ? "X Corp's Nest" : "the backstreets of Nest X, near the Alloy Excavation Sites"]"
+				if(DISTRICT25)
+					new_output += "the Frigid North, under Y Corporation"
+				if(OUTSKIRTS)
+					new_output += "the barren outskirts"
+				else
+					new_output += "the [wealthcheck ? "Nest" : "Backstreets"] of [home_district]"
+			dat += "You originally came from [new_output].<BR></td>"
 
 			dat += "</tr></table>"
 
@@ -1662,11 +1690,18 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						prefered_agent_department = department
 
 				// The lore stuff
-				if("govrelation")
-					var/new_relation = input(user, "Choose your relation to the Terran Government that will appear on background checks.", "Terragov Relation") as null|anything in GLOB.relationship_prefs
-					if(!new_relation)
+				if("district")
+					var/new_district = input(user, "Choose your district of origin in the city.", "Home District") as null|anything in GLOB.district_prefs
+					if(!new_district)
 						return
-					terragov_relation = new_relation
+					home_district = new_district
+					if(home_district == OUTSKIRTS)
+						home_wealth = PENNILESS
+				if("wealth")
+					var/new_wealth = input(user, "Choose your character's economic status growing up.", "Economical Status") as null|anything in GLOB.wealth_prefs
+					if(!new_wealth || (home_district == OUTSKIRTS))
+						return
+					home_wealth = new_wealth
 
 				if ("preferred_map")
 					var/maplist = list()

@@ -687,11 +687,13 @@
 	desc = "" // Done later
 	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
 	icon_state = "aids"
-	var/use_time = 150 // For future mods, maybe? :shrug:
+	var/use_time = 150
 
 /obj/item/info_printer/examine(mob/user)
+	var/total_use_time = GetTotalUseTime(user)
 	. = ..()
-	. += "Use on an Abnormality to display its information on screen after [use_time/10] seconds."
+	. += "Use on an Abnormality to display its information on screen after [total_use_time/10] seconds."
+	. += "A higher Prudence attribute will allow this tool to work faster."
 
 /obj/item/info_printer/pre_attack(atom/A, mob/living/user, params)
 	if(Scan(A, user))
@@ -703,10 +705,16 @@
 		return TRUE
 	return ..()
 
+/obj/item/info_printer/proc/GetTotalUseTime(mob/user)
+	var/userprud = (get_modified_attribute_level(user, PRUDENCE_ATTRIBUTE) * 0.5) // So the use time becomes roughly halved at 130 prudence
+	var/newtime = clamp((use_time - userprud), 0 , use_time)
+	return newtime
+
 /obj/item/info_printer/proc/Scan(atom/A, mob/living/user)
 	if(!isabnormalitymob(A))
 		return FALSE
-	if(do_after(user, max(use_time-1, 0), A, IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE, TRUE, CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(can_see), user, A, 7)))
+	var/total_use_time = GetTotalUseTime(user)
+	if(do_after(user, max(total_use_time-1, 0), A, IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE, TRUE, CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(can_see), user, A, 7)))
 		var/list/information = GenerateInfo(A)
 		if(information)
 			var/datum/browser/popup = new(user, "information", FALSE, 300, 350)
@@ -741,7 +749,7 @@
 		return
 
 	if(!istype(user) || !(user?.mind?.assigned_role in GLOB.security_positions))
-		to_chat(user, span_notice("The Extractor's light flashes red. You aren't an Agent."))
+		to_chat(user, span_notice("The Extractor's light flashes red. This tool is meant for Agents and you aren't an Authorized to use this."))
 		return
 
 	var/datum/ego_gifts/target_gift = new target.gift_type
@@ -749,98 +757,3 @@
 	to_chat(user, span_nicegreen("[target.gift_message]"))
 	to_chat(user, span_nicegreen("You extract [target]'s gift!"))
 	qdel(src)
-
-/obj/item/device/plushie_extractor
-	name = "Plushie Extractor"
-	desc = "A device used for extracting plush versions of the abnormalities.\nThe extraction recharge period for this model lasts three minutes."
-	icon = 'icons/obj/device.dmi'
-	icon_state = "plushie_extractor"
-
-// Previous implementation of this item was bugged and didn't work, and was also designed slightly differently.
-// Old version added the user's ckey into a list. What did it do with their ckey? I don't know. I don't think it did anything, actually.
-// This version just works on a timer-based charge system. You use it on an abno, get their plushie, and then it recharges for three minutes, and then you can use it again.
-// Theoretically this means you can farm infinite plushies, given enough time. Well, you could already do that, but this device is an easier way to do it.
-	/// This variable determines whether the extractor is charged or not.
-	var/charged = TRUE
-	/// This variable holds the timer for the recharge, so we can delete it in case the object is destroyed somehow.
-	var/charge_timer
-	/// This variable represents how long the device will have to recharge for after use.
-	var/recharge_duration = 3 MINUTES
-	/// This list is a conversion table for abnormalities to abnormality plushies. If you wanna add an abnormality plushie, please also add it to this table.
-	var/static/list/output = list(
-		// ZAYIN
-
-        // TETH
-	/mob/living/simple_animal/hostile/abnormality/scorched_girl = /obj/item/toy/plush/scorched,
-	/mob/living/simple_animal/hostile/abnormality/punishing_bird = /obj/item/toy/plush/pbird,
-	/mob/living/simple_animal/hostile/abnormality/voiddream = /obj/item/toy/plush/voiddream,
-
-		// HE
-	/mob/living/simple_animal/hostile/abnormality/pinocchio = /obj/item/toy/plush/pinocchio,
-
-		// WAW
-	/mob/living/simple_animal/hostile/abnormality/big_bird = /obj/item/toy/plush/bigbird,
-	/mob/living/simple_animal/hostile/abnormality/wrath_servant = /obj/item/toy/plush/sow,
-	/mob/living/simple_animal/hostile/abnormality/greed_king = /obj/item/toy/plush/kog,
-	/mob/living/simple_animal/hostile/abnormality/despair_knight = /obj/item/toy/plush/kod,
-	/mob/living/simple_animal/hostile/abnormality/big_wolf = /obj/item/toy/plush/big_bad_wolf,
-	/mob/living/simple_animal/hostile/abnormality/hatred_queen = /obj/item/toy/plush/qoh,
-	/mob/living/simple_animal/hostile/abnormality/judgement_bird = /obj/item/toy/plush/jbird,
-
-		// ALEPH
-	/mob/living/simple_animal/hostile/abnormality/melting_love = /obj/item/toy/plush/melt,
-	/mob/living/simple_animal/hostile/abnormality/mountain = /obj/item/toy/plush/mosb,
-	/mob/living/simple_animal/hostile/abnormality/nihil = /obj/item/toy/plush/nihil,
-	/mob/living/simple_animal/hostile/megafauna/apocalypse_bird = /obj/item/toy/plush/apocbird,
-
-    )
-
-/obj/item/device/plushie_extractor/attack(mob/living/simple_animal/hostile/abnormality/I, mob/living/carbon/human/user)
-	. = ..()
-	if(!ishuman(user))
-		return
-	if(!istype(I))
-		return
-	/// If we don't have a plushie in our conversion table for the abnormality we just hit:
-	if(!ispath(output[I.type], /obj/item/toy/plush))
-		to_chat(user, span_notice("Unfortunately, [I] has not been approved for extraction into a marketable plushie. Please contact the Lobotomy Corporation Marketing and Public Relations Department if you believe a marketable plush of [I] could be used to improve the Wing's image."))
-		playsound(src, 'sound/machines/buzz-two.ogg', 25)
-		return
-	/// If the device isn't charged:
-	if(!charged)
-		to_chat(user, span_notice("This device hasn't finished recharging. Excessive plushification could endanger operations. Please wait until the recharge has finished."))
-		playsound(src, 'sound/machines/buzz-sigh.ogg', 25)
-		return
-	/// If we made it to this point, then we have an entry in our table and the device is charged. Begin a brief windup:
-	var/atom/item_out = output[I.type]
-	to_chat(user, span_notice("The device is slowly processing [I] into [initial(item_out.name)]..."))
-	if(!do_after(user, 5 SECONDS, interaction_key = "plushie_extraction", max_interact_count = 1))
-		return
-
-	/// If we made it here then the extraction process should be successful.
-	charged = FALSE
-	var/atom/new_item = new item_out(get_turf(user))
-	user.put_in_hands(new_item)
-	to_chat(user, span_nicegreen("You retrieve [new_item] from the [src]!"))
-	playsound(get_turf(src), 'sound/machines/ping.ogg', 50, TRUE)
-	/// Begin the recharge.
-	charge_timer = addtimer(CALLBACK(src, PROC_REF(Recharge)), recharge_duration, TIMER_STOPPABLE)
-
-/// Small little addition onto the description to be able to tell whether the device is charged or not.
-/obj/item/device/plushie_extractor/examine(mob/user)
-	. = ..()
-	if(charged)
-		. += span_nicegreen("It is currently charged.")
-	else
-		. += span_notice("It is currently recharging.")
-/// I'm unsure if this is necessary, but just to be safe, I want to delete the timer when the object is destroyed.
-/obj/item/device/plushie_extractor/Destroy(force)
-	deltimer(charge_timer)
-	charge_timer = null
-	return ..()
-
-/obj/item/device/plushie_extractor/proc/Recharge()
-	if(!charged)
-		charged = TRUE
-		playsound(get_turf(src), 'sound/machines/chime.ogg', 35, TRUE, 4)
-		audible_message(span_info("The [src.name] finishes recharging."))
