@@ -1234,15 +1234,7 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/west)
 "fh" = (
-/obj/structure/filingcabinet/wawinfo{
-	pixel_x = -11
-	},
-/obj/structure/filingcabinet/alephinfo{
-	pixel_x = -1
-	},
-/obj/structure/filingcabinet/toolinfo{
-	pixel_x = 9
-	},
+/obj/effect/mapping_helpers/records_spawner/second,
 /obj/machinery/camera/autoname,
 /turf/open/floor/carpet/black,
 /area/department_main/records)
@@ -5792,13 +5784,7 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/comm)
 "zb" = (
-/obj/structure/filingcabinet/zayininfo{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet/tethinfo,
-/obj/structure/filingcabinet/heinfo{
-	pixel_x = 10
-	},
+/obj/effect/mapping_helpers/records_spawner,
 /turf/open/floor/carpet/black,
 /area/department_main/records)
 "zc" = (

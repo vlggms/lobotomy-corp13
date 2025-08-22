@@ -578,13 +578,7 @@
 /turf/open/floor/wood,
 /area/city/shop)
 "bT" = (
-/obj/structure/filingcabinet/zayininfo{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet/tethinfo,
-/obj/structure/filingcabinet/heinfo{
-	pixel_x = 10
-	},
+/obj/effect/mapping_helpers/records_spawner,
 /turf/open/floor/facility/dark,
 /area/department_main/command)
 "bU" = (
@@ -654,13 +648,7 @@
 /turf/open/floor/facility/dark,
 /area/department_main/command)
 "cc" = (
-/obj/structure/filingcabinet/wawinfo{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet/alephinfo,
-/obj/structure/filingcabinet/toolinfo{
-	pixel_x = 10
-	},
+/obj/effect/mapping_helpers/records_spawner/second,
 /turf/open/floor/facility/dark,
 /area/department_main/command)
 "cd" = (
@@ -1870,13 +1858,7 @@
 /turf/open/floor/facility/dark,
 /area/department_main/records)
 "gx" = (
-/obj/structure/filingcabinet/zayininfo{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet/tethinfo,
-/obj/structure/filingcabinet/heinfo{
-	pixel_x = 10
-	},
+/obj/effect/mapping_helpers/records_spawner,
 /turf/open/floor/carpet/black,
 /area/department_main/records)
 "gy" = (
@@ -2201,15 +2183,7 @@
 /turf/open/floor/facility/dark,
 /area/department_main/records)
 "mS" = (
-/obj/structure/filingcabinet/wawinfo{
-	pixel_x = -11
-	},
-/obj/structure/filingcabinet/alephinfo{
-	pixel_x = -1
-	},
-/obj/structure/filingcabinet/toolinfo{
-	pixel_x = 9
-	},
+/obj/effect/mapping_helpers/records_spawner/second,
 /obj/machinery/camera/autoname,
 /turf/open/floor/carpet/black,
 /area/department_main/records)

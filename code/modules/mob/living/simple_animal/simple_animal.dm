@@ -242,6 +242,10 @@
 	if(SSmaptype.maptype in SSmaptype.citymaps)
 		if(city_faction)
 			faction += "hostile"
+
+	if(istype(loc, /obj/item/paper/fluff)) // Happens when records are being initialized, lets not make un-necessary blockers
+		return
+
 	if(occupied_tiles_down > 0 || occupied_tiles_up > 0 || occupied_tiles_left > 0 || occupied_tiles_right > 0)
 		occupied_tiles_left_current = occupied_tiles_left
 		occupied_tiles_right_current = occupied_tiles_right

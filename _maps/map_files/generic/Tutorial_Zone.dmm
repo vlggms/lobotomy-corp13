@@ -92,16 +92,6 @@
 /obj/machinery/light,
 /turf/open/floor/wood,
 /area/facility_hallway/human)
-"ck" = (
-/obj/structure/filingcabinet/zayininfo{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet/tethinfo,
-/obj/structure/filingcabinet/heinfo{
-	pixel_x = 10
-	},
-/turf/open/floor/facility,
-/area/test_range)
 "cl" = (
 /obj/structure/table/wood,
 /obj/item/paper/guides/jobs/teth{
@@ -215,9 +205,6 @@
 	pixel_x = -10
 	},
 /obj/structure/filingcabinet/lore/aleph,
-/obj/structure/filingcabinet/toolinfo{
-	pixel_x = 10
-	},
 /turf/open/floor/carpet/black,
 /area/department_main/human)
 "fz" = (
@@ -459,16 +446,6 @@
 /obj/item/disk/holodisk/tutorial/stats,
 /turf/open/floor/wood,
 /area/department_main/human)
-"oe" = (
-/obj/structure/filingcabinet/wawinfo{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet/alephinfo,
-/obj/structure/filingcabinet/toolinfo{
-	pixel_x = 10
-	},
-/turf/open/floor/facility,
-/area/test_range)
 "or" = (
 /obj/structure/plasticflaps/opaque,
 /obj/machinery/scanner_gate/tutorialscanner{
@@ -642,6 +619,10 @@
 /obj/structure/tutorialbox,
 /turf/open/floor/wood,
 /area/department_main/human)
+"te" = (
+/obj/effect/mapping_helpers/records_spawner/second,
+/turf/open/floor/facility,
+/area/test_range)
 "tS" = (
 /obj/machinery/light{
 	dir = 1
@@ -872,6 +853,10 @@
 	},
 /turf/open/floor/wood,
 /area/department_main/human)
+"BJ" = (
+/obj/effect/mapping_helpers/records_spawner,
+/turf/open/floor/facility,
+/area/test_range)
 "Cc" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Human Resources Department";
@@ -980,13 +965,7 @@
 /turf/open/floor/wood,
 /area/department_main/human)
 "Ev" = (
-/obj/structure/filingcabinet/wawinfo{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet/alephinfo,
-/obj/structure/filingcabinet/toolinfo{
-	pixel_x = 10
-	},
+/obj/effect/mapping_helpers/records_spawner/second,
 /turf/open/floor/carpet/black,
 /area/department_main/human)
 "Ex" = (
@@ -1572,13 +1551,7 @@
 /turf/open/floor/wood,
 /area/department_main/human)
 "VZ" = (
-/obj/structure/filingcabinet/heinfo{
-	pixel_x = 10
-	},
-/obj/structure/filingcabinet/zayininfo{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet/tethinfo,
+/obj/effect/mapping_helpers/records_spawner,
 /turf/open/floor/carpet/black,
 /area/department_main/human)
 "Wf" = (
@@ -6822,7 +6795,7 @@ XL
 XL
 XL
 nf
-ck
+BJ
 eg
 eg
 eg
@@ -6924,7 +6897,7 @@ XL
 XL
 XL
 nf
-oe
+te
 eg
 eg
 eg

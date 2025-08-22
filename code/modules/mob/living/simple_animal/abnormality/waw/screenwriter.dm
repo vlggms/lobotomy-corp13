@@ -72,7 +72,7 @@ Defeating the murderer also surpresses the abnormality.
 /mob/living/simple_animal/hostile/abnormality/screenwriter/Destroy()
 	if(A)
 		A.death()
-	EndScenario()
+	EndScenario(FALSE)
 	return ..()
 
 //Work stuff
@@ -173,8 +173,9 @@ Defeating the murderer also surpresses the abnormality.
 		to_chat(Y, span_userdanger("You will play the role of the [S.role]!"))
 		S.AssignRole()
 
-/mob/living/simple_animal/hostile/abnormality/screenwriter/proc/EndScenario()
-	sleep(30)
+/mob/living/simple_animal/hostile/abnormality/screenwriter/proc/EndScenario(should_sleep = TRUE)
+	if(should_sleep)
+		sleep(30)
 	sound_to_playing_players_on_level('sound/abnormalities/screenwriter/finish.ogg', 25, zlevel = z)
 	for(var/mob/living/carbon/human/L in GLOB.player_list) // cleanse debuffs
 		if(faction_check_mob(L, FALSE) || L.stat >= HARD_CRIT || L.sanity_lost || z != L.z) // Dead or in hard crit, insane, or on a different Z level.
@@ -182,7 +183,8 @@ Defeating the murderer also surpresses the abnormality.
 		var/datum/status_effect/actor/S = L.has_status_effect(/datum/status_effect/actor)
 		if(S)
 			qdel(S)
-	UnregisterSignal(A, COMSIG_LIVING_DEATH)
+	if(A)
+		UnregisterSignal(A, COMSIG_LIVING_DEATH)
 
 //Overlays
 /mob/living/simple_animal/hostile/abnormality/screenwriter/proc/SpawnIcon()

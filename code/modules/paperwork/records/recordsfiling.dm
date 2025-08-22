@@ -1,116 +1,113 @@
-/*
- * Records Cabinet
+/**
+ * Records Cabinet and its spawners
+ *
  */
 
-//Zayin
-/obj/structure/filingcabinet/zayininfo
+GLOBAL_LIST_EMPTY(records_cabinets)
+
+/obj/effect/mapping_helpers/records_spawner
+	name = "ZAYIN/TETH/HE records cabinet spawner"
+	density = TRUE
+	/// List of paper types that we want to spawn
+	var/list/desired_papers = list(
+		/obj/item/paper/fluff/info/zayin,
+		/obj/item/paper/fluff/info/teth,
+		/obj/item/paper/fluff/info/he,
+	)
+
+/obj/effect/mapping_helpers/records_spawner/Initialize()
+	. = ..()
+	var/current_location = 5 + (length(desired_papers) * -5)
+	for(var/i in 1 to length(desired_papers))
+		var/obj/structure/filingcabinet/smart/cabinet = new(get_turf(src))
+		GLOB.records_cabinets += cabinet // Cabinets in this list are populated at round-start automatically
+
+		cabinet.desired_type = desired_papers[i]
+		cabinet.pixel_x = current_location
+
+		current_location += 10
+		if(!density)
+			cabinet.density = density
+			cabinet.pixel_y += 20
+
+/obj/effect/mapping_helpers/records_spawner/second
+	name = "WAW/ALEPH/TOOL records cabinet spawner"
+	desired_papers = list(
+		/obj/item/paper/fluff/info/waw,
+		/obj/item/paper/fluff/info/aleph,
+		/obj/item/paper/fluff/info/tool,
+	)
+
+/obj/effect/mapping_helpers/records_spawner/walk_through
+	name = "ZAYIN/TETH/HE records cabinet spawner -- Walk-through"
+	density = FALSE
+
+/obj/effect/mapping_helpers/records_spawner/second/walk_through
+	name = "WAW/ALEPH/TOOL records cabinet spawner -- Walk-through"
+	density = FALSE
+
+/obj/structure/filingcabinet/smart
+	icon_state = "employmentcabinet"
+	var/obj/item/paper/fluff/info/desired_type
+	var/filled = FALSE // just in case we fail to get filled by the ticker at round-start, lets not screw over people
+
+/obj/structure/filingcabinet/smart/interact(mob/user)
+	if(!filled)
+		message_admins("Records cabinet failed to fill at round-start, filling due to being touched by ([user])")
+		spawn_records()
+
+	return ..()
+
+/obj/structure/filingcabinet/smart/proc/spawn_records()
+	if(isnull(SSticker.mode))
+		CRASH("(proc/spawn_records) called on ([src]) whilst gamemode is null!")
+
+	var/datum/game_mode/management/gamemode = SSticker.mode
+	filled = TRUE
+
+	var/list/queue = subtypesof(desired_type)
+	for(var/obj/item/paper/fluff/info/paper as anything in queue)
+		if(desired_type == /obj/item/paper/fluff/info/tool) // skip the queue
+			new paper(src)
+			continue
+
+		if(isnull(paper.abno_type)) // Most likelly a parent, that or someone fucked up
+			message_admins("A records paper attempted to spawn, but failed due to not having an abnormality assigned ([paper])")
+			continue
+
+		var/paper_origin = paper.abno_type.abnormality_origin
+		for(var/allowed_abnormalities in gamemode.abno_types)
+			if(allowed_abnormalities == paper_origin)
+				new paper(src)
+				break
+
+/**
+ * closets filled with their respective papers, consider using mapping helpers, please
+ */
+
+/obj/structure/filingcabinet/smart/zayin
 	name = "zayin abnormality information cabinet"
-	icon_state = "employmentcabinet"
-	var/virgin = TRUE
+	desired_type = /obj/item/paper/fluff/info/zayin
 
-/obj/structure/filingcabinet/zayininfo/proc/fillCurrent()
-	var/list/queue = subtypesof(/obj/item/paper/fluff/info/zayin)
-	for(var/sheet in queue)
-		new sheet(src)
-
-
-/obj/structure/filingcabinet/zayininfo/interact(mob/user)
-	if(virgin)
-		fillCurrent()
-		virgin = FALSE
-	return ..()
-
-//Teths
-/obj/structure/filingcabinet/tethinfo
+/obj/structure/filingcabinet/smart/teth
 	name = "teth abnormality information cabinet"
-	icon_state = "employmentcabinet"
-	var/virgin = TRUE
+	desired_type = /obj/item/paper/fluff/info/teth
 
-/obj/structure/filingcabinet/tethinfo/proc/fillCurrent()
-	var/list/queue = subtypesof(/obj/item/paper/fluff/info/teth)
-	for(var/sheet in queue)
-		new sheet(src)
-
-
-/obj/structure/filingcabinet/tethinfo/interact(mob/user)
-	if(virgin)
-		fillCurrent()
-		virgin = FALSE
-	return ..()
-
-//HEs
-/obj/structure/filingcabinet/heinfo
+/obj/structure/filingcabinet/smart/he
 	name = "he abnormality information cabinet"
-	icon_state = "employmentcabinet"
-	var/virgin = TRUE
+	desired_type = /obj/item/paper/fluff/info/he
 
-/obj/structure/filingcabinet/heinfo/proc/fillCurrent()
-	var/list/queue = subtypesof(/obj/item/paper/fluff/info/he)
-	for(var/sheet in queue)
-		new sheet(src)
-
-
-/obj/structure/filingcabinet/heinfo/interact(mob/user)
-	if(virgin)
-		fillCurrent()
-		virgin = FALSE
-	return ..()
-
-
-//WAWs
-/obj/structure/filingcabinet/wawinfo
+/obj/structure/filingcabinet/smart/waw
 	name = "waw abnormality information cabinet"
-	icon_state = "employmentcabinet"
-	var/virgin = TRUE
+	desired_type = /obj/item/paper/fluff/info/waw
 
-/obj/structure/filingcabinet/wawinfo/proc/fillCurrent()
-	var/list/queue = subtypesof(/obj/item/paper/fluff/info/waw)
-	for(var/sheet in queue)
-		new sheet(src)
-
-
-/obj/structure/filingcabinet/wawinfo/interact(mob/user)
-	if(virgin)
-		fillCurrent()
-		virgin = FALSE
-	return ..()
-
-//Aleph
-/obj/structure/filingcabinet/alephinfo
+/obj/structure/filingcabinet/smart/aleph
 	name = "aleph abnormality information cabinet"
-	icon_state = "employmentcabinet"
-	var/virgin = TRUE
+	desired_type = /obj/item/paper/fluff/info/aleph
 
-/obj/structure/filingcabinet/alephinfo/proc/fillCurrent()
-	var/list/queue = subtypesof(/obj/item/paper/fluff/info/aleph)
-	for(var/sheet in queue)
-		new sheet(src)
-
-
-/obj/structure/filingcabinet/alephinfo/interact(mob/user)
-	if(virgin)
-		fillCurrent()
-		virgin = FALSE
-	return ..()
-
-//Tools
-/obj/structure/filingcabinet/toolinfo
+/obj/structure/filingcabinet/smart/tool
 	name = "tool abnormality information cabinet"
-	icon_state = "employmentcabinet"
-	var/virgin = TRUE
-
-/obj/structure/filingcabinet/toolinfo/proc/fillCurrent()
-	var/list/queue = subtypesof(/obj/item/paper/fluff/info/tool)
-	for(var/sheet in queue)
-		new sheet(src)
-
-
-/obj/structure/filingcabinet/toolinfo/interact(mob/user)
-	if(virgin)
-		fillCurrent()
-		virgin = FALSE
-	return ..()
-
+	desired_type = /obj/item/paper/fluff/info/tool
 
 /*
  * Lore Cabinet
