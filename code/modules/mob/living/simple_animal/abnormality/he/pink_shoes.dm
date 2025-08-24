@@ -250,7 +250,7 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 		special_possessee.update_icon()
 		special_possessee.gear = 10
 		special_possessee.UpdateGear()
-		special_possessee.gear_health = 0.5
+		special_possessee.gear_health = 1//Sets the gear to 10 and prevents surgery from triggering more than once. We'll give it more HP to compensate on 257
 		special_possessee.name = pick("Clippity-cloppity", "Tap-tap", "Twinkle")+pick("? Tap away!", "? Thoroughly?!", "? Sprinkle Spinny!?")
 	else
 		RibbonVisual(user)
