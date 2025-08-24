@@ -15,7 +15,7 @@
 
 /datum/crafting_recipe/index_proxy
 	name = "Index Proxy Armor"
-	result = /obj/item/clothing/suit/armor/ego_gear/adjustable/index_proxy
+	result = /obj/item/clothing/suit/armor/ego_gear/index_proxy
 	reqs = list(
 		/obj/item/stack/sheet/silk/violet_simple = 4,
 		/obj/item/stack/sheet/silk/indigo_advanced = 2,
