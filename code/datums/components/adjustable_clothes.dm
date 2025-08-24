@@ -5,13 +5,13 @@
  * Updates the Examine Text and does all its actions through a radial menu.
  */
 
-/datum/component/adjustable_gear
+/datum/component/adjustable_clothing
 	var/list/alternative_styles = list()
 	var/icon
 	var/obj/item/clothing/parent_clothes
 	var/adjust_text
 
-/datum/component/adjustable_gear/Initialize(list/_alternative_styles, _adjust_text)
+/datum/component/adjustable_clothing/Initialize(list/_alternative_styles, _adjust_text)
 	if(!isclothing(parent))
 		return COMPONENT_INCOMPATIBLE
 	parent_clothes = parent
@@ -23,19 +23,19 @@
 	icon = parent_clothes.icon
 	adjust_text = _adjust_text ? _adjust_text : "You adjust [parent_clothes] to a new style~!"
 
-/datum/component/adjustable_gear/RegisterWithParent()
+/datum/component/adjustable_clothing/RegisterWithParent()
 	parent_clothes.verbs += /obj/item/clothing/proc/AdjustStyle
 	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(ExamineMessage))
 
-/datum/component/adjustable_gear/UnregisterFromParent()
+/datum/component/adjustable_clothing/UnregisterFromParent()
 	parent_clothes.verbs -= /obj/item/clothing/proc/AdjustStyle
 	UnregisterSignal(parent, COMSIG_PARENT_EXAMINE)
 
-/datum/component/adjustable_gear/proc/ExamineMessage(datum/source, mob/user, list/examine_list)
+/datum/component/adjustable_clothing/proc/ExamineMessage(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 	examine_list += span_notice("It is able to be adjusted.")
 
-/datum/component/adjustable_gear/proc/Adjust()
+/datum/component/adjustable_clothing/proc/Adjust()
 	if(!ishuman(usr))
 		return
 	var/list/choice_list = list()
@@ -50,7 +50,7 @@
 	var/mob/living/carbon/human/H = usr
 	H.regenerate_icons()
 
-/datum/component/adjustable_gear/proc/check_menu(mob/user)
+/datum/component/adjustable_clothing/proc/check_menu(mob/user)
 	if(!istype(user))
 		return FALSE
 	if(QDELETED(src) || QDELETED(parent))
@@ -63,6 +63,6 @@
 	set name = "Adjust Style"
 	set category = "Object"
 	set src in view(1)
-	var/datum/component/adjustable_gear/adj_comp = GetComponent(/datum/component/adjustable_gear)
+	var/datum/component/adjustable_clothing/adj_comp = GetComponent(/datum/component/adjustable_clothing)
 	if(adj_comp)
 		adj_comp.Adjust()

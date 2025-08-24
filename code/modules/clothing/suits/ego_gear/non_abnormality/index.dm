@@ -27,7 +27,7 @@
 
 /obj/item/clothing/suit/armor/ego_gear/index_proxy/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/adjustable_gear, list("index_proxy_open", "index_proxy_closed"))
+	AddComponent(/datum/component/adjustable_clothing, list("index_proxy_open", "index_proxy_closed"))
 
 /obj/item/clothing/suit/armor/ego_gear/index_proxy/examine(mob/user)
 	. = ..()

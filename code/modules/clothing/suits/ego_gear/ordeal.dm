@@ -10,7 +10,7 @@
 
 /obj/item/clothing/suit/armor/ego_gear/claw/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/adjustable_gear, list("claw", "claw_baral"))
+	AddComponent(/datum/component/adjustable_clothing, list("claw", "claw_baral"))
 
 /obj/item/clothing/head/ego_hat/claw_head
 	name = "mask of the claw"
