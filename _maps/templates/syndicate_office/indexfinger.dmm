@@ -947,8 +947,8 @@
 	opened = 1;
 	pixel_y = 5
 	},
-/obj/item/clothing/suit/armor/ego_gear/adjustable/index_proxy,
-/obj/item/clothing/suit/armor/ego_gear/adjustable/index_proxy,
+/obj/item/clothing/suit/armor/ego_gear/index_proxy,
+/obj/item/clothing/suit/armor/ego_gear/index_proxy,
 /obj/effect/spawner/lootdrop/proxy,
 /obj/effect/spawner/lootdrop/proxy,
 /obj/machinery/light{

@@ -91,7 +91,7 @@
 	name = "Claw"
 
 	uniform = /obj/item/clothing/under/suit/lobotomy/claw
-	suit = /obj/item/clothing/suit/armor/ego_gear/adjustable/claw
+	suit = /obj/item/clothing/suit/armor/ego_gear/claw
 	gloves = /obj/item/clothing/gloves/color/black
 	l_hand = /obj/item/ego_weapon/the_claw
 	shoes = /obj/item/clothing/shoes/combat
