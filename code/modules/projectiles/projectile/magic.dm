@@ -677,11 +677,11 @@
 	icon_state = "pillar"
 	alpha = 0
 
-	damage = 350
+	damage = 170
 	damage_type = BLACK_DAMAGE
 	armour_penetration = 0
 	speed = 1.5 // Slow
-	damage_falloff_tile = -5 // Loses a bit of damage so you don't get jumpscared out of nowhere
+	damage_falloff_tile = -3 // Loses a bit of damage so you don't get jumpscared out of nowhere
 	white_healing = FALSE
 	nodamage = FALSE
 	projectile_piercing = PASSMOB
@@ -689,10 +689,16 @@
 	hitsound = 'sound/magic/arbiter/pillar_hit.ogg'
 	var/obj/effect/trail_type = /obj/effect/temp_visual/revenant
 	var/list/been_hit = list()
+	var/PillarStormPillar = FALSE //work around to prevent the pillar storm pillars from deleting themselves if you touch them
 
 /obj/projectile/magic/aoe/pillar/Initialize()
 	. = ..()
 	animate(src, alpha = 255, time = 5)
+
+/obj/projectile/magic/aoe/pillar/Impact()
+	if(PillarStormPillar)
+		return FALSE
+	return ..()
 
 /obj/projectile/magic/aoe/pillar/Moved(atom/OldLoc, Dir)
 	..()
@@ -716,11 +722,13 @@
 /obj/projectile/magic/aoe/pillar/white
 	icon_state = "pillar_white"
 	damage_type = WHITE_DAMAGE
+	trail_type = /obj/effect/temp_visual/sparkles
 
 /obj/projectile/magic/aoe/pillar/pale
 	icon_state = "pillar_pale"
-	damage = 250
+	damage = 140
 	damage_type = PALE_DAMAGE
+	trail_type = /obj/effect/temp_visual/pale_sparks
 
 //still magic related, but a different path
 
