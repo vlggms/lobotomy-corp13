@@ -2122,7 +2122,6 @@
 	icon_state = "LC33"
 	},
 /obj/structure/table/glass,
-/obj/structure/table/glass,
 /obj/item/storage/belt/ego,
 /obj/item/storage/belt/ego,
 /obj/item/storage/belt/ego,
@@ -6194,18 +6193,6 @@
 "wA" = (
 /obj/effect/turf_decal/plaque{
 	alpha = 230;
-	icon_state = "LC23"
-	},
-/obj/effect/turf_decal/plaque{
-	alpha = 230;
-	icon_state = "LC23"
-	},
-/obj/effect/turf_decal/plaque{
-	alpha = 230;
-	icon_state = "LC23"
-	},
-/obj/effect/turf_decal/plaque{
-	alpha = 230;
 	icon_state = "LC18"
 	},
 /turf/open/floor/carpet/red,
@@ -9273,7 +9260,6 @@
 	alpha = 230;
 	icon_state = "LC27"
 	},
-/obj/structure/chair/office,
 /obj/structure/chair/office,
 /turf/open/floor/carpet/red,
 /area/facility_hallway/control)
@@ -13585,11 +13571,11 @@
 /turf/open/floor/plasteel/dark,
 /area/city)
 "XA" = (
-/obj/machinery/computer/operating{
-	dir = 1
-	},
 /obj/effect/turf_decal/siding/blue{
 	dir = 4
+	},
+/obj/machinery/computer/operating{
+	dir = 8
 	},
 /turf/open/floor/facility/white,
 /area/city)
@@ -13724,7 +13710,6 @@
 /turf/open/floor/wood,
 /area/department_main/command)
 "Yb" = (
-/obj/machinery/light,
 /obj/machinery/light,
 /obj/item/kirbyplants{
 	anchored = 1

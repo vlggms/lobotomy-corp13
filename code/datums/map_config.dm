@@ -152,6 +152,9 @@
 	if("maptype" in json)
 		SSmaptype.maptype = json["maptype"]
 
+	if("map_tags" in json)
+		SSmaptype.map_tags = json["map_tags"]
+
 	defaulted = FALSE
 	return TRUE
 #undef CHECK_EXISTS

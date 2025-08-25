@@ -43,6 +43,13 @@
 		/obj/item/food/fish = "All Fish",
 	)
 
+	var/list/prices = list(
+		10,
+		50,
+		200,
+		1000,
+		)
+
 /obj/structure/itemselling/Initialize()
 	. = ..()
 	SetSellables()
@@ -99,16 +106,16 @@
 	var/display_text = ""
 	var/list/items = list()
 	if(href_list["tier_3"])
-		display_text = span_notice("<b>The following items are worth 1000 Ahn:</b>")
+		display_text = span_notice("<b>The following items are worth [prices[4]] Ahn:</b>")
 		items.Add(level_3)
 	if(href_list["tier_2"])
-		display_text = span_notice("<b>The following items are worth 200 Ahn:</b>")
+		display_text = span_notice("<b>The following items are worth [prices[3]] Ahn:</b>")
 		items.Add(level_2)
 	if(href_list["tier_1"])
-		display_text = span_notice("<b>The following items are worth 50 Ahn:</b>")
+		display_text = span_notice("<b>The following items are worth [prices[2]] Ahn:</b>")
 		items.Add(level_1)
 	if(href_list["tier_0"])
-		display_text = span_notice("<b>The following items are worth 10 Ahn:</b>")
+		display_text = span_notice("<b>The following items are worth [prices[1]] Ahn:</b>")
 		items.Add(level_0)
 	for(var/I in items)
 		item_name = ""

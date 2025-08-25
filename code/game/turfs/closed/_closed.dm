@@ -181,6 +181,11 @@
 /turf/closed/indestructible/reinforced/old
 	icon = 'icons/turf/walls/facility_old.dmi'
 
+/turf/closed/indestructible/reinforced/ucorp
+	icon = 'icons/turf/walls/ucorp.dmi'
+	icon_state = "ucorp-0"
+	base_icon_state = "ucorp"
+
 /turf/closed/indestructible/riveted
 	icon = 'icons/turf/walls/riveted.dmi'
 	icon_state = "riveted-0"
