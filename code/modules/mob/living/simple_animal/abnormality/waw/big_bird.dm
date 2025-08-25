@@ -119,6 +119,9 @@
 	if(!(status_flags & GODMODE)) // Whitaker nerf
 		playsound(get_turf(src), 'sound/abnormalities/bigbird/step.ogg', 50, 1)
 
+/mob/living/simple_animal/hostile/abnormality/big_bird/MovedTryAttack() //To prevent BB from practically having 2 range
+	return FALSE
+
 /mob/living/simple_animal/hostile/abnormality/big_bird/CanAttack(atom/the_target)
 	if(ishuman(the_target))
 		if(bite_cooldown > world.time)
