@@ -217,7 +217,7 @@
 	animate(src, alpha = 255, time = 5)
 	playsound(get_turf(src), 'sound/effects/ordeals/amber/dawn_dig_out.ogg', 25, 1)
 	visible_message(span_bolddanger("[src] burrows out from the ground!"))
-	thrash_cooldown = world.time + 2 SECONNDS
+	thrash_cooldown = world.time + 2 SECONDS
 	next_pulse = world.time + 30 SECONDS + rand(15 SECONDS, 30 SECONDS)
 	ranged_cooldown = world.time + ranged_cooldown_time
 
