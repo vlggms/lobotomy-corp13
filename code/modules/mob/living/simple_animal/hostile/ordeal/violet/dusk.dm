@@ -196,7 +196,7 @@
 	attack_sound = 'sound/abnormalities/fairy_longlegs/attack.ogg'
 	attack_verb_continuous = "thrashes"
 	attack_verb_simple = "thrashs"
-	var/in_charging = TRUE
+	var/in_charging = FALSE
 	var/next_pulse = INFINITY
 	var/in_pulse = FALSE
 	var/thrash_range = 2
