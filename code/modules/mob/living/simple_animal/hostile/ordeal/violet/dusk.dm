@@ -213,7 +213,7 @@
 
 /mob/living/simple_animal/hostile/ordeal/violet_spawn/arm/Initialize()
 	. = ..()
-	new /obj/effect/temp_visual/small_smoke/halfsecond(T)
+	new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(src))
 	animate(src, alpha = 255, time = 5)
 	playsound(get_turf(src), 'sound/effects/ordeals/amber/dawn_dig_out.ogg', 25, 1)
 	visible_message(span_bolddanger("[src] burrows out from the ground!"))
