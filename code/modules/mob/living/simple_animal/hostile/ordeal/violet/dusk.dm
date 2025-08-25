@@ -25,21 +25,23 @@
 	var/arm_cooldown
 	var/arm_cooldown_time = 45 SECONDS
 	var/arm_limit = 12
-
+	var/initial_spawn = FALSE
 /mob/living/simple_animal/hostile/ordeal/violet_dusk/Initialize()
+	. = ..()
 	hand_cooldown = hand_cooldown_time + world.time
 	arm_cooldown = arm_cooldown_time + world.time
 	retaliation_health = maxHealth * 0.75
-	. = ..()
-	SpawnHand()
-	SpawnHand()
-	for(var/i = 1 to 6)
-		SpawnArm()
 
 /mob/living/simple_animal/hostile/ordeal/violet_dusk/Life()
 	. = ..()
 	if(!.)
 		return
+	if(!initial_spawn)
+		initial_spawn = TRUE
+		SpawnHand()
+		SpawnHand()
+		for(var/i = 1 to 6)
+			SpawnArm()
 	if(hand_cooldown <= world.time && spawned_hands.len < hand_limit)
 		hand_cooldown = hand_cooldown_time + world.time
 		SpawnHand()
@@ -211,10 +213,13 @@
 
 /mob/living/simple_animal/hostile/ordeal/violet_spawn/arm/Initialize()
 	. = ..()
+	new /obj/effect/temp_visual/small_smoke/halfsecond(T)
+	animate(src, alpha = 255, time = 5)
+	playsound(get_turf(src), 'sound/effects/ordeals/amber/dawn_dig_out.ogg', 25, 1)
+	visible_message(span_bolddanger("[src] burrows out from the ground!"))
+	thrash_cooldown = world.time + 2 SECONNDS
 	next_pulse = world.time + 30 SECONDS + rand(15 SECONDS, 30 SECONDS)
 	ranged_cooldown = world.time + ranged_cooldown_time
-	alpha = 0
-	Teleport(get_turf(src), TRUE)
 
 /mob/living/simple_animal/hostile/ordeal/violet_spawn/arm/Life()
 	. = ..()
@@ -281,16 +286,15 @@
 	SLEEP_CHECK_DEATH(1 SECONDS)
 	Teleport(get_turf(target))
 
-/mob/living/simple_animal/hostile/ordeal/violet_spawn/arm/proc/Teleport(turf/T, first_spawned)
-	if(!first_spawned)
-		if(locate(/mob/living/simple_animal/hostile/ordeal/violet_spawn/arm) in T || T.is_blocked_turf_ignore_climbable() || !isopenturf(T))
-			var/list/directions = list()
-			for(var/dir in (GLOB.alldirs))
-				var/turf/dispense_turf = get_step(src, T)
-				if(isopenturf(dispense_turf))
-					directions += dispense_turf
-			if(directions.len > 0)
-				T = pick(directions)
+/mob/living/simple_animal/hostile/ordeal/violet_spawn/arm/proc/Teleport(turf/T)
+	if(locate(/mob/living/simple_animal/hostile/ordeal/violet_spawn/arm) in T || T.is_blocked_turf_ignore_climbable() || !isopenturf(T))
+		var/list/directions = list()
+		for(var/dir in (GLOB.alldirs))
+			var/turf/dispense_turf = get_step(src, T)
+			if(isopenturf(dispense_turf))
+				directions += dispense_turf
+		if(directions.len > 0)
+			T = pick(directions)
 	forceMove(T)
 	new /obj/effect/temp_visual/small_smoke/halfsecond(T)
 	animate(src, alpha = 255, time = 5)
