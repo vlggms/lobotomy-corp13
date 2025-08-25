@@ -7,8 +7,8 @@
 	icon_living = "al_fine"
 	icon_dead = "al_fine_dead"
 	faction = list("gold_ordeal")
-	maxHealth = 1400 //it's a boss, more or less
-	health = 1400
+	maxHealth = 900 //it's a boss, more or less
+	health = 900
 	death_sound = 'sound/effects/limbus_death.ogg'
 	damage_coeff = list(RED_DAMAGE = 0.2, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 0.2)
 	butcher_results = list(/obj/item/food/meat/slab/corroded = 1)
