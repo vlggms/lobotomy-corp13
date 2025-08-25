@@ -255,7 +255,6 @@
 /turf/open/indestructible/hotelwood,
 /area/library_floors/floor_philosophy)
 "pV" = (
-/obj/item/ego_weapon/mimicry/kali,
 /obj/structure/displaycase/noalert,
 /turf/open/floor/facility/dark,
 /area/library_floors/floor_philosophy)
