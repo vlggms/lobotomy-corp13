@@ -334,7 +334,7 @@
 /obj/projectile/beam/oberon
 	name = "whip"
 	icon_state = "nobody"
-	damage = 7
+	damage = 15
 	hitsound = 'sound/weapons/slash.ogg'
 	hitsound_wall = 'sound/weapons/slash.ogg'
 	damage_type = BLACK_DAMAGE
@@ -346,12 +346,14 @@
 	tracer_type = /obj/effect/projectile/tracer/laser/nobody
 	muzzle_type = /obj/effect/projectile/tracer/laser/nobody
 	impact_type = /obj/effect/projectile/impact/laser/nobody
-
+	var/mob/living/simple_animal/hostile/abnormality/titania/fairy
 /obj/projectile/beam/oberon/on_hit(atom/target, blocked = FALSE)
 	. = ..()
-	if(iscarbon(target))
-		var/mob/living/carbon/M = target
-		M.apply_damage(7, RED_DAMAGE, null, M.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+	if(ishuman(target))
+		var/mob/living/carbon/human/M = target
+		M.apply_damage(8, WHITE_DAMAGE, null, M.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+		if(M.sanity_lost)
+			fairy.Convert(M)
 
 /obj/projectile/beam/nobody_friendly
 	name = "whip"
