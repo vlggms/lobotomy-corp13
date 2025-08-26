@@ -1,7 +1,7 @@
 // Violet dusk
 /mob/living/simple_animal/hostile/ordeal/violet_dusk
 	name = "Rushing arms of rest"
-	desc = "A monolith dedicated to unknown god from another dimension."
+	desc = "A monolith coming out of the ground with tentacle like growths covering it."
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "violet_dusk"
 	icon_living = "violet_dusk"
