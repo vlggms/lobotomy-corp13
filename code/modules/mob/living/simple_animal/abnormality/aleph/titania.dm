@@ -84,14 +84,29 @@
 	if(fused)
 		return FALSE
 	var/mob/living/carbon/human/H = attacked_target
+	. = ..()
 	//Kills the weak immediately.
 	if(ishuman(H) && (get_user_level(H) < 4 || H.sanity_lost))
 		say("I rid you of your pain, mere human.")
 		//Double Check
 		SpawnFairies(fairy_spawn_number * 2, H, ignore_cap = TRUE)
-		H.gib()
+		Convert(H)
 		return
-	. = ..()
+
+/mob/living/simple_animal/hostile/abnormality/titania/proc/Convert(mob/living/carbon/human/H)
+	var/mob/living/simple_animal/hostile/titania_flower/F = new(get_turf(H))
+	F.alpha = 0
+	animate(F, alpha = 255,time = 15)
+	var/obj/effect/temp_visual/decoy/fading/D = new(get_turf(H), H)
+	D.layer = ABOVE_MOB_LAYER
+	for(var/i = 0 to SLOTS_AMT)
+		NestedItems(F, H.get_item_by_slot(0>>i))
+	qdel(H)
+
+/mob/living/simple_animal/hostile/abnormality/titania/proc/NestedItems(/mob/living/simple_animal/hostile/titania_flower/nest, obj/item/nested_item)
+	if(nested_item)
+		nested_item.forceMove(nest)
+
 // Modified patrolling
 /mob/living/simple_animal/hostile/abnormality/titania/patrol_select()
 	var/list/target_turfs = list() // Stolen from Punishing Bird
@@ -131,7 +146,14 @@
 		var/mob/living/simple_animal/hostile/fairyswarm/fairy = new(spawn_turf)
 		fairy.faction = faction
 		fairy.mommy = src
+		if(fused)
+			fairy.icon_state = "fairyswarm_oberon"
 		spawned_mobs += fairy
+
+
+/mob/living/simple_animal/hostile/abnormality/titania/proc/FairyOberon()
+	for(var/mob/living/A in spawned_mobs)
+		A.icon_state = "fairyswarm_oberon"
 
 //Cleaning fairies
 /mob/living/simple_animal/hostile/abnormality/titania/death(gibbed)
@@ -139,6 +161,11 @@
 		A.death()
 	return ..()
 
+//Preventing her from trying to hit Oberon
+/mob/living/simple_animal/hostile/abnormality/titania/EscapeConfinement()
+	if(fused)
+		return
+	. = ..()
 
 //------------------------------------------------------------------------------
 //Fairy Laws
@@ -237,6 +264,24 @@
 	. = ..()
 	datum_reference.qliphoth_change(-1)
 
+//The Flowers
+mob/living/simple_animal/hostile/titania_flower
+	gender = NEUTER
+	name = "Fairy Flower"
+	desc = "A pretty purple flower."
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "titania_flower"
+	density = TRUE
+	maxHealth = 200
+	health = 200
+	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1)
+	del_on_death = TRUE
+
+/mob/living/simple_animal/hostile/titania_flower/Move()
+	return FALSE
+
+/mob/living/simple_animal/hostile/titania_flower/CanAttack(atom/the_target)
+	return FALSE
 
 //The Mini fairies
 /mob/living/simple_animal/hostile/fairyswarm
@@ -289,14 +334,30 @@
 
 /atom/movable/screen/alert/status_effect/fairy_lights
 	name = "Fairy Lights"
-	desc = "Strange lights are causing you to take WHITE damage! "
+	desc = "Strange lights are causing you to take WHITE damage!"
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "fairy_lights"
 
-/datum/status_effect/stacking/fairy_lights/tick()
+/datum/status_effect/fairy_lights/tick()
 	if(!isliving(owner))
 		return
 	var/mob/living/L = owner
 	L.deal_damage(5, WHITE_DAMAGE)
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = owner
+		if(H.sanity_lost)
+			H.death()
+			var/obj/flower_overlay = new
+			flower_overlay.icon = 'ModularTegustation/Teguicons/32x32.dmi'
+			flower_overlay.icon_state = "fairy_kill"
+			flower_overlay.layer = -BODY_FRONT_LAYER
+			flower_overlay.plane = FLOAT_PLANE
+			flower_overlay.mouse_opacity = 0
+			flower_overlay.vis_flags = VIS_INHERIT_ID
+			flower_overlay.alpha = 0
+			flower_overlay.setDir(H.dir)
+			animate(flower_overlay, alpha = 255, time = 2 SECONDS)
+			H.vis_contents += flower_overlay
+			qdel(src)
 
 #undef STATUS_EFFECT_FAIRY_LIGHTS
