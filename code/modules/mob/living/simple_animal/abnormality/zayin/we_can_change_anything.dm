@@ -5,8 +5,8 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "wecanchange"
 	portrait = "we_can_change_anything"
-	maxHealth = 250
-	health = 250
+	maxHealth = 125
+	health = 125
 	threat_level = ZAYIN_LEVEL
 	damage_coeff = list(RED_DAMAGE = 2, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.5)
 	work_chances = list(

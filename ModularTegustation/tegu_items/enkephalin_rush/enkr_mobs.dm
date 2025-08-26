@@ -6,15 +6,15 @@
 	icon_living = "dskull_corrosion"
 	icon_dead = "dskull_corrosion"
 	faction = list("gold_ordeal")
-	maxHealth = 200
-	health = 200
+	maxHealth = 35
+	health = 35
 	ranged = TRUE
 	ranged_cooldown_time = 5 SECONDS
 	projectilesound = 'sound/abnormalities/hatredqueen/gun.ogg'
 	projectiletype = /obj/projectile/magic/spell/magic_missile
 	melee_damage_type = WHITE_DAMAGE
-	melee_damage_lower = 7
-	melee_damage_upper = 14
+	melee_damage_lower = 2
+	melee_damage_upper = 4
 	attack_verb_continuous = "thwacks"
 	attack_verb_simple = "thwack"
 	attack_sound = 'sound/abnormalities/doomsdaycalendar/Doomsday_Slash.ogg'
@@ -22,7 +22,7 @@
 	butcher_results = list(/obj/item/stack/sheet/mineral/wood = 5)
 	var/chosen_spell
 	var/list/spells = list("Grease","Animation", "Summon", "Fear", "Death",)
-	var/list/cantrips = list(/obj/projectile/magic/spell/magic_missile, /obj/projectile/ego_bullet/ardor_star, /obj/projectile/ego_bullet/ego_harmony,)
+	var/list/cantrips = list(/obj/projectile/magic/spell/magic_missile, /obj/projectile/ego_bullet/ego_swindle, /obj/projectile/ego_bullet/ego_harmony,)
 	var/spell_slots = 3
 	var/casting
 	var/spell_cooldown
@@ -194,10 +194,10 @@
 	icon_dead ="tegu_dead"
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	faction = list("gold_ordeal")
-	health = 150
-	maxHealth = 150
-	melee_damage_lower = 18
-	melee_damage_upper = 22
+	health = 40
+	maxHealth = 40
+	melee_damage_lower = 3
+	melee_damage_upper = 5
 	speed = 5
 	footstep_type = FOOTSTEP_MOB_CLAW
 	attack_verb_continuous = "bites"
@@ -226,8 +226,8 @@
 	icon_living = "tsa_corrosion"
 	del_on_death = TRUE
 	faction = list("gold_ordeal")
-	maxHealth = 600
-	health = 600
+	maxHealth = 250
+	health = 250
 	ranged = TRUE
 	ranged_cooldown_time = 10 SECONDS
 	rapid = 50
@@ -235,8 +235,8 @@
 	projectilesound = 'sound/weapons/gun/smg/shot.ogg'
 	casingtype = /obj/item/ammo_casing/caseless/bigspread
 	melee_damage_type = RED_DAMAGE
-	melee_damage_lower = 10
-	melee_damage_upper = 15
+	melee_damage_lower = 5
+	melee_damage_upper = 8
 	attack_verb_continuous = "batters"
 	attack_verb_simple = "batter"
 	attack_sound = 'sound/weapons/fixer/generic/gen1.ogg'
@@ -263,11 +263,11 @@
 	name = "assorted bullet"
 	desc = "a hodgepodge of live, confiscated rounds."
 	damage_type = RED_DAMAGE
-	damage = 2
+	damage = 1
 
 /mob/living/simple_animal/hostile/ordeal/sin_envy/agent
-	maxHealth = 150
-	health = 150
+	maxHealth = 40
+	health = 40
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
 	attack_sound = "swing_hit"
 	outfit = /datum/outfit/job/agent/envy
@@ -301,8 +301,8 @@
 	r_hand = /obj/item/melee/classic_baton
 
 /mob/living/simple_animal/hostile/ordeal/sin_envy/agent/captain
-	maxHealth = 200
-	health = 200
+	maxHealth = 45
+	health = 45
 	outfit = /datum/outfit/job/agent/captain/envy
 	trip_chance = 20
 	var/command_cooldown = 0
@@ -346,12 +346,12 @@
 	icon_state = "ncorp"
 	icon_living = "ncorp"
 	icon_dead = "dead_generic"
-	maxHealth = 1000
-	health = 1000
+	maxHealth = 500
+	health = 500
 	damage_coeff = list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.5)
 	melee_damage_type = BLACK_DAMAGE
-	melee_damage_lower = 15
-	melee_damage_upper = 25
+	melee_damage_lower = 10
+	melee_damage_upper = 18
 	ranged = TRUE
 	ranged_cooldown_time = 10 SECONDS
 	del_on_death = FALSE
@@ -367,7 +367,7 @@
 	butcher_results = list(/obj/item/food/meat/slab = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab = 1)
 	var/can_act = TRUE
-	var/ranged_damage = 25
+	var/ranged_damage = 15
 	var/nail_delay = 1 SECONDS
 	var/hammer_aoe = 1
 	var/say_lines = list(
@@ -475,10 +475,10 @@
 /mob/living/simple_animal/hostile/humanoid/ncorp/mittel
 	name = "N Corp Mittelhammer"
 	icon_state = "ncorp_mittelhammer"
-	maxHealth = 2250
-	health = 2250
-	melee_damage_lower = 20
-	melee_damage_upper = 35
+	maxHealth = 1000
+	health = 1000
+	melee_damage_lower = 15
+	melee_damage_upper = 25
 	move_to_delay = 5
 	nail_delay = 0.75 SECONDS
 	hammer_aoe = 2
@@ -488,10 +488,10 @@
 	icon_state = "ncorp_grosshammer"
 	icon_living = "ncorp_grosshammer"
 	icon_dead = "ncorp_grosshammer_dead"
-	maxHealth = 4500//self-revives repeatedly
-	health = 4500
-	melee_damage_lower = 35
-	melee_damage_upper = 50
+	maxHealth = 2000//self-revives repeatedly
+	health = 2000
+	melee_damage_lower = 20
+	melee_damage_upper = 25
 	move_to_delay = 8
 	nail_delay = 0.5 SECONDS
 	hammer_aoe = 2
@@ -513,9 +513,9 @@
 /mob/living/simple_animal/hostile/humanoid/ncorp/kromer
 	name = "The One who Grips"
 	icon_state = "ncorp_kromer"
-	maxHealth = 6000//distort on "death"
-	health = 6000
-	melee_damage_lower = 35
-	melee_damage_upper = 50
+	maxHealth = 3000//distort on "death"
+	health = 3000
+	melee_damage_lower = 20
+	melee_damage_upper = 25
 	nail_delay = 0.5 SECONDS
 	hammer_aoe = 2

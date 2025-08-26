@@ -6,12 +6,12 @@
 	icon_living = "fairy"
 	portrait = "fairy_festival"
 	core_icon = "fairy"
-	maxHealth = 200
-	health = 200
+	maxHealth = 50
+	health = 50
 	move_to_delay = 5
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1.3, PALE_DAMAGE = 2)
-	melee_damage_lower = 2
-	melee_damage_upper = 4
+	melee_damage_lower = 1
+	melee_damage_upper = 2
 	stat_attack = DEAD
 	attack_sound = 'sound/abnormalities/fairyfestival/fairyqueen_hit.ogg'
 	is_flying_animal = TRUE
@@ -148,7 +148,7 @@
 		icon = 'ModularTegustation/Teguicons/96x48.dmi'
 		icon_state = "fairy_queen"
 		pixel_x = -16
-		maxHealth = 500
+		maxHealth = 50
 		playsound(get_turf(src), "sound/abnormalities/seasons/fall_change.ogg", 100, FALSE)
 		playsound(get_turf(src), "sound/abnormalities/fairyfestival/fairyqueen_growl.ogg", 100, FALSE)
 	return ..()
@@ -179,7 +179,7 @@
 	if(summon_type != /mob/living/simple_animal/hostile/fairy_mass)//does she have fairy masses?
 		return
 	if(health < (maxHealth * eat_threshold)) //80% health or lower, 20% less for each eat.
-		var/fairy_hp = 300
+		var/fairy_hp = 40
 		var/mob/living/mytarget
 		if(seek_cooldown < world.time)//this check can only be done once every ten seconds, for performance
 			for(var/mob/living/simple_animal/hostile/fairy_mass/M in range(12, src))//finds the fairy with the lowest HP in the vicinity
@@ -226,15 +226,15 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "fairy_bastard"
 	icon_living = "fairy_bastard"
-	maxHealth = 83
-	health = 83
+	maxHealth = 10
+	health = 10
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
 	is_flying_animal = TRUE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.2)
 	faction = list("hostile", "fairy")
 	melee_damage_lower = 1
-	melee_damage_upper = 5
+	melee_damage_upper = 1
 	melee_damage_type = RED_DAMAGE
 	obj_damage = 3
 	rapid_melee = 3

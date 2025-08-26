@@ -7,8 +7,8 @@
 	icon_state = "oracle"
 	icon_living = "oracle"
 	portrait = "oracle"
-	maxHealth = 300
-	health = 300
+	maxHealth = 100
+	health = 100
 	damage_coeff = list(RED_DAMAGE = 2, WHITE_DAMAGE = 0, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
 	threat_level = ZAYIN_LEVEL
 	work_chances = list(
