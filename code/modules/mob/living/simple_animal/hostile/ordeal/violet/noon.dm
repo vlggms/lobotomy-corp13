@@ -1,3 +1,4 @@
+//Violet noon
 /mob/living/simple_animal/hostile/ordeal/violet_monolith
 	name = "grant us love"
 	desc = "A dark monolith structure with incomprehensible writing on it."
