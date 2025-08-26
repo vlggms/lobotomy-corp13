@@ -151,7 +151,6 @@
 			fairy.icon_state = "fairyswarm_oberon"
 		spawned_mobs += fairy
 
-
 /mob/living/simple_animal/hostile/abnormality/titania/proc/FairyOberon()
 	for(var/mob/living/A in spawned_mobs)
 		A.icon_state = "fairyswarm_oberon"
