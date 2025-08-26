@@ -1,3 +1,4 @@
+//Violet midnight
 /mob/living/simple_animal/hostile/ordeal/violet_midnight
 	name = "god delusion"
 	desc = "A shrine dedicated to unknown god from another dimension."
