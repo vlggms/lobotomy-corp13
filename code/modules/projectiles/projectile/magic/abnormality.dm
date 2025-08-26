@@ -195,7 +195,6 @@
 	desc = "A magic white bolt, enchanted to protect or to avenge the sculptor."
 	icon_state = "bride_bolt_enraged"
 	damage_type = WHITE_DAMAGE
-
 	damage = 20
 	spread = 5
 
@@ -211,7 +210,7 @@
 	if(!istype(firer, /mob/living/simple_animal/hostile/abnormality/seasons))
 		return
 	var/mob/living/simple_animal/hostile/abnormality/seasons/source = firer
-	if(!isturf(loc) || isspaceturf(loc))
+	if(!isturf(get_turf(src)) || isspaceturf(get_turf(src)))
 		return
 	if(locate(/obj/effect/season_turf) in get_turf(src))
 		return
@@ -245,6 +244,11 @@
 	icon_state = "ice_2"
 	damage_type = PALE_DAMAGE
 	damage = 25
+
+/obj/projectile/season_projectile/winter/weak
+	damage = 20
+	color = COLOR_DARK_CYAN
+	spread = 15
 
 /obj/projectile/actor
 	name = "bullet"
