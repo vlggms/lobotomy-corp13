@@ -140,6 +140,7 @@
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
 
+	box = /obj/item/storage/box/survival/lobotomy
 	backpack_contents = list(
 		/obj/item/melee/classic_baton,
 		/obj/item/info_printer,

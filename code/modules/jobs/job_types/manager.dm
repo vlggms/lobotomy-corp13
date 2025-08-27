@@ -56,4 +56,5 @@
 	shoes = /obj/item/clothing/shoes/laceup
 	r_pocket = /obj/item/modular_computer/tablet/preset/advanced/command
 
+	box = /obj/item/storage/box/survival/lobotomy
 	backpack_contents = list(/obj/item/station_charter)
