@@ -261,16 +261,16 @@
 /obj/structure/rack{
 	pixel_x = -1
 	},
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
 /obj/effect/turf_decal/tile/red{
 	color = "#ff4162";
 	dir = 4
@@ -1148,16 +1148,16 @@
 /area/department_main/information)
 "cL" = (
 /obj/structure/table/wood/fancy/green,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
 /obj/effect/turf_decal/tile/neutral{
 	color = "#f8f8f8";
 	dir = 1
@@ -5973,26 +5973,26 @@
 	dir = 1
 	},
 /obj/structure/table/wood/fancy/royalblue,
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
 /obj/machinery/light{
 	dir = 4;
 	pixel_x = 9;
@@ -6401,34 +6401,34 @@
 /area/facility_hallway/training)
 "oV" = (
 /obj/structure/table/wood/fancy/green,
-/obj/item/reagent_containers/hypospray/medipen/mental{
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp{
 	pixel_y = 6
 	},
-/obj/item/reagent_containers/hypospray/medipen/mental{
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp{
 	pixel_y = 6
 	},
-/obj/item/reagent_containers/hypospray/medipen/mental{
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp{
 	pixel_y = 6
 	},
-/obj/item/reagent_containers/hypospray/medipen/mental{
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp{
 	pixel_y = 6
 	},
-/obj/item/reagent_containers/hypospray/medipen/mental{
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp{
 	pixel_y = 6
 	},
-/obj/item/reagent_containers/hypospray/medipen/mental{
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp{
 	pixel_y = 6
 	},
-/obj/item/reagent_containers/hypospray/medipen/mental{
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp{
 	pixel_y = 6
 	},
-/obj/item/reagent_containers/hypospray/medipen/mental{
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp{
 	pixel_y = 6
 	},
-/obj/item/reagent_containers/hypospray/medipen/mental{
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp{
 	pixel_y = 6
 	},
-/obj/item/reagent_containers/hypospray/medipen/mental{
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp{
 	pixel_y = 6
 	},
 /turf/open/floor/carpet/green,
@@ -7163,34 +7163,34 @@
 /area/department_main/extraction)
 "qH" = (
 /obj/structure/table/wood/fancy/green,
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_y = 4
 	},
 /turf/open/floor/carpet/green,
@@ -10716,26 +10716,26 @@
 	dir = 1
 	},
 /obj/structure/table/wood/fancy/royalblue,
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
 /obj/machinery/light{
 	dir = 8;
 	pixel_x = -9;
@@ -11555,16 +11555,16 @@
 /area/facility_hallway/control)
 "AT" = (
 /obj/structure/table/wood/fancy/green,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "AU" = (
@@ -19552,16 +19552,16 @@
 /obj/structure/rack{
 	pixel_x = -1
 	},
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
 /obj/effect/turf_decal/tile/red{
 	color = "#ff4162";
 	dir = 1
@@ -21323,46 +21323,46 @@
 /obj/structure/rack{
 	pixel_x = -1
 	},
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
 	},
