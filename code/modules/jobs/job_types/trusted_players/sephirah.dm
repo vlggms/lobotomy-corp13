@@ -81,6 +81,7 @@
 	r_pocket = /obj/item/modular_computer/tablet/preset/advanced/command
 	l_pocket = /obj/item/commandprojector
 
+	box = /obj/item/storage/box/survival/lobotomy
 	backpack_contents = list()
 
 GLOBAL_LIST_INIT(sephirah_names, list(

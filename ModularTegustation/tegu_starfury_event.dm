@@ -140,8 +140,8 @@
 	illustration = "writing_syndie"
 
 /obj/item/storage/box/medipens/syndi/PopulateContents()
-	new /obj/item/reagent_containers/hypospray/medipen/salacid(src)
-	new /obj/item/reagent_containers/hypospray/medipen/salacid(src)
+	new /obj/item/reagent_containers/hypospray/medipen/safety/kcorp(src)
+	new /obj/item/reagent_containers/hypospray/medipen/safety/kcorp(src)
 	new /obj/item/reagent_containers/hypospray/medipen/oxandrolone(src)
 	new /obj/item/reagent_containers/hypospray/medipen/oxandrolone(src)
 	new /obj/item/reagent_containers/hypospray/medipen/salbutamol(src)

@@ -5400,12 +5400,12 @@
 /obj/effect/turf_decal/siding/green{
 	dir = 4
 	},
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
 /obj/structure/table/wood,
 /turf/open/floor/carpet/green,
 /area/department_main/control)
@@ -6018,28 +6018,28 @@
 	},
 /obj/structure/table/glass,
 /obj/machinery/door/window/southleft,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/mental{
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp{
 	pixel_y = 6
 	},
-/obj/item/reagent_containers/hypospray/medipen/mental{
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp{
 	pixel_y = 6
 	},
-/obj/item/reagent_containers/hypospray/medipen/mental{
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp{
 	pixel_y = 6
 	},
-/obj/item/reagent_containers/hypospray/medipen/mental{
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp{
 	pixel_y = 6
 	},
-/obj/item/reagent_containers/hypospray/medipen/mental{
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp{
 	pixel_y = 6
 	},
-/obj/item/reagent_containers/hypospray/medipen/mental{
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp{
 	pixel_y = 6
 	},
 /obj/structure/window/reinforced/spawner/east{
@@ -9757,12 +9757,12 @@
 /obj/effect/turf_decal/siding/green{
 	dir = 4
 	},
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
 /obj/structure/table/wood,
 /turf/open/floor/carpet/green,
 /area/department_main/control)

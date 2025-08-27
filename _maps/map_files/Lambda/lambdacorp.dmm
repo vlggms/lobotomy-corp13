@@ -2428,12 +2428,12 @@
 /area/department_main/information)
 "lz" = (
 /obj/structure/rack,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_y = 4
 	},
 /obj/machinery/light{
@@ -5516,11 +5516,11 @@
 /area/department_main/command)
 "Bh" = (
 /obj/structure/table/wood/fancy/green,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "Bi" = (
@@ -6173,12 +6173,12 @@
 /area/department_main/safety)
 "EM" = (
 /obj/structure/rack,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_y = 4
 	},
 /obj/machinery/light{
@@ -6707,12 +6707,12 @@
 /area/department_main/extraction)
 "Hz" = (
 /obj/structure/rack,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_y = 4
 	},
 /turf/open/floor/pod/dark,
@@ -8541,11 +8541,11 @@
 /area/department_main/control)
 "PI" = (
 /obj/structure/table/wood/fancy/green,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
