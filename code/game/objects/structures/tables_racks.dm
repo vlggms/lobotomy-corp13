@@ -215,6 +215,8 @@
 		return TRUE
 
 	if(user.a_intent != INTENT_HARM && !(I.item_flags & ABSTRACT))
+		if(!Adjacent(user)) // Prevents weirdness like dropping things on tables from far away with reach weapons.
+			return
 		if(user.transferItemToLoc(I, drop_location(), silent = FALSE))
 			//Center the icon where the user clicked.
 			if(!LAZYACCESS(modifiers, ICON_X) || !LAZYACCESS(modifiers, ICON_Y))
