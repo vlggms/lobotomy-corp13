@@ -80,7 +80,7 @@
 		if(C != src && C.stat != DEAD)
 			all_dead = FALSE
 			break
-	
+
 	if(all_dead && GLOB.clan_npc_killers.len)
 		// Award achievement to all players who participated in killing clan NPCs
 		for(var/mob/living/L in GLOB.clan_npc_killers)
@@ -169,10 +169,10 @@
 
 	//Vars that effect what the trader is selling
 	var/can_sell = TRUE
-	var/selling_item_1 = /obj/item/reagent_containers/hypospray/medipen/salacid
+	var/selling_item_1 = /obj/item/reagent_containers/hypospray/medipen/safety/kcorp
 	var/selling_item_1_name = "HP Pen"
 	var/cost_1 = 50
-	var/selling_item_2 = /obj/item/reagent_containers/hypospray/medipen/mental
+	var/selling_item_2 = /obj/item/reagent_containers/hypospray/medipen/safety/lcorp
 	var/selling_item_2_name = "SP Pen"
 	var/cost_2 = 200
 

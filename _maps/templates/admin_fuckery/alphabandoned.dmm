@@ -2538,7 +2538,7 @@
 	pixel_x = 32
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
 /turf/open/floor/noslip,
 /area/facility_hallway/north)
 "tT" = (
@@ -3520,7 +3520,7 @@
 /area/facility_hallway/east)
 "BD" = (
 /obj/item/rack_parts,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "BE" = (
@@ -6376,7 +6376,7 @@
 	pixel_x = 32
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
 /turf/open/floor/noslip,
 /area/facility_hallway/central)
 "Zd" = (

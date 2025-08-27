@@ -38,6 +38,8 @@
 		/obj/item/melee/classic_baton,
 		/obj/item/info_printer,
 		/obj/item/announcementmaker/lcorp,
+		/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+		/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
 	)
 
 /datum/action/cooldown/warbanner/captain

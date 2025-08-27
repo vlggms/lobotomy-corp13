@@ -34,16 +34,14 @@
 		new /datum/data/extraction_cargo("L-Corp Armored Vest Template ",	/obj/item/clothing/suit/armor/ego_gear/city/lcorp_vest,				100, CAT_EQUIP) = 1,
 
 		//Medical
-		new /datum/data/extraction_cargo("Epinepherine Medi-Pen ",		/obj/item/reagent_containers/hypospray/medipen,						40, CAT_MEDICAL) = 1,
-		new /datum/data/extraction_cargo("Sal-Acid Medi-Pen ",			/obj/item/reagent_containers/hypospray/medipen/salacid,				50, CAT_MEDICAL) = 1,
-		new /datum/data/extraction_cargo("Mental-Stabilizer Medi-Pen ",	/obj/item/reagent_containers/hypospray/medipen/mental,				50, CAT_MEDICAL) = 1,
+		new /datum/data/extraction_cargo("Stamina Ampoule ",		/obj/item/reagent_containers/hypospray/medipen/safety/rcorp,			40, CAT_MEDICAL) = 1,
+		new /datum/data/extraction_cargo("Health Ampoule ",			/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,			50, CAT_MEDICAL) = 1,
+		new /datum/data/extraction_cargo("Sanity Ampoule ",			/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,			50, CAT_MEDICAL) = 1,
+		new /datum/data/extraction_cargo("Health Bandage ",			/obj/item/safety_bandage/kcorp,											150, CAT_MEDICAL) = 1,
+		new /datum/data/extraction_cargo("Sanity Moonstone ",		/obj/item/safety_bandage/mcorp,											150, CAT_MEDICAL) = 1,
+		new /datum/data/extraction_cargo("Bolus-Soaked Bandages ",	/obj/item/safety_bandage/hcorp,											150, CAT_MEDICAL) = 1,
 
 		//Resources - This is for EGOshards
-
-		//Combat pages are too evil rn. I'm working on a new system. - Kirie/Kitsunemitsu
-		//new /datum/data/extraction_cargo("L1 Combat Page ",				/obj/item/combat_page/level1,					200, CAT_RESOURCE) = 1,
-		//new /datum/data/extraction_cargo("L2 Combat Page ",				/obj/item/combat_page/level2,					400, CAT_RESOURCE) = 1,
-		//new /datum/data/extraction_cargo("L3 Combat Page ",				/obj/item/combat_page/level3,					800, CAT_RESOURCE) = 1,
 		new /datum/data/extraction_cargo("Tier 1 EGOSHARD (Red) ",		/obj/item/egoshard,								50, CAT_RESOURCE) = 1,
 		new /datum/data/extraction_cargo("Tier 1 EGOSHARD (White) ",	/obj/item/egoshard/white,						100, CAT_RESOURCE) = 1,
 		new /datum/data/extraction_cargo("Tier 1 EGOSHARD (Black) ",	/obj/item/egoshard/black,						100, CAT_RESOURCE) = 1,

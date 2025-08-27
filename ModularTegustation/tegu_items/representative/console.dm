@@ -281,7 +281,7 @@
 	new /obj/item/toy/plush/bongy(src)
 	new /obj/item/grenade/spawnergrenade/khealing(src)
 	for(var/index in 1 to 3)
-		new /obj/item/ksyringe(src)
+		new /obj/item/reagent_containers/hypospray/medipen/safety/kcorp(src)
 
 /obj/item/storage/box/corporation/lcorp
 	name = "L-Corp care package"

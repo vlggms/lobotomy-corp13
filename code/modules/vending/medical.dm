@@ -18,13 +18,13 @@
 					/obj/item/stack/medical/ointment = 2,
 					/obj/item/stack/medical/suture = 2,
 					/obj/item/stack/medical/bone_gel = 4,
-					/obj/item/reagent_containers/hypospray/medipen/mental = 6,
-					/obj/item/reagent_containers/hypospray/medipen/salacid = 6,
+					/obj/item/reagent_containers/hypospray/medipen/safety/lcorp = 6,
+					/obj/item/reagent_containers/hypospray/medipen/safety/kcorp = 6,
 					/obj/item/storage/box/bodybags = 4,
 					/obj/item/storage/box/masks = 1)
 	contraband = list(/obj/item/storage/box/gum/happiness = 3,
 						/obj/item/storage/box/hug/medical = 1)
-	premium = list(/obj/item/reagent_containers/hypospray/medipen = 3,
+	premium = list(/obj/item/reagent_containers/hypospray/medipen/safety/rcorp = 3,
 					/obj/item/storage/belt/medical = 3,
 					/obj/item/sensor_device = 2,
 					/obj/item/pinpointer/crew = 2,

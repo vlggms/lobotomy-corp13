@@ -113,7 +113,7 @@
 	pixel_x = 6;
 	pixel_y = -1
 	},
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_y = 8
 	},
 /turf/open/indestructible/cult,

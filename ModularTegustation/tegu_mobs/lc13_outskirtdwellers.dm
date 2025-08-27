@@ -424,7 +424,7 @@
 	melee_damage_upper = 8 // should annoy, not kill
 	turns_per_move = 3
 	butcher_difficulty = 3
-	butcher_results = list(/obj/item/ksyringe = 1, /obj/item/assembly/flash/handheld = 1)
+	butcher_results = list(/obj/item/reagent_containers/hypospray/medipen/safety/kcorp = 1, /obj/item/assembly/flash/handheld = 1)
 	death_message = "buzzes as he falls out of the air."
 	density = FALSE
 	search_objects = 1

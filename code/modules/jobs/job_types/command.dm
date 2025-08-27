@@ -11,6 +11,7 @@
 	r_pocket = /obj/item/modular_computer/tablet/preset/advanced/command
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
 
+	box = /obj/item/storage/box/survival/lobotomy
 	backpack_contents = list(/obj/item/melee/classic_baton)
 
 //Extraction, for less copypaste

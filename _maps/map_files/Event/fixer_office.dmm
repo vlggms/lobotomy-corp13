@@ -834,7 +834,7 @@
 /area/city/house)
 "dr" = (
 /obj/structure/rack,
-/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/facility/white,
 /area/city/backstreets_alley)
@@ -2187,7 +2187,7 @@
 /area/city)
 "is" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
 /turf/open/floor/plating,
 /area/city/backstreets_alley)
 "it" = (
@@ -3169,7 +3169,7 @@
 /area/city/backstreets_alley)
 "ma" = (
 /obj/structure/rack,
-/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/city/backstreets_alley)
@@ -7130,7 +7130,7 @@
 /turf/closed/indestructible/reinforced,
 /area/city/house)
 "CM" = (
-/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/facility/white,
 /area/city/backstreets_alley)
@@ -11654,7 +11654,7 @@
 /area/city/backstreets_alley)
 "Yu" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
 /turf/open/floor/facility/white,
 /area/city/backstreets_alley)
 "Yv" = (

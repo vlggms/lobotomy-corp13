@@ -187,7 +187,7 @@
 /area/city/backstreets_room)
 "ba" = (
 /obj/structure/table/glass,
-/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
 /turf/open/floor/carpet/green,
 /area/city/backstreets_room)
 "bb" = (
@@ -1309,8 +1309,8 @@
 	},
 /obj/item/clothing/suit/armor/ego_gear/teth/bean,
 /obj/item/clothing/suit/armor/ego_gear/teth/bean,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
 /turf/open/floor/carpet/orange,
 /area/city/backstreets_room)
 "ii" = (
@@ -2684,8 +2684,8 @@
 /obj/item/refiner_filter/blue,
 /obj/item/refiner_filter/blue,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
 /turf/open/floor/facility/halls,
 /area/city/backstreets_room)
 "qK" = (
@@ -2862,7 +2862,7 @@
 "rx" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/coin/gold,
-/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
 /turf/open/floor/plating/dirt,
 /area/city/backstreets_alley)
 "rz" = (
@@ -2937,8 +2937,8 @@
 	info = "<p>Subject T-01-118-W or General Bee appears like a humanoid shaped bee wearing a blue military cap. Looking across this abnormality you can see it has a noticeable number of wounds like broken wings, legs, a missing eye and many others.</p> <p>It appears that T-01-118-W is related to T-04-50-W from the main branch. Agents sometimes report how T-01-118-W starts talks about T-04-50-W and how it will eventually break out of here and return to them.</p> <p>Across the day if T-01-118-W in high spirits they will start chanting a set of commands into a radio in their hand. This will cause a small set of pods to drop off around the facility containing 10 ft tall bees wearing simple armor.</p> <p>For that reason, It is recommended for all agents who work with T-01-118-W to never show any signs of weakness or give them any hope of being able to get out of here.</p> <hr> <p><em>Yet another day I am trapped on enemy territory… However, It does seem like they are losing members! I am also noticing how there are now cracks forming around the walls. That could lead to a good sign of them…</em></p> <p><em>Okay, I know just grasping for straws, I am constantly asking for help from her everyday… Yet I am getting less and less troops to try to save me… I can’t be forgotten that easily, Right? I was her pride and joy, The hope for the army to keep moving forward.</em></p> <p><em>I am looking at the time passing… It has been 2 weeks since they have sent anyone. Did something happen? Are they, Giving up? No, It can’t be… I am the key part of their system, It’s not like they can replace me. I- I am a General of Squad Alpha, The most powerful sector… No, I just need to focus on keeping myself calm. Then they will come eventually and save me.</em></p> <p><em>Months… It has been Months since anyone came… What did they- No, What did I do, Which is causing them to forget? I am calling them at exactly 4:00pm as always, Yet there is no one to answer… How is the queen doing? How is she forgetting me… I was her- Maybe I was that replaceable… No, I can’t be! After all, She did call m- She called all of the bees like that.</em></p> <p><em>A Year… Why am I writing… That is the point in writing such logs… I am a worthless, useless bee to the queen… She must be having a wonderful time, Living her life to the fullest. What about all of the ones who did come to save me… What was the point in them coming here? Nothing ever changed due to their arrival… Lives thrown away to recover a bee which is worthless the queen…</em></p> <hr> <p>Project Diminish Light: Success</p>";
 	name = "T-01-118-W Info"
 	},
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
 /turf/open/floor/plasteel/white,
 /area/city/backstreets_room)
 "rV" = (
@@ -3352,8 +3352,8 @@
 /obj/structure/table/glass,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/lootcrate/l_corp,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
 /turf/open/floor/facility/halls,
 /area/city/backstreets_room)
 "uJ" = (
@@ -3635,7 +3635,7 @@
 /area/city/backstreets_room)
 "ww" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
 /turf/open/floor/plating/dirt,
 /area/city/backstreets_alley)
 "wy" = (
@@ -3967,10 +3967,10 @@
 /area/city/backstreets_room)
 "zh" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
 /turf/open/floor/plating/dirt,
 /area/city/backstreets_alley)
 "zk" = (
@@ -4636,8 +4636,8 @@
 /obj/item/refiner_filter/yellow,
 /obj/item/refiner_filter/yellow,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
 /turf/open/floor/facility/halls,
 /area/city/backstreets_room)
 "DO" = (
@@ -4907,7 +4907,7 @@
 /area/city/backstreets_room)
 "Fn" = (
 /obj/structure/table/wood/fancy/green,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
 /turf/open/floor/carpet/green,
 /area/city/backstreets_room)
 "Fp" = (
@@ -5332,7 +5332,7 @@
 "If" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/coin/gold,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
 /turf/open/floor/plating/dirt,
 /area/city/backstreets_alley)
 "Ii" = (
@@ -5420,8 +5420,8 @@
 	},
 /obj/structure/table/glass,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
 /turf/open/floor/facility/halls,
 /area/city/backstreets_room)
 "IS" = (
@@ -6700,7 +6700,7 @@
 /obj/effect/decal/cleanable/insectguts,
 /obj/item/coin/gold,
 /obj/item/coin/gold,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
 /turf/open/floor/plating/dirt,
 /area/city/backstreets_alley)
 "Rp" = (
@@ -6850,7 +6850,7 @@
 /area/city/backstreets_room)
 "Sj" = (
 /obj/structure/table/wood/fancy/green,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
 /mob/living/simple_animal/hostile/humanoid/rat/pipe,
 /turf/open/floor/carpet/green,
 /area/city/backstreets_room)
@@ -6898,16 +6898,16 @@
 /area/city/backstreets_room)
 "SP" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
 /turf/open/floor/plating/dirt,
 /area/city/backstreets_alley)
 "SR" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/table/glass,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
 /turf/open/floor/plasteel/white,
 /area/city/backstreets_room)
 "ST" = (
@@ -7224,8 +7224,8 @@
 /obj/item/storage/toolbox/electrical,
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
 /turf/open/floor/plating,
 /area/city/backstreets_room)
 "UR" = (
@@ -7914,7 +7914,7 @@
 "Zi" = (
 /obj/structure/table/glass,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
 /obj/item/powered_gadget/detector_gadget/abnormality,
 /turf/open/floor/carpet/green,
 /area/city/backstreets_room)

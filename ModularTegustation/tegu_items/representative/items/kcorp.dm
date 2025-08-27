@@ -1,29 +1,8 @@
-//Kcorp Syringes
-/obj/item/ksyringe
-	name = "K-corp nanomachine ampule"
-	desc = "A syringe of kcorp healing nanobots."
-	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
-	icon_state = "kcorp_syringe"
-	slot_flags = ITEM_SLOT_POCKETS
-	w_class = WEIGHT_CLASS_SMALL
-
-/obj/item/ksyringe/attack_self(mob/living/user)
-	..()
-	to_chat(user, span_notice("You inject the syringe and instantly feel better."))
-	user.adjustBruteLoss(-40)
-	qdel(src)
-
-/obj/item/ksyringe/attack(mob/living/M, mob/user)
-	to_chat(user, span_nicegreen("You inject [M] with the [src]."))
-	M.visible_message(span_notice("[user] stabs [M] with the injector!"))
-	M.adjustBruteLoss(-40)
-	qdel(src)
-
 /obj/item/krevive
 	name = "K-corp nanomachine ampule"
 	desc = "A syringe of kcorp healing nanobots. This one revives any fallen bodies."
-	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
-	icon_state = "kcorp_syringe2"
+	icon = 'icons/obj/syringe.dmi'
+	icon_state = "kcorp_syringe"
 	slot_flags = ITEM_SLOT_POCKETS
 	w_class = WEIGHT_CLASS_SMALL
 
@@ -33,36 +12,6 @@
 		M.revive(full_heal = TRUE, admin_revive = TRUE)
 		M.grab_ghost(force = TRUE) // even suicides
 		to_chat(M, span_notice("You rise with a start, you're alive!!!"))
-	qdel(src)
-
-/obj/item/kcrit
-	name = "K-corp adrenaline shot"
-	desc = "A syringe of kcorp adrenaline. Increases crit threshold."
-	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
-	icon_state = "kcorp_syringe3"
-	slot_flags = ITEM_SLOT_POCKETS
-	w_class = WEIGHT_CLASS_SMALL
-
-// This injector isnt in K-corp research anymore. Only used in R-corp
-/obj/item/kcrit/attack_self(mob/living/user)
-	..()
-	to_chat(user, span_notice("You inject the syringe and instantly feel better."))
-	user.hardcrit_threshold+=30
-	user.crit_threshold+=30
-	qdel(src)
-
-/obj/item/khpboost
-	name = "k-corp health booster"
-	desc = "A syringe of experimental kcorp nanobots. Increases your Max Health."
-	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
-	icon_state = "kcorp_syringe3"
-	slot_flags = ITEM_SLOT_POCKETS
-	w_class = WEIGHT_CLASS_SMALL
-
-/obj/item/khpboost/attack_self(mob/living/carbon/human/user)
-	..()
-	to_chat(user, span_notice("You inject the syringe and instantly feel stronger."))
-	user.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 20)
 	qdel(src)
 
 // For Asset Reclamation
