@@ -75,7 +75,7 @@
 	var/charge = 0
 	var/charge_health = 0
 	var/max_charge = 20
-	var/self_charge_threshold = 350
+	var/self_charge_threshold = 120
 	var/accumulated_charge = 0 // A record-keeping variable for effects
 
 // Shield vars
