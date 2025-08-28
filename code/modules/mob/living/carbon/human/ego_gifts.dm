@@ -974,6 +974,8 @@
 		return
 	if(!damage)
 		return
+	if(damage < 0)
+		return
 	owner.adjustBruteLoss(-damage*0.1)
 
 /datum/ego_gifts/assonance
@@ -1371,6 +1373,8 @@
 	if(!owner && damagetype != WHITE_DAMAGE)
 		return
 	if(!damage)
+		return
+	if(damage < 0)
 		return
 	owner.adjustSanityLoss(-damage*0.3)
 
