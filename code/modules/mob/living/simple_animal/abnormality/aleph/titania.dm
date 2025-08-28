@@ -269,7 +269,7 @@
 	. = ..()
 	datum_reference.qliphoth_change(-1)
 
-//The Flowers
+//The flower
 mob/living/simple_animal/hostile/titania_flower
 	gender = NEUTER
 	name = "Fairy Flower"
