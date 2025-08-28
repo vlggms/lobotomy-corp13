@@ -270,7 +270,7 @@
 	datum_reference.qliphoth_change(-1)
 
 //The flower
-mob/living/simple_animal/hostile/titania_flower
+/mob/living/simple_animal/hostile/titania_flower
 	name = "fairy flower"
 	desc = "A pretty purple flower."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
