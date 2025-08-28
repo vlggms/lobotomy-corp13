@@ -382,19 +382,14 @@
 	T.melee_damage_lower = 0
 	T.melee_damage_upper = 0
 	can_act = TRUE
+	patrol_cooldown_time = 5 SECONDS
 	fairy_aura = new/obj/effect/titania_aura(get_turf(src))
 	cut_overlay(icon('icons/effects/effects.dmi', "nobody_overlay_face", GLASSES_LAYER))
 	add_overlay(mutable_appearance('icons/effects/effects.dmi', "nobody_overlay_face_oberon", GLASSES_LAYER))
 	ChangeResistances(list(BRUIT = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0, PALE_DAMAGE = 0.5))
-	heal_percent_per_second = 0.00425//half of what it was when it had just 5k hp
+	heal_percent_per_second = 0.00425//half of what it was when it had just 2k hp
 	maxHealth = 4000
 	adjustBruteLoss(-maxHealth, forced = TRUE) // It's not over yet!.
-	melee_damage_lower = 25
-	melee_damage_upper = 30
-	grab_damage = 120
-	strangle_damage = 30
-	whip_damage = 18
-	whip_count = 6
 	name = "Oberon"
 	desc = "Two horrifying and dangerous abnormalities fused into one. This can only end well."
 	loot = list(
@@ -459,9 +454,9 @@
 	var/whip_delay = (get_dist(src, target) <= 2) ? (0.75 SECONDS) : (0.5 SECONDS)
 	SLEEP_CHECK_DEATH(whip_delay)
 	for(var/i = 1 to whip_count)
-		var/obj/projectile/P = new /obj/projectile/beam/nobody(start_loc)
+		var/obj/projectile/beam/nobody/P = new(start_loc)
 		if(oberon_mode)
-			P = new /obj/projectile/beam/oberon(start_loc)
+			P.fairy = abno_host
 		P.starting = start_loc
 		P.firer = src
 		P.fired_from = src
@@ -754,7 +749,7 @@
 	melee_damage_upper = 25
 	current_stage = 3
 	melee_reach = 1
-	whip_count = 8
+	whip_count = 6
 	grab_damage = 100
 	strangle_damage = 30
 	grab_cooldown_time = 12 SECONDS
@@ -822,7 +817,7 @@
 	melee_damage_upper = 25
 	current_stage = 3
 	melee_reach = 1
-	whip_count = 8
+	whip_count = 6
 	grab_damage = 100
 	strangle_damage = 30
 	grab_cooldown_time = 12 SECONDS
