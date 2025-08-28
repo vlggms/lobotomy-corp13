@@ -1244,13 +1244,11 @@
 	prudence_bonus = 6 //originally a SP bonus
 	slot = BROOCH
 
-//reduces sanity and fortitude for a 10% buff to work success. Unfortunately this translates to 200 temp
-//so right now its 10 temp
 /datum/ego_gifts/swan
 	name = "Black Swan"
 	icon_state = "swan"
-	fortitude_bonus = -4
-	prudence_bonus = -4
+	fortitude_bonus = -2
+	prudence_bonus = -2
 	temperance_bonus = 10
 	slot = HAT
 
@@ -1352,16 +1350,32 @@
 /datum/ego_gifts/dacapo
 	name = "Da Capo"
 	icon_state = "dacapo"
+	desc = "Restores 30% of WHITE damage taken as sanity. This effect ignores armor."
 	temperance_bonus = 4
 	slot = EYE
+
+/datum/ego_gifts/dacapo/Initialize(mob/living/carbon/human/user)
+	. = ..()
+	RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(AttemptHeal))
+
+/datum/ego_gifts/dacapo/Remove(mob/living/carbon/human/user)
+	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(AttemptHeal))
+	return ..()
+
+/datum/ego_gifts/dacapo/proc/AttemptHeal(datum/source, damage, damagetype, def_zone)
+	if(!owner && damagetype != WHITE_DAMAGE)
+		return
+	if(!damage)
+		return
+	owner.adjustSanityLoss(-damage*0.3)
 
 /datum/ego_gifts/distortion
 	name = "Distortion"
 	icon_state = "distortion"
-	fortitude_bonus = 3
-	prudence_bonus = 3
-	temperance_bonus = 2
-	justice_bonus = 2
+	fortitude_bonus = 8
+	prudence_bonus = 8
+	temperance_bonus = 7
+	justice_bonus = 7
 	slot = BROOCH
 
 /datum/ego_gifts/inconsolable
@@ -1412,7 +1426,11 @@
 	icon_state = "seasons"
 	prudence_bonus = 10
 	slot = HAND_2
-
+	var/list/season_list = list(
+		"spring" = list("seasons_spring", "vernal equinox", 4, 8, -2,2),
+		"summer" = list("seasons_summer", "summer solstice", 8, 2, 4,-2),
+		"fall" = list("seasons_fall", "autumnal equinox", 2, -2, 8,4),
+		"winter" = list("seasons_winter", "winter solstice", -2, 4, 2,8),
 /datum/ego_gifts/smile
 	name = "Smile"
 	icon_state = "smile"
