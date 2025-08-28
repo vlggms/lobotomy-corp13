@@ -322,6 +322,7 @@
 	tracer_type = /obj/effect/projectile/tracer/laser/nobody
 	muzzle_type = /obj/effect/projectile/tracer/laser/nobody
 	impact_type = /obj/effect/projectile/impact/laser/nobody
+	var/mob/living/simple_animal/hostile/abnormality/titania/fairy//used for oberon
 
 /obj/effect/projectile/tracer/laser/nobody
 	name = "whip tracer"
@@ -331,29 +332,14 @@
 	name = "whip impact"
 	icon_state = "nobody"
 
-/obj/projectile/beam/oberon
-	name = "whip"
-	icon_state = "nobody"
-	damage = 15
-	hitsound = 'sound/weapons/slash.ogg'
-	hitsound_wall = 'sound/weapons/slash.ogg'
-	damage_type = BLACK_DAMAGE
-	hit_stunned_targets = TRUE
-	white_healing = FALSE
-	projectile_piercing = PASSMOB
-	projectile_phasing = (ALL & (~PASSMOB) & (~PASSCLOSEDTURF))
-	hitscan = TRUE
-	tracer_type = /obj/effect/projectile/tracer/laser/nobody
-	muzzle_type = /obj/effect/projectile/tracer/laser/nobody
-	impact_type = /obj/effect/projectile/impact/laser/nobody
-	var/mob/living/simple_animal/hostile/abnormality/titania/fairy
-/obj/projectile/beam/oberon/on_hit(atom/target, blocked = FALSE)
+/obj/projectile/beam/nobody/on_hit(atom/target, blocked = FALSE)
 	. = ..()
-	if(ishuman(target))
-		var/mob/living/carbon/human/M = target
-		M.apply_damage(8, WHITE_DAMAGE, null, M.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
-		if(M.sanity_lost)
-			fairy.Convert(M)
+	if(fairy)
+		if(ishuman(target))
+			var/mob/living/carbon/human/M = target
+			M.apply_damage(8, WHITE_DAMAGE, null, M.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			if(M.sanity_lost)
+				fairy.Convert(M)
 
 /obj/projectile/beam/nobody_friendly
 	name = "whip"
