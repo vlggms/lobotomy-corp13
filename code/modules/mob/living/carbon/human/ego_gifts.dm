@@ -933,9 +933,10 @@
 /datum/ego_gifts/sunshower
 	name = "Sunshower"
 	icon_state = "sunshower"
-	temperance_bonus = 5
-	justice_bonus = -2
-	prudence_bonus = -2
+	fortitude_bonus = -1
+	prudence_bonus = 3
+	temperance_bonus = 3
+	justice_bonus = -1
 	slot = LEFTBACK
 
 /**
@@ -1347,6 +1348,10 @@
 	prudence_bonus = 10
 	slot = EYE
 
+// Converts 30% of WHITE damage taken(before armor calculations!) as sanity
+// tl;dr - If you were to get hit by an attack of 200 WHITE damage - you restore 60 sanity, regardless of how much
+// damage you actually took
+// allows for white 0.3 and bellow armors to have basically white immunity after the first hit if I did my math right
 /datum/ego_gifts/dacapo
 	name = "Da Capo"
 	icon_state = "dacapo"
@@ -1421,16 +1426,42 @@
 	justice_bonus = 10
 	slot = HELMET
 
-/datum/ego_gifts/seasons
-	name = "Season's Greetings"
-	icon_state = "seasons"
-	prudence_bonus = 10
+/datum/ego_gifts/spring
+	name = "Vernal Equinox"
+	icon_state = "spring"
+	fortitude_bonus = 4
+	prudence_bonus = 8
+	temperance_bonus = -2
+	justice_bonus = 0
 	slot = HAND_2
-	var/list/season_list = list(
-		"spring" = list("seasons_spring", "vernal equinox", 4, 8, -2,2),
-		"summer" = list("seasons_summer", "summer solstice", 8, 2, 4,-2),
-		"fall" = list("seasons_fall", "autumnal equinox", 2, -2, 8,4),
-		"winter" = list("seasons_winter", "winter solstice", -2, 4, 2,8),
+
+/datum/ego_gifts/summer
+	name = "Summer Solstice"
+	icon_state = "summer"
+	fortitude_bonus = 8
+	prudence_bonus = 0
+	temperance_bonus = 4
+	justice_bonus = -2
+	slot = HAND_1
+
+/datum/ego_gifts/fall
+	name = "Autumnal Equinox"
+	icon_state = "fall"
+	fortitude_bonus = 0
+	prudence_bonus = -2
+	temperance_bonus = 8
+	justice_bonus = 4
+	slot = HAND_2
+
+/datum/ego_gifts/winter
+	name = "Winter Solstice"
+	icon_state = "winter"
+	fortitude_bonus = -2
+	prudence_bonus = 4
+	temperance_bonus = 0
+	justice_bonus = 8
+	slot = HAND_1
+
 /datum/ego_gifts/smile
 	name = "Smile"
 	icon_state = "smile"
