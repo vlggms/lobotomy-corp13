@@ -421,7 +421,7 @@
 	else
 		to_chat(owner, span_nicegreen("The hit killed the fairy orbiting you."))
 		for(var/mob/living/simple_animal/hostile/fairyswarm/F in fairies)
-			F.Destroy()
+			F.death()
 		qdel(src)
 
 /datum/status_effect/fairy_lights/tick()
