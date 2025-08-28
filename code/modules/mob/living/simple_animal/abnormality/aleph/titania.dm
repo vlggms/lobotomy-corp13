@@ -377,6 +377,7 @@ mob/living/simple_animal/hostile/titania_flower
 		return
 	if(fairies.len > 0)
 		for(var/mob/living/simple_animal/hostile/fairyswarm/fairy in fairies)
+			fairy.toggle_ai(AI_ON)
 			fairy.forceMove(get_turf(owner))
 			fairy.status = null
 			fairies -= fairy
@@ -389,6 +390,7 @@ mob/living/simple_animal/hostile/titania_flower
 		fairies += F
 		F.forceMove(owner)
 		F.status = src
+		F.toggle_ai(AI_OFF)
 		UpdateOverlay()
 
 /datum/status_effect/fairy_lights/proc/UpdateOverlay()
