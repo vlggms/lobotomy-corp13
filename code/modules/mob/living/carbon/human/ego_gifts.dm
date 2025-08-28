@@ -1350,14 +1350,14 @@
 	prudence_bonus = 10
 	slot = EYE
 
-// Converts 30% of WHITE damage taken(before armor calculations!) as sanity
-// tl;dr - If you were to get hit by an attack of 200 WHITE damage - you restore 60 sanity, regardless of how much
+// Converts 20% of WHITE damage taken(before armor calculations!) as sanity
+// tl;dr - If you were to get hit by an attack of 200 WHITE damage - you restore 40 sanity, regardless of how much
 // damage you actually took
-// allows for white 0.3 and bellow armors to have basically white immunity after the first hit if I did my math right
+// allows for white 0.2 and bellow armors to have basically white immunity after the first hit if I did my math right and al coda heals
 /datum/ego_gifts/dacapo
 	name = "Da Capo"
 	icon_state = "dacapo"
-	desc = "Restores 30% of WHITE damage taken as sanity. This effect ignores armor."
+	desc = "Restores 20% of WHITE damage taken as sanity. This effect ignores armor."
 	temperance_bonus = 4
 	slot = EYE
 
@@ -1376,7 +1376,7 @@
 		return
 	if(damage < 0)
 		return
-	owner.adjustSanityLoss(-damage*0.3)
+	owner.adjustSanityLoss(-damage*0.2)
 
 /datum/ego_gifts/distortion
 	name = "Distortion"
