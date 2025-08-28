@@ -1121,7 +1121,7 @@
 #undef MOB_HALFSPEED
 
 /* Deals resistable burn damage every 5 sec, can't be applied to godmode (contained abos)
-	1 stack = 1.5 burn damage. Without resistance to fire, burn damage is reduced by red armor, but ignores 50% of that armor.
+	1 stack = 0.75 burn damage. Without resistance to fire, burn damage is reduced by red armor, but ignores 50% of that armor.
 	Remember that refreshing the stack also refreshes the duration! Very large amounts of damage can be dealt this way! */
 #define STATUS_EFFECT_LCBURN /datum/status_effect/stacking/lc_burn
 /datum/status_effect/stacking/lc_burn
@@ -1164,7 +1164,7 @@
 			qdel(src)
 
 /datum/status_effect/stacking/lc_burn/proc/DealDamage()
-	owner.apply_damage(max(1, stacks * 0.25), FIRE, null, owner.run_armor_check(null, FIRE))
+	owner.apply_damage(max(1, stacks * 0.125), FIRE, null, owner.run_armor_check(null, FIRE))
 
 //Update burn appearance
 /datum/status_effect/stacking/lc_burn/proc/Update_Burn_Overlay(mob/living/owner)
@@ -1232,9 +1232,9 @@
 			B = new /obj/effect/decal/cleanable/blood(get_turf(owner))
 			B.bloodiness = 100
 	if(ishuman(owner))
-		owner.adjustBruteLoss(max(stacks * 0.25, 1))
+		owner.adjustBruteLoss(max(stacks * 0.125, 1))
 	else
-		owner.adjustBruteLoss(stacks*4) // x4 on non humans
+		owner.adjustBruteLoss(stacks*2) // x2 on non humans
 	new /obj/effect/temp_visual/damage_effect/bleed(get_turf(owner))
 	stacks = round(stacks/2)
 	if(stacks == 0)
@@ -1415,8 +1415,8 @@
 	icon_state = "dark_flame"
 
 /datum/status_effect/stacking/lc_burn/dark_flame/DealDamage()
-	owner.apply_damage(stacks, FIRE, null, owner.run_armor_check(null, BLACK_DAMAGE))
-	owner.apply_damage(stacks, WHITE_DAMAGE, null, owner.run_armor_check(null, BLACK_DAMAGE))
+	owner.apply_damage(stacks * 0.5, FIRE, null, owner.run_armor_check(null, BLACK_DAMAGE))
+	owner.apply_damage(stacks * 0.5, WHITE_DAMAGE, null, owner.run_armor_check(null, BLACK_DAMAGE))
 
 //Update burn appearance
 /datum/status_effect/stacking/lc_burn/dark_flame/Update_Burn_Overlay(mob/living/owner)
