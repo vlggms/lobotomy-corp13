@@ -271,11 +271,11 @@
 
 //The flower
 mob/living/simple_animal/hostile/titania_flower
-	gender = NEUTER
-	name = "Fairy Flower"
+	name = "fairy flower"
 	desc = "A pretty purple flower."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "titania_flower"
+	gender = NEUTER
 	density = TRUE
 	maxHealth = 200
 	health = 200
