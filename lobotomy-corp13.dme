@@ -489,7 +489,6 @@
 #include "code\datums\components\_component.dm"
 #include "code\datums\components\acid.dm"
 #include "code\datums\components\ai_leadership.dm"
-#include "code\datums\components\adjustable_clothes.dm"
 #include "code\datums\components\anti_magic.dm"
 #include "code\datums\components\aquarium.dm"
 #include "code\datums\components\areabound.dm"
