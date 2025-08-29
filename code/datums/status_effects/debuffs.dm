@@ -1121,7 +1121,7 @@
 #undef MOB_HALFSPEED
 
 /* Deals resistable burn damage every 5 sec, can't be applied to godmode (contained abos)
-	1 stack = 0.75 burn damage. Without resistance to fire, burn damage is reduced by red armor, but ignores 50% of that armor.
+	1 stack = 0.25 burn damage. Without resistance to fire, burn damage is reduced by red armor, but ignores 50% of that armor.
 	Remember that refreshing the stack also refreshes the duration! Very large amounts of damage can be dealt this way! */
 #define STATUS_EFFECT_LCBURN /datum/status_effect/stacking/lc_burn
 /datum/status_effect/stacking/lc_burn
@@ -1164,7 +1164,7 @@
 			qdel(src)
 
 /datum/status_effect/stacking/lc_burn/proc/DealDamage()
-	owner.apply_damage(max(1, stacks * 0.125), FIRE, null, owner.run_armor_check(null, FIRE))
+	owner.apply_damage(max(1, stacks * 0.25), FIRE, null, owner.run_armor_check(null, FIRE))
 
 //Update burn appearance
 /datum/status_effect/stacking/lc_burn/proc/Update_Burn_Overlay(mob/living/owner)
