@@ -363,59 +363,6 @@
 			var/armor_value = 1 - round(durability_list[dam_type], 10) / 100
 			. += "[dam_type]: [armor_value]"
 
-/**
- * Rounds armor_value to nearest 10, divides it by 10 and then expresses it in roman numerals up to 10
- *
- * Rounds armor_value to nearest 10, divides it by 10
- * and then expresses it in roman numerals up to 10
- * Arguments:
- * * armor_value - Number we're converting
- */
-/obj/item/clothing/proc/armor_to_protection_class(armor_value)
-	armor_value = round(armor_value,10) / 10
-	switch (armor_value)
-		if (-INFINITY to -10)
-			. = "-X"
-		if (-9)
-			. = "-IX"
-		if (-8)
-			. = "-VIII"
-		if (-7)
-			. = "-VII"
-		if (-6)
-			. = "-VI"
-		if (-5)
-			. = "-V"
-		if (-4)
-			. = "-IV"
-		if (-3)
-			. = "-III"
-		if (-2)
-			. = "-II"
-		if (-1)
-			. = "-I"
-		if (1)
-			. = "I"
-		if (2)
-			. = "II"
-		if (3)
-			. = "III"
-		if (4)
-			. = "IV"
-		if (5)
-			. = "V"
-		if (6)
-			. = "VI"
-		if (7)
-			. = "VII"
-		if (8)
-			. = "VIII"
-		if (9)
-			. = "IX"
-		if (10 to INFINITY)
-			. = "X"
-	return .
-
 /obj/item/clothing/obj_break(damage_flag)
 	update_clothes_damaged_state(CLOTHING_DAMAGED)
 

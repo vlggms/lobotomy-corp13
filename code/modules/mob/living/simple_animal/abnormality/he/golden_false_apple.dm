@@ -534,6 +534,7 @@
 	glass_name = "glass of ambrosia"
 	glass_desc = "A glass of apple juice."
 	metabolization_rate = 3 * REAGENTS_METABOLISM//metabolizes at 24u/minute
+	special_properties = list("substance may induce luminescence in subject")
 
 /datum/reagent/abnormality/ambrosia/on_mob_add(mob/living/L)
 	..()
