@@ -198,10 +198,10 @@
 	dna.initialize_dna()
 
 /mob/living/carbon/human/CanPass(atom/movable/mover, turf/target)
-	if(!sanity_lost && a_intent == INTENT_HELP)
+	if(!sanity_lost)
 		if(ishuman(mover))
 			var/mob/living/carbon/human/H = mover
-			if(!H.sanity_lost && H.a_intent == INTENT_HELP)
+			if(!H.sanity_lost)
 				return TRUE
 	return ..()
 
