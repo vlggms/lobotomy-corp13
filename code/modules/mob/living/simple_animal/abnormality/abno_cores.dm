@@ -12,6 +12,7 @@
 	var/release_time = 420 SECONDS//this is going to be reduced by a minute for every risk level
 	var/threat_level
 	var/ego_list = list()
+	var/extracting = FALSE
 
 /obj/structure/abno_core/proc/Release()
 	if(!contained_abno)//Is this core properly generated?
@@ -27,9 +28,13 @@
 	if(istype(O))
 		var/response = alert(usr,"Will you extract [src]?","This cannot be reversed.","Yes","No")
 		if(response == "Yes" && do_after(usr, 10, O))
+			if(extracting)
+				return
+			extracting = TRUE
 			forceMove(get_turf(O))
 			O.GrabAnimation()
 			Extract()
+		extracting = FALSE
 		return
 	var/obj/structure/itemselling/I = over_object//item selling machine
 	if(istype(I))

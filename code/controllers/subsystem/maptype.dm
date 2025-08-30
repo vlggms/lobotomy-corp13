@@ -7,12 +7,16 @@
 //This sucks ass
 //-Crabby
 
+//We can make this better.
+//-Mr. H
+
 SUBSYSTEM_DEF(maptype)
 	name = "Map Type"
 	flags = SS_NO_FIRE
 	init_order = INIT_ORDER_MAPTYPE
 	var/maptype = "lc13"			//for the love of god, do not change the default we will all die -Bootlegbow
 	var/jobtype		//If a map RNGs which jobs are available, use this
+	var/list/map_tags = list()//For specific mechanics that maptypes don't cover. This needs to be an array with brackets [] in the json.
 
 	//All the map tags that delete all jobs and replace them with others.
 	var/list/clearmaps = list("rcorp", "city", "wcorp", "limbus_labs", "fixers", "office")

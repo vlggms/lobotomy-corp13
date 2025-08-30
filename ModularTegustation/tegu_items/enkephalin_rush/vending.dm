@@ -14,7 +14,6 @@
 		/obj/item/pickaxe/drill = 100,
 
 		//advanced stuff
-		/obj/item/storage/firstaid/regular = 100,
 		/obj/item/flashlight/lantern = 10,
 		/obj/item/pickaxe/silver = 100,
 		/obj/item/pickaxe/diamond = 100,

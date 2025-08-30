@@ -160,7 +160,7 @@
 		/datum/reagent/consumable/salt = 4,
 	)
 
-/obj/item/food/fish/salt_water/tuna_pallid//TODO: make it unsafe to eat somehow. Apply pallid noise to the consumer
+/obj/item/food/fish/salt_water/tuna_pallid
 	name = "pallidified tuna"
 	desc = "A tuna that was swallowed and corrupted by a great whale. Yuck."
 	icon_state = "pallid_tuna"
