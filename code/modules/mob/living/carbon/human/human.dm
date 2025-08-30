@@ -30,6 +30,7 @@
 	AddComponent(/datum/component/personal_crafting)
 	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_HUMAN, 1, -6)
 	AddComponent(/datum/component/bloodysoles/feet)
+	AddComponent(/datum/component/swarming, 8,8)
 	AddElement(/datum/element/ridable, /datum/component/riding/creature/human)
 	GLOB.human_list += src
 
@@ -196,6 +197,13 @@
 	randomize_human(src)
 	dna.initialize_dna()
 
+/mob/living/carbon/human/CanPass(atom/movable/mover, turf/target)
+	if(!sanity_lost && a_intent == INTENT_HELP)
+		if(ishuman(mover))
+			var/mob/living/carbon/human/H = mover
+			if(!H.sanity_lost && H.a_intent == INTENT_HELP)
+				return TRUE
+	return ..()
 
 /mob/living/carbon/human/Destroy()
 	QDEL_NULL(physiology)
