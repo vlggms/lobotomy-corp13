@@ -134,10 +134,10 @@ GLOBAL_LIST_EMPTY(ego_datums)
 		white_armor = E.armor.getRating(mapping[WHITE_DAMAGE])
 		black_armor = E.armor.getRating(mapping[BLACK_DAMAGE])
 		pale_armor = E.armor.getRating(mapping[PALE_DAMAGE])
-	information["armor"][RED_DAMAGE] = E.armor_to_protection_class(red_armor)
-	information["armor"][WHITE_DAMAGE] = E.armor_to_protection_class(white_armor)
-	information["armor"][BLACK_DAMAGE] = E.armor_to_protection_class(black_armor)
-	information["armor"][PALE_DAMAGE] = E.armor_to_protection_class(pale_armor)
+	information["armor"][RED_DAMAGE] = red_armor
+	information["armor"][WHITE_DAMAGE] = white_armor
+	information["armor"][BLACK_DAMAGE] = black_armor
+	information["armor"][PALE_DAMAGE] = pale_armor
 	information["attribute_requirements"] = E.attribute_requirements.Copy()
 	qdel(E)
 

@@ -190,64 +190,7 @@
 		. += span_notice("This weapon can block on command.")
 
 	if(LAZYLEN(resistances_list))
-		. += span_notice("It has a <a href='byond://?src=[REF(src)];list_resistances=1'>tag</a> listing its protection classes.")
-
-//Code for armor tags
-/obj/item/ego_weapon/shield/Topic(href, href_list)
-	. = ..()
-
-	if(href_list["list_resistances"])
-		var/list/readout = list("<span class='notice'><u><b>DEFENSE RATING (I-X)</u></b>")
-		if(LAZYLEN(resistances_list))
-			readout += "\n<b>DEFLECT</b>"
-			for(var/dam_type in resistances_list)
-				var/armor_amount = resistances_list[dam_type]
-				readout += "\n[dam_type] [armor_to_protection_class(armor_amount)]" //e.g. BOMB IV
-		readout += "</span>"
-
-		to_chat(usr, "[readout.Join()]")
-
-/obj/item/ego_weapon/shield/proc/armor_to_protection_class(armor_value)
-	armor_value = round(armor_value,10) / 10
-	switch (armor_value)
-		if (-INFINITY to -10)
-			. = "-X"
-		if (-9)
-			. = "-IX"
-		if (-8)
-			. = "-VIII"
-		if (-7)
-			. = "-VII"
-		if (-6)
-			. = "-VI"
-		if (-5)
-			. = "-V"
-		if (-4)
-			. = "-IV"
-		if (-3)
-			. = "-III"
-		if (-2)
-			. = "-II"
-		if (-1)
-			. = "-I"
-		if (1)
-			. = "I"
-		if (2)
-			. = "II"
-		if (3)
-			. = "III"
-		if (4)
-			. = "IV"
-		if (5)
-			. = "V"
-		if (6)
-			. = "VI"
-		if (7)
-			. = "VII"
-		if (8)
-			. = "VIII"
-		if (9)
-			. = "IX"
-		if (10 to INFINITY)
-			. = "X"
-	return .
+		. += span_boldnotice("<u>DEFENSE RATING</u>")
+		for(var/dam_type in resistances_list)
+			. += span_notice("[dam_type] [1 - round(resistances_list[dam_type], 10) / 100]") //e.g. BOMB 0.6
+	// I'll be hitting this code to be better in a different PR - Redacted

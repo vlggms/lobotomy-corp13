@@ -37,9 +37,10 @@
 	/// List of available condibottle styles for UI
 	var/list/condi_styles
 
-/obj/machinery/chem_master/Initialize()
-	create_reagents(100)
+	var/datum/player_reagent_list/reagent_guide
 
+/obj/machinery/chem_master/Initialize()
+	create_reagents(10000, NO_REACT)
 	//Calculate the span tags and ids fo all the available pill icons
 	var/datum/asset/spritesheet/simple/assets = get_asset_datum(/datum/asset/spritesheet/simple/pills)
 	pill_styles = list()
@@ -51,12 +52,26 @@
 
 	condi_styles = strip_condi_styles_to_icons(get_condi_styles())
 
+	..()
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/machinery/chem_master/LateInitialize()
 	. = ..()
+	reagent_guide = new(src)
 
 /obj/machinery/chem_master/Destroy()
 	QDEL_NULL(beaker)
 	QDEL_NULL(bottle)
 	return ..()
+
+/obj/machinery/chem_master/examine(mob/user)
+	. = ..()
+	. += span_notice("There's a <a href='byond://?src=[REF(src)];guidebook=1'>binder</a> labeled 'Reagents & Reactions' on the side.")
+
+/obj/machinery/chem_master/Topic(href, href_list)
+	. = ..()
+	if(href_list["guidebook"])
+		reagent_guide.ui_interact(usr)
 
 /obj/machinery/chem_master/RefreshParts()
 	reagents.maximum_volume = 0
@@ -579,3 +594,138 @@
 	name = "CondiMaster 3000"
 	desc = "Used to create condiments and other cooking supplies."
 	condi = TRUE
+
+/obj/machinery/chem_master/verb/reagent_list()
+	set name = "See Guidebook"
+	set category = "Objects"
+	set src in view(5)
+	reagent_guide.ui_interact(usr)
+
+/datum/player_reagent_list
+	var/attached_obj
+	var/static/stored_data
+
+/datum/player_reagent_list/New(obj/glued)
+	. = ..()
+	attached_obj = glued
+	if(!LAZYLEN(stored_data))
+		generate_chem_guidebook_data()
+
+/datum/player_reagent_list/ui_host(mob/user)
+	return attached_obj || src
+
+/datum/player_reagent_list/ui_state(mob/user)
+	return GLOB.always_state
+
+/datum/player_reagent_list/ui_interact(mob/user, datum/tgui/ui)
+	. = ..()
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "ReagentList", "Guidebook")
+		ui.open()
+
+/datum/player_reagent_list/ui_static_data(mob/user)
+	if(!LAZYLEN(stored_data))
+		return generate_chem_guidebook_data()
+	return stored_data
+
+/datum/player_reagent_list/proc/generate_chem_guidebook_data()
+	. = list()
+	.["chems"] = list()
+	var/list/abno_chem_list = list()
+	var/list/generic_chem_list = sortNames(GLOB.chemical_reagents_list.Copy())
+	for(var/chem_path in generic_chem_list)
+		if(chem_path == /datum/reagent/abnormality)
+			continue
+		if(!istype(GLOB.chemical_reagents_list[chem_path], /datum/reagent/abnormality))
+			continue
+		abno_chem_list += chem_path
+		var/datum/reagent/abnormality/abno_chem = GLOB.chemical_reagents_list[chem_path]
+		var/clean_specials
+		if(abno_chem.special_properties.len > 0)
+			clean_specials = list()
+			for(var/line in abno_chem.special_properties)
+				clean_specials += sanitize_text(capitalize(line))
+		else
+			clean_specials = "N/A"
+		.["chems"] += list(list(
+			"path" = chem_path,
+			// Name and Description
+			"name" = abno_chem.name,
+			"desc" = abno_chem.description,
+			// Metabolization
+			"metab" = abno_chem.metabolization_rate/2,
+			// Health and San
+			"health" = abno_chem.health_restore*REM,
+			"sanity" = abno_chem.sanity_restore*REM,
+			// Stats
+			"fort" = abno_chem.stat_changes[1] < 0 ? abno_chem.stat_changes[1] : "+[abno_chem.stat_changes[1]]",
+			"prud" = abno_chem.stat_changes[2] < 0 ? abno_chem.stat_changes[2] : "+[abno_chem.stat_changes[2]]",
+			"temp" = abno_chem.stat_changes[3] < 0 ? abno_chem.stat_changes[3] : "+[abno_chem.stat_changes[3]]",
+			"just" = abno_chem.stat_changes[4] < 0 ? abno_chem.stat_changes[4] : "+[abno_chem.stat_changes[4]]",
+			// Armor
+			"red" = abno_chem.armor_mods[1],
+			"whi" = abno_chem.armor_mods[2],
+			"bla" = abno_chem.armor_mods[3],
+			"pal" = abno_chem.armor_mods[4],
+			// Damage Taken Mods
+			"red_d" = abno_chem.damage_mods[1],
+			"whi_d" = abno_chem.damage_mods[2],
+			"bla_d" = abno_chem.damage_mods[3],
+			"pal_d" = abno_chem.damage_mods[4],
+			// Other Text
+			"other" = clean_specials
+		))
+
+	// Reactions
+	.["reactions"] = list()
+	for(var/chem_path in abno_chem_list) // Parse through all the chems we CARE about
+		var/list/reaction_list = GLOB.chemical_reactions_list[chem_path]
+		if(!LAZYLEN(reaction_list))
+			continue
+		for(var/datum/chemical_reaction/reaction in reaction_list)
+			if(LAZYLEN(.["reactions"]))
+				var/skip = FALSE
+				for(var/list/item in .["reactions"])
+					if(item["id"] == reaction)
+						skip = TRUE
+						break // NO DUPES >:(
+				if(skip)
+					continue
+
+			// Compond a Name
+			var/reagent_title = ""
+			for(var/I in 1 to reaction.results.len)
+				var/datum/reagent/result_reag = GLOB.chemical_reagents_list[reaction.results[I]]
+				reagent_title += result_reag.name
+				if(I > 1 && I < reaction.results.len)
+					reagent_title += ", "
+
+			var/list/temp_reaction = list("id" = reaction, "title" = reagent_title, "output" = list(), "requirements" = list())
+
+			// Make a Recipe
+			for(var/req_reagent in reaction.required_reagents)
+				var/datum/reagent/actualized_reagent = GLOB.chemical_reagents_list[req_reagent]
+				var/amount = "[reaction.required_reagents[req_reagent]] unit"
+				if(reaction.required_reagents[req_reagent] > 1)
+					amount += "s"
+				temp_reaction["requirements"] += list(list("name" = actualized_reagent.name, "amount" = amount))
+
+			for(var/datum/reagent/req_reagent in reaction.required_catalysts)
+				var/datum/reagent/actualized_reagent = GLOB.chemical_reagents_list[req_reagent]
+				var/amount = "[reaction.required_reagents[req_reagent]] unit"
+				if(reaction.required_reagents[req_reagent] > 1)
+					amount += "s"
+				amount += " | Catalyst"
+				temp_reaction["requirements"] += list(list("name" = actualized_reagent.name, "amount" = amount))
+
+			// Write the Output
+			for(var/res_reagent in reaction.results)
+				var/datum/reagent/actualized_reagent = GLOB.chemical_reagents_list[res_reagent]
+				var/amount = "[reaction.results[res_reagent]] unit"
+				if(reaction.results[res_reagent] > 1)
+					amount += "s"
+				temp_reaction["output"] += list(list("name" = actualized_reagent.name, "amount" = amount))
+
+			.["reactions"] += list(temp_reaction)
+	stored_data = .
