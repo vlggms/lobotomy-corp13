@@ -48,7 +48,7 @@
 	var/serumA_damage = 30
 	var/wide_slash_damage = 75
 	var/wide_slash_range = 5
-	var/wide_slash_angle = 60
+	var/wide_slash_angle = 120
 
 	var/dash_cooldown = 0
 	var/dash_cooldown_time = 5 // cooldown_time * distance:

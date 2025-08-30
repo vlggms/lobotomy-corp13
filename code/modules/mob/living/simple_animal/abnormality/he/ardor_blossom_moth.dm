@@ -122,7 +122,7 @@
 		if(ishuman(L))
 			var/mob/living/carbon/human/H = L
 			H.deal_damage(damage, FIRE)
-			H.apply_lc_burn(2)
+			H.apply_lc_burn(1)
 			dealt_damage = TRUE
 	if(!dealt_damage)
 		damaging = FALSE
