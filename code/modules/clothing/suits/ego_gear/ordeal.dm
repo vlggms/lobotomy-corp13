@@ -39,7 +39,7 @@
 
 /obj/item/clothing/suit/armor/ego_gear/ordeal/painful_purpose
 	name = "Painful purpose"
-	desc = "A heavy armor made as solace of the end of all. Offers better protection at the cost of a speed drop."
+	desc = "A heavy armor made as solace of the end of all. Wearing it is cumbersome but offers superior protection."
 	hat = /obj/item/clothing/head/ego_hat/helmet/painful_purpose
 	neck = /obj/item/clothing/neck/ego_neck/painful_purpose
 	icon_state = "painful_purpose"
@@ -56,6 +56,7 @@
 	name = "Painful purpose helmet"
 	desc = "A helmet made of metal and lights.."
 	icon_state = "painful_purpose"
+	flags_inv = HIDEMASK | HIDEFACE
 
 /obj/item/clothing/neck/ego_neck/painful_purpose
 	name = "Painful purpose cape"
