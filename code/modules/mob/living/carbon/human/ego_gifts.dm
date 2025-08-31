@@ -1350,33 +1350,20 @@
 	prudence_bonus = 10
 	slot = EYE
 
-// Converts 20% of WHITE damage taken(before armor calculations!) as sanity
-// tl;dr - If you were to get hit by an attack of 200 WHITE damage - you restore 40 sanity, regardless of how much
-// damage you actually took
-// allows for white 0.2 and bellow armors to have basically white immunity after the first hit if I did my math right and al coda heals
 /datum/ego_gifts/dacapo
 	name = "Da Capo"
 	icon_state = "dacapo"
-	desc = "Restores 20% of WHITE damage taken as sanity. This effect ignores armor."
+	desc = "Provides the user with 20% resistance to WHITE damage."//man it really needed something
 	temperance_bonus = 4
 	slot = EYE
 
-/datum/ego_gifts/dacapo/Initialize(mob/living/carbon/human/user)
+/datum/ego_gifts/dacapo/Initialize(mob/living/carbon/human/user) // grants resistance
 	. = ..()
-	RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(AttemptHeal))
+	user.physiology.white_mod *= 0.8
 
 /datum/ego_gifts/dacapo/Remove(mob/living/carbon/human/user)
-	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(AttemptHeal))
+	user.physiology.white_mod /= 0.8
 	return ..()
-
-/datum/ego_gifts/dacapo/proc/AttemptHeal(datum/source, damage, damagetype, def_zone)
-	if(!owner && damagetype != WHITE_DAMAGE)
-		return
-	if(!damage)
-		return
-	if(damage < 0)
-		return
-	owner.adjustSanityLoss(-damage*0.2)
 
 /datum/ego_gifts/distortion
 	name = "Distortion"
@@ -1434,7 +1421,7 @@
 	name = "Vernal Equinox"
 	icon_state = "spring"
 	fortitude_bonus = 4
-	prudence_bonus = 8
+	prudence_bonus = 6
 	temperance_bonus = -2
 	justice_bonus = 0
 	slot = HAND_2
@@ -1442,7 +1429,7 @@
 /datum/ego_gifts/summer
 	name = "Summer Solstice"
 	icon_state = "summer"
-	fortitude_bonus = 8
+	fortitude_bonus = 6
 	prudence_bonus = 0
 	temperance_bonus = 4
 	justice_bonus = -2
@@ -1453,7 +1440,7 @@
 	icon_state = "fall"
 	fortitude_bonus = 0
 	prudence_bonus = -2
-	temperance_bonus = 8
+	temperance_bonus = 6
 	justice_bonus = 4
 	slot = HAND_2
 
@@ -1463,7 +1450,7 @@
 	fortitude_bonus = -2
 	prudence_bonus = 4
 	temperance_bonus = 0
-	justice_bonus = 8
+	justice_bonus = 6
 	slot = HAND_1
 
 /datum/ego_gifts/smile
