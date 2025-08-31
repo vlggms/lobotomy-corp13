@@ -232,14 +232,21 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 	if(!istype(H))
 		to_chat(owner, span_warning("NO VALID TARGET."))
 		return FALSE
-
+	var/healing_mult = 1
+	if(H.is_working)
+		healing_mult = 0.5
 	switch(bullet_type)
+		if(MANAGER_RED_BULLET || MANAGER_WHITE_BULLET|| MANAGER_BLACK_BULLET || MANAGER_PALE_BULLET || MANAGER_QUAD_BULLET)
+			if(H.is_working)
+				playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
+				to_chat(owner, span_warning("ERROR: TARGET IS WORKING."))
+				return FALSE
 		if(MANAGER_HP_BULLET)
 			if(H.health >= H.maxHealth)
 				playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
 				to_chat(owner, span_warning("ERROR: TARGET'S BODY DOESN'T NEED HEALING."))
 				return FALSE
-			H.adjustBruteLoss(-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL)*H.maxHealth)
+			H.adjustBruteLoss(-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL) * healing_mult)
 		if(MANAGER_SP_BULLET)
 			if(H.sanity_lost)
 				playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
@@ -249,7 +256,7 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 				playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
 				to_chat(owner, span_warning("ERROR: TARGET'S MIND DOESN'T NEED HEALING."))
 				return FALSE
-			H.adjustSanityLoss(-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL)*H.maxSanity)
+			H.adjustSanityLoss(-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL) * healing_mult)
 		if(MANAGER_DUAL_BULLET)
 			if(H.sanity_lost)
 				playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
@@ -259,8 +266,8 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 				playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
 				to_chat(owner, span_warning("ERROR: TARGET'S BODY DOESN'T NEED HEALING."))
 				return FALSE
-			H.adjustBruteLoss(-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL)*H.maxHealth)
-			H.adjustSanityLoss(-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL)*H.maxSanity)
+			H.adjustBruteLoss(-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL)* healing_mult)
+			H.adjustSanityLoss(-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL)* healing_mult)
 		if(MANAGER_RED_BULLET)
 			if (H.has_status_effect(/datum/status_effect/interventionshield))
 				playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
