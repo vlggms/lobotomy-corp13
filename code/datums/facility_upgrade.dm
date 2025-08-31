@@ -95,49 +95,47 @@
 
 /datum/facility_upgrade/bullet/hp
 	name = HP_BULLET
-	info = " - This type of bullet when fired heals the <b>HP</b> of an employee shot at."
+	info = " - This type of bullet when fired heals the <b>HP</b> of an employee shot at.<br> - The healing will be reduced by 50% if the employee is working on an abnormality."
 
 /datum/facility_upgrade/bullet/sp
 	name = SP_BULLET
-	info = " - This type of bullet when fired heals the <b>SP</b> of an employee shot at.<br> - <b>WARNING</b> Doesn't work when the employee shot at is insane.<b>WARNING</b>"
+	info = " - This type of bullet when fired heals the <b>SP</b> of an employee shot at.<br> - The healing will be reduced by 50% if the employee is working on an abnormality.<br> - <b>WARNING</b> Doesn't work when the employee shot at is insane.<b>WARNING</b>"
 
 /datum/facility_upgrade/bullet/dual
-	max_value = 1.5
-	cost = 1.5
+	cost = 2
 	name = DUAL_BULLET
 	requires_all_of = list(HP_BULLET, SP_BULLET)
-	info = " - This type of bullet when fired heals both the <b>HP</b> and <b>SP</b> of an employee shot at.<br> - Costs 1.75 Bullets to use.<br> - <b>WARNING</b> Doesn't work when the employee shot at is insane.<b>WARNING</b>"
+	info = " - This type of bullet when fired heals both the <b>HP</b> and <b>SP</b> of an employee shot at.<br> - The healing will be reduced by 50% if the employee is working on an abnormality.<br> - Costs 1.75 Bullets to use.<br> - <b>WARNING</b> Doesn't work when the employee shot at is insane.<b>WARNING</b>"
 
 /datum/facility_upgrade/bullet/red
 	name = RED_BULLET
 	cost = 0.5
-	info = " - This type of bullet when fired applies a <b>Red</b> damage blocking shield to the an employee."
+	info = " - This type of bullet when fired applies a <b>Red</b> damage blocking shield to the a non working employee."
 
 /datum/facility_upgrade/bullet/white
 	name = WHITE_BULLET
 	cost = 0.5
-	info = " - This type of bullet when fired applies a <b>White</b> damage blocking shield to the an employee."
+	info = " - This type of bullet when fired applies a <b>White</b> damage blocking shield to the a non working employee."
 
 /datum/facility_upgrade/bullet/black
 	name = BLACK_BULLET
 	cost = 0.5
-	info = " - This type of bullet when fired applies a <b>Black</b> damage blocking shield to the an employee."
+	info = " - This type of bullet when fired applies a <b>Black</b> damage blocking shield to the a non working employee."
 
 /datum/facility_upgrade/bullet/pale
 	name = PALE_BULLET
-	cost = 0.5
-	info = " - This type of bullet when fired applies a <b>Pale</b> damage blocking shield to the an employee."
+	cost = 1
+	info = " - This type of bullet when fired applies a <b>Pale</b> damage blocking shield to the a non working employee."
 
 /datum/facility_upgrade/bullet/quad
-	max_value = 1.5
-	cost = 1.5
+	cost = 2
 	name = QUAD_BULLET
 	requires_all_of = list(RED_BULLET, WHITE_BULLET, BLACK_BULLET, PALE_BULLET)
-	info = " - This type of bullet when fired applies a shield of an employee that blocks all <b>4</b> damage types and has twice the <b>HP</b>.<br> - Costs 3 Bullets to use."
+	info = " - This type of bullet when fired applies a shield of a non working employee that blocks all <b>4</b> damage types and has twice the <b>HP</b>.<br> - Costs 3 Bullets to use."
 
 /datum/facility_upgrade/bullet/yellow
 	name = YELLOW_BULLET
-	info = " - This type of bullet when fired applies a <b>Slowdown</b> debuff to an Abnormality/Ordeal."
+	info = " - This type of bullet when fired applies a <b>Slowing</b> debuff to an enemy or threat."
 /datum/facility_upgrade/bullet/kill
 	name = KILL_BULLET
 	info = " - This type of bullet when fired kills an employee."
@@ -152,38 +150,36 @@
 	name = UPGRADE_BULLET_COUNT
 	category = "Bullet Upgrades"
 	value = 4
-	max_value = 40
+	cost = 1
+	max_value = 24
 	requires_one_of = list(HP_BULLET, SP_BULLET, RED_BULLET, WHITE_BULLET, BLACK_BULLET, PALE_BULLET, YELLOW_BULLET, KILL_BULLET)
-	/// The cost will not go further upwards from that point on
-	var/max_cost = 6
-	info = " - This upgrade inceases the maximum amount of <b>Bullets</b> the console can have by 4 per upgrade."
+	info = " - This upgrade inceases the maximum amount of <b>Bullets</b> the console can have by 2 per upgrade."
 
 /datum/facility_upgrade/bullet_count/Upgrade()
-	value = min(max_value, value + round(max_value * 0.1))
+	value = min(max_value, value + 2)
 	. = ..()
-	cost = min(max_cost, cost + 1)
 
 /datum/facility_upgrade/bullet_heal_increase
 	name = UPGRADE_BULLET_HEAL
 	category = "Bullet Upgrades"
-	value = 0.2
-	max_value = 0.5
+	value = 15
+	max_value = 65
 	requires_one_of = list(HP_BULLET, SP_BULLET)
-	cost = 2
-	info = " - This upgrade inceases the % healing of <b>HP, SP, and Dual Bullets</b> by +10% per upgrade."
+	cost = 1
+	info = " - This upgrade inceases the total healing of <b>HP, SP, and Dual Bullets</b> by +10 per upgrade."
 
 /datum/facility_upgrade/bullet_heal_increase/Upgrade()
-	value = min(max_value, value + 0.1)
+	value = min(max_value, value + 10)
 	return ..()
 
 /datum/facility_upgrade/bullet_heal_increase/DisplayValue()
-	return "[value * 100]%"
+	return "[value] HP/SP"
 
 // Upgrades for shield bullets
 /datum/facility_upgrade/bullet_shield_increase
 	name = UPGRADE_BULLET_SHIELD_HEALTH
 	category = "Bullet Upgrades"
-	value = 40
+	value = 20
 	max_value = 100
 	requires_one_of = list(RED_BULLET, WHITE_BULLET, BLACK_BULLET, PALE_BULLET)
 	info = " - This upgrade inceases the Health of all <b>Shield Bullets</b> by 10 HP per upgrade."
@@ -200,7 +196,7 @@
 	display_true = "PURCHASED"
 	display_false = "NOT PURCHASED" // Honestly quite weird, but whatever
 	requires_one_of = list(YELLOW_BULLET)
-	info = " - This upgrade causes Qliphoth Intervention Bullets to weaken the resistances of the Abnormality/Ordeal shot at by 20%."
+	info = " - This upgrade causes Qliphoth Intervention Bullets to weaken the resistances of the enemy or threat shot at by 20%."
 
 /datum/facility_upgrade/yellow_bullet_buff/Upgrade()
 	value = max_value
@@ -210,7 +206,7 @@
 /datum/facility_upgrade/regnenerator_healing
 	name = UPGRADE_REGENERATOR_HEALING
 	category = "Facility"
-	cost = 2
+	cost = 1
 	value = 0
 	max_value = 1.5
 	var/value_increase = 0.5
@@ -219,7 +215,6 @@
 /datum/facility_upgrade/regnenerator_healing/Upgrade()
 	value = min(max_value, value + value_increase)
 	. = ..()
-	cost += 1
 
 /datum/facility_upgrade/regnenerator_healing/DisplayValue()
 	return "+[value]% healing"
@@ -234,7 +229,6 @@
 /datum/facility_upgrade/meltdown_increase/Upgrade()
 	value = min(max_value, value + 1)
 	. = ..()
-	cost += 1
 
 /datum/facility_upgrade/meltdown_increase/DisplayValue()
 	if (value > 1)
@@ -247,6 +241,7 @@
 	value = 0
 	max_value = 30
 	var/value_increase = 5
+	cost = 2
 	info = " - This upgrade inceases the amount of stats all Agents have by +5 per upgrade."
 
 /datum/facility_upgrade/agent_spawn_stats_bonus/DisplayValue()
@@ -259,7 +254,6 @@
 		H.adjust_all_attribute_levels(value_increase)
 		to_chat(H, span_notice("Facility upgrade increased your attributes by [value_increase] points!"))
 	. = ..()
-	cost += 1
 
 /datum/facility_upgrade/picking_abno_amount
 	name = UPGRADE_ABNO_QUEUE_COUNT
@@ -271,7 +265,6 @@
 /datum/facility_upgrade/picking_abno_amount/Upgrade()
 	value = min(max_value, value + 1)
 	. = ..()
-	cost += 1
 
 /datum/facility_upgrade/abno_melt_time
 	name = UPGRADE_ABNO_MELT_TIME
@@ -283,8 +276,6 @@
 /datum/facility_upgrade/abno_melt_time/Upgrade()
 	value = min(max_value, value + 10)
 	. = ..()
-	if(value >= max_value * 0.25)
-		cost += 1
 
 /datum/facility_upgrade/abno_melt_time/DisplayValue()
 	return "[value] seconds"
