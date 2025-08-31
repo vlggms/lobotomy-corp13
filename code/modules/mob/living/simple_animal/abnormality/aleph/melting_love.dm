@@ -537,7 +537,7 @@
 	if(!isliving(owner))
 		return
 	var/mob/living/L = owner
-	L.deal_damage(10, BLACK_DAMAGE)
+	L.deal_damage(5, BLACK_DAMAGE)
 	owner.playsound_local(owner, 'sound/effects/wounds/sizzle2.ogg', 25, TRUE)
 	if(!ishuman(L))
 		return
