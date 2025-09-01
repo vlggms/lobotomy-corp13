@@ -356,7 +356,7 @@ No Ability	260
 	name = "for whom the bell tolls"
 	desc = "I suppose if a man has something once, always something of it remains."
 	icon_state = "thirteen"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 80, PALE_DAMAGE = 80)		//No Ability
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 60, BLACK_DAMAGE = 70, PALE_DAMAGE = 80)		//No Ability
 
 /obj/item/clothing/suit/armor/ego_gear/realization/capitalism
 	name = "capitalism"
