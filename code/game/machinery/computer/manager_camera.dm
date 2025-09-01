@@ -236,7 +236,7 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 	if(H.is_working)
 		healing_mult = 0.5
 	switch(bullet_type)
-		if(MANAGER_RED_BULLET || MANAGER_WHITE_BULLET|| MANAGER_BLACK_BULLET || MANAGER_PALE_BULLET || MANAGER_QUAD_BULLET)
+		if(MANAGER_RED_BULLET, MANAGER_WHITE_BULLET, MANAGER_BLACK_BULLET, MANAGER_PALE_BULLET, MANAGER_QUAD_BULLET)
 			if(H.is_working)
 				playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
 				to_chat(owner, span_warning("ERROR: TARGET IS WORKING."))
