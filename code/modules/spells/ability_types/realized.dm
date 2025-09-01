@@ -875,13 +875,16 @@
 		return
 	new /obj/effect/temp_visual/explosion/fast(get_turf(user))
 	var/turf/orgin = get_turf(user)
-	var/list/all_turfs = RANGE_TURFS(explosion_range, orgin)
+	var/list/all_turfs = RANGE_TURFS(explosion_range, orgin)\
+	var/list/been_hit = list()
+	. = ..()
 	for(var/i = 0 to explosion_range)
 		for(var/turf/T in all_turfs)
 			if(get_dist(user, T) > i)
 				continue
 			new /obj/effect/temp_visual/dir_setting/speedbike_trail(T)
-			user.HurtInTurf(damage_amount, list(), WHITE_DAMAGE)
+			var/list/new_hits = user.HurtInTurf(damage_amount, been_hit, WHITE_DAMAGE)  - been_hit
+			been_hit += new_hits
 			for(var/mob/living/carbon/human/L in T)
 				if(!user.faction_check_mob(L, FALSE))
 					continue
@@ -889,14 +892,16 @@
 					continue
 				if(L.is_working) //no work heal :(
 					continue
+				if(L in been_hit)
+					continue
+				been_hit += L
 				L.adjustBruteLoss(-70)
 				L.adjustSanityLoss(-70)
 				new /obj/effect/temp_visual/healing(get_turf(L))
 				if(istype(L.get_item_by_slot(ITEM_SLOT_OCLOTHING), /obj/item/clothing/suit/armor/ego_gear/realization/duality_yin))
 					L.apply_status_effect(/datum/status_effect/duality_yang)
 			all_turfs -= T
-			SLEEP_CHECK_DEATH(1)//Well this could allow for double hit
-	return ..()
+		sleep(1)
 
 /datum/status_effect/duality_yang
 	id = "EGO_YANG"
