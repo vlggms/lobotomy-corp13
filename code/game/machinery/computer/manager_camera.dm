@@ -110,11 +110,20 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 		),
 
 	)
-
+	var/list/bullet_types_to_status = list(
+		MANAGER_RED_BULLET = /datum/status_effect/interventionshield,
+		MANAGER_WHITE_BULLET = /datum/status_effect/interventionshield/white,
+		MANAGER_BLACK_BULLET = /datum/status_effect/interventionshield/black,
+		MANAGER_PALE_BULLET = /datum/status_effect/interventionshield/pale,
+		MANAGER_QUAD_BULLET = /datum/status_effect/interventionshield/quad,
+		MANAGER_YELLOW_BULLET = /datum/status_effect/qliphothoverload,
+	)
 	/* Locked actions */
 	// Unlocked by completing records core suppression
 	var/datum/action/innate/swap_cells/swap
-
+	var/last_used_bullet
+	var/last_used_bullet_time
+	var/mob/living/last_target
 /obj/machinery/computer/camera_advanced/manager/Initialize(mapload)
 	. = ..()
 	GLOB.lobotomy_devices += src
@@ -236,10 +245,8 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 	if(H.is_working)
 		healing_mult = 0.5
 	switch(bullet_type)
-		if(MANAGER_RED_BULLET, MANAGER_WHITE_BULLET, MANAGER_BLACK_BULLET, MANAGER_PALE_BULLET, MANAGER_QUAD_BULLET)
-			if(H.is_working)
-				playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
-				to_chat(owner, span_warning("ERROR: TARGET IS WORKING."))
+		if(MANAGER_RED_BULLET, MANAGER_WHITE_BULLET, MANAGER_BLACK_BULLET, MANAGER_PALE_BULLET, MANAGER_QUAD_BULLET, MANAGER_YELLOW_BULLET)
+			if(bullet_type == last_used_bullet && last_target == H && last_used_bullet_time > world.time && H.has_status_effect(bullet_types_to_status[bullet_type]))
 				return FALSE
 		if(MANAGER_HP_BULLET)
 			if(H.health >= H.maxHealth)
@@ -257,6 +264,17 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 				to_chat(owner, span_warning("ERROR: TARGET'S MIND DOESN'T NEED HEALING."))
 				return FALSE
 			H.adjustSanityLoss(-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL) * healing_mult)
+		if(MANAGER_RED_BULLET, MANAGER_WHITE_BULLET, MANAGER_BLACK_BULLET, MANAGER_PALE_BULLET, MANAGER_QUAD_BULLET)
+			if(H.is_working)
+				playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
+				to_chat(owner, span_warning("ERROR: TARGET IS WORKING."))
+				return FALSE
+			if (H.has_status_effect(bullet_types_to_status[bullet_type]))
+				H.remove_status_effect(bullet_types_to_status[bullet_type])
+			var/shield_hp = GetFacilityUpgradeValue(UPGRADE_BULLET_SHIELD_HEALTH)
+			if(bullet_type == MANAGER_QUAD_BULLET)
+				shield_hp *= 2
+			H.apply_status_effect(bullet_types_to_status[bullet_type], shield_health = shield_hp)
 		if(MANAGER_DUAL_BULLET)
 			if(H.sanity_lost)
 				playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
@@ -268,44 +286,14 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 				return FALSE
 			H.adjustBruteLoss(-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL)* healing_mult)
 			H.adjustSanityLoss(-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL)* healing_mult)
-		if(MANAGER_RED_BULLET)
-			if (H.has_status_effect(/datum/status_effect/interventionshield))
-				playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
-				to_chat(owner, span_warning("ERROR: TARGET HAS THE SAME SHIELD TYPE ALREADY."))
-				return FALSE
-			H.apply_shield(/datum/status_effect/interventionshield, shield_health = GetFacilityUpgradeValue(UPGRADE_BULLET_SHIELD_HEALTH))
-		if(MANAGER_WHITE_BULLET)
-			if (H.has_status_effect(/datum/status_effect/interventionshield/white))
-				playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
-				to_chat(owner, span_warning("ERROR: TARGET HAS THE SAME SHIELD TYPE ALREADY."))
-				return FALSE
-			H.apply_shield(/datum/status_effect/interventionshield/white, shield_health = GetFacilityUpgradeValue(UPGRADE_BULLET_SHIELD_HEALTH))
-		if(MANAGER_BLACK_BULLET)
-			if (H.has_status_effect(/datum/status_effect/interventionshield/black))
-				playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
-				to_chat(owner, span_warning("ERROR: TARGET HAS THE SAME SHIELD TYPE ALREADY."))
-				return FALSE
-			H.apply_shield(/datum/status_effect/interventionshield/black, shield_health = GetFacilityUpgradeValue(UPGRADE_BULLET_SHIELD_HEALTH))
-		if(MANAGER_PALE_BULLET)
-			if (H.has_status_effect(/datum/status_effect/interventionshield/pale))
-				playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
-				to_chat(owner, span_warning("ERROR: TARGET HAS THE SAME SHIELD TYPE ALREADY."))
-				return FALSE
-			H.apply_shield(/datum/status_effect/interventionshield/pale, shield_health = GetFacilityUpgradeValue(UPGRADE_BULLET_SHIELD_HEALTH))
-		if(MANAGER_QUAD_BULLET)
-			if (H.has_status_effect(/datum/status_effect/interventionshield/quad))
-				playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
-				to_chat(owner, span_warning("ERROR: TARGET HAS THE SAME SHIELD TYPE ALREADY."))
-				return FALSE
-			H.apply_shield(/datum/status_effect/interventionshield/quad, shield_health = GetFacilityUpgradeValue(UPGRADE_BULLET_SHIELD_HEALTH) * 2)
 		if(MANAGER_YELLOW_BULLET)
 			if(!owner.faction_check_mob(H))
 				if (H.has_status_effect(/datum/status_effect/qliphothoverload))
-					playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
-					to_chat(owner, span_warning("ERROR: TARGET IS CURRENTLY EFFECTED."))
-					return FALSE
+					H.remove_status_effect(/datum/status_effect/qliphothoverload)
 				H.apply_status_effect(/datum/status_effect/qliphothoverload)
 				if (GetFacilityUpgradeValue(UPGRADE_YELLOW_BULLET))
+					if (H.has_status_effect(/datum/status_effect/qliphothshred))
+						H.remove_status_effect(/datum/status_effect/qliphothshred)
 					H.apply_status_effect(/datum/status_effect/qliphothshred)
 			else
 				to_chat(owner, span_warning("WELFARE SAFETY SYSTEM ERROR: TARGET SHARES CORPORATE FACTION."))
@@ -317,6 +305,9 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 		else
 			to_chat(owner, span_warning("ERROR: BULLET INITIALIZATION FAILURE."))
 			return FALSE
+	last_used_bullet = bullet_type
+	last_used_bullet_time = world.time + 3 SECONDS
+	last_target = H
 	playsound(get_turf(src), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
 	playsound(get_turf(H), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
 	return TRUE
@@ -356,15 +347,18 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 		return FALSE
 
 	if(bullet_type == MANAGER_YELLOW_BULLET)
-		if (H.has_status_effect(/datum/status_effect/qliphothoverload))
-			playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
-			to_chat(owner, span_warning("ERROR: TARGET IS CURRENTLY EFFECTED."))
+		if(bullet_type == last_used_bullet && last_target == H && last_used_bullet_time > world.time && H.has_status_effect(bullet_types_to_status[bullet_type]))
 			return FALSE
+		if (H.has_status_effect(/datum/status_effect/qliphothoverload))
+			H.remove_status_effect(/datum/status_effect/qliphothoverload)
 		H.apply_status_effect(/datum/status_effect/qliphothoverload)
 		if (GetFacilityUpgradeValue(UPGRADE_YELLOW_BULLET))
 			H.apply_status_effect(/datum/status_effect/qliphothshred)
 		playsound(get_turf(src), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
 		playsound(get_turf(H), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
+		last_used_bullet = bullet_type
+		last_used_bullet_time = world.time + 3 SECONDS
+		last_target = H
 		return TRUE
 
 	to_chat(owner, span_warning("ERROR: BULLET INITIALIZATION FAILURE."))
