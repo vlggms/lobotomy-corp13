@@ -423,7 +423,7 @@ No Ability	250
 	name = "al coda"
 	desc = "Harmonizes well."
 	icon_state = "coda"
-	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 90, BLACK_DAMAGE = 60, PALE_DAMAGE = 40)		//No Ability
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 80, BLACK_DAMAGE = 70, PALE_DAMAGE = 30)		//No Ability
 
 /obj/item/clothing/suit/armor/ego_gear/realization/head
 	name = "head of god"
