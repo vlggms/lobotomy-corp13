@@ -875,7 +875,7 @@
 		return
 	new /obj/effect/temp_visual/explosion/fast(get_turf(user))
 	var/turf/orgin = get_turf(user)
-	var/list/all_turfs = RANGE_TURFS(explosion_range, orgin)\
+	var/list/all_turfs = RANGE_TURFS(explosion_range, orgin)
 	var/list/been_hit = list()
 	. = ..()
 	for(var/i = 0 to explosion_range)
