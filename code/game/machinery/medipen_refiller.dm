@@ -11,7 +11,7 @@
 						    /obj/item/reagent_containers/hypospray/medipen/atropine = /datum/reagent/medicine/atropine,
 						    /obj/item/reagent_containers/hypospray/medipen/salbutamol = /datum/reagent/medicine/salbutamol,
 						    /obj/item/reagent_containers/hypospray/medipen/oxandrolone = /datum/reagent/medicine/oxandrolone,
-						    /obj/item/reagent_containers/hypospray/medipen/salacid = /datum/reagent/medicine/sal_acid,
+						    /obj/item/reagent_containers/hypospray/medipen/safety/kcorp = /datum/reagent/medicine/helapoeisis,
 						    /obj/item/reagent_containers/hypospray/medipen/penacid = /datum/reagent/medicine/pen_acid)
 	/// var to prevent glitches in the animation
 	var/busy = FALSE

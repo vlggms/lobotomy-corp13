@@ -315,9 +315,9 @@
 /area/department_main/information)
 "fR" = (
 /obj/structure/table/glass,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
 /turf/open/floor/facility/white,
 /area/department_main/safety)
 "go" = (
@@ -693,9 +693,9 @@
 /area/department_main/information)
 "wi" = (
 /obj/structure/table/glass,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
 /turf/open/floor/facility/white,
 /area/department_main/safety)
 "wm" = (
@@ -1212,7 +1212,7 @@
 	pixel_x = 32
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
 /turf/open/floor/noslip,
 /area/facility_hallway/central)
 "VZ" = (

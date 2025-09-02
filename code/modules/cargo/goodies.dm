@@ -143,4 +143,4 @@
 	name = "Medipen Two-Pak"
 	desc = "Contains one standard epinephrine medipen and one standard emergency first-aid kit medipen. For when you want to prepare for the worst."
 	cost = PAYCHECK_MEDIUM * 2
-	contains = list(/obj/item/reagent_containers/hypospray/medipen, /obj/item/reagent_containers/hypospray/medipen/ekit)
+	contains = list(/obj/item/reagent_containers/hypospray/medipen/safety/rcorp, /obj/item/reagent_containers/hypospray/medipen/ekit)

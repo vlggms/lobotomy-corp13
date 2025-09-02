@@ -3828,8 +3828,8 @@
 	dir = 4
 	},
 /obj/structure/rack,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
 /turf/open/floor/pod/dark,
 /area/facility_hallway/control)
 "sp" = (
@@ -4383,8 +4383,8 @@
 /area/facility_hallway/safety)
 "uI" = (
 /obj/structure/rack,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
 /obj/effect/turf_decal/siding/red{
 	color = "#440000";
 	dir = 8
@@ -5038,8 +5038,8 @@
 /area/department_main/training)
 "xM" = (
 /obj/structure/rack,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
 /turf/open/floor/pod/light,
 /area/facility_hallway/information)
 "xQ" = (
@@ -5701,8 +5701,8 @@
 /area/facility_hallway/human)
 "AF" = (
 /obj/structure/rack,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
 /turf/open/floor/pod/light,
 /area/facility_hallway/information)
 "AH" = (
@@ -7450,8 +7450,8 @@
 	dir = 8
 	},
 /obj/structure/rack,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
 /turf/open/floor/pod/dark,
 /area/facility_hallway/control)
 "Jq" = (
@@ -8627,8 +8627,8 @@
 /area/department_main/command)
 "Pn" = (
 /obj/structure/rack,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
 /obj/effect/turf_decal/siding/red{
 	color = "#440000";
 	dir = 4
@@ -10201,11 +10201,11 @@
 /area/facility_hallway/training)
 "Xt" = (
 /obj/structure/table/wood/fancy/green,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
 /obj/effect/turf_decal/siding/green{
 	color = "#006400";
 	dir = 4
@@ -10219,19 +10219,19 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_y = 4
 	},
 /turf/open/floor/pod,

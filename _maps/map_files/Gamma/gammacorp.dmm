@@ -2560,7 +2560,7 @@
 /area/facility_hallway/command)
 "rQ" = (
 /obj/structure/bed,
-/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
 /turf/open/floor/facility,
 /area/department_main/control)
 "rU" = (
@@ -3104,9 +3104,9 @@
 "vf" = (
 /obj/machinery/light,
 /obj/structure/table/wood/fancy/green,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
 /turf/open/floor/facility/white,
 /area/department_main/safety)
 "vl" = (
@@ -5011,7 +5011,7 @@
 	pixel_x = 32
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
 /turf/open/floor/noslip,
 /area/department_main/control)
 "IA" = (
@@ -5642,9 +5642,9 @@
 /area/department_main/safety)
 "Mo" = (
 /obj/structure/table/wood/fancy/green,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
 /turf/open/floor/facility/white,
 /area/department_main/safety)
 "Mp" = (
