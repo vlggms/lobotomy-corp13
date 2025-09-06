@@ -40,7 +40,7 @@
 	name = "light"
 	icon_state = "apocalypse"
 	damage_type = BLACK_DAMAGE
-	damage = 10
+	damage = 14
 	alpha = 0
 	spread = 45
 	projectile_phasing = (ALL & (~PASSMOB))
