@@ -251,9 +251,11 @@
 	toggle_ai(AI_OFF)
 
 /mob/living/simple_animal/hostile/debugdummy/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
-	return FALSE
+	. = ..()
+	health = maxHealth
 
 /mob/living/simple_animal/hostile/debugdummy/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE)
+	. = ..()
 	var/damage_dealt
 	if(forced)
 		damage_dealt = amount * CONFIG_GET(number/damage_multiplier)
@@ -264,6 +266,7 @@
 	accumulated_damage += damage_dealt
 
 /mob/living/simple_animal/hostile/debugdummy/adjustFireLoss(amount, updating_health = TRUE, forced = FALSE)
+	. = ..()
 	var/damage_dealt
 	if(forced)
 		damage_dealt = amount * CONFIG_GET(number/damage_multiplier)
@@ -274,6 +277,7 @@
 	accumulated_damage += damage_dealt
 
 /mob/living/simple_animal/hostile/debugdummy/adjustRedLoss(amount, updating_health = TRUE, forced = FALSE)
+	. = ..()
 	var/damage_dealt
 	if(forced)
 		damage_dealt = amount * CONFIG_GET(number/damage_multiplier)
@@ -284,6 +288,7 @@
 	accumulated_damage += damage_dealt
 
 /mob/living/simple_animal/hostile/debugdummy/adjustWhiteLoss(amount, updating_health = TRUE, forced = FALSE, white_healable = FALSE)
+	. = ..()
 	var/damage_dealt
 	if(forced)
 		damage_dealt = amount * CONFIG_GET(number/damage_multiplier)
@@ -294,6 +299,7 @@
 	accumulated_damage += damage_dealt
 
 /mob/living/simple_animal/hostile/debugdummy/adjustBlackLoss(amount, updating_health = TRUE, forced = FALSE, white_healable = FALSE)
+	. = ..()
 	var/damage_dealt
 	if(forced)
 		damage_dealt = amount * CONFIG_GET(number/damage_multiplier)
@@ -304,6 +310,7 @@
 	accumulated_damage += damage_dealt
 
 /mob/living/simple_animal/hostile/debugdummy/adjustPaleLoss(amount, updating_health = TRUE, forced = FALSE)
+	. = ..()
 	var/damage_dealt
 	if(forced)
 		damage_dealt = amount * CONFIG_GET(number/damage_multiplier)
@@ -346,7 +353,7 @@
 	if(dps_timer)
 		return
 	say("DPS check will start in three seconds!")
-	SLEEP_CHECK_DEATH(5)
+	SLEEP_CHECK_DEATH(10)
 	say("3!")
 	SLEEP_CHECK_DEATH(10)
 	say("2!")
