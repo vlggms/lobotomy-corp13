@@ -612,23 +612,13 @@
 	hitsound = 'sound/weapons/fixer/generic/knife2.ogg'
 
 /obj/item/ego_weapon/mini/clayman
-	name = "Creative Freedom"
+	name = "creative freedom"
 	desc = "Clay and flesh are both mediums for expression."
 	icon_state = "creativefreedom"
-	special = "This weapon slows after hit on windup."
-	force = 8
-	damtype = PALE_DAMAGE
+	force = 12
+	stuntime = 5
+	damtype = RED_DAMAGE
 	hitsound = 'sound/weapons/bladeslice.ogg'
-
-/obj/item/ego_weapon/mini/clayman/attack(mob/living/target, mob/living/user)
-	if(!CanUseEgo(user))
-		return
-	..()
-	if(do_after(user, 7, src))
-		target.apply_status_effect(/datum/status_effect/qliphothoverload)
-	else
-		to_chat(user, "<span class= 'spider'><b>Your attack was interrupted!</b></span>")
-		return
 
 
 /obj/item/ego_weapon/white_gossypium
