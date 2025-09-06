@@ -440,7 +440,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["prefered_sephirah_boxcolor"], prefered_sephirah_boxcolor)
 
 	//Lore
-	READ_FILE(S["terragov_relation"], terragov_relation)
+	READ_FILE(S["home_district"], home_district)
+	READ_FILE(S["home_wealth"], home_wealth)
 
 	//Jobs
 	READ_FILE(S["joblessrole"], joblessrole)
@@ -524,7 +525,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	persistent_scars = sanitize_integer(persistent_scars)
 
 	//Lore
-	terragov_relation = sanitize_inlist(terragov_relation, GLOB.relationship_prefs, initial(terragov_relation))
+	home_district = sanitize_inlist(home_district, GLOB.district_prefs, initial(home_district))
+	home_wealth = sanitize_inlist(home_wealth, GLOB.wealth_prefs, initial(home_wealth))
 
 	joblessrole	= sanitize_integer(joblessrole, 1, 3, initial(joblessrole))
 	//Validate job prefs
@@ -600,7 +602,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["prefered_sephirah_boxcolor"] , prefered_sephirah_boxcolor)
 
 	//Lore
-	WRITE_FILE(S["terragov_relation"], terragov_relation)
+	WRITE_FILE(S["home_district"], home_district)
+	WRITE_FILE(S["home_wealth"], home_wealth)
 
 	//Jobs
 	WRITE_FILE(S["joblessrole"]		, joblessrole)
