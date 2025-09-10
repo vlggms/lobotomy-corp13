@@ -146,20 +146,6 @@ GLOBAL_LIST_EMPTY(lcorp_upgrades)
 	GLOB.lcorp_upgrades += "Agent Workchance"
 	..()
 
-//Plushie Extractor
-/datum/data/lc13research/plushie_extractor
-	research_name = "Repeatable: Plushie Extractor"
-	research_desc = "An item used to extract plushies for abnormalities. <br>We have no clue how this works. "
-	cost = LOW_RESEARCH_PRICE
-
-	corp = L_CORP_REP
-/datum/data/lc13research/plushie_extractor/ResearchEffect(obj/structure/representative_console/requester)
-	if(repeat_cooldown > world.time)
-		return
-	new /obj/item/device/plushie_extractor(get_turf(requester))
-	requester.visible_message(span_notice("The [requester] lights up as it teleports in the Extractor."))
-	repeat_cooldown = world.time + (10 SECONDS)
-
 //EGO Gift Extractor
 /datum/data/lc13research/ego_gift_extractor
 	research_name = "Repeatable: EGO Gift Extractor"

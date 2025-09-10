@@ -408,9 +408,8 @@
 //Injector
 /obj/item/powered_gadget/enkephalin_injector
 	name = "Prototype Enkephalin Injector"
-	desc = "A tool designed to inject raw enkephalin from our batteries to pacify hostile lifeforms. \
-			However, the development was discontinued after the safety department abused it for... other purposes. \
-			This version only makes the entities even more hostile towards you."
+	desc = "A tool designed to inject raw enkephalin for manufacturing that has been repurposed as a defense tool. \
+			Can be used to draw aggression from hostile entities by delivering a painful poke with hydraulic power."
 	icon_state = "e_injector"
 	default_icon = "e_injector"
 	batterycost = 5000
@@ -423,7 +422,7 @@
 	if(cell.charge >= batterycost && ishostile(T) && T.stat != DEAD && !(T.status_flags & GODMODE) && !T.client)
 		var/mob/living/simple_animal/hostile/H = T
 		if(H.target != user)
-			hit_message = span_warning("[user] injected some enkephalin into [T].")
+			hit_message = span_warning("[user] stabbed [T] with the [name]!")
 			H.GiveTarget(user)
 			user.visible_message(hit_message)
 			cell.charge -= batterycost
