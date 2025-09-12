@@ -203,11 +203,12 @@
 	return FALSE
 
 /mob/living/carbon/human/CanPass(atom/movable/mover, turf/target)
-	if(!sanity_lost)
-		if(ishuman(mover))
-		var/mob/living/carbon/human/H = mover
-			if(!H.sanity_lost)
-				return TRUE
+	if(!IsCombatMap())
+		if(!sanity_lost)
+			if(ishuman(mover))
+				var/mob/living/carbon/human/H = mover
+				if(!H.sanity_lost)
+					return TRUE
 	return ..()
 
 /mob/living/carbon/human/Destroy()
