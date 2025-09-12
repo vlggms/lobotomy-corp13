@@ -198,11 +198,12 @@
 	dna.initialize_dna()
 
 /mob/living/carbon/human/CanPass(atom/movable/mover, turf/target)
-	if(!sanity_lost)
-		if(ishuman(mover))
-			var/mob/living/carbon/human/H = mover
-			if(!H.sanity_lost)
-				return TRUE
+	if(!SSmaptype.maptype in SSmaptype.combatmaps)
+		if(!sanity_lost)
+			if(ishuman(mover))
+				var/mob/living/carbon/human/H = mover
+				if(!H.sanity_lost)
+					return TRUE
 	return ..()
 
 /mob/living/carbon/human/Destroy()
