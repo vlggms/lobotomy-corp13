@@ -2,10 +2,10 @@
 	name = "paradise lost"
 	desc = "\"Behold: you stood at the door and knocked, and it was opened to you. \
 	I come from the end, and I am here to stay for but a moment.\""
-	special = "This weapon has a ranged attack."
+	special = "This weapon has a ranged attack that also happens when hitting an enemy."
 	icon_state = "paradise"
 	worn_icon_state = "paradise"
-	force = 40
+	force = 45
 	damtype = PALE_DAMAGE
 	attack_verb_continuous = list("purges", "purifies")
 	attack_verb_simple = list("purge", "purify")
@@ -16,29 +16,20 @@
 		TEMPERANCE_ATTRIBUTE = 100,
 		JUSTICE_ATTRIBUTE = 100,
 	)
-	var/ranged_cooldown
-	var/ranged_cooldown_time = 0.8 SECONDS
-	var/ranged_damage = 40
+	var/aoe_damage = 30
+	var/healing_amount = 0
+	var/list/been_hit = list()
 
 /obj/item/ego_weapon/paradise/attack(mob/living/M, mob/living/user)
 	var/turf/target_turf = get_turf(M)
 	. = ..()
 	if(!.)
 		return FALSE
-	var/aoe = 35
-	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-	var/justicemod = 1 + userjust / 100
-	aoe *= justicemod
-	aoe *= force_multiplier
-	for(var/mob/living/L in oview(2, target_turf))
-		if(L == user || ishuman(L))
-			continue
-		L.apply_damage(aoe, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
-		new /obj/effect/temp_visual/smash_effect(get_turf(L))
+	healing_amount += force
+	been_hit += M
+	DoAoe(user, target_turf)
 
 /obj/item/ego_weapon/paradise/afterattack(atom/A, mob/living/user, proximity_flag, params)
-	if(ranged_cooldown > world.time)
-		return
 	if(!CanUseEgo(user))
 		return
 	var/turf/target_turf = get_turf(A)
@@ -47,21 +38,35 @@
 	if((get_dist(user, target_turf) < 2) || !(target_turf in view(10, user)))
 		return
 	..()
-	var/mob/living/carbon/human/H = user
-	ranged_cooldown = world.time + ranged_cooldown_time
+	user.changeNext_move(CLICK_CD_MELEE)
+	DoAoe(user, target_turf)
+
+/obj/item/ego_weapon/paradise/proc/DoAoe(mob/living/user, turf/target_turf)
 	playsound(target_turf, 'sound/weapons/ego/paradise_ranged.ogg', 50, TRUE)
-	var/damage_dealt = 0
-	var/modified_damage = (ranged_damage*force_multiplier)
+	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+	var/justicemod = 1 + userjust / 100
+	var/modified_damage = (aoe_damage*force_multiplier) * justicemod
 	for(var/turf/open/T in range(target_turf, 1))
 		new /obj/effect/temp_visual/paradise_attack(T)
-		for(var/mob/living/L in user.HurtInTurf(T, list(), modified_damage, PALE_DAMAGE, hurt_mechs = TRUE))
+		for(var/mob/living/L in user.HurtInTurf(T, been_hit, modified_damage, PALE_DAMAGE, hurt_mechs = TRUE))
+			been_hit += L
 			if((L.stat < DEAD) && !(L.status_flags & GODMODE))
-				damage_dealt += modified_damage
-	if(damage_dealt > 0)
-		H.adjustStaminaLoss(-damage_dealt*0.2)
-		H.adjustBruteLoss(-damage_dealt*0.1)
-		H.adjustFireLoss(-damage_dealt*0.1)
-		H.adjustSanityLoss(-damage_dealt*0.1)
+				healing_amount += aoe_damage
+	for(var/mob/living/L in oview(6, get_turf(src)))
+		if(L == user || ishuman(L) || L in been_hit)
+			continue
+		L.apply_damage(modified_damage*0.5, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+		new /obj/effect/temp_visual/paradise_attack(get_turf(L))
+		if((L.stat < DEAD) && !(L.status_flags & GODMODE))
+			healing_amount += (aoe_damage*0.5)
+	if(healing_amount > 0)
+		var/mob/living/carbon/human/H = user
+		H.adjustStaminaLoss(-healing_amount*0.2)
+		H.adjustBruteLoss(-healing_amount*0.1)
+		H.adjustFireLoss(-healing_amount*0.1)
+		H.adjustSanityLoss(-healing_amount*0.1)
+	been_hit = list()
+	healing_amount = 0
 
 /obj/item/ego_weapon/paradise/get_clamped_volume()
 	return 40
