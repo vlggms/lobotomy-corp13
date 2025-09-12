@@ -197,7 +197,7 @@
 	randomize_human(src)
 	dna.initialize_dna()
 
-/mob/living/carbon/huma/proc/IsCombatMap() //Is it currently a combat gamemode? Used to check for a few interactions, like if humans can pass eachother.
+/mob/living/carbon/human/proc/IsCombatMap() //Is it currently a combat gamemode? Used to check for a few interactions, like if humans can pass eachother.
 	if(SSmaptype.maptype in SSmaptype.combatmaps)
 		return TRUE
 	return FALSE
