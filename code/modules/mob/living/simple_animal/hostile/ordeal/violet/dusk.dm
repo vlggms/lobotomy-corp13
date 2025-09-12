@@ -77,7 +77,7 @@
 		var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(get_turf(src), src)
 		animate(D, alpha = 0, transform = matrix()*1.5, time = 7)
 		SLEEP_CHECK_DEATH(8)
-	icon_state = icon_living
+	icon_state = "violet_dusk"
 	playsound(get_turf(src), 'sound/effects/ordeals/violet/midnight_white_attack.ogg', 50, FALSE, 32)
 	for(var/turf/T in range(4, src))
 		HurtInTurf(T, list(), 30, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
@@ -307,7 +307,7 @@
 
 /mob/living/simple_animal/hostile/ordeal/violet_spawn/arm/proc/PulseAttack()
 	in_pulse = TRUE
-	next_pulse = world.time + 20 SECONDS
+	next_pulse = world.time + 30 SECONDS
 	icon_state = "violet_dusk_tentacle_ability"
 	for(var/i = 1 to 8)
 		var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(get_turf(src), src)
