@@ -82,7 +82,7 @@
 	pixel_x = -2;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/hypospray/medipen/salacid{
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp{
 	pixel_x = 3;
 	pixel_y = -7
 	},

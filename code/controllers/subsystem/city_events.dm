@@ -122,9 +122,9 @@ SUBSYSTEM_DEF(cityevents)
 			/obj/item/tresmetal/electrum,
 			/obj/item/tresmetal/darksteel), 5)	//Metal that can upgrade peacekeepers
 		if("hppens")
-			spawnitem(/obj/item/reagent_containers/hypospray/medipen/salacid, 50)
+			spawnitem(/obj/item/reagent_containers/hypospray/medipen/safety/kcorp, 50)
 		if("sppens")
-			spawnitem(/obj/item/reagent_containers/hypospray/medipen/mental, 50)
+			spawnitem(/obj/item/reagent_containers/hypospray/medipen/safety/lcorp, 50)
 
 		//Neutral events
 		if("swag")

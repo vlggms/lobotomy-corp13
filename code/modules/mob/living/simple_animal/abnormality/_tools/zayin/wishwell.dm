@@ -87,8 +87,8 @@
 	)
 
 	var/list/normalitem = list(
-		/obj/item/reagent_containers/hypospray/medipen/salacid,
-		/obj/item/reagent_containers/hypospray/medipen/mental,
+		/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+		/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
 		/obj/item/ego_weapon/tutorial,
 		/obj/item/ego_weapon/tutorial/white,
 		/obj/item/ego_weapon/tutorial/black,
