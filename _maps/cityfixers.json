@@ -13,5 +13,6 @@
 	"space_ruin_levels": 0,
 	"space_empty_levels": 0,
 	"minetype": "none",
-	"maptype": "fixers"
+	"maptype": "fixers",
+	"map_tags": [""]
 }

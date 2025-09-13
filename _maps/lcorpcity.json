@@ -21,5 +21,6 @@
 		}
 	],
 	"minetype": "none",
-	"maptype": "lcorp_city"
+	"maptype": "lcorp_city",
+	"map_tags": [""]
 }

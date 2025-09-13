@@ -16,5 +16,6 @@
 		"emergency": "emergency_alpha"
 	},
 	"minetype": "none",
-	"maptype": "standard"
+	"maptype": "standard",
+	"map_tags": [""]
 }
