@@ -13,5 +13,6 @@
 	"space_ruin_levels": 0,
 	"space_empty_levels": 0,
 	"minetype": "none",
-	"maptype": "limbus_labs"
+	"maptype": "limbus_labs",
+	"map_tags": [""]
 }
