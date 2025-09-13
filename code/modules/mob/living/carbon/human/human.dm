@@ -202,15 +202,6 @@
 		return TRUE
 	return FALSE
 
-/mob/living/carbon/human/CanPass(atom/movable/mover, turf/target)
-	if(!IsCombatMap())
-		if(!sanity_lost)
-			if(ishuman(mover))
-				var/mob/living/carbon/human/H = mover
-				if(!H.sanity_lost)
-					return TRUE
-	return ..()
-
 /mob/living/carbon/human/Destroy()
 	QDEL_NULL(physiology)
 	GLOB.human_list -= src
