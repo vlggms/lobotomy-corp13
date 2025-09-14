@@ -34,9 +34,9 @@
 		new /datum/data/extraction_cargo("L-Corp Armored Vest Template ",	/obj/item/clothing/suit/armor/ego_gear/city/lcorp_vest,				100, CAT_EQUIP) = 1,
 
 		//Medical
-		new /datum/data/extraction_cargo("Epinepherine Medi-Pen ",		/obj/item/reagent_containers/hypospray/medipen,						40, CAT_MEDICAL) = 1,
-		new /datum/data/extraction_cargo("Sal-Acid Medi-Pen ",			/obj/item/reagent_containers/hypospray/medipen/salacid,				50, CAT_MEDICAL) = 1,
-		new /datum/data/extraction_cargo("Mental-Stabilizer Medi-Pen ",	/obj/item/reagent_containers/hypospray/medipen/mental,				50, CAT_MEDICAL) = 1,
+		new /datum/data/extraction_cargo("Stamina Ampoule ",		/obj/item/reagent_containers/hypospray/medipen/safety/rcorp,			40, CAT_MEDICAL) = 1,
+		new /datum/data/extraction_cargo("Health Ampoule ",			/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,			50, CAT_MEDICAL) = 1,
+		new /datum/data/extraction_cargo("Sanity Ampoule ",			/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,			50, CAT_MEDICAL) = 1,
 
 		//Resources - This is for EGOshards
 

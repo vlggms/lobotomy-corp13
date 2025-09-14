@@ -5,9 +5,8 @@
 	icon = 'icons/effects/landmarks_static.dmi'
 	icon_state = "x4"
 	var/list/possible_items = list(
-	/obj/item/ksyringe,
-	/obj/item/reagent_containers/hypospray/medipen/salacid,
-	/obj/item/reagent_containers/hypospray/medipen/mental,
+	/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+	/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
 	)
 
 /obj/effect/landmark/enkritemspawn/Initialize()

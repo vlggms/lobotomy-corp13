@@ -76,8 +76,8 @@
 "m" = (
 /obj/structure/table/wood/fancy/royalblue,
 /obj/item/reagent_containers/food/drinks/bottle/holywater,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
 /turf/open/floor/plasteel/chapel,
 /area/city/backstreets_room)
 "n" = (

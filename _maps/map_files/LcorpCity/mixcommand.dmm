@@ -3152,7 +3152,7 @@
 	pixel_x = 32
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
 /turf/open/floor/noslip,
 /area/city)
 "Qr" = (
