@@ -210,56 +210,97 @@
 	name = "worthless greed"
 	desc = "The magical girl, who was no longer a magical girl, ate many things. \
 	Authority, money, fame, and many other forms of pleasure. She ended up eating away anything in her sight."
-	special = "This weapon deals its damage after a short windup, unless combo is enabled."
+	special = "This weapon has a combo system and can charge up a powerful charge attack."
 	hitsound = 'sound/weapons/fixer/generic/fist2.ogg'
 	icon_state = "greed"
-	force = 20
-	knockback = null
-	finisher_on = FALSE
-	var/combo = 0
-	var/combo_time
-	var/combo_wait = 10
+	force = 40
+	var/charge_damage = 120
+	var/charge_wind_up = 3 SECONDS
+	var/can_charge = TRUE
+	var/prepair_charge = FALSE
+	var/charge_cooldown_time = 7 SECONDS
 
-/obj/item/ego_weapon/goldrush/nihil/attackby(obj/item/I, mob/living/user, params)
-	if(istype(I, /obj/item/nihil))
+/obj/item/ego_weapon/goldrush/nihil/attack_self(mob/user) //spin attack with knockback
+	if(!CanUseEgo(user) || charging)
 		return
-	..()
-
-/obj/item/ego_weapon/goldrush/nihil/attack(mob/living/target, mob/living/user)
-	if(!CanUseEgo(user))
+	if(!can_charge)
+		to_chat(user,span_warning("You attacked too recently."))
 		return
-	if(finisher_on)
-		force = 60
-		..()
-		return
-	if(world.time > combo_time)
-		combo = 0
-	combo_time = world.time + combo_wait
-	if(combo==4)
-		combo = 0
-		user.changeNext_move(CLICK_CD_MELEE * 2)
-		force *= 5	// Should actually keep up with normal damage.
-		playsound(src, 'sound/weapons/fixer/generic/finisher2.ogg', 50, FALSE, 9)
-		to_chat(user,span_warning("You are offbalance, you take a moment to reset your stance."))
+	prepair_charge = !prepair_charge
+	if(!prepair_charge)
+		to_chat(user,span_notice("You prepair to preform a dash."))
 	else
-		user.changeNext_move(CLICK_CD_MELEE * 0.4)
-	..()
-	combo += 1
-	force = initial(force)
+		to_chat(user,span_notice("You decide to not preform a dash."))
+	. = ..()
 
-/obj/item/ego_weapon/goldrush/nihil/attack_self(mob/user)
-	..()
-	if(finisher_on)
-		to_chat(user,span_warning("You will now perform a combo attack instead of a heavy attack."))
-		finisher_on = FALSE
-		force = initial(force)
-		knockback = null
+/obj/item/ego_weapon/goldrush/nihil/afterattack(atom/A, mob/living/user, proximity_flag, params)
+	if(!CanUseEgo(user) || !prepair_charge || charging)
 		return
+	var/turf/target_turf = get_turf(A)
+	if(!istype(target_turf))
+		return
+	..()
+	to_chat(user,span_notice("You start charging up a dash."))
+	prepair_charge = FALSE
+	charging = TRUE
+	user.Immobilize(stuntime)
+	if(do_after(user, charge_wind_up, src))
+		if(QDELETED(user))
+			charge_reset()
+			return
+		can_charge = FALSE
+		var/list/been_hit = list()
+		var/turf/end_turf = get_ranged_target_turf_direct(user, target_turf, 12, 0)
+		var/list/turf_list = getline(user, end_turf)
+		for(var/turf/T in turf_list)
+			var/stop_charge = FALSE
+			if(T.density)
+				break
+			for(var/obj/structure/window/W in T.contents)
+				stop_charge = TRUE
+				break
+			for(var/obj/machinery/door/MD in T.contents)
+				if(!MD.CanAStarPass(null))
+					stop_charge = TRUE
+					break
+				if(MD.density)
+					INVOKE_ASYNC(MD, TYPE_PROC_REF(/obj/machinery/door, open), 2)
+			if(stop_charge)
+				break
+			if(QDELETED(user))
+				charge_reset()
+				return
+			user.loc = T
+			var/aoe = charge_damage
+			var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+			var/justicemod = 1 + userjust / 100
+			aoe *= justicemod
+			aoe *= force_multiplier
+			for(var/mob/living/L in range(1, user))
+				if(L == user)
+					continue
+				if(ishuman(L))
+					continue
+				if(L in been_hit)
+					continue
+				been_hit += L
+				L.apply_damage(aoe, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+				L.visible_message(span_danger("[user] tackles [L]!"))
+				playsound(T, 'sound/abnormalities/kog/GreedHit1.ogg', 40, 1)
+				playsound(T, 'sound/abnormalities/kog/GreedHit2.ogg', 30, 1)
+			for(var/turf/open/R in range(1, T))
+				new /obj/effect/temp_visual/small_smoke/halfsecond(R)
+			playsound(src,'sound/effects/bamf.ogg', 70, TRUE, 20)
+			user.Immobilize(0.6)
+			sleep(0.6)
+		addtimer(CALLBACK(src, PROC_REF(charge_reset)), charge_cooldown_time)
+		charging = FALSE
+	else
+		charging = FALSE
 
-	to_chat(user,span_warning("You will now perform a heavy attack instead of a combo attack."))
-	finisher_on = TRUE
-	knockback = KNOCKBACK_LIGHT
-	force = 60
+/obj/item/ego_weapon/goldrush/nihil/proc/charge_reset()
+	can_charge = TRUE
+	charging = FALSE
 
 /obj/item/ego_weapon/shield/despair_nihil
 	name = "meaningless despair"
