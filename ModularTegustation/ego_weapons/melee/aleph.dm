@@ -311,10 +311,11 @@
 	desc = "Just like how the ever-watching eyes, the scale that could measure any and all sin, \
 	and the beak that could swallow everything protected the peace of the Black Forest... \
 	The wielder of this armament may also bring peace as they did."
-	special = "This weapon can attack from a distance on a cooldown and perform a large area attack when used in hand."
+	special = "This weapon's damage scales off of missing health"
 	icon_state = "twilight"
 	worn_icon_state = "twilight"
 	force = 20
+	attack_speed = 1.2
 	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = RED_DAMAGE // It's all damage types, actually
 	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
@@ -326,158 +327,217 @@
 							TEMPERANCE_ATTRIBUTE = 120,
 							JUSTICE_ATTRIBUTE = 120
 							)
-	var/ranged_cooldown_time = 5 SECONDS
-	var/ranged_cooldown
-	var/aoe_cooldown_time = 3 SECONDS
-	var/aoe_cooldown
-	var/max_targets = 10 // Max targets for the AOE. 30 projectiles is a lot.
-
-/obj/item/ego_weapon/twilight/afterattack(atom/A, mob/living/user, proximity_flag, params) // Special melee attack from up to 10 tiles away
-	if(!CanUseEgo(user))
-		return
-	if(ranged_cooldown > world.time)
-		return
-	if(!isliving(A))
-		return
-	var/target_turf = get_turf(A)
-	if((get_dist(user, target_turf) < 2) || (get_dist(user, target_turf) > 10))
-		return
-	var/mob/living/the_target = A
-	force *= 1.5
-	playsound(the_target, hitsound, get_clamped_volume(), TRUE, -1)
-	var/turf/landing_turf = get_step(target_turf, pick(1,2,4,5,6,8,9,10))
-	if(!isopenturf(landing_turf))
-		landing_turf = target_turf
-	get_thrust_turfs(A, user)
-	get_sweep_turfs(A, user)
-	the_target.attacked_by(src, user)
-	for(var/damage_type in list(WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE))
-		damtype = damage_type
-		the_target.attacked_by(src, user)
-	damtype = initial(damtype)
-	force = initial(force)
-	var/attacktime = (CLICK_CD_MELEE * attack_speed * 1.5)
-	user.changeNext_move(attacktime)
-	user.Immobilize(attacktime + 0.2)
-	new /obj/effect/temp_visual/weapon_stun(get_turf(user))
-	ranged_cooldown = world.time + ranged_cooldown_time
+	var/ultimate_cooldown_time = 60 SECONDS
+	var/ultimate_cooldown
+	var/ultimate_damage = 60
+	var/ultimate_attack = FALSE
+	var/ultimate_combo = 1
+	var/in_ultimate = FALSE
+	var/slash_length = 5
+	var/slash_angle = 110
 
 /obj/item/ego_weapon/twilight/attack(mob/living/M, mob/living/user)
 	if(!CanUseEgo(user))
 		return
+	var/missing_hp = (2 - (user.health / user.maxHealth))
+	if(ultimate_attack)
+		in_ultimate = TRUE
+		ultimate_attack = FALSE
+	if(in_ultimate)
+		return
+	force = round(missing_hp * initial(force))
 	..()
 	for(var/damage_type in list(WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE))
 		damtype = damage_type
 		M.attacked_by(src, user)
 	damtype = initial(damtype)
 
+/obj/item/ego_weapon/twilight/afterattack(atom/A, mob/living/user, proximity_flag, params)
+	if(!CanUseEgo(user))
+		return
+	if(!isliving(A))
+		return
+	var/turf/target_turf = get_turf(A)
+	if((get_dist(user, target_turf) > 5) || !(target_turf in view(10, user)))
+		return
+	..()
+	if(ultimate_attack)
+		in_ultimate = TRUE
+		ultimate_attack = FALSE
+	if(in_ultimate)
+		user.changeNext_move(CLICK_CD_MELEE * attack_speed)
+		playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+		user.do_attack_animation(A)
+		if(ultimate_combo <= 2)
+			do_dash(A, user)
+			ultimate_combo += 1
+		else
+			do_slash(get_turf(A), user)
+			in_ultimate = FALSE
+			ultimate_combo = 1
+
+/obj/item/ego_weapon/twilight/proc/Make_Slash(turf/start, turf/target_turf, distance, max_angle, iteration)
+	var/list/area = list()
+	var/angle_to_target = Get_Angle(start, target_turf)
+	var/angle = angle_to_target + max_angle
+	if(angle > 360)
+		angle -= 360
+	else if(angle < 0)
+		angle += 360
+	var/turf/T2 = get_turf_in_angle(angle, start, distance)
+	area += getline(start, T2)
+	for(var/i = 1 to iteration)
+		angle -= (max_angle * 2) / iteration
+		if(angle > 360)
+			angle -= 360
+		else if(angle < 0)
+			angle += 360
+		T2 = get_turf_in_angle(angle, start, distance)
+		area += getline(start, T2)
+	return uniqueList(area)
+
+/obj/item/ego_weapon/twilight/proc/do_dash(atom/A, mob/living/user)
+	var/turf/target_turf = get_turf(user)
+	var/list/line_turfs = list(target_turf)
+	var/list/mobs_to_hit = list()
+	var/stop_charge = FALSE
+	for(var/turf/T in getline(user, get_ranged_target_turf_direct(user, A, get_dist(user, A) + 3)))
+		if(T.density)
+			break
+		for(var/obj/structure/window/W in T.contents)
+			stop_charge = TRUE
+			break
+		for(var/obj/machinery/door/MD in T.contents)
+			if(!MD.CanAStarPass(null))
+				stop_charge = TRUE
+				break
+			if(MD.density)
+				INVOKE_ASYNC(MD, TYPE_PROC_REF(/obj/machinery/door, open), 2)
+		if(stop_charge)
+			break
+		target_turf = T
+		line_turfs += T
+		for(var/mob/living/L in view(2, T))
+			mobs_to_hit |= L
+	user.forceMove(target_turf)
+	var/aoe = ultimate_damage
+	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+	var/justicemod = 1 + userjust / 100
+	var/missing_hp = (2 - (user.health / user.maxHealth))
+	aoe *= justicemod
+	aoe *= force_multiplier
+	aoe = round(missing_hp * aoe)
+	for(var/mob/living/L in mobs_to_hit)
+		if(user.faction_check_mob(L))
+			continue
+		if(L.status_flags & GODMODE)
+			continue
+		if(ultimate_combo == 2)
+			L.apply_damage(aoe, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		else
+			L.apply_damage(aoe, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		L.visible_message(span_danger("[user] rushes through  [L]!"))
+	for(var/turf/T in line_turfs)
+		for(var/turf/open/R in range(2, T))
+			if(locate(/obj/effect/temp_visual/smash_effect) in R) // Already affected by the Dash
+				continue
+			var/obj/effect/temp_visual/smash_effect/S = new(R)
+			if(ultimate_combo == 2)
+				S.color = pick(COLOR_WHITE,COLOR_VIOLET)
+			else
+				S.color = COLOR_RED
+
+/obj/item/ego_weapon/twilight/proc/do_slash(turf/target_turf, mob/living/user)
+	var/list/slash_area = Make_Slash(get_turf(user), target_turf,slash_length, slash_angle, 1000)
+	for(var/turf/T in slash_area)
+		var/obj/effect/temp_visual/smash_effect/S = new(T)
+		S.color = pick(COLOR_RED, COLOR_WHITE,COLOR_VIOLET, COLOR_CYAN,COLOR_CYAN,COLOR_CYAN)
+		for(var/mob/living/L in T)
+			if(user.faction_check_mob(L))
+				continue
+			if(L.status_flags & GODMODE)
+				continue
+			L.visible_message(span_danger("[user] decimates [L]!"))
+			var/aoe = ultimate_damage
+			var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+			var/justicemod = 1 + userjust / 100
+			var/missing_hp = (2 - (L.health / L.maxHealth))
+			aoe *= justicemod
+			aoe *= force_multiplier
+			aoe = round(missing_hp * aoe)
+			L.apply_damage(aoe, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+			for(var/damage_type in list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE))
+				L.apply_damage(aoe/3, damage_type, null, L.run_armor_check(null, damage_type))
+			if(L.health <= 0)
+				L.gib()
+
 /obj/item/ego_weapon/twilight/EgoAttackInfo(mob/user)
 	if(force_multiplier != 1)
 		return span_notice("It deals [round((force * 4) * force_multiplier)] red, white, black and pale damage combined. (+ [(force_multiplier - 1) * 100]%)")
 	return span_notice("It deals [force * 4] red, white, black and pale damage combined.")
 
-/obj/item/ego_weapon/twilight/attack_self(mob/user) //spin attack with knockback
+/obj/item/ego_weapon/twilight/attack_self(mob/living/user)
 	if(!CanUseEgo(user))
 		return
-	if(aoe_cooldown > world.time)
-		to_chat(user, span_notice("This ability is on cooldown."))
+	if(ultimate_cooldown > world.time || in_ultimate)
 		return
-	var/list/candidates = list()
-	var/current_targets = 0
-	for(var/mob/living/L in view(8, user))
-		if(user.faction_check_mob(L, FALSE))
-			continue
-		if(L.stat == DEAD)
-			continue
-		if(current_targets >= max_targets)
-			return
-		candidates += L
-		current_targets += 1
-	if(!LAZYLEN(candidates))
-		return
-	aoe_cooldown = aoe_cooldown_time + world.time
-	playsound(user, 'sound/abnormalities/apocalypse/pre_attack.ogg', 75, FALSE, 4)
-	for(var/mob/living/C in candidates)
-		C.add_filter("target_outline", 1, drop_shadow_filter(color = "#8eff6c", size = 2))
-		addtimer(CALLBACK(C, TYPE_PROC_REF(/atom, remove_filter),"target_outline"), 30)
-		user.add_filter("user_outline", 1, drop_shadow_filter(color = "#04080FAA", size = -8))
-		addtimer(CALLBACK(user, TYPE_PROC_REF(/atom, remove_filter),"user_outline"), 30)
-	if(!do_after(user, 30, src))
-		return
-	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-	var/justicemod = 1 + userjust/100
-	var/newdamage = (force * 1.2)
-	newdamage *= justicemod
-	newdamage *= force_multiplier
-	for(var/i = 1 to 3 * length(candidates))
-		var/atom/PT
-		PT = pick(candidates)
-		var/turf/T = get_step(get_turf(PT), pick(GLOB.alldirs))
-		var/obj/projectile/ego_twilight/P = new(T)
-		P.damage = newdamage
-		P.starting = T
-		P.firer = user
-		P.fired_from = T
-		P.yo = PT.y - T.y
-		P.xo = PT.x - T.x
-		P.original = PT
-		P.preparePixelProjectile(PT, T)
-		P.set_homing_target(PT)
-		addtimer(CALLBACK (P, TYPE_PROC_REF(/obj/projectile, fire)), 0.5 SECONDS)
-	playsound(user, 'sound/abnormalities/apocalypse/fire.ogg', 50, FALSE, 12)
-
-/obj/projectile/ego_twilight
-	name = "light"
-	icon_state = "apocalypse"
-	damage_type = BLACK_DAMAGE
-	damage = 10
-	alpha = 0
-	spread = 45
-	projectile_phasing = (ALL & (~PASSMOB))
-
-/obj/projectile/ego_twilight/Initialize()
-	. = ..()
-	animate(src, alpha = 255, pixel_x = rand(-10,10), pixel_y = rand(-10,10), time = 0.3 SECONDS)
+	ultimate_attack = !ultimate_attack
+	if(ultimate_attack)
+		to_chat(user, span_notice("You prepare an ultimate attack."))
+	else
+		to_chat(user, span_notice("You decide to not use the ultimate attack."))
 
 /obj/item/ego_weapon/goldrush
 	name = "gold rush"
 	desc = "The weapon of someone who can swing their weight around like a truck"
-	special = "This weapon deals its damage after a short windup."
+	special = "This weapon has a combo system."
 	icon_state = "gold_rush"
 	hitsound = 'sound/weapons/fixer/generic/gen2.ogg'
-	force = 70
+	force = 25
 	damtype = RED_DAMAGE
-	knockback = KNOCKBACK_LIGHT
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 80,
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
 							)
-	var/finisher_on = TRUE //this is for a subtype, it should NEVER be false on this item.
-	var/variable_stuntime = 10
+	var/charging = FALSE
+	var/combo = 0
+	var/combo_time
+	var/combo_wait = 10
 
-//Replaces the normal attack with the gigafuck punch
-/obj/item/ego_weapon/goldrush/attack(mob/living/target, mob/living/user)
-	if(!CanUseEgo(user))
+//This is like an anime character attacking like 6 times with the 6th one as a finisher attack.
+/obj/item/ego_weapon/goldrush/attack(mob/living/M, mob/living/user)
+	if(!CanUseEgo(user) || charging)
 		return
-	if(!finisher_on)
-		..()
-		return
-	if(do_after(user, 2, target))
-
-		target.visible_message(span_danger("[user] rears up and slams into [target]!"), \
-						span_userdanger("[user] punches you with everything you got!!"), vision_distance = COMBAT_MESSAGE_RANGE, ignored_mobs = user)
-		to_chat(user, span_danger("You throw your entire body into this punch!"))
-		if(ishuman(target))
-			force = 25
-		stuntime = variable_stuntime
-		..()
-		force = initial(force)
-		stuntime = initial(stuntime)
+	if(world.time > combo_time)
+		combo = 0
+	combo_time = world.time + combo_wait
+	if(combo >= 6)
+		combo = 0
+		user.changeNext_move(CLICK_CD_MELEE * 3)
+		playsound(src, 'sound/weapons/fixer/generic/finisher2.ogg', 50, FALSE, 9)
+		to_chat(user,span_warning("You are offbalance, you take a moment to reset your stance."))
+		force *= 5
+		knockback = KNOCKBACK_HEAVY
+	else if(combo < 6 && combo >= 3)
+		for(var/i = 1 to combo - 1)
+			sleep(2)
+			if(M in view(reach,user))
+				combo_time = world.time + combo_wait
+				user.changeNext_move(CLICK_CD_MELEE * 0.4)
+				playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+				user.do_attack_animation(M)
+				M.attacked_by(src, user)
+				log_combat(user, M, pick(attack_verb_continuous), src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
 	else
-		to_chat(user, "<span class='spider'><b>Your attack was interrupted!</b></span>")
-		return
+		user.changeNext_move(CLICK_CD_MELEE * (0.8 - (combo/5)))
+	..()
+	knockback = null
+	combo += 1
+
+	force = initial(force)
 
 /obj/item/ego_weapon/goldrush/attackby(obj/item/I, mob/living/user, params)
 	..()
