@@ -40,7 +40,7 @@
 	special = "This weapon has a combo system. To turn off this combo system, use in hand. \
 			This weapon has a fast attack speed"
 	icon_state = "despair"
-	force = 18
+	force = 10
 	damtype = WHITE_DAMAGE
 	swingstyle = WEAPONSWING_THRUST
 	attack_verb_continuous = list("stabs", "attacks", "slashes")
