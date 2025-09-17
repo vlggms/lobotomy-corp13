@@ -20,6 +20,7 @@
 	var/combo_time
 	/// Wait time between attacks for combo to reset
 	var/combo_wait = 10
+	var/aoe_damage = 26
 
 /obj/item/ego_weapon/justitia/attack(mob/living/M, mob/living/user)
 	if(!CanUseEgo(user))
@@ -41,7 +42,10 @@
 			user.changeNext_move(CLICK_CD_MELEE * 1.2)
 			var/turf/T = get_turf(M)
 			new /obj/effect/temp_visual/justitia_effect(T)
-			user.HurtInTurf(T, list(), 26, PALE_DAMAGE)
+			var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+			var/justicemod = 1 + userjust / 100
+			var/damage_dealt = aoe_damage * justicemod * force_multiplier
+			user.HurtInTurf(T, list(), damage_dealt, PALE_DAMAGE)
 		else
 			hitsound = 'sound/weapons/ego/justitia1.ogg'
 			user.changeNext_move(CLICK_CD_MELEE * 0.4)
@@ -130,7 +134,7 @@
 	var/list/weapon_list = list(
 		"sword" = list(36, 1, 1, list("tears", "slices", "mutilates"), list("tear", "slice","mutilate"), 'sound/abnormalities/nothingthere/attack.ogg'),
 		"spear" = list(46, 1.4, 2, list("pierces", "stabs", "perforates"), list("pierce", "stab", "perforate"), 'sound/weapons/ego/mimicry_stab.ogg'),
-		"scythe" = list(30, 1.6, 2, list("tears", "slices", "mutilates"), list("tear", "slice","mutilate"), 'sound/abnormalities/nothingthere/goodbye_attack.ogg')
+		"scythe" = list(30, 1.6, 1, list("tears", "slices", "mutilates"), list("tear", "slice","mutilate"), 'sound/abnormalities/nothingthere/goodbye_attack.ogg')
 		)
 
 /obj/item/ego_weapon/mimicry/Initialize()
@@ -171,21 +175,19 @@
 		return
 
 	var/list/been_hit = list(target)
-	var/turf/end_turf = get_ranged_target_turf_direct(user, target, 3, 0)
-	for(var/turf/T in getline(user, end_turf))
+	for(var/turf/T in Make_Slash(get_turf(user), get_turf(target), 3, 220))
 		if(user in T)
 			continue
-		for(var/turf/T2 in view(T,1))
-			new /obj/effect/temp_visual/nt_goodbye(T2)
-			for(var/mob/living/L in T2)
-				var/aoe = 15
-				var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-				var/justicemod = 1 + userjust/100
-				aoe*=justicemod
-				aoe*=force_multiplier
-				if(L == user || ishuman(L))
-					continue
-				been_hit = user.HurtInTurf(T2, been_hit, aoe, RED_DAMAGE, hurt_mechs = TRUE, hurt_structure = TRUE)
+		new /obj/effect/temp_visual/nt_goodbye(T)
+		for(var/mob/living/L in T)
+			var/aoe = 15
+			var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+			var/justicemod = 1 + userjust/100
+			aoe*=justicemod
+			aoe*=force_multiplier
+			if(L == user || ishuman(L))
+				continue
+			been_hit = user.HurtInTurf(T, been_hit, aoe, RED_DAMAGE, hurt_mechs = TRUE, hurt_structure = TRUE)
 
 /obj/item/ego_weapon/mimicry/get_clamped_volume()
 	return 40
@@ -230,8 +232,11 @@
 		stuntime = 5
 		swingstyle = WEAPONSWING_THRUST
 	else
-		stuntime = 0
-		swingstyle = WEAPONSWING_SMALLSWEEP
+		if(form == "scythe")
+			stuntime = 5
+		else
+			stuntime = 0
+		swingstyle = WEAPONSWING_LARGESWEEP
 
 /obj/item/ego_weapon/goldrush
 	name = "gold rush"

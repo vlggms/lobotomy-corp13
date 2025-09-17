@@ -165,6 +165,48 @@
 			turfs += T
 	return turfs
 
+/proc/Make_Slash(turf/start, turf/target_turf, distance, max_angle)
+	var/list/area = list()
+	var/angle_to_target = Get_Angle(start, target_turf)
+	var/angle = angle_to_target + max_angle/2
+	if(angle > 360)
+		angle -= 360
+	else if(angle < 0)
+		angle += 360
+	var/angle2 = angle_to_target - max_angle/2
+	if(angle2 > 360)
+		angle2 -= 360
+	else if(angle2 < 0)
+		angle2 += 360
+	for(var/mob/living/carbon/human/H in GLOB.human_list)
+		if(!H.ckey)
+			continue
+		to_chat(H,"angle 1 = [angle].")
+		to_chat(H,"angle 2 = [angle2].")
+	var/list/circle = range(start, distance + 1)
+	for(var/turf/T in circle)
+		if(get_dist_euclidian(start,T) < 1)
+			continue
+		if(get_dist_euclidian(start,T) > distance + 0.4)
+			continue
+		var/new_angle = Get_Angle(start, T)
+		if(new_angle > 360)
+			new_angle -= 360
+		else if(new_angle < 0)
+			angle2 += 360
+		if(angle > angle2)
+			if(new_angle > angle)
+				continue
+			if(new_angle < angle2)
+				continue
+			area += T
+		else
+			if(new_angle < angle)
+				area += T
+			if(new_angle > angle2)
+				area += T
+	return uniqueList(area)
+
 
 //This is the new version of recursive_mob_check, used for say().
 //The other proc was left intact because morgue trays use it.
