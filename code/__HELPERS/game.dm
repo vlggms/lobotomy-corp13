@@ -165,35 +165,37 @@
 			turfs += T
 	return turfs
 
-/proc/Make_Slash(turf/start, turf/target_turf, distance, max_angle)
-	var/list/area = list()
+
+/**
+ * Gets a list of turfs that forms a slash pattern
+ *
+ * Arguments:
+ * * start - Initial start
+ * * target_turf - Used to get an angle
+ * * distance - Overall size of the slash
+ * * max_angle - Total angle the slash will cover
+ * * old_style - Uses a much wider version of it
+ * * distance_offset - euclidian distance offset
+ */
+/proc/Make_Slash(turf/start, turf/target_turf, distance, max_angle, old_style = FALSE, distance_offset = 0.4)
 	var/angle_to_target = Get_Angle(start, target_turf)
-	var/angle = angle_to_target + max_angle/2
-	if(angle > 360)
-		angle -= 360
-	else if(angle < 0)
-		angle += 360
-	var/angle2 = angle_to_target - max_angle/2
-	if(angle2 > 360)
-		angle2 -= 360
-	else if(angle2 < 0)
-		angle2 += 360
-	for(var/mob/living/carbon/human/H in GLOB.human_list)
-		if(!H.ckey)
-			continue
-		to_chat(H,"angle 1 = [angle].")
-		to_chat(H,"angle 2 = [angle2].")
-	var/list/circle = range(start, distance + 1)
+	if(old_style)
+		distance += 1
+	else
+		start = get_step_towards(start, target_turf)
+	var/angle = (angle_to_target + max_angle/2) % 360
+	var/angle2 = (angle_to_target - max_angle/2) % 360
+	var/list/area = list()
+	if(!old_style)
+		area+=start
+	var/list/circle = range(start, distance)
 	for(var/turf/T in circle)
-		if(get_dist_euclidian(start,T) < 1)
+		if(old_style)
+			if(get_dist_euclidian(start,T) < 1)
+				continue
+		if(get_dist_euclidian(start,T) > (distance-1) + distance_offset)
 			continue
-		if(get_dist_euclidian(start,T) > distance + 0.4)
-			continue
-		var/new_angle = Get_Angle(start, T)
-		if(new_angle > 360)
-			new_angle -= 360
-		else if(new_angle < 0)
-			angle2 += 360
+		var/new_angle = (Get_Angle(start, T)) % 360
 		if(angle > angle2)
 			if(new_angle > angle)
 				continue

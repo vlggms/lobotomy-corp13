@@ -162,12 +162,12 @@
 	var/mob/current_holder
 	var/can_ultimate = TRUE
 	var/ultimate_cooldown_time = 60 SECONDS
-	var/ultimate_damage = 75
+	var/ultimate_damage = 75 //does 100 of each damage type total if you get all 4 hits in
 	var/ultimate_attack = FALSE
 	var/ultimate_combo = 1
 	var/in_ultimate = FALSE
-	var/slash_length = 5
-	var/slash_angle = 240
+	var/slash_length = 6
+	var/slash_angle = 260
 
 /obj/item/ego_weapon/twilight/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
@@ -285,7 +285,7 @@
 				S.color = COLOR_RED
 
 /obj/item/ego_weapon/twilight/proc/do_slash(turf/target_turf, mob/living/user)
-	var/list/slash_area = Make_Slash(get_turf(user), target_turf,slash_length, slash_angle)
+	var/list/slash_area = Make_Slash(get_turf(user), target_turf,slash_length, slash_angle, TRUE, -0.4)
 	for(var/turf/T in slash_area)
 		var/obj/effect/temp_visual/smash_effect/S = new(T)
 		S.color = pick(COLOR_RED, COLOR_WHITE,COLOR_VIOLET, COLOR_CYAN,COLOR_CYAN,COLOR_CYAN)
