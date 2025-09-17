@@ -136,6 +136,7 @@
 /datum/facility_upgrade/bullet/yellow
 	name = YELLOW_BULLET
 	info = " - This type of bullet when fired applies a <b>Slowing</b> debuff to an enemy or threat."
+
 /datum/facility_upgrade/bullet/kill
 	name = KILL_BULLET
 	info = " - This type of bullet when fired kills an employee."
@@ -206,7 +207,7 @@
 /datum/facility_upgrade/regnenerator_healing
 	name = UPGRADE_REGENERATOR_HEALING
 	category = "Facility"
-	cost = 1
+	cost = 2
 	value = 0
 	max_value = 6
 	var/value_increase = 1
