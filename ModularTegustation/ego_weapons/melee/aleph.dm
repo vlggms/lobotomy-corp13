@@ -111,7 +111,7 @@
 	name = "mimicry"
 	desc = "The yearning to imitate the human form is sloppily reflected on the E.G.O, \
 	as if it were a reminder that it should remain a mere desire."
-	special = "Use this weapon in hand to swap between forms. This sword heals you on hit, the spear has higher reach, the scythe deals extra damage in an area."
+	special = "Use this weapon in hand to swap between forms. The sword heals you on hit, the spear has higher reach, the scythe deals extra damage in an area."
 	icon_state = "mimicry_sword"
 	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
@@ -175,7 +175,7 @@
 		return
 
 	var/list/been_hit = list(target)
-	for(var/turf/T in Make_Slash(get_turf(user), get_turf(target), 3, 220))
+	for(var/turf/T in Make_Slash(get_turf(user), get_turf(target), 3, 240))
 		if(user in T)
 			continue
 		new /obj/effect/temp_visual/nt_goodbye(T)
@@ -1071,7 +1071,7 @@
 	var/list/weapon_list = list(
 		"whip" = list(18, 0.5, 3, list("lacerates", "disciplines"), list("lacerate", "discipline"), 'sound/weapons/whip.ogg'),
 		"sword" = list(35, 1, 1, list("tears", "slices", "mutilates"), list("tear", "slice","mutilate"), 'sound/weapons/fixer/generic/blade4.ogg'),
-		"hammer" = list(25, 1.4, 1, list("crushes"), list("crush"), 'sound/weapons/fixer/generic/baton2.ogg'),
+		"hammer" = list(22, 1.4, 1, list("crushes"), list("crush"), 'sound/weapons/fixer/generic/baton2.ogg'),
 		"bat" = list(60, 1.6, 1, list("bludgeons", "bashes"), list("bludgeon", "bash"), 'sound/weapons/fixer/generic/gen1.ogg')
 		)
 
