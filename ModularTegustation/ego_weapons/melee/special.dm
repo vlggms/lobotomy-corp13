@@ -43,6 +43,7 @@
 		var/turf/target_turf = get_turf(target)
 		if(!isturf(proj_turf))
 			return
+		user.changeNext_move(CLICK_CD_MELEE)
 		var/list/OT = get_adjacent_open_turfs_feather(user)
 		for(var/i = 1 to 4)
 			if(OT.len <= 0)
@@ -192,6 +193,9 @@
 		return
 	..()
 	var/list/been_hit = QDELETED(M) ? list() : list(M)
+	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+	var/justicemod = 1 + userjust / 100
+	var/damage_dealt = force * justicemod * force_multiplier
 	user.HurtInTurf(T, been_hit, damage_dealt, RED_DAMAGE, hurt_mechs = TRUE, hurt_structure = TRUE)
 	for(var/damage_type in list(WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE))
 		user.HurtInTurf(T, been_hit, damage_dealt, damage_type, hurt_mechs = TRUE, hurt_structure = TRUE)
@@ -212,13 +216,14 @@
 		in_ultimate = TRUE
 		ultimate_attack = FALSE
 	if(in_ultimate)
-		user.changeNext_move(CLICK_CD_MELEE * attack_speed)
+		user.changeNext_move(CLICK_CD_MELEE)
 		playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
 		user.do_attack_animation(A)
 		if(ultimate_combo <= 2)
 			do_dash(A, user)
 			ultimate_combo += 1
 		else
+			user.changeNext_move(CLICK_CD_MELEE * 3)
 			do_slash(get_turf(A), user)
 			in_ultimate = FALSE
 			addtimer(CALLBACK(src, PROC_REF(ultimate_reset)), ultimate_cooldown_time)
@@ -228,30 +233,6 @@
 	if(current_holder)
 		to_chat(current_holder, span_nicegreen("You're able to preform another ultimate combo with twilight."))
 	can_ultimate = TRUE
-
-/obj/item/ego_weapon/twilight/proc/Make_Slash(turf/start, turf/target_turf, distance, max_angle)
-	var/list/area = list()
-	var/angle_to_target = Get_Angle(start, target_turf)
-	var/angle = angle_to_target + max_angle/2
-	if(angle > 360)
-		angle -= 360
-	else if(angle < 0)
-		angle += 360
-	var/angle2 = angle_to_target - max_angle/2
-	if(angle2 > 360)
-		angle2 -= 360
-	else if(angle2 < 0)
-		angle2 += 360
-	var/list/circle = circlerangeturfs(start, distance)
-	for(var/turf/T in circle)
-		if(get_dist(start,T) < 1)
-			continue
-		var/new_angle = Get_Angle(start, T)
-		if(new_angle < angle)
-			area += T
-		if(new_angle > angle2)
-			area += T
-	return uniqueList(area)
 
 /obj/item/ego_weapon/twilight/proc/do_dash(atom/A, mob/living/user)
 	var/turf/target_turf = get_turf(user)
