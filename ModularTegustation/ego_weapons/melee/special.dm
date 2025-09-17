@@ -9,7 +9,7 @@
 	worn_icon_state = "featherofhonor"
 	inhand_icon_state = "featherofhonor"
 	special = "This weapon is highly effective in melee."
-	force = 14
+	force = 16
 	attack_speed = 0.7
 	special = "This E.G.O. functions as both a gun and a melee weapon."
 	damtype = WHITE_DAMAGE
@@ -21,14 +21,13 @@
 							PRUDENCE_ATTRIBUTE = 60
 	)
 	var/gun_cooldown
-	var/gun_cooldown_time = 4 SECONDS
+	var/gun_cooldown_time = 3 SECONDS
 
 
 /obj/item/ego_weapon/feather/proc/get_adjacent_open_turfs_feather(atom/center)
 	. = list(get_open_turf_in_dir(center, NORTH),
 			get_open_turf_in_dir(center, SOUTH),
 			get_open_turf_in_dir(center, EAST),
-			get_open_turf_in_dir(center, WEST),
 			get_open_turf_in_dir(center, WEST),
 			get_open_turf_in_dir(center, NORTHWEST),
 			get_open_turf_in_dir(center, SOUTHWEST),
@@ -58,9 +57,9 @@
 			F.xo = target_turf.x - T.x
 			F.original = target_turf
 			F.preparePixelProjectile(target_turf, T)
-			addtimer(CALLBACK (F, TYPE_PROC_REF(/obj/projectile, fire)), 2 + i)
+			addtimer(CALLBACK (F, TYPE_PROC_REF(/obj/projectile, fire)), 2 + (i*2))
 			F.damage*=force_multiplier
-		playsound(target_turf, 'sound/weapons/fixer/generic/energy1.ogg', 50, 0, 4)
+		playsound(target_turf, 'sound/abnormalities/firebird/Firebird_Hit.ogg', 50, 0, 4)
 		gun_cooldown = world.time + gun_cooldown_time
 		return
 
@@ -144,11 +143,10 @@
 	desc = "Just like how the ever-watching eyes, the scale that could measure any and all sin, \
 	and the beak that could swallow everything protected the peace of the Black Forest... \
 	The wielder of this armament may also bring peace as they did."
-	special = "This weapon's damage scales off of missing health"
+	special = "This weapon pierces to hit everything on the target's tile. \n Using it in hand will activate its special ability. To perform this - click on a distant target to activate a devastating 3 hit combo."
 	icon_state = "twilight"
 	worn_icon_state = "twilight"
 	force = 20
-	attack_speed = 1.2
 	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = RED_DAMAGE // It's all damage types, actually
 	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
@@ -163,7 +161,7 @@
 	var/mob/current_holder
 	var/can_ultimate = TRUE
 	var/ultimate_cooldown_time = 60 SECONDS
-	var/ultimate_damage = 60
+	var/ultimate_damage = 75
 	var/ultimate_attack = FALSE
 	var/ultimate_combo = 1
 	var/in_ultimate = FALSE
@@ -174,7 +172,7 @@
 	. = ..()
 	if(!user)
 		return
-		current_holder = user
+	current_holder = user
 
 /obj/item/ego_weapon/twilight/dropped(mob/user)
 	. = ..()
@@ -183,21 +181,22 @@
 	current_holder = null
 
 /obj/item/ego_weapon/twilight/attack(mob/living/M, mob/living/user)
+	var/turf/T = get_turf(M)
 	if(!CanUseEgo(user))
 		return
-	var/missing_hp = (2 - (user.health / user.maxHealth))
 	if(ultimate_attack)
 		in_ultimate = TRUE
 		ultimate_attack = FALSE
 		can_ultimate = FALSE
 	if(in_ultimate)
 		return
-	force = round(missing_hp * initial(force))
 	..()
+	var/list/been_hit = QDELETED(M) ? list() : list(M)
+	user.HurtInTurf(T, been_hit, damage_dealt, RED_DAMAGE, hurt_mechs = TRUE, hurt_structure = TRUE)
 	for(var/damage_type in list(WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE))
+		user.HurtInTurf(T, been_hit, damage_dealt, damage_type, hurt_mechs = TRUE, hurt_structure = TRUE)
 		damtype = damage_type
 		M.attacked_by(src, user)
-	damtype = initial(damtype)
 
 /obj/item/ego_weapon/twilight/afterattack(atom/A, mob/living/user, proximity_flag, params)
 	if(!CanUseEgo(user))
@@ -281,10 +280,8 @@
 	var/aoe = ultimate_damage
 	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 	var/justicemod = 1 + userjust / 100
-	var/missing_hp = (2 - (user.health / user.maxHealth))
 	aoe *= justicemod
 	aoe *= force_multiplier
-	aoe = round(missing_hp * aoe)
 	for(var/mob/living/L in mobs_to_hit)
 		if(user.faction_check_mob(L))
 			continue
@@ -320,10 +317,8 @@
 			var/aoe = ultimate_damage
 			var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 			var/justicemod = 1 + userjust / 100
-			var/missing_hp = (2 - (L.health / L.maxHealth))
 			aoe *= justicemod
 			aoe *= force_multiplier
-			aoe = round(missing_hp * aoe)
 			L.apply_damage(aoe, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
 			for(var/damage_type in list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE))
 				L.apply_damage(aoe/3, damage_type, null, L.run_armor_check(null, damage_type))
