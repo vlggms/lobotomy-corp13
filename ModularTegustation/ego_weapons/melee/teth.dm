@@ -90,7 +90,7 @@
 		dodgelanding = locate(user.x + 5, user.y, user.z)
 	if(user.dir == 8)
 		dodgelanding = locate(user.x - 5, user.y, user.z)
-	user.adjustStaminaLoss(20, TRUE, TRUE)
+	user.adjustStaminaLoss(8, TRUE, TRUE)
 	user.throw_at(dodgelanding, 3, 2, spin = TRUE)
 
 /obj/item/ego_weapon/regret
