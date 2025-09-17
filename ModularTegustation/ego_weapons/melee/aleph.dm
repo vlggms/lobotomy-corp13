@@ -111,7 +111,7 @@
 	name = "mimicry"
 	desc = "The yearning to imitate the human form is sloppily reflected on the E.G.O, \
 	as if it were a reminder that it should remain a mere desire."
-	special = "This weapon heals you on hit. Use this weapon in hand to swap between forms. The spear has higher reach, the scythe deals extra damage in an area."
+	special = "Use this weapon in hand to swap between forms. This sword heals you on hit, the spear has higher reach, the scythe deals extra damage in an area."
 	icon_state = "mimicry_sword"
 	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
@@ -132,8 +132,8 @@
 	var/mob/current_holder
 	var/form = "whip"
 	var/list/weapon_list = list(
-		"sword" = list(36, 1, 1, list("tears", "slices", "mutilates"), list("tear", "slice","mutilate"), 'sound/abnormalities/nothingthere/attack.ogg'),
-		"spear" = list(46, 1.4, 2, list("pierces", "stabs", "perforates"), list("pierce", "stab", "perforate"), 'sound/weapons/ego/mimicry_stab.ogg'),
+		"sword" = list(35, 1, 1, list("tears", "slices", "mutilates"), list("tear", "slice","mutilate"), 'sound/abnormalities/nothingthere/attack.ogg'),
+		"spear" = list(56, 1.4, 2, list("pierces", "stabs", "perforates"), list("pierce", "stab", "perforate"), 'sound/weapons/ego/mimicry_stab.ogg'),
 		"scythe" = list(30, 1.6, 1, list("tears", "slices", "mutilates"), list("tear", "slice","mutilate"), 'sound/abnormalities/nothingthere/goodbye_attack.ogg')
 		)
 
@@ -161,16 +161,16 @@
 	. = ..()
 	if(!.)
 		return
-
-	if(!(target.status_flags & GODMODE) && target.stat != DEAD)
-		var/heal_amt = force*0.10
-		if(isanimal(target))
-			var/mob/living/simple_animal/S = target
-			if(S.damage_coeff.getCoeff(damtype) > 0)
-				heal_amt *= S.damage_coeff.getCoeff(damtype)
-			else
-				heal_amt = 0
-		user.adjustBruteLoss(-heal_amt)
+	if(form == "sword")
+		if(!(target.status_flags & GODMODE) && target.stat != DEAD)
+			var/heal_amt = force*0.12
+			if(isanimal(target))
+				var/mob/living/simple_animal/S = target
+				if(S.damage_coeff.getCoeff(damtype) > 0)
+					heal_amt *= S.damage_coeff.getCoeff(damtype)
+				else
+					heal_amt = 0
+			user.adjustBruteLoss(-heal_amt)
 	if(form != "scythe")
 		return
 
@@ -180,7 +180,7 @@
 			continue
 		new /obj/effect/temp_visual/nt_goodbye(T)
 		for(var/mob/living/L in T)
-			var/aoe = 15
+			var/aoe = 20
 			var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 			var/justicemod = 1 + userjust/100
 			aoe*=justicemod
@@ -1051,7 +1051,7 @@
 	name = "mockery"
 	desc = "...If I earned a name, will I get to receive love and hate from you? \
 	Will you remember me as that name, as someone whom you cared for?"
-	special = "Heals some sanity on hit. Use this weapon in hand to swap between forms. The whip has higher reach, the hammer deals damage in an area, and the bat knocks back enemies."
+	special = "Use this weapon in hand to swap between forms. The sword heals some sanity on hit, the whip has higher reach, the hammer deals damage in an area, and the bat knocks back enemies."
 	icon_state = "mockery_whip"
 	force = 17
 	attack_speed = 0.5
@@ -1069,10 +1069,10 @@
 	var/mob/current_holder
 	var/form = "whip"
 	var/list/weapon_list = list(
-		"whip" = list(17, 0.5, 3, list("lacerates", "disciplines"), list("lacerate", "discipline"), 'sound/weapons/whip.ogg'),
+		"whip" = list(18, 0.5, 3, list("lacerates", "disciplines"), list("lacerate", "discipline"), 'sound/weapons/whip.ogg'),
 		"sword" = list(35, 1, 1, list("tears", "slices", "mutilates"), list("tear", "slice","mutilate"), 'sound/weapons/fixer/generic/blade4.ogg'),
-		"hammer" = list(22, 1.4, 1, list("crushes"), list("crush"), 'sound/weapons/fixer/generic/baton2.ogg'),
-		"bat" = list(50, 1.6, 1, list("bludgeons", "bashes"), list("bludgeon", "bash"), 'sound/weapons/fixer/generic/gen1.ogg')
+		"hammer" = list(25, 1.4, 1, list("crushes"), list("crush"), 'sound/weapons/fixer/generic/baton2.ogg'),
+		"bat" = list(60, 1.6, 1, list("bludgeons", "bashes"), list("bludgeon", "bash"), 'sound/weapons/fixer/generic/gen1.ogg')
 		)
 
 /obj/item/ego_weapon/mockery/Initialize()
@@ -1099,16 +1099,16 @@
 	. = ..()
 	if(!.)
 		return
-
-	if(!(target.status_flags & GODMODE) && target.stat != DEAD)
-		var/heal_amt = force*0.10
-		if(isanimal(target))
-			var/mob/living/simple_animal/S = target
-			if(S.damage_coeff.getCoeff(damtype) > 0)
-				heal_amt *= S.damage_coeff.getCoeff(damtype)
-			else
-				heal_amt = 0
-		user.adjustSanityLoss(-heal_amt)
+	if(form != "sword")
+		if(!(target.status_flags & GODMODE) && target.stat != DEAD)
+			var/heal_amt = force*0.12
+			if(isanimal(target))
+				var/mob/living/simple_animal/S = target
+				if(S.damage_coeff.getCoeff(damtype) > 0)
+					heal_amt *= S.damage_coeff.getCoeff(damtype)
+				else
+					heal_amt = 0
+			user.adjustSanityLoss(-heal_amt)
 
 	if(form != "hammer")
 		return
