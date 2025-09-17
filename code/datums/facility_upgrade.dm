@@ -136,6 +136,7 @@
 /datum/facility_upgrade/bullet/yellow
 	name = YELLOW_BULLET
 	info = " - This type of bullet when fired applies a <b>Slowing</b> debuff to an enemy or threat."
+
 /datum/facility_upgrade/bullet/kill
 	name = KILL_BULLET
 	info = " - This type of bullet when fired kills an employee."
@@ -206,18 +207,18 @@
 /datum/facility_upgrade/regnenerator_healing
 	name = UPGRADE_REGENERATOR_HEALING
 	category = "Facility"
-	cost = 1
+	cost = 2
 	value = 0
 	max_value = 1.5
 	var/value_increase = 0.5
-	info = " - This upgrade inceases the healing of <b>Regenerators</b> by a flat +0.5% per upgrade.<br> - The additional healing does not get decreased when theres an <b>Abnormality/Ordeal</b> in the regenerator's deparment."
+	info = " - This upgrade inceases the healing of <b>Regenerators</b> by a +0.33% / +0.5 flat per upgrade.<br> - The additional healing does not get decreased when theres an <b>Abnormality/Ordeal</b> in the regenerator's deparment."
 
 /datum/facility_upgrade/regnenerator_healing/Upgrade()
 	value = min(max_value, value + value_increase)
 	. = ..()
 
 /datum/facility_upgrade/regnenerator_healing/DisplayValue()
-	return "+[value]% healing"
+	return "+[round(value/1.5,0.01)]% / +[value] flat healing"
 
 /datum/facility_upgrade/meltdown_increase
 	name = UPGRADE_MELTDOWN_INCREASE
