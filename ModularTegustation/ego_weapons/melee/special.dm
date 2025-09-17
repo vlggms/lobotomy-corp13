@@ -1,4 +1,69 @@
 //Abnormality rewards
+//Fire Bird
+
+//It's still a sword. Cope Kirie
+/obj/item/ego_weapon/feather
+	name = "feather of honor"
+	desc = "A flaming, but very sharp, feather."
+	icon_state = "featherofhonor"
+	worn_icon_state = "featherofhonor"
+	inhand_icon_state = "featherofhonor"
+	special = "This weapon is highly effective in melee."
+	force = 14
+	attack_speed = 0.7
+	special = "This E.G.O. functions as both a gun and a melee weapon."
+	damtype = WHITE_DAMAGE
+	attack_verb_continuous = list("slices", "slashes", "stabs")
+	attack_verb_simple = list("slice", "slash", "stab")
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 60
+	)
+	var/gun_cooldown
+	var/gun_cooldown_time = 4 SECONDS
+
+
+/obj/item/ego_weapon/feather/proc/get_adjacent_open_turfs_feather(atom/center)
+	. = list(get_open_turf_in_dir(center, NORTH),
+			get_open_turf_in_dir(center, SOUTH),
+			get_open_turf_in_dir(center, EAST),
+			get_open_turf_in_dir(center, WEST),
+			get_open_turf_in_dir(center, WEST),
+			get_open_turf_in_dir(center, NORTHWEST),
+			get_open_turf_in_dir(center, SOUTHWEST),
+			get_open_turf_in_dir(center, NORTHEAST),
+			get_open_turf_in_dir(center, SOUTHEAST))
+	listclearnulls(.)
+
+/obj/item/ego_weapon/feather/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
+	if(!CanUseEgo(user))
+		return
+	if(!proximity_flag && gun_cooldown <= world.time)
+		var/turf/proj_turf = user.loc
+		var/turf/target_turf = get_turf(target)
+		if(!isturf(proj_turf))
+			return
+		var/list/OT = get_adjacent_open_turfs_feather(user)
+		for(var/i = 1 to 4)
+			if(OT.len <= 0)
+				OT = get_adjacent_open_turfs_feather(user)
+			var/turf/T = pick(OT)
+			OT -= T
+			var/obj/projectile/ego_bullet/ego_feather/F = new(T)
+			F.starting = T
+			F.firer = user
+			F.fired_from = T
+			F.yo = target_turf.y - T.y
+			F.xo = target_turf.x - T.x
+			F.original = target_turf
+			F.preparePixelProjectile(target_turf, T)
+			addtimer(CALLBACK (F, TYPE_PROC_REF(/obj/projectile, fire)), 2 + i)
+			F.damage*=force_multiplier
+		playsound(target_turf, 'sound/weapons/fixer/generic/energy1.ogg', 50, 0, 4)
+		gun_cooldown = world.time + gun_cooldown_time
+		return
+
 //White Night
 /obj/item/ego_weapon/paradise
 	name = "paradise lost"
@@ -95,14 +160,27 @@
 							TEMPERANCE_ATTRIBUTE = 120,
 							JUSTICE_ATTRIBUTE = 120
 							)
+	var/mob/current_holder
+	var/can_ultimate = TRUE
 	var/ultimate_cooldown_time = 60 SECONDS
-	var/ultimate_cooldown
 	var/ultimate_damage = 60
 	var/ultimate_attack = FALSE
 	var/ultimate_combo = 1
 	var/in_ultimate = FALSE
 	var/slash_length = 5
 	var/slash_angle = 240
+
+/obj/item/ego_weapon/twilight/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if(!user)
+		return
+		current_holder = user
+
+/obj/item/ego_weapon/twilight/dropped(mob/user)
+	. = ..()
+	if(!user)
+		return
+	current_holder = null
 
 /obj/item/ego_weapon/twilight/attack(mob/living/M, mob/living/user)
 	if(!CanUseEgo(user))
@@ -111,6 +189,7 @@
 	if(ultimate_attack)
 		in_ultimate = TRUE
 		ultimate_attack = FALSE
+		can_ultimate = FALSE
 	if(in_ultimate)
 		return
 	force = round(missing_hp * initial(force))
@@ -130,6 +209,7 @@
 		return
 	..()
 	if(ultimate_attack)
+		can_ultimate = FALSE
 		in_ultimate = TRUE
 		ultimate_attack = FALSE
 	if(in_ultimate)
@@ -142,7 +222,13 @@
 		else
 			do_slash(get_turf(A), user)
 			in_ultimate = FALSE
+			addtimer(CALLBACK(src, PROC_REF(ultimate_reset)), ultimate_cooldown_time)
 			ultimate_combo = 1
+
+/obj/item/ego_weapon/twilight/proc/ultimate_reset()
+	if(current_holder)
+		to_chat(current_holder, span_nicegreen("You're able to preform another ultimate combo with twilight."))
+	can_ultimate = TRUE
 
 /obj/item/ego_weapon/twilight/proc/Make_Slash(turf/start, turf/target_turf, distance, max_angle)
 	var/list/area = list()
@@ -252,7 +338,7 @@
 /obj/item/ego_weapon/twilight/attack_self(mob/living/user)
 	if(!CanUseEgo(user))
 		return
-	if(ultimate_cooldown > world.time || in_ultimate)
+	if(!can_ultimate || in_ultimate)
 		return
 	ultimate_attack = !ultimate_attack
 	if(ultimate_attack)
