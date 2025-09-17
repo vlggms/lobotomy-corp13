@@ -47,7 +47,7 @@
 		/datum/ego_datum/armor/seasons,
 	)
 
-	gift_type =  /datum/ego_gifts/seasons
+	gift_type =  /datum/ego_gifts //Its set later on
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
 
 //Should be unique for each season, for now let's use Spring
@@ -234,6 +234,15 @@
 /mob/living/simple_animal/hostile/abnormality/seasons/proc/Transform()
 	current_season = SSlobotomy_events.current_season
 	ChangeResistances(modular_damage_coeff[current_season])
+	switch(current_season)
+		if("spring")
+			gift_type =  /datum/ego_gifts/spring
+		if("summer")
+			gift_type =  /datum/ego_gifts/summer
+		if("fall")
+			gift_type =  /datum/ego_gifts/fall
+		if("winter")
+			gift_type =  /datum/ego_gifts/winter
 	work_damage_type = season_stats[current_season][2]
 	melee_damage_type = season_stats[current_season][2]
 	icon_state = current_season

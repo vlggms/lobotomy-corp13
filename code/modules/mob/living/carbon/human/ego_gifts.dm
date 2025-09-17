@@ -933,9 +933,10 @@
 /datum/ego_gifts/sunshower
 	name = "Sunshower"
 	icon_state = "sunshower"
-	temperance_bonus = 5
-	justice_bonus = -2
-	prudence_bonus = -2
+	fortitude_bonus = -1
+	prudence_bonus = 3
+	temperance_bonus = 3
+	justice_bonus = -1
 	slot = LEFTBACK
 
 /**
@@ -972,6 +973,8 @@
 	if(!owner && damagetype != WHITE_DAMAGE)
 		return
 	if(!damage)
+		return
+	if(damage < 0)
 		return
 	owner.adjustBruteLoss(-damage*0.1)
 
@@ -1244,13 +1247,11 @@
 	prudence_bonus = 6 //originally a SP bonus
 	slot = BROOCH
 
-//reduces sanity and fortitude for a 10% buff to work success. Unfortunately this translates to 200 temp
-//so right now its 10 temp
 /datum/ego_gifts/swan
 	name = "Black Swan"
 	icon_state = "swan"
-	fortitude_bonus = -4
-	prudence_bonus = -4
+	fortitude_bonus = -2
+	prudence_bonus = -2
 	temperance_bonus = 10
 	slot = HAT
 
@@ -1352,16 +1353,25 @@
 /datum/ego_gifts/dacapo
 	name = "Da Capo"
 	icon_state = "dacapo"
+	desc = "Provides the user with 20% resistance to WHITE damage."//man it really needed something
 	temperance_bonus = 4
 	slot = EYE
+
+/datum/ego_gifts/dacapo/Initialize(mob/living/carbon/human/user) // grants resistance
+	. = ..()
+	user.physiology.white_mod *= 0.8
+
+/datum/ego_gifts/dacapo/Remove(mob/living/carbon/human/user)
+	user.physiology.white_mod /= 0.8
+	return ..()
 
 /datum/ego_gifts/distortion
 	name = "Distortion"
 	icon_state = "distortion"
-	fortitude_bonus = 3
-	prudence_bonus = 3
-	temperance_bonus = 2
-	justice_bonus = 2
+	fortitude_bonus = 8
+	prudence_bonus = 8
+	temperance_bonus = 7
+	justice_bonus = 7
 	slot = BROOCH
 
 /datum/ego_gifts/inconsolable
@@ -1407,11 +1417,41 @@
 	justice_bonus = 10
 	slot = HELMET
 
-/datum/ego_gifts/seasons
-	name = "Season's Greetings"
-	icon_state = "seasons"
-	prudence_bonus = 10
+/datum/ego_gifts/spring
+	name = "Vernal Equinox"
+	icon_state = "spring"
+	fortitude_bonus = 4
+	prudence_bonus = 6
+	temperance_bonus = -2
+	justice_bonus = 0
 	slot = HAND_2
+
+/datum/ego_gifts/summer
+	name = "Summer Solstice"
+	icon_state = "summer"
+	fortitude_bonus = 6
+	prudence_bonus = 0
+	temperance_bonus = 4
+	justice_bonus = -2
+	slot = HAND_1
+
+/datum/ego_gifts/fall
+	name = "Autumnal Equinox"
+	icon_state = "fall"
+	fortitude_bonus = 0
+	prudence_bonus = -2
+	temperance_bonus = 6
+	justice_bonus = 4
+	slot = HAND_2
+
+/datum/ego_gifts/winter
+	name = "Winter Solstice"
+	icon_state = "winter"
+	fortitude_bonus = -2
+	prudence_bonus = 4
+	temperance_bonus = 0
+	justice_bonus = 6
+	slot = HAND_1
 
 /datum/ego_gifts/smile
 	name = "Smile"
