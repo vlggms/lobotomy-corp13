@@ -35,20 +35,16 @@
 
 	if(charge && attack_charge_gain)
 		HandleCharge(1, target)
-
-	if(reach >= 2) // Reach weapon stuff
-		if(user.Adjacent(target)) // No stuntime when using a spear/whip/lance up close
-			stuntime = 0
-		else if(user.a_intent != INTENT_HARM) // Spear/whip/lance thrust visuals
+		if(user.a_intent != INTENT_HARM) // Spear/whip/lance thrust visuals
 			get_thrust_turfs(target, user)
 	if(stuntime)
-		user.Immobilize(stuntime)
-		//Visual stuff to give you better feedback
-		new /obj/effect/temp_visual/weapon_stun(get_turf(user))
-		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
-		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
-		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
-	stuntime = initial(stuntime)
+		if((reach >= 2 && user.Adjacent(target)) ||  reach < 2) // Reach weapon stuff
+			user.Immobilize(stuntime)
+			//Visual stuff to give you better feedback
+			new /obj/effect/temp_visual/weapon_stun(get_turf(user))
+			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
+			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
+			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
 
 	if(target.anchored || !knockback || QDELETED(target)) // lets not throw machines around
 		return TRUE
