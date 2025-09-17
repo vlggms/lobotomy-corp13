@@ -89,5 +89,15 @@
 
 /obj/projectile/ego_bullet/ego_feather/Initialize()
 	. = ..()
-	hitsound = "sound/weapons/ego/spear1.ogg"
+	hitsound = "sound/abnormalities/seasons/summer_attack.ogg"
+	hitsound_wall = hitsound
 	animate(src, alpha = 255, time = 2)
+
+/obj/projectile/ego_bullet/ego_feather/fire()
+	playsound(loc, "sound/abnormalities/seasons/summer_change.ogg", 5, TRUE, -1)
+	. = ..()
+
+/obj/projectile/ego_bullet/ego_feather/Impact()
+	if(!fired)
+		return FALSE
+	return ..()
