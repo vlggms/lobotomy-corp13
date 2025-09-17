@@ -677,7 +677,7 @@
 	desc = "It hails from realms whose mere existence stuns the brain and numbs us with the black extra-cosmic gulfs it throws open before our frenzied eyes."
 	special = "Use this weapon in hand to dash. Attack after a dash for an AOE."
 	icon_state = "space"
-	force = 25	//Half white, half black.
+	force = 22.5	//Half white, half black.
 	damtype = WHITE_DAMAGE
 	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_verb_continuous = list("cuts", "attacks", "slashes")
@@ -734,11 +734,11 @@
 		return
 	if(do_after(user, 5, src, IGNORE_USER_LOC_CHANGE))
 		playsound(src, 'sound/weapons/rapierhit.ogg', 100, FALSE, 4)
-		for(var/turf/T in orange(3, user))
+		for(var/turf/T in orange(2, user))
 			new /obj/effect/temp_visual/smash_effect(T)
 
-		for(var/mob/living/L in range(3, user))
-			var/aoe = force
+		for(var/mob/living/L in range(2, user))
+			var/aoe = 12.5
 			aoe*=justicemod
 			aoe*=force_multiplier
 			if(L == user || ishuman(L))
@@ -751,8 +751,8 @@
 
 /obj/item/ego_weapon/space/EgoAttackInfo(mob/user)
 	if(force_multiplier != 1)
-		return span_notice("It deals [round(force * force_multiplier)] of both white and black damage. (+ [(force_multiplier - 1) * 100]%)")
-	return span_notice("It deals [force] of both white and black damage.")
+		return span_notice("It deals [round((force * 2) * force_multiplier)] white and black damage combined. (+ [(force_multiplier - 1) * 100]%)")
+	return span_notice("It deals [force * 2] white and black damage combined.")
 
 /obj/item/ego_weapon/seasons
 	name = "Seasons Greetings"

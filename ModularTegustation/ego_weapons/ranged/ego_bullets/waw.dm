@@ -228,15 +228,6 @@
 			break
 	return
 
-//feather of honor
-/obj/projectile/ego_bullet/ego_feather
-	name = "feather"
-	icon_state = "lava"
-	damage = 20
-	damage_type = WHITE_DAMAGE
-	homing = TRUE
-	speed = 1.5
-
 //Exuviae
 /obj/projectile/ego_bullet/ego_exuviae
 	name = "serpents exuviae"

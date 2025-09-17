@@ -403,24 +403,6 @@
 							PRUDENCE_ATTRIBUTE = 80
 	)
 
-//It's a magic sword. Cope Egor
-/obj/item/ego_weapon/ranged/feather
-	name = "feather of honor"
-	desc = "A flaming, but very sharp, feather."
-	icon_state = "featherofhonor"
-	worn_icon_state = "featherofhonor"
-	inhand_icon_state = "featherofhonor"
-	projectile_path = /obj/projectile/ego_bullet/ego_feather
-	weapon_weight = WEAPON_HEAVY
-	special = "This weapon is highly effective in melee."
-	force = 21
-	damtype = WHITE_DAMAGE
-	fire_delay = 12
-	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 60,
-							PRUDENCE_ATTRIBUTE = 60
-	)
-
 /obj/item/ego_weapon/ranged/exuviae
 	name = "exuviae"
 	desc = "A chunk of the naked nest inigrated with a launching mechanism."
