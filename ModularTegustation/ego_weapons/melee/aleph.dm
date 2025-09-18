@@ -134,7 +134,7 @@
 	var/list/weapon_list = list(
 		"sword" = list(35, 1, 1, list("tears", "slices", "mutilates"), list("tear", "slice","mutilate"), 'sound/abnormalities/nothingthere/attack.ogg'),
 		"spear" = list(56, 1.4, 2, list("pierces", "stabs", "perforates"), list("pierce", "stab", "perforate"), 'sound/weapons/ego/mimicry_stab.ogg'),
-		"scythe" = list(30, 1.6, 1, list("tears", "slices", "mutilates"), list("tear", "slice","mutilate"), 'sound/abnormalities/nothingthere/goodbye_attack.ogg')
+		"scythe" = list(52, 1.6, 1, list("tears", "slices", "mutilates"), list("tear", "slice","mutilate"), 'sound/abnormalities/nothingthere/goodbye_attack.ogg')
 		)
 
 /obj/item/ego_weapon/mimicry/Initialize()
@@ -180,7 +180,7 @@
 			continue
 		new /obj/effect/temp_visual/nt_goodbye(T)
 		for(var/mob/living/L in T)
-			var/aoe = 20
+			var/aoe = 26
 			var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 			var/justicemod = 1 + userjust/100
 			aoe*=justicemod
@@ -1071,7 +1071,7 @@
 	var/list/weapon_list = list(
 		"whip" = list(18, 0.5, 3, list("lacerates", "disciplines"), list("lacerate", "discipline"), 'sound/weapons/whip.ogg'),
 		"sword" = list(35, 1, 1, list("tears", "slices", "mutilates"), list("tear", "slice","mutilate"), 'sound/weapons/fixer/generic/blade4.ogg'),
-		"hammer" = list(22, 1.4, 1, list("crushes"), list("crush"), 'sound/weapons/fixer/generic/baton2.ogg'),
+		"hammer" = list(45, 1.4, 1, list("crushes"), list("crush"), 'sound/weapons/fixer/generic/baton2.ogg'),
 		"bat" = list(60, 1.6, 1, list("bludgeons", "bashes"), list("bludgeon", "bash"), 'sound/weapons/fixer/generic/gen1.ogg')
 		)
 
@@ -1114,11 +1114,11 @@
 		return
 
 	for(var/mob/living/L in view(2, target))
-		var/aoe = force
+		var/aoe = 25
 		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 		var/justicemod = 1 + userjust/100
 		aoe*=justicemod
-		if(user.faction_check_mob(L))
+		if(user.faction_check_mob(L) || L == target)
 			continue
 		L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 		new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(L))

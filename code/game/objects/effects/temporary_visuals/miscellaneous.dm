@@ -622,6 +622,31 @@
 	. = ..()
 	animate(src, alpha = 0, time = duration)
 
+/obj/effect/temp_visual/paradise_attack_large
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "paradise_attack_center"
+	pixel_x = -32
+	duration = 10
+
+/obj/effect/temp_visual/paradise_attack_large/Initialize()
+	. = ..()
+	transform = matrix(matrix(1, 0, MATRIX_SCALE),0, -48, MATRIX_TRANSLATE)
+	animate(src, transform = matrix(), time = 2)
+	addtimer(CALLBACK(src, PROC_REF(fade_out)), 7)
+
+/obj/effect/temp_visual/paradise_attack_large/proc/fade_out()
+	animate(src, alpha = 0, time = 3)
+
+/obj/effect/temp_visual/paradise_attack_large/left
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "paradise_attack_left"
+	pixel_x = 0
+
+/obj/effect/temp_visual/paradise_attack_large/right
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "paradise_attack_right"
+	pixel_x = -64
+
 /obj/effect/temp_visual/water_waves
 	name = "ocean"
 	icon = 'icons/turf/floors.dmi'
