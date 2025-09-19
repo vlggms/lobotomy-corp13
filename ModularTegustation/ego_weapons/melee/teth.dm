@@ -12,7 +12,7 @@
 	desc = "The spear often tries to lead the wielder into a long and endless realm of mind, \
 	but they must try to not be swayed by it."
 	icon_state = "fragment"
-	force = 12
+	force = 15
 	reach = 2		//Has 2 Square Reach.
 	stuntime = 5	//Longer reach, gives you a short stun.
 	attack_speed = 1.2
@@ -604,7 +604,7 @@
 	name = "rapunzel"
 	desc = "Scissors long since lost to time. Packs a punch while being unwieldy."
 	icon_state = "rapunzel"
-	force = 12
+	force = 16
 	stuntime = 5	//Mucho damage, bit of stun in exchange
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
@@ -615,9 +615,9 @@
 	name = "creative freedom"
 	desc = "Clay and flesh are both mediums for expression."
 	icon_state = "creativefreedom"
-	force = 12
-	stuntime = 5
-	damtype = RED_DAMAGE
+	force = 6
+	attack_speed = 0.7
+	damtype = PALE_DAMAGE
 	hitsound = 'sound/weapons/bladeslice.ogg'
 
 
