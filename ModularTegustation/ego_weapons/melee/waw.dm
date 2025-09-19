@@ -2141,7 +2141,7 @@
 	for(var/mob/living/L in range(1, user))
 		if(L.z != user.z) // Not on our level
 			continue
-		var/aoe = 20
+		var/aoe = 28
 		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 		var/justicemod = 1 + userjust/100
 		aoe*=justicemod
