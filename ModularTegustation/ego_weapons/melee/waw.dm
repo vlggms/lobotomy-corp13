@@ -1695,6 +1695,7 @@
 	force_cap = 48 //double base damage
 	force_per_tile = 3 //if I can read, this means you need to cross 8 tiles for max damage
 	pierce_force_cost = 12
+	stuntime = 5	//Longer reach, gives you a short stun.
 
 /obj/item/ego_weapon/warring
 	name = "warring"
