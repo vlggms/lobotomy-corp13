@@ -2079,10 +2079,9 @@
 /obj/item/ego_weapon/abyssal_route/attack(mob/living/M, mob/living/user)
 	if(!CanUseEgo(user)|| !can_attack)
 		return
-	if(combo_on)
-		if(world.time > combo_time || !combo_on)	//or you can turn if off I guess
-			combo = 0
-		combo_time = world.time + combo_wait
+	if(world.time > combo_time || !combo_on)	//or you can turn if off I guess
+		combo = 0
+	combo_time = world.time + combo_wait
 	if(combo == 4)
 		combo = 0
 		user.changeNext_move(CLICK_CD_MELEE * 2)
