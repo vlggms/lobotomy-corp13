@@ -193,14 +193,9 @@
 		angle2 -= 360
 	else if(angle2 < 0)
 		angle2 += 360
-	var/list/area = list()
-	if(!old_style)
-		area+=start
+	var/list/area = list(start)
 	var/list/circle = range(start, distance)
 	for(var/turf/T in circle)
-		if(old_style)
-			if(get_dist_euclidian(start,T) < 1)
-				continue
 		if(get_dist_euclidian(start,T) > (distance-1) + distance_offset)
 			continue
 		var/new_angle = Get_Angle(start, T)
