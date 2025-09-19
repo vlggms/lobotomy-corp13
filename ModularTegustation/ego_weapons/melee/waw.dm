@@ -1170,7 +1170,7 @@
 /obj/item/ego_weapon/mini/infinity
 	name = "infinity"
 	desc = "A giant novelty pen."
-	special = "This weapon marks enemies with a random damage type. They take that damage after 5 seconds."
+	special = "This weapon marks enemies with a random damage type a bit after you damage them. They take that damage after 5 seconds."
 	icon_state = "infinity"
 	force = 18
 	hitsound = 'sound/abnormalities/book/scribble.ogg'
@@ -1181,13 +1181,12 @@
 	var/mark_damage = 30
 	var/mark_type = RED_DAMAGE
 
-//Replaces the normal attack with a mark
 /obj/item/ego_weapon/mini/infinity/attack(mob/living/target, mob/living/user)
 	if(!CanUseEgo(user))
 		return
 	..()
 	if(do_after(user, 2, src))
-		marktype = pick(RED_DAMAGE,WHITE_DAMAGE, BLACK_DAMAGE
+		mark_type = pick(RED_DAMAGE,WHITE_DAMAGE, BLACK_DAMAGE)
 		var/color = "red"
 		if(mark_type == WHITE_DAMAGE)
 			color = "white"
