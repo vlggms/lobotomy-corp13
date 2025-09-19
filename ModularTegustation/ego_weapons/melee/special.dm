@@ -83,7 +83,7 @@
 		TEMPERANCE_ATTRIBUTE = 100,
 		JUSTICE_ATTRIBUTE = 100,
 	)
-	var/aoe_damage = 20
+	var/aoe_damage = 30
 	var/aoe_cap = 6
 	var/healing_amount = 0
 	var/healing = 2
