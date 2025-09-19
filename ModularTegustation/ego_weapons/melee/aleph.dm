@@ -1096,7 +1096,7 @@
 	. = ..()
 	if(!.)
 		return
-	if(form != "sword")
+	if(form == "sword")
 		if(!(target.status_flags & GODMODE) && target.stat != DEAD)
 			var/heal_amt = force*0.12
 			if(isanimal(target))
@@ -1160,6 +1160,13 @@
 	attack_verb_continuous = weapon_list[form][4]
 	attack_verb_simple = weapon_list[form][5]
 	hitsound = weapon_list[form][6]
+	if(reach > 1)
+		swingstyle = WEAPONSWING_THRUST
+	else
+		if(style == "sword")
+			swingstyle = WEAPONSWING_LARGESWEEP
+		else
+			swingstyle = WEAPONSWING_SMALLSWEEP
 	if(form == "bat")
 		knockback = KNOCKBACK_LIGHT
 	else
