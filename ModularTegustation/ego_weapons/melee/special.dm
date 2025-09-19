@@ -84,12 +84,14 @@
 		JUSTICE_ATTRIBUTE = 100,
 	)
 	var/aoe_damage = 20
+	var/aoe_cap = 6
 	var/healing_amount = 0
+	var/healing = 2
 	var/list/been_hit = list()
 
 /obj/item/ego_weapon/paradise/attack(mob/living/M, mob/living/user)
 	var/turf/target_turf = get_turf(M)
-	healing_amount += force
+	healing_amount += healing
 	been_hit += M
 	. = ..()
 	if(!.)
@@ -127,21 +129,25 @@
 		for(var/mob/living/L in user.HurtInTurf(T, been_hit, modified_damage, PALE_DAMAGE, hurt_mechs = TRUE) - been_hit)
 			been_hit += L
 			if((L.stat < DEAD) && !(L.status_flags & GODMODE))
-				healing_amount += aoe_damage
+				healing_amount += healing
+	var/enemies = 0
 	for(var/mob/living/L in oview(6, get_turf(src)))
+		if(enemies > aoe_cap)
+			break
 		if(user.faction_check_mob(L) || L in been_hit)
 			continue
-			been_hit += L
+		been_hit += L
+		enemies += 1
 		if((L.stat < DEAD) && !(L.status_flags & GODMODE))
-			healing_amount += (aoe_damage*0.5)
-			L.apply_damage(modified_damage*0.5, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+			healing_amount += healing
+			L.apply_damage(modified_damage, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
 			new /obj/effect/temp_visual/paradise_attack(get_turf(L))
 	if(healing_amount > 0)
 		var/mob/living/carbon/human/H = user
-		H.adjustStaminaLoss(-healing_amount*0.2)
-		H.adjustBruteLoss(-healing_amount*0.1)
-		H.adjustFireLoss(-healing_amount*0.1)
-		H.adjustSanityLoss(-healing_amount*0.1)
+		H.adjustStaminaLoss(-healing_amount*2)
+		H.adjustBruteLoss(-healing_amount)
+		H.adjustFireLoss(-healing_amount
+		H.adjustSanityLoss(-healing_amount)
 	been_hit = list()
 	healing_amount = 0
 
@@ -843,9 +849,9 @@
 	special = "This weapon has a combo system and can charge up a powerful charge attack."
 	hitsound = 'sound/weapons/fixer/generic/fist2.ogg'
 	icon_state = "greed"
-	force = 40
+	force = 35
 	var/charge_damage = 120
-	var/charge_wind_up = 3 SECONDS
+	var/charge_wind_up = 2 SECONDS
 	var/can_charge = TRUE
 	var/prepair_charge = FALSE
 	var/charge_cooldown_time = 7 SECONDS
@@ -1009,7 +1015,7 @@
 							TEMPERANCE_ATTRIBUTE = 100,
 							JUSTICE_ATTRIBUTE = 80
 							)
-	aoe_damage = 25
+	aoe_damage = 30
 	aoe_range = 3
 
 /obj/item/ego_weapon/blind_rage/nihil/attackby(obj/item/I, mob/living/user, params)
