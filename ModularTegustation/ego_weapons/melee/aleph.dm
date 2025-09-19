@@ -391,7 +391,7 @@
 /obj/item/ego_weapon/smile/proc/spin_reset()
 	can_spin = TRUE
 
-/obj/item/ego_weapon/smile/attack_self(mob/user) //spin attack with knockback
+/obj/item/ego_weapon/smile/attack_self(mob/living/user) //spin attack with knockback
 	if(!CanUseEgo(user))
 		return
 	if(!can_spin)
@@ -1025,7 +1025,7 @@
 	force = 40
 	damtype = RED_DAMAGE
 	wielded_attack_speed = 1.8
-	wielded_force = 65
+	wielded_force = 80
 	should_slow = TRUE
 	attack_verb_continuous = list("bashes", "clubs")
 	attack_verb_simple = list("bashes", "clubs")
