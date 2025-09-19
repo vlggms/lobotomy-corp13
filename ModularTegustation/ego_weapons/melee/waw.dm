@@ -1170,50 +1170,47 @@
 /obj/item/ego_weapon/mini/infinity
 	name = "infinity"
 	desc = "A giant novelty pen."
-	special = "This weapon marks enemies with a random damage type a bit after you damage them. They take that damage after 5 seconds."
+	special = "This weapon marks enemies with a random damage type. They take that damage after 5 seconds."
 	icon_state = "infinity"
-	force = 18
+	force = 14
+	attack_speed = 0.8
 	hitsound = 'sound/abnormalities/book/scribble.ogg'
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 80
 							)
 	damtype = PALE_DAMAGE
-	var/mark_damage = 30
+	var/mark_damage = 10
 	var/mark_type = RED_DAMAGE
 
 /obj/item/ego_weapon/mini/infinity/attack(mob/living/target, mob/living/user)
 	if(!CanUseEgo(user))
 		return
 	..()
-	if(do_after(user, 4, src))
-		mark_type = pick(RED_DAMAGE,WHITE_DAMAGE, BLACK_DAMAGE)
-		var/color = "red"
-		if(mark_type == WHITE_DAMAGE)
-			color = "white"
-		if(mark_type == BLACK_DAMAGE)
-			color = "black"
-		playsound(loc, hitsound, 120, TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
-		target.visible_message(span_danger("[user] markes [target] with a [color] code!"), \
-						span_userdanger("[user] marks you with a [color] code!"), COMBAT_MESSAGE_RANGE, user)
-		to_chat(user, span_danger("You enscribe a [color] code on [target]!"))
+	mark_type = pick(RED_DAMAGE,WHITE_DAMAGE, BLACK_DAMAGE)
+	var/color = "red"
+	if(mark_type == WHITE_DAMAGE)
+		color = "white"
+	if(mark_type == BLACK_DAMAGE)
+		color = "black"
+	target.visible_message(span_danger("[user] markes [target] with a [color] code!"), \
+	span_userdanger("[user] marks you with a [color] code!"), COMBAT_MESSAGE_RANGE, user)
+	to_chat(user, span_danger("You enscribe a [color] code on [target]!"))
 
-		var/obj/effect/infinity/P = new get_turf(target)
-		if(mark_type == RED_DAMAGE)
-			P.color = COLOR_RED
+	var/obj/effect/infinity/P = new get_turf(target)
+	if(mark_type == RED_DAMAGE)
+		P.color = COLOR_RED
 
-		if(mark_type == BLACK_DAMAGE)
-			P.color = COLOR_PURPLE
+	if(mark_type == BLACK_DAMAGE)
+		P.color = COLOR_PURPLE
 
-		addtimer(CALLBACK(src, PROC_REF(cast), target, user, mark_type), 5 SECONDS)
-	else
-		to_chat(user, "<span class='spider'><b>Your attack was interrupted!</b></span>")
-		return
+addtimer(CALLBACK(src, PROC_REF(cast), target, user, mark_type), 5 SECONDS)
 
 /obj/effect/infinity
 	name = "mark"
 	icon = 'icons/effects/cult_effects.dmi'
 	icon_state = "rune3center"
 	layer = ABOVE_ALL_MOB_LAYER
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/effect/infinity/Initialize()
 	. = ..()
@@ -1221,6 +1218,8 @@
 	QDEL_IN(src, 1 SECONDS)
 
 /obj/item/ego_weapon/mini/infinity/proc/cast(mob/living/target, mob/living/user, damage_color)
+	if(!target)
+		return
 	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 	var/justicemod = 1 + userjust/100
 	var/modified_damage = mark_damage
