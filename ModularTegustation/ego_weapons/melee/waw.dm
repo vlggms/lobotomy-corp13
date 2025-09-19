@@ -222,7 +222,7 @@
 	special = "Use it in hand to activate ranged attack."
 	icon_state = "crimsonclaw"
 	special = "This weapon hits faster than usual."
-	force = 12
+	force = 10
 	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_speed = 0.5
 	damtype = RED_DAMAGE
@@ -1422,6 +1422,8 @@
 	..()
 	if(do_after(user, 5, src))
 		dash_cooldown = world.time + dash_cooldown_time
+		user.Immobilize(0.6 SECONDS)
+		ADD_TRAIT(src, TRAIT_NODROP, STICKY_NODROP)
 		playsound(src, 'sound/abnormalities/babayaga/charge.ogg', 50, FALSE, -1)
 		animate(user, alpha = 1,pixel_x = 0, pixel_z = 16, time = 0.1 SECONDS)
 		user.pixel_z = 16
@@ -1429,6 +1431,7 @@
 		if(QDELETED(user))
 			return
 		else if(QDELETED(A) || !can_see(user, A, dash_range))
+			REMOVE_TRAIT(src, TRAIT_NODROP, STICKY_NODROP)
 			animate(user, alpha = 255,pixel_x = 0, pixel_z = -16, time = 0.1 SECONDS)
 			user.pixel_z = 0
 			return
@@ -1436,6 +1439,7 @@
 			step_towards(user,A)
 		if((get_dist(user, A) < 2))
 			JumpAttack(A,user)
+		REMOVE_TRAIT(src, TRAIT_NODROP, STICKY_NODROP)
 		to_chat(user, span_warning("You jump towards [A]!"))
 		animate(user, alpha = 255,pixel_x = 0, pixel_z = -16, time = 0.1 SECONDS)
 		user.pixel_z = 0
@@ -2051,7 +2055,7 @@
 	special = "This weapon has a combo system ending with a dive attack. To turn off this combo system, use in hand. \
 			This weapon has a fast attack speed"
 	icon_state = "abyssal_route"
-	force = 16
+	force = 10
 	damtype = BLACK_DAMAGE
 	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_verb_continuous = list("stabs", "attacks", "slashes")
@@ -2084,13 +2088,13 @@
 		if(world.time > combo_time || !combo_on)	//or you can turn if off I guess
 			combo = 0
 		combo_time = world.time + combo_wait
-		if(combo == 4)
-			combo = 0
-			user.changeNext_move(CLICK_CD_MELEE * 2)
-			force *= 2	// Should actually keep up with normal damage.
-			playsound(src, 'sound/weapons/fwoosh.ogg', 300, FALSE, 9)
-		else
-			user.changeNext_move(CLICK_CD_MELEE * 0.4)
+	if(combo == 4)
+		combo = 0
+		user.changeNext_move(CLICK_CD_MELEE * 2)
+		force *= 2	// Should actually keep up with normal damage.
+		playsound(src, 'sound/weapons/fwoosh.ogg', 300, FALSE, 9)
+	else
+		user.changeNext_move(CLICK_CD_MELEE * 0.4)
 	..()
 	combo += 1
 	force = initial(force)
@@ -2104,9 +2108,12 @@
 		return
 	..()
 	if(combo == 4)
+		user.Immobilize(1.1 SECONDS)
+		ADD_TRAIT(src, TRAIT_NODROP, STICKY_NODROP)
 		can_attack = FALSE
 		sleep(0.5 SECONDS)
 		if(QDELETED(user))
+			REMOVE_TRAIT(src, TRAIT_NODROP, STICKY_NODROP)
 			return
 		playsound(get_turf(src), 'sound/abnormalities/piscinemermaid/waterjump.ogg', 20, 0, 3)
 		animate(user, alpha = 1,pixel_x = 0, pixel_z = -16, time = 0.1 SECONDS)
@@ -2118,11 +2125,13 @@
 		else if(QDELETED(A) || user.z != A.z)
 			animate(user, alpha = 255,pixel_x = 0, pixel_z = 16, time = 0.1 SECONDS)
 			user.pixel_z = 0
+			REMOVE_TRAIT(src, TRAIT_NODROP, STICKY_NODROP)
 			return
 		for(var/i in 2 to get_dist(user, A))
 			step_towards(user,A)
 		if((get_dist(user, A) < 2))
 			DiveAttack(A,user)
+		REMOVE_TRAIT(src, TRAIT_NODROP, STICKY_NODROP)
 		playsound(get_turf(src), 'sound/abnormalities/bloodbath/Bloodbath_EyeOn.ogg', 20, 0, 3)
 		to_chat(user, span_warning("You dive towards [A]!"))
 		animate(user, alpha = 255,pixel_x = 0, pixel_z = 16, time = 0.1 SECONDS)
