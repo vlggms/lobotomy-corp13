@@ -1163,7 +1163,7 @@
 	if(reach > 1)
 		swingstyle = WEAPONSWING_THRUST
 	else
-		if(style == "sword")
+		if(form == "sword")
 			swingstyle = WEAPONSWING_LARGESWEEP
 		else
 			swingstyle = WEAPONSWING_SMALLSWEEP
