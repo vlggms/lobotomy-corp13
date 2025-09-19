@@ -748,7 +748,7 @@
 			new /obj/effect/temp_visual/smash_effect(T)
 
 		for(var/mob/living/L in range(2, user))
-			var/aoe = 12.5
+			var/aoe = 15
 			aoe*=justicemod
 			aoe*=force_multiplier
 			if(L == user || ishuman(L))
