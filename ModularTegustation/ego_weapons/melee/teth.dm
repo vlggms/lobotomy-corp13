@@ -615,7 +615,7 @@
 	name = "creative freedom"
 	desc = "Clay and flesh are both mediums for expression."
 	icon_state = "creativefreedom"
-	force = 6
+	force = 7
 	attack_speed = 0.7
 	damtype = PALE_DAMAGE
 	hitsound = 'sound/weapons/bladeslice.ogg'
