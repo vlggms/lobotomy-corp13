@@ -272,7 +272,7 @@
 		force *= 5
 		knockback = KNOCKBACK_HEAVY
 	else if(combo < 6 && combo >= 3)
-		for(var/i = 1 to combo - 1)
+		for(var/i = 1 to combo)
 			sleep(2)
 			if(M in view(reach,user))
 				combo_time = world.time + combo_wait
@@ -281,8 +281,10 @@
 				user.do_attack_animation(M)
 				M.attacked_by(src, user)
 				log_combat(user, M, pick(attack_verb_continuous), src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
+	else if(combo == 2)
+		user.changeNext_move(CLICK_CD_MELEE * 0.4)
 	else
-		user.changeNext_move(CLICK_CD_MELEE * (0.8 - (combo/5)))
+		user.changeNext_move(CLICK_CD_MELEE * 0.6)
 	..()
 	knockback = null
 	combo += 1
