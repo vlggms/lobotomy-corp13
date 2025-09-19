@@ -160,7 +160,7 @@
 	desc = "Just like how the ever-watching eyes, the scale that could measure any and all sin, \
 	and the beak that could swallow everything protected the peace of the Black Forest... \
 	The wielder of this armament may also bring peace as they did."
-	special = "This weapon pierces to hit everything on the target's tile. \n Using it in hand will activate its special ability. To perform this - click on a distant target to activate a devastating 3 hit combo."
+	special = "This weapon pierces to hit everything on the target's tile.\nUsing it in hand will activate its special ability. To perform this - click on a close by target to preform a devastating slash attack.\nPressing the middle mouse button click/alt click will perform a large area attack."
 	icon_state = "twilight"
 	worn_icon_state = "twilight"
 	force = 20
@@ -177,13 +177,14 @@
 							)
 	var/mob/current_holder
 	var/can_ultimate = TRUE
-	var/ultimate_cooldown_time = 60 SECONDS
-	var/ultimate_damage = 75 //does 100 of each damage type total if you get all 4 hits in
 	var/ultimate_attack = FALSE
-	var/ultimate_combo = 1
-	var/in_ultimate = FALSE
+	var/ultimate_cooldown_time = 60 SECONDS
+	var/ultimate_damage = 120 //does 480 total
 	var/slash_length = 6
 	var/slash_angle = 260
+	var/aoe_cooldown_time = 5 SECONDS
+	var/aoe_cooldown
+	var/max_targets = 10 // Max targets for the AOE. 30 projectiles is a lot.
 
 /obj/item/ego_weapon/twilight/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
@@ -202,10 +203,14 @@
 	if(!CanUseEgo(user))
 		return
 	if(ultimate_attack)
-		in_ultimate = TRUE
+		playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+		user.do_attack_animation(M)
 		ultimate_attack = FALSE
 		can_ultimate = FALSE
-	if(in_ultimate)
+		ultimate_attack = FALSE
+		user.changeNext_move(CLICK_CD_MELEE * 3)
+		do_slash(get_turf(M), user)
+		addtimer(CALLBACK(src, PROC_REF(ultimate_reset)), ultimate_cooldown_time)
 		return
 	..()
 	var/list/been_hit = QDELETED(M) ? list() : list(M)
@@ -217,6 +222,7 @@
 		user.HurtInTurf(T, been_hit, damage_dealt, damage_type, hurt_mechs = TRUE, hurt_structure = TRUE)
 		damtype = damage_type
 		M.attacked_by(src, user)
+	damtype = initial(damtype)
 
 /obj/item/ego_weapon/twilight/afterattack(atom/A, mob/living/user, proximity_flag, params)
 	if(!CanUseEgo(user))
@@ -228,83 +234,27 @@
 		return
 	..()
 	if(ultimate_attack)
-		can_ultimate = FALSE
-		in_ultimate = TRUE
-		ultimate_attack = FALSE
-	if(in_ultimate)
-		user.changeNext_move(CLICK_CD_MELEE)
 		playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
 		user.do_attack_animation(A)
-		if(ultimate_combo <= 2)
-			do_dash(A, user)
-			ultimate_combo += 1
-		else
-			user.changeNext_move(CLICK_CD_MELEE * 3)
-			do_slash(get_turf(A), user)
-			in_ultimate = FALSE
-			addtimer(CALLBACK(src, PROC_REF(ultimate_reset)), ultimate_cooldown_time)
-			ultimate_combo = 1
+		can_ultimate = FALSE
+		ultimate_attack = FALSE
+		user.changeNext_move(CLICK_CD_MELEE * 3)
+		do_slash(get_turf(A), user)
+		addtimer(CALLBACK(src, PROC_REF(ultimate_reset)), ultimate_cooldown_time)
 
 /obj/item/ego_weapon/twilight/proc/ultimate_reset()
 	if(current_holder)
-		to_chat(current_holder, span_nicegreen("You're able to preform another ultimate combo with twilight."))
+		to_chat(current_holder, span_nicegreen("You're able to preform another ultimate slash with twilight."))
 	can_ultimate = TRUE
 
-/obj/item/ego_weapon/twilight/proc/do_dash(atom/A, mob/living/user)
-	var/turf/target_turf = get_turf(user)
-	var/list/line_turfs = list(target_turf)
-	var/list/mobs_to_hit = list()
-	var/stop_charge = FALSE
-	for(var/turf/T in getline(user, get_ranged_target_turf_direct(user, A, get_dist(user, A) + 3)))
-		if(T.density)
-			break
-		for(var/obj/structure/window/W in T.contents)
-			stop_charge = TRUE
-			break
-		for(var/obj/machinery/door/MD in T.contents)
-			if(!MD.CanAStarPass(null))
-				stop_charge = TRUE
-				break
-			if(MD.density)
-				INVOKE_ASYNC(MD, TYPE_PROC_REF(/obj/machinery/door, open), 2)
-		if(stop_charge)
-			break
-		target_turf = T
-		line_turfs += T
-		for(var/mob/living/L in view(2, T))
-			mobs_to_hit |= L
-	user.forceMove(target_turf)
-	var/aoe = ultimate_damage
-	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-	var/justicemod = 1 + userjust / 100
-	aoe *= justicemod
-	aoe *= force_multiplier
-	for(var/mob/living/L in mobs_to_hit)
-		if(user.faction_check_mob(L))
-			continue
-		if(L.status_flags & GODMODE)
-			continue
-		if(ultimate_combo == 2)
-			L.apply_damage(aoe, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
-			L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
-		else
-			L.apply_damage(aoe, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-		L.visible_message(span_danger("[user] rushes through  [L]!"))
-	for(var/turf/T in line_turfs)
-		for(var/turf/open/R in range(2, T))
-			if(locate(/obj/effect/temp_visual/smash_effect) in R) // Already affected by the Dash
-				continue
-			var/obj/effect/temp_visual/smash_effect/S = new(R)
-			if(ultimate_combo == 2)
-				S.color = pick(COLOR_WHITE,COLOR_VIOLET)
-			else
-				S.color = COLOR_RED
-
 /obj/item/ego_weapon/twilight/proc/do_slash(turf/target_turf, mob/living/user)
+	user.visible_message(span_danger("[user] swings [src] with full force!"), \
+	span_userdanger(""), vision_distance = COMBAT_MESSAGE_RANGE, ignored_mobs = user)
+	to_chat(user, span_danger("You swing [src] with full force!"))
 	var/list/slash_area = Make_Slash(get_turf(user), target_turf,slash_length, slash_angle, TRUE, -0.4)
 	for(var/turf/T in slash_area)
 		var/obj/effect/temp_visual/smash_effect/S = new(T)
-		S.color = pick(COLOR_RED, COLOR_WHITE,COLOR_VIOLET, COLOR_CYAN,COLOR_CYAN,COLOR_CYAN)
+		S.color = pick(COLOR_RED, COLOR_WHITE,COLOR_VIOLET,COLOR_CYAN)
 		for(var/mob/living/L in T)
 			if(user.faction_check_mob(L))
 				continue
@@ -316,9 +266,8 @@
 			var/justicemod = 1 + userjust / 100
 			aoe *= justicemod
 			aoe *= force_multiplier
-			L.apply_damage(aoe, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
 			for(var/damage_type in list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE))
-				L.apply_damage(aoe/3, damage_type, null, L.run_armor_check(null, damage_type))
+				L.apply_damage(aoe, damage_type, null, L.run_armor_check(null, damage_type))
 			if(L.health <= 0)
 				L.gib()
 
@@ -330,13 +279,82 @@
 /obj/item/ego_weapon/twilight/attack_self(mob/living/user)
 	if(!CanUseEgo(user))
 		return
-	if(!can_ultimate || in_ultimate)
+	if(!can_ultimate)
 		return
 	ultimate_attack = !ultimate_attack
 	if(ultimate_attack)
 		to_chat(user, span_notice("You prepare an ultimate attack."))
 	else
 		to_chat(user, span_notice("You decide to not use the ultimate attack."))
+
+/obj/item/ego_weapon/twilight/MiddleClickAction(atom/target, mob/living/user)
+	. = ..()
+	if(.)
+		return
+	if(!CanUseEgo(user))
+		return
+	if(ultimate_attack)
+		return
+	if(aoe_cooldown > world.time)
+		to_chat(user, span_notice("This ability is on cooldown."))
+		return
+	var/list/candidates = list()
+	var/current_targets = 0
+	for(var/mob/living/L in view(8, user))
+		if(user.faction_check_mob(L, FALSE))
+			continue
+		if(L.stat == DEAD)
+			continue
+		if(current_targets >= max_targets)
+			return
+		candidates += L
+		current_targets += 1
+	if(!LAZYLEN(candidates))
+		return
+	aoe_cooldown = aoe_cooldown_time + world.time
+	playsound(user, 'sound/abnormalities/bigbird/hypnosis.ogg', 75, FALSE, 4)
+	for(var/mob/living/C in candidates)
+		C.add_filter("target_outline", 1, drop_shadow_filter(color = "#EBD407", size = 2))
+		addtimer(CALLBACK(C, TYPE_PROC_REF(/atom, remove_filter),"target_outline"), 30)
+		user.add_filter("user_outline", 1, drop_shadow_filter(color = "#04080FAA", size = -8))
+		addtimer(CALLBACK(user, TYPE_PROC_REF(/atom, remove_filter),"user_outline"), 30)
+	user.Immobilize(30)
+	if(!do_after(user, 30, src))
+		return
+	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+	var/justicemod = 1 + userjust/100
+	var/newdamage = (force * 1.2)
+	newdamage *= justicemod
+	newdamage *= force_multiplier
+	for(var/i = 1 to 3 * length(candidates))
+		var/atom/PT
+		PT = pick(candidates)
+		var/turf/T = get_step(get_turf(PT), pick(GLOB.alldirs))
+		var/obj/projectile/ego_twilight/P = new(T)
+		P.damage = newdamage
+		P.starting = T
+		P.firer = user
+		P.fired_from = T
+		P.yo = PT.y - T.y
+		P.xo = PT.x - T.x
+		P.original = PT
+		P.preparePixelProjectile(PT, T)
+		P.set_homing_target(PT)
+		addtimer(CALLBACK (P, TYPE_PROC_REF(/obj/projectile, fire)), 0.5 SECONDS)
+	playsound(user, 'sound/abnormalities/apocalypse/fire.ogg', 50, FALSE, 12)
+
+/obj/projectile/ego_twilight/Initialize()
+	. = ..()
+	animate(src, alpha = 255, pixel_x = rand(-10,10), pixel_y = rand(-10,10), time = 0.3 SECONDS)
+
+/obj/projectile/ego_twilight
+	name = "light"
+	icon_state = "apocalypse"
+	damage_type = BLACK_DAMAGE
+	damage = 10
+	alpha = 0
+	spread = 45
+	projectile_phasing = (ALL & (~PASSMOB))
 
 //Distorted Form
 /obj/item/ego_weapon/shield/distortion

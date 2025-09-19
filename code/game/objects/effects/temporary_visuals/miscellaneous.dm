@@ -626,7 +626,9 @@
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "paradise_attack_center"
 	pixel_x = -32
+	pixel_y = 4
 	duration = 10
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/effect/temp_visual/paradise_attack_large/Initialize()
 	. = ..()
