@@ -1185,7 +1185,7 @@
 	if(!CanUseEgo(user))
 		return
 	..()
-	if(do_after(user, 2, src))
+	if(do_after(user, 4, src))
 		mark_type = pick(RED_DAMAGE,WHITE_DAMAGE, BLACK_DAMAGE)
 		var/color = "red"
 		if(mark_type == WHITE_DAMAGE)
@@ -1225,8 +1225,8 @@
 	var/justicemod = 1 + userjust/100
 	var/modified_damage = mark_damage
 	modified_damage *= justicemod
-	modified_damage *= modified_damage
-	target.apply_damage(mark_damage, damage_color, null, target.run_armor_check(null, damage_color), spread_damage = TRUE)		//MASSIVE fuckoff punch
+	modified_damage *= force_multiplier
+	target.apply_damage(modified_damage, damage_color, null, target.run_armor_check(null, damage_color), spread_damage = TRUE)		//MASSIVE fuckoff punch
 	playsound(loc, 'sound/weapons/fixer/generic/energyfinisher3.ogg', 15, TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
 	new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
 
