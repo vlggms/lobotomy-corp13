@@ -1172,14 +1172,13 @@
 	desc = "A giant novelty pen."
 	special = "This weapon marks enemies with a random damage type. They take that damage after 5 seconds."
 	icon_state = "infinity"
-	force = 24
+	force = 18
 	hitsound = 'sound/abnormalities/book/scribble.ogg'
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 80
 							)
 	damtype = PALE_DAMAGE
-	stuntime = 4
-	var/mark_damage
+	var/mark_damage = 30
 	var/mark_type = RED_DAMAGE
 
 //Replaces the normal attack with a mark
@@ -1188,17 +1187,16 @@
 		return
 	..()
 	if(do_after(user, 2, src))
+		marktype = pick(RED_DAMAGE,WHITE_DAMAGE, BLACK_DAMAGE
+		var/color = "red"
+		if(mark_type == WHITE_DAMAGE)
+			color = "white"
+		if(mark_type == BLACK_DAMAGE)
+			color = "black"
 		playsound(loc, hitsound, 120, TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
-		target.visible_message(span_danger("[user] markes [target]!"), \
-						span_userdanger("[user] marks you!"), COMBAT_MESSAGE_RANGE, user)
-		to_chat(user, span_danger("You enscribe a code on [target]!"))
-
-		mark_damage = force*2
-		//I gotta grab  justice here
-		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-		var/justicemod = 1 + userjust/100
-		mark_damage *= justicemod
-		mark_damage *= force_multiplier
+		target.visible_message(span_danger("[user] markes [target] with a [color] code!"), \
+						span_userdanger("[user] marks you with a [color] code!"), COMBAT_MESSAGE_RANGE, user)
+		to_chat(user, span_danger("You enscribe a [color] code on [target]!"))
 
 		var/obj/effect/infinity/P = new get_turf(target)
 		if(mark_type == RED_DAMAGE)
@@ -1208,11 +1206,6 @@
 			P.color = COLOR_PURPLE
 
 		addtimer(CALLBACK(src, PROC_REF(cast), target, user, mark_type), 5 SECONDS)
-
-		//So you can see what the next mark is.
-		mark_type = pick(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE)
-		damtype = mark_type
-
 	else
 		to_chat(user, "<span class='spider'><b>Your attack was interrupted!</b></span>")
 		return
@@ -1229,10 +1222,14 @@
 	QDEL_IN(src, 1 SECONDS)
 
 /obj/item/ego_weapon/mini/infinity/proc/cast(mob/living/target, mob/living/user, damage_color)
+	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+	var/justicemod = 1 + userjust/100
+	var/modified_damage = mark_damage
+	modified_damage *= justicemod
+	modified_damage *= modified_damage
 	target.apply_damage(mark_damage, damage_color, null, target.run_armor_check(null, damage_color), spread_damage = TRUE)		//MASSIVE fuckoff punch
 	playsound(loc, 'sound/weapons/fixer/generic/energyfinisher3.ogg', 15, TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
 	new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
-	mark_damage = force
 
 /obj/item/ego_weapon/amrita
 	name = "amrita"
@@ -1689,7 +1686,7 @@
 	inhand_y_dimension = 96
 	force = 24
 	reach = 2		//Has 2 Square Reach.
-	stuntime = 5	//Longer reach, gives you a short stun.
+
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("pierces", "jabs")
 	default_attack_verbs = list("pierce", "jab")
