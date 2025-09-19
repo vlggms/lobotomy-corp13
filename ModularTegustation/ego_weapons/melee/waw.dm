@@ -1172,14 +1172,13 @@
 	desc = "A giant novelty pen."
 	special = "This weapon marks enemies with a random damage type. They take that damage after 5 seconds."
 	icon_state = "infinity"
-	force = 14
-	attack_speed = 0.8
+	force = 16
 	hitsound = 'sound/abnormalities/book/scribble.ogg'
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 80
 							)
 	damtype = PALE_DAMAGE
-	var/mark_damage = 10
+	var/mark_damage = 12
 	var/mark_type = RED_DAMAGE
 
 /obj/item/ego_weapon/mini/infinity/attack(mob/living/target, mob/living/user)
@@ -1203,7 +1202,7 @@
 	if(mark_type == BLACK_DAMAGE)
 		P.color = COLOR_PURPLE
 
-addtimer(CALLBACK(src, PROC_REF(cast), target, user, mark_type), 5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(cast), target, user, mark_type), 5 SECONDS)
 
 /obj/effect/infinity
 	name = "mark"

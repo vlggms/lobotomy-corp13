@@ -69,7 +69,7 @@
 	name = "paradise lost"
 	desc = "\"Behold: you stood at the door and knocked, and it was opened to you. \
 	I come from the end, and I am here to stay for but a moment.\""
-	special = "This weapon has a ranged attack that also happens when hitting an enemy that steals life from enemies hit."
+	special = "This weapon has a ranged attack that also happens on hit that heals you."
 	icon_state = "paradise"
 	worn_icon_state = "paradise"
 	force = 40
