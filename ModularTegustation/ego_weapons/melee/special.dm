@@ -134,7 +134,9 @@
 	for(var/mob/living/L in oview(6, get_turf(src)))
 		if(enemies > aoe_cap)
 			break
-		if(user.faction_check_mob(L) || L in been_hit)
+		if(user.faction_check_mob(L))
+			continue
+		if(L in been_hit)
 			continue
 		been_hit += L
 		enemies += 1
