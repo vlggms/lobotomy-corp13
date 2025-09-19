@@ -183,8 +183,16 @@
 		distance += 1
 	else
 		start = get_step_towards(start, target_turf)
-	var/angle = (angle_to_target + max_angle/2) % 360
-	var/angle2 = (angle_to_target - max_angle/2) % 360
+	var/angle = angle_to_target + max_angle/2
+	if(angle > 360)
+		angle -= 360
+	else if(angle < 0)
+		angle += 360
+	var/angle2 = angle_to_target - max_angle/2
+	if(angle2 > 360)
+		angle2 -= 360
+	else if(angle2 < 0)
+		angle2 += 360
 	var/list/area = list()
 	if(!old_style)
 		area+=start
@@ -195,7 +203,11 @@
 				continue
 		if(get_dist_euclidian(start,T) > (distance-1) + distance_offset)
 			continue
-		var/new_angle = (Get_Angle(start, T)) % 360
+		var/new_angle = Get_Angle(start, T)
+		if(new_angle > 360)
+			new_angle -= 360
+		else if(new_angle < 0)
+			new_angle += 360
 		if(angle > angle2)
 			if(new_angle > angle)
 				continue

@@ -180,7 +180,7 @@
 			continue
 		new /obj/effect/temp_visual/nt_goodbye(T)
 		for(var/mob/living/L in T)
-			var/aoe = 40
+			var/aoe = 35
 			var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 			var/justicemod = 1 + userjust/100
 			aoe*=justicemod
