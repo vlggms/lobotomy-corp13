@@ -146,7 +146,7 @@
 		var/mob/living/carbon/human/H = user
 		H.adjustStaminaLoss(-healing_amount*2)
 		H.adjustBruteLoss(-healing_amount)
-		H.adjustFireLoss(-healing_amount
+		H.adjustFireLoss(-healing_amount)
 		H.adjustSanityLoss(-healing_amount)
 	been_hit = list()
 	healing_amount = 0
