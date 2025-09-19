@@ -90,12 +90,12 @@
 	var/list/been_hit = list()
 
 /obj/item/ego_weapon/paradise/attack(mob/living/M, mob/living/user)
-	var/turf/target_turf = get_turf(M)
-	healing_amount += healing
-	been_hit += M
 	. = ..()
 	if(!.)
 		return FALSE
+	var/turf/target_turf = get_turf(M)
+	healing_amount += healing
+	been_hit += M
 	DoAoe(user, target_turf)
 
 /obj/item/ego_weapon/paradise/afterattack(atom/A, mob/living/user, proximity_flag, params)
@@ -238,7 +238,7 @@
 		user.do_attack_animation(A)
 		can_ultimate = FALSE
 		ultimate_attack = FALSE
-		user.changeNext_move(CLICK_CD_MELEE * 3)
+		user.changeNext_move(CLICK_CD_MELEE * 2)
 		do_slash(get_turf(A), user)
 		addtimer(CALLBACK(src, PROC_REF(ultimate_reset)), ultimate_cooldown_time)
 
@@ -254,7 +254,7 @@
 	var/list/slash_area = Make_Slash(get_turf(user), target_turf,slash_length, slash_angle, TRUE, -0.4)
 	for(var/turf/T in slash_area)
 		var/obj/effect/temp_visual/smash_effect/S = new(T)
-		S.color = pick(COLOR_RED, COLOR_WHITE,COLOR_VIOLET,COLOR_CYAN)
+		S.color = COLOR_MAROON
 		for(var/mob/living/L in T)
 			if(user.faction_check_mob(L))
 				continue
