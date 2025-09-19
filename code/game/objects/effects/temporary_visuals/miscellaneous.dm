@@ -631,7 +631,7 @@
 /obj/effect/temp_visual/paradise_attack_large/Initialize()
 	. = ..()
 	transform = matrix(matrix(1, 0, MATRIX_SCALE),0, -48, MATRIX_TRANSLATE)
-	animate(src, transform = matrix(), time = 2)
+	animate(src, transform = matrix(), time = 1.5)
 	addtimer(CALLBACK(src, PROC_REF(fade_out)), 7)
 
 /obj/effect/temp_visual/paradise_attack_large/proc/fade_out()
