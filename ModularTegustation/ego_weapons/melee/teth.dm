@@ -669,7 +669,7 @@
 	special = "This weapon has a combo system. To turn off this combo system, use in hand. \
 			This weapon has a fast attack speed. The combo finisher heals humans in a small area."
 	icon_state = "luminosity"
-	force = 5
+	force = 4
 	hitsound = 'sound/weapons/fixer/generic/club2.ogg'
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("smacks", "hammers", "beats")

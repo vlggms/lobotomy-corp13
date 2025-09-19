@@ -20,7 +20,7 @@
 	var/combo_time
 	/// Wait time between attacks for combo to reset
 	var/combo_wait = 10
-	var/aoe_damage = 26
+	var/aoe_damage = 20
 
 /obj/item/ego_weapon/justitia/attack(mob/living/M, mob/living/user)
 	if(!CanUseEgo(user))
@@ -262,6 +262,9 @@
 		combo = 0
 	combo_time = world.time + combo_wait
 	if(combo >= 6)
+		M.visible_message(span_danger("[user] rears up and slams into [M]!"), \
+						span_userdanger("[user] punches you with everything you got!!"), vision_distance = COMBAT_MESSAGE_RANGE, ignored_mobs = user)
+		to_chat(user, span_danger("You throw your entire body into this punch!"))
 		combo = 0
 		user.changeNext_move(CLICK_CD_MELEE * 3)
 		playsound(src, 'sound/weapons/fixer/generic/finisher2.ogg', 50, FALSE, 9)
@@ -397,9 +400,12 @@
 	can_spin = FALSE
 
 	if(do_after(user, (attack_speed * 8), src))
+		user.Immobilize(0.6 SECONDS)
+		ADD_TRAIT(src, TRAIT_NODROP, STICKY_NODROP)
 		animate(user, alpha = 1,pixel_x = 0, pixel_z = 16, time = 0.1 SECONDS)
 		user.pixel_z = 16
 		sleep(0.5 SECONDS)
+		REMOVE_TRAIT(src, TRAIT_NODROP, STICKY_NODROP)
 		if(QDELETED(user))
 			spin_reset()
 			return
