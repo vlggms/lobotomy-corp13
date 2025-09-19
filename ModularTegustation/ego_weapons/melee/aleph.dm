@@ -180,7 +180,7 @@
 			continue
 		new /obj/effect/temp_visual/nt_goodbye(T)
 		for(var/mob/living/L in T)
-			var/aoe = 26
+			var/aoe = 40
 			var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 			var/justicemod = 1 + userjust/100
 			aoe*=justicemod
@@ -232,10 +232,7 @@
 		stuntime = 5
 		swingstyle = WEAPONSWING_THRUST
 	else
-		if(form == "scythe")
-			stuntime = 5
-		else
-			stuntime = 0
+		stuntime = 0
 		swingstyle = WEAPONSWING_LARGESWEEP
 
 /obj/item/ego_weapon/goldrush
