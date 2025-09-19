@@ -268,7 +268,7 @@
 		burn_stack = B.stacks
 	else
 		burn_stack = 0
-	force = (80 + round(burn_stack/2))
+	force = (40 + round(burn_stack/2))
 	burn_enemy = burn_enemy + round(burn_stack/10)
 
 /obj/item/ego_weapon/shield/waxen/CanUseEgo(mob/living/user)

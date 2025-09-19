@@ -646,7 +646,7 @@
 	desc = "You should consider it an honor. The humans who have joined me could attain greater wealth and glory."
 	special = "This weapon has a combo system. To turn off this combo system, use in hand."
 	icon_state = "inheritance"
-	force = 8
+	force = 5
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("stabs", "attacks", "slashes")
 	attack_verb_simple = list("stab", "attack", "slash")
@@ -913,6 +913,8 @@
 	if((get_dist(user, A) < 2) || (!(can_see(user, A, dash_range))))
 		return
 	if(do_after(user, 5, src))
+		user.Immobilize(0.6 SECONDS)
+		ADD_TRAIT(src, TRAIT_NODROP, STICKY_NODROP)
 		dash_cooldown = world.time + dash_cooldown_time
 		playsound(src, 'sound/abnormalities/ichthys/jump.ogg', 50, FALSE, -1)
 		animate(user, alpha = 1,pixel_x = 0, pixel_z = 16, time = 0.1 SECONDS)
@@ -923,11 +925,13 @@
 		else if(QDELETED(A) || !can_see(user, A, dash_range))
 			animate(user, alpha = 255,pixel_x = 0, pixel_z = -16, time = 0.1 SECONDS)
 			user.pixel_z = 0
+			REMOVE_TRAIT(src, TRAIT_NODROP, STICKY_NODROP)
 			return
 		for(var/i in 2 to get_dist(user, A))
 			step_towards(user,A)
 		if(get_dist(user, A) < 2)
 			JumpAttack(A,user)
+		REMOVE_TRAIT(src, TRAIT_NODROP, STICKY_NODROP)
 		to_chat(user, span_warning("You jump towards [A]!"))
 		animate(user, alpha = 255,pixel_x = 0, pixel_z = -16, time = 0.1 SECONDS)
 		user.pixel_z = 0
