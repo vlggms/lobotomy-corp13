@@ -22,6 +22,9 @@
 	//How long do you stun on hit?
 	var/stuntime = 0
 
+	//If a weapon has a special attack speed changes or uses a combo system, how fast does it attack regulary?
+	var/visual_attack_speed = null
+
 /obj/item/ego_weapon/Initialize()
 	. = ..()
 	if(swingstyle == WEAPONSWING_SMALLSWEEP && reach > 1)
@@ -115,7 +118,10 @@
 	if(throwforce>force)
 		. += span_notice("This weapon deals [throwforce] [damtype] damage when thrown.")
 
-	switch(attack_speed)
+	var/text_attack_speed = attack_speed
+	if(visual_attack_speed)
+		text_attack_speed = visual_attack_speed
+	switch(text_attack_speed)
 		if(-INFINITY to 0.39)
 			. += span_notice("This weapon has a very fast attack speed.")
 

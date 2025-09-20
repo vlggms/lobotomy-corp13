@@ -41,6 +41,7 @@
 			This weapon has a fast attack speed"
 	icon_state = "despair"
 	force = 10
+	visual_attack_speed = 0.4
 	damtype = WHITE_DAMAGE
 	swingstyle = WEAPONSWING_THRUST
 	attack_verb_continuous = list("stabs", "attacks", "slashes")
@@ -222,9 +223,9 @@
 	special = "Use it in hand to activate ranged attack."
 	icon_state = "crimsonclaw"
 	special = "This weapon hits faster than usual."
-	force = 10
+	force = 12
 	swingstyle = WEAPONSWING_LARGESWEEP
-	attack_speed = 0.5
+	visual_attack_speed = 0.6
 	damtype = RED_DAMAGE
 	hitsound = 'sound/abnormalities/redhood/attack_1.ogg'
 	attribute_requirements = list(
@@ -258,7 +259,7 @@
 		else
 			hitsound = 'sound/abnormalities/redhood/attack_1.ogg'
 	force *= (1 + (combo * 0.15))
-	user.changeNext_move(CLICK_CD_MELEE * (1 + (combo * 0.2)))
+	user.changeNext_move(CLICK_CD_MELEE * (0.5 + (combo * 0.2)))
 	if(combo >= 3)
 		combo = 0
 	..()
@@ -2051,6 +2052,7 @@
 			This weapon has a fast attack speed"
 	icon_state = "abyssal_route"
 	force = 10
+	visual_attack_speed = 0.4
 	damtype = BLACK_DAMAGE
 	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_verb_continuous = list("stabs", "attacks", "slashes")

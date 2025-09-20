@@ -670,6 +670,7 @@
 			This weapon has a fast attack speed. The combo finisher heals humans in a small area."
 	icon_state = "luminosity"
 	force = 4
+	visual_attack_speed = 0.4
 	hitsound = 'sound/weapons/fixer/generic/club2.ogg'
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("smacks", "hammers", "beats")

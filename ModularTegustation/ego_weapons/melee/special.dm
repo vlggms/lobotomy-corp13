@@ -826,7 +826,7 @@
 /obj/item/ego_weapon/iron_maiden/attack(mob/living/target, mob/living/user)
 	if(!..())
 		return
-	if (ramping_speed < 10)
+	if (ramping_speed < 25)
 		ramping_speed += 1
 	else
 		ramping_damage += 0.02
@@ -838,7 +838,7 @@
 			Multihit(target, user, 1)
 		if(10 to 15)
 			Multihit(target, user, 2)
-		if(15 to 20)
+		if(15 to 25)
 			if(icon_state != "iron_maiden_open")
 				playsound(src, 'sound/abnormalities/we_can_change_anything/change_gas.ogg', 50, TRUE)
 				icon_state = "iron_maiden_open"
@@ -852,7 +852,7 @@
 		return
 	to_chat(user,span_notice("You being to cool down [src]."))
 	playsound(src, 'sound/abnormalities/we_can_change_anything/change_gas.ogg', 50, TRUE)
-	if(do_after(user, 2.5 SECONDS, src))
+	if(do_after(user, 2 SECONDS, src))
 		icon_state = "iron_maiden"
 		update_icon_state()
 		playsound(src, 'sound/abnormalities/we_can_change_anything/change_start.ogg', 50, FALSE)
@@ -981,6 +981,7 @@
 	icon_state = "despair_nihil"
 	force = 20
 	attack_speed = 1
+	visual_attack_speed = 0.4
 	damtype = WHITE_DAMAGE
 
 	attack_verb_continuous = list("stabs", "attacks", "slashes")
