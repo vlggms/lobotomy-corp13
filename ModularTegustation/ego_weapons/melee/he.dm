@@ -655,6 +655,7 @@
 							JUSTICE_ATTRIBUTE = 40
 							)
 	var/combo = 0
+	visual_attack_speed = 0.3
 	var/combo_time
 	var/combo_wait = 10
 	var/combo_on = TRUE
@@ -1857,6 +1858,7 @@
 	icon_state = "sunshower"
 	force = 12
 	attack_speed = 1
+	visual_attack_speed = 1.4
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("slices", "cleaves", "chops")
 	attack_verb_simple = list("slice", "cleave", "chop")
@@ -2156,6 +2158,7 @@
 	desc = "Some old bandages that look like they have been worn for a long time."
 	icon_state = "desert"
 	force = 9
+	visual_attack_speed = 0.7
 	attack_speed = 0.7
 	hitsound = 'sound/weapons/fixer/generic/fist1.ogg'
 	attribute_requirements = list(
