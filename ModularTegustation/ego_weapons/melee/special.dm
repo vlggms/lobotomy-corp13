@@ -8,10 +8,9 @@
 	icon_state = "featherofhonor"
 	worn_icon_state = "featherofhonor"
 	inhand_icon_state = "featherofhonor"
-	special = "This weapon is highly effective in melee."
 	force = 16
 	attack_speed = 0.7
-	special = "This E.G.O. functions as both a gun and a melee weapon."
+	special = "This E.G.O. functions as both a ranged and a melee weapon."
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("slices", "slashes", "stabs")
 	attack_verb_simple = list("slice", "slash", "stab")
