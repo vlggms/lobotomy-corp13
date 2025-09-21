@@ -23,7 +23,7 @@
 	var/stuntime = 0
 
 	//If a weapon has a special attack speed changes or uses a combo system, how fast does it attack regulary?
-	var/visual_attack_speed = null
+	var/modified_attack_speed = null
 
 /obj/item/ego_weapon/Initialize()
 	. = ..()
@@ -119,8 +119,8 @@
 		. += span_notice("This weapon deals [throwforce] [damtype] damage when thrown.")
 
 	var/text_attack_speed = attack_speed
-	if(visual_attack_speed)
-		text_attack_speed = visual_attack_speed
+	if(modified_attack_speed)
+		text_attack_speed = modified_attack_speed
 	switch(text_attack_speed)
 		if(-INFINITY to 0.39)
 			. += span_notice("This weapon has a very fast attack speed.")

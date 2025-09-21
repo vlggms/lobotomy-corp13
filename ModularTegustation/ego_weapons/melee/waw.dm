@@ -41,7 +41,7 @@
 			This weapon has a fast attack speed"
 	icon_state = "despair"
 	force = 10
-	visual_attack_speed = 0.4
+	modified_attack_speed = 0.4
 	damtype = WHITE_DAMAGE
 	swingstyle = WEAPONSWING_THRUST
 	attack_verb_continuous = list("stabs", "attacks", "slashes")
@@ -225,7 +225,7 @@
 	special = "This weapon hits faster than usual."
 	force = 12
 	swingstyle = WEAPONSWING_LARGESWEEP
-	visual_attack_speed = 0.6
+	modified_attack_speed = 0.6
 	damtype = RED_DAMAGE
 	hitsound = 'sound/abnormalities/redhood/attack_1.ogg'
 	attribute_requirements = list(
@@ -2052,7 +2052,7 @@
 			This weapon has a fast attack speed"
 	icon_state = "abyssal_route"
 	force = 10
-	visual_attack_speed = 0.4
+	modified_attack_speed = 0.4
 	damtype = BLACK_DAMAGE
 	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_verb_continuous = list("stabs", "attacks", "slashes")

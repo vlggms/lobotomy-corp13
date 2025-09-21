@@ -4,7 +4,7 @@
 	special = "This weapon has a combo system."
 	icon_state = "justitia"
 	force = 14
-	visual_attack_speed = 0.4
+	modified_attack_speed = 0.4
 	damtype = PALE_DAMAGE
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
@@ -243,7 +243,7 @@
 	icon_state = "gold_rush"
 	hitsound = 'sound/weapons/fixer/generic/gen2.ogg'
 	force = 25
-	visual_attack_speed = 0.3
+	modified_attack_speed = 0.3
 	damtype = RED_DAMAGE
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
