@@ -980,7 +980,7 @@
 	icon_state = "despair_nihil"
 	force = 20
 	attack_speed = 1
-	visual_attack_speed = 0.4
+	modified_attack_speed = 0.4
 	damtype = WHITE_DAMAGE
 
 	attack_verb_continuous = list("stabs", "attacks", "slashes")
