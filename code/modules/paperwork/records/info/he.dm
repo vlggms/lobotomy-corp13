@@ -598,3 +598,12 @@
 		"Employees who crossed the ribbons were occasionally bound by them, having their prudence and temperance temporarily reduced.",
 		"Employees with a high temperance attribute were unlikely to be bound by ribbons.",
 		"Employees who perished on the ribbons became entities regarded as F-04-147-01.")
+
+//Der Fluschutze
+/obj/item/paper/fluff/info/he/der_fluschutze
+	abno_type = /mob/living/simple_animal/hostile/abnormality/der_fluschutze
+	abno_code = "F-01-203"
+	abno_info = list(
+		"When the work result was Normal, the Qliphoth Counter lowered with a normal probability.",
+		"When the work result was Bad, the Qliphoth Counter lowered.",
+		"When attachment work was completed, Der Fluschutze escaped its Containment Unit.",)
