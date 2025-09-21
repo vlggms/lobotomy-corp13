@@ -149,7 +149,7 @@
 	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
 	inhand_x_dimension = 96
 	inhand_y_dimension = 96
-	force = 26
+	force = 72
 	attack_speed = 1.8
 	damtype = BLACK_DAMAGE
 	hitsound = 'sound/abnormalities/apocalypse/slam.ogg'
@@ -168,7 +168,7 @@
 	successfull_activation = "You feel the power of the violet noon flow through you."
 
 	var/dash_range = 8
-	var/aoe_damage = 80
+	var/aoe_damage = 150
 
 /obj/item/ego_weapon/violet_curse/Initialize()
 	. = ..()
