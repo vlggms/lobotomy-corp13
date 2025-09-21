@@ -42,3 +42,10 @@
 	projectile_type = /obj/projectile/ego_bullet/shrimp_pale
 	pellets = 8
 	variance = 16
+
+/obj/item/ammo_casing/caseless/ego_fellscatter
+	name = "fellbullet casing"
+	desc = "A casing."
+	projectile_type = /obj/projectile/ego_bullet/ego_fellscatter
+	pellets = 7
+	variance = 10
