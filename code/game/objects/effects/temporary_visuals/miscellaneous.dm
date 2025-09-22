@@ -626,14 +626,14 @@
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "paradise_attack_center"
 	pixel_x = -32
-	pixel_y = 4
+	pixel_y = 2
 	duration = 10
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/effect/temp_visual/paradise_attack_large/Initialize()
 	. = ..()
 	transform = matrix(matrix(1, 0, MATRIX_SCALE),0, -48, MATRIX_TRANSLATE)
-	animate(src, transform = matrix(), time = 1.5)
+	animate(src, transform = matrix(), time = 1.5, easing = CIRCULAR_EASING | EASE_IN)
 	addtimer(CALLBACK(src, PROC_REF(fade_out)), 7)
 
 /obj/effect/temp_visual/paradise_attack_large/proc/fade_out()
