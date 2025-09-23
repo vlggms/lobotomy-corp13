@@ -161,11 +161,10 @@
 	desc = "Just like how the ever-watching eyes, the scale that could measure any and all sin, \
 	and the beak that could swallow everything protected the peace of the Black Forest... \
 	The wielder of this armament may also bring peace as they did."
-	special = "This weapon pierces to hit everything on the target's tile."
+	special = "This weapon can attack from a distance on a cooldown and perform a large area attack when used in hand."
 	icon_state = "twilight"
 	worn_icon_state = "twilight"
 	force = 20
-	attack_speed = 1.2
 	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = RED_DAMAGE // It's all damage types, actually
 	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
@@ -177,172 +176,105 @@
 							TEMPERANCE_ATTRIBUTE = 120,
 							JUSTICE_ATTRIBUTE = 120
 							)
-	var/special_move = "beak"
-	var/special_cooldown
-	var/using_special = FALSE
-	var/beak_damage = 20
-	var/beak_cooldown_time_ranged = 2 SECONDS
-	var/eyes_cooldown_time = 5 SECONDS
-	var/arms_damage = 60
-	var/arms_cooldown_time = 12 SECONDS
-	var/max_targets = 5
-
-
-/obj/item/ego_weapon/twilight/examine(mob/user)
-	. = ..()
-	var/list/shorthands = list(
-	"beak" = "Torn Mouth",
-	"eyes" = "Brilliant Eyes",
-	"arms" = "Tilted Scale",
-	)
-	. += span_notice("Pressing the middle mouse button click/alt click will change what special move it can preform.")
-	. += span_notice("Torn Mouth - Grants the ability to attack from a distance on a short cooldown that deals additional RED damage in an area to the target.")
-	. += span_notice("Brilliant Eyes - When used in hand preforms a BLACK damaging attack at up to 5 targets with a medium cooldown.")
-	. += span_notice("Tilted Scale -When used in hand preforms a PALE damaging area attack with a long cooldown.")
-	. += span_notice("Current selected special move: [shorthands[special_move]]")
-
-/obj/item/ego_weapon/twilight/attack(mob/living/M, mob/living/user)
-	var/turf/T = get_turf(M)
-	if(!CanUseEgo(user))
-		return
-	..()
-	var/list/been_hit = QDELETED(M) ? list() : list(M)
-	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-	var/justicemod = 1 + userjust / 100
-	var/damage_dealt = force * justicemod * force_multiplier
-	user.HurtInTurf(T, been_hit, damage_dealt, RED_DAMAGE, hurt_mechs = TRUE, hurt_structure = TRUE)
-	for(var/damage_type in list(WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE))
-		user.HurtInTurf(T, been_hit, damage_dealt, damage_type, hurt_mechs = TRUE, hurt_structure = TRUE)
-		damtype = damage_type
-		M.attacked_by(src, user)
-	damtype = initial(damtype)
+	var/ranged_cooldown_time = 5 SECONDS
+	var/ranged_cooldown
+	var/aoe_cooldown_time = 3 SECONDS
+	var/aoe_cooldown
+	var/max_targets = 10 // Max targets for the AOE. 30 projectiles is a lot.
 
 /obj/item/ego_weapon/twilight/afterattack(atom/A, mob/living/user, proximity_flag, params) // Special melee attack from up to 10 tiles away
 	if(!CanUseEgo(user))
 		return
-	if(special_cooldown > world.time)
+	if(ranged_cooldown > world.time)
 		return
 	if(!isliving(A))
-		return
-	if(special_move != "beak")
 		return
 	var/target_turf = get_turf(A)
 	if((get_dist(user, target_turf) < 2) || (get_dist(user, target_turf) > 10))
 		return
 	var/mob/living/the_target = A
-	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-	var/justicemod = 1 + userjust / 100
+	force *= 1.5
+	playsound(the_target, hitsound, get_clamped_volume(), TRUE, -1)
+	var/turf/landing_turf = get_step(target_turf, pick(1,2,4,5,6,8,9,10))
+	if(!isopenturf(landing_turf))
+		landing_turf = target_turf
+	get_thrust_turfs(A, user)
+	get_sweep_turfs(A, user)
+	the_target.attacked_by(src, user)
+	for(var/damage_type in list(WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE))
+		damtype = damage_type
+		the_target.attacked_by(src, user)
+	damtype = initial(damtype)
+	force = initial(force)
+	var/attacktime = (CLICK_CD_MELEE * attack_speed * 1.5)
+	user.changeNext_move(attacktime)
+	user.Immobilize(attacktime + 0.2)
+	new /obj/effect/temp_visual/weapon_stun(get_turf(user))
+	ranged_cooldown = world.time + ranged_cooldown_time
 
-	playsound(the_target, 'sound/abnormalities/apocalypse/beak.ogg', get_clamped_volume(), TRUE, -1)
-	for(var/turf/T in getline(user, target_turf))
-		new /obj/effect/temp_visual/beakbite(T)
-		user.HurtInTurf(T, list(), beak_damage * justicemod * force_multiplier, RED_DAMAGE, hurt_mechs = TRUE, hurt_structure = TRUE)
-
-	stuntime = 5
-	attack(the_target, user)
-	stuntime = 0
-	special_cooldown = world.time + beak_cooldown_time_ranged
+/obj/item/ego_weapon/twilight/attack(mob/living/M, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	..()
+	for(var/damage_type in list(WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE))
+		damtype = damage_type
+		M.attacked_by(src, user)
+	damtype = initial(damtype)
 
 /obj/item/ego_weapon/twilight/EgoAttackInfo(mob/user)
 	if(force_multiplier != 1)
 		return span_notice("It deals [round((force * 4) * force_multiplier)] red, white, black and pale damage combined. (+ [(force_multiplier - 1) * 100]%)")
 	return span_notice("It deals [force * 4] red, white, black and pale damage combined.")
 
-/obj/item/ego_weapon/twilight/attack_self(mob/living/user)
+/obj/item/ego_weapon/twilight/attack_self(mob/user) //spin attack with knockback
 	if(!CanUseEgo(user))
 		return
-	if(special_move == "beak" || using_special)
-		return
-	if(special_cooldown > world.time)
+	if(aoe_cooldown > world.time)
 		to_chat(user, span_notice("This ability is on cooldown."))
 		return
-	if(special_move == "eyes")
-		var/list/candidates = list()
-		var/current_targets = 0
-		for(var/mob/living/L in view(8, user))
-			if(user.faction_check_mob(L, FALSE))
-				continue
-			if(L.stat == DEAD)
-				continue
-			if(current_targets >= max_targets)
-				return
-			candidates += L
-			current_targets += 1
-		if(!LAZYLEN(candidates))
+	var/list/candidates = list()
+	var/current_targets = 0
+	for(var/mob/living/L in view(8, user))
+		if(user.faction_check_mob(L, FALSE))
+			continue
+		if(L.stat == DEAD)
+			continue
+		if(current_targets >= max_targets)
 			return
-		playsound(user, 'sound/abnormalities/bigbird/hypnosis.ogg', 75, FALSE, 4)
-		for(var/mob/living/C in candidates)
-			C.add_filter("target_outline", 1, drop_shadow_filter(color = "#EBD407", size = 2))
-			addtimer(CALLBACK(C, TYPE_PROC_REF(/atom, remove_filter),"target_outline"), 30)
-			user.add_filter("user_outline", 1, drop_shadow_filter(color = "#04080FAA", size = -8))
-			addtimer(CALLBACK(user, TYPE_PROC_REF(/atom, remove_filter),"user_outline"), 30)
-		user.Immobilize(30)
-		using_special = TRUE
-		if(!do_after(user, 30, src))
-			using_special = FALSE
-			return
-		using_special = FALSE
-		special_cooldown = eyes_cooldown_time + world.time
-		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-		var/justicemod = 1 + userjust/100
-		var/newdamage = (force * 1.2)
-		newdamage *= justicemod
-		newdamage *= force_multiplier
-		for(var/i = 1 to 3 * length(candidates))
-			var/atom/PT
-			PT = pick(candidates)
-			var/turf/T = get_step(get_turf(PT), pick(GLOB.alldirs))
-			var/obj/projectile/ego_twilight/P = new(T)
-			P.damage = newdamage
-			P.starting = T
-			P.firer = user
-			P.fired_from = T
-			P.yo = PT.y - T.y
-			P.xo = PT.x - T.x
-			P.original = PT
-			P.preparePixelProjectile(PT, T)
-			P.set_homing_target(PT)
-			addtimer(CALLBACK (P, TYPE_PROC_REF(/obj/projectile, fire)), 0.5 SECONDS)
-		playsound(user, 'sound/abnormalities/apocalypse/fire.ogg', 50, FALSE, 12)
-	if(special_move == "arms")
-		playsound(get_turf(user), 'sound/abnormalities/judgementbird/pre_ability.ogg', 50, 0)
-		new /obj/effect/temp_visual/judgment_ego(get_turf(user))
-		user.Immobilize(20)
-		using_special = TRUE
-		if(!do_after(user, 20, src))
-			using_special = FALSE
-			return
-		playsound(get_turf(user), 'sound/abnormalities/judgementbird/ability.ogg', 75, 0, 2)
-		using_special = FALSE
-		special_cooldown = arms_cooldown_time + world.time
-		for(var/mob/living/L in view(6, user))
-			if(user.faction_check_mob(L, FALSE))
-				continue
-			if(L.stat == DEAD)
-				continue
-			var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-			var/justicemod = 1 + userjust/100
-			var/newdamage = arms_damage
-			newdamage *= justicemod
-			newdamage *= force_multiplier
-			new /obj/effect/temp_visual/justitia_effect(get_turf(L))
-			L.apply_damage(newdamage, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE))
-
-/obj/item/ego_weapon/twilight/MiddleClickAction(atom/target, mob/living/user)
-	. = ..()
-	if(.)
+		candidates += L
+		current_targets += 1
+	if(!LAZYLEN(candidates))
 		return
-	if(!CanUseEgo(user))
+	aoe_cooldown = aoe_cooldown_time + world.time
+	playsound(user, 'sound/abnormalities/apocalypse/pre_attack.ogg', 75, FALSE, 4)
+	for(var/mob/living/C in candidates)
+		C.add_filter("target_outline", 1, drop_shadow_filter(color = "#8eff6c", size = 2))
+		addtimer(CALLBACK(C, TYPE_PROC_REF(/atom, remove_filter),"target_outline"), 30)
+		user.add_filter("user_outline", 1, drop_shadow_filter(color = "#04080FAA", size = -8))
+		addtimer(CALLBACK(user, TYPE_PROC_REF(/atom, remove_filter),"user_outline"), 30)
+	if(!do_after(user, 30, src))
 		return
-	if(special_move == "beak")
-		special_move = "eyes"
-		to_chat(user,span_warning("You will now be able to perform Brilliant Eyes."))
-	else if(special_move == "eyes")
-		special_move = "arms"
-		to_chat(user,span_warning("You will now be able to perform Tilted Scale."))
-	else if(special_move == "arms")
-		special_move = "beak"
-		to_chat(user,span_warning("You will now be able to perform Torn Mouth."))
+	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+	var/justicemod = 1 + userjust/100
+	var/newdamage = (force * 1.2)
+	newdamage *= justicemod
+	newdamage *= force_multiplier
+	for(var/i = 1 to 3 * length(candidates))
+		var/atom/PT
+		PT = pick(candidates)
+		var/turf/T = get_step(get_turf(PT), pick(GLOB.alldirs))
+		var/obj/projectile/ego_twilight/P = new(T)
+		P.damage = newdamage
+		P.starting = T
+		P.firer = user
+		P.fired_from = T
+		P.yo = PT.y - T.y
+		P.xo = PT.x - T.x
+		P.original = PT
+		P.preparePixelProjectile(PT, T)
+		P.set_homing_target(PT)
+		addtimer(CALLBACK (P, TYPE_PROC_REF(/obj/projectile, fire)), 0.5 SECONDS)
+	playsound(user, 'sound/abnormalities/apocalypse/fire.ogg', 50, FALSE, 12)
 
 /obj/projectile/ego_twilight
 	name = "light"
@@ -356,25 +288,6 @@
 /obj/projectile/ego_twilight/Initialize()
 	. = ..()
 	animate(src, alpha = 255, pixel_x = rand(-10,10), pixel_y = rand(-10,10), time = 0.3 SECONDS)
-
-/obj/effect/temp_visual/judgment_ego
-	icon_state = "judge_still"
-	duration = 30
-	alpha = 0
-	layer = ABOVE_ALL_MOB_LAYER
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-
-/obj/effect/temp_visual/judgment_ego/Initialize()
-	. = ..()
-	animate(src, pixel_y = 18, alpha = 255, time = 5, easing = SINE_EASING)
-	addtimer(CALLBACK(src, PROC_REF(icon_change)), 20)
-	addtimer(CALLBACK(src, PROC_REF(fade_out)), 25)
-
-/obj/effect/temp_visual/judgment_ego/proc/icon_change()
-	icon_state = "judge"
-
-/obj/effect/temp_visual/judgment_ego/proc/fade_out()
-	animate(src, alpha = 0, time = 5)
 
 //Distorted Form
 /obj/item/ego_weapon/shield/distortion
