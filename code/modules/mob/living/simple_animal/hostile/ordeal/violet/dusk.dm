@@ -20,28 +20,35 @@
 	var/retaliation_health = 10 // Initialized later
 	var/hand_limit = 6
 	var/hand_cooldown
-	var/hand_cooldown_time = 30 SECONDS
+	var/hand_cooldown_time = 90 SECONDS
 	var/list/spawned_arms = list()
 	var/arm_cooldown
-	var/arm_cooldown_time = 45 SECONDS
+	var/arm_cooldown_time = 60 SECONDS
 	var/arm_limit = 12
 	var/initial_spawn = FALSE
+	var/retaliation_cooldown
+	var/retaliation_cooldown_time = 150 SECONDS
+	var/retaliation_cooldown_short = 30 SECONDS
+
 /mob/living/simple_animal/hostile/ordeal/violet_dusk/Initialize()
 	. = ..()
 	hand_cooldown = hand_cooldown_time + world.time
 	arm_cooldown = arm_cooldown_time + world.time
+	retaliation_cooldown = retaliation_cooldown_time + world.time
 	retaliation_health = maxHealth * 0.75
 
 /mob/living/simple_animal/hostile/ordeal/violet_dusk/Life()
 	. = ..()
 	if(!.)
-		return
+		return FALSE
 	if(!initial_spawn)
 		initial_spawn = TRUE
 		SpawnHand()
 		SpawnHand()
 		for(var/i = 1 to 6)
 			SpawnArm()
+	if(retaliation_cooldown <= world.time)
+		Retaliation()
 	if(hand_cooldown <= world.time && spawned_hands.len < hand_limit)
 		hand_cooldown = hand_cooldown_time + world.time
 		SpawnHand()
@@ -64,11 +71,16 @@
 
 /mob/living/simple_animal/hostile/ordeal/violet_dusk/apply_damage(damage, damagetype, def_zone, blocked, forced, spread_damage, wound_bonus, bare_wound_bonus, sharpness, white_healable)
 	. = ..()
+	if(QDELETED(src) || stat == DEAD)
+		return
+	if(retaliation_cooldown <= world.time + retaliation_cooldown_short)
+		retaliation_cooldown = retaliation_cooldown_short + world.time
 	if(health < retaliation_health)
 		retaliation_health -= maxHealth * 0.5
-		Retaliation()
+		Retaliation(TRUE)
 
-/mob/living/simple_animal/hostile/ordeal/violet_dusk/proc/Retaliation()
+/mob/living/simple_animal/hostile/ordeal/violet_dusk/proc/Retaliation(var/teleport_hands)
+	retaliation_cooldown = retaliation_cooldown_time + world.time
 	icon_state = "violet_dusk_counter"
 	for(var/turf/T in range(4, src))
 		new /obj/effect/temp_visual/cult/sparks(T)
@@ -82,38 +94,40 @@
 	for(var/turf/T in range(4, src))
 		HurtInTurf(T, list(), 30, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
 		new /obj/effect/temp_visual/revenant(T)
-	var/list/turfs = list()
-	var/list/arms = list()
-	var/list/arms_near = list()
-	for(var/mob/living/simple_animal/hostile/ordeal/violet_spawn/arm/S in spawned_arms)
-		if (get_dist(S, src) > 4)
-			arms += S
-		else
-			arms_near += S
-	for(var/turf/T in view(3, src))
-		if(locate(/mob/living/simple_animal/hostile/ordeal/violet_spawn/arm) in T)
-			continue
-		if(!T.is_blocked_turf_ignore_climbable())
-			turfs |= T
-	if(arms_near.len <= 3)
-		for(var/i=0 to 3)
-			if(turfs.len == 0)
-				return
-			if(arms.len == 0)
-				var/turf/T = pick(turfs)
-				var/mob/living/simple_animal/hostile/ordeal/violet_spawn/arm/S = new(T)
-				spawned_arms+=S
-				S.pillar = src
-				if(ordeal_reference)
-					S.ordeal_reference = ordeal_reference
-					ordeal_reference.ordeal_mobs += S
-				turfs -= T
+	SSlobotomy_corp.InitiateMeltdown(round(SSlobotomy_corp.qliphoth_meltdown_amount/3)+1, TRUE)
+	if(teleport_hands)
+		var/list/turfs = list()
+		var/list/arms = list()
+		var/list/arms_near = list()
+		for(var/mob/living/simple_animal/hostile/ordeal/violet_spawn/arm/S in spawned_arms)
+			if (get_dist(S, src) > 4)
+				arms += S
 			else
-				var/mob/living/simple_animal/hostile/ordeal/violet_spawn/arm/S  = pick(arms)
-				var/turf/T = pick(turfs)
-				S.DoDash(T)
-				arms -= S
-				turfs -= T
+				arms_near += S
+		for(var/turf/T in view(3, src))
+			if(locate(/mob/living/simple_animal/hostile/ordeal/violet_spawn/arm) in T)
+				continue
+			if(!T.is_blocked_turf_ignore_climbable())
+				turfs |= T
+		if(arms_near.len <= 3)
+			for(var/i=0 to 3)
+				if(turfs.len == 0)
+					return
+				if(arms.len == 0)
+					var/turf/T = pick(turfs)
+					var/mob/living/simple_animal/hostile/ordeal/violet_spawn/arm/S = new(T)
+					spawned_arms+=S
+					S.pillar = src
+					if(ordeal_reference)
+						S.ordeal_reference = ordeal_reference
+						ordeal_reference.ordeal_mobs += S
+					turfs -= T
+				else
+					var/mob/living/simple_animal/hostile/ordeal/violet_spawn/arm/S  = pick(arms)
+					var/turf/T = pick(turfs)
+					S.DoDash(T)
+					arms -= S
+					turfs -= T
 
 /mob/living/simple_animal/hostile/ordeal/violet_dusk/proc/SpawnHand()
 	var/list/turfs = list()
@@ -177,7 +191,7 @@
 
 /mob/living/simple_animal/hostile/ordeal/violet_spawn/arm
 	name = "arm of rest"
-	desc = "A purple tentacle coming out the ground."
+	desc = "A purple, plant-like tentacle emerging from the ground."
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "violet_dusk_tentacle"
 	icon_living = "violet_dusk_tentacle"
@@ -186,8 +200,8 @@
 	ranged = TRUE
 	density = TRUE
 	alpha = 0
-	maxHealth = 280
-	health = 280
+	maxHealth = 380
+	health = 380
 	ranged_cooldown_time = 10 SECONDS //will dash at people if they get out of range but not too often
 	melee_damage_type = BLACK_DAMAGE
 	melee_damage_lower = 5
@@ -197,10 +211,8 @@
 	attack_verb_continuous = "thrashes"
 	attack_verb_simple = "thrashs"
 	var/in_charging = FALSE
-	var/next_pulse = INFINITY
-	var/in_pulse = FALSE
 	var/thrash_range = 2
-	var/thrash_damage = 22
+	var/thrash_damage = 26
 	var/thrash_cooldown
 	var/thrash_cooldown_time = 10 SECONDS
 	var/thrash_count = 6
@@ -217,25 +229,11 @@
 	animate(src, alpha = 255, time = 5)
 	playsound(get_turf(src), 'sound/effects/ordeals/amber/dawn_dig_out.ogg', 25, 1)
 	visible_message(span_bolddanger("[src] burrows out from the ground!"))
-	thrash_cooldown = world.time + 2 SECONDS
-	next_pulse = world.time + 30 SECONDS + rand(15 SECONDS, 30 SECONDS)
+	thrash_cooldown = world.time + 2 SECONDS + rand(-5, 15)
 	ranged_cooldown = world.time + ranged_cooldown_time
 
-/mob/living/simple_animal/hostile/ordeal/violet_spawn/arm/Life()
-	. = ..()
-	if(!.) // Dead
-		return FALSE
-	if(world.time > next_pulse && !in_charging)
-		PulseAttack()
-		return
-	if(in_pulse)
-		for(var/mob/living/L in view(4, src))
-			if(!faction_check_mob(L))
-				new /obj/effect/temp_visual/revenant(get_turf(L))
-				L.apply_damage(5, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
-
 /mob/living/simple_animal/hostile/ordeal/violet_spawn/arm/AttackingTarget(atom/attacked_target)
-	if(in_pulse || in_charging)
+	if(in_charging)
 		return
 	if(thrash_cooldown > world.time)
 		return
@@ -251,8 +249,6 @@
 	return FALSE
 
 /mob/living/simple_animal/hostile/ordeal/violet_spawn/arm/OpenFire(atom/A)
-	if(in_pulse)
-		return
 	if(!target)
 		return
 	if(!isliving(target))
@@ -268,8 +264,6 @@
 		HurtInTurf(T, list(), thrash_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
 
 /mob/living/simple_animal/hostile/ordeal/violet_spawn/arm/proc/DashChecker(atom/target)
-	if(in_pulse)
-		return
 	var/dist = get_dist(target, src)
 	if(dist > 3 && dist <= 8 && ranged_cooldown < world.time)
 		ranged_cooldown = world.time + ranged_cooldown_time
@@ -290,7 +284,7 @@
 	if(locate(/mob/living/simple_animal/hostile/ordeal/violet_spawn/arm) in T || T.is_blocked_turf_ignore_climbable() || !isopenturf(T))
 		var/list/directions = list()
 		for(var/dir in (GLOB.alldirs))
-			var/turf/dispense_turf = get_step(src, T)
+			var/turf/dispense_turf = get_step(T, dir)
 			if(isopenturf(dispense_turf))
 				directions += dispense_turf
 		if(directions.len > 0)
@@ -304,26 +298,6 @@
 	SLEEP_CHECK_DEATH(1 SECONDS)
 	ranged_cooldown = world.time + ranged_cooldown_time
 	in_charging = FALSE
-
-/mob/living/simple_animal/hostile/ordeal/violet_spawn/arm/proc/PulseAttack()
-	in_pulse = TRUE
-	next_pulse = world.time + 30 SECONDS
-	icon_state = "violet_dusk_tentacle_ability"
-	for(var/i = 1 to 8)
-		var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(get_turf(src), src)
-		animate(D, alpha = 0, transform = matrix()*1.5, time = 7)
-		SLEEP_CHECK_DEATH(8)
-	var/obj/machinery/computer/abnormality/CA
-	var/list/potential_computers = list()
-	for(var/obj/machinery/computer/abnormality/A in urange(24, src))
-		if(A.can_meltdown && !A.meltdown && A.datum_reference && A.datum_reference.current && A.datum_reference.qliphoth_meter)
-			potential_computers += A
-	if(LAZYLEN(potential_computers))
-		CA = pick(potential_computers)
-		CA.datum_reference.qliphoth_change(-1)
-	in_pulse = FALSE
-	in_charging = FALSE
-	icon_state = "violet_dusk_tentacle"
 
 /mob/living/simple_animal/hostile/ordeal/violet_spawn/hand
 	icon = 'ModularTegustation/Teguicons/48x96.dmi'
