@@ -389,7 +389,7 @@
 	fire_sound = 'sound/weapons/batonextend.ogg'
 	max_charges = 1
 	item_flags = NEEDS_PERMIT | NOBLUDGEON
-	force = 18
+	force = 5
 
 /obj/item/ammo_casing/magic/hook
 	name = "hook"
@@ -698,9 +698,9 @@
 /obj/item/melee/transforming/cleaving_saw
 	name = "cleaving saw"
 	desc = "This saw, effective at drawing the blood of beasts, transforms into a long cleaver that makes use of centrifugal force."
-	force = 12
+	force = 3
 	force_on = 20 //force when active
-	throwforce = 20
+	throwforce = 5
 	throwforce_on = 20
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
@@ -970,7 +970,7 @@
 	icon = 'icons/obj/guns/magic.dmi'
 	slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
-	force = 25
+	force = 7
 	damtype = FIRE
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	hitsound = 'sound/weapons/sear.ogg'
@@ -1133,7 +1133,7 @@
 	inhand_y_dimension = 64
 	slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_NORMAL
-	force = 15
+	force = 4
 	attack_verb_continuous = list("clubs", "beats", "pummels")
 	attack_verb_simple = list("club", "beat", "pummel")
 	hitsound = 'sound/weapons/sonic_jackhammer.ogg'

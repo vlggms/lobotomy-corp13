@@ -1,7 +1,7 @@
 //copy pasta of the space piano, don't hurt me -Pete
 /obj/item/instrument
 	name = "generic instrument"
-	force = 10
+	force = 3
 	max_integrity = 100
 	resistance_flags = FLAMMABLE
 	icon = 'icons/obj/musician.dmi'
@@ -141,7 +141,7 @@
 	desc = "Makes all your shredding needs possible."
 	icon_state = "eguitar"
 	inhand_icon_state = "eguitar"
-	force = 12
+	force = 3
 	attack_verb_continuous = list("plays metal on", "shreds", "crashes", "smashes")
 	attack_verb_simple = list("play metal on", "shred", "crash", "smash")
 	hitsound = 'sound/weapons/stringsmash.ogg'
@@ -236,7 +236,7 @@
 /obj/item/instrument/recorder
 	name = "recorder"
 	desc = "Just like in school, playing ability and all."
-	force = 5
+	force = 2
 	icon_state = "recorder"
 	allowed_instrument_ids = "recorder"
 	inhand_icon_state = "recorder"
@@ -248,7 +248,7 @@
 	allowed_instrument_ids = list("crharmony", "harmonica")
 	inhand_icon_state = "harmonica"
 	slot_flags = ITEM_SLOT_MASK
-	force = 5
+	force = 2
 	w_class = WEIGHT_CLASS_SMALL
 	actions_types = list(/datum/action/item_action/instrument)
 

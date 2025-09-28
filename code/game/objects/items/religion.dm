@@ -4,7 +4,7 @@
 	icon = 'icons/obj/banner.dmi'
 	icon_state = "banner"
 	inhand_icon_state = "banner"
-	force = 8
+	force = 2
 	attack_verb_continuous = list("forcefully inspires", "violently encourages", "relentlessly galvanizes")
 	attack_verb_simple = list("forcefully inspire", "violently encourage", "relentlessly galvanize")
 	lefthand_file = 'icons/mob/inhands/equipment/banners_lefthand.dmi'
@@ -399,11 +399,11 @@
 
 /obj/item/claymore/weak
 	desc = "This one is rusted."
-	force = 30
+	force = 8
 	armour_penetration = 15
 
 /obj/item/claymore/weak/ceremonial
 	desc = "A rusted claymore, once at the heart of a powerful scottish clan struck down and oppressed by tyrants, it has been passed down the ages as a symbol of defiance."
-	force = 15
+	force = 4
 	block_chance = 30
 	armour_penetration = 5

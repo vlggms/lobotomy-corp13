@@ -192,7 +192,7 @@
 	name = "energy cake"
 	desc = "Just enough calories for a whole nuclear operative squad."
 	icon_state = "energycake"
-	force = 5
+	force = 2
 	hitsound = 'sound/weapons/blade1.ogg'
 	food_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/sprinkles = 10, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/consumable/pwr_game = 10, /datum/reagent/consumable/liquidelectricity = 10)
 	tastes = list("cake" = 3, "a Vlad's Salad" = 1)
@@ -219,7 +219,7 @@
 	name = "energy cake slice"
 	desc = "For the traitor on the go."
 	icon_state = "energycakeslice"
-	force = 2
+	force = 1
 	hitsound = 'sound/weapons/blade1.ogg'
 	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/sprinkles = 2, /datum/reagent/consumable/nutriment/vitamin = 1,  /datum/reagent/consumable/pwr_game = 2, /datum/reagent/consumable/liquidelectricity = 2)
 	tastes = list("cake" = 3, "a Vlad's Salad" = 1)

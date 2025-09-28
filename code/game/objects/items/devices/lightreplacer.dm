@@ -52,7 +52,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_BELT
-	force = 8
+	force = 2
 
 	var/max_uses = 200
 	var/uses = 100

@@ -9,7 +9,7 @@
 	icon_state = "empty_blastcannon"
 	inhand_icon_state = "blastcannon_empty"
 	w_class = WEIGHT_CLASS_NORMAL
-	force = 10
+	force = 3
 	fire_sound = 'sound/weapons/blastcannon.ogg'
 	item_flags = NONE
 	clumsy_check = FALSE

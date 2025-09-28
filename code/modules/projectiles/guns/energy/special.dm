@@ -126,7 +126,7 @@
 	flags_1 = CONDUCT_1
 	attack_verb_continuous = list("attacks", "slashes", "cuts", "slices")
 	attack_verb_simple = list("attack", "slash", "cut", "slice")
-	force = 12
+	force = 3
 	sharpness = SHARP_EDGED
 	can_charge = FALSE
 
@@ -191,7 +191,7 @@
 	name = "advanced plasma cutter"
 	icon_state = "adv_plasmacutter"
 	inhand_icon_state = "adv_plasmacutter"
-	force = 15
+	force = 4
 	ammo_type = list(/obj/item/ammo_casing/energy/plasma/adv)
 
 /obj/item/gun/energy/wormhole_projector

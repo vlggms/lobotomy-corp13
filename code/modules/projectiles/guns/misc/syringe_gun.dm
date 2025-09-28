@@ -6,7 +6,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	throw_speed = 3
 	throw_range = 7
-	force = 4
+	force = 1
 	custom_materials = list(/datum/material/iron=2000)
 	clumsy_check = FALSE
 	fire_sound = 'sound/items/syringeproj.ogg'
@@ -96,7 +96,7 @@
 	icon_state = "syringe_pistol"
 	inhand_icon_state = "gun" //Smaller inhand
 	w_class = WEIGHT_CLASS_SMALL
-	force = 2 //Also very weak because it's smaller
+	force = 1 //Also very weak because it's smaller
 	suppressed = TRUE //Softer fire sound
 	can_unsuppress = FALSE //Permanently silenced
 	syringes = list(new /obj/item/reagent_containers/syringe())

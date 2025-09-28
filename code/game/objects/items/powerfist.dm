@@ -8,8 +8,8 @@
 	flags_1 = CONDUCT_1
 	attack_verb_continuous = list("whacks", "fists", "power-punches")
 	attack_verb_simple = list("whack", "fist", "power-punch")
-	force = 20
-	throwforce = 10
+	force = 5
+	throwforce = 3
 	throw_range = 7
 	w_class = WEIGHT_CLASS_NORMAL
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 40)

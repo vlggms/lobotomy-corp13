@@ -2,7 +2,7 @@
 	name = "harpoon template"
 	desc = "A blank harpoon workshop template."
 	icon_state = "harpoontemplate"
-	force = 20
+	force = 10
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
@@ -49,7 +49,7 @@
 	name = "fishing spear template"
 	desc = "A blank fishing spear workshop template."
 	icon_state = "fishspeartemplate"
-	force = 18
+	force = 9
 	reach = 2		//Has 2 Square Reach.
 	attack_speed = 1.4
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
@@ -64,7 +64,7 @@
 	name = "fillet knife template"
 	desc = "A blank fillet knife workshop template."
 	icon_state = "fillettemplate"
-	force = 18
+	force = 9
 	attack_speed = 0.7
 	attack_verb_continuous = list("rends", "tears", "lacerates", "rips", "cuts")
 	attack_verb_simple = list("rend", "tear", "lacerate", "rip", "cut")

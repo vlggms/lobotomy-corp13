@@ -19,7 +19,7 @@
 	name = "fork"
 	desc = "Pointy."
 	icon_state = "fork"
-	force = 4
+	force = 1
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 0
 	throw_speed = 3
@@ -78,9 +78,9 @@
 	worn_icon_state = "knife"
 	desc = "A general purpose Chef's Knife made by SpaceCook Incorporated. Guaranteed to stay sharp for years to come."
 	flags_1 = CONDUCT_1
-	force = 10
+	force = 3
 	w_class = WEIGHT_CLASS_SMALL
-	throwforce = 10
+	throwforce = 3
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	throw_speed = 3
 	throw_range = 6
@@ -169,8 +169,8 @@
 	inhand_icon_state = "butch"
 	desc = "A huge thing used for chopping and chopping up meat. This includes clowns and clown by-products."
 	flags_1 = CONDUCT_1
-	force = 15
-	throwforce = 10
+	force = 4
+	throwforce = 3
 	custom_materials = list(/datum/material/iron=18000)
 	attack_verb_continuous = list("cleaves", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 	attack_verb_simple = list("cleave", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
@@ -181,8 +181,8 @@
 	desc = "Despite its name, it's mainly used for cutting meat from dead prey rather than actual hunting."
 	inhand_icon_state = "huntingknife"
 	icon_state = "huntingknife"
-	force = 5
-	throwforce = 5
+	force = 2
+	throwforce = 2
 
 /obj/item/kitchen/knife/hunting/set_butchering()
 	AddComponent(/datum/component/butchering, 80 - force, 100, force + 10)
@@ -192,8 +192,8 @@
 	icon_state = "buckknife"
 	desc = "A military combat utility survival knife."
 	embedding = list("pain_mult" = 4, "embed_chance" = 65, "fall_chance" = 10, "ignore_throwspeed_threshold" = TRUE)
-	force = 20
-	throwforce = 20
+	force = 5
+	throwforce = 5
 	attack_verb_continuous = list("slashes", "stabs", "slices", "tears", "lacerates", "rips", "cuts")
 	attack_verb_simple = list("slash", "stab", "slice", "tear", "lacerate", "rip", "cut")
 	bayonet = TRUE
@@ -203,8 +203,8 @@
 	icon_state = "survivalknife"
 	embedding = list("pain_mult" = 4, "embed_chance" = 35, "fall_chance" = 10)
 	desc = "A hunting grade survival knife."
-	force = 15
-	throwforce = 15
+	force = 4
+	throwforce = 4
 	bayonet = TRUE
 
 /obj/item/kitchen/knife/combat/bone
@@ -216,8 +216,8 @@
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	desc = "A sharpened bone. The bare minimum in survival."
 	embedding = list("pain_mult" = 4, "embed_chance" = 35, "fall_chance" = 10)
-	force = 15
-	throwforce = 15
+	force = 4
+	throwforce = 4
 	custom_materials = null
 
 /obj/item/kitchen/knife/combat/cyborg
@@ -234,8 +234,8 @@
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	desc = "A makeshift glass shiv."
-	force = 8
-	throwforce = 12
+	force = 2
+	throwforce = 3
 	attack_verb_continuous = list("shanks", "shivs")
 	attack_verb_simple = list("shank", "shiv")
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 0, ACID = 0)
@@ -258,8 +258,8 @@
 	desc = "Used to knock out the Bartender."
 	icon_state = "rolling_pin"
 	worn_icon_state = "rolling_pin"
-	force = 8
-	throwforce = 5
+	force = 2
+	throwforce = 2
 	throw_speed = 3
 	throw_range = 7
 	custom_materials = list(/datum/material/wood = MINERAL_MATERIAL_AMOUNT * 1.5)
@@ -279,7 +279,7 @@
 	icon_state = "spoon"
 	w_class = WEIGHT_CLASS_TINY
 	flags_1 = CONDUCT_1
-	force = 2
+	force = 1
 	throw_speed = 3
 	throw_range = 5
 	attack_verb_simple = list("whack", "spoon", "tap")

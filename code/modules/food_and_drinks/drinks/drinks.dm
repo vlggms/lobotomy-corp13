@@ -180,8 +180,8 @@
 	desc = "You're winner!"
 	icon_state = "golden_cup"
 	w_class = WEIGHT_CLASS_BULKY
-	force = 14
-	throwforce = 10
+	force = 4
+	throwforce = 3
 	amount_per_transfer_from_this = 20
 	custom_materials = list(/datum/material/gold=1000)
 	volume = 150
@@ -191,8 +191,8 @@
 	desc = "Best loser!"
 	icon_state = "silver_cup"
 	w_class = WEIGHT_CLASS_NORMAL
-	force = 10
-	throwforce = 8
+	force = 3
+	throwforce = 2
 	amount_per_transfer_from_this = 15
 	custom_materials = list(/datum/material/silver=800)
 	volume = 100
@@ -203,8 +203,8 @@
 	desc = "At least you ranked!"
 	icon_state = "bronze_cup"
 	w_class = WEIGHT_CLASS_SMALL
-	force = 5
-	throwforce = 4
+	force = 2
+	throwforce = 1
 	amount_per_transfer_from_this = 10
 	custom_materials = list(/datum/material/iron=400)
 	volume = 25

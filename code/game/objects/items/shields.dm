@@ -15,8 +15,8 @@
 	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
 	slot_flags = ITEM_SLOT_BACK
-	force = 10
-	throwforce = 5
+	force = 3
+	throwforce = 2
 	throw_speed = 2
 	throw_range = 3
 	w_class = WEIGHT_CLASS_BULKY
@@ -218,8 +218,8 @@
 	attack_verb_continuous = list("shoves", "bashes")
 	attack_verb_simple = list("shove", "bash")
 	throw_range = 5
-	force = 3
-	throwforce = 3
+	force = 1
+	throwforce = 1
 	throw_speed = 3
 	base_icon_state = "eshield" // [base_icon_state]1 for expanded, [base_icon_state]0 for contracted
 	var/on_force = 10
@@ -269,8 +269,8 @@
 	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
 	custom_materials = list(/datum/material/iron = 3600, /datum/material/glass = 3600, /datum/material/silver = 270, /datum/material/titanium = 180)
 	slot_flags = null
-	force = 3
-	throwforce = 3
+	force = 1
+	throwforce = 1
 	throw_speed = 3
 	throw_range = 4
 	w_class = WEIGHT_CLASS_NORMAL
@@ -287,15 +287,15 @@
 	playsound(src.loc, 'sound/weapons/batonextend.ogg', 50, TRUE)
 
 	if(active)
-		force = 8
-		throwforce = 5
+		force = 2
+		throwforce = 2
 		throw_speed = 2
 		w_class = WEIGHT_CLASS_BULKY
 		slot_flags = ITEM_SLOT_BACK
 		to_chat(user, span_notice("You extend \the [src]."))
 	else
-		force = 3
-		throwforce = 3
+		force = 1
+		throwforce = 1
 		throw_speed = 3
 		w_class = WEIGHT_CLASS_NORMAL
 		slot_flags = null

@@ -97,8 +97,8 @@
 	name = "captain's fountain pen"
 	desc = "It's an expensive Oak fountain pen. The nib is quite sharp."
 	icon_state = "pen-fountain-o"
-	force = 5
-	throwforce = 5
+	force = 2
+	throwforce = 2
 	throw_speed = 4
 	colour = "crimson"
 	custom_materials = list(/datum/material/gold = 750)
@@ -252,7 +252,7 @@
 		to_chat(user, "<span class='warning'>[src] can now be concealed.</span>")
 	else
 		on = TRUE
-		force = 18
+		force = 5
 		throw_speed = 4
 		w_class = WEIGHT_CLASS_NORMAL
 		name = "energy dagger"
@@ -282,7 +282,7 @@
 	icon_state = "digging_pen"
 	inhand_icon_state = "pen"
 	worn_icon_state = "pen"
-	force = 3
+	force = 1
 	w_class = WEIGHT_CLASS_TINY
 	custom_materials = list(/datum/material/iron=10, /datum/material/diamond=100, /datum/material/titanium = 10)
 	pressure_resistance = 2

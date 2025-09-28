@@ -8,7 +8,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/security_righthand.dmi'
 
-	force = 10
+	force = 3
 	attack_verb_continuous = list("beats")
 	attack_verb_simple = list("beat")
 
@@ -16,7 +16,7 @@
 	slot_flags = ITEM_SLOT_BELT
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 0, RAD = 0, FIRE = 80, ACID = 80)
 
-	throwforce = 7
+	throwforce = 2
 	var/throw_stun_chance = 35
 
 	var/obj/item/stock_parts/cell/cell
@@ -294,8 +294,8 @@
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
 	w_class = WEIGHT_CLASS_BULKY
-	force = 3
-	throwforce = 5
+	force = 1
+	throwforce = 2
 	stun_time = 5 SECONDS
 	cell_hit_cost = 2000
 	throw_stun_chance = 10
@@ -319,8 +319,8 @@
 /obj/item/melee/baton/winstick // Funny
 	name = "batong"
 	desc = "A weapon used by sadists."
-	force = 16
-	throwforce = 12
+	force = 4
+	throwforce = 3
 	stun_time = 10 SECONDS
 	throw_stun_chance = 100
 	attack_cooldown = 1 SECONDS
@@ -334,8 +334,8 @@
 	throw_speed = 1
 	icon_state = "boomerang"
 	inhand_icon_state = "boomerang"
-	force = 5
-	throwforce = 5
+	force = 2
+	throwforce = 2
 	throw_range = 5
 	cell_hit_cost = 2000
 	throw_stun_chance = 99  //Have you prayed today?

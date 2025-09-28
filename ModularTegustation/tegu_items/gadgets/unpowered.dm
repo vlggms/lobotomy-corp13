@@ -429,8 +429,8 @@
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	usesound = 'sound/items/crowbar.ogg'
 	slot_flags = ITEM_SLOT_BELT
-	force = 5
-	throwforce = 7
+	force = 2
+	throwforce = 2
 	w_class = WEIGHT_CLASS_SMALL
 	custom_materials = list(/datum/material/iron=50)
 	drop_sound = 'sound/items/handling/crowbar_drop.ogg'

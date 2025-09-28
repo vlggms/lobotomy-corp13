@@ -17,7 +17,7 @@
 	icon_state = "sword0"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	force = 3.0
+	force = 1.0
 	throw_speed = 2
 	throw_range = 5
 	throwforce = 0
@@ -50,14 +50,14 @@
 /obj/item/holo/esword/attack_self(mob/living/user as mob)
 	active = !active
 	if (active)
-		force = 30
+		force = 8
 		icon_state = "sword[saber_color]"
 		w_class = WEIGHT_CLASS_BULKY
 		hitsound = 'sound/weapons/blade1.ogg'
 		playsound(user, 'sound/weapons/saberon.ogg', 20, TRUE)
 		to_chat(user, "<span class='notice'>[src] is now active.</span>")
 	else
-		force = 3
+		force = 1
 		icon_state = "sword0"
 		w_class = WEIGHT_CLASS_SMALL
 		hitsound = "swing_hit"

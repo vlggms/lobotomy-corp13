@@ -154,8 +154,8 @@
 	desc = "GAR glasses with a HUD."
 	icon_state = "gars"
 	inhand_icon_state = "garb"
-	force = 10
-	throwforce = 10
+	force = 3
+	throwforce = 3
 	throw_speed = 4
 	attack_verb_continuous = list("slices")
 	attack_verb_simple = list("slice")
@@ -167,8 +167,8 @@
 	desc = "GIGA GAR glasses with a HUD."
 	icon_state = "supergars"
 	inhand_icon_state = "garb"
-	force = 12
-	throwforce = 12
+	force = 3
+	throwforce = 3
 
 /obj/item/clothing/glasses/hud/toggle
 	name = "Toggle HUD"

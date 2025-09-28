@@ -5,7 +5,7 @@
 	name = "mecha equipment"
 	icon = 'icons/mecha/mecha_equipment.dmi'
 	icon_state = "mecha_equip"
-	force = 5
+	force = 2
 	max_integrity = 300
 	var/equip_cooldown = 0
 	var/equip_ready = TRUE //whether the equipment is ready for use. (or deactivated/activated for static stuff)

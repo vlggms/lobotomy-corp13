@@ -82,10 +82,10 @@
 		// Material color overwrites
 		color = mod.weaponcolor
 	//throwforce is special
-	if(throwforce>10)
+	if(throwforce > 5)
 		throwforce *= mod.throwforcemod
 	else if(mod.throwforcemod > 1)
-		throwforce = 30
+		throwforce = 15
 
 	/* Calls unique installation proc that the mod has.
 		Unsure if i should put all of the above in this proc.*/

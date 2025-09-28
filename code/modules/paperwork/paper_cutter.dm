@@ -3,8 +3,8 @@
 	desc = "Standard office equipment. Precisely cuts paper using a large blade."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "papercutter"
-	force = 5
-	throwforce = 5
+	force = 2
+	throwforce = 2
 	w_class = WEIGHT_CLASS_NORMAL
 	var/obj/item/paper/storedpaper = null
 	var/obj/item/hatchet/cutterblade/storedcutter = null

@@ -28,7 +28,7 @@
 		user.visible_message(message)
 	lit = TRUE
 	icon_state = "sparkler_on"
-	force = 6
+	force = 2
 	hitsound = 'sound/items/welder.ogg'
 	name = "lit [initial(name)]"
 	attack_verb_continuous = list("burns")

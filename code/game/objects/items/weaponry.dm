@@ -40,7 +40,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	slot_flags = ITEM_SLOT_BELT
-	force = 2
+	force = 1
 	throwforce = 1
 	w_class = WEIGHT_CLASS_NORMAL
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -63,7 +63,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
 	force = 40
-	throwforce = 10
+	throwforce = 3
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
@@ -231,8 +231,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	desc = "Jagged pieces of bone are tied to what looks like a goliaths femur."
 	icon_state = "bone_sword"
 	inhand_icon_state = "bone_sword"
-	force = 15
-	throwforce = 10
+	force = 4
+	throwforce = 3
 	armour_penetration = 15
 	block_chance = 30
 	var/faction_bonus_force = 20
@@ -262,7 +262,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
 	force = 40
-	throwforce = 10
+	throwforce = 3
 	w_class = WEIGHT_CLASS_HUGE
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
@@ -297,8 +297,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	icon_state = "wiredrod"
 	inhand_icon_state = "rods"
 	flags_1 = CONDUCT_1
-	force = 9
-	throwforce = 10
+	force = 3
+	throwforce = 3
 	w_class = WEIGHT_CLASS_NORMAL
 	custom_materials = list(/datum/material/iron=1150, /datum/material/glass=75)
 	attack_verb_continuous = list("hits", "bludgeons", "whacks", "bonks")
@@ -339,8 +339,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	inhand_icon_state = "eshield0"
 	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
-	force = 2
-	throwforce = 10 //10 + 2 (WEIGHT_CLASS_SMALL) * 4 (EMBEDDED_IMPACT_PAIN_MULTIPLIER) = 18 damage on hit due to guaranteed embedding
+	force = 1
+	throwforce = 3 //10 + 2 (WEIGHT_CLASS_SMALL) * 4 (EMBEDDED_IMPACT_PAIN_MULTIPLIER) = 18 damage on hit due to guaranteed embedding
 	throw_speed = 4
 	embedding = list("pain_mult" = 4, "embed_chance" = 100, "fall_chance" = 0)
 	armour_penetration = 40
@@ -353,7 +353,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 /obj/item/throwing_star/stamina
 	name = "shock throwing star"
 	desc = "An aerodynamic disc designed to cause excruciating pain when stuck inside fleeing targets, hopefully without causing fatal harm."
-	throwforce = 5
+	throwforce = 2
 	embedding = list("pain_chance" = 5, "embed_chance" = 100, "fall_chance" = 0, "jostle_chance" = 10, "pain_stam_pct" = 0.8, "jostle_pain_mult" = 3)
 
 /obj/item/throwing_star/toy
@@ -371,9 +371,9 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	desc = "A sharp, concealable, spring-loaded knife."
 	flags_1 = CONDUCT_1
-	force = 3
+	force = 1
 	w_class = WEIGHT_CLASS_SMALL
-	throwforce = 5
+	throwforce = 2
 	throw_speed = 3
 	throw_range = 6
 	custom_materials = list(/datum/material/iron=12000)
@@ -387,18 +387,18 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	extended = !extended
 	playsound(src.loc, 'sound/weapons/batonextend.ogg', 50, TRUE)
 	if(extended)
-		force = 20
+		force = 5
 		w_class = WEIGHT_CLASS_NORMAL
-		throwforce = 23
+		throwforce = 6
 		icon_state = "switchblade_ext"
 		attack_verb_continuous = list("slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 		attack_verb_simple = list("slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
 		hitsound = 'sound/weapons/bladeslice.ogg'
 		sharpness = SHARP_EDGED
 	else
-		force = 3
+		force = 1
 		w_class = WEIGHT_CLASS_SMALL
-		throwforce = 5
+		throwforce = 2
 		icon_state = "switchblade"
 		attack_verb_continuous = list("stubs", "pokes")
 		attack_verb_simple = list("stub", "poke")
@@ -414,8 +414,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	desc = "Should anything ever go wrong..."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "red_phone"
-	force = 3
-	throwforce = 2
+	force = 1
+	throwforce = 1
 	throw_speed = 3
 	throw_range = 4
 	w_class = WEIGHT_CLASS_SMALL
@@ -438,8 +438,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	inhand_icon_state = "stick"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
-	force = 5
-	throwforce = 5
+	force = 2
+	throwforce = 2
 	w_class = WEIGHT_CLASS_SMALL
 	custom_materials = list(/datum/material/iron=50)
 	attack_verb_continuous = list("bludgeons", "whacks", "disciplines", "thrashes")
@@ -452,8 +452,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	icon_state = "staff"
 	lefthand_file = 'icons/mob/inhands/weapons/staves_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
-	force = 3
-	throwforce = 5
+	force = 1
+	throwforce = 2
 	throw_speed = 2
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
@@ -477,8 +477,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	inhand_icon_state = "stick"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
-	force = 3
-	throwforce = 5
+	force = 1
+	throwforce = 2
 	throw_speed = 2
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
@@ -507,7 +507,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	righthand_file = 'icons/mob/inhands/weapons/chainsaw_righthand.dmi'
 	item_flags = ABSTRACT | DROPDEL
 	w_class = WEIGHT_CLASS_HUGE
-	force = 24
+	force = 6
 	throwforce = 0
 	throw_range = 0
 	throw_speed = 0
@@ -539,8 +539,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	desc = "A priceless ancient marble bust, the kind that belongs in a museum." //or you can hit people with it
 	icon = 'icons/obj/statue.dmi'
 	icon_state = "bust"
-	force = 15
-	throwforce = 10
+	force = 4
+	throwforce = 3
 	throw_speed = 5
 	throw_range = 2
 	attack_verb_continuous = list("busts")
@@ -562,7 +562,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	name = "tail club"
 	desc = "For the beating to death of lizards with their own tails."
 	icon_state = "tailclub"
-	force = 14
+	force = 4
 	throwforce = 1 // why are you throwing a club do you even weapon
 	throw_speed = 1
 	throw_range = 1
@@ -587,8 +587,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	desc = "A skateboard. It can be placed on its wheels and ridden, or used as a radical weapon."
 	icon_state = "skateboard"
 	inhand_icon_state = "skateboard"
-	force = 12
-	throwforce = 4
+	force = 3
+	throwforce = 1
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb_continuous = list("smacks", "whacks", "slams", "smashes")
 	attack_verb_simple = list("smack", "whack", "slam", "smash")
@@ -636,9 +636,9 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	inhand_icon_state = "baseball_bat"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
-	force = 10
+	force = 3
 	wound_bonus = -10
-	throwforce = 12
+	throwforce = 3
 	attack_verb_continuous = list("beats", "smacks")
 	attack_verb_simple = list("beat", "smack")
 	custom_materials = list(/datum/material/wood = MINERAL_MATERIAL_AMOUNT * 3.5)
@@ -695,8 +695,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	desc = "This bat is made of highly reflective, highly armored material."
 	icon_state = "baseball_bat_metal"
 	inhand_icon_state = "baseball_bat_metal"
-	force = 12
-	throwforce = 15
+	force = 3
+	throwforce = 4
 
 /obj/item/melee/baseball_bat/ablative/IsReflect()//some day this will reflect thrown items instead of lasers
 	var/picksound = rand(1,2)
@@ -770,7 +770,7 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
 	force = 0
-	throwforce = 5
+	throwforce = 2
 	reach = 2
 	var/min_reach = 2
 
@@ -788,8 +788,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 /obj/item/gohei
 	name = "gohei"
 	desc = "A wooden stick with white streamers at the end. Originally used by shrine maidens to purify things. Now used by the station's valued weeaboos."
-	force = 5
-	throwforce = 5
+	force = 2
+	throwforce = 2
 	hitsound = "swing_hit"
 	attack_verb_continuous = list("whacks", "thwacks", "wallops", "socks")
 	attack_verb_simple = list("whack", "thwack", "wallop", "sock")
@@ -808,8 +808,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	desc = "A potent weapon capable of cutting through nearly anything. Wielding it in two hands will allow you to deflect gunfire."
 	armour_penetration = 100
 	block_chance = 40
-	force = 20
-	throwforce = 20
+	force = 5
+	throwforce = 5
 	throw_speed = 4
 	sharpness = SHARP_EDGED
 	attack_verb_continuous = list("cuts", "slices", "dices")
@@ -870,8 +870,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	block_chance = 20
 	sharpness = SHARP_EDGED
-	force = 14
-	throwforce = 12
+	force = 4
+	throwforce = 3
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")

@@ -256,8 +256,8 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 	icon = 'icons/obj/shards.dmi'
 	icon_state = "large"
 	w_class = WEIGHT_CLASS_TINY
-	force = 2
-	throwforce = 4
+	force = 1
+	throwforce = 1
 	inhand_icon_state = "shard-glass"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
@@ -365,8 +365,8 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 /obj/item/shard/plasma
 	name = "purple shard"
 	desc = "A nasty looking shard of plasma glass."
-	force = 6
-	throwforce = 11
+	force = 2
+	throwforce = 3
 	icon_state = "plasmalarge"
 	custom_materials = list(/datum/material/alloy/plasmaglass=MINERAL_MATERIAL_AMOUNT)
 	icon_prefix = "plasma"

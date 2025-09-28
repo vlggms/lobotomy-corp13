@@ -13,8 +13,8 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 	inhand_icon_state = "rods"
 	flags_1 = CONDUCT_1
 	w_class = WEIGHT_CLASS_NORMAL
-	force = 9
-	throwforce = 10
+	force = 3
+	throwforce = 3
 	throw_speed = 3
 	throw_range = 7
 	mats_per_unit = list(/datum/material/iron=1000)

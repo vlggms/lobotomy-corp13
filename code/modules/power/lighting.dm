@@ -849,8 +849,8 @@
 
 /obj/item/light
 	icon = 'icons/obj/lighting.dmi'
-	force = 2
-	throwforce = 5
+	force = 1
+	throwforce = 2
 	w_class = WEIGHT_CLASS_TINY
 	var/status = LIGHT_OK		// LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN
 	var/base_state
@@ -970,7 +970,7 @@
 	if(status == LIGHT_OK || status == LIGHT_BURNED)
 		visible_message("<span class='danger'>[src] shatters.</span>","<span class='hear'>You hear a small glass object shatter.</span>")
 		status = LIGHT_BROKEN
-		force = 5
+		force = 2
 		playsound(src.loc, 'sound/effects/glasshit.ogg', 75, TRUE)
 		if(rigged)
 			atmos_spawn_air("plasma=5") //5u of plasma are required to rig a light bulb/tube

@@ -23,7 +23,7 @@
 	lefthand_file = 'icons/mob/inhands/misc/lavaland_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/lavaland_righthand.dmi'
 	desc = "Not to be confused with the kind Research hassles you for."
-	force = 12
+	force = 3
 	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = LAVA_PROOF | FIRE_PROOF
 

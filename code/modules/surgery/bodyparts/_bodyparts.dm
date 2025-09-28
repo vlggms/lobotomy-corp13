@@ -2,8 +2,8 @@
 /obj/item/bodypart
 	name = "limb"
 	desc = "Why is it detached..."
-	force = 3
-	throwforce = 3
+	force = 1
+	throwforce = 1
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/mob/human_parts.dmi'
 	icon_state = ""

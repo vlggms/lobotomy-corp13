@@ -271,9 +271,9 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 	icon_state ="ebook"
 	deity_name = "The Syndicate"
 	throw_speed = 2
-	throwforce = 9
+	throwforce = 3
 	throw_range = 7
-	force = 9
+	force = 3
 	hitsound = 'sound/weapons/sear.ogg'
 	damtype = FIRE
 	name = "Syndicate Tome"

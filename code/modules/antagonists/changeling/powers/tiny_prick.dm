@@ -117,7 +117,7 @@
 
 /obj/item/melee/arm_blade/false
 	desc = "A grotesque mass of flesh that used to be your arm. Although it looks dangerous at first, you can tell it's actually quite dull and useless."
-	force = 5 //Basically as strong as a punch
+	force = 2 //Basically as strong as a punch
 	fake = TRUE
 
 /datum/action/changeling/sting/false_armblade/can_sting(mob/user, mob/target)

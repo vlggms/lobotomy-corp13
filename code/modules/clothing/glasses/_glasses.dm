@@ -126,8 +126,8 @@
 	icon_state = "garm"
 	inhand_icon_state = "garm"
 	desc = "Do the impossible, see the invisible!"
-	force = 10
-	throwforce = 10
+	force = 3
+	throwforce = 3
 	throw_speed = 4
 	attack_verb_continuous = list("slices")
 	attack_verb_simple = list("slice")
@@ -195,8 +195,8 @@
 	icon_state = "garm"
 	inhand_icon_state = "garm"
 	desc = "Do the impossible, see the invisible!"
-	force = 10
-	throwforce = 20
+	force = 3
+	throwforce = 5
 	throw_speed = 4
 	attack_verb_continuous = list("slices")
 	attack_verb_simple = list("slice")
@@ -260,8 +260,8 @@
 	desc = "Go beyond impossible and kick reason to the curb!"
 	icon_state = "garb"
 	inhand_icon_state = "garb"
-	force = 10
-	throwforce = 10
+	force = 3
+	throwforce = 3
 	throw_speed = 4
 	attack_verb_continuous = list("slices")
 	attack_verb_simple = list("slice")
@@ -273,16 +273,16 @@
 	desc = "Believe in us humans."
 	icon_state = "supergarb"
 	inhand_icon_state = "garb"
-	force = 12
-	throwforce = 12
+	force = 3
+	throwforce = 3
 
 /obj/item/clothing/glasses/sunglasses/gar
 	name = "gar glasses"
 	desc = "Just who the hell do you think I am?!"
 	icon_state = "gar"
 	inhand_icon_state = "gar"
-	force = 10
-	throwforce = 10
+	force = 3
+	throwforce = 3
 	throw_speed = 4
 	attack_verb_continuous = list("slices")
 	attack_verb_simple = list("slice")
@@ -295,8 +295,8 @@
 	desc = "We evolve past the person we were a minute before. Little by little we advance with each turn. That's how a drill works!"
 	icon_state = "supergar"
 	inhand_icon_state = "gar"
-	force = 12
-	throwforce = 12
+	force = 3
+	throwforce = 3
 	glass_colour_type = /datum/client_colour/glass_colour/red
 
 /obj/item/clothing/glasses/welding

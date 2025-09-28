@@ -10,8 +10,8 @@
 	inhand_icon_state = "cell"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
-	force = 5
-	throwforce = 5
+	force = 2
+	throwforce = 2
 	throw_speed = 2
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL

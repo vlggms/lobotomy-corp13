@@ -40,4 +40,4 @@
  */
 /obj/item/throwing_star/stamina/ninja
 	name = "ninja throwing star"
-	throwforce = 10
+	throwforce = 3

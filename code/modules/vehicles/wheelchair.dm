@@ -112,7 +112,7 @@
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
-	force = 8 //Force is same as a chair
+	force = 2 //Force is same as a chair
 	custom_materials = list(/datum/material/iron = 10000)
 	var/unfolded_type = /obj/vehicle/ridden/wheelchair
 
@@ -124,7 +124,7 @@
 	inhand_icon_state = "wheelchair_folded_gold"
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
-	force = 10
+	force = 3
 	unfolded_type = /obj/vehicle/ridden/wheelchair/gold
 
 /obj/vehicle/ridden/wheelchair/MouseDrop(over_object, src_location, over_location)  //Lets you collapse wheelchair

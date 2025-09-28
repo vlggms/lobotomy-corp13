@@ -147,7 +147,7 @@
 	slot_flags = null
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
-	force = 10
+	force = 3
 	armour_penetration = 0
 	var/burn_force = 12
 	var/stam_force = 10
@@ -159,7 +159,7 @@
 		playsound(src.loc, "sparks", 50, TRUE)
 		name = "flux sword"
 		anomaly_ready = TRUE
-		force = 12
+		force = 3
 		armour_penetration = 35
 		qdel(C)
 		return

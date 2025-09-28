@@ -4,7 +4,7 @@
 	icon_state = "chemg"
 	inhand_icon_state = "flashbang"
 	w_class = WEIGHT_CLASS_SMALL
-	force = 2
+	force = 1
 	var/stage = GRENADE_EMPTY
 	var/list/obj/item/reagent_containers/glass/beakers = list()
 	var/list/allowed_containers = list(/obj/item/reagent_containers/glass/beaker, /obj/item/reagent_containers/glass/bottle)

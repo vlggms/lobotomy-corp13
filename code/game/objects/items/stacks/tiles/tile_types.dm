@@ -394,9 +394,9 @@
 	desc = "The ground you walk on."
 	icon_state = "tile"
 	inhand_icon_state = "tile"
-	force = 6
+	force = 2
 	mats_per_unit = list(/datum/material/iron=500)
-	throwforce = 10
+	throwforce = 3
 	flags_1 = CONDUCT_1
 	turf_type = /turf/open/floor/plasteel
 	mineralType = "metal"
@@ -420,7 +420,7 @@
 	name = "floor tile"
 	singular_name = "floor tile"
 	desc = "The ground you walk on."
-	throwforce = 10
+	throwforce = 3
 	icon_state = "material_tile"
 	turf_type = /turf/open/floor/material
 	material_flags = MATERIAL_ADD_PREFIX | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS

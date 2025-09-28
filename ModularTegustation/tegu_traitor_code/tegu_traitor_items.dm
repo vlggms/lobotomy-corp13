@@ -192,13 +192,13 @@
 	lefthand_file = "icons/mob/inhands/misc/food_lefthand.dmi"
 	righthand_file = "icons/mob/inhands/misc/food_righthand.dmi"
 	inhand_icon_state = "baguette"
-	force = 10
+	force = 3
 
 /obj/item/staff/roadsign
 	name = "road sign"
 	desc = "It obviously isn't supposed to be used like that, huh?"
-	force = 15
-	throwforce = 18
+	force = 4
+	throwforce = 5
 	sharpness = SHARP_EDGED
 	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
 	lefthand_file = 'ModularTegustation/Teguicons/teguitems_hold_left.dmi'

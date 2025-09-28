@@ -431,7 +431,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "pestle"
-	force = 7
+	force = 2
 
 /obj/item/reagent_containers/glass/mortar
 	name = "mortar"

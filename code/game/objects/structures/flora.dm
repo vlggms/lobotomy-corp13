@@ -307,8 +307,8 @@
 	desc = "A little bit of nature contained in a pot."
 	layer = ABOVE_MOB_LAYER
 	w_class = WEIGHT_CLASS_HUGE
-	force = 10
-	throwforce = 13
+	force = 2
+	throwforce = 4
 	throw_speed = 2
 	throw_range = 4
 	item_flags = NO_PIXEL_RANDOM_DROP
@@ -320,7 +320,7 @@
 /obj/item/kirbyplants/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/tactical)
-	AddComponent(/datum/component/two_handed, require_twohands=TRUE, force_unwielded=10, force_wielded=10)
+	AddComponent(/datum/component/two_handed, require_twohands=TRUE, force_unwielded=2, force_wielded=3)
 	AddComponent(/datum/component/beauty, 500)
 
 /obj/item/kirbyplants/attackby(obj/item/I, mob/living/user, params)

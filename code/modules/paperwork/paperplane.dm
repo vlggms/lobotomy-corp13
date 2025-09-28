@@ -16,7 +16,7 @@
 
 /obj/item/paperplane/syndicate
 	desc = "Paper, masterfully folded in the shape of a plane."
-	throwforce = 20 //same as throwing stars, but no chance of embedding.
+	throwforce = 5 //same as throwing stars, but no chance of embedding.
 	hit_probability = 100 //guaranteed to cause eye damage when it hits a mob.
 
 /obj/item/paperplane/Initialize(mapload, obj/item/paper/newPaper)

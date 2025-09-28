@@ -3,7 +3,7 @@
 	desc = "A blank katana workshop template."
 	special = "Use this weapon in hand to stun yourself to deal 2x damage for the next attack."
 	icon_state = "katanatemplate"
-	force = 22
+	force = 13
 	attack_speed = 1.3
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")

@@ -14,7 +14,7 @@
 	icon_state = "mantis"
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	flags_1 = CONDUCT_1
-	force = 30
+	force = 8
 	damtype = RED_DAMAGE
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")

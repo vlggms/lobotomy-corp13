@@ -222,10 +222,10 @@
 	inhand_icon_state = "nullrod"
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
-	force = 18
+	force = 5
 	throw_speed = 3
 	throw_range = 4
-	throwforce = 10
+	throwforce = 3
 	slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_TINY
 	obj_flags = UNIQUE_RENAME
@@ -320,7 +320,7 @@
 	name = "red holy staff"
 	desc = "It has a mysterious, protective aura."
 	w_class = WEIGHT_CLASS_HUGE
-	force = 5
+	force = 2
 	slot_flags = ITEM_SLOT_BACK
 	block_chance = 50
 	var/shield_icon = "shield-red"
@@ -403,7 +403,7 @@
 	inhand_icon_state = "multiverse"
 	worn_icon_state = "multiverse"
 	slot_flags = ITEM_SLOT_BACK
-	force = 15
+	force = 4
 
 /obj/item/nullrod/claymore/multiverse/melee_attack_chain(mob/user, atom/target, params)
 	var/old_force = force
@@ -443,7 +443,7 @@
 	worn_icon_state = "sord"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	force = 4.13
+	force = 1.13
 	throwforce = 1
 	slot_flags = ITEM_SLOT_BELT
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -556,7 +556,7 @@
 	name = "possessed chainsaw sword"
 	desc = "Suffer not a heretic to live."
 	chaplain_spawnable = FALSE
-	force = 30
+	force = 8
 	slot_flags = ITEM_SLOT_BELT
 	attack_verb_continuous = list("saws", "tears", "lacerates", "cuts", "chops", "dices")
 	attack_verb_simple = list("saw", "tear", "lacerate", "cut", "chop", "dice")
@@ -618,8 +618,8 @@
 	worn_icon_state = "pride"
 	lefthand_file = 'icons/mob/inhands/weapons/hammers_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/hammers_righthand.dmi'
-	force = 16
-	throwforce = 15
+	force = 4
+	throwforce = 4
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK
 	attack_verb_continuous = list("attacks", "smashes", "crushes", "splatters", "cracks")
@@ -659,7 +659,7 @@
 	force = 0
 	throw_speed = 4
 	throw_range = 7
-	throwforce = 30
+	throwforce = 7
 	sharpness = SHARP_EDGED
 	attack_verb_continuous = list("enlightens", "redpills")
 	attack_verb_simple = list("enlighten", "redpill")
@@ -698,7 +698,7 @@
 	worn_icon_state = "nullrod"
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
-	force = 15
+	force = 4
 	attack_verb_continuous = list("bites", "eats", "fin slaps")
 	attack_verb_simple = list("bite", "eat", "fin slap")
 	hitsound = 'sound/weapons/bite.ogg'
@@ -715,7 +715,7 @@
 	name = "monk's staff"
 	desc = "A long, tall staff made of polished wood. Traditionally used in ancient old-Earth martial arts, it is now used to harass the clown."
 	w_class = WEIGHT_CLASS_BULKY
-	force = 15
+	force = 4
 	block_chance = 40
 	slot_flags = ITEM_SLOT_BACK
 	sharpness = SHARP_NONE

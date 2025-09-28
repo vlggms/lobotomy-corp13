@@ -7,7 +7,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	throw_speed = 2
 	throw_range = 7
-	force = 5
+	force = 2
 	var/list/grenades = new/list()
 	var/max_grenades = 3
 	custom_materials = list(/datum/material/iron=2000)

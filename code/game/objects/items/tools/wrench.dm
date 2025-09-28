@@ -8,8 +8,8 @@
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_BELT
-	force = 2
-	throwforce = 4
+	force = 1
+	throwforce = 1
 	w_class = WEIGHT_CLASS_SMALL
 	usesound = 'sound/items/ratchet.ogg'
 	custom_materials = list(/datum/material/iron=150)
@@ -41,7 +41,7 @@
 	desc = "A medical wrench with common(medical?) uses. Can be found in your hand."
 	icon_state = "wrench_medical"
 	force = 1 //MEDICAL
-	throwforce = 2
+	throwforce = 1
 	attack_verb_continuous = list("heals", "medicals", "taps", "pokes", "analyzes") //"cobbyed"
 	attack_verb_simple = list("heal", "medical", "tap", "poke", "analyze")
 	///var to hold the name of the person who suicided
@@ -105,9 +105,9 @@
 		to_chat(user, "<span class='warning'>[src] can now be kept at bay.</span>")
 	else
 		on = TRUE
-		force = 6
+		force = 2
 		w_class = WEIGHT_CLASS_NORMAL
-		throwforce = 8
+		throwforce = 2
 		tool_behaviour = TOOL_WRENCH
 		toolspeed = 1
 		playsound(user, 'sound/weapons/saberon.ogg', 5, TRUE)

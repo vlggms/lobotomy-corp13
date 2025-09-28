@@ -11,8 +11,8 @@
 	inhand_icon_state = "knife"
 	lefthand_file = 'icons/mob/inhands/equipment/kitchen_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/kitchen_righthand.dmi'
-	force = 15
-	throwforce = 10
+	force = 4
+	throwforce = 3
 	w_class = WEIGHT_CLASS_NORMAL
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	var/charges = 1
@@ -161,9 +161,9 @@
 	icon_state ="bluespace"
 	throw_speed = 3
 	throw_range = 7
-	throwforce = 15
+	throwforce = 4
 	damtype = FIRE
-	force = 15
+	force = 4
 	hitsound = 'sound/items/welder2.ogg'
 
 	var/mob/current_owner

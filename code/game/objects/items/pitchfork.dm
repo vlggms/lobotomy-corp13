@@ -4,8 +4,8 @@
 	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
 	name = "pitchfork"
 	desc = "A simple tool used for moving hay."
-	force = 7
-	throwforce = 15
+	force = 2
+	throwforce = 4
 	w_class = WEIGHT_CLASS_BULKY
 	attack_verb_continuous = list("attacks", "impales", "pierces")
 	attack_verb_simple = list("attack", "impale", "pierce")
@@ -23,7 +23,7 @@
 
 /obj/item/pitchfork/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/two_handed, force_unwielded=7, force_wielded=15, icon_wielded="pitchfork1")
+	AddComponent(/datum/component/two_handed, force_unwielded=7, force_wielded=9, icon_wielded="pitchfork1")
 
 /// triggered on wield of two handed item
 /obj/item/pitchfork/proc/on_wield(obj/item/source, mob/user)

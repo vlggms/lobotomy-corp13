@@ -3,7 +3,7 @@
 	desc = "An unfinished scythe template"
 	special = "This weapon has a short combo."
 	icon_state = "scythetemplate"
-	force = 20
+	force = 9
 	attack_speed = 0.9
 	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
 	attack_verb_simple = list("slash", "slice", "rip", "cut")

@@ -2,7 +2,7 @@
 	name = "spear template"
 	desc = "A blank spear workshop template."
 	icon_state = "speartemplate"
-	force = 25
+	force = 13
 	reach = 2		//Has 2 Square Reach.
 	attack_speed = 1.3
 	stuntime = 5
@@ -19,7 +19,7 @@
 	name = "sword template"
 	desc = "A blank sword workshop template."
 	icon_state = "swordtemplate"
-	force = 22
+	force = 10
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
@@ -33,7 +33,7 @@
 	name = "hammer template"
 	desc = "A blank hammer workshop template."
 	icon_state = "hammertemplate"
-	force = 26
+	force = 18
 	attack_speed = 1.8
 	aoe_range = 1
 	hitsound = 'sound/abnormalities/woodsman/woodsman_attack.ogg'
@@ -49,7 +49,7 @@
 	name = "javelin template"
 	desc = "A blank javelin workshop template."
 	icon_state = "javelintemplate"
-	force = 27
+	force = 16
 	reach = 2		//Has 2 Square Reach.
 	attack_speed = 1.6	//not really for melee and is therefore really slow.
 	stuntime = 5
@@ -67,9 +67,9 @@
 	name = "boomerang template"
 	desc = "A blank boomerang workshop template."
 	icon_state = "boomerangtemplate"
-	force = 16
+	force = 8
 	attack_speed = 0.8	//melee is shit lol
-	throwforce = 14	//hits twice for some reason!?
+	throwforce = 4	//hits twice for some reason!?
 	attack_verb_continuous = list("bonks", "bashes")
 	attack_verb_simple = list("bonk", "bash")
 
@@ -90,7 +90,7 @@
 	name = "greatsword template"
 	desc = "A blank greatsword workshop template."
 	icon_state = "greatswordtemplate"
-	force = 38
+	force = 19
 	attack_speed =  2
 	hitsound = 'sound/abnormalities/woodsman/woodsman_attack.ogg'
 	attack_verb_continuous = list("attacks", "slashes", "cleaves", "slices", "cuts")
@@ -104,7 +104,7 @@
 	name = "claw template"
 	desc = "A blank claw workshop template."
 	icon_state = "clawtemplate"
-	force = 20
+	force = 7
 	attack_speed = 0.7
 	attack_verb_continuous = list("rends", "tears", "lacerates", "rips", "cuts")
 	attack_verb_simple = list("rend", "tear", "lacerate", "rip", "cut")
@@ -118,7 +118,7 @@
 	desc = "A blank club workshop template."
 	special = "This weapon has knockback."
 	icon_state = "clubtemplate"
-	force = 26
+	force = 16
 	attack_speed =  1.6
 	attack_verb_continuous = list("pounds", "crushes", "smashes", "whacks", "smacks")
 	attack_verb_simple = list("pound", "crush", "smash", "whack", "smack")

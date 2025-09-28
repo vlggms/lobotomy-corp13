@@ -11,7 +11,7 @@
 	armor = list(MELEE = 25, BULLET = 20, LASER = 30, ENERGY = 15, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 100)
 	max_temperature = 25000
 	leg_overload_coeff = 80
-	force = 25
+	force = 7
 	wreckage = /obj/structure/mecha_wreckage/gygax
 	internal_damage_threshold = 35
 	max_equip = 3
@@ -26,7 +26,7 @@
 	armor = list(MELEE = 40, BULLET = 40, LASER = 50, ENERGY = 35, BOMB = 20, BIO = 0, RAD =20, FIRE = 100, ACID = 100)
 	max_temperature = 35000
 	leg_overload_coeff = 70
-	force = 30
+	force = 8
 	operation_req_access = list(ACCESS_SYNDICATE)
 	internals_req_access = list(ACCESS_SYNDICATE)
 	wreckage = /obj/structure/mecha_wreckage/gygax/dark

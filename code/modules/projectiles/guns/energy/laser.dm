@@ -41,7 +41,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	inhand_icon_state = null
 	desc = "This is an antique laser gun. All craftsmanship is of the highest quality. It is decorated with assistant leather and chrome. The object menaces with spikes of energy. On the item is an image of Space Station 13. The station is exploding."
-	force = 10
+	force = 3
 	ammo_x_offset = 3
 	selfcharge = 1
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
@@ -87,7 +87,7 @@
 	inhand_icon_state = "laser"
 	worn_icon_state = null
 	w_class = WEIGHT_CLASS_BULKY
-	force = 10
+	force = 3
 	flags_1 =  CONDUCT_1
 	slot_flags = ITEM_SLOT_BACK
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/accelerator)

@@ -272,8 +272,8 @@
 	lefthand_file = 'icons/mob/inhands/misc/chairs_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/chairs_righthand.dmi'
 	w_class = WEIGHT_CLASS_HUGE
-	force = 8
-	throwforce = 10
+	force = 2
+	throwforce = 3
 	throw_range = 3
 	hitsound = 'sound/items/trayhit1.ogg'
 	hit_reaction_chance = 50
@@ -485,7 +485,7 @@
 	lefthand_file = 'icons/mob/inhands/misc/chairs_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/chairs_righthand.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
-	force = 7
+	force = 2
 	throw_range = 5 //Lighter Weight --> Flies Farther.
 	custom_materials = list(/datum/material/plastic = 2000)
 	break_chance = 25

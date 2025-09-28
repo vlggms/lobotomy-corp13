@@ -13,7 +13,7 @@
 	force = 45
 	throw_speed = 4
 	throw_range = 5
-	throwforce = 15
+	throwforce = 4
 	block_chance = 40
 	armour_penetration = 50
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -53,7 +53,7 @@
 	icon_state = "weeb_sheath"
 	worn_icon_state = "sheath"
 	w_class = WEIGHT_CLASS_BULKY
-	force = 3
+	force = 1
 	var/primed = FALSE //Prerequisite to anime bullshit
 	// ##The anime bullshit## - Mostly stolen from action/innate/dash
 	var/dash_sound = 'ModularTegustation/Tegusounds/weapons/unsheathed_blade.ogg'

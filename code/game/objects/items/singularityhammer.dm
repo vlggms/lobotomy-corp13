@@ -7,8 +7,8 @@
 	worn_icon_state = "singularity_hammer"
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_BACK
-	force = 5
-	throwforce = 15
+	force = 2
+	throwforce = 4
 	throw_range = 1
 	w_class = WEIGHT_CLASS_HUGE
 	armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 0, BOMB = 50, BIO = 0, RAD = 0, FIRE = 100, ACID = 100)
@@ -92,8 +92,8 @@
 	righthand_file = 'icons/mob/inhands/weapons/hammers_righthand.dmi'
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_BACK
-	force = 5
-	throwforce = 30
+	force = 2
+	throwforce = 7
 	throw_range = 7
 	w_class = WEIGHT_CLASS_HUGE
 	var/wielded = FALSE // track wielded status on item

@@ -6,8 +6,8 @@
 	lefthand_file = 'icons/mob/inhands/equipment/toolbox_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/toolbox_righthand.dmi'
 	flags_1 = CONDUCT_1
-	force = 6
-	throwforce = 6
+	force = 2
+	throwforce = 2
 	throw_speed = 2
 	throw_range = 7
 	w_class = WEIGHT_CLASS_BULKY
@@ -91,7 +91,7 @@
 /obj/item/storage/toolbox/mechanical/old/heirloom
 	name = "toolbox" //this will be named "X family toolbox"
 	desc = "It's seen better days."
-	force = 3
+	force = 1
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/storage/toolbox/mechanical/old/heirloom/PopulateContents()
@@ -103,15 +103,15 @@
 	icon_state = "oldtoolboxclean"
 	inhand_icon_state = "toolbox_blue"
 	has_latches = FALSE
-	force = 11
-	throwforce = 11
+	force = 3
+	throwforce = 3
 
 /obj/item/storage/toolbox/mechanical/old/clean/proc/calc_damage()
 	var/power = 0
 	for (var/obj/item/stack/telecrystal/TC in GetAllContents())
 		power += TC.amount
-	force = 11 + power
-	throwforce = 11 + power
+	force = 3 + power
+	throwforce = 3 + power
 
 /obj/item/storage/toolbox/mechanical/old/clean/attack(mob/target, mob/living/user)
 	calc_damage()
@@ -153,8 +153,8 @@
 	name = "suspicious looking toolbox"
 	icon_state = "syndicate"
 	inhand_icon_state = "toolbox_syndi"
-	force = 10
-	throwforce = 10
+	force = 3
+	throwforce = 3
 	material_flags = NONE
 
 /obj/item/storage/toolbox/syndicate/ComponentInitialize()
@@ -244,8 +244,8 @@
 	desc = "Bearing the emblem of the Syndicate, this case contains a full infiltrator stealth suit, and has enough room to fit weaponry if necessary."
 	icon_state = "infiltrator_case"
 	inhand_icon_state = "infiltrator_case"
-	force = 10
-	throwforce = 10
+	force = 3
+	throwforce = 3
 	w_class = WEIGHT_CLASS_NORMAL
 	has_latches = FALSE
 

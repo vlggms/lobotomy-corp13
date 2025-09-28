@@ -4,7 +4,7 @@
 	desc = "A blank axe workshop template."
 	special = "Use this weapon in hand to charge a cleave attack."
 	icon_state = "axetemplate"
-	force = 30
+	force = 15
 	attack_speed = 1.5
 	hitsound = 'sound/abnormalities/woodsman/woodsman_attack.ogg'
 	attack_verb_continuous = list("attacks", "slashes", "cleaves", "slices", "cuts")

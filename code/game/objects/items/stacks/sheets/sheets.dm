@@ -3,8 +3,8 @@
 	lefthand_file = 'icons/mob/inhands/misc/sheets_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/sheets_righthand.dmi'
 	full_w_class = WEIGHT_CLASS_NORMAL
-	force = 5
-	throwforce = 5
+	force = 2
+	throwforce = 2
 	max_amount = 50
 	throw_speed = 1
 	throw_range = 3
