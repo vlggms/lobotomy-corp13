@@ -79,7 +79,7 @@
 		retaliation_health -= maxHealth * 0.5
 		Retaliation(TRUE)
 
-/mob/living/simple_animal/hostile/ordeal/violet_dusk/proc/Retaliation(var/teleport_hands)
+/mob/living/simple_animal/hostile/ordeal/violet_dusk/proc/Retaliation(teleport_arms = FALSE)
 	retaliation_cooldown = retaliation_cooldown_time + world.time
 	icon_state = "violet_dusk_counter"
 	for(var/turf/T in range(4, src))
@@ -95,7 +95,7 @@
 		HurtInTurf(T, list(), 30, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
 		new /obj/effect/temp_visual/revenant(T)
 	SSlobotomy_corp.InitiateMeltdown(round(SSlobotomy_corp.qliphoth_meltdown_amount/3)+1, TRUE)
-	if(teleport_hands)
+	if(teleport_arms)
 		var/list/turfs = list()
 		var/list/arms = list()
 		var/list/arms_near = list()
