@@ -37,7 +37,7 @@ No Ability	260
 	name = "prophet"
 	desc = "And they have conquered him by the blood of the Lamb and by the word of their testimony, for they loved not their lives even unto death."
 	icon_state = "prophet"
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 80, BLACK_DAMAGE = 80, PALE_DAMAGE = 60)	//No ability.
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 80, BLACK_DAMAGE = 80, PALE_DAMAGE = 60)	//No ability
 	flags_inv = HIDEJUMPSUIT|HIDEGLOVES|HIDESHOES
 	hat = /obj/item/clothing/head/ego_hat/prophet_hat
 
@@ -50,7 +50,7 @@ No Ability	260
 	name = "blood maiden"
 	desc = "Soaked in blood, and yet pure in heart."
 	icon_state = "maiden"
-	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 50, BLACK_DAMAGE = 80, PALE_DAMAGE = 60)	//No ability. 250
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 50, BLACK_DAMAGE = 80, PALE_DAMAGE = 60)	//No ability
 
 /obj/item/clothing/suit/armor/ego_gear/realization/wellcheers
 	name = "wellcheers"
