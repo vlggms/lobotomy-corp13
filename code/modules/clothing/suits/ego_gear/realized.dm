@@ -30,7 +30,7 @@ No Ability	250
 	name = "confessional"
 	desc = "Come my child. Tell me your sins."
 	icon_state = "confessional"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 100, BLACK_DAMAGE = 40, PALE_DAMAGE = 40)	//Ranged
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 80, BLACK_DAMAGE = 40, PALE_DAMAGE = 60)	//Ranged
 	realized_ability = /obj/effect/proc_holder/ability/aimed/cross_spawn
 
 /obj/item/clothing/suit/armor/ego_gear/realization/prophet
@@ -423,7 +423,7 @@ No Ability	250
 	name = "al coda"
 	desc = "Harmonizes well."
 	icon_state = "coda"
-	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 100, BLACK_DAMAGE = 60, PALE_DAMAGE = 20)		//No Ability
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 80, BLACK_DAMAGE = 70, PALE_DAMAGE = 30)		//No Ability
 
 /obj/item/clothing/suit/armor/ego_gear/realization/head
 	name = "head of god"
