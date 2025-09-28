@@ -20,10 +20,10 @@
 	var/retaliation_health = 10 // Initialized later
 	var/hand_limit = 6
 	var/hand_cooldown
-	var/hand_cooldown_time = 90 SECONDS
+	var/hand_cooldown_time = 60 SECONDS
 	var/list/spawned_arms = list()
 	var/arm_cooldown
-	var/arm_cooldown_time = 60 SECONDS
+	var/arm_cooldown_time = 45 SECONDS
 	var/arm_limit = 12
 	var/initial_spawn = FALSE
 	var/retaliation_cooldown
@@ -182,8 +182,8 @@
 	desc = "A portal with a hand coming out of it."
 	icon = 'ModularTegustation/Teguicons/48x96.dmi'
 	faction = list("violet_ordeal")
-	maxHealth = 440
-	health = 440
+	maxHealth = 380
+	health = 380
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.2)
 	density = FALSE
 	del_on_death = TRUE
@@ -197,11 +197,12 @@
 	icon_living = "violet_dusk_tentacle"
 	base_pixel_x = -8
 	pixel_x = -8
+	pixel_y = 8
 	ranged = TRUE
-	density = TRUE
+	density = FALSE
 	alpha = 0
-	maxHealth = 380
-	health = 380
+	maxHealth = 220
+	health = 220
 	ranged_cooldown_time = 10 SECONDS //will dash at people if they get out of range but not too often
 	melee_damage_type = BLACK_DAMAGE
 	melee_damage_lower = 5
@@ -305,7 +306,7 @@
 	icon_living = "violet_dusk_hand_portal"
 	base_pixel_x = -8
 	pixel_x = -8
-	var/slam_damage = 80
+	var/slam_damage = 60
 	var/teleport_cooldown
 	var/teleport_cooldown_time = 5 SECONDS
 	var/Attacking = FALSE
