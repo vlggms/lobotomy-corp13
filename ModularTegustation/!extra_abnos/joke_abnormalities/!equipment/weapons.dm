@@ -149,7 +149,7 @@
 	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
 	inhand_x_dimension = 96
 	inhand_y_dimension = 96
-	force = 72
+	force = 68
 	attack_speed = 1.8
 	damtype = BLACK_DAMAGE
 	hitsound = 'sound/abnormalities/apocalypse/slam.ogg'
@@ -163,7 +163,8 @@
 							)
 
 	charge = TRUE
-	charge_cost = 20
+	charge_cost = 10
+	charge_cap = 10
 	charge_effect = "Can be used to perform an indiscriminate heavy red damage jump attack."
 	successfull_activation = "You feel the power of the violet noon flow through you."
 
