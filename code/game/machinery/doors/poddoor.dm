@@ -13,7 +13,7 @@
 	max_integrity = 600
 	armor = list(MELEE = 50, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 50, BIO = 100, RAD = 100, FIRE = 100, ACID = 70)
 	resistance_flags = FIRE_PROOF
-	damage_deflection = 70
+	damage_deflection = 40
 	poddoor = TRUE
 	var/ertblast = FALSE //If this is true the blast door cannot be deconstructed
 	var/deconstruction = INTACT //For the deconstruction steps
@@ -37,7 +37,7 @@
 			var/change_id = input("Set the shutters/blast door/blast door controllers ID. It must be a number between 1 and 100.", "ID", id) as num|null
 			if(change_id)
 				id = clamp(round(change_id, 1), 1, 100)
-				to_chat(user, "<span class='notice'>You change the ID to [id].</span>")	
+				to_chat(user, "<span class='notice'>You change the ID to [id].</span>")
 
 		if(W.tool_behaviour == TOOL_CROWBAR && deconstruction == INTACT)
 			to_chat(user, "<span class='notice'>You start to remove the airlock electronics.</span>")
