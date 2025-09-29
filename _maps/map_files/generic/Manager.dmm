@@ -830,12 +830,6 @@
 /turf/open/floor/wood,
 /area/department_main/manager)
 "lN" = (
-/obj/machinery/button/door/indestructible{
-	id = "managerlockdown";
-	name = "Adminstrative Offices Lockdown button";
-	pixel_y = 25;
-	pixel_x = -5
-	},
 /obj/machinery/computer/abnormality_logs{
 	dir = 4
 	},
@@ -1184,7 +1178,9 @@
 /turf/open/floor/carpet/black,
 /area/facility_hallway/manager)
 "pN" = (
-/obj/machinery/jukebox,
+/obj/machinery/jukebox{
+	req_access = list()
+	},
 /turf/open/floor/carpet/royalblack,
 /area/department_main/manager)
 "qe" = (
@@ -3472,20 +3468,19 @@
 /obj/machinery/button/door/indestructible{
 	id = "managerlockdown2";
 	name = "Manager Office Lockdown button";
-	pixel_y = 22;
-	pixel_x = 5
+	pixel_y = 25;
+	pixel_x = -8
 	},
 /obj/machinery/button/door/indestructible{
 	id = "facilitylockdown";
 	name = "Facility Lockdown button";
-	pixel_y = 30;
-	pixel_x = 5
+	pixel_y = 25;
+	pixel_x = 8
 	},
 /obj/machinery/button/door/indestructible{
 	id = "managerlockdown";
 	name = "Adminstrative Offices Lockdown button";
-	pixel_y = 26;
-	pixel_x = -5
+	pixel_y = 33
 	},
 /turf/open/floor/carpet/royalblack,
 /area/department_main/manager)
