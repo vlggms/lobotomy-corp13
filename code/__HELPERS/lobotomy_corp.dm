@@ -1,11 +1,11 @@
-/// Returns list of all living agents that can work (Also Suppression Agents if suppressioncount = TRUE)
+/// Returns list of all living agents that can work (Also Officers if officercount = TRUE)
 /proc/AllLivingAgents(officercount = FALSE)
 	. = list()
 	var/officer_roles = list("Training Officer","Disciplinary Officer", "Records Officer", "Extraction Officer")
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		if(H.stat == DEAD)
 			continue
-		if(!(H.mind.assigned_role in GLOB.security_positions))
+		if(!(H.mind.assigned_role in GLOB.security_positions) && !(H.mind.assigned_role in officer_roles))
 			continue
 		if(HAS_TRAIT(H, TRAIT_WORK_FORBIDDEN))
 			if(officercount == FALSE || !(H.mind.assigned_role in officer_roles))
