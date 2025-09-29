@@ -97,7 +97,7 @@ GLOBAL_LIST_EMPTY(lcorp_upgrades)
 //Officer Limit Breaker
 /datum/data/lc13research/officerlimitbreaker
 	research_name = "Officer Limit Breaker Injector"
-	research_desc = "An order of an ampule to let you increase your maximum stats. <br>These ones are made for Records and Extraction Officers "
+	research_desc = "An order of an ampule to let you increase your maximum stats. <br>These ones are made for Training, Disciplinary, Records and Extraction Officers "
 	cost = AVERAGE_RESEARCH_PRICE
 	corp = L_CORP_REP
 
@@ -108,7 +108,7 @@ GLOBAL_LIST_EMPTY(lcorp_upgrades)
 
 /datum/data/lc13research/understandingmachine
 	research_name = "Abnormality Scanner"
-	research_desc = "A machine that can be used to understand abnormalities. It does take a second. <br>These ones are made for Records and Extraction Officers "
+	research_desc = "A machine that can be used to understand abnormalities. It does take a second. <br>These ones are made for Training, Disciplinary, Records and Extraction Officers "
 	cost = AVERAGE_RESEARCH_PRICE
 	corp = L_CORP_REP
 

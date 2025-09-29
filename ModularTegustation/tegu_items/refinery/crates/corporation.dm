@@ -29,7 +29,6 @@
 	veryrareloot =	list(
 		/obj/item/trait_injector/agent_workchance_trait_injector,
 		/obj/item/trait_injector/clerk_fear_immunity_injector,
-		/obj/item/trait_injector/officer_upgrade_injector,
 		/obj/item/ego_gift_extractor,
 	)
 
