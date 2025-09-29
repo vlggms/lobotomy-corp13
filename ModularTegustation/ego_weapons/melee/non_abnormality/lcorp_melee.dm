@@ -54,9 +54,6 @@
 
 /obj/item/ego_weapon/city/lcorp/examine(mob/user)
 	. = ..()
-	if(user.mind)
-		if(user.mind.assigned_role in list("Disciplinary Officer", "Emergency Response Agent"))
-			. += span_notice("Due to your abilties, you get a +20 to your stats when equipping this weapon.")
 	if(!installed_shard)
 		. += span_warning("This weapon can be enhanced with an egoshard.")
 	else
@@ -121,6 +118,7 @@
 	block_cooldown = 3 SECONDS
 	block_sound_volume = 30
 	custom_price = 300
+	is_city_gear = TRUE
 	var/installed_shard
 	var/equipped
 	attribute_requirements = list( //They need to be listed for the attributes to increase
@@ -181,9 +179,6 @@
 
 /obj/item/ego_weapon/shield/lcorp_shield/examine(mob/user)
 	. = ..()
-	if(user.mind)
-		if(user.mind.assigned_role in list("Disciplinary Officer", "Emergency Response Agent"))
-			. += span_notice("Due to your abilties, you get a +20 to your stats when equipping this weapon.")
 	if(!installed_shard)
 		. += span_warning("This weapon can be enhanced with an egoshard.")
 	else
@@ -193,14 +188,6 @@
 	. = ..()
 	if(!installed_shard)
 		to_chat(usr, span_nicegreen("This weapon can be used by anyone."))
-
-/obj/item/ego_weapon/shield/lcorp_shield/CanUseEgo(mob/living/user)
-	if(user.mind)
-		if(user.mind.assigned_role in list("Disciplinary Officer", "Emergency Response Agent"))
-			equip_bonus = 20
-		else
-			equip_bonus = 0
-	. = ..()
 
 /////////////////////
 //OFFICER EQUIPMENT//
