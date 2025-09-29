@@ -118,6 +118,18 @@
 /obj/effect/turf_decal/siding/white/corner,
 /turf/open/floor/carpet/black,
 /area/facility_hallway/manager)
+"cQ" = (
+/obj/structure/curtain,
+/obj/machinery/shower,
+/obj/item/soap/deluxe,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/noslip,
+/area/department_main/manager)
 "cR" = (
 /obj/structure/table/glass,
 /obj/item/work_console_upgrade/chemical_extraction_attachment,
@@ -148,14 +160,15 @@
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/manager)
 "dj" = (
-/obj/machinery/door/poddoor/preopen{
-	id = "managerlockdown2";
-	name = "Manager's Office Lockdown Blast Door"
+/obj/structure/table/glass,
+/obj/item/razor{
+	pixel_x = 5;
+	pixel_y = 5
 	},
-/obj/machinery/door/airlock/wood{
-	name = "Manager's Office Entrance"
+/obj/item/lipstick/random{
+	pixel_x = -5
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/showroomfloor,
 /area/department_main/manager)
 "dl" = (
 /obj/machinery/vending/lobotomyarmband,
@@ -300,8 +313,14 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/manager)
 "fa" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating/airless,
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = 11
+	},
+/obj/structure/mirror{
+	pixel_x = 28
+	},
+/turf/open/floor/plasteel/showroomfloor,
 /area/department_main/manager)
 "fb" = (
 /obj/effect/turf_decal/siding/wood{
@@ -446,6 +465,9 @@
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/manager)
+"he" = (
+/turf/closed/indestructible/fakeglass,
+/area/department_main/manager)
 "hj" = (
 /obj/machinery/computer/crew{
 	dir = 8
@@ -991,6 +1013,13 @@
 	},
 /turf/open/floor/carpet/black,
 /area/facility_hallway/manager)
+"nQ" = (
+/obj/structure/toilet,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/department_main/manager)
 "nY" = (
 /obj/structure/table/glass,
 /obj/item/hand_labeler,
@@ -1418,6 +1447,14 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
+/area/department_main/manager)
+"tY" = (
+/obj/structure/table/glass,
+/obj/item/storage/pill_bottle/psicodine,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/showroomfloor,
 /area/department_main/manager)
 "tZ" = (
 /obj/machinery/light{
@@ -1864,6 +1901,9 @@
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/railing,
 /turf/open/floor/plasteel/dark,
+/area/department_main/manager)
+"zT" = (
+/turf/open/floor/plasteel/showroomfloor,
 /area/department_main/manager)
 "zV" = (
 /obj/structure/railing,
@@ -2399,6 +2439,16 @@
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet/green,
 /area/facility_hallway/manager)
+"IH" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "managerlockdown2";
+	name = "Manager's Office Lockdown Blast Door"
+	},
+/obj/machinery/door/airlock/wood{
+	name = "Manager's Office Entrance"
+	},
+/turf/open/floor/plasteel,
+/area/department_main/manager)
 "IK" = (
 /obj/structure/filingcabinet/wawinfo{
 	pixel_x = -10
@@ -3035,6 +3085,12 @@
 	},
 /turf/open/floor/carpet/green,
 /area/facility_hallway/manager)
+"UP" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/department_main/manager)
 "Vb" = (
 /turf/open/floor/carpet/black,
 /area/facility_hallway/manager)
@@ -3368,6 +3424,10 @@
 "Zi" = (
 /turf/open/floor/facility/dark,
 /area/facility_hallway/manager)
+"Zj" = (
+/obj/machinery/door/window/brigdoor/southleft,
+/turf/open/floor/plasteel/showroomfloor,
+/area/department_main/manager)
 "Zu" = (
 /obj/structure/chair/plastic{
 	dir = 4
@@ -11560,13 +11620,13 @@ XL
 XL
 XL
 XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
+Qf
+Qf
+Qf
+Qf
+Qf
+Qf
+Qf
 XL
 XL
 XL
@@ -11578,312 +11638,6 @@ XL
 XL
 "}
 (81,1,1) = {"
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-"}
-(82,1,1) = {"
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-"}
-(83,1,1) = {"
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-Qf
-Qf
-Qf
-Qf
-Qf
-Qf
-Qf
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-"}
-(84,1,1) = {"
 XL
 XL
 XL
@@ -11985,7 +11739,7 @@ XL
 XL
 XL
 "}
-(85,1,1) = {"
+(82,1,1) = {"
 XL
 XL
 XL
@@ -12087,7 +11841,7 @@ XL
 XL
 XL
 "}
-(86,1,1) = {"
+(83,1,1) = {"
 XL
 XL
 XL
@@ -12189,7 +11943,7 @@ XL
 XL
 XL
 "}
-(87,1,1) = {"
+(84,1,1) = {"
 XL
 XL
 XL
@@ -12291,7 +12045,7 @@ XL
 XL
 XL
 "}
-(88,1,1) = {"
+(85,1,1) = {"
 XL
 XL
 XL
@@ -12380,7 +12134,7 @@ Qf
 Qf
 Qf
 zn
-fa
+he
 Qf
 Qf
 XL
@@ -12393,7 +12147,7 @@ XL
 XL
 XL
 "}
-(89,1,1) = {"
+(86,1,1) = {"
 XL
 XL
 XL
@@ -12495,7 +12249,7 @@ Qf
 Qf
 XL
 "}
-(90,1,1) = {"
+(87,1,1) = {"
 XL
 XL
 XL
@@ -12597,7 +12351,7 @@ zL
 Qf
 XL
 "}
-(91,1,1) = {"
+(88,1,1) = {"
 XL
 XL
 XL
@@ -12699,7 +12453,7 @@ zL
 Qf
 XL
 "}
-(92,1,1) = {"
+(89,1,1) = {"
 XL
 XL
 XL
@@ -12786,7 +12540,7 @@ hT
 rz
 lE
 Vw
-dj
+IH
 Ec
 Ec
 hD
@@ -12801,7 +12555,7 @@ zL
 Qf
 XL
 "}
-(93,1,1) = {"
+(90,1,1) = {"
 XL
 XL
 XL
@@ -12903,7 +12657,7 @@ zL
 Qf
 XL
 "}
-(94,1,1) = {"
+(91,1,1) = {"
 XL
 XL
 XL
@@ -13005,7 +12759,7 @@ zL
 Qf
 XL
 "}
-(95,1,1) = {"
+(92,1,1) = {"
 XL
 XL
 XL
@@ -13093,8 +12847,8 @@ Vw
 Vw
 Qf
 Qf
-gc
 mQ
+gc
 Qf
 Qf
 Qf
@@ -13107,7 +12861,7 @@ Qf
 Qf
 XL
 "}
-(96,1,1) = {"
+(93,1,1) = {"
 XL
 XL
 XL
@@ -13195,10 +12949,316 @@ Qf
 Qf
 Qf
 Qf
+zn
 Qf
 Qf
 Qf
 XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+"}
+(94,1,1) = {"
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+Qf
+Qf
+Qf
+Qf
+Qf
+XL
+Qf
+nQ
+Zj
+zT
+zT
+dj
+Qf
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+"}
+(95,1,1) = {"
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+Qf
+Qf
+Qf
+zT
+zT
+zT
+Qf
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+"}
+(96,1,1) = {"
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+Qf
+Qf
+Qf
+zT
+zT
+zT
+Qf
 XL
 XL
 XL
@@ -13288,19 +13348,19 @@ XL
 XL
 XL
 XL
+XL
+XL
+XL
+XL
+XL
+XL
 Qf
+cQ
+Zj
+UP
+fa
+tY
 Qf
-Qf
-Qf
-Qf
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
 XL
 XL
 XL
@@ -13396,13 +13456,13 @@ XL
 XL
 XL
 XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
+Qf
+Qf
+Qf
+Qf
+Qf
+Qf
+Qf
 XL
 XL
 XL
