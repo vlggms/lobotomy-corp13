@@ -188,7 +188,7 @@
 	cosmeticchance = 25
 	lootlist =	list(
 		/obj/item/ego_weapon/city/wcorp,
-		/obj/item/clothing/suit/armor/ego_gear/wcorp,
+		/obj/item/clothing/suit/armor/ego_gear/city/wcorp,
 	)
 
 	rareloot =	list(

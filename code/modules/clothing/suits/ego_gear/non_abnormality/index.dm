@@ -11,7 +11,7 @@
 							JUSTICE_ATTRIBUTE = 60
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/index_proxy //Choose your Drip babey
+/obj/item/clothing/suit/armor/ego_gear/city/index_proxy //Choose your Drip babey
 	name = "index proxy armor"
 	desc = "Armor worn by index proxies."
 	icon_state = "index_proxy_open"
@@ -25,23 +25,9 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/index_proxy/ComponentInitialize()
+/obj/item/clothing/suit/armor/ego_gear/city/index_proxy/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/adjustable_clothing, list("index_proxy_open", "index_proxy_closed"))
-
-/obj/item/clothing/suit/armor/ego_gear/index_proxy/examine(mob/user)
-	. = ..()
-	if(user.mind)
-		if(user.mind.assigned_role in list("Disciplinary Officer", "Combat Research Agent")) //These guys get a bonus to equipping gacha.
-			. += span_notice("Due to your abilities, you get a -20 reduction to stat requirements when equipping this armor.")
-
-/obj/item/clothing/suit/armor/ego_gear/index_proxy/CanUseEgo(mob/living/user)
-	if(user.mind)
-		if(user.mind.assigned_role in list("Disciplinary Officer", "Combat Research Agent")) //These guys get a bonus to equipping gacha.
-			equip_bonus = 20
-		else
-			equip_bonus = 0
-	. = ..()
 
 
 /obj/item/clothing/suit/armor/ego_gear/city/index_mess
