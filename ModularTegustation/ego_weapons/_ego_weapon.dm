@@ -105,7 +105,7 @@
 			. += span_danger("You cannot use this EGO!")
 			. += span_danger("It has <a href='byond://?src=[REF(src)];list_attributes=1'>certain requirements</a> for the wearer.")
 	if(is_city_gear)
-		if(user.mind.assigned_role in list("Disciplinary Officer", "Combat Research Agent")) //These guys get a bonus to using gacha.
+		if(user.mind.assigned_role in list("Training Officer","Disciplinary Officer", "Records Officer", "Extraction Officer")) //These guys get a bonus to using gacha.
 			. += span_notice("Due to your abilities, you get a -20 reduction to stat requirements when wielding this weapon.")
 	var/list/typecache_small = typecacheof(GLOB.small_ego)
 	if(is_type_in_typecache(src, typecache_small))
@@ -204,7 +204,7 @@
 		if(user.mind.assigned_role == "Sephirah") //This is an RP role
 			return FALSE
 	if(is_city_gear)
-		if(user.mind.assigned_role in list("Disciplinary Officer", "Combat Research Agent")) //These guys get a bonus to equipping gacha.
+		if(user.mind.assigned_role in list("Training Officer","Disciplinary Officer", "Records Officer", "Extraction Officer")) //These guys get a bonus to equipping gacha.
 			equip_bonus = 20//City weapons have extremely high requirements. These people will be able to use them a little earlier.
 		else
 			equip_bonus = 0

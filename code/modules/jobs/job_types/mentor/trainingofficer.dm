@@ -1,5 +1,5 @@
 // Training Officer
-/datum/job/agent/training_officer
+/datum/job/command/training_officer
 	title = "Training Officer"
 	selection_color = "#e09660"
 	total_positions = -1
@@ -19,13 +19,12 @@
 	mentor_only = TRUE
 	alt_titles = list()
 
-/datum/job/agent/training_officer/after_spawn(mob/living/carbon/human/outfit_owner, mob/M)
+/datum/job/command/training_officer/after_spawn(mob/living/carbon/human/outfit_owner, mob/M)
 	ADD_TRAIT(outfit_owner, TRAIT_ATTRIBUTES_VISION, JOB_TRAIT)
-	outfit_owner.grant_language(/datum/language/bong, TRUE, FALSE, LANGUAGE_MIND)
 	. = ..()
 
 
-/datum/job/agent/training_officer/announce(mob/living/carbon/human/outfit_owner)
+/datum/job/command/training_officer/announce(mob/living/carbon/human/outfit_owner)
 	..()
 	var/displayed_rank = title // Handle alt titles
 	if(title in outfit_owner?.client?.prefs?.alt_titles_preferences)
@@ -33,15 +32,16 @@
 
 	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(minor_announce), "[displayed_rank] [outfit_owner.real_name] has arrived as the Training Officer. All interns are to report to them."))
 
-/datum/outfit/job/agent/training_officer
+/datum/outfit/job/command/training_officer
 	name = "Training Officer"
-	jobtype = /datum/job/agent/training_officer
+	jobtype = /datum/job/command/training_officer
 	head = /obj/item/clothing/head/beret/tegu/lobotomy/training
 	ears = /obj/item/radio/headset/heads/manager/alt
 	l_pocket = /obj/item/commandprojector
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch
 	suit = /obj/item/clothing/suit/armor/training
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/medical)
+	accessory = /obj/item/clothing/accessory/armband/lobotomy/training
 
 	backpack_contents = list(
 		/obj/item/melee/classic_baton,
