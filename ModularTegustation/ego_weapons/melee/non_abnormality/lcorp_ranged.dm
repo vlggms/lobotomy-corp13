@@ -47,6 +47,16 @@
 	var/equipped
 	var/tier = 0
 
+/obj/item/ego_weapon/ranged/city/lcorp/update_projectile_examine()
+	if(isnull(projectile_path))
+		message_admins("[src] has an invalid projectile path.")
+		return
+	var/obj/projectile/ego_bullet/lcorp/projectile = new projectile_path(src, src)
+	last_projectile_damage = projectile.damage_tier[max(1, tier)]
+	last_projectile_type = damtype
+	qdel(projectile)
+
+
 /obj/item/ego_weapon/ranged/city/lcorp/examine(mob/user)
 	. = ..()
 	if(!installed_shard)
