@@ -43,7 +43,7 @@
 
 	job_attribute_limit = 130
 	var/normal_attribute_level = 20
-
+	var/extra_starting_stats = 10//Just so they dont eat shit and die way too early in a round
 
 /datum/job/command/after_spawn(mob/living/carbon/human/outfit_owner, mob/M, latejoin = FALSE)
 	ADD_TRAIT(outfit_owner, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
@@ -80,7 +80,7 @@
 			if(79 to 100) // ALEPHs around here (20 Abnormalities)
 				set_attribute *= 4
 
-		set_attribute += GetFacilityUpgradeValue(UPGRADE_AGENT_STATS) + SSlobotomy_corp.ordeal_stats + 10
+		set_attribute += GetFacilityUpgradeValue(UPGRADE_AGENT_STATS) + SSlobotomy_corp.ordeal_stats + extra_starting_stats
 	for(var/A in roundstart_attributes)
 		roundstart_attributes[A] = round(set_attribute)
 
@@ -139,7 +139,7 @@
 	outfit = /datum/outfit/job/command/disciplinary
 	exp_requirements = 600
 	mapexclude = list("wonderlabs", "mini", "lcorp_city", "enkephalin_rush")
-	job_important = "You are the Disciplinary Officer. Your job is to suppress Abnormalities. You cannot work. Use :h to talk on your departmental radio."
+	job_important = "You are the Disciplinary Officer. Your job is to help suppress Abnormalities and other threats. You cannot work."
 
 	job_abbreviation = "DO"
 
@@ -154,4 +154,5 @@
 		/obj/item/melee/classic_baton,
 		/obj/item/announcementmaker/lcorp,
 		/obj/item/powered_gadget/enkephalin_injector,
+		/obj/item/disc_researcher,
 	)

@@ -16,6 +16,10 @@
 		// Command
 		if("Manager")
 			heirloom_type = pick(/obj/item/toy/plush/angela)
+		if("Training Officer")
+			heirloom_type = pick(/obj/item/toy/plush/hod)
+		if("Disciplinary Officer")
+			heirloom_type = pick(/obj/item/toy/plush/gebura)
 		if("Extraction Officer")
 			heirloom_type = pick(/obj/item/toy/plush/binah)
 		if("Records Officer")
