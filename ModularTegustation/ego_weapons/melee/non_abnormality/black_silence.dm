@@ -20,6 +20,7 @@
 		TEMPERANCE_ATTRIBUTE = 120,
 		JUSTICE_ATTRIBUTE = 120,
 	)
+	is_city_gear = TRUE
 	actions_types = list(/datum/action/item_action/toggle_iff)
 	var/special_cooldown
 	var/special_cooldown_time

@@ -5,13 +5,7 @@
 	total_positions = -1
 	spawn_positions = -1
 	outfit = /datum/outfit/job/command/training_officer
-	display_order = JOB_DISPLAY_ORDER_COMMAND
-
-	access = list(ACCESS_COMMAND)
-	departments = DEPARTMENT_COMMAND
 	exp_requirements = 0
-	exp_type = EXP_TYPE_CREW
-	exp_type_department = EXP_TYPE_SECURITY
 	job_important = "You are a Training Officer. Your primary goal is to assist interns and clerks in learning. You are not here to win, but to teach."
 	job_notice = "Abandoning your duties, or abusing your tools will result in a report to the admin team."
 

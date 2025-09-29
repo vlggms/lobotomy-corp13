@@ -138,7 +138,6 @@
 	selection_color = "#ccccff"
 	outfit = /datum/outfit/job/command/disciplinary
 	exp_requirements = 600
-	mapexclude = list("wonderlabs", "mini", "lcorp_city", "enkephalin_rush")
 	job_important = "You are the Disciplinary Officer. Your job is to help suppress Abnormalities and other threats. You cannot work but can breach Abnormalities for some PE or LOB points."
 
 	job_abbreviation = "DO"
