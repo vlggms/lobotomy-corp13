@@ -2393,7 +2393,6 @@
 #include "code\modules\jobs\job_types\captain.dm"
 #include "code\modules\jobs\job_types\command.dm"
 #include "code\modules\jobs\job_types\manager.dm"
-#include "code\modules\jobs\job_types\suppression.dm"
 #include "code\modules\jobs\job_types\city\backstreets_butcher.dm"
 #include "code\modules\jobs\job_types\city\carnival.dm"
 #include "code\modules\jobs\job_types\city\civilian.dm"
