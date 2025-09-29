@@ -4,7 +4,7 @@
 	selection_color = "#e09660"
 	total_positions = -1
 	spawn_positions = -1
-	outfit = /datum/outfit/job/agent/training_officer
+	outfit = /datum/outfit/job/command/training_officer
 	display_order = JOB_DISPLAY_ORDER_COMMAND
 
 	access = list(ACCESS_COMMAND)
