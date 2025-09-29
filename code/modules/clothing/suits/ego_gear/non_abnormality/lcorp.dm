@@ -108,9 +108,9 @@ It's not great though.
 	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 20)
 
 //Disc officer
-/obj/item/clothing/suit/armor/ego_gear/disc_off
-	name = "discipline officer's jacket"
-	desc = "An armored jacket used by the disciplinary officer."
+/obj/item/clothing/suit/armor/ego_gear/discipline
+	name = "torn coat"
+	desc = "An armored coat that has been seen better days. Worn by the disciplinary officer"
 	icon_state = "disc_officer"
 	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 20)
 	equip_slowdown = 0
