@@ -203,6 +203,7 @@
 				"Agent Captain",
 				"Agent",
 				"Agent Intern",
+				"Disciplinary Officer",
 				"Extraction Officer",
 				"Records Officer",
 				"Training Officer",

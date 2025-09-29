@@ -23,8 +23,6 @@
 /obj/structure/closet/secure_closet/discipline/PopulateContents()
 	..()
 //	new /obj/effect/spawner/bundle/combat_pages(src)
-	new /obj/item/clothing/suit/armor/ego_gear/disc_off(src)
-
 
 
 //need to use a god damn bundle for this

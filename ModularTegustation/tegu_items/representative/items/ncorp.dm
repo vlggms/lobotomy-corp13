@@ -60,8 +60,8 @@
 	name = "officer limit breaker"
 	desc = "A fluid used to increase the limit of L-Corp officer's potential. Use in hand to activate."
 	icon_state = "oddity7_gween"
-	amount = 80
-	allowed_roles = list("Records Officer", "Extraction Officer")
+	amount = 140
+	allowed_roles = list("Training Officer","Disciplinary Officer", "Records Officer", "Extraction Officer")
 
 //Temporary attributes
 #define STATUS_EFFECT_FORTITUDE /datum/status_effect/ncorp/fortitude
