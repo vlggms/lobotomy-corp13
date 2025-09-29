@@ -309,11 +309,11 @@
 
 /datum/facility_upgrade/specialization/records
 	name = UPGRADE_RECORDS_1
-	info = " - Gives most of the Records Officer's watches a buff.<br> - Raises the Records Officer's Stat Cap to 140"
+	info = " - Gives most of the Records Officer's watches a buff.<br> - Raises the Records Officer's Stat and maximum potential by 10"
 
 /datum/facility_upgrade/specialization/records/Upgrade()
 	// Applies newly purchased bonus to all living agents
-	for(var/datum/job/J in SSjob.occupations)
+	for(var/datum/job/command/J in SSjob.occupations)
 		if (J.title == "Records Officer")
 			J.job_attribute_limit += 10
 			J.extra_starting_stats += 10
@@ -330,13 +330,13 @@
 
 /datum/facility_upgrade/specialization/tier_2/records
 	name = UPGRADE_RECORDS_2
-	info = " - Increases Lob gained from Abnormality Understanding by 50%.<br> - Raises the Records Officer's Stat Cap to 150"
+	info = " - Increases Lob gained from Abnormality Understanding by 50%.<br> - Raises the Records Officer's Stat and maximum potential by 10"
 	requires_one_of = list(UPGRADE_RECORDS_1)
 	requires_none_of = list(UPGRADE_DISCIPLINARY_2, UPGRADE_EXTRACTION_2)
 
 /datum/facility_upgrade/specialization/tier_2/records/Upgrade()
 	// Applies newly purchased bonus to all living agents
-	for(var/datum/job/J in SSjob.occupations)
+	for(var/datum/job/command/J in SSjob.occupations)
 		if (J.title == "Records Officer")
 			J.job_attribute_limit += 10
 			J.extra_starting_stats += 10
