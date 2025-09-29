@@ -98,3 +98,27 @@
 		/obj/item/portacopier,
 		/obj/item/portablepredict,
 	)
+
+
+// Disciplinary Officer
+/datum/job/command/disciplinary
+	title = "Disciplinary Officer"
+	selection_color = "#ccccff"
+	outfit = /datum/outfit/job/command/disciplinary
+	exp_requirements = 6000
+	mapexclude = list("wonderlabs", "mini", "lcorp_city", "enkephalin_rush")
+	job_important = "You are the Disciplinary Officer. Your job is to suppress Abnormalities. You cannot work. Use :h to talk on your departmental radio."
+
+	job_abbreviation = "DO"
+
+/datum/outfit/job/command/disciplinary
+	name = "Disciplinary Officer"
+	jobtype = /datum/job/command/disciplinary
+	ears = /obj/item/radio/headset/heads/headset_discipline
+	l_pocket = /obj/item/commandprojector
+
+	backpack_contents = list(
+		/obj/item/melee/classic_baton,
+		/obj/item/announcementmaker/lcorp,
+		/obj/item/powered_gadget/enkephalin_injector,
+	)

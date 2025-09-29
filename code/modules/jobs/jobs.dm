@@ -116,9 +116,6 @@ GLOBAL_LIST_INIT(security_positions, list(
 	"Department Captain",
 	"Training Officer",
 
-	"Disciplinary Officer",
-	"Combat Research Agent",
-
 	"Agent Captain",
 	"Agent Lieutenant",
 	"Senior Agent",
