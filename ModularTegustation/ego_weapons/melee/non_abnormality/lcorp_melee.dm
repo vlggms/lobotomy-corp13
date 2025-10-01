@@ -28,9 +28,9 @@
 /obj/item/ego_weapon/officer/SpecialEgoCheck(mob/living/carbon/human/H)
 	if(!H.mind)
 		return FALSE
-	if(!H.mind.assigned_role in allowed_roles)
-		return FALSE
-	return ..()
+	if(H.mind.assigned_role in allowed_roles)
+		return TRUE
+	return  FALSE
 
 /obj/item/ego_weapon/officer/Initialize()
 	. = ..()
@@ -86,9 +86,9 @@
 /obj/item/ego_weapon/shield/officer/SpecialEgoCheck(mob/living/carbon/human/H)
 	if(!H.mind)
 		return FALSE
-	if(!H.mind.assigned_role in allowed_roles)
-		return FALSE
-	return ..()
+	if(H.mind.assigned_role in allowed_roles)
+		return TRUE
+	return  FALSE
 
 /obj/item/ego_weapon/shield/officer/Initialize()
 	. = ..()
