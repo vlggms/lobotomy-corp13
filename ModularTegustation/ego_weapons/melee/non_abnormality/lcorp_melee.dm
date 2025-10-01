@@ -1,9 +1,282 @@
 //A file for all melee weapons manufactured at L-corp that is not E.G.O.
 
-//Contains ERA, clerk. and officer (?) weapons
+//Contains clerk and officer weapons
 
 ///////////////////////
-//ERA/AGENT EQUIPMENT//
+///OFFICER EQUIPMENT///
+///////////////////////
+
+/obj/item/ego_weapon/officer
+	name = "officer weapon"
+	desc = "Please contact a coder if you obtain this!"
+	icon_state = "officer_blade"
+	icon = 'ModularTegustation/Teguicons/lcorp_weapons.dmi'
+	lefthand_file = 'ModularTegustation/Teguicons/lcorp_left.dmi'
+	righthand_file = 'ModularTegustation/Teguicons/lcorp_right.dmi'
+	force = 8
+	var/list/allowed_roles = list("Training Officer","Disciplinary Officer", "Extraction Officer","Records Officer")//we dont want other Roles to wear this!
+	var/current_holder = null
+	var/current_level = 0
+	var/max_level = 4
+	var/list/level_to_force = list(8, 14, 20, 28, 40)
+	var/extra_text = "This weapon can only be wielded by any Officer. This weapon also increase in power the more ordeals are defeated."
+
+/obj/item/ego_weapon/officer/examine(mob/user)
+	. = ..()
+	. += span_notice(extra_text)
+
+/obj/item/ego_weapon/officer/SpecialEgoCheck(mob/living/carbon/human/H)
+	if(!H.mind)
+		return FALSE
+	if(!H.mind.assigned_role in allowed_roles)
+		return FALSE
+	return ..()
+
+/obj/item/ego_weapon/officer/Initialize()
+	. = ..()
+	current_level = min(max_level, SSlobotomy_corp.next_ordeal_level-2)
+	refresh_stats()
+	RegisterSignal(SSdcs, COMSIG_GLOB_ORDEAL_END, PROC_REF(update_stats))
+
+/obj/item/ego_weapon/officer/proc/update_stats()
+	if(current_level >= max_level)
+		return
+	current_level++
+	if(current_holder)
+		to_chat(current_holder, span_nicegreen("[src]'s damage has been increased!"))
+	refresh_stats()
+
+/obj/item/ego_weapon/officer/proc/refresh_stats()
+	force = level_to_force[current_level+1]
+
+/obj/item/ego_weapon/officer/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if(!user)
+		return
+	current_holder = user
+
+/obj/item/ego_weapon/officer/dropped(mob/user)
+	. = ..()
+	current_holder = null
+
+/obj/item/ego_weapon/shield/officer
+	name = "officer shield"
+	desc = "Please contact a coder if you obtain this!"
+	icon_state = "officer_sabre"
+	icon = 'ModularTegustation/Teguicons/lcorp_weapons.dmi'
+	lefthand_file = 'ModularTegustation/Teguicons/lcorp_left.dmi'
+	righthand_file = 'ModularTegustation/Teguicons/lcorp_right.dmi'
+	force = 20
+	block_duration = 3 SECONDS
+	block_cooldown = 3 SECONDS
+	block_sound_volume = 30
+	var/list/allowed_roles = list("Training Officer","Disciplinary Officer", "Extraction Officer","Records Officer")//we dont want other Roles to wear this!
+	var/current_holder = null
+	var/current_level = 0
+	var/max_level = 4
+	var/list/level_to_force = list(20, 32, 46, 52, 70)
+	var/list/initial_reductions = list(20,20,20,20)
+	var/extra_text = "This weapon can only be wielded by any Officer. This weapon also increase in power the more ordeals are defeated."
+	var/armor_increase = 10
+
+/obj/item/ego_weapon/shield/officer/examine(mob/user)
+	. = ..()
+	. += span_notice(extra_text)
+
+/obj/item/ego_weapon/shield/officer/SpecialEgoCheck(mob/living/carbon/human/H)
+	if(!H.mind)
+		return FALSE
+	if(!H.mind.assigned_role in allowed_roles)
+		return FALSE
+	return ..()
+
+/obj/item/ego_weapon/shield/officer/Initialize()
+	. = ..()
+	current_level = min(max_level, SSlobotomy_corp.next_ordeal_level-2)
+	refresh_stats()
+	RegisterSignal(SSdcs, COMSIG_GLOB_ORDEAL_END, PROC_REF(update_stats))
+
+/obj/item/ego_weapon/shield/officer/proc/update_stats()
+	if(current_level >= max_level)
+		return
+	current_level++
+	if(current_holder)
+		to_chat(current_holder, span_nicegreen("[src]'s damage has been increased!"))
+	refresh_stats()
+
+/obj/item/ego_weapon/shield/officer/proc/refresh_stats()
+	force = level_to_force[current_level + 1]
+	for(var/i = 1 to 4)
+		reductions[i] = initial_reductions[i] + (armor_increase * current_level)
+	if(LAZYLEN(resistances_list)) //update armor tags code
+		resistances_list.Cut()
+	if(reductions[1] != 0)
+		resistances_list += list("RED" = reductions[1])
+	if(reductions[2] != 0)
+		resistances_list += list("WHITE" = reductions[2])
+	if(reductions[3] != 0)
+		resistances_list += list("BLACK" = reductions[3])
+	if(reductions[4] != 0)
+		resistances_list += list("PALE" = reductions[4])
+
+/obj/item/ego_weapon/shield/officer/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if(!user)
+		return
+	current_holder = user
+
+/obj/item/ego_weapon/shield/officer/dropped(mob/user)
+	. = ..()
+	current_holder = null
+
+/obj/item/ego_weapon/officer/blade
+	name = "officer blade"
+	desc = "A basic sword for the higher-ups of L-Corp to use incase they need to get their hands dirty. Used by all Officers "
+	swingstyle = WEAPONSWING_LARGESWEEP
+	hitsound = 'sound/weapons/fixer/generic/blade4.ogg'
+	special = "Use this weapon in hand to swap between swing styles. Blunt attacks very slow but does more damage and has knockback and Pierce attacks slower but has more reach.."
+	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
+	attack_verb_simple = list("slash", "slice", "rip", "cut")
+	var/swing_style = "slash"
+
+/obj/item/ego_weapon/officer/blade/refresh_stats()
+	force = level_to_force[current_level+1]
+	if(swing_style == "blunt")
+		force = round(force * 1.4)
+		knockback = KNOCKBACK_LIGHT
+		if(current_level > 1)
+			knockback = KNOCKBACK_MEDIUM
+		else if(current_level > 3)
+			knockback = KNOCKBACK_HEAVY
+	else
+		knockback = null
+
+/obj/item/ego_weapon/officer/blade/attack_self(mob/user)
+	. = ..()
+	var/message = ""
+	if(swing_style == "slash")
+		message = "This weapon is now in blunt mode, and does more damage per hit and has knockback, at the cost of having lower attack speed."
+		swing_style = "blunt"
+		swingstyle = WEAPONSWING_SMALLSWEEP
+		attack_speed = 1.6
+		attack_verb_continuous = list("bashes", "clubs")
+		attack_verb_simple = list("bashes", "clubs")
+		hitsound = 'sound/weapons/fixer/generic/club1.ogg'
+	else if(swing_style == "blunt")
+		message = "This weapon is now in peirce mode, and has extra reach at the cost of having lower attack speed."
+		swingstyle = WEAPONSWING_THRUST
+		swing_style = "pierce"
+		reach = 2
+		stuntime = 5
+		attack_speed = 1.2
+		attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
+		attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
+		hitsound = 'sound/weapons/ego/spear1.ogg'
+	else if(swing_style == "pierce")
+		message = "This weapon is now in slash mode, and has a faster attack speed."
+		swing_style = "slash"
+		attack_speed = 1
+		stuntime = 0
+		reach = 1
+		swingstyle = WEAPONSWING_LARGESWEEP
+		hitsound = 'sound/weapons/fixer/generic/blade4.ogg'
+		attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
+		attack_verb_simple = list("slash", "slice", "rip", "cut")
+	refresh_stats()
+	playsound(src, 'sound/items/screwdriver2.ogg', 50, TRUE)
+	to_chat(user, span_notice("[message]"))
+
+/obj/item/ego_weapon/officer/discipline
+	name = "officer buster sword"
+	icon_state = "officer_buster"
+	desc = "A bulky sword that could leave a large dent into most things. Used by the Disciplinary Officer "
+
+	special = "Use in hand to make your next attack deal more damage."
+	force = 27
+	attack_speed = 3
+	attack_verb_continuous = list("cleaves", "cuts")
+	attack_verb_simple = list("cleaves", "cuts")
+	hitsound = 'sound/weapons/fixer/generic/finisher1.ogg'
+	level_to_force = list(27, 39, 63, 84, 120)
+	allowed_roles = list("Disciplinary Officer")
+	extra_text = "This weapon can only be wielded by the Disciplinary Officer. This weapon also increase in power the more ordeals are defeated."
+	swingstyle = WEAPONSWING_LARGESWEEP
+	var/charged = FALSE
+
+/obj/item/ego_weapon/officer/discipline/attack(mob/living/M, mob/living/user)
+	if(charged)
+		force *= 1.5
+		hitsound = 'sound/abnormalities/nothingthere/goodbye_attack.ogg'
+	..()
+	if(charged)
+		var/obj/effect/temp_visual/dir_setting/slash/s = new(get_turf(M))
+		s.dir = 0
+		to_chat(user, "You cleave through [M]!")
+		hitsound = initial(hitsound)
+		refresh_stats()
+		charged = FALSE
+
+/obj/item/ego_weapon/officer/discipline/attack_self(mob/user)
+	. = ..()
+	if(!charged)
+		if(do_after(user, 12, src))
+			charged = TRUE
+			to_chat(user,span_warning("You put your strength behind this attack."))
+
+/obj/item/ego_weapon/officer/discipline/get_clamped_volume()
+	return 50
+
+/obj/item/ego_weapon/officer/extraction //To do Actually do something
+	name = "officer ring"
+	icon_state = "officer_ring"
+	desc = "A black ring that can tap into a small bit of the Extraction Sephirah's abilities. Used by the Extraction Officer "
+	force = 3
+	attack_speed = 0.7
+	damtype = BLACK_DAMAGE
+	attack_verb_continuous = list("punts", "bashes")
+	attack_verb_simple = list("punts", "bash")
+	level_to_force = list(3, 5, 8, 12, 16)
+	allowed_roles = list("Extraction Officer")
+	extra_text = "This weapon can only be wielded by the Extraction Officer. This weapon also increase in power the more ordeals are defeated."
+
+/obj/item/ego_weapon/shield/officer/records
+	name = "officer sabre"
+	desc = "An old sabre that also functions as a walking cane. Used by the Records Officer "
+	special = "This weapon gives the user a speed boost while held in hand."
+	force = 3
+	attack_speed = 0.5
+	damtype = WHITE_DAMAGE
+	attack_verb_continuous = list("stabs", "attacks", "slashes")
+	attack_verb_simple = list("stab", "attack", "slash")
+	hitsound = 'sound/weapons/ego/rapier1.ogg'
+	level_to_force = list(3, 5, 8, 12, 16)
+	initial_reductions = list(20,10,10,0)
+	projectile_block_duration = 1 SECONDS
+	block_duration = 1 SECONDS
+	block_cooldown = 3 SECONDS
+	block_message = "You attempt to parry the attack!"
+	hit_message = "parries the attack!"
+	block_cooldown_message = "You rearm your blade."
+	slowdown = -0.2//its a walking cane
+	item_flags = SLOWS_WHILE_IN_HAND
+	allowed_roles = list("Records Officer")
+	extra_text = "This weapon can only be wielded by the Records Officer. This weapon also increase in power the more ordeals are defeated."
+
+/obj/item/ego_weapon/shield/officer/records/equipped(mob/living/carbon/human/user, slot)
+	if(user)
+		if(user.mind)
+			if(!user.mind.assigned_role in allowed_roles)
+				slowdown = 0//no abusing it if you arent the ro
+			else
+				slowdown = -0.2
+	. = ..()
+
+/obj/item/ego_weapon/shield/officer/records/dropped(mob/user)
+	. = ..()
+	slowdown = -0.2
+
+///////////////////////
+////AGENT EQUIPMENT////
 ///////////////////////
 
 /obj/item/ego_weapon/city/lcorp
@@ -19,6 +292,7 @@
 	var/installed_shard
 	var/equipped
 	custom_price = 100
+	is_city_gear = FALSE
 
 /obj/item/ego_weapon/city/lcorp/equipped(mob/user, slot, initial = FALSE)
 	..()
@@ -65,7 +339,7 @@
 	desc = "A baton issued by L-Corp to those who cannot utilize E.G.O."
 	swingstyle = WEAPONSWING_LARGESWEEP
 	hitsound = 'sound/weapons/fixer/generic/baton1.ogg'
-	force = 11
+	force = 10
 	custom_price = 100
 
 
@@ -74,14 +348,14 @@
 	icon_state = "machete"
 	desc = "A sharp machete issued by L-Corp to those who cannot utilize E.G.O."
 	hitsound = 'sound/weapons/fixer/generic/sword2.ogg'
-	force = 6
+	force = 5
 	attack_speed = 0.5
 	custom_price = 100
 
 
 /obj/item/ego_weapon/city/lcorp/machete/IncreaseAttributes(mob/living/user, obj/item/egoshard/egoshard)
 	..()
-	force = (egoshard.base_damage * 0.6)
+	force = (egoshard.base_damage * 0.5)
 
 /obj/item/ego_weapon/city/lcorp/club
 	name = "l-corp club"
@@ -97,7 +371,11 @@
 
 /obj/item/ego_weapon/city/lcorp/club/IncreaseAttributes(mob/living/user, obj/item/egoshard/egoshard)
 	..()
-	force = (egoshard.base_damage * 1.6)
+	force = (egoshard.base_damage * 1.4)
+	if(egoshard.tier >= 3)
+		knockback = KNOCKBACK_MEDIUM
+	if(egoshard.tier >= 5)
+		knockback = KNOCKBACK_HEAVY
 
 /obj/item/ego_weapon/shield/lcorp_shield
 	name = "l-corp shield"
@@ -107,7 +385,7 @@
 	icon = 'ModularTegustation/Teguicons/lcorp_weapons.dmi'
 	lefthand_file = 'ModularTegustation/Teguicons/lcorp_left.dmi'
 	righthand_file = 'ModularTegustation/Teguicons/lcorp_right.dmi'
-	force = 10
+	force = 20
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("shoves", "bashes")
 	attack_verb_simple = list("shove", "bash")
@@ -118,7 +396,6 @@
 	block_cooldown = 3 SECONDS
 	block_sound_volume = 30
 	custom_price = 300
-	is_city_gear = TRUE
 	var/installed_shard
 	var/equipped
 	attribute_requirements = list( //They need to be listed for the attributes to increase
@@ -153,7 +430,7 @@
 
 /obj/item/ego_weapon/shield/lcorp_shield/proc/IncreaseAttributes(mob/living/user, obj/item/egoshard/egoshard)
 	damtype = egoshard.damage_type
-	force = (egoshard.base_damage * 1.8) //1.8* base damage, 3 attack speed for shields
+	force = (egoshard.base_damage * 2) //2* base damage, 3 attack speed for shields
 	for(var/atr in attribute_requirements)
 		attribute_requirements[atr] = egoshard.stat_requirement
 	to_chat(user, span_warning("The requirements to equip [src] have increased!"))
