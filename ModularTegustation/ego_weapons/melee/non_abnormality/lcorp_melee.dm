@@ -265,10 +265,10 @@
 /obj/item/ego_weapon/shield/officer/records/equipped(mob/living/carbon/human/user, slot)
 	if(user)
 		if(user.mind)
-			if(!user.mind.assigned_role in allowed_roles)
-				slowdown = 0//no abusing it if you arent the ro
-			else
+			if(user.mind.assigned_role in allowed_roles)
 				slowdown = -0.2
+			else
+				slowdown = 0//no abusing it if you arent the ro
 	. = ..()
 
 /obj/item/ego_weapon/shield/officer/records/dropped(mob/user)
