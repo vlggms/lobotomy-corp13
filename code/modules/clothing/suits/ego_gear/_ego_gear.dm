@@ -80,11 +80,7 @@
 	if(user.mind)
 		if(user.mind.assigned_role == "Sephirah") //This is an RP role
 			return FALSE
-	if(is_city_gear)
-		if(user.mind.assigned_role in list("Training Officer","Disciplinary Officer", "Records Officer", "Extraction Officer")) //These guys get a bonus to equipping gacha.
-			equip_bonus = 20//City armor have extremely high requirements. These people will be able to use them a little earlier.
-		else
-			equip_bonus = 0
+
 	var/mob/living/carbon/human/H = user
 	for(var/atr in attribute_requirements)
 		if(attribute_requirements[atr] > get_attribute_level(H, atr) + equip_bonus)
@@ -109,9 +105,6 @@
 			. += span_nicegreen("It has <a href='byond://?src=[REF(src)];list_attributes=1'>certain requirements</a> for the wearer.")
 		else				//and red if you cannot use it
 			. += span_danger("It has <a href='byond://?src=[REF(src)];list_attributes=1'>certain requirements</a> for the wearer.")
-	if(is_city_gear)
-		if(user.mind.assigned_role in list("Training Officer","Disciplinary Officer", "Records Officer", "Extraction Officer")) //These guys get a bonus to equipping gacha.
-			. += span_notice("Due to your abilities, you get a -20 reduction to stat requirements when equipping this armor.")
 
 /obj/item/clothing/suit/armor/ego_gear/Topic(href, href_list)
 	. = ..()

@@ -29,7 +29,7 @@
 	damage_tier = list(1,2,4,6,9)
 
 ///////////////////////
-//ERA/AGENT EQUIPMENT//
+////AGENT EQUIPMENT////
 ///////////////////////
 
 /obj/item/ego_weapon/ranged/city/lcorp
@@ -43,6 +43,7 @@
 							TEMPERANCE_ATTRIBUTE = 20,
 							JUSTICE_ATTRIBUTE = 20
 							)
+	is_city_gear = FALSE
 	var/installed_shard
 	var/equipped
 	var/tier = 0

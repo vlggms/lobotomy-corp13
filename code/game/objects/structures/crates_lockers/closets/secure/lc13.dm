@@ -23,7 +23,13 @@
 /obj/structure/closet/secure_closet/discipline/PopulateContents()
 	..()
 //	new /obj/effect/spawner/bundle/combat_pages(src)
-
+	//placeholder for now?
+	new /obj/item/ego_weapon/city/lcorp/baton(src)
+	new /obj/item/ego_weapon/ranged/city/lcorp/pistol(src)
+	new /obj/item/ego_weapon/shield/lcorp_shield(src)
+	new /obj/item/egoshard(src)
+	new /obj/item/egoshard/white(src)
+	new /obj/item/egoshard/black(src)
 
 //need to use a god damn bundle for this
 /obj/effect/spawner/bundle/combat_pages

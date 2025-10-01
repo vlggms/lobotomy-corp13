@@ -33,7 +33,7 @@
 	ears = /obj/item/radio/headset/heads/manager/alt
 	l_pocket = /obj/item/commandprojector
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch
-	suit = /obj/item/clothing/suit/armor/training
+	suit = /obj/item/clothing/suit/armor/ego_gear/officer/training
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/medical)
 	accessory = /obj/item/clothing/accessory/armband/lobotomy/training
 

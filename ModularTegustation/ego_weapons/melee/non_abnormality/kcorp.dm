@@ -87,6 +87,7 @@
 	block_cooldown = 4 SECONDS
 	block_duration = 2 SECONDS
 	item_flags = SLOWS_WHILE_IN_HAND
+	is_city_gear = TRUE
 
 // Guns below
 /obj/item/ego_weapon/ranged/pistol/kcorp
