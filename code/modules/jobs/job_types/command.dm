@@ -13,6 +13,11 @@
 	accessory = /obj/item/clothing/accessory/armband/lobotomy/extraction
 
 	backpack_contents = list(/obj/item/melee/classic_baton)
+	var/weapon = /obj/item/ego_weapon/officer/blade
+
+/datum/outfit/job/command/post_equip(mob/living/carbon/human/outfit_owner, visualsOnly = FALSE)
+	..()
+	outfit_owner.equip_to_slot_or_del(new weapon(outfit_owner),ITEM_SLOT_SUITSTORE, TRUE)
 
 //Extraction, for less copypaste
 /datum/job/command
@@ -88,9 +93,10 @@
 /datum/outfit/job/command/extraction
 	name = "Extraction Officer"
 	jobtype = /datum/job/command
-	suit =  /obj/item/clothing/suit/armor/extraction
+	suit =  /obj/item/clothing/suit/armor/ego_gear/officer
 
 	backpack_contents = list(
+		/obj/item/announcementmaker/lcorp,
 		/obj/item/price_tagger,
 		/obj/item/extraction/delivery,
 		/obj/item/extraction/upgrade_tool,
@@ -122,10 +128,11 @@
 /datum/outfit/job/command/records
 	name = "Records Officer"
 	jobtype = /datum/job/command/records
-	suit =  /obj/item/clothing/suit/armor/records
+	suit =  /obj/item/clothing/suit/armor/ego_gear/officer/records
 	accessory = /obj/item/clothing/accessory/armband/lobotomy/records
-
+	weapon = /obj/item/ego_weapon/shield/officer/records
 	backpack_contents = list(
+		/obj/item/announcementmaker/lcorp,
 		/obj/item/portacopier,
 		/obj/item/portablepredict,
 	)
@@ -136,7 +143,7 @@
 	title = "Disciplinary Officer"
 	selection_color = "#ccccff"
 	outfit = /datum/outfit/job/command/disciplinary
-	exp_requirements = 600
+	exp_requirements = 600//used to be 100 fucking hours for some reason
 	job_important = "You are the Disciplinary Officer. Your job is to help suppress Abnormalities and other threats. You cannot work but can breach Abnormalities for some PE or LOB points."
 
 	job_abbreviation = "DO"
@@ -145,12 +152,15 @@
 	name = "Disciplinary Officer"
 	jobtype = /datum/job/command/disciplinary
 	l_pocket = /obj/item/commandprojector
-	suit =  /obj/item/clothing/suit/armor/ego_gear/discipline
+	suit =  /obj/item/clothing/suit/armor/ego_gear/officer/discipline
 	accessory = /obj/item/clothing/accessory/armband/lobotomy/discipline
-
+	weapon = /obj/item/ego_weapon/officer/discipline
 	backpack_contents = list(
 		/obj/item/melee/classic_baton,
 		/obj/item/announcementmaker/lcorp,
 		/obj/item/powered_gadget/enkephalin_injector,
 		/obj/item/disc_researcher,
+		/obj/item/reagent_containers/hypospray/emais/combat,
+		/obj/item/restraints/handcuffs,
+		/obj/item/restraints/legcuffs/bola,
 	)
