@@ -4,7 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "merm"
 	icon_living = "merm"
-	icon_dead = "pridesin_dead"
+	icon_dead = "merm_dead"
 	faction = list("whale")
 	pixel_x = -16
 	pixel_y = -8
@@ -16,7 +16,6 @@
 	melee_damage_upper = 4
 	robust_searching = TRUE
 	stat_attack = HARD_CRIT
-	del_on_death = TRUE
 	attack_verb_continuous = "scratches"
 	attack_verb_simple = "scratch"
 	attack_sound = 'sound/creatures/lc13/lake_entity/mermaid_slash.ogg'
@@ -25,8 +24,7 @@
 	check_friendly_fire = 1
 	projectiletype = /obj/projectile/water_ball
 	projectilesound = 'sound/creatures/lc13/lake_entity/shot_2.ogg'
-	butcher_results = list(/obj/item/food/meat/slab/sinnew = 1)//placeholder, make mermaid ice cream/oil later
-	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sinnew = 1)
+	butcher_results = list(/obj/item/food/meat/slab/mermaid = 1)//placeholder, make mermaid ice cream/oil later
 	var/aiming
 
 /mob/living/simple_animal/hostile/ordeal/mermaid_porous/OpenFire()
@@ -50,3 +48,4 @@
 	maxHealth = 80
 	melee_damage_lower = 5
 	melee_damage_upper = 6
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/mermaid = 2)

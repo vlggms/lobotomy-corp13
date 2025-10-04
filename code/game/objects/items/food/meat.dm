@@ -980,6 +980,22 @@
 	tastes = list("fish guts" = 1, "tough meat" = 1)
 	foodtypes = MEAT | RAW | TOXIC | GROSS
 
+/obj/item/food/meat/slab/whale
+	name = "whale blubber"
+	desc = "Thick, fatty layers of meat carved off of a whale from the Great Lake. Its oil is a critical resource in District 21."
+	icon_state = "meat_whale"
+	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 4, /datum/reagent/toxin/pallidwaste = 3)//Later: add whale oil as a reagent
+	tastes = list("fat" = 1, "tough meat" = 1)
+	foodtypes = MEAT | RAW | TOXIC | GROSS
+
+/obj/item/food/meat/slab/mermaid
+	name = "mermaid meat"
+	desc = "A slab of mutated fish meat. Their anatomy disturbingly resembles a human's."
+	icon_state = "meat_mermaid"
+	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 4)
+	tastes = list("fish guts" = 1, "tough meat" = 1)
+	foodtypes = MEAT | RAW | GROSS
+
 ////////////////////////////////////// MEAT STEAKS ///////////////////////////////////////////////////////////
 
 /obj/item/food/meat/steak

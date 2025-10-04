@@ -3141,6 +3141,8 @@
 #include "code\modules\mob\living\simple_animal\hostile\ordeal\event\aprilfools\noon.dm"
 #include "code\modules\mob\living\simple_animal\hostile\ordeal\event\christmas\dawn.dm"
 #include "code\modules\mob\living\simple_animal\hostile\ordeal\event\whale\dawn.dm"
+#include "code\modules\mob\living\simple_animal\hostile\ordeal\event\whale\dusk.dm"
+#include "code\modules\mob\living\simple_animal\hostile\ordeal\event\whale\noon.dm"
 #include "code\modules\mob\living\simple_animal\hostile\ordeal\gold\dawn.dm"
 #include "code\modules\mob\living\simple_animal\hostile\ordeal\gold\dusk.dm"
 #include "code\modules\mob\living\simple_animal\hostile\ordeal\gold\midnight.dm"
