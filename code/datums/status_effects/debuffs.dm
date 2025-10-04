@@ -1325,7 +1325,7 @@
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "pallid_noise"
 
-/datum/status_effect/stacking/pallid_noise/tick()//TODO:change this to golden apple's life tick for less lag
+/datum/status_effect/stacking/pallid_noise/tick()
 	if(!ishuman(owner))
 		owner.apply_damage(stacks, WHITE_DAMAGE, null, owner.run_armor_check(null, WHITE_DAMAGE))
 		return
