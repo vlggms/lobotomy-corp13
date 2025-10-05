@@ -27,7 +27,7 @@
 	worn_icon = 'ModularTegustation/Teguicons/head_worn.dmi'
 	dynamic_hair_suffix = ""
 	force = 3
-	throwforce = 45
+	throwforce = 5
 	throw_speed = 5
 	throw_range = 9
 	w_class = WEIGHT_CLASS_SMALL

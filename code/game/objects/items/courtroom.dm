@@ -8,7 +8,7 @@
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "gavelhammer"
 	force = 5
-	throwforce = 6
+	throwforce = 3
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb_continuous = list("bashes", "batters", "judges", "whacks")
 	attack_verb_simple = list("bash", "batter", "judge", "whack")

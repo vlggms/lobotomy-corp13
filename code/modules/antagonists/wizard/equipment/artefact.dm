@@ -161,7 +161,7 @@
 	icon_state ="bluespace"
 	throw_speed = 3
 	throw_range = 7
-	throwforce = 15
+	throwforce = 4
 	damtype = FIRE
 	force = 15
 	hitsound = 'sound/items/welder2.ogg'

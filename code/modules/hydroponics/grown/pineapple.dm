@@ -20,7 +20,7 @@
 	desc = "Blorble."
 	icon_state = "pineapple"
 	force = 4
-	throwforce = 8
+	throwforce = 2
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb_continuous = list("stings", "pines")
 	attack_verb_simple = list("sting", "pine")

@@ -850,7 +850,7 @@
 /obj/item/light
 	icon = 'icons/obj/lighting.dmi'
 	force = 2
-	throwforce = 5
+	throwforce = 2
 	w_class = WEIGHT_CLASS_TINY
 	var/status = LIGHT_OK		// LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN
 	var/base_state

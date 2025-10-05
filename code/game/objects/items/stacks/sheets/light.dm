@@ -6,7 +6,7 @@
 	icon_state = "glass_wire"
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 3
-	throwforce = 5
+	throwforce = 3
 	throw_speed = 3
 	throw_range = 7
 	flags_1 = CONDUCT_1

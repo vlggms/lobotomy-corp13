@@ -168,7 +168,7 @@
 	desc = "It's a toolbox with tiles sticking out the top."
 	name = "tiles and toolbox"
 	icon_state = "toolbox_tiles"
-	throwforce = 10
+	throwforce = 3
 	created_name = "Floorbot"
 	var/toolbox = /obj/item/storage/toolbox/mechanical
 	var/toolbox_color = "" //Blank for blue, r for red, y for yellow, etc.

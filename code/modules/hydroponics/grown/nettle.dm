@@ -26,7 +26,7 @@
 	damtype = FIRE
 	force = 15
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	throwforce = 5
+	throwforce = 2
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 1
 	throw_range = 3
