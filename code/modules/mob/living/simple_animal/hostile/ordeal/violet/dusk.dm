@@ -32,7 +32,7 @@
 
 /mob/living/simple_animal/hostile/ordeal/violet_dusk/Initialize()
 	. = ..()
-	hand_cooldown = hand_cooldown_time + world.time
+	hand_cooldown = hand_cooldown_time + world.time + rand(10 SECONDS, 30 SECONDS)
 	arm_cooldown = arm_cooldown_time + world.time
 	retaliation_cooldown = retaliation_cooldown_time + world.time
 	retaliation_health = maxHealth * 0.75
