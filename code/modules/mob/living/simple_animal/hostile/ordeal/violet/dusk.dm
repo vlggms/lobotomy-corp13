@@ -199,7 +199,6 @@
 	pixel_x = -8
 	pixel_y = 8
 	ranged = TRUE
-	density = FALSE
 	alpha = 0
 	maxHealth = 220
 	health = 220
@@ -274,7 +273,6 @@
 	if(in_charging)
 		return
 	in_charging = TRUE
-	density = FALSE
 	visible_message(span_danger("[src] burrows into the ground!"))
 	playsound(get_turf(src), 'sound/effects/ordeals/amber/dawn_dig_in.ogg', 25, 1)
 	animate(src, alpha = 0, time = 5)
@@ -295,7 +293,6 @@
 	animate(src, alpha = 255, time = 5)
 	playsound(get_turf(src), 'sound/effects/ordeals/amber/dawn_dig_out.ogg', 25, 1)
 	visible_message(span_bolddanger("[src] burrows out from the ground!"))
-	density = TRUE
 	SLEEP_CHECK_DEATH(1 SECONDS)
 	ranged_cooldown = world.time + ranged_cooldown_time
 	in_charging = FALSE
