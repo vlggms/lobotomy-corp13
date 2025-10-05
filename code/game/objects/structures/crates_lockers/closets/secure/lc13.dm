@@ -12,7 +12,7 @@
 	new /obj/item/records/information(src)
 	new /obj/item/records/abnodelay(src)
 	new /obj/item/records/meltdown_extend(src)
-
+	new /obj/item/records_revive(src)
 
 /obj/structure/closet/secure_closet/discipline
 	name = "\proper disciplinary officer's locker"
