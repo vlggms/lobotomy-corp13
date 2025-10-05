@@ -4366,6 +4366,7 @@
 #include "ModularTegustation\tegu_items\records\abnoblock.dm"
 #include "ModularTegustation\tegu_items\records\meltdown_extend.dm"
 #include "ModularTegustation\tegu_items\records\ordealcheck.dm"
+#include "ModularTegustation\tegu_items\records\player_revive.dm"
 #include "ModularTegustation\tegu_items\records\timestop.dm"
 #include "ModularTegustation\tegu_items\refinery\_spawners.dm"
 #include "ModularTegustation\tegu_items\refinery\boxes.dm"

@@ -75,10 +75,11 @@ Scaled through out the round currently but should probably get their stats boost
 	flags_inv = null
 	var/allowed_role = "Extraction Officer"//we dont want other Roles to wear this!
 	var/current_holder = null
-	var/current_level = 0
-	var/max_level = 4//240 total
+	var/current_level = 1
+	var/max_level = 5//240 total
 	var/armor_increase = 10
 	var/inited = FALSE
+
 /obj/item/clothing/suit/armor/ego_gear/officer/examine(mob/user)
 	. = ..()
 	. += span_notice("This armor can only be worn by the [allowed_role]. This armor also increase in power the more ordeals are defeated.")
@@ -97,7 +98,8 @@ Scaled through out the round currently but should probably get their stats boost
 
 /obj/item/clothing/suit/armor/ego_gear/officer/Initialize()
 	. = ..()
-	current_level = min(max_level, SSlobotomy_corp.next_ordeal_level-2)
+	if(SSlobotomy_corp.next_ordeal)
+		current_level = min(max_level, SSlobotomy_corp.next_ordeal.level)
 	boost_stats(current_level)
 	RegisterSignal(SSdcs, COMSIG_GLOB_ORDEAL_END, PROC_REF(update_stats))
 

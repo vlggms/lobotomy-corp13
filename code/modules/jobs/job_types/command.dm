@@ -95,6 +95,7 @@
 	name = "Extraction Officer"
 	jobtype = /datum/job/command
 	suit =  /obj/item/clothing/suit/armor/ego_gear/officer
+	weapon = /obj/item/ego_weapon/officer/extraction
 
 	backpack_contents = list(
 		/obj/item/announcementmaker/lcorp,

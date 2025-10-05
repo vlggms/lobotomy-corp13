@@ -16,8 +16,8 @@
 	force = 8
 	var/list/allowed_roles = list("Training Officer","Disciplinary Officer", "Extraction Officer","Records Officer")//we dont want other Roles to wear this!
 	var/current_holder = null
-	var/current_level = 0
-	var/max_level = 4
+	var/current_level = 1
+	var/max_level = 5
 	var/list/level_to_force = list(8, 14, 20, 28, 40)
 	var/extra_text = "This weapon can only be wielded by any Officer. This weapon also increase in power the more ordeals are defeated."
 
@@ -34,7 +34,8 @@
 
 /obj/item/ego_weapon/officer/Initialize()
 	. = ..()
-	current_level = min(max_level, SSlobotomy_corp.next_ordeal_level-2)
+	if(SSlobotomy_corp.next_ordeal)
+		current_level = min(max_level, SSlobotomy_corp.next_ordeal.level)
 	refresh_stats()
 	RegisterSignal(SSdcs, COMSIG_GLOB_ORDEAL_END, PROC_REF(update_stats))
 
@@ -47,7 +48,7 @@
 	refresh_stats()
 
 /obj/item/ego_weapon/officer/proc/refresh_stats()
-	force = level_to_force[current_level+1]
+	force = level_to_force[current_level]
 
 /obj/item/ego_weapon/officer/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
@@ -72,8 +73,8 @@
 	block_sound_volume = 30
 	var/list/allowed_roles = list("Training Officer","Disciplinary Officer", "Extraction Officer","Records Officer")//we dont want other Roles to wear this!
 	var/current_holder = null
-	var/current_level = 0
-	var/max_level = 4
+	var/current_level = 1
+	var/max_level = 5
 	var/list/level_to_force = list(20, 32, 46, 52, 70)
 	var/list/initial_reductions = list(20,20,20,20)
 	var/extra_text = "This weapon can only be wielded by any Officer. This weapon also increase in power the more ordeals are defeated."
@@ -92,7 +93,8 @@
 
 /obj/item/ego_weapon/shield/officer/Initialize()
 	. = ..()
-	current_level = min(max_level, SSlobotomy_corp.next_ordeal_level-2)
+	if(SSlobotomy_corp.next_ordeal)
+		current_level = min(max_level, SSlobotomy_corp.next_ordeal.level)
 	refresh_stats()
 	RegisterSignal(SSdcs, COMSIG_GLOB_ORDEAL_END, PROC_REF(update_stats))
 
@@ -105,7 +107,7 @@
 	refresh_stats()
 
 /obj/item/ego_weapon/shield/officer/proc/refresh_stats()
-	force = level_to_force[current_level + 1]
+	force = level_to_force[current_level]
 	for(var/i = 1 to 4)
 		reductions[i] = initial_reductions[i] + (armor_increase * current_level)
 	if(LAZYLEN(resistances_list)) //update armor tags code
@@ -140,13 +142,13 @@
 	var/swing_style = "slash"
 
 /obj/item/ego_weapon/officer/blade/refresh_stats()
-	force = level_to_force[current_level+1]
+	force = level_to_force[current_level]
 	if(swing_style == "blunt")
 		force = round(force * 1.4)
 		knockback = KNOCKBACK_LIGHT
-		if(current_level > 1)
+		if(current_level > 2)
 			knockback = KNOCKBACK_MEDIUM
-		else if(current_level > 3)
+		else if(current_level > 4)
 			knockback = KNOCKBACK_HEAVY
 	else
 		knockback = null
@@ -230,14 +232,134 @@
 	name = "officer ring"
 	icon_state = "officer_ring"
 	desc = "A black ring that can tap into a small bit of the Extraction Sephirah's abilities. Used by the Extraction Officer "
-	force = 3
-	attack_speed = 0.7
+	force = 5
 	damtype = BLACK_DAMAGE
+	knockback = KNOCKBACK_MEDIUM
 	attack_verb_continuous = list("punts", "bashes")
 	attack_verb_simple = list("punts", "bash")
-	level_to_force = list(3, 5, 8, 12, 16)
+	level_to_force = list(5, 8, 12, 18, 30)
 	allowed_roles = list("Extraction Officer")
 	extra_text = "This weapon can only be wielded by the Extraction Officer. This weapon also increase in power the more ordeals are defeated."
+	var/ranged_cooldown
+	var/fairy_cooldown_time = 0 SECONDS
+	var/shockwave_cooldown_time = 8 SECONDS
+	var/list/fairy_damage = list(10,20,35,50,75)
+	var/list/shockwave_damage = list(5,10,18,25,40)
+	var/charging_attack = FALSE
+	var/shockwave_range = 6
+
+/obj/item/ego_weapon/officer/extraction/attack_self(mob/living/user)
+	if(!CanUseEgo(user) || charging_attack)
+		return
+	if(ranged_cooldown <= world.time)
+		var/turf/proj_turf = user.loc
+		if(!isturf(proj_turf))
+			return
+		charging_attack = TRUE
+		playsound(user, 'sound/magic/arbiter/pillar_start.ogg', 50, TRUE)
+		if(!do_after(user, 5))
+			charging_attack = FALSE
+			return
+		charging_attack = FALSE
+		var/list/turfs = circleview(proj_turf, 6)
+		for(var/i = 0 to shockwave_range)
+			addtimer(CALLBACK(src, PROC_REF(shockwave), turfs,proj_turf,i, user), i)
+		ranged_cooldown = world.time + shockwave_cooldown_time
+		return
+
+/obj/item/ego_weapon/officer/extraction/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
+	if(!CanUseEgo(user) || charging_attack)
+		return
+	if(!proximity_flag && ranged_cooldown <= world.time)
+		var/turf/proj_turf = user.loc
+		if(!isturf(proj_turf))
+			return
+		charging_attack = TRUE
+		playsound(user, 'sound/magic/arbiter/pillar_start.ogg', 50, TRUE)
+		if(!do_after(user, 5))
+			charging_attack = FALSE
+			return
+		charging_attack = FALSE
+		playsound(user, 'sound/magic/arbiter/fairy.ogg', 50, TRUE)
+		ranged_cooldown = world.time + fairy_cooldown_time
+		var/obj/projectile/beam/officer/F = new(proj_turf)
+		F.firer = user
+		F.preparePixelProjectile(target, user, clickparams)
+		F.damage = fairy_damage[current_level]
+		F.damage *= force_multiplier
+		F.fire()
+		return
+
+/obj/item/ego_weapon/officer/extraction/proc/shockwave(list/turfs, turf/start, distance, mob/living/user)
+	for(var/turf/T in turfs)
+		if(get_dist_euclidian(start, T) <= distance + 0.3 && get_dist_euclidian(start, T) >= max(0,distance - 0.5))
+			new /obj/effect/temp_visual/small_smoke/halfsecond(T)
+			for(var/mob/living/L in T) //knocks enemies away from you
+				if(L == user || ishuman(L))
+					continue
+				L.apply_damage(shockwave_damage[current_level] * force_multiplier, damtype, null, L.run_armor_check(null, damtype), spread_damage = TRUE)
+				var/throw_target = get_edge_target_turf(L, get_dir(L, get_step_away(L, start)))
+				if(!L.anchored)
+					var/whack_speed = 10
+					L.throw_at(throw_target, 1, whack_speed, user)
+
+/obj/item/ego_weapon/officer/extraction/refresh_stats()
+	force = level_to_force[current_level]
+	if(current_level > 3)
+		knockback = KNOCKBACK_HEAVY
+
+/obj/effect/projectile/tracer/laser/officer
+	icon_state = "sm_arc"
+	icon = 'icons/effects/beam.dmi'
+
+/obj/projectile/beam/officer
+	name = "energy blast "
+	icon_state = "omnilaser"
+	color = COLOR_YELLOW
+	light_color = COLOR_YELLOW
+	tracer_type = /obj/effect/projectile/tracer/laser/officer
+	hitscan = TRUE
+	speed = 0.1
+	hit_stunned_targets = TRUE
+	white_healing = FALSE
+	damage_type = BLACK_DAMAGE
+	projectile_piercing = PASSMOB
+	projectile_phasing = (ALL & (~PASSMOB) & (~PASSCLOSEDTURF))
+	hitscan_light_color_override = COLOR_YELLOW
+	muzzle_flash_color_override = COLOR_YELLOW
+	impact_light_color_override = COLOR_YELLOW
+	wound_bonus = -100
+	bare_wound_bonus = -100
+	damage = 10
+	range = 10 // Don't want people shooting it through the entire facility
+	var/list/hurt_targets = list()
+	var/detect_range = 4
+
+/obj/projectile/beam/officer/on_hit(atom/target, blocked = FALSE)
+	if(!isliving(target))
+		return
+	var/mob/living/user = firer
+	var/mob/living/enemy = target
+	if(user.faction_check_mob(enemy))
+		return
+	. = ..()
+	for(var/mob/living/L in range(detect_range, src))
+		if(user.faction_check_mob(L))
+			continue
+		if( L == target)
+			continue
+		if(L in impacted)
+			continue
+		if(L.stat == DEAD)
+			continue
+		if(L.status_flags & GODMODE)
+			continue
+		range = 8
+		preparePixelProjectile(L, src, null)
+		xo = 16
+		yo = 16
+		return
+	qdel(src)
 
 /obj/item/ego_weapon/shield/officer/records
 	name = "officer sabre"
@@ -249,31 +371,18 @@
 	attack_verb_continuous = list("stabs", "attacks", "slashes")
 	attack_verb_simple = list("stab", "attack", "slash")
 	hitsound = 'sound/weapons/ego/rapier1.ogg'
-	level_to_force = list(3, 5, 8, 12, 16)
+	level_to_force = list(3, 5, 7, 10, 15)//Meant to be overall bad for dps since its both a parry weapon and a speed boost
 	initial_reductions = list(20,10,10,0)
-	projectile_block_duration = 1 SECONDS
-	block_duration = 1 SECONDS
+	projectile_block_duration = 0.75 SECONDS
+	block_duration = 1.25 SECONDS
 	block_cooldown = 3 SECONDS
 	block_message = "You attempt to parry the attack!"
 	hit_message = "parries the attack!"
 	block_cooldown_message = "You rearm your blade."
-	slowdown = -0.2//its a walking cane
+	slowdown = -0.3//its a walking cane
 	item_flags = SLOWS_WHILE_IN_HAND
 	allowed_roles = list("Records Officer")
 	extra_text = "This weapon can only be wielded by the Records Officer. This weapon also increase in power the more ordeals are defeated."
-
-/obj/item/ego_weapon/shield/officer/records/equipped(mob/living/carbon/human/user, slot)
-	if(user)
-		if(user.mind)
-			if(user.mind.assigned_role in allowed_roles)
-				slowdown = -0.2
-			else
-				slowdown = 0//no abusing it if you arent the ro
-	. = ..()
-
-/obj/item/ego_weapon/shield/officer/records/dropped(mob/user)
-	. = ..()
-	slowdown = -0.2
 
 ///////////////////////
 ////AGENT EQUIPMENT////
