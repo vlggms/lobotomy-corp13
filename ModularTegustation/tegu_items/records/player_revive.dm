@@ -1,6 +1,6 @@
 // Records Officer Agent Preservation Tool
 // A handheld device that can store one Lcorp guys's data and revives them. It works like some of Eo's tools where they need to charge up but this one's cost increases the more you use it
-//Ported by Crabby, note why the fuck was this both not with the other watches, in the base kit of Ro, and not effected by records specialization??????????
+//Ported by Crabby, note it was meant to be something else at one point and not related to a watch, might as well fix it.
 /obj/item/records_revive
 	name = "records copper watch"
 	desc = "A high-tech handheld watch that can store a digital backup of an staff member's biological data. Can restore them after death when fully charged."
@@ -12,7 +12,7 @@
 	var/scan_cooldown_time = 3 SECONDS
 	var/is_loaded = FALSE
 	var/energy = 0
-	var/maximum_energy = 100
+	var/maximum_energy = 40
 
 /obj/item/records_revive/examine(mob/user)
 	. = ..()
@@ -40,11 +40,6 @@
 
 /obj/item/records_revive/proc/WorkCharge(SSdcs, datum_reference, user, work_type)
 	SIGNAL_HANDLER
-	if(datum_reference)
-		if(istype(datum_reference, /datum/abnormality))
-			var/datum/abnormality/theref = datum_reference
-			AdjustNE(theref.threat_level)
-			return
 	AdjustNE(1) //Somehow there wasn't a datum
 
 /obj/item/records_revive/proc/OrdealCharge(datum/source, datum/ordeal/O = null)
@@ -79,7 +74,7 @@
 	var/mob/living/carbon/human/H = target
 
 	// Check if target is an agent (allow mindless for debugging)
-	if(H.mind && !(H.mind.assigned_role in list("Records Officer", "Disciplinary Officer", "Manager", "Extraction Officer","Training Officer", "Agent", "Senior Agent", "Captain", "Lieutenant", "Officer", "Clerk")))//Note this used to include clerk yet not the other major non agent roles(secret clerkoid simping perhase????)
+	if(H.mind && !(H.mind.assigned_role in list("Records Officer", "Disciplinary Officer", "Manager", "Extraction Officer","Training Officer", "Agent", "Senior Agent", "Captain", "Lieutenant", "Officer", "Clerk")))
 		to_chat(user, span_warning("This device only works on L-Corp staff!"))
 		return
 
@@ -150,7 +145,7 @@
 	is_loaded = TRUE
 	scan_cooldown = world.time + scan_cooldown_time
 
-	to_chat(user, span_notice("Agent data stored successfully!"))
+	to_chat(user, span_notice("Staff member data stored successfully!"))
 	to_chat(H, span_notice("Your biological data has been backed up to [user]'s preservation device."))
 
 	// Visual effect
@@ -174,7 +169,7 @@
 		to_chat(user, span_warning("The [src] isn't fully charged!"))
 		return
 	if(!is_loaded)
-		to_chat(user, span_warning("No agent data stored. Use on a living agent to scan them."))
+		to_chat(user, span_warning("No staff member data stored. Use on a living agent to scan them."))
 		return
 
 	// Check agent status
@@ -188,7 +183,7 @@
 
 	if(original && original.stat != DEAD)
 		dat += "<span style='color:green'>ALIVE</span><br>"
-		dat += "<i>Agent is still alive. Revival not available.</i><br>"
+		dat += "<i>Staff member is still alive. Revival not available.</i><br>"
 	else
 		dat += "<span style='color:red'>DECEASED</span><br>"
 		dat += "<a href='byond://?src=[REF(src)];revive=1'>INITIATE REVIVAL PROTOCOL</a><br>"
@@ -222,7 +217,7 @@
 		// Find ghost
 		var/mob/dead/observer/ghost = find_agent_ghost(stored_agent_data["real_name"], agent_ckey)
 		if(!ghost)
-			to_chat(usr, span_warning("Cannot find agent's spirit. They may have respawned elsewhere or disconnected."))
+			to_chat(usr, span_warning("Cannot find staff member's spirit. They may have respawned elsewhere or disconnected."))
 			return
 
 		var/response = alert(ghost, "Do you want to be revived by the Copper Watch?", "Revival Offer", "Yes", "No")
@@ -330,8 +325,7 @@
 	to_chat(user, span_notice("Revival successful! Device memory cleared."))
 
 	energy = 0
-	maximum_energy = round(maximum_energy * 2,10) + 150//make it scale non linearly so that you cant spam it late game
-	maximum_energy = min(1500,maximum_energy )//makes the next revive more costly up to a point
+	maximum_energy = min(400,round(maximum_energy * 1.5,10))//makes the next revive more costly up to a point
 	playsound(get_turf(new_body), 'sound/effects/hokma_meltdown.ogg', 50, TRUE)
 
 	return TRUE
