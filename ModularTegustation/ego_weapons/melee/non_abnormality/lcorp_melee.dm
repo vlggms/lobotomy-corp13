@@ -231,17 +231,18 @@
 /obj/item/ego_weapon/officer/extraction //To do Actually do something
 	name = "officer ring"
 	icon_state = "officer_ring"
-	desc = "A black ring that can tap into a small bit of the Extraction Sephirah's abilities. Used by the Extraction Officer "
+	desc = "A black ring that can tap into a small bit of a singularity from a former G-Corp. Used by the Extraction Officer "
 	force = 5
 	damtype = BLACK_DAMAGE
 	knockback = KNOCKBACK_MEDIUM
 	attack_verb_continuous = list("punts", "bashes")
 	attack_verb_simple = list("punts", "bash")
-	level_to_force = list(5, 8, 12, 18, 30)
+	level_to_force = list(5, 8, 12, 16, 25)
 	allowed_roles = list("Extraction Officer")
+	special = "This weapon has a ranged attack that will jump from targets to target.\nUse in hand to cast a shockwave that pushes back anything damaged by it."
 	extra_text = "This weapon can only be wielded by the Extraction Officer. This weapon also increase in power the more ordeals are defeated."
 	var/ranged_cooldown
-	var/fairy_cooldown_time = 0 SECONDS
+	var/fairy_cooldown_time = 4 SECONDS
 	var/shockwave_cooldown_time = 8 SECONDS
 	var/list/fairy_damage = list(10,20,35,50,75)
 	var/list/shockwave_damage = list(5,10,18,25,40)
@@ -262,6 +263,7 @@
 			return
 		charging_attack = FALSE
 		var/list/turfs = circleview(proj_turf, 6)
+		playsound(user, 'sound/magic/arbiter/repulse.ogg', 50, TRUE)
 		for(var/i = 0 to shockwave_range)
 			addtimer(CALLBACK(src, PROC_REF(shockwave), turfs,proj_turf,i, user), i)
 		ranged_cooldown = world.time + shockwave_cooldown_time
@@ -301,7 +303,7 @@
 				var/throw_target = get_edge_target_turf(L, get_dir(L, get_step_away(L, start)))
 				if(!L.anchored)
 					var/whack_speed = 10
-					L.throw_at(throw_target, 1, whack_speed, user)
+					L.throw_at(throw_target, 2, whack_speed, user)
 
 /obj/item/ego_weapon/officer/extraction/refresh_stats()
 	force = level_to_force[current_level]
