@@ -213,7 +213,7 @@
 
 /atom/movable/screen/alert/status_effect/portrait
 	name = "A potrait of you"
-	desc = "Damage you take will be transfered to "
+	desc = "Damage you take will be transferred to "
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "Potrait" //Bit of a placeholder sprite, it works-ish so
 
