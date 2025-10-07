@@ -1,5 +1,6 @@
 #define STATUS_EFFECT_PORTRAIT /datum/status_effect/portrait
 #define STATUS_EFFECT_PORTRAIT_MARKED /datum/status_effect/portrait_marked
+//Note its sort of the inverse from how it is in lcorp since it would be aids if it linking worked 1 to 1 outside of the breach - Crabby
 /mob/living/simple_animal/hostile/abnormality/another_portrait
 	name = "Portrait of Another World"
 	desc = "An old and unused canvas."
@@ -106,11 +107,12 @@
 	if(LAZYLEN(marked))
 		var/mob/living/carbon/human/L = pick(marked)
 		marked -= L
-		var/mob/living/carbon/human/L2 = pick(marked)
-		var/datum/status_effect/portrait/P = L.apply_status_effect(STATUS_EFFECT_PORTRAIT)
-		var/datum/status_effect/portrait_marked/PM = L.apply_status_effect(STATUS_EFFECT_PORTRAIT_MARKED)
-		P.linkee = L2
-		PM.linkee = L
+		if(LAZYLEN(marked))
+			var/mob/living/carbon/human/L2 = pick(marked)
+			var/datum/status_effect/portrait/P = L.apply_status_effect(STATUS_EFFECT_PORTRAIT)
+			P.linkee = L2
+			var/datum/status_effect/portrait_marked/PM = L2.apply_status_effect(STATUS_EFFECT_PORTRAIT_MARKED)
+			PM.linkee = L
 	Remove_Target()
 	datum_reference.qliphoth_change(2, user)
 	return
