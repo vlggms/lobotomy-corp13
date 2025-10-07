@@ -30,7 +30,8 @@
 
 	var/degradation_damage = 0
 	var/degradation_stage = 0
-
+	var/meltdown_cooldown_time = 30 SECONDS
+	var/meltdown_cooldown
 	var/mob/living/carbon/human/linked_target = null
 	var/linked_amount = 2
 
@@ -99,22 +100,12 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/another_portrait/ZeroQliphoth(mob/living/carbon/human/user)
-	var/list/marked = list()
-	for(var/mob/living/carbon/human/L in AllLivingAgents())
-		if(faction_check_mob(L, FALSE) || L.stat >= HARD_CRIT || L.sanity_lost || z != L.z || L.has_status_effect(STATUS_EFFECT_PORTRAIT) ||  L.has_status_effect(STATUS_EFFECT_PORTRAIT_MARKED)) // Dead or in hard crit, insane, or on a different Z level.
-			continue
-		marked += L
-	if(LAZYLEN(marked))
-		var/mob/living/carbon/human/L = pick(marked)
-		marked -= L
-		if(LAZYLEN(marked))
-			var/mob/living/carbon/human/L2 = pick(marked)
-			var/datum/status_effect/portrait/P = L.apply_status_effect(STATUS_EFFECT_PORTRAIT)
-			P.linkee = L2
-			var/datum/status_effect/portrait_marked/PM = L2.apply_status_effect(STATUS_EFFECT_PORTRAIT_MARKED)
-			PM.linkee = L
 	Remove_Target()
-	datum_reference.qliphoth_change(2, user)
+	datum_reference.qliphoth_change(2) //no need for qliphoth to be stuck at 0
+	if(meltdown_cooldown > world.time)
+		return
+	meltdown_cooldown = world.time + meltdown_cooldown_time
+	MeltdownEffect()
 	return
 
 /mob/living/simple_animal/hostile/abnormality/another_portrait/WorktickFailure(mob/living/carbon/human/user)
@@ -138,6 +129,22 @@
 			linked_target.gib()
 			datum_reference.qliphoth_change(-2)
 	return
+
+/mob/living/simple_animal/hostile/abnormality/another_portrait/proc/MeltdownEffect(mob/living/carbon/human/user)
+	var/list/marked = list()
+	sound_to_playing_players_on_level('sound/abnormalities/crumbling/globalwarning.ogg', 25, zlevel = z)
+	for(var/mob/living/carbon/human/L in GLOB.player_list)
+		if(faction_check_mob(L, FALSE) || L.stat >= HARD_CRIT || L.sanity_lost || z != L.z) // Dead or in hard crit, insane, or on a different Z level.
+			continue
+		marked += L
+	if(marked.len > 1)
+		var/mob/living/carbon/human/L = pick(marked)
+		marked -= L
+		var/mob/living/carbon/human/L2 = pick(marked)
+		var/datum/status_effect/portrait/P = L.apply_status_effect(STATUS_EFFECT_PORTRAIT)
+		P.linkee = L2
+		var/datum/status_effect/portrait_marked/PM = L2.apply_status_effect(STATUS_EFFECT_PORTRAIT_MARKED)
+		PM.linkee = L
 
 /mob/living/simple_animal/hostile/abnormality/another_portrait/proc/Remove_Target()
 	if(linked_target)
