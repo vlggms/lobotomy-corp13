@@ -64,7 +64,7 @@
 		/obj/item/extraction/delivery,
 		/obj/item/extraction/upgrade_tool,
 		/obj/item/extraction/key,
-		/obj/item/extraction/key/lock,
+		/obj/item/extraction/lock,
 		/obj/item/extraction/tool_extractor,
 	)
 
