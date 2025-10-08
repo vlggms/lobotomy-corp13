@@ -189,7 +189,7 @@ GLOBAL_LIST_INIT(transit_tube_recipes, list(
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	flags_1 = CONDUCT_1
 	force = 10
-	throwforce = 10
+	throwforce = 2
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_NORMAL

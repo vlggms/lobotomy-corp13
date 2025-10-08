@@ -13,7 +13,7 @@
 	amount_per_transfer_from_this = 10
 	volume = 100
 	force = 15 //Smashing bottles over someone's head hurts.
-	throwforce = 15
+	throwforce = 3
 	inhand_icon_state = "broken_beer" //Generic held-item sprite until unique ones are made.
 	lefthand_file = 'icons/mob/inhands/misc/food_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/food_righthand.dmi'
@@ -139,7 +139,7 @@
 	icon = 'icons/obj/drinks.dmi'
 	icon_state = "broken_bottle"
 	force = 9
-	throwforce = 5
+	throwforce = 4
 	throw_speed = 3
 	throw_range = 5
 	w_class = WEIGHT_CLASS_TINY

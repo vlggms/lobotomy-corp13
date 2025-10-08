@@ -39,7 +39,7 @@
 	desc = "It's better than bad, it's good!"
 	icon_state = "logs"
 	force = 5
-	throwforce = 5
+	throwforce = 2
 	w_class = WEIGHT_CLASS_NORMAL
 	throw_speed = 2
 	throw_range = 3

@@ -366,7 +366,7 @@ GLOBAL_LIST_INIT(plastitaniumglass_recipes, list(
 	name = "purple shard"
 	desc = "A nasty looking shard of plasma glass."
 	force = 6
-	throwforce = 11
+	throwforce = 4
 	icon_state = "plasmalarge"
 	custom_materials = list(/datum/material/alloy/plasmaglass=MINERAL_MATERIAL_AMOUNT)
 	icon_prefix = "plasma"
