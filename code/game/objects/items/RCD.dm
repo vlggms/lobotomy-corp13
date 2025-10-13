@@ -18,7 +18,7 @@ RLD
 	flags_1 = CONDUCT_1
 	item_flags = NOBLUDGEON
 	force = 0
-	throwforce = 10
+	throwforce = 3
 	throw_speed = 3
 	throw_range = 5
 	w_class = WEIGHT_CLASS_NORMAL

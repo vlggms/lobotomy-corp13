@@ -442,7 +442,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	icon_state = "wonderprodStun"
 	inhand_icon_state = "wonderprod"
 
-	force = 7
+	force = 2
 
 	w_class = WEIGHT_CLASS_NORMAL
 	slot_flags = ITEM_SLOT_BELT

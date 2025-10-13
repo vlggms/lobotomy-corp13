@@ -7,8 +7,8 @@
 	lefthand_file = 'icons/mob/inhands/weapons/flamethrower_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/flamethrower_righthand.dmi'
 	flags_1 = CONDUCT_1
-	force = 3
-	throwforce = 10
+	force = 1
+	throwforce = 3
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_NORMAL

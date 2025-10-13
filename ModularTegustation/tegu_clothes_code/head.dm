@@ -26,7 +26,7 @@
 	icon_state = "bowlerhat"
 	worn_icon = 'ModularTegustation/Teguicons/head_worn.dmi'
 	dynamic_hair_suffix = ""
-	force = 3
+	force = 1
 	throwforce = 45
 	throw_speed = 5
 	throw_range = 9

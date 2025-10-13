@@ -87,7 +87,7 @@
 	icon_state = "bungopit"
 	desc = "A large seed, it is said to be potent enough to be able to stop a mans heart."
 	w_class = WEIGHT_CLASS_TINY
-	throwforce = 5
+	throwforce = 2
 	throw_speed = 3
 	throw_range = 7
 	foodtypes = TOXIC

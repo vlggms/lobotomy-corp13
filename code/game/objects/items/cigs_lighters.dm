@@ -44,7 +44,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		lit = TRUE
 		icon_state = "match_lit"
 		damtype = FIRE
-		force = 3
+		force = 1
 		hitsound = 'sound/items/welder.ogg'
 		inhand_icon_state = "cigon"
 		name = "lit [initial(name)]"
@@ -193,7 +193,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	attack_verb_simple = string_list(list("burn", "sing"))
 	hitsound = 'sound/items/welder.ogg'
 	damtype = FIRE
-	force = 4
+	force = 1
 	/* LOBOTOMYCORPORATION REMOVAL -- This was used to blatantly grief
 	if(reagents.get_reagent_amount(/datum/reagent/toxin/plasma)) // the plasma explodes when exposed to fire
 		var/datum/effect_system/reagents_explosion/e = new()
@@ -680,7 +680,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		return
 	lit = new_lit
 	if(lit)
-		force = 5
+		force = 2
 		damtype = FIRE
 		hitsound = 'sound/items/welder.ogg'
 		attack_verb_continuous = string_list(list("burns", "sings"))

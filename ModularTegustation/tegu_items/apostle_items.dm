@@ -91,7 +91,7 @@
 	desc = "None shall harm us."
 	hitsound = 'ModularTegustation/Tegusounds/apostle/antagonist/scythe.ogg'
 	force = 45
-	throwforce = 25 // Why are you throwing scythe anyway?
+	throwforce = 6 // Why are you throwing scythe anyway?
 	armour_penetration = 0
 	sharpness = SHARP_NONE
 	var/faction_needed = "apostle"
@@ -152,8 +152,8 @@
 	name = "guardian scythe"
 	desc = "The divine light will grant you protection."
 	damtype = PALE_DAMAGE
-	force = 25
-	throwforce = 6
+	force = 7
+	throwforce = 2
 	spin_force = 75
 	spell_radius = 2
 
@@ -236,7 +236,7 @@
 	icon_state = "ap_spear"
 	inhand_icon_state = "ap_spear"
 	hitsound = 'ModularTegustation/Tegusounds/apostle/antagonist/spear.ogg'
-	force = 30 // Weaker in melee, but kills everyone with its active ability.
+	force = 8 // Weaker in melee, but kills everyone with its active ability.
 	throwforce = 35
 	damtype = BLACK_DAMAGE
 	throw_speed = 4

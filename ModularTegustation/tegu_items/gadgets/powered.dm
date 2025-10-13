@@ -7,7 +7,7 @@
 	icon_state = "gadget1"
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
 	w_class = WEIGHT_CLASS_SMALL
-	force = 5
+	force = 2
 	//roundabout way of making update item easily changed. Used in updateicon proc.
 	var/default_icon
 	//maxcharge = 10000

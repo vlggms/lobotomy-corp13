@@ -1032,9 +1032,9 @@
 	icon_state = "tile-bluespace"
 	inhand_icon_state = "tile-bluespace"
 	w_class = WEIGHT_CLASS_NORMAL
-	force = 6
+	force = 2
 	mats_per_unit = list(/datum/material/iron=500)
-	throwforce = 10
+	throwforce = 3
 	throw_speed = 3
 	throw_range = 7
 	flags_1 = CONDUCT_1
@@ -1049,9 +1049,9 @@
 	icon_state = "tile-sepia"
 	inhand_icon_state = "tile-sepia"
 	w_class = WEIGHT_CLASS_NORMAL
-	force = 6
+	force = 2
 	mats_per_unit = list(/datum/material/iron=500)
-	throwforce = 10
+	throwforce = 3
 	throw_speed = 0.1
 	throw_range = 28
 	flags_1 = CONDUCT_1

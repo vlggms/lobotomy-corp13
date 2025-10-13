@@ -27,7 +27,7 @@
 	if(head)
 		head.drop_limb()
 		if(!QDELETED(head)) //drop_limb() deletes the limb if no drop location exists and character setup dummies are located in nullspace.
-			head.throwforce = 25
+			head.throwforce = 6
 			myhead = new /obj/item/dullahan_relay (head, H)
 			H.put_in_hands(head)
 			var/obj/item/organ/eyes/E = H.getorganslot(ORGAN_SLOT_EYES)

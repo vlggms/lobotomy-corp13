@@ -5,8 +5,9 @@
 	icon_state = "pickaxe"
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
-	force = 5
-	throwforce = 10
+	force = 4
+	throwforce = 5
+	attack_speed = 1.2
 	inhand_icon_state = "pickaxe"
 	worn_icon_state = "pickaxe"
 	lefthand_file = 'icons/mob/inhands/equipment/mining_lefthand.dmi'
@@ -41,7 +42,7 @@
 	desc = "A smaller, compact version of the standard pickaxe."
 	icon_state = "minipick"
 	worn_icon_state = "pickaxe"
-	throwforce = 7
+	throwforce = 4
 	slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
 	custom_materials = list(/datum/material/iron=1000)
@@ -63,7 +64,7 @@
 	worn_icon_state = "dpickaxe"
 	toolspeed = 0.3
 	desc = "A pickaxe with a diamond pick head. Extremely robust at cracking rock walls and digging up dirt."
-	force = 19
+	force = 9
 	custom_price = 1000
 
 /obj/item/pickaxe/drill
@@ -133,6 +134,7 @@
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_BELT
 	force = 4
+	attack_speed = 1.2
 	tool_behaviour = TOOL_SHOVEL
 	toolspeed = 1
 	usesound = 'sound/effects/shovel_dig.ogg'
@@ -173,7 +175,7 @@
 	worn_icon_state = "shovel_serr"
 	lefthand_file = 'icons/mob/inhands/equipment/mining_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/mining_righthand.dmi'
-	force = 15
+	force = 10
 	throwforce = 12
 	w_class = WEIGHT_CLASS_NORMAL
 	toolspeed = 0.7

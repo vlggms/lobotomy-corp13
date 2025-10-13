@@ -71,8 +71,8 @@
 	name = "durathread bundle"
 	desc = "A tough bundle of durathread, good luck unraveling this."
 	icon_state = "durathread"
-	force = 5
-	throwforce = 5
+	force = 2
+	throwforce = 2
 	w_class = WEIGHT_CLASS_NORMAL
 	throw_speed = 2
 	throw_range = 3

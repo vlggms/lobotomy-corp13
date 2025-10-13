@@ -18,7 +18,7 @@
 	inhand_icon_state = "multitool"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
-	force = 5
+	force = 2
 	w_class = WEIGHT_CLASS_SMALL
 	tool_behaviour = TOOL_MULTITOOL
 	throwforce = 0

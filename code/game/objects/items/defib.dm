@@ -11,8 +11,8 @@
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 	slot_flags = ITEM_SLOT_BACK
-	force = 5
-	throwforce = 6
+	force = 2
+	throwforce = 2
 	w_class = WEIGHT_CLASS_BULKY
 	actions_types = list(/datum/action/item_action/toggle_paddles)
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 50)
@@ -295,7 +295,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/medical_righthand.dmi'
 
 	force = 0
-	throwforce = 6
+	throwforce = 2
 	w_class = WEIGHT_CLASS_BULKY
 	resistance_flags = INDESTRUCTIBLE
 	base_icon_state = "defibpaddles"
@@ -311,7 +311,7 @@
 /obj/item/shockpaddles/ComponentInitialize()
 	. = ..()
 	AddElement(/datum/element/update_icon_updates_onmob)
-	AddComponent(/datum/component/two_handed, force_unwielded=8, force_wielded=12)
+	AddComponent(/datum/component/two_handed, force_unwielded=1, force_wielded=3)
 
 /// triggered on wield of two handed item
 /obj/item/shockpaddles/proc/on_wield(obj/item/source, mob/user)

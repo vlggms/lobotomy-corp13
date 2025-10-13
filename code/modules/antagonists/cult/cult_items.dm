@@ -17,8 +17,8 @@
 	inhand_x_dimension = 32
 	inhand_y_dimension = 32
 	w_class = WEIGHT_CLASS_SMALL
-	force = 25
-	throwforce = 25
+	force = 7
+	throwforce = 6
 	wound_bonus = -20
 	bare_wound_bonus = -10
 	armour_penetration = 35
@@ -42,7 +42,7 @@
 	sharpness = SHARP_EDGED
 	w_class = WEIGHT_CLASS_BULKY
 	force = 50 // whoever balanced this got beat in the head by a bible too many times good lord
-	throwforce = 10
+	throwforce = 3
 	wound_bonus = -60
 	bare_wound_bonus = -20
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -87,8 +87,8 @@
 	desc = "An enormous sword used by Nar'Sien cultists to rapidly harvest the souls of non-believers."
 	w_class = WEIGHT_CLASS_HUGE
 	block_chance = 50
-	throwforce = 20
-	force = 65
+	throwforce = 5
+	force = 25
 	armour_penetration = 15
 	throw_speed = 1
 	throw_range = 3
@@ -142,7 +142,7 @@
 	. = ..()
 	if(!iscultist(user))
 		to_chat(user, "<span class='cultlarge'>\"I wouldn't advise that.\"</span>")
-		force = 5
+		force = 2
 		return
 	force = initial(force)
 	jaunt.Grant(user, src)
@@ -638,7 +638,7 @@
 	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
 	slot_flags = 0
-	force = 24
+	force = 6
 	throwforce = 75
 	throw_speed = 2
 	armour_penetration = 20
@@ -658,7 +658,7 @@
 /obj/item/cult_spear/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/butchering, 100, 90)
-	AddComponent(/datum/component/two_handed, force_unwielded=17, force_wielded=24, icon_wielded="bloodspear1")
+	AddComponent(/datum/component/two_handed, force_unwielded=6, force_wielded=8, icon_wielded="bloodspear1")
 
 /// triggered on wield of two handed item
 /obj/item/cult_spear/proc/on_wield(obj/item/source, mob/user)
@@ -926,7 +926,7 @@
 	icon_state = "mirror_shield" // eshield1 for expanded
 	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
-	force = 10
+	force = 3
 	throwforce = 35
 	throw_speed = 1
 	throw_range = 4

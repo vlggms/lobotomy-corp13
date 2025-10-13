@@ -11,7 +11,7 @@
 	flags_1 = HEAR_1
 	slot_flags = ITEM_SLOT_BELT
 	custom_materials = list(/datum/material/iron=60, /datum/material/glass=30)
-	force = 2
+	force = 1
 	throwforce = 0
 	var/recording = FALSE
 	var/playing = FALSE

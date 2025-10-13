@@ -260,7 +260,7 @@
 	icon = 'icons/obj/guns/magic.dmi'
 	slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
-	force = 25
+	force = 7
 	damtype = FIRE
 	hitsound = 'sound/weapons/sear.ogg'
 	wound_bonus = -40

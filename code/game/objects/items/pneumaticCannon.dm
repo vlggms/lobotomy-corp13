@@ -6,7 +6,7 @@
 	name = "pneumatic cannon"
 	desc = "A gas-powered cannon that can fire any object loaded into it."
 	w_class = WEIGHT_CLASS_BULKY
-	force = 8 //Very heavy
+	force = 2 //Very heavy
 	attack_verb_continuous = list("bludgeons", "smashes", "beats")
 	attack_verb_simple = list("bludgeon", "smash", "beat")
 	icon = 'icons/obj/pneumaticCannon.dmi'
@@ -236,7 +236,7 @@
 /obj/item/pneumatic_cannon/ghetto //Obtainable by improvised methods; more gas per use, less capacity
 	name = "improvised pneumatic cannon"
 	desc = "A gas-powered, object-firing cannon made out of common parts."
-	force = 5
+	force = 2
 	maxWeightClass = 10
 	gasPerThrow = 5
 
@@ -279,7 +279,7 @@
 /obj/item/pneumatic_cannon/pie
 	name = "pie cannon"
 	desc = "Load cream pie for optimal results."
-	force = 10
+	force = 3
 	icon_state = "piecannon"
 	gasPerThrow = 0
 	checktank = FALSE

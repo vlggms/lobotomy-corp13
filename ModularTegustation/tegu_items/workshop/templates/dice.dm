@@ -3,8 +3,8 @@
 	desc = "The weapon of someone who can swing their weight around like a truck"
 	special = "This deals a random damage amount between 10% of max damage and max damage."
 	icon_state = "dicetemplate"
-	force = 40
-	throwforce = 20
+	force = 20
+	throwforce = 10
 	finishedicon = list("finisheddice")
 	finishedname = list("dice")
 	finisheddesc = "A finished dice, ready for use."

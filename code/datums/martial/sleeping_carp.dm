@@ -154,10 +154,10 @@
 /obj/item/staff/bostaff
 	name = "bo staff"
 	desc = "A long, tall staff made of polished wood. Traditionally used in ancient old-Earth martial arts. Can be wielded to both kill and incapacitate."
-	force = 10
+	force = 3
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK
-	throwforce = 20
+	throwforce = 5
 	throw_speed = 2
 	attack_verb_continuous = list("smashes", "slams", "whacks", "thwacks")
 	attack_verb_simple = list("smash", "slam", "whack", "thwack")
@@ -175,7 +175,7 @@
 
 /obj/item/staff/bostaff/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/two_handed, force_unwielded=10, force_wielded=24, icon_wielded="bostaff1")
+	AddComponent(/datum/component/two_handed, force_unwielded=10, force_wielded=7, icon_wielded="bostaff1")
 
 /// triggered on wield of two handed item
 /obj/item/staff/bostaff/proc/on_wield(obj/item/source, mob/user)

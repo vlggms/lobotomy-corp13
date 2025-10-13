@@ -12,8 +12,8 @@ Buildable meters
 	desc = "A pipe."
 	var/pipe_type
 	var/pipename
-	force = 7
-	throwforce = 7
+	force = 2
+	throwforce = 2
 	icon = 'icons/obj/atmospherics/pipes/pipe_item.dmi'
 	icon_state = "simple"
 	inhand_icon_state = "buildpipe"

@@ -215,7 +215,7 @@
 	safety = 0
 	max_water = 200
 	power = 8
-	force = 5
+	force = 2
 	precision = 1
 	cooling_power = 5
 	w_class = WEIGHT_CLASS_HUGE

@@ -91,7 +91,7 @@
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	hitsound = 'sound/weapons/rapierhit.ogg'
-	force = 20
+	force = 5
 	armour_penetration = 75
 	block_chance = 50
 	sharpness = SHARP_EDGED

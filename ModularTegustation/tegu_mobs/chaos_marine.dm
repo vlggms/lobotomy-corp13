@@ -50,7 +50,7 @@
 /obj/item/nullrod/scythe/talking/chainsword/chaos
 	name = "chainsaw sword"
 	desc = "Blood for the blood god!"
-	throwforce = 25
+	throwforce = 6
 	block_chance = 35
 	armour_penetration = 50
 	wound_bonus = 15
@@ -61,7 +61,7 @@
 	wound_bonus = -100
 	bare_wound_bonus = -100
 	block_chance = 0
-	force = 16
+	force = 4
 
 /mob/living/simple_animal/hostile/megafauna/chaos_marine/Initialize()
 	. = ..()

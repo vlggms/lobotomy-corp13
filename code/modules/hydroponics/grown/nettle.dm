@@ -24,9 +24,9 @@
 	lefthand_file = 'icons/mob/inhands/weapons/plants_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/plants_righthand.dmi'
 	damtype = FIRE
-	force = 15
+	force = 4
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	throwforce = 5
+	throwforce = 2
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 1
 	throw_range = 3

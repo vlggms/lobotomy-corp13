@@ -4,7 +4,7 @@
 	name = "money bag"
 	icon_state = "moneybag"
 	worn_icon_state = "moneybag"
-	force = 10
+	force = 3
 	throwforce = 0
 	resistance_flags = FLAMMABLE
 	max_integrity = 100

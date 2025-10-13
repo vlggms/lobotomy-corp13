@@ -99,7 +99,7 @@
 	custom_materials = list(/datum/material/iron=10000, /datum/material/glass=6000)
 	flags_1 = CONDUCT_1
 	item_flags = SURGICAL_TOOL | EYE_STAB
-	force = 15
+	force = 4
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb_continuous = list("drills")
 	attack_verb_simple = list("drill")
@@ -133,9 +133,9 @@
 	inhand_icon_state = "scalpel"
 	flags_1 = CONDUCT_1
 	item_flags = SURGICAL_TOOL | EYE_STAB
-	force = 10
+	force = 3
 	w_class = WEIGHT_CLASS_TINY
-	throwforce = 5
+	throwforce = 2
 	throw_speed = 3
 	throw_range = 5
 	custom_materials = list(/datum/material/iron=4000, /datum/material/glass=1000)
@@ -172,9 +172,9 @@
 	mob_throw_hit_sound =  'sound/weapons/pierce.ogg'
 	flags_1 = CONDUCT_1
 	item_flags = SURGICAL_TOOL
-	force = 15
+	force = 4
 	w_class = WEIGHT_CLASS_NORMAL
-	throwforce = 9
+	throwforce = 3
 	throw_speed = 2
 	throw_range = 5
 	custom_materials = list(/datum/material/iron=1000)
@@ -291,7 +291,7 @@
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "scalpel_a"
 	hitsound = 'sound/weapons/blade1.ogg'
-	force = 16
+	force = 4
 	toolspeed = 0.7
 	light_system = MOVABLE_LIGHT
 	light_range = 1
@@ -348,9 +348,9 @@
 	flags_1 = CONDUCT_1
 	item_flags = SURGICAL_TOOL
 	toolspeed  = 1
-	force = 12
+	force = 3
 	w_class = WEIGHT_CLASS_NORMAL
-	throwforce = 6
+	throwforce = 2
 	throw_speed = 2
 	throw_range = 5
 	custom_materials = list(/datum/material/iron=8000, /datum/material/titanium=6000)
@@ -461,7 +461,7 @@
 	inhand_icon_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
-	force = 5
+	force = 2
 	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 0
 	throw_range = 7

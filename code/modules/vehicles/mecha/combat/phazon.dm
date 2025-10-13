@@ -12,7 +12,7 @@
 	max_temperature = 25000
 	wreckage = /obj/structure/mecha_wreckage/phazon
 	internal_damage_threshold = 25
-	force = 15
+	force = 4
 	max_equip = 3
 	phase_state = "phazon-phase"
 

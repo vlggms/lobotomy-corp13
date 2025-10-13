@@ -71,7 +71,7 @@
 	righthand_file = 'icons/mob/inhands/weapons/axes_righthand.dmi'
 	force = 40
 	force_on = 150
-	throwforce = 25
+	throwforce = 6
 	throwforce_on = 30
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	throw_speed = 3
@@ -94,8 +94,8 @@
 	icon_state = "sword0"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	force = 3
-	throwforce = 5
+	force = 1
+	throwforce = 2
 	hitsound = "swing_hit" //it starts deactivated
 	attack_verb_off = list("taps", "pokes")
 	throw_speed = 3
@@ -133,7 +133,7 @@
 	name = "energy saw"
 	desc = "For heavy duty cutting. It has a carbon-fiber blade in addition to a toggleable hard-light edge to dramatically increase sharpness."
 	force_on = 30
-	force = 18 //About as much as a spear
+	force = 5 //About as much as a spear
 	hitsound = 'sound/weapons/circsawhit.ogg'
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "esaw_0"
@@ -213,7 +213,7 @@
 	icon_state = "blade"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	force = 30 //Normal attacks deal esword damage
+	force = 8 //Normal attacks deal esword damage
 	hitsound = 'sound/weapons/blade1.ogg'
 	active = 1
 	throwforce = 1 //Throwing or dropping the item deletes it.

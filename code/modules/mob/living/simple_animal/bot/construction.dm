@@ -3,7 +3,7 @@
 /obj/item/bot_assembly
 	icon = 'icons/mob/aibots.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
-	force = 3
+	force = 1
 	throw_speed = 2
 	throw_range = 5
 	var/created_name
@@ -45,7 +45,7 @@
 	desc = "It's a bucket with a sensor attached."
 	name = "incomplete cleanbot assembly"
 	icon_state = "bucket_proxy"
-	throwforce = 5
+	throwforce = 2
 	created_name = "Cleanbot"
 
 /obj/item/bot_assembly/cleanbot/attackby(obj/item/W, mob/user, params)
@@ -168,7 +168,7 @@
 	desc = "It's a toolbox with tiles sticking out the top."
 	name = "tiles and toolbox"
 	icon_state = "toolbox_tiles"
-	throwforce = 10
+	throwforce = 3
 	created_name = "Floorbot"
 	var/toolbox = /obj/item/storage/toolbox/mechanical
 	var/toolbox_color = "" //Blank for blue, r for red, y for yellow, etc.

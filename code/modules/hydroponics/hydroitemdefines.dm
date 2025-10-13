@@ -77,8 +77,8 @@
 	lefthand_file = 'icons/mob/inhands/equipment/hydroponics_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/hydroponics_righthand.dmi'
 	flags_1 = CONDUCT_1
-	force = 5
-	throwforce = 7
+	force = 2
+	throwforce = 2
 	w_class = WEIGHT_CLASS_SMALL
 	custom_materials = list(/datum/material/iron=50)
 	attack_verb_continuous = list("slashes", "slices", "cuts", "claws")
@@ -121,9 +121,9 @@
 	lefthand_file = 'icons/mob/inhands/equipment/hydroponics_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/hydroponics_righthand.dmi'
 	flags_1 = CONDUCT_1
-	force = 12
+	force = 3
 	w_class = WEIGHT_CLASS_SMALL
-	throwforce = 15
+	throwforce = 4
 	throw_speed = 3
 	throw_range = 4
 	custom_materials = list(/datum/material/iron = 15000)
@@ -153,8 +153,8 @@
 	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
 	name = "scythe"
 	desc = "A sharp and curved blade on a long fibremetal handle, this tool makes it easy to reap what you sow."
-	force = 13
-	throwforce = 5
+	force = 3
+	throwforce = 2
 	throw_speed = 2
 	throw_range = 3
 	w_class = WEIGHT_CLASS_BULKY
@@ -205,8 +205,8 @@
 	lefthand_file = 'icons/mob/inhands/equipment/hydroponics_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/hydroponics_righthand.dmi'
 	flags_1 = CONDUCT_1
-	force = 5
-	throwforce = 6
+	force = 2
+	throwforce = 2
 	w_class = WEIGHT_CLASS_SMALL
 	slot_flags = ITEM_SLOT_BELT
 	custom_materials = list(/datum/material/iron=4000)
@@ -224,8 +224,8 @@
 	lefthand_file = 'icons/mob/inhands/equipment/hydroponics_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/hydroponics_righthand.dmi'
 	flags_1 = CONDUCT_1
-	force = 10
-	throwforce = 8
+	force = 3
+	throwforce = 2
 	w_class = WEIGHT_CLASS_SMALL
 	slot_flags = ITEM_SLOT_BELT
 	material_flags = MATERIAL_NO_EFFECTS

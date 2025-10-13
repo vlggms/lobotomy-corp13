@@ -9,7 +9,7 @@
 	fire_sound = "gun_t12"
 	base_pixel_x = -8
 	burst_size = 1
-	force = 14
+	force = 4
 	actions_types = list()
 	mag_display = TRUE
 	weapon_weight = WEAPON_MEDIUM

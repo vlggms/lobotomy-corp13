@@ -5,10 +5,10 @@
 	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
 	name = "spear"
 	desc = "A haphazardly-constructed yet still deadly weapon of ancient design."
-	force = 10
+	force = 3
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK
-	throwforce = 20
+	throwforce = 5
 	throw_speed = 4
 	embedding = list("impact_pain_mult" = 2, "remove_pain_mult" = 4, "jostle_chance" = 2.5)
 	armour_penetration = 10
@@ -28,7 +28,7 @@
 	. = ..()
 	AddComponent(/datum/component/butchering, 100, 70) //decent in a pinch, but pretty bad.
 	AddComponent(/datum/component/jousting)
-	AddComponent(/datum/component/two_handed, force_unwielded=10, force_wielded=18, icon_wielded="[icon_prefix]1")
+	AddComponent(/datum/component/two_handed, force_unwielded=3, force_wielded=6, icon_wielded="[icon_prefix]1")
 	update_icon()
 
 /obj/item/spear/update_icon_state()
@@ -42,9 +42,9 @@
 	var/obj/item/shard/tip = locate() in parts_list
 	if(tip)
 		if (istype(tip, /obj/item/shard/plasma))
-			throwforce = 21
+			throwforce = 6
 			icon_prefix = "spearplasma"
-			AddComponent(/datum/component/two_handed, force_unwielded=11, force_wielded=19, icon_wielded="[icon_prefix]1")
+			AddComponent(/datum/component/two_handed, force_unwielded=4, force_wielded=7, icon_wielded="[icon_prefix]1")
 		update_icon()
 		parts_list -= tip
 		qdel(tip)
@@ -141,11 +141,11 @@
 	desc = "Recovered from the aftermath of a revolt aboard Defense Outpost Theta Aegis, in which a seemingly endless tide of Assistants caused heavy casualities among Nanotrasen military forces."
 	attack_verb_continuous = list("gores")
 	attack_verb_simple = list("gore")
-	force=15
+	force = 4
 
 /obj/item/spear/grey_tide/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/two_handed, force_unwielded=15, force_wielded=25, icon_wielded="[icon_prefix]1")
+	AddComponent(/datum/component/two_handed, force_unwielded=4, force_wielded=6, icon_wielded="[icon_prefix]1")
 
 /obj/item/spear/grey_tide/afterattack(atom/movable/AM, mob/living/user, proximity)
 	. = ..()
@@ -169,15 +169,15 @@
 	icon_state = "bone_spear0"
 	name = "bone spear"
 	desc = "A haphazardly-constructed yet still deadly weapon. The pinnacle of modern technology."
-	force = 12
-	throwforce = 22
+	force = 3
+	throwforce = 6
 	armour_penetration = 15				//Enhanced armor piercing
 	var/faction_bonus_force = 22
 	var/nemesis_factions = list("mining", "boss") // Deal more damage to lavaland mobs.
 
 /obj/item/spear/bonespear/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/two_handed, force_unwielded=12, force_wielded=20, icon_wielded="bone_spear1")
+	AddComponent(/datum/component/two_handed, force_unwielded=3, force_wielded=5, icon_wielded="bone_spear1")
 
 /obj/item/spear/bonespear/update_icon_state()
 	icon_state = "bone_spear0"

@@ -7,8 +7,8 @@
 	righthand_file = 'icons/mob/inhands/weapons/axes_righthand.dmi'
 	name = "fire axe"
 	desc = "Truly, the weapon of a madman. Who would think to fight fire with an axe?"
-	force = 5
-	throwforce = 15
+	force = 4
+	throwforce = 4
 	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = ITEM_SLOT_BACK
 	attack_verb_continuous = list("attacks", "chops", "cleaves", "tears", "lacerates", "cuts")
@@ -30,7 +30,7 @@
 /obj/item/fireaxe/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/butchering, 100, 80, 0 , hitsound) //axes are not known for being precision butchering tools
-	AddComponent(/datum/component/two_handed, force_unwielded=5, force_wielded=24, icon_wielded="fireaxe1")
+	AddComponent(/datum/component/two_handed, force_unwielded=4, force_wielded=6, icon_wielded="fireaxe1")
 
 /// triggered on wield of two handed item
 /obj/item/fireaxe/proc/on_wield(obj/item/source, mob/user)
@@ -72,7 +72,7 @@
 
 /obj/item/fireaxe/boneaxe/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/two_handed, force_unwielded=5, force_wielded=23, icon_wielded="bone_axe1")
+	AddComponent(/datum/component/two_handed, force_unwielded=5, force_wielded=7, icon_wielded="bone_axe1")
 
 /obj/item/fireaxe/boneaxe/update_icon_state()
 	icon_state = "bone_axe0"
@@ -100,7 +100,7 @@
 
 /obj/item/fireaxe/metal_h2_axe/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/two_handed, force_unwielded=5, force_wielded=23, icon_wielded="metalh2_axe1")
+	AddComponent(/datum/component/two_handed, force_unwielded=5, force_wielded=7, icon_wielded="metalh2_axe1")
 
 /obj/item/fireaxe/metal_h2_axe/update_icon_state()
 	icon_state = "metalh2_axe0"

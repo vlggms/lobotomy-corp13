@@ -4,7 +4,7 @@
 	desc = "A blank knife workshop template."
 	special = "Use this weapon in hand to perform a dodgeroll."
 	icon_state = "knifetemplate"
-	force = 18
+	force = 7
 	attack_speed = 0.7
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")

@@ -20,7 +20,7 @@ effective or pretty fucking useless.
 	desc = "A strange device with twin antennas."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "batterer"
-	throwforce = 5
+	throwforce = 2
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 3
 	throw_range = 7

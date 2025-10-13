@@ -2,7 +2,7 @@
 	icon_state = "picket"
 	name = "blank picket sign"
 	desc = "It's blank."
-	force = 5
+	force = 2
 	w_class = WEIGHT_CLASS_BULKY
 	attack_verb_continuous = list("bashes", "smacks")
 	attack_verb_simple = list("bash", "smack")
@@ -14,7 +14,7 @@
 /obj/item/picket_sign/cyborg
 	name = "metallic nano-sign"
 	desc = "A high tech picket sign used by silicons that can reprogram its surface at will. Probably hurts to get hit by, too."
-	force = 13
+	force = 3
 	resistance_flags = NONE
 	actions_types = list(/datum/action/item_action/nano_picket_sign)
 

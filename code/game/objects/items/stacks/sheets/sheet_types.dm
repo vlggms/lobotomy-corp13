@@ -123,7 +123,7 @@ GLOBAL_LIST_INIT(skeld_metal_recipes, list ( \
 	icon_state = "sheet-metal"
 	inhand_icon_state = "sheet-metal"
 	mats_per_unit = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT)
-	throwforce = 10
+	throwforce = 3
 	flags_1 = CONDUCT_1
 	resistance_flags = FIRE_PROOF
 	merge_type = /obj/item/stack/sheet/metal
@@ -182,7 +182,7 @@ GLOBAL_LIST_INIT(plasteel_recipes, list ( \
 	inhand_icon_state = "sheet-plasteel"
 	mats_per_unit = list(/datum/material/alloy/plasteel=MINERAL_MATERIAL_AMOUNT)
 	material_type = /datum/material/alloy/plasteel
-	throwforce = 10
+	throwforce = 3
 	flags_1 = CONDUCT_1
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 80)
 	resistance_flags = FIRE_PROOF
@@ -286,7 +286,7 @@ GLOBAL_LIST_INIT(bamboo_recipes, list())
 	inhand_icon_state = "sheet-bamboo"
 	icon = 'icons/obj/stack_objects.dmi'
 	mats_per_unit = list(/datum/material/bamboo = MINERAL_MATERIAL_AMOUNT)
-	throwforce = 15
+	throwforce = 4
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 0)
 	resistance_flags = FLAMMABLE
 	merge_type = /obj/item/stack/sheet/mineral/bamboo
@@ -607,8 +607,8 @@ GLOBAL_LIST_INIT(bronze_recipes, list ( \
 	righthand_file = 'icons/mob/inhands/misc/sheets_righthand.dmi'
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	sheettype = "bronze"
-	force = 5
-	throwforce = 10
+	force = 2
+	throwforce = 3
 	max_amount = 50
 	throw_speed = 1
 	throw_range = 3
@@ -664,8 +664,8 @@ GLOBAL_LIST_INIT(bronze_recipes, list ( \
 	mats_per_unit = list(/datum/material/bone = MINERAL_MATERIAL_AMOUNT)
 	singular_name = "bone"
 	desc = "Someone's been drinking their milk."
-	force = 7
-	throwforce = 5
+	force = 2
+	throwforce = 2
 	max_amount = 12
 	w_class = WEIGHT_CLASS_NORMAL
 	throw_speed = 1
@@ -690,7 +690,7 @@ GLOBAL_LIST_INIT(plastic_recipes, list(
 	icon_state = "sheet-plastic"
 	inhand_icon_state = "sheet-plastic"
 	mats_per_unit = list(/datum/material/plastic=MINERAL_MATERIAL_AMOUNT)
-	throwforce = 7
+	throwforce = 2
 	material_type = /datum/material/plastic
 	merge_type = /obj/item/stack/sheet/plastic
 

@@ -108,7 +108,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/banners_righthand.dmi'
 	desc = "A cunning device used to claim ownership of planets."
 	w_class = 5
-	force = 15
+	force = 4
 
 /obj/item/station_charter/flag/rename_station(designation, uname, ureal_name, ukey)
 	set_station_name(designation)

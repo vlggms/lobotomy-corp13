@@ -42,8 +42,8 @@
 /obj/item/kitchen/knife/butcher/deadly
 	name = "\improper Butcher"
 	desc = "A huge knife that is used to dismembering humans."
-	force = 18
-	throwforce = 16
+	force = 5
+	throwforce = 4
 	wound_bonus = 5
 	bare_wound_bonus = 15
 	armour_penetration = 20

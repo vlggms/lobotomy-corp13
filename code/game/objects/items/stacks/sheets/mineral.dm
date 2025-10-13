@@ -281,8 +281,8 @@ GLOBAL_LIST_INIT(bananium_recipes, list ( \
 	icon_state = "sheet-titanium"
 	inhand_icon_state = "sheet-titanium"
 	singular_name = "titanium sheet"
-	force = 5
-	throwforce = 5
+	force = 2
+	throwforce = 2
 	w_class = WEIGHT_CLASS_NORMAL
 	throw_speed = 1
 	throw_range = 3
@@ -313,8 +313,8 @@ GLOBAL_LIST_INIT(titanium_recipes, list ( \
 	icon_state = "sheet-plastitanium"
 	inhand_icon_state = "sheet-plastitanium"
 	singular_name = "plastitanium sheet"
-	force = 5
-	throwforce = 5
+	force = 2
+	throwforce = 2
 	w_class = WEIGHT_CLASS_NORMAL
 	throw_speed = 1
 	throw_range = 3
@@ -346,7 +346,7 @@ GLOBAL_LIST_INIT(plastitanium_recipes, list ( \
 	mats_per_unit = list(/datum/material/snow = MINERAL_MATERIAL_AMOUNT)
 	singular_name = "snow block"
 	force = 1
-	throwforce = 2
+	throwforce = 1
 	grind_results = list(/datum/reagent/consumable/ice = 20)
 	merge_type = /obj/item/stack/sheet/mineral/snow
 	walltype = /turf/closed/wall/mineral/snow

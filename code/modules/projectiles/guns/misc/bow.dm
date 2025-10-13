@@ -10,7 +10,7 @@
 	slot_flags = ITEM_SLOT_BACK
 	mag_type = /obj/item/ammo_box/magazine/internal/bow
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL
-	force = 15
+	force = 4
 	attack_verb_continuous = list("whipped", "cracked")
 	attack_verb_simple = list("whip", "crack")
 	weapon_weight = WEAPON_HEAVY
@@ -60,14 +60,14 @@
 	icon_state = "ashenbow"
 	inhand_icon_state = "ashenbow"
 	worn_icon_state = "ashenbow"
-	force = 8
+	force = 2
 
 /obj/item/gun/ballistic/bow/pipe
 	name = "Pipe Bow"
 	desc = "A crude projectile weapon made from silk string, pipe and lots of bending."
 	icon_state = "pipebow"
 	inhand_icon_state = "pipebow"
-	force = 7
+	force = 2
 
 /obj/item/ammo_casing/caseless/arrow/despawning/dropped()
 	. = ..()

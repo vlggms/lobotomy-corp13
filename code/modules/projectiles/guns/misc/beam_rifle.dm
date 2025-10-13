@@ -19,7 +19,7 @@
 	worn_icon_state = null
 	fire_sound = 'sound/weapons/beam_sniper.ogg'
 	slot_flags = ITEM_SLOT_BACK
-	force = 15
+	force = 4
 	custom_materials = null
 	recoil = 4
 	ammo_x_offset = 3

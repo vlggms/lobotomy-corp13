@@ -13,8 +13,8 @@
 	righthand_file = 'icons/mob/inhands/equipment/mining_righthand.dmi'
 	desc = "A handheld device that creates small fields of energy that resonate until they detonate, crushing rock. It does increased damage in low pressure. It has two modes: Automatic and manual detonation."
 	w_class = WEIGHT_CLASS_NORMAL
-	force = 15
-	throwforce = 10
+	force = 4
+	throwforce = 3
 
 	var/mode = RESONATOR_MODE_AUTO
 	/// How efficient it is in manual mode. Yes, we lower the damage cuz it's gonna be used for mobhunt

@@ -19,8 +19,8 @@
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_BELT
-	force = 10
-	throwforce = 7
+	force = 3
+	throwforce = 2
 	wound_bonus = 15
 	bare_wound_bonus = 10
 	w_class = WEIGHT_CLASS_NORMAL
@@ -42,8 +42,8 @@
 	lefthand_file = 'icons/mob/inhands/antag/changeling_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/antag/changeling_righthand.dmi'
 	w_class = WEIGHT_CLASS_HUGE
-	force = 20
-	throwforce = 10
+	force = 5
+	throwforce = 3
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
@@ -62,8 +62,8 @@
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	flags_1 = CONDUCT_1
 	obj_flags = UNIQUE_RENAME
-	force = 15
-	throwforce = 10
+	force = 4
+	throwforce = 3
 	w_class = WEIGHT_CLASS_BULKY
 	block_chance = 50
 	armour_penetration = 75
@@ -147,10 +147,10 @@
 	lefthand_file = 'icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
 	slot_flags = ITEM_SLOT_BELT
-	force = 5
+	force = 2
 	w_class = WEIGHT_CLASS_BULKY
 	sharpness = SHARP_EDGED
-	throwforce = 10
+	throwforce = 3
 	block_chance = 20
 	armour_penetration = 65
 	attack_verb_continuous = list("slashes", "stings", "prickles", "pokes")
@@ -259,7 +259,7 @@
 	slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_SMALL
 	item_flags = NONE
-	force = 5
+	force = 2
 
 	cooldown = 20
 	knockdown_time_carbon = (4 SECONDS)
@@ -391,7 +391,7 @@
 	righthand_file = 'icons/mob/inhands/weapons/melee_righthand.dmi'
 	worn_icon_state = "whip"
 	slot_flags = ITEM_SLOT_BELT
-	force = 4
+	force = 1
 	reach = 2
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb_continuous = list("flogs", "whips", "lashes", "disciplines")
@@ -586,10 +586,10 @@
 	material_flags = MATERIAL_ADD_PREFIX | MATERIAL_COLOR | MATERIAL_AFFECT_STATISTICS //Material type changes the prefix as well as the color.
 	custom_materials = list(/datum/material/iron = 12000)  //Defaults to an Iron Mace.
 	slot_flags = ITEM_SLOT_BELT
-	force = 14
+	force = 4
 	damtype = WHITE_DAMAGE
 	w_class = WEIGHT_CLASS_BULKY
-	throwforce = 8
+	throwforce = 2
 	block_chance = 10
 	armour_penetration = 50
 	attack_verb_continuous = list("smacks", "strikes", "cracks", "beats")

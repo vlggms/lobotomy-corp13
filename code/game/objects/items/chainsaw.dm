@@ -7,10 +7,10 @@
 	lefthand_file = 'icons/mob/inhands/weapons/chainsaw_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/chainsaw_righthand.dmi'
 	flags_1 = CONDUCT_1
-	force = 13
+	force = 3
 	var/force_on = 24
 	w_class = WEIGHT_CLASS_HUGE
-	throwforce = 13
+	throwforce = 4
 	throw_speed = 2
 	throw_range = 4
 	custom_materials = list(/datum/material/iron=13000)

@@ -4,7 +4,7 @@
 	inhand_icon_state = "assembly"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
-	throwforce = 5
+	throwforce = 2
 	w_class = WEIGHT_CLASS_NORMAL
 	throw_speed = 2
 	throw_range = 4

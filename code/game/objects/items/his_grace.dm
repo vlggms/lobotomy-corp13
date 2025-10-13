@@ -13,7 +13,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/toolbox_righthand.dmi'
 	icon = 'icons/obj/items_and_weapons.dmi'
 	w_class = WEIGHT_CLASS_GIGANTIC
-	force = 12
+	force = 3
 	attack_verb_continuous = list("robusts")
 	attack_verb_simple = list("robust")
 	hitsound = 'sound/weapons/smash.ogg'

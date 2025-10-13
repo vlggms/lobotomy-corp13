@@ -44,7 +44,7 @@
 	inhand_icon_state = "oar"
 	lefthand_file = 'icons/mob/inhands/misc/lavaland_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/lavaland_righthand.dmi'
-	force = 12
+	force = 3
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/boat_oar/attackby(obj/item/attacking_item, mob/user, params)

@@ -459,8 +459,8 @@
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	flags_1 = CONDUCT_1
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
-	force = 5
-	throwforce = 5
+	force = 2
+	throwforce = 2
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices")
 	attack_verb_simple = list("attack", "slash", "stab", "slice")
@@ -1089,7 +1089,7 @@
 	desc = "A compact ball of snow. Good for throwing at people."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "snowball"
-	throwforce = 20 //the same damage as a disabler shot
+	throwforce = 5 //the same damage as a disabler shot
 	damtype = STAMINA //maybe someday we can add stuffing rocks (or perhaps ore?) into snowballs to make them deal brute damage
 
 /obj/item/toy/snowball/afterattack(atom/target as mob|obj|turf|area, mob/user)

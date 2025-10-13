@@ -6,11 +6,11 @@
 	inhand_icon_state = "fire_extinguisher"
 	hitsound = 'sound/weapons/smash.ogg'
 	flags_1 = CONDUCT_1
-	throwforce = 10
+	throwforce = 3
 	w_class = WEIGHT_CLASS_NORMAL
 	throw_speed = 2
 	throw_range = 7
-	force = 10
+	force = 3
 	custom_materials = list(/datum/material/iron = 90)
 	attack_verb_continuous = list("slams", "whacks", "bashes", "thunks", "batters", "bludgeons", "thrashes")
 	attack_verb_simple = list("slam", "whack", "bash", "thunk", "batter", "bludgeon", "thrash")
@@ -36,9 +36,9 @@
 	inhand_icon_state = "miniFE"
 	hitsound = null	//it is much lighter, after all.
 	flags_1 = null //doesn't CONDUCT_1
-	throwforce = 2
+	throwforce = 1
 	w_class = WEIGHT_CLASS_SMALL
-	force = 3
+	force = 1
 	custom_materials = list(/datum/material/iron = 50, /datum/material/glass = 40)
 	max_water = 30
 	sprite_name = "miniFE"

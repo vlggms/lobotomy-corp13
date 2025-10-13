@@ -7,7 +7,7 @@
 	var/obj/structure/pipe_cleaner/last
 	var/obj/item/stack/pipe_cleaner_coil/loaded
 	opacity = FALSE
-	force = 5 //Plastic is soft
+	force = 2 //Plastic is soft
 	throwforce =5
 	throw_speed = 1
 	throw_range = 7

@@ -15,7 +15,7 @@
 	icon_state = "hand_chainsword"
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	flags_1 = CONDUCT_1
-	force = 15
+	force = 4
 	attack_speed = 2
 	damtype = RED_DAMAGE
 	w_class = WEIGHT_CLASS_NORMAL
