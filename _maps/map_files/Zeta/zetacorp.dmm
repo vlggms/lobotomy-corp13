@@ -2213,8 +2213,8 @@
 /area/facility_hallway/extraction)
 "gE" = (
 /obj/structure/rack,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
 /turf/open/floor/mineral/titanium/purple{
 	color = "#59b300";
 	name = "floor"
@@ -3752,8 +3752,8 @@
 /area/department_main/safety)
 "kN" = (
 /obj/structure/rack,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
 /turf/open/floor/mineral/titanium/purple{
 	color = "#59b300";
 	name = "floor"
@@ -3768,8 +3768,8 @@
 /area/facility_hallway/training)
 "kP" = (
 /obj/structure/rack,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
 /turf/open/floor/mineral/titanium/yellow{
 	color = "#aaa396";
 	name = "floor"
@@ -3982,8 +3982,8 @@
 /area/facility_hallway/training)
 "ln" = (
 /obj/structure/rack,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
 /turf/open/floor/mineral/titanium/purple{
 	color = "#cc8400";
 	name = "floor"
@@ -4008,8 +4008,8 @@
 /area/department_main/safety)
 "lq" = (
 /obj/structure/rack,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
 /obj/machinery/light{
 	dir = 4;
 	pixel_x = 9;
@@ -4526,11 +4526,11 @@
 	color = "#006400"
 	},
 /obj/structure/table/wood/fancy/green,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
 /turf/open/floor/mineral/titanium/purple{
 	color = "#7FFF00";
 	name = "floor"
@@ -11767,8 +11767,8 @@
 /area/facility_hallway/south)
 "Hq" = (
 /obj/structure/rack,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
-/obj/item/reagent_containers/hypospray/medipen/salacid,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
 /turf/open/floor/mineral/titanium/yellow{
 	color = "#aaa396";
 	name = "floor"
@@ -12339,8 +12339,8 @@
 /area/facility_hallway/east)
 "Jo" = (
 /obj/structure/rack,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
 /turf/open/floor/mineral/titanium/purple{
 	color = "#cc8400";
 	name = "floor"
@@ -13692,8 +13692,8 @@
 /area/department_main/control)
 "Nn" = (
 /obj/structure/rack,
-/obj/item/reagent_containers/hypospray/medipen/mental,
-/obj/item/reagent_containers/hypospray/medipen/mental,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
 /obj/machinery/light{
 	dir = 8;
 	pixel_x = -9;
@@ -13744,19 +13744,19 @@
 /obj/structure/window/reinforced/spawner{
 	resistance_flags = 115
 	},
-/obj/item/reagent_containers/hypospray/medipen/mental{
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp{
 	pixel_y = 6
 	},
-/obj/item/reagent_containers/hypospray/medipen/mental{
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp{
 	pixel_y = 6
 	},
-/obj/item/reagent_containers/hypospray/medipen/mental{
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp{
 	pixel_y = 6
 	},
-/obj/item/reagent_containers/hypospray/medipen/mental{
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp{
 	pixel_y = 6
 	},
-/obj/item/reagent_containers/hypospray/medipen/mental{
+/obj/item/reagent_containers/hypospray/medipen/safety/lcorp{
 	pixel_y = 6
 	},
 /turf/open/floor/mineral/titanium/purple{

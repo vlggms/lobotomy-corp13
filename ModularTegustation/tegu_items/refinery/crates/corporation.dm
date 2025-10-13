@@ -43,7 +43,7 @@
 	cosmeticchance = 5
 	lootlist =	list(
 		/obj/item/managerbullet,
-		/obj/item/ksyringe,
+		/obj/item/reagent_containers/hypospray/medipen/safety/kcorp
 	)
 
 	rareloot =	list(

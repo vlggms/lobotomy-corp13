@@ -25,8 +25,8 @@
 		//Medical - Raw beakers of medicine. Quite Expensive, as each bottle is 6 uses.
 		new /datum/data/extraction_cargo("Mental-Stabilizer Bottle",	/obj/item/reagent_containers/glass/bottle/mental_stab,			200, CAT_MEDICAL) = 1,
 		new /datum/data/extraction_cargo("Salicylic Acid Bottle",		/obj/item/reagent_containers/glass/bottle/salacid,				200, CAT_MEDICAL) = 1,
-		new /datum/data/extraction_cargo("Protozine Bottle",			/obj/item/reagent_containers/glass/bottle/mental_stab,			200, CAT_MEDICAL) = 1,
-		new /datum/data/extraction_cargo("Omnizine Bottle",				/obj/item/reagent_containers/glass/bottle/salacid,				500, CAT_MEDICAL) = 1,
+		new /datum/data/extraction_cargo("Protozine Bottle",			/obj/item/reagent_containers/glass/bottle/protozine,			200, CAT_MEDICAL) = 1,
+		new /datum/data/extraction_cargo("Omnizine Bottle",				/obj/item/reagent_containers/glass/bottle/omnizine,				500, CAT_MEDICAL) = 1,
 
 		//Resources - Raw bottles of sinchems; Somewhat expensive. cheaper to get yourself.
 		new /datum/data/extraction_cargo("Liquid Wrath Bottle",		/obj/item/reagent_containers/glass/bottle/wrath,						100, CAT_RESOURCE) = 1,

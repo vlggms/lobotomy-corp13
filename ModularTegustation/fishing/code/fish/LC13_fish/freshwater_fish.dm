@@ -115,7 +115,7 @@
 	average_size = 100
 	average_weight = 16000
 	food_reagents = list(
-		/datum/reagent/medicine/mental_stabilizator = 2,
+		/datum/reagent/medicine/enkephalin = 2,
 		/datum/reagent/abnormality/heartysyrup = 4,
 		/datum/reagent/consumable/nutriment/vile_fluid = 6,
 	)

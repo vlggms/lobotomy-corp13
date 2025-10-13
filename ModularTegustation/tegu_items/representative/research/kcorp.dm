@@ -8,7 +8,7 @@
 	corp = K_CORP_REP
 
 /datum/data/lc13research/syringe/ResearchEffect(obj/structure/representative_console/requester)
-	ItemUnlock(requester.order_list, "K Corp Ampule ",	/obj/item/ksyringe, 300)
+	ItemUnlock(requester.order_list, "K Corp Ampule ",	/obj/item/reagent_containers/hypospray/medipen/safety/kcorp, 300)
 	..()
 
 /datum/data/lc13research/krevival
@@ -60,18 +60,6 @@
 	research_name = "Repeatable: RAK the Regenerator System"
 	research_desc = "KCorp made this system for LCorp. <br>All you need to do is enter the following code into the machine, 9887. <br>Don't let LCorp know or they'll use it all the time and they'll break it; they have warranty."
 	corp = K_CORP_REP
-
-//Health booster
-/datum/data/lc13research/healthboost
-	research_name = "Health Booster Syringe"
-	research_desc = "Hey man, its Joe from research. <br>We've got a new item over here, something about increasing your overall health? <br>They only really made one of these and told us to get it tested ASAP, i'm assuming that want to wait before investing. Mind helping us out?"
-	cost = AVERAGE_RESEARCH_PRICE
-	corp = K_CORP_REP
-	required_research = /datum/data/lc13research/syringe
-
-/datum/data/lc13research/healthboost/ResearchEffect(obj/structure/representative_console/requester)
-	new /obj/item/khpboost(get_turf(requester))
-	..()
 
 //ERTs
 /datum/data/lc13research/mobspawner/k1team

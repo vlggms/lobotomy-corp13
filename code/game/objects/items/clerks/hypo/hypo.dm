@@ -3,7 +3,7 @@
 	desc = "The Emergency Medical Aid Injector and Synthesiser is a medical device used by L Corp to quickly administer drugs during emergencies."
 	icon_state = "clerkhypo"
 	reagent_flags = NONE
-	var/list/reagent_ids = list(/datum/reagent/medicine/mental_stabilizator,/datum/reagent/medicine/sal_acid,/datum/reagent/medicine/epinephrine)
+	var/list/reagent_ids = list(/datum/reagent/medicine/enkephalin,/datum/reagent/medicine/helapoeisis,/datum/reagent/medicine/epinephrine)
 	var/list/reagent_names = list()
 	var/chem_capacity = 15
 	var/list/datum/reagents/reagent_list = list()
@@ -103,9 +103,9 @@
 	/// These don't just use the name of the drug via a string in the case that we change their name at any point.
 	var/datum/reagent/medicine/M = /datum/reagent/medicine/epinephrine
 	temp_reag[initial(M.name)] = image(icon = 'icons/hud/screen_gen.dmi', icon_state = "health6")
-	M = /datum/reagent/medicine/sal_acid
+	M = /datum/reagent/medicine/helapoeisis
 	temp_reag[initial(M.name)] = image(icon = 'icons/hud/screen_gen.dmi', icon_state = "health5")
-	M = /datum/reagent/medicine/mental_stabilizator
+	M = /datum/reagent/medicine/enkephalin
 	temp_reag[initial(M.name)] = image(icon = 'icons/hud/screen_gen.dmi', icon_state = "sanity5")
 
 	for(var/reag in reagent_names) // For any added via AddReagent proc

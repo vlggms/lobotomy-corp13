@@ -126,7 +126,7 @@
 /obj/item/storage/box/survival
 	var/mask_type = /obj/item/clothing/mask/gas/explorer
 	var/internal_type = /obj/item/tank/internals/emergency_oxygen
-	var/medipen_type = /obj/item/reagent_containers/hypospray/medipen
+	var/medipen_type = /obj/item/reagent_containers/hypospray/medipen/safety/rcorp
 
 /obj/item/storage/box/survival/PopulateContents()
 	new mask_type(src)
@@ -224,7 +224,7 @@
 
 /obj/item/storage/box/medipens/PopulateContents()
 	for(var/i in 1 to 7)
-		new /obj/item/reagent_containers/hypospray/medipen(src)
+		new /obj/item/reagent_containers/hypospray/medipen/safety/rcorp(src)
 
 /obj/item/storage/box/medipens/utility
 	name = "stimpack value kit"
@@ -833,12 +833,12 @@
 /obj/item/storage/box/hug/medical/PopulateContents()
 	new /obj/item/stack/medical/bruise_pack(src)
 	new /obj/item/stack/medical/ointment(src)
-	new /obj/item/reagent_containers/hypospray/medipen(src)
+	new /obj/item/reagent_containers/hypospray/medipen/safety/rcorp(src)
 
 // Clown survival box
 /obj/item/storage/box/hug/survival/PopulateContents()
 	new /obj/item/clothing/mask/breath(src)
-	new /obj/item/reagent_containers/hypospray/medipen(src)
+	new /obj/item/reagent_containers/hypospray/medipen/safety/rcorp(src)
 
 	if(!isplasmaman(loc))
 		new /obj/item/tank/internals/emergency_oxygen(src)
@@ -934,6 +934,8 @@
 				desc = "A paper sack with a heart etched onto the side."
 			if("SmileyFace")
 				desc = "A paper sack with a crude smile etched onto the side."
+			if("HHPP")
+				desc = "A paper sack emblazoned with the logo of a famous catering company."
 			else
 				return FALSE
 		to_chat(user, span_notice("You make some modifications to [src] using your pen."))
@@ -1335,3 +1337,45 @@
 		/obj/item/slimecross/stabilized/rainbow=1,\
 		)
 	generate_items_inside(items_inside,src)
+
+// Lobotomy Corp Surival Box
+/obj/item/storage/box/survival/lobotomy
+	icon_state = "lobcobox"
+
+/obj/item/storage/box/survival/lobotomy/PopulateContents()
+	..() // The whole reason we're making this
+	new /obj/item/storage/box/papersack/HHPP(src)
+
+// HHPP lunchbox for employees
+/obj/item/storage/box/papersack/HHPP
+	desc = "A nice packed lunch from the corporation. Working for a wing sure has its perks!"
+	icon_state = "paperbag_HHPP"
+
+/obj/item/storage/box/papersack/HHPP/update_icon_state()
+	if(contents.len == 0)
+		icon_state = "paperbag_HHPP"
+	else
+		icon_state = "paperbag_HHPP_closed"
+
+/obj/item/storage/box/papersack/HHPP/PopulateContents() // Couple random foods, could refine later. Chance of a dessert or a healthy snack. TODO: Add HHPP rng sandwiches.
+	var/list/sandwichoptions = list(
+	/obj/item/food/burger/rib, /obj/item/food/toastedsandwich, /obj/item/food/sandwich,
+	/obj/item/food/grilledcheese, /obj/item/food/jellysandwich, /obj/item/food/jellysandwich/cherry,
+
+		)
+	var/list/sides = list(
+	/obj/item/food/cookie/sugar, /obj/item/food/salad/fruit, /obj/item/food/salad/parasite_salad, /obj/item/food/salad/ricepudding,
+	/obj/item/food/grown/apple, /obj/item/food/grown/banana, /obj/item/food/grown/citrus/orange
+	)
+	var/list/drinks = list(
+	/obj/item/reagent_containers/food/drinks/soda_cans/cola, /obj/item/reagent_containers/food/drinks/soda_cans/lemon_lime,
+	/obj/item/reagent_containers/food/drinks/soda_cans/space_up, /obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb
+	)
+	var/newfood
+	for(var/i in 1 to 3)
+		newfood = pick(sandwichoptions)
+		new newfood(src)
+	newfood = pick(sides)
+	new newfood(src)
+	newfood = pick(drinks)
+	new newfood(src)

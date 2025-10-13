@@ -36,7 +36,7 @@ GLOBAL_VAR_INIT(fscpassword, generate_password())
 					/obj/item/storage/backpack/duffelbag/syndie/surgery = 2,
 					/obj/item/storage/firstaid/tactical = 1)
 	premium = list(/obj/item/storage/pill_bottle/psicodine = 2,
-					/obj/item/reagent_containers/hypospray/medipen = 5,
+					/obj/item/reagent_containers/hypospray/medipen/safety/rcorp = 5,
 					/obj/item/reagent_containers/hypospray/medipen/atropine = 3,
 					/obj/item/storage/firstaid/regular = 3,
 					/obj/item/storage/firstaid/brute = 1,

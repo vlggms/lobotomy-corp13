@@ -63,6 +63,7 @@ GLOBAL_LIST_EMPTY(spawned_clerks)
 	uniform = /obj/item/clothing/under/suit/black
 	l_pocket = /obj/item/sensor_device
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/medical)
+	box = /obj/item/storage/box/survival/lobotomy
 
 /datum/outfit/job/assistant/post_equip(mob/living/carbon/human/outfit_owner, visualsOnly = FALSE)
 	..()

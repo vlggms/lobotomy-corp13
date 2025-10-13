@@ -140,9 +140,13 @@
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
 
+	box = /obj/item/storage/box/survival/lobotomy
 	backpack_contents = list(
 		/obj/item/melee/classic_baton,
 		/obj/item/info_printer,
+		/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+		/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
+		/obj/item/restraints/legcuffs/bola,
 	)
 
 // Trainee, for new players
@@ -177,5 +181,7 @@
 		/obj/item/paper/fluff/tutorial/risk,
 		/obj/item/paper/fluff/tutorial/damage,
 		/obj/item/paper/fluff/tutorial/tips,
+		/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+		/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
 		/obj/item/info_printer,
 	)

@@ -52,9 +52,12 @@
 		new /datum/data/extraction_cargo("Binoculars ",					/obj/item/binoculars,												200, CAT_EQUIP) = 1,
 
 		//Medical
-		new /datum/data/extraction_cargo("Epinepherine Medi-Pen ",		/obj/item/reagent_containers/hypospray/medipen,						40, CAT_MEDICAL) = 1,
-		new /datum/data/extraction_cargo("Sal-Acid Medi-Pen ",			/obj/item/reagent_containers/hypospray/medipen/salacid,				50, CAT_MEDICAL) = 1,
-		new /datum/data/extraction_cargo("Mental-Stabilizer Medi-Pen ",	/obj/item/reagent_containers/hypospray/medipen/mental,				50, CAT_MEDICAL) = 1,
+		new /datum/data/extraction_cargo("Stamina Ampoule ",			/obj/item/reagent_containers/hypospray/medipen/safety/rcorp,		40, CAT_MEDICAL) = 1,
+		new /datum/data/extraction_cargo("Health Ampoule ",				/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,		50, CAT_MEDICAL) = 1,
+		new /datum/data/extraction_cargo("Sanity Ampoule ",				/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,		50, CAT_MEDICAL) = 1,
+		new /datum/data/extraction_cargo("Health Bandage ",				/obj/item/safety_bandage/kcorp,										150, CAT_MEDICAL) = 1,
+		new /datum/data/extraction_cargo("Sanity Moonstone ",			/obj/item/safety_bandage/mcorp,										150, CAT_MEDICAL) = 1,
+		new /datum/data/extraction_cargo("Bolus-Soaked Bandages ",		/obj/item/safety_bandage/hcorp,										150, CAT_MEDICAL) = 1,
 		new /datum/data/extraction_cargo("Standard First-Aid Kit ",		/obj/item/storage/firstaid/regular,									250, CAT_MEDICAL) = 1,
 		new /datum/data/extraction_cargo("Naked Nest Cure Vial ",		/obj/item/serpentspoison,											400, CAT_MEDICAL) = 1,
 		new /datum/data/extraction_cargo("Orange Tree Flamer",			/obj/item/ego_weapon/ranged/flammenwerfer,							500, CAT_MEDICAL) = 1,

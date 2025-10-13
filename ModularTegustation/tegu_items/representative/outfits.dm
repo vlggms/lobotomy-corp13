@@ -38,8 +38,8 @@
 	suit = /obj/item/clothing/suit/armor/ego_gear/wcorp/ert/kill
 	gloves = /obj/item/clothing/gloves/combat
 	glasses = /obj/item/clothing/glasses/hud/health/night
-	l_pocket = /obj/item/reagent_containers/hypospray/medipen/salacid
-	r_pocket = /obj/item/reagent_containers/hypospray/medipen/mental
+	l_pocket = /obj/item/reagent_containers/hypospray/medipen/safety/kcorp
+	r_pocket = /obj/item/reagent_containers/hypospray/medipen/safety/lcorp
 
 /datum/outfit/wcorp/level3/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	var/belt = pick(/obj/item/ego_weapon/city/wcorp/fist,
@@ -116,7 +116,7 @@
 	name = "K Corp Asset Protection Staff"
 	glasses = /obj/item/clothing/glasses/sunglasses
 	r_hand = /obj/item/grenade/spawnergrenade/kcorpdrone
-	l_pocket = /obj/item/ksyringe
+	l_pocket = /obj/item/reagent_containers/hypospray/medipen/safety/kcorp
 	r_pocket = /obj/item/krevive
 
 /datum/outfit/kcorp/level3/kill/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)

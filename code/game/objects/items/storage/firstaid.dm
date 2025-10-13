@@ -32,9 +32,9 @@
 		return
 	var/static/items_inside = list(
 		/obj/item/stack/medical/suture = 2,
-		/obj/item/reagent_containers/hypospray/medipen/salacid = 1,
-		/obj/item/reagent_containers/hypospray/medipen/mental = 3,
-		/obj/item/reagent_containers/hypospray/medipen = 1)
+		/obj/item/reagent_containers/hypospray/medipen/safety/kcorp = 1,
+		/obj/item/reagent_containers/hypospray/medipen/safety/lcorp = 3,
+		/obj/item/reagent_containers/hypospray/medipen/safety/rcorp = 1)
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/firstaid/emergency
@@ -127,7 +127,7 @@
 		/obj/item/stack/medical/suture = 2,
 		/obj/item/stack/medical/suture/abno = 1,
 		/obj/item/stack/medical/mesh = 2,
-		/obj/item/reagent_containers/hypospray/medipen = 1,
+		/obj/item/reagent_containers/hypospray/medipen/safety/rcorp = 1,
 		/obj/item/surgical_drapes = 1,
 		/obj/item/scalpel = 1,
 		/obj/item/hemostat = 1,
@@ -173,7 +173,7 @@
 		/obj/item/reagent_containers/pill/patch/aiuri = 3,
 		/obj/item/reagent_containers/spray/hercuri = 1,
 		/obj/item/reagent_containers/hypospray/medipen/oxandrolone = 1,
-		/obj/item/reagent_containers/hypospray/medipen = 1)
+		/obj/item/reagent_containers/hypospray/medipen/safety/rcorp = 1)
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/firstaid/toxin
@@ -222,7 +222,7 @@
 	var/static/items_inside = list(
 		/obj/item/reagent_containers/syringe/convermol = 3,
 		/obj/item/reagent_containers/hypospray/medipen/salbutamol = 1,
-		/obj/item/reagent_containers/hypospray/medipen = 1,
+		/obj/item/reagent_containers/hypospray/medipen/safety/rcorp = 1,
 		/obj/item/storage/pill_bottle/iron = 1)
 	generate_items_inside(items_inside,src)
 
@@ -248,7 +248,7 @@
 		/obj/item/reagent_containers/pill/patch/libital = 3,
 		/obj/item/stack/medical/gauze = 1,
 		/obj/item/storage/pill_bottle/probital = 1,
-		/obj/item/reagent_containers/hypospray/medipen/salacid = 1)
+		/obj/item/reagent_containers/hypospray/medipen/safety/kcorp = 1)
 	generate_items_inside(items_inside,src)
 
 /obj/item/storage/firstaid/advanced
@@ -303,9 +303,9 @@
 	if(empty)
 		return
 	var/static/items_inside = list(
-		/obj/item/reagent_containers/hypospray/medipen = 2,
-		/obj/item/reagent_containers/hypospray/medipen/salacid = 6,
-		/obj/item/reagent_containers/hypospray/medipen/mental = 6)
+		/obj/item/reagent_containers/hypospray/medipen/safety/rcorp = 2,
+		/obj/item/reagent_containers/hypospray/medipen/safety/kcorp = 6,
+		/obj/item/reagent_containers/hypospray/medipen/safety/lcorp = 6)
 	generate_items_inside(items_inside,src)
 
 

@@ -200,7 +200,7 @@
 	inhand_icon_state = "salacid"
 	list_reagents = list(/datum/reagent/medicine/sal_acid = 5)
 
-/obj/item/reagent_containers/hypospray/medipen/mental
+/obj/item/reagent_containers/hypospray/medipen/mental_stabilizator
 	name = "mental stabilizator medipen"
 	desc = "An autoinjector containing mental stabilizator, used to treat severe anxiety and panic."
 	icon_state = "morphen"

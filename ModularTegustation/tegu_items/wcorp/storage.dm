@@ -16,5 +16,5 @@
 
 /obj/item/storage/packet/PopulateContents()
 	for(var/i in 1 to 3)
-		new /obj/item/reagent_containers/hypospray/medipen/mental(src)
+		new /obj/item/reagent_containers/hypospray/medipen/safety/lcorp(src)
 
