@@ -279,7 +279,7 @@
 	var/gear_cooldown = 1 MINUTES
 	//tracks speed change even if altered by other speed modifiers.
 	var/gear_speed = 0
-	var/gear_health = 0.25 // The percentage of maximum HP you can trigger surgery with, pink shoes modifies this.
+	var/gear_health = 0.35 // This determines the amount of times surgery can activate. If the max HP is lower than this percentage, the creature will gib.
 	var/can_act = TRUE//necessary sanity for spin attacks
 
 /mob/living/simple_animal/hostile/grown_strong/Move(atom/newloc, dir, step_x, step_y)
@@ -302,8 +302,8 @@
 
 /mob/living/simple_animal/hostile/grown_strong/proc/UpdateGear()
 	manual_emote("shifts into [gear]\th gear!")
-	melee_damage_lower = 3 * max(1, gear*0.75)
-	melee_damage_upper = 5 * max(1, gear*0.75)
+	melee_damage_lower = 2 * max(1, gear*0.5)
+	melee_damage_upper = 4 * max(1, gear*0.5)
 	//Reset the speed. First proc changes this only with 0.
 	ChangeMoveToDelayBy(gear_speed)
 	//Calculate speed change.
@@ -332,7 +332,7 @@
 
 /mob/living/simple_animal/hostile/grown_strong/proc/Undie()
 	manual_emote("shudders to a hault, insides whirling...")
-	src.maxHealth = max(maxHealth - initial(maxHealth) * 0.2, initial(maxHealth))
+	src.maxHealth = min(maxHealth - initial(maxHealth) * 0.2, initial(maxHealth))
 	src.adjustBruteLoss(-9999)
 	status_flags |= GODMODE
 	SLEEP_CHECK_DEATH(3 SECONDS)
