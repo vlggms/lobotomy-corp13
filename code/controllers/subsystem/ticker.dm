@@ -84,8 +84,10 @@ SUBSYSTEM_DEF(ticker)
 	)
 
 	var/list/provisional_title_music = flist("[global.config.directory]/title_music/sounds/")
-	var/list/music = list()
+	var/list/music = list() //Normal music files
+	var/list/exclusivemusic = list() //Rare music, map-exclusives go in a separate list
 	var/use_rare_music = prob(1)
+	var/map_name = lowertext(SSmapping.config.map_name)
 
 	for(var/S in provisional_title_music)
 		var/lower = lowertext(S)
@@ -93,36 +95,48 @@ SUBSYSTEM_DEF(ticker)
 		switch(L.len)
 			if(3) //rare+MAP+sound.ogg or MAP+rare.sound.ogg -- Rare Map-specific sounds
 				if(use_rare_music)
-					if(L[1] == "rare" && L[2] == SSmapping.config.map_name)
-						music += S
-					else if(L[2] == "rare" && L[1] == SSmapping.config.map_name)
-						music += S
+					if(L[1] == "rare" && L[2] == map_name)
+						exclusivemusic += S
+					else if(L[2] == "rare" && L[1] == map_name)
+						exclusivemusic += S
 			if(2) //rare+sound.ogg or MAP+sound.ogg -- Rare sounds or Map-specific sounds
-				if((use_rare_music && L[1] == "rare") || (L[1] == SSmapping.config.map_name))
-					music += S
+				if((use_rare_music && L[1] == "rare") || (L[1] == map_name))
+					exclusivemusic += S
 			if(1) //sound.ogg -- common sound
 				if(L[1] == "exclude")
 					continue
 				music += S
 
-	var/old_login_music = trim(file2text("data/last_round_lobby_music.txt"))
-	if(music.len > 1)
-		music -= old_login_music
-
-	for(var/S in music)
+	for(var/S in exclusivemusic) // Check if we have a map exclusive or rare sound first
 		var/list/L = splittext(S,".")
 		if(L.len >= 2)
 			var/ext = lowertext(L[L.len]) //pick the real extension, no 'honk.ogg.exe' nonsense here
 			if(byond_sound_formats[ext])
 				continue
-		music -= S
+		exclusivemusic -= S
 
-	if(!length(music))
-		music = world.file2list(ROUND_START_MUSIC_LIST, "\n")
-		login_music = pick(music)
-	else
-		login_music = "[global.config.directory]/title_music/sounds/[pick(music)]"
 
+	if(length(exclusivemusic)) //If we have a map exclusive or whatnot
+		login_music = "[global.config.directory]/title_music/sounds/[pick(exclusivemusic)]"
+
+	if(!login_music) // if we use common music instead...
+		var/old_login_music = trim(file2text("data/last_round_lobby_music.txt"))
+		if(music.len > 1)
+			music -= old_login_music
+
+		for(var/S in music)
+			var/list/L = splittext(S,".")
+			if(L.len >= 2)
+				var/ext = lowertext(L[L.len]) //pick the real extension, no 'honk.ogg.exe' nonsense here
+				if(byond_sound_formats[ext])
+					continue
+			music -= S
+
+		if(!length(music))
+			music = world.file2list(ROUND_START_MUSIC_LIST, "\n")
+			login_music = pick(music)
+		else
+			login_music = "[global.config.directory]/title_music/sounds/[pick(music)]"
 
 	if(!GLOB.syndicate_code_phrase)
 		GLOB.syndicate_code_phrase	= generate_code_phrase(return_list=TRUE)
