@@ -110,11 +110,12 @@
 	abno_info = list(
 		"When the work result was Bad, the Qliphoth Counter lowered.",
 		"When the employee completed worked on Titania for the first time since her last breach, the Qliphoth Counter lowered.",
-		"When breaching, Titania designated a Level 5 employee as her \"Nemesis\". Titania then continually summoned hostile fairy scouts until her demise.",
-		"When the Nemesis was attacked by Titania, Titania’s attacks had different properties.",
-		"After the Nemesis was killed by Titania, Titania’s strength dramatically increased.",
-		"When employees of Level 3 and lower were attacked by Titania, they were immediately obliterated.")
-	abno_breach_damage_type = "Red/Pale"
+		"When an employee panicked during work, the Qliphoth Counter lowered.",
+		"When breaching, Titania will continually summoned hostile fairies that will scout out for her.",
+		"For a period of time after a fairy attacks the employee they took increased WHITE damage and Titania seemed to hunt them down.",
+		"When breaching, Titania will set up laws that if broken, caused the employee to take PALE damage.",
+		"When employees of Level 3 and lower or panicking were attacked by Titania, they were immediately obliterated.")
+	abno_breach_damage_type = "White/Pale"
 
 // Lady out of Space
 /obj/item/paper/fluff/info/aleph/space_lady
