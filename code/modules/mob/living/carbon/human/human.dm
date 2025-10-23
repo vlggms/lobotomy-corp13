@@ -30,6 +30,7 @@
 	AddComponent(/datum/component/personal_crafting)
 	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_HUMAN, 1, -6)
 	AddComponent(/datum/component/bloodysoles/feet)
+	AddComponent(/datum/component/swarming, 8,8)
 	AddElement(/datum/element/ridable, /datum/component/riding/creature/human)
 	GLOB.human_list += src
 
@@ -196,6 +197,10 @@
 	randomize_human(src)
 	dna.initialize_dna()
 
+/mob/living/carbon/human/proc/IsCombatMap() //Is it currently a combat gamemode? Used to check for a few interactions, like if humans can pass eachother.
+	if(SSmaptype.maptype in SSmaptype.combatmaps)
+		return TRUE
+	return FALSE
 
 /mob/living/carbon/human/Destroy()
 	QDEL_NULL(physiology)
