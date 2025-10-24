@@ -94,7 +94,7 @@
 
 //The Beast of the Faraway Cabin - Lucid Nightmares (Enkephalin Rush)
 /datum/ego_datum/weapon/nightmares
-	item_path = /obj/item/ego_weapon/nightmares
+	item_path = /obj/item/ego_weapon/ranged/nightmares
 	cost = 100
 
 /datum/ego_datum/armor/nightmares

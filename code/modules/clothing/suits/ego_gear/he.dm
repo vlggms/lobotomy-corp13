@@ -444,10 +444,10 @@
 							FORTITUDE_ATTRIBUTE = 40
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/he/nixie
-	name = "nixie divergence"
+/obj/item/clothing/suit/armor/ego_gear/he/crushbound
+	name = "crushbound past"
 	desc = "A purposeless machine is bound to lose the meaning of its existence, even if it is functional."
-	icon_state = "nixie"
+	icon_state = "crushbound"
 	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 20, BLACK_DAMAGE = -20, PALE_DAMAGE = 30) // 70
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 40
