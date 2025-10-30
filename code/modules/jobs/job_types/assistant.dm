@@ -42,7 +42,7 @@ GLOBAL_LIST_EMPTY(spawned_clerks)
 //Cannot Gain stats.
 /datum/job/assistant/after_spawn(mob/living/carbon/human/outfit_owner, mob/M, latejoin = FALSE)
 	. = ..()
-	outfit_owner.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 10)
+	outfit_owner.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 15)
 	outfit_owner.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 15)
 	ADD_TRAIT(outfit_owner, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
 
