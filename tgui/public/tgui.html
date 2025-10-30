@@ -122,13 +122,96 @@
       location.href = 'byond://' + url;
       return;
     }
-    // Send an HTTP request to DreamSeeker's HTTP server.
-    // Allows sending much bigger payloads.
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', url);
-    xhr.send();
+    // URL is too large, use chunking instead of XMLHttpRequest (which doesn't work)
+    handleChunkedTransfer(path, params);
   };
 
+  // Chunked transfer handler for large payloads
+  var handleChunkedTransfer = function(path, params) {
+    var CHUNK_SIZE = 1400;
+    var chunkId = 'chunk_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    var smallParams = {};
+    var chunkedData = {};
+    
+    // Separate large and small parameters
+    for (var key in params) {
+      if (hasOwn.call(params, key)) {
+        var value = params[key];
+        if (value === null || value === undefined) value = '';
+        var stringValue = String(value);
+        var encodedValue = encodeURIComponent(stringValue);
+        
+        if (encodedValue.length > CHUNK_SIZE) {
+          // This parameter needs chunking
+          var chunks = [];
+          for (var i = 0; i < encodedValue.length; i += CHUNK_SIZE) {
+            chunks.push(encodedValue.substring(i, i + CHUNK_SIZE));
+          }
+          chunkedData[key] = chunks;
+        } else {
+          smallParams[key] = value;
+        }
+      }
+    }
+    
+    // If no parameters need chunking, just use regular call
+    if (Object.keys(chunkedData).length === 0) {
+      return;
+    }
+    
+    // Calculate total chunks
+    var chunkMap = [];
+    for (var key in chunkedData) {
+      var chunks = chunkedData[key];
+      for (var i = 0; i < chunks.length; i++) {
+        chunkMap.push({
+          key: key,
+          chunk: chunks[i],
+          index: i,
+          total: chunks.length
+        });
+      }
+    }
+    
+    
+    // Send initialization
+    var initUrl = 'byond://' + (path || '') + '?' +
+      'tgui_chunk=1&chunk_id=' + chunkId +
+      '&chunk_action=init&total_chunks=' + chunkMap.length +
+      '&small_params=' + encodeURIComponent(JSON.stringify(smallParams));
+    
+    location.href = initUrl;
+    
+    // Send chunks with delay
+    var sendChunk = function(index) {
+      if (index >= chunkMap.length) {
+        // Send completion
+        var completeUrl = 'byond://' + (path || '') + '?' +
+          'tgui_chunk=1&chunk_id=' + chunkId + '&chunk_action=complete';
+        location.href = completeUrl;
+        return;
+      }
+      
+      var info = chunkMap[index];
+      var chunkUrl = 'byond://' + (path || '') + '?' +
+        'tgui_chunk=1&chunk_id=' + chunkId +
+        '&chunk_action=data&chunk_key=' + encodeURIComponent(info.key) +
+        '&chunk_index=' + info.index + '&chunk_total=' + info.total +
+        '&chunk_data=' + info.chunk;
+      
+      location.href = chunkUrl;
+      
+      setTimeout(function() {
+        sendChunk(index + 1);
+      }, 10);
+    };
+    
+    // Start sending chunks
+    setTimeout(function() {
+      sendChunk(0);
+    }, 10);
+  };
+  
   Byond.callAsync = function (path, params) {
     if (!window.Promise) {
       throw new Error('Async calls require API level of ES2015 or later.');

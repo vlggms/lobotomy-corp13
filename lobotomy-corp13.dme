@@ -3853,6 +3853,7 @@
 #include "code\modules\tgui\states.dm"
 #include "code\modules\tgui\tgui.dm"
 #include "code\modules\tgui\tgui_alert.dm"
+#include "code\modules\tgui\tgui_chunking.dm"
 #include "code\modules\tgui\tgui_input_list.dm"
 #include "code\modules\tgui\tgui_keybind_modal.dm"
 #include "code\modules\tgui\tgui_window.dm"

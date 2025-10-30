@@ -15,7 +15,9 @@ import { Box, Flex, Tabs, TextArea } from '../components';
 import { Window } from '../layouts';
 import { clamp } from 'common/math';
 import { sanitizeText } from '../sanitize';
-const MAX_PAPER_LENGTH = 5000; // Question, should we send this with ui_data?
+// With chunking support, we can now use the full paper length from DM
+// The chunking system will automatically split large data
+const MAX_PAPER_LENGTH = 5000;
 
 // Hacky, yes, works?...yes
 const textWidth = (text, font, fontsize) => {
@@ -365,7 +367,6 @@ class PaperSheetEdit extends Component {
     super(props, context);
     this.state = {
       previewSelected: "Preview",
-      old_text: props.value || "",
       textarea_text: "",
       combined_text: props.value || "",
     };
@@ -420,16 +421,10 @@ class PaperSheetEdit extends Component {
 
   onInputHandler(e, value) {
     if (value !== this.state.textarea_text) {
-      const combined_length = this.state.old_text.length
-        + this.state.textarea_text.length;
-      if (combined_length > MAX_PAPER_LENGTH) {
-        if ((combined_length - MAX_PAPER_LENGTH) >= value.length) {
-          // Basically we cannot add any more text to the paper
-          value = '';
-        } else {
-          value = value.substr(0, value.length
-            - (combined_length - MAX_PAPER_LENGTH));
-        }
+      // Check only the new text length, not the HTML formatted old text
+      if (value.length > MAX_PAPER_LENGTH) {
+        // Truncate to MAX_PAPER_LENGTH
+        value = value.substr(0, MAX_PAPER_LENGTH);
         // we check again to save an update
         if (value === this.state.textarea_text) {
           // Do nothing
@@ -444,9 +439,16 @@ class PaperSheetEdit extends Component {
   }
   // the final update send to byond, final upkeep
   finalUpdate(new_text) {
+    // Ensure text doesn't exceed MAX_PAPER_LENGTH
+    if (new_text.length > MAX_PAPER_LENGTH) {
+      new_text = new_text.substr(0, MAX_PAPER_LENGTH);
+    }
+
     const { act } = useBackend(this.context);
     const final_processing = this.createPreview(new_text, true);
+
     act('save', final_processing);
+
     this.setState(() => { return {
       textarea_text: "",
       previewSelected: "save",

@@ -5,4 +5,4 @@
 	initial_stat_value = DEFAULT_HUMAN_MAX_SANITY
 
 /datum/attribute/prudence/get_printed_level_bonus()
-	return round(level * PRUDENCE_MOD) + initial_stat_value
+	return max(initial_stat_value, round(get_level())) * PRUDENCE_MOD))
