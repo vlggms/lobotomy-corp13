@@ -79,6 +79,7 @@
 
 /obj/effect/turf_fire/liu/DoDamage(mob/living/fuel)
 	if(!ishuman(fuel))
+		fuel.apply_damage(10, FIRE, null, fuel.run_armor_check(null, FIRE), spread_damage = TRUE)
 	fuel.apply_damage(10, FIRE, null, fuel.run_armor_check(null, FIRE), spread_damage = TRUE)
 	fuel.adjust_fire_stacks(2)
 	fuel.IgniteMob()
