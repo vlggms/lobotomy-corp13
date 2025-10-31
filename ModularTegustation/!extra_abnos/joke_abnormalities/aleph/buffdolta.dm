@@ -163,7 +163,7 @@
 		onrush_hit |= target
 	var/turf/thrownat = get_ranged_target_turf_direct(src, target, 15, rand(-30, 30))
 	target.throw_at(thrownat, 8, 2, src, TRUE, force = MOVE_FORCE_OVERPOWERING, gentle = FALSE)
-	target.deal_damage(onrush_damage, RED_DAMAGE)
+	target.deal_damage(onrush_damage, RED_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL)
 	new /obj/effect/temp_visual/smash_effect(get_turf(target))
 	shake_camera(target, 2, 5)
 
@@ -221,7 +221,7 @@
 		if(TF.density)
 			continue
 		new /obj/effect/temp_visual/small_smoke/halfsecond(TF)
-		been_hit = HurtInTurf(TF, been_hit, slam_damage, RED_DAMAGE, null, TRUE, FALSE, TRUE, TRUE)
+		been_hit = HurtInTurf(TF, been_hit, slam_damage, RED_DAMAGE, null, TRUE, FALSE, TRUE, TRUE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL)
 	for(var/mob/living/L in been_hit)
 		if(L.health < 0)
 			L.gib()
