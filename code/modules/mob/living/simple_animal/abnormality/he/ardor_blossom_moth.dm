@@ -113,6 +113,6 @@
 
 /obj/effect/turf_fire/ardor/DoDamage(mob/living/fuel)
 	if(ishuman(fuel))
-		fuel.deal_damage(4, FIRE)
-		fuel.apply_lc_burn(2)
+		fuel.deal_damage(2, FIRE)
+		fuel.apply_lc_burn(1)
 		return TRUE
