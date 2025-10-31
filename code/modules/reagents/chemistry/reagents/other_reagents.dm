@@ -171,6 +171,9 @@
 			air.temperature = max(min(air.temperature-(cool_temp*1000), air.temperature/cool_temp),TCMB)
 			air.react(src)
 			qdel(hotspot)
+	var/obj/effect/turf_fire/t_fire = (locate(/obj/effect/turf_fire) in exposed_turf)
+	if(t_fire)
+		t_fire.WaterReact()
 
 /*
  *	Water reaction to an object

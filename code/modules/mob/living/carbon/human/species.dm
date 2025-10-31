@@ -1629,7 +1629,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				new /obj/effect/temp_visual/damage_effect/red(get_turf(H), damage_amount) // Since bodypart damage bypasses bruteloss, we just make vfx here.
 			else//no bodypart, we deal damage with a more general method.
 				H.adjustBruteLoss(damage_amount)
-		if(FIRE, FIRE, LASER, ENERGY, RAD)
+		if(FIRE, LASER, ENERGY, RAD)
 			H.damageoverlaytemp = 20
 			var/damage_amount = forced ? damage : damage * hit_percent * burnmod * H.physiology.burn_mod
 			if(BP)

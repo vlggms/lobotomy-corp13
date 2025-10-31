@@ -62,6 +62,11 @@
 	)
 
 	var/stoked
+	var/stoke_timer
+	light_color = COLOR_ORANGE
+	light_range = 5
+	light_power = 7
+	light_on = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/ardor_moth/WorkChance(mob/living/carbon/human/user, chance, work_type)
 	if(stoked)
@@ -73,58 +78,41 @@
 	if(!stoked && work_type != ABNORMALITY_WORK_ATTACHMENT)
 		if(prob(30))
 			datum_reference.qliphoth_change(-2)
-	stoked = FALSE
 
 	switch(work_type)
 		if(ABNORMALITY_WORK_ATTACHMENT)
 			stoked = TRUE
+			light_on = TRUE
+			update_light()
+			deltimer(stoke_timer)
+			stoke_timer = addtimer(CALLBACK(src, PROC_REF(Stoke)), 2 MINUTES, TIMER_STOPPABLE)
 			to_chat(user, span_notice("You stoke the flames, and it burns hotter."))
+
+/mob/living/simple_animal/hostile/abnormality/ardor_moth/proc/Stoke()
+	stoked = FALSE
+	light_on = FALSE
+	update_light()
+
+/mob/living/simple_animal/hostile/abnormality/ardor_moth/Destroy(force)
+	deltimer(stoke_timer)
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/ardor_moth/Move()
 	..()
 	for(var/turf/open/T in range(1, src))
-		if(locate(/obj/effect/turf_fire) in T)
-			for(var/obj/effect/turf_fire/floor_fire in T)
+		if(locate(/obj/effect/turf_fire/ardor) in T)
+			for(var/obj/effect/turf_fire/ardor/floor_fire in T)
 				qdel(floor_fire)
-		new /obj/effect/turf_fire(T)
+		new /obj/effect/turf_fire/ardor(T)
 
 /mob/living/simple_animal/hostile/abnormality/ardor_moth/spawn_gibs()
 	return new /obj/effect/decal/cleanable/ash(drop_location(), src)
 
-// Turf Fire
-/obj/effect/turf_fire
-	gender = PLURAL
-	name = "fire"
-	desc = "a burning pyre."
-	icon = 'icons/effects/effects.dmi'
-	icon_state = "turf_fire"
-	anchored = TRUE
-	layer = TURF_LAYER
-	plane = FLOOR_PLANE
-	base_icon_state = "turf_fire"
-	var/damaging = FALSE
-	var/damage = 2
+/obj/effect/turf_fire/ardor
+	burn_time = 30 SECONDS
 
-/obj/effect/turf_fire/Initialize()
-	. = ..()
-	QDEL_IN(src, 30 SECONDS)
-
-//Red and not burn, burn is a special damage type.
-/obj/effect/turf_fire/Crossed(atom/movable/AM)
-	. = ..()
-	if(!damaging)
-		damaging = TRUE
-		DoDamage()
-
-/obj/effect/turf_fire/proc/DoDamage()
-	var/dealt_damage = FALSE
-	for(var/mob/living/L in get_turf(src))
-		if(ishuman(L))
-			var/mob/living/carbon/human/H = L
-			H.deal_damage(damage, FIRE)
-			H.apply_lc_burn(1)
-			dealt_damage = TRUE
-	if(!dealt_damage)
-		damaging = FALSE
-		return
-	addtimer(CALLBACK(src, PROC_REF(DoDamage)), 4)
+/obj/effect/turf_fire/ardor/DoDamage(mob/living/fuel)
+	if(ishuman(fuel))
+		fuel.deal_damage(4, FIRE)
+		fuel.apply_lc_burn(2)
+		return TRUE
