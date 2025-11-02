@@ -302,7 +302,6 @@
 	//Lifespan of the fire effect.
 	var/burn_time = 30 SECONDS
 	//Fire check timer and how long until we check again.
-	var/fire_turf_check_timer
 	var/fire_turf_check_time = 4
 	//Total health only used in reaction to getting extinguished
 	var/fire_health = 4
@@ -315,29 +314,28 @@
 //Red and not burn, burn is a special damage type.
 /obj/effect/turf_fire/Crossed(atom/movable/AM)
 	. = ..()
-	if(isliving(AM))
+	if(isliving(AM) && !damaging)
+		damaging = TRUE
 		Burn()
 
 /obj/effect/turf_fire/proc/Burn()
-	//return is the number of burnt mobs
-	var/burned_entities = 0
+	//if the fire damaged a mob.
+	var/dealt_damage = FALSE
 	for(var/mob/living/H in get_turf(src))
 		if(!H)
 			continue
 		//arbitrary max fire damage so corpses still get burned
 		if(H.getFireLoss() < 1000 && H.stat != DEAD)
-			if(DoDamage(H))
-				. += 1
-	//If burned entities present and the timer no longer exists, check again.
-	if(burned_entities >= 1 && !TIMER_COOLDOWN_CHECK(src, fire_turf_check_timer))
-		//Im not sure if this will lag.
-		fire_turf_check_timer = addtimer(CALLBACK(src, PROC_REF(DoDamage)), fire_turf_check_time)
+			DoDamage(H)
+	if(!dealt_damage)
+		damaging = FALSE
+		return
+	addtimer(CALLBACK(src, PROC_REF(Burn)), fire_turf_check_time)
 
-//If this doesnt return true then the entity will not be counted towards the next check for burning.
+//The Damage Proc
 /obj/effect/turf_fire/proc/DoDamage(mob/living/fuel)
 	fuel.adjust_fire_stacks(2)
 	fuel.IgniteMob()
-	return TRUE
 
 //Overridable proc for special inextinguishable fires.
 /obj/effect/turf_fire/proc/WaterReact()
