@@ -115,4 +115,3 @@
 	if(ishuman(fuel))
 		fuel.deal_damage(2, FIRE)
 		fuel.apply_lc_burn(1)
-		return TRUE

@@ -78,12 +78,12 @@
 	burn_time = 10 SECONDS
 
 /obj/effect/turf_fire/liu/DoDamage(mob/living/fuel)
+	var/damage = 4
 	if(!ishuman(fuel))
-		fuel.apply_damage(10, FIRE, null, fuel.run_armor_check(null, FIRE), spread_damage = TRUE)
-	fuel.apply_damage(10, FIRE, null, fuel.run_armor_check(null, FIRE), spread_damage = TRUE)
-	fuel.adjust_fire_stacks(2)
+		damage = 8
+	fuel.apply_damage(damage, FIRE, null, fuel.run_armor_check(null, FIRE), spread_damage = TRUE)
+	fuel.adjust_fire_stacks(1)
 	fuel.IgniteMob()
-	return TRUE
 
 // status effect
 /datum/status_effect/flamekissed
