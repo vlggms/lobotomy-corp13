@@ -1330,7 +1330,7 @@
 		return
 	// Gets a percent of lost health and applies the slowdown
 	var/health_missing_percent = (maxHealth - health) / maxHealth
-	if(health_missing_percent > 0.5)
+	if(health_missing_percent > 0.9)
 		add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown, TRUE, multiplicative_slowdown = health_missing_percent * 0.5)
 		add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown_flying, TRUE, multiplicative_slowdown = health_missing_percent * 0.25)
 	else
