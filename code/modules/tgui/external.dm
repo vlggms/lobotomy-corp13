@@ -181,6 +181,10 @@
  * return bool If TRUE, prevents propagation of the topic call.
  */
 /proc/tgui_Topic(href_list)
+	// Check for chunked transfers first
+	if(href_list["tgui_chunk"])
+		return tgui_Topic_chunked(href_list)
+
 	// Skip non-tgui topics
 	if(!href_list["tgui"])
 		return FALSE

@@ -198,7 +198,7 @@
 		return
 
 	if(istype(P, /obj/item/pen) || istype(P, /obj/item/toy/crayon))
-		if(length(info) >= MAX_PAPER_LENGTH) // Sheet must have less than 1000 charaters
+		if(length(info) >= MAX_PAPER_LENGTH) // Sheet must have less than MAX_PAPER_LENGTH characters
 			to_chat(user, span_warning("This sheet of paper is full!"))
 			return
 		ui_interact(user)
@@ -326,20 +326,16 @@
 			var/paper_len = length(in_paper)
 			field_counter = params["field_counter"] ? text2num(params["field_counter"]) : field_counter
 
-			if(paper_len > MAX_PAPER_LENGTH)
-				// Side note, the only way we should get here is if
-				// the javascript was modified, somehow, outside of
-				// byond.  but right now we are logging it as
-				// the generated html might get beyond this limit
-				log_paper("[key_name(ui.user)] writing to paper [name], and overwrote it by [paper_len-MAX_PAPER_LENGTH]")
 			if(paper_len == 0)
-				to_chat(ui.user, pick("Writing block strikes again!", "You forgot to write anthing!"))
-			else
-				log_paper("[key_name(ui.user)] writing to paper [name]")
-				if(info != in_paper)
-					to_chat(ui.user, "You have added to your paper masterpiece!");
-					info = in_paper
-					update_static_data(usr,ui)
+				to_chat(ui.user, pick("Writing block strikes again!", "You forgot to write anything!"))
+				return
+
+			log_paper("[key_name(ui.user)] writing to paper [name] ([paper_len] characters)")
+
+			if(info != in_paper)
+				to_chat(ui.user, "You have added to your paper masterpiece!")
+				info = in_paper
+				update_static_data(usr, ui)
 
 
 			update_icon()

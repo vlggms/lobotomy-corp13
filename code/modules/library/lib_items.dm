@@ -230,8 +230,15 @@
 
 /obj/item/book/proc/on_read(mob/user)
 	if(dat)
-		user << browse("<meta charset=UTF-8><TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book[window_size != null ? ";size=[window_size]" : ""]")
-		onclose(user, "book")
+		var/datum/browser/popup = new(user, "book", "[title]")
+		popup.set_content("<TT><I>Penned by [author].</I></TT><BR><BR>[dat]")
+		if(window_size)
+			// Parse window size like "1920x1080"
+			var/list/size = splittext(window_size, "x")
+			if(size.len == 2)
+				popup.width = text2num(size[1])
+				popup.height = text2num(size[2])
+		popup.open()
 	else
 		to_chat(user, "<span class='notice'>This book is completely blank!</span>")
 
