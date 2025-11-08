@@ -1145,6 +1145,11 @@
 	if(extinguishable)
 		RegisterSignal(owner, COMSIG_LIVING_EXTINGUISHED, PROC_REF(Extinguished))
 
+/datum/status_effect/stacking/lc_burn/on_remove()
+	. = ..()
+	if(extinguishable)
+		UnregisterSignal(owner, COMSIG_LIVING_EXTINGUISHED, PROC_REF(Extinguished))
+
 /datum/status_effect/stacking/lc_burn/can_have_status()
 	return (owner.stat != DEAD || !(owner.status_flags & GODMODE))
 

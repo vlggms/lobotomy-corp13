@@ -2057,6 +2057,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		else
 			H.adjust_bodytemperature(BODYTEMP_HEATING_MAX + (H.fire_stacks * 12))
 */
+		if(thermal_protection <= FIRE_SUIT_MAX_TEMP_PROTECT || no_protection)
+			H.deal_damage(2, FIRE)
 
 /datum/species/proc/CanIgniteMob(mob/living/carbon/human/H)
 	if(HAS_TRAIT(H, TRAIT_NOFIRE))
