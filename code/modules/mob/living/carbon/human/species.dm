@@ -1629,7 +1629,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				new /obj/effect/temp_visual/damage_effect/red(get_turf(H), damage_amount) // Since bodypart damage bypasses bruteloss, we just make vfx here.
 			else//no bodypart, we deal damage with a more general method.
 				H.adjustBruteLoss(damage_amount)
-		if(FIRE, FIRE, LASER, ENERGY, RAD)
+		if(FIRE, LASER, ENERGY, RAD)
 			H.damageoverlaytemp = 20
 			var/damage_amount = forced ? damage : damage * hit_percent * burnmod * H.physiology.burn_mod
 			if(BP)
@@ -2057,6 +2057,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		else
 			H.adjust_bodytemperature(BODYTEMP_HEATING_MAX + (H.fire_stacks * 12))
 */
+		if(thermal_protection <= FIRE_SUIT_MAX_TEMP_PROTECT || no_protection)
+			H.deal_damage(2, FIRE)
 
 /datum/species/proc/CanIgniteMob(mob/living/carbon/human/H)
 	if(HAS_TRAIT(H, TRAIT_NOFIRE))
