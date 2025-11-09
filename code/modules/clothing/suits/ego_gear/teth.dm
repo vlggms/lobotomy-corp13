@@ -206,10 +206,10 @@
 	icon_state = "capote"
 	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = -30, BLACK_DAMAGE = -10, PALE_DAMAGE = 0, FIRE = 30) // 0
 
-/obj/item/clothing/suit/armor/ego_gear/teth/fourleaf_clover
-	name = "four-leaf clover"
+/obj/item/clothing/suit/armor/ego_gear/teth/sticking
+	name = "sticking"
 	desc = "Waiting for the prey to fall into a trap is a vital skill to learn for those who cannot face direct conflict."
-	icon_state = "fourleaf_clover"
+	icon_state = "sticking"
 	armor = list(RED_DAMAGE = -10, WHITE_DAMAGE = 20, BLACK_DAMAGE = 10, PALE_DAMAGE = 0) // 20
 
 /obj/item/clothing/suit/armor/ego_gear/teth/patriot
