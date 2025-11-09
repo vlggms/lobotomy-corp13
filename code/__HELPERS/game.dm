@@ -166,6 +166,57 @@
 	return turfs
 
 
+/**
+ * Gets a list of turfs that forms a slash pattern
+ *
+ * Arguments:
+ * * start - Initial start
+ * * target_turf - Used to get an angle
+ * * distance - Overall size of the slash
+ * * max_angle - Total angle the slash will cover
+ * * old_style - Uses a much wider version of it
+ * * distance_offset - euclidian distance offset
+ */
+/proc/Make_Slash(turf/start, turf/target_turf, distance, max_angle, old_style = FALSE, distance_offset = 0.4)
+	var/angle_to_target = Get_Angle(start, target_turf)
+	if(old_style)
+		distance += 1
+	else
+		start = get_step_towards(start, target_turf)
+	var/angle = angle_to_target + max_angle/2
+	if(angle > 360)
+		angle -= 360
+	else if(angle < 0)
+		angle += 360
+	var/angle2 = angle_to_target - max_angle/2
+	if(angle2 > 360)
+		angle2 -= 360
+	else if(angle2 < 0)
+		angle2 += 360
+	var/list/area = list(start)
+	var/list/circle = range(start, distance)
+	for(var/turf/T in circle)
+		if(get_dist_euclidian(start,T) > (distance-1) + distance_offset)
+			continue
+		var/new_angle = Get_Angle(start, T)
+		if(new_angle > 360)
+			new_angle -= 360
+		else if(new_angle < 0)
+			new_angle += 360
+		if(angle > angle2)
+			if(new_angle > angle)
+				continue
+			if(new_angle < angle2)
+				continue
+			area += T
+		else
+			if(new_angle < angle)
+				area += T
+			if(new_angle > angle2)
+				area += T
+	return uniqueList(area)
+
+
 //This is the new version of recursive_mob_check, used for say().
 //The other proc was left intact because morgue trays use it.
 //Sped this up again for real this time
