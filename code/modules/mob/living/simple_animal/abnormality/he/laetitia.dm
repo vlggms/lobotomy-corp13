@@ -1,4 +1,4 @@
-a#define STATUS_EFFECT_PRANKED /datum/status_effect/pranked
+#define STATUS_EFFECT_PRANKED /datum/status_effect/pranked
 /mob/living/simple_animal/hostile/abnormality/laetitia
 	name = "Laetitia"
 	desc = "A wee witch."
