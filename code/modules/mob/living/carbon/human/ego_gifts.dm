@@ -1129,6 +1129,14 @@
 	fortitude_bonus = 3
 	slot = HELMET
 
+/datum/ego_gifts/fellbullet
+	name = "Pendant of Nostalgia"
+	icon_state = "fell_bullet"
+	fortitude_bonus = 2
+	temperance_bonus = 2
+	justice_bonus = 2
+	slot = NECKWEAR
+
 // This code is so that the elf ears are colored the same as the users skin tone
 /datum/ego_gifts/hypocrisy/FormatOverlay(mob/living/carbon/human/user)
 	. = ..()
