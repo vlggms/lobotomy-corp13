@@ -109,7 +109,7 @@
 	abno_code = "F-01-130"
 	abno_info = list(
 		"When the work result was Bad, the Qliphoth Counter lowered.",
-		"When a non fully sane employee began work on Titania, the Qliphoth Counter decreased.",
+		"When a not fully sane employee began work on Titania, the Qliphoth Counter decreased.",
 		"After 2 employees panicked within the facility, the Qliphoth Counter decreased.",
 		"When breaching, Titania will continually summoned hostile fairies that will scout out for her.",
 		"For a period of time after a fairy attacks the employee they took increased WHITE damage and Titania seemed to hunt them down.",
