@@ -111,7 +111,7 @@
 		"When the work result was Bad, the Qliphoth Counter lowered.",
 		"When a not fully sane employee began work on Titania, the Qliphoth Counter decreased.",
 		"After 2 employees panicked within the facility, the Qliphoth Counter decreased.",
-		"When breaching, Titania will continually summoned hostile fairies that will scout out for her.",
+		"When breaching, Titania will continually summon hostile fairies that will scout out for her.",
 		"For a period of time after a fairy attacks the employee they took increased WHITE damage and Titania seemed to hunt them down.",
 		"When breaching, Titania will set up laws that if broken, caused the employee to take PALE damage.",
 		"When employees of Level 3 and lower or while panicking were attacked by Titania, they were immediately obliterated.")
