@@ -689,14 +689,13 @@
 	hitsound = 'sound/magic/arbiter/pillar_hit.ogg'
 	var/obj/effect/trail_type = /obj/effect/temp_visual/revenant
 	var/list/been_hit = list()
-	var/PillarStormPillar = FALSE //work around to prevent the pillar storm pillars from deleting themselves if you touch them
 
 /obj/projectile/magic/aoe/pillar/Initialize()
 	. = ..()
 	animate(src, alpha = 255, time = 5)
 
 /obj/projectile/magic/aoe/pillar/Impact()
-	if(PillarStormPillar)
+	if(!fired)//work around to prevent the pillar storm pillars from deleting themselves if you touch them
 		return FALSE
 	return ..()
 
