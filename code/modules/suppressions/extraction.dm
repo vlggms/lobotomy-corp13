@@ -478,7 +478,6 @@
 		P.original = TT
 		P.preparePixelProjectile(TT, T)
 		storm_pillars += P
-		P.PillarStormPillar = TRUE
 
 	SLEEP_CHECK_DEATH(2 SECONDS)
 
@@ -508,7 +507,6 @@
 	SLEEP_CHECK_DEATH(2.5 SECONDS)
 
 	for(var/obj/projectile/magic/aoe/pillar/P in storm_pillars)
-		P.PillarStormPillar = FALSE
 		P.fire()
 	storm_pillars = list()
 
