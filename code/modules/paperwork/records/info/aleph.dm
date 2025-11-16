@@ -109,12 +109,12 @@
 	abno_code = "F-01-130"
 	abno_info = list(
 		"When the work result was Bad, the Qliphoth Counter lowered.",
-		"When the employee completed worked on Titania for the first time since her last breach, the Qliphoth Counter lowered.",
-		"When an employee panicked during work, the Qliphoth Counter lowered.",
+		"When a non fully sane employee began work on Titania, the Qliphoth Counter decreased.",
+		"After 2 employees panicked within the facility, the Qliphoth Counter decreased.",
 		"When breaching, Titania will continually summoned hostile fairies that will scout out for her.",
 		"For a period of time after a fairy attacks the employee they took increased WHITE damage and Titania seemed to hunt them down.",
 		"When breaching, Titania will set up laws that if broken, caused the employee to take PALE damage.",
-		"When employees of Level 3 and lower or panicking were attacked by Titania, they were immediately obliterated.")
+		"When employees of Level 3 and lower or while panicking were attacked by Titania, they were immediately obliterated.")
 	abno_breach_damage_type = "White/Pale"
 
 // Lady out of Space

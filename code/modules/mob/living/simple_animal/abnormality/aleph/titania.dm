@@ -22,7 +22,7 @@
 	move_to_delay = 4
 
 	work_damage_amount = 9
-	work_damage_type = WHITE_DAMAGE
+	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/lust
 	can_breach = TRUE
 
@@ -51,9 +51,9 @@
 	var/fairy_spawn_limit = 40 // Oh boy, what can go wrong?
 	//Fairy spawn limit only matters for the spawn loop, players she kills and spawned via the law don't count
 	var/list/spawned_mobs = list()
-	var/list/worked = list()
-	//The nemesis is referred to as Oberon in the rest of the comments.
-
+	/// Is user performing work not at full sanity at the beginning?
+	var/agent_notfullsp = FALSE
+	var/insane_counter = 0
 	//Laws
 	var/list/laws = list("melee", "ranged", "fairy", "armor", "ranged fairy")
 	var/currentlaw
@@ -63,6 +63,10 @@
 	var/law_startup = 3 SECONDS
 	//Oberon stuff
 	var/fused = FALSE
+
+/mob/living/simple_animal/hostile/abnormality/titania/Initialize()
+	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_HUMAN_INSANE, PROC_REF(OnHumanInsane))
 
 /mob/living/simple_animal/hostile/abnormality/titania/Life()
 	. = ..()
@@ -257,16 +261,33 @@
 	addtimer(CALLBACK(src, PROC_REF(SetLaw)), law_timer)	//Set Laws in 30 Seconds
 
 /mob/living/simple_animal/hostile/abnormality/titania/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
-	if(!(user in worked))
+	if(agent_notfullsp)
 		datum_reference.qliphoth_change(-1)
-		worked+=user
-	if(user.sanity_lost)
-		datum_reference.qliphoth_change(-1)
+		agent_notfullsp = FALSE
 	return
+
+/mob/living/simple_animal/hostile/abnormality/titania/AttemptWork(mob/living/carbon/human/user, work_type)
+	if(user.sanityhealth != user.maxSanity)
+		agent_notfullsp = TRUE
+	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/titania/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
 	datum_reference.qliphoth_change(-1)
+
+/mob/living/simple_animal/hostile/abnormality/titania/proc/OnHumanInsane(datum/source, mob/living/carbon/human/H, attribute)
+	SIGNAL_HANDLER
+	if(!IsContained())
+		return FALSE
+	if(!H.mind) // That wasn't a player at all...
+		return FALSE
+	if(H.z != z)
+		return FALSE
+	insane_counter += 1
+	if(insane_counter >= 2)
+		insane_counter = 0
+		datum_reference.qliphoth_change(-1)
+	return TRUE
 
 //The flower
 /mob/living/simple_animal/hostile/titania_flower
