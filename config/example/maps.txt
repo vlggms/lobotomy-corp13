@@ -59,6 +59,11 @@ endmap
 	minplayers 20
 endmap
 
+map mucorp
+	votable
+	minplayers 20
+endmap
+
 map psicorp
 	votable
 	maxplayers 10
