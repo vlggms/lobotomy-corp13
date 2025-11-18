@@ -47,6 +47,8 @@
 		new /datum/data/extraction_cargo("EZ Light Replacer ",			/obj/item/lightreplacer,											60, CAT_EQUIP) = 1,
 		new /datum/data/extraction_cargo("Toolbox ",					/obj/item/storage/toolbox/mechanical,								60, CAT_EQUIP) = 1,
 		new /datum/data/extraction_cargo("Push Broom ",					/obj/item/pushbroom,												60, CAT_EQUIP) = 1,
+		new /datum/data/extraction_cargo("Fire Extinguisher ",			/obj/item/extinguisher,												60, CAT_EQUIP) = 1,
+		new /datum/data/extraction_cargo("Portable Fire Extinguisher ",	/obj/item/extinguisher/mini,										100, CAT_EQUIP) = 1,
 		new /datum/data/extraction_cargo("Super Power Cell ",			/obj/item/stock_parts/cell/super,									150, CAT_EQUIP) = 1,
 		new /datum/data/extraction_cargo("Megaphone ",					/obj/item/megaphone,												150, CAT_EQUIP) = 1,
 		new /datum/data/extraction_cargo("Binoculars ",					/obj/item/binoculars,												200, CAT_EQUIP) = 1,

@@ -15,10 +15,10 @@
 
 	//Burn everything around
 	for(var/turf/open/T in view(range, get_turf(src)))
-		if(locate(/obj/structure/turf_fireliu) in T)
-			for(var/obj/structure/turf_fireliu/fire in T)
+		if(locate(/obj/effect/turf_fire/liu) in T)
+			for(var/obj/effect/turf_fire/liu/fire in T)
 				qdel(fire)
-		new /obj/structure/turf_fireliu(T)
+		new /obj/effect/turf_fire/liu(T)
 	owner.visible_message(span_warning("[owner] unleashes a wave of flames!"))
 	StartCooldown()
 

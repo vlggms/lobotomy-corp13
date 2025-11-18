@@ -39,7 +39,7 @@
 	//Burn people around you
 	for(var/mob/living/fuel in view(range, get_turf(src)))
 		if(fuel.stat != DEAD && fuel!=owner)
-			new /obj/structure/turf_fireliu(get_turf(fuel))
+			new /obj/effect/turf_fire/liu(get_turf(fuel))
 	owner.visible_message(span_warning("Through masterful flow [owner] sets those around him alight!"))
 
 	StartCooldown()
@@ -60,7 +60,7 @@
 		return FALSE
 
 	for(var/mob/living/carbon/human/fuel in view(range, get_turf(src)))
-		if(locate(/obj/structure/turf_fireliu) in fuel.loc)
+		if(locate(/obj/effect/turf_fire/liu) in fuel.loc)
 			if(fuel.sanity_lost) //Please for the love of god do not put this at the end or the proc bursts into flames
 				fuel.death()
 			//this stuff is important for what youre about to do
@@ -74,39 +74,18 @@
 
 	StartCooldown()
 
-/obj/structure/turf_fireliu
-	gender = PLURAL
-	name = "fire"
-	desc = "a flower of iron."
-	icon = 'icons/effects/effects.dmi'
-	icon_state = "turf_fire"
-	anchored = TRUE
-	density = FALSE
-	layer = BELOW_OPEN_DOOR_LAYER
-	plane = FLOOR_PLANE
-	base_icon_state = "turf_fire"
+/obj/effect/turf_fire/liu
+	burn_time = 10 SECONDS
 
-/obj/structure/turf_fireliu/Initialize()
-	. = ..()
-	QDEL_IN(src, 10 SECONDS)
-	for(var/mob/living/fuel in src.loc)
-		if(!ishuman(fuel))
-			fuel.apply_damage(5, FIRE, null, fuel.run_armor_check(null, FIRE), spread_damage = TRUE)
-		fuel.apply_damage(5, FIRE, null, fuel.run_armor_check(null, FIRE), spread_damage = TRUE)
-		fuel.adjust_fire_stacks(1)
-		fuel.IgniteMob()
-		to_chat(fuel, "<span class='danger'>You are singed as flames ignite around you!</span>")
+/obj/effect/turf_fire/liu/DoDamage(mob/living/fuel)
+	var/damage = 4
+	if(!ishuman(fuel))
+		damage = 8
+	fuel.apply_damage(damage, FIRE, null, fuel.run_armor_check(null, FIRE), spread_damage = TRUE)
+	fuel.adjust_fire_stacks(1)
+	fuel.IgniteMob()
 
-/obj/structure/turf_fireliu/Crossed(atom/movable/AM)
-	. = ..()
-	if(ismob(AM))
-		var/mob/living/fuel = AM
-		if(!ishuman(fuel))
-			fuel.apply_damage(10, FIRE, null, fuel.run_armor_check(null, FIRE), spread_damage = TRUE)
-		fuel.apply_damage(10, FIRE, null, fuel.run_armor_check(null, FIRE), spread_damage = TRUE)
-		fuel.adjust_fire_stacks(2)
-		fuel.IgniteMob()
-
+// status effect
 /datum/status_effect/flamekissed
 	id = "flamekissed"
 	alert_type = null
