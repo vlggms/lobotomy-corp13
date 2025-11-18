@@ -307,6 +307,38 @@
 	impact_light_range = 3
 	impact_light_color_override = LIGHT_COLOR_YELLOW
 
+/obj/projectile/beam/fairy/red
+	damage_type = RED_DAMAGE
+	light_color = COLOR_RED
+	beam_type = list("fairy_red", 'icons/effects/beam.dmi')
+	hitscan_light_color_override = COLOR_RED
+	muzzle_flash_color_override = COLOR_RED
+	impact_light_color_override = COLOR_RED
+
+/obj/projectile/beam/fairy/white
+	light_color = COLOR_WHITE
+	beam_type = list("fairy_white", 'icons/effects/beam.dmi')
+	damage_type = WHITE_DAMAGE
+	hitscan_light_color_override = COLOR_WHITE
+	muzzle_flash_color_override = COLOR_WHITE
+	impact_light_color_override = COLOR_WHITE
+
+/obj/projectile/beam/fairy/black
+	light_color = COLOR_PURPLE
+	beam_type = list("fairy_black", 'icons/effects/beam.dmi')
+	hitscan_light_color_override = COLOR_PURPLE
+	muzzle_flash_color_override = COLOR_PURPLE
+	impact_light_color_override = COLOR_PURPLE
+
+/obj/projectile/beam/fairy/pale
+	light_color = LIGHT_COLOR_CYAN
+	beam_type = list("fairy_pale", 'icons/effects/beam.dmi')
+	damage = 15
+	damage_type = PALE_DAMAGE
+	hitscan_light_color_override = LIGHT_COLOR_CYAN
+	muzzle_flash_color_override = LIGHT_COLOR_CYAN
+	impact_light_color_override = LIGHT_COLOR_CYAN
+
 /obj/projectile/beam/nobody
 	name = "whip"
 	icon_state = "nobody"
