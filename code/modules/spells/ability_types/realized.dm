@@ -69,7 +69,7 @@
 	base_icon_state = "universe_song"
 	cooldown_time = 20 SECONDS
 
-	var/damage_amount = 50 // Amount of white damage dealt to enemies per "pulse".
+	var/damage_amount = 25 // Amount of white damage dealt to enemies per "pulse".
 	var/damage_slowdown = 0.7 // Slowdown per pulse
 	var/damage_count = 5 // How many times the damage and slowdown is applied
 	var/damage_range = 6
@@ -178,7 +178,7 @@
 	base_icon_state = "goodbye"
 	cooldown_time = 30 SECONDS
 
-	var/damage_amount = 400 // Amount of good bye damage
+	var/damage_amount = 150 // Amount of good bye damage
 
 /obj/effect/proc_holder/ability/goodbye/Perform(target, mob/user)
 	var/mob/living/carbon/human/H = user
@@ -208,7 +208,7 @@
 	base_icon_state = "screach"
 	cooldown_time = 20 SECONDS
 
-	var/damage_amount = 200 // Amount of black damage dealt to enemies. Humans receive half of it.
+	var/damage_amount = 100 // Amount of black damage dealt to enemies. Humans receive half of it.
 	var/damage_range = 7
 
 /obj/effect/proc_holder/ability/screach/Perform(target, mob/user)
@@ -268,7 +268,7 @@
 	base_icon_state = "judgement"
 	cooldown_time = 20 SECONDS
 
-	var/damage_amount = 150 // Amount of pale damage dealt to enemies. Humans receive half of it.
+	var/damage_amount = 75 // Amount of pale damage dealt to enemies. Humans receive half of it.
 	var/damage_range = 9
 
 /obj/effect/proc_holder/ability/judgement/Perform(target, mob/user)
@@ -326,7 +326,7 @@
 	action_icon_state = "fire0"
 	base_icon_state = "fire"
 	cooldown_time = 30 SECONDS
-	var/explosion_damage = 1000 // Humans receive half of it.
+	var/explosion_damage = 500 // Humans receive half of it.
 	var/explosion_range = 6
 
 /obj/effect/proc_holder/ability/fire_explosion/Perform(target, mob/user)
@@ -475,7 +475,7 @@
 
 /datum/status_effect/GoldStaggered
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 5 SECONDS
+	duration = 10 SECONDS
 
 /datum/status_effect/GoldStaggered/on_apply()
 	. = ..()
@@ -505,7 +505,7 @@
 		'sound/abnormalities/wrath_servant/big_smash2.ogg',
 		'sound/abnormalities/wrath_servant/big_smash1.ogg'
 		)
-	var/damage = 30
+	var/damage = 20
 	var/list/targets_hit = list()
 
 /obj/effect/proc_holder/ability/justice_and_balance/Perform(target, user)
@@ -641,7 +641,7 @@
 				continue
 			if(L.stat == DEAD)
 				continue
-			L.apply_damage(500, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			L.apply_damage(250, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 			if(L.health < 0)
 				L.gib()
 
@@ -676,7 +676,7 @@
 	action_icon_state = "petalblizzard0"
 	base_icon_state = "petalblizzard"
 	cooldown_time = 30 SECONDS
-	var/healing_amount = 70 // Amount of healing to plater per "pulse".
+	var/healing_amount = 40 // Amount of healing to plater per "pulse".
 	var/healing_range = 8
 
 /obj/effect/proc_holder/ability/petal_blizzard/Perform(target, mob/user)
@@ -729,6 +729,7 @@
 			if(H.stat != DEAD)
 				H.adjustBruteLoss(-100) // It heals everyone to full
 				H.adjustSanityLoss(-100) // It heals everyone to full
+		qdel(src)
 
 /datum/status_effect/bloomdebuff/on_remove()
 	. = ..()
@@ -864,7 +865,7 @@
 	base_icon_state = "yangform"
 	cooldown_time = 60 SECONDS
 
-	var/damage_amount = 300 // Amount of explosion damage
+	var/damage_amount = 200 // Amount of explosion damage
 	var/explosion_range = 15
 
 /obj/effect/proc_holder/ability/tranquility/Perform(target, mob/living/carbon/human/user)
@@ -875,12 +876,15 @@
 	new /obj/effect/temp_visual/explosion/fast(get_turf(user))
 	var/turf/orgin = get_turf(user)
 	var/list/all_turfs = RANGE_TURFS(explosion_range, orgin)
+	var/list/been_hit = list()
+	. = ..()
 	for(var/i = 0 to explosion_range)
 		for(var/turf/T in all_turfs)
 			if(get_dist(user, T) > i)
 				continue
 			new /obj/effect/temp_visual/dir_setting/speedbike_trail(T)
-			user.HurtInTurf(damage_amount, list(), WHITE_DAMAGE)
+			var/list/new_hits = user.HurtInTurf(damage_amount, been_hit, WHITE_DAMAGE)  - been_hit
+			been_hit += new_hits
 			for(var/mob/living/carbon/human/L in T)
 				if(!user.faction_check_mob(L, FALSE))
 					continue
@@ -888,13 +892,16 @@
 					continue
 				if(L.is_working) //no work heal :(
 					continue
-				L.adjustBruteLoss(-120)
-				L.adjustSanityLoss(-120)
+				if(L in been_hit)
+					continue
+				been_hit += L
+				L.adjustBruteLoss(-70)
+				L.adjustSanityLoss(-70)
 				new /obj/effect/temp_visual/healing(get_turf(L))
 				if(istype(L.get_item_by_slot(ITEM_SLOT_OCLOTHING), /obj/item/clothing/suit/armor/ego_gear/realization/duality_yin))
 					L.apply_status_effect(/datum/status_effect/duality_yang)
 			all_turfs -= T
-	return ..()
+		sleep(1)
 
 /datum/status_effect/duality_yang
 	id = "EGO_YANG"
@@ -973,7 +980,7 @@
 	duration = 30 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/galaxy_gift
 	var/base_heal_amt = 0.5
-	var/base_dmg_amt = 45
+	var/base_dmg_amt = 25
 	var/watch_death = FALSE
 	var/list/gifted
 	var/mob/living/carbon/human/caster
@@ -1155,11 +1162,11 @@
 
 /mob/living/simple_animal/hostile/shrimp/friendly //HUGE buff shrimp
 	name = "wellcheers boat fisherman"
-	health = 700
-	maxHealth = 700
+	health = 400
+	maxHealth = 400
 	desc = "Are those fists?"
-	melee_damage_lower = 40
-	melee_damage_upper = 45
+	melee_damage_lower = 25
+	melee_damage_upper = 30
 	icon_state = "wellcheers_ripped"
 	icon_living = "wellcheers_ripped"
 	faction = list("neutral", "shrimp")
@@ -1175,6 +1182,7 @@
 		var/mob/living/L = attacked_target
 		if(L.health < 0 || L.stat == DEAD)
 			L.gib() //Punch them so hard they explode
+
 /* Flesh Idol - Repentance */
 /obj/effect/proc_holder/ability/prayer
 	name = "Prayer"
@@ -1200,8 +1208,8 @@
 			continue
 		playsound(H, 'sound/abnormalities/onesin/bless.ogg', 100, FALSE, 12)
 		to_chat(H, span_nicegreen("[user]'s prayer was heard!"))
-		H.adjustBruteLoss(-100)
-		H.adjustSanityLoss(-100)
+		H.adjustBruteLoss(-70)
+		H.adjustSanityLoss(-70)
 		H.apply_status_effect(/datum/status_effect/flesh2)
 		new /obj/effect/temp_visual/healing(get_turf(H))
 	return ..()
@@ -1229,7 +1237,7 @@
 	var/mob/living/carbon/human/H = owner
 	var/list/damtypes = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 	var/damage = pick(damtypes)
-	H.apply_damage(7, damage, null, H.run_armor_check(null, damage), spread_damage = TRUE)
+	H.apply_damage(4, damage, null, H.run_armor_check(null, damage), spread_damage = TRUE)
 
 /datum/status_effect/flesh1/on_remove()
 	. = ..()
@@ -1264,8 +1272,6 @@
 	action_icon_state = "worm0"
 	base_icon_state = "worm"
 	cooldown_time = 30 SECONDS
-
-
 
 /obj/effect/proc_holder/ability/nest/Perform(target, mob/user)
 	for(var/i = 1 to 7)
@@ -1440,7 +1446,7 @@
 	user.orbit(DE, 0, 0, 0, 0, 0)
 
 	sleep(1)
-	target.apply_damage(100, RED_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE))
+	target.apply_damage(50, RED_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE))
 	new /obj/effect/temp_visual/rip_space_slash(get_turf(target))
 	new /obj/effect/temp_visual/ripped_space(get_turf(target))
 	playsound(user, 'sound/abnormalities/wayward_passenger/ripspace_hit.ogg', 75, 0)
