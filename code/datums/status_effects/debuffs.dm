@@ -1132,12 +1132,23 @@
 	consumed_on_threshold = FALSE
 	var/new_stack = FALSE
 	var/safety = TRUE
+	var/extinguishable = TRUE
 
 /atom/movable/screen/alert/status_effect/lc_burn
 	name = "Burning"
 	desc = "You're on fire!"
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "lc_burn"
+
+/datum/status_effect/stacking/lc_burn/on_apply()
+	. = ..()
+	if(extinguishable)
+		RegisterSignal(owner, COMSIG_LIVING_EXTINGUISHED, PROC_REF(Extinguished))
+
+/datum/status_effect/stacking/lc_burn/on_remove()
+	. = ..()
+	if(extinguishable)
+		UnregisterSignal(owner, COMSIG_LIVING_EXTINGUISHED, PROC_REF(Extinguished))
 
 /datum/status_effect/stacking/lc_burn/can_have_status()
 	return (owner.stat != DEAD || !(owner.status_flags & GODMODE))
@@ -1162,6 +1173,12 @@
 			Update_Burn_Overlay(owner)
 		else
 			qdel(src)
+
+//Being extinguished with a fire extinguisher removes 3 stacks.
+/datum/status_effect/stacking/lc_burn/proc/Extinguished()
+	SIGNAL_HANDLER
+
+	stacks -= 3
 
 /datum/status_effect/stacking/lc_burn/proc/DealDamage()
 	owner.apply_damage(max(1, stacks * 0.25), FIRE, null, owner.run_armor_check(null, FIRE))
@@ -1407,6 +1424,7 @@
 /datum/status_effect/stacking/lc_burn/dark_flame
 	id = "dark_flame"
 	alert_type = /atom/movable/screen/alert/status_effect/dark_flame
+	extinguishable = FALSE
 
 /atom/movable/screen/alert/status_effect/dark_flame
 	name = "Dark Flame"
