@@ -45,7 +45,7 @@
 		/datum/ego_datum/weapon/hexnail,
 		/datum/ego_datum/armor/hexnail
 	)
-//gift_type = /datum/ego_gifts/hex_nail
+	gift_type = /datum/ego_gifts/hex_nail
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/happyteddybear = 1.5,
@@ -177,7 +177,7 @@
 			hug_victim.deal_damage(crush_damage, BRUTE)
 		else      //Apply ramping damage
 			playsound(get_turf(src), 'sound/effects/wounds/crackandbleed.ogg', 200, 0, 7)
-			hug_victim.deal_damage((crush_damage * (3 - count)), BRUTE)
+			hug_victim.deal_damage((crush_damage + count), BRUTE)
 	count += 1
 	if(hug_victim.sanity_lost)
 		hug_victim.Stun(10)

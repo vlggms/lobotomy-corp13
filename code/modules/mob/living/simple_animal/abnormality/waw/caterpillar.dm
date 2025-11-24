@@ -38,7 +38,7 @@
 		/datum/ego_datum/weapon/havana,
 		/datum/ego_datum/armor/havana,
 	)
-//	gift_type =  /datum/ego_gifts/caterpillar
+	gift_type =  /datum/ego_gifts/caterpillar
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
 	var/darts_smoked	//how many times you didnt' work repression

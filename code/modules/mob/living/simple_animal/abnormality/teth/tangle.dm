@@ -30,7 +30,7 @@
 		/datum/ego_datum/weapon/rapunzel,
 		/datum/ego_datum/armor/rapunzel,
 	)
-//	gift_type =  /datum/ego_gifts/rapunzel
+	gift_type =  /datum/ego_gifts/rapunzel
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
 	var/chosen

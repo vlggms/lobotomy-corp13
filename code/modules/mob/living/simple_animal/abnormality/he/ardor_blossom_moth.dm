@@ -41,7 +41,7 @@
 		/datum/ego_datum/weapon/ardor_star,
 		/datum/ego_datum/armor/ardor_star,
 	)
-//	gift_type =  /datum/ego_gifts/ardor_moth
+	gift_type =  /datum/ego_gifts/ardor_moth
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
 	observation_prompt = "Orange circles float in the air before your eyes. <br>\

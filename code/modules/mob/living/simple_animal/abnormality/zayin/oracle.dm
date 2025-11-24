@@ -26,7 +26,7 @@
 		/datum/ego_datum/weapon/dead_dream,
 		/datum/ego_datum/armor/dead_dream
 	)
-//	gift_type =  /datum/ego_gifts/oracle
+	gift_type =  /datum/ego_gifts/oracle
 	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
 
 	observation_prompt = "In a vivid dream you see her, as she was. \
