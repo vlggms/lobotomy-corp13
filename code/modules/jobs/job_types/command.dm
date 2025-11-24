@@ -63,9 +63,10 @@
 	if(SSabnormality_queue.spawned_abnos) // dont divide by 0
 		facility_full_percentage = 100 * (SSabnormality_queue.spawned_abnos / SSabnormality_queue.rooms_start)
 	// how full the facility is, from 0 abnormalities out of 24 cells being 0% and 24/24 cells being 100%
+	if(GLOB.lobotomy_damages)//Enkephalin Rush baby!
+		facility_full_percentage = 100 * (GLOB.lobotomy_repairs / GLOB.lobotomy_damages)
 
-
-	else		//Only check percentage if it's NOT blitz mode
+	else
 		switch(facility_full_percentage)
 			if(15 to 29) // Shouldn't be anything more than TETHs (4 Abnormalities)
 				set_attribute *= 1.5
@@ -85,9 +86,10 @@
 			if(79 to 100) // ALEPHs around here (20 Abnormalities)
 				set_attribute *= 4
 
-		set_attribute += GetFacilityUpgradeValue(UPGRADE_AGENT_STATS) + SSlobotomy_corp.ordeal_stats + extra_starting_stats
-	for(var/A in roundstart_attributes)
-		roundstart_attributes[A] = round(set_attribute)
+	set_attribute += GetFacilityUpgradeValue(UPGRADE_AGENT_STATS) + SSlobotomy_corp.ordeal_stats + extra_starting_stats
+
+	for(var/attribute in roundstart_attributes)
+		roundstart_attributes[attribute] = round(set_attribute)
 
 	return ..()
 
