@@ -978,7 +978,7 @@
 	justice_bonus = -1
 	slot = LEFTBACK
 
-datum/ego_gifts/squeak
+/datum/ego_gifts/squeak
 	name = "Squeaky Toy"
 	icon_state = "squeak"
 	prudence_bonus = 4
