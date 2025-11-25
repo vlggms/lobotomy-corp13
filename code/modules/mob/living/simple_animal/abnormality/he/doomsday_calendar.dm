@@ -118,7 +118,7 @@
 	if(IsContained() && datum_reference.qliphoth_meter != datum_reference.qliphoth_meter_max)
 		if(do_after(user, gibtime, target = src))
 			to_chat(user, span_warning("[src] bites you! It seems to have been appeased."))
-			user.adjustBruteLoss(75 - (datum_reference.qliphoth_meter * 15))
+			user.adjustBruteLoss(18 - (datum_reference.qliphoth_meter * 4))
 			datum_reference.qliphoth_change(1)
 			return
 		else
@@ -160,7 +160,7 @@
 	if(work_type != ABNORMALITY_WORK_INSTINCT)// Sets bonus damage on instinct work only.
 		bonusRed = 0
 		return..()
-	bonusRed = (5 - (datum_reference.qliphoth_meter))//It samples your blood if it's below the maximum counter, damage is RED instead of typeless
+	bonusRed = (2.5 - (datum_reference.qliphoth_meter))//It samples your blood if it's below the maximum counter, damage is RED instead of typeless
 	if(bonusRed)
 		to_chat(user, span_warning("A clay doll arrives with a bowl, demanding blood."))
 		playsound(src, 'sound/abnormalities/doomsdaycalendar/Lor_Slash_Generic.ogg', 40, 0, 1)
