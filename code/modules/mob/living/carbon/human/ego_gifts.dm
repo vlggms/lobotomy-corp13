@@ -986,8 +986,8 @@
 
 /datum/ego_gifts/ardor_moth
 	name = "Ardor Star"
-	icon_state = "ardor_star
-	desc = "Provides the user with 10% resistance to fire damage."
+	icon_state = "ardor_star"
+	desc = "Provides the user with 10% resistance to FIRE damage."
 	fortitude_bonus = 5
 	temperance_bonus = -2
 	slot = RIGHTBACK
