@@ -16,8 +16,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/lastchangelog = "" //Saved changlog filesize to detect if there was a change
 	var/ooccolor = "#c43b23"
 	var/asaycolor = "#ff4500" //This won't change the color for current admins, only incoming ones.
-	/// If we spawn an ERT as an admin and choose to spawn as the briefing officer, we'll be given this outfit
-	var/brief_outfit = /datum/outfit/centcom/commander
 	var/enable_tips = TRUE
 	var/tip_delay = 500 //tip delay in milliseconds
 
@@ -84,7 +82,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/datum/species/pref_species = new /datum/species/human()	//Mutant race
 	var/list/features = list("mcolor" = "FFF", "ethcolor" = "9c3030", "tail_lizard" = "Smooth", "tail_human" = "None", "snout" = "Round", "horns" = "None", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs", "moth_wings" = "Plain", "moth_antennae" = "Plain", "moth_markings" = "None")
 	var/list/randomise = list(RANDOM_UNDERWEAR = TRUE, RANDOM_UNDERWEAR_COLOR = TRUE, RANDOM_UNDERSHIRT = TRUE, RANDOM_SOCKS = TRUE, RANDOM_BACKPACK = TRUE, RANDOM_JUMPSUIT_STYLE = TRUE, RANDOM_HAIRSTYLE = TRUE, RANDOM_HAIR_COLOR = TRUE, RANDOM_FACIAL_HAIRSTYLE = TRUE, RANDOM_FACIAL_HAIR_COLOR = TRUE, RANDOM_SKIN_TONE = TRUE, RANDOM_EYE_COLOR = TRUE)
-	var/phobia = "spiders"
 
 	var/list/alt_titles_preferences = list() // Tegu
 
@@ -141,7 +138,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/hearted
 	///If we have a hearted commendations, we honor it every time the player loads preferences until this time has been passed
 	var/hearted_until
-	/// Agendered spessmen can choose whether to have a male or female bodytype
 	var/body_type
 	/// If we have persistent scars enabled
 	var/persistent_scars = TRUE
@@ -244,7 +240,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<b>You are banned from using custom names and appearances. You can continue to adjust your characters, but you will be randomised once you join the game.</b><br>"
 			dat += "<a href='byond://?_src_=prefs;preference=name;task=random'>Random Name</A> "
 			dat += "<a href='byond://?_src_=prefs;preference=toggle_random;random_type=[RANDOM_NAME]'>Always Random Name: [(randomise[RANDOM_NAME]) ? "Yes" : "No"]</a>"
-			dat += "<a href='byond://?_src_=prefs;preference=toggle_random;random_type=[RANDOM_NAME_ANTAG]'>When Antagonist: [(randomise[RANDOM_NAME_ANTAG]) ? "Yes" : "No"]</a>"
 			if(user.client.get_exp_living(TRUE) >= PLAYTIME_HARDCORE_RANDOM)
 				dat += "<a href='byond://?_src_=prefs;preference=toggle_random;random_type=[RANDOM_HARDCORE]'>Hardcore Random: [(randomise[RANDOM_HARDCORE]) ? "Yes" : "No"]</a>"
 			dat += "<br><b>[TeguTranslate("Name", src)]:</b> "
@@ -259,8 +254,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				else
 					dispGender = "Other"
 				dat += "<b>Gender:</b> <a href='byond://?_src_=prefs;preference=gender'>[dispGender]</a>"
-				if(gender == PLURAL || gender == NEUTER)
-					dat += "<BR><b>Body Type:</b> <a href='byond://?_src_=prefs;preference=body_type'>[body_type == MALE ? "Male" : "Female"]</a>"
 
 				if(randomise[RANDOM_BODY] || randomise[RANDOM_BODY_ANTAG]) //doesn't work unless random body
 					dat += "<a href='byond://?_src_=prefs;preference=toggle_random;random_type=[RANDOM_GENDER]'>Always Random Gender: [(randomise[RANDOM_GENDER]) ? "Yes" : "No"]</A>"
@@ -594,12 +587,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "</td>"
 					mutant_category = 0
 
-			//Adds a thing to select which phobia because I can't be assed to put that in the quirks window
-			if("Phobia" in all_quirks)
-				dat += "<h3>Phobia</h3>"
-
-				dat += "<a href='byond://?_src_=prefs;preference=phobia;task=input'>[phobia]</a><BR>"
-
 			if(CONFIG_GET(flag/join_with_mutant_humans))
 
 				if(pref_species.mutant_bodyparts["wings"] && GLOB.r_wings_list.len >1)
@@ -639,38 +626,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>PDA Color:</b> <span style='border:1px solid #161616; background-color: [pda_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='byond://?_src_=prefs;preference=pda_color;task=input'>Change</a><BR>"
 			dat += "<b>PDA Style:</b> <a href='byond://?_src_=prefs;task=input;preference=pda_style'>[pda_style]</a><br>"
 			dat += "<br>"
-			dat += "<b>Ghost Ears:</b> <a href='byond://?_src_=prefs;preference=ghost_ears'>[(chat_toggles & CHAT_GHOSTEARS) ? "All Speech" : "Nearest Creatures"]</a><br>"
-			dat += "<b>Ghost Radio:</b> <a href='byond://?_src_=prefs;preference=ghost_radio'>[(chat_toggles & CHAT_GHOSTRADIO) ? "All Messages":"No Messages"]</a><br>"
-			dat += "<b>Ghost Sight:</b> <a href='byond://?_src_=prefs;preference=ghost_sight'>[(chat_toggles & CHAT_GHOSTSIGHT) ? "All Emotes" : "Nearest Creatures"]</a><br>"
-			dat += "<b>Ghost Whispers:</b> <a href='byond://?_src_=prefs;preference=ghost_whispers'>[(chat_toggles & CHAT_GHOSTWHISPER) ? "All Speech" : "Nearest Creatures"]</a><br>"
-			dat += "<b>Ghost PDA:</b> <a href='byond://?_src_=prefs;preference=ghost_pda'>[(chat_toggles & CHAT_GHOSTPDA) ? "All Messages" : "Nearest Creatures"]</a><br>"
-			dat += "<b>Ghost Law Changes:</b> <a href='byond://?_src_=prefs;preference=ghost_laws'>[(chat_toggles & CHAT_GHOSTLAWS) ? "All Law Changes" : "No Law Changes"]</a><br>"
-
-			if(unlock_content)
-				dat += "<b>Ghost Form:</b> <a href='byond://?_src_=prefs;task=input;preference=ghostform'>[ghost_form]</a><br>"
-				dat += "<B>Ghost Orbit: </B> <a href='byond://?_src_=prefs;task=input;preference=ghostorbit'>[ghost_orbit]</a><br>"
-
-			var/button_name = "If you see this something went wrong."
-			switch(ghost_accs)
-				if(GHOST_ACCS_FULL)
-					button_name = GHOST_ACCS_FULL_NAME
-				if(GHOST_ACCS_DIR)
-					button_name = GHOST_ACCS_DIR_NAME
-				if(GHOST_ACCS_NONE)
-					button_name = GHOST_ACCS_NONE_NAME
-
-			dat += "<b>Ghost Accessories:</b> <a href='byond://?_src_=prefs;task=input;preference=ghostaccs'>[button_name]</a><br>"
-
-			switch(ghost_others)
-				if(GHOST_OTHERS_THEIR_SETTING)
-					button_name = GHOST_OTHERS_THEIR_SETTING_NAME
-				if(GHOST_OTHERS_DEFAULT_SPRITE)
-					button_name = GHOST_OTHERS_DEFAULT_SPRITE_NAME
-				if(GHOST_OTHERS_SIMPLE)
-					button_name = GHOST_OTHERS_SIMPLE_NAME
-
-			dat += "<b>Ghosts of Others:</b> <a href='byond://?_src_=prefs;task=input;preference=ghostothers'>[button_name]</a><br>"
-			dat += "<br>"
 
 			dat += "<b>Broadcast Login/Logout:</b> <a href='byond://?_src_=prefs;preference=broadcast_login_logout'>[broadcast_login_logout ? "Broadcast" : "Silent"]</a><br>"
 			dat += "<b>See Login/Logout Messages:</b> <a href='byond://?_src_=prefs;preference=hear_login_logout'>[(chat_toggles & CHAT_LOGIN_LOGOUT) ? "Allowed" : "Muted"]</a><br>"
@@ -699,7 +654,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>Fit Viewport:</b> <a href='byond://?_src_=prefs;preference=auto_fit_viewport'>[auto_fit_viewport ? "Auto" : "Manual"]</a><br>"
 			if (CONFIG_GET(string/default_view) != CONFIG_GET(string/default_view_square))
 				dat += "<b>[TeguTranslate("Widescreen", src)]:</b> <a href='byond://?_src_=prefs;preference=widescreenpref'>[widescreenpref ? "[TeguTranslate("Enabled", src)] ([CONFIG_GET(string/default_view)])" : "[TeguTranslate("Enabled", src)] ([CONFIG_GET(string/default_view_square)])"]</a><br>"
-
+			var/button_name = "If you see this something went wrong."
 			button_name = pixel_size
 			dat += "<b>Pixel Scaling:</b> <a href='byond://?_src_=prefs;preference=pixel_size'>[(button_name) ? "Pixel Perfect [button_name]x" : "Stretch to fit"]</a><br>"
 
@@ -731,31 +686,40 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "<b>Preferred Map:</b> <a href='byond://?_src_=prefs;preference=preferred_map;task=input'>[p_map]</a><br>"
 
 			dat += "</td><td width='300px' height='300px' valign='top'>"
+			dat += "<h2>Ghost Settings</h2>"
+			dat += "<b>Ghost Ears:</b> <a href='byond://?_src_=prefs;preference=ghost_ears'>[(chat_toggles & CHAT_GHOSTEARS) ? "All Speech" : "Nearest Creatures"]</a><br>"
+			dat += "<b>Ghost Radio:</b> <a href='byond://?_src_=prefs;preference=ghost_radio'>[(chat_toggles & CHAT_GHOSTRADIO) ? "All Messages":"No Messages"]</a><br>"
+			dat += "<b>Ghost Sight:</b> <a href='byond://?_src_=prefs;preference=ghost_sight'>[(chat_toggles & CHAT_GHOSTSIGHT) ? "All Emotes" : "Nearest Creatures"]</a><br>"
+			dat += "<b>Ghost Whispers:</b> <a href='byond://?_src_=prefs;preference=ghost_whispers'>[(chat_toggles & CHAT_GHOSTWHISPER) ? "All Speech" : "Nearest Creatures"]</a><br>"
+			dat += "<b>Ghost PDA:</b> <a href='byond://?_src_=prefs;preference=ghost_pda'>[(chat_toggles & CHAT_GHOSTPDA) ? "All Messages" : "Nearest Creatures"]</a><br>"
+			dat += "<b>Ghost Law Changes:</b> <a href='byond://?_src_=prefs;preference=ghost_laws'>[(chat_toggles & CHAT_GHOSTLAWS) ? "All Law Changes" : "No Law Changes"]</a><br>"
 
-			dat += "<h2>Special Role Settings</h2>"
+			if(unlock_content)
+				dat += "<b>Ghost Form:</b> <a href='byond://?_src_=prefs;task=input;preference=ghostform'>[ghost_form]</a><br>"
+				dat += "<B>Ghost Orbit: </B> <a href='byond://?_src_=prefs;task=input;preference=ghostorbit'>[ghost_orbit]</a><br>"
 
-			if(is_banned_from(user.ckey, ROLE_SYNDICATE))
-				dat += "<font color=red><b>You are banned from antagonist roles.</b></font><br>"
-				src.be_special = list()
+			switch(ghost_accs)
+				if(GHOST_ACCS_FULL)
+					button_name = GHOST_ACCS_FULL_NAME
+				if(GHOST_ACCS_DIR)
+					button_name = GHOST_ACCS_DIR_NAME
+				if(GHOST_ACCS_NONE)
+					button_name = GHOST_ACCS_NONE_NAME
 
+			dat += "<b>Ghost Accessories:</b> <a href='byond://?_src_=prefs;task=input;preference=ghostaccs'>[button_name]</a><br>"
 
-			for (var/special_role in GLOB.special_roles)
-				if(is_banned_from(user.ckey, special_role))
-					dat += "<b>Be [capitalize(special_role)]:</b> <a href='byond://?_src_=prefs;bancheck=[special_role]'>BANNED</a><br>"
-				else
-					var/days_remaining = null
-					if(ispath(GLOB.special_roles[special_role]) && CONFIG_GET(flag/use_age_restriction_for_jobs)) //If it's a game mode antag, check if the player meets the minimum age
-						var/mode_path = GLOB.special_roles[special_role]
-						var/datum/game_mode/temp_mode = new mode_path
-						days_remaining = temp_mode.get_remaining_days(user.client)
+			switch(ghost_others)
+				if(GHOST_OTHERS_THEIR_SETTING)
+					button_name = GHOST_OTHERS_THEIR_SETTING_NAME
+				if(GHOST_OTHERS_DEFAULT_SPRITE)
+					button_name = GHOST_OTHERS_DEFAULT_SPRITE_NAME
+				if(GHOST_OTHERS_SIMPLE)
+					button_name = GHOST_OTHERS_SIMPLE_NAME
 
-					if(days_remaining)
-						dat += "<b>Be [capitalize(special_role)]:</b> <font color=red> \[IN [days_remaining] DAYS]</font><br>"
-					else
-						dat += "<b>Be [capitalize(special_role)]:</b> <a href='byond://?_src_=prefs;preference=be_special;be_special_type=[special_role]'>[(special_role in be_special) ? TeguTranslate("Enabled", src) : TeguTranslate("Disabled", src)]</a><br>"
-			dat += "<br>"
-			dat += "<b>Midround Antagonist:</b> <a href='byond://?_src_=prefs;preference=allow_midround_antag'>[(toggles & MIDROUND_ANTAG) ? TeguTranslate("Enabled", src) : TeguTranslate("Disabled", src)]</a><br>"
-			dat += "</td></tr></table>"
+			dat += "<b>Ghosts of Others:</b> <a href='byond://?_src_=prefs;task=input;preference=ghostothers'>[button_name]</a><br>"
+			dat += "</td>"
+			dat += "</tr></table>"
+
 		if(2) //OOC Preferences
 			dat += "<table><tr><td width='340px' height='300px' valign='top'>"
 			dat += "<h2>OOC Settings</h2>"
@@ -795,8 +759,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<b>Hide Dead Chat:</b> <a href = 'byond://?_src_=prefs;preference=toggle_dead_chat'>[(chat_toggles & CHAT_DEAD)?"Shown":"Hidden"]</a><br>"
 				dat += "<b>Hide Radio Messages:</b> <a href = 'byond://?_src_=prefs;preference=toggle_radio_chatter'>[(chat_toggles & CHAT_RADIO)?"Shown":"Hidden"]</a><br>"
 				dat += "<b>Hide Prayers:</b> <a href = 'byond://?_src_=prefs;preference=toggle_prayers'>[(chat_toggles & CHAT_PRAYER)?"Shown":"Hidden"]</a><br>"
-				dat += "<b>Ignore Being Summoned as Cult Ghost:</b> <a href = 'byond://?_src_=prefs;preference=toggle_ignore_cult_ghost'>[(toggles & ADMIN_IGNORE_CULT_GHOST)?"Don't Allow Being Summoned":"Allow Being Summoned"]</a><br>"
-				dat += "<b>Briefing Officer Outfit:</b> <a href = 'byond://?_src_=prefs;preference=briefoutfit;task=input'>[brief_outfit]</a><br>"
 				if(CONFIG_GET(flag/allow_admin_asaycolor))
 					dat += "<br>"
 					dat += "<b>ASAY Color:</b> <span style='border: 1px solid #161616; background-color: [asaycolor ? asaycolor : "#FF4500"];'>&nbsp;&nbsp;&nbsp;</span> <a href='byond://?_src_=prefs;preference=asaycolor;task=input'>Change</a><br>"
@@ -1632,15 +1594,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(new_asaycolor)
 						asaycolor = sanitize_ooccolor(new_asaycolor)
 
-				if("briefoutfit")
-					var/list/valid_paths = list()
-					for(var/datum/outfit/outfit_path as anything in subtypesof(/datum/outfit))
-						valid_paths[initial(outfit_path.name)] = outfit_path
-					var/new_outfit = input(user, "Choose your briefing officer outfit:", "Game Preference") as null|anything in valid_paths
-					new_outfit = valid_paths[new_outfit]
-					if(new_outfit)
-						brief_outfit = new_outfit
-
 				if("bag")
 					var/new_backpack = input(user, "Choose your character's style of bag:", "Character Preference")  as null|anything in GLOB.backpacklist
 					if(new_backpack)
@@ -1741,10 +1694,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(pickedPDAColor)
 						pda_color = pickedPDAColor
 
-				if("phobia")
-					var/phobiaType = input(user, "What are you scared of?", "Character Preference", phobia) as null|anything in SStraumas.phobia_types
-					if(phobiaType)
-						phobia = phobiaType
 
 				if ("max_chat_length")
 					var/desiredlength = input(user, "Choose the max character length of shown Runechat messages. Valid range is 1 to [CHAT_MESSAGE_MAX_LENGTH] (default: [initial(max_chat_length)]))", "Character Preference", max_chat_length)  as null|num
@@ -1763,7 +1712,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(unlock_content)
 						toggles ^= MEMBER_PUBLIC
 				if("gender")
-					var/list/friendlyGenders = list("Male" = "male", "Female" = "female", "Other" = "plural")
+					var/list/friendlyGenders = list("Male" = "male", "Female" = "female")
 					var/pickedGender = input(user, "Choose your gender.", "Character Preference", gender) as null|anything in friendlyGenders
 					if(pickedGender && friendlyGenders[pickedGender] != gender)
 						gender = friendlyGenders[pickedGender]
@@ -1890,8 +1839,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					toggles ^= DEADMIN_POSITION_SECURITY
 				if("toggle_deadmin_silicon")
 					toggles ^= DEADMIN_POSITION_SILICON
-				if("toggle_ignore_cult_ghost")
-					toggles ^= ADMIN_IGNORE_CULT_GHOST
 
 
 				if("be_special")
@@ -2075,10 +2022,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	character.gender = gender
 	character.age = age
-	if(gender == MALE || gender == FEMALE)
+	if(gender == FEMALE)
 		character.body_type = gender
 	else
-		character.body_type = body_type
+		character.body_type = MALE
 
 	character.eye_color = eye_color
 	var/obj/item/organ/eyes/organ_eyes = character.getorgan(/obj/item/organ/eyes)
