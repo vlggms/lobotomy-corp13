@@ -5,6 +5,7 @@
 	icon_state = "kikimora"
 	icon_living = "kikimora"
 	icon_dead = "kikimora"
+	portrait = "kikimora"
 	maxHealth = 300
 	health = 300
 	rapid_melee = 1
@@ -29,6 +30,16 @@
 	gift_type = /datum/ego_gifts/kikimora
 	//envy due to being a curse
 	chem_type = /datum/reagent/abnormality/sin/envy
+	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
+
+	observation_prompt = "Kikimora? <br> Kikimora. <br>\
+	Kikimora Kikimora Kikimora Kikimora <br>\
+	Kikimora Kikimora Kikimora Kikimora <br>\
+	Kikimora Kikimora Kikimora Kikimora <br>\
+	Kikimora Kikimora Kikimora Kikimora <br>"
+	observation_choices = list(
+		"Kikimora?" = list(TRUE, "Kikimora."),
+	)
 
 /mob/living/simple_animal/hostile/abnormality/kikimora/ZeroQliphoth(mob/living/carbon/human/user)
 	. = ..()

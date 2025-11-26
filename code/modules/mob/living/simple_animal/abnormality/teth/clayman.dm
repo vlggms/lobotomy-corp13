@@ -5,7 +5,7 @@
 	icon_state = "bluro"
 	icon_living = "bluro"
 	icon_dead = "bluro"
-	portrait = "bluro"
+	portrait = "clayman"
 	del_on_death = TRUE
 	maxHealth = 200
 	health = 200
@@ -39,10 +39,20 @@
 		/datum/ego_datum/weapon/clayman,
 		/datum/ego_datum/armor/clayman,
 	)
-	var/dashready = TRUE
+
 	gift_message = "The clay clings to you, a constant reminder."
 	gift_type =  /datum/ego_gifts/clayman
 	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
+
+	observation_prompt = "A soft, clay-like substance. <br>\
+		Rolled, moulded, sculpted, an art form of the highest order. <br>\
+		It looks at you now, with expectation in its eyes. <br>This work, it's not complete. It..."
+	observation_choices = list(
+		"It should be destroyed" = list(FALSE, "It is a foul abomination. <br>Such a thing shouldn't exist. <br>It violates the laws of this world and the city."),
+		"It still needs a soul" = list(TRUE, "The price to be paid cannot be measured in time or money. <br>The results speak for themselves."),
+	)
+
+	var/dashready = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/clayman/WorktickFailure(mob/living/carbon/human/user)
 	var/dtype = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
