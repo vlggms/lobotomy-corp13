@@ -736,20 +736,8 @@
 		else if(istype(user) && user.dna.check_mutation(TK))
 			to_chat(user, "<span class='notice'>You telekinetically remove the light [fitting].</span>")
 		else
-			var/obj/item/bodypart/affecting = H.get_bodypart("[(user.active_hand_index % 2 == 0) ? "r" : "l" ]_arm")
-			if(affecting?.receive_damage( 0, 5 ))			// 5 burn damage
-				H.update_damage_overlays()
-			if(HAS_TRAIT(user, TRAIT_LIGHTBULB_REMOVER))
-				to_chat(user, "<span class='notice'>You feel like you're burning, but you can push through.</span>")
-				if(!do_after(user, 5 SECONDS, target = src))
-					return
-				if(affecting?.receive_damage( 0, 10 ))		// 10 more burn damage
-					H.update_damage_overlays()
-				to_chat(user, "<span class='notice'>You manage to remove the light [fitting], shattering it in process.</span>")
-				break_light_tube()
-			else
-				to_chat(user, "<span class='warning'>You try to remove the light [fitting], but you burn your hand on it!</span>")
-				return
+			to_chat(user, "<span class='warning'>You try to remove the light [fitting], but you burn your hand on it!</span>")
+			return
 	else
 		to_chat(user, "<span class='notice'>You remove the light [fitting].</span>")
 	// create a light tube/bulb item and put it in the user's hand

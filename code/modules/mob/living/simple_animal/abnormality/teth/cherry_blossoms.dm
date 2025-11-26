@@ -121,7 +121,7 @@
 		if(affected_human.stat == DEAD)
 			continue
 		affected_human.adjustBruteLoss(-500) // It heals everyone to full
-		affected_human.adjustSanityLoss(-500) // It heals everyone to full
+		affected_human.restoreSanity() // It heals everyone to full
 		affected_human.remove_status_effect(STATUS_EFFECT_MARKEDFORDEATH)
 
 /datum/status_effect/markedfordeath/on_remove()
