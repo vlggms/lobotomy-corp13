@@ -23,7 +23,6 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 	quirk_blacklist = list(list("Blind","Nearsighted"), \
 							list("Jolly","Depression","Apathetic","Hypersensitive"), \
 							list("Ageusia","Vegetarian","Deviant Tastes"), \
-							list("Ananas Affinity","Ananas Aversion"), \
 							list("Alcohol Tolerance","Light Drinker"), \
 							// Tegustation Prosthetic limbs edit: Cant powergame free negative quirk points
 							list("Prosthetic Limb","Prosthetic Right Arm"), \
@@ -31,9 +30,6 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 							list("Prosthetic Limb","Prosthetic Right Leg"), \
 							list("Prosthetic Limb","Prosthetic Left Leg"), \
 							// Tegustation Prosthetic limbs edit ends
-							list("Clown Fan","Mime Fan"), \
-							list("Bad Touch", "Friendly"), \
-							list("Extrovert", "Introvert"), \
 							//special stuff starts here
 							list("Challenge: No Guns", "Challenge: No Attacking"), \
 							list("Minor RED Damage Weakness", "Major RED Damage Weakness", "Fatal RED Damage Weakness"), \
