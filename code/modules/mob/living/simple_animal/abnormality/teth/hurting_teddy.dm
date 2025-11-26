@@ -53,6 +53,20 @@
 
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
+	observation_prompt = "A teddy bear suffers from having nails lodged into its body. <br>\
+	The bloodstains decorating it are a telling sign of the time it has spent in pain. <br>\
+	The holes where its eyes should be are empty. <br>\
+	In spite of that, it has its arms open wide, endeavouring to fulfill its duty to give hugs."
+	observation_choices = list(
+		"Push it away" = list(FALSE, "You push the gross thing away. <br>\
+			Your hands are punctured deeply by the nails. <br>\
+			You lie there, bleeding, heavily..."),
+		"Hug the teddy" = list(TRUE, "Those nails look extremely painful... <br>\
+			But you muster your courage and embrace the teddy bear. <br>\
+			The hug is warm, and the nails feel soft and spongy. <br>\
+			After a few short moments, the teddy bear seems satisfied."),
+	)
+
 	var/bearfriended //the one who can work on it safely
 	var/mob/living/carbon/human/hug_victim = null
 	var/release_threshold = 20 //Total raw damage needed to break a player out of a grab (from any source)

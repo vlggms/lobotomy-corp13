@@ -4,7 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "caterpillar"
 	icon_living = "caterpillar"
-	portrait = "caterpillar"
+	portrait = "hookah"
 	pixel_x = -16
 	base_pixel_x = -16
 	maxHealth = 700
@@ -40,6 +40,24 @@
 	)
 	gift_type =  /datum/ego_gifts/caterpillar
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
+
+	observation_prompt = "\"Kyukyu.\" <br>\
+		The smoke that fills the room is suffocating. <br>\
+		A fat worm sits lazily on a mushroom. <br>\
+		When you think about it, it's not too different from when you lazily sit in an office chair. <br>\
+		Enjoying a comfortable life working for a prestigious wing. <br.\
+		Away from the common riff-raff of the backstreets. <br>\
+		This uncanny feeling..."
+	observation_choices = list(
+		"It's just like me" = list(TRUE, "You can see your face in the smoke, haughty and indignant. <br>\
+			Just like your old, shallow self. <br>\
+			It's probably not a good idea to spend too much time with this abnormality."),
+		"Just a filthy creature" = list(FALSE, "Repression, the emotion of refusal to face oneself. <br>\
+			It will not yield anything on its own. <br>\
+			One must face themselves through  constant insight. <br>\
+			The worm will fatten up from the despair and doubts blown towards it <br>\
+			To create silk... The silkworm must be boiled."),
+	)
 
 	var/darts_smoked	//how many times you didnt' work repression
 	var/can_counter = TRUE

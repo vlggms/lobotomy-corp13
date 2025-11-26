@@ -8,6 +8,7 @@
 	icon_living = "sleeping_idle"
 	icon_dead = "sleeping_dead"
 	var/icon_active = "sleeping_active"
+	portrait = "sleeping_beauty"
 	can_buckle = TRUE
 	buckle_lying = 90
 	maxHealth = 120
