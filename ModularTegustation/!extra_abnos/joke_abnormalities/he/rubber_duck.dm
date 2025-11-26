@@ -32,7 +32,8 @@
 		/datum/ego_datum/armor/squeak,
 	)
 	gift_type =  /datum/ego_gifts/squeak
-	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
+
+	abnormality_origin = ABNORMALITY_ORIGIN_JOKE
 	var/list/looking_players = list()
 	var/list/ignore_abno_list = list(
 		/mob/living/simple_animal/hostile/abnormality/training_rabbit,
