@@ -4,7 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "caterpillar"
 	icon_living = "caterpillar"
-	portrait = "caterpillar"
+	portrait = "hookah"
 	pixel_x = -16
 	base_pixel_x = -16
 	maxHealth = 700
@@ -40,6 +40,9 @@
 	)
 	gift_type =  /datum/ego_gifts/caterpillar
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
+
+//	observation_prompt = TBA
+//	observation_choices = TBA
 
 	var/darts_smoked	//how many times you didnt' work repression
 	var/can_counter = TRUE

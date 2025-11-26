@@ -39,10 +39,15 @@
 		/datum/ego_datum/weapon/clayman,
 		/datum/ego_datum/armor/clayman,
 	)
-	var/dashready = TRUE
+
 	gift_message = "The clay clings to you, a constant reminder."
 	gift_type =  /datum/ego_gifts/clayman
 	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
+
+//	observation_prompt = TBA
+//	observation_choices = TBA
+
+	var/dashready = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/clayman/WorktickFailure(mob/living/carbon/human/user)
 	var/dtype = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)

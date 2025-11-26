@@ -40,6 +40,10 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 		)
 	gift_type =  /datum/ego_gifts/roseate_desire
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
+
+//	observation_prompt = TBA
+//	observation_choices = TBA
+
 	ranged = TRUE
 	environment_smash = FALSE//this stops it from smashing its own ribbons when breaching independently
 	minimum_distance = 1

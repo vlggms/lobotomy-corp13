@@ -367,7 +367,7 @@
 // Doomsday Calendar
 /obj/item/paper/fluff/info/he/doomsday_calendar
 	abno_type = /mob/living/simple_animal/hostile/abnormality/doomsday_calendar
-	abno_code = "M-04-146"//M-04-04-05 in LCB
+	abno_code = "M-04-172"//M-04-04-05 in LCB
 	abno_info = list(
 		"When an employee entered the Containment Unit of another Abnormality, Doomsday Calendar’s Qliphoth Counter eventually decreased.",
 		"The lower the Qliphoth Counter, the more PE-Boxes Doomsday Calender produced. Instinct Work also had a higher success rate.",
@@ -576,14 +576,6 @@
 		"When the work result was Bad, the Qliphoth counter lowered.",
 		"When work was successfully performed, a certain amount of the raw material was converted into nutritous and healing Lifetime Stew, and ejected from the abnormality.",
 		"Employees who consume too much of the Lifetime Stew, or food in general become easy meals for this abnormality.")
-
-// Rubber Duck
-/obj/item/paper/fluff/info/he/rubber_duck
-	abno_type = /mob/living/simple_animal/hostile/abnormality/rubber_duck
-	abno_code = "F-02-182"
-	abno_info = list(
-		"When another abnormality breached, the Qliphoth counter lowered.",
-		"F-02-182 returned to it's containment after 5 minutes.")
 
 //Pink Shoes
 /obj/item/paper/fluff/info/he/pink_shoes
