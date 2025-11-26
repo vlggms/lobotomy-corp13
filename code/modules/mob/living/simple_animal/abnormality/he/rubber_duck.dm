@@ -31,7 +31,7 @@
 		/datum/ego_datum/weapon/squeak,
 		/datum/ego_datum/armor/squeak,
 	)
-//	gift_type =  /datum/ego_gifts/squeak
+	gift_type =  /datum/ego_gifts/squeak
 	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
 	var/list/looking_players = list()
 	var/list/ignore_abno_list = list(

@@ -292,6 +292,13 @@
 	temperance_bonus = 2
 	slot = NECKWEAR
 
+/datum/ego_gifts/oracle
+	name = "Dead Dream"
+	icon_state = "dead_dream"
+	fortitude_bonus = -1
+	prudence_bonus = 3
+	slot = HAND_1
+
 /**
  * TETH EGO Gifts
  */
@@ -544,6 +551,38 @@
 	prudence_bonus = 2
 	temperance_bonus = -5
 	justice_bonus = 2
+
+/datum/ego_gifts/clayman
+	name = "Creative Expression"
+	icon_state = "creative_freedom"
+	fortitude_bonus = 1
+	prudence_bonus = 1
+	justice_bonus = 1
+	temperance_bonus = 1
+	slot = HAND_2
+
+/datum/ego_gifts/kikimora //SHOULD make you immune to the disease (Code for this is in kikimora)
+	name = "Kikimora"
+	icon_state = "kikimora"
+	desc = "Grants the wearer immunity to a certain cognitohazard."
+	justice_bonus = -3
+	fortitude_bonus = 4
+	slot = MOUTH_1
+
+/datum/ego_gifts/rapunzel
+	name = "Rapunzel"
+	icon_state = "rapunzel"
+	fortitude_bonus = 2
+	temperance_bonus = 2
+	prudence_bonus = -2
+	slot = HELMET
+
+/datum/ego_gifts/hex_nail
+	name = "Hex nail"
+	icon_state = "hex_nail"
+	justice_bonus = -2
+	temperance_bonus = 5
+	slot = BROOCH
 
 /**
  * HE EGO Gifts
@@ -939,6 +978,29 @@
 	justice_bonus = -1
 	slot = LEFTBACK
 
+/datum/ego_gifts/squeak
+	name = "Squeaky Toy"
+	icon_state = "squeak"
+	prudence_bonus = 4
+	slot = HAT
+
+/datum/ego_gifts/ardor_moth
+	name = "Ardor Star"
+	icon_state = "ardor_star"
+	desc = "Provides the user with 10% resistance to FIRE damage."
+	fortitude_bonus = 5
+	temperance_bonus = -2
+	slot = RIGHTBACK
+
+/datum/ego_gifts/ardor_moth/Initialize(mob/living/carbon/human/user)
+	. = ..()
+	user.physiology.burn_mod *= 0.9
+
+
+/datum/ego_gifts/ardor_moth/Remove(mob/living/carbon/human/user)
+	user.physiology.burn_mod /= 0.9
+	return ..()
+
 /**
  * WAW EGO Gifts
  */
@@ -1310,6 +1372,13 @@
 	attachment_mod = 3
 	repression_mod = 3
 	slot = HAT
+
+/datum/ego_gifts/caterpillar
+	name = "Havana"
+	icon_state = "havana"
+	justice_bonus = 10
+	temperance_bonus = -2 //smoking kills
+	slot = LEFTBACK
 
 /**
  * ALEPH EGO Gifts

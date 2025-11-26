@@ -26,7 +26,7 @@
 		/datum/ego_datum/weapon/kikimora,
 		/datum/ego_datum/armor/kikimora,
 		)
-	gift_type = null
+	gift_type = /datum/ego_gifts/kikimora
 	//envy due to being a curse
 	chem_type = /datum/reagent/abnormality/sin/envy
 
@@ -110,6 +110,11 @@
 	//Infection Mechanic
 	if(ishuman(owner))
 		var/mob/living/carbon/human/L = owner
+		var/mouth = L.ego_gift_list[MOUTH_1]
+		if(istype(mouth, /datum/ego_gifts/kikimora))
+			qdel(src)
+			return
+
 		if(spread_cooldown <= world.time)
 			for(var/mob/living/carbon/human/H in hearers(7, L))
 				if(prob(5 * words_said))
