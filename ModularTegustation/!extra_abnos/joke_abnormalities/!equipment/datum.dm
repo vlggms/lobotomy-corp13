@@ -15,6 +15,8 @@ Keep things balanced if they aren't going to be admin only.  - Coxswain
 	cost = 12
 
 //Teth
+
+// An Abnormality - An Ego
 /datum/ego_datum/weapon/an_ego
 	item_path = /obj/item/ego_weapon/an_ego
 	cost = 20
@@ -25,7 +27,17 @@ Keep things balanced if they aren't going to be admin only.  - Coxswain
 
 //He
 
+// Interdimensional Rubber Duck - Squeaky Toy
+/datum/ego_datum/weapon/squeak
+	item_path = /obj/item/ego_weapon/ranged/squeak
+	cost = 35
+
+/datum/ego_datum/armor/squeak
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/squeak
+	cost = 35
+
 //Waw
+
 //Skub - Pro-Skub, Anti-Skub
 /datum/ego_datum/weapon/pro_skub
 	item_path = /obj/item/ego_weapon/pro_skub
@@ -44,6 +56,7 @@ Keep things balanced if they aren't going to be admin only.  - Coxswain
 	cost = 50
 
 //Aleph
+
 // Buff Rudolta - Ultimate Christmas
 /datum/ego_datum/weapon/buff_christmas
 	item_path = /obj/item/ego_weapon/ultimate_christmas

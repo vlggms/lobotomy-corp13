@@ -13,6 +13,14 @@
 
 //He
 
+// Rubber Duck
+/obj/item/paper/fluff/info/joke/rubber_duck
+	abno_type = /mob/living/simple_animal/hostile/abnormality/rubber_duck
+	abno_code = "F-02-01/13"
+	abno_info = list(
+		"When another abnormality breached, the Qliphoth counter lowered.",
+		"F-02-182 returned to it's containment after 5 minutes.")
+
 //WAW
 //Skub
 /obj/item/paper/fluff/info/joke/skub

@@ -366,17 +366,3 @@
 		pellets = initial(pellets)
 		variance = initial(variance)
 	return ..()
-
-/obj/item/ego_weapon/ranged/squeak
-	name = "squeaky toy"
-	desc = "Soft to the touch, as if it's made of rubber"
-	icon_state = "squeak"
-	inhand_icon_state = "squeak"
-	force = 9
-	projectile_path = /obj/projectile/ego_bullet/ego_squeak
-	weapon_weight = WEAPON_MEDIUM
-	spread = 10
-	shotsleft = 30
-	reloadtime = 1.3 SECONDS
-	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
-	autofire = 0.14 SECONDS

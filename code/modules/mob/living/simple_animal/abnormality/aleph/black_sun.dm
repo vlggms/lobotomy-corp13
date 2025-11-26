@@ -25,6 +25,9 @@
 //	gift_type = /datum/ego_gifts/arcadia
 	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
 
+//This is sitting in the bin. Maybe one day, its creator will complete it and we can port it over. - Coxswain
+	can_spawn = FALSE
+
 	//takes 12 minutes from the moment of getting it to breach, and cause a headache.
 	var/stage
 	var/nextstage = 1 MINUTES
