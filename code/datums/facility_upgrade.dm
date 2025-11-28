@@ -247,7 +247,7 @@
 	value = 0
 	max_value = 30
 	var/value_increase = 5
-	info = " - This upgrade inceases the amount of stats all Agents have by +5 per upgrade."
+	info = " - This upgrade inceases the amount of stats all Agents and Officers have by +5 per upgrade."
 
 /datum/facility_upgrade/agent_spawn_stats_bonus/DisplayValue()
 	return "+[value]"
@@ -309,40 +309,44 @@
 
 /datum/facility_upgrade/specialization/records
 	name = UPGRADE_RECORDS_1
-	info = " - Gives most of the Records Officer's watches a buff.<br> - Raises the Records Officer's Stat Cap to 80"
+	info = " - Gives most of the Records Officer's watches a buff.<br> - Raises the Records Officer's Stat and maximum potential by 10"
 
 /datum/facility_upgrade/specialization/records/Upgrade()
 	// Applies newly purchased bonus to all living agents
-	for(var/datum/job/J in SSjob.occupations)
+	for(var/datum/job/command/J in SSjob.occupations)
 		if (J.title == "Records Officer")
-			J.job_attribute_limit += 20
+			J.job_attribute_limit += 10
+			J.extra_starting_stats += 10
 			break
 	for(var/mob/living/carbon/human/H in GLOB.human_list)
 		if(!H.ckey)
 			continue
 		if(H.mind.assigned_role == "Records Officer")
-			H.adjust_attribute_limit(20)
+			H.adjust_all_attribute_levels(10)
+			H.adjust_attribute_limit(10)
 			to_chat(H, span_notice("You feel new potential unlock within you!"))
 			break
 	. = ..()
 
 /datum/facility_upgrade/specialization/tier_2/records
 	name = UPGRADE_RECORDS_2
-	info = " - Increases Lob gained from Abnormality Understanding by 50%.<br> - Raises the Records Officer's Stat Cap to 100"
+	info = " - Increases Lob gained from Abnormality Understanding by 50%.<br> - Raises the Records Officer's Stat and maximum potential by 10"
 	requires_one_of = list(UPGRADE_RECORDS_1)
 	requires_none_of = list(UPGRADE_DISCIPLINARY_2, UPGRADE_EXTRACTION_2)
 
 /datum/facility_upgrade/specialization/tier_2/records/Upgrade()
 	// Applies newly purchased bonus to all living agents
-	for(var/datum/job/J in SSjob.occupations)
+	for(var/datum/job/command/J in SSjob.occupations)
 		if (J.title == "Records Officer")
-			J.job_attribute_limit += 20
+			J.job_attribute_limit += 10
+			J.extra_starting_stats += 10
 			break
 	for(var/mob/living/carbon/human/H in GLOB.human_list)
 		if(!H.ckey)
 			continue
 		if(H.mind.assigned_role == "Records Officer")
-			H.adjust_attribute_limit(20)
+			H.adjust_all_attribute_levels(10)
+			H.adjust_attribute_limit(10)
 			to_chat(H, span_notice("You feel new potential unlock within you!"))
 			break
 	. = ..()
