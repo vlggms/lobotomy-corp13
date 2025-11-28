@@ -53,6 +53,9 @@
 
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
+//	observation_prompt = TBA
+//	observation_choices = TBA
+
 	var/bearfriended //the one who can work on it safely
 	var/mob/living/carbon/human/hug_victim = null
 	var/release_threshold = 20 //Total raw damage needed to break a player out of a grab (from any source)

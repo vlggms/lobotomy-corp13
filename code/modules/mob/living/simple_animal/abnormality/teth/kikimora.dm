@@ -29,6 +29,10 @@
 	gift_type = /datum/ego_gifts/kikimora
 	//envy due to being a curse
 	chem_type = /datum/reagent/abnormality/sin/envy
+	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
+
+//	observation_prompt = TBA
+//	observation_choices = TBA
 
 /mob/living/simple_animal/hostile/abnormality/kikimora/ZeroQliphoth(mob/living/carbon/human/user)
 	. = ..()
