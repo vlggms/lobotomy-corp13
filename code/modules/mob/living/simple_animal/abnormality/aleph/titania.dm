@@ -13,9 +13,9 @@
 	is_flying_animal = TRUE
 	threat_level = ALEPH_LEVEL
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = list(0, 0, 0, 50, 55),
-		ABNORMALITY_WORK_INSIGHT = list(0, 0, 0, 35, 45),
-		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 15, 25, 40),
+		ABNORMALITY_WORK_INSTINCT = list(0, 0, 0, 45, 50),
+		ABNORMALITY_WORK_INSIGHT = list(0, 0, 0, 30, 40),
+		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 10, 20, 40),
 		ABNORMALITY_WORK_REPRESSION = 0,
 	)
 	start_qliphoth = 3
@@ -46,9 +46,9 @@
 		"Stay silent" = list(FALSE, "Ah... <br>A mere human, human, human. <br>Cease your fear, I shall rid you of your pains. <br>Be reborn as a flower."),
 	)
 	patrol_cooldown_time = 5 SECONDS
-	var/fairy_spawn_number = 2
+	var/fairy_spawn_number = 3
 	var/fairy_spawn_time = 5 SECONDS
-	var/fairy_spawn_limit = 40 // Oh boy, what can go wrong?
+	var/fairy_spawn_limit = 30 // Oh boy, what can go wrong?
 	//Fairy spawn limit only matters for the spawn loop, players she kills and spawned via the law don't count
 	var/list/spawned_mobs = list()
 	/// Is user performing work not at full sanity at the beginning?
@@ -90,7 +90,7 @@
 	var/mob/living/carbon/human/H = attacked_target
 	. = ..()
 	//Kills the weak immediately.
-	if(ishuman(H) && (get_user_level(H) < 4 || H.sanity_lost))
+	if(ishuman(H) && (H.health < 0 || H.sanity_lost))
 		say("I rid you of your pain, mere human.")
 		//Double Check
 		SpawnFairies(fairy_spawn_number * 2, H, ignore_cap = TRUE)
@@ -104,13 +104,10 @@
 	animate(F, alpha = 255,time = 15)
 	var/obj/effect/temp_visual/decoy/fading/D = new(get_turf(H), H)
 	D.layer = ABOVE_MOB_LAYER
-	for(var/i = 0 to SLOTS_AMT)
-		NestedItems(F, H.get_item_by_slot(0>>i))
+	for(var/obj/item/W in H)
+		dropItemToGround(W)
+		W.forceMove(F)
 	qdel(H)
-
-/mob/living/simple_animal/hostile/abnormality/titania/proc/NestedItems(/mob/living/simple_animal/hostile/titania_flower/nest, obj/item/nested_item)
-	if(nested_item)
-		nested_item.forceMove(nest)
 
 // Modified patrolling
 /mob/living/simple_animal/hostile/abnormality/titania/patrol_select()
@@ -120,7 +117,7 @@
 			continue
 		if(get_dist(src, H) < 4) // Unnecessary for this distance
 			continue
-		if(!H.has_status_effect(/datum/status_effect/fairy_lights))
+		if(!H.has_status_effect(STATUS_EFFECT_FAIRY_LIGHTS))
 			continue
 		target_turfs += get_turf(H)
 
@@ -134,7 +131,7 @@
 /mob/living/simple_animal/hostile/abnormality/titania/proc/FairyLoop()
 	if(IsCombatMap())
 		return
-	SpawnFairies(fairy_spawn_number)
+	SpawnFairies(rand(1, fairy_spawn_number))
 	addtimer(CALLBACK(src, PROC_REF(FairyLoop)), fairy_spawn_time)
 
 /mob/living/simple_animal/hostile/abnormality/titania/proc/SpawnFairies(amount, mob/turf_mob, ignore_cap = FALSE)
@@ -167,6 +164,10 @@
 /mob/living/simple_animal/hostile/abnormality/titania/death(gibbed)
 	for(var/mob/living/A in spawned_mobs)
 		A.death()
+	for(var/mob/living/carbon/human/H in GLOB.human_list)
+		var/datum/status_effect/fairy_lights/F = H.has_status_effect(STATUS_EFFECT_FAIRY_LIGHTS)
+		if(F)
+			qdel(F)
 	return ..()
 
 //Preventing her from trying to hit Oberon
@@ -257,6 +258,10 @@
 //Breach, work, 'n' stuff
 /mob/living/simple_animal/hostile/abnormality/titania/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
+	var/units_to_add = list(
+		/mob/living/simple_animal/hostile/fairyswarm = 6,
+		)
+	AddComponent(/datum/component/ai_leadership, units_to_add, 6, TRUE, TRUE)
 	addtimer(CALLBACK(src, PROC_REF(FairyLoop)), 10 SECONDS)	//10 seconds from now you start spawning fairies
 	addtimer(CALLBACK(src, PROC_REF(SetLaw)), law_timer)	//Set Laws in 30 Seconds
 
@@ -308,6 +313,13 @@
 /mob/living/simple_animal/hostile/titania_flower/CanAttack(atom/the_target)
 	return FALSE
 
+/mob/living/simple_animal/hostile/titania_flower/Destroy()
+	for(var/atom/movable/AM in src) //morph code
+		AM.forceMove(loc)
+		if(prob(50))
+			step(AM, pick(GLOB.alldirs))
+	return ..()
+
 //The Mini fairies
 /mob/living/simple_animal/hostile/fairyswarm
 	name = "fairy"
@@ -331,7 +343,9 @@
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	mob_size = MOB_SIZE_TINY
 	del_on_death = TRUE
+	can_patrol = TRUE
 	var/mob/living/simple_animal/hostile/abnormality/titania/mommy
+	var/mob/living/carbon/human/hitOnce = null
 	var/datum/status_effect/fairy_lights/status
 
 /mob/living/simple_animal/hostile/fairyswarm/Initialize()
@@ -343,6 +357,9 @@
 	if(status)
 		return
 	return ..()
+
+/mob/living/simple_animal/hostile/fairyswarm/MovedTryAttack()
+	return FALSE
 
 /mob/living/simple_animal/hostile/fairyswarm/Destroy()
 	if(status)
@@ -356,18 +373,21 @@
 
 //Attacking code
 /mob/living/simple_animal/hostile/fairyswarm/AttackingTarget(atom/attacked_target)
-	if(ishuman(target) && prob(50))
-		var/mob/living/victim = target
-		if (victim.has_status_effect(STATUS_EFFECT_FAIRY_LIGHTS))
-			var/datum/status_effect/fairy_lights/F = victim.has_status_effect(STATUS_EFFECT_FAIRY_LIGHTS)
-			if(F.fairies.len < F.limit)
-				F.duration = world.time + 30 SECONDS
+	if(ishuman(target))
+		if(hitOnce == target)
+			var/mob/living/victim = target
+			if (victim.has_status_effect(STATUS_EFFECT_FAIRY_LIGHTS))
+				var/datum/status_effect/fairy_lights/F = victim.has_status_effect(STATUS_EFFECT_FAIRY_LIGHTS)
+				if(F.fairies.len < F.limit)
+					F.duration = world.time + 30 SECONDS
+					F.AddToPlayer(src)
+					to_chat(victim, span_userdanger("Another fairy is orbiting you!"))
+			else
+				var/datum/status_effect/fairy_lights/F = victim.apply_status_effect(STATUS_EFFECT_FAIRY_LIGHTS)
 				F.AddToPlayer(src)
-				to_chat(victim, span_userdanger("Another fairy is orbiting you!"))
+				to_chat(victim, span_userdanger("A fairy is orbiting you!"))
 		else
-			var/datum/status_effect/fairy_lights/F = victim.apply_status_effect(STATUS_EFFECT_FAIRY_LIGHTS)
-			F.AddToPlayer(src)
-			to_chat(victim, span_userdanger("A fairy is orbiting you!"))
+			hitOnce = target
 	. = ..()
 
 /datum/status_effect/fairy_lights
@@ -434,15 +454,15 @@
 /datum/status_effect/fairy_lights/proc/HurtFaries(datum/source, damage, damagetype, def_zone)
 	if(!owner || damagetype != RED_DAMAGE)//I know in wonderlab it says red or white but if it was white than fairies could kill the fairies inside you
 		return
-	if(!damage || damage <= 20)
+	if(!damage || damage < 15)
 		return
 	if(fairies.len > 1)
 		to_chat(owner, span_nicegreen("The hit killed all of the fairies orbiting you."))
 	else
 		to_chat(owner, span_nicegreen("The hit killed the fairy orbiting you."))
-		for(var/mob/living/simple_animal/hostile/fairyswarm/F in fairies)
-			F.death()
-		qdel(src)
+	for(var/mob/living/simple_animal/hostile/fairyswarm/F in fairies)
+		qdel(F)
+	qdel(src)
 
 /datum/status_effect/fairy_lights/tick()
 	if(!ishuman(owner))
