@@ -114,7 +114,7 @@
 		"When breaching, Titania will continually summon hostile fairies that will scout out for her.",
 		"For a period of time after a fairy attacks the employee they took increased WHITE damage and Titania seemed to hunt them down.",
 		"When breaching, Titania will set up laws that if broken, caused the employee to take PALE damage.",
-		"When employees of Level 3 and lower or while panicking were attacked by Titania, they were immediately obliterated.")
+		"When an employees that was attacked by Titania while panicking or critically injured, they were immediately obliterated.")
 	abno_breach_damage_type = "White/Pale"
 
 // Lady out of Space
