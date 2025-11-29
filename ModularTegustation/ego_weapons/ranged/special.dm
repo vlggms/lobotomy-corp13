@@ -72,7 +72,7 @@
 	fire_delay = 1
 	autofire = 0.5 SECONDS
 	special = "This weapon heals humans that it hits."
-	force = 56
+	force = 35
 	damtype = BLACK_DAMAGE
 	weapon_weight = WEAPON_HEAVY
 	projectile_path = /obj/projectile/ego_bullet/ego_hatred
