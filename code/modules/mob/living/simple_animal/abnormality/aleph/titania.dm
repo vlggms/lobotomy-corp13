@@ -27,7 +27,7 @@
 	can_breach = TRUE
 
 	melee_damage_lower = 20
-	melee_damage_upper = 27		//Will never one shot you.
+	melee_damage_upper = 27
 	melee_damage_type = WHITE_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1)
 	stat_attack = HARD_CRIT
@@ -47,7 +47,7 @@
 	)
 	patrol_cooldown_time = 5 SECONDS
 	var/fairy_spawn_number = 3
-	var/fairy_spawn_time = 5 SECONDS
+	var/fairy_spawn_time = 8 SECONDS
 	var/fairy_spawn_limit = 30 // Oh boy, what can go wrong?
 	//Fairy spawn limit only matters for the spawn loop, players she kills and spawned via the law don't count
 	var/list/spawned_mobs = list()
