@@ -47,8 +47,8 @@
 	)
 	patrol_cooldown_time = 5 SECONDS
 	var/fairy_spawn_number = 3
-	var/fairy_spawn_time = 8 SECONDS
-	var/fairy_spawn_limit = 30 // Oh boy, what can go wrong?
+	var/fairy_spawn_time = 5 SECONDS
+	var/fairy_spawn_limit = 25 // Oh boy, what can go wrong?
 	//Fairy spawn limit only matters for the spawn loop, players she kills and spawned via the law don't count
 	var/list/spawned_mobs = list()
 	/// Is user performing work not at full sanity at the beginning?
