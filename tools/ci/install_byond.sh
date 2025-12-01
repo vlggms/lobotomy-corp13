@@ -11,7 +11,7 @@ else
   rm -rf "$HOME/BYOND"
   mkdir -p "$HOME/BYOND"
   cd "$HOME/BYOND"
-  curl -fL "https://www.byond.com/download/build/${BYOND_MAJOR}/${BYOND_MAJOR}.${BYOND_MINOR}_byond_linux.zip" -A "Mozilla/5.0" -o byond.zip
+  curl -fsSL "https://secure.byond.com/games/download/build/${BYOND_MAJOR}/${BYOND_MAJOR}.${BYOND_MINOR}_byond_linux.zip" -A "Mozilla/5.0" -o byond.zip
   unzip byond.zip
   rm byond.zip
   cd byond
