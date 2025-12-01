@@ -33,6 +33,9 @@
 	gift_type =  /datum/ego_gifts/rapunzel
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
+//	observation_prompt = TBA
+//	observation_choices = TBA
+
 	var/chosen
 	var/instinct_count
 	var/list/hair_list = list()
