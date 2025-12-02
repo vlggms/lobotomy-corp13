@@ -589,7 +589,6 @@
 
 /obj/effect/black_wave
 	name = "black wave"
-	desc = "put something here."
 	icon = 'ModularTegustation/Teguicons/64x48.dmi'
 	icon_state = "binah_wave"
 	var/list/faction = list("hostile", "silicon", "apostle", "slime", "warden", "blueshep", "Head") // Cannot be attacked by any abnormality
