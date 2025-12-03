@@ -47,7 +47,7 @@
 	///deflect but has reduced chance against specific ranged
 	var/dodge_chance = 0
 	///Modifiers for directional armor
-	var/list/facing_modifiers = list(MECHA_FRONT_ARMOUR = 0.66, MECHA_FRONT_DIAGONAL_ARMOUR = 0.8, MECHA_SIDE_ARMOUR = 1, MECHA_BACK_DIAGONAL_ARMOUR = 1.5, MECHA_BACK_ARMOUR = 2)
+	var/list/facing_modifiers = list(/*MECHA_FRONT_ARMOUR =*/ 0.66, /*MECHA_FRONT_DIAGONAL_ARMOUR =*/ 0.8, /*MECHA_SIDE_ARMOUR =*/ 1, /*MECHA_BACK_DIAGONAL_ARMOUR =*/ 1.5, /*MECHA_BACK_ARMOUR =*/ 2)
 	///if we cant use our equipment(such as due to EMP)
 	var/equipment_disabled = FALSE
 	/// Keeps track of the mech's cell

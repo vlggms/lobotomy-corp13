@@ -405,11 +405,11 @@
 	if(!arena_landmarks.len)
 		return FALSE
 	arena_cleave = list(
-		ICE_ARENA_CENTER = list(),
-		ICE_ARENA_NORTH = list(),
-		ICE_ARENA_EAST = list(),
-		ICE_ARENA_SOUTH = list(),
-		ICE_ARENA_WEST = list()
+		/*ICE_ARENA_CENTER =*/ list(),
+		/*ICE_ARENA_NORTH =*/ list(),
+		/*ICE_ARENA_EAST =*/ list(),
+		/*ICE_ARENA_SOUTH =*/ list(),
+		/*ICE_ARENA_WEST =*/ list()
 		)
 	var/turf/arena_center = get_turf(arena_landmarks[ICE_ARENA_VICTEM_SPAWN])
 	var/xcord = arena_center.x

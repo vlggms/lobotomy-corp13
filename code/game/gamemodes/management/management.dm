@@ -16,7 +16,7 @@
 		ABNORMALITY_ORIGIN_LIMBUS,
 		ABNORMALITY_ORIGIN_ORIGINAL,
 	)
-	var/list/gamemode_abnos = list(ZAYIN_LEVEL = list(), TETH_LEVEL = list(), HE_LEVEL = list(), WAW_LEVEL = list(), ALEPH_LEVEL = list())
+	var/list/gamemode_abnos = list(/*ZAYIN_LEVEL =*/ list(), /*TETH_LEVEL =*/ list(), /*HE_LEVEL =*/ list(), /*WAW_LEVEL =*/ list(), /*ALEPH_LEVEL =*/ list())
 
 /datum/game_mode/management/pre_setup()
 	create_portrait_paths()

@@ -1359,17 +1359,17 @@
 
 /mob/living/carbon/human/proc/SpreadPanic(death = TRUE)
 	var/list/result_text_list = list(
-		1 = list("Damn it all, someone died", "Comrade down! Comrade down!", "And they're gone forever..."),
-		2 = list("[real_name] is really dead...", "I can't let them kill me too.", "Is [real_name] really dead? Is it my turn?"),
-		3 = list("My god...", "If even [real_name]'s dead, then...", "I won't last... Even [real_name]'s died now..."),
-		4 = list("It's over for me.", "I can't believe [real_name] died... How...", "WE'RE ALL GOING TO DIE!!!!")
+		/*1 =*/ list("Damn it all, someone died", "Comrade down! Comrade down!", "And they're gone forever..."),
+		/*2 =*/ list("[real_name] is really dead...", "I can't let them kill me too.", "Is [real_name] really dead? Is it my turn?"),
+		/*3 =*/ list("My god...", "If even [real_name]'s dead, then...", "I won't last... Even [real_name]'s died now..."),
+		/*4 =*/ list("It's over for me.", "I can't believe [real_name] died... How...", "WE'RE ALL GOING TO DIE!!!!")
 		)
 	if(!death) // Insane text
 		result_text_list = list(
-			1 = list("We've got someone panicking!", "Someone's just hit the maximum mental corruption level!", "I don't want to hear those screams of pain anymore..."),
-			2 = list("Even the seniors can go insane just the same...", "Please don’t give up on your mind.", "Oh [real_name]... Please come back to your senses..."),
-			3 = list("The high rankers go crazy, too...", "Just how long will I endure this madness?", "[real_name]... They hit the maximum mental corruption level... Oh God..."),
-			4 = list("Madness rules this place...", "[real_name]... [real_name]... Not you... You were supposed to protect us...", "WE WILL ALL BE DRIVEN MAD AND DIE JUST LIKE THEM!!")
+			/*1 =*/ list("We've got someone panicking!", "Someone's just hit the maximum mental corruption level!", "I don't want to hear those screams of pain anymore..."),
+			/*2 =*/ list("Even the seniors can go insane just the same...", "Please don’t give up on your mind.", "Oh [real_name]... Please come back to your senses..."),
+			/*3 =*/ list("The high rankers go crazy, too...", "Just how long will I endure this madness?", "[real_name]... They hit the maximum mental corruption level... Oh God..."),
+			/*4 =*/ list("Madness rules this place...", "[real_name]... [real_name]... Not you... You were supposed to protect us...", "WE WILL ALL BE DRIVEN MAD AND DIE JUST LIKE THEM!!")
 			)
 	for(var/mob/living/carbon/human/H in view(7, src))
 		if(H == src) // Don't affect yourself
