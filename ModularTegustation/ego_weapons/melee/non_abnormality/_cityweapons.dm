@@ -7,11 +7,13 @@ Kirie*/
 	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
 	lefthand_file = 'ModularTegustation/Teguicons/lc13_left.dmi'
 	righthand_file = 'ModularTegustation/Teguicons/lc13_right.dmi'
+	is_city_gear = TRUE
 
 /obj/item/ego_weapon/ranged/city
 	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
 	lefthand_file = 'ModularTegustation/Teguicons/lc13_left.dmi'
 	righthand_file = 'ModularTegustation/Teguicons/lc13_right.dmi'
+	is_city_gear = TRUE
 
 /*This place has different balance, from grade 1 to 8
 Grade 8 - 9 DPS 			No requirements; all garbage
