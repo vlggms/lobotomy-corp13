@@ -35,11 +35,11 @@ GLOBAL_LIST_EMPTY(nuke_rats_players)
 	icon_state = "rat"
 	icon_living = "rat"
 	icon_dead = "rat_dead"
-	maxHealth = 100
-	health = 100
+	maxHealth = 20
+	health = 20
 	move_to_delay = 4
-	melee_damage_lower = 5
-	melee_damage_upper = 6
+	melee_damage_lower = 4
+	melee_damage_upper = 5
 	rapid_melee = 2
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	attack_verb_continuous = "slices"
@@ -84,19 +84,19 @@ GLOBAL_LIST_EMPTY(nuke_rats_players)
 	icon_state = "rat_knife"
 	icon_living = "rat_knife"
 	icon_dead = "rat_knife_dead"
-	maxHealth = 250
-	health = 250
+	maxHealth = 45
+	health = 45
 	move_to_delay = 3
 	ranged = TRUE
-	melee_damage_lower = 8
-	melee_damage_upper = 9
+	melee_damage_lower = 5
+	melee_damage_upper = 6
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
 	var/can_act = TRUE
 	var/dash_cooldown
 	var/dash_cooldown_time = 10 SECONDS
-	var/dash_damage = 20
+	var/dash_damage = 10
 	var/dash_range = 2
 
 /mob/living/simple_animal/hostile/humanoid/rat/knife/proc/BackstreetsDash(target)
@@ -147,8 +147,8 @@ GLOBAL_LIST_EMPTY(nuke_rats_players)
 	icon_state = "rat_pipe"
 	icon_living = "rat_pipe"
 	icon_dead = "rat_pipe_dead"
-	melee_damage_lower = 20
-	melee_damage_upper = 25
+	melee_damage_lower = 6
+	melee_damage_upper = 7
 	rapid_melee = 1
 	attack_sound = 'sound/weapons/ego/pipesuffering.ogg'
 	melee_damage_type = WHITE_DAMAGE
@@ -179,12 +179,12 @@ GLOBAL_LIST_EMPTY(nuke_rats_players)
 	icon_state = "rat_hammer"
 	icon_living = "rat_hammer"
 	icon_dead = "rat_hammer_dead"
-	maxHealth = 150
-	health = 150
+	maxHealth = 25
+	health = 25
 	move_to_delay = 5
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
-	melee_damage_lower = 12
-	melee_damage_upper = 15
+	melee_damage_lower = 3
+	melee_damage_upper = 5
 	rapid_melee = 1
 	attack_sound = 'sound/weapons/fixer/generic/gen1.ogg'
 	attack_verb_continuous = "hammers"
@@ -215,11 +215,11 @@ GLOBAL_LIST_EMPTY(nuke_rats_players)
 	icon_state = "rat_zippy"
 	icon_living = "rat_zippy"
 	icon_dead = "rat_zippy_dead"
-	maxHealth = 80
-	health = 80
+	maxHealth = 15
+	health = 15
 	move_to_delay = 5
-	melee_damage_lower = 4
-	melee_damage_upper = 6
+	melee_damage_lower = 2
+	melee_damage_upper = 3
 	rapid_melee = 1
 	attack_sound = 'sound/weapons/fixer/generic/gen1.ogg'
 	attack_verb_continuous = "bashes"
@@ -244,7 +244,7 @@ GLOBAL_LIST_EMPTY(nuke_rats_players)
 			retreat_distance_default = 1
 			visible_message(span_notice("The gun explodes on [src]'s hands!."))
 			playsound(src, 'sound/abnormalities/scorchedgirl/explosion.ogg', 30, TRUE)
-			adjustBruteLoss(20)
+			adjustBruteLoss(5)
 			return
 		else
 			. = ..()
@@ -266,11 +266,11 @@ GLOBAL_LIST_EMPTY(nuke_rats_players)
 	icon_living = "flame_fixer"
 	icon_dead = "flame_fixer"
 	move_resist = MOVE_FORCE_STRONG
-	maxHealth = 1500
-	health = 1500
+	maxHealth = 500
+	health = 500
 	move_to_delay = 4
-	melee_damage_lower = 11
-	melee_damage_upper = 16
+	melee_damage_lower = 8
+	melee_damage_upper = 12
 	rapid_melee = 2
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	attack_verb_continuous = "slices"

@@ -5,16 +5,16 @@
 	desc = "A human with the head of a chicken and deformed arms. It appears to be carrying a sack of raw chickens."
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "papa_bongy"
-	maxHealth = 2500
-	health = 2500
+	maxHealth = 1250
+	health = 1250
 	pixel_x = -16
 	base_pixel_x = -16
 	fear_level = HE_LEVEL
 	can_spawn = TRUE
 	move_to_delay = 5
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 2, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
-	melee_damage_lower = 15
-	melee_damage_upper = 20
+	melee_damage_lower = 8
+	melee_damage_upper = 10
 	melee_damage_type = WHITE_DAMAGE
 	stat_attack = HARD_CRIT
 	attack_sound = 'sound/distortions/papa_bongy/PapaBongy_Coin1.ogg'
@@ -85,14 +85,14 @@
 			if(R.type in yucky_list)
 				say("BAWK BAWK!!!")
 				to_chat(user, "[src] didn't like that at all.")
-				adjustBruteLoss(150)
+				adjustBruteLoss(75)
 				break
 		qdel(I)
 	if(istype(I, /obj/item/food/pizzaslice))
 		if(I.type in bad_pizza_list)
 			say("BAWK BAWK!!!")
 			to_chat(user, "[src] didn't like that at all.")
-			adjustBruteLoss(150)
+			adjustBruteLoss(75)
 			return
 		qdel(I)
 		happy = TRUE
@@ -212,11 +212,11 @@
 	icon_living = "bongy"
 	icon_dead = "bongy_dead"
 	gender = NEUTER
-	health = 25
-	maxHealth = 25
+	health = 15
+	maxHealth = 15
 	melee_damage_type = WHITE_DAMAGE
-	melee_damage_lower = 5
-	melee_damage_upper = 5
+	melee_damage_lower = 3
+	melee_damage_upper = 3
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
 	attack_sound = 'sound/distortions/papa_bongy/Bongy_Coin1.ogg'
