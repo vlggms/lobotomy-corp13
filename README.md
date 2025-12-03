@@ -9,7 +9,7 @@
 
 ## Community
 [<img src=".github/assets/discord.png" alt="Discord" width="150" align="left">](https://discord.gg/VhgVuNXMPK)
-[Discord] (https://discord.gg/hKm3caurDY) is the place where most of the discussion happens, due to absence of a forum. Here you can contact administrators, ask mentors for help, or simply discuss your rounds. It is also a place where you can find links to ban appeals, admin applications and others, which could be really useful.
+[Discord] (https://discord.gg/VhgVuNXMPK) is the place where most of the discussion happens, due to absence of a forum. Here you can contact administrators, ask mentors for help, or simply discuss your rounds. It is also a place where you can find links to ban appeals, admin applications and others, which could be really useful.
 
 This server is based on the game **Lobotomy Corporation** created by **Project Moon**.
 We highly recommend that you try it for yourself!
@@ -19,8 +19,8 @@ We highly recommend that you try it for yourself!
 
 ## Information
 * **Code:** https://github.com/vlggms/lobotomy-corp13
+* **LC13 Discord:** https://discord.gg/VhgVuNXMPK
 * **TeguStation Discord:** https://discord.gg/AzmEhtH
-* **/tg/Station Wiki:** https://tgstation13.org/wiki/Main_Page
 
 ## Downloading and running a server
 [Downloading](.github/DOWNLOADING.md)

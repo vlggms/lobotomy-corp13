@@ -47,7 +47,7 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 
 	/// Used for radial menu; Type = list(name, desc, icon_state)
 	/// List of bullets available for use are defined in lobotomy_corp subsystem
-	var/list/bullet_types = list(
+	var/list/bullet_types = alist(
 		MANAGER_HP_BULLET = list(
 			"name" = HP_BULLET,
 			"desc" = "These bullets speed up the recovery of an employee.",

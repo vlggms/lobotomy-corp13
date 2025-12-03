@@ -3,7 +3,7 @@
 GLOBAL_LIST_EMPTY(all_huds)
 
 //GLOBAL HUD LIST
-GLOBAL_LIST_INIT(huds, list(
+GLOBAL_LIST_INIT(huds, alist(
 	DATA_HUD_SECURITY_BASIC = new/datum/atom_hud/data/human/security/basic(),
 	DATA_HUD_SECURITY_ADVANCED = new/datum/atom_hud/data/human/security/advanced(),
 	DATA_HUD_MEDICAL_BASIC = new/datum/atom_hud/data/human/medical/basic(),
@@ -54,7 +54,7 @@ GLOBAL_LIST_INIT(huds, list(
 /datum/atom_hud/proc/remove_hud_from(mob/M, absolute = FALSE)
 	if(!M || !hudusers[M])
 		return
-	if (absolute || !--hudusers[M])
+	if(absolute || !--hudusers[M])
 		UnregisterSignal(M, COMSIG_PARENT_QDELETING)
 		hudusers -= M
 		if(next_time_allowed[M])

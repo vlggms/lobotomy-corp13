@@ -95,7 +95,7 @@ It has now been over four months. Now we get her for real. -Coxswain
 	var/target_priority = 0 // Goes up to 4; 1 for Blue Smocked Shepherd, 2 for the requested target, 3 for Buddy, 4 for Wolf.
 	var/mob/living/priority_target // Stores current request target.
 	var/fuzzy_tracking_cooldown = 10 SECONDS // How often red re-checks the closest landmark to the target.
-	var/list/tiered_request_costs = list(
+	var/list/tiered_request_costs = alist(
 		ZAYIN_LEVEL = 100,
 		TETH_LEVEL = 200,
 		HE_LEVEL = 300,

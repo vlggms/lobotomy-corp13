@@ -406,7 +406,7 @@
 	arena_cleave.Cut()
 	if(!arena_landmarks.len)
 		return FALSE
-	arena_cleave = list(
+	arena_cleave = alist(
 		ICE_ARENA_CENTER = list(),
 		ICE_ARENA_NORTH = list(),
 		ICE_ARENA_EAST = list(),

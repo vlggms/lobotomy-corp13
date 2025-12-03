@@ -75,7 +75,7 @@
 	var/dead_humans = 0
 	var/abnos_breached = 0
 	//brothers from left to right
-	var/list/family_status = list(
+	var/list/family_status = alist(
 		1 = FALSE,
 		2 = FALSE,
 		3 = FALSE,
