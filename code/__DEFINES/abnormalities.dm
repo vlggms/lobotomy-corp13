@@ -17,7 +17,7 @@
 #define BREACH_MINING 2
 
 // List
-#define THREAT_TO_NAME list(\
+#define THREAT_TO_NAME alist(\
 	ZAYIN_LEVEL = "ZAYIN",\
 	TETH_LEVEL = "TETH",\
 	HE_LEVEL = "HE",\
@@ -25,7 +25,7 @@
 	ALEPH_LEVEL = "ALEPH",\
 )
 
-#define THREAT_TO_COLOR list(\
+#define THREAT_TO_COLOR alist(\
 	ZAYIN_LEVEL = COLOR_GREEN,\
 	TETH_LEVEL = COLOR_BLUE,\
 	HE_LEVEL = COLOR_DARK_ORANGE,\
@@ -33,7 +33,7 @@
 	ALEPH_LEVEL = COLOR_RED,\
 )
 
-#define THREAT_TO_CSS_COLOR list(\
+#define THREAT_TO_CSS_COLOR alist(\
 	ZAYIN_LEVEL = "green",\
 	TETH_LEVEL = "blue",\
 	HE_LEVEL = "orange",\
@@ -42,7 +42,7 @@
 )
 
 // The maximum attribute level you can get from each abnormality threat level
-#define THREAT_TO_ATTRIBUTE_LIMIT list(\
+#define THREAT_TO_ATTRIBUTE_LIMIT alist(\
 	ZAYIN_LEVEL = 40,\
 	TETH_LEVEL = 60,\
 	HE_LEVEL = 80,\

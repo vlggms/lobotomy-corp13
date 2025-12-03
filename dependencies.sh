@@ -5,7 +5,7 @@
 
 # byond version
 export BYOND_MAJOR=516
-export BYOND_MINOR=1659
+export BYOND_MINOR=1680
 
 #rust_g git tag
 export RUST_G_VERSION=3.8.0
@@ -21,4 +21,4 @@ export SPACEMAN_DMM_VERSION=suite-1.11
 export EXTOOLS_VERSION=v0.0.7
 
 # Python version for mapmerge and other tools
-export PYTHON_VERSION=3.7.9
+export PYTHON_VERSION=3.9.2

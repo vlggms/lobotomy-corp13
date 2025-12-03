@@ -137,11 +137,11 @@
 			continue
 		if(islist(D.damage_type))
 			for(var/dam_type in D.damage_type)
-				if(damage_coeff[dam_type] <= 0) // Immunity / Healing is not modified
+				if(damage_coeff.getCoeff(dam_type) <= 0) // Immunity / Healing is not modified
 					continue
 				cached_resistances[dam_type] += D.potency
 		else
-			if(damage_coeff[D.damage_type] <= 0) // Immunity / Healing is not modified
+			if(damage_coeff.getCoeff(D.damage_type) <= 0) // Immunity / Healing is not modified
 				continue
 			cached_resistances[D.damage_type] += D.potency
 

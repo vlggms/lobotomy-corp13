@@ -32,7 +32,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		)
 
 	// Assoc list of ordeals by level
-	var/list/all_ordeals = list(
+	var/list/all_ordeals = alist(
 							1 = list(),
 							2 = list(),
 							3 = list(),

@@ -5,8 +5,8 @@
 	if(!.)
 		. = new /datum/dam_coeff(red, white, black, pale, brute, fire, tox, clone, stamina, oxy)
 
-/proc/makeDamCoeff(list/dc = list())
-	var/list/coeffs = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1, BRUTE = 1, FIRE = 1, TOX = 1, CLONE = 1, STAMINA = 1, OXY = 1)
+/proc/makeDamCoeff(list/dc = alist())
+	var/list/coeffs = alist(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1, BRUTE = 1, FIRE = 1, TOX = 1, CLONE = 1, STAMINA = 1, OXY = 1)
 	for(var/I in dc)
 		coeffs[I] = dc[I]
 	return getDamCoeff(coeffs[RED_DAMAGE], coeffs[WHITE_DAMAGE], coeffs[BLACK_DAMAGE], coeffs[PALE_DAMAGE], coeffs[BRUTE], coeffs[FIRE], coeffs[TOX], coeffs[CLONE], coeffs[STAMINA], coeffs[OXY])
