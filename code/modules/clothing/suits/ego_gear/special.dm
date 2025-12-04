@@ -1,4 +1,41 @@
-// Special Armor doesn't have any armors or attribute requirements, maybe we should put twi and paradise there, idk idk
+// Special Armor doesn't have any armors or attribute requirements
+
+//Dingle Dangle
+/obj/item/clothing/suit/armor/ego_gear/he/lutemis
+	name = "dear lutemis"
+	desc = "Let's all dangle down."
+	icon_state = "lutemis"
+	//White armor, weak to red. Red is pretty valuable.
+	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = 60, BLACK_DAMAGE = 20, PALE_DAMAGE = 20) // 80, Special armor.
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 40
+							)
+
+//General Bee
+/obj/item/clothing/suit/armor/ego_gear/aleph/praetorian
+	name = "praetorian"
+	desc = "The queen's last line of defense."
+	icon_state = "praetorian"
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 40)	// 240, Armor was made before the abnormality.
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)
+//Apocalypse Bird
+/obj/item/clothing/suit/armor/ego_gear/aleph/twilight
+	name = "twilight"
+	desc = "The three birds united their efforts to defeat the beast. \
+	This could stop countless incidents, but you’ll have to be prepared to step into the Black Forest…"
+	icon_state = "twilight"
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 60, BLACK_DAMAGE = 80, PALE_DAMAGE = 80) // 300
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 120,
+							PRUDENCE_ATTRIBUTE = 120,
+							TEMPERANCE_ATTRIBUTE = 120,
+							JUSTICE_ATTRIBUTE = 120
+							)
 
 //Crumbling armor gift
 /obj/item/clothing/suit/armor/ego_gear/he/crumbling_armor

@@ -34,16 +34,6 @@
 							FORTITUDE_ATTRIBUTE = 40
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/he/lutemis
-	name = "dear lutemis"
-	desc = "Let's all dangle down."
-	icon_state = "lutemis"
-	//White armor, weak to red. Red is pretty valuable.
-	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = 60, BLACK_DAMAGE = 20, PALE_DAMAGE = 20) // 80, Special armor.
-	attribute_requirements = list(
-							PRUDENCE_ATTRIBUTE = 40
-							)
-
 /obj/item/clothing/suit/armor/ego_gear/he/paw
 	name = "bear paw"
 	desc = "The equipment is made of a material that may have been fluffy once, but now it just looks shabby."
