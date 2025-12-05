@@ -24,7 +24,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 	/// The subsystem will pick abnormalities of these threat levels.
 	var/list/available_levels = list(ZAYIN_LEVEL)
 	/// An associative list of potential abnormalities.
-	var/list/possible_abnormalities = list(ZAYIN_LEVEL = list(), TETH_LEVEL = list(), HE_LEVEL = list(), WAW_LEVEL = list(), ALEPH_LEVEL = list())
+	var/list/possible_abnormalities = list(/*ZAYIN_LEVEL =*/ list(), /*TETH_LEVEL =*/ list(), /*HE_LEVEL =*/ list(), /*WAW_LEVEL =*/ list(), /*ALEPH_LEVEL =*/ list())
 	/// Amount of abnormality room spawners at the round-start.
 	var/rooms_start = 0
 	/// Amount of times PostSpawn() proc has been called. Kept separate from times_fired because admins love to call fire() manually
