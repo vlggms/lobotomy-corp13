@@ -29,7 +29,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(60, 60, 50, 50, 50),
 		ABNORMALITY_WORK_REPRESSION = list(50, 50, 40, 40, 40),
 	)
-	work_damage_amount = 3
+	work_damage_amount = 2
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/envy
 

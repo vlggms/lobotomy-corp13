@@ -15,7 +15,7 @@
 		ABNORMALITY_WORK_REPRESSION = 50,
 	)
 	max_boxes = 8
-	work_damage_amount = 2
+	work_damage_amount = 1
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/lust
 	light_color = COLOR_ORANGE
