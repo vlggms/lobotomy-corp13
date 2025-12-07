@@ -12,8 +12,7 @@
 	var/alert_icon = "regen_alert"
 
 	/// How many HP and SP we restore on each process tick
-	var/regeneration_amount_per = 2
-	var/regeneration_amount_flat = 3
+	var/regeneration_amount = 6
 	/// Pre-declared variable
 	var/modified = FALSE // Whether or not the regenerator is currently undergoing modified action
 	var/hp_bonus = 0
@@ -52,22 +51,18 @@
 	var/area/A = get_area(src)
 	if(!istype(A))
 		return
-	var/regen_amt_per = regeneration_amount_per
-	var/regen_amt_flat = regeneration_amount_flat
+	var/regen_amt = regeneration_amount
 	Threat = FALSE //Assume there is no enemies
 	for(var/mob/living/L in A)
 		if(!("neutral" in L.faction) && L.stat != DEAD && !(L.status_flags & GODMODE)) // Enemy spotted
-			regen_amt_per *= 0.5
-			regen_amt_flat *= 0.5
+			regen_amt *= 0.5
 			if(!Threat)
 				icon_state = alert_icon
 				Threat = TRUE
 			break
-	regen_amt_per += GetFacilityUpgradeValue(UPGRADE_REGENERATOR_HEALING)/1.5
-	regen_amt_flat += GetFacilityUpgradeValue(UPGRADE_REGENERATOR_HEALING)
+	regen_amt += GetFacilityUpgradeValue(UPGRADE_REGENERATOR_HEALING)
 	if(burst)
-		regen_amt_per *= 7.5
-		regen_amt_flat *= 7.5
+		regen_amt *= 7.5
 		burst = FALSE
 		burst_cooldown = TRUE
 		reset_timer = short_duration + world.time
@@ -76,13 +71,11 @@
 			continue
 		if(H.health < 0 && !critical_heal)
 			continue
-		var/hp_amt_per = regen_amt_per+hp_bonus
-		var/sp_amt_per = regen_amt_per+sp_bonus
-		var/hp_amt_flat = regen_amt_flat+(hp_bonus/2)
-		var/sp_amt_flat = regen_amt_flat+(sp_bonus/2)
-		H.adjustBruteLoss((-H.maxHealth * (hp_amt_per/100)) - hp_amt_flat)
-		H.adjustFireLoss((-H.maxHealth * (hp_amt_per/100)) - hp_amt_flat)
-		H.adjustSanityLoss((-H.maxSanity * (sp_amt_per/100)) - sp_amt_flat)
+		var/hp_amt = regen_amt+hp_bonus
+		var/sp_amt = regen_amt+sp_bonus
+		H.adjustBruteLoss(-H.maxHealth * (hp_amt/100))
+		H.adjustFireLoss(-H.maxHealth * (hp_amt/100))
+		H.adjustSanityLoss(-H.maxSanity * (sp_amt/100))
 	if(icon_state != "regen" && !Threat)
 		icon_state = initial(icon_state)
 
@@ -91,7 +84,7 @@
 	if(burst_cooldown)
 		. += span_warning("[src] is currently offline!")
 		return
-	. += span_info("[src] restores [regeneration_amount_per+hp_bonus+round(GetFacilityUpgradeValue(UPGRADE_REGENERATOR_HEALING)/1.5,0.01)]% + [regeneration_amount_flat+(hp_bonus/2)+GetFacilityUpgradeValue(UPGRADE_REGENERATOR_HEALING)] HP and [regeneration_amount_per+sp_bonus+round(GetFacilityUpgradeValue(UPGRADE_REGENERATOR_HEALING)/1.5,0.01)]% + [regeneration_amount_flat+(sp_bonus/2)+GetFacilityUpgradeValue(UPGRADE_REGENERATOR_HEALING)] SP every 2 seconds.")
+	. += span_info("[src] restores [regeneration_amount+hp_bonus+GetFacilityUpgradeValue(UPGRADE_REGENERATOR_HEALING)]% HP and [regeneration_amount+sp_bonus+GetFacilityUpgradeValue(UPGRADE_REGENERATOR_HEALING)]% SP every 2 seconds.")
 
 /obj/machinery/regenerator/proc/ProduceIcon(Icon_Color, Type) //Used to be called ProduceGas but due to me using it for a button i had to change it. ProduceGas was a cooler name. -IP
 	var/mutable_appearance/colored_overlay = mutable_appearance(icon, Type)
