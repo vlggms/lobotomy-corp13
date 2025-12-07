@@ -50,12 +50,13 @@
 	if(!ishuman(M))
 		return
 	if(overdosed)
+		M.hallucination += 1 //Causes hallucinations in Lob Corp
 		return
 	var/mob/living/carbon/human/H = M
 	if(HAS_TRAIT(H, TRAIT_HEALING)) // Used for "no medipens" challenge quirk
 		holder.remove_reagent(/datum/reagent/medicine/enkephalin, 1)
 		return
-	H.adjustSanityLoss(-5*REM) // That's healing 5 units.
+	H.adjustSanityLoss(2.5*REM) // That's healing 2.5 units.
 	..()
 	. = 1
 
