@@ -12,7 +12,7 @@
 	var/alert_icon = "regen_alert"
 
 	/// How many HP and SP we restore on each process tick
-	var/regeneration_amount = 6
+	var/regeneration_amount = 3
 	/// Pre-declared variable
 	var/modified = FALSE // Whether or not the regenerator is currently undergoing modified action
 	var/hp_bonus = 0
