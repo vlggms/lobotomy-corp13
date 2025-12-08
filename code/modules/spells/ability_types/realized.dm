@@ -897,7 +897,6 @@
 				been_hit += L
 				L.adjustBruteLoss(-70)
 				L.adjustSanityLoss(-70)
-				new /obj/effect/temp_visual/healing(get_turf(L))
 				if(istype(L.get_item_by_slot(ITEM_SLOT_OCLOTHING), /obj/item/clothing/suit/armor/ego_gear/realization/duality_yin))
 					L.apply_status_effect(/datum/status_effect/duality_yang)
 			all_turfs -= T
@@ -1186,7 +1185,7 @@
 /* Flesh Idol - Repentance */
 /obj/effect/proc_holder/ability/prayer
 	name = "Prayer"
-	desc = "An ability that does causes you to start praying reducing damage taken by 25% but removing your ability to move and lowers justice by 80. \
+	desc = "An ability that does causes you to start praying which removes your ability to move, lowers justice by 80 and causes you to take damage during it. \
 	When you finish praying everyone gets a 20 justice increase and gets healed."
 	action_icon_state = "flesh0"
 	base_icon_state = "flesh"
@@ -1211,7 +1210,6 @@
 		H.adjustBruteLoss(-70)
 		H.adjustSanityLoss(-70)
 		H.apply_status_effect(/datum/status_effect/flesh2)
-		new /obj/effect/temp_visual/healing(get_turf(H))
 	return ..()
 
 /datum/status_effect/flesh1
