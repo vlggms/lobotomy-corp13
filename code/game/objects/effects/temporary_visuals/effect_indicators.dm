@@ -11,6 +11,9 @@
 	pixel_x = rand(-12, 12)
 	pixel_y = rand(-9, 0)
 
+/obj/effect/temp_visual/healing/sanity
+	icon_state = "sanity"
+
 /obj/effect/temp_visual/healing/no_dam
 	icon_state = "no_dam"
 
