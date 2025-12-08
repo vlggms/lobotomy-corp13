@@ -614,12 +614,25 @@
 /obj/item/ego_weapon/mini/clayman
 	name = "creative freedom"
 	desc = "Clay and flesh are both mediums for expression."
+	special = "This weapon deals either Red, White, Black, or rarely Pale damage on hit."
 	icon_state = "creativefreedom"
-	force = 7
+	force = 10
 	attack_speed = 0.7
 	damtype = PALE_DAMAGE
 	hitsound = 'sound/weapons/bladeslice.ogg'
 
+/obj/item/ego_weapon/mini/clayman/attack(mob/living/target, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	damtype = pick(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE)
+	if(prob(10))
+		damtype = PALE_DAMAGE
+	..()
+
+/obj/item/ego_weapon/mini/clayman/EgoAttackInfo(mob/user)
+	if(force_multiplier != 1)
+		return span_notice("It deals [round((force) * force_multiplier)] damage. (+ [(force_multiplier - 1) * 100]%)")
+	return span_notice("It deals [force] damage.")
 
 /obj/item/ego_weapon/white_gossypium
 	name = "white gossypium"
