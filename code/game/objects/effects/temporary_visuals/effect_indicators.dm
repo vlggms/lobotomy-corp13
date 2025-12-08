@@ -77,6 +77,31 @@
 	icon_state = "rupture"
 	style_text_color = "#80C8ff"
 
+/obj/effect/temp_visual/health
+	icon = 'ModularTegustation/Teguicons/lc13_coloreffect.dmi'
+	layer = ABOVE_ALL_MOB_LAYER
+	icon_state = "healing"
+	duration = 12
+	var/style_text_color = "#88FB94"
+
+/obj/effect/temp_visual/health/Initialize(mapload, healing_amount)
+	icon_state = "[icon_state][rand(1,2)]"
+	pixel_x = rand(-16, 8)
+	pixel_y = rand(-9, 9)
+	if(isnum(healing_amount))
+		maptext_x = 22
+		maptext_y = 10
+		maptext_height = 32
+		maptext_width = 32
+		var/style = "font-family: 'Better VCR'; font-size: 5px; -dm-text-outline: 1px black; color: [style_text_color];"
+		maptext = "<span style=\"[style]\">[round(healing_amount)]%</span>"
+	animate(src, pixel_x = pixel_x + rand(1, 4), pixel_y = pixel_y + 10, alpha = 0, time = rand(8, 12), easing = SINE_EASING)
+	return ..()
+
+/obj/effect/temp_visual/health/sanity
+	icon_state = "sanity"
+	style_text_color = "#8EFDFF"
+
 //Stuntime visual for when you're stunned by your weapon, so you know what happened.
 /obj/effect/temp_visual/weapon_stun
 	icon = 'ModularTegustation/Teguicons/lc13_coloreffect.dmi'
