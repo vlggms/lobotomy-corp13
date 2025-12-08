@@ -1170,7 +1170,6 @@
 			if(L==user)
 				continue
 			L.adjustBruteLoss(-10)
-			L.HealingEffect("healing")
 
 /obj/item/ego_weapon/diffraction
 	name = "diffraction"
@@ -1370,7 +1369,6 @@
 				continue
 			Yang.adjustBruteLoss(-heal_amount)
 			Yang.adjustSanityLoss(-heal_amount)
-			Yang.HealingEffect("healing")
 			break
 
 /obj/item/ego_weapon/shield/innocence
@@ -1937,7 +1935,6 @@
 			if(L==user)
 				continue
 			L.adjustSanityLoss(-heal_amount)
-			L.HealingEffect("healing")
 
 /obj/item/ego_weapon/blind_obsession
 	name = "blind obsession"

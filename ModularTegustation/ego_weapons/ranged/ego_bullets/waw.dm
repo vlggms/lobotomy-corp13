@@ -224,7 +224,6 @@
 				continue
 			Yin.adjustBruteLoss(-10)
 			Yin.adjustSanityLoss(-10)
-			Yin.HealingEffect("healing")
 			break
 	return
 
