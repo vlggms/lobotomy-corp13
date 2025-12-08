@@ -24,7 +24,6 @@
 	var/long_duration = 60 SECONDS
 	var/reset_timer = 0
 	var/colored_overlay
-	var/Threat = FALSE
 
 /obj/machinery/regenerator/Initialize()
 	. = ..()
@@ -51,33 +50,39 @@
 	var/area/A = get_area(src)
 	if(!istype(A))
 		return
+	var/threat = FALSE
 	var/regen_amt = regeneration_amount
-	Threat = FALSE //Assume there is no enemies
-	for(var/mob/living/L in A)
-		if(!("neutral" in L.faction) && L.stat != DEAD && !(L.status_flags & GODMODE)) // Enemy spotted
-			regen_amt *= 0.5
-			if(!Threat)
-				icon_state = alert_icon
-				Threat = TRUE
-			break
-	regen_amt += GetFacilityUpgradeValue(UPGRADE_REGENERATOR_HEALING)
+	var/regen_mult = 1
+	var/regen_add = GetFacilityUpgradeValue(UPGRADE_REGENERATOR_HEALING)
 	if(burst)
-		regen_amt *= 7.5
+		regen_mult *= 7.5
 		burst = FALSE
 		burst_cooldown = TRUE
 		reset_timer = short_duration + world.time
-	for(var/mob/living/carbon/human/H in A)
-		if(H.sanity_lost && !critical_heal)
-			continue
-		if(H.health < 0 && !critical_heal)
-			continue
-		var/hp_amt = regen_amt+hp_bonus
-		var/sp_amt = regen_amt+sp_bonus
-		H.adjustBruteLoss(-H.maxHealth * (hp_amt/100))
-		H.adjustFireLoss(-H.maxHealth * (hp_amt/100))
-		H.adjustSanityLoss(-H.maxSanity * (sp_amt/100))
-	if(icon_state != "regen" && !Threat)
+	var/list/people_to_heal
+	for(var/key, value in A.area_living)
+		if(key & MOB_HUMAN_INDEX)
+			for(var/mob/living/carbon/human/bro in value)
+				if((bro.sanity_lost || bro.health < 0) && !critical_heal)
+					continue
+				LAZYADD(people_to_heal, bro)
+		// We assume that any simple_mob/hostile is, in fact, hostile. (If you do not want your super friendly simplemob/hostile to block regenerators, assign a different area_index var to your mob (code\__DEFINES\areas.dm))
+		// This also includes composite indexes that include the hostile or abnormality index.
+		if(!threat && (key & (MOB_HOSTILE_INDEX | MOB_ABNORMALITY_INDEX)))
+			regen_mult *= 0.5
+			icon_state = alert_icon
+			threat = TRUE
+	if(icon_state != "regen" && !threat)
 		icon_state = initial(icon_state)
+
+	if(LAZYLEN(people_to_heal))
+		// The math is weird, but it is intentional. Feel free to change it, but be careful as mults on top of base heal increases go wild quick.
+		var/hp_amt = ((regen_amt * regen_mult) + regen_add) + hp_bonus
+		var/sp_amt = ((regen_amt * regen_mult) + regen_add) + sp_bonus
+		for(var/mob/living/carbon/human/dude as anything in people_to_heal)
+			dude.adjustBruteLoss(-dude.maxHealth * (hp_amt/100))
+			dude.adjustFireLoss(0.1 * (-dude.maxHealth * (hp_amt/100)))	//Heals at 1/10th speed. Supposed to be slower healing than brute and sanity
+			dude.adjustSanityLoss(-dude.maxSanity * (sp_amt/100))
 
 /obj/machinery/regenerator/examine(mob/user)
 	. = ..()
