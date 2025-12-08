@@ -6,7 +6,7 @@ GLOBAL_LIST_INIT(small_ego, list (
 	/obj/item/ego_weapon/warp/knife,
 	/obj/item/ego_weapon/support/letter_opener,
 	/obj/item/ego_weapon/warring,
-	/obj/item/ego_weapon/ranged/feather,
+	/obj/item/ego_weapon/feather,
 	/obj/item/ego_weapon/ranged/intentions,
 	/obj/item/ego_weapon/ranged/beak,
 	/obj/item/ego_weapon/lance/visions,
