@@ -183,3 +183,6 @@
 
 	/// Which god are you aligned with?
 	var/god_aligned = FISHGOD_NONE
+
+	/// Index used to interact with the moblist of the area they are currently in.
+	var/area_index = MOB_LIVING_INDEX
