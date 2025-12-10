@@ -68,20 +68,3 @@
 	force = initial(force)
 	using_ability = FALSE
 	to_chat(user, span_notice("I AM NOT SATED."))
-
-/obj/item/ego_weapon/mimicry/kali
-	name = "True Mimicry"
-	desc = "What is the meaning of 'Human'? Does it matter?"
-	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
-	icon_state = "mimicry"
-	inhand_icon_state = "mimisword"
-	lefthand_file = 'ModularTegustation/Teguicons/lc13_left_64x64.dmi'
-	righthand_file = 'ModularTegustation/Teguicons/lc13_right_64x64.dmi'
-	force = 50
-	attack_speed = 1.2
-	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 120,
-							PRUDENCE_ATTRIBUTE = 120,
-							TEMPERANCE_ATTRIBUTE = 120,
-							JUSTICE_ATTRIBUTE = 120
-							)
