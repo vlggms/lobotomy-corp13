@@ -1952,17 +1952,17 @@
 		return
 	if(get_dist(target, user) > 2)//Spear range for full damage.
 		force = 11
+	var/turf/end_turf = get_ranged_target_turf_direct(user, target, 4, 0)
 	. = ..()
 	force = initial(force)
 	var/list/been_hit = list(target)
-	var/turf/end_turf = get_ranged_target_turf_direct(user, target, 4, 0)
 	for(var/turf/T in getline(user, end_turf))
 		if(user in T)
 			continue
 		for(var/turf/T2 in view(T,1))
 			new /obj/effect/temp_visual/smash_effect(T2)
 			for(var/mob/living/L in T2)
-				var/aoe = 5
+				var/aoe = 11
 				var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 				var/justicemod = 1 + userjust/100
 				aoe*=justicemod
