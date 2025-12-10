@@ -81,7 +81,7 @@
 	var/damage = 4
 	if(!ishuman(fuel))
 		damage = 8
-	fuel.deal_damage(10, FIRE, attack_type = (ATTACK_TYPE_ENVIRONMENT))
+	fuel.deal_damage(damage, FIRE, attack_type = (ATTACK_TYPE_ENVIRONMENT))
 	fuel.adjust_fire_stacks(1)
 	fuel.IgniteMob()
 
