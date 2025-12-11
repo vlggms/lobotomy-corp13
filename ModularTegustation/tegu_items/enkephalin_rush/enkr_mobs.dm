@@ -427,7 +427,7 @@
 			SLEEP_CHECK_DEATH(3)
 			TH.attack_animal(src)
 			for(var/mob/living/carbon/human/H in view(7, get_turf(src)))
-				H.deal_damage(15, WHITE_DAMAGE)
+				H.deal_damage(15, WHITE_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL))
 		if(!targets_from.Adjacent(TH) || QDELETED(TH))
 			can_act = TRUE
 			return
@@ -443,7 +443,7 @@
 	do_attack_animation(target_turf)
 	for(var/turf/T in range(hammer_aoe, target_turf))
 		new /obj/effect/temp_visual/smash_effect(T)
-		been_hit = HurtInTurf(T, been_hit, melee_damage_upper, WHITE_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, mech_damage = 15)
+		been_hit = HurtInTurf(T, been_hit, melee_damage_upper, WHITE_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, mech_damage = 15, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 
 /mob/living/simple_animal/hostile/humanoid/ncorp/OpenFire()
 	..()
@@ -468,7 +468,7 @@
 				break
 			broken = TRUE
 		new /obj/effect/temp_visual/smash_effect(T)
-		been_hit = HurtInTurf(T, been_hit, ranged_damage, BLACK_DAMAGE, null, TRUE)
+		been_hit = HurtInTurf(T, been_hit, ranged_damage, BLACK_DAMAGE, null, TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 		//TODO: apply nails here
 	playsound(get_turf(src), 'sound/weapons/fixer/generic/nail2.ogg', 100, 1)
 
