@@ -28,6 +28,7 @@
 	RegisterSignal(target, COMSIG_MOVABLE_CROSSED, PROC_REF(OnCrossed))
 
 /datum/element/squashable/Detach(mob/living/target)
+	..()
 	UnregisterSignal(target, COMSIG_MOVABLE_CROSSED)
 
 ///Handles the squashing of the mob

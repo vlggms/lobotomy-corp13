@@ -344,10 +344,9 @@ no power level overlay is currently in the overlays list.
 	move_resist = initial(move_resist)
 
 /obj/machinery/field/generator/proc/shield_floor(create)
-	if(connected_gens.len < 2)
+	if(length(connected_gens) < 2)
 		return
-	var/CGcounter
-	for(CGcounter = 1; CGcounter < connected_gens.len, CGcounter++)
+	for(var/CGcounter in 1 to (length(connected_gens) - 1))
 
 		var/list/CGList = ((connected_gens[CGcounter].connected_gens & connected_gens[CGcounter+1].connected_gens)^src)
 		if(!CGList.len)
