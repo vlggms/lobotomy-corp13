@@ -19,7 +19,7 @@
 		"Dining" = 100, //You can instead decide to eat the cake.
 		"Drink" = 100, //Or Drink the water
 	)
-	work_damage_amount = 2
+	work_damage_amount = 1
 	work_damage_type = BLACK_DAMAGE
 
 	ego_list = list(

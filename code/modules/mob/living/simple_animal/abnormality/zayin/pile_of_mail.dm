@@ -15,7 +15,7 @@
 		ABNORMALITY_WORK_REPRESSION = 40,
 	)
 
-	work_damage_amount = 2
+	work_damage_amount = 1
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/pride
 

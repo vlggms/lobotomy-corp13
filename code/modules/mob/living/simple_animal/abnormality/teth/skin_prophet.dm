@@ -14,7 +14,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 0,
 		ABNORMALITY_WORK_REPRESSION = 0,
 	)
-	work_damage_amount = 3	//Gets more later
+	work_damage_amount = 2	//Gets more later
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(

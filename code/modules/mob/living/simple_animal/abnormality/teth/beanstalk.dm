@@ -16,7 +16,7 @@
 	)
 	pixel_x = -16
 	base_pixel_x = -16
-	work_damage_amount = 3
+	work_damage_amount = 2
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/wrath
 

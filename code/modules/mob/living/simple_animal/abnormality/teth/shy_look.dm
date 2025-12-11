@@ -22,7 +22,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(50, 45, 45, 40, 40),
 		ABNORMALITY_WORK_REPRESSION = list(50, 45, 45, 40, 40),
 	)
-	work_damage_amount = 3
+	work_damage_amount = 2
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/pride
 

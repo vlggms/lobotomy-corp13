@@ -1146,7 +1146,6 @@
 			if(L==user)
 				continue
 			L.adjustBruteLoss(-10)
-			new /obj/effect/temp_visual/healing(get_turf(L))
 
 /obj/item/ego_weapon/diffraction
 	name = "diffraction"
@@ -1352,7 +1351,6 @@
 				continue
 			Yang.adjustBruteLoss(-heal_amount)
 			Yang.adjustSanityLoss(-heal_amount)
-			new /obj/effect/temp_visual/healing(get_turf(Yang))
 			break
 
 /obj/item/ego_weapon/shield/innocence
@@ -1914,7 +1912,6 @@
 			if(L==user)
 				continue
 			L.adjustSanityLoss(-heal_amount)
-			new /obj/effect/temp_visual/healing(get_turf(L))
 
 /obj/item/ego_weapon/blind_obsession
 	name = "blind obsession"

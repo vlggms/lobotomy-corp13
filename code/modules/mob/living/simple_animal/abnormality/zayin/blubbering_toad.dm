@@ -36,7 +36,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(50, 40, 30, 30, 30),
 		ABNORMALITY_WORK_REPRESSION = list(70, 30, 30, 30, 30),
 	)
-	work_damage_amount = 2
+	work_damage_amount = 1
 	work_damage_type = BLACK_DAMAGE
 
 	// Petting

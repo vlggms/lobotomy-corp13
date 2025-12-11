@@ -17,7 +17,7 @@
 		ABNORMALITY_WORK_REPRESSION = 50,
 	)
 	is_flying_animal = TRUE
-	work_damage_amount = 3
+	work_damage_amount = 2
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gloom
 

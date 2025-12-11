@@ -38,7 +38,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = 60,
 		ABNORMALITY_WORK_REPRESSION = 10,
 		)
-	work_damage_amount = 3
+	work_damage_amount = 2
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/envy //all of its EGO is envy. makes sense to me.
 	ego_list = list(
