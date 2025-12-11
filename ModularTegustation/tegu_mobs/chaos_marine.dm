@@ -267,7 +267,7 @@
 			visible_message(span_boldwarning("[src] runs through [L]!"))
 			to_chat(L, span_userdanger("[src] pierces you with a chain-sword!"))
 			shake_camera(L, 2, 1)
-			L.apply_damage(75, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			L.apply_damage(75, RED_DAMAGE, null, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 			playsound(L,"sound/effects/wounds/pierce[pick(1,2,3)].ogg", 200, 1)
 	addtimer(CALLBACK(src, PROC_REF(blood_dash_2), move_dir, (times_ran + 1)), (1.5 * dash_mod))
 

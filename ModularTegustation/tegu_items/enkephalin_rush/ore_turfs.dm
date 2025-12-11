@@ -180,7 +180,7 @@
 			visible_message(span_danger("The ground starts shaking!"))
 			playsound(get_turf(src), 'sound/effects/lc13_environment/day_50/Shake_Move.ogg', 60, TRUE)
 			for(var/mob/living/L in view(12, src))
-				L.apply_damage(explosion_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))
+				L.deal_damage(explosion_damage, WHITE_DAMAGE, null, attack_type = (ATTACK_TYPE_ENVIRONMENT))
 				shake_camera(L, 20, 3)
 				if(ishuman(L))
 					var/mob/living/carbon/human/H = L
@@ -193,7 +193,7 @@
 			new /obj/effect/temp_visual/explosion(get_turf(src))
 			playsound(get_turf(src), 'sound/effects/ordeals/steel/gcorp_boom.ogg', 60, TRUE)
 			for(var/mob/living/L in view(3, src))
-				L.apply_damage(explosion_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+				L.deal_damage(explosion_damage, BLACK_DAMAGE, null, attack_type = (ATTACK_TYPE_ENVIRONMENT))
 			return
 		else//Qliphoth Meltdown
 			if(risk_level >= 3)
@@ -336,7 +336,7 @@
 /obj/effect/rock_fall/proc/explode()
 	playsound(get_turf(src), 'sound/effects/lc13_environment/day_50/Shake_End.ogg', 50, 0, 8)
 	for(var/mob/living/L in view(1, src))
-		L.apply_damage(boom_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+		L.deal_damage(boom_damage, RED_DAMAGE, attack_type = (ATTACK_TYPE_ENVIRONMENT))
 		shake_camera(L, 5, 3)
 	var/datum/effect_system/smoke_spread/S = new
 	S.set_up(0, get_turf(src))	//Smoke shouldn't really obstruct your vision
