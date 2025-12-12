@@ -362,7 +362,7 @@
 	visible_message(span_danger("[src] suddenly explodes!"))
 	for(var/mob/living/L in view(5, src))
 		if(!faction_check_mob(L))
-			L.apply_damage(35, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+			L.deal_damage(35, RED_DAMAGE, src, flags = (ATTACK_TYPE_SPECIAL))
 	gib()
 
 // bigBirdEye
@@ -579,7 +579,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 		SLEEP_CHECK_DEATH(6)
 	for(var/mob/living/L in view(3, src))
 		if(!faction_check_mob(L))
-			L.apply_damage(5, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))
+			L.deal_damage(5, WHITE_DAMAGE, src, flags = (DAMAGE_FORCED))
 	can_act = TRUE
 
 //Love Town Slasher - TETH goons, not much of a threat
@@ -678,7 +678,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 		SLEEP_CHECK_DEATH(6)
 	for(var/mob/living/L in view(4, src))
 		if(!faction_check_mob(L))
-			L.apply_damage(33, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))
+			L.deal_damage(33, WHITE_DAMAGE, src, attack_type = (ATTACK_TYPE_SPECIAL))
 	can_act = TRUE
 
 // Love Town Slumberer - HE threat,, quite damaging and can grab you, stuns you for some time.
@@ -833,7 +833,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	SLEEP_CHECK_DEATH(attack_delay) //takes longer to slam on phase 2
 	for(var/turf/T in view(current_stage, src))//scales with stage, at stage 2 hits 2 tiles around
 		new /obj/effect/temp_visual/lovetown_shapes(T)
-		HurtInTurf(T, list(), (rand(melee_damage_lower, melee_damage_upper)/2), RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE) //30~40 damage
+		HurtInTurf(T, list(), (rand(melee_damage_lower, melee_damage_upper)/2), RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL)) //30~40 damage
 	switch(current_stage)
 		if(1)
 			icon_state = "lovetown_abomination_slam"
@@ -981,7 +981,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 		return
 	for(var/turf/T in area_of_effect)
 		new /obj/effect/temp_visual/lovetown_whip(T)
-		HurtInTurf(T, list(), lovewhip_damage, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
+		HurtInTurf(T, list(), lovewhip_damage, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, attack_type = (ATTACK_TYPE_RANGED | ATTACK_TYPE_SPECIAL))
 		for(var/mob/living/L in T)
 			var/atom/throw_target = get_edge_target_turf(L, get_dir(L, src))
 			L.throw_at(throw_target, 200, 4)
@@ -1015,7 +1015,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 			can_act = TRUE
 			return
 		for(var/mob/living/carbon/human/H in view(7, get_turf(src)))
-			H.apply_damage(35, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			H.deal_damage(35, WHITE_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL)))
 		new /obj/effect/temp_visual/lovetown_shapes(get_turf(TH))
 		TH.gib()
 //		animate(TH, pixel_y = pixel_y_before, time = 10, , easing = BACK_EASING | EASE_OUT, flags = ANIMATION_END_NOW) //animate the shape back when you add it Mel

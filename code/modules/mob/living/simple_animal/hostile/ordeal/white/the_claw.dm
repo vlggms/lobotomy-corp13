@@ -266,7 +266,7 @@
 		if(faction_check_mob(L))
 			continue
 		to_chat(target, span_userdanger("\The [src] eviscerates you!"))
-		L.apply_damage(40, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+		L.deal_damage(40, BLACK_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 		new /obj/effect/temp_visual/cleave(get_turf(L))
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/TargetSerumW(mob/living/L)
@@ -328,7 +328,7 @@
 			if(LL == L)
 				continue
 			to_chat(LL, span_userdanger("\The [src] slashes you!"))
-			LL.apply_damage(15, BLACK_DAMAGE, null, LL.run_armor_check(null, BLACK_DAMAGE))
+			LL.deal_damage(15, BLACK_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 			new /obj/effect/temp_visual/cleave(get_turf(LL))
 		tp_loc = get_step(src, pick(1,2,4,5,6,8,9,10))
 		for(var/obj/item/I in get_turf(L)) // We take all dropped items with us, just to be fair, you know
@@ -343,7 +343,7 @@
 			SLEEP_CHECK_DEATH(4)
 	if(istype(L) && !QDELETED(L))
 		to_chat(L, span_userdanger("\The [src] slashes you, finally releasing you from his grasp!"))
-		L.apply_damage(25, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+		L.deal_damage(25, BLACK_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 		GiveTarget(L)
 	charging = FALSE
 
@@ -410,7 +410,7 @@
 			continue
 		been_hit |= L
 		to_chat(target, span_userdanger("\The [src] eviscerates you!"))
-		L.apply_damage(70, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE))
+		L.deal_damage(70, PALE_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 		new /obj/effect/temp_visual/cleave(get_turf(L))
 	for(var/turf/B in getline(prev_loc, tp_loc))
 		for(var/mob/living/L in range(1, B)) // Attacks everyone in line
@@ -420,7 +420,7 @@
 				continue
 			been_hit |= L
 			to_chat(L, span_userdanger("\The [src] slashes you!"))
-			L.apply_damage(50, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE))
+			L.deal_damage(50, PALE_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 			playsound(L, 'ModularTegustation/Tegusounds/claw/attack.ogg', 35, 1)
 			new /obj/effect/temp_visual/cleave(get_turf(L))
 
@@ -448,7 +448,7 @@
 		new /obj/effect/temp_visual/small_smoke/halfsecond(T)
 		forceMove(T)
 		playsound(src,'ModularTegustation/Tegusounds/claw/move.ogg', 50, 1)
-		for(var/mob/living/L in HurtInTurf(T, list(), dash_damage, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
+		for(var/mob/living/L in HurtInTurf(T, list(), dash_damage, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL)))
 			new /obj/effect/temp_visual/cleave(L.loc)
 		if(T != turf_list[turf_list.len]) // Not the last turf
 			SLEEP_CHECK_DEATH(0.5)
@@ -520,7 +520,7 @@
 				if(victim == LT)
 					continue
 				to_chat(victim, span_userdanger("\The [src] slashes you!"))
-				victim.apply_damage(serumA_damage, RED_DAMAGE, null, victim.run_armor_check(null, RED_DAMAGE))
+				victim.deal_damage(serumA_damage, RED_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 				new /obj/effect/temp_visual/cleave(victim.loc)
 				playsound(victim, 'ModularTegustation/Tegusounds/claw/attack.ogg', 35, 1)
 
@@ -575,4 +575,4 @@
 				continue
 			if(faction_check_mob(L))
 				continue
-			L.apply_damage(wide_slash_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))
+			L.deal_damage(wide_slash_damage, WHITE_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
