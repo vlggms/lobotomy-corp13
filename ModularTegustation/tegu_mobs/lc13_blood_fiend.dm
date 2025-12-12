@@ -89,7 +89,7 @@
 					continue
 				var/obj/effect/temp_visual/slice/blood = new(T)
 				blood.color = "#b52e19"
-				hit_mob = HurtInTurf(T, hit_mob, slash_damage, RED_DAMAGE, null, TRUE, FALSE, TRUE, hurt_structure = TRUE)
+				hit_mob = HurtInTurf(T, hit_mob, slash_damage, RED_DAMAGE, null, TRUE, FALSE, TRUE, hurt_structure = TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 
 /obj/effect/temp_visual/warning3x3/bloodfiend
 	duration = 1.5 SECONDS
@@ -120,7 +120,7 @@
 			if(faction_check_mob(L))
 				continue
 			L.apply_lc_bleed(leap_bleed_stacks)
-			L.deal_damage(leap_damage, RED_DAMAGE)
+			L.deal_damage(leap_damage, RED_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 		for(var/obj/vehicle/sealed/mecha/V in T)
 			V.take_damage(leap_damage, RED_DAMAGE)
 	SLEEP_CHECK_DEATH(0.5 SECONDS)
@@ -349,7 +349,7 @@
 			continue;
 		var/obj/effect/temp_visual/slice/blood = new(T)
 		blood.color = "#b52e19"
-		hit_list = HurtInTurf(T, hit_list, slash_damage, RED_DAMAGE, null, TRUE, TRUE, TRUE, hurt_structure = TRUE)
+		hit_list = HurtInTurf(T, hit_list, slash_damage, RED_DAMAGE, null, TRUE, TRUE, TRUE, hurt_structure = TRUE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 	for (var/hit in hit_list)
 		if (istype(hit, /mob/living))
 			var/mob/living/L = hit
@@ -469,7 +469,7 @@
 /mob/living/simple_animal/hostile/humanoid/blood/bag/proc/DeathExplosion()
 	playsound(loc, 'sound/effects/ordeals/crimson/dusk_dead.ogg', 60, TRUE)
 	for(var/mob/living/L in view(1, src))
-		L.deal_damage(explosion_damage, RED_DAMAGE)
+		L.deal_damage(explosion_damage, RED_DAMAGE, attack_type = (ATTACK_TYPE_SPECIAL))
 		L.apply_lc_bleed(explosion_bleed)
 	var/turf/origin = get_turf(src)
 	var/list/all_turfs = RANGE_TURFS(1, origin)

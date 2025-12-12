@@ -45,7 +45,7 @@
 	playsound(src, 'sound/weapons/ego/sword1.ogg', min(15 + damage, 100), TRUE, 4)
 	attacker.visible_message(span_danger("[src] counters [attacker] with a massive blade!"), span_userdanger("[src] counters your attack!"))
 	do_attack_animation(attacker)
-	attacker.apply_damage(damage, attack_type, null, attacker.getarmor(null, attack_type))
+	attacker.deal_damage(damage, attack_type, src, attack_type = (ATTACK_TYPE_COUNTER | ATTACK_TYPE_MELEE))
 	new /obj/effect/temp_visual/revenant(get_turf(attacker))
 
 /mob/living/simple_animal/hostile/ordeal/NT_corrosion/death(gibbed)
@@ -58,43 +58,19 @@
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/ordeal/NT_corrosion/attack_hand(mob/living/carbon/human/M)
-	..()
-	if(!.)
-		return
-	if(damage_reflection && M.a_intent == INTENT_HARM)
-		ReflectDamage(M, M?.dna?.species?.attack_type, M?.dna?.species?.punchdamagehigh)
-
-/mob/living/simple_animal/hostile/ordeal/NT_corrosion/attack_paw(mob/living/carbon/human/M)
-	..()
-	if(damage_reflection && M.a_intent != INTENT_HELP)
-		ReflectDamage(M, M?.dna?.species?.attack_type, 5)
-
-/mob/living/simple_animal/hostile/ordeal/NT_corrosion/attack_animal(mob/living/simple_animal/M)
+/mob/living/simple_animal/hostile/ordeal/NT_corrosion/PreDamageReaction(damage_amount, damage_type, source, attack_type)
 	. = ..()
-	if(!damage_reflection)
+	if(!damage_reflection || !isliving(source)) // Only execute the rest of the code if we're reflecting damage and we were provided with a source for it
 		return
-	if(.)
-		var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
-		if(damage > 0)
-			ReflectDamage(M, M.melee_damage_type, damage)
+	if((attack_type & (ATTACK_TYPE_COUNTER | ATTACK_TYPE_ENVIRONMENT | ATTACK_TYPE_STATUS))) // Don't counter these types of attacks, but prevent the damage on them anyway.
+		return FALSE
+	if((attack_type & (ATTACK_TYPE_RANGED | ATTACK_TYPE_SPECIAL)) && get_dist(src, source) >= 5) // Counter these types of attacks only if within 5 tiles (as it used to work)
+		return FALSE
 
-/mob/living/simple_animal/hostile/ordeal/NT_corrosion/bullet_act(obj/projectile/Proj, def_zone, piercing_hit = FALSE)
-	..()
-	if(damage_reflection && Proj.firer)
-		if(get_dist(Proj.firer, src) < 5)
-			ReflectDamage(Proj.firer, Proj.damage_type, Proj.damage)
+	ReflectDamage(source, damage_type, damage_amount)
+	return FALSE // Damage is prevented on us yippee
 
-/mob/living/simple_animal/hostile/ordeal/NT_corrosion/attackby(obj/item/I, mob/living/user, params)
-	..()
-	if(!damage_reflection)
-		return
-	var/damage = I.force
-	if(ishuman(user))
-		damage *= 1 + (get_attribute_level(user, JUSTICE_ATTRIBUTE)/100)
-	ReflectDamage(user, I.damtype, damage)
-
-/mob/living/simple_animal/hostile/ordeal/NT_corrosion/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
+/mob/living/simple_animal/hostile/ordeal/NT_corrosion/PostDamageReaction(damage_amount, damage_type, source, attack_type)
 	. = ..()
 	if(. > 0)
 		damage_taken += .
@@ -104,7 +80,7 @@
 	if(!can_act)
 		return
 	if(damage_taken > 400 && !damage_reflection)
-		StartReflecting()
+		INVOKE_ASYNC(src, PROC_REF(StartReflecting))
 
 /mob/living/simple_animal/hostile/ordeal/NT_corrosion/proc/StartReflecting()
 	can_act = FALSE
@@ -113,12 +89,10 @@
 	playsound(get_turf(src), 'sound/abnormalities/nothingthere/breach.ogg', 25, 0, 5)
 	visible_message(span_warning("[src] assumes a stance!"))
 	icon_state = "everything_there_guard"
-	ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))
 	sleep(2 SECONDS)
 	if(QDELETED(src) || stat == DEAD)
 		return
 	icon_state = icon_living
-	ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.3))
 	damage_reflection = FALSE
 	can_act = TRUE
 
@@ -148,7 +122,7 @@
 			if(TF.density)
 				continue
 			new /obj/effect/temp_visual/smash_effect(TF)
-			been_hit = HurtInTurf(TF, been_hit, hello_damage, RED_DAMAGE, null, TRUE, FALSE, TRUE, TRUE)
+			been_hit = HurtInTurf(TF, been_hit, hello_damage, RED_DAMAGE, null, TRUE, FALSE, TRUE, TRUE, attack_type = (ATTACK_TYPE_RANGED | ATTACK_TYPE_SPECIAL))
 	for(var/mob/living/L in been_hit)
 		if(L.health < 0)
 			L.gib()
@@ -229,10 +203,10 @@
 		for(var/mob/living/H in T)
 			if(faction_check_mob(H))
 				continue
-			H.apply_damage(poison_damage, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			H.deal_damage(poison_damage, BLACK_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_ENVIRONMENT | ATTACK_TYPE_SPECIAL))
 			H.apply_venom(2)
 
-/mob/living/simple_animal/hostile/ordeal/snake_corrosion/apply_damage(damage, damagetype, def_zone, blocked, forced, spread_damage, wound_bonus, bare_wound_bonus, sharpness, white_healable)
+/mob/living/simple_animal/hostile/ordeal/snake_corrosion/PostDamageReaction(damage_amount, damage_type, source, attack_type)
 	. = ..()
 	if(poison_releasing)
 		return
@@ -489,7 +463,7 @@
 		to_chat(L, span_userdanger("[src] takes a bite out of you!"))
 		var/turf/LT = get_turf(L)
 		new /obj/effect/temp_visual/kinetic_blast(LT)
-		L.apply_damage(dash_damage,RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		L.deal_damage(dash_damage,RED_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 		been_hit += L
 		playsound(L, 'sound/effects/ordeals/brown/cromer_stab.ogg', 75, 1)
 		if(!ishuman(L))
