@@ -660,11 +660,13 @@ GLOBAL_LIST_EMPTY(species_list)
  * * hurt_structure (optional) If this damage applies to structures as well.
  * * break_not_destroy (optional) If this is TRUE, then the damage will not DESTROY structures, only break them.
  * * attack_direction (optional) Is the direction of the attack relative to the mecha that gets hit by this attack, for directional armor.
+ * * flags (optional) Bitflags from code\__DEFINES\damage.dm. For example, flags = (DAMAGE_FORCED | DAMAGE_PIERCING) will prevent the damage from being cancelled by a PreDamageReaction() and will ignore godmode and armour/damagecoeff effects on damage.
+ * * attack_type (optional) Bitflags from code\__DEFINES\damage.dm. For example, attack_type = (ATTACK_TYPE_MELEE) will mark the attack as a melee attack, or (ATTACK_TYPE_RANGED | ATTACK_TYPE_SPECIAL) as both ranged and special.
  *
  * returns:
  * * hit_list - A list containing all things hit by this proc.
  */
-/mob/proc/HurtInTurf(turf/target, list/hit_list = list(), damage = 0, damage_type = RED_DAMAGE, def_zone = null, check_faction = FALSE, exact_faction_match = FALSE, hurt_mechs = FALSE, mech_damage = 0, hurt_hidden = FALSE, hurt_structure = FALSE, break_not_destroy = FALSE, attack_direction = null)
+/mob/proc/HurtInTurf(turf/target, list/hit_list = list(), damage = 0, damage_type = RED_DAMAGE, def_zone = null, check_faction = FALSE, exact_faction_match = FALSE, hurt_mechs = FALSE, mech_damage = 0, hurt_hidden = FALSE, hurt_structure = FALSE, break_not_destroy = FALSE, attack_direction = null, flags = null, attack_type = null)
 	// Types that should never be hit by HurtInTurf
 	var/static/list/exclude = typecacheof(list(/obj/machinery/navbeacon/wayfinding, /obj/structure/disposalpipe, /obj/structure/lattice, /obj/machinery/cryopod, /obj/structure/sign, /obj/machinery/button, /obj/machinery/light, /obj/structure/extinguisher_cabinet, /obj/machinery/containment_panel, /obj/machinery/computer/security/telescreen, /obj/machinery/facility_holomap, /obj/structure/fans/tiny, /obj/machinery/requests_console))
 	var/static/list/hiding_places = typecacheof(list(/obj/structure/closet, /obj/structure/bodycontainer, /obj/machinery/disposal, /obj/machinery/cryopod, /obj/machinery/sleeper, /obj/machinery/fat_sucker))
@@ -684,7 +686,7 @@ GLOBAL_LIST_EMPTY(species_list)
 			if(faction_check_mob(L, exact_faction_match))
 				continue
 		if(damage)
-			L.apply_damage(damage, damage_type, def_zone, L.run_armor_check(def_zone, damage_type), FALSE, TRUE)
+			L.deal_damage(damage, damage_type, source = src, flags = flags, attack_type = attack_type)
 		. += L
 	if(hurt_mechs || hurt_hidden || hurt_structure)
 		for(var/obj/O in target)
@@ -718,7 +720,7 @@ GLOBAL_LIST_EMPTY(species_list)
 						if(faction_check_mob(L, exact_faction_match))
 							continue
 					if(damage)
-						L.apply_damage(damage, damage_type, def_zone, L.run_armor_check(def_zone, damage_type), FALSE, TRUE)
+						L.deal_damage(damage, damage_type, source = src, flags = flags, attack_type = attack_type)
 					. += L
 			if(hurt_structure && (isstructure(O) || ismachinery(O)))
 				if(O.resistance_flags & INDESTRUCTIBLE)

@@ -46,4 +46,4 @@
 		return
 
 	var/extra_damage = max(0, source.force * damage_multiplier)
-	target.apply_damage(extra_damage, source.damtype, attacker.zone_selected)
+	target.deal_damage(extra_damage, source.damtype, source = attacker, flags = (DAMAGE_FORCED), def_zone = attacker.zone_selected)
