@@ -409,7 +409,7 @@
 	if(!target_limb) // Does this limb exist at all?
 		return
 	var/armor_v = H.getarmor(target_limb, type = "melee")
-	H.apply_damage(force, STAMINA, selected_bodypart_area, armor_v) // Regardless of limb, you get some stamina damage
+	H.deal_damage(force, STAMINA, source = user, attack_type = (ATTACK_TYPE_MELEE), def_zone = selected_bodypart_area, blocked = armor_v) // Regardless of limb, you get some stamina damage
 	switch(selected_bodypart_area)
 		if(BODY_ZONE_L_ARM)
 			if(armor_v < 41)
@@ -426,7 +426,7 @@
 				if(!H.is_eyes_covered() && eyes) // You have eyes, right..?
 					to_chat(H, "<span class='userdanger'>[user] managed to hit your eyes with [src]!</span>")
 					to_chat(user, "<span class='notice'>You managed to hit [H] with [src] right in the eyes!</span>")
-					H.apply_damage(force*2, STAMINA, selected_bodypart_area, armor_v) // That's ADDITIONAL damage.
+					H.deal_damage(force*2, STAMINA, source = user, attack_type = (ATTACK_TYPE_MELEE), def_zone = selected_bodypart_area, blocked = armor_v) // That's ADDITIONAL damage.
 					H.emote("scream")
 					H.blur_eyes(3)
 					H.add_confusion(2)
@@ -434,7 +434,7 @@
 		else
 			if((armor_v < 16) && prob(15 - armor_v)) // Armor is too low! That's gonna sting.
 				to_chat(H, "<span class='userdanger'>You can't stand this pain!</span>")
-				H.apply_damage(force*2, STAMINA, selected_bodypart_area, armor_v) // Even more damage.
+				H.deal_damage(force*2, STAMINA, source = user, attack_type = (ATTACK_TYPE_MELEE), def_zone = selected_bodypart_area, blocked = armor_v) // Even more damage.
 				H.emote("scream")
 				H.Stun(2)
 				H.Jitter(3)

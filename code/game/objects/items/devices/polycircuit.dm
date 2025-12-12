@@ -50,7 +50,7 @@
 			else
 				to_chat(user, span_notice("You navigate the sharp edges of circuitry and remove a single board from [src]"))
 		else
-			H.apply_damage(15, BRUTE, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
+			H.deal_damage(15, BRUTE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_OTHER), def_zone = pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
 			to_chat(user, span_warning("You give yourself a wicked cut on [src]'s many sharp corners and edges!"))
 
 /obj/item/stack/circuit_stack/full
