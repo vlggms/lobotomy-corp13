@@ -283,7 +283,7 @@
 		return
 	do_attack_animation(target, null, attached_item)
 	if (obj_flags & EMAGGED)
-		target.apply_damage(attached_item.force, BRUTE, BODY_ZONE_CHEST)
+		target.deal_damage(attached_item.force, attached_item.damtype, source = src, attack_type = (ATTACK_TYPE_MELEE), def_zone = BODY_ZONE_CHEST)
 	playsound(src, 'sound/weapons/smash.ogg', 15, TRUE)
 	COOLDOWN_START(src, attack_cooldown, rand(MIN_ATTACK_DELAY, MAX_ATTACK_DELAY))
 

@@ -408,7 +408,7 @@
 				return
 		///no food found: it bites you and loses some hp
 		var/affecting = user.get_bodypart(BODY_ZONE_CHEST)
-		user.apply_damage(60, BRUTE, affecting)
+		user.deal_damage(60, BRUTE, flags = (DAMAGE_FORCED), def_zone = affecting)
 		hunger = initial(hunger)
 		playsound(src, 'sound/items/eatfood.ogg', 20, TRUE)
 		to_chat(user, "<span class='warning'>The [name] eats your back!</span>")
