@@ -754,7 +754,7 @@
 				H.visible_message("<span class='danger'>[user] headbutts the airlock.</span>", \
 									"<span class='userdanger'>You headbutt the airlock!</span>")
 				H.Paralyze(100)
-				H.apply_damage(10, BRUTE, BODY_ZONE_HEAD)
+				H.deal_damage(10, BRUTE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_OTHER), def_zone = BODY_ZONE_HEAD)
 			else
 				visible_message("<span class='danger'>[user] headbutts the airlock. Good thing [user.p_theyre()] wearing a helmet.</span>")
 
