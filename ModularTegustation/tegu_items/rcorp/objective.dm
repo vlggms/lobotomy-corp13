@@ -279,7 +279,7 @@ GLOBAL_VAR_INIT(rcorp_payload, null)
 
 /mob/living/simple_animal/hostile/shrimp_vip/proc/SniperShoot()
 	to_chat(src, span_userdanger("You are hit by a sniper bullet from an unknown sniper..."))
-	deal_damage(300, RED_DAMAGE)
+	deal_damage(300, RED_DAMAGE, flags = (DAMAGE_FORCED)
 	playsound_local(src, 'sound/weapons/gun/sniper/shot.ogg', 75)
 	sniper = null
 
@@ -339,7 +339,7 @@ GLOBAL_VAR_INIT(rcorp_payload, null)
 		sleep(34)
 		for(var/turf/AT in range(2, landingzone))
 			new /obj/effect/temp_visual/smash_effect(AT)
-			dummy.HurtInTurf(AT, list(), (200), RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
+			dummy.HurtInTurf(AT, list(), (200), RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, flags = (DAMAGE_FORCED | DAMAGE_UNTRACKABLE), attack_type = (ATTACK_TYPE_SPECIAL))
 		playsound(dummy, 'sound/effects/explosion2.ogg', 50, TRUE)
 		qdel(dummy)
 		sleep(rand()*2)

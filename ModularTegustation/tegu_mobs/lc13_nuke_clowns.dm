@@ -79,7 +79,7 @@
 	SLEEP_CHECK_DEATH(6)
 	for(var/mob/living/L in view(7, src))
 		if(!faction_check_mob(L))
-			L.apply_damage(scream_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))
+			L.deal_damage(scream_damage, WHITE_DAMAGE, src, attack_type = (ATTACK_TYPE_SPECIAL))
 	can_act = TRUE
 
 /mob/living/simple_animal/hostile/mutant_clown/proc/Slam()
@@ -87,7 +87,7 @@
 	face_atom(target)
 	for(var/turf/T in view(1, src))
 		new /obj/effect/temp_visual/smash1(T)
-		HurtInTurf(T, list(), (rand(melee_damage_lower, melee_damage_upper)), RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
+		HurtInTurf(T, list(), (rand(melee_damage_lower, melee_damage_upper)), RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 	playsound(get_turf(src), 'sound/abnormalities/mountain/slam.ogg', 50, 0, 3)
 	SLEEP_CHECK_DEATH(0.4 SECONDS)
 	can_act = TRUE
@@ -266,7 +266,7 @@
 	for(var/turf/T in view(1, src))
 		new /obj/effect/temp_visual/smash_effect(T)
 		new /obj/effect/decal/cleanable/blood(T)
-		caster.HurtInTurf(T, list(), damage, RED_DAMAGE, null, TRUE, FALSE, TRUE, hurt_hidden = TRUE, hurt_structure = FALSE)
+		caster.HurtInTurf(T, list(), damage, RED_DAMAGE, null, TRUE, FALSE, TRUE, hurt_hidden = TRUE, hurt_structure = FALSE, attack_type = (ATTACK_TYPE_SPECIAL))
 	qdel(src)
 
 /obj/item/mutant_heart
@@ -303,4 +303,4 @@
 		min_next_adrenaline = world.time + rand(10, 20)
 		to_chat(joyful, "<span class='userdanger'>This pain... Brings us such joy...</span>")
 		joyful.heal_overall_damage(regen_amount*regen_mult, regen_amount*regen_mult, regen_amount*regen_mult, BODYPART_ORGANIC)
-		joyful.apply_damage(regen_amount, WHITE_DAMAGE)
+		joyful.deal_damage(regen_amount, WHITE_DAMAGE, flags = (DAMAGE_FORCED))

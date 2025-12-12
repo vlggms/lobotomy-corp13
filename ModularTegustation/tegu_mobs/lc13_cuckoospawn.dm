@@ -66,7 +66,7 @@
 	. = ..()
 	if(isanimal(attacked_target))
 		var/mob/living/simple_animal/easy_target = attacked_target
-		easy_target.deal_damage(melee_damage_upper * 3, RED_DAMAGE)
+		easy_target.deal_damage(melee_damage_upper * 3, RED_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE))
 	if(human_target.stat != DEAD && prob(5))
 		var/obj/item/bodypart/chest/LC = human_target.get_bodypart(BODY_ZONE_CHEST)
 		if((!LC || LC.status != BODYPART_ROBOTIC) && !human_target.getorgan(/obj/item/organ/body_egg/cuckoospawn_embryo) && !HAS_TRAIT(human_target, TRAIT_XENO_IMMUNE))
