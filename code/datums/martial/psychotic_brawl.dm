@@ -47,8 +47,8 @@
 							span_userdanger("You're [atk_verb]ed by [A]!"), span_hear("You hear a sickening sound of flesh hitting flesh!"), null, A)
 			to_chat(A, span_danger("You [atk_verb] [D]!"))
 			playsound(get_turf(D), 'sound/weapons/punch1.ogg', 40, TRUE, -1)
-			D.apply_damage(rand(5,10), A.get_attack_type(), BODY_ZONE_HEAD)
-			A.apply_damage(rand(5,10), A.get_attack_type(), BODY_ZONE_HEAD)
+			D.deal_damage(rand(5,10), A.get_attack_type(), source = A, attack_type = (ATTACK_TYPE_MELEE), def_zone = BODY_ZONE_HEAD)
+			A.deal_damage(rand(5,10), A.get_attack_type(), flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_OTHER), def_zone = BODY_ZONE_HEAD)
 			if (iscarbon(D))
 				var/mob/living/carbon/defender = D
 				if(!istype(defender.head,/obj/item/clothing/head/helmet/) && !istype(defender.head,/obj/item/clothing/head/hardhat))
@@ -61,7 +61,7 @@
 			D.visible_message(span_danger("[A] [atk_verb]s [D] with such inhuman strength that it sends [D.p_them()] flying backwards!"), \
 							span_userdanger("You're [atk_verb]ed by [A] with such inhuman strength that it sends you flying backwards!"), span_hear("You hear a sickening sound of flesh hitting flesh!"), null, A)
 			to_chat(A, span_danger("You [atk_verb] [D] with such inhuman strength that it sends [D.p_them()] flying backwards!"))
-			D.apply_damage(rand(15,30), A.get_attack_type())
+			D.deal_damage(rand(15,30), A.get_attack_type(), source = A, attack_type = (ATTACK_TYPE_MELEE))
 			playsound(get_turf(D), 'sound/effects/meteorimpact.ogg', 25, TRUE, -1)
 			var/throwtarget = get_edge_target_turf(A, get_dir(A, get_step_away(D, A)))
 			D.throw_at(throwtarget, 4, 2, A)//So stuff gets tossed around at the same time.

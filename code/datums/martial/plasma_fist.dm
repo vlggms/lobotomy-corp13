@@ -107,7 +107,7 @@
 	to_chat(A, "<span class='userdanger'>The explosion knocks your soul out of your body!</span>")
 	A.ghostize(FALSE) //prevents... horrible memes just believe me
 
-	A.apply_damage(rand(50,70), BRUTE)
+	A.deal_damage(rand(50,70), BRUTE, source = A, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 
 	addtimer(CALLBACK(src, PROC_REF(Apotheosis_end), A), 6 SECONDS)
 	playsound(boomspot, 'sound/weapons/punch1.ogg', 50, TRUE, -1)

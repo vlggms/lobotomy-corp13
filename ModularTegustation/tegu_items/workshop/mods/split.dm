@@ -14,7 +14,7 @@
 			splitdamagetype = PALE_DAMAGE
 		if(WHITE_DAMAGE)
 			splitdamagetype = BLACK_DAMAGE
-	target.deal_damage(splitdamage, splitdamagetype)
+	target.deal_damage(splitdamage, splitdamagetype, user, attack_type = (ATTACK_TYPE_MELEE))
 
 /obj/item/workshop_mod/split/redpale
 	name = "split damage mod A"

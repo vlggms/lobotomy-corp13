@@ -23,7 +23,7 @@
 	aoe_damage*=justicemod
 	if(L == user)
 		return
-	L.deal_damage(aoe_damage, damagetype)
+	L.deal_damage(aoe_damage, damagetype, user, attack_type = (ATTACK_TYPE_MELEE))
 	new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(L))
 
 /obj/item/workshop_mod/aoe/red
