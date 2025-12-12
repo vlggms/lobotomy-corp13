@@ -105,7 +105,7 @@
 		owner.visible_message(span_danger("[owner] suddenly twists and turns, what a strange stance!"), "<b>You twist and turn, your twisted stance is done!</b>")
 		owner.mind.martial_art.streak = "twisted_stance"
 		H.adjustStaminaLoss(-40)
-		H.apply_damage(18, BRUTE, BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
+		H.deal_damage(18, BRUTE, flags = (DAMAGE_FORCED), def_zone = BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
 
 /datum/martial_art/velvetfu/proc/twisted_stance(mob/living/carbon/user)
 	return // Empty return because we only want the button trigger
@@ -124,7 +124,7 @@
 			crit_wound.apply_wound(limb)
 	else
 		to_chat(A, span_danger("Your flying axe kick fails to cause [D] to bleed!"))
-	D.apply_damage(10, BRUTE) // Slash!
+	D.deal_damage(10, BRUTE, source = A, attack_type = (ATTACK_TYPE_MELEE)) // Slash!
 	playsound(get_turf(A), 'sound/weapons/slice.ogg', 50, TRUE, -1)
 	return TRUE
 
@@ -134,7 +134,7 @@
 	D.visible_message(span_danger("[A] headbutted [D]!"), \
 					span_userdanger("You're headbutted by [A]!"), span_hear("You hear a sickening sound of flesh hitting flesh!"), COMBAT_MESSAGE_RANGE, A)
 	to_chat(A, span_danger("You swiftly headbutt [D]!"))
-	A.apply_damage(15, BRUTE, BODY_ZONE_HEAD, wound_bonus = CANT_WOUND)
+	A.deal_damage(15, BRUTE, flags = (DAMAGE_FORCED), def_zone = BODY_ZONE_HEAD, wound_bonus = CANT_WOUND)
 	A.adjustStaminaLoss(60)
 	if(prob(80))
 		if(!D.stat)
@@ -142,7 +142,7 @@
 			D.Jitter(6 SECONDS)
 	else
 		to_chat(A, span_danger("You fail to stun [D]!"))
-	D.apply_damage(10, A.get_attack_type(), BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
+	D.deal_damage(10, A.get_attack_type(), source = A, attack_type = (ATTACK_TYPE_MELEE), def_zone = BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
 	playsound(get_turf(A), 'sound/effects/hit_punch.ogg', 50, TRUE, -1)
 	return TRUE
 
@@ -158,7 +158,7 @@
 			D.Knockdown(30)
 	else
 		to_chat(A, span_danger("You fail to knock [D] down!"))
-	D.apply_damage(15, A.get_attack_type(), BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
+	D.deal_damage(15, A.get_attack_type(), source = A, attack_type = (ATTACK_TYPE_MELEE), def_zone = BODY_ZONE_CHEST, wound_bonus = CANT_WOUND))
 	playsound(get_turf(A), 'sound/weapons/cqchit1.ogg', 50, TRUE, -1)
 	return TRUE
 
@@ -172,7 +172,7 @@
 	var/obj/item/bodypart/limb = D.get_bodypart(ran_zone(A.zone_selected)) // Guaranteed, unlike Flying Axe Kick
 	var/datum/wound/slash/moderate/crit_wound = new
 	crit_wound.apply_wound(limb)
-	D.apply_damage(30, BRUTE) // Slash!
+	D.deal_damage(30, BRUTE, source = A, attack_type = (ATTACK_TYPE_MELEE)) // Slash!
 	playsound(get_turf(A), 'sound/weapons/bladeslice.ogg', 50, TRUE, -1)
 	return TRUE
 
@@ -191,7 +191,7 @@
 	if(D.body_position == LYING_DOWN)
 		bonus_damage += 5
 		picked_hit_type = "iron hooved"
-	D.apply_damage(bonus_damage, A.get_attack_type())
+	D.deal_damage(bonus_damage, A.get_attack_type(), source = A, attack_type = (ATTACK_TYPE_MELEE))
 	D.visible_message(span_danger("[A] [picked_hit_type]ed [D]!"), \
 					span_userdanger("You're [picked_hit_type]ed by [A]!"), span_hear("You hear a sickening sound of flesh hitting flesh!"), COMBAT_MESSAGE_RANGE, A)
 	to_chat(A, span_danger("You [picked_hit_type] [D]!"))
@@ -214,7 +214,7 @@
 	if(D.body_position == LYING_DOWN)
 		bonus_damage += 5
 		picked_hit_type = "iron hooved"
-	D.apply_damage(bonus_damage, A.get_attack_type())
+	D.deal_damage(bonus_damage, A.get_attack_type(), source = A, attack_type = (ATTACK_TYPE_MELEE))
 	D.visible_message(span_danger("[A] [picked_hit_type]ed [D]!"), \
 					span_userdanger("You're [picked_hit_type]ed by [A]!"), span_hear("You hear a sickening sound of flesh hitting flesh!"), COMBAT_MESSAGE_RANGE, A)
 	to_chat(A, span_danger("You [picked_hit_type] [D]!"))
@@ -237,7 +237,7 @@
 	if(D.body_position == LYING_DOWN)
 		bonus_damage += 8
 		picked_hit_type = "iron hooved"
-	D.apply_damage(bonus_damage, A.get_attack_type())
+	D.deal_damage(bonus_damage, A.get_attack_type(), source = A, attack_type = (ATTACK_TYPE_MELEE))
 	D.visible_message(span_danger("[A] [picked_hit_type]ed [D]!"), \
 					span_userdanger("You're [picked_hit_type]ed by [A]!"), span_hear("You hear a sickening sound of flesh hitting flesh!"), COMBAT_MESSAGE_RANGE, A)
 	to_chat(A, span_danger("You [picked_hit_type] [D]!"))

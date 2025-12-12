@@ -50,7 +50,7 @@
 						span_userdanger("You're slammed into the ground by [A]!"), span_hear("You hear a sickening sound of flesh hitting flesh!"), null, A)
 		to_chat(A, span_danger("You slam [D] into the ground!"))
 		playsound(get_turf(A), 'sound/weapons/slam.ogg', 50, TRUE, -1)
-		D.apply_damage(10, BRUTE)
+		D.deal_damage(10, BRUTE, source = A, attack_type = (ATTACK_TYPE_MELEE))
 		D.Paralyze(120)
 		log_combat(A, D, "slammed (CQC)")
 	return TRUE
@@ -65,7 +65,7 @@
 		playsound(get_turf(A), 'sound/weapons/cqchit1.ogg', 50, TRUE, -1)
 		var/atom/throw_target = get_edge_target_turf(D, A.dir)
 		D.throw_at(throw_target, 1, 14, A)
-		D.apply_damage(10, A.get_attack_type())
+		D.deal_damage(10, A.get_attack_type(), source = A, attack_type = (ATTACK_TYPE_MELEE))
 		log_combat(A, D, "kicked (CQC)")
 	if(D.IsParalyzed() && !D.stat)
 		log_combat(A, D, "knocked out (Head kick)(CQC)")
@@ -117,7 +117,7 @@
 		if(I && D.temporarilyRemoveItemFromInventory(I))
 			A.put_in_hands(I)
 		D.adjustStaminaLoss(50)
-		D.apply_damage(25, A.get_attack_type())
+		D.deal_damage(25, A.get_attack_type(), source = A, attack_type = (ATTACK_TYPE_MELEE))
 	return TRUE
 
 /datum/martial_art/cqc/grab_act(mob/living/A, mob/living/D)
@@ -151,7 +151,7 @@
 	if(D.body_position == LYING_DOWN)
 		bonus_damage += 5
 		picked_hit_type = "stomp"
-	D.apply_damage(bonus_damage, BRUTE)
+	D.deal_damage(bonus_damage, BRUTE, source = A, attack_type = (ATTACK_TYPE_MELEE))
 	if(picked_hit_type == "kick" || picked_hit_type == "stomp")
 		playsound(get_turf(D), 'sound/weapons/cqchit2.ogg', 50, TRUE, -1)
 	else
@@ -165,7 +165,7 @@
 						span_userdanger("Your legs are sweeped by [A]!"), span_hear("You hear a sickening sound of flesh hitting flesh!"), null, A)
 		to_chat(A, span_danger("You leg sweep [D]!"))
 		playsound(get_turf(A), 'sound/effects/hit_kick.ogg', 50, TRUE, -1)
-		D.apply_damage(10, BRUTE)
+		D.deal_damage(10, BRUTE, source = A, attack_type = (ATTACK_TYPE_MELEE))
 		D.Paralyze(60)
 		log_combat(A, D, "sweeped (CQC)")
 	return TRUE
@@ -187,7 +187,7 @@
 			if(I && D.temporarilyRemoveItemFromInventory(I))
 				A.put_in_hands(I)
 			D.Jitter(2)
-			D.apply_damage(5, A.get_attack_type())
+			D.deal_damage(5, A.get_attack_type(), source = A, attack_type = (ATTACK_TYPE_MELEE))
 	else
 		D.visible_message(span_danger("[A] fails to disarm [D]!"), \
 						span_userdanger("You're nearly disarmed by [A]!"), span_hear("You hear a swoosh!"), COMBAT_MESSAGE_RANGE, A)
