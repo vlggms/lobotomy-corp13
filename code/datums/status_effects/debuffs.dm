@@ -1156,7 +1156,7 @@
 	stacks -= 3
 
 /datum/status_effect/stacking/lc_burn/proc/DealDamage()
-	owner.apply_damage(max(1, stacks * 0.25), FIRE, null, owner.run_armor_check(null, FIRE))
+	owner.deal_damage(max(1, stacks * 0.25), FIRE, attack_type = (ATTACK_TYPE_STATUS))
 
 //Update burn appearance
 /datum/status_effect/stacking/lc_burn/proc/Update_Burn_Overlay(mob/living/owner)
@@ -1302,7 +1302,7 @@
 
 /datum/status_effect/stacking/pallid_noise/tick()
 	if(!ishuman(owner))
-		owner.apply_damage(stacks, WHITE_DAMAGE, null, owner.run_armor_check(null, WHITE_DAMAGE))
+		owner.deal_damage(stacks, WHITE_DAMAGE, attack_type = (ATTACK_TYPE_STATUS))
 		return
 	var/mob/living/carbon/human/status_holder = owner
 	status_holder.adjustSanityLoss(stacks * stacks)//sanity damage is the # of stacks squared
@@ -1408,8 +1408,8 @@
 	icon_state = "dark_flame"
 
 /datum/status_effect/stacking/lc_burn/dark_flame/DealDamage()
-	owner.apply_damage(stacks * 0.5, FIRE, null, owner.run_armor_check(null, BLACK_DAMAGE))
-	owner.apply_damage(stacks * 0.5, WHITE_DAMAGE, null, owner.run_armor_check(null, BLACK_DAMAGE))
+	owner.deal_damage(stacks, FIRE, attack_type = (ATTACK_TYPE_STATUS), blocked = owner.run_armor_check(null, BLACK_DAMAGE))
+	owner.deal_damage(stacks, WHITE_DAMAGE, attack_type = (ATTACK_TYPE_STATUS), blocked = owner.run_armor_check(null, BLACK_DAMAGE))
 
 //Update burn appearance
 /datum/status_effect/stacking/lc_burn/dark_flame/Update_Burn_Overlay(mob/living/owner)

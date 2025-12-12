@@ -104,7 +104,7 @@
 		obliterate(victim) // their planet is dead, and so will they be
 
 /datum/action/cooldown/fishing/chakra/proc/smite(mob/living/carbon/asshole, mob/living/carbon/user)
-	asshole.apply_damage(user.devotion * SSfishing.moonphase * 0.5, WHITE_DAMAGE, null, asshole.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)	//KILL
+	sinner.deal_damage(user.devotion * SSfishing.moonphase * 0.5, WHITE_DAMAGE, src, attack_type = (ATTACK_TYPE_SPECIAL)) //KILL
 	if(ishuman(asshole))
 		to_chat(asshole, span_userdanger("You feel your chakra rend itself!"), confidential = TRUE)
 
