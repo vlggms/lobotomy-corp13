@@ -237,7 +237,7 @@
 	L.Jitter(20)
 	L.set_confusion(max(confusion_amt, L.get_confusion()))
 	L.stuttering = max(8, L.stuttering)
-	L.apply_damage(stamina_loss_amt, STAMINA, BODY_ZONE_CHEST, armor_v)
+	L.deal_damage(stamina_loss_amt, STAMINA, source = user, attack_type = (ATTACK_TYPE_MELEE), def_zone = BODY_ZONE_CHEST, blocked = armor_v)
 
 	SEND_SIGNAL(L, COMSIG_LIVING_MINOR_SHOCK)
 	addtimer(CALLBACK(src, PROC_REF(apply_stun_effect_end), L, armor_v), apply_stun_delay)
