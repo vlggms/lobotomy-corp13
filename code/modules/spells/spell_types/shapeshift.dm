@@ -147,7 +147,7 @@
 		var/damage_percent = (stored.maxHealth - stored.health)/stored.maxHealth;
 		var/damapply = damage_percent * shape.maxHealth;
 
-		shape.apply_damage(damapply, source.convert_damage_type, forced = TRUE, wound_bonus=CANT_WOUND);
+		shape.deal_damage(damapply, source.convert_damage_type, flags = (DAMAGE_FORCED | DAMAGE_PIERCING), wound_bonus = CANT_WOUND);
 		shape.blood_volume = stored.blood_volume;
 
 	RegisterSignal(shape, list(COMSIG_PARENT_QDELETING, COMSIG_LIVING_DEATH), PROC_REF(shape_death))
@@ -210,7 +210,7 @@
 		var/damage_percent = (shape.maxHealth - shape.health)/shape.maxHealth;
 		var/damapply = stored.maxHealth * damage_percent
 
-		stored.apply_damage(damapply, source.convert_damage_type, forced = TRUE, wound_bonus=CANT_WOUND)
+		stored.deal_damage(damapply, source.convert_damage_type, flags = (DAMAGE_FORCED | DAMAGE_PIERCING), wound_bonus=CANT_WOUND)
 	if(source.convert_damage)
 		stored.blood_volume = shape.blood_volume;
 

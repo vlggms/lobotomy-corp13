@@ -37,7 +37,7 @@
 	for(var/mob/living/L in view(2, src))
 		if(!faction_check_mob(L))
 			new /obj/effect/temp_visual/revenant(get_turf(L))
-			L.apply_damage(3, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+			L.deal_damage(3, BLACK_DAMAGE, src, flags = (DAMAGE_FORCED))
 
 /mob/living/simple_animal/hostile/ordeal/violet_monolith/death(gibbed)
 	density = FALSE
@@ -61,7 +61,7 @@
 	for(var/mob/living/L in view(4, src))
 		if(!faction_check_mob(L))
 			var/distance_decrease = get_dist(src, L) * 10
-			L.apply_damage((60 - distance_decrease), RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+			L.deal_damage((60 - distance_decrease), RED_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 			if(L.health < 0)
 				L.gib()
 	SLEEP_CHECK_DEATH(5)
