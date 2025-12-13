@@ -272,25 +272,6 @@ GLOBAL_LIST_EMPTY(marked_players)
 			if(AIStatus == AI_IDLE)
 				toggle_ai(AI_ON)
 			FindTarget(list(user), 1)
-		var/add_aggro = 0
-		var/add_damtype
-		if(I)
-			add_aggro = I.force
-			add_damtype = I.damtype
-			if(ishuman(user))
-				var/mob/living/carbon/human/H = user
-				var/justice_mod = 1 + get_modified_attribute_level(H, JUSTICE_ATTRIBUTE) / 100
-				add_aggro *= justice_mod
-			if(istype(I, /obj/item/ego_weapon/))
-				var/obj/item/ego_weapon/EW = I
-				add_aggro *= EW.force_multiplier
-		else
-			//this code does not seem to ever get executed
-			add_aggro = user.melee_damage_upper
-			if(isanimal(user))
-				var/mob/living/simple_animal/A = user
-				add_damtype = A.melee_damage_type
-		RegisterAggroValue(user, add_aggro, add_damtype)
 		if(target == user)
 			GainPatience()
 	return ..()
@@ -300,11 +281,6 @@ GLOBAL_LIST_EMPTY(marked_players)
 		if(!target)
 			if(P.firer && get_dist(src, P.firer) <= aggro_vision_range)
 				FindTarget(list(P.firer), 1)
-			else
-				Goto(P.starting, move_to_delay, 3)
-		//register the attacker in our memory.
-		if(P.firer)
-			RegisterAggroValue(P.firer, P.damage, P.damage_type)
 	return ..()
 
 /mob/living/simple_animal/hostile/attack_animal(mob/living/simple_animal/M, damage)
@@ -315,9 +291,16 @@ GLOBAL_LIST_EMPTY(marked_players)
 			if(AIStatus == AI_IDLE)
 				toggle_ai(AI_ON)
 			FindTarget(list(M), TRUE)
-		RegisterAggroValue(M, damage, M.melee_damage_type)
 		if(target == M)
 			GainPatience()
+// This proc will register the aggro value for damage taken by deal_damage. It is called by /hostile/deal_damage() which is an override of mob/living/proc/deal_damage().
+/mob/living/simple_animal/hostile/proc/RegisterAttackAggro(damage_amount, damage_type, source)
+	if(!damage_amount || stat >= DEAD || client)
+		return
+	if(isliving(source) && !faction_check_mob(source)) // If a mob is responsible for the damage we took... (Mind, we will receive source = null for attacks that are not intended to be "trackable")
+		RegisterAggroValue(source, damage_amount, damage_type) // Regardless of whether we have an active target or not, add the damage taken to our target memory.
+		if(!target) // If we don't have a target right now, move to investigate the source of the damage.
+			Goto(get_turf(source), move_to_delay, 2)
 
 /mob/living/simple_animal/hostile/Move(atom/newloc, dir , step_x , step_y)
 	if(dodging && approaching_target && prob(dodge_prob) && moving_diagonally == 0 && isturf(loc) && isturf(newloc))
@@ -353,6 +336,10 @@ GLOBAL_LIST_EMPTY(marked_players)
 		if(AIStatus != AI_ON && AIStatus != AI_OFF)
 			toggle_ai(AI_ON)
 			FindTarget()
+
+/mob/living/simple_animal/hostile/deal_damage(damage_amount, damage_type, source = null, flags = null, attack_type = null, blocked = null, def_zone = null, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE)
+	. = ..() // Returns the final damage, post reductions
+	RegisterAttackAggro(., damage_type, flags & DAMAGE_UNTRACKABLE ? null : source)
 
 /mob/living/simple_animal/hostile/death(gibbed)
 	target_memory.Cut()
