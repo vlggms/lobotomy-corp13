@@ -91,7 +91,7 @@
 			var/mob/living/carbon/human/theif = user
 			say("You are touching a devyat trunk without the correct access, please step away.")
 			playsound(get_turf(src), 'sound/weapons/ego/devyat_overclock.ogg', 25, 0, 4)
-			theif.apply_damage(theif_damage, BLACK_DAMAGE)
+			theif.deal_damage(theif_damage, BLACK_DAMAGE, flags = (DAMAGE_FORCED))
 		return FALSE
 	. = ..()
 
@@ -151,7 +151,7 @@
 			var/mob/living/carbon/human/theif = who
 			say("You are touching a devyat trunk without the correct access, please step away.")
 			playsound(get_turf(src), 'sound/weapons/ego/devyat_overclock.ogg', 25, 0, 4)
-			theif.apply_damage(theif_damage, BLACK_DAMAGE)
+			theif.deal_damage(theif_damage, BLACK_DAMAGE, flags = (DAMAGE_FORCED))
 		return FALSE
 	return ..()
 

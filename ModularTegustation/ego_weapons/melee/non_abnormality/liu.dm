@@ -225,7 +225,7 @@
 		for(var/mob/living/L in T)
 			if(L == user)
 				continue
-			L.apply_damage(force*0.5, damtype, null, L.run_armor_check(null, damtype), spread_damage = TRUE)
+			L.deal_damage(force*0.5, damtype, user, attack_type = (ATTACK_TYPE_SPECIAL))
 
 /obj/item/ego_weapon/city/liu/fist/proc/hopback(mob/living/carbon/user)
 	var/dodgelanding

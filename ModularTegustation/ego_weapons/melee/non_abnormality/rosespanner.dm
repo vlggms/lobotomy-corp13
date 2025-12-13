@@ -44,7 +44,7 @@
 
 /obj/item/ego_weapon/city/rosespanner/ChargeAttack(mob/living/target, mob/living/user)
 	. = ..()
-	target.apply_damage(force, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
+	target.deal_damage(force, damtype, user, attack_type = (ATTACK_TYPE_SPECIAL))
 
 	if(overcharged)
 		to_chat(user, span_danger("You overcharged your weapon!."))
@@ -55,7 +55,7 @@
 		for(var/mob/living/L in T)
 			if(!overcharged && (L == user || ishuman(L)))
 				continue
-			L.apply_damage(aoe, damtype, null, L.run_armor_check(null, damtype), spread_damage = TRUE)
+			L.deal_damage(aoe, damtype, user, attack_type = (ATTACK_TYPE_SPECIAL))
 
 	overcharged = FALSE
 	charged = FALSE
@@ -141,4 +141,3 @@
 	name = "rosespanner pale gear"
 	icon_state = "palegear"
 	damtype = PALE_DAMAGE
-

@@ -261,7 +261,7 @@
 	var/mob/living/L = target
 	var/turf/F = get_turf(L)
 	new /obj/effect/temp_visual/smash_effect(F)
-	L.apply_damage(40, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+	L.deal_damage(40, BLACK_DAMAGE, user, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 	exchange_cooldown -= 20
 	switch(dash_count)
 		if(0)
@@ -455,7 +455,7 @@
 		playsound(T, 'sound/weapons/black_silence/longsword_atk.ogg', 50, 1)
 		for (var/i = 0; i < 3; i++)
 			new /obj/effect/temp_visual/smash_effect(T)
-			for(var/mob/living/L in user.HurtInTurf(T, list(), 25, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
+			for(var/mob/living/L in user.HurtInTurf(T, list(), 25, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL)))
 				exchange_cooldown -= 10
 			sleep(0.25 SECONDS)
 
@@ -744,12 +744,12 @@
 	dash(user, target_turf)
 	playsound(user, 'sound/weapons/black_silence/duelsword.ogg', 50, 1)
 	if(dash_count < 1)
-		L.apply_damage(30, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+		L.deal_damage(30, BLACK_DAMAGE, user, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 		addtimer(CALLBACK(src, PROC_REF(dash_attack), user, target), 5)
 		new /obj/effect/temp_visual/smash_effect(F)
 		dash_count += 1
 	else
-		L.apply_damage(50, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+		L.deal_damage(50, BLACK_DAMAGE, user, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 		new /obj/effect/temp_visual/smash_effect(F)
 		exchange_cooldown -= 30
 		dash_count = 0
@@ -877,7 +877,7 @@
 		var/list/been_hit = list()
 		for(var/turf/T in area_of_effect)
 			new /obj/effect/temp_visual/smash_effect(T)
-			var/list/new_hits = user.HurtInTurf(T, been_hit, 150, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE) - been_hit
+			var/list/new_hits = user.HurtInTurf(T, been_hit, 150, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL)) - been_hit
 			been_hit += new_hits
 			for(var/mob/living/L in new_hits)
 				var/atom/throw_target = get_edge_target_turf(target, get_dir(user, L))
@@ -1028,7 +1028,7 @@
 	new /obj/effect/temp_visual/smash_effect(T)
 	if(!target.anchored)
 		target.Move(target_turf)
-	L.apply_damage(750, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE)) //this went on for 5 sec, so 150 DPS as the final attack
+	L.deal_damage(750, BLACK_DAMAGE, user, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_RANGED | ATTACK_TYPE_SPECIAL)) //this went on for 5 sec, so 150 DPS as the final attack
 	sleep(10)
 
 	furioso_end(user, target)
