@@ -1,14 +1,46 @@
+// For some reason we still have silicons in our codebase, and for some reason they take damage differently than other mobs (they don't take certain types of damage) so here we go with some duplicated code
+/mob/living/silicon/deal_damage(damage_amount, damage_type, source = null, flags = null, attack_type = null, blocked = null, def_zone = null, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE)
+	if(!damage_amount) // There are some extremely rare instances of 0 damage pre-armour reduction, for example King of Greed does a 0 damage HurtInTurf to fill up a hitlist to attack later.
+		return FALSE
 
-/mob/living/silicon/apply_damage(damage = 0,damagetype = BRUTE, def_zone = null, blocked = FALSE, forced = FALSE, spread_damage = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE, white_healable = FALSE)
+	// Damage shuffler station trait.
+	if(GLOB.damage_type_shuffler?.is_enabled && IsColorDamageType(damage_type))
+		var/datum/damage_type_shuffler/shuffler = GLOB.damage_type_shuffler
+		var/new_damage_type = shuffler.mapping_offense[damage_type]
+		damage_type = new_damage_type
+
+	if(!(damage_type in list(BRUTE, RED_DAMAGE, BLACK_DAMAGE, FIRE))) // Silicons will only take these damage types
+		return FALSE
+
+	if((!(flags & DAMAGE_FORCED)) && (!PreDamageReaction(damage_amount, damage_type, source, attack_type))) // If our forced argument isn't TRUE, then we expect to receive a TRUE from PreDamageReaction to continue the proc.
+		return FALSE
+
+	// We will now send a signal that gives listeners the opportunity to cancel the damage being dealt. For some reason, in the original apply_damage, this happens before a "final damage" calculation, so I have chosen to preserve that behaviour.
+	// Some examples of the listeners that may return COMPONENT_MOB_DENY_DAMAGE are manager shields, the Welfare Core reward, or Sweeper Persistence.
+	var/signal_return = SEND_SIGNAL(src, COMSIG_MOB_APPLY_DAMGE, damage_amount, damage_type, def_zone)
+	if(signal_return & COMPONENT_MOB_DENY_DAMAGE)
+		return FALSE
+
+	// Automatically run an armour check for the provided damage type if we weren't already provided with a blocked value, and if we aren't taking BRUTE damage.
+	if((isnull(blocked)) && (damage_type != BRUTE))
+		blocked = run_armor_check(null, damage_type)
 	var/hit_percent = (100-blocked)/100
-	if((!damage || (!forced && hit_percent <= 0)))
-		return 0
-	var/damage_amount = forced ? damage : damage * hit_percent
-	switch(damagetype)
+	var/bypass_resistance = flags & DAMAGE_PIERCING
+
+	if(hit_percent <= 0 && !(bypass_resistance))
+		return FALSE
+
+	var/final_damage = bypass_resistance ? damage_amount : damage_amount * hit_percent
+
+	switch(damage_type)
 		if(BRUTE)
-			adjustBruteLoss(damage_amount, forced = forced)
+			adjustBruteLoss(final_damage, forced = bypass_resistance)
 		if(FIRE)
-			adjustFireLoss(damage_amount, forced = forced)
+			adjustFireLoss(final_damage, forced = bypass_resistance)
+		if(RED_DAMAGE)
+			adjustRedLoss(final_damage, forced = bypass_resistance)
+		if(BLACK_DAMAGE)
+			adjustBlackLoss(final_damage, forced = bypass_resistance)
 	return 1
 
 
