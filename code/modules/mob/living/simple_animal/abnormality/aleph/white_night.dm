@@ -161,7 +161,7 @@ GLOBAL_LIST_EMPTY(apostles)
 		playsound(L.loc, 'sound/machines/clockcult/ark_damage.ogg', 50 - attack_range, TRUE, -1)
 		// The farther you are from white night - the less damage it deals
 		var/dealt_damage = max(5, holy_revival_damage - attack_range)
-		L.deal_damage(dealt_damage, PALE_DAMAGE)
+		L.deal_damage(dealt_damage, PALE_DAMAGE, src, attack_type = (ATTACK_TYPE_SPECIAL))
 		if(ishuman(L) && dealt_damage > 25)
 			L.emote("scream")
 		to_chat(L, span_userdanger("The holy light... IT BURNS!!"))
@@ -363,7 +363,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	SLEEP_CHECK_DEATH(10)
 	for(var/turf/T in view(scythe_range, src))
 		new /obj/effect/temp_visual/smash_effect(T)
-		HurtInTurf(T, list(), scythe_damage, scythe_damage_type, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE)
+		HurtInTurf(T, list(), scythe_damage, scythe_damage_type, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 	playsound(get_turf(src), 'sound/abnormalities/whitenight/scythe_spell.ogg', 75, FALSE, 5)
 	SLEEP_CHECK_DEATH(5)
 	can_act = TRUE
@@ -413,7 +413,7 @@ GLOBAL_LIST_EMPTY(apostles)
 				continue
 			if(faction_check_mob(L))
 				continue
-			L.deal_damage(scythe_damage, scythe_damage_type)
+			L.deal_damage(scythe_damage, scythe_damage_type, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 			if(L.stat == DEAD) // Total overkill
 				for(var/i = 1 to 5) // Alternative to gib()
 					new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
@@ -494,7 +494,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	forceMove(T)
 	for(var/turf/TF in view(1, T))
 		new /obj/effect/temp_visual/small_smoke/halfsecond(TF)
-		var/list/new_hits = HurtInTurf(T, been_hit, spear_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE) - been_hit
+		var/list/new_hits = HurtInTurf(T, been_hit, spear_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL)) - been_hit
 		been_hit += new_hits
 		for(var/mob/living/L in new_hits)
 			visible_message(span_boldwarning("[src] runs through [L]!"), span_nicegreen("You impaled heretic [L]!"))
@@ -586,7 +586,7 @@ GLOBAL_LIST_EMPTY(apostles)
 			for(var/mob/living/L in AT)
 				if(faction_check_mob(L))
 					continue
-				L.deal_damage(staff_damage, WHITE_DAMAGE)
+				L.deal_damage(staff_damage, WHITE_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL))
 				if(ishuman(L))
 					var/mob/living/carbon/human/H = L
 					if(H.sanity_lost)

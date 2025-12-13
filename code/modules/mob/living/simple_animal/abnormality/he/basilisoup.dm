@@ -255,14 +255,14 @@
 	forceMove(T)
 
 	for(var/turf/U in range(1, T))
-		var/list/new_hits = HurtInTurf(U, been_hit, 0, BLACK_DAMAGE, hurt_mechs = TRUE) - been_hit
+		var/list/new_hits = HurtInTurf(U, been_hit, 0, BLACK_DAMAGE, hurt_mechs = TRUE, flags = (DAMAGE_FORCED | DAMAGE_UNTRACKABLE)) - been_hit
 		been_hit += new_hits
 		for(var/mob/living/L in new_hits)
 			var/atom/throw_target = get_edge_target_turf(L, get_dir(L, get_step_away(L, get_turf(src))))
 			L.visible_message(span_boldwarning("[src] slams into [L]!"), span_userdanger("[src] rends you with its teeth and claws!"))
 			playsound(L, 'sound/weapons/genhit2.ogg', 75, 1)
 			new /obj/effect/temp_visual/kinetic_blast(get_turf(L))
-			L.deal_damage(charge_damage, BLACK_DAMAGE)
+			L.deal_damage(charge_damage, BLACK_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 			L.throw_at(throw_target, 3, 2)
 			for(var/obj/vehicle/V in new_hits)
 				V.take_damage(charge_damage, BLACK_DAMAGE, attack_sound)

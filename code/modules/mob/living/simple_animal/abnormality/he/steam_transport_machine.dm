@@ -187,10 +187,10 @@
 		for(var/mob/living/H in T)
 			if(faction_check_mob(H))
 				continue
-			H.deal_damage(steam_damage, RED_DAMAGE)
+			H.deal_damage(steam_damage, RED_DAMAGE, src, attack_type = (ATTACK_TYPE_ENVIRONMENT))
 	adjustBruteLoss(10) //Take some damage every time steam is vented
 
-/mob/living/simple_animal/hostile/abnormality/steam/apply_damage(damage, damagetype, def_zone, blocked, forced, spread_damage, wound_bonus, bare_wound_bonus, sharpness, white_healable)
+/mob/living/simple_animal/hostile/abnormality/steam/PostDamageReaction(damage_amount, damage_type, source, attack_type)
 	. = ..()
 	if(steam_venting)
 		return

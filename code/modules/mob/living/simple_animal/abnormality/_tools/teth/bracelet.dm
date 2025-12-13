@@ -20,7 +20,7 @@
 		if(user.health != user.maxHealth) // check for oxyloss, because of anemics
 			if(user.oxyloss > 0)
 				to_chat(user, span_userdanger("You put the bracelet back, feeling as if you body wanted to tear itself apart!"))
-				user.deal_damage(user.health * 0.75, BRUTE)
+				user.deal_damage(user.health * 0.75, BRUTE, flags = (DAMAGE_FORCED))
 			else
 				to_chat(user, span_userdanger("You put the bracelet back, and feel your heart explode!"))
 				user.gib()

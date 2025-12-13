@@ -137,7 +137,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/galaxy_child/proc/break_gifts()
 	for(var/mob/living/carbon/human/friend as anything in galaxy_friends)
-		friend.deal_damage(damage_amount, BLACK_DAMAGE)
+		friend.deal_damage(damage_amount, BLACK_DAMAGE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_STATUS))
 		friend.remove_status_effect(STATUS_EFFECT_FRIENDSHIP)
 		UnregisterSignal(friend, COMSIG_LIVING_DEATH)
 		UnregisterSignal(friend, COMSIG_PARENT_QDELETING)

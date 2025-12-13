@@ -68,9 +68,9 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 		for(var/mob/living/carbon/human/H in livinginrange(playRange, src))
 			if(faction_check_mob(H))
 				continue
-			H.deal_damage(rand(playStatus * noiseFactor, playStatus * noiseFactor * 2), WHITE_DAMAGE)
+			H.deal_damage(rand(playStatus * noiseFactor, playStatus * noiseFactor * 2), WHITE_DAMAGE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL))
 			if(H in musicalAddicts)
-				H.deal_damage(rand(playStatus * noiseFactor, playStatus * noiseFactor * 2), WHITE_DAMAGE)
+				H.deal_damage(rand(playStatus * noiseFactor, playStatus * noiseFactor * 2), WHITE_DAMAGE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL))
 				to_chat(H, span_warning("You can hear it again... it needs more..."))
 			else
 				to_chat(H, span_warning("That terrible grinding noise..."))
@@ -102,7 +102,7 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 
 /mob/living/simple_animal/hostile/abnormality/singing_machine/Worktick(mob/living/carbon/human/user)
 	if(bonusRed) // If you have bonus red damage to apply...
-		user.deal_damage(bonusRed, RED_DAMAGE)
+		user.deal_damage(bonusRed, RED_DAMAGE, flags = (DAMAGE_FORCED))
 		if(bonusRed < 6 && playStatus == 0)	// Should only happen when the machine isn't dealing damage.
 			for(var/mob/living/carbon/human/H in livinginrange(30, src))
 				if(faction_check_mob(H))

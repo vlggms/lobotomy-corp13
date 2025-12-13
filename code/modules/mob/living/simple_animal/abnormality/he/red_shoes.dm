@@ -264,7 +264,7 @@
 	var/mob/living/carbon/human/status_holder = owner
 	var/usertemp = (get_attribute_level(status_holder, TEMPERANCE_ATTRIBUTE))
 	var/desire_damage = clamp((80 - (usertemp / 2)),80, 10)//deals between 80 and 10 white damage depending on your temperance attribute when applied.
-	status_holder.deal_damage(desire_damage, WHITE_DAMAGE) //DIE!
+	status_holder.deal_damage(desire_damage, WHITE_DAMAGE, attack_type = (ATTACK_TYPE_STATUS)) //DIE!
 	status_holder.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, -50)//By using bonuses, this lowers your maximum prudence
 	if(status_holder.sanity_lost)
 		qdel(src)

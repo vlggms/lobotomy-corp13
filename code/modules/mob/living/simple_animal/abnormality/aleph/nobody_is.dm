@@ -288,12 +288,12 @@
 			ChangeMoveToDelayBy(1.5)
 	current_stage = clamp(current_stage + 1, 1, 3)
 
-/mob/living/simple_animal/hostile/abnormality/nobody_is/apply_damage(damage, damagetype, def_zone, blocked, forced, spread_damage, wound_bonus, bare_wound_bonus, sharpness, white_healable)
+/mob/living/simple_animal/hostile/abnormality/nobody_is/PostDamageReaction(damage_amount, damage_type, source, attack_type)
 	. = ..()
-	if(damagetype == BLACK_DAMAGE || damage < 10)
+	if(. < 10)
 		return
 	if(grab_victim)
-		release_damage = clamp(release_damage + damage, 0, release_threshold)
+		release_damage = clamp(release_damage + ., 0, release_threshold)
 		if(release_damage >= release_threshold)
 			ReleaseGrab()
 	if(!oberon_mode)
@@ -499,9 +499,9 @@
 	SLEEP_CHECK_DEATH(grab_windup_time)
 	for(var/turf/T in view(3, src))
 		new /obj/effect/temp_visual/nobody_grab(T)
-		for(var/mob/living/L in HurtInTurf(T, list(), grab_damage, BLACK_DAMAGE, null, null, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE))
+		for(var/mob/living/L in HurtInTurf(T, list(), grab_damage, BLACK_DAMAGE, null, null, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL)))
 			if(oberon_mode)
-				HurtInTurf(T, list(), grab_damage_oberon, WHITE_DAMAGE, null, null, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE)
+				HurtInTurf(T, list(), grab_damage_oberon, WHITE_DAMAGE, null, null, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 				if(ishuman(L))
 					var/mob/living/carbon/human/H = L
 					if(H.sanity_lost)
@@ -523,7 +523,7 @@
 					grab_victim = H
 					Strangle()
 			else //deal the damage twice if we already have someone grabbed
-				L.deal_damage(grab_damage, BLACK_DAMAGE)
+				L.deal_damage(grab_damage, BLACK_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 
 	playsound(get_turf(src), 'sound/abnormalities/fairy_longlegs/attack.ogg', 75, 0, 3)
 	SLEEP_CHECK_DEATH(3)
@@ -560,9 +560,9 @@
 			grab_victim.gib()
 		ReleaseGrab()
 		return
-	grab_victim.deal_damage(strangle_damage, BLACK_DAMAGE)
+	grab_victim.deal_damage(strangle_damage, BLACK_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 	if(oberon_mode)
-		grab_victim.deal_damage(strangle_damage_oberon, WHITE_DAMAGE)
+		grab_victim.deal_damage(strangle_damage_oberon, WHITE_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 	grab_victim.Immobilize(10)
 	playsound(get_turf(src), 'sound/abnormalities/nothingthere/hello_bam.ogg', 50, 0, 7)
 	playsound(get_turf(src), 'sound/abnormalities/nobodyis/strangle.ogg', 100, 0, 7)
@@ -576,10 +576,10 @@
 		if(4) //Apply double damage
 			playsound(get_turf(src), 'sound/effects/wounds/crackandbleed.ogg', 200, 0, 7)
 			to_chat(grab_victim, span_userdanger("It hurts so much!"))
-			grab_victim.deal_damage(strangle_damage, BLACK_DAMAGE)
+			grab_victim.deal_damage(strangle_damage, BLACK_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 		else //Apply ramping damage
 			playsound(get_turf(src), 'sound/effects/wounds/crackandbleed.ogg', 200, 0, 7)
-			grab_victim.deal_damage((strangle_damage * (count - 3)), BLACK_DAMAGE)
+			grab_victim.deal_damage((strangle_damage * (count - 3)), BLACK_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 	count += 1
 	if(grab_victim.sanity_lost) //This should prevent weird things like panics running away halfway through
 		grab_victim.Stun(10) //Immobilize does not stop AI controllers from moving, for some reason.
@@ -626,7 +626,7 @@
 	if(oberon_mode)
 		if(isliving(attacked_target))
 			var/mob/living/L = attacked_target
-			L.deal_damage(melee_damage_oberon, WHITE_DAMAGE)
+			L.deal_damage(melee_damage_oberon, WHITE_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE))
 			if(ishuman(L))
 				var/mob/living/carbon/human/H = L
 				if(H.sanity_lost)

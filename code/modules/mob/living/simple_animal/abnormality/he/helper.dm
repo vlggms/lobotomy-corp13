@@ -240,7 +240,7 @@
 			new /obj/effect/temp_visual/kinetic_blast(LT)
 			if(!ishuman(L))
 				dash_damage = dash_damage * 2
-			L.deal_damage(dash_damage, melee_damage_type)
+			L.deal_damage(dash_damage, melee_damage_type, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 			if(IsCombatMap())
 				L.apply_lc_bleed(5)
 			if(!ishuman(L))
