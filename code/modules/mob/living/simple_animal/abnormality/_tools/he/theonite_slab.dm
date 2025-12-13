@@ -147,13 +147,13 @@
 		new /obj/effect/temp_visual/smash_effect(T)
 		for(var/mob/living/M in T)
 			if(!ishuman(M))
-				M.deal_damage(damage, PALE_DAMAGE)
+				M.deal_damage(damage, PALE_DAMAGE, attack_type = (ATTACK_TYPE_SPECIAL))
 				continue
 			var/mob/living/carbon/human/H = M //deals damage to non-humans, and humans - but only humans with the status effect.
 			var/datum/status_effect/stacking/slab/S = H.has_status_effect(/datum/status_effect/stacking/slab)
 			if(!S)
 				continue
-			M.deal_damage(damage, PALE_DAMAGE)
+			M.deal_damage(damage, PALE_DAMAGE, attack_type = (ATTACK_TYPE_SPECIAL))
 			if(M.health < 0)
 				S.PunishDeath(M)
 

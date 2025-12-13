@@ -111,11 +111,11 @@
 		return 0
 	return init_work_chance
 
-//For when only one person is on the server. The person who works it takes 90 damage minimum per work.
+//For when only one person is on the server. The person who works it takes 54 damage minimum per work.
 /mob/living/simple_animal/hostile/abnormality/schadenfreude/Worktick(mob/living/carbon/human/user)
 	. = ..()
 	if(total_players == 1)
-		user.apply_damage(1, RED_DAMAGE, null, user.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		user.deal_damage(1, RED_DAMAGE, flags = (DAMAGE_FORCED))
 
 /mob/living/simple_animal/hostile/abnormality/schadenfreude/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()

@@ -468,7 +468,7 @@ The variable's key needs to be non-numerical.*/
 // Additional effect on each individual work tick failure
 /mob/living/simple_animal/hostile/abnormality/proc/WorktickFailure(mob/living/carbon/human/user)
 	playsound(datum_reference.console, 'sound/machines/synth_no.ogg', 25, FALSE, -4)
-	user.deal_damage(rand(work_damage_lower,work_damage_upper), work_damage_type)
+	user.deal_split_damage(rand(work_damage_lower,work_damage_upper), work_damage_type, source = src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_OTHER))
 	WorkDamageEffect()
 	return
 

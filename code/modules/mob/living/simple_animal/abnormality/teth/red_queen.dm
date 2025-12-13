@@ -61,7 +61,7 @@
 /mob/living/simple_animal/hostile/abnormality/red_queen/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
 	user.visible_message(span_warning("An invisible blade slices through [user]'s neck!"))
-	user.deal_damage(100, RED_DAMAGE)
+	user.deal_damage(100, RED_DAMAGE, flags = (DAMAGE_FORCED))
 	new /obj/effect/temp_visual/slice(get_turf(user))
 
 	//Fitting sound, I want something crunchy, and also very loud so everyone knows

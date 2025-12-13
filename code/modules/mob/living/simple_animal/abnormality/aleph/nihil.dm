@@ -143,17 +143,17 @@
 	playsound(src, 'sound/abnormalities/wrath_servant/hermit_magic.ogg', 60, FALSE, 10)
 	for(var/turf/T in range(1, src)) //First hit is just an AOE around nihil
 		new /obj/effect/temp_visual/eldritch_smoke(T)
-		for(var/mob/living/L in HurtInTurf(T, list(), damage_dealt, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
+		for(var/mob/living/L in HurtInTurf(T, list(), damage_dealt, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, attack_type = (ATTACK_TYPE_SPECIAL)))
 			if(GirlCheck(L)) //EXTRA magical girl damage to kill them faster
-				L.deal_damage((2 * damage_dealt), BRUTE)
+				L.deal_damage((2 * damage_dealt), BRUTE, src, attack_type = (ATTACK_TYPE_SPECIAL))
 	SLEEP_CHECK_DEATH(8)
 	playsound(src, 'sound/abnormalities/wrath_servant/hermit_attack_hard.ogg', 25, FALSE, 15, falloff_distance = 5)
 	new /obj/effect/temp_visual/voidout(myturf)
 	for(var/turf/T in range(1, myturf)) //Second hit is avoidable but deals 3x damage
-		for(var/mob/living/L in HurtInTurf(T, list(), (3 * damage_dealt), BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
+		for(var/mob/living/L in HurtInTurf(T, list(), (3 * damage_dealt), BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, attack_type = (ATTACK_TYPE_SPECIAL)))
 			L.apply_void(3)
 			if(GirlCheck(L)) //EXTRA magical girl damage to kill them faster
-				L.deal_damage((3 * damage_dealt), BRUTE)
+				L.deal_damage((3 * damage_dealt), BRUTE, src, attack_type = (ATTACK_TYPE_SPECIAL))
 
 /mob/living/simple_animal/hostile/abnormality/nihil/proc/NukeAttack(forced) //Phase-change attack with a long cooldown
 	if(nuke_cooldown > world.time && !forced)
@@ -187,11 +187,11 @@
 			continue
 		var/dist = get_dist(src, L)
 		var/damage_mod = (dist > 7 ? 5 : 20 )
-		L.deal_damage(clamp((damage_mod * (25 - dist)), 15, nuke_damage), BLACK_DAMAGE) //Between 500 and 15 damage, scaling down heavily past a distance of 7 tiles
+		L.deal_damage(clamp((damage_mod * (25 - dist)), 15, nuke_damage), BLACK_DAMAGE, src, attack_type = (ATTACK_TYPE_SPECIAL)) //Between 500 and 15 damage, scaling down heavily past a distance of 7 tiles
 		flash_color(L, flash_color = COLOR_ALMOST_BLACK, flash_time = 70)
 		L.apply_void(damage_mod / 5) //inflict a void debuff
 		if(GirlCheck(L)) //This should kill them most of the time if they are too close
-			L.deal_damage((100 * damage_mod), BRUTE)
+			L.deal_damage((100 * damage_mod), BRUTE, src, attack_type = (ATTACK_TYPE_SPECIAL))
 	SLEEP_CHECK_DEATH(3)
 	animate(src, transform = init_transform, time = 5)
 	addtimer(CALLBACK(src, PROC_REF(NukeAttack)), 5 MINUTES)
@@ -268,7 +268,7 @@
 			playsound(src, 'sound/weapons/fixer/generic/dodge.ogg', 75, FALSE, 10)
 			for(var/turf/T in view(2, src))
 				new /obj/effect/temp_visual/small_smoke(T)
-				for(var/mob/living/H in HurtInTurf(T, list(), (0.5 * explode_damage), RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
+				for(var/mob/living/H in HurtInTurf(T, list(), (0.5 * explode_damage), RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, attack_type = (ATTACK_TYPE_SPECIAL)))
 					visible_message("[src] tosses [H] out of the way!")
 					var/rand_dir = pick(NORTH, SOUTH, EAST, WEST)
 					var/atom/throw_target = get_edge_target_turf(H, rand_dir)
@@ -318,7 +318,7 @@
 		if("WRATH")
 			playsound(src, 'sound/abnormalities/wrath_servant/big_smash3.ogg', 75, FALSE, 10, falloff_distance = 5)
 			for(var/turf/T in view(2, src))
-				HurtInTurf(T, list(), explode_damage, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
+				HurtInTurf(T, list(), explode_damage, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 				new /obj/effect/temp_visual/kinetic_blast(T)
 				if(prob(95))
 					new /obj/effect/decal/cleanable/wrath_acid/bad(T)
@@ -336,7 +336,7 @@
 			playsound(src, 'sound/abnormalities/kog/GreedHit1.ogg', 75, FALSE, 10)
 			for(var/turf/T in view(3, src))
 				new /obj/effect/temp_visual/small_smoke(T)
-				for(var/mob/living/H in HurtInTurf(T, list(), (2 * explode_damage), RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
+				for(var/mob/living/H in HurtInTurf(T, list(), (2 * explode_damage), RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL)))
 					visible_message("[src] tosses [H] out of the way!")
 					var/rand_dir = pick(NORTH, SOUTH, EAST, WEST)
 					var/atom/throw_target = get_edge_target_turf(H, rand_dir)
@@ -352,7 +352,7 @@
 			VO.transform = new_matrix
 			playsound(src, 'sound/effects/phasein.ogg', 65, FALSE, 10)
 			for(var/turf/open/T in view(2, src))
-				HurtInTurf(T, list(), explode_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
+				HurtInTurf(T, list(), explode_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, attack_type = (ATTACK_TYPE_SPECIAL))
 		if("DESPAIR")
 			SLEEP_CHECK_DEATH(4)
 			TeleportOut()//Same effect but with a delay
