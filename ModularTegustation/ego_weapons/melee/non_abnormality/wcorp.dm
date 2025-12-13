@@ -16,7 +16,7 @@
 
 /obj/item/ego_weapon/city/wcorp/ChargeAttack(mob/living/target, mob/living/user)
 	. = ..()
-	target.apply_damage(force, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
+	target.deal_damage(force, damtype, user, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 
 //Non-baton Wcorp is Grade 5
 /obj/item/ego_weapon/city/wcorp/fist
@@ -69,7 +69,7 @@
 /obj/item/ego_weapon/city/wcorp/axe/ChargeAttack(mob/living/target, mob/living/user)
 	. = ..()
 	sleep(0.5 SECONDS)
-	target.apply_damage(force*3, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
+	target.deal_damage(force*3, damtype, user, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 	user.changeNext_move(CLICK_CD_MELEE * 6)
 
 /obj/item/ego_weapon/city/wcorp/spear
@@ -98,13 +98,13 @@
 	. = ..()
 	sleep(0.2 SECONDS)
 	for(var/mob/living/L in range(1, src))
-		var/aoe = 25
+		var/aoe = 15
 		var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
 		var/justicemod = 1 + userjust/100
 		aoe*=justicemod
 		if(L == user || ishuman(L))
 			continue
-		L.apply_damage(force, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		L.deal_damage(aoe, BLACK_DAMAGE, user, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 		new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(L))
 
 	user.changeNext_move(CLICK_CD_MELEE * 3)
@@ -136,7 +136,7 @@
 	sleep(0.2 SECONDS)
 	for(var/i = 1 to 3)
 		sleep(0.2 SECONDS)
-		target.apply_damage(force, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
+		target.deal_damage(force, damtype, user, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 		playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, TRUE)
 		var/turf/T = get_turf(target)
 		new /obj/effect/temp_visual/justitia_effect(T)
@@ -174,7 +174,7 @@
 /obj/item/ego_weapon/city/wcorp/hatchet/ChargeAttack(mob/living/target, mob/living/user)
 	. = ..()
 	sleep(0.2 SECONDS)
-	target.apply_damage(force*2, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
+	target.deal_damage(force*2, damtype, user, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 	target.apply_status_effect(/datum/status_effect/qliphothoverload)
 
 /obj/item/ego_weapon/city/wcorp/hammer
@@ -200,7 +200,7 @@
 /obj/item/ego_weapon/city/wcorp/hammer/ChargeAttack(mob/living/target, mob/living/user)
 	. = ..()
 	sleep(0.5 SECONDS)
-	target.apply_damage(force*2, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
+	target.deal_damage(force*2, damtype, user, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 	target.apply_status_effect(/datum/status_effect/display/rend/black/w_corp)
 	playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, TRUE)
 	new /obj/effect/temp_visual/justitia_effect(get_turf(target))
