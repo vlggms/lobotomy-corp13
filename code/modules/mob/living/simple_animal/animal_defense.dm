@@ -43,7 +43,7 @@
 							span_userdanger("[M] [response_harm_continuous] you!"), null, COMBAT_MESSAGE_RANGE, M)
 			to_chat(M, span_danger("You [response_harm_simple] [src]!"))
 			playsound(loc, attacked_sound, 25, TRUE, -1)
-			attack_threshold_check(harm_intent_damage)
+			attack_threshold_check(harm_intent_damage, source = M, attack_type = (ATTACK_TYPE_MELEE))
 			log_combat(M, src, "attacked")
 			updatehealth()
 			return TRUE
@@ -71,7 +71,7 @@
 	if(..()) //successful monkey bite.
 		if(stat != DEAD)
 			var/damage = rand(1, 3)
-			attack_threshold_check(damage)
+			attack_threshold_check(damage, source = M, attack_type = (ATTACK_TYPE_MELEE))
 			return 1
 	if (M.a_intent == INTENT_HELP)
 		if (health > 0)
@@ -95,7 +95,7 @@
 							span_userdanger("You're slashed at by [M]!"), null, COMBAT_MESSAGE_RANGE, M)
 			to_chat(M, span_danger("You slash at [src]!"))
 			playsound(loc, 'sound/weapons/slice.ogg', 25, TRUE, -1)
-			attack_threshold_check(damage)
+			attack_threshold_check(damage, source = M, attack_type = (ATTACK_TYPE_MELEE))
 			log_combat(M, src, "attacked")
 		return 1
 
@@ -103,29 +103,36 @@
 	. = ..()
 	if(. && stat != DEAD) //successful larva bite
 		var/damage = rand(5, 10)
-		. = attack_threshold_check(damage)
+		. = attack_threshold_check(damage, source = L, attack_type = (ATTACK_TYPE_MELEE))
 		if(.)
 			L.amount_grown = min(L.amount_grown + damage, L.max_grown)
 
 /mob/living/simple_animal/attack_animal(mob/living/simple_animal/M)
 	. = ..()
 	if(.)
-		return attack_threshold_check(rand(M.melee_damage_lower, M.melee_damage_upper), M.melee_damage_type) //Fixing a 1 year old bug...
+		return attack_threshold_check(rand(M.melee_damage_lower, M.melee_damage_upper), M.melee_damage_type, source = M, attack_type = (ATTACK_TYPE_MELEE)) //Fixing a 1 year old bug...
 
 /mob/living/simple_animal/attack_slime(mob/living/simple_animal/slime/M)
 	if(..()) //successful slime attack
 		var/damage = rand(15, 25)
 		if(M.is_adult)
 			damage = rand(20, 35)
-		return attack_threshold_check(damage)
+		return attack_threshold_check(damage, source = M, attack_type = (ATTACK_TYPE_MELEE))
 
 /mob/living/simple_animal/attack_drone(mob/living/simple_animal/drone/M)
 	if(M.a_intent == INTENT_HARM) //No kicking dogs even as a rogue drone. Use a weapon.
 		return
 	return ..()
 
-/mob/living/simple_animal/proc/attack_threshold_check(damage, damagetype = BRUTE, actuallydamage = TRUE)
+// This proc is significantly more important than it may seem. All melee attacks done by simple_animals on other simple_animals use this.
+// Sadly the damage shuffler has to be accounted for here. We do this using temporary vars, but we won't actually change the vars that we'd send to deal_damage if actuallydamage is true
+// We REALLY need to look into refactoring this.
+/mob/living/simple_animal/proc/attack_threshold_check(damage, damagetype = BRUTE, actuallydamage = TRUE, source = null, attack_type = null)
 	var/temp_damage = damage
+	var/temp_damage_type = damagetype
+	var/should_shuffle = GLOB.damage_type_shuffler?.is_enabled && IsColorDamageType(damagetype)
+	if(should_shuffle)
+		temp_damage_type = GLOB.damage_type_shuffler.mapping_offense[damagetype] // Calls to this proc will be made with the ORIGINAL damage type. We have to do the offensive shuffling here.
 
 	if(islist(damage_coeff))
 		ChangeResistances(damage_coeff)
@@ -137,15 +144,25 @@
 			unmodified_damage_coeff_datum = makeDamCoeff()
 		damage_coeff = unmodified_damage_coeff_datum
 		UpdateResistances()
-	temp_damage *= damage_coeff.getCoeff(damagetype)
+
+
+	// Defensive shuffling. If the shuffler is enabled, make sure we're responding to the incoming damage with the correct defense mapping.
+	var/coeff_to_use = damage_coeff.getCoeff(temp_damage_type)
+	if(should_shuffle)
+		var/defensive_damage_type = GLOB.damage_type_shuffler.mapping_defense[temp_damage_type]
+		coeff_to_use = damage_coeff.getCoeff(defensive_damage_type)
+	temp_damage *= coeff_to_use
 
 	if(temp_damage >= 0 && temp_damage <= force_threshold)
 		visible_message(span_warning("[src] looks unharmed!"))
 		DamageEffect(0, damagetype)
 		return FALSE
 
+
+	// This proc isn't just used to "check if you can deal damage". Several instances of its use in the codebase are used to ACTUALLY DEAL DAMAGE.
+	// Since deal_damage will account for the damage shuffler itself, we need to send the ORIGINAL damage and damage types to it, not the temporary ones we were working with here to see if the hit was nullified.
 	if(actuallydamage)
-		apply_damage(damage, damagetype, null, getarmor(null, damagetype))
+		deal_damage(damage, damagetype, source = source, attack_type = attack_type)
 	return TRUE
 
 /mob/living/simple_animal/bullet_act(obj/projectile/Proj, def_zone, piercing_hit = FALSE)
@@ -153,7 +170,7 @@
 		for(var/i in projectile_blockers)
 			Proj.impacted[i] = TRUE
 		Proj.impacted[src] = TRUE
-	apply_damage(Proj.damage, Proj.damage_type)
+	deal_damage(Proj.damage, Proj.damage_type, source = Proj.firer, attack_type = (ATTACK_TYPE_RANGED))
 	Proj.on_hit(src, 0, piercing_hit)
 	return BULLET_ACT_HIT
 
