@@ -20,7 +20,7 @@
 			continue
 		if(HAS_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE))
 			continue
-		H.deal_damage(sanity_damage, WHITE_DAMAGE, human_pawn, flags = (DAMAGE_FORCED))
+		H.deal_damage(sanity_damage, WHITE_DAMAGE, living_pawn, flags = (DAMAGE_FORCED))
 
 /datum/ai_behavior/say_line/insanity_lines/insanity_release
 	line_type = "release"

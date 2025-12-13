@@ -284,7 +284,7 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 	victim.deal_damage(20, BRUTE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_OTHER), def_zone = BODY_ZONE_HEAD, wound_bonus = 10)
 	return TRUE
 
-/* //formed when freon react with o2, emits a lot of plasma when heated
+//formed when freon react with o2, emits a lot of plasma when heated
 /datum/material/hot_ice
 	name = "hot ice"
 	desc = "A weird kind of ice, feels warm to the touch"
@@ -306,7 +306,7 @@ Unless you know what you're doing, only use the first three numbers. They're in 
 /datum/material/hot_ice/on_accidental_mat_consumption(mob/living/carbon/victim, obj/item/source_item)
 	victim.reagents.add_reagent(/datum/reagent/toxin/plasma, rand(5, 6))
 	source_item?.reagents?.add_reagent(/datum/reagent/toxin/plasma, source_item.reagents.total_volume*(3/5))
-	return TRUE */
+	return TRUE
 
 /datum/material/metalhydrogen
 	name = "Metal Hydrogen"
