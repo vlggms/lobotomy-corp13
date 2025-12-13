@@ -65,7 +65,7 @@
 			if(!blocked)
 				L.drop_all_held_items()
 				L.visible_message(span_danger("[src] slams into [L]!"), span_userdanger("[src] slams into you!"))
-				L.apply_damage(20, BRUTE)
+				L.deal_damage(20, BRUTE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 				playsound(get_turf(L), 'sound/effects/meteorimpact.ogg', 100, TRUE)
 				shake_camera(L, 4, 3)
 				shake_camera(src, 2, 3)

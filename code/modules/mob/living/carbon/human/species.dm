@@ -1412,7 +1412,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			log_combat(user, target, "attempted to punch")
 			return FALSE
 
-		var/armor_block = target.run_armor_check(affecting, RED_DAMAGE)
 
 		playsound(target.loc, user.dna.species.attack_sound, 25, TRUE, -1)
 
@@ -1428,10 +1427,10 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			target.dismembering_strike(user, affecting.body_zone)
 
 		if(atk_effect == ATTACK_EFFECT_KICK)//kicks deal 1.5x raw damage
-			target.apply_damage(damage*1.5, user.dna.species.attack_type, affecting, armor_block)
+			target.deal_damage(damage*1.5, user.dna.species.attack_type, source = user, attack_type = (ATTACK_TYPE_MELEE), def_zone = affecting)
 			log_combat(user, target, "kicked")
 		else//other attacks deal full raw damage
-			target.apply_damage(damage, user.dna.species.attack_type, affecting, armor_block)
+			target.deal_damage(damage, user.dna.species.attack_type, source = user, attack_type = (ATTACK_TYPE_MELEE), def_zone = affecting)
 			log_combat(user, target, "punched")
 
 /datum/species/proc/spec_unarmedattacked(mob/living/carbon/human/user, mob/living/carbon/human/target)
@@ -1504,6 +1503,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	hit_area = affecting.name
 	var/def_zone = affecting.body_zone
 
+	// We run an armour check here for legacy reasons (it's used in a switch case to apply knockdowns or concussions for brute damage further below), but the armour calculation will happen inside the actual damage proc so it can account for the damage type shuffler.
 	var/armor_block
 	switch(I.damtype)
 		if(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE, MELEE, BULLET, LASER, ENERGY, BOMB, BIO, RAD, FIRE, ACID)
@@ -1527,7 +1527,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	if(istype(I, /obj/item/ego_weapon))
 		var/obj/item/ego_weapon/theweapon = I
 		damage *= theweapon.force_multiplier
-	apply_damage((damage * weakness), I.damtype, def_zone, armor_block, H, wound_bonus = Iwound_bonus, bare_wound_bonus = I.bare_wound_bonus, sharpness = I.get_sharpness(), white_healable = TRUE)
+		apply_damage(H, (damage * weakness), I.damtype, source = user, flags = (DAMAGE_WHITE_HEALABLE), attack_type = (ATTACK_TYPE_MELEE), def_zone = def_zone, wound_bonus = Iwound_bonus, bare_wound_bonus = I.bare_wound_bonus, sharpness = I.get_sharpness())
 	if(!I.force)
 		return FALSE //item force is zero
 
@@ -1591,26 +1591,32 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 	return TRUE
 
-/datum/species/proc/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, forced = FALSE, spread_damage = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE, white_healable = FALSE)
-	if(GLOB.damage_type_shuffler?.is_enabled && IsColorDamageType(damagetype))
-		var/datum/damage_type_shuffler/shuffler = GLOB.damage_type_shuffler
-		var new_damage_type = shuffler.mapping_offense[damagetype]
-		if(new_damage_type == PALE_DAMAGE && damagetype != PALE_DAMAGE)
-			damage *= shuffler.pale_debuff
-		else if(new_damage_type != PALE_DAMAGE && damagetype == PALE_DAMAGE)
-			damage /= shuffler.pale_debuff
-		damagetype = new_damage_type
-	var/signal_return = SEND_SIGNAL(H, COMSIG_MOB_APPLY_DAMGE, damage, damagetype, def_zone, wound_bonus, bare_wound_bonus, sharpness)
+// Due to belonging to a different type (datum/species), we can't pull functionality from mob/living's deal_damage. This is duplicate code with some additions for factoring in wounds and sharpness.
+/datum/species/proc/apply_damage(mob/living/carbon/human/H, damage_amount, damage_type, source = null, flags = null, attack_type = null, blocked = null, def_zone = null, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE)
+	if(!damage_amount) // There are some extremely rare instances of 0 damage pre-armour reduction, for example King of Greed does a 0 damage HurtInTurf to fill up a hitlist to attack later.
+		return FALSE
+
+	// We have already run the shuffler in the mob/living/carbon deal_damage that called this proc. Any incoming damage has already been shuffled (if it is enabled, anyhow).
+
+	// Automatically run an armour check for the provided damage type if we weren't already provided with a blocked value, and if we aren't taking BRUTE damage.
+	if((isnull(blocked)) && (damage_type != BRUTE))
+		blocked = H.run_armor_check(def_zone, damage_type)
+
+	// We will now send a signal that gives listeners the opportunity to cancel the damage being dealt. For some reason, in the original apply_damage, this happens before a "final damage" calculation, so I have chosen to preserve that behaviour.
+	// Some examples of the listeners that may return COMPONENT_MOB_DENY_DAMAGE are manager shields, the Welfare Core reward, or Sweeper Persistence.
+	var/signal_return = SEND_SIGNAL(H, COMSIG_MOB_APPLY_DAMGE, damage_amount, damage_type, def_zone, wound_bonus, bare_wound_bonus, sharpness)
 	if(signal_return & COMPONENT_MOB_DENY_DAMAGE)
 		return FALSE
 
 	var/hit_percent = (100-(blocked+armor))/100
 	hit_percent = (hit_percent * (100-H.physiology.damage_resistance))/100
-	if(!damage || (!forced && hit_percent <= 0))
-		return 0
 
+	if(hit_percent <= 0)
+		return FALSE
+
+	// This snippet handles choosing a body part to apply the damage on, if we didn't choose to spread_damage.
 	var/obj/item/bodypart/BP = null
-	if(!spread_damage)
+	if((flags & DAMAGE_NO_SPREAD)) // If we've been set to NOT spread damage, choose a body part to hit based on def_zone (we'll get one regardless if we have no def_zone)
 		if(isbodypart(def_zone))
 			BP = def_zone
 		else
@@ -1619,57 +1625,68 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			BP = H.get_bodypart(check_zone(def_zone))
 			if(!BP)
 				BP = H.bodyparts[1]
-	switch(damagetype)
+
+	var/final_damage = damage_amount
+
+	var/piercing = flags & DAMAGE_PIERCING
+
+	switch(damage_type)
 		if(BRUTE, MELEE, BULLET, BOMB, ACID)
 			H.damageoverlaytemp = 20
-			var/damage_amount = forced ? damage : damage * hit_percent * brutemod * H.physiology.brute_mod
+			final_damage = piercing ? damage_amount : damage_amount * hit_percent * brutemod * H.physiology.brute_mod
 			if(BP)
-				if(BP.receive_damage(damage_amount, 0, wound_bonus = wound_bonus, bare_wound_bonus = bare_wound_bonus, sharpness = sharpness))
+				if(BP.receive_damage(final_damage, 0, wound_bonus = wound_bonus, bare_wound_bonus = bare_wound_bonus, sharpness = sharpness))
 					H.update_damage_overlays()
-				new /obj/effect/temp_visual/damage_effect/red(get_turf(H), damage_amount) // Since bodypart damage bypasses bruteloss, we just make vfx here.
+				new /obj/effect/temp_visual/damage_effect/red(get_turf(H)) // Since bodypart damage bypasses bruteloss, we just make vfx here.
 			else//no bodypart, we deal damage with a more general method.
-				H.adjustBruteLoss(damage_amount)
+				H.adjustBruteLoss(final_damage)
 		if(FIRE, LASER, ENERGY, RAD)
 			H.damageoverlaytemp = 20
-			var/damage_amount = forced ? damage : damage * hit_percent * burnmod * H.physiology.burn_mod
+			final_damage = piercing ? damage_amount : damage_amount * hit_percent * burnmod * H.physiology.burn_mod
 			if(BP)
-				if(BP.receive_damage(0, damage_amount, wound_bonus = wound_bonus, bare_wound_bonus = bare_wound_bonus, sharpness = sharpness))
+				if(BP.receive_damage(0, final_damage, wound_bonus = wound_bonus, bare_wound_bonus = bare_wound_bonus, sharpness = sharpness))
 					H.update_damage_overlays()
-				new /obj/effect/temp_visual/damage_effect/burn(get_turf(H), damage_amount)
+				new /obj/effect/temp_visual/damage_effect/burn(get_turf(H))
 			else
-				H.adjustFireLoss(damage_amount)
+				H.adjustFireLoss(final_damage)
 		if(TOX, BIO)
-			var/damage_amount = forced ? damage : damage * hit_percent * H.physiology.tox_mod
-			H.adjustToxLoss(damage_amount)
+			final_damage = piercing ? damage_amount : damage_amount * hit_percent * H.physiology.tox_mod
+			H.adjustToxLoss(final_damage)
 		if(OXY)
-			var/damage_amount = forced ? damage : damage * hit_percent * H.physiology.oxy_mod
-			H.adjustOxyLoss(damage_amount)
+			final_damage = piercing ? damage_amount : damage_amount * hit_percent * H.physiology.oxy_mod
+			H.adjustOxyLoss(final_damage)
 		if(CLONE)
-			var/damage_amount = forced ? damage : damage * hit_percent * H.physiology.clone_mod
-			H.adjustCloneLoss(damage_amount)
+			final_damage = piercing ? damage_amount : damage_amount * hit_percent * H.physiology.clone_mod
+			H.adjustCloneLoss(final_damage)
 		if(STAMINA)
-			var/damage_amount = forced ? damage : damage * hit_percent * H.physiology.stamina_mod
+			final_damage = piercing ? damage_amount : damage_amount * hit_percent * H.physiology.stamina_mod
 			if(BP)
-				if(BP.receive_damage(0, 0, damage_amount))
+				if(BP.receive_damage(0, 0, final_damage))
 					H.update_stamina()
 			else
-				H.adjustStaminaLoss(damage_amount)
+				H.adjustStaminaLoss(final_damage)
 		if(BRAIN)
-			var/damage_amount = forced ? damage : damage * hit_percent * H.physiology.brain_mod
-			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, damage_amount)
+			final_damage = piercing ? damage_amount : damage_amount * hit_percent * H.physiology.brain_mod
+			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, final_damage)
 		if(RED_DAMAGE)
-			var/damage_amount = forced ? damage : damage * hit_percent * redmod * H.physiology.red_mod
-			H.adjustRedLoss(damage_amount, forced = forced)
+			final_damage = piercing ? damage_amount : damage_amount * hit_percent * redmod * H.physiology.red_mod
+			H.adjustRedLoss(final_damage, forced = piercing)
 		if(WHITE_DAMAGE)
-			var/damage_amount = forced ? damage : damage * hit_percent * whitemod * H.physiology.white_mod
-			H.adjustWhiteLoss(damage_amount, forced = forced, white_healable = white_healable)
+			final_damage = piercing ? damage_amount : damage_amount * hit_percent * whitemod * H.physiology.white_mod
+			H.adjustWhiteLoss(final_damage, forced = piercing, white_healable = flags & (DAMAGE_WHITE_HEALABLE))
 		if(BLACK_DAMAGE)
-			var/damage_amount = forced ? damage : damage * hit_percent * blackmod * H.physiology.black_mod
-			H.adjustBlackLoss(damage_amount, forced = forced, white_healable = white_healable)
+			final_damage = piercing ? damage_amount : damage_amount * hit_percent * blackmod * H.physiology.black_mod
+			H.adjustBlackLoss(final_damage, forced = piercing, white_healable = flags & (DAMAGE_WHITE_HEALABLE))
 		if(PALE_DAMAGE)
-			var/damage_amount = forced ? damage : damage * hit_percent * palemod * H.physiology.pale_mod
-			H.adjustPaleLoss(damage_amount, forced = forced)
-	return 1
+			final_damage = piercing ? damage_amount : damage_amount * hit_percent * palemod * H.physiology.pale_mod
+			H.adjustPaleLoss(final_damage, forced = piercing)
+
+	SEND_SIGNAL(H, COMSIG_MOB_AFTER_APPLY_DAMGE, final_damage, damage_type, def_zone, wound_bonus, bare_wound_bonus, sharpness)
+
+	if(flags & DAMAGE_UNTRACKABLE)
+		source = null
+
+	return final_damage
 
 /datum/species/proc/on_hit(obj/projectile/P, mob/living/carbon/human/H)
 	// called when hit by a projectile
@@ -1879,7 +1896,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			humi.emote("scream")
 
 		// Apply the damage to all body parts
-		humi.apply_damage(burn_damage, FIRE, spread_damage = TRUE)
+		humi.deal_damage(burn_damage, FIRE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_ENVIRONMENT))
 
 	// Apply some burn / brute damage to the body (Dependent if the person is hulk or not)
 	var/is_hulk = HAS_TRAIT(humi, TRAIT_HULK)
@@ -1891,11 +1908,11 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		var/damage_mod = coldmod * humi.physiology.cold_mod * (is_hulk ? HULK_COLD_DAMAGE_MOD : 1)
 		switch(humi.coretemperature)
 			if(-INFINITY to 119)
-				humi.apply_damage(COLD_DAMAGE_LEVEL_3 * damage_mod, damage_type)
+				humi.deal_damage(COLD_DAMAGE_LEVEL_3 * damage_mod, damage_type, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_ENVIRONMENT))
 			if(120 to 200)
-				humi.apply_damage(COLD_DAMAGE_LEVEL_2 * damage_mod, damage_type)
+				humi.deal_damage(COLD_DAMAGE_LEVEL_2 * damage_mod, damage_type, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_ENVIRONMENT))
 			else
-				humi.apply_damage(COLD_DAMAGE_LEVEL_1 * damage_mod, damage_type)
+				humi.deal_damage(COLD_DAMAGE_LEVEL_1 * damage_mod, damage_type, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_ENVIRONMENT))
 
 
 /**
@@ -2058,7 +2075,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			H.adjust_bodytemperature(BODYTEMP_HEATING_MAX + (H.fire_stacks * 12))
 */
 		if(thermal_protection <= FIRE_SUIT_MAX_TEMP_PROTECT || no_protection)
-			H.deal_damage(2, FIRE)
+			H.deal_damage(2, FIRE, flags = (DAMAGE_FORCED))
 
 /datum/species/proc/CanIgniteMob(mob/living/carbon/human/H)
 	if(HAS_TRAIT(H, TRAIT_NOFIRE))

@@ -1,6 +1,16 @@
 /// depending on the species, it will run the corresponding apply_damage code there
-/mob/living/carbon/human/apply_damage(damage = 0,damagetype = BRUTE, def_zone = null, blocked = FALSE, forced = FALSE, spread_damage = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE, white_healable = FALSE)
-	return dna.species.apply_damage(damage, damagetype, def_zone, blocked, src, forced, spread_damage, wound_bonus, bare_wound_bonus, sharpness, white_healable)
+/mob/living/carbon/human/deal_damage(damage_amount, damage_type, source = null, flags = null, attack_type = null, blocked = null, def_zone = null, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE)
+	if(GLOB.damage_type_shuffler?.is_enabled && IsColorDamageType(damage_type)) // Yes I have to do yet another shuffler check here because god damn it we're handling human damage in the species datum
+		var/datum/damage_type_shuffler/shuffler = GLOB.damage_type_shuffler
+		damage_type = shuffler.mapping_offense[damage_type]
+
+	if(!(flags & DAMAGE_FORCED) && (!PreDamageReaction(damage_amount, damage_type, source))) // If our forced argument isn't TRUE, then we expect to receive a TRUE from PreDamageReaction to continue the proc
+		return FALSE
+
+	. = dna.species.apply_damage(src, damage_amount, damage_type, source, flags, attack_type, blocked, def_zone, wound_bonus, bare_wound_bonus, sharpness)
+
+	PostDamageReaction(., damage_type, flags & DAMAGE_UNTRACKABLE ? null : source)
+	return TRUE
 
 
 

@@ -207,7 +207,7 @@
 	visible_message(span_danger("[user] [hulk_verb]ed [src]!"), \
 					span_userdanger("[user] [hulk_verb]ed [src]!"), span_hear("You hear a sickening sound of flesh hitting flesh!"), null, user)
 	to_chat(user, span_danger("You [hulk_verb] [src]!"))
-	apply_damage(15, BRUTE, wound_bonus=10)
+	deal_damage(15, BRUTE, source = user, attack_type = (ATTACK_TYPE_MELEE), wound_bonus=10)
 
 /mob/living/carbon/human/attack_hand(mob/user)
 	if(..())	//to allow surgery to return properly.
@@ -258,7 +258,7 @@
 			if(check_shields(M, damage, "the [M.name]"))
 				return FALSE
 			if(stat != DEAD)
-				apply_damage(damage, BRUTE, affecting, run_armor_check(affecting, MELEE))
+				deal_damage(damage, BRUTE, source = M, attack_type = (ATTACK_TYPE_MELEE), def_zone = affecting, blocked = run_armor_check(affecting, MELEE))
 		return TRUE
 
 /mob/living/carbon/human/attack_alien(mob/living/carbon/alien/humanoid/M)
@@ -292,7 +292,7 @@
 		log_combat(M, src, "attacked")
 		if(!dismembering_strike(M, M.zone_selected)) //Dismemberment successful
 			return TRUE
-		apply_damage(damage, BRUTE, affecting, armor_block)
+		deal_damage(damage, BRUTE, source = M, attack_type = (ATTACK_TYPE_MELEE), def_zone = affecting, blocked = armor_block)
 
 	if(M.a_intent == INTENT_DISARM) //Always drop item in hand, if no item, get stun instead.
 		var/obj/item/I = get_active_held_item()
@@ -325,7 +325,7 @@
 		if(!affecting)
 			affecting = get_bodypart(BODY_ZONE_CHEST)
 		var/armor_block = run_armor_check(affecting, MELEE)
-		apply_damage(damage, BRUTE, affecting, armor_block)
+		deal_damage(damage, BRUTE, source = L, attack_type = (ATTACK_TYPE_MELEE), def_zone = affecting, blocked = armor_block)
 
 
 /mob/living/carbon/human/attack_animal(mob/living/simple_animal/M)
@@ -342,8 +342,7 @@
 	if(!affecting)
 		affecting = get_bodypart(BODY_ZONE_CHEST)
 	var/armor = run_armor_check(affecting, M.melee_damage_type, armour_penetration = M.armour_penetration)
-	apply_damage(damage, M.melee_damage_type, affecting, armor, wound_bonus = M.wound_bonus, bare_wound_bonus = M.bare_wound_bonus, sharpness = M.sharpness, forced = FALSE)
-
+	deal_damage(damage, M.melee_damage_type, source = M, attack_type = (ATTACK_TYPE_MELEE), def_zone = affecting, blocked = armor, wound_bonus = M.wound_bonus, bare_wound_bonus = M.bare_wound_bonus, sharpness = M.sharpness)
 
 /mob/living/carbon/human/attack_slime(mob/living/simple_animal/slime/M)
 	. = ..()
@@ -368,7 +367,7 @@
 	if(!affecting)
 		affecting = get_bodypart(BODY_ZONE_CHEST)
 	var/armor_block = run_armor_check(affecting, M.melee_damage_type)
-	apply_damage(damage, BRUTE, affecting, armor_block, wound_bonus=wound_mod)
+	deal_damage(damage, BRUTE, source = M, attack_type = (ATTACK_TYPE_MELEE), def_zone = affecting, blocked = armor_block, wound_bonus=wound_mod)
 
 
 /mob/living/carbon/human/ex_act(severity, target, origin)
@@ -446,7 +445,7 @@
 	show_message(span_userdanger("The blob attacks you!"))
 	var/dam_zone = pick(BODY_ZONE_CHEST, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 	var/obj/item/bodypart/affecting = get_bodypart(ran_zone(dam_zone))
-	apply_damage(5, BRUTE, affecting, run_armor_check(affecting, MELEE))
+	deal_damage(5, BRUTE, source = B, attack_type = (ATTACK_TYPE_MELEE), def_zone = affecting, blocked = run_armor_check(affecting, MELEE))
 
 
 ///Calculates the siemens coeff based on clothing and species, can also restart hearts.

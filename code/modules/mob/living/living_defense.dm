@@ -52,7 +52,7 @@
 	var/armor = run_armor_check(def_zone, P.damage_type, "","",P.armour_penetration)
 	var/on_hit_state = P.on_hit(src, armor, piercing_hit)
 	if(!P.nodamage && on_hit_state != BULLET_ACT_BLOCK)
-		apply_damage(P.damage, P.damage_type, def_zone, armor, wound_bonus=P.wound_bonus, bare_wound_bonus=P.bare_wound_bonus, sharpness = P.sharpness, white_healable = P.white_healing)
+		deal_damage(P.damage, P.damage_type, source = P.firer, flags = P.white_healing ? (DAMAGE_WHITE_HEALABLE) : null, attack_type = (ATTACK_TYPE_RANGED), def_zone = def_zone, wound_bonus=P.wound_bonus, bare_wound_bonus=P.bare_wound_bonus, sharpness = P.sharpness)
 		apply_effects(P.stun, P.knockdown, P.unconscious, P.irradiate, P.slur, P.stutter, P.eyeblur, P.drowsy, armor, P.stamina, P.jitter, P.paralyze, P.immobilize)
 		if(P.dismemberment)
 			check_projectile_dismemberment(P, def_zone)
@@ -95,7 +95,7 @@
 		if(ishuman(thrown_item.thrownby))
 			var/mob/living/carbon/human/H = thrown_item.thrownby
 			justice_mod += get_modified_attribute_level(H, JUSTICE_ATTRIBUTE)/100
-		apply_damage(thrown_item.throwforce * justice_mod, thrown_item.damtype, zone, armor, sharpness = thrown_item.get_sharpness(), wound_bonus = (nosell_hit * CANT_WOUND))
+		deal_damage(thrown_item.throwforce * justice_mod, thrown_item.damtype, source = thrown_item.thrownby, flags = (DAMAGE_WHITE_HEALABLE), attack_type = (ATTACK_TYPE_THROWING), def_zone = zone, wound_bonus = (nosell_hit * CANT_WOUND))
 		if(QDELETED(src)) //Damage can delete the mob.
 			return
 		return ..()
@@ -468,3 +468,16 @@
 // A proc used in CanAttack of simple mobs
 /mob/living/proc/CanBeAttacked()
 	return TRUE
+
+/// Called by the deal_damage() wrapper when it doesn't receive DAMAGE_FORCED in its "flags" argument. Return TRUE to receive the damage, return FALSE to prevent damage from being taken.
+// "Forced" damage will not call this, and thus you won't be able to stop it from happening with this proc. Look into COMPONENT_MOB_DENY_DAMAGE.
+// Consider that 'source' argument might be null and handle accordingly. This is often the case for status effects and mobs that qdel themselves after dealing their damage. I didn't want to handle it for all possible implementations, that would be restrictive.
+// The "attack_type" argument is a bitfield, and it is also optional. You can check here if you specifically don't want to react/want to react to certain attack types, or modify behaviour according to the type. Just remember that it may be null, and that you may have several attack types as well.
+/mob/living/proc/PreDamageReaction(damage_amount, damage_type, source, attack_type)
+	SHOULD_NOT_SLEEP(TRUE)
+	return TRUE
+
+/// Called always after deal_damage() goes through, if the mob's alive. Irrelevant return value.
+// /simple_animal's override will return damage post-shuffler-defense mapping, so you can factor it in for whatever you may want.
+/mob/living/proc/PostDamageReaction(damage_amount, damage_type, source, attack_type)
+	return
