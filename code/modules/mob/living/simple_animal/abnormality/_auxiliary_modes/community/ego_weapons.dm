@@ -373,7 +373,7 @@
 				if(L in been_hit || L == user)
 					continue
 				user.visible_message(span_boldwarning("[user] blazes through [L]!"))
-				L.deal_damage((special_damage + extra_damage), RED_DAMAGE, user, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL)
+				L.deal_damage((special_damage + extra_damage), RED_DAMAGE, user, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 				been_hit += L
 
 	// Remove burn if it's safety is on
