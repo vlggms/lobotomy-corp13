@@ -85,7 +85,7 @@
 		if(istype(I, /obj/item/ego_weapon))
 			var/obj/item/ego_weapon/theweapon = I
 			damage *= theweapon.force_multiplier
-		apply_damage(damage, I.damtype, affecting, wound_bonus = I.wound_bonus, bare_wound_bonus = I.bare_wound_bonus, sharpness = I.get_sharpness(), white_healable = TRUE)
+		deal_damage(damage, I.damtype, source = user, flags = (DAMAGE_WHITE_HEALABLE), attack_type = (ATTACK_TYPE_MELEE), def_zone = affecting, wound_bonus = I.wound_bonus, bare_wound_bonus = I.bare_wound_bonus, sharpness = I.get_sharpness())
 		if(I.damtype == BRUTE && affecting.status == BODYPART_ORGANIC)
 			if(prob(33))
 				I.add_mob_blood(src)

@@ -1,54 +1,3 @@
-
-/**
- * Applies damage to this mob
- *
- * Sends [COMSIG_MOB_APPLY_DAMGE]
- *
- * Arguuments:
- * * damage - amount of damage
- * * damagetype - one of [BRUTE], [FIRE], [TOX], [OXY], [CLONE], [STAMINA]
- * * def_zone - zone that is being hit if any
- * * blocked - armor value applied
- * * forced - bypass hit percentage
- * * spread_damage - used in overrides
- *
- * Returns TRUE if damage applied
- */
-/mob/living/proc/apply_damage(damage = 0,damagetype = RED_DAMAGE, def_zone = null, blocked = FALSE, forced = FALSE, spread_damage = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE, white_healable = FALSE)
-	if(GLOB.damage_type_shuffler?.is_enabled && IsColorDamageType(damagetype))
-		var/datum/damage_type_shuffler/shuffler = GLOB.damage_type_shuffler
-		var new_damage_type = shuffler.mapping_offense[damagetype]
-		damagetype = new_damage_type
-	var/signal_return = SEND_SIGNAL(src, COMSIG_MOB_APPLY_DAMGE, damage, damagetype, def_zone)
-	if(signal_return & COMPONENT_MOB_DENY_DAMAGE)
-		return FALSE
-	var/hit_percent = (100-blocked)/100
-	if(!damage || (!forced && hit_percent <= 0))
-		return FALSE
-	var/damage_amount =  forced ? damage : damage * hit_percent
-	switch(damagetype)
-		if(FIRE)
-			adjustFireLoss(damage_amount, forced = forced)
-		if(TOX)
-			adjustToxLoss(damage_amount, forced = forced)
-		if(OXY)
-			adjustOxyLoss(damage_amount, forced = forced)
-		if(CLONE)
-			adjustCloneLoss(damage_amount, forced = forced)
-		if(STAMINA)
-			adjustStaminaLoss(damage_amount, forced = forced)
-		if(RED_DAMAGE)
-			adjustRedLoss(damage_amount, forced = forced)
-		if(WHITE_DAMAGE)
-			adjustWhiteLoss(damage_amount, forced = forced, white_healable = white_healable)
-		if(BLACK_DAMAGE)
-			adjustBlackLoss(damage_amount, forced = forced, white_healable = white_healable)
-		if(PALE_DAMAGE)
-			adjustPaleLoss(damage_amount, forced = forced)
-		else
-			adjustBruteLoss(damage_amount, forced = forced)
-	return TRUE
-
 ///like [apply_damage][/mob/living/proc/apply_damage] except it always uses the damage procs
 /mob/living/proc/apply_damage_type(damage = 0, damagetype = BRUTE)
 	switch(damagetype)
@@ -89,24 +38,25 @@
 		if(STAMINA)
 			return getStaminaLoss()
 
-/// applies multiple damages at once via [/mob/living/proc/apply_damage]
-/mob/living/proc/apply_damages(brute = 0, burn = 0, tox = 0, oxy = 0, clone = 0, def_zone = null, blocked = FALSE, stamina = 0, brain = 0)
+/// applies multiple damages at once via [/mob/living/proc/deal_damage]
+// I recommend not using this, also literally only 1 thing (flashbangs) in the codebase uses this as of now
+/mob/living/proc/deal_multiple_damages(brute = 0, burn = 0, tox = 0, oxy = 0, clone = 0, def_zone = null, blocked = FALSE, stamina = 0, brain = 0)
 	if(blocked >= 100)
 		return 0
 	if(brute)
-		apply_damage(brute, BRUTE, def_zone, blocked)
+		deal_damage(brute, BRUTE, def_zone = def_zone, blocked = blocked)
 	if(burn)
-		apply_damage(burn, FIRE, def_zone, blocked)
+		deal_damage(burn, FIRE, def_zone = def_zone, blocked = blocked)
 	if(tox)
-		apply_damage(tox, TOX, def_zone, blocked)
+		deal_damage(tox, TOX, def_zone = def_zone, blocked = blocked)
 	if(oxy)
-		apply_damage(oxy, OXY, def_zone, blocked)
+		deal_damage(oxy, OXY, def_zone = def_zone, blocked = blocked)
 	if(clone)
-		apply_damage(clone, CLONE, def_zone, blocked)
+		deal_damage(clone, CLONE, def_zone = def_zone, blocked = blocked)
 	if(stamina)
-		apply_damage(stamina, STAMINA, def_zone, blocked)
+		deal_damage(stamina, STAMINA, def_zone = def_zone, blocked = blocked)
 	if(brain)
-		apply_damage(brain, BRAIN, def_zone, blocked)
+		deal_damage(brain, BRAIN, def_zone = def_zone, blocked = blocked)
 	return 1
 
 
@@ -168,7 +118,7 @@
 	if(drowsy)
 		apply_effect(drowsy, EFFECT_DROWSY, blocked)
 	if(stamina)
-		apply_damage(stamina, STAMINA, null, blocked)
+		deal_damage(stamina, STAMINA, blocked = blocked)
 	if(jitter)
 		apply_effect(jitter, EFFECT_JITTER, blocked)
 	return TRUE
@@ -192,7 +142,7 @@
 	if(!forced && (status_flags & GODMODE))
 		return
 	. = oxyloss
-	oxyloss = clamp((oxyloss + (amount * CONFIG_GET(number/damage_multiplier))), 0, -HEALTH_THRESHOLD_DEAD)
+	oxyloss = clamp((oxyloss + (amount * CONFIG_GET(number/damage_multiplier))), 0, maxHealth * 2)
 	if(updating_health)
 		updatehealth()
 
@@ -290,6 +240,10 @@
 /mob/living/proc/adjustPaleLoss(amount, updating_health = TRUE, forced = FALSE)
 	if(HAS_TRAIT(src, TRAIT_BRUTEPALE))
 		return adjustBruteLoss(amount, forced = forced)
+	if(SSmaptype.chosen_trait == FACILITY_TRAIT_LEGACY_PALE)	//You eat shit and die
+		if(prob(amount))
+			var/damage_amt = maxHealth * 0.9	//If Legacy Pale hits you, take 90% of your health in damage
+			return adjustBruteLoss(damage_amt, forced = forced)
 	var/damage_amt = maxHealth * (amount/100)
 	return adjustBruteLoss(damage_amt, forced = forced)
 
