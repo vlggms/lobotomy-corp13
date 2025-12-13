@@ -150,7 +150,7 @@
 	if(HAS_TRAIT(user, TRAIT_HULK))
 		extra_wound = 20
 	banged_limb?.receive_damage(30, wound_bonus = extra_wound)
-	pushed_mob.apply_damage(60, STAMINA)
+	pushed_mob.deal_damage(60, STAMINA, source = user, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_OTHER))
 	take_damage(50)
 	if(user.mind?.martial_art.smashes_tables && user.mind?.martial_art.can_use(user))
 		deconstruct(FALSE)
