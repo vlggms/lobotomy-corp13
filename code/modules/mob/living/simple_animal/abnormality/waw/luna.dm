@@ -107,7 +107,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/luna/Worktick(mob/living/carbon/human/user, work_type)
 	if(performance)
-		user.deal_damage(rand(work_damage_lower,work_damage_upper)*0.60, BLACK_DAMAGE)	//take work damage
+		user.deal_damage(rand(work_damage_lower,work_damage_upper)*0.60, BLACK_DAMAGE, flags = (DAMAGE_FORCED))	//take work damage
 
 
 /mob/living/simple_animal/hostile/abnormality/luna/AttemptWork(mob/living/carbon/human/user, work_type)
@@ -198,7 +198,7 @@
 /mob/living/simple_animal/hostile/aminion/luna/proc/AOE()
 	for(var/turf/T in view(aoerange, src))
 		new /obj/effect/temp_visual/revenant(T)
-		HurtInTurf(T, list(), aoedamage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
+		HurtInTurf(T, list(), aoedamage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, attack_type = (ATTACK_TYPE_SPECIAL))
 	aoeactive = FALSE
 
 /mob/living/simple_animal/hostile/aminion/luna/proc/Reset()

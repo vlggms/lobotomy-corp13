@@ -296,7 +296,7 @@
 	C.smoke_delay++
 	if(prob(damage_chance))
 		addtimer(CALLBACK(C, TYPE_PROC_REF(/mob/living, remove_smoke_delay)), 10)
-		C.deal_damage(damage_done, PALE_DAMAGE)
+		C.deal_damage(damage_done, PALE_DAMAGE, attack_type = (ATTACK_TYPE_ENVIRONMENT))
 		if(prob(40))
 			to_chat(C, span_danger("IT BURNS!"))
 			C.emote("scream")

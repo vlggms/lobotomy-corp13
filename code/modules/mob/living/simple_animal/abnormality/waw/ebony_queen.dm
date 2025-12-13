@@ -285,7 +285,7 @@
 		return
 	playsound(target_turf, 'sound/abnormalities/ebonyqueen/attack.ogg', 40, 0, 8)
 	new /obj/effect/temp_visual/thornspike(target_turf)
-	var/list/hit = caster.HurtInTurf(target_turf, list(), damage = root_damage, damage_type = BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, mech_damage = root_damage/2)
+	var/list/hit = caster.HurtInTurf(target_turf, list(), damage = root_damage, damage_type = BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, mech_damage = root_damage/2, attack_type = (ATTACK_TYPE_SPECIAL))
 	for(var/mob/living/L in hit)
 		if(L.stat == DEAD || L.throwing)
 			continue
