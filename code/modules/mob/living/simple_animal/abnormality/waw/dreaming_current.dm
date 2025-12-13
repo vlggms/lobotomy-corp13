@@ -203,7 +203,7 @@
 			COLOR_PURPLE,
 		)
 		S.add_atom_colour(pick(potential_colors), FIXED_COLOUR_PRIORITY)
-		var/list/new_hits = HurtInTurf(TF, been_hit, dash_damage, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE) - been_hit
+		var/list/new_hits = HurtInTurf(TF, been_hit, dash_damage, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL)) - been_hit
 		been_hit += new_hits
 		for(var/mob/living/L in new_hits)
 			visible_message(span_boldwarning("[src] bites [L]!"))

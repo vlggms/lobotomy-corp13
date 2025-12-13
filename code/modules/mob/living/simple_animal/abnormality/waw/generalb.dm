@@ -468,7 +468,7 @@
 	for(var/mob/living/L in view(2, src))
 		if(faction_check(faction, L.faction, FALSE))
 			continue
-		L.deal_damage(boom_damage, list(RED_DAMAGE, BLACK_DAMAGE))
+		L.deal_split_damage(boom_damage, list(RED_DAMAGE, BLACK_DAMAGE), attack_type = (ATTACK_TYPE_SPECIAL))
 		if(L.health < 0)
 			L.gib()
 	new /obj/effect/temp_visual/explosion(get_turf(src))

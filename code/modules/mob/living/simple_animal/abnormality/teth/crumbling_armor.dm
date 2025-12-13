@@ -226,7 +226,7 @@
 	if(!istype(holders_head))
 		return FALSE
 	playsound(get_turf(status_holder), 'sound/abnormalities/crumbling/attack.ogg', 50, FALSE)
-	status_holder.deal_damage(punishment_damage, PALE_DAMAGE)
+	status_holder.deal_damage(punishment_damage, PALE_DAMAGE, flags = (DAMAGE_FORCED))
 	if(status_holder.health < 0)
 		holders_head.dismember()
 	new /obj/effect/temp_visual/slice(get_turf(status_holder))

@@ -221,12 +221,15 @@ It has now been over four months. Now we get her for real. -Coxswain
 	addtimer(CALLBACK(src, PROC_REF(EndEvade)), 20)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/red_hood/apply_damage(damage = 0,damagetype = RED_DAMAGE, def_zone = null, blocked = FALSE, forced = FALSE, spread_damage = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE, white_healable = FALSE)
+/mob/living/simple_animal/hostile/abnormality/red_hood/PreDamageReaction(damage_amount, damage_type, source, attack_type)
 	if(evading_attack)
 		evading_attack = FALSE
 		EndEvade()
 		return FALSE
-	..()
+	return TRUE
+
+/mob/living/simple_animal/hostile/abnormality/red_hood/PostDamageReaction(damage_amount, damage_type, source, attack_type)
+	. = ..()
 	if(health > (maxHealth * 0.8) || !priority_target)
 		return
 	if(red_rage < 1 && target_priority > 2)

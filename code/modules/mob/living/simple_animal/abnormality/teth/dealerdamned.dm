@@ -52,7 +52,7 @@
 	var/flip_modifier = 0
 	has_flipped = TRUE
 	var/mob/living/user = petter
-	user.deal_damage(user.maxHealth*0.2, RED_DAMAGE)
+	user.deal_damage(user.maxHealth*0.2, RED_DAMAGE, flags = (DAMAGE_FORCED))
 	icon_state = "dealerflip"
 	manual_emote("flips a gold coin.")
 	SLEEP_CHECK_DEATH(10)

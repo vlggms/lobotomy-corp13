@@ -152,7 +152,7 @@
 	SLEEP_CHECK_DEATH(10)
 	for(var/turf/T in view(staff_range, get_turf(staff)))
 		new /obj/effect/temp_visual/smash_effect(T)
-		been_hit = HurtInTurf(T, been_hit, staff_damage, WHITE_DAMAGE, check_faction = FALSE, hurt_mechs = TRUE, mech_damage = staff_damage)
+		been_hit = HurtInTurf(T, been_hit, staff_damage, WHITE_DAMAGE, check_faction = FALSE, hurt_mechs = TRUE, mech_damage = staff_damage, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 		for(var/mob/living/L in T)
 			ApplyKarma(L, 15)
 	animate(staff, transform = turn(matrix(), 15) ,time = 2)
@@ -166,7 +166,7 @@
 			continue
 		if(faction_check_mob(L))
 			continue
-		L.deal_damage(pulse_damage, WHITE_DAMAGE)//apply karma here
+		L.deal_damage(pulse_damage, WHITE_DAMAGE, src, flags = (DAMAGE_FORCED))//apply karma here
 		ApplyKarma(L, 5)
 		extended_flash_color(L, flash_color = "#FDAE8B", flash_time = 1,maintain_time = 115)
 		if(!ishuman(L))

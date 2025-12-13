@@ -132,8 +132,8 @@
 	// Ka-boom
 	playsound(get_turf(src), 'sound/abnormalities/scorchedgirl/explosion.ogg', 125, 0, 8)
 	for(var/mob/living/carbon/human/H in view(7, src))
-		H.deal_damage(boom_damage, RED_DAMAGE)
-		H.deal_damage(boom_damage * 0.5, FIRE)
+		H.deal_damage(boom_damage, RED_DAMAGE, src, attack_type = (ATTACK_TYPE_SPECIAL))
+		H.deal_damage(boom_damage * 0.5, FIRE, src, attack_type = (ATTACK_TYPE_SPECIAL))
 		if(H.health < 0)
 			H.gib()
 	new /obj/effect/temp_visual/explosion(get_turf(src))

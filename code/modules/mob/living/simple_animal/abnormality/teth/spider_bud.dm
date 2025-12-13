@@ -132,7 +132,7 @@
 			spooder.metagame_list[sinner.ckey] = 0
 
 		spooder.metagame_list[sinner.ckey] += 1
-		sinner.deal_damage(50 * spooder.metagame_list[sinner.ckey], RED_DAMAGE)
+		sinner.deal_damage(50 * spooder.metagame_list[sinner.ckey], RED_DAMAGE, flags = (DAMAGE_FORCED))
 		to_chat(sinner, span_userdanger("As the cocoon breaks tiny spiders swarm you and tear out some of your flesh before returning to [spooder]!"))
 		if(sinner.stat == DEAD) // if they are dead after our attack, burger them
 			spooder.turn_into_burger(sinner, TRUE)

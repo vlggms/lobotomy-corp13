@@ -82,7 +82,7 @@
 /mob/living/simple_animal/hostile/abnormality/mailpile/WorktickFailure(mob/living/carbon/human/user)
 	if(prob(10))
 		to_chat(user, span_warning("Ouch! I got a paper cut!"))
-		user.deal_damage(1, RED_DAMAGE)
+		user.deal_damage(1, RED_DAMAGE, flags = (DAMAGE_FORCED))
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/mailpile/proc/Delivery(mob/living/carbon/human/user, work_type, pe, work_time)
@@ -445,7 +445,7 @@
 /obj/item/mailpaper/trapped/urgent/Trap()
 	audible_message(span_warning("We are going to kill you."))
 	for(var/mob/living/carbon/human/H in hearers(7, src))
-		H.deal_damage(50, WHITE_DAMAGE)
+		H.deal_damage(50, WHITE_DAMAGE, flags = (DAMAGE_FORCED))
 	return ..()
 
 /obj/item/mailpaper/trapped/flashbang

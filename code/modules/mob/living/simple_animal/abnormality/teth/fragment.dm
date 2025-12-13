@@ -142,7 +142,7 @@
 				continue
 			if(L.stat == DEAD)
 				continue
-			L.deal_damage(song_damage, WHITE_DAMAGE)
+			L.deal_damage(song_damage, WHITE_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL))
 		SLEEP_CHECK_DEATH(3)
 
 	animate(src, pixel_y = 0, time = 0)
