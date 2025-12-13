@@ -250,7 +250,7 @@
 			if(!(L in hearers))
 				hearers += L
 				to_chat(L, span_warning("The crying hurts your head..."))
-			L.deal_damage(pick(1,1.5), WHITE_DAMAGE)
+			L.deal_damage(pick(1,1.5), WHITE_DAMAGE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL))
 		SLEEP_CHECK_DEATH(4)
 	SLEEP_CHECK_DEATH(3)
 	can_act = TRUE

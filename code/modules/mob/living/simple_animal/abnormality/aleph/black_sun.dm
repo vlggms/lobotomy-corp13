@@ -186,7 +186,7 @@
 			continue
 		if(faction_check_mob(L))
 			continue
-		L.deal_damage(3, WHITE_DAMAGE)
+		L.deal_damage(3, WHITE_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_ENVIRONMENT | ATTACK_TYPE_SPECIAL))
 		new /obj/effect/temp_visual/bluespace_fissure(get_turf(L))
 
 	if(prob(10))
@@ -215,8 +215,8 @@
 /obj/effect/temp_visual/blacksun_laser/proc/blowup()
 	playsound(src, 'sound/weapons/laser.ogg', 10, FALSE, 4)
 	for(var/mob/living/carbon/human/H in src.loc)
-		H.deal_damage(20, WHITE_DAMAGE)
-		H.deal_damage(30, PALE_DAMAGE)
+		H.deal_damage(20, WHITE_DAMAGE, attack_type = (ATTACK_TYPE_SPECIAL | ATTACK_TYPE_ENVIRONMENT))
+		H.deal_damage(30, PALE_DAMAGE, attack_type = (ATTACK_TYPE_SPECIAL | ATTACK_TYPE_ENVIRONMENT))
 		if(H.sanity_lost)
 			H.gib()
 
@@ -233,7 +233,7 @@
 			for(var/mob/living/carbon/human/L in T)
 				if(L.sanity_lost)		//Kill the insane
 					L.death()
-				L.deal_damage(60, BLACK_DAMAGE)
+				L.deal_damage(60, BLACK_DAMAGE, src, attack_type = (ATTACK_TYPE_SPECIAL | ATTACK_TYPE_ENVIRONMENT))
 
 			all_turfs -= T
 		SLEEP_CHECK_DEATH(5)

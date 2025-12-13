@@ -148,7 +148,7 @@
 
 	//Lose sanity
 	for(var/mob/living/carbon/human/H in view(10, get_turf(src)))
-		H.deal_damage(girlboss_level*10, WHITE_DAMAGE)
+		H.deal_damage(girlboss_level*10, WHITE_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL))
 
 	SLEEP_CHECK_DEATH(10)
 	manual_emote("wipes her mouth with a hankerchief")
@@ -191,29 +191,12 @@
 	datum_reference.qliphoth_change(-3)
 
 //Okay, but here's the math
-/mob/living/simple_animal/hostile/abnormality/eris/proc/healpulse()
-	for(var/mob/living/H in view(10, get_turf(src)))
-		if(H.stat >= SOFT_CRIT)
-			continue
-		//Shamelessly fucking stolen from risk of rain's teddy bear.
-		var/healamount = 2 * (TOUGHER_TIMES(girlboss_level))
-		H.adjustBruteLoss(-healamount)	//Healing for those around.
-		new /obj/effect/temp_visual/heal(get_turf(H), "#FF4444")
-
-//Okay but here's the defensive options
-/mob/living/simple_animal/hostile/abnormality/eris/bullet_act(obj/projectile/Proj)
-	..()
-	if(!ishuman(Proj.firer))
+/mob/living/simple_animal/hostile/abnormality/eris/PostDamageReaction(damage_amount, damage_type, source, attack_type)
+	. = ..()
+	if(. <= 0 || !isliving(source) || (attack_type & (ATTACK_TYPE_COUNTER | ATTACK_TYPE_ENVIRONMENT | ATTACK_TYPE_STATUS)))
 		return
-	var/mob/living/carbon/human/H = Proj.firer
-	H.deal_damage(3*(TOUGHER_TIMES(girlboss_level)), WHITE_DAMAGE)
-
-
-/mob/living/simple_animal/hostile/abnormality/eris/attacked_by(obj/item/I, mob/living/user)
-	..()
-	if(!user)
-		return
-	user.deal_damage(3*(TOUGHER_TIMES(girlboss_level)), WHITE_DAMAGE)
+	var/mob/living/okay_but_heres_the_victim = source
+	okay_but_heres_the_victim.deal_damage(3*(TOUGHER_TIMES(girlboss_level)), WHITE_DAMAGE, source = src, attack_type = (ATTACK_TYPE_COUNTER))
 
 
 //Okay, but here's the work effects
