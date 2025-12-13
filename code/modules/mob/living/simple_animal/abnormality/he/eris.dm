@@ -195,8 +195,8 @@
 	for(var/mob/living/H in view(10, get_turf(src)))
 		if(H.stat >= SOFT_CRIT)
 			continue
-		//Shamelessly fucking stolen from risk of rain's teddy bear. Maxes out at 20.
-		var/healamount = 20 * (TOUGHER_TIMES(girlboss_level))
+		//Shamelessly fucking stolen from risk of rain's teddy bear. Maxes out at 2.
+		var/healamount = 2 * (TOUGHER_TIMES(girlboss_level))
 		H.adjustBruteLoss(-healamount)	//Healing for those around.
 		new /obj/effect/temp_visual/heal(get_turf(H), "#FF4444")
 
