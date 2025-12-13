@@ -307,7 +307,7 @@
 		if(L.stat == DEAD)
 			continue
 		new /obj/effect/temp_visual/judgement(get_turf(L))
-		L.apply_damage(judge_damage, PALE_DAMAGE, null, src, attack_type = (ATTACK_TYPE_SPECIAL))
+		L.deal_damage(judge_damage, PALE_DAMAGE, null, src, attack_type = (ATTACK_TYPE_SPECIAL))
 	SLEEP_CHECK_DEATH(1 SECONDS)
 	icon_state = icon_living
 	SLEEP_CHECK_DEATH(1 SECONDS)
