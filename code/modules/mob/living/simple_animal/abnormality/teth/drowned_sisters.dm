@@ -71,7 +71,7 @@
 		return
 	to_chat(user, span_userdanger("You are attacked by an invisible assailant!"))
 	playsound(get_turf(src), 'sound/abnormalities/jangsan/tigerbite.ogg', 75, 0)
-	user.deal_damage(50, RED_DAMAGE, null)
+	user.deal_damage(50, RED_DAMAGE, flags = (DAMAGE_FORCED))
 	if(user.health < 0 || user.stat == DEAD)
 		user.gib()
 	return

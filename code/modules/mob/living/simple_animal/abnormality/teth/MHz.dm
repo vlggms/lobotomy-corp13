@@ -96,7 +96,7 @@
 		if(faction_check_mob(L, FALSE) || L.z != z || L.stat == DEAD)
 			continue
 		new /obj/effect/temp_visual/dir_setting/ninja(get_turf(L))
-		L.deal_damage(6, WHITE_DAMAGE)
+		L.deal_damage(6, WHITE_DAMAGE, flags = (DAMAGE_FORCED))
 
 
 //We're gonna make it a weather that affects all hallways.
@@ -118,4 +118,4 @@
 
 /datum/weather/mhz/weather_act(mob/living/carbon/human/L)
 	if(ishuman(L))
-		L.deal_damage(2, WHITE_DAMAGE)
+		L.deal_damage(2, WHITE_DAMAGE, attack_type = (ATTACK_TYPE_ENVIRONMENT))

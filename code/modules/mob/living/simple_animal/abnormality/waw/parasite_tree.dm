@@ -263,7 +263,7 @@
 
 
 /obj/effect/particle_effect/smoke/parasite_tree/proc/smoke_mob_effect(mob/living/carbon/human/M)
-	M.deal_damage(10, WHITE_DAMAGE)
+	M.deal_damage(10, WHITE_DAMAGE, attack_type = (ATTACK_TYPE_ENVIRONMENT))
 	if(prob(15))
 		M.emote("cough")
 	if(M.sanity_lost)
@@ -348,7 +348,7 @@
 		return
 	var/mob/living/carbon/human/status_holder = owner
 	var/tree_toxin = status_holder.maxSanity * 0.20
-	status_holder.deal_damage(tree_toxin, WHITE_DAMAGE)
+	status_holder.deal_damage(tree_toxin, WHITE_DAMAGE, attack_type = (ATTACK_TYPE_STATUS))
 	if(status_holder.sanity_lost || status_holder.stat == DEAD)
 		qdel(src)
 
@@ -378,7 +378,7 @@
 /datum/status_effect/display/parasite_tree_curse/proc/TransformOverride(mob/living/carbon/human/H)
 	if(H && H.has_status_effect(/datum/status_effect/display/melting_love_blessing))
 		to_chat(H, span_warning("You feel the pink slime dissolve your flesh before it becomes wood."))
-		H.deal_damage(400, BLACK_DAMAGE)
+		H.deal_damage(270, BLACK_DAMAGE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL))
 		H.remove_status_effect(/datum/status_effect/display/melting_love_blessing)
 		if(!H || H.stat == DEAD)
 			return TRUE

@@ -386,7 +386,7 @@
 		affected_turfs += TT
 		var/obj/effect/temp_visual/TV = new /obj/effect/temp_visual/revenant(TT)
 		TV.color = COLOR_SOFT_RED
-		beats_hit = HurtInTurf(TT, beats_hit, beats_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
+		beats_hit = HurtInTurf(TT, beats_hit, beats_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, attack_type = (ATTACK_TYPE_SPECIAL))
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/BeamAttack(target)
 	if(beam_cooldown > world.time)
@@ -518,7 +518,7 @@
 					continue
 				var/damage_before = L.get_damage_amount(BRUTE)
 				var/truedamage = ishuman(L) ? beam_damage_final : beam_damage_final/2 //half damage dealt to nonhumans
-				L.deal_damage(truedamage, BLACK_DAMAGE)
+				L.deal_damage(truedamage, BLACK_DAMAGE, src, attack_type = (ATTACK_TYPE_RANGED | ATTACK_TYPE_SPECIAL))
 				var/damage_dealt = abs(L.get_damage_amount(BRUTE)-damage_before)
 				if(!friendly)
 					if(ishuman(L))
@@ -608,7 +608,7 @@
 	new_matrix.Scale(1.75)
 	VO.transform = new_matrix
 	for(var/turf/open/T in view(2, src))
-		HurtInTurf(T, list(), explode_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
+		HurtInTurf(T, list(), explode_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, attack_type = (ATTACK_TYPE_SPECIAL))
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/WorkChance(mob/living/carbon/human/user, chance)
 	return chance * chance_modifier

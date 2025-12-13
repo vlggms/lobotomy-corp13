@@ -264,7 +264,7 @@
 			to_chat(L, span_userdanger("[src] slams you!"))
 			var/turf/LT = get_turf(L)
 			new /obj/effect/temp_visual/kinetic_blast(LT)
-			L.apply_damage(slam_damage,RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(slam_damage, RED_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 			playsound(L, 'sound/creatures/lc13/lovetown/slam.ogg', 75, 1)
 
 /mob/living/simple_animal/hostile/abnormality/clouded_monk/proc/ResetCharge()
@@ -285,7 +285,7 @@
 				shake_camera(src, 2, 3)
 				if(ishuman(L))
 					var/mob/living/carbon/human/H = A
-					H.deal_damage(charge_damage, RED_DAMAGE)
+					H.deal_damage(charge_damage, RED_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 					if(H.health < 0)
 						H.gib()
 						adjustBruteLoss(-heal_amount)

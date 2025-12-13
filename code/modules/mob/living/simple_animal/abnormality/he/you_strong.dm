@@ -361,7 +361,7 @@
 		for(var/mob/living/L in oview(2, src))
 			if(faction_check_mob(L))
 				continue
-			L.apply_damage(melee_damage_lower, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(melee_damage_lower, RED_DAMAGE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 		playsound(src, 'sound/weapons/ego/strong_charged2.ogg', 60)
 		emote("spin")
 		SLEEP_CHECK_DEATH(5)

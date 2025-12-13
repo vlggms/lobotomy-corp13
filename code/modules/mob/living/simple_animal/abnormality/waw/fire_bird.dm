@@ -150,8 +150,8 @@
 /mob/living/simple_animal/hostile/abnormality/fire_bird/proc/crispynugget()
 	pulse_cooldown = world.time + pulse_cooldown_time
 	for(var/mob/living/carbon/human/L in livinginview(48, src))
-		L.deal_damage(pulse_damage, RED_DAMAGE)
-		L.deal_damage(pulse_damage * 0.5, FIRE)
+		L.deal_damage(pulse_damage, RED_DAMAGE, src, attack_type = (ATTACK_TYPE_SPECIAL))
+		L.deal_damage(pulse_damage * 0.5, FIRE, src, attack_type = (ATTACK_TYPE_SPECIAL))
 
 /mob/living/simple_animal/hostile/abnormality/fire_bird/proc/retaliatedash()
 	if(dash_cooldown > world.time)
@@ -200,11 +200,11 @@
 			if(L in been_hit)
 				continue
 			visible_message(span_boldwarning("[src] blazes through [L]!"))
-			L.deal_damage(dash_damage, WHITE_DAMAGE)
-			L.deal_damage(dash_damage * 0.1, FIRE)
+			L.deal_damage(dash_damage, WHITE_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
+			L.deal_damage(dash_damage * 0.1, FIRE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 			new /obj/effect/temp_visual/cleave(get_turf(L))
 			if(L.sanity_lost) // TODO: TEMPORARY AS HELL
-				L.deal_damage(999, FIRE)
+				L.deal_damage(999, FIRE, src, flags = (DAMAGE_FORCED))
 			if(!(L in been_hit))
 				been_hit += L
 
