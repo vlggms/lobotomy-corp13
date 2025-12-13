@@ -91,7 +91,7 @@
 		return ..()
 	if(prob(50))
 		to_chat(user,span_warning("You pinch your fingers in the weapon."))
-		user.apply_damage(2, RED_DAMAGE, null, user.run_armor_check(null, RED_DAMAGE))
+		user.deal_damage(2, RED_DAMAGE, flags = (DAMAGE_FORCED))
 		return FALSE
 	return ..()
 
