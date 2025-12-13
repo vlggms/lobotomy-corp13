@@ -228,7 +228,7 @@ Burning extracts:
 	else
 		user.visible_message("<span class='danger'>[src] sublimates the flesh around [user]'s arm, transforming the bone into a gruesome blade!</span>")
 	user.emote("scream")
-	L.apply_damage(30,FIRE,which_hand)
+	L.deal_damage(30, FIRE, flags = (DAMAGE_FORCED), def_zone = which_hand)
 	..()
 
 /obj/item/slimecross/burning/pink

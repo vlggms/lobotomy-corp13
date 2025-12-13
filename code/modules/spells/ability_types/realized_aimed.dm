@@ -57,7 +57,7 @@
 		visible_message("<span class='boldwarning'>[user] runs through [L]!</span>")
 		playsound(L, 'sound/abnormalities/helper/attack.ogg', 25, 1)
 		new /obj/effect/temp_visual/kinetic_blast(get_turf(L))
-		L.apply_damage(dash_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+		L.deal_damage(dash_damage, RED_DAMAGE, user, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 		if(L.health <= 0)
 			L.gib()
 	return .. ()
@@ -96,7 +96,7 @@
 				H.adjustSanityLoss(-damage_amount)
 			continue
 		var/distance_decrease = get_dist(T, L) * 10
-		L.apply_damage((damage_amount - distance_decrease), WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))
+		L.deal_damage((damage_amount - distance_decrease), WHITE_DAMAGE, user, attack_type = (ATTACK_TYPE_SPECIAL))
 		new /obj/effect/temp_visual/revenant(get_turf(L))
 
 /* Knight of Despair - Quenched with Blood */
@@ -145,7 +145,7 @@
 	if(ishostile(target))
 		var/mob/living/simple_animal/hostile/H = target
 		H.TemporarySpeedChange(1, 10 SECONDS)
-		H.apply_damage(50 + (0.05 * H.maxHealth), PALE_DAMAGE)
+		H.deal_damage(50 + (0.05 * H.maxHealth), PALE_DAMAGE, firer, attack_type = (ATTACK_TYPE_RANGED))
 	..()
 	qdel(src)
 
@@ -263,7 +263,7 @@
 						if(LH.sanity_lost)
 							LH.adjustSanityLoss(-6*justice) // Pretty fast resaning, but this only applies to insanes
 					continue
-				L.apply_damage(beam_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+				L.deal_damage(beam_damage, BLACK_DAMAGE, user, attack_type = (ATTACK_TYPE_RANGED | ATTACK_TYPE_SPECIAL))
 				accumulated_beam_damage += beam_damage
 		if(!Channel(H, 8))
 			break
@@ -377,7 +377,7 @@
 			continue
 		if(L.stat == DEAD)
 			continue
-		L.apply_damage(ishuman(L) ? damage_amount*0.5 : damage_amount, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		L.deal_damage(ishuman(L) ? damage_amount*0.5 : damage_amount, RED_DAMAGE, user, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 		if(ishostile(L))
 			var/mob/living/simple_animal/hostile/H = L
 			H.TemporarySpeedChange(1 + damage_slowdown, 10 SECONDS, TRUE) // Slow down
@@ -413,7 +413,7 @@
 			continue
 		if(L.stat == DEAD)
 			continue
-		L.apply_damage(ishuman(L) ? damage_amount*0.5 : damage_amount, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		L.deal_damage(ishuman(L) ? damage_amount*0.5 : damage_amount, RED_DAMAGE, flags = (DAMAGE_FORCED))
 		if(ishostile(L))
 			var/mob/living/simple_animal/hostile/H = L
 			H.TemporarySpeedChange(damage_slowdown, 3 SECONDS) // Slow down
@@ -463,7 +463,7 @@
 	for(var/mob/living/L in view(damage_range, src))
 		if(ishostile(L))
 			var/distance_decrease = get_dist(src, L) * 20
-			L.apply_damage(ishuman(L) ? (damage_amount - distance_decrease)*0.5 : (damage_amount - distance_decrease), BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(ishuman(L) ? (damage_amount - distance_decrease)*0.5 : (damage_amount - distance_decrease), BLACK_DAMAGE, firer, attack_type = (ATTACK_TYPE_SPECIAL))
 			var/atom/throw_target = get_edge_target_turf(L, get_dir(L, get_step_towards(L, get_turf(src))))
 			L.throw_at(throw_target, 1, 2)
 
@@ -511,7 +511,7 @@
 		for(var/mob/living/L in T)
 			if(faction_check(L.faction, src.faction))
 				continue
-			L.apply_damage(damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(damage, BLACK_DAMAGE, attack_type = (ATTACK_TYPE_SPECIAL))
 		for(var/mob/living/carbon/human/L in T)
 			if(!faction_check(L.faction, src.faction))
 				continue
@@ -611,7 +611,7 @@
 				H.apply_status_effect(/datum/status_effect/home_buff)
 			continue
 		var/distance_decrease = get_dist(T, L) * 10
-		L.apply_damage((damage_amount - distance_decrease), BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+		L.deal_damage((damage_amount - distance_decrease), BLACK_DAMAGE, user, attack_type = (ATTACK_TYPE_SPECIAL))
 		new /obj/effect/temp_visual/revenant(get_turf(L))
 
 /datum/status_effect/home_buff

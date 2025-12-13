@@ -34,7 +34,7 @@ All ShuttleMove procs go here
 				M.visible_message(span_warning("[shuttle] slams into [M]!"))
 				SSblackbox.record_feedback("tally", "shuttle_gib", 1, M.type)
 				log_attack("[key_name(M)] was hit by a shuttle; [shuttle].")
-				M.apply_damage(300, RED_DAMAGE, null, M.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+				M.deal_damage(100, RED_DAMAGE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 				M.Stun(70)
 
 

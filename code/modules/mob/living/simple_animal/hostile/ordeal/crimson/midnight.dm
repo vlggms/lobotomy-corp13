@@ -76,7 +76,7 @@
 		B.bloodiness = 100
 	for(var/mob/living/L in view(5, src))
 		if(!faction_check_mob(L))
-			L.apply_damage(200, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+			L.deal_damage(200, RED_DAMAGE, attack_type = (ATTACK_TYPE_SPECIAL))
 	gib()
 
 /mob/living/simple_animal/hostile/ordeal/crimson_tent/AttackingTarget(atom/attacked_target)
@@ -183,7 +183,7 @@
 				continue
 			if (L == src)
 				continue
-			L.apply_damage(bite_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(bite_damage, RED_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE))
 	SLEEP_CHECK_DEATH(0.5 SECONDS)
 	can_act = TRUE
 

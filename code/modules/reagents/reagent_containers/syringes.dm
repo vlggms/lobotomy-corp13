@@ -159,7 +159,7 @@
 	else
 		to_chat(victim, "<span class='boldwarning'>[src] injects you!</span>")
 
-	victim.apply_damage(5, BRUTE, BODY_ZONE_HEAD)
+	victim.deal_damage(5, BRUTE, flags = (DAMAGE_FORCED), def_zone = BODY_ZONE_HEAD)
 	reagents?.trans_to(victim, round(reagents.total_volume*(2/3)), transfered_by = user, methods = INJECT)
 
 	return discover_after

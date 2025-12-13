@@ -122,7 +122,7 @@
 	if(ishuman(attacked_target))
 		var/mob/living/carbon/human/L = attacked_target
 		if(L.sanity_lost && L.stat != DEAD)
-			L.apply_damage(scream_damage, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE))
+			L.deal_damage(scream_damage, PALE_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE))
 	return ..()
 
 /mob/living/simple_animal/hostile/netherworld/migo/say(message, bubble_type, list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
@@ -134,7 +134,7 @@
 	manual_emote("twitches unnaturally...")
 	for(var/mob/living/L in view(7, src))
 		if(!faction_check_mob(L))
-			L.apply_damage(scream_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))
+			L.deal_damage(scream_damage, WHITE_DAMAGE, src, attack_type = (ATTACK_TYPE_SPECIAL))
 
 /mob/living/simple_animal/hostile/netherworld/migo/Life()
 	..()
@@ -146,7 +146,7 @@
 		manual_emote("twitches unnaturally...")
 		for(var/mob/living/L in view(7, src))
 			if(!faction_check_mob(L))
-				L.apply_damage(scream_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))
+				L.deal_damage(scream_damage, WHITE_DAMAGE, src, attack_type = (ATTACK_TYPE_SPECIAL))
 
 /mob/living/simple_animal/hostile/netherworld/blankbody
 	name = "blank body"
