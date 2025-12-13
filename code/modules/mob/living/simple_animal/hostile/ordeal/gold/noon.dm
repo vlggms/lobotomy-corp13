@@ -164,7 +164,7 @@
 				continue
 			if (L == src)
 				continue
-			HurtInTurf(T, list(), slash_damage, PALE_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
+			HurtInTurf(T, list(), slash_damage, PALE_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, attack_type = (ATTACK_TYPE_MELEE))
 	SLEEP_CHECK_DEATH(0.5 SECONDS)
 	can_act = TRUE
 
@@ -202,7 +202,7 @@
 	SLEEP_CHECK_DEATH(12)
 	for(var/turf/T in view(2, src))
 		new /obj/effect/temp_visual/smash_effect(T)
-		for(var/mob/living/L in HurtInTurf(T, list(), sweep_damage, PALE_DAMAGE, null, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE))
+		for(var/mob/living/L in HurtInTurf(T, list(), sweep_damage, PALE_DAMAGE, null, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL)))
 			if(L.health < 0)
 				if(ishuman(L))
 					var/mob/living/carbon/human/H = L
@@ -321,7 +321,7 @@
 				SLEEP_CHECK_DEATH(3)
 				TH.attack_animal(src)
 				for(var/mob/living/carbon/human/H in view(7, get_turf(src)))
-					H.deal_damage(7, WHITE_DAMAGE)
+					H.deal_damage(7, WHITE_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL))
 			if(!targets_from.Adjacent(TH) || QDELETED(TH) || TH.health > 0)
 				finishing = FALSE
 				return
@@ -420,4 +420,4 @@
 	if(damagetype == WHITE_DAMAGE)
 		return
 	var/damage_amt = H.maxSanity * (damage/100) //Deals white the same way pale is dealt
-	H.deal_damage(damage_amt, WHITE_DAMAGE)
+	H.deal_damage(damage_amt, WHITE_DAMAGE, attack_type = (ATTACK_TYPE_STATUS))

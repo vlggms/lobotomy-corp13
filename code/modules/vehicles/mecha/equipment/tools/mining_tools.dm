@@ -136,7 +136,7 @@
 	else
 		//drill makes a hole
 		var/obj/item/bodypart/target_part = target.get_bodypart(ran_zone(BODY_ZONE_CHEST))
-		target.apply_damage(10, BRUTE, BODY_ZONE_CHEST, target.run_armor_check(target_part, MELEE))
+		target.deal_damage(10, BRUTE, source = chassis, attack_type = (ATTACK_TYPE_MELEE), def_zone = BODY_ZONE_CHEST, blocked = target.run_armor_check(target_part, MELEE))
 
 		//blood splatters
 		var/splatter_dir = get_dir(chassis, target)

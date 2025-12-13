@@ -9,13 +9,13 @@
 	var/damtype = RED_DAMAGE
 
 /datum/reagent/toxin/lc13_toxin/on_mob_life(mob/living/carbon/M)
-	M.deal_damage(damage, damtype)//toxpwr is 1.5 from the toxin subtype
+	M.deal_damage(damage, damtype, attack_type = (ATTACK_TYPE_STATUS))//toxpwr is 1.5 from the toxin subtype
 	return ..()
 
 /datum/reagent/toxin/lc13_toxin/expose_mob(mob/living/exposed_mob, methods=VAPOR, reac_volume,  touch_protection=0)
 	. = ..()
 	reac_volume = round(reac_volume,0.1)
-	exposed_mob.deal_damage(min(round(0.4 * reac_volume, 0.1), damage*2), damtype)
+	exposed_mob.deal_damage(min(round(0.4 * reac_volume, 0.1), damage*2), damtype, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_OTHER))
 
 /datum/reagent/toxin/lc13_toxin/weak
 	name = "Diluted Red Toxin"

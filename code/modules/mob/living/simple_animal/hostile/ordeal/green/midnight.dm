@@ -102,10 +102,8 @@
 		QDEL_NULL(B)
 	return ..()
 
-/mob/living/simple_animal/hostile/ordeal/green_midnight/apply_damage(damage, damagetype, def_zone, blocked, forced, spread_damage, wound_bonus, bare_wound_bonus, sharpness, white_healable)
+/mob/living/simple_animal/hostile/ordeal/green_midnight/PostDamageReaction(damage_amount, damage_type, source, attack_type)
 	. = ..()
-	if(stat == DEAD)
-		return
 	if(health <= next_health_mark)
 		next_health_mark -= maxHealth * 0.1
 		max_lasers += 2
@@ -235,7 +233,7 @@
 				if(faction_check_mob(L))
 					continue
 				already_hit += L
-				L.apply_damage(laser_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+				L.deal_damage(laser_damage, BLACK_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL))
 		SLEEP_CHECK_DEATH(0.25 SECONDS)
 	StopLaser()
 
@@ -287,7 +285,7 @@
 	playsound(src, 'sound/weapons/fixer/generic/rcorp4.ogg', 15, FALSE, 4)
 	for(var/mob/living/H in src.loc)
 		if(!faction_check(H.faction, list("green_ordeal")))
-			H.apply_damage(25, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE))
+			H.deal_damage(25, BLACK_DAMAGE, attack_type = (ATTACK_TYPE_SPECIAL))
 			to_chat(H, span_userdanger("You're hit by [src.name]!"))
 
 /// This laser hits in a 3 tile radius (the epicenter and its adjacent tiles).
@@ -317,7 +315,7 @@
 		var/distance = get_dist(src, H)
 		if(distance < 2)
 			if(!faction_check(H.faction, list("green_ordeal")))
-				H.apply_damage(50, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE))
+				H.deal_damage(50, BLACK_DAMAGE, attack_type = (ATTACK_TYPE_SPECIAL))
 				to_chat(H, span_userdanger("You're hit by [src.name]!"))
 			shake_camera(H, 3, 1.5)
 

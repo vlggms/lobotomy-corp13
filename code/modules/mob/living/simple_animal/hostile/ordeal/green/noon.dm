@@ -89,7 +89,7 @@
 			if(!T)
 				return
 			new /obj/effect/temp_visual/saw_effect(T)
-			HurtInTurf(T, list(), 4, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
+			HurtInTurf(T, list(), 4, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_MELEE))
 			SLEEP_CHECK_DEATH(1)
 
 /mob/living/simple_animal/hostile/ordeal/green_bot_big/spawn_gibs()

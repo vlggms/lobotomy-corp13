@@ -600,7 +600,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 							new /obj/effect/gibspawner/human/bodypartless(get_turf(C))
 
 				if(prob(30))
-					C.apply_damage(max(0, squish_damage - crit_rebate), forced=TRUE, spread_damage=TRUE) // the 30% chance to spread the damage means you escape breaking any bones
+					C.deal_damage(max(0, squish_damage - crit_rebate), flags = (DAMAGE_FORCED | DAMAGE_PIERCING)) // the 30% chance to spread the damage means you escape breaking any bone
 				else
 					C.take_bodypart_damage((squish_damage - crit_rebate)*0.5, wound_bonus = 5) // otherwise, deal it to 2 random limbs (or the same one) which will likely shatter something
 					C.take_bodypart_damage((squish_damage - crit_rebate)*0.5, wound_bonus = 5)
@@ -608,9 +608,9 @@ GLOBAL_LIST_EMPTY(vending_products)
 			else
 				L.visible_message("<span class='danger'>[L] is crushed by [src]!</span>", \
 				"<span class='userdanger'>You are crushed by [src]!</span>")
-				L.apply_damage(squish_damage, forced=TRUE)
+				L.deal_damage(squish_damage, flags = (DAMAGE_FORCED | DAMAGE_PIERCING))
 				if(crit_case)
-					L.apply_damage(squish_damage, forced=TRUE)
+					L.deal_damage(squish_damage, flags = (DAMAGE_FORCED | DAMAGE_PIERCING))
 			if(was_alive && L.stat == DEAD && L.client)
 				L.client.give_award(/datum/award/achievement/misc/vendor_squish, L) // good job losing a fight with an inanimate object idiot
 

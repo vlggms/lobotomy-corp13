@@ -138,7 +138,7 @@
 
 	duffelvictim.flash_act()
 	duffelvictim.Immobilize(5 SECONDS)
-	duffelvictim.apply_damage(80, STAMINA)
+	duffelvictim.deal_damage(80, STAMINA, source = user, attack_type = (ATTACK_TYPE_MELEE))
 	duffelvictim.Knockdown(5 SECONDS)
 
 	if(HAS_TRAIT(target, TRAIT_DUFFEL_CURSED))
