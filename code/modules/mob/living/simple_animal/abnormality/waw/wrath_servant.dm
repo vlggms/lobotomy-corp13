@@ -168,7 +168,7 @@
 				continue
 			if(istype(L, /mob/living/simple_animal/hostile/azure_hermit) || istype(L, /mob/living/simple_animal/hostile/azure_stave))
 				continue
-			L.deal_damage(30, WHITE_DAMAGE)
+			L.deal_damage(30, WHITE_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL))
 			var/obj/effect/temp_visual/eldritch_smoke/ES = new(get_turf(L))
 			ES.color = COLOR_GREEN
 			to_chat(L, span_warning("The Azure hermit's magic being channeled through [src] racks your mind!"))
@@ -267,7 +267,7 @@
 	if(!isliving(attacked_target) || (get_dist(attacked_target, src) > 1))
 		return
 	var/mob/living/L = attacked_target
-	L.deal_damage(rand(3, 5), BLACK_DAMAGE)
+	L.deal_damage(rand(3, 5), BLACK_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE))
 	if(!istype(attacked_target, /mob/living/simple_animal/hostile/azure_hermit))
 		return
 	var/mob/living/simple_animal/hostile/azure_hermit/AZ = attacked_target
@@ -464,7 +464,7 @@
 			else
 				hit_turfs = (view(i, src) - range(i-1, src)) // Respects walls for last 2
 			for(var/turf/T in hit_turfs)
-				been_hit = HurtInTurf(T, been_hit, smash_damage, smash_damage_type, null, TRUE, FALSE, TRUE, FALSE, TRUE)
+				been_hit = HurtInTurf(T, been_hit, smash_damage, smash_damage_type, null, TRUE, FALSE, TRUE, FALSE, TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 				new /obj/effect/temp_visual/kinetic_blast(T)
 				if(prob(3))
 					if(friendly)
@@ -735,7 +735,7 @@
 			return
 		if(SW.health > 100)
 			playsound(SW, 'sound/abnormalities/wrath_servant/hermit_attack_hard.ogg', 75, FALSE, 15, falloff_distance = 5)
-			SW.deal_damage(30, WHITE_DAMAGE) // We win these
+			SW.deal_damage(30, WHITE_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE)) // We win these
 			var/list/show_area = list()
 			show_area |= view(3, src)
 			for(var/turf/sT in show_area)
@@ -747,7 +747,7 @@
 			var/list/been_hit = list()
 			for(var/i = 1 to 3)
 				for(var/turf/T in (view(i, SW)-view(i-1,SW)))
-					been_hit = HurtInTurf(T, been_hit, 10, WHITE_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
+					been_hit = HurtInTurf(T, been_hit, 10, WHITE_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, attack_type = (ATTACK_TYPE_SPECIAL))
 					new /obj/effect/temp_visual/small_smoke/halfsecond(T)
 				SLEEP_CHECK_DEATH(3)
 		else
@@ -811,7 +811,7 @@
 	for(var/mob/living/L in livinginview(4, src))
 		if(faction_check_mob(L))
 			continue
-		L.deal_damage(15, WHITE_DAMAGE)
+		L.deal_damage(15, WHITE_DAMAGE, src, attack_type = (ATTACK_TYPE_SPECIAL))
 	can_act = TRUE
 	return
 
@@ -969,7 +969,7 @@
 	if(!isliving(owner))
 		return
 	var/mob/living/status_holder = owner
-	status_holder.deal_damage(1, BLACK_DAMAGE)
+	status_holder.deal_damage(1, BLACK_DAMAGE, attack_type = (ATTACK_TYPE_STATUS))
 	if(!ishuman(status_holder))
 		return
 	if((status_holder.sanityhealth <= 0) || (status_holder.health <= 0))

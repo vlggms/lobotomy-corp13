@@ -223,7 +223,7 @@
 	//Hiteffect stuff
 
 	for(var/turf/U in range(1, T))
-		var/list/new_hits = HurtInTurf(U, been_hit, 0, RED_DAMAGE, hurt_mechs = TRUE) - been_hit
+		var/list/new_hits = HurtInTurf(U, been_hit, 0, RED_DAMAGE, hurt_mechs = TRUE, flags = (DAMAGE_FORCED | DAMAGE_UNTRACKABLE)) - been_hit
 		been_hit += new_hits
 		for(var/mob/living/L in new_hits)
 			if(!nihil_present)
@@ -231,7 +231,7 @@
 				playsound(L, attack_sound, 75, 1)
 				new /obj/effect/temp_visual/kinetic_blast(get_turf(L))
 				if(ishuman(L))
-					L.deal_damage(charge_damage, RED_DAMAGE)
+					L.deal_damage(charge_damage, RED_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 				else
 					L.adjustRedLoss(100)
 				if(L.stat >= HARD_CRIT)

@@ -216,7 +216,7 @@
 	if(isnull(damage_type))
 		return
 
-	owner.deal_damage(debuff_damage, damage_type)
+	owner.deal_damage(debuff_damage, damage_type, attack_type = (ATTACK_TYPE_STATUS))
 
 /atom/movable/screen/alert/status_effect/wellcheers_bad
 	name = "Shrimp Soda"
