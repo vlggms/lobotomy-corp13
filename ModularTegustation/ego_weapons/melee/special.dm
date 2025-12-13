@@ -74,6 +74,7 @@
 	worn_icon_state = "paradise"
 	force = 40
 	damtype = PALE_DAMAGE
+	swingstyle = WEAPONSWING_LARGESWEEP //It has a large slash attack in LC
 	attack_verb_continuous = list("purges", "purifies")
 	attack_verb_simple = list("purge", "purify")
 	hitsound = 'sound/weapons/ego/paradise.ogg'
