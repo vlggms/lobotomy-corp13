@@ -191,13 +191,22 @@
 	datum_reference.qliphoth_change(-3)
 
 //Okay, but here's the math
+/mob/living/simple_animal/hostile/abnormality/eris/proc/healpulse()
+	for(var/mob/living/H in view(10, get_turf(src)))
+		if(H.stat >= SOFT_CRIT)
+			continue
+		//Shamelessly fucking stolen from risk of rain's teddy bear. Maxes out at 20.
+		var/healamount = 20 * (TOUGHER_TIMES(girlboss_level))
+		H.adjustBruteLoss(-healamount)	//Healing for those around.
+		new /obj/effect/temp_visual/heal(get_turf(H), "#FF4444")
+
+//Okay but here's the defensive options
 /mob/living/simple_animal/hostile/abnormality/eris/PostDamageReaction(damage_amount, damage_type, source, attack_type)
 	. = ..()
 	if(. <= 0 || !isliving(source) || (attack_type & (ATTACK_TYPE_COUNTER | ATTACK_TYPE_ENVIRONMENT | ATTACK_TYPE_STATUS)))
 		return
 	var/mob/living/okay_but_heres_the_victim = source
 	okay_but_heres_the_victim.deal_damage(3*(TOUGHER_TIMES(girlboss_level)), WHITE_DAMAGE, source = src, attack_type = (ATTACK_TYPE_COUNTER))
-
 
 //Okay, but here's the work effects
 
