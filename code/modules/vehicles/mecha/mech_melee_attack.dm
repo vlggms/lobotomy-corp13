@@ -58,7 +58,7 @@
 			if(TOX)
 				mecha_attacker.mech_toxin_damage(src)
 			else
-				apply_damage(mecha_attacker.force, mecha_attacker.damtype, null, run_armor_check(null, mecha_attacker.damtype), FALSE, TRUE)
+				deal_damage(mecha_attacker.force, mecha_attacker.damtype, mecha_attacker, attack_type = (ATTACK_TYPE_MELEE))
 				playsound(src, 'sound/weapons/punch4.ogg', 50, TRUE)
 		visible_message(span_danger("[mecha_attacker.name] hits [src]!"), \
 						span_userdanger("[mecha_attacker.name] hits you!"), span_hear("You hear a sickening sound of flesh hitting flesh!"), COMBAT_MESSAGE_RANGE, mecha_attacker)
