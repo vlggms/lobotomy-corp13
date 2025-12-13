@@ -485,7 +485,7 @@ No Ability	260
 				continue
 			var/atom/throw_target = get_edge_target_turf(L, get_dir(L, get_step_away(L, get_turf(src))))
 			L.throw_at(throw_target, 1, 1)
-			L.apply_damage(5, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(20, WHITE_DAMAGE, user, attack_type = (ATTACK_TYPE_SPECIAL))
 
 
 /* Effloresced (Personal) E.G.O */
