@@ -1412,7 +1412,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		target.playsound_local(get_turf(src), 'sound/weapons/slash.ogg', 60, 0, 3)
 	to_chat(target, "<span class='warning'>[src] [damage_text] you!</span>")
 	if(damage)
-		target.apply_damage(damage, WHITE_DAMAGE, null, target.run_armor_check(null, WHITE_DAMAGE))
+		target.deal_damage(damage, WHITE_DAMAGE, flags = (DAMAGE_FORCED))
 	new /datum/hallucination/hudscrew(target, TRUE, SCREWYHUD_CRIT)
 	qdel(src)
 
@@ -1437,7 +1437,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 /obj/effect/hallucination/danger/misc/Crossed(atom/movable/AM)
 	. = ..()
 	if(AM == target && damage)
-		target.apply_damage(damage, WHITE_DAMAGE, null, target.run_armor_check(null, WHITE_DAMAGE))
+		target.deal_damage(damage, WHITE_DAMAGE, flags = (DAMAGE_FORCED))
 
 
 /datum/hallucination/death

@@ -61,7 +61,7 @@
 				"<span class='cultlarge'>\"You shouldn't play with sharp things. You'll poke someone's eye out.\"</span>")
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
-			H.apply_damage(rand(force/2, force), BRUTE, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
+			H.deal_damage(rand(force/2, force), BRUTE, flags = (DAMAGE_FORCED), def_zone = pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
 		else
 			user.adjustBruteLoss(rand(force/2,force))
 		return
@@ -767,9 +767,9 @@
 		if(iscarbon(user))
 			var/mob/living/carbon/C = user
 			if(C.active_hand_index == 1)
-				C.apply_damage(20, BRUTE, BODY_ZONE_L_ARM, wound_bonus = 20, sharpness = SHARP_EDGED) //oof ouch
+				C.deal_damage(20, BRUTE, flags = (DAMAGE_FORCED), def_zone = BODY_ZONE_L_ARM, wound_bonus = 20, sharpness = SHARP_EDGED) //oof ouch
 			else
-				C.apply_damage(20, BRUTE, BODY_ZONE_R_ARM, wound_bonus = 20, sharpness = SHARP_EDGED)
+				C.deal_damage(20, BRUTE, flags = (DAMAGE_FORCED), def_zone = BODY_ZONE_R_ARM, wound_bonus = 20, sharpness = SHARP_EDGED)
 		qdel(src)
 		return FALSE
 

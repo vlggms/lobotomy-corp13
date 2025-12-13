@@ -22,7 +22,7 @@
 	if(exposed_mob.reagents)
 		exposed_mob.reagents.add_reagent(/datum/reagent/blob/regenerative_materia, 0.2*reac_volume)
 		exposed_mob.reagents.add_reagent(/datum/reagent/toxin/spore, 0.2*reac_volume)
-	exposed_mob.apply_damage(0.7*reac_volume, TOX)
+	exposed_mob.deal_damage(0.7*reac_volume, TOX, flags = (DAMAGE_FORCED))
 
 /datum/reagent/blob/regenerative_materia/on_mob_life(mob/living/C)
 	C.adjustToxLoss(1*REAGENTS_EFFECT_MULTIPLIER)

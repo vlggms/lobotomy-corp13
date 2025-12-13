@@ -86,7 +86,7 @@
 	if((ishuman(hit_atom)))
 		var/mob/living/carbon/M = hit_atom
 		playsound(src, 'sound/items/dodgeball.ogg', 50, TRUE)
-		M.apply_damage(10, STAMINA)
+		M.deal_damage(10, STAMINA, source = throwingdatum.thrower, attack_type = (ATTACK_TYPE_THROWING))
 		if(prob(5))
 			M.Paralyze(60)
 			visible_message("<span class='danger'>[M] is knocked right off [M.p_their()] feet!</span>")

@@ -165,7 +165,7 @@
 		var/armor = C.run_armor_check(limb, MELEE, null, null) //armor = the armor value of that randomly chosen bodypart. Nulls to not print a message, because it would still print on pierce.
 		var/datum/spacevine_mutation/thorns/T = locate() in S.mutations //Searches for the thorns mutation in the "mutations"-list inside obj/structure/spacevine, and defines T if it finds it.
 		if(T && (prob(40))) //If we found the thorns mutation there is now a chance to get stung instead of lashed or smashed.
-			C.apply_damage(50, BRUTE, def_zone = limb, wound_bonus = rand(-20,10), sharpness = SHARP_POINTY) //This one gets a bit lower damage because it ignores armor.
+			C.deal_damage(50, BRUTE, attack_type = (ATTACK_TYPE_ENVIRONMENT), def_zone = limb, wound_bonus = rand(-20,10), sharpness = SHARP_POINTY) //This one gets a bit lower damage because it ignores armor.
 			C.Stun(1 SECONDS) //Stopped in place for a moment.
 			playsound(M, 'sound/weapons/pierce.ogg', 50, TRUE, -1)
 			M.visible_message("<span class='danger'>[M] is nailed by a sharp thorn!</span>", \
@@ -173,14 +173,14 @@
 			log_combat(S, M, "aggressively pierced") //"Aggressively" for easy ctrl+F'ing in the attack logs.
 		else
 			if(prob(80))
-				C.apply_damage(60, BRUTE, def_zone = limb, blocked = armor, wound_bonus = rand(-20,10), sharpness = SHARP_EDGED)
+				C.deal_damage(60, BRUTE, attack_type = (ATTACK_TYPE_ENVIRONMENT), def_zone = limb, blocked = armor, wound_bonus = rand(-20,10), sharpness = SHARP_EDGED)
 				C.Knockdown(2 SECONDS)
 				playsound(M, 'sound/weapons/whip.ogg', 50, TRUE, -1)
 				M.visible_message("<span class='danger'>[M] is lacerated by an outburst of vines!</span>", \
 				"<span class='userdanger'>You are lacerated by an outburst of vines!</span>")
 				log_combat(S, M, "aggressively lacerated")
 			else
-				C.apply_damage(60, BRUTE, def_zone = limb, blocked = armor, wound_bonus = rand(-20,10), sharpness = SHARP_NONE)
+				C.deal_damage(60, BRUTE, attack_type = (ATTACK_TYPE_ENVIRONMENT), def_zone = limb, blocked = armor, wound_bonus = rand(-20,10), sharpness = SHARP_NONE)
 				C.Knockdown(3 SECONDS)
 				var/atom/throw_target = get_edge_target_turf(C, get_dir(S, get_step_away(C, S)))
 				C.throw_at(throw_target, 3, 6)

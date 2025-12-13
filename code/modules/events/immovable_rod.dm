@@ -260,7 +260,7 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 		user.visible_message("<span class='boldwarning'>[src] transforms into [wizard] as [user] suplexes them!</span>", "<span class='warning'>As you grab [src], it suddenly turns into [wizard] as you suplex them!</span>")
 		to_chat(wizard, "<span class='boldwarning'>You're suddenly jolted out of rod-form as [user] somehow manages to grab you, slamming you into the ground!</span>")
 		wizard.Stun(60)
-		wizard.apply_damage(25, BRUTE)
+		wizard.deal_damage(25, BRUTE, source = user, flags = (DAMAGE_FORCED))
 		qdel(src)
 	else
 		user.client.give_award(/datum/award/achievement/misc/feat_of_strength, user) //rod-form wizards would probably make this a lot easier to get so keep it to regular rods only
