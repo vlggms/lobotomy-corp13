@@ -10,6 +10,7 @@
 	inhand_icon_state = "featherofhonor"
 	force = 16
 	attack_speed = 0.7
+	swingstyle = WEAPONSWING_LARGESWEEP
 	special = "This E.G.O. functions as both a ranged and a melee weapon."
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("slices", "slashes", "stabs")
@@ -73,6 +74,7 @@
 	worn_icon_state = "paradise"
 	force = 40
 	damtype = PALE_DAMAGE
+	swingstyle = WEAPONSWING_LARGESWEEP //It has a large slash attack in LC
 	attack_verb_continuous = list("purges", "purifies")
 	attack_verb_simple = list("purge", "purify")
 	hitsound = 'sound/weapons/ego/paradise.ogg'
