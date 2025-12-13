@@ -130,7 +130,7 @@
 		playsound(src, 'sound/abnormalities/crying_children/sorrow_shot.ogg', 45, FALSE, 5)
 		for(var/mob/living/L in view(1, src))
 			var/aoe = 50
-			L.deal_damage(aoe, RED_DAMAGE, throwingdatum.thrower, attack_type = (ATTACK_TYPE_THROWING)
+			L.deal_damage(aoe, RED_DAMAGE, throwingdatum.thrower, attack_type = (ATTACK_TYPE_THROWING))
 			new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(L))
 	activated = FALSE
 

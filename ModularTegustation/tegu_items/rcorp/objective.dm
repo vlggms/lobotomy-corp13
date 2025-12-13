@@ -279,7 +279,7 @@ GLOBAL_VAR_INIT(rcorp_payload, null)
 
 /mob/living/simple_animal/hostile/shrimp_vip/proc/SniperShoot()
 	to_chat(src, span_userdanger("You are hit by a sniper bullet from an unknown sniper..."))
-	deal_damage(300, RED_DAMAGE, flags = (DAMAGE_FORCED)
+	deal_damage(300, RED_DAMAGE, flags = (DAMAGE_FORCED))
 	playsound_local(src, 'sound/weapons/gun/sniper/shot.ogg', 75)
 	sniper = null
 

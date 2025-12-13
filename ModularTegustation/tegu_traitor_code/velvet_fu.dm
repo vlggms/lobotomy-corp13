@@ -158,7 +158,7 @@
 			D.Knockdown(30)
 	else
 		to_chat(A, span_danger("You fail to knock [D] down!"))
-	D.deal_damage(15, A.get_attack_type(), source = A, attack_type = (ATTACK_TYPE_MELEE), def_zone = BODY_ZONE_CHEST, wound_bonus = CANT_WOUND))
+	D.deal_damage(15, A.get_attack_type(), source = A, attack_type = (ATTACK_TYPE_MELEE), def_zone = BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
 	playsound(get_turf(A), 'sound/weapons/cqchit1.ogg', 50, TRUE, -1)
 	return TRUE
 

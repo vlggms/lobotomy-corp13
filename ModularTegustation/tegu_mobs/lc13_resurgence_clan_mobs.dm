@@ -354,7 +354,7 @@
 		defender.ApplyLock(L)
 		if(ishuman(L))
 			var/mob/living/carbon/human/H = L
-			H.deal_damage(10, BLACK_DAMAGEE, attack_type = (ATTACK_TYPE_ENVIRONMENT))
+			H.deal_damage(10, BLACK_DAMAGE, attack_type = (ATTACK_TYPE_ENVIRONMENT))
 			to_chat(H, span_warning("You get shocked by the electic fields"))
 
 /datum/status_effect/locked

@@ -20,7 +20,7 @@
 		if(sinner.god_aligned == FISHGOD_NONE) //Deal a fuckload of damage to athiests
 			damage *= 2
 
-		sinner.deal_damage(damage, WHITE_DAMAGE) //KILL
+		sinner.deal_damage(damage, WHITE_DAMAGE, src, attack_type = (ATTACK_TYPE_SPECIAL)) //KILL
 		if(ishuman(user))
 			to_chat(sinner, span_userdanger("[user.god_aligned] has punished you for your sins using [user] as a conduit!"))
 		else
@@ -104,7 +104,7 @@
 		obliterate(victim) // their planet is dead, and so will they be
 
 /datum/action/cooldown/fishing/chakra/proc/smite(mob/living/carbon/asshole, mob/living/carbon/user)
-	sinner.deal_damage(user.devotion * SSfishing.moonphase * 0.5, WHITE_DAMAGE, src, attack_type = (ATTACK_TYPE_SPECIAL)) //KILL
+	asshole.deal_damage(user.devotion * SSfishing.moonphase * 0.5, WHITE_DAMAGE, user, attack_type = (ATTACK_TYPE_SPECIAL))	//KILL
 	if(ishuman(asshole))
 		to_chat(asshole, span_userdanger("You feel your chakra rend itself!"), confidential = TRUE)
 
