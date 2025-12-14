@@ -45,7 +45,7 @@
 			new /obj/effect/temp_visual/justitia_effect(T)
 			var/justicemod = get_attack_multiplier(user)
 			var/damage_dealt = aoe_damage * justicemod * force_multiplier
-			user.HurtInTurf(T, list(), damage_dealt, PALE_DAMAGE)
+			user.HurtInTurf(T, list(), damage_dealt, PALE_DAMAGE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 		else
 			hitsound = 'sound/weapons/ego/justitia1.ogg'
 			user.changeNext_move(CLICK_CD_MELEE * 0.4)
@@ -186,7 +186,7 @@
 			aoe*=force_multiplier
 			if(L == user || ishuman(L))
 				continue
-			been_hit = user.HurtInTurf(T, been_hit, aoe, RED_DAMAGE, hurt_mechs = TRUE, hurt_structure = TRUE)
+			been_hit = user.HurtInTurf(T, been_hit, aoe, RED_DAMAGE, hurt_mechs = TRUE, hurt_structure = TRUE, attack_type = (ATTACK_TYPE_MELEE))
 
 /obj/item/ego_weapon/mimicry/get_clamped_volume()
 	return 40
@@ -433,7 +433,7 @@
 		for(var/mob/living/L in range(aoe_range, user)) //knocks enemies away from you
 			if(L == user || ishuman(L))
 				continue
-			L.apply_damage(aoe, damtype, null, L.run_armor_check(null, damtype), spread_damage = TRUE)
+			L.deal_damage(aoe, damtype, user, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 			if(firsthit)
 				aoe = (aoe / 2)
 				firsthit = FALSE
@@ -570,7 +570,7 @@
 						continue
 				else
 					continue
-			L.apply_damage(modified_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(modified_damage, BLACK_DAMAGE, user, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
 
 /obj/item/ego_weapon/censored/get_clamped_volume()
@@ -741,7 +741,7 @@
 		return
 	var/justicemod = get_attack_multiplier(user)
 	var/damage = force * justicemod * force_multiplier
-	target.apply_damage(damage, BLACK_DAMAGE, null, target.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+	target.deal_damage(damage, BLACK_DAMAGE, user, attack_type = (ATTACK_TYPE_MELEE))
 
 	if(!canaoe)
 		return
@@ -763,8 +763,8 @@
 	for(var/mob/living/L in range(2, start))
 		if(L == user || ishuman(L))
 			continue
-		L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
-		L.apply_damage(aoe, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+		L.deal_damage(aoe, BLACK_DAMAGE, user, attack_type = (ATTACK_TYPE_SPECIAL))
+		L.deal_damage(aoe, WHITE_DAMAGE, user, attack_type = (ATTACK_TYPE_SPECIAL))
 
 /obj/item/ego_weapon/space/EgoAttackInfo(mob/user)
 	if(force_multiplier != 1)
@@ -1018,7 +1018,7 @@
 		for(var/turf/open/T in range(target_turf, 1))
 			new /obj/effect/temp_visual/spicebloom(T)
 			for(var/mob/living/L in T.contents)
-				L.apply_damage(modified_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+				L.deal_damage(modified_damage, WHITE_DAMAGE, user, attack_type = (ATTACK_TYPE_SPECIAL))
 				if((L.stat < DEAD) && !(L.status_flags & GODMODE))
 					damage_dealt += modified_damage
 
@@ -1131,7 +1131,7 @@
 		aoe*=justicemod
 		if(user.faction_check_mob(L) || L == target)
 			continue
-		L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		L.deal_damage(aoe, BLACK_DAMAGE, user, attack_type = (ATTACK_TYPE_MELEE))
 		new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(L))
 
 /obj/item/ego_weapon/mockery/get_clamped_volume()
@@ -1265,7 +1265,7 @@
 		aoe*=force_multiplier
 		if(L == user || ishuman(L))
 			continue
-		L.apply_damage(aoe, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+		L.deal_damage(aoe, PALE_DAMAGE, user, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 		new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(L))
 
 /obj/item/ego_weapon/shield/gasharpoon/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
@@ -1328,7 +1328,7 @@
 	for(var/mob/living/L in view(1, user))
 		if(L == user || ishuman(L))
 			continue
-		L.apply_damage(aoe, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+		L.deal_damage(aoe, PALE_DAMAGE, user, attack_type = (ATTACK_TYPE_COUNTER | ATTACK_TYPE_SPECIAL))
 		var/datum/status_effect/stacking/pallid_noise/P = L.has_status_effect(/datum/status_effect/stacking/pallid_noise)
 		if(!P)
 			L.apply_status_effect(STATUS_EFFECT_PALLIDNOISE)
