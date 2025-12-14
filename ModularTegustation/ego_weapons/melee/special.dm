@@ -127,7 +127,7 @@
 		if(get_open_turf_in_dir(target_turf, dir))
 			new /obj/effect/temp_visual/paradise_attack_large/right(get_step(target_turf,dir))
 	for(var/turf/open/T in range(target_turf, 1))
-		for(var/mob/living/L in user.HurtInTurf(T, been_hit, modified_damage, PALE_DAMAGE, hurt_mechs = TRUE) - been_hit)
+		for(var/mob/living/L in user.HurtInTurf(T, been_hit, modified_damage, PALE_DAMAGE, hurt_mechs = TRUE, attack_type = (ATTACK_TYPE_RANGED | ATTACK_TYPE_SPECIAL)) - been_hit)
 			been_hit += L
 			if((L.stat < DEAD) && !(L.status_flags & GODMODE))
 				healing_amount += healing
@@ -143,7 +143,7 @@
 		enemies += 1
 		if((L.stat < DEAD) && !(L.status_flags & GODMODE))
 			healing_amount += healing
-			L.apply_damage(modified_damage, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(modified_damage, PALE_DAMAGE, user, attack_type = (ATTACK_TYPE_RANGED | ATTACK_TYPE_SPECIAL))
 			new /obj/effect/temp_visual/paradise_attack(get_turf(L))
 	if(healing_amount > 0)
 		var/mob/living/carbon/human/H = user
@@ -459,7 +459,7 @@
 		if("sword")
 			var/red = force
 			red*=justicemod
-			target.apply_damage(red * force_multiplier, RED_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			target.deal_damage(red * force_multiplier, RED_DAMAGE, user, attack_type = (ATTACK_TYPE_MELEE))
 
 		if("whip")
 			var/multihit = force
@@ -478,7 +478,7 @@
 				aoe*=justicemod
 				if(user.faction_check_mob(L))
 					continue
-				L.apply_damage(aoe * force_multiplier, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+				L.deal_damage(aoe * force_multiplier, BLACK_DAMAGE, user, attack_type = (ATTACK_TYPE_MELEE))
 				new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(L))
 				if(!ishuman(L))
 					if(!L.has_status_effect(/datum/status_effect/display/rend/black))
@@ -517,7 +517,7 @@
 			for(var/mob/living/L in T)
 				if(user.faction_check_mob(L))
 					continue
-				L.apply_damage(smash_damage * force_multiplier, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+				L.deal_damage(smash_damage * force_multiplier, BLACK_DAMAGE, user, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 		playsound(user, 'sound/abnormalities/fairy_longlegs/attack.ogg', 75, 0, 3)
 		sleep(0.5 SECONDS)
 	smashing = FALSE
@@ -875,7 +875,7 @@
 				if(L in been_hit)
 					continue
 				been_hit += L
-				L.apply_damage(aoe, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+				L.deal_damage(aoe, RED_DAMAGE, user, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 				var/throw_target = get_edge_target_turf(L, dir)
 				var/whack_speed = (prob(60) ? 2 : 4)
 				L.throw_at(throw_target, rand(2, 4), whack_speed, user)

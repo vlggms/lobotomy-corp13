@@ -40,7 +40,7 @@
 	damage = 5
 
 /obj/projectile/ego_bullet/ego_knade
-	damage = 15
+	damage = 10
 	speed = 1
 	icon_state = "kcorp_nade"
 
@@ -48,7 +48,7 @@
 	..()
 	for(var/turf/T in view(1, src))
 		for(var/mob/living/L in T)
-			L.apply_damage(60, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(30, RED_DAMAGE, firer, attack_type = (ATTACK_TYPE_RANGED))
 	new /obj/effect/explosion(get_turf(src))
 	qdel(src)
 	return BULLET_ACT_HIT
