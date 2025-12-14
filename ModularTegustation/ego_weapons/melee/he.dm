@@ -646,7 +646,7 @@
 	desc = "You should consider it an honor. The humans who have joined me could attain greater wealth and glory."
 	special = "This weapon has a combo system. To turn off this combo system, use in hand."
 	icon_state = "inheritance"
-	force = 8
+	force = 5
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("stabs", "attacks", "slashes")
 	attack_verb_simple = list("stab", "attack", "slash")
@@ -655,6 +655,7 @@
 							JUSTICE_ATTRIBUTE = 40
 							)
 	var/combo = 0
+	modified_attack_speed = 0.3
 	var/combo_time
 	var/combo_wait = 10
 	var/combo_on = TRUE
@@ -913,6 +914,8 @@
 	if((get_dist(user, A) < 2) || (!(can_see(user, A, dash_range))))
 		return
 	if(do_after(user, 5, src))
+		user.Immobilize(0.6 SECONDS)
+		ADD_TRAIT(src, TRAIT_NODROP, STICKY_NODROP)
 		dash_cooldown = world.time + dash_cooldown_time
 		playsound(src, 'sound/abnormalities/ichthys/jump.ogg', 50, FALSE, -1)
 		animate(user, alpha = 1,pixel_x = 0, pixel_z = 16, time = 0.1 SECONDS)
@@ -923,11 +926,13 @@
 		else if(QDELETED(A) || !can_see(user, A, dash_range))
 			animate(user, alpha = 255,pixel_x = 0, pixel_z = -16, time = 0.1 SECONDS)
 			user.pixel_z = 0
+			REMOVE_TRAIT(src, TRAIT_NODROP, STICKY_NODROP)
 			return
 		for(var/i in 2 to get_dist(user, A))
 			step_towards(user,A)
 		if(get_dist(user, A) < 2)
 			JumpAttack(A,user)
+		REMOVE_TRAIT(src, TRAIT_NODROP, STICKY_NODROP)
 		to_chat(user, span_warning("You jump towards [A]!"))
 		animate(user, alpha = 255,pixel_x = 0, pixel_z = -16, time = 0.1 SECONDS)
 		user.pixel_z = 0
@@ -1853,6 +1858,7 @@
 	icon_state = "sunshower"
 	force = 12
 	attack_speed = 1
+	modified_attack_speed = 1.4
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("slices", "cleaves", "chops")
 	attack_verb_simple = list("slice", "cleave", "chop")
@@ -1946,17 +1952,17 @@
 		return
 	if(get_dist(target, user) > 2)//Spear range for full damage.
 		force = 11
+	var/turf/end_turf = get_ranged_target_turf_direct(user, target, 4, 0)
 	. = ..()
 	force = initial(force)
 	var/list/been_hit = list(target)
-	var/turf/end_turf = get_ranged_target_turf_direct(user, target, 4, 0)
 	for(var/turf/T in getline(user, end_turf))
 		if(user in T)
 			continue
 		for(var/turf/T2 in view(T,1))
 			new /obj/effect/temp_visual/smash_effect(T2)
 			for(var/mob/living/L in T2)
-				var/aoe = 5
+				var/aoe = 11
 				var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 				var/justicemod = 1 + userjust/100
 				aoe*=justicemod
@@ -2152,6 +2158,7 @@
 	desc = "Some old bandages that look like they have been worn for a long time."
 	icon_state = "desert"
 	force = 9
+	modified_attack_speed = 0.7
 	attack_speed = 0.7
 	hitsound = 'sound/weapons/fixer/generic/fist1.ogg'
 	attribute_requirements = list(

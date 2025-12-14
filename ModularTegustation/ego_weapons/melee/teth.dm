@@ -12,7 +12,7 @@
 	desc = "The spear often tries to lead the wielder into a long and endless realm of mind, \
 	but they must try to not be swayed by it."
 	icon_state = "fragment"
-	force = 12
+	force = 15
 	reach = 2		//Has 2 Square Reach.
 	stuntime = 5	//Longer reach, gives you a short stun.
 	attack_speed = 1.2
@@ -90,7 +90,7 @@
 		dodgelanding = locate(user.x + 5, user.y, user.z)
 	if(user.dir == 8)
 		dodgelanding = locate(user.x - 5, user.y, user.z)
-	user.adjustStaminaLoss(20, TRUE, TRUE)
+	user.adjustStaminaLoss(8, TRUE, TRUE)
 	user.throw_at(dodgelanding, 3, 2, spin = TRUE)
 
 /obj/item/ego_weapon/regret
@@ -604,7 +604,7 @@
 	name = "rapunzel"
 	desc = "Scissors long since lost to time. Packs a punch while being unwieldy."
 	icon_state = "rapunzel"
-	force = 12
+	force = 16
 	stuntime = 5	//Mucho damage, bit of stun in exchange
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
@@ -614,12 +614,25 @@
 /obj/item/ego_weapon/mini/clayman
 	name = "creative freedom"
 	desc = "Clay and flesh are both mediums for expression."
+	special = "This weapon deals either Red, White, Black, or rarely Pale damage on hit."
 	icon_state = "creativefreedom"
-	force = 12
-	stuntime = 5
-	damtype = RED_DAMAGE
+	force = 10
+	attack_speed = 0.7
+	damtype = PALE_DAMAGE
 	hitsound = 'sound/weapons/bladeslice.ogg'
 
+/obj/item/ego_weapon/mini/clayman/attack(mob/living/target, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	damtype = pick(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE)
+	if(prob(10))
+		damtype = PALE_DAMAGE
+	..()
+
+/obj/item/ego_weapon/mini/clayman/EgoAttackInfo(mob/user)
+	if(force_multiplier != 1)
+		return span_notice("It deals [round((force) * force_multiplier)] damage. (+ [(force_multiplier - 1) * 100]%)")
+	return span_notice("It deals [force] damage.")
 
 /obj/item/ego_weapon/white_gossypium
 	name = "white gossypium"
@@ -669,7 +682,8 @@
 	special = "This weapon has a combo system. To turn off this combo system, use in hand. \
 			This weapon has a fast attack speed. The combo finisher heals humans in a small area."
 	icon_state = "luminosity"
-	force = 5
+	force = 4
+	modified_attack_speed = 0.4
 	hitsound = 'sound/weapons/fixer/generic/club2.ogg'
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("smacks", "hammers", "beats")
