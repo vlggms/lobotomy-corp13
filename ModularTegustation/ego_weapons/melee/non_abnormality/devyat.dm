@@ -243,7 +243,7 @@
 
 /obj/item/ego_weapon/city/devyat_trunk/proc/gain_courier_trunk(amount, mob/living/user)
 	if(overclock)
-		user.apply_damage(courier_trunk * overclock_mult, BLACK_DAMAGE)
+		user.deal_damage(courier_trunk * overclock_mult, BLACK_DAMAGE, flags = (DAMAGE_FORCED))
 		if(user.stat == DEAD)
 			playsound(get_turf(user), 'sound/weapons/ego/devyat_overclock_death.ogg', 50, 0, 4)
 			end_combat()

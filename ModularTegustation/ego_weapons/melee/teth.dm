@@ -372,7 +372,7 @@
 	playsound(T, 'sound/effects/ordeals/amber/midnight_out.ogg', 40,TRUE)
 	for(var/turf/open/T2 in RANGE_TURFS(range, src))
 		new /obj/effect/temp_visual/yellowsmoke(T2)
-		for(var/mob/living/L in creator.HurtInTurf(T2, list(), resonance_damage * damage_multiplier, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
+		for(var/mob/living/L in creator.HurtInTurf(T2, list(), resonance_damage * damage_multiplier, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, flags = (DAMAGE_UNTRACKABLE), attack_type = (ATTACK_TYPE_ENVIRONMENT)))
 			to_chat(L, span_userdanger("[src] bites you!"))
 			if(creator)
 				creator.visible_message(span_danger("[creator] activates [src] on [L]!"),span_danger("You activate [src] on [L]!"), null, COMBAT_MESSAGE_RANGE, L)
