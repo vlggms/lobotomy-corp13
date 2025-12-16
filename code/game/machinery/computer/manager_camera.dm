@@ -284,7 +284,7 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 				playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
 				to_chat(owner, span_warning("ERROR: TARGET HAS THE SAME SHIELD TYPE ALREADY."))
 				return FALSE
-			H.apply_status_effect(/datum/status_effect/interventionshield/pale, shield_health = GetFacilityUpgradeValue(UPGRADE_BULLET_SHIELD_HEALTH))
+			H.apply_shield(/datum/status_effect/interventionshield/pale, shield_health = GetFacilityUpgradeValue(UPGRADE_BULLET_SHIELD_HEALTH))
 		if(MANAGER_QUAD_BULLET)
 			if (H.has_status_effect(/datum/status_effect/interventionshield/quad))
 				playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)

@@ -205,7 +205,7 @@
 /obj/item/managerbullet/perfect/bulletshatter(mob/living/L)
 	if(!ishuman(L))
 		return
-	L.apply_status_effect(/datum/status_effect/interventionshield/perfect, shield_health = GetFacilityUpgradeValue(UPGRADE_BULLET_SHIELD_HEALTH))
+	L.apply_shield(/datum/status_effect/interventionshield/perfect, shield_health = GetFacilityUpgradeValue(UPGRADE_BULLET_SHIELD_HEALTH))
 
 /obj/item/managerbullet/quad
 	name = "quad manager bullet"
@@ -216,4 +216,4 @@
 /obj/item/managerbullet/quad/bulletshatter(mob/living/L)
 	if(!ishuman(L))
 		return
-	L.apply_status_effect(/datum/status_effect/interventionshield/quad, shield_health = GetFacilityUpgradeValue(UPGRADE_BULLET_SHIELD_HEALTH) * 2)
+	L.apply_shield(/datum/status_effect/interventionshield/quad, shield_health = GetFacilityUpgradeValue(UPGRADE_BULLET_SHIELD_HEALTH) * 2)
