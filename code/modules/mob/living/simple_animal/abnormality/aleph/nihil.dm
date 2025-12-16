@@ -289,7 +289,7 @@
 				target_list += L
 			for(var/i = 1 to 10)
 				if(LAZYLEN(target_list))
-					target = pick(target_list)
+					FindTarget(list(pick(target_list)), TRUE)
 				if(!target)
 					return
 				var/turf/T = get_step(get_turf(src), pick(1,2,4,5,6,8,9,10))

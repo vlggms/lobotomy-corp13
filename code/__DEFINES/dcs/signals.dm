@@ -576,6 +576,9 @@
 #define COMSIG_HOSTILE_ATTACKINGTARGET "hostile_attackingtarget"
 #define COMSIG_HOSTILE_LOSTTARGET "hostile_losttarget"
 	#define COMPONENT_HOSTILE_NO_ATTACK (1<<0)
+#define COMSIG_HOSTILE_GAINEDTARGET "hostile_gainedtarget" // (mob/living/simple_animal/hostile/source, atom/new_target)
+	#define COMPONENT_HOSTILE_REFUSE_AGGRO (1<<0)
+
 /// a hostile has started their patrol (datum/source, mob/living/simple_animal/hostile/mover, turf/target_location)
 #define COMSIG_GLOB_PATROL_START "!patrol_start"
 #define COMSIG_PATROL_START "patrol_start"
