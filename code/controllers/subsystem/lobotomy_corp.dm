@@ -368,14 +368,11 @@ SUBSYSTEM_DEF(lobotomy_corp)
 
 /// Checks if all agents are dead with ordeals running. Used for procs below.
 /datum/controller/subsystem/lobotomy_corp/proc/OrdealDeathCheck()
-	// Might be temporary: Only works on high pop
-	if(length(GLOB.clients) <= 30)
-		return FALSE
 	if(!LAZYLEN(current_ordeals))
 		return FALSE
 	if(SSmaptype.maptype == "skeld")
 		return FALSE
-	var/agent_count = AvailableAgentCount()
+	var/agent_count = AvailableAgentAndERTCount()
 	if(agent_count > 0)
 		return FALSE
 	return TRUE

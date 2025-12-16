@@ -151,6 +151,23 @@ GLOBAL_LIST_INIT(w_corp_positions, list(
 	"W-Corp L1 Cleanup Agent",
 ))
 
+GLOBAL_LIST_INIT(ert_positions, list(
+	//K Corp
+	"Class 1",
+	"Class 3",
+
+	//R Corp
+	"SPC",
+	"SGT",
+
+	//W Corp
+	"L1",
+	"L2",
+
+	//Zwei
+	"Z6",
+))
+
 GLOBAL_LIST_INIT(r_corp_positions, list(
 	// 4th Pack Command
 	"Ground Commander",
