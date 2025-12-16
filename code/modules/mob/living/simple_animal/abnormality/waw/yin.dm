@@ -218,7 +218,7 @@
 	. = ..()
 	if(!isliving(source) && !ismecha(source))
 		return
-	PulseOrLaser()
+	PulseOrLaser(source)
 
 /mob/living/simple_animal/hostile/abnormality/yin/AttackingTarget(atom/attacked_target)
 	return FALSE

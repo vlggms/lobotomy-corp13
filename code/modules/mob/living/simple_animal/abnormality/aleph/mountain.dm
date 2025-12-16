@@ -353,7 +353,7 @@
 	if(LAZYLEN(high_priority_turfs))
 		target_turf = get_closest_atom(/turf/open, high_priority_turfs, src)
 		if(phase <= 1)
-			target = null
+			LoseTarget(FALSE)
 	else if(LAZYLEN(medium_priority_turfs))
 		target_turf = get_closest_atom(/turf/open, medium_priority_turfs, src)
 	else if(LAZYLEN(low_priority_turfs))
