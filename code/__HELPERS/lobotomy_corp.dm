@@ -24,6 +24,30 @@
 			continue
 		. += 1
 
+/// Returns amount of available agents and erts that can fight
+/proc/AvailableAgentAndERTCount()
+	. = 0
+	for(var/mob/living/carbon/human/H in AvailableAgentAndERTCount(TRUE))
+		if(!H.client)
+			continue
+		if(!H.mind)
+			continue
+		if(!is_station_level(H.z))
+			continue
+		. += 1
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		if(H.stat == DEAD)
+			continue
+		if(!(H.mind.assigned_role in GLOB.ert_positions))
+			continue
+		if(!H.client)
+			continue
+		if(!H.mind)
+			continue
+		if(!is_station_level(H.z))
+			continue
+		. += 1
+
 /* Core Suppression helpers */
 /// Returns core suppression by path if its effects are active
 /proc/GetCoreSuppression(datum/suppression/CS = null)
