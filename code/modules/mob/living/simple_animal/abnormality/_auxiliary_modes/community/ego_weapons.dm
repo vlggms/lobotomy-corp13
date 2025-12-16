@@ -2,7 +2,7 @@
 /obj/item/ego_weapon/support/dragon_staff
 	name = "dragon's staff"
 	desc = "A staff built from stained wood tipped with a strange, twisted skull. It reminds you of the the tall tales a father would tell."
-	special = "Use this weapon in your hand when wearing matching armor to shield nearby humans that scales with your prudence."
+	special = "Use this weapon in your hand when wearing matching armor to shield nearby humans. The shield's health scales with your prudence."
 	icon_state = "dragon_staff"
 	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_weapons.dmi'
 	lefthand_file = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_lefthand.dmi'
@@ -18,15 +18,18 @@
 	var/effect
 	var/shield_time = 15 SECONDS
 
-/obj/item/ego_weapon/support/dragon_staff/Pulse(mob/living/carbon/human/user)
+/obj/item/ego_weapon/support/dragon_staff/attack_self(mob/user)
 	if(inuse)
 		return
-	ability_cooldown = world.time//hacky as hell fix but it works
+	return ..()
+
+/obj/item/ego_weapon/support/dragon_staff/Pulse(mob/living/carbon/human/user)
 	AdjustCircle(user)
 	inuse = TRUE
 	if(!do_after(user, 12, src))
 		if(effect)
 			qdel(effect)
+		ability_cooldown = world.time//hacky as hell fix but it works
 		inuse = FALSE
 		to_chat(user, span_notice("You stop casting the spell."))
 		return
