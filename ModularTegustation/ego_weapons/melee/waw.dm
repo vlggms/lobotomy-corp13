@@ -865,13 +865,20 @@
 /obj/item/ego_weapon/moonlight
 	name = "moonlight"
 	desc = "The serpentine ornament is loyal to the original owner’s taste. The snake’s open mouth represents the endless yearning for music."
-	special = "Use this weapon in hand to heal the sanity of those around you."
+	special = "Use this weapon in hand make your next attack deal damage in a small area and shield nearby humans from 50 black damage.."
 	icon_state = "moonlight"
 	force = 20
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("beats", "jabs")
 	attack_verb_simple = list("beat", "jab")
+	var/ability_cooldown
+	var/ability_cooldown_time = 30 SECONDS
+	var/shield_hp = 50
+	var/aoe_damage = 20
 	var/inuse
+	var/charged = FALSE
+	var/ability_timer
+	var/shield_time = 15 SECONDS
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 80
 							)
@@ -881,18 +888,50 @@
 	if(!CanUseEgo(user))
 		return
 
-	if(inuse)
+	if(ability_cooldown > world.time)
+		to_chat(user,span_warning("You used its ability too recently."))
 		return
-	inuse = TRUE
-	if(do_after(user, 30))	//3 seconds for a big heal.
-		playsound(src, 'sound/magic/staff_healing.ogg', 200, FALSE, 9)
-		for(var/mob/living/carbon/human/L in range(5, get_turf(user)))
-			if(L.is_working)
-				to_chat(L, span_nicegreen("The powers of the moon are the same as the powers of the sun. The redundancy of moonlight does not make this work any less mind-numbing."))
-				continue
-			L.adjustSanityLoss(-10)
-	inuse = FALSE
 
+	if(charged || inuse)
+		return
+
+	inuse = TRUE
+
+	if(!do_after(user, 15))	//1.5 seconds is fair enough for getting a shield
+		inuse = FALSE
+		return
+	inuse = FALSE
+	charged = TRUE
+	ability_timer = addtimer(CALLBACK(src, PROC_REF(AbilityReset)), 3 SECONDS, TIMER_STOPPABLE)//prevents someone from storing multiple shield charges at once
+	to_chat(user,span_nicegreen("Your next attack will be enpowered."))
+
+
+/obj/item/ego_weapon/moonlight/proc/AbilityReset(mob/user)
+	to_chat(user, span_warning("[src]'s power returns to normal."))
+	charged = FALSE
+	deltimer(ability_timer)
+
+
+/obj/item/ego_weapon/moonlight/attack(mob/living/M, mob/living/user)
+	..()
+	if(charged)
+		charged = FALSE
+		ability_cooldown = ability_cooldown_time + world.time
+		deltimer(ability_timer)
+		var/aoe = aoe_damage
+		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+		var/justicemod = 1 + userjust / 100
+		aoe *= justicemod
+		aoe *= force_multiplier
+		for(var/mob/living/L in get_turf(M))
+			if(L == user || ishuman(L))
+				continue
+			L.apply_damage(aoe, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+		new /obj/effect/temp_visual/revenant(get_turf(M))
+		playsound(src, 'sound/magic/staff_healing.ogg', 200, FALSE, 9)
+		playsound(src, 'sound/magic/wandodeath.ogg', 200, FALSE, 9)
+		for(var/mob/living/carbon/human/L in range(8, get_turf(user)))
+			L.apply_shield(/datum/status_effect/interventionshield/black, shield_health = shield_hp, shield_duration = shield_time)
 
 /obj/item/ego_weapon/heaven
 	name = "heaven"

@@ -2,7 +2,7 @@
 /obj/item/ego_weapon/support/dragon_staff
 	name = "dragon's staff"
 	desc = "A staff built from stained wood tipped with a strange, twisted skull. It reminds you of the the tall tales a father would tell."
-	special = "Use this weapon in your hand when wearing matching armor to shield nearby humans from 50 white damage."
+	special = "Use this weapon in your hand when wearing matching armor to shield nearby humans that scales with your prudence."
 	icon_state = "dragon_staff"
 	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_weapons.dmi'
 	lefthand_file = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_lefthand.dmi'
@@ -12,22 +12,32 @@
 	attack_verb_continuous = list("bashes", "whacks", "smacks")
 	attack_verb_simple = list("bash", "whack", "smack")
 	matching_armor = /obj/item/clothing/suit/armor/ego_gear/zayin/dragon_staff
-	ability_cooldown_time = 30 SECONDS
+	ability_cooldown_time = 3 SECONDS
 	use_message = "You prepare a protective spell!"
+	var/effect
+	var/shield_time = 15 SECONDS
 
 /obj/item/ego_weapon/support/dragon_staff/Pulse(mob/living/carbon/human/user)
 	AdjustCircle(user)
-	if(do_after(user, 12, src))
-		playsound(user, 'sound/abnormalities/faelantern/faelantern_breach.ogg', 100)
-		to_chat(user, span_warning("[user] casts MASS BARKSKIN!"))
-		for(var/mob/living/carbon/human/L in livinginview(8, user))
-			if((!ishuman(L)) || L.stat == DEAD)
-				continue
-			L.apply_status_effect(/datum/status_effect/interventionshield/perfect)
+	if(!do_after(user, 12, src))
+		if(effect)
+			qdel(effect)
+		to_chat(user, span_notice("You stop casting the spell."))
+		ability_cooldown = world.time
+		return
+	ability_cooldown = world.time + ability_cooldown_time
+	playsound(user, 'sound/abnormalities/faelantern/faelantern_breach.ogg', 100)
+	user.visible_message(span_warning("[user] casts MASS BARKSKIN!"),span_warning("You casts MASS BARKSKIN!"), null, COMBAT_MESSAGE_RANGE, user)
+	var/shield_hp = 10 + (max(10, get_attribute_level(user, PRUDENCE_ATTRIBUTE)/2))//20-75 shield hp
+	for(var/mob/living/carbon/human/L in livinginview(8, user))
+		if((!ishuman(L)) || L.stat == DEAD)
+			continue
+		L.apply_shield(/datum/status_effect/interventionshield/perfect, shield_health = shield_hp, shield_duration = shield_time)
 
 /obj/item/ego_weapon/support/dragon_staff/proc/AdjustCircle(mob/living/carbon/human/user)
 	playsound(user, 'sound/abnormalities/hatredqueen/attack.ogg', 100)
 	var/obj/effect/dragon_circle/S = new(get_turf(src))
+	effect = S
 	QDEL_IN(S, 1.2 SECONDS)
 	var/matrix/M = matrix(S.transform)
 	M.Translate(-8, 0)
