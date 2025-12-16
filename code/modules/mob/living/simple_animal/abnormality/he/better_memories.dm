@@ -358,7 +358,7 @@
 	TemporarySpeedChange(-1, 1.5 SECONDS)
 	fleeing_now = TRUE
 	target_memory.Cut()
-	target = null
+	LoseTarget(FALSE)
 	//Eh whatever make them not instantly patrol again upon reaching their destination.
 	patrol_cooldown = world.time + patrol_cooldown_time
 	if(patrol_to(FleeDest()))

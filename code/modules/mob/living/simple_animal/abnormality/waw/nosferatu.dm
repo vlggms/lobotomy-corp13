@@ -461,8 +461,8 @@
 		return
 	mist_cooldown = world.time + mist_cooldown_time
 	MistForm()
-	AIStatus = AI_OFF
-	target = null
+	toggle_ai(AI_OFF)
+	LoseTarget(FALSE)
 	walk_to(src, 0)
 	TemporarySpeedChange(-2, 3 SECONDS)
 	//stolen from patrol select
@@ -483,7 +483,7 @@
 	StopFleeing()
 
 /mob/living/simple_animal/hostile/abnormality/nosferatu/proc/StopFleeing()
-	AIStatus = AI_ON
+	toggle_ai(AI_ON)
 	update_icon()
 
 // This snippet of code makes it so that attacks from its minions give it blood.

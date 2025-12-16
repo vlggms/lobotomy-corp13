@@ -162,15 +162,13 @@
 		addtimer(CALLBACK(src, PROC_REF(startTeleport)), 5 SECONDS)
 
 /mob/living/simple_animal/hostile/abnormality/greed_king/proc/charge_check()
-	//targeting
-	var/mob/living/carbon/human/target
 	if(!can_act)
 		return
 	var/list/possible_targets = list()
 	for(var/mob/living/carbon/human/H in view(20, src))
 		possible_targets += H
 	if(LAZYLEN(possible_targets))
-		target = pick(possible_targets)
+		FindTarget(list(pick(possible_targets)), TRUE) // The list(pick()) here makes it equally likely for anyone to be targeted. If you removed it, it'd be based on individual threat level
 		//Start charge
 		var/dir_to_target = get_cardinal_dir(get_turf(src), get_turf(target))
 		if(dir_to_target)

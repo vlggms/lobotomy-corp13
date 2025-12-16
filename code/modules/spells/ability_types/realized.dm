@@ -601,10 +601,11 @@
 
 /obj/effect/proc_holder/ability/punishment
 	name = "Punishment"
-	desc = "Causes massive damage in a small area only when you take a blow."
+	desc = "Gives you a counter attack for 5 seconds that reduces damage taken while dealing massive red damage.\
+		Repeat attacks from the same enemy will reduce the effectiveness of the counter attack against them."
 	action_icon_state = "bird0"
 	base_icon_state = "bird"
-	cooldown_time = 25 SECONDS
+	cooldown_time = 30 SECONDS
 
 /obj/effect/proc_holder/ability/punishment/Perform(target, mob/user)
 	var/mob/living/carbon/human/H = user
@@ -616,10 +617,17 @@
 	status_type = STATUS_EFFECT_UNIQUE
 	alert_type = /atom/movable/screen/alert/status_effect/punishment
 	duration = 5 SECONDS
+	var/damage = 100 //Can do up to 650 damage
+	var/bite_range = 8
+	var/list/targets_hit = list()
+	var/max_damage_reduction = 0.5
+	var/min_damage_reduction = 0.8
+	var/counter_cooldown
+	var/counter_cooldown_time = 0.5 SECONDS
 
 /atom/movable/screen/alert/status_effect/punishment
 	name = "Ready to punish"
-	desc = "You're ready to punish."
+	desc = "Your armor is ready to counter attacks."
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "punishment"
 
@@ -627,21 +635,56 @@
 	. = ..()
 	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMGE, PROC_REF(Rage))
 
-/datum/status_effect/punishment/proc/Rage(mob/living/sorce, obj/item/thing, mob/living/attacker)
+/datum/status_effect/punishment/proc/Rage(mob/us, damage_amount, damage_type, def_zone, attacker, damage_flags, attack_type)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/human/H = owner
-	H.apply_status_effect(/datum/status_effect/pbird)
-	H.remove_status_effect(/datum/status_effect/punishment)
-	to_chat(H, span_userdanger("You strike back at the wrong doer!"))
+	if(attacker == us || counter_cooldown >= world.time || (attack_type & (ATTACK_TYPE_COUNTER)))//We don't want to cause an infinite looping with 2 counter attacks constantly countering the other
+		damage_amount *= min_damage_reduction
+		return
+	if(!H.has_status_effect(/datum/status_effect/pbird))
+		H.apply_status_effect(/datum/status_effect/pbird)
+	counter_cooldown = world.time + counter_cooldown_time
 	playsound(H, 'sound/abnormalities/apocalypse/beak.ogg', 100, FALSE, 12)
-	for(var/turf/T in view(2, H))
+
+	if(damage_amount <= 0 || !isliving(attacker) || get_dist(H, attacker) > bite_range || (attack_type & (ATTACK_TYPE_ENVIRONMENT | ATTACK_TYPE_STATUS)))
+		damage_amount *= min_damage_reduction
+		to_chat(H, span_userdanger("Your armor thrashes wildly!"))
+		for(var/turf/T in view(2, H))
+			new /obj/effect/temp_visual/beakbite(T)
+			for(var/mob/living/L in T)
+				if(H.faction_check_mob(L, FALSE))
+					continue
+				if(L.stat == DEAD)
+					L.gib()
+					continue
+				L.deal_damage(damage - 50, RED_DAMAGE, H, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL | ATTACK_TYPE_COUNTER))
+				if(L.health < 0)
+					L.gib()
+		return
+
+	to_chat(H, span_userdanger("Your armor lashes out at [attacker]!"))
+	if(attacker in targets_hit)
+		targets_hit[attacker] += 1
+	else
+		targets_hit[attacker] = 1
+	H.do_attack_animation(attacker)
+	damage_amount *= max_damage_reduction + min(0.3, (targets_hit[attacker] - 1) * 0.06)
+
+	var/list/turfs = list()
+	for(var/turf/T in getline(H, get_ranged_target_turf_direct(H, attacker, bite_range-1)))
+		for(var/turf/TT in view(T,1))
+			if(TT in turfs)
+				continue
+			turfs += TT
+	for(var/turf/T in turfs)
 		new /obj/effect/temp_visual/beakbite(T)
 		for(var/mob/living/L in T)
-			if(H.faction_check_mob(L, FALSE))
+			if(H.faction_check_mob(L, FALSE) && L != attacker)//Lets you hurt other players that accidentally hit you.
 				continue
 			if(L.stat == DEAD)
+				L.gib()
 				continue
-			L.deal_damage(250, RED_DAMAGE, H, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL | ATTACK_TYPE_COUNTER))
+			L.deal_damage(damage - min(50, (targets_hit[attacker] - 1) * 10), RED_DAMAGE, H, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL | ATTACK_TYPE_COUNTER))
 			if(L.health < 0)
 				L.gib()
 

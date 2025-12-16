@@ -223,7 +223,7 @@
 	playsound(get_turf(src), 'sound/abnormalities/big_wolf/Wolf_FogChange.ogg', 75, 1)
 	ADD_TRAIT(src, TRAIT_MOVE_PHASING, "fleeing")
 	AIStatus = AI_OFF
-	target = null
+	LoseTarget(FALSE)
 	walk_to(src, 0)
 	TemporarySpeedChange(-2, 3 SECONDS)
 	fleeing_now = TRUE

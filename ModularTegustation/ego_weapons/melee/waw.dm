@@ -817,33 +817,30 @@
 	user.update_inv_hands()
 	return
 
-/obj/item/ego_weapon/shield/swan/AnnounceBlock(mob/living/carbon/human/source, damage, damagetype, def_zone)
+/obj/item/ego_weapon/shield/swan/AnnounceBlock(mob/living/carbon/human/source, damage, damagetype, def_zone, mob/attacker, damage_flags, attack_type)
 	. = ..()
-	INVOKE_ASYNC(src, PROC_REF(Reflect), source, damage)
+	if(damage <= 0 || source == attacker || !isliving(attacker) || (attack_type & (ATTACK_TYPE_COUNTER | ATTACK_TYPE_ENVIRONMENT | ATTACK_TYPE_STATUS)))
+		return
+	if(!(attacker in livinginview(8, source)))
+		return
+	INVOKE_ASYNC(src, PROC_REF(Reflect), source, attacker)
 
-/obj/item/ego_weapon/shield/swan/proc/Reflect(mob/living/carbon/human/user, damage, damagetype, def_zone)
+/obj/item/ego_weapon/shield/swan/proc/Reflect(mob/living/carbon/human/user, mob/living/attacker)
 	if(!block)
 		return
 	if(reflect_cooldown > world.time)
 		return
-	reflect_cooldown = world.time + reflect_cooldown_time
 	var/turf/proj_turf = user.loc
 	if(!isturf(proj_turf))
 		return
-	var/list/mob_list = list()
-	for(var/mob/living/simple_animal/hostile/H in livinginview(8, user))
-		mob_list += H
-	if(!mob_list.len)
-		return
-	var/mob/living/simple_animal/hostile/target = pick(mob_list)
+	reflect_cooldown = world.time + reflect_cooldown_time
 	var/obj/projectile/ego_bullet/swan/S = new /obj/projectile/ego_bullet/swan(proj_turf)
 	S.fired_from = src //for signal check
 	playsound(user, 'sound/weapons/resonator_blast.ogg', 30, TRUE)
 	S.firer = user
-	S.preparePixelProjectile(target, user)
+	S.preparePixelProjectile(attacker, user)
 	S.fire()
 	S.damage *= force_multiplier
-	return
 
 /obj/item/ego_weapon/shield/swan/Initialize()
 	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, PROC_REF(projectile_hit))

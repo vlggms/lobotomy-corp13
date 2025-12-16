@@ -1,9 +1,9 @@
-#define DAMCOEFFID "damage_coeff-[red]-[white]-[black]-[pale]-[brute]-[fire]-[tox]-[clone]-[stamina]-[oxy]"
+#define DAMCOEFFID "damage_coeff-[red]-[white]-[black]-[pale]-[brute]-[fire]-[tox]-[clone]-[stamina]-[oxy]-[aggro]"
 
-/proc/getDamCoeff(red = 1, white = 1, black = 1, pale = 1, brute = 1, fire = 1, tox = 1, clone = 1, stamina = 1, oxy = 1)
+/proc/getDamCoeff(red = 1, white = 1, black = 1, pale = 1, brute = 1, fire = 1, tox = 1, clone = 1, stamina = 1, oxy = 1, aggro = 1)
 	. = locate(DAMCOEFFID)
 	if(!.)
-		. = new /datum/dam_coeff(red, white, black, pale, brute, fire, tox, clone, stamina, oxy)
+		. = new /datum/dam_coeff(red, white, black, pale, brute, fire, tox, clone, stamina, oxy, aggro)
 
 /proc/makeDamCoeff(list/dc = list())
 	var/list/coeffs = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1, BRUTE = 1, FIRE = 1, TOX = 1, CLONE = 1, STAMINA = 1, OXY = 1)
@@ -23,8 +23,9 @@
 	var/white
 	var/black
 	var/pale
+	var/aggro
 
-/datum/dam_coeff/New(red = 1, white = 1, black = 1, pale = 1, brute = 1, fire = 1, tox = 1, clone = 1, stamina = 1, oxy = 1)
+/datum/dam_coeff/New(red = 1, white = 1, black = 1, pale = 1, brute = 1, fire = 1, tox = 1, clone = 1, stamina = 1, oxy = 1, aggro = 1)
 	src.red = red
 	src.white = white
 	src.black = black
@@ -35,10 +36,11 @@
 	src.clone = clone
 	src.stamina = stamina
 	src.oxy = oxy
+	src.aggro = aggro
 	tag = DAMCOEFFID
 
-/datum/dam_coeff/proc/modifyCoeff(red = 0, white = 0, black = 0, pale = 0, brute = 0, fire = 0, tox = 0, clone = 0, stamina = 0, oxy = 0)
-	return getDamCoeff(src.red+red, src.white+white, src.black+black, src.pale+pale, src.brute+brute, src.fire+fire, src.tox+tox, src.clone+clone, src.stamina+stamina, src.oxy+oxy)
+/datum/dam_coeff/proc/modifyCoeff(red = 0, white = 0, black = 0, pale = 0, brute = 0, fire = 0, tox = 0, clone = 0, stamina = 0, oxy = 0, aggro = 0)
+	return getDamCoeff(src.red+red, src.white+white, src.black+black, src.pale+pale, src.brute+brute, src.fire+fire, src.tox+tox, src.clone+clone, src.stamina+stamina, src.oxy+oxy, src.aggro+aggro)
 
 /datum/dam_coeff/proc/setCoeff(red, white, black, pale, brute, fire, tox, clone, stamina, oxy)
 	return getDamCoeff((isnull(red) ? src.red : red),\
@@ -50,13 +52,14 @@
 					(isnull(tox) ? src.tox : clone),\
 					(isnull(clone) ? src.clone : clone),\
 					(isnull(stamina) ? src.stamina : stamina),\
-					(isnull(oxy) ? src.oxy : oxy))
+					(isnull(oxy) ? src.oxy : oxy),\
+					(isnull(aggro) ? src.aggro : aggro))
 
 /datum/dam_coeff/proc/getCoeff(coeff)
 	return vars[coeff]
 
 /datum/dam_coeff/proc/getList()
-	return list(RED_DAMAGE = red, WHITE_DAMAGE = white, BLACK_DAMAGE = black, PALE_DAMAGE = pale, BRUTE = brute, FIRE = fire, TOX = tox, CLONE = clone, STAMINA = stamina, OXY = oxy)
+	return list(RED_DAMAGE = red, WHITE_DAMAGE = white, BLACK_DAMAGE = black, PALE_DAMAGE = pale, BRUTE = brute, FIRE = fire, TOX = tox, CLONE = clone, STAMINA = stamina, OXY = oxy, AGGRO_DAMAGE = aggro)
 
 /datum/dam_coeff/vv_edit_var(var_name, var_value)
 	if (var_name == NAMEOF(src, tag))
