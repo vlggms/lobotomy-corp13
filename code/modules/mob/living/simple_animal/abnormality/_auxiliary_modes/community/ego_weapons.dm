@@ -12,19 +12,25 @@
 	attack_verb_continuous = list("bashes", "whacks", "smacks")
 	attack_verb_simple = list("bash", "whack", "smack")
 	matching_armor = /obj/item/clothing/suit/armor/ego_gear/zayin/dragon_staff
-	ability_cooldown_time = 3 SECONDS
+	ability_cooldown_time = 30 SECONDS
 	use_message = "You prepare a protective spell!"
+	var/inuse
 	var/effect
 	var/shield_time = 15 SECONDS
 
 /obj/item/ego_weapon/support/dragon_staff/Pulse(mob/living/carbon/human/user)
+	if(inuse)
+		return
+	ability_cooldown = world.time//hacky as hell fix but it works
 	AdjustCircle(user)
+	inuse = TRUE
 	if(!do_after(user, 12, src))
 		if(effect)
 			qdel(effect)
+		inuse = FALSE
 		to_chat(user, span_notice("You stop casting the spell."))
-		ability_cooldown = world.time
 		return
+	inuse = FALSE
 	ability_cooldown = world.time + ability_cooldown_time
 	playsound(user, 'sound/abnormalities/faelantern/faelantern_breach.ogg', 100)
 	user.visible_message(span_warning("[user] casts MASS BARKSKIN!"),span_warning("You casts MASS BARKSKIN!"), null, COMBAT_MESSAGE_RANGE, user)
