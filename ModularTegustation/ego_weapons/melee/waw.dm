@@ -865,7 +865,7 @@
 /obj/item/ego_weapon/moonlight
 	name = "moonlight"
 	desc = "The serpentine ornament is loyal to the original owner’s taste. The snake’s open mouth represents the endless yearning for music."
-	special = "Use this weapon in hand to deal damage in a small area and if it hits something, shields nearby humans from 50 black damage."
+	special = "Activate this weapon in your hand to deal damage in a small area. If it hits something, apply black shields to nearby humans."
 	icon_state = "moonlight"
 	force = 20
 	damtype = WHITE_DAMAGE
