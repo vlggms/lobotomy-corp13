@@ -49,7 +49,7 @@
 	status_type = STATUS_EFFECT_REPLACE
 	alert_type = null
 	var/inherentarmorcheck
-	var/vis_status = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "red_shield")
+	var/vis_shield = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "red_shield")
 	var/shieldhealth = 50
 	var/damagetaken = 0
 	var/list/damtype = list(RED_DAMAGE)
@@ -62,7 +62,7 @@
 
 /datum/status_effect/interventionshield/on_apply()
 	. = ..()
-	owner.add_overlay(vis_status)
+	owner.add_overlay(vis_shield)
 	owner.visible_message(span_notice("[owner]s shield activates!"))
 	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMGE, PROC_REF(OnApplyDamage)) //stolen from caluan
 	RegisterSignal(owner, COMSIG_WORK_STARTED, PROC_REF(Destroy))
@@ -98,7 +98,7 @@
 	return ..()
 
 /datum/status_effect/interventionshield/on_remove()
-	owner.cut_overlay(vis_status)
+	owner.cut_overlay(vis_shield)
 	owner.visible_message(span_warning("The shield around [owner] shatters!"))
 	playsound(get_turf(owner), 'sound/effects/glassbr1.ogg', 50, 0, 10)
 	UnregisterSignal(owner, COMSIG_MOB_APPLY_DAMGE)
@@ -113,27 +113,27 @@
 
 /datum/status_effect/interventionshield/white
 	id = "trauma shield"
-	vis_status = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "white_shield")
+	vis_shield = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "white_shield")
 	damtype = list(WHITE_DAMAGE)
 
 /datum/status_effect/interventionshield/black
 	id = "erosion shield"
-	vis_status = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "black_shield")
+	vis_shield = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "black_shield")
 	damtype = list(BLACK_DAMAGE)
 
 /datum/status_effect/interventionshield/pale
 	id = "pale shield"
-	vis_status = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "pale_shield")
+	vis_shield = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "pale_shield")
 	damtype = list(PALE_DAMAGE)
 
 /datum/status_effect/interventionshield/perfect
 	id = "perfect shield"
-	vis_status = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "manager_shield")
+	vis_shield = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "manager_shield")
 	damtype = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 
 /datum/status_effect/interventionshield/quad
 	id = "quad shield"
-	vis_status = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "quad_shield")
+	vis_shield = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "quad_shield")
 	damtype = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 
 //other bullets

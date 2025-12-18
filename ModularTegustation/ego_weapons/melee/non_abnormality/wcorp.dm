@@ -211,7 +211,7 @@
 //Type C weapons
 
 /datum/status_effect/interventionshield/wcorp
-	vis_status = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "wcorp_shield")
+	vis_shield = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "wcorp_shield")
 	damtype = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 
 /obj/item/ego_weapon/city/wcorp/shield
