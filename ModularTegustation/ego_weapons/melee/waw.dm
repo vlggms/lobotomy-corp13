@@ -865,7 +865,7 @@
 /obj/item/ego_weapon/moonlight
 	name = "moonlight"
 	desc = "The serpentine ornament is loyal to the original owner’s taste. The snake’s open mouth represents the endless yearning for music."
-	special = "Use this weapon in hand make your next attack deal damage in a small area and shield nearby humans from 50 black damage."
+	special = "Use this weapon in hand to deal damage in a small area and if it hits something, shields nearby humans from 50 black damage."
 	icon_state = "moonlight"
 	force = 20
 	damtype = WHITE_DAMAGE
@@ -874,10 +874,8 @@
 	var/ability_cooldown
 	var/ability_cooldown_time = 30 SECONDS
 	var/shield_hp = 50
-	var/aoe_damage = 20
+	var/aoe_damage = 30
 	var/inuse
-	var/charged = FALSE
-	var/ability_timer
 	var/shield_time = 15 SECONDS
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 80
@@ -892,7 +890,7 @@
 		to_chat(user,span_warning("You used its ability too recently."))
 		return
 
-	if(charged || inuse)
+	if(inuse)
 		return
 
 	inuse = TRUE
@@ -901,37 +899,23 @@
 		inuse = FALSE
 		return
 	inuse = FALSE
-	charged = TRUE
-	ability_timer = addtimer(CALLBACK(src, PROC_REF(AbilityReset)), 3 SECONDS, TIMER_STOPPABLE)//prevents someone from storing multiple shield charges at once
-	to_chat(user,span_nicegreen("Your next attack will be enpowered."))
+	ability_cooldown = ability_cooldown_time + world.time
+	var/aoe = aoe_damage
+	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+	var/justicemod = 1 + userjust / 100
+	aoe *= justicemod
+	aoe *= force_multiplier
+	var/list/been_hit = list()
+	for(var/turf/T in view(user, 1))
+		been_hit += user.HurtInTurf(T, list(), aoe, damtype, check_faction = TRUE, hurt_mechs = TRUE)
+		new /obj/effect/temp_visual/revenant(T)
+	playsound(src, 'sound/magic/wandodeath.ogg', 200, FALSE, 9)
 
-
-/obj/item/ego_weapon/moonlight/proc/AbilityReset(mob/user)
-	to_chat(user, span_warning("[src]'s power returns to normal."))
-	charged = FALSE
-	deltimer(ability_timer)
-
-
-/obj/item/ego_weapon/moonlight/attack(mob/living/M, mob/living/user)
-	..()
-	if(charged)
-		charged = FALSE
-		ability_cooldown = ability_cooldown_time + world.time
-		deltimer(ability_timer)
-		var/aoe = aoe_damage
-		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-		var/justicemod = 1 + userjust / 100
-		aoe *= justicemod
-		aoe *= force_multiplier
-		for(var/mob/living/L in get_turf(M))
-			if(L == user || ishuman(L))
-				continue
-			L.apply_damage(aoe, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
-		new /obj/effect/temp_visual/revenant(get_turf(M))
+	if(LAZYLEN(been_hit))
 		playsound(src, 'sound/magic/staff_healing.ogg', 200, FALSE, 9)
-		playsound(src, 'sound/magic/wandodeath.ogg', 200, FALSE, 9)
 		for(var/mob/living/carbon/human/L in range(8, get_turf(user)))
 			L.apply_shield(/datum/status_effect/interventionshield/black, shield_health = shield_hp, shield_duration = shield_time)
+
 
 /obj/item/ego_weapon/heaven
 	name = "heaven"
