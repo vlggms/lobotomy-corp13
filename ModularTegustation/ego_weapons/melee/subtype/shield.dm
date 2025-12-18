@@ -49,14 +49,10 @@
 	. = ..()
 	if(LAZYLEN(resistances_list)) //armor tags code
 		resistances_list.Cut()
-	if(reductions[1] != 0)
-		resistances_list += list("RED" = reductions[1])
-	if(reductions[2] != 0)
-		resistances_list += list("WHITE" = reductions[2])
-	if(reductions[3] != 0)
-		resistances_list += list("BLACK" = reductions[3])
-	if(reductions[4] != 0)
-		resistances_list += list("PALE" = reductions[4])
+	resistances_list += list("RED" = reductions[1])
+	resistances_list += list("WHITE" = reductions[2])
+	resistances_list += list("BLACK" = reductions[3])
+	resistances_list += list("PALE" = reductions[4])
 	aggro_on_block = force * 3
 
 //Allows the user to deflect projectiles for however long recovery time is set to on a hit

@@ -336,14 +336,10 @@
 		white_armor = armor.getRating(mapping[WHITE_DAMAGE])
 		black_armor = armor.getRating(mapping[BLACK_DAMAGE])
 		pale_armor = armor.getRating(mapping[PALE_DAMAGE])
-	if(red_armor)
-		armor_list["RED"] = red_armor
-	if(white_armor)
-		armor_list["WHITE"] = white_armor
-	if(black_armor)
-		armor_list["BLACK"] = black_armor
-	if(pale_armor)
-		armor_list["PALE"] = pale_armor
+	armor_list["RED"] = red_armor
+	armor_list["WHITE"] = white_armor
+	armor_list["BLACK"] = black_armor
+	armor_list["PALE"] = pale_armor
 
 	if(LAZYLEN(durability_list))
 		durability_list.Cut()
