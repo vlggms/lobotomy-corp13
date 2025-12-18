@@ -211,8 +211,8 @@
 //Type C weapons
 
 /datum/status_effect/interventionshield/wcorp
-	statuseffectvisual = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "wcorp_shield")
-	respectivedamage = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
+	vis_status = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "wcorp_shield")
+	damtype = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 
 /obj/item/ego_weapon/city/wcorp/shield
 	name = "w-corp type-C shieldblade"

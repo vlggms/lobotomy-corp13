@@ -49,10 +49,10 @@
 	status_type = STATUS_EFFECT_REPLACE
 	alert_type = null
 	var/inherentarmorcheck
-	var/statuseffectvisual = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "red_shield")
+	var/vis_status = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "red_shield")
 	var/shieldhealth = 50
 	var/damagetaken = 0
-	var/list/respectivedamage = list(RED_DAMAGE)
+	var/list/damtype = list(RED_DAMAGE)
 	var/faltering = 0
 
 /datum/status_effect/interventionshield/on_creation(mob/living/new_owner, health = 50, time = 30 SECONDS)
@@ -62,14 +62,14 @@
 
 /datum/status_effect/interventionshield/on_apply()
 	. = ..()
-	owner.add_overlay(statuseffectvisual)
+	owner.add_overlay(vis_status)
 	owner.visible_message(span_notice("[owner]s shield activates!"))
 	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMGE, PROC_REF(OnApplyDamage)) //stolen from caluan
 	RegisterSignal(owner, COMSIG_WORK_STARTED, PROC_REF(Destroy))
 
 /datum/status_effect/interventionshield/proc/OnApplyDamage(datum_source, amount, damagetype, def_zone)
 	SIGNAL_HANDLER
-	if(!(damagetype in respectivedamage))
+	if(!(damagetype in damtype))
 		return
 
 	var/mob/living/carbon/human/H = owner
@@ -98,7 +98,7 @@
 	return ..()
 
 /datum/status_effect/interventionshield/on_remove()
-	owner.cut_overlay(statuseffectvisual)
+	owner.cut_overlay(vis_status)
 	owner.visible_message(span_warning("The shield around [owner] shatters!"))
 	playsound(get_turf(owner), 'sound/effects/glassbr1.ogg', 50, 0, 10)
 	UnregisterSignal(owner, COMSIG_MOB_APPLY_DAMGE)
@@ -113,28 +113,28 @@
 
 /datum/status_effect/interventionshield/white
 	id = "trauma shield"
-	statuseffectvisual = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "white_shield")
-	respectivedamage = list(WHITE_DAMAGE)
+	vis_status = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "white_shield")
+	damtype = list(WHITE_DAMAGE)
 
 /datum/status_effect/interventionshield/black
 	id = "erosion shield"
-	statuseffectvisual = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "black_shield")
-	respectivedamage = list(BLACK_DAMAGE)
+	vis_status = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "black_shield")
+	damtype = list(BLACK_DAMAGE)
 
 /datum/status_effect/interventionshield/pale
 	id = "pale shield"
-	statuseffectvisual = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "pale_shield")
-	respectivedamage = list(PALE_DAMAGE)
+	vis_status = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "pale_shield")
+	damtype = list(PALE_DAMAGE)
 
 /datum/status_effect/interventionshield/perfect
 	id = "perfect shield"
-	statuseffectvisual = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "manager_shield")
-	respectivedamage = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
+	vis_status = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "manager_shield")
+	damtype = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 
 /datum/status_effect/interventionshield/quad
 	id = "quad shield"
-	statuseffectvisual = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "quad_shield")
-	respectivedamage = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
+	vis_status = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "quad_shield")
+	damtype = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 
 //other bullets
 /obj/item/managerbullet/red
