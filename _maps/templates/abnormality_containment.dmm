@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/closed/indestructible/reinforced,
+/turf/template_noop,
 /area/containment_zone)
 "b" = (
 /obj/machinery/requests_console{
@@ -10,7 +10,7 @@
 /area/containment_zone)
 "c" = (
 /obj/machinery/containment_panel,
-/turf/closed/indestructible/reinforced,
+/turf/template_noop,
 /area/containment_zone)
 "f" = (
 /obj/machinery/door/airlock/vault,
