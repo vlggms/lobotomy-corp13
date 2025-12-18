@@ -295,7 +295,7 @@
 /obj/item/ego_weapon/shield/distortion
 	name = "distortion"
 	desc = "The fragile human mind is fated to twist and distort."
-	special = "This weapon requires two hands to use and always blocks ranged attacks. Blocking results in 1 of 20 random effects."
+	special = "This weapon requires two hands to use and always blocks ranged attacks. The first time blocking a non ranged attack results in 1 of 20 random effects."
 	icon_state = "distortion"
 	force = 20 //Twilight but lower in terms of damage
 	attack_speed = 2.2
@@ -317,13 +317,12 @@
 							)
 
 	attacking = TRUE //ALWAYS blocking ranged attacks
-	var/reflect_cooldown
-	var/reflect_cooldown_time = 1
+	var/chaos = TRUE
+
 
 /obj/item/ego_weapon/shield/distortion/Initialize()
 	. = ..()
 	aggro_on_block *= 4
-	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, PROC_REF(projectile_hit))
 
 /obj/item/ego_weapon/shield/distortion/EgoAttackInfo(mob/user)
 	return span_notice("It deals [force * 4] red, white, black and pale damage combined.")
@@ -352,9 +351,9 @@
 		return
 	if(!(attacker in livinginview(8, source)))
 		return
-	if(reflect_cooldown > world.time)
+	if(!chaos)
 		return
-	reflect_cooldown = world.time + reflect_cooldown_time
+	chaos = FALSE
 	var/roll = rand(23,34)
 	INVOKE_ASYNC(src, PROC_REF(ChaosShield), source, attacker, roll)
 	if(roll == 23 || roll == 24)//Done here to nullify the damage taken
@@ -370,12 +369,20 @@
 		if(5, 6)
 		if(7, 8)
 		if(9, 10)
+			user.adjustBruteLoss(-8)
 		if(11, 12)
+			user.adjustSanityLoss(-8)
 		if(13, 14)
+			user.adjustBruteLoss(-5)
+			user.adjustSanityLoss(-5)
 		if(15, 16)
+			user.apply_status_effect(/datum/status_effect/interventionshield)
 		if(17, 18)
+			user.apply_status_effect(/datum/status_effect/interventionshield/white)
 		if(19, 20)
+			user.apply_status_effect(/datum/status_effect/interventionshield/black)
 		if(21, 22)
+			user.apply_status_effect(/datum/status_effect/interventionshield/pale)
 		if(25, 26)
 			var/turf/proj_turf = user.loc
 			if(!isturf(proj_turf))
@@ -419,8 +426,7 @@
 						to_chat(H,span_nicegreen("You hear some soothing music."))
 					H.adjustSanityLoss(-12)
 		if(32)
-			user.adjustBruteLoss(-8)
-			user.adjustSanityLoss(-8)
+
 		if(33)
 			//First we spawn a timestop affect, freezing the area around the attacker, for 5 seconds
 			new /obj/effect/timestop(get_turf(attacker), 5, 5 SECONDS, list(user))
@@ -433,6 +439,11 @@
 					continue
 				L.deal_damage(200, PALE_DAMAGE, attack_type = (ATTACK_TYPE_SPECIAL))
 			new /obj/effect/temp_visual/beam_in(get_turf(src))
+		if(35)
+			for(var/mob/living/carbon/human/L in livinginview(8, user))
+				if((!ishuman(L)) || L.stat == DEAD)
+					continue
+				L.apply_status_effect(/datum/status_effect/interventionshield/perfect)
 
 /obj/item/ego_weapon/shield/distortion/DisableBlock(mob/living/carbon/human/user)
 	if(!block)
@@ -447,12 +458,12 @@
 		return
 	..()
 
+/obj/item/ego_weapon/shield/distortion/DisableBlock(mob/living/carbon/human/user)
+	. = ..()
+	chaos = TRUE
+
 /obj/item/ego_weapon/shield/distortion/DropStance() //ALWAYS blocking ranged attacks, NEVER drop your stance!
 	return
-
-/obj/item/ego_weapon/shield/distortion/proc/projectile_hit(atom/fired_from, atom/movable/firer, atom/target, Angle)
-	SIGNAL_HANDLER
-	return TRUE
 
 //Oberon
 /obj/item/ego_weapon/oberon
