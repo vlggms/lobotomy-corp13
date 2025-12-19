@@ -65,6 +65,9 @@ SUBSYSTEM_DEF(ticker)
 	/// Why an emergency shuttle was called
 	var/emergency_reason
 
+	//ordeals that spawned
+	var/list/ordeals_done = list()
+
 /datum/controller/subsystem/ticker/Initialize(timeofday)
 	load_mode()
 
