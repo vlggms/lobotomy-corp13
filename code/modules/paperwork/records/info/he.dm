@@ -367,7 +367,7 @@
 // Doomsday Calendar
 /obj/item/paper/fluff/info/he/doomsday_calendar
 	abno_type = /mob/living/simple_animal/hostile/abnormality/doomsday_calendar
-	abno_code = "M-04-146"//M-04-04-05 in LCB
+	abno_code = "M-04-172"//M-04-04-05 in LCB
 	abno_info = list(
 		"When an employee entered the Containment Unit of another Abnormality, Doomsday Calendar’s Qliphoth Counter eventually decreased.",
 		"The lower the Qliphoth Counter, the more PE-Boxes Doomsday Calender produced. Instinct Work also had a higher success rate.",
@@ -580,7 +580,7 @@
 //Pink Shoes
 /obj/item/paper/fluff/info/he/pink_shoes
 	abno_type = /mob/living/simple_animal/hostile/abnormality/pink_shoes
-	abno_code = "F-04-147"//F-04-10-13 in LCB
+	abno_code = "F-04-149"//F-04-10-13 in LCB
 	abno_info = list(
 		"Employees with temperance level 1 immediately panicked after working on Pink Shoes.",
 		"When the qliphoth counter became 0, Pink Shoes escaped and wove ribbons in the surrounding area.",

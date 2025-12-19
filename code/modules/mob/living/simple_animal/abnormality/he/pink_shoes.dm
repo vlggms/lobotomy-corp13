@@ -40,6 +40,17 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 		)
 	gift_type =  /datum/ego_gifts/roseate_desire
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
+
+	observation_prompt = "Strips of pink ribbons float this way. <br>\
+		A voice travels between the fluttering ribbons. <br>\
+		\"What is your desire?\" <br>\"Put me on.\" <br>\
+		\"I'll carry you wherever you wish to go.\" <br>\
+		The suggestions are incredibly suspicious, but for some reason, you are struggling to do decide what do do. <br>What do you say?"
+	observation_choices = list(
+		"Put on the ribbons" = list(FALSE, "Oh, yeah... This feels good. <br>The ribbons magically turn into shiny pairs of shoes.  <br>Now you can go wherever you want. <br>Probably."),
+		"Refuse" = list(TRUE, "\"Snap out of it! It's all a lie!\" <br>A haggard employee manages to stop you at the last second. <br>Thanks to that warning, you avoided the desire-laden ribbons."),
+	)
+
 	ranged = TRUE
 	environment_smash = FALSE//this stops it from smashing its own ribbons when breaching independently
 	minimum_distance = 1
