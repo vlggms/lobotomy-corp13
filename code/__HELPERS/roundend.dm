@@ -373,6 +373,7 @@
 	parts += goal_report()
 	//Economy & Money
 	parts += market_report()
+
 	//PE Quota
 	if(SSmaptype.maptype == "standard")
 		parts += pe_report()
@@ -510,12 +511,16 @@
 	parts += "<div class='panel stationborder'>"
 	parts += GLOB.survivor_report
 	parts += "</div>"
-	parts += "<div class='panel stationborder'>"
-	parts += GLOB.agent_report
-	parts += "</div>"
-	parts += "<div class='panel stationborder'>"
-	parts += GLOB.abnormality_report
-	parts += "</div>"
+	if(SSmaptype.maptype == "standard" || SSmaptype.maptype == "enkephalin_rush")
+		parts += "<div class='panel stationborder'>"
+		parts += GLOB.agent_report
+		parts += "</div>"
+		parts += "<div class='panel stationborder'>"
+		parts += GLOB.abnormality_report
+		parts += "</div>"
+		parts += "<div class='panel stationborder'>"
+		parts += GLOB.ordeal_report
+		parts += "</div>"
 	parts += GLOB.common_report
 	var/content = parts.Join()
 	//Log the rendered HTML in the round log directory
@@ -573,20 +578,26 @@
 	parts += "<br>"
 	parts += GLOB.survivor_report
 	parts += "</div>"
-	parts += "<div class='panel stationborder'>"
-	parts += GLOB.agent_report
-	parts += "</div>"
-	parts += "<div class='panel stationborder'>"
-	parts += GLOB.abnormality_report
-	parts += "</div>"
+	if(SSmaptype.maptype == "standard" || SSmaptype.maptype == "enkephalin_rush")
+		parts += "<div class='panel stationborder'>"
+		parts += GLOB.agent_report
+		parts += "</div>"
+		parts += "<div class='panel stationborder'>"
+		parts += GLOB.abnormality_report
+		parts += "</div>"
+		parts += "<div class='panel stationborder'>"
+		parts += GLOB.ordeal_report
+		parts += "</div>"
 
 	return parts.Join()
 
 /datum/controller/subsystem/ticker/proc/display_report(popcount)
 	GLOB.common_report = build_roundend_report()
 	GLOB.survivor_report = survivor_report(popcount)
-	GLOB.agent_report = agent_report()
-	GLOB.abnormality_report = abnormality_report()
+	if(SSmaptype.maptype == "standard" || SSmaptype.maptype == "enkephalin_rush")
+		GLOB.agent_report = agent_report()
+		GLOB.abnormality_report = abnormality_report()
+		GLOB.ordeal_report = ordeal_report()
 	log_roundend_report()
 	for(var/client/C in GLOB.clients)
 		show_roundend_report(C)
@@ -665,6 +676,22 @@
 	else
 		parts += "Somehow, nobody made any money this shift! This'll result in some budget cuts...</div>"
 	return parts
+
+//Generates a report of the ordeals that happened and the time it took
+/datum/controller/subsystem/ticker/proc/ordeal_report()
+	var/list/parts = list()
+	if(!LAZYLEN(SSticker.ordeals_done))
+		parts += "[FOURSPACES]<b>The facility had faced no ordeals!</b>"
+	else if(SSticker.ordeals_done.len == 1)
+		parts += "[FOURSPACES]<b>The facility had faced 1 ordeal:</b>"
+	else
+		parts += "[FOURSPACES]<b>The facility had faced [SSticker.ordeals_done.len] ordeals:</b>"
+	for(var/datum/ordeal/O in SSticker.ordeals_done)
+		if(O.end_time)
+			parts += "[FOURSPACES][FOURSPACES]<span style='color: [O.color]'>[O.name]</span>: Started at <b>[DisplayTimeText(O.start_time)]</b> and took <b>[DisplayTimeText(O.end_time - O.start_time)]</b> to be delt with."
+		else
+			parts += "[FOURSPACES][FOURSPACES]<span style='color: [O.color]'>[O.name]</span>: Started at <b>[DisplayTimeText(O.start_time)]</b> and was <b>never beaten</b>!"
+	return parts.Join("<br>")
 
 /datum/controller/subsystem/ticker/proc/pe_report()
 	. = list()

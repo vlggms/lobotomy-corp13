@@ -4,6 +4,7 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 GLOBAL_VAR(survivor_report) //Contains shared survivor report for roundend report (part of personal report)
 GLOBAL_VAR(agent_report) //Contains inormation on the performance of agents during the round
 GLOBAL_VAR(abnormality_report) //Contains inormation on the abnormalities during the round
+GLOBAL_VAR(ordeal_report) //Contains inormation on the ordeals during the round
 
 GLOBAL_VAR_INIT(wavesecret, 0) // meteor mode, delays wave progression, terrible name
 GLOBAL_DATUM(start_state, /datum/station_state) // Used in round-end report

@@ -27,6 +27,8 @@
 	var/can_run = TRUE
 	/// World.time when ordeal started
 	var/start_time
+	/// World.time when ordeal ends
+	var/end_time
 	/// Achivement for Surviving the Ordeal
 	var/ordeal_achievement
 
@@ -38,6 +40,7 @@
 // Runs the event itself
 /datum/ordeal/proc/Run()
 	start_time = ROUNDTIME
+	SSticker.ordeals_done += src
 	SSlobotomy_corp.current_ordeals += src
 	priority_announce(announce_text, name, sound='sound/vox_fem/..ogg') // We want this to be silent, so play a silent sound since null uses defaults
 	/// If dawn started - clear suppression options
@@ -53,6 +56,7 @@
 
 // Ends the event
 /datum/ordeal/proc/End()
+	end_time = ROUNDTIME
 	var/total_reward = max(SSlobotomy_corp.box_goal, 3000) * reward_percent
 	priority_announce("The Ordeal has ended. Facility has been rewarded with [reward_percent*100]% PE.", name, sound='sound/vox_fem/..ogg')
 	SSlobotomy_corp.AdjustAvailableBoxes(total_reward)
