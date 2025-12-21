@@ -350,11 +350,11 @@
 
 /turf/closed/mineral/random/facility/proc/AbnoEvent(user)
 	var/list/abnolevels = list(
-			ZAYIN_LEVEL = 1,
-			TETH_LEVEL = 2,
-			HE_LEVEL = 3,
-			WAW_LEVEL = 4,
-			ALEPH_LEVEL = 5,
+			/*ZAYIN_LEVEL =*/ 1,
+			/*TETH_LEVEL =*/ 2,
+			/*HE_LEVEL =*/ 3,
+			/*WAW_LEVEL =*/ 4,
+			/*ALEPH_LEVEL =*/ 5,
 			)
 	if(risk_level > 5)//don't go out of bounds!
 		risk_level = 5
