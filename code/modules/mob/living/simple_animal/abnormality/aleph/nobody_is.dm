@@ -94,7 +94,7 @@
 	//Oberon shit
 	var/oberon_mode = FALSE
 	var/grab_damage_oberon = 50
-	var/strangle_damage_oberon = 15
+	var/strangle_damage_oberon = 10
 	var/melee_damage_oberon = 15
 	var/mob/living/simple_animal/hostile/abnormality/titania/abno_host
 	var/obj/effect/titania_aura/fairy_aura
@@ -373,6 +373,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/proc/Oberon_Fusion(mob/living/simple_animal/hostile/abnormality/titania/T)
 	abno_host = T
+	T.FairyOberon()
 	T.pass_flags = PASSTABLE | PASSMOB
 	T.is_flying_animal = FALSE
 	T.density = FALSE
@@ -381,19 +382,14 @@
 	T.melee_damage_lower = 0
 	T.melee_damage_upper = 0
 	can_act = TRUE
+	patrol_cooldown_time = 5 SECONDS
 	fairy_aura = new/obj/effect/titania_aura(get_turf(src))
 	cut_overlay(icon('icons/effects/effects.dmi', "nobody_overlay_face", GLASSES_LAYER))
 	add_overlay(mutable_appearance('icons/effects/effects.dmi', "nobody_overlay_face_oberon", GLASSES_LAYER))
 	ChangeResistances(list(BRUIT = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0, PALE_DAMAGE = 0.5))
-	heal_percent_per_second = 0.00425//half of what it was when it had just 5k hp
-	maxHealth = 10000
+	heal_percent_per_second = 0.00425//half of what it was when it had just 2k hp
+	maxHealth = 4000
 	adjustBruteLoss(-maxHealth, forced = TRUE) // It's not over yet!.
-	melee_damage_lower = 15
-	melee_damage_upper = 20
-	grab_damage = 50
-	strangle_damage = 15
-	whip_damage = 15
-	whip_count = 6
 	name = "Oberon"
 	desc = "Two horrifying and dangerous abnormalities fused into one. This can only end well."
 	loot = list(
@@ -458,9 +454,9 @@
 	var/whip_delay = (get_dist(src, target) <= 2) ? (0.75 SECONDS) : (0.5 SECONDS)
 	SLEEP_CHECK_DEATH(whip_delay)
 	for(var/i = 1 to whip_count)
-		var/obj/projectile/P = new /obj/projectile/beam/nobody(start_loc)
+		var/obj/projectile/beam/nobody/P = new(start_loc)
 		if(oberon_mode)
-			P = new /obj/projectile/beam/oberon(start_loc)
+			P.fairy = abno_host
 		P.starting = start_loc
 		P.firer = src
 		P.fired_from = src
@@ -503,7 +499,11 @@
 		new /obj/effect/temp_visual/nobody_grab(T)
 		for(var/mob/living/L in HurtInTurf(T, list(), grab_damage, BLACK_DAMAGE, null, null, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE))
 			if(oberon_mode)
-				HurtInTurf(T, list(), grab_damage_oberon, RED_DAMAGE, null, null, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE)
+				HurtInTurf(T, list(), grab_damage_oberon, WHITE_DAMAGE, null, null, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE)
+				if(ishuman(L))
+					var/mob/living/carbon/human/H = L
+					if(H.sanity_lost)
+						abno_host.Convert(H)
 			if(L.health < 0)
 				if(ishuman(L))
 					var/mob/living/carbon/H = L
@@ -560,7 +560,7 @@
 		return
 	grab_victim.deal_damage(strangle_damage, BLACK_DAMAGE)
 	if(oberon_mode)
-		grab_victim.deal_damage(strangle_damage_oberon, RED_DAMAGE)
+		grab_victim.deal_damage(strangle_damage_oberon, WHITE_DAMAGE)
 	grab_victim.Immobilize(10)
 	playsound(get_turf(src), 'sound/abnormalities/nothingthere/hello_bam.ogg', 50, 0, 7)
 	playsound(get_turf(src), 'sound/abnormalities/nobodyis/strangle.ogg', 100, 0, 7)
@@ -581,6 +581,10 @@
 	count += 1
 	if(grab_victim.sanity_lost) //This should prevent weird things like panics running away halfway through
 		grab_victim.Stun(10) //Immobilize does not stop AI controllers from moving, for some reason.
+		if(oberon_mode)
+			abno_host.Convert(grab_victim)
+			ReleaseGrab()
+			return
 	SLEEP_CHECK_DEATH(10)
 	StrangleHit(count)
 
@@ -620,7 +624,11 @@
 	if(oberon_mode)
 		if(isliving(attacked_target))
 			var/mob/living/L = attacked_target
-			L.deal_damage(melee_damage_oberon, RED_DAMAGE)
+			L.deal_damage(melee_damage_oberon, WHITE_DAMAGE)
+			if(ishuman(L))
+				var/mob/living/carbon/human/H = L
+				if(H.sanity_lost)
+					abno_host.Convert(H)
 	if(!client)
 		if((current_stage == 3) && (grab_cooldown <= world.time) && prob(35))
 			return GrabAttack()
@@ -645,6 +653,21 @@
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/patrol_select() //Hunt down the chosen one
 	if(shelled) // We don't need a chosen anymore, or any special pathfinding behavior
+		if(oberon_mode)//Or use how Titania works
+			var/list/target_turfs = list() // Stolen from Punishing Bird
+			for(var/mob/living/carbon/human/H in GLOB.human_list)
+				if(H.z != z) // Not on our level
+					continue
+				if(get_dist(src, H) < 4) // Unnecessary for this distance
+					continue
+				if(!H.has_status_effect(/datum/status_effect/fairy_lights))
+					continue
+				target_turfs += get_turf(H)
+
+			var/turf/target_turf = get_closest_atom(/turf/open, target_turfs, src)
+			if(istype(target_turf))
+				patrol_path = get_path_to(src, target_turf, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 200)
+				return
 		return ..()
 	if(chosen) //YOU'RE MINE
 		SEND_SIGNAL(src, COMSIG_PATROL_START, src, get_turf(chosen)) //Overrides the usual proc to target a specific tile
@@ -721,14 +744,14 @@
 	attack_verb_simple = "strike"
 	attack_sound = 'sound/abnormalities/nothingthere/attack.ogg'
 	ChangeResistances(list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0, PALE_DAMAGE = 0.8)) //Damage, resistances, and cooldowns all go to the roof
-	maxHealth = 4000
-	melee_damage_lower = 65
-	melee_damage_upper = 75
+	maxHealth = 2000
+	melee_damage_lower = 20
+	melee_damage_upper = 25
 	current_stage = 3
 	melee_reach = 1
-	whip_count = 8
-	grab_damage = 250
-	strangle_damage = 70
+	whip_count = 6
+	grab_damage = 100
+	strangle_damage = 30
 	grab_cooldown_time = 12 SECONDS
 	grab_windup_time = 12
 	whip_attack_cooldown_time = 5 SECONDS
@@ -778,10 +801,6 @@
 //A simple test function to force oberon to happen without killing the reflected
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/proc/TransformNoKill(mob/living/carbon/human/M)
-	set waitfor = FALSE
-	SLEEP_CHECK_DEATH(5)
-	if(!M || QDELETED(M))
-		return //We screwed up or the player successfully committed self-delete. Try again next time!
 	shelled = TRUE
 	CopyHumanAppearance(M)
 	add_overlay(mutable_appearance('icons/effects/effects.dmi', "nobody_overlay", SUIT_LAYER))
@@ -798,14 +817,15 @@
 	melee_damage_upper = 25
 	current_stage = 3
 	melee_reach = 1
-	whip_count = 8
-	grab_damage = 55
-	strangle_damage = 25
+	whip_count = 6
+	grab_damage = 100
+	strangle_damage = 30
 	grab_cooldown_time = 12 SECONDS
 	grab_windup_time = 12
 	whip_attack_cooldown_time = 5 SECONDS
 	heal_percent_per_second = 0.0085
 	if(status_flags & GODMODE) // Still contained
+		BreachEffect()
 		ZeroQliphoth()
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/proc/QuickOberonSpawn()
