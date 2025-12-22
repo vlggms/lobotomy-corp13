@@ -18,7 +18,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 10, 20, 40),
 		ABNORMALITY_WORK_REPRESSION = 0,
 	)
-	start_qliphoth = 3
+	start_qliphoth = 2
 	move_to_delay = 4
 
 	work_damage_amount = 9
