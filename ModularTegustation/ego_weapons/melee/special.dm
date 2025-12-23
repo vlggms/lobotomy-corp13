@@ -295,7 +295,7 @@
 /obj/item/ego_weapon/shield/distortion
 	name = "distortion"
 	desc = "The fragile human mind is fated to twist and distort."
-	special = "This weapon requires two hands to use and always blocks ranged attacks. The first time blocking a non ranged attack results in 1 of 20 random effects."
+	special = "This weapon requires two hands to use and always blocks ranged attacks. The first time blocking a non ranged attack results in 1 of 15 random effects."
 	icon_state = "distortion"
 	force = 20 //Twilight but lower in terms of damage
 	attack_speed = 2.2
@@ -354,9 +354,9 @@
 	if(!chaos)
 		return
 	chaos = FALSE
-	var/roll = rand(23,34)
+	var/roll = rand(1,34)
 	INVOKE_ASYNC(src, PROC_REF(ChaosShield), source, attacker, roll)
-	if(roll == 23 || roll == 24)//Done here to nullify the damage taken
+	if(roll == 13 || roll == 14)//Done here to nullify the damage taken
 		to_chat(source,span_nicegreen("Your [src] fully nullified the attack!"))
 		return COMPONENT_MOB_DENY_DAMAGE
 
@@ -365,25 +365,21 @@
 	playsound(get_turf(user), 'sound/weapons/black_silence/snap.ogg', 50)
 	switch(roll)
 		if(1, 2)
-		if(3, 4)
-		if(5, 6)
-		if(7, 8)
-		if(9, 10)
 			user.adjustBruteLoss(-8)
-		if(11, 12)
+		if(3, 4)
 			user.adjustSanityLoss(-8)
-		if(13, 14)
+		if(5, 6)
 			user.adjustBruteLoss(-5)
 			user.adjustSanityLoss(-5)
-		if(15, 16)
+		if(7, 8)
 			user.apply_status_effect(/datum/status_effect/interventionshield)
-		if(17, 18)
+		if(9, 10)
 			user.apply_status_effect(/datum/status_effect/interventionshield/white)
-		if(19, 20)
+		if(11, 12)
 			user.apply_status_effect(/datum/status_effect/interventionshield/black)
-		if(21, 22)
+		if(15, 16)
 			user.apply_status_effect(/datum/status_effect/interventionshield/pale)
-		if(25, 26)
+		if(17, 18)
 			var/turf/proj_turf = user.loc
 			if(!isturf(proj_turf))
 				return
@@ -395,7 +391,7 @@
 			S.preparePixelProjectile(attacker, user)
 			S.fire()
 			S.damage *= force_multiplier * 2
-		if(27, 28)
+		if(19, 20)
 			user.visible_message(span_danger("[user]'s [src] screaches!"), \
 					span_userdanger("Your [src] screaches!"), vision_distance = COMBAT_MESSAGE_RANGE, ignored_mobs = user)
 			playsound(user, "sound/abnormalities/distortedform/screech4.ogg", 75, FALSE, 8)
@@ -409,15 +405,15 @@
 					if(L.stat == DEAD)
 						continue
 					L.deal_damage(3, WHITE_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL))
-		if(29, 30)
+		if(21)
 			user.visible_message(span_danger("[user]'s [src] explodes!"), \
 						span_userdanger("Your [src] explodes!"), ignored_mobs = user)
 			for(var/mob/living/L in view(1, user))
 				if(user.faction_check_mob(L))
 					continue
-				L.deal_damage(40, RED_DAMAGE, user, attack_type = (ATTACK_TYPE_SPECIAL))
+				L.deal_damage(80, RED_DAMAGE, user, attack_type = (ATTACK_TYPE_SPECIAL))
 			new /obj/effect/explosion(get_turf(user))
-		if(31)
+		if(22)
 			to_chat(user,span_nicegreen("Your [src] creates some soothing music."))
 			playsound(user, 'sound/abnormalities/siren/sirenhappy.ogg', 100, FALSE, 10)
 			for(var/mob/living/carbon/human/H in orange(10, src))
@@ -425,12 +421,10 @@
 					if(H != user)
 						to_chat(H,span_nicegreen("You hear some soothing music."))
 					H.adjustSanityLoss(-12)
-		if(32)
-
-		if(33)
+		if(23)
 			//First we spawn a timestop affect, freezing the area around the attacker, for 5 seconds
 			new /obj/effect/timestop(get_turf(attacker), 5, 5 SECONDS, list(user))
-		if(34)
+		if(24)
 			playsound(get_turf(attacker), 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, FALSE, -3)
 			for(var/mob/living/L in get_turf(attacker))
 				if(user.faction_check_mob(L, FALSE))
@@ -439,7 +433,7 @@
 					continue
 				L.deal_damage(200, PALE_DAMAGE, attack_type = (ATTACK_TYPE_SPECIAL))
 			new /obj/effect/temp_visual/beam_in(get_turf(src))
-		if(35)
+		if(25)
 			for(var/mob/living/carbon/human/L in livinginview(8, user))
 				if((!ishuman(L)) || L.stat == DEAD)
 					continue
