@@ -25,18 +25,6 @@
 	qdel(src)
 	return
 
-/obj/item/trait_injector/officer_upgrade_injector
-	name = "Officer Upgrade Injector"
-	desc = "A strange liquid used to improve an officer's skills. Use in hand to activate. A small note on the injector states that 'officer' means Extraction Officer and Records Officer."
-	icon_state = "oddity7_gween"
-	roles = list("Records Officer", "Extraction Officer")
-	error_message = "You aren't an officer."
-	success_message = "You feel vigourous and stronger."
-
-/obj/item/trait_injector/officer_upgrade_injector/InjectTrait(mob/living/carbon/human/user)
-	user.adjust_all_attribute_levels(20)
-	return ..()
-
 /obj/item/trait_injector/agent_workchance_trait_injector
 	name = "Agent Work Chance Injector"
 	desc = "An injector containing liquid that allows agents to view their chances before work. Use in hand to activate. A small note on the injector states that 'agent' means anyone under the security detail. Another note states that Officers aren't security detail."
