@@ -15,7 +15,7 @@
 		ABNORMALITY_WORK_REPRESSION = 20,
 	)
 	start_qliphoth = 3
-	work_damage_amount = 2 //Calculated later
+	work_damage_amount = 3 //Calculated later
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gloom
 	pixel_x = -32

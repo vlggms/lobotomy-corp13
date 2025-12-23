@@ -45,7 +45,7 @@
 	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
 
 /mob/living/simple_animal/hostile/abnormality/clayman/WorktickFailure(mob/living/carbon/human/user)
-	var/dtype = pick(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
+	var/dtype = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 	work_damage_type = dtype
 	user.deal_damage(2, dtype)
 	WorkDamageEffect()

@@ -37,7 +37,7 @@
 		ABNORMALITY_WORK_REPRESSION = list(60, 60, 60, 55, 55),
 	)
 	max_boxes = 14
-	work_damage_amount = 2
+	work_damage_amount = 3
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/red_blooded
 	harvest_phrase = span_notice("You take a blood sample from %ABNO. The blood fizzles inside the %VESSEL.")
@@ -102,7 +102,7 @@
 		You passively reload 1 ammo every 2 seconds, but you can also reload 1 ammo by hitting humans or mechs.</b>")
 
 /mob/living/simple_animal/hostile/abnormality/redblooded/AttemptWork(mob/living/carbon/human/user, work_type)
-	work_damage_amount = 2 + bloodlust
+	work_damage_amount = 3 + bloodlust
 	if(work_type == ABNORMALITY_WORK_REPRESSION)
 		say(pick(fighting_quotes))
 		bloodlust +=2
