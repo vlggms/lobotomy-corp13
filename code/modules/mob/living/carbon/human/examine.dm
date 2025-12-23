@@ -324,23 +324,6 @@
 				if(91.01 to INFINITY)
 					msg += "[t_He] [t_is] a shitfaced, slobbering wreck.\n"
 
-		if(src != user)
-			if(HAS_TRAIT(user, TRAIT_EMPATH))
-				if (a_intent != INTENT_HELP)
-					msg += "[t_He] seem[p_s()] to be on guard.\n"
-				if (getOxyLoss() >= 10)
-					msg += "[t_He] seem[p_s()] winded.\n"
-				if (getToxLoss() >= 10)
-					msg += "[t_He] seem[p_s()] sickly.\n"
-				if (is_blind())
-					msg += "[t_He] appear[p_s()] to be staring off into space.\n"
-				if (HAS_TRAIT(src, TRAIT_DEAF))
-					msg += "[t_He] appear[p_s()] to not be responding to noises.\n"
-				if (bodytemperature > dna.species.bodytemp_heat_damage_limit)
-					msg += "[t_He] [t_is] flushed and wheezing.\n"
-				if (bodytemperature < dna.species.bodytemp_cold_damage_limit)
-					msg += "[t_He] [t_is] shivering.\n"
-
 			msg += "</span>"
 
 			if(HAS_TRAIT(user, TRAIT_SPIRITUAL) && mind?.holy_role)
