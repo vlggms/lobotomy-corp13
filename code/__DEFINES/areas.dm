@@ -6,9 +6,10 @@
 #define MOB_LIVING_INDEX			(1 << 1)
 #define MOB_SIMPLEANIMAL_INDEX		(1 << 2)
 #define MOB_HOSTILE_INDEX			(1 << 3)
-#define MOB_ABNORMALITY_INDEX		(1 << 4)
-#define MOB_CARBON_INDEX			(1 << 5)
-#define MOB_HUMAN_INDEX				(1 << 6)
+#define MOB_ABNO_PASSIVE_INDEX      (1 << 4)
+#define MOB_ABNORMALITY_INDEX		(1 << 5)
+#define MOB_CARBON_INDEX			(1 << 6)
+#define MOB_HUMAN_INDEX				(1 << 7)
 
 /* I could make it so each define is a continuation of the next one so that index look-ups become a matter of excluding what you dont want, instead of including what you want:
 #define MOB_LIVING_INDEX         (1 << 0)

@@ -87,7 +87,8 @@
 
 	/// Shows all adjacent areas. Pain on start.
 	var/list/adjacent_areas = list()
-
+	///Used to see what other area is related to this area
+	var/area/hallway = null
 /**
  * Associative list containing all living mobs present in the area separated into three internal lists depending on their subtype (carbon, hostiles and other_mobs)
  *

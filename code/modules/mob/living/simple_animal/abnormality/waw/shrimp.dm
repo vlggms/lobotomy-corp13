@@ -247,6 +247,7 @@
 	icon_living = "wellcheers_soldier"
 	icon_dead = "wellcheers_soldier_dead"
 	faction = list("neutral", "shrimp")
+	area_index = MOB_SIMPLEANIMAL_INDEX // Don't trip regenerator threat mode
 
 /obj/item/grenade/spawnergrenade/shrimp
 	name = "instant shrimp task force grenade"
