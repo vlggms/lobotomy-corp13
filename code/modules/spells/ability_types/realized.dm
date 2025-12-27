@@ -752,6 +752,7 @@
 	icon_dead = "farmwatch_tree"
 	faction = list("neutral")
 	del_on_death = FALSE
+	area_index = MOB_SIMPLEANIMAL_INDEX // Don't trip regenerator threat mode
 
 /mob/living/simple_animal/hostile/farmwatch_plant/Move()
 	return FALSE
@@ -783,6 +784,7 @@
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 1.8 SECONDS
 	var/pulse_damage = -2
+	area_index = MOB_SIMPLEANIMAL_INDEX // Don't trip regenerator threat mode
 
 /mob/living/simple_animal/hostile/spicebush_plant/Move()
 	return FALSE
@@ -1173,6 +1175,7 @@
 	can_affect_emergency = FALSE
 	trigger_lights = FALSE
 	fear_level = 0
+	area_index = MOB_SIMPLEANIMAL_INDEX // Don't trip regenerator threat mode
 
 /mob/living/simple_animal/hostile/aminion/shrimp/friendly/Initialize()
 	.=..()
@@ -1348,6 +1351,7 @@
 	vision_range = 18 //two screens away
 	faction = list("neutral")
 	var/mob/living/carbon/human/origin_nest
+	area_index = MOB_SIMPLEANIMAL_INDEX // Don't trip regenerator threat mode
 
 /mob/living/simple_animal/hostile/naked_nest_serpent_friend/Initialize()
 	.=..()
