@@ -206,9 +206,13 @@
 	},
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_alley)
+"bE" = (
+/obj/structure/bonfire/prelit,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_alley)
 "bN" = (
 /obj/machinery/door/airlock/vault{
-	name = "Pale Horse's containment unit"
+	name = "Til the Last Shot's containment unit"
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -340,7 +344,7 @@
 /mob/living/simple_animal/hostile/meatblob{
 	faction = list("gold_ordeal")
 	},
-/turf/open/floor/plating,
+/turf/open/floor/mineral/plastitanium/red,
 /area/awaymission/enkr)
 "cJ" = (
 /obj/structure/table/wood,
@@ -698,7 +702,7 @@
 	},
 /obj/structure/cable/layer1,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating,
+/turf/open/floor/mineral/plastitanium/red,
 /area/awaymission/enkr)
 "eP" = (
 /obj/effect/turf_decal/siding/green/corner{
@@ -1168,7 +1172,7 @@
 "hL" = (
 /obj/machinery/light/broken,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating,
+/turf/open/floor/mineral/plastitanium/red,
 /area/awaymission/enkr)
 "hM" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -1177,6 +1181,7 @@
 "hP" = (
 /obj/structure/table_frame,
 /obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/humanoid/ncorp,
 /turf/open/floor/facility/white,
 /area/city/backstreets_alley)
 "hR" = (
@@ -1411,7 +1416,7 @@
 "jb" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/blood/gibs/old,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/sandy_dirt,
 /area/awaymission/enkr)
 "jh" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -1462,6 +1467,11 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/dark,
+/area/awaymission/enkr)
+"jC" = (
+/obj/structure/cable/layer1,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium/red,
 /area/awaymission/enkr)
 "jD" = (
 /obj/machinery/light/broken{
@@ -1702,18 +1712,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/facility/halls,
 /area/awaymission/enkr)
-"lm" = (
-/obj/machinery/door/airlock/centcom{
-	desc = "A bit too sturdy...";
-	max_integrity = 10000;
-	name = "Strange Airlock";
-	normal_integrity = 100000;
-	req_access_txt = "19"
-	},
-/turf/open/floor/plasteel/shuttle{
-	name = "floor"
-	},
-/area/city/backstreets_alley)
 "ln" = (
 /obj/machinery/light{
 	color = "#03A9F4"
@@ -2427,7 +2425,7 @@
 /obj/structure/cable/layer1,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/remains/human,
-/turf/open/floor/plating,
+/turf/open/floor/mineral/plastitanium/red,
 /area/awaymission/enkr)
 "pR" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -2688,6 +2686,10 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/facility/halls,
 /area/awaymission/enkr)
+"ru" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/closed/mineral/random/facility/atzliuth,
+/area/awaymission/enkr)
 "rv" = (
 /obj/effect/turf_decal/siding/thinplating{
 	dir = 1
@@ -2835,6 +2837,10 @@
 /obj/item/clothing/under/suit/charcoal,
 /turf/open/floor/wood,
 /area/city/backstreets_alley)
+"sv" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/sandy_dirt,
+/area/awaymission/enkr)
 "sx" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/coin/gold,
@@ -3059,7 +3065,7 @@
 "tU" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating,
+/turf/open/floor/mineral/plastitanium/red,
 /area/awaymission/enkr)
 "tZ" = (
 /obj/machinery/door/airlock/vault{
@@ -3368,12 +3374,6 @@
 	},
 /turf/open/floor/plating,
 /area/awaymission/enkr)
-"vz" = (
-/obj/item/shard,
-/obj/effect/decal/cleanable/glass,
-/obj/structure/grille/broken,
-/turf/open/floor/wood,
-/area/city/backstreets_alley)
 "vA" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 10
@@ -3878,10 +3878,6 @@
 /obj/structure/meatfloor,
 /turf/open/floor/facility/halls,
 /area/awaymission/enkr)
-"yP" = (
-/mob/living/simple_animal/hostile/humanoid/ncorp,
-/turf/open/floor/plating/ashplanet/rocky,
-/area/city/backstreets_alley)
 "yQ" = (
 /obj/machinery/computer{
 	dir = 1
@@ -3912,6 +3908,11 @@
 /obj/item/attribute_increase/fixer,
 /obj/item/attribute_increase/fixer,
 /turf/open/floor/facility/halls,
+/area/awaymission/enkr)
+"zb" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium/red,
 /area/awaymission/enkr)
 "zf" = (
 /obj/machinery/aug_manipulator,
@@ -3987,7 +3988,7 @@
 "zJ" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/sandy_dirt,
 /area/awaymission/enkr)
 "zK" = (
 /obj/structure/table/wood,
@@ -4458,7 +4459,7 @@
 "Cu" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/insectguts,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/sandy_dirt,
 /area/awaymission/enkr)
 "Cx" = (
 /obj/item/ego_weapon/city/ncorp_mark/black,
@@ -4496,6 +4497,10 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/facility/halls,
 /area/awaymission/enkr)
+"CS" = (
+/obj/structure/bonfire/prelit,
+/turf/open/floor/plating/ashplanet/rocky,
+/area/city/backstreets_alley)
 "CT" = (
 /obj/structure/rack,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -4584,6 +4589,11 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/facility/halls,
+/area/awaymission/enkr)
+"Dv" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/lootcrate/money,
+/turf/open/floor/plating/sandy_dirt,
 /area/awaymission/enkr)
 "Dx" = (
 /obj/structure/railing/corner{
@@ -4760,6 +4770,11 @@
 "EG" = (
 /obj/structure/pe_sales/r_corp,
 /turf/closed/indestructible/reinforced,
+/area/awaymission/enkr)
+"EI" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/closed/mineral/random/facility/atzliuth,
 /area/awaymission/enkr)
 "EJ" = (
 /obj/item/circuitboard/computer/operating,
@@ -5123,6 +5138,12 @@
 /obj/effect/gibspawner/human,
 /obj/structure/lootcrate/money,
 /turf/open/floor/plating/dirt,
+/area/awaymission/enkr)
+"GR" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/gibspawner/human,
+/obj/structure/lootcrate/money,
+/turf/open/floor/plating/sandy_dirt,
 /area/awaymission/enkr)
 "GU" = (
 /obj/structure/bonfire/prelit,
@@ -5878,7 +5899,7 @@
 /area/awaymission/enkr)
 "Lj" = (
 /obj/structure/table/wood/fancy/green,
-/obj/item/toy/plush/goatplushie,
+/obj/item/reagent_containers/hypospray/emais,
 /turf/open/floor/carpet/green,
 /area/awaymission/enkr)
 "Ll" = (
@@ -5907,6 +5928,12 @@
 	},
 /turf/open/floor/facility/dark,
 /area/awaymission/enkr)
+"Lq" = (
+/mob/living/simple_animal/hostile/ordeal/sin_lust/noon{
+	faction = list("gold_ordeal")
+	},
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_alley)
 "Lt" = (
 /obj/structure/table/glass,
 /obj/item/clothing/accessory/armband/lobotomy/safety,
@@ -6169,7 +6196,7 @@
 /obj/structure/cable/layer1,
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating,
+/turf/open/floor/mineral/plastitanium/red,
 /area/awaymission/enkr)
 "Nh" = (
 /obj/structure/table/glass,
@@ -6691,7 +6718,7 @@
 /mob/living/simple_animal/hostile/meatblob/gunner{
 	faction = list("gold_ordeal")
 	},
-/turf/open/floor/plating,
+/turf/open/floor/mineral/plastitanium/red,
 /area/awaymission/enkr)
 "QB" = (
 /obj/effect/turf_decal/siding/purple{
@@ -7370,9 +7397,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/carpet/purple,
 /area/awaymission/enkr)
-"Uv" = (
-/turf/closed/indestructible/fakeglass,
-/area/city/backstreets_alley)
 "Uw" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 5
@@ -7587,7 +7611,7 @@
 	},
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating,
+/turf/open/floor/mineral/plastitanium/red,
 /area/awaymission/enkr)
 "Vz" = (
 /obj/structure/rack,
@@ -7724,6 +7748,10 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/toy/windup_toolbox,
 /turf/open/floor/carpet/green,
+/area/awaymission/enkr)
+"Wf" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium/red,
 /area/awaymission/enkr)
 "Wi" = (
 /obj/structure/sign/departments/safety,
@@ -8103,7 +8131,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/lootcrate/l_corp,
 /obj/structure/lootcrate/l_corp,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/sandy_dirt,
 /area/awaymission/enkr)
 "Yy" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -8219,7 +8247,7 @@
 /mob/living/simple_animal/hostile/meatblob{
 	faction = list("gold_ordeal")
 	},
-/turf/open/floor/plating,
+/turf/open/floor/mineral/plastitanium/red,
 /area/awaymission/enkr)
 "YW" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -10619,7 +10647,7 @@ NS
 NS
 Zw
 Zw
-qb
+sv
 Tw
 FH
 FH
@@ -10729,9 +10757,9 @@ yc
 NS
 Zw
 Zw
-qb
-qb
-ZP
+sv
+sv
+ru
 FH
 FH
 vJ
@@ -10839,10 +10867,10 @@ yc
 yc
 NS
 Zw
-GO
-qb
-qb
-ZP
+GR
+sv
+sv
+ru
 aZ
 aZ
 vJ
@@ -10950,10 +10978,10 @@ yc
 yc
 NS
 Zw
-qb
-qb
-qb
-ZP
+sv
+sv
+sv
+ru
 FH
 em
 wy
@@ -11061,8 +11089,8 @@ yc
 yc
 NS
 Zw
-qb
-qb
+sv
+sv
 Zw
 Tw
 FH
@@ -11172,8 +11200,8 @@ yc
 yc
 NS
 Zw
-qb
-qb
+sv
+sv
 Zw
 Tw
 FH
@@ -11284,7 +11312,7 @@ yc
 NS
 Zw
 zJ
-qb
+sv
 Zw
 Tw
 FH
@@ -11394,8 +11422,8 @@ yc
 yc
 NS
 Zw
-qb
-qb
+sv
+sv
 Zw
 hy
 hy
@@ -11505,8 +11533,8 @@ Tw
 MD
 Tw
 Tw
-ZP
-ZP
+ru
+ru
 Tw
 hy
 IX
@@ -11949,8 +11977,8 @@ Zz
 hy
 Tw
 Tw
-Cb
-Cb
+EI
+EI
 Tw
 hy
 hy
@@ -12033,7 +12061,7 @@ yc
 yc
 fh
 fh
-cX
+bE
 cX
 GX
 GX
@@ -12061,7 +12089,7 @@ Tw
 ZQ
 ZQ
 Cu
-tS
+Dv
 ZQ
 ZQ
 Tw
@@ -12171,7 +12199,7 @@ FH
 Tw
 ZQ
 ZQ
-qb
+sv
 jb
 ZQ
 ZQ
@@ -12282,8 +12310,8 @@ hy
 Mm
 Tw
 Tw
-Cb
-Cb
+EI
+EI
 hy
 Tw
 hy
@@ -12362,8 +12390,8 @@ yc
 fh
 cX
 cX
-Cn
 cX
+Lq
 cX
 cX
 cX
@@ -12387,9 +12415,9 @@ yc
 Tw
 QV
 Vx
-Ii
+zb
 Nf
-Ii
+zb
 hy
 FH
 Il
@@ -12500,7 +12528,7 @@ MY
 Qx
 tU
 cI
-Ii
+zb
 dx
 FH
 FH
@@ -12584,7 +12612,7 @@ yc
 fh
 cX
 cX
-cX
+bE
 fh
 fh
 fh
@@ -12609,8 +12637,8 @@ yc
 fl
 Ii
 AC
-hz
-lR
+Wf
+jC
 hL
 hy
 FH
@@ -12722,11 +12750,11 @@ hz
 iW
 YV
 pM
-hz
+Wf
 hy
 Tw
-Cb
-Cb
+EI
+EI
 YI
 Tw
 Tw
@@ -12832,12 +12860,12 @@ Tw
 hz
 lR
 eO
-lR
-hz
+jC
+Wf
 Tw
 ZQ
 jb
-qb
+sv
 ZQ
 ZQ
 ZQ
@@ -12948,7 +12976,7 @@ hy
 hy
 ZQ
 Yw
-qb
+sv
 ZQ
 Sn
 Sn
@@ -13058,8 +13086,8 @@ FH
 FH
 Tw
 Tw
-Cb
-Cb
+EI
+EI
 Tw
 Tw
 jq
@@ -13232,7 +13260,7 @@ VJ
 Wz
 fb
 oH
-Uv
+hJ
 io
 io
 io
@@ -13343,7 +13371,7 @@ JZ
 Wz
 oH
 oH
-Uv
+hJ
 gw
 cz
 io
@@ -13454,7 +13482,7 @@ oy
 OT
 oH
 oH
-lm
+OT
 Fb
 oy
 gk
@@ -13565,7 +13593,7 @@ qj
 hJ
 oH
 oH
-Uv
+hJ
 Fb
 io
 gk
@@ -13577,7 +13605,7 @@ AH
 JZ
 uR
 oH
-yP
+oH
 vP
 fh
 oH
@@ -13676,7 +13704,7 @@ nM
 hJ
 oH
 oH
-Uv
+hJ
 io
 io
 io
@@ -13913,7 +13941,7 @@ oH
 oH
 fh
 fh
-oH
+CS
 oH
 oH
 xY
@@ -14677,12 +14705,12 @@ oH
 oH
 vP
 vP
-yP
 oH
 oH
 oH
 oH
-yP
+oH
+oH
 Ki
 vP
 vP
@@ -15020,7 +15048,7 @@ fh
 fh
 fh
 oH
-yP
+oH
 vP
 fh
 fh
@@ -15449,7 +15477,7 @@ BP
 vC
 XY
 Qj
-vz
+Wz
 oH
 oH
 Lf
