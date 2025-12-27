@@ -97,7 +97,7 @@
 		maptext_height = 32
 		maptext_width = 32
 		var/style = "font-family: 'Better VCR'; font-size: 5px; -dm-text-outline: 1px black; color: [style_text_color];"
-		maptext = "<span style=\"[style]\">[round(healing_amount)]%</span>"
+		maptext = "<span style=\"[style]\">[round(healing_amount, 0.1)]%</span>"
 	animate(src, pixel_x = pixel_x + rand(1, 4), pixel_y = pixel_y + 10, alpha = 0, time = rand(8, 12), easing = SINE_EASING)
 	return ..()
 

@@ -192,6 +192,7 @@
 	desc = "He's got a sword!"
 	if(friendly)
 		fear_level = ZAYIN_LEVEL
+		swap_area_index(MOB_ABNO_PASSIVE_INDEX) // Won't disrupt regenerators
 		health = 300 //He's pretty tough at max HP
 		addtimer(CALLBACK(src, PROC_REF(escape)), 45 SECONDS)
 		GoToFriend()
@@ -200,6 +201,7 @@
 		update_icon()
 		return
 	if(!density) //sanity check for if he was friendly breaching and is no longer friendly
+		swap_area_index(MOB_ABNORMALITY_INDEX)
 		density = TRUE
 		fear_level = HE_LEVEL
 		FearEffect()
@@ -316,6 +318,7 @@
 /mob/living/simple_animal/hostile/abnormality/puss_in_boots/death(gibbed)
 	if(health <= 0)
 		playsound(get_turf(src), 'sound/effects/limbus_death.ogg', 50, 0, 2)
+	swap_area_index(MOB_ABNORMALITY_INDEX)
 	density = FALSE
 	animate(src, alpha = 0, time = 5 SECONDS)
 	QDEL_IN(src, 5 SECONDS)

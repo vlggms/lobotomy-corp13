@@ -10,11 +10,14 @@
 	//Icon States
 	var/broken_icon = "regen_dull"
 	var/alert_icon = "regen_alert"
+	var/minor_alert_icon = "regen_minor_alert"
 
 	/// How many HP and SP we restore on each process tick
 	var/regeneration_amount = 3
 	/// Pre-declared variable
 	var/modified = FALSE // Whether or not the regenerator is currently undergoing modified action
+	var/threat = FALSE
+	var/hallway_threat = FALSE
 	var/hp_bonus = 0
 	var/sp_bonus = 0
 	var/critical_heal = FALSE // Whether it heals people who are in critical condition (sanity loss/health loss)
@@ -24,6 +27,7 @@
 	var/long_duration = 60 SECONDS
 	var/reset_timer = 0
 	var/colored_overlay
+	var/area = null
 
 /obj/machinery/regenerator/Initialize()
 	. = ..()
@@ -50,12 +54,14 @@
 	var/area/A = get_area(src)
 	if(!istype(A))
 		return
-	var/threat = FALSE
+	threat = FALSE
+	hallway_threat = FALSE
 	var/regen_amt = regeneration_amount
 	var/regen_mult = 1
 	var/regen_add = GetFacilityUpgradeValue(UPGRADE_REGENERATOR_HEALING)
 	if(burst)
 		regen_mult *= 7.5
+		regen_add *= 7.5
 		burst = FALSE
 		burst_cooldown = TRUE
 		reset_timer = short_duration + world.time
@@ -63,16 +69,22 @@
 	for(var/key, value in A.area_living)
 		if(key & MOB_HUMAN_INDEX)
 			for(var/mob/living/carbon/human/bro in value)
-				if((bro.sanity_lost || bro.health < 0) && !critical_heal)
+				if(((bro.sanity_lost || bro.health < 0) && !critical_heal) || bro.is_working)
 					continue
 				LAZYADD(people_to_heal, bro)
 		// We assume that any simple_mob/hostile is, in fact, hostile. (If you do not want your super friendly simplemob/hostile to block regenerators, assign a different area_index var to your mob (code\__DEFINES\areas.dm))
 		// This also includes composite indexes that include the hostile or abnormality index.
 		if(!threat && (key & (MOB_HOSTILE_INDEX | MOB_ABNORMALITY_INDEX)))
-			regen_mult *= 0.5
 			icon_state = alert_icon
 			threat = TRUE
-	if(icon_state != "regen" && !threat)
+	if(!threat && HallwayCheck()) //If the area has a hallway associated with it we should check it too.
+		icon_state = minor_alert_icon
+		hallway_threat = TRUE
+	if(!hallway_threat && !threat)
+		regen_mult *= 1.5
+	if(threat)
+		regen_mult *= 0.5
+	if(icon_state != "regen" && !threat && !hallway_threat)
 		icon_state = initial(icon_state)
 
 	if(LAZYLEN(people_to_heal))
@@ -91,7 +103,18 @@
 	if(burst_cooldown)
 		. += span_warning("[src] is currently offline!")
 		return
-	. += span_info("[src] restores [regeneration_amount+hp_bonus+GetFacilityUpgradeValue(UPGRADE_REGENERATOR_HEALING)]% HP and [regeneration_amount+sp_bonus+GetFacilityUpgradeValue(UPGRADE_REGENERATOR_HEALING)]% SP every 2 seconds.")
+	var/regen_add = GetFacilityUpgradeValue(UPGRADE_REGENERATOR_HEALING)
+	var/regen_mult = 1
+	if(burst)
+		regen_mult *= 7.5
+		regen_add *= 7.5
+	if(!hallway_threat && !threat)
+		regen_mult *= 1.5
+		. += span_info("No Threats currently detected. Base healing is 50% stronger.")
+	if(threat)
+		regen_mult *= 0.5
+		. += span_info("WARNING: Thread detected. Base healing is halved!")
+	. += span_info("[src] restores [(regeneration_amount * regen_mult)+hp_bonus+regen_add]% HP and [(regeneration_amount * regen_mult)+sp_bonus+regen_add]% SP every 2 seconds.")
 
 /obj/machinery/regenerator/proc/ProduceIcon(Icon_Color, Type) //Used to be called ProduceGas but due to me using it for a button i had to change it. ProduceGas was a cooler name. -IP
 	var/mutable_appearance/colored_overlay = mutable_appearance(icon, Type)
@@ -145,6 +168,13 @@
 	ProduceIcon("#800000", "regenpuffs_heavy") //Maroon
 	ProduceIcon("#B90E0A", "regenspores_heavy") //Crimson
 	// No Timer as it's an "instant" effect. Also handles turning off over there
+
+/obj/machinery/regenerator/proc/HallwayCheck(area/A)
+	for(var/area/facility_hallway/F in A.adjacent_areas)
+		for(var/key, value in F.area_living)
+			if((key & (MOB_HOSTILE_INDEX | MOB_ABNORMALITY_INDEX)))
+				return TRUE
+	return FALSE
 
 //Safety Plant Regenerator
 /obj/machinery/regenerator/safety

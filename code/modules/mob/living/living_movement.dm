@@ -88,6 +88,14 @@
 		RegisterSignal(src, COMSIG_EXIT_AREA, PROC_REF(on_exited_area))
 		LAZYALISTADDLIST((our_area.area_living), area_index, src) // And we make our presence known once again.
 
+/// Use this to change a mob's area index without messing up the area lists. Send the new area_index as the argument.
+/mob/living/proc/swap_area_index(new_index)
+	if(!new_index)
+		return
+	cleanup_area_presence()
+	area_index = new_index | FROZEN_INDEX
+	restore_area_presence()
+
 /mob/living/canZMove(dir, turf/target)
 	return can_zTravel(target, dir) && (movement_type & FLYING | FLOATING)
 

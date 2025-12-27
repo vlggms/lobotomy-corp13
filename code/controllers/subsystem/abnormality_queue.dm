@@ -35,7 +35,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 	/// World time at which new abnormality will be spawned
 	var/next_abno_spawn = INFINITY
 	/// Wait time for next abno spawn; This time is further affected by amount of abnos in facility
-	var/next_abno_spawn_time = 4 MINUTES
+	var/next_abno_spawn_time = 5 MINUTES
 	/// Tracks if the current pick is forced
 	var/fucked_it_lets_rolled = FALSE
 	/// Due to Managers not passing the Litmus Test, divine approval is now necessary for red roll
@@ -65,7 +65,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 /datum/controller/subsystem/abnormality_queue/proc/SpawnAbno()
 	// Earlier in the game, abnormalities will spawn faster and then slow down a bit
 	previous_abno_spawn = world.time
-	next_abno_spawn = world.time + next_abno_spawn_time + ((min(16, spawned_abnos) - 6) * 6) SECONDS
+	next_abno_spawn = world.time + next_abno_spawn_time + ((min(16, spawned_abnos) - floor(rooms_start * 0.5)) * 8) SECONDS
 
 	if(!length(GLOB.abnormality_room_spawners))
 		return
