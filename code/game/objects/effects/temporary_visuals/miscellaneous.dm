@@ -881,24 +881,6 @@
 	layer = ABOVE_ALL_MOB_LAYER
 	duration = 15
 
-/obj/effect/temp_visual/healing
-	icon_state = "healing"
-	layer = ABOVE_ALL_MOB_LAYER
-	duration = 8
-
-/obj/effect/temp_visual/healing/Initialize(mapload)
-	. = ..()
-	pixel_x = rand(-12, 12)
-	pixel_y = rand(-9, 0)
-
-/obj/effect/temp_visual/healing/no_dam
-	icon_state = "no_dam"
-
-/obj/effect/temp_visual/pale_eye_attack
-	name = "pale particles"
-	icon_state = "ion_fade_flight"
-	duration = 5
-
 /obj/effect/temp_visual/pale_eye_attack/Initialize()
 	. = ..()
 	animate(src, alpha = 0, time = 5)

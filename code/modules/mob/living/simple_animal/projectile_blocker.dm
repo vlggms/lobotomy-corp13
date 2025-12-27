@@ -5,6 +5,7 @@
 	icon_state = "training_rabbit"
 	status_flags = GODMODE
 	invisibility = INVISIBILITY_ABSTRACT
+	area_index = FROZEN_INDEX // Index frozen because dummies do not have area tracking rights.
 	alpha = 0
 	hud_possible = null
 	hud_list = null

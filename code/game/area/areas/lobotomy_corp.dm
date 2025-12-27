@@ -89,51 +89,62 @@
 /area/department_main/manager
 	name = "Manager's Office"
 	icon_state = "mainroom_manager"
+	hallway = /area/facility_hallway/manager
 
 /area/department_main/control
 	name = "Control Main Room"
 	icon_state = "mainroom_control"
+	hallway = /area/facility_hallway/control
 
 /area/department_main/command
 	name = "Command Main Room"
 	icon_state = "mainroom_command"
+	hallway = /area/facility_hallway/command
 
 /area/department_main/training
 	name = "Training Main Room"
 	icon_state = "mainroom_training"
+	hallway = /area/facility_hallway/training
 
 /area/department_main/information
 	name = "Information Main Room"
 	icon_state = "mainroom_info"
+	hallway = /area/facility_hallway/information
 
 /area/department_main/safety
 	name = "Safety Main Room"
 	icon_state = "mainroom_safety"
+	hallway = /area/facility_hallway/safety
 
 /area/department_main/discipline
 	name = "Disciplinary Main Room"
 	icon_state = "mainroom_disciplinary"
+	hallway = /area/facility_hallway/discipline
 
 /area/department_main/welfare
 	name = "Welfare Main Room"
 	icon_state = "mainroom_welfare"
+	hallway = /area/facility_hallway/welfare
 
 /area/department_main/records
 	name = "Records Main Room"
 	icon_state = "mainroom_records"
+	hallway = /area/facility_hallway/records
 
 /area/department_main/extraction
 	name = "Extraction Main Room"
 	icon_state = "mainroom_extraction"
+	hallway = /area/facility_hallway/extraction
 
 /area/department_main/human
 	name = "Human Resources Room"
 	icon_state = "mainroom_hr"
+	hallway = /area/facility_hallway/human
 
 /area/department_main/architecture
 	name = "Architecture Main Room"
 	icon_state = "mainroom_extraction"
-
+	hallway = /area/facility_hallway/architecture
 
 /area/facility_hallway
 	name = "Hallway"
