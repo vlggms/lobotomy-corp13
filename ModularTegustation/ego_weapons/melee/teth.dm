@@ -448,11 +448,11 @@
 	hit_message = "avoids a direct hit!"
 	block_cooldown_message = "You catch your breath."
 
-/obj/item/ego_weapon/mini/fourleaf_clover
-	name = "four-leaf clover"
+/obj/item/ego_weapon/mini/sticking
+	name = "sticking"
 	desc = "A weapon fit for those that would backstab someone after gaining their trust."
 	special = "This weapon gains 1 poise for every attack. 1 poise gives you a 2% chance to crit at 3x damage, stacking linearly. Critical hits reduce poise to 0."
-	icon_state = "fourleaf_clover"
+	icon_state = "sticking"
 	force = 5
 	attack_speed = 0.5
 	swingstyle = WEAPONSWING_LARGESWEEP
@@ -462,11 +462,11 @@
 	hitsound = 'sound/weapons/fixer/generic/knife2.ogg'
 	var/poise = 0
 
-/obj/item/ego_weapon/mini/fourleaf_clover/examine(mob/user)
+/obj/item/ego_weapon/mini/sticking/examine(mob/user)
 	. = ..()
 	. += "Current Poise: [poise]/20."
 
-/obj/item/ego_weapon/mini/fourleaf_clover/attack(mob/living/target, mob/living/carbon/human/user)
+/obj/item/ego_weapon/mini/sticking/attack(mob/living/target, mob/living/carbon/human/user)
 	if(!CanUseEgo(user))
 		return
 	poise+=1
