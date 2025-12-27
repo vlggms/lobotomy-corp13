@@ -77,7 +77,7 @@
 		if(!threat && (key & (MOB_HOSTILE_INDEX | MOB_ABNORMALITY_INDEX)))
 			icon_state = alert_icon
 			threat = TRUE
-	if(!threat && HallwayCheck()) //If the area has a hallway associated with it we should check it too.
+	if(!threat && HallwayCheck(A)) //If the area has a hallway associated with it we should check it too.
 		icon_state = minor_alert_icon
 		hallway_threat = TRUE
 	if(!hallway_threat && !threat)
@@ -182,6 +182,7 @@
 	icon_state = "regen"
 	broken_icon = "regen_dull"
 	alert_icon = "regen_alert"
+	minor_alert_icon = "regen_minor_alert"
 	layer = ABOVE_OBJ_LAYER //So people dont stand ontop of it when above it
 
 //Don't add tutorial regenerators to global list, prevents them from being affected by Safety suppression
