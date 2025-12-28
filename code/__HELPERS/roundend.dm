@@ -374,13 +374,6 @@
 	//Economy & Money
 	parts += market_report()
 
-	//PE Quota
-	if(SSmaptype.maptype == "standard")
-		parts += pe_report()
-	//Enkephalin Rush
-	if(SSmaptype.maptype == "enkephalin_rush")
-		parts += mining_report()
-
 	listclearnulls(parts)
 
 	return parts.Join()
@@ -418,81 +411,6 @@
 			parts += "[FOURSPACES][FOURSPACES][rule.ruletype] - <b>[rule.name]</b>: -[rule.cost + rule.scaled_times * rule.scaling_cost] threat"
 	return parts.Join("<br>")
 
-/datum/controller/subsystem/ticker/proc/agent_report()
-	var/list/parts = list()
-	var/highest_works = null
-	var/highest_earner = null
-	var/highest_gains = null
-
-	var/highest_work_count = 0
-	var/highest_earn_count = 0
-	var/highest_gain_count = 0
-	for(var/agent_name in SSlobotomy_corp.work_stats)
-		var/curr_work_count = SSlobotomy_corp.work_stats[agent_name]["works"]
-		if(curr_work_count > highest_work_count)
-			highest_works = agent_name
-			highest_work_count = curr_work_count
-		var/curr_earn_count = SSlobotomy_corp.work_stats[agent_name]["pe"]
-		if(curr_earn_count > highest_earn_count)
-			highest_earner = agent_name
-			highest_earn_count = curr_earn_count
-		var/curr_gain_count = 0
-		for(var/attr in SSlobotomy_corp.work_stats[agent_name]["gain"])
-			curr_gain_count += SSlobotomy_corp.work_stats[agent_name]["gain"][attr]
-		if(curr_gain_count > highest_gain_count)
-			highest_gains = agent_name
-			highest_gain_count = curr_gain_count
-
-	parts += "<br>[FOURSPACES]Facility records:<br>"
-	if(!highest_works && !highest_earner && !highest_gains) // How
-		parts += "[FOURSPACES][FOURSPACES]...Everyone was miserable and did nothing.."
-		return parts.Join("<br>")
-	if(highest_works)
-		parts += "[FOURSPACES][FOURSPACES][highest_works] worked the most, for a total of <b>[highest_work_count]</b> sessions!"
-	if(highest_earner)
-		parts += "[FOURSPACES][FOURSPACES][highest_earner] earned the most PE while working, for a total of <b>[highest_earn_count]</b> boxes!"
-	if(highest_gains)
-		parts += "[FOURSPACES][FOURSPACES][highest_gains] gained the most attributes <u>while working</u>, for a total of <b>[highest_gain_count]</b> points!"
-
-	return parts.Join("<br>")
-
-/datum/controller/subsystem/ticker/proc/abnormality_report()
-	var/list/parts = list()
-	var/datum/abnormality/highest_abno = null
-	var/highest_work_count = 0
-	var/full_abno_count = 0
-	var/list/abno_count = list(0, 0, 0, 0, 0)
-	for(var/datum/abnormality/A in SSlobotomy_corp.all_abnormality_datums)
-		var/work_count = 0
-		for(var/worker in A.work_stats)
-			work_count += A.work_stats[worker]["works"]
-		if(work_count > highest_work_count)
-			highest_abno = A
-			highest_work_count = work_count
-		abno_count[A.threat_level] += 1
-		full_abno_count += 1
-	parts += "[FOURSPACES]<b>The facility had [full_abno_count] abnormalities:</b>"
-	for(var/i = 1 to 5)
-		if(abno_count[i] < 1)
-			continue
-		parts += "[FOURSPACES][FOURSPACES]<span style='color: [THREAT_TO_COLOR[i]]'>[abno_count[i]] [THREAT_TO_NAME[i]]s.</span>"
-	if(istype(highest_abno))
-		parts += "<br>[FOURSPACES][highest_abno.name] has been worked on the most, for a total of [highest_work_count] sessions.<br>"
-		if(LAZYLEN(highest_abno.work_stats))
-			var/highest_worker = null
-			var/highest_work_num = -1
-			for(var/worker_name in highest_abno.work_stats)
-				var/curr_work_num = highest_abno.work_stats[worker_name]["works"]
-				if(curr_work_num > highest_work_num)
-					highest_worker = worker_name
-					highest_work_num = curr_work_num
-			if(highest_worker)
-				var/total_attr_points = 0
-				for(var/attr in highest_abno.work_stats[highest_worker]["gain"])
-					total_attr_points += highest_abno.work_stats[highest_worker]["gain"][attr] // Nice lists we got there, huh?
-				parts += "[FOURSPACES][highest_worker] worked on it the most, for a total of [highest_abno.work_stats[highest_worker]["works"]] sessions, earning [highest_abno.work_stats[highest_worker]["pe"]] PE in the process, while gaining a total of [total_attr_points] attribute points.<br>"
-	return parts.Join("<br>")
-
 /client/proc/roundend_report_file()
 	return "data/roundend_reports/[ckey].html"
 
@@ -513,15 +431,11 @@
 	parts += "</div>"
 	if(SSmaptype.maptype == "standard" || SSmaptype.maptype == "enkephalin_rush")
 		parts += "<div class='panel stationborder'>"
-		parts += GLOB.agent_report
+		parts += GLOB.facility_report
 		parts += "</div>"
-		parts += "<div class='panel stationborder'>"
-		parts += GLOB.abnormality_report
-		parts += "</div>"
-		parts += "<div class='panel stationborder'>"
-		parts += GLOB.ordeal_report
-		parts += "</div>"
+	parts += "<div class='panel stationborder'>"
 	parts += GLOB.common_report
+	parts += "</div>"
 	var/content = parts.Join()
 	//Log the rendered HTML in the round log directory
 	fdel(filename)
@@ -579,25 +493,239 @@
 	parts += GLOB.survivor_report
 	parts += "</div>"
 	if(SSmaptype.maptype == "standard" || SSmaptype.maptype == "enkephalin_rush")
-		parts += "<div class='panel stationborder'>"
-		parts += GLOB.agent_report
-		parts += "</div>"
-		parts += "<div class='panel stationborder'>"
-		parts += GLOB.abnormality_report
-		parts += "</div>"
-		parts += "<div class='panel stationborder'>"
-		parts += GLOB.ordeal_report
-		parts += "</div>"
-
+		parts += GLOB.facility_report
 	return parts.Join()
+
+/datum/controller/subsystem/ticker/proc/facility_report()
+	to_chat(world, "A")
+	var/list/parts = list()
+	parts += "<span class='header'>Facility Records:</span>"
+	parts += "<div class='panel stationborder'>"
+	parts += agent_report()
+	parts += abnormality_report()
+	//PE Quota
+	if(SSmaptype.maptype == "standard")
+		parts += pe_report()
+	//Enkephalin Rush
+	if(SSmaptype.maptype == "enkephalin_rush")
+		parts += mining_report()
+	parts += ordeal_report()
+	parts += core_supression_report()
+	parts += "</div>"
+	return parts.Join("<br>")
+
+/datum/controller/subsystem/ticker/proc/agent_report()
+	var/list/parts = list()
+	parts += "<span class='header'>Agent Statistics:</span>"
+	parts += "<div class='panel stationborder'>"
+	var/highest_works = null
+	var/highest_earner = null
+	var/highest_gains = null
+
+	var/highest_work_count = 0
+	var/highest_earn_count = 0
+	var/highest_gain_count = 0
+	for(var/agent_name in SSlobotomy_corp.work_stats)
+		var/curr_work_count = SSlobotomy_corp.work_stats[agent_name]["works"]
+		if(curr_work_count > highest_work_count)
+			highest_works = agent_name
+			highest_work_count = curr_work_count
+		var/curr_earn_count = SSlobotomy_corp.work_stats[agent_name]["pe"]
+		if(curr_earn_count > highest_earn_count)
+			highest_earner = agent_name
+			highest_earn_count = curr_earn_count
+		var/curr_gain_count = 0
+		for(var/attr in SSlobotomy_corp.work_stats[agent_name]["gain"])
+			curr_gain_count += SSlobotomy_corp.work_stats[agent_name]["gain"][attr]
+		if(curr_gain_count > highest_gain_count)
+			highest_gains = agent_name
+			highest_gain_count = curr_gain_count
+
+	if(!highest_works && !highest_earner && !highest_gains) // How"
+		parts += "[FOURSPACES]...Everyone was miserable and did nothing..."
+		parts += "</div>"
+		return parts.Join("<br>")
+	if(highest_works)
+		parts += "[FOURSPACES][highest_works] worked the most, for a total of <b>[highest_work_count]</b> sessions!"
+	if(highest_earner)
+		parts += "[FOURSPACES][highest_earner] earned the most PE while working, for a total of <b>[highest_earn_count]</b> boxes!"
+	if(highest_gains)
+		parts += "[FOURSPACES][highest_gains] gained the most attributes <u>while working</u>, for a total of <b>[highest_gain_count]</b> points!"
+	parts += "</div>"
+	return parts.Join("<br>")
+
+/datum/controller/subsystem/ticker/proc/abnormality_report()
+	var/list/parts = list()
+	var/datum/abnormality/highest_abno = null
+	var/highest_work_count = 0
+	var/full_abno_count = 0
+	var/list/abno_count = list(0, 0, 0, 0, 0)
+	parts += "<span class='header'>Abnormality Summary:</span>"
+	parts += "<div class='panel stationborder'>"
+	for(var/datum/abnormality/A in SSlobotomy_corp.all_abnormality_datums)
+		var/work_count = 0
+		for(var/worker in A.work_stats)
+			work_count += A.work_stats[worker]["works"]
+		if(work_count > highest_work_count)
+			highest_abno = A
+			highest_work_count = work_count
+		abno_count[A.threat_level] += 1
+		full_abno_count += 1
+	parts += "<b>The facility had [full_abno_count] abnormalities:</b>"
+	for(var/i = 1 to 5)
+		if(abno_count[i] < 1)
+			continue
+		parts += "[FOURSPACES]<span style='color: [THREAT_TO_COLOR[i]]'>[abno_count[i]] [THREAT_TO_NAME[i]]s.</span>"
+	if(istype(highest_abno))
+		parts += "<br>[highest_abno.name] has been worked on the most, for a total of [highest_work_count] sessions.<br>"
+		if(LAZYLEN(highest_abno.work_stats))
+			var/highest_worker = null
+			var/highest_work_num = -1
+			for(var/worker_name in highest_abno.work_stats)
+				var/curr_work_num = highest_abno.work_stats[worker_name]["works"]
+				if(curr_work_num > highest_work_num)
+					highest_worker = worker_name
+					highest_work_num = curr_work_num
+			if(highest_worker)
+				var/total_attr_points = 0
+				for(var/attr in highest_abno.work_stats[highest_worker]["gain"])
+					total_attr_points += highest_abno.work_stats[highest_worker]["gain"][attr] // Nice lists we got there, huh?
+				parts += "[highest_worker] worked on it the most, for a total of [highest_abno.work_stats[highest_worker]["works"]] sessions, earning [highest_abno.work_stats[highest_worker]["pe"]] PE in the process, while gaining a total of [total_attr_points] attribute points."
+	if(LAZYLEN(SSticker.superbosses))
+		parts += "<br><b>High-risk abnormalities defeated:</b>"
+		for(var/mob/M in SSticker.superbosses)
+			var/name = M.name
+			if(istype(M, /mob/living/simple_animal/hostile/abnormality/distortedform))
+				name = "<span style='color: yellow'>Disto</span><span style='color: red'>rted</span> <span style='color: purple'>Form</span>"
+			else if(istype(M, /mob/living/simple_animal/hostile/abnormality/nobody_is))
+				name = "<span style='color: [COLOR_STRONG_MAGENTA]'>Oberon an</span><span style='color: [COLOR_VERY_PALE_LIME_GREEN]'>d Titania</span>"
+			else if(istype(M, /mob/living/simple_animal/hostile/megafauna/apocalypse_bird))
+				name = "<span style='color: [COLOR_MAROON]'>[M.name]</span>"
+			else if(istype(M, /mob/living/simple_animal/hostile/abnormality/white_night))
+				name = "<span style='color: red'>[M.name]</span>"
+			parts += "[FOURSPACES]<b>[name]</b> was defeated!"
+	parts += "</div>"
+	return parts.Join("<br>")
+
+/datum/controller/subsystem/ticker/proc/pe_report()
+	var/list/parts = list()
+	SSpersistence.pe_status[PE_GOAL_SPENT] = FALSE
+	parts += "<span class='header'>PE Quota:</span>"
+	parts += "<div class='panel stationborder'>"
+	parts += "[SSlobotomy_corp.total_generated] total PE was generated.<br>"
+	if(SSlobotomy_corp.goal_boxes)
+		parts += "[SSlobotomy_corp.goal_boxes] PE was refined or otherwise generated through alternative means.<br>"
+	if(SSlobotomy_corp.total_spent)
+		parts += "[SSlobotomy_corp.total_spent] PE was spent on various things.<br>"
+	if(SSlobotomy_corp.goal_reached)
+		parts += "PE Quota was reached!<br>"
+		SSpersistence.pe_status[PE_GOAL_REACHED] = TRUE
+		if(SSlobotomy_corp.available_box)
+			SSpersistence.pe_status[PE_LEFTOVER] = SSlobotomy_corp.available_box
+	else
+		SSpersistence.pe_status[PE_GOAL_REACHED] = FALSE
+		if(SSlobotomy_corp.box_goal == 0)
+			parts += "The day hasn't even started yet and you're leaving?"
+		else if(SSlobotomy_corp.total_spent >= SSlobotomy_corp.box_goal)
+			parts += "Enough PE to meet PE Quota was made, but you spent it all!? You'll be hearing from our lawyers."
+			SSpersistence.pe_status[PE_GOAL_SPENT] = TRUE
+		else
+			parts += "PE Quota was not reached! Don't expect to have a job tomorrow..."
+	parts += "</div>"
+	return parts.Join("<br>")
+
+//enkephalin rush roundend stuff
+/datum/controller/subsystem/ticker/proc/mining_report()
+	var/list/parts = list()
+	var/repaired_machines = (GLOB.lobotomy_repairs)
+	var/total_machines = (GLOB.lobotomy_damages)
+	var/facility_full_percentage = 100 * (repaired_machines / total_machines)
+	parts += "<span class='header'>Site Recovery Report:</span>"
+	parts += "<div class='panel stationborder'>"
+	parts += "[facility_full_percentage]% of the facility has been recovered!<br>"
+	if(facility_full_percentage >= 100)
+		parts += "The facility is fully functional!<br>"
+	if(GLOB.bough_collected)
+		parts += "The golden bough has been successfully retrieved!"
+	else
+		parts += "You have failed to collect the golden bough."
+	parts += "</div>"
+	return parts.Join("<br>")
+
+//Generates a report of the ordeals that happened and the time it took
+/datum/controller/subsystem/ticker/proc/ordeal_report()
+	var/list/parts = list()
+	parts += "<span class='header'>Ordeal Summary:</span>"
+	parts += "<div class='panel stationborder'>"
+	if(!LAZYLEN(SSticker.ordeals_done))
+		parts += "<b>The facility had faced no ordeals!</b>"
+	else if(SSticker.ordeals_done.len == 1)
+		parts += "<b>The facility had faced 1 ordeal:</b>"
+	else
+		parts += "[FOURSPACES]<b>The facility had faced [SSticker.ordeals_done.len] ordeals:</b>"
+	for(var/datum/ordeal/O in SSticker.ordeals_done)
+		if(O.end_time)
+			parts += "[FOURSPACES]<span style='color: [O.color]'>[O.name]</span>: Started at <b>[DisplayTimeText(O.start_time)]</b> and took <b>[DisplayTimeText(O.end_time - O.start_time)]</b> to be delt with."
+		else
+			parts += "[FOURSPACES]<span style='color: [O.color]'>[O.name]</span>: Started at <b>[DisplayTimeText(O.start_time)]</b> and was <b>never beaten</b>!"
+	parts += "</div>"
+	return parts.Join("<br>")
+
+//Generates a report of core suppressions that were
+/datum/controller/subsystem/ticker/proc/core_supression_report()
+	var/list/parts = list()
+	parts += "<span class='header'>Core Supressions:</span>"
+	parts += "<div class='panel stationborder'>"
+	if(!SSticker.core_suppression && !SSticker.post_midnight_core)
+		parts += "No Core Supressions happened this shift!</div>"
+		return parts.Join("<br>")
+	if(SSticker.core_suppression)
+		parts += "<span style='color: [core_color(SSticker.core_suppression)]'>[SSticker.core_suppression.name]</span> was completed!"
+	if(SSticker.post_midnight_core)
+		parts += "<span style='color: [core_color(SSticker.post_midnight_core)]'>[SSticker.post_midnight_core.name]</span> was completed!"
+	parts += "</div>"
+	return parts.Join("<br>")
+
+/datum/controller/subsystem/ticker/proc/core_color(datum/suppression/S)
+	var/color = "red"
+	var/core_suppression_name = S.name
+	switch(core_suppression_name)
+		if(CONTROL_CORE_SUPPRESSION)
+			color = "yellow"
+
+		if(INFORMATION_CORE_SUPPRESSION)
+			color = "purple"
+
+		if(SAFETY_CORE_SUPPRESSION)
+			color = "green"
+
+		if(TRAINING_CORE_SUPPRESSION)
+			color = "orange"
+
+		if(COMMAND_CORE_SUPPRESSION)
+			color = "yellow"
+
+		if(WELFARE_CORE_SUPPRESSION)
+			color = "blue"
+
+		if(DISCIPLINARY_CORE_SUPPRESSION)
+			color = "red"
+
+		if(EXTRACTION_CORE_SUPPRESSION)
+			color = "yellow"
+
+		if(RECORDS_CORE_SUPPRESSION)
+			color = "white"
+
+		if(DAY46_CORE_SUPPRESSION, DAY47_CORE_SUPPRESSION, DAY48_CORE_SUPPRESSION, DAY49_CORE_SUPPRESSION, DAY50_CORE_SUPPRESSION)
+			color = "white"
+	return color
 
 /datum/controller/subsystem/ticker/proc/display_report(popcount)
 	GLOB.common_report = build_roundend_report()
 	GLOB.survivor_report = survivor_report(popcount)
 	if(SSmaptype.maptype == "standard" || SSmaptype.maptype == "enkephalin_rush")
-		GLOB.agent_report = agent_report()
-		GLOB.abnormality_report = abnormality_report()
-		GLOB.ordeal_report = ordeal_report()
+		GLOB.facility_report = facility_report()
 	log_roundend_report()
 	for(var/client/C in GLOB.clients)
 		show_roundend_report(C)
@@ -653,6 +781,7 @@
 /datum/controller/subsystem/ticker/proc/market_report()
 	var/list/parts = list()
 	parts += "<span class='header'>Facility Economic Summary:</span>"
+	parts += "<div class='panel stationborder'>"
 	///This is the richest account on station at roundend.
 	var/datum/bank_account/mr_moneybags
 	///This is the station's total wealth at the end of the round.
@@ -667,7 +796,7 @@
 		station_vault += current_acc.account_balance
 		if(!mr_moneybags || mr_moneybags.account_balance < current_acc.account_balance)
 			mr_moneybags = current_acc
-	parts += "<div class='panel stationborder'>There were [station_vault] ahn collected by employees this shift.<br>"
+	parts += "<div class='panel stationborder'>There were [station_vault] ahn collected by employees this shift.</div><br>"
 	if(total_players > 0)
 		parts += "An average of [station_vault/total_players] ahn were collected.<br>"
 		log_econ("Roundend ahn total: [station_vault] ahn. Average Ahn: [station_vault/total_players]")
@@ -676,49 +805,6 @@
 	else
 		parts += "Somehow, nobody made any money this shift! This'll result in some budget cuts...</div>"
 	return parts
-
-//Generates a report of the ordeals that happened and the time it took
-/datum/controller/subsystem/ticker/proc/ordeal_report()
-	var/list/parts = list()
-	if(!LAZYLEN(SSticker.ordeals_done))
-		parts += "[FOURSPACES]<b>The facility had faced no ordeals!</b>"
-	else if(SSticker.ordeals_done.len == 1)
-		parts += "[FOURSPACES]<b>The facility had faced 1 ordeal:</b>"
-	else
-		parts += "[FOURSPACES]<b>The facility had faced [SSticker.ordeals_done.len] ordeals:</b>"
-	for(var/datum/ordeal/O in SSticker.ordeals_done)
-		if(O.end_time)
-			parts += "[FOURSPACES][FOURSPACES]<span style='color: [O.color]'>[O.name]</span>: Started at <b>[DisplayTimeText(O.start_time)]</b> and took <b>[DisplayTimeText(O.end_time - O.start_time)]</b> to be delt with."
-		else
-			parts += "[FOURSPACES][FOURSPACES]<span style='color: [O.color]'>[O.name]</span>: Started at <b>[DisplayTimeText(O.start_time)]</b> and was <b>never beaten</b>!"
-	return parts.Join("<br>")
-
-/datum/controller/subsystem/ticker/proc/pe_report()
-	. = list()
-	SSpersistence.pe_status[PE_GOAL_SPENT] = FALSE
-	. += "<span class='header'>PE Quota</span>"
-	. += "<div class='panel stationborder'>"
-	. += "[SSlobotomy_corp.total_generated] total PE was generated.<br>"
-	if(SSlobotomy_corp.goal_boxes)
-		. += "[SSlobotomy_corp.goal_boxes] PE was refined or otherwise generated through alternative means.<br>"
-	if(SSlobotomy_corp.total_spent)
-		. += "[SSlobotomy_corp.total_spent] PE was spent on various things.<br>"
-	if(SSlobotomy_corp.goal_reached)
-		. += "PE Quota was reached!<br>"
-		SSpersistence.pe_status[PE_GOAL_REACHED] = TRUE
-		if(SSlobotomy_corp.available_box)
-			SSpersistence.pe_status[PE_LEFTOVER] = SSlobotomy_corp.available_box
-	else
-		SSpersistence.pe_status[PE_GOAL_REACHED] = FALSE
-		if(SSlobotomy_corp.box_goal == 0)
-			. += "The day hasn't even started yet and you're leaving?<br>"
-		else if(SSlobotomy_corp.total_spent >= SSlobotomy_corp.box_goal)
-			. += "Enough PE to meet PE Quota was made, but you spent it all!? You'll be hearing from our lawyers.<br>"
-			SSpersistence.pe_status[PE_GOAL_SPENT] = TRUE
-		else
-			. += "PE Quota was not reached! Don't expect to have a job tomorrow...<br>"
-	. += "</div>"
-	return
 
 /datum/controller/subsystem/ticker/proc/medal_report()
 	if(GLOB.commendations.len)
@@ -936,21 +1022,3 @@
 				return
 			qdel(query_update_everything_ranks)
 		qdel(query_check_everything_ranks)
-
-//enkephalin rush roundend stuff
-/datum/controller/subsystem/ticker/proc/mining_report()
-	. = list()
-	var/repaired_machines = (GLOB.lobotomy_repairs)
-	var/total_machines = (GLOB.lobotomy_damages)
-	var/facility_full_percentage = 100 * (repaired_machines / total_machines)
-	. += "<span class='header'>Site Recovery Report</span>"
-	. += "<div class='panel stationborder'>"
-	. += "[facility_full_percentage]% of the facility has been recovered!<br>"
-	if(facility_full_percentage >= 100)
-		. += "The facility is fully functional!<br>"
-	if(GLOB.bough_collected)
-		. += "The golden bough has been successfully retrieved!<br>"
-	else
-		. += "You have failed to collect the golden bough.<br>"
-	. += "</div>"
-	return
