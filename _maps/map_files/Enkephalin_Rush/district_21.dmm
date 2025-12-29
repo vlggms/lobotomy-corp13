@@ -1649,7 +1649,7 @@
 /obj/structure/railing/indestructible{
 	dir = 8
 	},
-/mob/living/simple_animal/hostile/humanoid/lcb_pallid/pistol,
+/mob/living/simple_animal/hostile/ordeal/lcb_pallid/pistol,
 /turf/open/water/deep/polluted{
 	planetary_atmos = 1;
 	density = 0;
@@ -1672,6 +1672,7 @@
 	dir = 5
 	},
 /obj/structure/pallid/grate,
+/mob/living/simple_animal/hostile/ordeal/lcb_pallid,
 /turf/open/floor/engine,
 /area/facility_hallway/discipline)
 "pU" = (
@@ -2164,7 +2165,7 @@
 "vs" = (
 /obj/structure/lattice/catwalk/indestructible,
 /obj/structure/pallid/grate,
-/mob/living/simple_animal/hostile/humanoid/lcb_pallid/pistol,
+/mob/living/simple_animal/hostile/ordeal/lcb_pallid/pistol,
 /turf/open/water/deep/polluted{
 	planetary_atmos = 1;
 	density = 0;
@@ -2587,7 +2588,7 @@
 "zi" = (
 /obj/structure/lattice/catwalk/indestructible,
 /obj/structure/pallid/grate,
-/mob/living/simple_animal/hostile/humanoid/lcb_pallid,
+/mob/living/simple_animal/hostile/ordeal/lcb_pallid,
 /turf/open/water/deep/polluted{
 	planetary_atmos = 1;
 	density = 0;
@@ -2868,6 +2869,7 @@
 	dir = 9
 	},
 /obj/structure/pallid/grate,
+/mob/living/simple_animal/hostile/ordeal/lcb_pallid,
 /turf/open/floor/engine,
 /area/facility_hallway/welfare)
 "Cu" = (
@@ -5045,7 +5047,7 @@
 /obj/structure/railing/indestructible{
 	dir = 4
 	},
-/mob/living/simple_animal/hostile/humanoid/lcb_pallid/pistol,
+/mob/living/simple_animal/hostile/ordeal/lcb_pallid/pistol,
 /turf/open/water/deep/polluted{
 	planetary_atmos = 1;
 	density = 0;

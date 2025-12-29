@@ -49,12 +49,10 @@
 
 /obj/effect/spawner/map_enemy/Initialize()
 	if(!map_enemy)
-		switch(SSmaptype.map_tags)
-			if("whales")
-				spawner_types = list(/datum/enemy/brown)
-				//spawner_types += /datum/enemy/whales
-			if("wineberrycreek")
-				spawner_types += /datum/enemy/gold//Make wineberry abnos their own enemy type later. This currently doubles their odds of appearing.
+		if("whales" in SSmaptype.map_tags)//50% chance to roll whales, 50% anything else
+			spawner_types += list(/datum/enemy/whales, /datum/enemy/whales, /datum/enemy/whales, /datum/enemy/whales)
+		if("wineberrycreek" in SSmaptype.map_tags)
+			spawner_types += /datum/enemy/gold//Make wineberry abnos their own enemy type later. This currently doubles their odds of appearing.
 		map_enemy = pick(spawner_types)
 	var/datum/enemy/myenemy = new map_enemy()
 	if(istype(myenemy,/datum/enemy))
@@ -125,6 +123,16 @@
 		/obj/effect/spawner/mobspawner/waw,
 		/obj/effect/spawner/mobspawner/aleph,
 		)
+
+/datum/enemy/whales
+	ordeal_types = list(
+	/obj/effect/spawner/mobspawner/whale_dawn,
+	/obj/effect/spawner/mobspawner/whale_noon,
+	/obj/effect/spawner/mobspawner/whale_dusk,
+	/obj/effect/spawner/mobspawner/whale_dusk/duo,
+	)
+
+//***********Spawners go here***********
 
 	//Peccatulae
 /obj/effect/spawner/mobspawner/brown_dawn
@@ -327,3 +335,26 @@
 	/mob/living/simple_animal/hostile/ordeal/indigo_dusk/black = 2,
 	/mob/living/simple_animal/hostile/ordeal/indigo_dusk/pale = 1,
 	)
+
+/obj/effect/spawner/mobspawner/whale_dawn
+	max_spawns = 1
+	mobspawn_table = list(
+	/mob/living/simple_animal/hostile/ordeal/mermaid_porous = 100,
+	/mob/living/simple_animal/hostile/ordeal/mermaid_porous/soldier = 1,
+	)
+
+/obj/effect/spawner/mobspawner/whale_noon
+	max_spawns = 1
+	mobspawn_table = list(
+	/mob/living/simple_animal/hostile/ordeal/mermaid_strand = 1,
+	)
+
+/obj/effect/spawner/mobspawner/whale_dusk
+	max_spawns = 1
+	mobspawn_table = list(
+	/mob/living/simple_animal/hostile/ordeal/lcb_pallid = 3,
+	/mob/living/simple_animal/hostile/ordeal/lcb_pallid/pistol = 1,
+	)
+
+/obj/effect/spawner/mobspawner/whale_dusk/duo
+	max_spawns = 2
