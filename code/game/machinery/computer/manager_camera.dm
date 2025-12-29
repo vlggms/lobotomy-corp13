@@ -48,62 +48,62 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 	/// Used for radial menu; Type = list(name, desc, icon_state)
 	/// List of bullets available for use are defined in lobotomy_corp subsystem
 	var/list/bullet_types = list(
-		MANAGER_HP_BULLET = list(
+		/*MANAGER_HP_BULLET =*/ list(
 			"name" = HP_BULLET,
 			"desc" = "These bullets speed up the recovery of an employee.",
 			"icon_state" = "green",
 		),
 
-		MANAGER_SP_BULLET = list(
+		/*MANAGER_SP_BULLET =*/ list(
 			"name" = SP_BULLET,
 			"desc" = "Bullets that inject an employee with diluted Enkephalin.",
 			"icon_state" = "blue",
 		),
 
 
-		MANAGER_RED_BULLET = list(
+		/*MANAGER_RED_BULLET =*/ list(
 			"name" = RED_BULLET,
 			"desc" = "Attach a RED DAMAGE forcefield onto a employee.",
 			"icon_state" = "red",
 		),
 
-		MANAGER_WHITE_BULLET = list(
+		/*MANAGER_WHITE_BULLET =*/ list(
 			"name" = WHITE_BULLET,
 			"desc" = "Attach a WHITE DAMAGE forcefield onto a employee.",
 			"icon_state" = "white",
 		),
 
-		MANAGER_BLACK_BULLET = list(
+		/*MANAGER_BLACK_BULLET =*/ list(
 			"name" = BLACK_BULLET,
 			"desc" = "Attach a BLACK DAMAGE forcefield onto a employee.",
 			"icon_state" = "black",
 		),
 
-		MANAGER_PALE_BULLET = list(
+		/*MANAGER_PALE_BULLET =*/ list(
 			"name" = PALE_BULLET,
 			"desc" = "Attach a PALE DAMAGE forcefield onto a employee.",
 			"icon_state" = "pale",
 		),
 
-		MANAGER_YELLOW_BULLET = list(
+		/*MANAGER_YELLOW_BULLET =*/ list(
 			"name" = YELLOW_BULLET,
 			"desc" = "Overload a abnormalities Qliphoth Control to reduce their movement speed.",
 			"icon_state" = "yellow",
 		),
 
-		MANAGER_DUAL_BULLET = list(
+		/*MANAGER_DUAL_BULLET =*/ list(
 			"name" = DUAL_BULLET,
 			"desc" = "These bullets speed up the recovery of an employee's HP and SP.",
 			"icon_state" = "cyan",
 		),
 
-		MANAGER_QUAD_BULLET = list(
+		/*MANAGER_QUAD_BULLET =*/ list(
 			"name" = QUAD_BULLET,
 			"desc" = "Attach a durable forcefield that blocks all 4 damage types onto a employee.",
 			"icon_state" = "rainbow",
 		),
 
-		MANAGER_KILL_BULLET = list(
+		/*MANAGER_KILL_BULLET =*/ list(
 			"name" = KILL_BULLET,
 			"desc" = "These bullets disintegrate an employee, leaving only their items behind.",
 			"icon_state" = "kill",
