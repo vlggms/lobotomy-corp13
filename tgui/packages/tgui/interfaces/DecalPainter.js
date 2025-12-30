@@ -76,7 +76,7 @@ const DecalPrinter = (props, context) => {
               onClick={() => act('select color', {
                 colors: color.colors,
               })} />
-          );
+            );
         })}
       </Section>
       <Section title="Decal Direction">
@@ -150,7 +150,7 @@ const SliderPrinter = (props, context) => {
               selected={color.colors === data.slider_color}
               onClick={() => act('select slider color', {
                 colors: color.colors,
-              })} />
+            })} />
           );
         })}
       </Section>
@@ -177,7 +177,7 @@ const SliderPrinter = (props, context) => {
               selected={dir.dirs === data.slider_direction}
               onClick={() => act('selected slider direction', {
                 dirs: dir.dirs,
-              })} />
+            })} />
           );
         })}
       </Section>
