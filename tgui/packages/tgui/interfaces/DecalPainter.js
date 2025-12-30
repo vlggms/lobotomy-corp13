@@ -77,7 +77,7 @@ const DecalPrinter = (props, context) => {
               })} />
           );
         })}
-        </Section><Section title="Decal Direction">
+      </Section><Section title="Decal Direction">
         {dir_list.map(dir => {
           return (
             <Button
@@ -140,7 +140,7 @@ const SliderPrinter = (props, context) => {
                             : color.colors === "#7D6521"
                               ? "Gold"
                               : color.colors === "#52B4E9"
-                              ? "Light Blue"
+                                ? "Light Blue"
                                 : color.colors === "#55391A"
                                   ? "Wood"
                                   : "White"}
@@ -150,32 +150,33 @@ const SliderPrinter = (props, context) => {
               })} />
           );
         })}
-      </Section><Section title="Slider Direction">
+        </Section><Section title="Slider Direction">
         {dir_list.map(dir => {
           return (
             <Button
               key={dir.dirs}
-                content={dir.dirs === 1
-                  ? "North"
-                  : dir.dirs === 2
-                    ? "South"
-                    : dir.dirs === 4
-                      ? "East"
-                      : dir.dirs === 5
-                        ? "North East"
-                        : dir.dirs === 6
-                          ? "South East"
-                          : dir.dirs === 9
-                            ? "North West"
-                            : dir.dirs === 10
-                              ? "South West"
-                              : "West"}
+              content={dir.dirs === 1
+                ? "North"
+                : dir.dirs === 2
+                  ? "South"
+                  : dir.dirs === 4
+                    ? "East"
+                    : dir.dirs === 5
+                      ? "North East"
+                      : dir.dirs === 6
+                        ? "South East"
+                        : dir.dirs === 9
+                          ? "North West"
+                          : dir.dirs === 10
+                            ? "South West"
+                            : "West"}
               selected={dir.dirs === data.slider_direction}
               onClick={() => act('selected slider direction', {
                 dirs: dir.dirs,
               })} />
           );
         })}
-      </Section></>
+      </Section>
+    </>
   );
 }
