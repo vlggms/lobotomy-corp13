@@ -28,7 +28,7 @@ export const DecalPainter = (props, context) => {
             lineHeight="23px"
             selected={tab === 2}
             onClick={() => {
-              setTab(2)
+              setTab(2);
               act('slider mode', {
                 slider_mode: 1, 
               });
@@ -36,8 +36,8 @@ export const DecalPainter = (props, context) => {
             Sliders
           </Tabs.Tab>
         </Tabs>
-        {tab === 1 && <DecalPrinter/>}
-        {tab === 2 && <SliderPrinter/>}
+        {tab === 1 && <DecalPrinter />}
+        {tab === 2 && <SliderPrinter />}
       </Window.Content>
     </Window>
   );
@@ -53,11 +53,11 @@ const DecalPrinter = (props, context) => {
     <>
       <Section title="Decal Type">
         {decal_list.map(decal => (
-        <Button
-            key={decal.decal}
-            content={decal.name}
-            selected={decal.decal === data.decal_style}
-            onClick={() => act('select decal', {
+          <Button
+          key={decal.decal}
+          content={decal.name}
+          selected={decal.decal === data.decal_style}
+          onClick={() => act('select decal', {
               decals: decal.decal,
             })} />
         ))}
