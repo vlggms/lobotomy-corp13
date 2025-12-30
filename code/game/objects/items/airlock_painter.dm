@@ -156,7 +156,7 @@
 	var/stored_decal = "warningline"
 	var/stored_decal_total = "warningline"
 	var/color_list = list("","red","white")
-	var/dir_list = list(1,2,4,8)
+	var/dir_list = list(1,2,4,8,5,6,9,10)
 	var/decal_list = list(list("Warning Line","warningline"),
 			list("Warning Line Corner","warninglinecorner"),
 			list("Caution Label","caution"),
@@ -165,7 +165,9 @@
 			list("Box","box"),
 			list("Box Corner","box_corners"),
 			list("Delivery Marker","delivery"),
-			list("Warning Box","warn_full"))
+			list("Warning Box","warn_full"),
+			list("Sliding Line","siding_line"),
+			list("Sliding Corner","siding_corner"))
 
 /obj/item/airlock_painter/decal/afterattack(atom/target, mob/user, proximity)
 	. = ..()

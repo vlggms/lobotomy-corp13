@@ -32,7 +32,9 @@ export const DecalPainter = (props, context) => {
                   ? "Red"
                   : color.colors === "white"
                     ? "White"
-                    : "Yellow"}
+                    : color.colors === "#DE3A3A"
+                      ? "Control"
+                      : "Yellow"}
                 selected={color.colors === data.decal_color}
                 onClick={() => act('select color', {
                   colors: color.colors,
@@ -51,7 +53,15 @@ export const DecalPainter = (props, context) => {
                     ? "South"
                     : dir.dirs === 4
                       ? "East"
-                      : "West"}
+                      : dir.dirs === 5
+                        ? "North East"
+                        : dir.dirs === 6
+                          ? "South East"
+                          : dir.dirs === 9
+                            ? "North West"
+                            : dir.dirs === 10
+                              ? "South West"
+                              : "West"}
                 selected={dir.dirs === data.decal_direction}
                 onClick={() => act('selected direction', {
                   dirs: dir.dirs,
