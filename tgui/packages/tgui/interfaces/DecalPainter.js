@@ -16,10 +16,9 @@ export const DecalPainter = (props, context) => {
             lineHeight="23px"
             selected={tab === 1}
             onClick={() => {
-                setTab(1)
-                 act('slider mode', {slider_mode: 0, })
-              }
-            }>
+              setTab(1)
+              act('slider mode', {slider_mode: 0, })
+            }}>
             Decals
           </Tabs.Tab>
           <Tabs.Tab
@@ -27,10 +26,9 @@ export const DecalPainter = (props, context) => {
             lineHeight="23px"
             selected={tab === 2}
             onClick={() => {
-                setTab(2)
-                act('slider mode', {slider_mode: 1, })
-              }
-            }>
+              setTab(2)
+              act('slider mode', {slider_mode: 1, })
+            }}>
             Sliders
           </Tabs.Tab>
         </Tabs>
