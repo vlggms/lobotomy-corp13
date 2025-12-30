@@ -150,7 +150,7 @@ const SliderPrinter = (props, context) => {
               })} />
           );
         })}
-        </Section><Section title="Slider Direction">
+      </Section><Section title="Slider Direction">
         {dir_list.map(dir => {
           return (
             <Button
