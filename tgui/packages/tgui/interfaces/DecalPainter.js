@@ -61,7 +61,8 @@ const DecalPrinter = (props, context) => {
               decals: decal.decal,
             })} />
         ))}
-      </Section><Section title="Decal Color">
+      </Section>
+      <Section title="Decal Color">
         {color_list.map(color => {
           return (
             <Button
@@ -77,7 +78,8 @@ const DecalPrinter = (props, context) => {
               })} />
           );
         })}
-      </Section><Section title="Decal Direction">
+      </Section>
+      <Section title="Decal Direction">
         {dir_list.map(dir => {
           return (
             <Button
@@ -118,7 +120,8 @@ const SliderPrinter = (props, context) => {
               sliders: slider.slider,
             })} />
         ))}
-      </Section><Section title="Slider Color">
+      </Section>
+      <Section title="Slider Color">
         {color_list.map(color => {
           return (
             <Button
@@ -150,7 +153,8 @@ const SliderPrinter = (props, context) => {
               })} />
           );
         })}
-      </Section><Section title="Slider Direction">
+      </Section>
+      <Section title="Slider Direction">
         {dir_list.map(dir => {
           return (
             <Button
@@ -179,4 +183,4 @@ const SliderPrinter = (props, context) => {
       </Section>
     </>
   );
-}
+};
