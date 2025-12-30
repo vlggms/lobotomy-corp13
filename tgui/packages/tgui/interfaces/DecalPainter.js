@@ -54,10 +54,10 @@ const DecalPrinter = (props, context) => {
       <Section title="Decal Type">
         {decal_list.map(decal => (
           <Button
-          key={decal.decal}
-          content={decal.name}
-          selected={decal.decal === data.decal_style}
-          onClick={() => act('select decal', {
+            key={decal.decal}
+            content={decal.name}
+            selected={decal.decal === data.decal_style}
+            onClick={() => act('select decal', {
               decals: decal.decal,
             })} />
         ))}
@@ -77,7 +77,7 @@ const DecalPrinter = (props, context) => {
               })} />
           );
         })}
-      </Section><Section title="Decal Direction">
+        </Section><Section title="Decal Direction">
         {dir_list.map(dir => {
           return (
             <Button
@@ -95,9 +95,11 @@ const DecalPrinter = (props, context) => {
               })} />
           );
         })}
-      </Section></>
+      </Section>
+    </>
   );
 };
+
 const SliderPrinter = (props, context) => {
   const { act, data } = useBackend(context);
   const slider_list = data.slider_list || [];
@@ -105,7 +107,7 @@ const SliderPrinter = (props, context) => {
   const dir_list = data.slider_dir_list || [];
 
   return (
-      <>
+    <>
       <Section title="Slider Type">
         {slider_list.map(slider => (
           <Button
