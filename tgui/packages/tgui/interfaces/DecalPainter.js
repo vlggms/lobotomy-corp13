@@ -18,7 +18,8 @@ export const DecalPainter = (props, context) => {
             onClick={() => {
               setTab(1);
               act('slider mode', {slider_mode: 0, 
-            })}}>
+              });
+            }}>
             Decals
           </Tabs.Tab>
           <Tabs.Tab
@@ -28,7 +29,8 @@ export const DecalPainter = (props, context) => {
             onClick={() => {
               setTab(2)
               act('slider mode', {slider_mode: 1, 
-            })}}>
+              });
+            }}>
             Sliders
           </Tabs.Tab>
         </Tabs>
@@ -46,9 +48,9 @@ const DecalPrinter = (props, context) => {
   const dir_list = data.dir_list || [];
 
   return (
-      <>
-      <Section title="Decal Type">
-        {decal_list.map(decal => (
+    <>
+    <Section title="Decal Type">
+      {decal_list.map(decal => (
           <Button
             key={decal.decal}
             content={decal.name}
