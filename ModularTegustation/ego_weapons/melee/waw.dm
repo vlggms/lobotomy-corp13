@@ -865,13 +865,18 @@
 /obj/item/ego_weapon/moonlight
 	name = "moonlight"
 	desc = "The serpentine ornament is loyal to the original owner’s taste. The snake’s open mouth represents the endless yearning for music."
-	special = "Use this weapon in hand to heal the sanity of those around you."
+	special = "Activate this weapon in your hand to deal damage in a small area. If it hits something, apply black shields to nearby humans."
 	icon_state = "moonlight"
 	force = 20
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("beats", "jabs")
 	attack_verb_simple = list("beat", "jab")
+	var/ability_cooldown
+	var/ability_cooldown_time = 30 SECONDS
+	var/shield_hp = 50
+	var/aoe_damage = 30
 	var/inuse
+	var/shield_time = 15 SECONDS
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 80
 							)
@@ -881,17 +886,35 @@
 	if(!CanUseEgo(user))
 		return
 
+	if(ability_cooldown > world.time)
+		to_chat(user,span_warning("You used its ability too recently."))
+		return
+
 	if(inuse)
 		return
+
 	inuse = TRUE
-	if(do_after(user, 30))	//3 seconds for a big heal.
-		playsound(src, 'sound/magic/staff_healing.ogg', 200, FALSE, 9)
-		for(var/mob/living/carbon/human/L in range(5, get_turf(user)))
-			if(L.is_working)
-				to_chat(L, span_nicegreen("The powers of the moon are the same as the powers of the sun. The redundancy of moonlight does not make this work any less mind-numbing."))
-				continue
-			L.adjustSanityLoss(-10)
+
+	if(!do_after(user, 15))	//1.5 seconds is fair enough for getting a shield
+		inuse = FALSE
+		return
 	inuse = FALSE
+	ability_cooldown = ability_cooldown_time + world.time
+	var/aoe = aoe_damage
+	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+	var/justicemod = 1 + userjust / 100
+	aoe *= justicemod
+	aoe *= force_multiplier
+	var/list/been_hit = list()
+	for(var/turf/T in view(user, 1))
+		been_hit += user.HurtInTurf(T, list(), aoe, damtype, check_faction = TRUE, hurt_mechs = TRUE)
+		new /obj/effect/temp_visual/revenant(T)
+	playsound(src, 'sound/magic/wandodeath.ogg', 200, FALSE, 9)
+
+	if(LAZYLEN(been_hit))
+		playsound(src, 'sound/magic/staff_healing.ogg', 200, FALSE, 9)
+		for(var/mob/living/carbon/human/L in range(8, get_turf(user)))
+			L.apply_shield(/datum/status_effect/interventionshield/black, shield_health = shield_hp, shield_duration = shield_time)
 
 
 /obj/item/ego_weapon/heaven
