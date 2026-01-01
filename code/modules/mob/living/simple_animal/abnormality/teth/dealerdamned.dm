@@ -3,6 +3,7 @@
 	desc = "A towering figure with a revolver for a head. It's seated in front of a poker table."
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "dealerdamned"
+	portrait = "dealer"
 	maxHealth = 100
 	health = 100
 	threat_level = TETH_LEVEL

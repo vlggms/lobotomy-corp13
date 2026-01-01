@@ -6,6 +6,7 @@
 	icon_living = "thunderbird"
 	icon_dead = "thunderbird_dead"
 	core_icon = "thunderbird_dead"
+	portrait = "thunder_bird"
 	del_on_death = FALSE
 	speak_emote = list("intones")
 	gender = NEUTER

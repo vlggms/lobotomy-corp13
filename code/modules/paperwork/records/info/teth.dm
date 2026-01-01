@@ -389,11 +389,11 @@
 //Dealer of the Damned
 /obj/item/paper/fluff/info/teth/dealerdamned
 	abno_type = /mob/living/simple_animal/hostile/abnormality/dealerdamned
-	abno_code = "T-01-72"
+	abno_code = "T-01-272"
 	abno_info = list(
-		"When Agent Jamie poked T-01-72, the abnormality took some of Agent Jamie's health as a wager for a coin flip. When the coin landed heads, Jamie's health was refunded and the next work had a higher success rate. When the coin landed tails, nothing happened.",
-		"When Agent Jamie tried to coinflip a second time prior to working, T-01-72 refused.",
-		"When Gambling work was performed, T-01-72 and the agent engaged in a game of Russian Roulette.",
+		"When Agent Jamie poked T-01-272, the abnormality took some of Agent Jamie's health as a wager for a coin flip. When the coin landed heads, Jamie's health was refunded and the next work had a higher success rate. When the coin landed tails, nothing happened.",
+		"When Agent Jamie tried to coinflip a second time prior to working, T-01-272 refused.",
+		"When Gambling work was performed, T-01-272 and the agent engaged in a game of Russian Roulette.",
 		"If the agent survived the game of Russian Roulette, they were awarded with an unique E.G.O. Weapon.")
 
 //Forsaken Employee

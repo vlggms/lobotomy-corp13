@@ -9,6 +9,7 @@
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
 	icon_state = "quiet_day"
 	core_icon = "quiet_day"
+	portrait = "quiet_day"
 	maxHealth = 75
 	health = 75
 	blood_volume = 0
