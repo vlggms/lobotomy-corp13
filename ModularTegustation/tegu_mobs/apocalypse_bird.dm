@@ -97,6 +97,7 @@
 		QDEL_NULL(e)
 	for(var/mob/m in birds)
 		QDEL_NULL(m)
+	SSticker.superbosses += src
 	var/blurb_text = "Three birds, now as one, looked around to find the monster but couldn't find it.\
 	There were no creatures, no sun and moon, and no monsters. All that is left is just a bird, and the black forest."
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 10 SECONDS, blurb_text, 25), 5 SECONDS)
