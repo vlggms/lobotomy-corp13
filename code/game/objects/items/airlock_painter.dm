@@ -146,7 +146,7 @@
 
 /obj/item/airlock_painter/decal
 	name = "decal painter"
-	desc = "An airlock painter, reprogramed to use a different style of paint in order to apply decals for floor tiles as well, in addition to repainting doors. Decals break when the floor tiles are removed. Alt-Click to change design."
+	desc = "An airlock painter, reprogramed to use a different style of paint in order to apply decals or sliders for floor tiles as well, in addition to repainting doors. Decals break when the floor tiles are removed. Alt-Click to change design."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "decal_sprayer"
 	inhand_icon_state = "decalsprayer"
@@ -166,6 +166,24 @@
 			list("Box Corner","box_corners"),
 			list("Delivery Marker","delivery"),
 			list("Warning Box","warn_full"))
+	var/stored_slider_dir = 2
+	var/stored_slider_color = "#FFFFFF"
+	var/slider_mode = FALSE
+	var/stored_slider = "siding_line"
+	var/slider_color_list = list("#FFFFFF","#DE3A3A","#D381C9","#A46106","#9FED58","#EFB341","#440000","#3234B9","#7D6521","#52B4E9","#55391A")
+	var/slider_list = list(list("Sliding Line","siding_line"),
+			list("Sliding Corner","siding_corner"),
+			list("Sliding End","siding_end"),
+			list("Sliding Thinplating Line","siding_thinplating_line"),
+			list("Sliding Thinplating Corner","siding_thinplating_corner"),
+			list("Sliding Thinplating End","siding_thinplating_end"),
+			list("Sliding Wideplating Line","siding_wideplating_line"),
+			list("Sliding Wideplating Corner","siding_wideplating_corner"),
+			list("Sliding Wideplating End","siding_wideplating_end"),
+			list("Sliding Wood Line","siding_wood_line"),
+			list("Sliding Wood Corner","siding_wood_corner"),
+			list("Sliding Wood End","siding_wood_end"))
+	var/slider_dir_list = list(1,2,4,8,5,6,9,10)
 
 /obj/item/airlock_painter/decal/afterattack(atom/target, mob/user, proximity)
 	. = ..()
@@ -174,8 +192,10 @@
 		to_chat(user, span_notice("You need to get closer!"))
 		return
 	if(use_paint(user) && isturf(F))
-		F.AddElement(/datum/element/decal, 'icons/turf/decals.dmi', stored_decal_total, stored_dir, CLEAN_TYPE_PAINT, color, null, null, alpha)
-
+		if(slider_mode)
+			F.AddElement(/datum/element/decal, 'icons/turf/decals.dmi', stored_slider, stored_slider_dir, CLEAN_TYPE_PAINT, stored_slider_color, null, null, alpha)
+		else
+			F.AddElement(/datum/element/decal, 'icons/turf/decals.dmi', stored_decal_total, stored_dir, CLEAN_TYPE_PAINT, color, null, null, alpha)
 /obj/item/airlock_painter/decal/AltClick(mob/user)
 	. = ..()
 	ui_interact(user)
@@ -199,6 +219,7 @@
 
 /obj/item/airlock_painter/decal/ui_data(mob/user)
 	var/list/data = list()
+	data["slider_mode"] = 	data["decal_direction"] = slider_mode
 	data["decal_direction"] = stored_dir
 	data["decal_color"] = stored_color
 	data["decal_style"] = stored_decal
@@ -219,6 +240,26 @@
 		data["dir_list"] += list(list(
 			"dirs" = k
 		))
+	data["slider_direction"] = stored_slider_dir
+	data["slider_color"] = stored_slider_color
+	data["slider_style"] = stored_slider
+	data["slider_list"] = list()
+	data["slider_color_list"] = list()
+	data["slider_dir_list"] = list()
+
+	for(var/i in slider_list)
+		data["slider_list"] += list(list(
+			"name" = i[1],
+			"slider" = i[2]
+		))
+	for(var/j in slider_color_list)
+		data["slider_color_list"] += list(list(
+			"colors" = j
+		))
+	for(var/k in slider_dir_list)
+		data["slider_dir_list"] += list(list(
+			"dirs" = k
+		))
 	return data
 
 /obj/item/airlock_painter/decal/ui_act(action,list/params)
@@ -237,6 +278,17 @@
 		if("selected direction")
 			var/selected_direction = text2num(params["dirs"])
 			stored_dir = selected_direction
+		if("select slider")
+			var/selected_slider = params["sliders"]
+			stored_slider = selected_slider
+		if("select slider color")
+			var/selected_color = params["colors"]
+			stored_slider_color = selected_color
+		if("selected slider direction")
+			var/selected_direction = text2num(params["dirs"])
+			stored_slider_dir = selected_direction
+		if("slider mode")
+			slider_mode = params["slider_mode"]
 	update_decal_path()
 	. = TRUE
 
