@@ -91,6 +91,18 @@
 	med_hud_set_sanity()
 	return amount
 
+/mob/living/carbon/human/proc/restoreSanity(message = TRUE)
+	sanityloss = 0
+	sanityhealth = maxSanity
+	QDEL_NULL(ai_controller)
+	if(sanity_lost && message)
+		visible_message(span_boldnotice("[src] comes back to [p_their(TRUE)] senses!"), \
+						span_boldnotice("You are back to normal!"))
+	sanity_lost = FALSE
+	grab_ghost(force = TRUE)
+	remove_status_effect(/datum/status_effect/panicked_type)
+
+
 /mob/living/carbon/human/proc/SanityLossEffect(attribute)
 	if((status_flags & GODMODE) || HAS_TRAIT(src, TRAIT_SANITYIMMUNE) || stat >= HARD_CRIT)
 		return
