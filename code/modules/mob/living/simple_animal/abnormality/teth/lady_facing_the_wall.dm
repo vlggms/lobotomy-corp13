@@ -16,7 +16,8 @@
 	pixel_x = -32
 	base_pixel_x = -8
 
-	work_damage_amount = 3
+	work_damage_upper = 3
+	work_damage_lower = 2
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/sloth
 	start_qliphoth = 2

@@ -14,7 +14,8 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(60, 60, 60, 65, 65),
 		ABNORMALITY_WORK_REPRESSION = 0,
 	)
-	work_damage_amount = 5
+	work_damage_upper = 4
+	work_damage_lower = 2
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/lust
 	max_boxes = 16 // Accurate to base game

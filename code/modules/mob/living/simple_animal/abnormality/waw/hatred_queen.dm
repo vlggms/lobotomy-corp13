@@ -40,7 +40,8 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(50, 50, 55, 55, 60),
 		ABNORMALITY_WORK_REPRESSION = list(20, 20, 20, 0, 0),
 	)
-	work_damage_amount = 5
+	work_damage_upper = 4
+	work_damage_lower = 3
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/lust
 
@@ -634,12 +635,12 @@
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/GoCrazy()
 	icon_state = icon_crazy
 	chance_modifier = 0.8
-	work_damage_amount *= 2
+	work_damage_upper *= 2
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/GoNormal()
 	icon_state = icon_living
 	chance_modifier = 1
-	work_damage_amount = initial(work_damage_amount)
+	work_damage_upper = initial(work_damage_upper)
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/GoHysteric(retries = 0)
 	if(!friendly || !breach_max_death || nihil_present)

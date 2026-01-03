@@ -28,7 +28,8 @@
 	ranged = TRUE
 	ranged_cooldown_time = 1.5 SECONDS
 
-	work_damage_amount = 3
+	work_damage_upper = 4
+	work_damage_lower = 2
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gluttony
 	start_qliphoth = 1

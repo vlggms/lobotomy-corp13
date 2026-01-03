@@ -15,7 +15,8 @@
 		ABNORMALITY_WORK_ATTACHMENT = 60,
 		ABNORMALITY_WORK_REPRESSION = 60,
 	)
-	work_damage_amount = 4
+	work_damage_upper = 4
+	work_damage_lower = 3
 	work_damage_type = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	melee_damage_lower = 8

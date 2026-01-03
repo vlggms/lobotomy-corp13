@@ -41,9 +41,11 @@
 		ABNORMALITY_WORK_REPRESSION = 0,
 		"Rescue" = 100,
 		)
-	work_damage_amount = 5
+	work_damage_upper = 5
+	work_damage_lower = 4
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gloom
+	max_boxes = 18
 	wander = FALSE
 
 	observation_prompt = "You remember her. <br>\

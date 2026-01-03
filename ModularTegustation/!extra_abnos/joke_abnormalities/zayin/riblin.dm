@@ -15,9 +15,9 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(70, 70, 60, 60, 60),
 		ABNORMALITY_WORK_REPRESSION = list(70, 70, 60, 60, 60),
 	)
-	work_damage_amount = 1
+	work_damage_upper = 2
+	work_damage_lower = 1
 	work_damage_type = RED_DAMAGE
-	max_boxes = 10
 
 	stat_attack = HARD_CRIT
 

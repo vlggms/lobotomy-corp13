@@ -48,17 +48,17 @@
 			return "None"
 		if(-INFINITY to 0)
 			return "Healing"
-		if(0 to 1)
+		if(0 to 2)
 			return "Very Low"
-		if(1 to 4)
+		if(2 to 4)
 			return "Low"
-		if(4 to 6)
+		if(4 to 5)
 			return "Moderate"
-		if(6 to 12)
+		if(5 to 6)
 			return "High"
-		if(12 to INFINITY)
+		if(8 to INFINITY)
 			return "Extreme"
-		if(9 to 12)
+		if(6 to 7)
 			return "Very High"
 
 	return "Unknown ([damage])"

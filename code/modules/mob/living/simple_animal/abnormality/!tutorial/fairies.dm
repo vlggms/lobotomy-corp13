@@ -20,7 +20,8 @@
 	melee_damage_lower = 1
 	melee_damage_upper = 2
 	melee_damage_type = PALE_DAMAGE
-	work_damage_amount = 2
+	work_damage_upper = 4
+	work_damage_lower = 2
 	work_damage_type = PALE_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.5)
 	can_breach = TRUE

@@ -27,9 +27,11 @@
 		ABNORMALITY_WORK_ATTACHMENT = 0,
 		ABNORMALITY_WORK_REPRESSION = 40,
 	)
-	work_damage_amount = 9
+	work_damage_upper = 9
+	work_damage_lower = 6
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gloom
+	max_boxes = 33
 	can_patrol = FALSE
 
 	wander = FALSE

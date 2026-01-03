@@ -28,7 +28,8 @@
 		ABNORMALITY_WORK_ATTACHMENT = 60,
 		ABNORMALITY_WORK_REPRESSION = 60,
 	)
-	work_damage_amount = 5
+	work_damage_upper = 5
+	work_damage_lower = 3
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gluttony
 

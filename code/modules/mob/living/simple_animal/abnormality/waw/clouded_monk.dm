@@ -32,7 +32,8 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(20, 45, 45, 45, 45),
 		ABNORMALITY_WORK_REPRESSION = list(40, 20, 40, 40, 40),
 	)
-	work_damage_amount = 7
+	work_damage_upper = 6
+	work_damage_lower = 4
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gluttony
 

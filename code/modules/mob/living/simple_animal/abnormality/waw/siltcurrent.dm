@@ -40,7 +40,8 @@
 						ABNORMALITY_WORK_ATTACHMENT = -100,//you thought it would work like current eh?
 						ABNORMALITY_WORK_REPRESSION = list(70, 65, 60, 55, 50)//Incase you reach waw with justice 1
 						)
-	work_damage_amount = 7//does constant oxygen damage during work
+	work_damage_upper = 5
+	work_damage_lower = 4//does constant oxygen damage during work
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/pride
 	ranged = 1

@@ -28,7 +28,8 @@
 		ABNORMALITY_WORK_ATTACHMENT = 40,
 		ABNORMALITY_WORK_REPRESSION = 10,
 	)
-	work_damage_amount = 5
+	work_damage_upper = 6
+	work_damage_lower = 3
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/pride
 

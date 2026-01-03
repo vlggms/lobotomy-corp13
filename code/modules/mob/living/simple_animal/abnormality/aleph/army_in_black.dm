@@ -36,7 +36,8 @@ GLOBAL_LIST_EMPTY(army)
 		ABNORMALITY_WORK_REPRESSION = 30,
 		"Protection" = 0, //shouldn't attempt to generate any PE
 	)
-	work_damage_amount = 9
+	work_damage_upper = 9
+	work_damage_lower = 7
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/wrath
 

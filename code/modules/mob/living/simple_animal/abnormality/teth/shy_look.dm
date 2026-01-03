@@ -22,9 +22,11 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(50, 45, 45, 40, 40),
 		ABNORMALITY_WORK_REPRESSION = list(50, 45, 45, 40, 40),
 	)
-	work_damage_amount = 3
+	work_damage_upper = 3
+	work_damage_lower = 2
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/pride
+	max_boxes = 12
 
 	ego_list = list(
 		/datum/ego_datum/weapon/shy,
@@ -60,25 +62,22 @@
 	switch(next_mood)
 		if(1) //From Smiling to angry
 			chance_modifier = 1.3
-			work_damage_amount = initial(work_damage_amount)*0.5
+			work_damage_upper = initial(work_damage_upper)*0.5
 		if(2)
 			chance_modifier = 1.1
-			work_damage_amount = initial(work_damage_amount)
+			work_damage_upper = initial(work_damage_upper)
 		if(3)
 			chance_modifier = 1
-			work_damage_amount = initial(work_damage_amount)
+			work_damage_upper = initial(work_damage_upper)
 		if(4)
 			chance_modifier = 0.7
-			work_damage_amount = initial(work_damage_amount)*1.5
+			work_damage_upper = initial(work_damage_upper)*1.5
 		if(5)
 			chance_modifier = 0.5
-			work_damage_amount = initial(work_damage_amount)*2
+			work_damage_upper = initial(work_damage_upper)*2
 	if(!special_breach)
 		ChangeIcon()
 		return
-	var/damage_total = (initial(work_damage_amount) * 0.75) * (next_mood - 1)//Basically (6 * mood -1). the happiest expression deals no damage.
-	melee_damage_upper = damage_total
-	melee_damage_lower = damage_total
 	ChangeOverlay(next_mood)
 
 /mob/living/simple_animal/hostile/abnormality/shy_look/proc/ChangeIcon()

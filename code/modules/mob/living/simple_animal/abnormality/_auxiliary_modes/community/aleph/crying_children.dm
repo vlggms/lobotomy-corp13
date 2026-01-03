@@ -33,7 +33,8 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 0, 10, 20),
 		ABNORMALITY_WORK_REPRESSION = list(0, 0, 45, 50, 55),
 	)
-	work_damage_amount = 14
+	work_damage_upper = 9
+	work_damage_lower = 6
 	work_damage_type = WHITE_DAMAGE
 	attack_sound = 'sound/abnormalities/crying_children/attack_salvador.ogg'
 	death_sound = 'sound/abnormalities/crying_children/death.ogg'
@@ -193,7 +194,7 @@
 		new /obj/effect/temp_visual/fire/fast(get_turf(L))
 
 /mob/living/simple_animal/hostile/abnormality/crying_children/BreachEffect(mob/living/carbon/human/user, breach_type)
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 20, "No one’s going to cry on my behalf even if I’m sad.", 25))
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 20, "No one's going to cry on my behalf even if I'm sad.", 25))
 	..()
 	desc = "A towering angel statue, setting everything on it's path ablaze"
 	icon = 'ModularTegustation/Teguicons/96x96.dmi'
@@ -459,7 +460,7 @@
 		forceMove(T)
 
 /mob/living/simple_animal/hostile/abnormality/crying_children/proc/FinalPhase()
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 20, "I don’t want to hear anything. I don’t want to see anything, or speak anything…", 25))
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 20, "I don't want to hear anything. I don't want to see anything, or speak anything!", 25))
 	icon_phase = "desperation"
 	icon_living = "[icon_phase]_idle"
 	icon_state = "[icon_phase]_idle"

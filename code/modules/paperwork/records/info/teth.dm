@@ -423,6 +423,7 @@
 		"During work and breaches, the damage type dealt seemed to vary from hit to hit.",
 		"When the work result was Bad, the Qliphoth Counter lowered."
 	)
+	abno_work_damage_type = "Random"
 
 //Sirocco
 /obj/item/paper/fluff/info/teth/sirocco

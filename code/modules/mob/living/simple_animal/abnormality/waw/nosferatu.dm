@@ -24,7 +24,8 @@
 	melee_damage_upper = 11 //has a wide range, he can critically hit you
 	melee_damage_type = RED_DAMAGE
 	stat_attack = HARD_CRIT
-	work_damage_amount = 7
+	work_damage_upper = 7
+	work_damage_lower = 3
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/envy
 	attack_verb_continuous = "claws"

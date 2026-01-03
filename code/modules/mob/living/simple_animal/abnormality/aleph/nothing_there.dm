@@ -32,9 +32,11 @@
 		ABNORMALITY_WORK_ATTACHMENT = 50,
 		ABNORMALITY_WORK_REPRESSION = 0,
 	)
-	work_damage_amount = 9
+	work_damage_upper = 9
+	work_damage_lower = 6
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/envy
+	max_boxes = 33
 
 	ego_list = list(
 		/datum/ego_datum/weapon/mimicry,

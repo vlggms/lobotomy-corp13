@@ -43,8 +43,10 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(55, 55, 50, 50, 50),
 		ABNORMALITY_WORK_REPRESSION = list(30, 20, 10, 0, 0),
 	)
-	work_damage_amount = 3
+	work_damage_upper = 4
+	work_damage_lower = 2
 	work_damage_type = RED_DAMAGE
+	max_boxes = 12
 
 	ego_list = list(
 		/datum/ego_datum/weapon/beak,
