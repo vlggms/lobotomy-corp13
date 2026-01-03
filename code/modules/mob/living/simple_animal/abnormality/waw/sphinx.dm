@@ -30,7 +30,8 @@
 		ABNORMALITY_WORK_ATTACHMENT = 15,
 		ABNORMALITY_WORK_REPRESSION = list(5, 10, 25, 25, 30),
 	)
-	work_damage_amount = 7
+	work_damage_upper = 6
+	work_damage_lower = 4
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/wrath
 

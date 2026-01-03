@@ -35,9 +35,11 @@ It has now been over four months. Now we get her for real. -Coxswain
 	attack_action_types = list(/datum/action/innate/abnormality_attack/find_target, /datum/action/innate/abnormality_attack/catch_breath, /datum/action/innate/abnormality_attack/hollowpoint_shell, /datum/action/innate/abnormality_attack/strike_without_hesitation)
 	melee_damage_type = RED_DAMAGE
 	stat_attack = HARD_CRIT
-	work_damage_amount = 7
+	work_damage_upper = 6
+	work_damage_lower = 4
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/pride
+	max_boxes = 20
 	patrol_cooldown_time = 10 SECONDS // She's restless
 	attack_verb_continuous = "cuts"
 	attack_verb_simple = "cuts"

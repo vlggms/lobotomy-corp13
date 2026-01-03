@@ -21,7 +21,8 @@
 	start_qliphoth = 2
 	move_to_delay = 4
 
-	work_damage_amount = 9
+	work_damage_upper = 9
+	work_damage_lower = 6
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/lust
 	can_breach = TRUE

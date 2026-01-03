@@ -28,7 +28,8 @@
 	melee_damage_upper = 12 //has a wide range, he can critically hit you
 	melee_damage_type = RED_DAMAGE
 	stat_attack = HARD_CRIT
-	work_damage_amount = 0 //his work damage now is entirely related to suffering
+	work_damage_upper = 0
+	work_damage_lower = 0 //his work damage now is entirely related to suffering
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gloom
 	attack_verb_continuous = "chomps"
@@ -117,7 +118,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/red_buddy/WorktickFailure(mob/living/carbon/human/user)
 	AdjustSuffering(1)
-	work_damage_amount = suffering
+	work_damage_upper = suffering * 0.5
 	UpdateScars()
 	return ..()
 

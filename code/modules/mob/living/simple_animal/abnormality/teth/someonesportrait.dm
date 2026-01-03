@@ -15,7 +15,8 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(45, 45, 40, 40, 40),
 		ABNORMALITY_WORK_REPRESSION = list(55, 55, 50, 50, 50),
 	)
-	work_damage_amount = 3
+	work_damage_upper = 4
+	work_damage_lower = 2
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/envy
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)

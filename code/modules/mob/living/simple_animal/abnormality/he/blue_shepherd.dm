@@ -32,7 +32,8 @@
 	melee_damage_upper = 8
 	melee_damage_type = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
-	work_damage_amount = 5
+	work_damage_upper = 5
+	work_damage_lower = 3
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/pride
 	attack_verb_continuous = "cuts"

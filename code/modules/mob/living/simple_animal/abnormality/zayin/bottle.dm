@@ -19,7 +19,8 @@
 		"Dining" = 100, //You can instead decide to eat the cake.
 		"Drink" = 100, //Or Drink the water
 	)
-	work_damage_amount = 2
+	work_damage_upper = 2
+	work_damage_lower = 1
 	work_damage_type = BLACK_DAMAGE
 
 	ego_list = list(
@@ -30,7 +31,6 @@
 	gift_message = "Welcome to your very own Wonderland~"
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
-	max_boxes = 10
 	verb_say = "begs"
 	move_to_delay = 5
 

@@ -16,9 +16,9 @@
 		ABNORMALITY_WORK_ATTACHMENT = 50,
 		ABNORMALITY_WORK_REPRESSION = 50,
 	)
-	work_damage_amount = 2
+	work_damage_upper = 2
+	work_damage_lower = 1
 	work_damage_type = RED_DAMAGE
-	max_boxes = 10
 	success_boxes = 9
 	neutral_boxes = 6
 	chem_type = /datum/reagent/abnormality/sin/gloom

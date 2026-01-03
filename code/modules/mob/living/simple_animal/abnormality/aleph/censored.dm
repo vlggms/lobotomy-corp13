@@ -33,9 +33,11 @@
 		ABNORMALITY_WORK_REPRESSION = 0,
 		"Sacrifice" = 999,
 	)
-	work_damage_amount = 8
+	work_damage_upper = 10
+	work_damage_lower = 5
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gluttony
+	max_boxes = 32
 
 	ego_list = list(
 		/datum/ego_datum/weapon/censored,

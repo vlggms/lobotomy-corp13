@@ -24,7 +24,9 @@
 	melee_damage_upper = 55
 	melee_damage_type = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
-	work_damage_amount = 20
+	work_damage_upper = 10
+	work_damage_lower = 7
+	max_boxes = 35
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/pride
 	attack_verb_continuous = "claws"

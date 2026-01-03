@@ -17,7 +17,8 @@
 		ABNORMALITY_WORK_REPRESSION = list(10, 40, 50, 55, 60),
 	)
 
-	work_damage_amount = 7
+	work_damage_upper = 7
+	work_damage_lower = 6
 	work_damage_type = WHITE_DAMAGE
 	can_patrol = FALSE
 	wander = FALSE

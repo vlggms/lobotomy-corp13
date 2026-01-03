@@ -18,7 +18,6 @@
 
 	threat_level = WAW_LEVEL
 	can_breach = TRUE
-	max_boxes = 22
 	start_qliphoth = 2
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 15,
@@ -26,7 +25,8 @@
 		ABNORMALITY_WORK_ATTACHMENT = 25,
 		ABNORMALITY_WORK_REPRESSION = list(0, 0, 45, 50, 55),
 	)
-	work_damage_amount = 7
+	work_damage_upper = 5
+	work_damage_lower = 3
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/lust
 

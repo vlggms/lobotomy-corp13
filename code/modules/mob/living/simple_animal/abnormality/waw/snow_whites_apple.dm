@@ -36,9 +36,11 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 0, 0, 0),
 		ABNORMALITY_WORK_REPRESSION = list(20, 30, 55, 55, 60),
 	)
-	work_damage_amount = 7
+	work_damage_upper = 5
+	work_damage_lower = 3
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/envy
+	max_boxes = 20
 
 	ego_list = list(
 		/datum/ego_datum/weapon/stem,

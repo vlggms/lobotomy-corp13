@@ -24,9 +24,11 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(45, 45, 45, 50, 55),
 		ABNORMALITY_WORK_REPRESSION = 45,
 	)
-	work_damage_amount = 7
+	work_damage_upper = 6
+	work_damage_lower = 3
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gluttony
+	max_boxes = 20
 
 	can_breach = TRUE
 	start_qliphoth = 2

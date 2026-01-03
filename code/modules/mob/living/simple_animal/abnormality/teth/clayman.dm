@@ -31,7 +31,8 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(50, 50, 50, 50, 50),
 		ABNORMALITY_WORK_REPRESSION = list(50, 50, 50, 50, 50),
 	)
-	work_damage_amount = 0
+	work_damage_upper = 4
+	work_damage_lower = 2
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gluttony
 	death_message = "loses form."
@@ -46,9 +47,8 @@
 
 /mob/living/simple_animal/hostile/abnormality/clayman/WorktickFailure(mob/living/carbon/human/user)
 	var/dtype = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
-	work_damage_type = dtype
-	user.deal_damage(2, dtype)
-	WorkDamageEffect()
+	work_damage_type = pick(dtype)
+	..()
 
 /mob/living/simple_animal/hostile/abnormality/clayman/CanAttack(atom/the_target)
 	melee_damage_type = pick(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)

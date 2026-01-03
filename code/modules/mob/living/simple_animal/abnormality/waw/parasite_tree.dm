@@ -25,9 +25,11 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(50, 50, 50, 50, 55),
 		ABNORMALITY_WORK_REPRESSION = 20,
 	)
-	work_damage_amount = 7
+	work_damage_upper = 6
+	work_damage_lower = 5
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/sloth
+	max_boxes = 24
 
 	ego_list = list(
 		/datum/ego_datum/weapon/hypocrisy,
