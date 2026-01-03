@@ -37,7 +37,8 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(25, 20, 15, 10, 0),
 		ABNORMALITY_WORK_REPRESSION = list(0, 0, 50, 55, 55),
 	)
-	work_damage_amount = 7
+	work_damage_upper = 7
+	work_damage_lower = 4
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/apex_predator
 	harvest_phrase = span_notice("A cloudy liquid leaks from %ABNO, stinking of burnt plastic. You collect it using %VESSEL.")
@@ -103,14 +104,14 @@
 
 /mob/living/simple_animal/hostile/abnormality/apex_predator/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(user.health != user.maxHealth)
-		work_damage_amount = 10
+		work_damage_upper = 10
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/apex_predator/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(user.health < 0)
 		datum_reference.qliphoth_change(-1)
 
-	work_damage_amount = initial(work_damage_amount)
+	work_damage_upper = initial(work_damage_lower)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/apex_predator/BreachEffect(mob/living/carbon/human/user, breach_type)

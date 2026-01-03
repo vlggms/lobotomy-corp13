@@ -33,7 +33,8 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(50, 55, 55, 50, 45),
 		ABNORMALITY_WORK_REPRESSION = list(35, 40, 40, 35, 35),
 	)
-	work_damage_amount = 5
+	work_damage_upper = 5
+	work_damage_lower = 3
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gloom
 

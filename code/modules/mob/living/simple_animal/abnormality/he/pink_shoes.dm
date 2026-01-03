@@ -26,7 +26,8 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 						ABNORMALITY_WORK_ATTACHMENT = list(80, 50, 50, 40, 30),
 						ABNORMALITY_WORK_REPRESSION = list(50, 60, 50, 55, 60)
 						)
-	work_damage_amount = 5
+	work_damage_upper = 6
+	work_damage_lower = 4
 	work_damage_type = WHITE_DAMAGE
 	del_on_death = FALSE
 	death_message = "falls, leaving tattered ribbons."

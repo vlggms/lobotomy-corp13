@@ -17,10 +17,11 @@
 	pixel_x = -8
 	base_pixel_x = -8
 
-	max_boxes = 16
-	work_damage_amount = 5
+	work_damage_upper = 6
+	work_damage_lower = 4
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gluttony
+	max_boxes = 18
 
 	ego_list = list(
 		/datum/ego_datum/weapon/syrinx,

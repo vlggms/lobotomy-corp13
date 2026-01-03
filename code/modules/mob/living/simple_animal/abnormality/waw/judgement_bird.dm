@@ -33,9 +33,11 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(20, 20, 35, 45, 45),
 		ABNORMALITY_WORK_REPRESSION = 0,
 	)
-	work_damage_amount = 12
+	work_damage_upper = 7
+	work_damage_lower = 5
 	work_damage_type = PALE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/wrath
+	max_boxes = 24
 
 	attack_action_types = list(/datum/action/innate/abnormality_attack/judgement)
 

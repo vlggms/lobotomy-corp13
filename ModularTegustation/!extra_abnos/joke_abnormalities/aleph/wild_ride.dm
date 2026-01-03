@@ -22,7 +22,8 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 5, 5, 10),
 		ABNORMALITY_WORK_REPRESSION = list(0, 0, 5, 5, 10),
 	)
-	work_damage_amount = 1
+	work_damage_upper = 1
+	work_damage_lower = 1
 	work_damage_type = PALE_DAMAGE
 	max_boxes = 100 //I WANT OFF THIS WILD RIDE!
 
@@ -65,7 +66,7 @@
 	if(prob(50))
 		return
 	works_in_a_row += 1
-	work_damage_amount = 1
+	work_damage_upper = 1
 	user.SetImmobilized(10, ignore_canstun = TRUE)
 	if(prob(80))
 		addtimer(CALLBACK(src, PROC_REF(ForceToWork),user,work_type,TRUE), 5)
@@ -73,7 +74,7 @@
 /mob/living/simple_animal/hostile/abnormality/wild_ride/FailureEffect(mob/living/carbon/human/user, work_type, pe) //THE RIDE NEVER ENDS
 	. = ..()
 	works_in_a_row += 2
-	work_damage_amount = 2
+	work_damage_upper = 2
 	user.SetImmobilized(10, ignore_canstun = TRUE)
 	addtimer(CALLBACK(src, PROC_REF(ForceToWork),user,work_type,TRUE), 5)
 

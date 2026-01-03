@@ -37,9 +37,11 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(35, 40, 40, 35, 35),
 		ABNORMALITY_WORK_REPRESSION = list(50, 55, 55, 50, 45),
 	)
-	work_damage_amount = 5
+	work_damage_upper = 5
+	work_damage_lower = 3
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/wrath
+	max_boxes = 16
 
 	ego_list = list(
 		/datum/ego_datum/weapon/grinder,

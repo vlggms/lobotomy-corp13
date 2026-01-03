@@ -18,7 +18,8 @@
 		ABNORMALITY_WORK_REPRESSION = 80,
 		"Fall Asleep" = 100,
 	)
-	work_damage_amount = 2
+	work_damage_upper = 2
+	work_damage_lower = 1
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/wrath
 

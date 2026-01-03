@@ -17,9 +17,11 @@
 	pixel_x = -8
 	base_pixel_x = -8
 
-	work_damage_amount = 3
+	work_damage_upper = 3
+	work_damage_lower = 2
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/lust	//Limbus Company Red Eyes EGO
+
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
 	good_hater = TRUE
 	ego_list = list(

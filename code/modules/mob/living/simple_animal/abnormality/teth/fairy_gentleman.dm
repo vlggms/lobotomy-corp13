@@ -30,7 +30,8 @@
 	)
 	pixel_x = -34
 	base_pixel_x = -34
-	work_damage_amount = 3
+	work_damage_upper = 4
+	work_damage_lower = 2
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/sloth
 

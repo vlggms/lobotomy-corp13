@@ -16,7 +16,8 @@
 	)
 	pixel_x = -16
 	base_pixel_x = -16
-	work_damage_amount = 3
+	work_damage_upper = 4
+	work_damage_lower = 2
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/wrath
 
@@ -47,9 +48,14 @@
 //Performing instinct work at >4 fortitude starts a special work
 /mob/living/simple_animal/hostile/abnormality/beanstalk/AttemptWork(mob/living/carbon/human/user, work_type)
 	if((get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 80) && (work_type == ABNORMALITY_WORK_INSTINCT))
-		work_damage_amount *= 2
+		work_damage_upper *= 2
+		work_damage_lower *= 1.5
 		climbing = TRUE
 	return TRUE
+
+/mob/living/simple_animal/hostile/abnormality/beanstalk/proc/ResetWorkDamage()
+	work_damage_upper = initial(work_damage_upper)
+	work_damage_lower = initial(work_damage_lower)
 
 //When working at <2 Temperance and Prudence, or when panicking it is an instant death.
 /mob/living/simple_animal/hostile/abnormality/beanstalk/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
@@ -70,7 +76,7 @@
 //The special work, if you survive you get a powerful EGO gift.
 	if(climbing)
 		if(user.sanity_lost || user.stat >= SOFT_CRIT || user.stat == DEAD)
-			work_damage_amount = initial(work_damage_amount)
+			work_damage_lower = initial(work_damage_lower)
 			climbing = FALSE
 			return
 
@@ -78,13 +84,13 @@
 		step_towards(user, src)
 		sleep(0.5 SECONDS)
 		if(QDELETED(user))
-			work_damage_amount = initial(work_damage_amount)
+			ResetWorkDamage()
 			climbing = FALSE
 			return
 		step_towards(user, src)
 		sleep(0.5 SECONDS)
 		if(QDELETED(user))
-			work_damage_amount = initial(work_damage_amount)
+			ResetWorkDamage()
 			climbing = FALSE
 			return
 		to_chat(user, span_userdanger("You start to climb!"))
@@ -93,7 +99,7 @@
 		user.Stun(10 SECONDS)
 		sleep(6 SECONDS)
 		if(QDELETED(user))
-			work_damage_amount = initial(work_damage_amount)
+			ResetWorkDamage()
 			climbing = FALSE
 			return
 		var/datum/ego_gifts/giant/BWJEG = new
@@ -103,7 +109,7 @@
 		user.pixel_z = 0
 		to_chat(user, span_userdanger("You return with the giant's treasure!"))
 
-	work_damage_amount = initial(work_damage_amount)
+	ResetWorkDamage()
 	climbing = FALSE
 
 /datum/ego_gifts/giant

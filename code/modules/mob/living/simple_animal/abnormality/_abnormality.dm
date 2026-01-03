@@ -49,10 +49,11 @@
 	)
 	/// Work Types and corresponding their attributes
 	var/list/work_attribute_types = WORK_TO_ATTRIBUTE
-	/// How much damage is dealt to user on each work failure
-	var/work_damage_amount = 2
+	/// Range of how much damage is dealt to user on each work failure
+	var/work_damage_upper = 2
+	var/work_damage_lower = 1
 	/// What damage type is used for work failures
-	/// Can be a list, work_damage_amount in that case is divided by the objects in the list and visuals are chosen randomly
+	/// Can be a list, work damage in that case is divided by the objects in the list and visuals are chosen randomly
 	var/work_damage_type = RED_DAMAGE
 	/// Maximum amount of PE someone can obtain per work procedure, if not null or 0.
 	var/max_boxes = null
@@ -461,7 +462,7 @@ The variable's key needs to be non-numerical.*/
 
 // Additional effect on each individual work tick failure
 /mob/living/simple_animal/hostile/abnormality/proc/WorktickFailure(mob/living/carbon/human/user)
-	user.deal_damage(work_damage_amount, work_damage_type)
+	user.deal_damage(rand(work_damage_lower,work_damage_upper), work_damage_type)
 	WorkDamageEffect()
 	return
 

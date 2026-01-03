@@ -13,7 +13,8 @@
 		"Paper" = 60,
 		"Scissors" = 60,
 	)
-	work_damage_amount = 5
+	work_damage_upper = 6
+	work_damage_lower = 3
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/wrath
 	max_boxes = 15

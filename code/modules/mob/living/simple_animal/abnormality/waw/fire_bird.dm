@@ -22,7 +22,8 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(45, 45, 40, 40, 50),
 		ABNORMALITY_WORK_REPRESSION = list(45, 45, 40, 40, 50),
 	)
-	work_damage_amount = 7
+	work_damage_upper = 4
+	work_damage_lower = 3
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/lust
 	good_hater = TRUE
@@ -92,17 +93,17 @@
 	. = ..()
 	switch(datum_reference?.qliphoth_meter)
 		if(1)
-			work_damage_amount = 11
+			work_damage_upper = 11
 			light_range = 10
 			light_power = 20
 			update_light()
 		if(2)
-			work_damage_amount = 9
+			work_damage_upper = 9
 			light_range = 2
 			light_power = 10
 			update_light()
 		else
-			work_damage_amount = 7
+			work_damage_upper = 7
 			light_range = 0
 			light_power = 0
 			update_light()

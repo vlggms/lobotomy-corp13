@@ -30,7 +30,8 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(40, 50, 55, 55, 55),
 		ABNORMALITY_WORK_REPRESSION = list(20, 30, 40, 40, 40),
 	)
-	work_damage_amount = 4 //Shit damage because it's a small cat
+	work_damage_upper = 3
+	work_damage_lower = 1 //Shit damage because it's a small cat
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gluttony
 	can_patrol = FALSE

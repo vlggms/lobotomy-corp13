@@ -24,9 +24,9 @@
 	blood_volume = 0 // Doesn't normally bleed
 	layer = LARGE_MOB_LAYER
 
-	work_damage_amount = 0
+	work_damage_upper = 0
+	work_damage_lower = 0
 	work_damage_type = RED_DAMAGE
-	max_boxes = 10
 	speech_span = SPAN_ROBOT
 
 	ego_list = list(

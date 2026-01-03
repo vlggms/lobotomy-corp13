@@ -18,7 +18,8 @@
 	)
 	pixel_x = -16
 	base_pixel_x = -16
-	work_damage_amount = 3
+	work_damage_upper = 4
+	work_damage_lower = 2
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/lust
 	ego_list = list(

@@ -17,7 +17,8 @@
 	pixel_x = -16
 	base_pixel_x = -16
 	start_qliphoth = 2
-	work_damage_amount = 8
+	work_damage_upper = 8
+	work_damage_lower = 4
 	work_damage_type = PALE_DAMAGE	//Lawyers take your fucking soul
 	chem_type = /datum/reagent/abnormality/sin/lust
 
@@ -91,11 +92,11 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/contract/AttemptWork(mob/living/carbon/human/user, work_type)
-	work_damage_amount = initial(work_damage_amount)
+	work_damage_upper = initial(work_damage_upper)
 	if(ContractedUser(user, work_type) && .)
-		work_damage_amount *= 0.3
+		work_damage_upper *= 0.3
 	if(user in total_havers)
-		work_damage_amount *= 0.8
+		work_damage_upper *= 0.8
 		say("Yes, yes... I remember the contract.")
 
 	. = ..()
@@ -188,7 +189,7 @@
 	NewContract(user, work_type)
 
 /mob/living/simple_animal/hostile/abnormality/contract/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
-	work_damage_amount = initial(work_damage_amount)
+	work_damage_upper = initial(work_damage_upper)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/contract/NeutralEffect(mob/living/carbon/human/user, work_type, pe)

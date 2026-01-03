@@ -16,7 +16,8 @@
 		ABNORMALITY_WORK_ATTACHMENT = 35,
 		ABNORMALITY_WORK_REPRESSION = 35,
 	)
-	work_damage_amount = 7
+	work_damage_upper = 6
+	work_damage_lower = 4
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/sloth
 	pixel_x = -16

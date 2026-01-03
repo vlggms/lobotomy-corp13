@@ -31,14 +31,14 @@
 	can_breach = TRUE
 	threat_level = TETH_LEVEL
 	start_qliphoth = 3
-	max_boxes = 14
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 55,
 		ABNORMALITY_WORK_INSIGHT = 55,
 		ABNORMALITY_WORK_ATTACHMENT = 60,
 		ABNORMALITY_WORK_REPRESSION = 10,
 		)
-	work_damage_amount = 3
+	work_damage_upper = 4
+	work_damage_lower = 2
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/envy //all of its EGO is envy. makes sense to me.
 	ego_list = list(

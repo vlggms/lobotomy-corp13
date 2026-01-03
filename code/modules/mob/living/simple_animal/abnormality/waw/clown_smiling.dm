@@ -38,7 +38,8 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(50, 55, 60, 65, 65),
 		ABNORMALITY_WORK_REPRESSION = 35,
 	)
-	work_damage_amount = 7
+	work_damage_upper = 5
+	work_damage_lower = 4
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gluttony
 	good_hater = TRUE
