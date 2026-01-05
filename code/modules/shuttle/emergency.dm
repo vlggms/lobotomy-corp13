@@ -318,11 +318,11 @@
 
 /obj/docking_port/mobile/emergency/request(obj/docking_port/stationary/S, area/signalOrigin, reason, redAlert, set_coefficient=null, noannounce=FALSE)
 	if(!isnum(set_coefficient))
-		var/security_num = seclevel2num(get_security_level())
+		var/security_num = emgcylevel2num(get_emergency_level())
 		switch(security_num)
-			if(SEC_LEVEL_GREEN)
+			if(TRUMPET_0)
 				set_coefficient = 1
-			if(SEC_LEVEL_BLUE)
+			if(TRUMPET_1)
 				set_coefficient = 0.8
 			else
 				set_coefficient = 0.6
@@ -571,7 +571,7 @@
 	var/obj/machinery/computer/shuttle/C = getControlConsole()
 	if(!istype(C, /obj/machinery/computer/shuttle/pod))
 		return ..()
-	if(GLOB.security_level >= SEC_LEVEL_RED || (C && (C.obj_flags & EMAGGED)))
+	if(GLOB.emergency_level >= TRUMPET_2 || (C && (C.obj_flags & EMAGGED)))
 		if(launch_status == UNLAUNCHED)
 			launch_status = EARLY_LAUNCHED
 			return ..()
@@ -700,7 +700,7 @@
 /obj/item/storage/pod/can_interact(mob/user)
 	if(!..())
 		return FALSE
-	if(GLOB.security_level >= SEC_LEVEL_RED || unlocked)
+	if(GLOB.emergency_level >= TRUMPET_2 || unlocked)
 		return TRUE
 	to_chat(user, "The storage unit will only unlock during a Red or Delta security alert.")
 
