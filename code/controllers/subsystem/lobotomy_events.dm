@@ -234,4 +234,4 @@ SUBSYSTEM_DEF(lobotomy_events)
 	SIGNAL_HANDLER
 	if(!istype(newbie))
 		return
-	ApplySecurityLevelEffect(newbie)
+	ApplyTrumpetLevelEffect(newbie)
