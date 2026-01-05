@@ -56,6 +56,7 @@
 			if(announce_sound)
 				player.playsound_local(get_turf(player), announce_sound, 35, 0)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ORDEAL_START, src)
+	SSlobotomy_emergency.UpdateScore(SSlobotomy_emergency.ordeal_amount, FALSE)
 	return
 
 // Ends the event

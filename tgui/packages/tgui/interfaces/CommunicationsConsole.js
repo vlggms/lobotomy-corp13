@@ -18,7 +18,7 @@ const sortByCreditCost = sortBy(shuttle => shuttle.creditCost);
 const AlertButton = (props, context) => {
   const { act, data } = useBackend(context);
   const { alertLevelTick, canSetAlertLevel } = data;
-  const { alertLevel, setShowAlertLevelConfirm } = props;
+  const { alertLevel, setShowAlertLevelConfirm , alertDisabled, alertTooltip} = props;
 
   const thisIsCurrent = data.alertLevel === alertLevel;
 
@@ -27,6 +27,8 @@ const AlertButton = (props, context) => {
       icon="exclamation-triangle"
       color={thisIsCurrent && "good"}
       content={capitalize(alertLevel)}
+      disabled={alertDisabled}
+      tooltip = {alertTooltip}
       onClick={() => {
         if (thisIsCurrent) {
           return;
@@ -317,6 +319,11 @@ const PageMain = (props, context) => {
     shuttleCanEvacOrFailReason,
     shuttleLastCalled,
     shuttleRecallable,
+    canChangeEmergency,
+    noEmergencyFail,
+    firstTrumpetFail,
+    secondTrumpetFail,
+    thirdTrumpetFail,
   } = data;
 
   const [callingShuttle, setCallingShuttle] = useLocalState(
@@ -379,31 +386,60 @@ const PageMain = (props, context) => {
       </Section>
 
       {!!canSetAlertLevel && (
-        <Section title="Alert Level">
+        <Section title="Emergency Level">
           <Flex.Item>
             <Box>
               Currently on <b>{capitalize(alertLevel)}</b>.
             </Box>
+            {canChangeEmergency !== 1 && (
+                <Box>
+                  Cooldown:{" "}<b>{canChangeEmergency}</b>
+                </Box>
+            )}
           </Flex.Item>
           <Flex justify="center">
             <Flex.Item>
               <AlertButton
-                alertLevel="no warning"
+                alertLevel="no emergency"
+                alertDisabled={canChangeEmergency !== 1 || noEmergencyFail === 1}
+                alertTooltip={
+                  noEmergencyFail === 1
+                    ? "The current threat level cannot be overridden."
+                    : undefined
+                }
                 showAlertLevelConfirm={showAlertLevelConfirm}
                 setShowAlertLevelConfirm={setShowAlertLevelConfirm}
               />
               <AlertButton
-                alertLevel="first warning"
+                alertLevel="first trumpet"
+                alertDisabled={canChangeEmergency !== 1 || firstTrumpetFail === 1}
+                alertTooltip={
+                  firstTrumpetFail === 1
+                    ?  "The current threat level cannot be overridden."
+                    : undefined
+                }
                 showAlertLevelConfirm={showAlertLevelConfirm}
                 setShowAlertLevelConfirm={setShowAlertLevelConfirm}
               />
               <AlertButton
-                alertLevel="second warning"
+                alertLevel="second trumpet"
+                alertDisabled={canChangeEmergency !== 1 || secondTrumpetFail === 1}
+                alertTooltip={
+                  secondTrumpetFail === 1
+                    ? "The current threat level cannot be overridden."
+                    : undefined
+                }
                 showAlertLevelConfirm={showAlertLevelConfirm}
                 setShowAlertLevelConfirm={setShowAlertLevelConfirm}
               />
               <AlertButton
-                alertLevel="third warning"
+                alertLevel="third trumpet"
+                alertDisabled={canChangeEmergency !== 1 || thirdTrumpetFail === 1}
+                alertTooltip={
+                  thirdTrumpetFail === 1
+                    ? "The current threat level cannot be overridden."
+                    : undefined
+                }
                 showAlertLevelConfirm={showAlertLevelConfirm}
                 setShowAlertLevelConfirm={setShowAlertLevelConfirm}
               />
@@ -527,6 +563,9 @@ const PageMain = (props, context) => {
               width="300px">
               <Flex.Item fontSize="16px" mb={2}>
                 Swipe ID to confirm change
+                <Box textColor="red" fontFamily="Baskerville">
+                  WARNING! Changing the emergency level to higher values may cause some abnormalities to breach.
+                </Box>
               </Flex.Item>
 
               <Flex.Item mr={2} mb={1}>

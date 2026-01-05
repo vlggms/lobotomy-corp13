@@ -173,23 +173,17 @@
 
 /datum/config_entry/flag/arrivals_shuttle_require_safe_latejoin	//Require the arrivals shuttle to be operational in order for latejoiners to join
 
-/datum/config_entry/string/alert_green
-	config_entry_value = "Warning level has been reset. All dangerous abnormalities have been re-contained and situation is under control."
+/datum/config_entry/string/alert_warning_reset
+	config_entry_value = "Emergency level has been reset. All dangerous abnormalities have been re-contained and situation is under control."
 
-/datum/config_entry/string/alert_blue_upto
-	config_entry_value = "First warning level achieved. Few dangerous abnormalities have breached the containment."
+/datum/config_entry/string/alert_first_trumpet
+	config_entry_value = "First warning level achieved. Few dangerous abnormalities have breached the containment or an agent might be dead or out of control.."
 
-/datum/config_entry/string/alert_blue_downto
-	config_entry_value = "Warning level reset to first. Most dangerous abnormalities have been re-contained, but situation is still threatening."
+/datum/config_entry/string/alert_second_trumpet
+	config_entry_value = "Second Trumpet achieved. Most dangerous abnormalities have breached containment and several agents might be dead or out of control."
 
-/datum/config_entry/string/alert_red_upto
-	config_entry_value = "Second warning level achieved. Most dangerous abnormalities have breached containment and several agents might be dead or out of control."
-
-/datum/config_entry/string/alert_red_downto
-	config_entry_value = "Warning level reset to second. Facility's integrity is no longer in danger, but most abnormalities are still not re-contained."
-
-/datum/config_entry/string/alert_delta
-	config_entry_value = "Warning level three achieved. Facility's integrity is in danger. Most if not all of the dangerous abnormalities have breached containment and many agents have been lost."
+/datum/config_entry/string/alert_third_trumpet
+	config_entry_value = "Third Trumpet achieved. Facility's integrity is in danger. Most if not all of the dangerous abnormalities have breached containment and many agents have been lost."
 
 /datum/config_entry/flag/revival_pod_plants
 

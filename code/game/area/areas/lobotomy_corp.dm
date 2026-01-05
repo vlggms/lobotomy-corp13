@@ -74,7 +74,7 @@
 		if(TR)
 			search_through -= TR
 		fire = FALSE
-		if((GLOB.security_level >= SEC_LEVEL_BLUE))
+		if((GLOB.emergency_level >= TRUMPET_1))
 			for(var/mob/living/simple_animal/hostile/abnormality/A in search_through)
 				if(QDELETED(A) || (A.stat == DEAD))
 					continue
@@ -185,7 +185,7 @@
 		if(TR)
 			search_through -= TR
 		fire = FALSE
-		if((GLOB.security_level >= SEC_LEVEL_BLUE))
+		if((GLOB.emergency_level >= TRUMPET_1))
 			for(var/mob/living/simple_animal/hostile/abnormality/A in search_through)
 				if(QDELETED(A) || (A.stat == DEAD))
 					continue
