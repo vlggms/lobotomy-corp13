@@ -56,6 +56,7 @@
 			if(announce_sound)
 				player.playsound_local(get_turf(player), announce_sound, 35, 0)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ORDEAL_START, src)
+	SSlobotomy_emergency.UpdateScore(SSlobotomy_emergency.ordeal_amount, FALSE)
 	return
 
 // Ends the event
@@ -68,7 +69,8 @@
 	priority_announce("The Ordeal has ended. Facility has been rewarded with [reward_percent*100]% PE.", name, sound='sound/vox_fem/..ogg')
 	SSlobotomy_corp.AdjustAvailableBoxes(total_reward)
 	SSlobotomy_corp.current_ordeals -= src
-
+	SSlobotomy_emergency.UpdateMin()
+	SSlobotomy_emergency.score_divider = min(SSlobotomy_emergency.divide_cap, SSlobotomy_emergency.score_divider + 1)
 	SSlobotomy_corp.ordeal_stats += 5
 	for(var/mob/living/carbon/human/person as anything in SSabnormality_queue.active_suppression_agents)
 		if(!istype(person) || QDELETED(person)) // gibbed or cryo'd, we no longer care about them

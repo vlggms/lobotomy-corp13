@@ -21,7 +21,7 @@
 	see_in_dark = 10
 	stat_attack = HARD_CRIT
 
-	move_to_delay = 5
+	move_to_delay = 7
 	threat_level = WAW_LEVEL
 	can_breach = TRUE
 	start_qliphoth = 5
@@ -130,6 +130,7 @@
 /mob/living/simple_animal/hostile/abnormality/big_bird/Initialize()
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(on_mob_death)) // Hell
+	RegisterSignal(SSdcs, COMSIG_TRUMPET_CHANGED, PROC_REF(on_trumpet_change)) // Hell 2
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/Destroy()
 	for(var/atom/movable/AM in src) //Here, have your friend's heads back!
@@ -442,6 +443,15 @@
 	if(!died.mind)
 		return FALSE
 	datum_reference.qliphoth_change(-1) // One death reduces it
+	return TRUE
+
+//I fucking hate that this can be added now - Crabby
+/mob/living/simple_animal/hostile/abnormality/big_bird/proc/on_trumpet_change(datum/source, level)
+	SIGNAL_HANDLER
+	//if CONTAINED and shits going down
+	if(IsContained() && (level >= TRUMPET_2))
+		BreachEffect() // FUCK YOU!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		datum_reference.qliphoth_meter = 0
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/SuccessEffect(mob/living/carbon/human/user, work_type, pe)

@@ -44,7 +44,7 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 	var/list/data = list()
 	data["waiting"] = waiting
 	data["auth_required"] = event_source ? event_source.event : 0
-	data["red_alert"] = (seclevel2num(get_security_level()) >= SEC_LEVEL_RED) ? 1 : 0
+	data["red_alert"] = (emgcylevel2num(get_emergency_level()) >= TRUMPET_2) ? 1 : 0
 	data["emergency_maint"] = GLOB.emergency_access
 	data["bsa_unlock"] = GLOB.bsa_unlock
 	return data
@@ -113,7 +113,7 @@ GLOBAL_DATUM_INIT(keycard_events, /datum/events, new)
 	deadchat_broadcast(" confirmed [event] at [span_name("[A2.name]")].", span_name("[confirmer]"), confirmer, message_type=DEADCHAT_ANNOUNCEMENT)
 	switch(event)
 		if(KEYCARD_RED_ALERT)
-			set_security_level(SEC_LEVEL_RED)
+			SSlobotomy_emergency.SetEmergencyLevel(TRUMPET_2)
 		if(KEYCARD_EMERGENCY_MAINTENANCE_ACCESS)
 			make_maint_all_access()
 		if(KEYCARD_BSA_UNLOCK)

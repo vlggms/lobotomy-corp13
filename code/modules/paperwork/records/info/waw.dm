@@ -39,6 +39,7 @@
 		"After an employee died within the facility, the Qliphoth Counter decreased.",
 		"When the work result was Bad, the Qliphoth Counter decreased.",
 		"When the work result was Good, the Qliphoth Counter increased.",
+		"Big Bird breached its Containment Unit regardless of its Qliphoth Counter when the emergency situation in the facility reached the 2nd Trumpet.",
 		"Employees who are near Big Bird may become enchanted whenever Big Bird swings its lamp.")
 	abno_breach_damage_type = "Instant Death"
 	abno_breach_damage_count = "N/A"
@@ -65,7 +66,7 @@
 	abno_info = list(
 		"When the work result was Bad, the Qliphoth Counter lowered.",
 		"When 3 Qliphoth Meltdowns occurred in the facility without the death of an employee, the Qliphoth Counter lowered.",
-		"After 4 employees died within the facility while the Qliphoth Counter was at its maximum, The Queen of Hatred voluntarily helped with Abnormality suppression. However, if 50% of our employees die while help is provided, the state of the Abnormality will change and will need to be suppressed immediately.",
+		"When the facility reached Trumpet Level 2, The Queen of Hatred voluntarily helped with Abnormality suppression. However, if 50% of our employees die while help is provided, the state of the Abnormality will change and will need to be suppressed immediately.",
 		"The Queen of Hatred’s status changed when her Qliphoth Counter became 1. The work success rate was low when in said status. This status has been designated as \"Hysteric\" due to her anxiety and compulsive disorders.",
 		"When she was Hysteric, generating 16+ PE-Boxes raised her Qliphoth Counter.",
 		"When she was Hysteric, generating 15 or fewer PE-Boxes lowered her Qliphoth Counter.")
@@ -404,7 +405,7 @@
 	abno_info = list(
 		"The first Employee that gets a Good work result will gain a mark from now on will be called the “Sculptor”" ,
 		"The “Sculptor” will have a higher work success chance with Pygmalion and will have a higher chance of getting the E.G.O gift" ,
-		"Pygmalion breaches when the “Sculptor” has 50% or less sanity or health." ,
+		"Pygmalion breaches when the “Sculptor” has 50% or less sanity or health or when the emergency situation in the facility reached the 1st Trumpet." ,
 		"When Pygmalion breaches, They will teleport to the “Sculptor” and attack any abnormality in their way and any abnormality near the “Sculptor.”" ,
 		"The “Sculptor” will have their maximum sanity reduced while Pygmalion is breaching." ,
 		"If the “Sculptor” goes insane or dies, Pygmalion will become enraged and start attacking everyone near them.")

@@ -116,7 +116,7 @@
 	RegisterSignal(user, COMSIG_LIVING_DEATH, PROC_REF(BlessedDeath))
 	RegisterSignal(user, COMSIG_HUMAN_INSANE, PROC_REF(BlessedDeath))
 	RegisterSignal(user, COMSIG_WORK_STARTED, PROC_REF(OnWorkStart))
-	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, PROC_REF(OnAbnoBreach))
+	RegisterSignal(SSdcs, COMSIG_TRUMPET_CHANGED, PROC_REF(on_trumpet_change))
 
 /mob/living/simple_animal/hostile/abnormality/puss_in_boots/proc/BlessedDeath(datum/source, gibbed)
 	SIGNAL_HANDLER
@@ -124,6 +124,7 @@
 	UnregisterSignal(blessed_human, COMSIG_LIVING_DEATH)
 	UnregisterSignal(blessed_human, COMSIG_HUMAN_INSANE)
 	UnregisterSignal(blessed_human, COMSIG_WORK_STARTED)
+	RegisterSignal(SSdcs, COMSIG_TRUMPET_CHANGED)
 	friendly = FALSE
 	GoToFriend()
 	BreachEffect()
@@ -136,23 +137,16 @@
 		return FALSE
 	BlessedDeath(blessed_human)
 
-//Qliphoth Stuff
-/mob/living/simple_animal/hostile/abnormality/puss_in_boots/proc/OnAbnoBreach(datum/source, mob/living/simple_animal/hostile/abnormality/abno)
+/mob/living/simple_animal/hostile/abnormality/puss_in_boots/proc/on_trumpet_change(datum/source, level)
 	SIGNAL_HANDLER
-	if(!IsContained(src))
-		return
-	if(abno == src)
-		if(client)
-			to_chat(src, span_notice("You start feeling a bit impatient."))
-		else
-			manual_emote("perks up for a moment, then settles back down, looking annoyed.")
-		return
-	if(datum_reference.qliphoth_meter > 1)
-		if(client)
-			to_chat(src, span_notice("You hear something..."))
-		else
-			manual_emote("perks up slightly, as though it hears something.")
-	datum_reference.qliphoth_change(-1)
+	if(!IsContained() && friendly && (level == TRUMPET_0))
+		death()
+	//if CONTAINED and shits going down
+	if(IsContained() && (level >= TRUMPET_1) && friendly)
+		ignored = FALSE
+		BreachEffect() // We must help our friend!
+		datum_reference.qliphoth_meter = 0
+	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/puss_in_boots/MeltdownStart()
 	. = ..()

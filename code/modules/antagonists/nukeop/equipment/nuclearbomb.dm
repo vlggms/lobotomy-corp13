@@ -39,7 +39,7 @@
 	STOP_PROCESSING(SSobj, core)
 	update_icon()
 	AddElement(/datum/element/point_of_interest)
-	previous_level = get_security_level()
+	previous_level = get_emergency_level()
 
 /obj/machinery/nuclearbomb/Destroy()
 	safety = FALSE
@@ -399,7 +399,7 @@
 	safety = !safety
 	if(safety)
 		if(timing)
-			set_security_level(previous_level)
+			SSlobotomy_emergency.SetEmergencyLevel(previous_level)
 			for(var/obj/item/pinpointer/nuke/syndicate/S in GLOB.pinpointer_list)
 				S.switch_mode_to(initial(S.mode))
 				S.alert = FALSE
@@ -417,17 +417,17 @@
 	if(timing)
 		message_admins("\The [src] was armed at [ADMIN_VERBOSEJMP(our_turf)] by [ADMIN_LOOKUPFLW(usr)].")
 		log_game("\The [src] was armed at [loc_name(our_turf)] by [key_name(usr)].")
-		previous_level = get_security_level()
+		previous_level = get_emergency_level()
 		detonation_timer = world.time + (timer_set * 10)
 		for(var/obj/item/pinpointer/nuke/syndicate/S in GLOB.pinpointer_list)
 			S.switch_mode_to(TRACK_INFILTRATOR)
 		countdown.start()
-		set_security_level(SEC_LEVEL_DELTA)
+		SSlobotomy_emergency.SetEmergencyLevel(TRUMPET_3)
 	else
 		message_admins("\The [src] at [ADMIN_VERBOSEJMP(our_turf)] was disarmed by [ADMIN_LOOKUPFLW(usr)].")
 		log_game("\The [src] at [loc_name(our_turf)] was disarmed by [key_name(usr)].")
 		detonation_timer = null
-		set_security_level(previous_level)
+		SSlobotomy_emergency.SetEmergencyLevel(previous_level)
 		for(var/obj/item/pinpointer/nuke/syndicate/S in GLOB.pinpointer_list)
 			S.switch_mode_to(initial(S.mode))
 			S.alert = FALSE
@@ -550,7 +550,7 @@
 	detonation_timer = null
 	exploding = FALSE
 	exploded = TRUE
-	set_security_level(previous_level)
+	SSlobotomy_emergency.SetEmergencyLevel(previous_level)
 	for(var/obj/item/pinpointer/nuke/syndicate/S in GLOB.pinpointer_list)
 		S.switch_mode_to(initial(S.mode))
 		S.alert = FALSE

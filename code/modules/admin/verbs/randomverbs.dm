@@ -845,7 +845,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	var/level = input("Select security level to change to","Set Security Level") as null|anything in list("no warning","first warning","second warning","third warning")
 	if(level)
-		set_security_level(level)
+		SSlobotomy_emergency.SetEmergencyLevel(level)
 
 		log_admin("[key_name(usr)] changed the security level to [level]")
 		message_admins("[key_name_admin(usr)] changed the security level to [level]")

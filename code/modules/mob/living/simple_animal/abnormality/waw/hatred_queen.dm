@@ -192,6 +192,7 @@
 	. = ..()
 	beamloop = new(list(src), FALSE)
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(on_mob_death))
+	RegisterSignal(SSdcs, COMSIG_TRUMPET_CHANGED, PROC_REF(on_trumpet_change))
 	var/icon/I = icon('ModularTegustation/Teguicons/96x64.dmi',icon_living) //create inverted colors icon
 	I.MapColors(-1,0,0, 0,-1,0, 0,0,-1, 1,1,1)
 	icon_inverted = I
@@ -321,8 +322,14 @@
 	//if BREACHED, check if death_counter over the death limit
 	if(!IsContained() && breach_max_death && (death_counter >= breach_max_death) && !SSmaptype.maptype == "limbus_labs")
 		GoHysteric()
-	//if CONTAINED and lots of death before qliphoth triggers (TEMP)
-	if(IsContained() && (death_counter > 3)) // Omagah a lot of dead people!
+	return TRUE
+
+/mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/on_trumpet_change(datum/source, level)
+	SIGNAL_HANDLER
+	if(!IsContained() && friendly && (level == TRUMPET_0) && !nihil_present)
+		death()
+	//if CONTAINED and shits going down
+	if(IsContained() && (level >= TRUMPET_2))
 		BreachEffect() // We must help them!
 		datum_reference.qliphoth_meter = 0
 	return TRUE

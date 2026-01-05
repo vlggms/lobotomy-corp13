@@ -219,7 +219,7 @@
 		return
 	priority_announce("Simulations on acausal dimensional event complete. Deploying solution package now. Deployment ETA: ONE MINUTE. ","Central Command Higher Dimensional Affairs")
 	sleep(50)
-	set_security_level(num2seclevel(SEC_LEVEL_DELTA))
+	SSlobotomy_emergency.SetEmergencyLevel(num2emgcylevel(TRUMPET_3))
 	SSshuttle.registerHostileEnvironment(GLOB.cult_narsie)
 	SSshuttle.lockdown = TRUE
 	sleep(600)
@@ -227,7 +227,7 @@
 		priority_announce("Normalization detected! Abort the solution package!","Central Command Higher Dimensional Affairs", 'sound/misc/notice1.ogg')
 		GLOB.cult_narsie = null
 		sleep(20)
-		set_security_level(num2seclevel(SEC_LEVEL_RED))
+		SSlobotomy_emergency.SetEmergencyLevel(num2emgcylevel(TRUMPET_2))
 		SSshuttle.clearHostileEnvironment()
 		SSshuttle.lockdown = FALSE
 		INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(cult_ending_helper), 2)

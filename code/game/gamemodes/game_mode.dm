@@ -336,8 +336,8 @@
 
 	print_command_report(intercepttext, "Central Command Status Summary", announce=FALSE)
 	priority_announce("A summary has been copied and printed to all communications consoles.", "Enemy communication intercepted. Security level elevated.", ANNOUNCER_INTERCEPT)
-	if(GLOB.security_level < SEC_LEVEL_BLUE)
-		set_security_level(SEC_LEVEL_BLUE)
+	if(GLOB.emergency_level < TRUMPET_1)
+		SSlobotomy_emergency.SetEmergencyLevel(TRUMPET_1)
 
 /*
  * Generate a list of station goals available to purchase to report to the crew.
