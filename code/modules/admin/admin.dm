@@ -786,6 +786,87 @@
 	var/datum/skill_panel/SP  = new(usr, target_mind)
 	SP.ui_interact(usr)
 
+/datum/admins/proc/enemy_panel()
+	if(!check_rights(0))
+		return
+
+	var/dat = {"<html>
+		<head>
+		<title>Enemy Panel</title>
+		<style>
+		table,h2 {
+		font-family: Arial, Helvetica, sans-serif;
+		border-collapse: collapse;
+		}
+		td, th {
+		border: 1px solid #dddddd;
+		padding: 8px;
+		}
+		tr:nth-child(even) {
+		background-color: #dddddd;
+		}
+		</style>
+		</head>
+		<body>
+		<h2 style="text-align:center">Enemy Panel</h2>
+		<table>
+		<tr>
+		<th style="width:2%">Name</th>
+		<th style="width:2%">Examine</th>
+		<th style="width:1%">Threat Level</th>
+		<th style="width:1%">Weight</th>
+		<th style="width:2%"><a href='?src=\ref[src];create_enemy=1'>TBA</a></th><!-- Add a new datum -->
+		</tr>
+		"}
+	if(!GLOB.map_enemy)
+		to_chat(usr, "No enemy datums loaded!")
+		return
+	for(var/i = 1, i <= LAZYLEN(GLOB.map_enemy.ordeal_types), i++)
+		var/risk_level = "DAWN"
+		switch(i)
+			if(2)
+				risk_level = "NOON"
+			if(3)
+				risk_level = "DUSK"
+			if(4)
+				risk_level = "MIDNIGHT"
+		var/obj/effect/spawner/mobspawner/spawnref = initial(GLOB.map_enemy.ordeal_types[i])
+
+		var/obj/effect/spawner/mobspawner/spawner = new spawnref(null, enabled = FALSE)
+		spawner.enabled = FALSE
+
+		GLOB.map_enemy.spawn_data = spawner.mobspawn_table
+
+		for(var/ii = 1, ii <= LAZYLEN(GLOB.map_enemy.spawn_data), ii++)
+			var/mob/living/item = GLOB.map_enemy.spawn_data[ii]
+			var/weight = GLOB.map_enemy.spawn_data[item]
+
+			dat += {"<tr>
+				<td style="background-color:#272727">[item.name]</td>
+				<td style="background-color:#272727"><a href='?_src_=vars;Vars=\ref[spawner]'>\[VV\]</a> <a href='?_src_=vars;mark_object=\ref[spawner]'>\[mark datum\]</a></td>
+				<td style="background-color:#272727">[risk_level]</td>
+				<td style="background-color:#272727">[weight]</td>
+				<td style="background-color:#272727"><a href='?src=\ref[src];remove_enemy=\ref[item]'>Remove</a></td><!-- Remove a new datum.-->
+				</tr>
+				"}
+
+	dat += {"</table>
+		</body>
+		</html>
+		"}
+
+	var/datum/browser/popup = new(usr, "enemypanel", "Enemy Panel", 840, 450)
+	popup.set_content(dat)
+	popup.open()
+
+/datum/admins/proc/create_enemy()
+	to_chat(world, "calling create_enemy")
+	if(!GLOB.map_enemy)
+		GLOB.map_enemy = /datum/enemy/brown//change this to give the user options
+
+/datum/admins/proc/remove_enemy()
+	to_chat(world, "calling remove_enemy")
+
 /datum/admins/proc/toggletintedweldhelmets()
 	set category = "Debug"
 	set desc="Reduces view range when wearing welding helmets"
