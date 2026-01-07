@@ -424,7 +424,7 @@
 		"The blessing dissipated when F-02-24-1 died, panicked, or performed work on another abnormality. This also occured when a Qliphoth Meltdown on F-02-24 was ignored.",
 		"After the blessing was gone, a new employee could receive it.",
 		"When the blessing was lost, Puss in boots escaped from its Containment Unit and went on a rampage.",
-		"Puss in boots may appear near F-02-24-1 to offer its assistance when the emergency situation in the facility reached the 1st Trumpet or higher.")
+		"Puss in boots may appear near F-02-24-1 to offer its assistance when the facility reached the 1st Trumpet.")
 
 // Pinocchio
 /obj/item/paper/fluff/info/he/pinocchio
