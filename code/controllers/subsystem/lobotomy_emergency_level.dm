@@ -266,6 +266,8 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 	alert_type = /atom/movable/screen/alert/status_effect/trumpetlevel
 	var/justice = 0
 	var/work_speed = 0
+	var/fortitude = 0
+	var/prudence = 0
 
 /atom/movable/screen/alert/status_effect/trumpetlevel
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
@@ -278,6 +280,8 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 		qdel(src)
 	var/mob/living/carbon/human/H = owner
 	H.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, justice)
+	H.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, fortitude)
+	H.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, prudence)
 	H.physiology.work_speed_mod *= work_speed
 
 /datum/status_effect/trumpetlevel/on_remove()
@@ -285,6 +289,8 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 		return
 	var/mob/living/carbon/human/H = owner
 	H.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -justice)
+	H.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, -fortitude)
+	H.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, -prudence)
 	H.physiology.work_speed_mod /= work_speed
 	. = ..()
 
@@ -314,3 +320,15 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 /atom/movable/screen/alert/status_effect/trumpetlevel/level3
 	icon_state = "level3"
 	name = "Third Trumpet"
+
+/datum/status_effect/trumpetlevel/level4
+	justice = 20
+	fortitude = 20
+	prudence = 20
+	work_speed = 1
+	alert_type = /atom/movable/screen/alert/status_effect/trumpetlevel/level4
+
+/atom/movable/screen/alert/status_effect/trumpetlevel/level4
+	icon_state = "level4"
+	name = "Fourth Trumpet"
+	desc = "Shit's fucked ; Fortitude, Prudence and Justice are increased."

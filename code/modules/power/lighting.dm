@@ -424,7 +424,10 @@
 			CO = color
 		var/area/A = get_area(src)
 		if (A?.fire)
-			CO = bulb_emergency_colour
+			var/BColor = rgb2num(bulb_colour)
+			var/EColor = rgb2num(bulb_emergency_colour)
+			var/LerpFactor = clamp(0.1, 1, emgcylevel2num(get_emergency_level())/3)
+			CO = rgb(BColor[1] + ((EColor[1] - BColor[1]) * LerpFactor), BColor[2] + ((EColor[2] - BColor[2]) * LerpFactor), BColor[3] + ((EColor[3] - BColor[3]) * LerpFactor))
 		else if (nightshift_enabled)
 			BR = nightshift_brightness
 			PO = nightshift_light_power

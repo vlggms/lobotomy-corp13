@@ -405,7 +405,7 @@
 	abno_info = list(
 		"The first Employee that gets a Good work result will gain a mark from now on will be called the “Sculptor”" ,
 		"The “Sculptor” will have a higher work success chance with Pygmalion and will have a higher chance of getting the E.G.O gift" ,
-		"Pygmalion breaches when the “Sculptor” has 50% or less sanity or health or when the emergency situation in the facility reached the 1st Trumpet." ,
+		"Pygmalion breaches when the “Sculptor” has 50% or less sanity or health or when the facility reached the 1st Trumpet." ,
 		"When Pygmalion breaches, They will teleport to the “Sculptor” and attack any abnormality in their way and any abnormality near the “Sculptor.”" ,
 		"The “Sculptor” will have their maximum sanity reduced while Pygmalion is breaching." ,
 		"If the “Sculptor” goes insane or dies, Pygmalion will become enraged and start attacking everyone near them.")
