@@ -664,7 +664,7 @@
 	else
 		parts += "[FOURSPACES]<b>The facility had faced [SSticker.ordeal_info.len] ordeals:</b>"
 	for(var/list/O in SSticker.ordeal_info)
-		if(O.[4] != null)
+		if(O[4] != null)
 			parts += "[FOURSPACES]<span style='color: [O[2]]'>[O[1]]</span>: Started at <b>[DisplayTimeText(O[3])]</b> and took <b>[DisplayTimeText(O[4] - O[3])]</b> to be delt with."
 		else
 			parts += "[FOURSPACES]<span style='color: [O[2]]'>[O[1]]</span>: Started at <b>[DisplayTimeText(O[3])]</b> and was <b>never beaten</b>!"
