@@ -21,7 +21,8 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(40, 40, 40, 45, 45),
 		ABNORMALITY_WORK_REPRESSION = list(0, 0, 30, 30, 30),
 	)
-	work_damage_amount = 9	//Half white, half black damage
+	work_damage_upper = 9
+	work_damage_lower = 6	//Half white, half black damage
 	work_damage_type = list(WHITE_DAMAGE, BLACK_DAMAGE)
 	chem_type = /datum/reagent/abnormality/sin/gluttony	//Literally a black hole (and a white hole I guess)
 

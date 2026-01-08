@@ -16,8 +16,10 @@
 		ABNORMALITY_WORK_ATTACHMENT = 0,
 		ABNORMALITY_WORK_REPRESSION = 0,
 	)
-	work_damage_amount = 2
+	work_damage_upper = 2
+	work_damage_lower = 1
 	work_damage_type = BLACK_DAMAGE
+	max_boxes = 6
 
 	melee_damage_lower = -1
 	melee_damage_upper = -1

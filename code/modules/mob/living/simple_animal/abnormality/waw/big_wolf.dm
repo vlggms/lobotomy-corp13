@@ -38,7 +38,8 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(45, 50, 50, 55, 55),
 		ABNORMALITY_WORK_REPRESSION = 0,
 	)
-	work_damage_amount = 7
+	work_damage_upper = 8
+	work_damage_lower = 4
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gluttony
 	melee_damage_type = RED_DAMAGE

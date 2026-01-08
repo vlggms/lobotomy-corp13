@@ -20,9 +20,11 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(99, 99, 50, 40, 30),
 		ABNORMALITY_WORK_REPRESSION = 0,
 	)
-	work_damage_amount = 5
+	work_damage_upper = 6
+	work_damage_lower = 4
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/wrath
+	max_boxes = 16
 	del_on_death = FALSE
 	death_message = "crumples into a pile of bones."
 	attack_sound = 'sound/abnormalities/redshoes/RedShoes_Attack.ogg'

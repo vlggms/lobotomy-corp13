@@ -39,7 +39,8 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(15, 20, 25, 30, 35),
 		ABNORMALITY_WORK_REPRESSION = 15,
 	)
-	work_damage_amount = 5
+	work_damage_upper = 6
+	work_damage_lower = 3
 	work_damage_type = BLACK_DAMAGE
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 

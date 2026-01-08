@@ -16,7 +16,8 @@
 		"Input One" = 0,		//These should never be used, but it's here for brevity
 		"Input Zero" = 0,
 	)
-	work_damage_amount = 5
+	work_damage_upper = 4
+	work_damage_lower = 3
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/envy
 

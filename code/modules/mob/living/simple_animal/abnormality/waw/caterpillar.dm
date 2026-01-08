@@ -29,7 +29,8 @@
 		ABNORMALITY_WORK_REPRESSION = list(20, 20, 20, 20, 65),
 	)
 	max_boxes = 18
-	work_damage_amount = 5
+	work_damage_upper = 6
+	work_damage_lower = 5
 	work_damage_type = PALE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/sloth
 	patrol_cooldown_time = 3 SECONDS
@@ -97,7 +98,7 @@
 		darts_smoked++	//Smoke a fat stoogie if it's not repression
 
 		if(darts_smoked<8)
-			work_damage_amount+=2
+			work_damage_lower+=2
 			datum_reference.max_boxes+=2
 
 		if(darts_smoked>=3)

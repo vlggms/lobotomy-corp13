@@ -22,7 +22,8 @@
 		ABNORMALITY_WORK_ATTACHMENT = 55,
 		ABNORMALITY_WORK_REPRESSION = list(50, 45, 40, 0, 0),
 	)
-	work_damage_amount = 8
+	work_damage_upper = 6
+	work_damage_lower = 4
 	work_damage_type = PALE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/pride
 

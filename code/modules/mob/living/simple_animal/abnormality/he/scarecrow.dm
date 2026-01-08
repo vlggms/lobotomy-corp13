@@ -28,9 +28,11 @@
 		ABNORMALITY_WORK_ATTACHMENT = 45,
 		ABNORMALITY_WORK_REPRESSION = 45,
 	)
-	work_damage_amount = 5
+	work_damage_upper = 6
+	work_damage_lower = 2
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/envy
+	max_boxes = 18
 	death_message = "stops moving, with its torso rotating forwards."
 	death_sound = 'sound/abnormalities/scarecrow/death.ogg'
 

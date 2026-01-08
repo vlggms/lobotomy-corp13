@@ -23,11 +23,11 @@
 	del_on_death = FALSE
 	death_message = "explodes in a shower of gore."
 
-	work_damage_amount = 3
+	work_damage_upper = 3
+	work_damage_lower = 1
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/sloth
 	start_qliphoth = 1
-	max_boxes = 14
 	ego_list = list(
 		/datum/ego_datum/weapon/lantern,
 		/datum/ego_datum/armor/lantern,

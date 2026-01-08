@@ -20,7 +20,8 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(50, 50, 40, 40, 40),
 		ABNORMALITY_WORK_REPRESSION = list(30, 20, 0, -80, -80),
 	)
-	work_damage_amount = 3
+	work_damage_upper = 4
+	work_damage_lower = 2
 	work_damage_type = WHITE_DAMAGE
 	death_message = "falls over."
 	ego_list = list(

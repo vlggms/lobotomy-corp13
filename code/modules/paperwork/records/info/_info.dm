@@ -73,8 +73,10 @@ For escape damage you will have to get creative and figure out how dangerous it 
 		abno_work_damage_type = uppertext(initial_work_damage_type)
 	if(GLOB.damage_type_shuffler?.is_enabled && IsColorDamageType(initial_work_damage_type))
 		abno_work_damage_type = uppertext(GLOB.damage_type_shuffler.mapping_offense[initial_work_damage_type])
+	// We need to get the average work damage, and it only accepts whole numbers. So we get the average and round.
 	if(isnull(abno_work_damage_count))
-		abno_work_damage_count = SimpleWorkDamageToText(initial(abno_type.work_damage_amount))
+		var/avgworkdamage = round((initial(abno_type.work_damage_upper) + initial(abno_type.work_damage_lower)) * 0.5)
+		abno_work_damage_count = SimpleWorkDamageToText(avgworkdamage)
 	info += "Work Damage Type: [abno_work_damage_type]<br>"
 	info += "Work Damage: [abno_work_damage_count]<br><br>"
 

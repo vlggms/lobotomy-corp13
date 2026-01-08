@@ -13,7 +13,8 @@
 		ABNORMALITY_WORK_REPRESSION = list(0, 0, 50, 45, 45),
 	)
 	start_qliphoth = 1
-	work_damage_amount = 10
+	work_damage_upper = 8
+	work_damage_lower = 6
 	work_damage_type = PALE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gloom
 

@@ -17,7 +17,8 @@
 		ABNORMALITY_WORK_ATTACHMENT = 30,
 		ABNORMALITY_WORK_REPRESSION = -100,	//He's a snobby shrimp dude.
 	)
-	work_damage_amount = 7
+	work_damage_upper = 6
+	work_damage_lower = 4
 	work_damage_type = WHITE_DAMAGE	//He insults you
 	chem_type = /datum/reagent/abnormality/sin/pride
 

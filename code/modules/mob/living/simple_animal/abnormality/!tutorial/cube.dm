@@ -16,7 +16,8 @@
 		ABNORMALITY_WORK_ATTACHMENT = 70,
 		ABNORMALITY_WORK_REPRESSION = 30,
 	)
-	work_damage_amount = 2
+	work_damage_upper = 2
+	work_damage_lower = 1
 	work_damage_type = WHITE_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1)
 	can_breach = TRUE

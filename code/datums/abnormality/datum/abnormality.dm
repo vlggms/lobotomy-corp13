@@ -121,8 +121,11 @@
 	qliphoth_meter_max = current.start_qliphoth
 	qliphoth_meter = qliphoth_meter_max
 	maximum_attribute_level = THREAT_TO_ATTRIBUTE_LIMIT[threat_level]
+	// Zayin - 10, TETH - 14, HE - 18, WAW - 22, ALEPH - 30 as baselines.
 	if(!current.max_boxes)
-		max_boxes = threat_level * 6
+		max_boxes = (threat_level * 4) + 6
+		if(threat_level >= 5)
+			max_boxes += 4
 	else
 		max_boxes = current.max_boxes
 	if(!current.success_boxes)

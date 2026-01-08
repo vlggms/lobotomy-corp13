@@ -18,8 +18,10 @@
 		ABNORMALITY_WORK_REPRESSION = list(0, 0, 0, 45, 50),
 	)
 	start_qliphoth = 1
-	work_damage_amount = 9
+	work_damage_upper = 7
+	work_damage_lower = 6
 	work_damage_type = PALE_DAMAGE
+	max_boxes = 33
 	chem_type = /datum/reagent/abnormality/sin/pride
 	pixel_x = -16
 	base_pixel_x = -16

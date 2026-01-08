@@ -23,7 +23,8 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(0, 10, 20, 20, 20),
 		ABNORMALITY_WORK_REPRESSION = 0,
 	)
-	work_damage_amount = 7
+	work_damage_upper = 7
+	work_damage_lower = 5
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/lust	///Of course the gregnant ID is a lust one.
 	can_breach = TRUE

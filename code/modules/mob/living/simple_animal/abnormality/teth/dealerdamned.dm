@@ -14,7 +14,8 @@
 		ABNORMALITY_WORK_REPRESSION = 25,
 		"Gamble" = 100
 	)
-	work_damage_amount = 3
+	work_damage_upper = 4
+	work_damage_lower = 2
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gluttony
 	speak_emote = list("states")

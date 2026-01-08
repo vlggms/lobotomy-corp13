@@ -23,14 +23,14 @@
 		ABNORMALITY_WORK_REPRESSION = list(50, 40, 30, 30, 30),
 		"Confess" = 50,
 	)
-	work_damage_amount = 2
+	work_damage_upper = 2
+	work_damage_lower = 1
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/penitence,
 		/datum/ego_datum/armor/penitence
 	)
-	max_boxes = 10
 	gift_type = /datum/ego_gifts/penitence
 	gift_message = "From this day forth, you shall never forget his words."
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY

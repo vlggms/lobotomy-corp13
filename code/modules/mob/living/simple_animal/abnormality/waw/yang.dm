@@ -21,7 +21,8 @@
 	can_breach = TRUE
 	start_qliphoth = 2
 	threat_level = WAW_LEVEL
-	work_damage_amount = 7
+	work_damage_upper = 6
+	work_damage_lower = 4
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/envy
 	work_chances = list(

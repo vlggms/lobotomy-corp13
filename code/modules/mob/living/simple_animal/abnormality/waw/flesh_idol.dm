@@ -17,7 +17,8 @@
 	)
 	start_qliphoth = 4
 	max_boxes = 20
-	work_damage_amount = 0		//Work damage is later
+	work_damage_upper = 0
+	work_damage_lower = 0		//Work damage is later
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/lust
 
@@ -39,7 +40,7 @@
 	var/counter_interval = 5 MINUTES
 	var/next_counter_gain //What was the next time you gain Qlip?
 	var/reset_time = 1 MINUTES
-	var/damage_amount = 7
+	var/damage_amount = 6
 	var/run_num = 2		//How many things you breach
 
 	var/list/blacklist = list(

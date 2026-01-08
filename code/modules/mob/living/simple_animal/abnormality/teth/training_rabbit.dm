@@ -16,9 +16,11 @@
 		ABNORMALITY_WORK_ATTACHMENT = 100,
 		ABNORMALITY_WORK_REPRESSION = 40,
 	)
-	work_damage_amount = 2
+	work_damage_upper = 2
+	work_damage_lower = 1
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/blood
+	max_boxes = 10
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	can_breach = TRUE
 	start_qliphoth = 1
