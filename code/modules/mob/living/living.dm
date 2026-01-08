@@ -1353,6 +1353,7 @@
 
 /mob/living/onTransitZ(old_z,new_z)
 	..()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOVABLE_Z_CHANGED, src, old_z, new_z)
 	update_z(new_z)
 
 /mob/living/MouseDrop_T(atom/dropping, atom/user)

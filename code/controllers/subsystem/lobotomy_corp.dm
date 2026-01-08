@@ -99,13 +99,21 @@ SUBSYSTEM_DEF(lobotomy_corp)
 
 	/// If TRUE - will not count deaths for auto restart
 	var/auto_restart_in_progress = FALSE
+	/// The timer that goes down for when shits fucked
+	var/restart_timer = null
 
 /datum/controller/subsystem/lobotomy_corp/Initialize(timeofday)
 	if(SSmaptype.maptype in SSmaptype.combatmaps) // sleep
 		flags |= SS_NO_FIRE
 		return ..()
 
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(OnMobDeath))
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(CheckForRestart))
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOVABLE_Z_CHANGED, PROC_REF(CheckForRestart))
+	RegisterSignal(SSdcs, COMSIG_GLOB_HUMAN_INSANE, PROC_REF(CheckForRestart))
+	RegisterSignal(SSdcs, COMSIG_GLOB_HUMAN_RESANE, PROC_REF(CheckForRestart))
+	RegisterSignal(SSdcs, COMSIG_GLOB_JOB_AFTER_SPAWN, PROC_REF(CheckForRestart))
+	RegisterSignal(SSdcs, COMSIG_GLOB_ORDEAL_START, PROC_REF(OrdealStartOrFinish))
+	RegisterSignal(SSdcs, COMSIG_GLOB_ORDEAL_END, PROC_REF(OrdealStartOrFinish))
 	addtimer(CALLBACK(src, PROC_REF(SetGoal)), 5 MINUTES)
 	addtimer(CALLBACK(src, PROC_REF(InitializeOrdeals)), 60 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(PickPotentialSuppressions)), 60 SECONDS)
@@ -370,6 +378,12 @@ SUBSYSTEM_DEF(lobotomy_corp)
 /datum/controller/subsystem/lobotomy_corp/proc/OrdealDeathCheck()
 	if(!LAZYLEN(current_ordeals))
 		return FALSE
+	if(!DeathCheck())
+		return FALSE
+	return TRUE
+
+/// Checks only for if every agent/ERT is either dead, absent, or insane
+/datum/controller/subsystem/lobotomy_corp/proc/DeathCheck()
 	if(SSmaptype.maptype == "skeld")
 		return FALSE
 	var/agent_count = AvailableAgentAndERTCount()
@@ -377,28 +391,42 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		return FALSE
 	return TRUE
 
-/datum/controller/subsystem/lobotomy_corp/proc/OnMobDeath(datum/source, mob/living/died, gibbed)
+/datum/controller/subsystem/lobotomy_corp/proc/CheckForRestart(datum/source, mob/living/L)
 	SIGNAL_HANDLER
 	if(!(SSmaptype.maptype in list("standard", "skeld", "fishing", "wonderlabs")))
 		return FALSE
-	if(!ishuman(died))
+	if(!ishuman(L))
+		return FALSE
+	if(auto_restart_in_progress)
+		if(!DeathCheck())
+			deltimer(restart_timer)
+			auto_restart_in_progress = FALSE
+			to_chat(world, span_nicegreen("<b>An agent has either joined or had came back to their senses, the round ending automatically is canceled for now!</b>"))
 		return FALSE
 	if(OrdealDeathCheck() && !auto_restart_in_progress)
-		OrdealDeathAutoRestart()
+		DeathAutoRestart()
+	return TRUE
+
+/datum/controller/subsystem/lobotomy_corp/proc/OrdealStartOrFinish(datum/source)
+	SIGNAL_HANDLER
+	if(auto_restart_in_progress)
+		if(!OrdealDeathCheck())
+			deltimer(restart_timer)
+			auto_restart_in_progress = FALSE
+			to_chat(world, span_nicegreen("<b>All ordeals have ended, the round ending automatically is canceled for now!</b>"))
+			return FALSE
+	if(OrdealDeathCheck() && !auto_restart_in_progress)
+		DeathAutoRestart()
 	return TRUE
 
 /// Restarts the round when time reaches 0
-/datum/controller/subsystem/lobotomy_corp/proc/OrdealDeathAutoRestart(time = 120 SECONDS)
+/datum/controller/subsystem/lobotomy_corp/proc/DeathAutoRestart(time = 120 SECONDS)
 	auto_restart_in_progress = TRUE
-	if(!OrdealDeathCheck())
-		// Yay
-		auto_restart_in_progress = FALSE
-		return FALSE
 	if(time <= 0)
 		message_admins("The round is over because all agents are dead while ordeals are unresolved!")
 		to_chat(world, span_danger("<b>The round is over because all agents are dead while ordeals are unresolved!</b>"))
 		SSticker.force_ending = TRUE
 		return TRUE
-	to_chat(world, span_danger("<b>All agents are dead! If ordeals are left unresolved or new agents don't join, the round will automatically end in <u>[round(time/10)] seconds!</u></b>"))
-	addtimer(CALLBACK(src, PROC_REF(OrdealDeathAutoRestart), max(0, time - 30 SECONDS)), 30 SECONDS)
+	to_chat(world, span_danger("<b>All agents are dead or panicking! If ordeals are left unresolved, new agents don't join or a panicking agent isn't delt with, the round will automatically end in <u>[round(time/10)] seconds!</u></b>"))
+	restart_timer = addtimer(CALLBACK(src, PROC_REF(DeathAutoRestart), max(0, time - 30 SECONDS)), 30 SECONDS, TIMER_STOPPABLE)
 	return TRUE

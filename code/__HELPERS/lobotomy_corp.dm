@@ -32,6 +32,8 @@
 			continue
 		if(!H.mind)
 			continue
+		if(H.sanity_lost)
+			continue
 		if(!is_station_level(H.z))
 			continue
 		. += 1
@@ -43,6 +45,8 @@
 		if(!H.client)
 			continue
 		if(!H.mind)
+			continue
+		if(H.sanity_lost)
 			continue
 		if(!is_station_level(H.z))
 			continue

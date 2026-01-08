@@ -38,9 +38,11 @@
 // An abnormality cell was swapped with another;
 // First argument is main abno of a swap, second argument is a target abno of a swap: (/datum/abnormality, /datum/abnormality)
 #define COMSIG_GLOB_ABNORMALITY_SWAP "!abno_swap"
-
+///from base of atom/movable/onTransitZ(): (mob/living, old_z, new_z)
+#define COMSIG_GLOB_MOVABLE_Z_CHANGED "!movable_ztransit"
 /// signals from globally accessible objects
-
+/// a human mob got un insaned (mob/living/carbon/human)
+#define COMSIG_GLOB_HUMAN_RESANE "!human_resane"
 ///from SSsun when the sun changes position : (azimuth)
 #define COMSIG_SUN_MOVED "sun_moved"
 
@@ -1094,6 +1096,8 @@
 #define COMSIG_GLOB_SEASON_CHANGE "!change_season"
 
 // Ordeal signals
+// When the ordeal starts; (/datum/ordeal)
+#define COMSIG_GLOB_ORDEAL_START "!ordeal_start"
 // When the ordeal ends; (/datum/ordeal)
 #define COMSIG_GLOB_ORDEAL_END "!ordeal_end"
 

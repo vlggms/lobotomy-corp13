@@ -657,17 +657,17 @@
 	var/list/parts = list()
 	parts += "<span class='header'>Ordeal Summary:</span>"
 	parts += "<div class='panel stationborder'>"
-	if(!LAZYLEN(SSticker.ordeals_done))
+	if(!LAZYLEN(SSticker.ordeal_info))
 		parts += "<b>The facility had faced no ordeals!</b>"
-	else if(SSticker.ordeals_done.len == 1)
+	else if(SSticker.ordeal_info.len == 1)
 		parts += "<b>The facility had faced 1 ordeal:</b>"
 	else
-		parts += "[FOURSPACES]<b>The facility had faced [SSticker.ordeals_done.len] ordeals:</b>"
-	for(var/datum/ordeal/O in SSticker.ordeals_done)
-		if(O.end_time)
-			parts += "[FOURSPACES]<span style='color: [O.color]'>[O.name]</span>: Started at <b>[DisplayTimeText(O.start_time)]</b> and took <b>[DisplayTimeText(O.end_time - O.start_time)]</b> to be delt with."
+		parts += "[FOURSPACES]<b>The facility had faced [SSticker.ordeal_info.len] ordeals:</b>"
+	for(var/list/O in SSticker.ordeal_info)
+		if(O.[4] != null)
+			parts += "[FOURSPACES]<span style='color: [O[2]]'>[O[1]]</span>: Started at <b>[DisplayTimeText(O[3])]</b> and took <b>[DisplayTimeText(O[4] - O[3])]</b> to be delt with."
 		else
-			parts += "[FOURSPACES]<span style='color: [O.color]'>[O.name]</span>: Started at <b>[DisplayTimeText(O.start_time)]</b> and was <b>never beaten</b>!"
+			parts += "[FOURSPACES]<span style='color: [O[2]]'>[O[1]]</span>: Started at <b>[DisplayTimeText(O[3])]</b> and was <b>never beaten</b>!"
 	parts += "</div>"
 	return parts.Join("<br>")
 

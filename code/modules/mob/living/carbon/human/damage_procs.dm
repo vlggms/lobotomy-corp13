@@ -75,6 +75,7 @@
 		remove_status_effect(/datum/status_effect/panicked_type)
 		visible_message(span_boldnotice("[src] comes back to [p_their(TRUE)] senses!"), \
 						span_boldnotice("You are back to normal!"))
+		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_HUMAN_RESANE, src)
 	else if(!sanity_lost && sanityhealth <= 0)
 		sanity_lost = TRUE
 		apply_status_effect(/datum/status_effect/panicked)
