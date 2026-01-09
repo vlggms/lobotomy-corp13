@@ -2787,6 +2787,7 @@
 #include "code\modules\mob\living\simple_animal\shade.dm"
 #include "code\modules\mob\living\simple_animal\simple_animal.dm"
 #include "code\modules\mob\living\simple_animal\status_procs.dm"
+#include "code\modules\mob\living\simple_animal\abnormality\_abnominion.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\_abnormality.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\abno_cores.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\abnormality_helpers.dm"
