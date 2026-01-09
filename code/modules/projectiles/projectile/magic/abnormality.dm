@@ -85,7 +85,7 @@
 			var/turf/T = get_turf(L)
 			visible_message("<span class='danger'>[L] is submerged in slime as another slime pawn appears!</span>")
 			L.gib()
-			new /mob/living/simple_animal/hostile/slime(T)
+			new /mob/living/simple_animal/hostile/abnominion/slime(T)
 			return BULLET_ACT_HIT
 		if(!isbot(L))
 			L.visible_message("<span class='warning'>[L] is hit by [src], they seem to wither away!</span>")

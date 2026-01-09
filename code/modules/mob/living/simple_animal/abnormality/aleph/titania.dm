@@ -146,7 +146,7 @@
 		spawn_turf = get_turf(src)
 
 	for(var/i in 1 to amount)
-		var/mob/living/simple_animal/hostile/fairyswarm/fairy = new(spawn_turf)
+		var/mob/living/simple_animal/hostile/abnominion/fairyswarm/fairy = new(spawn_turf)
 		fairy.faction = faction
 		fairy.mommy = src
 		if(fused)
@@ -254,7 +254,7 @@
 /mob/living/simple_animal/hostile/abnormality/titania/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
 	var/units_to_add = list(
-		/mob/living/simple_animal/hostile/fairyswarm = 6,
+		/mob/living/simple_animal/hostile/abnominion/fairyswarm = 6,
 		)
 	AddComponent(/datum/component/ai_leadership, units_to_add, 6, TRUE, TRUE)
 	addtimer(CALLBACK(src, PROC_REF(FairyLoop)), 10 SECONDS)	//10 seconds from now you start spawning fairies
@@ -316,7 +316,7 @@
 	return ..()
 
 //The Mini fairies
-/mob/living/simple_animal/hostile/fairyswarm
+/mob/living/simple_animal/hostile/abnominion/fairyswarm
 	name = "fairy"
 	desc = "A tiny, extremely hungry fairy."
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
@@ -339,24 +339,26 @@
 	mob_size = MOB_SIZE_TINY
 	del_on_death = TRUE
 	can_patrol = TRUE
+	can_affect_emergency = FALSE
+	fear_level = 0
 	var/mob/living/simple_animal/hostile/abnormality/titania/mommy
 	var/mob/living/carbon/human/hitOnce = null
 	var/datum/status_effect/fairy_lights/status
 
-/mob/living/simple_animal/hostile/fairyswarm/Initialize()
+/mob/living/simple_animal/hostile/abnominion/fairyswarm/Initialize()
 	. = ..()
 	pixel_x = rand(-16, 16)
 	pixel_y = rand(-16, 16)
 
-/mob/living/simple_animal/hostile/fairyswarm/EscapeConfinement()
+/mob/living/simple_animal/hostile/abnominion/fairyswarm/EscapeConfinement()
 	if(status)
 		return
 	return ..()
 
-/mob/living/simple_animal/hostile/fairyswarm/MovedTryAttack()
+/mob/living/simple_animal/hostile/abnominion/fairyswarm/MovedTryAttack()
 	return FALSE
 
-/mob/living/simple_animal/hostile/fairyswarm/Destroy()
+/mob/living/simple_animal/hostile/abnominion/fairyswarm/Destroy()
 	if(status)
 		status.fairies -= src
 		status.UpdateOverlay()
@@ -367,7 +369,7 @@
 	return ..()
 
 //Attacking code
-/mob/living/simple_animal/hostile/fairyswarm/AttackingTarget(atom/attacked_target)
+/mob/living/simple_animal/hostile/abnominion/fairyswarm/AttackingTarget(atom/attacked_target)
 	if(ishuman(target))
 		if(hitOnce == target)
 			var/mob/living/victim = target
@@ -411,7 +413,7 @@
 	if(!owner)
 		return
 	if(fairies.len > 0)
-		for(var/mob/living/simple_animal/hostile/fairyswarm/fairy in fairies)
+		for(var/mob/living/simple_animal/hostile/abnominion/fairyswarm/fairy in fairies)
 			fairy.toggle_ai(AI_ON)
 			fairy.forceMove(get_turf(owner))
 			fairy.status = null
@@ -420,7 +422,7 @@
 		owner.cut_overlay(mutable_appearance('icons/effects/32x64.dmi', current_overlay, -FIRE_LAYER))
 	UnregisterSignal(owner, COMSIG_MOB_APPLY_DAMGE)
 
-/datum/status_effect/fairy_lights/proc/AddToPlayer(mob/living/simple_animal/hostile/fairyswarm/F)
+/datum/status_effect/fairy_lights/proc/AddToPlayer(mob/living/simple_animal/hostile/abnominion/fairyswarm/F)
 	if(F)
 		fairies += F
 		F.forceMove(owner)
@@ -438,7 +440,7 @@
 	if(ishuman(owner))
 		var/old_overlay = current_overlay
 		current_overlay = "fairy_lights_[fairies.len]"
-		var/mob/living/simple_animal/hostile/fairyswarm/F = fairies[1]
+		var/mob/living/simple_animal/hostile/abnominion/fairyswarm/F = fairies[1]
 		if(F)
 			if(F.icon_state == "fairyswarm_oberon")
 				current_overlay += "_oberon"
@@ -455,7 +457,7 @@
 		to_chat(owner, span_nicegreen("The hit killed all of the fairies orbiting you."))
 	else
 		to_chat(owner, span_nicegreen("The hit killed the fairy orbiting you."))
-	for(var/mob/living/simple_animal/hostile/fairyswarm/F in fairies)
+	for(var/mob/living/simple_animal/hostile/abnominion/fairyswarm/F in fairies)
 		qdel(F)
 	qdel(src)
 
@@ -483,7 +485,7 @@
 		flower_overlay.setDir(H.dir)
 		animate(flower_overlay, alpha = 255, time = 2 SECONDS)
 		H.vis_contents += flower_overlay
-		for(var/mob/living/simple_animal/hostile/fairyswarm/fairy in fairies)
+		for(var/mob/living/simple_animal/hostile/abnominion/fairyswarm/fairy in fairies)
 			if(fairy.mommy)
 				fairy.mommy.SpawnFairies(1, H, ignore_cap = TRUE)
 		qdel(src)
