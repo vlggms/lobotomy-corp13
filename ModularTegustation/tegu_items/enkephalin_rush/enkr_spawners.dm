@@ -244,7 +244,7 @@ GLOBAL_DATUM_INIT(map_enemy, /datum/enemy, new)
 		/mob/living/simple_animal/hostile/worker_bee = 10,
 		/mob/living/simple_animal/hostile/soldier_bee = 10,//identical to above, has a hat
 		/mob/living/simple_animal/hostile/artillery_bee = 5,
-		/mob/living/simple_animal/hostile/slime = 1,//ML slime (small)
+		/mob/living/simple_animal/hostile/abnominion/slime = 1,//ML slime (small)
 		)
 
 /obj/effect/spawner/mobspawner/waw
@@ -261,12 +261,12 @@ GLOBAL_DATUM_INIT(map_enemy, /datum/enemy, new)
 	max_spawns = 1
 	mobspawn_table = list(
 		/mob/living/simple_animal/hostile/little_prince_1 = 1,//this guy has a wopping 1200 hp
-		/mob/living/simple_animal/hostile/mini_censored = 1,
+		/mob/living/simple_animal/hostile/abnominion/mini_censored = 1,
 		/mob/living/simple_animal/hostile/meatblob = 10,
 		/mob/living/simple_animal/hostile/meatblob/gunner = 5,
 		/mob/living/simple_animal/hostile/meatblob/gunner/shotgun = 5,
 		/mob/living/simple_animal/hostile/meatblob/gunner/sniper = 5,
-		/mob/living/simple_animal/hostile/slime/big = 2,//ML's chosen
+		/mob/living/simple_animal/hostile/abnominion/slime/big = 2,//ML's chosen
 		)
 
 //Steel Singles
