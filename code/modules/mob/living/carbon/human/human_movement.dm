@@ -53,6 +53,24 @@
 		return TRUE
 	return ..()
 
+/mob/living/carbon/human/MobBump(mob/M)
+	if(!IsCombatMap())
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			if((!sanity_lost || !H.sanity_lost))
+				if(a_intent != INTENT_HARM && H.a_intent != INTENT_HARM)
+					return FALSE
+	return ..()
+
+/mob/living/carbon/human/CanPass(atom/movable/mover, turf/target)
+	if(!IsCombatMap())
+		if(ishuman(mover))
+			var/mob/living/carbon/human/H = mover
+			if((!sanity_lost || !H.sanity_lost))
+				if(a_intent != INTENT_HARM && H.a_intent != INTENT_HARM)
+					return TRUE
+	return ..()
+
 /mob/living/carbon/human/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	if(.) // If we're already letting them through, then might as well not check anything else.
