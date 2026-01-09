@@ -123,15 +123,6 @@
 	lose_text = "<span class='notice'>You feel like standing up for yourself.</span>"
 	medical_record_text = "Patient presents a notably unassertive personality and is easy to manipulate."
 
-/datum/quirk/empath
-	name = "Empath"
-	desc = "Whether it's a sixth sense or careful study of body language, it only takes you a quick glance at someone to understand how they feel."
-	value = 0
-	mob_trait = TRAIT_EMPATH
-	gain_text = "<span class='notice'>You feel in tune with those around you.</span>"
-	lose_text = "<span class='danger'>You feel isolated from others.</span>"
-	medical_record_text = "Patient is highly perceptive of and sensitive to social cues, or may possibly have ESP. Further testing needed."
-
 /datum/quirk/light_drinker
 	name = "Light Drinker"
 	desc = "You just can't handle your drinks and get drunk very quickly."
@@ -142,50 +133,13 @@
 	medical_record_text = "Patient demonstrates a low tolerance for alcohol. (Wimp)"
 	hardcore_value = 3
 
-/datum/quirk/bad_touch
-	name = "Bad Touch"
-	desc = "You don't like hugs. You'd really prefer if people just left you alone."
-	mob_trait = TRAIT_BADTOUCH
-	value = 0
-	gain_text = "<span class='danger'>You just want people to leave you alone.</span>"
-	lose_text = "<span class='notice'>You could use a big hug.</span>"
-	medical_record_text = "Patient has disdain for being touched. Potentially has undiagnosed haphephobia."
-
-/datum/quirk/friendly
-	name = "Friendly"
-	desc = "You give the best hugs, even if they dont matter in this bloodshed enviroment."
-	value = 0
-	mob_trait = TRAIT_FRIENDLY
-	gain_text = "<span class='notice'>You want to hug someone.</span>"
-	lose_text = "<span class='danger'>You no longer feel compelled to hug others.</span>"
-	medical_record_text = "Patient demonstrates low-inhibitions for physical contact and well-developed arms. Requesting another doctor take over this case."
-
-
-/datum/quirk/extrovert
-	name = "Extrovert"
-	desc = "You are energized by talking to others, and enjoy spending your free time in the bar."
-	value = 0
-	mob_trait = TRAIT_EXTROVERT
-	gain_text = "<span class='notice'>You feel like hanging out with other people.</span>"
-	lose_text = "<span class='danger'>You feel like you're over the bar scene.</span>"
-	medical_record_text = "Patient will not shut the hell up."
-
-/datum/quirk/introvert
-	name = "Introvert"
-	desc = "You are energized by having time to yourself, and enjoy spending your free time in the library."
-	value = 0
-	mob_trait = TRAIT_INTROVERT
-	gain_text = "<span class='notice'>You feel like reading a good book quietly.</span>"
-	lose_text = "<span class='danger'>You feel like libraries are boring.</span>"
-	medical_record_text = "Patient doesn't seem to say much."
-
 /datum/quirk/foreigner
 	name = "Foreigner"
-	desc = "You're not from around here. You don't know Galactic Common!"
+	desc = "You're not from around here. You don't know Common!"
 	value = 0
 	gain_text = "<span class='notice'>The words being spoken around you don't make any sense."
-	lose_text = "<span class='notice'>You've developed fluency in Galactic Common."
-	medical_record_text = "Patient does not speak Galactic Common and may require an interpreter."
+	lose_text = "<span class='notice'>You've developed fluency in Common."
+	medical_record_text = "Patient does not speak Common and may require an interpreter."
 
 /datum/quirk/foreigner/add()
 	var/mob/living/carbon/human/H = quirk_holder
@@ -231,44 +185,6 @@
 	medical_record_text = "Patient seems to be rather stuck up."
 	mob_trait = TRAIT_SNOB
 
-/datum/quirk/pineapple_liker
-	name = "Ananas Affinity"
-	desc = "You find yourself greatly enjoying fruits of the ananas genus. You can't seem to ever get enough of their sweet goodness!"
-	value = 0
-	gain_text = "<span class='notice'>You feel an intense craving for pineapple.</span>"
-	lose_text = "<span class='notice'>Your feelings towards pineapples seem to return to a lukewarm state.</span>"
-	medical_record_text = "Patient demonstrates a pathological love of pineapple."
-
-/datum/quirk/pineapple_liker/add()
-	var/mob/living/carbon/human/H = quirk_holder
-	var/datum/species/species = H.dna.species
-	species.liked_food |= PINEAPPLE
-
-/datum/quirk/pineapple_liker/remove()
-	var/mob/living/carbon/human/H = quirk_holder
-	if(H)
-		var/datum/species/species = H.dna.species
-		species.liked_food &= ~PINEAPPLE
-
-/datum/quirk/pineapple_hater
-	name = "Ananas Aversion"
-	desc = "You find yourself greatly detesting fruits of the ananas genus. Serious, how the hell can anyone say these things are good? And what kind of madman would even dare putting it on a pizza!?"
-	value = 0
-	gain_text = "<span class='notice'>You find yourself pondering what kind of idiot actually enjoys pineapples...</span>"
-	lose_text = "<span class='notice'>Your feelings towards pineapples seem to return to a lukewarm state.</span>"
-	medical_record_text = "Patient is correct to think that pineapple is disgusting."
-
-/datum/quirk/pineapple_hater/add()
-	var/mob/living/carbon/human/H = quirk_holder
-	var/datum/species/species = H.dna.species
-	species.disliked_food |= PINEAPPLE
-
-/datum/quirk/pineapple_hater/remove()
-	var/mob/living/carbon/human/H = quirk_holder
-	if(H)
-		var/datum/species/species = H.dna.species
-		species.disliked_food &= ~PINEAPPLE
-
 /datum/quirk/deviant_tastes
 	name = "Deviant Tastes"
 	desc = "You dislike food that most people enjoy, and find delicious what they don't."
@@ -308,21 +224,6 @@
 /datum/quirk/monochromatic/remove()
 	if(quirk_holder)
 		quirk_holder.remove_client_colour(/datum/client_colour/monochrome)
-
-/datum/quirk/phobia
-	name = "Phobia"
-	desc = "You are irrationally afraid of something."
-	value = 0
-	medical_record_text = "Patient has an irrational fear of something."
-
-/datum/quirk/phobia/post_add()
-	var/mob/living/carbon/human/H = quirk_holder
-	H.gain_trauma(new /datum/brain_trauma/mild/phobia(H.client?.prefs.phobia), TRAUMA_RESILIENCE_ABSOLUTE)
-
-/datum/quirk/phobia/remove()
-	var/mob/living/carbon/human/H = quirk_holder
-	if(H)
-		H.cure_trauma_type(/datum/brain_trauma/mild/phobia, TRAUMA_RESILIENCE_ABSOLUTE)
 
 /datum/quirk/needswayfinder
 	name = "Navigationally Challenged"

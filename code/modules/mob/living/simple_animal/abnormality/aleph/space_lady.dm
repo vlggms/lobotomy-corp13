@@ -147,7 +147,7 @@
 				if(L.sanity_lost)					//DIE FOOL. LADY BLAST
 					L.death()
 				var/sanity_holder = L.sanityhealth	//Hold your current sanity
-				L.adjustSanityLoss(-20000) 			//bring you back to full sanity
+				L.restoreSanity() 			//bring you back to full sanity
 				L.adjustSanityLoss(sanity_holder)	//and then deal damage equal to your sanity before this attack
 
 			all_turfs -= T

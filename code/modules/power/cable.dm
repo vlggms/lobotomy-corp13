@@ -512,22 +512,6 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 ///////////////////////////////////
 // General procedures
 ///////////////////////////////////
-//you can use wires to heal robotics
-/obj/item/stack/cable_coil/attack(mob/living/carbon/human/H, mob/user)
-	if(!istype(H))
-		return ..()
-
-	var/obj/item/bodypart/affecting = H.get_bodypart(check_zone(user.zone_selected))
-	if(affecting && affecting.status == BODYPART_ROBOTIC)
-		if(user == H)
-			user.visible_message("<span class='notice'>[user] starts to fix some of the wires in [H]'s [affecting.name].</span>", "<span class='notice'>You start fixing some of the wires in [H == user ? "your" : "[H]'s"] [affecting.name].</span>")
-			if(!do_mob(user, H, 50))
-				return
-		if(item_heal_robotic(H, user, 0, 15))
-			use(1)
-		return
-	else
-		return ..()
 
 //add cables to the stack
 /obj/item/stack/cable_coil/proc/give(extra)
