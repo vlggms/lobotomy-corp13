@@ -20,14 +20,14 @@
 	simple_mob_flags = SILENCE_RANGED_MESSAGE
 	/// Does this minion count for the emergency system
 	var/can_affect_emergency = TRUE
-	/// The divider for score for the trumpet system, we don't want minion spam to count too much
+	/// The divider for score for the emergency system. We don't want minion spam to count too much
 	var/score_divider = 1
-	/// The threat level of the abnormality. It is passed to the datum on spawn
+	/// The threat level of the abnormality minion.
 	var/threat_level = ZAYIN_LEVEL
 	/// Separate level of fear. If null - will use threat level.
 	var/fear_level = null
 	/// List of humans that witnessed the abnormality minion
-	var/list/mob_affected = list()
+	var/list/fear_affected = list()
 
 /mob/living/simple_animal/hostile/abnominion/Initialize(mapload)
 	. = ..()
@@ -43,7 +43,6 @@
 	GLOB.abnormality_mob_list -= src
 
 /mob/living/simple_animal/hostile/abnominion/Life()
-	SHOULD_CALL_PARENT(TRUE)
 	. = ..()
 	if(!.) // Dead
 		return FALSE
@@ -54,11 +53,11 @@
 	if(fear_level <= 0)
 		return
 	for(var/mob/living/carbon/human/H in ohearers(7, src))
-		if(H in mob_affected)
+		if(H in fear_affected)
 			continue
 		if(H.stat == DEAD)
 			continue
-		mob_affected += H
+		fear_affected += H
 		if(HAS_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE))
 			to_chat(H, span_notice("This again...?"))
 			H.apply_status_effect(/datum/status_effect/panicked_lvl_0)

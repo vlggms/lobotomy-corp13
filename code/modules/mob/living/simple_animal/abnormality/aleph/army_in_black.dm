@@ -99,9 +99,17 @@ GLOBAL_LIST_EMPTY(army)
 /mob/living/simple_animal/hostile/abnormality/army/Move()
 	return FALSE
 
+/mob/living/simple_animal/hostile/abnormality/army/IsContained()
+	if(LAZYLEN(summoned_army))//We really, REALLY need to check this or else it'll think it's "contained"
+		return FALSE
+	return ..()
+
 /***Work procs***/
 //protect work grants you a buff in exchange for reducing its counter
 /mob/living/simple_animal/hostile/abnormality/army/AttemptWork(mob/living/carbon/human/user, work_type)
+	if(LAZYLEN(protected_targets))
+		to_chat(user, span_warning("The Abnormality has breached containment!"))
+		return FALSE
 	..()
 	if(work_type == "Protection")
 		if(datum_reference?.qliphoth_meter > 1)
@@ -180,7 +188,7 @@ GLOBAL_LIST_EMPTY(army)
 /mob/living/simple_animal/hostile/abnormality/army/proc/ArmyDeath(mob/E)//return to containment when all armies are dead
 	UnregisterSignal(E, COMSIG_PARENT_QDELETING)
 	summoned_army -= E
-	if(LAZYLEN(summoned_army) <=1)
+	if(!LAZYLEN(summoned_army))
 		qdel(src)//suppress the abnormality
 		return
 
