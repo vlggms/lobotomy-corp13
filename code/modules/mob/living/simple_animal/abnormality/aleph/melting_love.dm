@@ -285,7 +285,7 @@
 	robust_searching = TRUE
 	stat_attack = DEAD
 	del_on_death = TRUE
-	score_divider = 2//Well there are several pillars
+	score_divider = 2
 	threat_level = HE_LEVEL
 	var/spawn_sound = 'sound/abnormalities/meltinglove/pawn_convert.ogg'
 	var/statuschance = 25
@@ -375,7 +375,7 @@
 	melee_damage_upper = 20
 	spawn_sound = 'sound/abnormalities/meltinglove/pawn_big_convert.ogg'
 	statuschance = 75
-	score_divider = 2//Well there are several pillars
+	score_divider = 2
 	threat_level = WAW_LEVEL
 
 /*

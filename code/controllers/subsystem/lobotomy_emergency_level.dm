@@ -41,12 +41,13 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(OnMobDeath))
 	RegisterSignal(SSdcs, COMSIG_GLOB_HUMAN_INSANE, PROC_REF(OnHumanInsane))
 	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, PROC_REF(OnAbnoBreach))
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_CREATED, PROC_REF(OnMobCreated))
 
 /datum/controller/subsystem/lobotomy_emergency/proc/OnMobDeath(datum/source, mob/living/died, gibbed)
 	SIGNAL_HANDLER
 	if(is_tutorial_level(died.z))
 		return
-	if(istype(died, /mob/living/simple_animal/hostile/abnormality))
+	if(istype(died, /mob/living/simple_animal/hostile/abnormality) || istype(died, /mob/living/simple_animal/hostile/abnominion))
 		UpdateMin()
 	if(!ishuman(died))
 		return
@@ -63,6 +64,18 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 	if((H.mind.assigned_role in GLOB.security_positions))
 		UpdateScore((agent_death * get_user_level(H))/agent_count)//If a higher level agent panics it should probably matter more
 
+
+/datum/controller/subsystem/lobotomy_emergency/proc/OnMobCreated(datum/source, mob/M)
+	SIGNAL_HANDLER
+	if(is_tutorial_level(M.z))
+		return
+	if(istype(M, /mob/living/simple_animal/hostile/abnominion))
+		var/mob/living/simple_animal/hostile/abnominion/abno = M
+		if(!abno.can_affect_emergency)
+			return
+		UpdateScore(threat_to_score[abno.threat_level]/abno.score_divider)
+		return
+
 /datum/controller/subsystem/lobotomy_emergency/proc/OnAbnoBreach(datum/source, mob/living/simple_animal/hostile/abnormality/abno)
 	SIGNAL_HANDLER
 	if(is_tutorial_level(abno.z))
@@ -73,6 +86,13 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 
 /datum/controller/subsystem/lobotomy_emergency/proc/UpdateMin()
 	var/min = 0
+	for(var/mob/living/simple_animal/hostile/abnominion/A in GLOB.abnormality_mob_list)
+		if(!A.can_affect_emergency)
+			continue
+		if(A.stat == DEAD)//The dead shouldn't count
+			continue
+		min += ((threat_to_score[A.threat_level]/2)/A.score_divider)/score_divider
+
 	for(var/mob/living/simple_animal/hostile/abnormality/A in GLOB.abnormality_mob_list)
 		if(A.IsContained())
 			continue
@@ -103,6 +123,7 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 	score_min = min(score_cap, min)
 
 /datum/controller/subsystem/lobotomy_emergency/proc/UpdateScore(amount, divide_score = TRUE, long_cooldown = TRUE)
+	to_chat(world, amount)
 	if(divide_score)
 		amount /= score_divider
 	UpdateMin()
@@ -110,7 +131,7 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 	CalculateEmergencyLevel(long_cooldown)
 
 /datum/controller/subsystem/lobotomy_emergency/proc/SetScore(amount, long_cooldown = TRUE)
-	score_min = UpdateMin()
+	UpdateMin()
 	current_score = clamp(score_min, score_cap, amount)
 	CalculateEmergencyLevel(long_cooldown)
 
@@ -166,7 +187,7 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 				if(SSshuttle.emergency.mode == SHUTTLE_CALL || SSshuttle.emergency.mode == SHUTTLE_RECALL)
 					SSshuttle.emergency.modTimer(2)
 			GLOB.emergency_level = TRUMPET_1
-			current_score = trumpet_1
+			current_score = max(current_score, trumpet_1)
 			for(var/obj/machinery/firealarm/FA in GLOB.machines)
 				if(is_station_level(FA.z))
 					FA.update_icon()
@@ -178,7 +199,7 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 				else
 					SSshuttle.emergency.modTimer(0.5)
 			GLOB.emergency_level = TRUMPET_2
-			current_score = trumpet_1
+			current_score = max(current_score, trumpet_2)
 			for(var/obj/machinery/firealarm/FA in GLOB.machines)
 				if(is_station_level(FA.z))
 					FA.update_icon()
@@ -193,6 +214,7 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 					SSshuttle.emergency.modTimer(0.5)
 			GLOB.emergency_level = TRUMPET_3
 			current_score = trumpet_3
+			current_score = max(current_score, trumpet_3)
 			for(var/obj/machinery/firealarm/FA in GLOB.machines)
 				if(is_station_level(FA.z))
 					FA.update_icon()

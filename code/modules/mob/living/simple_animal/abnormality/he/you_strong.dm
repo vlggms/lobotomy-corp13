@@ -149,7 +149,7 @@
 	icon_state = "you_strong_make"
 	SLEEP_CHECK_DEATH(6)
 	for(var/i = 1 to 3)
-		new /mob/living/simple_animal/hostile/grown_strong(get_step(src, EAST))
+		new /mob/living/simple_animal/hostile/abnominion/grown_strong(get_step(src, EAST))
 		if(breaching)
 			summon_count += 1
 	SLEEP_CHECK_DEATH(6)
@@ -250,7 +250,7 @@
 	operating = FALSE
 	return
 
-/mob/living/simple_animal/hostile/grown_strong
+/mob/living/simple_animal/hostile/abnominion/grown_strong
 	name = "Grown Strong"
 	desc = "A humanoid figure reeking of blood and made out of... plastic?"
 	icon_state = "grown_strong"
@@ -274,7 +274,8 @@
 	can_patrol = TRUE
 
 	del_on_death = FALSE
-
+	score_divider = 1.5//3 of them should equal 1 HE
+	threat_level = TETH_LEVEL
 	var/gear = 2
 	COOLDOWN_DECLARE(gear_shift)
 	var/gear_cooldown = 1 MINUTES
@@ -283,14 +284,14 @@
 	var/gear_health = 0.35 // This determines the amount of times surgery can activate. If the max HP is lower than this percentage, the creature will gib.
 	var/can_act = TRUE//necessary sanity for spin attacks
 
-/mob/living/simple_animal/hostile/grown_strong/Move(atom/newloc, dir, step_x, step_y)
+/mob/living/simple_animal/hostile/abnominion/grown_strong/Move(atom/newloc, dir, step_x, step_y)
 	if(status_flags & GODMODE)
 		return FALSE
 	if(can_act == FALSE)
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/grown_strong/AttackingTarget(atom/attacked_target)
+/mob/living/simple_animal/hostile/abnominion/grown_strong/AttackingTarget(atom/attacked_target)
 	if(status_flags & GODMODE)
 		return FALSE
 	if(can_act == FALSE)
@@ -301,7 +302,7 @@
 			return
 	return ..()
 
-/mob/living/simple_animal/hostile/grown_strong/proc/UpdateGear()
+/mob/living/simple_animal/hostile/abnominion/grown_strong/proc/UpdateGear()
 	manual_emote("shifts into [gear]\th gear!")
 	melee_damage_lower = 2 * max(1, gear*0.5)
 	melee_damage_upper = 4 * max(1, gear*0.5)
@@ -313,7 +314,7 @@
 	ChangeMoveToDelayBy(-gear_speed)
 	rapid_melee = gear > 7 ? 2 : 1
 
-/mob/living/simple_animal/hostile/grown_strong/Life()
+/mob/living/simple_animal/hostile/abnominion/grown_strong/Life()
 	. = ..()
 	if(!COOLDOWN_FINISHED(src, gear_shift) || (status_flags & GODMODE))
 		return
@@ -322,7 +323,7 @@
 	src.apply_damage(30, BRUTE, null, 0, spread_damage = TRUE)// OOF OUCH MY BONES
 	COOLDOWN_START(src, gear_shift, gear_cooldown)
 
-/mob/living/simple_animal/hostile/grown_strong/death(gibbed)
+/mob/living/simple_animal/hostile/abnominion/grown_strong/death(gibbed)
 	if(maxHealth > initial(maxHealth) * gear_health)
 		INVOKE_ASYNC(src, PROC_REF(Undie))
 		return FALSE
@@ -331,7 +332,7 @@
 	gib(TRUE, TRUE, TRUE)
 	return
 
-/mob/living/simple_animal/hostile/grown_strong/proc/Undie()
+/mob/living/simple_animal/hostile/abnominion/grown_strong/proc/Undie()
 	manual_emote("shudders to a hault, insides whirling...")
 	src.maxHealth = min(maxHealth - initial(maxHealth) * 0.2, initial(maxHealth))
 	src.adjustBruteLoss(-9999)
@@ -350,7 +351,7 @@
 			playsound(src, 'sound/weapons/ego/strong_charged2.ogg', 60)
 	UpdateGear()
 
-/mob/living/simple_animal/hostile/grown_strong/proc/SpinAttack()
+/mob/living/simple_animal/hostile/abnominion/grown_strong/proc/SpinAttack()
 	can_act = FALSE
 	manual_emote("outstretches its arms, upper torso starting to rotate!")
 	playsound(src, 'sound/weapons/ego/strong_uncharged.ogg', 60)

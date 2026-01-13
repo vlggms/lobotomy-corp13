@@ -89,7 +89,7 @@
 //Work/Misc
 /mob/living/simple_animal/hostile/abnormality/pinocchio/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(realboy)
-		to_chat(user, span_warning("The abnormality isn't in here!"))
+		to_chat(user, span_warning("The Abnormality has breached containment!"))
 		return FALSE
 	if(work_type == "Lying is Bad!")
 		if(lying)
@@ -127,6 +127,11 @@
 		work_chances = new_work_chances.Copy()
 		datum_reference.available_work = work_chances
 
+/mob/living/simple_animal/hostile/abnormality/pinocchio/IsContained()
+	if(realboy)//We want to check if its actually breaching by checking if his breach form exists
+		return FALSE
+	return ..()
+
 //Breach
 /mob/living/simple_animal/hostile/abnormality/pinocchio/BreachEffect(mob/living/carbon/human/user, breach_type)
 	playsound(src, 'sound/abnormalities/pinocchio/activate.ogg', 40, 0, 1)
@@ -135,10 +140,13 @@
 	SLEEP_CHECK_DEATH(1 SECONDS)
 	realboy = new (get_turf(src)) //Technically the breach version is a separate entity, requires a lot of tinkering but works.
 	RegisterSignal(realboy, COMSIG_LIVING_DEATH, PROC_REF(PuppetDeath))
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ABNORMALITY_BREACH, src)
+	if(istype(datum_reference))
+		deadchat_broadcast(" has breached containment.", "<b>[src.name]</b>", src, get_turf(src))
 	realboy.name = "Pinocchio the Liar"
 	realboy.real_name = "Pinocchio the Liar"
 	realboy.adjust_all_attribute_levels(100)
-	realboy.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, 240) // 340 health
+	realboy.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, 220) // 320 health
 	realboy.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -100)
 	realboy.health = realboy.maxHealth
 	realboy.alpha = 0

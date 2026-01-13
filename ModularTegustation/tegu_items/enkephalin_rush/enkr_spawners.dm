@@ -228,7 +228,7 @@ GLOBAL_DATUM_INIT(map_enemy, /datum/enemy, new)
 	name = "teth abnormality thrall spawn"
 	max_spawns = 1
 	mobspawn_table = list(
-		/mob/living/simple_animal/hostile/doomsday_doll = 10,
+		/mob/living/simple_animal/hostile/abnominion/doomsday_doll = 10,
 		/mob/living/simple_animal/hostile/azure_stave = 1,//servant of wrath minion
 		)
 
@@ -239,11 +239,11 @@ GLOBAL_DATUM_INIT(map_enemy, /datum/enemy, new)
 		/mob/living/simple_animal/hostile/shrimp = 10,//shrimp liquidation intern
 		/mob/living/simple_animal/hostile/shrimp_soldier = 1,//shotgun shrimp
 		/mob/living/simple_animal/hostile/gift = 1,//laetitia spider
-		/mob/living/simple_animal/hostile/grown_strong = 1,
-		/mob/living/simple_animal/hostile/nosferatu_mob = 10,
-		/mob/living/simple_animal/hostile/worker_bee = 10,
-		/mob/living/simple_animal/hostile/soldier_bee = 10,//identical to above, has a hat
-		/mob/living/simple_animal/hostile/artillery_bee = 5,
+		/mob/living/simple_animal/hostile/abnominion/grown_strong = 1,
+		/mob/living/simple_animal/hostile/abnominion/nosferatu_mob = 10,
+		/mob/living/simple_animal/hostile/abnominion/worker_bee = 10,
+		/mob/living/simple_animal/hostile/abnominion/soldier_bee = 10,//identical to above, has a hat
+		/mob/living/simple_animal/hostile/abnominion/artillery_bee = 5,
 		/mob/living/simple_animal/hostile/abnominion/slime = 1,//ML slime (small)
 		)
 
@@ -251,8 +251,8 @@ GLOBAL_DATUM_INIT(map_enemy, /datum/enemy, new)
 	name = "waw abnormality thrall spawn"
 	max_spawns = 1
 	mobspawn_table = list(
-		/mob/living/simple_animal/hostile/yagaslave = 5,
-		/mob/living/simple_animal/hostile/parasite_tree_sapling = 1,
+		/mob/living/simple_animal/hostile/abnominion/yagaslave = 5,
+		/mob/living/simple_animal/hostile/abnominion/parasite_tree_sapling = 1,
 		/mob/living/simple_animal/hostile/thunder_zombie = 5,
 		)
 

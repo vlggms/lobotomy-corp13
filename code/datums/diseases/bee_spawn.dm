@@ -29,7 +29,7 @@
 		H.visible_message("<span class='danger'>[H] explodes in a shower of gore, as a giant bee appears out of [H.p_them()]!</span>")
 		H.emote("scream")
 		H.gib()
-		new /mob/living/simple_animal/hostile/worker_bee(T)
+		new /mob/living/simple_animal/hostile/abnominion/worker_bee(T)
 		return
 
 	if((stage >= max_stages) && (H.health >= (H.maxHealth * 0.75)) && prob(H.health * 0.25))
