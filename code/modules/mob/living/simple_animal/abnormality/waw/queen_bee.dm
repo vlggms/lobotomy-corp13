@@ -96,15 +96,15 @@
 
 
 /* Worker bees */
-/mob/living/simple_animal/hostile/worker_bee
+/mob/living/simple_animal/hostile/abnominion/worker_bee
 	name = "worker bee"
 	desc = "A disfigured creature with nasty fangs."
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "worker_bee"
 	icon_living = "worker_bee"
 	base_pixel_x = -8
-	health = 100
-	maxHealth = 400
+	health = 250
+	maxHealth = 250
 	melee_damage_type = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
 	melee_damage_lower = 6
@@ -119,8 +119,10 @@
 	attack_verb_simple = "bite"
 	attack_sound = 'sound/weapons/bite.ogg'
 	speak_emote = list("buzzes")
+	risk_level = HE_LEVEL
+	score_divider = 2// Someones going to die to spawn this so it should probably be worth less
 
-/mob/living/simple_animal/hostile/worker_bee/Initialize()
+/mob/living/simple_animal/hostile/abnominion/worker_bee/Initialize()
 	. = ..()
 	playsound(get_turf(src), 'sound/abnormalities/bee/birth.ogg', 50, 1)
 	var/matrix/init_transform = transform
@@ -128,7 +130,7 @@
 	alpha = 25
 	animate(src, alpha = 255, transform = init_transform, time = 5)
 
-/mob/living/simple_animal/hostile/worker_bee/AttackingTarget(atom/attacked_target)
+/mob/living/simple_animal/hostile/abnominion/worker_bee/AttackingTarget(atom/attacked_target)
 	. = ..()
 	if(!ishuman(attacked_target))
 		return
@@ -138,4 +140,4 @@
 		visible_message(span_danger("[src] bites hard on \the [H] as another bee appears!"))
 		H.emote("scream")
 		H.gib()
-		new /mob/living/simple_animal/hostile/worker_bee(T)
+		new /mob/living/simple_animal/hostile/abnominion/worker_bee(T)
