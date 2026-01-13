@@ -178,12 +178,12 @@
 					A.death()
 		new /obj/effect/temp_visual/dir_setting/cult/phase
 		if(prob(30))
-			var/mob/living/simple_animal/hostile/yagaslave/Y = new(T)
+			var/mob/living/simple_animal/hostile/abnominion/yagaslave/Y = new(T)
 			spawned_mobs+=Y
 	return
 
 // Misc Objects and effects
-/mob/living/simple_animal/hostile/yagaslave
+/mob/living/simple_animal/hostile/abnominion/yagaslave
 	name = "frozen slave"
 	desc = "A humanoid figure encased in ice, the pickaxe they're holding looks sharp."
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
@@ -203,6 +203,8 @@
 	attack_verb_simple = "slash"
 	attack_sound = 'sound/abnormalities/babayaga/attack.ogg'
 	speak_emote = list("whispers")
+	risk_level = TETH_LEVEL
+	score_divider = 4
 
 /obj/effect/temp_visual/giantwarning
 	name = "giant warning"
