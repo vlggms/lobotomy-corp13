@@ -18,7 +18,7 @@
 
 	var/list/spawned_hands = list()
 	var/retaliation_health = 10 // Initialized later
-	var/hand_limit = 6
+	var/hand_limit = 4
 	var/hand_cooldown
 	var/hand_cooldown_time = 60 SECONDS
 	var/list/spawned_arms = list()
@@ -59,9 +59,9 @@
 		SpawnArm()
 		SpawnArm()
 		if(prob(50))
-			SpawnHand()
-		if(prob(50))
-			SpawnHand()
+			SpawnArm()
+			if(prob(50))
+				SpawnArm()
 
 /mob/living/simple_animal/hostile/ordeal/violet_dusk/AttackingTarget(atom/attacked_target)
 	return FALSE
@@ -182,8 +182,8 @@
 	desc = "A portal with a hand coming out of it."
 	icon = 'ModularTegustation/Teguicons/48x96.dmi'
 	faction = list("violet_ordeal")
-	maxHealth = 380
-	health = 380
+	maxHealth = 350
+	health = 350
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.2)
 	density = FALSE
 	del_on_death = TRUE
@@ -200,8 +200,8 @@
 	pixel_y = 8
 	ranged = TRUE
 	alpha = 0
-	maxHealth = 220
-	health = 220
+	maxHealth = 200
+	health = 200
 	ranged_cooldown_time = 10 SECONDS //will dash at people if they get out of range but not too often
 	melee_damage_type = BLACK_DAMAGE
 	melee_damage_lower = 5
