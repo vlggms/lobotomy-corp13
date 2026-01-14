@@ -185,28 +185,26 @@
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/puss_in_boots/BreachEffect(mob/living/carbon/human/user, breach_type)
-	. = ..()
 	desc = "He's got a sword!"
 	if(friendly)
 		fear_level = ZAYIN_LEVEL
-		swap_area_index(MOB_ABNO_PASSIVE_INDEX) // Won't disrupt regenerators
 		health = 300 //He's pretty tough at max HP
+		breach_index = MOB_ABNO_PASSIVE_INDEX
 		GoToFriend()
 		density = FALSE
 		icon_state = icon_friendly
 		update_icon()
-		return
+		return ..()
 	HostileMode(!density)
 	if(!density) //sanity check for if he was friendly breaching and is no longer friendly
-		swap_area_index(MOB_ABNORMALITY_INDEX)
+		breach_index = MOB_ABNORMALITY_INDEX
 		density = TRUE
 		fear_level = HE_LEVEL
-		FearEffect()
 		src.visible_message(span_warning("[src] is looking around, eyes wild with rage!"))
 	icon_state = icon_aggro
 	update_icon()
 	faction = list("hostile") //he's gone feral!
-	return
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/puss_in_boots/proc/GoToFriend()
 	if(!blessed_human)

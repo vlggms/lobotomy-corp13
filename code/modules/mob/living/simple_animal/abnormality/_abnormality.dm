@@ -7,7 +7,7 @@
 	layer = LARGE_MOB_LAYER
 	a_intent = INTENT_HARM
 	del_on_death = TRUE
-	area_index = MOB_ABNO_PASSIVE_INDEX
+	area_index = MOB_ABNORMALITY_INDEX
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
@@ -30,6 +30,8 @@
 	var/set_score = null
 	//Does this enemy count for the min emergency level?
 	var/can_affect_min = TRUE
+	/// The index that is swapped to when an abnormality breaches
+	var/breach_index = MOB_ABNORMALITY_INDEX
 	/// Can this abnormality spawn normally during the round?
 	var/can_spawn = TRUE
 	/// Reference to the datum we use
@@ -507,7 +509,7 @@ The variable's key needs to be non-numerical.*/
 		// If a custom breach is called and the mob has no way of handling it, just ignore it.
 		// Should follow normal behaviour with ..()
 		return FALSE
-	swap_area_index(MOB_ABNORMALITY_INDEX)
+	swap_area_index(breach_index)
 	toggle_ai(AI_ON) // Run.
 	status_flags &= ~GODMODE
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ABNORMALITY_BREACH, src)
