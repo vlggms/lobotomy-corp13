@@ -708,7 +708,7 @@
 	if(friendly)
 		icon_state = "hatred_breach"
 		friendly = TRUE
-		swap_area_index(MOB_ABNO_PASSIVE_INDEX) // Don't disrupt regenerators
+		breach_index = MOB_ABNO_PASSIVE_INDEX // Don't disrupt regenerators
 		ADD_TRAIT(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT)
 		fear_level = TETH_LEVEL
 		beam_cooldown = world.time + beam_cooldown_time //no immediate beam

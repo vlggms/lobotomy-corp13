@@ -399,7 +399,7 @@
 	fear_level = WAW_LEVEL
 	speak_emote = list("growls")
 	friendly = FALSE
-	swap_area_index(MOB_ABNORMALITY_INDEX) // Disrupt regenerators
+	swap_area_index(breach_index) // Disrupt regenerators
 	adjustBruteLoss(-src.getMaxHealth())
 	playsound(src, 'sound/abnormalities/wrath_servant/enrage.ogg', 100, FALSE, 40, falloff_distance = 20)
 	toggle_ai(AI_ON)
