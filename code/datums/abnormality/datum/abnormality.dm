@@ -117,6 +117,7 @@
 	current.toggle_ai(AI_OFF)
 	current.status_flags |= GODMODE
 	current.setDir(EAST)
+	current.swap_area_index(MOB_ABNO_PASSIVE_INDEX)//We only want it to be switched while contained
 	threat_level = current.threat_level
 	qliphoth_meter_max = current.start_qliphoth
 	qliphoth_meter = qliphoth_meter_max

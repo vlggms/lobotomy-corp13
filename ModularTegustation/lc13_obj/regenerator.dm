@@ -10,14 +10,12 @@
 	//Icon States
 	var/broken_icon = "regen_dull"
 	var/alert_icon = "regen_alert"
-	var/minor_alert_icon = "regen_minor_alert"
 
 	/// How many HP and SP we restore on each process tick
 	var/regeneration_amount = 3
 	/// Pre-declared variable
 	var/modified = FALSE // Whether or not the regenerator is currently undergoing modified action
 	var/threat = FALSE
-	var/hallway_threat = FALSE
 	var/hp_bonus = 0
 	var/sp_bonus = 0
 	var/critical_heal = FALSE // Whether it heals people who are in critical condition (sanity loss/health loss)
@@ -55,7 +53,6 @@
 	if(!istype(A))
 		return
 	threat = FALSE
-	hallway_threat = FALSE
 	var/regen_amt = regeneration_amount
 	var/regen_mult = 1
 	var/regen_add = GetFacilityUpgradeValue(UPGRADE_REGENERATOR_HEALING)
@@ -77,14 +74,9 @@
 		if(!threat && (key & (MOB_HOSTILE_INDEX | MOB_ABNORMALITY_INDEX)))
 			icon_state = alert_icon
 			threat = TRUE
-	if(!threat && HallwayCheck(A)) //If the area has a hallway associated with it we should check it too.
-		icon_state = minor_alert_icon
-		hallway_threat = TRUE
-	if(!hallway_threat && !threat)
-		regen_mult *= 1.5
 	if(threat)
 		regen_mult *= 0.5
-	if(icon_state != "regen" && !threat && !hallway_threat)
+	if(icon_state != "regen" && !threat)
 		icon_state = initial(icon_state)
 
 	if(LAZYLEN(people_to_heal))
@@ -108,12 +100,9 @@
 	if(burst)
 		regen_mult *= 7.5
 		regen_add *= 7.5
-	if(!hallway_threat && !threat)
-		regen_mult *= 1.5
-		. += span_info("No Threats currently detected. Base healing is 50% stronger.")
 	if(threat)
 		regen_mult *= 0.5
-		. += span_info("WARNING: Thread detected. Base healing is halved!")
+		. += span_danger("WARNING: Thread detected. Base healing is halved!")
 	. += span_info("[src] restores [(regeneration_amount * regen_mult)+hp_bonus+regen_add]% HP and [(regeneration_amount * regen_mult)+sp_bonus+regen_add]% SP every 2 seconds.")
 
 /obj/machinery/regenerator/proc/ProduceIcon(Icon_Color, Type) //Used to be called ProduceGas but due to me using it for a button i had to change it. ProduceGas was a cooler name. -IP
@@ -169,20 +158,12 @@
 	ProduceIcon("#B90E0A", "regenspores_heavy") //Crimson
 	// No Timer as it's an "instant" effect. Also handles turning off over there
 
-/obj/machinery/regenerator/proc/HallwayCheck(area/A)
-	for(var/area/facility_hallway/F in A.adjacent_areas)
-		for(var/key, value in F.area_living)
-			if((key & (MOB_HOSTILE_INDEX | MOB_ABNORMALITY_INDEX)))
-				return TRUE
-	return FALSE
-
 //Safety Plant Regenerator
 /obj/machinery/regenerator/safety
 	icon = 'ModularTegustation/Teguicons/32x64.dmi'
 	icon_state = "regen"
 	broken_icon = "regen_dull"
 	alert_icon = "regen_alert"
-	minor_alert_icon = "regen_minor_alert"
 	layer = ABOVE_OBJ_LAYER //So people dont stand ontop of it when above it
 
 //Don't add tutorial regenerators to global list, prevents them from being affected by Safety suppression
