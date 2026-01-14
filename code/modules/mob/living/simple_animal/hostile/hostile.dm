@@ -1368,4 +1368,11 @@ GLOBAL_LIST_EMPTY(marked_players)
 		patrol_reset()
 	return TRUE
 
+/mob/living/simple_animal/hostile/proc/AddToSuperBossList()
+	for(var/mob/living/simple_animal/hostile/H in SSticker.superbosses)
+		if(istype(H, src))
+			return
+	SSticker.superbosses += src
+	return
+
 #undef MAX_DAMAGE_SUFFERED
