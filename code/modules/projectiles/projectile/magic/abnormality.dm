@@ -401,10 +401,10 @@
 	nodamage = TRUE	//Damage is calculated later
 	var/list/safe_mobs = list(
 	/mob/living/simple_animal/hostile/abnormality/last_shot,
-	/mob/living/simple_animal/hostile/meatblob,
-	/mob/living/simple_animal/hostile/meatblob/gunner,
-	/mob/living/simple_animal/hostile/meatblob/gunner/shotgun,
-	/mob/living/simple_animal/hostile/meatblob/gunner/sniper,
+	/mob/living/simple_animal/hostile/abnominion/meatblob,
+	/mob/living/simple_animal/hostile/abnominion/meatblob/gunner,
+	/mob/living/simple_animal/hostile/abnominion/meatblob/gunner/shotgun,
+	/mob/living/simple_animal/hostile/abnominion/meatblob/gunner/sniper,
 	)
 
 /obj/projectile/bonebullet/on_hit(atom/target, blocked = FALSE)

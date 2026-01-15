@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/megafauna/apocalypse_bird
+/mob/living/simple_animal/hostile/abnominion/apocalypse_bird
 	name = "Apocalypse bird"
 	desc = "A terrifying giant beast that lives in the black forest. It's constantly looking for a monster \
 	that terrorizes the forest, without realizing that it is looking for itself."
@@ -26,6 +26,13 @@
 	occupied_tiles_up = 2
 	damage_effect_scale = 1.25
 	blood_volume = BLOOD_VOLUME_NORMAL
+	move_force = MOVE_FORCE_OVERPOWERING
+	move_resist = MOVE_FORCE_OVERPOWERING
+	pull_force = MOVE_FORCE_OVERPOWERING
+	mob_size = MOB_SIZE_HUGE
+	layer = LARGE_MOB_LAYER //Looks weird with them slipping under mineral walls and cameras and shit otherwise
+	mouse_opacity = MOUSE_OPACITY_OPAQUE // Easier to click on in melee, they're giant targets anyway
+	flags_1 = PREVENT_CONTENTS_EXPLOSION_1 | HEAR_1
 	del_on_death = TRUE
 	death_message = "finally stops moving, falling to the ground."
 	death_sound = 'sound/abnormalities/apocalypse/dead.ogg'
@@ -34,7 +41,8 @@
 		/obj/item/ego_weapon/twilight,
 		/obj/item/clothing/suit/armor/ego_gear/aleph/twilight
 		)
-
+	threat_level = ALEPH_LEVEL
+	score_divider = 1.5//Worth 50 points since jbirb, bbird, and pbird add an additional 140 so 190 total.
 	var/list/eggs = list()
 	var/list/egg_types = list(
 						/mob/living/simple_animal/apocalypse_egg/beak,
@@ -70,7 +78,7 @@
 	var/meltdown_cooldown
 	var/meltdown_cooldown_time = 120 SECONDS
 
-/mob/living/simple_animal/hostile/megafauna/apocalypse_bird/Initialize()
+/mob/living/simple_animal/hostile/abnominion/apocalypse_bird/Initialize()
 	. = ..()
 	meltdown_cooldown = world.time + 30 SECONDS
 	var/list/potential_locs = shuffle(GLOB.department_centers)
@@ -90,7 +98,7 @@
 		D.big_bird = TRUE
 		D.RefreshLights()
 
-/mob/living/simple_animal/hostile/megafauna/apocalypse_bird/death(gibbed)
+/mob/living/simple_animal/hostile/abnominion/apocalypse_bird/death(gibbed)
 	for(var/mob/living/carbon/human/H in enchanted_list)
 		EndEnchant(H)
 	for(var/atom/e in eggs)
@@ -105,16 +113,16 @@
 			M.Apply_Gift(new /datum/ego_gifts/twilight)
 	..()
 
-/mob/living/simple_animal/hostile/megafauna/apocalypse_bird/ListTargets()
+/mob/living/simple_animal/hostile/abnominion/apocalypse_bird/ListTargets()
 	return list() // We don't attack anyone like that
 
-/mob/living/simple_animal/hostile/megafauna/apocalypse_bird/CanAttack(atom/the_target)
+/mob/living/simple_animal/hostile/abnominion/apocalypse_bird/CanAttack(atom/the_target)
 	return FALSE
 
-/mob/living/simple_animal/hostile/megafauna/apocalypse_bird/Move()
+/mob/living/simple_animal/hostile/abnominion/apocalypse_bird/Move()
 	return FALSE
 
-/mob/living/simple_animal/hostile/megafauna/apocalypse_bird/Life()
+/mob/living/simple_animal/hostile/abnominion/apocalypse_bird/Life()
 	. = ..()
 	if(.)
 		if(meltdown_cooldown <= world.time)
@@ -146,13 +154,13 @@
 		if(!attacking && teleport_cooldown <= world.time)
 			Teleport()
 
-/mob/living/simple_animal/hostile/megafauna/apocalypse_bird/proc/EggDeath(mob/living/egg)
+/mob/living/simple_animal/hostile/abnominion/apocalypse_bird/proc/EggDeath(mob/living/egg)
 	adjustBruteLoss(maxHealth*0.35)
 	return TRUE
 
 /* Attacks */
 
-/mob/living/simple_animal/hostile/megafauna/apocalypse_bird/proc/Slam()
+/mob/living/simple_animal/hostile/abnominion/apocalypse_bird/proc/Slam()
 	if(attacking || slam_cooldown > world.time)
 		return
 	attacking = TRUE
@@ -177,7 +185,7 @@
 	slam_cooldown = world.time + slam_cooldown_time
 	attacking = FALSE
 
-/mob/living/simple_animal/hostile/megafauna/apocalypse_bird/proc/Teleport()
+/mob/living/simple_animal/hostile/abnominion/apocalypse_bird/proc/Teleport()
 	if(attacking || teleport_cooldown > world.time)
 		return
 	attacking = TRUE
@@ -201,7 +209,7 @@
 	teleport_cooldown = world.time + teleport_cooldown_time
 	attacking = FALSE
 
-/mob/living/simple_animal/hostile/megafauna/apocalypse_bird/proc/Bite()
+/mob/living/simple_animal/hostile/abnominion/apocalypse_bird/proc/Bite()
 	if(attacking || !bite_possible)
 		return
 	attacking = TRUE
@@ -272,7 +280,7 @@
 	special_cooldown = world.time + special_cooldown_time
 	attacking = FALSE
 
-/mob/living/simple_animal/hostile/megafauna/apocalypse_bird/proc/Judge()
+/mob/living/simple_animal/hostile/abnominion/apocalypse_bird/proc/Judge()
 	if(attacking || !judge_possible)
 		return
 	attacking = TRUE
@@ -297,7 +305,7 @@
 	SLEEP_CHECK_DEATH(1 SECONDS)
 	attacking = FALSE
 
-/mob/living/simple_animal/hostile/megafauna/apocalypse_bird/proc/Enchant()
+/mob/living/simple_animal/hostile/abnominion/apocalypse_bird/proc/Enchant()
 	if(attacking || !big_possible)
 		return
 	attacking = TRUE
@@ -336,7 +344,7 @@
 	teleport_cooldown = world.time + teleport_cooldown_time
 	attacking = FALSE
 
-/mob/living/simple_animal/hostile/megafauna/apocalypse_bird/proc/EndEnchant(mob/living/carbon/human/victim)
+/mob/living/simple_animal/hostile/abnominion/apocalypse_bird/proc/EndEnchant(mob/living/carbon/human/victim)
 	if(victim in enchanted_list)
 		enchanted_list.Remove(victim)
 		victim.cut_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "enchanted", -HALO_LAYER))
@@ -344,7 +352,7 @@
 			to_chat(victim, "<span class='boldwarning'>You snap out of your trance!")
 			qdel(victim.ai_controller)
 
-/mob/living/simple_animal/hostile/megafauna/apocalypse_bird/proc/LightFire()
+/mob/living/simple_animal/hostile/abnominion/apocalypse_bird/proc/LightFire()
 	if(attacking || !big_possible)
 		return
 	attacking = TRUE
@@ -401,9 +409,17 @@
 	/// What icon_state it is using when below 50% health
 	var/icon_damaged
 	/// Reference to the bird itself
-	var/mob/living/simple_animal/hostile/megafauna/apocalypse_bird/bird
+	var/mob/living/simple_animal/hostile/abnominion/apocalypse_bird/bird
 	/// Text shown to everyone on death
 	var/blurb_text = "Guh?"
+
+/mob/living/simple_animal/apocalypse_egg/add_to_mob_list()
+	. = ..()
+	GLOB.abnormality_mob_list |= src//They should count
+
+/mob/living/simple_animal/apocalypse_egg/remove_from_mob_list()
+	. = ..()
+	GLOB.abnormality_mob_list -= src
 
 /mob/living/simple_animal/apocalypse_egg/CanAttack(atom/the_target)
 	return FALSE
@@ -515,6 +531,14 @@
 	COOLDOWN_DECLARE(speak_bird)
 	COOLDOWN_DECLARE(summon_bird)
 
+/mob/living/simple_animal/forest_portal/add_to_mob_list()
+	. = ..()
+	GLOB.abnormality_mob_list |= src//They should count
+
+/mob/living/simple_animal/forest_portal/remove_from_mob_list()
+	. = ..()
+	GLOB.abnormality_mob_list -= src
+
 /mob/living/simple_animal/forest_portal/CanAttack(atom/the_target)
 	return FALSE
 
@@ -590,6 +614,7 @@
 		return FALSE
 	if(!(bird.type in bird_types))
 		return FALSE
+	bird.remove_from_mob_list()
 	bird.forceMove(src)
 	bird.status_flags |= GODMODE
 	stored_birds["unspoken"] += bird
@@ -621,7 +646,7 @@
 			flash_color(M, flash_color = "#CCBBBB", flash_time = 50)
 	if(length(stored_birds["spoken"]) >= 3)
 		SLEEP_CHECK_DEATH(10 SECONDS)
-		var/mob/living/simple_animal/hostile/megafauna/apocalypse_bird/AB = new(get_turf(src))
+		var/mob/living/simple_animal/hostile/abnominion/apocalypse_bird/AB = new(get_turf(src))
 		for(var/mob/living/B in stored_birds["spoken"])
 			B.forceMove(AB)
 			AB.birds += B
@@ -662,8 +687,8 @@
 	if(blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] != null)
 		return
 
-	var/mob/living/simple_animal/hostile/megafauna/apocalypse_bird/bird
-	for(var/mob/living/simple_animal/hostile/megafauna/apocalypse_bird/M in GLOB.mob_living_list)
+	var/mob/living/simple_animal/hostile/abnominion/apocalypse_bird/bird
+	for(var/mob/living/simple_animal/hostile/abnominion/apocalypse_bird/M in GLOB.mob_living_list)
 		if(!istype(M))
 			continue
 		bird = M
@@ -689,7 +714,7 @@
 	if(IS_DEAD_OR_INCAP(living_pawn))
 		return
 
-	var/mob/living/simple_animal/hostile/megafauna/apocalypse_bird/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
+	var/mob/living/simple_animal/hostile/abnominion/apocalypse_bird/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
 	if(!istype(target))
 		finish_action(controller, FALSE)
 		return
@@ -704,7 +729,7 @@
 
 /datum/ai_behavior/enchanted_move/proc/Movement(datum/ai_controller/insane/enchanted/controller)
 	var/mob/living/carbon/human/living_pawn = controller.pawn
-	var/mob/living/simple_animal/hostile/megafauna/apocalypse_bird/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
+	var/mob/living/simple_animal/hostile/abnominion/apocalypse_bird/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
 
 	if(world.time > controller.last_message + 10 SECONDS)
 		controller.last_message = world.time
@@ -736,7 +761,7 @@
 /datum/ai_behavior/enchanted_move/finish_action(datum/ai_controller/insane/enchanted/controller, succeeded)
 	. = ..()
 	var/mob/living/carbon/human/living_pawn = controller.pawn
-	var/mob/living/simple_animal/hostile/megafauna/apocalypse_bird/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
+	var/mob/living/simple_animal/hostile/abnominion/apocalypse_bird/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
 	controller.pathing_attempts = 0
 	controller.current_path = list()
 	if(succeeded)

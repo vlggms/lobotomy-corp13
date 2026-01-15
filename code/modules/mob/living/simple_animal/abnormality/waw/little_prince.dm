@@ -104,7 +104,7 @@
 	user.visible_message(span_danger("Mushrooms rapidly grow all over [user]'s body, forming a giant mass!"))
 	user.emote("scream")
 	user.gib()
-	var /mob/living/simple_animal/hostile/little_prince_1/S = new(T)
+	var /mob/living/simple_animal/hostile/abnominion/little_prince_1/S = new(T)
 	RegisterSignal(S, COMSIG_LIVING_DEATH, PROC_REF(PrinceDeath))
 	return
 
@@ -184,7 +184,7 @@
 	return
 
 /* Prince-01 */
-/mob/living/simple_animal/hostile/little_prince_1
+/mob/living/simple_animal/hostile/abnominion/little_prince_1
 	name = "Little Prince-1"
 	desc = "A shambling giant mushroom chunk."
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
@@ -193,8 +193,8 @@
 	icon_dead = "little_princeminion"
 	base_pixel_x = -16
 	pixel_x = -16
-	health = 500
-	maxHealth = 500
+	health = 545
+	maxHealth = 545
 	move_to_delay = 3
 	melee_damage_type = BLACK_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
@@ -208,7 +208,7 @@
 	death_message = "shakes violently."
 	can_patrol = TRUE
 
-/mob/living/simple_animal/hostile/little_prince_1/Initialize()
+/mob/living/simple_animal/hostile/abnominion/little_prince_1/Initialize()
 	. = ..()
 	playsound(get_turf(src), 'sound/abnormalities/bee/birth.ogg', 50, 1)
 	var/matrix/init_transform = transform
@@ -216,7 +216,7 @@
 	alpha = 25
 	animate(src, alpha = 255, transform = init_transform, time = 5)
 
-/mob/living/simple_animal/hostile/little_prince_1/death(gibbed)
+/mob/living/simple_animal/hostile/abnominion/little_prince_1/death(gibbed)
 	density = FALSE
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
