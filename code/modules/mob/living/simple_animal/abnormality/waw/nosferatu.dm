@@ -528,7 +528,7 @@
 	ranged = TRUE
 	retreat_distance = 3
 	minimum_distance = 1
-	risk_level = HE_LEVEL
+	threat_level = HE_LEVEL
 	score_divider = 8
 
 /mob/living/simple_animal/hostile/abnominion/nosferatu_mob/Initialize(mapload)

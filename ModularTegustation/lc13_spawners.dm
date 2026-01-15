@@ -223,18 +223,18 @@
 /obj/effect/spawner/mobspawner/shrimp
 	name = "shrimp squad spawn"
 	max_spawns = 5
-	mobspawn_table = list(/mob/living/simple_animal/hostile/shrimp = 4,
-					/mob/living/simple_animal/hostile/shrimp_soldier = 1)
+	mobspawn_table = list(/mob/living/simple_animal/hostile/abnominion/shrimp = 4,
+					/mob/living/simple_animal/hostile/abnominion/shrimp_soldier = 1)
 
 /obj/effect/spawner/mobspawner/shrimp_melee
 	name = "fishin shrimp squad spawn"
 	max_spawns = 5
-	mobspawn_table = list(/mob/living/simple_animal/hostile/shrimp = 1)
+	mobspawn_table = list(/mob/living/simple_animal/hostile/abnominion/shrimp = 1)
 
 /obj/effect/spawner/mobspawner/shrimp_ranged
 	name = "shrimp soldier squad spawn"
 	max_spawns = 5
-	mobspawn_table = list(/mob/living/simple_animal/hostile/shrimp_soldier = 1)
+	mobspawn_table = list(/mob/living/simple_animal/hostile/abnominion/shrimp_soldier = 1)
 
 	//Backstreet Humanoids
 /obj/effect/spawner/mobspawner/rat

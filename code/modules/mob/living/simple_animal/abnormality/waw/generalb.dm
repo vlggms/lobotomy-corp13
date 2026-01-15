@@ -281,7 +281,7 @@
 	attack_verb_simple = "bite"
 	attack_sound = 'sound/weapons/bite.ogg'
 	speak_emote = list("buzzes")
-	risk_level = HE_LEVEL
+	threat_level = HE_LEVEL
 	score_divider = 5//Worth 8 points
 
 /* Artillery bees */
@@ -303,7 +303,7 @@
 	del_on_death = TRUE
 	death_sound = 'sound/abnormalities/bee/death.ogg'
 	speak_emote = list("buzzes")
-	risk_level = HE_LEVEL
+	threat_level = HE_LEVEL
 	score_divider = 2//Worth 20 points
 
 	var/fire_cooldown_time = 10 SECONDS

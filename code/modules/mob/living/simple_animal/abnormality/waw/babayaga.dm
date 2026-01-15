@@ -203,7 +203,7 @@
 	attack_verb_simple = "slash"
 	attack_sound = 'sound/abnormalities/babayaga/attack.ogg'
 	speak_emote = list("whispers")
-	risk_level = TETH_LEVEL
+	threat_level = TETH_LEVEL
 	score_divider = 4
 
 /obj/effect/temp_visual/giantwarning

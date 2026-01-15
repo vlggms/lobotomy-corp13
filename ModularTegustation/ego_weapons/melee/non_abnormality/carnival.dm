@@ -19,8 +19,8 @@
 	)
 
 	var/list/empowered_targets = list(
-		/mob/living/simple_animal/hostile/shrimp,
-		/mob/living/simple_animal/hostile/shrimp_soldier,
+		/mob/living/simple_animal/hostile/abnominion/shrimp,
+		/mob/living/simple_animal/hostile/abnominion/shrimp_soldier,
 		/mob/living/simple_animal/hostile/ordeal,
 		/mob/living/simple_animal/hostile/kcorp/drone,
 		/mob/living/simple_animal/hostile/humanoid/blood,

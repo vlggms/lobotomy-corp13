@@ -123,7 +123,6 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 	score_min = min(score_cap, min)
 
 /datum/controller/subsystem/lobotomy_emergency/proc/UpdateScore(amount, divide_score = TRUE, long_cooldown = TRUE)
-	to_chat(world, amount)
 	if(divide_score)
 		amount /= score_divider
 	UpdateMin()
@@ -221,6 +220,8 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 			for(var/obj/machinery/computer/shuttle/pod/pod in GLOB.machines)
 				pod.locked = FALSE
 	SEND_GLOBAL_SIGNAL(COMSIG_TRUMPET_CHANGED, level)
+	if(!score_timer)
+		score_timer = addtimer(CALLBACK(src, PROC_REF(UpdateScore), score_decay, FALSE, FALSE), long_timer, TIMER_STOPPABLE)
 	for(var/area/facility_hallway/F in GLOB.sortedAreas)
 		F.RefreshLights()
 	for(var/area/department_main/D in GLOB.sortedAreas)
@@ -244,6 +245,8 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 			return "second trumpet"
 		if(TRUMPET_3)
 			return "third trumpet"
+		if(TRUMPET_4)
+			return "fourth trumpet"
 
 /proc/num2emgcylevel(num)
 	switch(num)
@@ -255,6 +258,8 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 			return "second trumpet"
 		if(TRUMPET_3)
 			return "third trumpet"
+		if(TRUMPET_4)
+			return "fourth trumpet"
 
 /proc/emgcylevel2num(trumpetlevel)
 	switch( lowertext(trumpetlevel) )
@@ -266,6 +271,8 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 			return TRUMPET_2
 		if("third trumpet")
 			return TRUMPET_3
+		if("fourth trumpet")
+			return TRUMPET_4
 
 /proc/RefreshtrumpetlevelEffects()
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
@@ -280,6 +287,8 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 			H.apply_status_effect(/datum/status_effect/trumpetlevel/level2)
 		if(TRUMPET_3)
 			H.apply_status_effect(/datum/status_effect/trumpetlevel/level3)
+		if(TRUMPET_4)
+			H.apply_status_effect(/datum/status_effect/trumpetlevel/level4)
 
 /datum/status_effect/trumpetlevel
 	id = "trumpet level buff"

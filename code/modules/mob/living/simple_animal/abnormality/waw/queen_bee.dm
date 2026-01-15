@@ -120,7 +120,7 @@
 	attack_verb_simple = "bite"
 	attack_sound = 'sound/weapons/bite.ogg'
 	speak_emote = list("buzzes")
-	risk_level = HE_LEVEL
+	threat_level = HE_LEVEL
 	score_divider = 2// Someones going to die to spawn this so it should probably be worth less
 
 /mob/living/simple_animal/hostile/abnominion/worker_bee/Initialize()

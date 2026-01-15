@@ -36,7 +36,7 @@
 	if(istype(S))
 		user.playsound_local(get_turf(user), 'sound/abnormalities/wellcheers/shrimptaps.ogg', 50, 0)
 		for(var/i in 1 to 2)
-			new /mob/living/simple_animal/hostile/shrimp/grieving(get_turf(user))
+			new /mob/living/simple_animal/hostile/abnominion/shrimp/grieving(get_turf(user))
 
 /obj/item/ego_weapon/ranged/pistol/nostalgia
 	name = "nostalgia"

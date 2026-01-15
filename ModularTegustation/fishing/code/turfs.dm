@@ -331,7 +331,7 @@
 		/obj/item/stack/sheet/plastic = 15,
 		/obj/item/ego_weapon/city/rats/brick = 10,
 		/obj/item/food/tofu/prison = 3,
-		/mob/living/simple_animal/hostile/shrimp = 2,
+		/mob/living/simple_animal/hostile/abnominion/shrimp = 2,
 	)
 	loot_level3 = list(
 		/obj/item/food/fish/fresh_water/boxin_man = 10,

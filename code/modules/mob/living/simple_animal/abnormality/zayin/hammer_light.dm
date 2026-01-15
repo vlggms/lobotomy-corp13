@@ -218,7 +218,7 @@
 	var/spawned_mob_max = 4
 	var/spawn_cooldown = 0
 	var/spawn_cooldown_time = 20 SECONDS
-	var/banned_list = list(/mob/living/simple_animal/hostile/megafauna/apocalypse_bird)
+	var/banned_list = list(/mob/living/simple_animal/hostile/abnominion/apocalypse_bird)
 	var/obj/effect/proc_holder/ability/hammer_ability = /obj/effect/proc_holder/ability/evening_twilight
 
 /obj/item/ego_weapon/hammer_light/Initialize()

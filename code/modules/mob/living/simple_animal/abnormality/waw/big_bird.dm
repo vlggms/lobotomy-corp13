@@ -130,7 +130,6 @@
 /mob/living/simple_animal/hostile/abnormality/big_bird/Initialize()
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(on_mob_death)) // Hell
-	RegisterSignal(SSdcs, COMSIG_TRUMPET_CHANGED, PROC_REF(on_trumpet_change)) // Hell 2
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/Destroy()
 	for(var/atom/movable/AM in src) //Here, have your friend's heads back!
@@ -139,6 +138,10 @@
 		EndEnchant(H)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
 	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/big_bird/Life()
+	. = ..()
+	emergency_check()
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/Moved()
 	. = ..()
@@ -446,12 +449,13 @@
 	return TRUE
 
 //I fucking hate that this can be added now - Crabby
-/mob/living/simple_animal/hostile/abnormality/big_bird/proc/on_trumpet_change(datum/source, level)
-	SIGNAL_HANDLER
+/mob/living/simple_animal/hostile/abnormality/big_bird/proc/emergency_check()
 	//if CONTAINED and shits going down
-	if(IsContained() && (level >= TRUMPET_2))
+	if(IsContained() && (GLOB.emergency_level >= TRUMPET_2) && (datum_reference?.emergancy_breach))
 		BreachEffect() // FUCK YOU!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		datum_reference.qliphoth_meter = 0
+		if(datum_reference)
+			datum_reference.emergancy_breach = FALSE
+			datum_reference.qliphoth_meter = 0
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/SuccessEffect(mob/living/carbon/human/user, work_type, pe)

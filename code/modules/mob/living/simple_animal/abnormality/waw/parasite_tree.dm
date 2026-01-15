@@ -184,7 +184,7 @@
 	death_sound = 'sound/creatures/venus_trap_death.ogg'
 	attacked_sound = 'sound/creatures/venus_trap_hurt.ogg'
 	projectilesound = 'sound/machines/clockcult/steam_whoosh.ogg'
-	risk_level = HE_LEVEL
+	threat_level = HE_LEVEL
 	score_divider = 8
 	var/mob/living/simple_animal/hostile/abnormality/parasite_tree/connected_abno
 

@@ -82,7 +82,7 @@
 	qdel(src)
 	sleep(rand(2 SECONDS, 5 SECONDS))
 	if(prob(30) || is_species(user, /datum/species/shrimp))
-		new /mob/living/simple_animal/hostile/shrimp_soldier(get_turf(user))
+		new /mob/living/simple_animal/hostile/abnominion/shrimp_soldier(get_turf(user))
 	else
-		new /mob/living/simple_animal/hostile/shrimp(get_turf(user))
+		new /mob/living/simple_animal/hostile/abnominion/shrimp(get_turf(user))
 	user.gib()

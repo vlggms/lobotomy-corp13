@@ -192,7 +192,6 @@
 	. = ..()
 	beamloop = new(list(src), FALSE)
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(on_mob_death))
-	RegisterSignal(SSdcs, COMSIG_TRUMPET_CHANGED, PROC_REF(on_trumpet_change))
 	var/icon/I = icon('ModularTegustation/Teguicons/96x64.dmi',icon_living) //create inverted colors icon
 	I.MapColors(-1,0,0, 0,-1,0, 0,0,-1, 1,1,1)
 	icon_inverted = I
@@ -283,6 +282,7 @@
 		if(datum_reference?.qliphoth_meter == 1)
 			addtimer(CALLBACK(src, PROC_REF(SpawnHeart)), rand(2,8))
 			addtimer(CALLBACK(src, PROC_REF(SpawnHeart)), rand(4,10))
+		emergency_check()
 	if(.)
 		if(!friendly && can_act)
 			switch(hp_teleport_counter)
@@ -324,15 +324,15 @@
 		GoHysteric()
 	return TRUE
 
-/mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/on_trumpet_change(datum/source, level)
-	SIGNAL_HANDLER
-	if(!IsContained() && friendly && (level == TRUMPET_0) && !nihil_present)
+/mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/emergency_check()
+	if(!IsContained() && friendly && (GLOB.emergency_level == TRUMPET_0) && !nihil_present)
 		death()
 	//if CONTAINED and shits going down
-	if(IsContained() && (level >= TRUMPET_2))
+	if(IsContained() && (datum_reference?.qliphoth_meter == 2) && (GLOB.emergency_level >= TRUMPET_2) && (datum_reference?.emergancy_breach))
 		BreachEffect() // We must help them!
-		datum_reference.qliphoth_meter = 0
-	return TRUE
+		if(datum_reference)
+			datum_reference.emergancy_breach = FALSE//She shouldn't be able to breach again passively until the next qliphoth event.
+			datum_reference.qliphoth_meter = 0
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/ArcanaBeats(target)
 	if(beats_cooldown > world.time)
@@ -622,7 +622,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/OnQliphothEvent()
 	if(!IsContained()) //Breached
-		return
+		return ..()
 	if(death_counter < 2)
 		counter_amount += 1
 		if(counter_amount >= 3)

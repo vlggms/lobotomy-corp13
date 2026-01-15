@@ -173,6 +173,7 @@ GLOBAL_LIST_EMPTY(army)
 	density = FALSE
 	alpha = 0
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	remove_from_mob_list()
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/army/proc/SpawnAdds()
