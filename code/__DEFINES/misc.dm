@@ -59,6 +59,7 @@
 #define TRUMPET_1	1
 #define TRUMPET_2	2
 #define TRUMPET_3	3
+#define TRUMPET_4	4
 
 //some arbitrary defines to be used by self-pruning global lists. (see master_controller)
 #define PROCESS_KILL 26	//Used to trigger removal from a processing list

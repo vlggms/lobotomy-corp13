@@ -116,7 +116,6 @@
 	RegisterSignal(user, COMSIG_LIVING_DEATH, PROC_REF(BlessedDeath))
 	RegisterSignal(user, COMSIG_HUMAN_INSANE, PROC_REF(BlessedDeath))
 	RegisterSignal(user, COMSIG_WORK_STARTED, PROC_REF(OnWorkStart))
-	RegisterSignal(SSdcs, COMSIG_TRUMPET_CHANGED, PROC_REF(on_trumpet_change))
 
 /mob/living/simple_animal/hostile/abnormality/puss_in_boots/proc/BlessedDeath(datum/source, gibbed)
 	SIGNAL_HANDLER
@@ -137,15 +136,16 @@
 		return FALSE
 	BlessedDeath(blessed_human)
 
-/mob/living/simple_animal/hostile/abnormality/puss_in_boots/proc/on_trumpet_change(datum/source, level)
-	SIGNAL_HANDLER
+/mob/living/simple_animal/hostile/abnormality/puss_in_boots/proc/emergency_check(datum/source, level)
 	if(!IsContained() && friendly && (level == TRUMPET_0))
 		death()
 	//if CONTAINED and shits going down
-	if(IsContained() && (level >= TRUMPET_1) && friendly)
+	if(IsContained() && friendly && (GLOB.emergency_level >= TRUMPET_1) && (datum_reference?.emergancy_breach))
 		ignored = FALSE
 		BreachEffect() // We must help our friend!
-		datum_reference.qliphoth_meter = 0
+		if(datum_reference)
+			datum_reference.emergancy_breach = FALSE
+			datum_reference.qliphoth_meter = 0
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/puss_in_boots/MeltdownStart()
@@ -170,6 +170,7 @@
 	if(get_user_level(blessed_human) >= 2) //no buffing to get ahead
 		BlessedDeath(blessed_human)
 		return
+	emergency_check()
 
 /mob/living/simple_animal/hostile/abnormality/puss_in_boots/Move()
 	if(!can_act)
@@ -187,7 +188,6 @@
 	if(friendly)
 		fear_level = ZAYIN_LEVEL
 		health = 300 //He's pretty tough at max HP
-		addtimer(CALLBACK(src, PROC_REF(escape)), 45 SECONDS)
 		GoToFriend()
 		density = FALSE
 		icon_state = icon_friendly

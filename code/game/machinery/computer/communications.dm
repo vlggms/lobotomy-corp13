@@ -44,7 +44,7 @@
 	var/static/last_status_display
 
 	var/emergency_cooldown
-	var/emergency_cooldown_time = 10 MINUTES
+	var/emergency_cooldown_time = 5 MINUTES
 
 /obj/machinery/computer/communications/Initialize()
 	. = ..()
@@ -128,19 +128,6 @@
 		if ("changeSecurityLevel")
 			if (!authenticated_as_silicon_or_captain(usr))
 				return
-
-			// Check if they have
-			if (!issilicon(usr))
-				var/obj/item/held_item = usr.get_active_held_item()
-				var/obj/item/card/id/id_card = held_item?.GetID()
-				if (!istype(id_card))
-					to_chat(usr, "<span class='warning'>You need to swipe your ID!</span>")
-					playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)
-					return
-				if (!(ACCESS_MANAGER in id_card.access))
-					to_chat(usr, "<span class='warning'>You are not authorized to do this!</span>")
-					playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)
-					return
 
 			var/new_sec_level = emgcylevel2num(params["newSecurityLevel"])
 			if (new_sec_level != TRUMPET_0 && new_sec_level != TRUMPET_1 && new_sec_level != TRUMPET_2 && new_sec_level != TRUMPET_3)
