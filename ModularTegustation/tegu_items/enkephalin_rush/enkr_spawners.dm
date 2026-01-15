@@ -229,16 +229,16 @@ GLOBAL_DATUM_INIT(map_enemy, /datum/enemy, new)
 	max_spawns = 1
 	mobspawn_table = list(
 		/mob/living/simple_animal/hostile/abnominion/doomsday_doll = 10,
-		/mob/living/simple_animal/hostile/azure_stave = 1,//servant of wrath minion
+		/mob/living/simple_animal/hostile/abnominion/azure_stave = 1,//servant of wrath minion
 		)
 
 /obj/effect/spawner/mobspawner/he
 	name = "he abnormality thrall spawn"
 	max_spawns = 1
 	mobspawn_table = list(
-		/mob/living/simple_animal/hostile/shrimp = 10,//shrimp liquidation intern
-		/mob/living/simple_animal/hostile/shrimp_soldier = 1,//shotgun shrimp
-		/mob/living/simple_animal/hostile/gift = 1,//laetitia spider
+		/mob/living/simple_animal/hostile/abnominion/shrimp = 10,//shrimp liquidation intern
+		/mob/living/simple_animal/hostile/abnominion/shrimp_soldier = 1,//shotgun shrimp
+		/mob/living/simple_animal/hostile/abnominion/gift = 1,//laetitia spider
 		/mob/living/simple_animal/hostile/abnominion/grown_strong = 1,
 		/mob/living/simple_animal/hostile/abnominion/nosferatu_mob = 10,
 		/mob/living/simple_animal/hostile/abnominion/worker_bee = 10,
@@ -253,19 +253,19 @@ GLOBAL_DATUM_INIT(map_enemy, /datum/enemy, new)
 	mobspawn_table = list(
 		/mob/living/simple_animal/hostile/abnominion/yagaslave = 5,
 		/mob/living/simple_animal/hostile/abnominion/parasite_tree_sapling = 1,
-		/mob/living/simple_animal/hostile/thunder_zombie = 5,
+		/mob/living/simple_animal/hostile/abnominion/thunder_zombie = 5,
 		)
 
 /obj/effect/spawner/mobspawner/aleph
 	name = "aleph abnormality thrall spawn"
 	max_spawns = 1
 	mobspawn_table = list(
-		/mob/living/simple_animal/hostile/little_prince_1 = 1,//this guy has a wopping 1200 hp
+		/mob/living/simple_animal/hostile/abnominion/little_prince_1 = 1,//this guy has a wopping 1200 hp
 		/mob/living/simple_animal/hostile/abnominion/mini_censored = 1,
-		/mob/living/simple_animal/hostile/meatblob = 10,
-		/mob/living/simple_animal/hostile/meatblob/gunner = 5,
-		/mob/living/simple_animal/hostile/meatblob/gunner/shotgun = 5,
-		/mob/living/simple_animal/hostile/meatblob/gunner/sniper = 5,
+		/mob/living/simple_animal/hostile/abnominion/meatblob = 10,
+		/mob/living/simple_animal/hostile/abnominion/meatblob/gunner = 5,
+		/mob/living/simple_animal/hostile/abnominion/meatblob/gunner/shotgun = 5,
+		/mob/living/simple_animal/hostile/abnominion/meatblob/gunner/sniper = 5,
 		/mob/living/simple_animal/hostile/abnominion/slime/big = 2,//ML's chosen
 		)
 

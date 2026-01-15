@@ -143,6 +143,7 @@
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ABNORMALITY_BREACH, src)
 	if(istype(datum_reference))
 		deadchat_broadcast(" has breached containment.", "<b>[src.name]</b>", src, get_turf(src))
+	remove_from_mob_list()
 	realboy.name = "Pinocchio the Liar"
 	realboy.real_name = "Pinocchio the Liar"
 	realboy.adjust_all_attribute_levels(100)

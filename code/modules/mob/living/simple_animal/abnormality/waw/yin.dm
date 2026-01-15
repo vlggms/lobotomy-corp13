@@ -83,7 +83,7 @@
 	var/list/prohibitted_flips = list(
 		/mob/living/simple_animal/hostile/abnormality/nihil,
 		/mob/living/simple_animal/hostile/abnormality/white_night,
-		/mob/living/simple_animal/hostile/megafauna/apocalypse_bird,
+		/mob/living/simple_animal/hostile/abnominion/apocalypse_bird,
 		/mob/living/simple_animal/hostile/megafauna/arbiter,
 		/mob/living/simple_animal/hostile/abnormality/yang,
 		/mob/living/simple_animal/hostile/abnormality/yin,

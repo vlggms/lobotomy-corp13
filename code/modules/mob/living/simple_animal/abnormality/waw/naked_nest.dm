@@ -73,7 +73,7 @@
 	if(status_flags & GODMODE)
 		if(origin_cooldown <= world.time) //To prevent serpent flood there is a delay on how many serpents are brave enough to leave the safety of their nest.
 			var/turf/T = pick(GLOB.department_centers)
-			var/mob/living/simple_animal/hostile/naked_nest_serpent/serpent = new(get_turf(T))
+			var/mob/living/simple_animal/hostile/abnominion/naked_nest_serpent/serpent = new(get_turf(T))
 			serpent.Hide()
 			datum_reference.qliphoth_change(1)
 			origin_cooldown = world.time + (5 SECONDS)
@@ -86,7 +86,7 @@
 	for(var/atom/movable/AM in src)
 		AM.forceMove(get_turf(src))
 	if(serpentsnested > 0)
-		var/mob/living/simple_animal/hostile/naked_nest_serpent/S = new(get_turf(src))
+		var/mob/living/simple_animal/hostile/abnominion/naked_nest_serpent/S = new(get_turf(src))
 		S.Hide()
 	return ..()
 
@@ -119,8 +119,8 @@
 
 /mob/living/simple_animal/hostile/abnormality/naked_nest/Crossed(atom/movable/AM)
 	. = ..()
-	if(!target && istype(AM, /mob/living/simple_animal/hostile/naked_nest_serpent))
-		var/mob/living/simple_animal/hostile/naked_nest_serpent/S = AM
+	if(!target && istype(AM, /mob/living/simple_animal/hostile/abnominion/naked_nest_serpent))
+		var/mob/living/simple_animal/hostile/abnominion/naked_nest_serpent/S = AM
 		if(!S.target && !client)
 			S.Nest(src)
 
@@ -136,12 +136,12 @@
 		return FALSE
 	ranged_cooldown = world.time + ranged_cooldown_time
 	playsound(get_turf(src), 'sound/misc/moist_impact.ogg', 10, 1)
-	var/mob/living/simple_animal/hostile/naked_nest_serpent/S = new(get_turf(src))
+	var/mob/living/simple_animal/hostile/abnominion/naked_nest_serpent/S = new(get_turf(src))
 	S.GiveTarget(target)
 	S.Goto(target, S.move_to_delay, 0) //slightly worried how hefty it is calling 2 procs one after another.
 	serpentsnested = serpentsnested - 1
 
-/mob/living/simple_animal/hostile/abnormality/naked_nest/proc/RecoverSerpent(mob/living/simple_animal/hostile/naked_nest_serpent/S) //destination of serpents nest proc
+/mob/living/simple_animal/hostile/abnormality/naked_nest/proc/RecoverSerpent(mob/living/simple_animal/hostile/abnominion/naked_nest_serpent/S) //destination of serpents nest proc
 	if(serpentsnested <= 5)
 		if(S.client)
 			to_chat(src, span_nicegreen("You return to the safety of the nest."))
@@ -152,10 +152,10 @@
 		to_chat(S, span_notice("This nest has no more room."))
 
 /mob/living/simple_animal/hostile/abnormality/naked_nest/proc/Nest() //return to the nest
-	for(var/mob/living/simple_animal/hostile/naked_nest_serpent/M in range(0, src))
+	for(var/mob/living/simple_animal/hostile/abnominion/naked_nest_serpent/M in range(0, src))
 		M.Nest(src)
 
-/mob/living/simple_animal/hostile/naked_nest_serpent
+/mob/living/simple_animal/hostile/abnominion/naked_nest_serpent
 	name = "naked serpent"
 	desc = "A sickly looking green-colored worm."
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
@@ -180,17 +180,19 @@
 	del_on_death = 1
 	vision_range = 18 //two screens away
 	minbodytemp = INHOSPITABLE_FOR_NESTING
+	fear_level = 0
+	can_affect_emergency = FALSE// Too small to count
 	var/panic_timer = 0
 	var/mob/living/simple_animal/hostile/abnormality/naked_nest/origin_nest
 
-/mob/living/simple_animal/hostile/naked_nest_serpent/Initialize()
+/mob/living/simple_animal/hostile/abnominion/naked_nest_serpent/Initialize()
 	. = ..()
 	var/home_naked_nest = locate(/mob/living/simple_animal/hostile/abnormality/naked_nest) in loc
 	if(home_naked_nest)
 		origin_nest = home_naked_nest
 	AddComponent(/datum/component/swarming)
 
-/mob/living/simple_animal/hostile/naked_nest_serpent/AttackingTarget(atom/attacked_target)
+/mob/living/simple_animal/hostile/abnominion/naked_nest_serpent/AttackingTarget(atom/attacked_target)
 	if(iscarbon(attacked_target))
 		var/mob/living/carbon/human/C = attacked_target
 		if(C.stat != DEAD && !C.NAKED_NESTED && a_intent == "harm")
@@ -201,7 +203,7 @@
 		nest.RecoverSerpent(src)
 	return ..()
 
-/mob/living/simple_animal/hostile/naked_nest_serpent/CanAttack(atom/the_target)
+/mob/living/simple_animal/hostile/abnominion/naked_nest_serpent/CanAttack(atom/the_target)
 	if(panic_timer > world.time)
 		return FALSE
 
@@ -223,7 +225,7 @@
 
 	return FALSE
 
-/mob/living/simple_animal/hostile/naked_nest_serpent/LoseAggro() //its best to return home
+/mob/living/simple_animal/hostile/abnominion/naked_nest_serpent/LoseAggro() //its best to return home
 	..()
 	if(origin_nest)
 		for(var/mob/living/simple_animal/hostile/abnormality/naked_nest/N in oview(vision_range, src))
@@ -231,19 +233,19 @@
 				Goto(N, 5, 0)
 				return
 
-/mob/living/simple_animal/hostile/naked_nest_serpent/proc/EnterHost(mob/living/carbon/host)
+/mob/living/simple_animal/hostile/abnominion/naked_nest_serpent/proc/EnterHost(mob/living/carbon/host)
 	if(prob(50 * (host.health / host.maxHealth)))
 		to_chat(host, span_warning("You feel something cold touch the back of your leg!"))
 	to_chat(src, span_nicegreen("You’ve found a new nest!"))
 	new /obj/item/organ/naked_nest(host)
 	QDEL_IN(src, 5)
 
-/mob/living/simple_animal/hostile/naked_nest_serpent/proc/Nest(mob/living/simple_animal/hostile/abnormality/naked_nest/nest)
+/mob/living/simple_animal/hostile/abnominion/naked_nest_serpent/proc/Nest(mob/living/simple_animal/hostile/abnormality/naked_nest/nest)
 	for(var/mob/living/simple_animal/hostile/abnormality/naked_nest/N in range(1, src))
 		if(nest.serpentsnested <= 5 && origin_nest == N.tag || !origin_nest)
 			nest.RecoverSerpent(src)
 
-/mob/living/simple_animal/hostile/naked_nest_serpent/proc/Hide(panic) //procs only on abno breach and organ escape.
+/mob/living/simple_animal/hostile/abnominion/naked_nest_serpent/proc/Hide(panic) //procs only on abno breach and organ escape.
 	wander = FALSE
 	var/list/possiblehidingspots = list()
 	for(var/obj/structure/table/t in oview(get_turf(src), 9))
@@ -260,7 +262,7 @@
 		Goto((hidingspot), move_to_delay, 0)
 
 
-/mob/living/simple_animal/hostile/naked_nested
+/mob/living/simple_animal/hostile/abnominion/naked_nested
 	name = "naked nested"
 	desc = "A humanoid form covered in slimy scales. It looks like it is protected by the host’s armor."
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
@@ -278,15 +280,16 @@
 	mob_size = MOB_SIZE_HUMAN
 	minbodytemp = INHOSPITABLE_FOR_NESTING
 	guaranteed_butcher_results = list(/obj/item/food/meatball/human = 1) //considered having it spawn a single worm on butcher but that seemed cruel.
+	threat_level = HE_LEVEL
 	var/nesting_time = 40 SECONDS
 	var/nestingtimer
 
-/mob/living/simple_animal/hostile/naked_nested/Initialize()
+/mob/living/simple_animal/hostile/abnominion/naked_nested/Initialize()
 	. = ..()
 	nestingtimer = world.time + (nesting_time)
 	UpdateArmor(damage_coeff) //in order to fix damage coefficents
 
-/mob/living/simple_animal/hostile/naked_nested/Life()
+/mob/living/simple_animal/hostile/abnominion/naked_nested/Life()
 	. = ..()
 	if(stat == DEAD && buffed == 0)
 		buffed = 1
@@ -294,12 +297,12 @@
 	if(nestingtimer <= world.time && !target)
 		Nest()
 
-/mob/living/simple_animal/hostile/naked_nested/gib()
+/mob/living/simple_animal/hostile/abnominion/naked_nested/gib()
 	for(var/atom/movable/AM in src) //morph code
 		AM.forceMove(loc)
 	return ..()
 
-/mob/living/simple_animal/hostile/naked_nested/proc/Nest()
+/mob/living/simple_animal/hostile/abnominion/naked_nested/proc/Nest()
 	var/mob/living/simple_animal/hostile/abnormality/naked_nest/N = new(get_turf(src))
 	N.core_enabled = FALSE
 	for(var/atom/movable/AM in src) //morph code
@@ -308,7 +311,7 @@
 	playsound(get_turf(src), 'sound/misc/moist_impact.ogg', 30, 1)
 	qdel(src)
 
-/mob/living/simple_animal/hostile/naked_nested/hour_nesting //for dungeon gamemodes
+/mob/living/simple_animal/hostile/abnominion/naked_nested/hour_nesting //for dungeon gamemodes
 	name = "festering naked nested"
 	maxHealth = 500
 	health = 500
@@ -347,7 +350,7 @@
 	. = ..()
 	if(!owner)
 		if(useable)
-			var/mob/living/simple_animal/hostile/naked_nest_serpent/escapee = new(get_turf(src))
+			var/mob/living/simple_animal/hostile/abnominion/naked_nest_serpent/escapee = new(get_turf(src))
 			escapee.Hide(TRUE)
 		qdel(src)
 		return
@@ -387,7 +390,7 @@
 	//If you have melting love and naked nest, melting loves blessing gets priority
 	if(TransformOverride(host))
 		return
-	var/mob/living/simple_animal/hostile/naked_nested/N = new(host.loc) //there was a issue with several converted naked nests getting the same damage coeffs so convert proc had to be moved here.
+	var/mob/living/simple_animal/hostile/abnominion/naked_nested/N = new(host.loc) //there was a issue with several converted naked nests getting the same damage coeffs so convert proc had to be moved here.
 	NestedItems(N, host.get_item_by_slot(ITEM_SLOT_SUITSTORE))
 	NestedItems(N, host.get_item_by_slot(ITEM_SLOT_BELT))
 	NestedItems(N, host.get_item_by_slot(ITEM_SLOT_BACK))
@@ -406,7 +409,7 @@
 		if(!H || H.stat == DEAD)
 			return TRUE
 
-/obj/item/organ/naked_nest/proc/NestedItems(mob/living/simple_animal/hostile/naked_nested/nest, obj/item/nested_item)
+/obj/item/organ/naked_nest/proc/NestedItems(mob/living/simple_animal/hostile/abnominion/naked_nested/nest, obj/item/nested_item)
 	if(nested_item)
 		nested_item.forceMove(nest)
 
