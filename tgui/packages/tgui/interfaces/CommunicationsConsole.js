@@ -9,7 +9,7 @@ const STATE_BUYING_SHUTTLE = "buying_shuttle";
 const STATE_CHANGING_STATUS = "changing_status";
 const STATE_MAIN = "main";
 const STATE_MESSAGES = "messages";
-
+const WARNING = "Changing the emergency level may aggravate certain abnormalities!"
 // Used for whether or not you need to swipe to confirm an alert level change
 const SWIPE_NEEDED = "SWIPE_NEEDED";
 
@@ -565,7 +565,7 @@ const PageMain = (props, context) => {
               <Flex.Item fontSize="16px" mb={2}>
                 Swipe ID to confirm change
                 <Box textColor="red">
-                  Changing the current level may aggravate certain abnormalities
+                  { WARNING }
                 </Box>
               </Flex.Item>
 
