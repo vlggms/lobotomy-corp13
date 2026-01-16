@@ -104,7 +104,7 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 		if(A.stat == DEAD)//The dead shouldn't count
 			continue
 		if(istype(A, /mob/living/simple_animal/hostile/abnormality/white_night) || istype(A, /mob/living/simple_animal/hostile/abnormality/distortedform))//Is there a better way of doing this?
-			min += 98//Perma Third trumpet until either are killed
+			min += 75//Perma Second trumpet until either are killed
 		else if(istype(A, /mob/living/simple_animal/hostile/abnormality/hatred_queen))
 			var/mob/living/simple_animal/hostile/abnormality/hatred_queen/QOH = A
 			if(!QOH.friendly)
