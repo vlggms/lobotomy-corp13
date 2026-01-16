@@ -54,7 +54,7 @@
 		var/mob/living/simple_animal/hostile/abnormality/abnospawned = new chosen_abno(location)
 		abnospawned.core_enabled = FALSE
 		if(istype(abnospawned, /mob/living/simple_animal/hostile/abnormality/pinocchio)) //To check if BreachEffect() is needed for the abno to work properly
-			abnominioned.BreachEffect()
+			abnospawned.BreachEffect()
 
 /obj/machinery/computer/testrangespawner/process()
 	var/area/A = get_area(src)
