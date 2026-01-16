@@ -10,6 +10,7 @@ const STATE_CHANGING_STATUS = "changing_status";
 const STATE_MAIN = "main";
 const STATE_MESSAGES = "messages";
 const WARNING = "Changing the emergency level may aggravate certain abnormalities!";
+
 // Used for whether or not you need to swipe to confirm an alert level change
 const SWIPE_NEEDED = "SWIPE_NEEDED";
 
