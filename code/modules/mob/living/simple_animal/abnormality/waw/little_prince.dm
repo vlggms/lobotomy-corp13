@@ -195,8 +195,8 @@
 	icon_dead = "little_princeminion"
 	base_pixel_x = -16
 	pixel_x = -16
-	health = 500
-	maxHealth = 500
+	health = 545
+	maxHealth = 545
 	move_to_delay = 3
 	melee_damage_type = BLACK_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
