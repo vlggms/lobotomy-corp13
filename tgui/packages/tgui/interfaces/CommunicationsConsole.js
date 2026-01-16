@@ -18,7 +18,8 @@ const sortByCreditCost = sortBy(shuttle => shuttle.creditCost);
 const AlertButton = (props, context) => {
   const { act, data } = useBackend(context);
   const { alertLevelTick, canSetAlertLevel } = data;
-  const { alertLevel, setShowAlertLevelConfirm , alertDisabled, alertTooltip} = props;
+  const { alertLevel, setShowAlertLevelConfirm} = props;
+  const { alertDisabled, alertTooltip} = props;
 
   const thisIsCurrent = data.alertLevel === alertLevel;
 
@@ -28,7 +29,7 @@ const AlertButton = (props, context) => {
       color={thisIsCurrent && "good"}
       content={capitalize(alertLevel)}
       disabled={alertDisabled}
-      tooltip = {alertTooltip}
+      tooltip={alertTooltip}
       onClick={() => {
         if (thisIsCurrent) {
           return;
@@ -392,16 +393,16 @@ const PageMain = (props, context) => {
               Currently on <b>{capitalize(alertLevel)}</b>.
             </Box>
             {canChangeEmergency !== 1 && (
-                <Box>
-                  Cooldown:{" "}<b>{canChangeEmergency}</b>
-                </Box>
+              <Box>
+                Cooldown:{" "}<b>{canChangeEmergency}</b>
+              </Box>
             )}
           </Flex.Item>
           <Flex justify="center">
             <Flex.Item>
               <AlertButton
                 alertLevel="no emergency"
-                alertDisabled={canChangeEmergency !== 1 || noEmergencyFail === 1}
+                alertDisabled={canChangeEmergency!==1||noEmergencyFail===1}
                 alertTooltip={
                   noEmergencyFail === 1
                     ? "The current threat level cannot be overridden."
@@ -412,10 +413,10 @@ const PageMain = (props, context) => {
               />
               <AlertButton
                 alertLevel="first trumpet"
-                alertDisabled={canChangeEmergency !== 1 || firstTrumpetFail === 1}
+                alertDisabled={canChangeEmergency!== 1||firstTrumpetFail===1}
                 alertTooltip={
                   firstTrumpetFail === 1
-                    ?  "The current threat level cannot be overridden."
+                    ? "The current threat level cannot be overridden."
                     : undefined
                 }
                 showAlertLevelConfirm={showAlertLevelConfirm}
@@ -423,7 +424,7 @@ const PageMain = (props, context) => {
               />
               <AlertButton
                 alertLevel="second trumpet"
-                alertDisabled={canChangeEmergency !== 1 || secondTrumpetFail === 1}
+                alertDisabled={canChangeEmergency !== 1||secondTrumpetFail===1}
                 alertTooltip={
                   secondTrumpetFail === 1
                     ? "The current threat level cannot be overridden."
