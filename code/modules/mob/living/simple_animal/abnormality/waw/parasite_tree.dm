@@ -164,7 +164,7 @@
 				new /obj/structure/liars_leaf(pick(possibleleafturf))
 
 	//SAPLING MINION
-/mob/living/simple_animal/hostile/abnominion/parasite_tree_sapling
+/mob/living/simple_animal/hostile/aminion/parasite_tree_sapling
 	name = "toxic sapling"
 	desc = "A humanoid tree, it spews thick noxious gas from its agonized face."
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
@@ -188,7 +188,7 @@
 	score_divider = 8
 	var/mob/living/simple_animal/hostile/abnormality/parasite_tree/connected_abno
 
-/mob/living/simple_animal/hostile/abnominion/parasite_tree_sapling/Initialize()
+/mob/living/simple_animal/hostile/aminion/parasite_tree_sapling/Initialize()
 	. = ..()
 	icon_living = "sapling[pick(1,2)]"
 	icon_state = icon_living
@@ -196,7 +196,7 @@
 	if(connected_abno)
 		connected_abno.minions += src
 
-/mob/living/simple_animal/hostile/abnominion/parasite_tree_sapling/death()
+/mob/living/simple_animal/hostile/aminion/parasite_tree_sapling/death()
 	if(connected_abno)
 		connected_abno.minions -= src
 		connected_abno.endBreach()
@@ -204,7 +204,7 @@
 		AM.forceMove(get_turf(src))
 	..()
 
-/mob/living/simple_animal/hostile/abnominion/parasite_tree_sapling/CanAttack(mob/living/carbon/human/the_target) //Your target has to be human and not have the tree curse.
+/mob/living/simple_animal/hostile/aminion/parasite_tree_sapling/CanAttack(mob/living/carbon/human/the_target) //Your target has to be human and not have the tree curse.
 	if(isturf(the_target) || !the_target || the_target.type == /atom/movable/lighting_object) // bail out on invalids
 		return FALSE
 
@@ -220,15 +220,15 @@
 		return TRUE
 	return FALSE
 
-/mob/living/simple_animal/hostile/abnominion/parasite_tree_sapling/Move()
+/mob/living/simple_animal/hostile/aminion/parasite_tree_sapling/Move()
 	return FALSE
 
-/mob/living/simple_animal/hostile/abnominion/parasite_tree_sapling/AttackingTarget(atom/attacked_target)
+/mob/living/simple_animal/hostile/aminion/parasite_tree_sapling/AttackingTarget(atom/attacked_target)
 	if(!target)
 		GiveTarget(attacked_target)
 	return OpenFire()
 
-/mob/living/simple_animal/hostile/abnominion/parasite_tree_sapling/OpenFire()
+/mob/living/simple_animal/hostile/aminion/parasite_tree_sapling/OpenFire()
 	if(ranged_cooldown > world.time)
 		return FALSE
 	ranged_cooldown = world.time + ranged_cooldown_time
@@ -367,7 +367,7 @@
 		connected_abno.endBreach()
 		return ..()
 	if(status_holder.sanity_lost && status_holder.stat != DEAD)
-		var/mob/living/simple_animal/hostile/abnominion/parasite_tree_sapling/new_mob = new(owner.loc)
+		var/mob/living/simple_animal/hostile/aminion/parasite_tree_sapling/new_mob = new(owner.loc)
 		nested_items(new_mob, status_holder.get_item_by_slot(ITEM_SLOT_SUITSTORE))
 		nested_items(new_mob, status_holder.get_item_by_slot(ITEM_SLOT_BELT))
 		nested_items(new_mob, status_holder.get_item_by_slot(ITEM_SLOT_BACK))

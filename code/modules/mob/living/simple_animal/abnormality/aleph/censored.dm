@@ -162,7 +162,7 @@
 	for(var/i = 1 to 3)
 		new /obj/effect/gibspawner/generic/silent(get_turf(src))
 		SLEEP_CHECK_DEATH(5.5)
-	var/mob/living/simple_animal/hostile/abnominion/mini_censored/C = new(get_turf(src))
+	var/mob/living/simple_animal/hostile/aminion/mini_censored/C = new(get_turf(src))
 	if(!QDELETED(H))
 		C.desc = "What the hell is this? It shouldn't exist... On the second thought, it reminds you of [H.real_name]..."
 		H.gib()
@@ -255,7 +255,7 @@
 	return
 
 /* The mini censoreds */
-/mob/living/simple_animal/hostile/abnominion/mini_censored
+/mob/living/simple_animal/hostile/aminion/mini_censored
 	name = "???"
 	desc = "What the hell is this? It shouldn't exist..."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
@@ -266,12 +266,12 @@
 	attack_verb_simple = "attack"
 	attack_sound = 'sound/abnormalities/censored/mini_attack.ogg'
 	/* Stats */
-	health = 300
-	maxHealth = 300
+	health = 600
+	maxHealth = 600
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1)
 	melee_damage_type = BLACK_DAMAGE
-	melee_damage_lower = 13
-	melee_damage_upper = 16
+	melee_damage_lower = 25
+	melee_damage_upper = 30
 	speed = 2
 	move_to_delay = 2
 	robust_searching = TRUE
@@ -283,7 +283,7 @@
 	fear_level = ALEPH_LEVEL + 2
 	var/recoved_sanity = 0.2
 
-/mob/living/simple_animal/hostile/abnominion/mini_censored/Initialize()
+/mob/living/simple_animal/hostile/aminion/mini_censored/Initialize()
 	. = ..()
 	playsound(get_turf(src), 'sound/abnormalities/censored/mini_born.ogg', 50, 1, 4)
 	base_pixel_x = rand(-6,6)
@@ -293,7 +293,7 @@
 	if(SSmaptype.maptype == "rcorp")
 		density = TRUE
 
-/mob/living/simple_animal/hostile/abnominion/mini_censored/Life()
+/mob/living/simple_animal/hostile/aminion/mini_censored/Life()
 	. = ..()
 	if(!.) // Dead
 		return FALSE
@@ -304,11 +304,11 @@
 	ShakePixels()
 	return
 
-/mob/living/simple_animal/hostile/abnominion/mini_censored/proc/ShakePixels()
+/mob/living/simple_animal/hostile/aminion/mini_censored/proc/ShakePixels()
 	animate(src, pixel_x = base_pixel_x + rand(-3, 3), pixel_y = base_pixel_y + rand(-3, 3), time = 2)
 	return
 
-/mob/living/simple_animal/hostile/abnominion/mini_censored/death(gibbed)
+/mob/living/simple_animal/hostile/aminion/mini_censored/death(gibbed)
 	if(SSmaptype.maptype == "rcorp")
 		for(var/mob/living/carbon/human/H in view(5, src))
 			if(H.stat == DEAD)

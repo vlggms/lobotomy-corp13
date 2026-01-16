@@ -75,10 +75,10 @@
 			search_through -= TR
 		fire = FALSE
 		if((GLOB.emergency_level >= TRUMPET_1))
-			for(var/mob/living/simple_animal/hostile/abnormality/A in search_through)
+			for(var/mob/living/simple_animal/A in search_through)
 				if(QDELETED(A) || (A.stat == DEAD))
 					continue
-				if(A)
+				if(A && (isabnormalitymob(A) || isabnormalityminionmob(A)))
 					fire = TRUE
 					break
 	for(var/obj/machinery/light/L in src)
@@ -186,10 +186,10 @@
 			search_through -= TR
 		fire = FALSE
 		if((GLOB.emergency_level >= TRUMPET_1))
-			for(var/mob/living/simple_animal/hostile/abnormality/A in search_through)
+			for(var/mob/living/simple_animal/A in search_through)
 				if(QDELETED(A) || (A.stat == DEAD))
 					continue
-				if(A)
+				if(A && (isabnormalitymob(A) || isabnormalityminionmob(A)))
 					fire = TRUE
 					break
 	for(var/obj/machinery/light/L in src)

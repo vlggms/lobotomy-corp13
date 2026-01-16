@@ -129,13 +129,26 @@
 			if (!authenticated_as_silicon_or_captain(usr))
 				return
 
+			// Check if they have
+			if(isliving(usr))
+				var/mob/living/L = usr
+				var/obj/item/card/id/id_card = L.get_idcard(hand_first = TRUE)
+				if (!istype(id_card))
+					to_chat(usr, "<span class='warning'>You need to swipe your ID!</span>")
+					playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)
+					return
+				if (!(ACCESS_MANAGER in id_card.access))
+					to_chat(usr, "<span class='warning'>You are not authorized to do this!</span>")
+					playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)
+					return
+
 			var/new_sec_level = emgcylevel2num(params["newSecurityLevel"])
 			if (new_sec_level != TRUMPET_0 && new_sec_level != TRUMPET_1 && new_sec_level != TRUMPET_2 && new_sec_level != TRUMPET_3)
 				return
 			if (GLOB.emergency_level == new_sec_level)
 				return
 
-			SSlobotomy_emergency.SetEmergencyLevel(new_sec_level)
+			SSlobotomy_emergency.SetEmergencyLevel(new_sec_level, TRUE)
 			emergency_cooldown = emergency_cooldown_time + world.time
 			to_chat(usr, "<span class='notice'>Authorization confirmed. Modifying security level.</span>")
 			playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)

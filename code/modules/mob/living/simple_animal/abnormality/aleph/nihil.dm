@@ -9,8 +9,8 @@
 	portrait = "nihil"
 	pixel_x = -16
 	base_pixel_x = -16
-	maxHealth = 10000
-	health = 10000
+	maxHealth = 15000
+	health = 15000
 	move_to_delay = 4
 	threat_level = ALEPH_LEVEL
 	work_chances = list(
@@ -20,8 +20,8 @@
 		ABNORMALITY_WORK_REPRESSION = list(0, 0, 30, 35, 45),
 	)
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.5) //change on phase
-	melee_damage_lower = 20
-	melee_damage_upper = 30
+	melee_damage_lower = 40
+	melee_damage_upper = 55
 	melee_damage_type = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
 	work_damage_upper = 10
@@ -52,7 +52,7 @@
 	var/icon_inverted
 	var/teleport_cooldown
 	var/teleport_cooldown_time = 60 SECONDS
-	var/explode_damage = 80
+	var/explode_damage = 120
 	//Phases
 	var/current_phase
 	var/death_ready = TRUE
@@ -60,7 +60,7 @@
 	//Attacks
 	var/nuke_cooldown
 	var/nuke_cooldown_time = 5 MINUTES //Once per phase goes off every 5 minutes otherwise
-	var/nuke_damage = 300
+	var/nuke_damage = 500
 	var/busy_attacking = FALSE //Prevents can_act from being set to true while performing a forced action
 
 	ego_list = list(
@@ -529,8 +529,8 @@
 	base_pixel_x = -16
 	layer = LARGE_MOB_LAYER
 	faction = list("Nihil", "hostile")
-	maxHealth = 15000
-	health = 15000
+	maxHealth = 30000
+	health = 30000
 	damage_coeff = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
 	move_resist = MOVE_FORCE_STRONG
 	pull_force = MOVE_FORCE_STRONG

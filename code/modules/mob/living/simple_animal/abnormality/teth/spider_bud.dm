@@ -103,7 +103,7 @@
 	summon_cooldown = world.time + summon_cooldown_time
 	for(var/i = 1 to summon_group_size)
 		var/turf/target_turf = get_turf(src)
-		new /mob/living/simple_animal/hostile/abnominion/bud_spider(target_turf)
+		new /mob/living/simple_animal/hostile/aminion/bud_spider(target_turf)
 		summon_count += 1
 
 /obj/structure/spider/cocoon/spider_bud
@@ -139,7 +139,7 @@
 
 	return ..()
 
-/mob/living/simple_animal/hostile/abnominion/bud_spider
+/mob/living/simple_animal/hostile/aminion/bud_spider
 	name = "Spiderling"
 	desc = "The offspring of spider bud."
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'

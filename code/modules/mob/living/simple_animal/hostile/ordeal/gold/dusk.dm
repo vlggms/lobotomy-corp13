@@ -248,7 +248,7 @@
 	if(!istype(H))
 		return
 	playsound(src, 'sound/abnormalities/thunderbird/tbird_zombify.ogg', 45, FALSE, 5)
-	var/mob/living/simple_animal/hostile/abnominion/thunder_zombie/C = new(get_turf(src))
+	var/mob/living/simple_animal/hostile/aminion/thunder_zombie/C = new(get_turf(src))
 	if(!QDELETED(H))
 		C.can_affect_emergency = FALSE
 		C.name = "[H.real_name]"//applies the target's name and adds the name to its description
