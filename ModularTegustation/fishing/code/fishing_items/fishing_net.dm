@@ -73,16 +73,16 @@
 	addtimer(CALLBACK(src, PROC_REF(CatchFish)), fishin_cooldown + fishin_cooldown_delay)
 
 /obj/structure/destructible/fishing_net/proc/SpawnEnemy(turf/dropoff, mob/user)
-	var/spawning = /mob/living/simple_animal/hostile/abnominion/shrimp
+	var/spawning = /mob/living/simple_animal/hostile/aminion/shrimp
 	if(prob(1) && SSfishing.IsAligned(/datum/planet/mars))
 		spawning = /mob/living/simple_animal/hostile/distortion/shrimp_rambo/easy
 
 	if(prob(5)) //Super rares first
-		spawning = /mob/living/simple_animal/hostile/abnominion/shrimp_soldier
+		spawning = /mob/living/simple_animal/hostile/aminion/shrimp_soldier
 	if(prob(20))
 		spawning = pick(/mob/living/simple_animal/hostile/shrimp_rifleman, /mob/living/simple_animal/hostile/senior_shrimp)
 	else
-		spawning = /mob/living/simple_animal/hostile/abnominion/shrimp
+		spawning = /mob/living/simple_animal/hostile/aminion/shrimp
 
 	new spawning(dropoff)
 

@@ -843,9 +843,9 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/level = input("Select security level to change to","Set Security Level") as null|anything in list("no emergency","first trumpet","second trumpet","third trumpet")
+	var/level = input("Select security level to change to","Set Emergency Level") as null|anything in list("no emergency","first trumpet","second trumpet","third trumpet")
 	if(level)
-		SSlobotomy_emergency.SetEmergencyLevel(level)
+		SSlobotomy_emergency.SetEmergencyLevel(level, TRUE)
 
 		log_admin("[key_name(usr)] changed the emergency level to [level]")
 		message_admins("[key_name_admin(usr)] changed the emergency level to [level]")

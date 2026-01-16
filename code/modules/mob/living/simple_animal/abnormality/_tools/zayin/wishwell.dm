@@ -170,12 +170,12 @@
 	var/list/dusk = list(
 		/mob/living/simple_animal/hostile/ordeal/sin_pride,
 		/mob/living/simple_animal/hostile/ordeal/KHz_corrosion,
-		/mob/living/simple_animal/hostile/abnominion/mini_censored,
-		/mob/living/simple_animal/hostile/abnominion/slime,
+		/mob/living/simple_animal/hostile/aminion/mini_censored,
+		/mob/living/simple_animal/hostile/aminion/slime,
 	)
 
 	var/list/midnight = list(//TODO: Add more somewhat reasonable threats
-		/mob/living/simple_animal/hostile/abnominion/slime/big,
+		/mob/living/simple_animal/hostile/aminion/slime/big,
 		/mob/living/simple_animal/hostile/ordeal/sin_wrath,
 	)
 

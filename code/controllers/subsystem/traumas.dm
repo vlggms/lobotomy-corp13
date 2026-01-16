@@ -60,7 +60,7 @@ SUBSYSTEM_DEF(traumas)
 			/mob/living/simple_animal/parrot, /mob/living/simple_animal/chick, /mob/living/simple_animal/chicken,
 			/mob/living/simple_animal/pet/penguin, /mob/living/simple_animal/hostile/abnormality/punishing_bird, /mob/living/simple_animal/hostile/abnormality/big_bird,
 			/mob/living/simple_animal/hostile/abnormality/judgement_bird, /mob/living/simple_animal/hostile/abnormality/fire_bird, /mob/living/simple_animal/hostile/abnormality/thunder_bird,
-			/mob/living/simple_animal/hostile/abnominion/apocalypse_bird, /mob/living/simple_animal/hostile/runawaybird
+			/mob/living/simple_animal/hostile/aminion/apocalypse_bird, /mob/living/simple_animal/hostile/runawaybird
 		)),
 		"anime" = typecacheof(list(/mob/living/simple_animal/hostile/guardian, /mob/living/simple_animal/hostile/abnormality/hatred_queen)),
 		"insects" = typecacheof(list(/mob/living/simple_animal/hostile/cockroach, /mob/living/simple_animal/hostile/poison/bees, /mob/living/simple_animal/hostile/ordeal/steel_dawn,

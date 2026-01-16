@@ -94,10 +94,10 @@
 			var/mob/living/simple_animal/hostile/H = L
 			H.TemporarySpeedChange(damage_slowdown, 5 SECONDS) // Slow down
 
-/mob/living/simple_animal/hostile/abnominion/shrimp_soldier/friendly/capitalism_shrimp
+/mob/living/simple_animal/hostile/aminion/shrimp_soldier/friendly/capitalism_shrimp
 	name = "wellcheers corp liquidation officer"
 
-/mob/living/simple_animal/hostile/abnominion/shrimp_soldier/friendly/capitalism_shrimp/Initialize()
+/mob/living/simple_animal/hostile/aminion/shrimp_soldier/friendly/capitalism_shrimp/Initialize()
 	.=..()
 	QDEL_IN(src, (90 SECONDS))
 
@@ -112,7 +112,7 @@
 
 /obj/effect/proc_holder/ability/shrimp/Perform(target, mob/user)
 	for(var/i = 1 to 6)
-		new /mob/living/simple_animal/hostile/abnominion/shrimp_soldier/friendly/capitalism_shrimp(get_turf(user))
+		new /mob/living/simple_animal/hostile/aminion/shrimp_soldier/friendly/capitalism_shrimp(get_turf(user))
 	return ..()
 
 /* Big Bird - Eyes of God */
@@ -1157,10 +1157,10 @@
 
 /obj/effect/proc_holder/ability/wellcheers/Perform(target, mob/user)
 	for(var/i = 1 to 3)
-		new /mob/living/simple_animal/hostile/abnominion/shrimp/friendly(get_turf(user))
+		new /mob/living/simple_animal/hostile/aminion/shrimp/friendly(get_turf(user))
 	return ..()
 
-/mob/living/simple_animal/hostile/abnominion/shrimp/friendly //HUGE buff shrimp
+/mob/living/simple_animal/hostile/aminion/shrimp/friendly //HUGE buff shrimp
 	name = "wellcheers boat fisherman"
 	health = 400
 	maxHealth = 400
@@ -1173,12 +1173,12 @@
 	threat_level = WAW_LEVEL
 	can_affect_emergency = FALSE
 	fear_level = 0
-/mob/living/simple_animal/hostile/abnominion/shrimp/friendly/Initialize()
+/mob/living/simple_animal/hostile/aminion/shrimp/friendly/Initialize()
 	.=..()
 	AddComponent(/datum/component/knockback, 1, FALSE, TRUE)
 	QDEL_IN(src, (90 SECONDS))
 
-/mob/living/simple_animal/hostile/abnominion/shrimp/friendly/AttackingTarget(atom/attacked_target)
+/mob/living/simple_animal/hostile/aminion/shrimp/friendly/AttackingTarget(atom/attacked_target)
 	. = ..()
 	if(.)
 		var/mob/living/L = attacked_target

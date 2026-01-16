@@ -99,7 +99,7 @@ GLOBAL_LIST_EMPTY(apostles)
 		return FALSE
 	if(!(status_flags & GODMODE))
 		if(holy_revival_cooldown < world.time)
-			for(var/mob/living/simple_animal/hostile/abnominion/apostle/scythe/guardian/G in apostles)
+			for(var/mob/living/simple_animal/hostile/aminion/apostle/scythe/guardian/G in apostles)
 				if(G in ohearers(10, src)) // Only teleport them if they are not in view.
 					continue
 				var/turf/T = get_step(src, pick(NORTH,SOUTH,WEST,EAST))
@@ -117,7 +117,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/white_night/Destroy()
-	for(var/mob/living/simple_animal/hostile/abnominion/apostle/A in apostles)
+	for(var/mob/living/simple_animal/hostile/aminion/apostle/A in apostles)
 		A.death()
 		QDEL_IN(A, 1.5 SECONDS)
 	apostles = null
@@ -165,7 +165,7 @@ GLOBAL_LIST_EMPTY(apostles)
 			L.emote("scream")
 		to_chat(L, span_userdanger("The holy light... IT BURNS!!"))
 	else
-		if(istype(L, /mob/living/simple_animal/hostile/abnominion/apostle) && L.stat == DEAD)
+		if(istype(L, /mob/living/simple_animal/hostile/aminion/apostle) && L.stat == DEAD)
 			L.revive(full_heal = TRUE, admin_revive = FALSE)
 			L.grab_ghost(force = TRUE)
 			to_chat(L, span_notice("The holy light compels you to live!"))
@@ -180,17 +180,17 @@ GLOBAL_LIST_EMPTY(apostles)
 
 /mob/living/simple_animal/hostile/abnormality/white_night/proc/SpawnApostles()
 	for(var/i = 1 to 11)
-		var/apostle_type = /mob/living/simple_animal/hostile/abnominion/apostle/scythe
+		var/apostle_type = /mob/living/simple_animal/hostile/aminion/apostle/scythe
 		if(i in list(1,11))
-			apostle_type = /mob/living/simple_animal/hostile/abnominion/apostle/scythe/guardian
+			apostle_type = /mob/living/simple_animal/hostile/aminion/apostle/scythe/guardian
 		if(i in list(4,5,6))
-			apostle_type = /mob/living/simple_animal/hostile/abnominion/apostle/staff
+			apostle_type = /mob/living/simple_animal/hostile/aminion/apostle/staff
 		if(i in list(7,8,9,10))
-			apostle_type = /mob/living/simple_animal/hostile/abnominion/apostle/spear
+			apostle_type = /mob/living/simple_animal/hostile/aminion/apostle/spear
 		apostles += new apostle_type(get_turf(src))
 		var/list/possible_locs = GLOB.xeno_spawn.Copy()
-		for(var/mob/living/simple_animal/hostile/abnominion/apostle/A in apostles)
-			if(istype(A, /mob/living/simple_animal/hostile/abnominion/apostle/scythe/guardian))
+		for(var/mob/living/simple_animal/hostile/aminion/apostle/A in apostles)
+			if(istype(A, /mob/living/simple_animal/hostile/aminion/apostle/scythe/guardian))
 				continue
 			var/turf/T = pick(possible_locs)
 			A.forceMove(T)
@@ -255,7 +255,7 @@ GLOBAL_LIST_EMPTY(apostles)
 
 /* Apostles */
 
-/mob/living/simple_animal/hostile/abnominion/apostle
+/mob/living/simple_animal/hostile/aminion/apostle
 	name = "apostle"
 	desc = "An apostle."
 	health = 1000
@@ -297,29 +297,29 @@ GLOBAL_LIST_EMPTY(apostles)
 	var/can_act = TRUE
 	var/death_counter = 0
 
-/mob/living/simple_animal/hostile/abnominion/apostle/Move()
+/mob/living/simple_animal/hostile/aminion/apostle/Move()
 	if(!can_act)
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/abnominion/apostle/death(gibbed)
+/mob/living/simple_animal/hostile/aminion/apostle/death(gibbed)
 	death_counter = clamp(death_counter + 1, 0, 3)
 	return ..()
 
-/mob/living/simple_animal/hostile/abnominion/apostle/revive(full_heal = FALSE, admin_revive = FALSE, excess_healing = 0)
+/mob/living/simple_animal/hostile/aminion/apostle/revive(full_heal = FALSE, admin_revive = FALSE, excess_healing = 0)
 	.= ..()
 	can_act = TRUE // In case we died while performing special attack
 	adjustBruteLoss(maxHealth * (death_counter * 0.15), TRUE)
 
-/mob/living/simple_animal/hostile/abnominion/apostle/gib(no_brain, no_organs, no_bodyparts)
+/mob/living/simple_animal/hostile/aminion/apostle/gib(no_brain, no_organs, no_bodyparts)
 	return FALSE // Cannot be gibbed
 
-/mob/living/simple_animal/hostile/abnominion/apostle/CanBeAttacked()
+/mob/living/simple_animal/hostile/aminion/apostle/CanBeAttacked()
 	if(stat == DEAD) // Simple mobs cannot attack them when they are "dead"
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/abnominion/apostle/AttackingTarget(atom/attacked_target)
+/mob/living/simple_animal/hostile/aminion/apostle/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return
 
@@ -334,7 +334,7 @@ GLOBAL_LIST_EMPTY(apostles)
 				GiveTarget(attacked_target)
 			OpenFire()
 
-/mob/living/simple_animal/hostile/abnominion/apostle/scythe
+/mob/living/simple_animal/hostile/aminion/apostle/scythe
 	name = "scythe apostle"
 	desc = "A disformed human wielding a terrifying scythe."
 	var/scythe_cooldown
@@ -343,7 +343,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	var/scythe_damage = 180
 	var/scythe_damage_type = RED_DAMAGE
 
-/mob/living/simple_animal/hostile/abnominion/apostle/scythe/OpenFire()
+/mob/living/simple_animal/hostile/aminion/apostle/scythe/OpenFire()
 	if(!can_act)
 		return
 
@@ -354,7 +354,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	if(get_dist(src, target) <= scythe_range && scythe_cooldown <= world.time)
 		ScytheAttack()
 
-/mob/living/simple_animal/hostile/abnominion/apostle/scythe/proc/ScytheAttack()
+/mob/living/simple_animal/hostile/aminion/apostle/scythe/proc/ScytheAttack()
 	if(scythe_cooldown > world.time)
 		return
 	scythe_cooldown = world.time + scythe_cooldown_time
@@ -369,7 +369,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	SLEEP_CHECK_DEATH(5)
 	can_act = TRUE
 
-/mob/living/simple_animal/hostile/abnominion/apostle/scythe/guardian
+/mob/living/simple_animal/hostile/aminion/apostle/scythe/guardian
 	name = "guardian apostle"
 	health = 1000
 	maxHealth = 1000
@@ -384,12 +384,12 @@ GLOBAL_LIST_EMPTY(apostles)
 	scythe_damage_type = PALE_DAMAGE
 	scythe_damage = 150 // It's a big AoE unlike base game where it's smaller and as it is you straight up die unless you have 7+ Pale resist. You also have TWO of these AND WN hitting you for ~80 Pale at this range.
 
-/mob/living/simple_animal/hostile/abnominion/apostle/scythe/guardian/CanStartPatrol()
+/mob/living/simple_animal/hostile/aminion/apostle/scythe/guardian/CanStartPatrol()
 	if(locate(/mob/living/simple_animal/hostile/abnormality/white_night) in ohearers(9, src))
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/abnominion/apostle/scythe/guardian/patrol_select()
+/mob/living/simple_animal/hostile/aminion/apostle/scythe/guardian/patrol_select()
 	var/mob/living/simple_animal/hostile/abnormality/white_night/WN = locate() in GLOB.abnormality_mob_list
 	if(!istype(WN))
 		return
@@ -398,7 +398,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	playsound(get_turf(src), 'sound/abnormalities/whitenight/apostle_growl.ogg', 75, FALSE)
 	TemporarySpeedChange(-4, 5 SECONDS) // OUT OF MY WAY
 
-/mob/living/simple_animal/hostile/abnominion/apostle/scythe/guardian/ScytheAttack()
+/mob/living/simple_animal/hostile/aminion/apostle/scythe/guardian/ScytheAttack()
 	if(scythe_cooldown > world.time)
 		return
 	scythe_cooldown = world.time + scythe_cooldown_time
@@ -424,7 +424,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	SLEEP_CHECK_DEATH(5)
 	can_act = TRUE
 
-/mob/living/simple_animal/hostile/abnominion/apostle/spear
+/mob/living/simple_animal/hostile/aminion/apostle/spear
 	name = "spear apostle"
 	desc = "A disformed human wielding a spear."
 	attack_verb_continuous = "stabs"
@@ -440,7 +440,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	var/spear_damage = 250
 	var/list/been_hit = list()
 
-/mob/living/simple_animal/hostile/abnominion/apostle/spear/OpenFire()
+/mob/living/simple_animal/hostile/aminion/apostle/spear/OpenFire()
 	if(client)
 		SpearAttack(target)
 		return
@@ -453,7 +453,7 @@ GLOBAL_LIST_EMPTY(apostles)
 		if(prob(chance_to_dash))
 			SpearAttack(target)
 
-/mob/living/simple_animal/hostile/abnominion/apostle/spear/proc/SpearAttack(target)
+/mob/living/simple_animal/hostile/aminion/apostle/spear/proc/SpearAttack(target)
 	if(spear_cooldown > world.time)
 		return
 	can_act = FALSE
@@ -474,7 +474,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	playsound(get_turf(src), 'sound/abnormalities/whitenight/spear_dash.ogg', 100, 0, 20)
 	do_dash(dir_to_target, 0)
 
-/mob/living/simple_animal/hostile/abnominion/apostle/spear/proc/do_dash(move_dir, times_ran)
+/mob/living/simple_animal/hostile/aminion/apostle/spear/proc/do_dash(move_dir, times_ran)
 	var/stop_charge = FALSE
 	if(times_ran >= spear_max)
 		stop_charge = TRUE
@@ -502,7 +502,7 @@ GLOBAL_LIST_EMPTY(apostles)
 			new /obj/effect/temp_visual/cleave(get_turf(L))
 	addtimer(CALLBACK(src, PROC_REF(do_dash), move_dir, (times_ran + 1)), 0.5) // SPEED
 
-/mob/living/simple_animal/hostile/abnominion/apostle/staff
+/mob/living/simple_animal/hostile/aminion/apostle/staff
 	name = "staff apostle"
 	desc = "A disformed human wielding a magic staff."
 	icon_state = "apostle_staff"
@@ -521,19 +521,19 @@ GLOBAL_LIST_EMPTY(apostles)
 	var/hit_ticks = 60
 	var/datum/looping_sound/apostle_beam/beamloop
 
-/mob/living/simple_animal/hostile/abnominion/apostle/staff/Initialize()
+/mob/living/simple_animal/hostile/aminion/apostle/staff/Initialize()
 	. = ..()
 	beamloop = new(list(src), FALSE)
 
-/mob/living/simple_animal/hostile/abnominion/apostle/staff/Destroy()
+/mob/living/simple_animal/hostile/aminion/apostle/staff/Destroy()
 	QDEL_NULL(beamloop)
 	return ..()
 
-/mob/living/simple_animal/hostile/abnominion/apostle/staff/death(gibbed)
+/mob/living/simple_animal/hostile/aminion/apostle/staff/death(gibbed)
 	beamloop.stop()
 	return ..()
 
-/mob/living/simple_animal/hostile/abnominion/apostle/staff/OpenFire()
+/mob/living/simple_animal/hostile/aminion/apostle/staff/OpenFire()
 	if(!can_act)
 		return
 
@@ -544,7 +544,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	if(staff_cooldown <= world.time)
 		StaffAttack(target)
 
-/mob/living/simple_animal/hostile/abnominion/apostle/staff/proc/StaffAttack(target)
+/mob/living/simple_animal/hostile/aminion/apostle/staff/proc/StaffAttack(target)
 	if(staff_cooldown > world.time)
 		return
 	staff_cooldown = world.time + staff_cooldown_time
@@ -576,7 +576,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	beamloop.stop()
 	can_act = TRUE
 
-/mob/living/simple_animal/hostile/abnominion/apostle/staff/proc/HolyBeam(turf/T)
+/mob/living/simple_animal/hostile/aminion/apostle/staff/proc/HolyBeam(turf/T)
 	new /obj/effect/temp_visual/dir_setting/curse/grasp_portal/fading(T)
 	var/turf/MT = get_turf(src)
 	SLEEP_CHECK_DEATH(2.5 SECONDS)

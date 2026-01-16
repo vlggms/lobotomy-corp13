@@ -78,14 +78,14 @@
 	//Normal breach
 	if(!IsCombatMap())
 		var/turf/W = pick(GLOB.department_centers)
-		var/mob/living/simple_animal/hostile/abnominion/luna/spawningmonster = new(get_turf(W))
+		var/mob/living/simple_animal/hostile/aminion/luna/spawningmonster = new(get_turf(W))
 		breached_monster = spawningmonster
 		addtimer(CALLBACK(src, PROC_REF(BreachEnd), user), breach_length)
 
 	//--Side Gamemodes stuff--
 	//Timer will not run the timer on Rcorp.
 	else
-		var/mob/living/simple_animal/hostile/abnominion/luna/spawningmonster = new(get_turf(src))
+		var/mob/living/simple_animal/hostile/aminion/luna/spawningmonster = new(get_turf(src))
 		breached_monster = spawningmonster
 		core_enabled = FALSE//Subject to be changed later on, as the core may need to be dropped by the monster even if not lore accurate. -Mr. H
 		QDEL_IN(src, 1 SECONDS) //Destroys the piano, as it is unecessary in Rcorp.
@@ -147,7 +147,7 @@
 	return FALSE
 
 /* Monster Half */
-/mob/living/simple_animal/hostile/abnominion/luna
+/mob/living/simple_animal/hostile/aminion/luna
 	name = "La Luna"
 	desc = "A tall, cloaked figure."
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
@@ -175,17 +175,17 @@
 	var/aoerange = 5
 	var/aoedamage = 30
 
-//mob/living/simple_animal/hostile/abnominion/luna/Initialize()
+//mob/living/simple_animal/hostile/aminion/luna/Initialize()
 //Cannot figure out how to make this stop
 //	..()
 //	playsound(src, 'sound/abnormalities/luna/mvmt3.ogg', 180, FALSE, 28)	//Let the people know.
 
-/mob/living/simple_animal/hostile/abnominion/luna/Move()
+/mob/living/simple_animal/hostile/aminion/luna/Move()
 	if(aoeactive)
 		return FALSE
 	..()
 
-/mob/living/simple_animal/hostile/abnominion/luna/OpenFire()
+/mob/living/simple_animal/hostile/aminion/luna/OpenFire()
 	if(!canaoe)
 		return
 	aoeactive = TRUE
@@ -195,13 +195,13 @@
 	addtimer(CALLBACK(src, PROC_REF(Reset)), 7 SECONDS)
 
 
-/mob/living/simple_animal/hostile/abnominion/luna/proc/AOE()
+/mob/living/simple_animal/hostile/aminion/luna/proc/AOE()
 	for(var/turf/T in view(aoerange, src))
 		new /obj/effect/temp_visual/revenant(T)
 		HurtInTurf(T, list(), aoedamage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
 	aoeactive = FALSE
 
-/mob/living/simple_animal/hostile/abnominion/luna/proc/Reset()
+/mob/living/simple_animal/hostile/aminion/luna/proc/Reset()
 	canaoe = TRUE
 
 //Lunar
