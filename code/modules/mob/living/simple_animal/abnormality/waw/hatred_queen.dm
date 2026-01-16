@@ -328,10 +328,10 @@
 	if(!IsContained() && friendly && (GLOB.emergency_level == TRUMPET_0) && !nihil_present)
 		death()
 	//if CONTAINED and shits going down
-	if(IsContained() && (datum_reference?.qliphoth_meter == 2) && (GLOB.emergency_level >= TRUMPET_2) && (datum_reference?.emergancy_breach))
+	if(IsContained() && (datum_reference?.qliphoth_meter == 2) && (GLOB.emergency_level >= TRUMPET_2) && (datum_reference?.emergency_breach))
 		BreachEffect() // We must help them!
 		if(datum_reference)
-			datum_reference.emergancy_breach = FALSE//She shouldn't be able to breach again passively until the next qliphoth event.
+			datum_reference.emergency_breach = FALSE//She shouldn't be able to breach again passively until the next qliphoth event.
 			datum_reference.qliphoth_meter = 0
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/ArcanaBeats(target)

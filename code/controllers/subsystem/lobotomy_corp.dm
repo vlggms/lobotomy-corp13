@@ -276,7 +276,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	qliphoth_state += 1
 	for(var/datum/abnormality/A in all_abnormality_datums)
 		if(istype(A.current))
-			A.emergancy_breach = TRUE
+			A.emergency_breach = TRUE
 			A.current.OnQliphothEvent()
 	var/ran_ordeal = FALSE
 	if(qliphoth_state + 1 >= next_ordeal_time) // If ordeal is supposed to happen on the meltdown after that one

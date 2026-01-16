@@ -451,10 +451,10 @@
 //I fucking hate that this can be added now - Crabby
 /mob/living/simple_animal/hostile/abnormality/big_bird/proc/emergency_check()
 	//if CONTAINED and shits going down
-	if(IsContained() && (GLOB.emergency_level >= TRUMPET_2) && (datum_reference?.emergancy_breach))
+	if(IsContained() && (GLOB.emergency_level >= TRUMPET_2) && (datum_reference?.emergency_breach))
 		BreachEffect() // FUCK YOU!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		if(datum_reference)
-			datum_reference.emergancy_breach = FALSE
+			datum_reference.emergency_breach = FALSE
 			datum_reference.qliphoth_meter = 0
 	return TRUE
 

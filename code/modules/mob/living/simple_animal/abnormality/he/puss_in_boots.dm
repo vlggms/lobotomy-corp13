@@ -140,11 +140,11 @@
 	if(!IsContained() && friendly && (level == TRUMPET_0))
 		death()
 	//if CONTAINED and shits going down
-	if(IsContained() && friendly && (GLOB.emergency_level >= TRUMPET_1) && (datum_reference?.emergancy_breach))
+	if(IsContained() && friendly && (GLOB.emergency_level >= TRUMPET_1) && (datum_reference?.emergency_breach))
 		ignored = FALSE
 		BreachEffect() // We must help our friend!
 		if(datum_reference)
-			datum_reference.emergancy_breach = FALSE
+			datum_reference.emergency_breach = FALSE
 			datum_reference.qliphoth_meter = 0
 	return TRUE
 
