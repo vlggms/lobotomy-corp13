@@ -92,7 +92,7 @@
 	for(var/i = 0 to 2)
 		var/X = pick(GLOB.department_centers)
 		var/turf/T = get_turf(X)
-		new /mob/living/simple_animal/hostile/abnominion/sun_pillar(T)
+		new /mob/living/simple_animal/hostile/aminion/sun_pillar(T)
 
 
 /mob/living/simple_animal/hostile/abnormality/black_sun/proc/on_mob_death(datum/source, mob/living/died, gibbed)
@@ -146,7 +146,7 @@
 
 
 //Pillars. Do minor white damage, and fire projectiles
-/mob/living/simple_animal/hostile/abnominion/sun_pillar
+/mob/living/simple_animal/hostile/aminion/sun_pillar
 	name = "pillar of the black sun"
 	desc = "A glowing pillar."
 	icon = 'ModularTegustation/Teguicons/32x64.dmi'
@@ -169,19 +169,19 @@
 	score_divider = 2.5//Well there are several pillars
 	threat_level = ALEPH_LEVEL
 
-/mob/living/simple_animal/hostile/abnominion/sun_pillar/Initialize()
+/mob/living/simple_animal/hostile/aminion/sun_pillar/Initialize()
 	..()
-	for(var/mob/living/simple_animal/hostile/abnominion/sun_pillar/M in src.loc)	//Don't put two down at the same place
+	for(var/mob/living/simple_animal/hostile/aminion/sun_pillar/M in src.loc)	//Don't put two down at the same place
 		if(M!=src)
 			qdel(src)
 
-/mob/living/simple_animal/hostile/abnominion/sun_pillar/AttackingTarget()
+/mob/living/simple_animal/hostile/aminion/sun_pillar/AttackingTarget()
 	return FALSE
 
-/mob/living/simple_animal/hostile/abnominion/sun_pillar/Move()
+/mob/living/simple_animal/hostile/aminion/sun_pillar/Move()
 	return FALSE
 
-/mob/living/simple_animal/hostile/abnominion/sun_pillar/Life()
+/mob/living/simple_animal/hostile/aminion/sun_pillar/Life()
 	..()
 	for(var/mob/living/L in GLOB.player_list)
 		if(L.z != z)
@@ -200,7 +200,7 @@
 		if(prob(30))
 			addtimer(CALLBACK(src, PROC_REF(Firelaser), F), rand(1,30)) //offset so it looks like you're tossing a buncha shit around the room
 
-/mob/living/simple_animal/hostile/abnominion/sun_pillar/proc/Firelaser(turf/open/F)
+/mob/living/simple_animal/hostile/aminion/sun_pillar/proc/Firelaser(turf/open/F)
 	new /obj/effect/temp_visual/blacksun_laser(F)
 
 //Laser attack
@@ -223,7 +223,7 @@
 			H.gib()
 
 //Kills the insane it does a fuckload of white damage, deal black too.
-/mob/living/simple_animal/hostile/abnominion/sun_pillar/proc/Aoe()
+/mob/living/simple_animal/hostile/aminion/sun_pillar/proc/Aoe()
 	playsound(src, 'sound/weapons/wave.ogg', 100, FALSE, 4)
 	var/turf/orgin = get_turf(src)
 	var/list/all_turfs = RANGE_TURFS(aoe_range, orgin)

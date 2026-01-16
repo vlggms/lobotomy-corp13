@@ -58,8 +58,8 @@
 	cooldown_time = 60 SECONDS
 	var/delete_timer
 	var/delete_cooldown = 30 SECONDS
-	var/mob/living/simple_animal/hostile/abnominion/gift/G1
-	var/mob/living/simple_animal/hostile/abnominion/gift/G2
+	var/mob/living/simple_animal/hostile/aminion/gift/G1
+	var/mob/living/simple_animal/hostile/aminion/gift/G2
 
 /datum/action/cooldown/laetitia_summon/Trigger()
 	if(!..())
@@ -68,8 +68,8 @@
 		return FALSE
 
 	StartCooldown()
-	G1 = new /mob/living/simple_animal/hostile/abnominion/gift(owner.loc)
-	G2 = new /mob/living/simple_animal/hostile/abnominion/gift(owner.loc)
+	G1 = new /mob/living/simple_animal/hostile/aminion/gift(owner.loc)
+	G2 = new /mob/living/simple_animal/hostile/aminion/gift(owner.loc)
 	delete_timer = addtimer(CALLBACK(src, PROC_REF(delete)), delete_cooldown, TIMER_STOPPABLE)
 	// send poll to all ghosts and wait
 	var/list/candidates = pollGhostCandidates("Laetitia is calling for help! Are you willing to protect her?", poll_time=100)
@@ -190,11 +190,11 @@
 	if(summon_count > 9)//this list is not subtracted when minions are killed. Limited to 10 per breach
 		return
 	var/turf/target_turf = get_turf(src)
-	new /mob/living/simple_animal/hostile/abnominion/gift(target_turf)
+	new /mob/living/simple_animal/hostile/aminion/gift(target_turf)
 	summon_count += 1
 
 //Her friend
-/mob/living/simple_animal/hostile/abnominion/gift
+/mob/living/simple_animal/hostile/aminion/gift
 	name = "Little Witch's Friend"
 	desc = "It's a horrifying amalgamation of flesh and eyes."
 	icon = 'ModularTegustation/Teguicons/64x48.dmi'
@@ -217,17 +217,17 @@
 	threat_level = HE_LEVEL
 	score_divider = 1.5
 
-/mob/living/simple_animal/hostile/abnominion/gift/Initialize()
+/mob/living/simple_animal/hostile/aminion/gift/Initialize()
 	. = ..()
 	playsound(get_turf(src), 'sound/abnormalities/laetitia/spider_born.ogg', 50, 1)
 
-/mob/living/simple_animal/hostile/abnominion/gift/AttackingTarget(atom/attacked_target)
+/mob/living/simple_animal/hostile/aminion/gift/AttackingTarget(atom/attacked_target)
 	if (istype(attacked_target, /mob/living/simple_animal/hostile/abnormality/laetitia))
 		manual_emote("pats Laetitia")
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/abnominion/gift/death(gibbed)
+/mob/living/simple_animal/hostile/aminion/gift/death(gibbed)
 	density = FALSE
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
@@ -285,7 +285,7 @@
 	to_chat(status_holder, span_userdanger("You feel something deep in your body explode!"))
 	status_holder.vis_contents -= prank_overlay
 	var/location = get_turf(status_holder)
-	new /mob/living/simple_animal/hostile/abnominion/gift(location)
+	new /mob/living/simple_animal/hostile/aminion/gift(location)
 	var/rand_dir = pick(NORTH, SOUTH, EAST, WEST)
 	var/atom/throw_target = get_edge_target_turf(status_holder, rand_dir)
 	if(!status_holder.anchored)

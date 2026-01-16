@@ -18,8 +18,8 @@ const sortByCreditCost = sortBy(shuttle => shuttle.creditCost);
 const AlertButton = (props, context) => {
   const { act, data } = useBackend(context);
   const { alertLevelTick, canSetAlertLevel } = data;
-  const { alertLevel, setShowAlertLevelConfirm} = props;
-  const { alertDisabled, alertTooltip} = props;
+  const { alertLevel, setShowAlertLevelConfirm } = props;
+  const { alertDisabled, alertTooltip } = props;
 
   const thisIsCurrent = data.alertLevel === alertLevel;
 
@@ -435,7 +435,7 @@ const PageMain = (props, context) => {
               />
               <AlertButton
                 alertLevel="third trumpet"
-                alertDisabled={canChangeEmergency !== 1 || thirdTrumpetFail === 1}
+                alertDisabled={canChangeEmergency!==1||thirdTrumpetFail===1}
                 alertTooltip={
                   thirdTrumpetFail === 1
                     ? "The current threat level cannot be overridden."
@@ -565,7 +565,7 @@ const PageMain = (props, context) => {
               <Flex.Item fontSize="16px" mb={2}>
                 Swipe ID to confirm change
                 <Box textColor="red">
-                  WARNING! Changing the emergency level to higher values may cause some abnormalities to breach.
+                  WARNING! Increasing the emergency level may aggravate certain abnormalities!
                 </Box>
               </Flex.Item>
 

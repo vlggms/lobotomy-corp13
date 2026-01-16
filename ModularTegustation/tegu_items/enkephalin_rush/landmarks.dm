@@ -28,7 +28,7 @@ GLOBAL_LIST_INIT(atziluth, list(//ALEPH
 	null,
 ))
 
-/obj/effect/landmark/abnominion/enkephalin_rush
+/obj/effect/landmark/abnospawn/enkephalin_rush
 	name = "assiyah abno spawner"
 	desc = "It spawns an abno. Notify a coder. Thanks!"
 	icon = 'icons/effects/landmarks_static.dmi'
@@ -36,7 +36,7 @@ GLOBAL_LIST_INIT(atziluth, list(//ALEPH
 	var/list/abno_list = list()
 	var/threat_level = ZAYIN_LEVEL
 
-/obj/effect/landmark/abnominion/enkephalin_rush/Initialize(mapload)
+/obj/effect/landmark/abnospawn/enkephalin_rush/Initialize(mapload)
 	..()
 	if(!length(abno_list))
 		return INITIALIZE_HINT_LATELOAD
@@ -47,7 +47,7 @@ GLOBAL_LIST_INIT(atziluth, list(//ALEPH
 		return INITIALIZE_HINT_LATELOAD
 	return INITIALIZE_HINT_QDEL
 
-/obj/effect/landmark/abnominion/enkephalin_rush/proc/CutQueue(mob/living/simple_animal/hostile/abnormality/abno)
+/obj/effect/landmark/abnospawn/enkephalin_rush/proc/CutQueue(mob/living/simple_animal/hostile/abnormality/abno)
 	if(abno.type in SSabnormality_queue.possible_abnormalities[threat_level])
 		addtimer(CALLBACK(abno, TYPE_PROC_REF(/mob/living/simple_animal/hostile/abnormality, BreachEffect), null, BREACH_MINING), 20 SECONDS)
 		SSabnormality_queue.possible_abnormalities[threat_level] -= abno.type
@@ -55,26 +55,26 @@ GLOBAL_LIST_INIT(atziluth, list(//ALEPH
 	sleep(50)
 	CutQueue(abno)
 
-/obj/effect/landmark/abnominion/enkephalin_rush/he
+/obj/effect/landmark/abnospawn/enkephalin_rush/he
 	threat_level = HE_LEVEL
 
-/obj/effect/landmark/abnominion/enkephalin_rush/he/Initialize(mapload)
+/obj/effect/landmark/abnospawn/enkephalin_rush/he/Initialize(mapload)
 	abno_list = GLOB.assiyah
 	..()
 	return INITIALIZE_HINT_QDEL//clogs the initialize() log otherwise
 
-/obj/effect/landmark/abnominion/enkephalin_rush/waw
+/obj/effect/landmark/abnospawn/enkephalin_rush/waw
 	threat_level = WAW_LEVEL
 
-/obj/effect/landmark/abnominion/enkephalin_rush/waw/Initialize(mapload)
+/obj/effect/landmark/abnospawn/enkephalin_rush/waw/Initialize(mapload)
 	abno_list = GLOB.briah
 	..()
 	return INITIALIZE_HINT_QDEL
 
-/obj/effect/landmark/abnominion/enkephalin_rush/aleph
+/obj/effect/landmark/abnospawn/enkephalin_rush/aleph
 	threat_level = ALEPH_LEVEL
 
-/obj/effect/landmark/abnominion/enkephalin_rush/aleph/Initialize(mapload)
+/obj/effect/landmark/abnospawn/enkephalin_rush/aleph/Initialize(mapload)
 	abno_list = GLOB.atziluth
 	..()
 	return INITIALIZE_HINT_QDEL

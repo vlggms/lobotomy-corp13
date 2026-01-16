@@ -42,12 +42,13 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 	RegisterSignal(SSdcs, COMSIG_GLOB_HUMAN_INSANE, PROC_REF(OnHumanInsane))
 	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, PROC_REF(OnAbnoBreach))
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_CREATED, PROC_REF(OnMobCreated))
+	return ..()
 
 /datum/controller/subsystem/lobotomy_emergency/proc/OnMobDeath(datum/source, mob/living/died, gibbed)
 	SIGNAL_HANDLER
 	if(is_tutorial_level(died.z))
 		return
-	if(istype(died, /mob/living/simple_animal/hostile/abnormality) || istype(died, /mob/living/simple_animal/hostile/abnominion))
+	if(istype(died, /mob/living/simple_animal/hostile/abnormality) || istype(died, /mob/living/simple_animal/hostile/aminion))
 		UpdateMin()
 	if(!ishuman(died))
 		return
@@ -69,8 +70,8 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 	SIGNAL_HANDLER
 	if(is_tutorial_level(M.z))
 		return
-	if(istype(M, /mob/living/simple_animal/hostile/abnominion))
-		var/mob/living/simple_animal/hostile/abnominion/abno = M
+	if(istype(M, /mob/living/simple_animal/hostile/aminion))
+		var/mob/living/simple_animal/hostile/aminion/abno = M
 		if(!abno.can_affect_emergency)
 			return
 		UpdateScore(threat_to_score[abno.threat_level]/abno.score_divider)
@@ -86,7 +87,7 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 
 /datum/controller/subsystem/lobotomy_emergency/proc/UpdateMin()
 	var/min = 0
-	for(var/mob/living/simple_animal/hostile/abnominion/A in GLOB.abnormality_mob_list)
+	for(var/mob/living/simple_animal/hostile/aminion/A in GLOB.abnormality_mob_list)
 		if(!A.can_affect_emergency)
 			continue
 		if(A.stat == DEAD)//The dead shouldn't count
@@ -154,7 +155,7 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 	if((level == TRUMPET_0 && GLOB.emergency_level != TRUMPET_0) || GLOB.emergency_level < level)//We don't want it to go off every time the score changes
 		SetEmergencyLevel(num2emgcylevel(level))
 
-/datum/controller/subsystem/lobotomy_emergency/proc/SetEmergencyLevel(level)
+/datum/controller/subsystem/lobotomy_emergency/proc/SetEmergencyLevel(level, forced = FALSE)
 	switch(level)
 		if("no emergency")
 			level = TRUMPET_0
@@ -164,6 +165,18 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 			level = TRUMPET_2
 		if("third trumpet")
 			level = TRUMPET_3
+
+	if(forced)
+		switch(level)
+			if(TRUMPET_0)
+				current_score = 0
+			if(TRUMPET_1)
+				current_score = trumpet_1
+			if(TRUMPET_2)
+				current_score = trumpet_2
+			if(TRUMPET_3)
+				current_score = trumpet_3
+
 	switch(level)
 		if(TRUMPET_0)
 			minor_announce(CONFIG_GET(string/alert_warning_reset), "Attention!")
@@ -173,7 +186,6 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 				else
 					SSshuttle.emergency.modTimer(2)
 			GLOB.emergency_level = TRUMPET_0
-			current_score = 0
 			for(var/obj/machinery/firealarm/FA in GLOB.machines)
 				if(is_station_level(FA.z))
 					FA.update_icon()
@@ -186,7 +198,6 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 				if(SSshuttle.emergency.mode == SHUTTLE_CALL || SSshuttle.emergency.mode == SHUTTLE_RECALL)
 					SSshuttle.emergency.modTimer(2)
 			GLOB.emergency_level = TRUMPET_1
-			current_score = max(current_score, trumpet_1)
 			for(var/obj/machinery/firealarm/FA in GLOB.machines)
 				if(is_station_level(FA.z))
 					FA.update_icon()
@@ -198,7 +209,6 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 				else
 					SSshuttle.emergency.modTimer(0.5)
 			GLOB.emergency_level = TRUMPET_2
-			current_score = max(current_score, trumpet_2)
 			for(var/obj/machinery/firealarm/FA in GLOB.machines)
 				if(is_station_level(FA.z))
 					FA.update_icon()
@@ -213,14 +223,15 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 					SSshuttle.emergency.modTimer(0.5)
 			GLOB.emergency_level = TRUMPET_3
 			current_score = trumpet_3
-			current_score = max(current_score, trumpet_3)
 			for(var/obj/machinery/firealarm/FA in GLOB.machines)
 				if(is_station_level(FA.z))
 					FA.update_icon()
 			for(var/obj/machinery/computer/shuttle/pod/pod in GLOB.machines)
 				pod.locked = FALSE
 	SEND_GLOBAL_SIGNAL(COMSIG_TRUMPET_CHANGED, level)
-	if(!score_timer)
+	if(current_score > 0)
+		if(score_timer)
+			deltimer(score_timer)
 		score_timer = addtimer(CALLBACK(src, PROC_REF(UpdateScore), score_decay, FALSE, FALSE), long_timer, TIMER_STOPPABLE)
 	for(var/area/facility_hallway/F in GLOB.sortedAreas)
 		F.RefreshLights()
@@ -232,7 +243,6 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 				D.visible_message("<span class='notice'>[D] whirrs as it automatically lifts access requirements!</span>")
 				playsound(D, 'sound/machines/boltsup.ogg', 50, TRUE)
 	SSblackbox.record_feedback("tally", "security_level_changes", 1, get_emergency_level())
-	SSnightshift.check_nightshift()
 	RefreshtrumpetlevelEffects()
 
 /proc/get_emergency_level()

@@ -147,7 +147,7 @@
 		initial_mobs_spawned = TRUE
 		addtimer(CALLBACK(src, PROC_REF(UmbrellaLoop)), 30 SECONDS)
 		for(var/i=4, i>=1, i--) //spawn 4 umbrellas right off the bat
-			var/mob/living/simple_animal/hostile/abnominion/umbrella/newmob = new(get_turf(src))
+			var/mob/living/simple_animal/hostile/aminion/umbrella/newmob = new(get_turf(src))
 			newmob.faction = faction
 			spawned_mobs+=newmob
 			newmob.friend = src
@@ -163,7 +163,7 @@
 			spawned_mobs -= L
 	if(length(spawned_mobs) >= umbrella_spawn_limit)
 		return
-	var/mob/living/simple_animal/hostile/abnominion/umbrella/newmob = new(get_turf(src))
+	var/mob/living/simple_animal/hostile/aminion/umbrella/newmob = new(get_turf(src))
 	newmob.faction = faction
 	spawned_mobs+=newmob
 	newmob.friend = src
@@ -173,7 +173,7 @@
 	addtimer(CALLBACK(src, PROC_REF(UmbrellaLoop)), umbrella_spawn_time)
 
 //Summons
-/mob/living/simple_animal/hostile/abnominion/umbrella
+/mob/living/simple_animal/hostile/aminion/umbrella
 	name = "Umbrella"
 	desc = "A tattered and worn umbrella; The fox seems to have many to spare."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
@@ -196,7 +196,7 @@
 	var/mob/living/simple_animal/hostile/abnormality/friend
 
 /// Deal damge to the fox
-/mob/living/simple_animal/hostile/abnominion/umbrella/death(gibbed)
+/mob/living/simple_animal/hostile/aminion/umbrella/death(gibbed)
 	visible_message(span_notice("[src] falls to the ground as the umbrella closes in on itself!"))
 	if(friend)
 		friend.deal_damage(50, BLACK_DAMAGE)
@@ -206,7 +206,7 @@
 	return ..()
 
 ///checks if the fox is in view every 10 seconds, and if not teleports to it
-/mob/living/simple_animal/hostile/abnominion/umbrella/Life()
+/mob/living/simple_animal/hostile/aminion/umbrella/Life()
 	. = ..()
 	if(!friend || stat == DEAD) //for some reason life() works on death ain't that something
 		return
@@ -218,7 +218,7 @@
 		if(!can_see(src, friend, vision_range))
 			GoToFox()
 
-/mob/living/simple_animal/hostile/abnominion/umbrella/proc/GoToFox()
+/mob/living/simple_animal/hostile/aminion/umbrella/proc/GoToFox()
 	if(!friend)
 		return
 	var/turf/move_turf = get_step(friend, pick(1,2,4,5,6,8,9,10))
@@ -227,7 +227,7 @@
 	forceMove(move_turf)
 	LoseTarget()
 
-/mob/living/simple_animal/hostile/abnominion/umbrella/OpenFire()
+/mob/living/simple_animal/hostile/aminion/umbrella/OpenFire()
 	ranged_cooldown_time = rand(20,80) //keeps them attacking asynchronously
 	if(!isliving(target))
 		LoseTarget()
@@ -243,10 +243,10 @@
 	playsound(target_turf, 'sound/abnormalities/drifting_fox/fox_umbrella.ogg', 25, TRUE, 4)
 	ranged_cooldown = world.time + ranged_cooldown_time
 
-/mob/living/simple_animal/hostile/abnominion/umbrella/Move()
+/mob/living/simple_animal/hostile/aminion/umbrella/Move()
 	return FALSE
 
-/mob/living/simple_animal/hostile/abnominion/umbrella/AttackingTarget(atom/attacked_target)
+/mob/living/simple_animal/hostile/aminion/umbrella/AttackingTarget(atom/attacked_target)
 	if(!target)
 		GiveTarget(attacked_target)
 	OpenFire()

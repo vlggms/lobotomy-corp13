@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/abnominion
+/mob/living/simple_animal/hostile/aminion
 	name = "Abnormality Minion"
 	desc = "An abnormality's minion..? You should report this to the Head!"
 	robust_searching = TRUE
@@ -29,27 +29,27 @@
 	/// List of humans that witnessed the abnormality minion
 	var/list/fear_affected = list()
 
-/mob/living/simple_animal/hostile/abnominion/Initialize(mapload)
+/mob/living/simple_animal/hostile/aminion/Initialize(mapload)
 	. = ..()
 	if(fear_level == null)
 		fear_level = threat_level
 
-/mob/living/simple_animal/hostile/abnominion/add_to_mob_list()
+/mob/living/simple_animal/hostile/aminion/add_to_mob_list()
 	. = ..()
 	GLOB.abnormality_mob_list |= src//They should count
 
-/mob/living/simple_animal/hostile/abnominion/remove_from_mob_list()
+/mob/living/simple_animal/hostile/aminion/remove_from_mob_list()
 	. = ..()
 	GLOB.abnormality_mob_list -= src
 
-/mob/living/simple_animal/hostile/abnominion/Life()
+/mob/living/simple_animal/hostile/aminion/Life()
 	. = ..()
 	if(!.) // Dead
 		return FALSE
 	FearEffect()
 
 // Applies fear damage to everyone in range
-/mob/living/simple_animal/hostile/abnominion/proc/FearEffect()
+/mob/living/simple_animal/hostile/aminion/proc/FearEffect()
 	if(fear_level <= 0)
 		return
 	for(var/mob/living/carbon/human/H in ohearers(7, src))
@@ -93,7 +93,7 @@
 		SEND_SIGNAL(H, COMSIG_FEAR_EFFECT, fear_level, sanity_damage)
 	return
 
-/mob/living/simple_animal/hostile/abnominion/proc/FearEffectText(mob/affected_mob, level = 0)
+/mob/living/simple_animal/hostile/aminion/proc/FearEffectText(mob/affected_mob, level = 0)
 	level = num2text(clamp(level, -1, 5))
 	var/list/result_text_list = list(
 		"-1" = list("I've got this.", "How boring.", "Doesn't even phase me."),

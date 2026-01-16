@@ -178,12 +178,12 @@
 					A.death()
 		new /obj/effect/temp_visual/dir_setting/cult/phase
 		if(prob(30))
-			var/mob/living/simple_animal/hostile/abnominion/yagaslave/Y = new(T)
+			var/mob/living/simple_animal/hostile/aminion/yagaslave/Y = new(T)
 			spawned_mobs+=Y
 	return
 
 // Misc Objects and effects
-/mob/living/simple_animal/hostile/abnominion/yagaslave
+/mob/living/simple_animal/hostile/aminion/yagaslave
 	name = "frozen slave"
 	desc = "A humanoid figure encased in ice, the pickaxe they're holding looks sharp."
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'

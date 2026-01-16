@@ -150,9 +150,9 @@
 		var/obj/structure/closet/supplypod/extractionpod/pod = new()
 		pod.explosionSize = list(0,0,0,0)
 		if(prob(70))
-			new /mob/living/simple_animal/hostile/abnominion/shrimp(pod)
+			new /mob/living/simple_animal/hostile/aminion/shrimp(pod)
 		else
-			new /mob/living/simple_animal/hostile/abnominion/shrimp_soldier(pod)
+			new /mob/living/simple_animal/hostile/aminion/shrimp_soldier(pod)
 
 		new /obj/effect/pod_landingzone(T, pod)
 		stoplag(2)
@@ -175,7 +175,7 @@
 	return
 
 /* Shrimpo boys */
-/mob/living/simple_animal/hostile/abnominion/shrimp
+/mob/living/simple_animal/hostile/aminion/shrimp
 	name = "wellcheers corp liquidation intern"
 	desc = "A shrimp that is extremely hostile to you."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
@@ -202,14 +202,14 @@
 	threat_level = TETH_LEVEL
 	score_divider = 4
 
-/mob/living/simple_animal/hostile/abnominion/shrimp/Initialize()
+/mob/living/simple_animal/hostile/aminion/shrimp/Initialize()
 	. = ..()
 	if(SSmaptype.maptype in SSmaptype.citymaps)
 		can_affect_emergency = FALSE
 		del_on_death = FALSE
 
 //You can put these guys about to guard an area.
-/mob/living/simple_animal/hostile/abnominion/shrimp_soldier
+/mob/living/simple_animal/hostile/aminion/shrimp_soldier
 	name = "wellcheers corp hired liquidation officer"
 	desc = "A shrimp that is there to guard an area."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
@@ -241,13 +241,13 @@
 	threat_level = HE_LEVEL
 	score_divider = 4
 
-/mob/living/simple_animal/hostile/abnominion/shrimp_soldier/Initialize()
+/mob/living/simple_animal/hostile/aminion/shrimp_soldier/Initialize()
 	. = ..()
 	if(SSmaptype.maptype in SSmaptype.citymaps)
 		can_affect_emergency = FALSE
 		del_on_death = FALSE
 
-/mob/living/simple_animal/hostile/abnominion/shrimp_soldier/friendly
+/mob/living/simple_animal/hostile/aminion/shrimp_soldier/friendly
 	name = "wellcheers corp assault officer"
 	icon_state = "wellcheers_soldier"
 	icon_living = "wellcheers_soldier"
@@ -260,11 +260,11 @@
 	name = "instant shrimp task force grenade"
 	desc = "A grenade used to call for a shrimp task force."
 	icon_state = "shrimpnade"
-	spawner_type = /mob/living/simple_animal/hostile/abnominion/shrimp_soldier/friendly
+	spawner_type = /mob/living/simple_animal/hostile/aminion/shrimp_soldier/friendly
 	deliveryamt = 3
 
 /obj/item/grenade/spawnergrenade/shrimp/super
 	deliveryamt = 7	//Just randomly get double money.
 
 /obj/item/grenade/spawnergrenade/shrimp/hostile
-	spawner_type = list(/mob/living/simple_animal/hostile/abnominion/shrimp, /mob/living/simple_animal/hostile/abnominion/shrimp_soldier) //Gacha Only, just put it here with the other shrimp grenades.
+	spawner_type = list(/mob/living/simple_animal/hostile/aminion/shrimp, /mob/living/simple_animal/hostile/aminion/shrimp_soldier) //Gacha Only, just put it here with the other shrimp grenades.
