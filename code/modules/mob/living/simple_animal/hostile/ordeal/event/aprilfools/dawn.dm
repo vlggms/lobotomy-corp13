@@ -34,7 +34,7 @@
 		del_on_death = FALSE
 
 //friendly spawned shrimp from soda E.G.O.'s passive
-/mob/living/simple_animal/hostile/abnominion/shrimp/grieving
+/mob/living/simple_animal/hostile/aminion/shrimp/grieving
 	name = "wellcheers obituary serviceman"
 	desc = "A shrimp that appears to be grieving. A moment of silence, please."
 	icon_state = "wellcheers_funeral"

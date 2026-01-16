@@ -53,7 +53,7 @@ Defeating the murderer also surpresses the abnormality.
 	)
 
 	pet_bonus = "shuffles" //saves a few lines of code by allowing funpet() to be called by attack_hand()
-	var/mob/living/simple_animal/hostile/abnominion/actor/A
+	var/mob/living/simple_animal/hostile/aminion/actor/A
 	var/happy = FALSE
 	var/melting
 	var/preferred_work_type
@@ -236,7 +236,7 @@ Defeating the murderer also surpresses the abnormality.
 		status_holder.adjust_attribute_bonus(stat, -stat_modifier)
 	else
 		return
-	stat_modifier = -40
+	stat_modifier = -100
 	status_holder.adjust_all_attribute_bonuses(stat_modifier)
 	owner.cut_overlay(mutable_appearance('icons/effects/32x64.dmi', role, -ABOVE_MOB_LAYER))
 	role = "victim"
@@ -249,22 +249,22 @@ Defeating the murderer also surpresses the abnormality.
 	owner.add_overlay(mutable_appearance('icons/effects/32x64.dmi', role, -ABOVE_MOB_LAYER))
 	switch(role)
 		if("coward")
-			stat_modifier = -30
+			stat_modifier = -75
 			stat = JUSTICE_ATTRIBUTE
 		if("broken")
-			stat_modifier = -40
+			stat_modifier = -100
 			stat = FORTITUDE_ATTRIBUTE
 		if("failed")
-			stat_modifier = -40
+			stat_modifier = -100
 			stat = PRUDENCE_ATTRIBUTE
 		if("victim")
-			stat_modifier = -40
+			stat_modifier = -100
 			status_holder.adjust_all_attribute_bonuses(stat_modifier)
 			return
 	status_holder.adjust_attribute_bonus(stat, stat_modifier)
 
 //Mob
-/mob/living/simple_animal/hostile/abnominion/actor
+/mob/living/simple_animal/hostile/aminion/actor
 	name = "The actor A"
 	desc = "A man wearing a creepy mask. They have a sleek pistol in one hand \
 			and a knife in the other."
@@ -273,8 +273,8 @@ Defeating the murderer also surpresses the abnormality.
 	icon_living = "actor"
 	icon_dead = "actor_dead"
 	faction = list("hostile")
-	maxHealth = 700
-	health = 700
+	maxHealth = 1400
+	health = 1400
 	melee_damage_type = WHITE_DAMAGE
 	melee_damage_lower = 5
 	melee_damage_upper = 10
@@ -294,12 +294,12 @@ Defeating the murderer also surpresses the abnormality.
 	del_on_death = FALSE
 	can_patrol = TRUE
 
-/mob/living/simple_animal/hostile/abnominion/actor/Initialize()
+/mob/living/simple_animal/hostile/aminion/actor/Initialize()
 	. = ..()
 	add_overlay(mutable_appearance('icons/effects/32x64.dmi', "abandoned", -ABOVE_MOB_LAYER))
 
 // Patrol Code
-/mob/living/simple_animal/hostile/abnominion/actor/patrol_select() //Hunt down the "victim"s
+/mob/living/simple_animal/hostile/aminion/actor/patrol_select() //Hunt down the "victim"s
 	var/mob/living/carbon/human/potential_target
 	for(var/mob/living/carbon/human/L in GLOB.player_list)
 		if(faction_check_mob(L, FALSE) || L.stat >= HARD_CRIT || L.sanity_lost || z != L.z) // Dead or in hard crit, insane, or on a different Z level.
@@ -318,7 +318,7 @@ Defeating the murderer also surpresses the abnormality.
 		return
 	return ..()
 
-/mob/living/simple_animal/hostile/abnominion/actor/PickTarget(list/Targets)
+/mob/living/simple_animal/hostile/aminion/actor/PickTarget(list/Targets)
 	var/list/priority = list()
 	for(var/mob/living/L in Targets)
 		if(!CanAttack(L))
@@ -336,7 +336,7 @@ Defeating the murderer also surpresses the abnormality.
 	if(LAZYLEN(priority))
 		return pick(priority)
 
-/mob/living/simple_animal/hostile/abnominion/actor/AttackingTarget(atom/attacked_target)
+/mob/living/simple_animal/hostile/aminion/actor/AttackingTarget(atom/attacked_target)
 	. = ..()
 	if(!ishuman(attacked_target))
 		return
@@ -351,7 +351,7 @@ Defeating the murderer also surpresses the abnormality.
 	H.apply_status_effect(/datum/status_effect/panicked_type/scene)
 	LoseTarget(H)
 
-/mob/living/simple_animal/hostile/abnominion/actor/death(gibbed)
+/mob/living/simple_animal/hostile/aminion/actor/death(gibbed)
 	icon_state = icon_dead
 	playsound(get_turf(src), 'sound/effects/ordeals/white/pale_pistol.ogg', 100, FALSE, 4)
 	visible_message(span_nicegreen("You hear gunfire from the distance, and [src] collapses to the ground!"))
