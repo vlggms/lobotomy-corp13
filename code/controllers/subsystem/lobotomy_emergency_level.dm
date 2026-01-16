@@ -53,9 +53,7 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 	if(!ishuman(died))
 		return
 	var/mob/living/carbon/human/H = died
-	var/agent_count = 1
-	if(LAZYLEN(AllLivingAgents(TRUE)))
-		agent_count += (AllLivingAgents(TRUE) - 1)/4 //More agents means each one's death means less
+	var/agent_count = 1 + (length(AllLivingAgents(TRUE)) - 1)/4 //More agents means each one's death means less
 	if((H.mind.assigned_role in GLOB.security_positions))
 		UpdateScore((agent_death * get_user_level(H))/agent_count)//If a higher level agent dies it should probably matter more
 
@@ -63,9 +61,7 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 	SIGNAL_HANDLER
 	if(is_tutorial_level(H.z))
 		return
-	var/agent_count = 1
-	if(LAZYLEN(AllLivingAgents(TRUE)))
-		agent_count += (AllLivingAgents(TRUE) - 1)/4 //More agents means each one's panic means lesss
+	var/agent_count = 1 + (length(AllLivingAgents(TRUE)) - 1)/4 //More agents means each one's panic means less
 	if((H.mind.assigned_role in GLOB.security_positions))
 		UpdateScore((agent_death * get_user_level(H))/agent_count)//If a higher level agent panics it should probably matter more
 
