@@ -19,7 +19,8 @@
 	)
 	pixel_x = -32
 	base_pixel_x = -32
-	work_damage_amount = 7
+	work_damage_upper = 4
+	work_damage_lower = 3
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/sloth
 	max_boxes = 20
@@ -106,7 +107,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/luna/Worktick(mob/living/carbon/human/user, work_type)
 	if(performance)
-		user.deal_damage(work_damage_amount*0.60, BLACK_DAMAGE)	//take work damage
+		user.deal_damage(work_damage_upper*0.60, BLACK_DAMAGE)	//take work damage
 
 
 /mob/living/simple_animal/hostile/abnormality/luna/AttemptWork(mob/living/carbon/human/user, work_type)

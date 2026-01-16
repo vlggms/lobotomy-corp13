@@ -5,6 +5,7 @@
 	icon_state = "kikimora"
 	icon_living = "kikimora"
 	icon_dead = "kikimora"
+	portrait = "kikimora"
 	maxHealth = 300
 	health = 300
 	rapid_melee = 1
@@ -19,7 +20,8 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(50, 50, 40, 40, 40),
 		ABNORMALITY_WORK_REPRESSION = list(30, 20, 0, -80, -80),
 	)
-	work_damage_amount = 3
+	work_damage_upper = 4
+	work_damage_lower = 2
 	work_damage_type = WHITE_DAMAGE
 	death_message = "falls over."
 	ego_list = list(
@@ -29,6 +31,16 @@
 	gift_type = /datum/ego_gifts/kikimora
 	//envy due to being a curse
 	chem_type = /datum/reagent/abnormality/sin/envy
+	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
+
+	observation_prompt = "Kikimora? <br> Kikimora. <br>\
+	Kikimora Kikimora Kikimora Kikimora <br>\
+	Kikimora Kikimora Kikimora Kikimora <br>\
+	Kikimora Kikimora Kikimora Kikimora <br>\
+	Kikimora Kikimora Kikimora Kikimora <br>"
+	observation_choices = list(
+		"Kikimora?" = list(TRUE, "Kikimora."),
+	)
 
 /mob/living/simple_animal/hostile/abnormality/kikimora/ZeroQliphoth(mob/living/carbon/human/user)
 	. = ..()

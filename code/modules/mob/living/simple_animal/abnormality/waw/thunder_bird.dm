@@ -6,6 +6,7 @@
 	icon_living = "thunderbird"
 	icon_dead = "thunderbird_dead"
 	core_icon = "thunderbird_dead"
+	portrait = "thunder_bird"
 	del_on_death = FALSE
 	speak_emote = list("intones")
 	gender = NEUTER
@@ -41,7 +42,8 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(10, 10, 5, 5, 15),
 		ABNORMALITY_WORK_REPRESSION = list(50, 45, 50, 55, 55),
 	)
-	work_damage_amount = 7
+	work_damage_upper = 6
+	work_damage_lower = 4
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/wrath
 

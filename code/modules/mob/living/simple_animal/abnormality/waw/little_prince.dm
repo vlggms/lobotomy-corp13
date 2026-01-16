@@ -13,9 +13,11 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 50, 50, 55),
 		ABNORMALITY_WORK_REPRESSION = list(0, 0, 50, 50, 55),
 	)
-	work_damage_amount = 7
+	work_damage_upper = 4
+	work_damage_lower = 3
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/envy
+	max_boxes = 24
 	start_qliphoth = 2
 
 	ego_list = list(

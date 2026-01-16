@@ -8,6 +8,7 @@
 	icon_living = "sleeping_idle"
 	icon_dead = "sleeping_dead"
 	var/icon_active = "sleeping_active"
+	portrait = "sleeping_beauty"
 	can_buckle = TRUE
 	buckle_lying = 90
 	maxHealth = 120
@@ -21,7 +22,8 @@
 		ABNORMALITY_WORK_ATTACHMENT = 50,
 		ABNORMALITY_WORK_REPRESSION = 70,
 	)
-	work_damage_amount = 2
+	work_damage_upper = 2
+	work_damage_lower = 1
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/sloth
 
@@ -29,7 +31,6 @@
 		/datum/ego_datum/weapon/doze,
 		/datum/ego_datum/armor/doze,
 	)
-	max_boxes = 10
 	gift_type =  /datum/ego_gifts/doze
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
 

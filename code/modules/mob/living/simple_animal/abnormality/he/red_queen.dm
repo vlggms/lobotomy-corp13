@@ -15,7 +15,8 @@
 		ABNORMALITY_WORK_ATTACHMENT = 65,
 		ABNORMALITY_WORK_REPRESSION = 65,
 	)
-	work_damage_amount = 7			//Unlikely to hurt you but if she ever does she'll fuck you
+	work_damage_upper = 10	//Unlikely to hurt you but if she ever does she'll fuck you
+	work_damage_lower = 1
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/sloth
 

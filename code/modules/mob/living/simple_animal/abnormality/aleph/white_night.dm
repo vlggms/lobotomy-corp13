@@ -33,9 +33,11 @@ GLOBAL_LIST_EMPTY(apostles)
 		ABNORMALITY_WORK_ATTACHMENT = list(30, 30, 35, 40, 45),
 		ABNORMALITY_WORK_REPRESSION = list(30, 30, 35, 40, 45),
 	)
-	work_damage_amount = 8
+	work_damage_upper = 8
+	work_damage_lower = 7
 	work_damage_type = PALE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/wrath
+	max_boxes = 35
 	can_patrol = FALSE
 
 	light_system = MOVABLE_LIGHT

@@ -38,9 +38,11 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(5, 10, 15, 50, 55),
 		ABNORMALITY_WORK_REPRESSION = list(5, 10, 15, 50, 55),
 	)
-	work_damage_amount = 8
+	work_damage_upper = 9
+	work_damage_lower = 7
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/wrath
+	max_boxes = 33
 
 	ego_list = list(
 		/datum/ego_datum/weapon/seasons,
@@ -278,7 +280,7 @@
 	Transform()
 	can_breach = FALSE
 	fear_level = WAW_LEVEL
-	work_damage_amount = 8
+	work_damage_upper = 9
 	start_qliphoth = 1
 	datum_reference.qliphoth_meter_max = 5
 	datum_reference.qliphoth_change(4)
@@ -292,7 +294,7 @@
 	Transform()
 	can_breach = TRUE
 	fear_level = ALEPH_LEVEL
-	work_damage_amount = 9
+	work_damage_upper = 10
 	datum_reference.qliphoth_meter_max = 1
 	datum_reference.qliphoth_change(1)
 	is_flying_animal = FALSE

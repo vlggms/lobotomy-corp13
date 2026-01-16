@@ -12,7 +12,8 @@
 		ABNORMALITY_WORK_ATTACHMENT = 10,
 		ABNORMALITY_WORK_REPRESSION = 10
 			)
-	work_damage_amount = 9
+	work_damage_upper = 9
+	work_damage_lower = 6
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/sloth
 	start_qliphoth = 3

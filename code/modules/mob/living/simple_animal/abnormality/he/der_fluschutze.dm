@@ -25,9 +25,11 @@
 		ABNORMALITY_WORK_ATTACHMENT = 0,
 		ABNORMALITY_WORK_REPRESSION = list(20, 30, 60, 60, 60),
 	)
-	work_damage_amount = 5
+	work_damage_upper = 4
+	work_damage_lower = 3
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/pride
+	max_boxes = 18
 
 	ego_list = list(
 		/datum/ego_datum/weapon/fellbullet,

@@ -23,7 +23,8 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(50, 50, 40, 40, 40),
 		ABNORMALITY_WORK_REPRESSION = list(50, 50, 40, 40, 40),
 	)
-	work_damage_amount = 3
+	work_damage_upper = 4
+	work_damage_lower = 2
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/sloth
 	ego_list = list(
@@ -32,6 +33,23 @@
 	)
 	gift_type =  /datum/ego_gifts/rapunzel
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
+
+	observation_prompt = "Four thousand nine-hundred fifty-one... <br>\
+	Four thousand nine-hundred fifty-two... <br>\
+	The time between you and me... <br>\
+	You've put down that much hair, you love me that much... <br>\
+	Let the hair down. So I can escape this hell. <br>\
+	The hair, let it down. <br>\
+	Let the hair down."
+	observation_choices = list(
+		"Repress the abnormality" = list(FALSE, "We shouldn't get close to the abnormalities. <br>\
+			But the abnormality isn't happy with your reply. <br>\
+			The hair surrounding you starts sneaking towards you to attack! <br>\
+			The cell of tangled hair becomes a mess of blood."),
+		"Go along with it" = list(TRUE, "Four thousand nine-hundred ninety-seven... <br>\
+			Four thousand nine-hundred ninety-eight... <br>\
+			Four thousand nine-hundred ninety-nine..."),
+	)
 
 	var/chosen
 	var/instinct_count

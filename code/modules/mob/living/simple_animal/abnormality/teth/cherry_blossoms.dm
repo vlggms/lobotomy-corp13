@@ -19,9 +19,11 @@
 		ABNORMALITY_WORK_REPRESSION = 20,
 	)
 	start_qliphoth = 3
-	work_damage_amount = 3
+	work_damage_upper = 4
+	work_damage_lower = 2
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/lust
+	max_boxes = 12
 	good_hater = TRUE
 
 	ego_list = list(
@@ -121,7 +123,7 @@
 		if(affected_human.stat == DEAD)
 			continue
 		affected_human.adjustBruteLoss(-500) // It heals everyone to full
-		affected_human.adjustSanityLoss(-500) // It heals everyone to full
+		affected_human.restoreSanity() // It heals everyone to full
 		affected_human.remove_status_effect(STATUS_EFFECT_MARKEDFORDEATH)
 
 /datum/status_effect/markedfordeath/on_remove()

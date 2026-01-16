@@ -32,9 +32,11 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(40, 45, 50, 55, 55),
 		ABNORMALITY_WORK_REPRESSION = list(25, 20, 15, 10, 0),
 	)
-	work_damage_amount = 7
+	work_damage_upper = 6
+	work_damage_lower = 2
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gluttony
+	max_boxes = 20
 
 	light_color = COLOR_ORANGE
 	light_range = 5

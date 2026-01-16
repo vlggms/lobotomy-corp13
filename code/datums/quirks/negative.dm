@@ -361,10 +361,10 @@
 /datum/quirk/prosthetic_limb
 	name = "Prosthetic Limb"
 	desc = "An accident caused you to lose one of your limbs. Because of this, you now have a random prosthetic!"
-	value = -2
+	value = 0
 	var/slot_string = "limb"
 	medical_record_text = "During physical examination, patient was found to have a prosthetic limb."
-	hardcore_value = 3
+	hardcore_value = 0
 	var/limb_slot // Tegustation Prosthetic limbs edit - adding a limb slot for those who manually chose a limb
 
 /datum/quirk/prosthetic_limb/on_spawn()
@@ -390,10 +390,6 @@
 	prosthetic.replace_limb(H)
 	qdel(old_part)
 	H.regenerate_icons()
-
-/datum/quirk/prosthetic_limb/post_add()
-	to_chat(quirk_holder, "<span class='boldannounce'>Your [slot_string] has been replaced with a surplus prosthetic. It is fragile and will easily come apart under duress. Additionally, \
-	you need to use a welding tool and cables to repair it, instead of bruise packs and ointment.</span>")
 
 /datum/quirk/insanity
 	name = "Reality Dissociation Syndrome"

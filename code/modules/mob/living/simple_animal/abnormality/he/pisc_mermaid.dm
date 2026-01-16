@@ -32,7 +32,8 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(40, 45, 55, 55, 55),
 		ABNORMALITY_WORK_REPRESSION = list(40, 50, 60, 60, 60),
 	)
-	work_damage_amount = 5
+	work_damage_upper = 6
+	work_damage_lower = 2
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/lust
 	melee_damage_type = BLACK_DAMAGE

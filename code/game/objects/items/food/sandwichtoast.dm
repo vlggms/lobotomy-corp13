@@ -38,6 +38,7 @@
 	icon = 'icons/obj/food/burgerbread.dmi'
 	icon_state = "jellysandwich"
 	trash_type = /obj/item/trash/plate
+	food_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/berryjuice = 8, /datum/reagent/consumable/nutriment/vitamin = 4)
 	bite_consumption = 3
 	tastes = list("bread" = 1, "jelly" = 1)
 	foodtypes = GRAIN
@@ -68,6 +69,7 @@
 	icon = 'icons/obj/food/burgerbread.dmi'
 	icon_state = "jellytoast"
 	trash_type = /obj/item/trash/plate
+	food_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/berryjuice = 8, /datum/reagent/consumable/nutriment/vitamin = 4)
 	bite_consumption = 3
 	tastes = list("toast" = 1, "jelly" = 1)
 	foodtypes = GRAIN | BREAKFAST

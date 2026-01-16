@@ -31,14 +31,14 @@
 	can_breach = TRUE
 	threat_level = TETH_LEVEL
 	start_qliphoth = 3
-	max_boxes = 14
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 55,
 		ABNORMALITY_WORK_INSIGHT = 55,
 		ABNORMALITY_WORK_ATTACHMENT = 60,
 		ABNORMALITY_WORK_REPRESSION = 10,
 		)
-	work_damage_amount = 3
+	work_damage_upper = 4
+	work_damage_lower = 2
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/envy //all of its EGO is envy. makes sense to me.
 	ego_list = list(
@@ -52,6 +52,20 @@
 	)
 
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
+
+	observation_prompt = "A teddy bear suffers from having nails lodged into its body. <br>\
+	The bloodstains decorating it are a telling sign of the time it has spent in pain. <br>\
+	The holes where its eyes should be are empty. <br>\
+	In spite of that, it has its arms open wide, endeavouring to fulfill its duty to give hugs."
+	observation_choices = list(
+		"Push it away" = list(FALSE, "You push the gross thing away. <br>\
+			Your hands are punctured deeply by the nails. <br>\
+			You lie there, bleeding, heavily..."),
+		"Hug the teddy" = list(TRUE, "Those nails look extremely painful... <br>\
+			But you muster your courage and embrace the teddy bear. <br>\
+			The hug is warm, and the nails feel soft and spongy. <br>\
+			After a few short moments, the teddy bear seems satisfied."),
+	)
 
 	var/bearfriended //the one who can work on it safely
 	var/mob/living/carbon/human/hug_victim = null

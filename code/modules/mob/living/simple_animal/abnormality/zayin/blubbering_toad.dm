@@ -24,7 +24,6 @@
 	move_to_delay = 3
 	melee_damage_lower = 2
 	melee_damage_upper = 4
-	max_boxes = 10
 	ranged = TRUE
 	attack_sound = 'sound/abnormalities/blubbering_toad/attack.ogg'
 	attack_verb_continuous = "mauls"
@@ -36,7 +35,8 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(50, 40, 30, 30, 30),
 		ABNORMALITY_WORK_REPRESSION = list(70, 30, 30, 30, 30),
 	)
-	work_damage_amount = 2
+	work_damage_upper = 2
+	work_damage_lower = 1
 	work_damage_type = BLACK_DAMAGE
 
 	// Petting

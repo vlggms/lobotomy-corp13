@@ -23,9 +23,12 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 		ABNORMALITY_WORK_REPRESSION = 40,
 	)
 	// Adjusted the work chances a little to really funnel people through Instinct work. You can do other stuff... sort of.
-	work_damage_amount = 5
+	work_damage_upper = 6
+	work_damage_lower = 4
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gluttony
+	max_boxes = 18
+
 	ego_list = list(
 		/datum/ego_datum/weapon/harmony,
 		/datum/ego_datum/weapon/rhythm,
@@ -38,7 +41,6 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 	base_pixel_x = -8
 	buckled_mobs = list()
 	buckle_lying = TRUE
-	max_boxes = 16
 
 	observation_prompt = "You know that people die every time this machine sings. <br>\
 		Or perhaps this machine sings when people die. <br>Though it has spilled blood of countless people, the song put you in a rapturous mood."

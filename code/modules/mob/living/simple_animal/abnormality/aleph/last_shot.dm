@@ -20,7 +20,8 @@ GLOBAL_LIST_EMPTY(meat_list)
 		ABNORMALITY_WORK_REPRESSION = 40,
 	)
 
-	work_damage_amount = 9
+	work_damage_upper = 9
+	work_damage_lower = 7
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/last_shot
 	harvest_phrase = span_notice("You peel off some rotten flesh off the floor surrounding %ABNO and collect it in %VESSEL.")
@@ -87,14 +88,14 @@ GLOBAL_LIST_EMPTY(meat_list)
 	else if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) >= 100)
 		newchance -= 10
 
-	work_damage_amount = initial(work_damage_amount)
+	work_damage_upper = initial(work_damage_upper)
 
 	//Fort or justice too low? take more damage.
 	if(get_attribute_level(user, JUSTICE_ATTRIBUTE) <= 100)
-		work_damage_amount*=2
+		work_damage_upper*=2
 
 	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) <= 100)
-		work_damage_amount*=2
+		work_damage_upper*=2
 
 	return newchance
 

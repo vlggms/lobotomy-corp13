@@ -9,6 +9,7 @@
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
 	icon_state = "quiet_day"
 	core_icon = "quiet_day"
+	portrait = "quiet_day"
 	maxHealth = 75
 	health = 75
 	blood_volume = 0
@@ -21,7 +22,8 @@
 		ABNORMALITY_WORK_ATTACHMENT = 60,
 		ABNORMALITY_WORK_REPRESSION = 60,
 	)
-	work_damage_amount = 2
+	work_damage_upper = 2
+	work_damage_lower = 1
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gloom
 

@@ -36,9 +36,11 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(20, 30, 40, 50, 55),
 		ABNORMALITY_WORK_REPRESSION = list(0, 0, 0, 0, 0),
 	)
-	work_damage_amount = 9
+	work_damage_upper = 10
+	work_damage_lower = 4
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/lust
+	max_boxes = 32
 	/* Sounds */
 	projectilesound = 'sound/abnormalities/meltinglove/ranged.ogg'
 	attack_sound = 'sound/abnormalities/meltinglove/attack.ogg'
