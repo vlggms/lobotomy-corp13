@@ -563,7 +563,7 @@ const PageMain = (props, context) => {
               width="300px">
               <Flex.Item fontSize="16px" mb={2}>
                 Swipe ID to confirm change
-                <Box textColor="red" fontFamily="Baskerville">
+                <Box textColor="red">
                   WARNING! Changing the emergency level to higher values may cause some abnormalities to breach.
                 </Box>
               </Flex.Item>
