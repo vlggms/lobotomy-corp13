@@ -33,7 +33,7 @@
 	var/mining_time = 20
 	var/list/chem_list
 	var/event_chance = 25
-	var/abnominioner = FALSE
+	var/abnospawner = FALSE
 	/*
 	Tool speeds for pickaxes are the following:
 	improvised pick: 3
@@ -122,7 +122,7 @@
 	var/flags = NONE
 	if(defer_change) // TODO: make the defer change var a var for any changeturf flag
 		flags = CHANGETURF_DEFER_CHANGE
-	if(abnominioner)
+	if(abnospawner)
 		AbnoEvent()
 	if(prob(event_chance))
 		PickEvents(user)
@@ -376,7 +376,7 @@
 /turf/closed/mineral/random/facility/abnormality
 	name = "shifty rubble"//you need to varedit the threat levels
 	desc = "This rubble produces strong enkephalin readings."
-	abnominioner = TRUE
+	abnospawner = TRUE
 	event_chance = 0
 
 /turf/closed/mineral/random/facility/pallid
@@ -388,7 +388,7 @@
 /turf/closed/mineral/random/facility/pallid/abnormality
 	name = "shifty rubble"//you need to varedit the threat levels
 	desc = "This rubble produces strong enkephalin readings."
-	abnominioner = TRUE
+	abnospawner = TRUE
 	event_chance = 0
 
 /turf/closed/mineral/random/facility/pallid/briah//HE-WAW level
