@@ -49,23 +49,27 @@
 	status_type = STATUS_EFFECT_REPLACE
 	alert_type = null
 	var/inherentarmorcheck
-	var/statuseffectvisual = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "red_shield")
+	var/vis_shield = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "red_shield")
 	var/shieldhealth = 50
 	var/damagetaken = 0
-	var/list/respectivedamage = list(RED_DAMAGE)
+	var/list/damtype = list(RED_DAMAGE)
 	var/faltering = 0
+
+/datum/status_effect/interventionshield/on_creation(mob/living/new_owner, health = 50, time = 30 SECONDS)
+	shieldhealth = health
+	duration = time
+	return ..()
 
 /datum/status_effect/interventionshield/on_apply()
 	. = ..()
-	shieldhealth = GetFacilityUpgradeValue(UPGRADE_BULLET_SHIELD_HEALTH)
-	owner.add_overlay(statuseffectvisual)
+	owner.add_overlay(vis_shield)
 	owner.visible_message(span_notice("[owner]s shield activates!"))
 	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMGE, PROC_REF(OnApplyDamage)) //stolen from caluan
 	RegisterSignal(owner, COMSIG_WORK_STARTED, PROC_REF(Destroy))
 
 /datum/status_effect/interventionshield/proc/OnApplyDamage(datum_source, amount, damagetype, def_zone)
 	SIGNAL_HANDLER
-	if(!(damagetype in respectivedamage))
+	if(!(damagetype in damtype))
 		return
 
 	var/mob/living/carbon/human/H = owner
@@ -94,41 +98,43 @@
 	return ..()
 
 /datum/status_effect/interventionshield/on_remove()
-	owner.cut_overlay(statuseffectvisual)
+	owner.cut_overlay(vis_shield)
 	owner.visible_message(span_warning("The shield around [owner] shatters!"))
 	playsound(get_turf(owner), 'sound/effects/glassbr1.ogg', 50, 0, 10)
 	UnregisterSignal(owner, COMSIG_MOB_APPLY_DAMGE)
 	UnregisterSignal(owner, COMSIG_WORK_STARTED)
 	return ..()
 
+//Proc to make giving a player a shield easier
+/mob/living/proc/apply_shield(shield_path, shield_health = 50, shield_duration = 30 SECONDS)
+	if(!(shield_path in typesof(/datum/status_effect/interventionshield)))
+		return
+	apply_status_effect(shield_path, shield_health, shield_duration)
+
 /datum/status_effect/interventionshield/white
 	id = "trauma shield"
-	statuseffectvisual = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "white_shield")
-	respectivedamage = list(WHITE_DAMAGE)
+	vis_shield = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "white_shield")
+	damtype = list(WHITE_DAMAGE)
 
 /datum/status_effect/interventionshield/black
 	id = "erosion shield"
-	statuseffectvisual = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "black_shield")
-	respectivedamage = list(BLACK_DAMAGE)
+	vis_shield = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "black_shield")
+	damtype = list(BLACK_DAMAGE)
 
 /datum/status_effect/interventionshield/pale
 	id = "pale shield"
-	statuseffectvisual = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "pale_shield")
-	respectivedamage = list(PALE_DAMAGE)
+	vis_shield = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "pale_shield")
+	damtype = list(PALE_DAMAGE)
 
 /datum/status_effect/interventionshield/perfect
 	id = "perfect shield"
-	statuseffectvisual = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "manager_shield")
-	respectivedamage = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
+	vis_shield = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "manager_shield")
+	damtype = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 
 /datum/status_effect/interventionshield/quad
 	id = "quad shield"
-	statuseffectvisual = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "quad_shield")
-	respectivedamage = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
-
-/datum/status_effect/interventionshield/quad/on_apply()
-	. = ..()
-	shieldhealth = GetFacilityUpgradeValue(UPGRADE_BULLET_SHIELD_HEALTH) * 2
+	vis_shield = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "quad_shield")
+	damtype = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 
 //other bullets
 /obj/item/managerbullet/red
@@ -141,7 +147,7 @@
 /obj/item/managerbullet/red/bulletshatter(mob/living/L)
 	if(!ishuman(L))
 		return
-	L.apply_status_effect(/datum/status_effect/interventionshield)
+	L.apply_shield(/datum/status_effect/interventionshield, shield_health = GetFacilityUpgradeValue(UPGRADE_BULLET_SHIELD_HEALTH))
 
 /obj/item/managerbullet/white
 	name = "white manager bullet"
@@ -153,7 +159,7 @@
 /obj/item/managerbullet/white/bulletshatter(mob/living/L)
 	if(!ishuman(L))
 		return
-	L.apply_status_effect(/datum/status_effect/interventionshield/white)
+	L.apply_shield(/datum/status_effect/interventionshield/white, shield_health = GetFacilityUpgradeValue(UPGRADE_BULLET_SHIELD_HEALTH))
 
 /obj/item/managerbullet/black
 	name = "black manager bullet"
@@ -165,7 +171,7 @@
 /obj/item/managerbullet/black/bulletshatter(mob/living/L)
 	if(!ishuman(L))
 		return
-	L.apply_status_effect(/datum/status_effect/interventionshield/black)
+	L.apply_shield(/datum/status_effect/interventionshield/black, shield_health = GetFacilityUpgradeValue(UPGRADE_BULLET_SHIELD_HEALTH))
 
 /obj/item/managerbullet/pale
 	name = "pale manager bullet"
@@ -177,7 +183,7 @@
 /obj/item/managerbullet/pale/bulletshatter(mob/living/L)
 	if(!ishuman(L))
 		return
-	L.apply_status_effect(/datum/status_effect/interventionshield/pale)
+	L.apply_shield(/datum/status_effect/interventionshield/pale, shield_health = GetFacilityUpgradeValue(UPGRADE_BULLET_SHIELD_HEALTH))
 
 /obj/item/managerbullet/slowdown
 	name = "yellow manager bullet"
@@ -199,7 +205,7 @@
 /obj/item/managerbullet/perfect/bulletshatter(mob/living/L)
 	if(!ishuman(L))
 		return
-	L.apply_status_effect(/datum/status_effect/interventionshield/perfect)
+	L.apply_shield(/datum/status_effect/interventionshield/perfect, shield_health = GetFacilityUpgradeValue(UPGRADE_BULLET_SHIELD_HEALTH))
 
 /obj/item/managerbullet/quad
 	name = "quad manager bullet"
@@ -210,4 +216,4 @@
 /obj/item/managerbullet/quad/bulletshatter(mob/living/L)
 	if(!ishuman(L))
 		return
-	L.apply_status_effect(/datum/status_effect/interventionshield/quad)
+	L.apply_shield(/datum/status_effect/interventionshield/quad, shield_health = GetFacilityUpgradeValue(UPGRADE_BULLET_SHIELD_HEALTH) * 2)
