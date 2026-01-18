@@ -27,24 +27,14 @@
 /// Returns amount of available agents and erts that can fight
 /proc/AvailableFighterCount()
 	. = 0
-	for(var/mob/living/carbon/human/H in AllLivingAgents(TRUE))
-		if(!H.client)
-			continue
-		if(!H.mind)
-			continue
-		if(H.sanity_lost)
-			continue
-		if(!is_station_level(H.z))
-			continue
-		. += 1
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		if(H.stat == DEAD)
 			continue
-		if(!(H.mind.assigned_role in GLOB.ert_positions))
+		if(!H.mind)
+			continue
+		if(!(H.mind.assigned_role in GLOB.ert_positions) && !(H.mind.assigned_role in GLOB.security_positions))
 			continue
 		if(!H.client)
-			continue
-		if(!H.mind)
 			continue
 		if(H.sanity_lost)
 			continue

@@ -386,7 +386,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 /datum/controller/subsystem/lobotomy_corp/proc/DeathCheck()
 	if(SSmaptype.maptype == "skeld")
 		return FALSE
-	var/agent_count = AvailableAgentAndERTCount()
+	var/agent_count = AvailableFighterCount()
 	if(agent_count > 0)
 		return FALSE
 	return TRUE
@@ -427,6 +427,6 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		to_chat(world, span_danger("<b>The round is over because all agents are dead while ordeals are unresolved!</b>"))
 		SSticker.force_ending = TRUE
 		return TRUE
-	to_chat(world, span_danger("<b>All agents are dead or panicking! If ordeals are left unresolved, new agents don't join or a panicking agent isn't delt with, the round will automatically end in <u>[round(time/10)] seconds!</u></b>"))
+	to_chat(world, span_danger("<b>All agents are dead or panicking! If ordeals are left unresolved, new agents don't join or a panicking agent isn't dealt with, the round will automatically end in <u>[round(time/10)] seconds!</u></b>"))
 	restart_timer = addtimer(CALLBACK(src, PROC_REF(DeathAutoRestart), max(0, time - 30 SECONDS)), 30 SECONDS, TIMER_STOPPABLE)
 	return TRUE
