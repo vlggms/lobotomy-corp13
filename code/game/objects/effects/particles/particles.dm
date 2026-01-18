@@ -88,16 +88,16 @@
 /particles/white_night
 	width = 1200
 	height = 1200
-	count = 2500
-	spawning = 500
+	count = 5000
+	spawning = 1000
 	lifespan = 2 SECONDS
 	fade = 1 SECONDS
-	position = generator("circle", 42, 54, NORMAL_RAND)
+	position = generator("circle", 38, 44, NORMAL_RAND)
 	velocity = generator("circle", -4, 4, NORMAL_RAND)
-	friction = 0.15
-	gradient = list(0, COLOR_ORANGE, 0.75, COLOR_RED)
-	color_change = 1
-	drift = generator("vector", list(-0.1, -0.1), list(0.1, 0.1))
+	friction = 0.3
+	gradient = list(0, COLOR_WHITE, 0.9, COLOR_RED)
+	color_change = 0.08
+	drift = generator("vector", list(0.1, -0.1), list(-0.1, 0.1))
 
 /particles/fragment_note
 	icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
