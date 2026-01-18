@@ -25,7 +25,7 @@
 		. += 1
 
 /// Returns amount of available agents and erts that can fight
-/proc/AvailableAgentAndERTCount()
+/proc/AvailableFighterCount()
 	. = 0
 	for(var/mob/living/carbon/human/H in AllLivingAgents(TRUE))
 		if(!H.client)
