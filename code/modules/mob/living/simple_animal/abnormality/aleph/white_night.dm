@@ -31,7 +31,7 @@ GLOBAL_LIST_EMPTY(apostles)
 		ABNORMALITY_WORK_INSTINCT = 0,
 		ABNORMALITY_WORK_INSIGHT = list(0, 0, 30, 30, 40),
 		ABNORMALITY_WORK_ATTACHMENT = list(30, 30, 35, 40, 45),
-		ABNORMALITY_WORK_REPRESSION = list(30, 30, 35, 40, 45),
+		ABNORMALITY_WORK_REPRESSION = list(30, 30, 35, 40, 10000),
 	)
 	work_damage_upper = 8
 	work_damage_lower = 7
@@ -86,6 +86,10 @@ GLOBAL_LIST_EMPTY(apostles)
 		"5" = list("Please, mercy...", "Grant us salvation...", "Let us witness in awe..."),
 		)
 	return pick(result_text_list[level])
+
+/mob/living/simple_animal/hostile/abnormality/white_night/PostSpawn()
+	. = ..()
+	set_light_color(COLOR_BLUE_LIGHT)
 
 /mob/living/simple_animal/hostile/abnormality/white_night/AttackingTarget()
 	return FALSE
@@ -202,11 +206,14 @@ GLOBAL_LIST_EMPTY(apostles)
 /mob/living/simple_animal/hostile/abnormality/white_night/OnQliphothChange(mob/living/carbon/human/user)
 	if(datum_reference.qliphoth_meter <= 0)
 		return
-	var/flashing_color = COLOR_ORANGE
+	var/flashing_color = LIGHT_COLOR_PURPLE
+	set_light_color(LIGHT_COLOR_PURPLE)
 	if(datum_reference.qliphoth_meter == 1)
-		flashing_color = COLOR_SOFT_RED
+		set_light_color(COLOR_VIVID_RED)
+		flashing_color = COLOR_VIVID_RED
 	if(datum_reference.qliphoth_meter == 3)
-		flashing_color = COLOR_GREEN
+		set_light_color(COLOR_BLUE_LIGHT)
+		flashing_color = COLOR_BLUE_LIGHT
 	for(var/mob/M in GLOB.player_list)
 		flash_color(M, flash_color = flashing_color, flash_time = 25)
 	sound_to_playing_players('sound/abnormalities/whitenight/apostle_bell.ogg', (25 * (3 - datum_reference.qliphoth_meter)))
@@ -235,8 +242,9 @@ GLOBAL_LIST_EMPTY(apostles)
 		if(M.stat != DEAD && ishuman(M) && M.ckey)
 			heretics += M
 		flash_color(M, flash_color = COLOR_RED, flash_time = 100)
+	set_light_color(COLOR_VIVID_RED)
 	sound_to_playing_players('sound/abnormalities/whitenight/apostle_bell.ogg')
-	add_filter("apostle", 1, rays_filter(size = 64, color = "#FFFF00", offset = 6, density = 16, threshold = 0.05))
+	add_filter("apostle", 1, rays_filter(size = 64, color = "#FF0000", offset = 6, density = 16, threshold = 0.05))
 	if(LAZYLEN(GLOB.department_centers))
 		var/turf/T = pick(GLOB.department_centers)
 		forceMove(T)
