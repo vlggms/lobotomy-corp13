@@ -456,7 +456,7 @@
 	if(girlpower >= 4) //Bonus doubled reward if all 4 of the girls were present
 		for(var/path in subtypesof(/obj/item/nihil))
 			new path(get_turf(src))
-	AddToSuperBossList()
+	SSticker.superbosses |= initial(name)
 	SSlobotomy_events.PruneList(event_type = 3) //End the event TODO: Visuals and stuff I guess?
 	..()
 

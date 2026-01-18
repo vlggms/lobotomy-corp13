@@ -593,17 +593,17 @@
 				parts += "[highest_worker] worked on it the most, for a total of [highest_abno.work_stats[highest_worker]["works"]] sessions, earning [highest_abno.work_stats[highest_worker]["pe"]] PE in the process, while gaining a total of [total_attr_points] attribute points."
 	if(LAZYLEN(SSticker.superbosses))
 		parts += "<br><b>High-risk abnormalities defeated:</b>"
-		for(var/mob/M in SSticker.superbosses)
-			var/name = M.name
-			if(istype(M, /mob/living/simple_animal/hostile/abnormality/distortedform))
-				name = "<span style='color: yellow'>Disto</span><span style='color: red'>rted</span> <span style='color: purple'>Form</span>"
-			else if(istype(M, /mob/living/simple_animal/hostile/abnormality/nobody_is))
-				name = "<span style='color: [COLOR_STRONG_MAGENTA]'>Oberon an</span><span style='color: [COLOR_VERY_PALE_LIME_GREEN]'>d Titania</span>"
-			else if(istype(M, /mob/living/simple_animal/hostile/megafauna/apocalypse_bird))
-				name = "<span style='color: [COLOR_MAROON]'>[M.name]</span>"
-			else if(istype(M, /mob/living/simple_animal/hostile/abnormality/white_night))
-				name = "<span style='color: red'>[M.name]</span>"
-			parts += "[FOURSPACES]<b>[name]</b> was defeated!"
+		for(var/name in SSticker.superbosses)
+			var/text = name
+			if(name == "Distorted Form")
+				text = "<span style='color: yellow'>Disto</span><span style='color: red'>rted</span> <span style='color: purple'>Form</span>"
+			else if(name == "Nobody Is")
+				text = "<span style='color: [COLOR_STRONG_MAGENTA]'>Oberon an</span><span style='color: [COLOR_VERY_PALE_LIME_GREEN]'>d Titania</span>"
+			else if(name == "Apocalypse bird")
+				text = "<span style='color: [COLOR_MAROON]'>[name]</span>"
+			else if(name == "WhiteNight")
+				text = "<span style='color: red'>[name]</span>"
+			parts += "[FOURSPACES]<b>[text]</b> was defeated!"
 	parts += "</div>"
 	return parts.Join("<br>")
 

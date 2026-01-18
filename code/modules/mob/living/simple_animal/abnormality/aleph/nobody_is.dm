@@ -420,7 +420,7 @@
 		headicon = null
 		datum_reference.connected_structures = list()
 	if(oberon_mode)
-		AddToSuperBossList()
+		SSticker.superbosses |= initial(name)
 		for(var/mob/living/carbon/human/M in GLOB.player_list)
 			if(M.stat != DEAD && M.client)
 				M.Apply_Gift(new /datum/ego_gifts/oberon)
