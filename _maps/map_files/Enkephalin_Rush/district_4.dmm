@@ -1024,6 +1024,9 @@
 	},
 /turf/open/floor/wood,
 /area/city/backstreets_room)
+"dQ" = (
+/turf/closed/wall/r_wall,
+/area/city/backstreets_room)
 "dR" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/disposalpipe/segment{
@@ -1554,7 +1557,7 @@
 /area/facility_hallway/welfare)
 "fD" = (
 /obj/machinery/smartfridge/organ,
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/riveted,
 /area/city)
 "fE" = (
 /obj/effect/decal/cleanable/vomit,
@@ -1566,7 +1569,7 @@
 	name = "Tie Office License";
 	desc = "An official fixer license assigned by the Hana Association."
 	},
-/turf/closed/indestructible/reinforced,
+/turf/closed/wall/r_wall,
 /area/city/backstreets_room)
 "fG" = (
 /obj/effect/decal/cleanable/dirt,
@@ -2563,7 +2566,7 @@
 	desc = "A contract bearing the seal of the Oufi Association East division., claiming this office as a subsidiary.";
 	name = "Oufi Association Contract"
 	},
-/turf/closed/indestructible/reinforced,
+/turf/closed/wall/r_wall,
 /area/city/backstreets_room)
 "jC" = (
 /obj/effect/turf_decal/siding/yellow{
@@ -4036,7 +4039,6 @@
 	dir = 1
 	},
 /obj/item/ego_weapon/support/dragon_staff,
-/obj/item/hemostat,
 /turf/open/floor/facility/white,
 /area/city)
 "oN" = (
@@ -5194,6 +5196,7 @@
 /obj/effect/turf_decal/siding/blue{
 	dir = 10
 	},
+/obj/item/reagent_containers/hypospray/emais,
 /turf/open/floor/facility/white,
 /area/city)
 "sZ" = (
@@ -13743,7 +13746,6 @@
 	dir = 1
 	},
 /obj/item/ego_weapon/support/dragon_staff,
-/obj/item/hemostat,
 /turf/open/floor/facility/white,
 /area/city)
 "Yf" = (
@@ -43685,13 +43687,13 @@ ZL
 ZL
 ZL
 ZL
-zg
-zg
-zg
-zg
-zg
-zg
-zg
+dQ
+dQ
+dQ
+dQ
+dQ
+dQ
+dQ
 ZL
 ZL
 ZL
@@ -43942,13 +43944,13 @@ ZL
 ZL
 ZL
 ZL
-zg
+dQ
 pj
 sJ
 sJ
 sJ
 Ac
-zg
+dQ
 ZL
 ZL
 ZL
@@ -44194,21 +44196,21 @@ ZL
 ZL
 ZL
 ZL
-zg
-zg
-zg
-zg
-zg
-zg
+dQ
+dQ
+dQ
+dQ
+dQ
+dQ
 Ay
-zg
-zg
+dQ
+dQ
 jV
 jV
-zg
-zg
-zg
-zg
+dQ
+dQ
+dQ
+dQ
 ZL
 ZL
 ZL
@@ -44451,11 +44453,11 @@ ZL
 ZL
 ZL
 ZL
-zg
+dQ
 sJ
 ax
 fr
-zg
+dQ
 tX
 Iy
 tX
@@ -44465,7 +44467,7 @@ ix
 hY
 ix
 dq
-zg
+dQ
 ZL
 ZL
 ZL
@@ -44708,7 +44710,7 @@ ZL
 ZL
 ZL
 ZL
-zg
+dQ
 My
 af
 Ax
@@ -44722,7 +44724,7 @@ ix
 ix
 ix
 ix
-zg
+dQ
 ZL
 ZL
 ZL
@@ -44965,7 +44967,7 @@ ZL
 ZL
 ZL
 ZL
-zg
+dQ
 HW
 Ps
 Ps
@@ -44979,7 +44981,7 @@ ix
 ix
 qC
 Kk
-zg
+dQ
 ZL
 ZL
 ZL
@@ -45222,7 +45224,7 @@ ZL
 ZL
 ZL
 ZL
-zg
+dQ
 My
 af
 CW
@@ -45236,7 +45238,7 @@ ix
 ix
 ix
 ix
-zg
+dQ
 ZL
 ZL
 ZL
@@ -45479,11 +45481,11 @@ ZL
 ZL
 ZL
 ZL
-zg
+dQ
 Er
 sJ
 fr
-zg
+dQ
 tX
 Iy
 tX
@@ -45493,7 +45495,7 @@ ix
 ix
 ix
 ix
-zg
+dQ
 ZL
 ZL
 ZL
@@ -45736,21 +45738,21 @@ Jg
 Jg
 ZL
 ZL
-zg
+dQ
 My
 af
 sJ
-zg
-zg
-zg
-zg
-zg
-zg
-zg
-zg
-zg
-zg
-zg
+dQ
+dQ
+dQ
+dQ
+dQ
+dQ
+dQ
+dQ
+dQ
+dQ
+dQ
 fb
 fb
 fb
@@ -45993,7 +45995,7 @@ DK
 TJ
 Jg
 ZL
-zg
+dQ
 sJ
 Ax
 ZN
@@ -46250,7 +46252,7 @@ nb
 DK
 Jg
 ZL
-zg
+dQ
 My
 af
 sJ
@@ -46507,7 +46509,7 @@ Iy
 PS
 Jg
 ZL
-zg
+dQ
 sJ
 sJ
 hd
@@ -46764,15 +46766,15 @@ Iy
 PS
 uh
 ZL
-zg
-zg
+dQ
+dQ
 Tr
-zg
-zg
-zg
-zg
-zg
-zg
+dQ
+dQ
+dQ
+dQ
+dQ
+dQ
 fb
 fb
 fb
@@ -47021,7 +47023,7 @@ Iy
 PS
 Jg
 ZL
-zg
+dQ
 aN
 aN
 aN
@@ -47029,7 +47031,7 @@ aN
 oO
 pt
 jD
-zg
+dQ
 ZL
 ZL
 ZL
@@ -47278,7 +47280,7 @@ ee
 KH
 vc
 ZL
-zg
+dQ
 aN
 aN
 aN
@@ -47286,13 +47288,13 @@ aN
 aN
 aN
 xq
-zg
-zg
-zg
-zg
-zg
-zg
-zg
+dQ
+dQ
+dQ
+dQ
+dQ
+dQ
+dQ
 ZL
 ZL
 ZL
@@ -47535,7 +47537,7 @@ KH
 vc
 vc
 ZL
-zg
+dQ
 jZ
 dP
 aN
@@ -47543,13 +47545,13 @@ aN
 aN
 pt
 jD
-zg
+dQ
 XB
 KC
 XB
 lx
 fd
-zg
+dQ
 ZL
 ZL
 ZL
@@ -47792,7 +47794,7 @@ vc
 vc
 ZL
 ZL
-zg
+dQ
 Wh
 vE
 QB
@@ -47806,7 +47808,7 @@ KC
 KC
 KC
 SI
-zg
+dQ
 ZL
 ZL
 ZL
@@ -48049,7 +48051,7 @@ ZL
 ZL
 ZL
 ZL
-zg
+dQ
 jZ
 dP
 it
@@ -48057,13 +48059,13 @@ aN
 it
 aN
 ra
-zg
+dQ
 XB
 bn
 XB
 KC
 KC
-zg
+dQ
 ZL
 ZL
 ZL
@@ -48306,21 +48308,21 @@ ZL
 ZL
 ZL
 ZL
-zg
-zg
-zg
-zg
-zg
-zg
-zg
-zg
-zg
-zg
-zg
-zg
-zg
-zg
-zg
+dQ
+dQ
+dQ
+dQ
+dQ
+dQ
+dQ
+dQ
+dQ
+dQ
+dQ
+dQ
+dQ
+dQ
+dQ
 ZL
 ZL
 ZL
