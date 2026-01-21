@@ -54,6 +54,8 @@
 
 	var/halo_status = "onesin_halo_normal" //used for changing the halo overlays
 
+	var/wn_work = FALSE
+
 //Overlay stuff
 /mob/living/simple_animal/hostile/abnormality/onesin/PostSpawn()
 	..()
@@ -66,37 +68,56 @@
 /mob/living/simple_animal/hostile/abnormality/onesin/WorkChance(mob/living/carbon/human/user, chance)
 	if(istype(user.ego_gift_list[HAT], gift_type))
 		return chance + 10
+	if(GetWN())
+		return 100
 	return chance
 
 /mob/living/simple_animal/hostile/abnormality/onesin/AttemptWork(mob/living/carbon/human/user, work_type)
-	if(work_type == "Confess")
-		if(isapostle(user))
-			for(var/mob/living/simple_animal/hostile/abnormality/white_night/WN in GLOB.mob_living_list)
-				if(WN.status_flags & GODMODE) // Contained
-					return FALSE
-			var/datum/antagonist/apostle/A = user.mind.has_antag_datum(/datum/antagonist/apostle, FALSE)
-			if(!A.betrayed)
-				A.betrayed = TRUE // So no spam happens
-				for(var/mob/M in GLOB.player_list)
-					if(M.client)
-						M.playsound_local(get_turf(M), 'sound/abnormalities/onesin/confession_start.ogg', 25, 0)
+	if(GetWN())
+		if(work_type == "Confess")
+			wn_work = TRUE
+			user.status_flags |= GODMODE//We really don't want them to die mid work
+			user.SetImmobilized(40, ignore_canstun = TRUE)
+			for(var/mob/M in GLOB.player_list)
+				if(M.client)
+					M.playsound_local(get_turf(M), 'sound/abnormalities/onesin/confession_start.ogg', 25, 0)
+		else
+			to_chat(user, span_warning("The abnormality seems to be ignoring you... maybe try confessing."))
+			return FALSE
 	return TRUE
 
+/mob/living/simple_animal/hostile/abnormality/onesin/SpeedWorktickOverride(mob/living/carbon/human/user, work_speed, init_work_speed, work_type) //THE RIDE NEVER ENDS
+	if(wn_work)
+		return 10
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/onesin/Worktick(mob/living/carbon/human/user)
+	if(wn_work)
+		user.SetImmobilized(40, ignore_canstun = TRUE)
+	return ..()
+
 /mob/living/simple_animal/hostile/abnormality/onesin/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
+	wn_work = FALSE
 	if(work_type == "Confess")
-		if(isapostle(user))
-			for(var/mob/living/simple_animal/hostile/abnormality/white_night/WN in GLOB.mob_living_list)
-				if(WN.status_flags & GODMODE)
-					return FALSE
-				WN.heretics = list()
-				to_chat(WN, span_colossus("The twelfth has betrayed us..."))
-				WN.loot = list() // No loot for you!
-				var/curr_health = WN.health
-				for(var/i = 1 to 12)
-					sleep(1.5 SECONDS)
-					playsound(get_turf(WN), 'sound/machines/clockcult/ark_damage.ogg', 75, TRUE, -1)
-					WN.adjustBruteLoss(curr_health/12)
-				WN.adjustBruteLoss(666666)
+		var/mob/living/simple_animal/hostile/abnormality/white_night/WN = GetWN()
+		if(WN)
+			to_chat(WN, span_colossus("The twelfth has betrayed us..."))
+			sound_to_playing_players('sound/abnormalities/whitenight/apostle_bell.ogg')
+			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 20, "Have I not chosen you the Twelve? Yet one of you is a devil", 25))
+			WN.loot = list() // No loot for you!
+			WN.devil = user
+			user.status_flags &= ~GODMODE
+			sleep(1 SECONDS)
+			for(var/i = 1 to 20)
+				if(!WN || WN.stat == DEAD)
+					break
+				sleep(0.8 SECONDS)
+				user.SetImmobilized(30, ignore_canstun = TRUE)
+				playsound(get_turf(WN), 'sound/machines/clockcult/ark_damage.ogg', 75, TRUE, -1)
+				var/obj/effect/temp_visual/onesin_blessing/OB = new(get_turf(WN))
+				OB.layer = WN.layer + 0.1
+				OB.pixel_x += rand(-6,6)
+				WN.deal_damage(3330, PALE_DAMAGE)//Does 666 damage to WN
 			sleep(5 SECONDS)
 			for(var/mob/M in GLOB.player_list)
 				if(M.client)
@@ -114,7 +135,7 @@
 			else
 				flick("onesin_halo_bad", src)
 				new /obj/effect/temp_visual/onesin_punishment(get_turf(user))
-				user.adjustSanityLoss(66)
+				user.adjustSanityLoss(user.maxSanity/2)
 				playsound(get_turf(user), 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 33, 1)
 
 			playsound(get_turf(user), 'sound/abnormalities/onesin/confession_end.ogg', 50, 0)
@@ -146,6 +167,14 @@
 /mob/living/simple_animal/hostile/abnormality/onesin/AttackingTarget(atom/attacked_target)
 	..()
 	new /obj/effect/temp_visual/onesin_punishment(get_turf(attacked_target))
+
+/mob/living/simple_animal/hostile/abnormality/onesin/proc/GetWN()
+	var/mob/living/simple_animal/hostile/abnormality/white_night/WN = locate() in GLOB.abnormality_mob_list
+	if(WN)
+		if(WN.status_flags & GODMODE)
+			return
+		return WN
+	return
 
 /datum/reagent/abnormality/onesin
 	name = "Holy Light"
