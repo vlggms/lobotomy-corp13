@@ -26,7 +26,7 @@
 	start_qliphoth = 3
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(5, 10, 25, 25, 30),
-		ABNORMALITY_WORK_INSIGHT = -25,
+		ABNORMALITY_WORK_INSIGHT = 0,
 		ABNORMALITY_WORK_ATTACHMENT = 15,
 		ABNORMALITY_WORK_REPRESSION = list(5, 10, 25, 25, 30),
 	)
@@ -70,8 +70,6 @@
 	)
 
 	//work-related
-	var/loot_progress = 0
-	var/prudence_work_chance = 0
 	var/list/workloot = list(
 		/obj/item/golden_needle,
 		/obj/item/canopic_jar,
@@ -141,33 +139,27 @@
 	icon_aggro = "sphonx_eye"
 
 // Abnormality Work Stuff
-/mob/living/simple_animal/hostile/abnormality/sphinx/AttemptWork(mob/living/carbon/human/user, work_type)
-	prudence_work_chance = clamp(get_modified_attribute_level(user, PRUDENCE_ATTRIBUTE) * 0.45, 0, 60) // Additional roll on a every work tick based on prudence
+/mob/living/simple_animal/hostile/abnormality/sphinx/WorkChance(mob/living/carbon/human/user, chance, work_type)
 	var/player_temperance = get_modified_attribute_level(user, TEMPERANCE_ATTRIBUTE)
-	var/work_chance_bonus = 20 *((0.07*player_temperance-1.4)/(0.07*player_temperance+4)) // 20 is half of the usual temperance_mod of 40
-	work_chance_bonus += datum_reference.understanding * 0.5  // Should be roughly half of the usual effects from temperance overall
-	prudence_work_chance = clamp(prudence_work_chance + work_chance_bonus, 0, 95)
-	if(datum_reference.overload_chance[user.ckey]) // Work penalty from overload applies here too. Probably.
-		prudence_work_chance += datum_reference.overload_chance[user.ckey]
-	return ..()
-
-/mob/living/simple_animal/hostile/abnormality/sphinx/ChanceWorktickOverride(mob/living/carbon/human/user, work_chance, init_work_chance, work_type)
-	if(!prob(init_work_chance))
-		if(!prob(prudence_work_chance))
-			return 0 // You failed both work checks, sorry bozo
-		loot_progress += 1
-	return 100
+	var/work_chance_negative = 20 *((0.07*player_temperance-1.4)/(0.07*player_temperance+4)) // 20 is half of the usual temperance_mod of 40
+	var/prudence_work_chance = clamp(get_modified_attribute_level(user, PRUDENCE_ATTRIBUTE) * 0.3, 0, 45) // Additional work chance based on prudence
+	return prudence_work_chance + chance - work_chance_negative
 
 /mob/living/simple_animal/hostile/abnormality/sphinx/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
-	if(loot_progress >= 16)
+	if(pe >= 16)
 		var/turf/dispense_turf = get_step(src, EAST)
 		var/reward = pick(workloot)
 		new reward(dispense_turf)
-	loot_progress = 0
 	if(user.sanity_lost)
 		QDEL_NULL(user.ai_controller)
 		user.ai_controller = /datum/ai_controller/insane/wander/sphinx
 		user.InitializeAIController()
+
+/mob/living/simple_animal/hostile/abnormality/sphinx/SuccessEffect(mob/living/carbon/human/user, work_type, pe, work_time)
+	if(prob(10))
+		var/turf/dispense_turf = get_step(src, EAST)
+		var/reward = pick(workloot)
+		new reward(dispense_turf)
 
 /mob/living/simple_animal/hostile/abnormality/sphinx/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()

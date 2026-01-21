@@ -43,9 +43,12 @@
 	light_power = 7
 
 	// This stuff is only done to non-humans and objects
-	melee_damage_type = BLACK_DAMAGE
+	melee_damage_type = RED_DAMAGE//It bites
 	melee_damage_lower = 40
-	melee_damage_upper = 40
+	melee_damage_upper = 50
+	attack_verb_continuous = "bites"
+	attack_verb_simple = "bite"
+	attack_sound = 'sound/abnormalities/bigbird/bite.ogg'
 
 	ego_list = list(
 		/datum/ego_datum/weapon/lamp,
@@ -73,9 +76,14 @@
 	)
 
 	var/bite_cooldown
-	var/bite_cooldown_time = 8 SECONDS
+	var/bite_cooldown_time = 5 SECONDS
+	var/can_move = FALSE
 	var/hypnosis_cooldown
 	var/hypnosis_cooldown_time = 16 SECONDS
+
+	var/list/hypno_1 = list()
+	var/list/hypno_2 = list()
+	var/list/hypno_3 = list()
 
 	//PLAYABLES ATTACKS
 	attack_action_types = list(/datum/action/cooldown/big_bird_hypnosis)
@@ -100,11 +108,15 @@
 	big_bird.hypnotize()
 	return TRUE
 
+/mob/living/simple_animal/hostile/abnormality/big_bird/Move()
+	if(!can_move)
+		return FALSE
+	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/big_bird/OpenFire()
+/mob/living/simple_animal/hostile/abnormality/big_bird/Life()
+	. = ..()
 	if(client)
 		return
-
 	if(get_dist(src, target) > 2 && hypnosis_cooldown <= world.time)
 		hypnotize()
 
@@ -134,36 +146,145 @@
 	if(ishuman(the_target))
 		if(bite_cooldown > world.time)
 			return FALSE
-		var/mob/living/carbon/human/H = the_target
-		var/obj/item/bodypart/head/head = H.get_bodypart("head")
-		if(!istype(head)) // You, I'm afraid, are headless
-			return FALSE
 	return ..()
 
+/mob/living/simple_animal/hostile/abnormality/big_bird/proc/get_sweep_turfs(atom/target)
+	var/target_turf = get_step_towards(src, target)
+
+
+	var/start = WEST
+	var/end = EAST
+
+	switch(get_dir(src, target))
+		if(NORTH)
+			start = EAST
+			end = WEST
+		if(SOUTH)
+			start = WEST
+			end = EAST
+		if(EAST)
+			start = SOUTH
+			end = NORTH
+		if(WEST)
+			start = NORTH
+			end = SOUTH
+		if(NORTHEAST)
+			start = SOUTH
+			end = WEST
+		if(NORTHWEST)
+			start = EAST
+			end = SOUTH
+		if(SOUTHEAST)
+			start = WEST
+			end = NORTH
+		if(SOUTHWEST)
+			start = NORTH
+			end = EAST
+
+	. = list(get_step(target_turf, start), target_turf, get_step(target_turf, end))
+
+	return
+
+/mob/living/simple_animal/hostile/abnormality/big_bird/proc/PickBiteVictim(list/Targets, atom/target) // We pick non hypnoed people directly infront of bb first
+	var/list/highest_priority = list()
+	var/list/higher_priority = list()
+	var/list/lower_priority = list()
+	var/list/lowest_priority = list()
+	var/target_turf = get_step_towards(src, target)
+	for(var/mob/living/L in Targets)
+		if(L.stat == DEAD)
+			continue
+		if(faction_check_mob(target, FALSE))
+			continue
+		if(ishuman(L))
+			if(L.health < L.maxHealth*0.3 || has_status_effect(STATUS_EFFECT_STUN))
+				if(L in target_turf)
+					lower_priority += L
+				else
+					lowest_priority += L
+			else
+				if(L in target_turf)
+					highest_priority += L
+				else
+					higher_priority += L
+		else
+			if(L in target_turf)
+				lower_priority += L
+			else
+				lowest_priority += L
+	if(LAZYLEN(highest_priority))
+		return . = pick(higher_priority)
+	if(LAZYLEN(higher_priority))
+		return . = pick(highest_priority)
+	if(LAZYLEN(lower_priority))
+		return . = pick(lower_priority)
+	if(LAZYLEN(lowest_priority))
+		return . = pick(lowest_priority)
+	return null
+
 /mob/living/simple_animal/hostile/abnormality/big_bird/AttackingTarget(atom/attacked_target)
-	if(ishuman(attacked_target))
-		if(bite_cooldown > world.time)
-			return FALSE
-		var/mob/living/carbon/human/H = attacked_target
-		var/obj/item/bodypart/head/head = H.get_bodypart("head")
-		if(QDELETED(head))
+	if(!isliving(attacked_target))
+		return ..()
+	if(client)
+		if(target == src)
+			to_chat(src, span_warning("You almost attack yourself, but then decide against it."))
 			return
-		head.dismember()
-		QDEL_NULL(head)
-		H.regenerate_icons()
-		visible_message(span_danger("\The [src] bites [H]'s head off!"))
-		new /obj/effect/gibspawner/generic/silent(get_turf(H))
-		playsound(get_turf(src), 'sound/abnormalities/bigbird/bite.ogg', 50, 1, 2)
-		flick("big_bird_chomp", src)
-		bite_cooldown = world.time + bite_cooldown_time
-		return
-	return ..()
+		if(SSmaptype.maptype == "rcorp" && faction_check_mob(target, FALSE))
+			to_chat(src, span_warning("You almost attack your teammate, but then decide against it."))
+			return
+	dir = get_dir(src, attacked_target)
+	can_move = FALSE
+	to_chat(world, "[attacked_target]")
+	var/turf/T = get_step(src,dir)
+	icon_state = "big_bird_chomp"
+	SLEEP_CHECK_DEATH(8.5)
+	var/list/hit_turfs = get_sweep_turfs(T)
+	for(var/turf/TF in hit_turfs)
+		var/obj/effect/temp_visual/beakbite/B = new(TF)
+		B.color = COLOR_BLACK
+	if(!(attacked_target in hit_turfs[1]) && !(attacked_target in hit_turfs[2]) && !(attacked_target in hit_turfs[3]) && !(attacked_target in get_turf(src)))
+		target = null
+		var/list/potential_targets = list()
+
+		for(var/turf/TT in hit_turfs)
+			for(var/mob/M in TT)
+				if(istype(M, /mob/living/simple_animal/projectile_blocker_dummy))
+					var/mob/living/simple_animal/projectile_blocker_dummy/pbd = M
+					M = pbd.parent
+				potential_targets |= M
+
+		potential_targets -= src
+
+		var/mob/to_bite = PickBiteVictim(potential_targets, T)
+
+		if(!to_bite)
+			visible_message(span_danger("\The [src] bite the air!"))
+			to_chat(src, span_danger("You missed your attack!"))
+			playsound(loc, attack_sound, 50, TRUE, TRUE)
+			do_attack_animation(T)
+			attack_cooldown = max(attack_cooldown, 1)
+			changeNext_move(attack_cooldown)
+			SLEEP_CHECK_DEATH(1 SECONDS)
+			icon_state = icon_living
+			can_move = TRUE
+			bite_cooldown = world.time + bite_cooldown_time
+			return
+		else
+			attacked_target = to_bite
+	. = ..()
+	SLEEP_CHECK_DEATH(1 SECONDS)
+	icon_state = icon_living
+	can_move = TRUE
+	bite_cooldown = world.time + bite_cooldown_time
+	return
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/proc/hypnotize()
 	if(hypnosis_cooldown > world.time)
 		return
 	hypnosis_cooldown = world.time + hypnosis_cooldown_time
+	can_move = FALSE
 	playsound(get_turf(src), 'sound/abnormalities/bigbird/hypnosis.ogg', 50, 1, 2)
+	var/list/hypnotize_list = list()
 	for(var/mob/living/carbon/C in view(8, src))
 		if(faction_check_mob(C, FALSE))
 			continue
@@ -175,11 +296,21 @@
 		if(prob(66))
 			to_chat(C, span_warning("You feel tired..."))
 			C.blur_eyes(5)
-			addtimer(CALLBACK (C, TYPE_PROC_REF(/mob, blind_eyes), 2), 2 SECONDS)
-			addtimer(CALLBACK (C, TYPE_PROC_REF(/mob/living, Stun), 2 SECONDS), 2 SECONDS)
+			hypnotize_list += C
 			var/new_overlay = mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "enchanted", -HALO_LAYER)
 			C.add_overlay(new_overlay)
-			addtimer(CALLBACK (C, TYPE_PROC_REF(/atom, cut_overlay), new_overlay), 4 SECONDS)
+			addtimer(CALLBACK (C, TYPE_PROC_REF(/atom, cut_overlay), new_overlay), 1.9 SECONDS)
+	SLEEP_CHECK_DEATH(2 SECONDS)
+	for(var/mob/living/carbon/C in hypnotize_list)
+		if(!(C in view(8, src)))
+			continue
+		C.blind_eyes(2)
+		C.Stun(2 SECONDS)
+		var/new_overlay = mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "enchanted", -HALO_LAYER)
+		C.add_overlay(new_overlay)
+		addtimer(CALLBACK (C, TYPE_PROC_REF(/atom, cut_overlay), new_overlay), 2 SECONDS)
+	SLEEP_CHECK_DEATH(0.5 SECONDS)
+	can_move = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/proc/on_mob_death(datum/source, mob/living/died, gibbed)
 	SIGNAL_HANDLER
