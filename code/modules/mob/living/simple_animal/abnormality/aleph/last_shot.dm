@@ -91,11 +91,11 @@ GLOBAL_LIST_EMPTY(meat_list)
 	work_damage_upper = initial(work_damage_upper)
 
 	//Fort or justice too low? take more damage.
-	if(get_attribute_level(user, JUSTICE_ATTRIBUTE) <= 100)
-		work_damage_upper*=2
+	if(get_attribute_level(user, JUSTICE_ATTRIBUTE) < 100)
+		work_damage_upper*=1.5
 
-	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) <= 100)
-		work_damage_upper*=2
+	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) < 100)
+		work_damage_upper*=1.5
 
 	return newchance
 

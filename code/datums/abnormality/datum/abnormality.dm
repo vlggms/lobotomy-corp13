@@ -284,6 +284,24 @@
 		acquired_chance = acquired_chance[work_level]
 	if(current)
 		acquired_chance = current.WorkChance(user, acquired_chance, workType)
+	//Calculating workchance. This is meant to be somewhat log
+	var/player_temperance = get_modified_attribute_level(user, TEMPERANCE_ATTRIBUTE)
+	acquired_chance += TEMPERANCE_SUCCESS_MOD *((0.07*player_temperance-1.4)/(0.07*player_temperance+4))
+	acquired_chance *= user.physiology.work_success_mod
+	acquired_chance += understanding // Adds up to 6-10% [Threat Based] work chance based off works done on it. This simulates Observation Rating which we lack ENTIRELY and as such has inflated the overall failure rate of abnormalities.
+	switch(console.work_bonus)
+		if(EXTRACTION_KEY)
+			switch(threat_level) //Matches understanding bonus at 50% understanding
+				if(ZAYIN_LEVEL)
+					acquired_chance += 5
+				if(TETH_LEVEL)
+					acquired_chance += 5
+				if(HE_LEVEL)
+					acquired_chance += 4
+				if(WAW_LEVEL)
+					acquired_chance += 3
+				if(ALEPH_LEVEL)
+					acquired_chance += 3
 	switch(workType)
 		if(ABNORMALITY_WORK_INSTINCT)
 			acquired_chance += user.physiology.instinct_success_mod
@@ -293,12 +311,6 @@
 			acquired_chance += user.physiology.attachment_success_mod
 		if(ABNORMALITY_WORK_REPRESSION)
 			acquired_chance += user.physiology.repression_success_mod
-	acquired_chance *= user.physiology.work_success_mod
-
-	//Calculating workchance. This is meant to be somewhat log
-	var/player_temperance = get_modified_attribute_level(user, TEMPERANCE_ATTRIBUTE)
-	acquired_chance += TEMPERANCE_SUCCESS_MOD *((0.07*player_temperance-1.4)/(0.07*player_temperance+4))
-	acquired_chance += understanding // Adds up to 6-10% [Threat Based] work chance based off works done on it. This simulates Observation Rating which we lack ENTIRELY and as such has inflated the overall failure rate of abnormalities.
 	switch(console.work_bonus)
 		if(EXTRACTION_KEY)
 			switch(threat_level) //Matches understanding bonus at 50% understanding

@@ -129,6 +129,7 @@
 	var/special_attack_cooldown
 	var/list/been_hit = list()
 	var/list/time_stopped = list()
+	var/obj/particle_emitter/distorted_screech/particle_screech
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/Initialize()
 	. = ..()
@@ -365,6 +366,8 @@
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/Destroy()
+	if(particle_screech)
+		particle_screech.fadeout()
 	for(var/mob/living/L in time_stopped)
 		UnFreezeMob(L)
 	return ..()
@@ -441,6 +444,8 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/ChangeForm(form)
+	if(particle_screech)
+		particle_screech.fadeout()
 	new /obj/effect/temp_visual/distortedform_shift(get_turf(src))
 	TurnNormal() //reset offsets/icon/resistances
 	clear_filters()
@@ -544,11 +549,13 @@
 	transform_cooldown = transform_cooldown_time + world.time
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/DFScreech()
+	set waitfor = 0
 	if(!can_act)
 		return
 	playsound(src, "sound/abnormalities/distortedform/screech4.ogg", 75, FALSE, 8)
+	particle_screech = new(get_turf(src))
+	particle_screech.pixel_y = 26
 	for(var/i = 1 to 8)
-		new /obj/effect/temp_visual/fragment_song(get_turf(src))
 		for(var/mob/living/L in ohearers(8, src))
 			if(L.z != z || (L.status_flags & GODMODE))
 				continue
@@ -557,6 +564,10 @@
 			if(L.stat == DEAD)
 				continue
 			L.deal_damage(5, WHITE_DAMAGE)
+		SLEEP_CHECK_DEATH(3)
+	if(!particle_screech)
+		return
+	particle_screech.fadeout()
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/DFAttack()
 	if(!can_act)

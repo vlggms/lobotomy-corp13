@@ -56,8 +56,10 @@
 	var/satisfied = FALSE
 	var/hunger = 0
 
+	var/can_act = TRUE
 	var/cry_cooldown
-	var/cry_cooldown_time = 10 SECONDS
+	var/cry_cooldown_time = 20 SECONDS
+	var/obj/particle_emitter/fetus_cry/particle_cry
 	var/bite_cooldown
 	var/bite_cooldown_time = 5 SECONDS
 
@@ -94,7 +96,7 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/fetus/AttackingTarget(atom/attacked_target)
-	if(bite_cooldown > world.time || satisfied)
+	if(bite_cooldown > world.time || satisfied || !can_act)
 		return FALSE
 	. =  ..()
 	if(isliving(attacked_target))
@@ -106,6 +108,12 @@
 				for(var/mob/living/carbon/human/H in GLOB.player_list)
 					to_chat(H, span_userdanger("The creature is satisfied."))
 		bite_cooldown = world.time + bite_cooldown_time
+
+/mob/living/simple_animal/hostile/abnormality/fetus/Destroy()
+	if(!particle_cry)
+		return ..()
+	particle_cry.fadeout()
+	return ..()
 
 //Work-related
 /mob/living/simple_animal/hostile/abnormality/fetus/WorkChance(mob/living/carbon/human/user, chance, work_type)
@@ -194,25 +202,38 @@
 	addtimer(CALLBACK(src, PROC_REF(check_players)), 20 SECONDS)
 
 /mob/living/simple_animal/hostile/abnormality/fetus/proc/Cry()
+	set waitfor = 0
+	can_act = FALSE
 	var/list/qliphoth_abnos = list()
 	for(var/mob/living/simple_animal/hostile/abnormality/V in GLOB.abnormality_mob_list)
 		if(V.IsContained())
 			qliphoth_abnos += V
 
+	var/list/hearers = list()
 	if(LAZYLEN(qliphoth_abnos))
 		var/mob/living/simple_animal/hostile/abnormality/meltem = pick(qliphoth_abnos)
 		meltem.datum_reference.qliphoth_change(-1)
-
+	particle_cry = new(get_turf(src))
+	particle_cry.pixel_y = 4
 	//Babies crying hurts your head
+	playsound(src, 'sound/abnormalities/fetus/crying.ogg', 100, FALSE, 10, 5)
 	SLEEP_CHECK_DEATH(3)
-	for(var/mob/living/L in urange(20, src))
-		if(faction_check_mob(L, FALSE))
-			continue
-		if(L.stat == DEAD)
-			continue
-		to_chat(L, span_warning("The crying hurts your head..."))
-		L.deal_damage(10, WHITE_DAMAGE)
-		L.playsound_local(get_step(L, get_dir(L, src)), 'sound/abnormalities/fetus/crying.ogg', 50, FALSE)
+	for(var/i = 1 to 10)
+		for(var/mob/living/L in urange(20, src))
+			if(faction_check_mob(L, FALSE))
+				continue
+			if(L.stat == DEAD)
+				continue
+			if(!(L in hearers))
+				hearers += L
+				to_chat(L, span_warning("The crying hurts your head..."))
+			L.deal_damage(2, WHITE_DAMAGE)
+		SLEEP_CHECK_DEATH(3)
+	SLEEP_CHECK_DEATH(5)
+	can_act = TRUE
+	if(!particle_cry)
+		return
+	particle_cry.fadeout()
 
 
 /* Work effects */

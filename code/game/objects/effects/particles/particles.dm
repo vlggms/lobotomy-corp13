@@ -88,15 +88,15 @@
 /particles/white_night
 	width = 1200
 	height = 1200
-	count = 5000
-	spawning = 1000
-	lifespan = 2 SECONDS
-	fade = 1 SECONDS
-	position = generator("circle", 38, 44, NORMAL_RAND)
+	count = 20000
+	spawning = 2000
+	lifespan = 1 SECONDS
+	fade = 0.5 SECONDS
+	position = generator("circle", 42, 54, NORMAL_RAND)
 	velocity = generator("circle", -4, 4, NORMAL_RAND)
-	friction = 0.3
+	friction = 0.05
 	gradient = list(0, COLOR_WHITE, 0.9, COLOR_RED)
-	color_change = 0.08
+	color_change = 0.1
 	drift = generator("vector", list(0.1, -0.1), list(-0.1, 0.1))
 
 /particles/fragment_note
@@ -126,6 +126,34 @@
 	spin = generator("num", -20, 20)
 	grow = list(0.2,0.2)
 	friction = 0.6
+
+/particles/fragment_note/singing_machine
+	icon_state = "singing_note"
+	lifespan = 4
+	fadein = 2
+	position = generator("circle", 0, 8, NORMAL_RAND)
+	velocity = generator("circle", -8, 8)
+	gravity = list(0, 1)
+	drift = generator("vector", list(0.2, -0.2), list(-0.2, -0.2))
+
+/particles/fragment_song/fetus
+	icon_state = "fetus_cry_large"
+	width = 500
+	height = 500
+	count = 100
+	spawning = 0.5
+	fade = 15
+	fadein = 0
+	scale = list(0.0,0.0)
+	rotation = 0
+	velocity = list(0,0)
+	grow = list(0.5,0.5)
+
+/particles/fragment_song/distorted_form
+	icon_state = list("distorted_screech_small","distorted_screech_medium","distorted_screech_large")
+	width = 256
+	height = 256
+	grow = list(0.3,0.3)
 
 /* Particle emitter objects */
 
@@ -192,3 +220,27 @@
 /obj/particle_emitter/fragment_song
 	layer = MOB_LAYER+1
 	particles = new/particles/fragment_song
+
+/obj/particle_emitter/singing_note
+	layer = MOB_LAYER+1
+	particles = new/particles/fragment_note/singing_machine
+
+/obj/particle_emitter/fetus_cry
+	layer = MOB_LAYER+1
+	particles = new/particles/fragment_song/fetus
+
+/obj/particle_emitter/distorted_screech
+	layer = MOB_LAYER+1
+	particles = new/particles/fragment_song/distorted_form
+
+/obj/particle_emitter/white_night
+	layer = MOB_LAYER-1
+	particles = new/particles/white_night
+	pixel_x = -0.5
+	base_pixel_x = -0.5
+	pixel_y = -0.5
+	base_pixel_y = -0.5
+
+/obj/particle_emitter/white_night/Initialize(mapload, time, _color)
+	. = ..()
+	filters = filter(type="bloom", threshold = rgb(-1000,-1000,-1000), size=1, offset = 0.5)
