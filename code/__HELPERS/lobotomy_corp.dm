@@ -24,9 +24,9 @@
 			continue
 		. += 1
 
-/// Returns amount of available agents and erts that can fight
-/proc/AvailableFighterCount()
-	. = 0
+/// Returns true if there's available agents and erts that can fight
+/proc/AreThereFighters()
+	. = FALSE
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		if(H.stat == DEAD)
 			continue
@@ -40,7 +40,8 @@
 			continue
 		if(!is_station_level(H.z))
 			continue
-		. += 1
+		. = TRUE
+		break
 
 /* Core Suppression helpers */
 /// Returns core suppression by path if its effects are active

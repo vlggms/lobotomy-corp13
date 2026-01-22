@@ -386,7 +386,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 /datum/controller/subsystem/lobotomy_corp/proc/DeathCheck()
 	if(SSmaptype.maptype == "skeld")
 		return FALSE
-	var/agent_count = AvailableFighterCount()
+	var/agent_count = AreThereFighters()
 	if(agent_count > 0)
 		return FALSE
 	return TRUE
