@@ -346,7 +346,7 @@
 		H.ai_controller = /datum/ai_controller/insane/enchanted
 		H.InitializeAIController()
 		enchanted_list.Add(H)
-		H.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "enchanted", -HALO_LAYER))
+		H.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "enchanted_red", -HALO_LAYER))
 		addtimer(CALLBACK(src, PROC_REF(EndEnchant), H), 20 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 	icon_state = icon_living
 	SLEEP_CHECK_DEATH(2 SECONDS)
@@ -358,7 +358,7 @@
 /mob/living/simple_animal/hostile/megafauna/apocalypse_bird/proc/EndEnchant(mob/living/carbon/human/victim)
 	if(victim in enchanted_list)
 		enchanted_list.Remove(victim)
-		victim.cut_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "enchanted", -HALO_LAYER))
+		victim.cut_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "enchanted_red", -HALO_LAYER))
 		if(istype(victim.ai_controller,/datum/ai_controller/insane/enchanted))
 			to_chat(victim, "<span class='boldwarning'>You snap out of your trance!")
 			qdel(victim.ai_controller)
