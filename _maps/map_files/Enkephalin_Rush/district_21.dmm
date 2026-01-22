@@ -4674,13 +4674,13 @@
 	icon_state = "LC20"
 	},
 /obj/structure/rack,
-/obj/item/clothing/suit/armor/ego_gear/teth/visions,
-/obj/item/clothing/suit/armor/ego_gear/teth/visions,
-/obj/item/ego_weapon/lance/visions,
-/obj/item/ego_weapon/lance/visions,
 /obj/structure/disposalpipe/segment{
 	dir = 10
 	},
+/obj/item/clothing/suit/armor/ego_gear/teth/skinprophet,
+/obj/item/clothing/suit/armor/ego_gear/teth/skinprophet,
+/obj/item/ego_weapon/lance/skinprophet,
+/obj/item/ego_weapon/lance/skinprophet,
 /turf/closed/mineral/random/facility/pallid/briah,
 /area/department_main/command)
 "UF" = (

@@ -429,8 +429,7 @@
 	if(!firer)
 		return
 	var/matrix/M = matrix(transform)
-//	var/turf/T = get_turf(src)
-	var/rot_angle = angle//Get_Angle(T, get_turf(target))
+	var/rot_angle = angle
 	M.Turn(rot_angle)
 	switch(firer.dir)
 		if(EAST)
