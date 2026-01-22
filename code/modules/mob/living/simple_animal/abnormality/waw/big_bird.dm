@@ -76,7 +76,7 @@
 
 	var/bite_cooldown
 	var/bite_cooldown_time = 5 SECONDS
-	var/can_move = FALSE
+	var/can_act = FALSE
 	var/hypnosis_cooldown
 	var/hypnosis_cooldown_time = 16 SECONDS
 
@@ -107,7 +107,7 @@
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/Move()
-	if(!can_move)
+	if(!can_act)
 		return FALSE
 	return ..()
 
@@ -115,7 +115,7 @@
 	. = ..()
 	if(client)
 		return
-	if(get_dist(src, target) > 2 && hypnosis_cooldown <= world.time)
+	if(get_dist(src, target) > 2 && hypnosis_cooldown <= world.time && can_act)
 		hypnotize()
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/Initialize()
@@ -123,6 +123,8 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(on_mob_death)) // Hell
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/Destroy()
+	for(var/mob/living/carbon/human/H in lured_list)
+		EndEnchant(H)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
 	return ..()
 
@@ -136,9 +138,6 @@
 	. = ..()
 	if(!(status_flags & GODMODE)) // Whitaker nerf
 		playsound(get_turf(src), 'sound/abnormalities/bigbird/step.ogg', 50, 1)
-
-/mob/living/simple_animal/hostile/abnormality/big_bird/MovedTryAttack() //To prevent BB from practically having 2 range
-	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/CanAttack(atom/the_target)
 	if(ishuman(the_target))
@@ -190,12 +189,8 @@
 	var/list/lowest_priority = list()
 	var/target_turf = get_step_towards(src, target)
 	for(var/mob/living/L in Targets)
-		if(L.stat == DEAD)
-			continue
-		if(faction_check_mob(target, FALSE))
-			continue
 		if(ishuman(L))
-			if(L.health < L.maxHealth*0.3 || L.has_status_effect(STATUS_EFFECT_ENCHANT_1))
+			if(L.health < L.maxHealth*0.3 || L.has_status_effect(STATUS_EFFECT_ENCHANT))
 				if((L in target_turf) || (L in get_turf(src)))
 					lower_priority += L
 				else
@@ -231,8 +226,10 @@
 		if(SSmaptype.maptype == "rcorp" && faction_check_mob(target, FALSE))
 			to_chat(src, span_warning("You almost attack your teammate, but then decide against it."))
 			return
+	if(!can_act)
+		return
 	dir = get_dir(src, attacked_target)
-	can_move = FALSE
+	can_act = FALSE
 	var/mob/living/carbon/current_guy = null
 	if(ishuman(attacked_target))
 		current_guy = attacked_target
@@ -246,21 +243,26 @@
 	for(var/turf/TF in hit_turfs)
 		var/obj/effect/temp_visual/beakbite/B = new(TF)
 		B.color = COLOR_BLACK
+
+	hit_turfs += get_turf(src)
+	var/list/potential_targets = list()
+	for(var/turf/TT in hit_turfs)
+		for(var/mob/living/L in TT)
+			if(L.stat == DEAD)
+				continue
+			if(faction_check_mob(L, FALSE))
+				continue
+			if(istype(L, /mob/living/simple_animal/projectile_blocker_dummy))
+				var/mob/living/simple_animal/projectile_blocker_dummy/pbd = L
+				L = pbd.parent
+			potential_targets |= L
+	potential_targets -= src
+
 	var/mob/to_bite_some = PickBiteVictim(potential_targets, T)
 	if(to_bite_some)
 		attacked_target = to_bite_some
 	if(!(attacked_target in hit_turfs[1]) && !(attacked_target in hit_turfs[2]) && !(attacked_target in hit_turfs[3]) && !(attacked_target in get_turf(src)))
 		target = null
-		var/list/potential_targets = list()
-
-		for(var/turf/TT in hit_turfs)
-			for(var/mob/M in TT)
-				if(istype(M, /mob/living/simple_animal/projectile_blocker_dummy))
-					var/mob/living/simple_animal/projectile_blocker_dummy/pbd = M
-					M = pbd.parent
-				potential_targets |= M
-
-		potential_targets -= src
 
 		var/mob/to_bite = PickBiteVictim(potential_targets, T, TRUE)
 
@@ -273,15 +275,17 @@
 			changeNext_move(attack_cooldown)
 			SLEEP_CHECK_DEATH(1 SECONDS)
 			icon_state = icon_living
-			can_move = TRUE
+			can_act = TRUE
 			bite_cooldown = world.time + bite_cooldown_time/2
 			return
 		else
 			attacked_target = to_bite
+	if(current_guy)
+
 	. = ..()
 	SLEEP_CHECK_DEATH(1 SECONDS)
 	icon_state = icon_living
-	can_move = TRUE
+	can_act = TRUE
 	bite_cooldown = world.time + bite_cooldown_time
 	return
 
@@ -293,7 +297,7 @@
 	hypno_1 = list()
 	hypno_2 = list()
 	hypnosis_cooldown = world.time + hypnosis_cooldown_time
-	can_move = FALSE
+	can_act = FALSE
 	playsound(get_turf(src), 'sound/abnormalities/bigbird/hypnosis.ogg', 50, 1, 2)
 	var/list/hypnotize_list = list()
 	for(var/mob/living/carbon/C in view(8, src))
@@ -317,9 +321,9 @@
 			addtimer(CALLBACK (C, TYPE_PROC_REF(/atom, cut_overlay), new_overlay), 1.9 SECONDS)
 	SLEEP_CHECK_DEATH(2 SECONDS)
 	for(var/mob/living/carbon/C in hypnotize_list)
-		if(!(C in view(8, src)))
+		if(!(C in view(12, src)))
 			continue
-		if((C in hypno_1_old) || (C in hypno_2_old)
+		if((C in hypno_1_old) || (C in hypno_2_old))
 			hypno_2 += C
 		else
 			hypno_1 += C
@@ -330,7 +334,7 @@
 			addtimer(CALLBACK (C, TYPE_PROC_REF(/atom, cut_overlay), new_overlay), 6 SECONDS)
 			C.apply_status_effect(STATUS_EFFECT_ENCHANT)
 	SLEEP_CHECK_DEATH(0.5 SECONDS)
-	can_move = TRUE
+	can_act = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/proc/on_mob_death(datum/source, mob/living/died, gibbed)
 	SIGNAL_HANDLER
@@ -359,15 +363,103 @@
 	if(victim in enchanted_list)
 		enchanted_list.Remove(victim)
 		victim.cut_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "enchanted_red", -HALO_LAYER))
-		if(istype(victim.ai_controller,/datum/ai_controller/insane/enchanted))
+		if(istype(victim.ai_controller,/datum/ai_controller/insane/big_bird))
 			to_chat(victim, "<span class='boldwarning'>You snap out of your trance!")
 			qdel(victim.ai_controller)
+
+/datum/ai_controller/insane/big_bird
+	lines_type = /datum/ai_behavior/say_line/insanity_enchanted
+	var/last_message = 0
+
+/datum/ai_controller/insane/big_bird/SelectBehaviors(delta_time)
+	..()
+	if(blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] != null)
+		return
+
+	var/mob/living/simple_animal/hostile/abnormality/big_bird/bird
+	for(var/mob/living/simple_animal/hostile/abnormality/big_bird/M in GLOB.mob_living_list)
+		if(!istype(M))
+			continue
+		bird = M
+	if(bird)
+		current_behaviors += GET_AI_BEHAVIOR(/datum/ai_behavior/big_bird_move)
+		blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = bird
+
+/datum/ai_controller/insane/big_bird/PerformIdleBehavior(delta_time)
+	var/mob/living/living_pawn = pawn
+	if(DT_PROB(30, delta_time) && (living_pawn.mobility_flags & MOBILITY_MOVE) && isturf(living_pawn.loc) && !living_pawn.pulledby)
+		var/move_dir = pick(GLOB.alldirs)
+		living_pawn.Move(get_step(living_pawn, move_dir), move_dir)
+	if(DT_PROB(25, delta_time))
+		current_behaviors += GET_AI_BEHAVIOR(lines_type)
+
+/datum/ai_behavior/big_bird_move
+
+/datum/ai_behavior/big_bird_move/perform(delta_time, datum/ai_controller/insane/enchanted/controller)
+	. = ..()
+
+	var/mob/living/carbon/human/living_pawn = controller.pawn
+
+	if(IS_DEAD_OR_INCAP(living_pawn))
+		return
+
+	var/mob/living/simple_animal/hostile/megafauna/apocalypse_bird/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
+	if(!istype(target))
+		finish_action(controller, FALSE)
+		return
+
+	if(!LAZYLEN(controller.current_path))
+		controller.current_path = get_path_to(living_pawn, target, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 80)
+		if(!controller.current_path.len) // Returned FALSE or null.
+			finish_action(controller, FALSE)
+			return
+		controller.current_path.Remove(controller.current_path[1])
+		Movement(controller)
+
+/datum/ai_behavior/big_bird_move/proc/Movement(datum/ai_controller/insane/enchanted/controller)
+	var/mob/living/carbon/human/living_pawn = controller.pawn
+	var/mob/living/simple_animal/hostile/abnormality/big_bird/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
+
+	if(world.time > controller.last_message + 10 SECONDS)
+		controller.last_message = world.time
+		controller.current_behaviors += GET_AI_BEHAVIOR(controller.lines_type)
+
+	if(LAZYLEN(controller.current_path) && !IS_DEAD_OR_INCAP(living_pawn))
+		var/target_turf = controller.current_path[1]
+		if(target_turf && get_dist(living_pawn, target_turf) < 3)
+			if(!step_towards(living_pawn, target_turf))
+				controller.pathing_attempts++
+			if(controller.pathing_attempts >= MAX_PATHING_ATTEMPTS)
+				finish_action(controller, FALSE)
+				return FALSE
+			else
+				if(get_turf(living_pawn) == target_turf)
+					controller.current_path.Remove(target_turf)
+					controller.pathing_attempts = 0
+					if(isturf(target.loc) && (target in view(1,living_pawn)))
+						finish_action(controller, TRUE)
+						return
+				else
+					controller.pathing_attempts++
+			var/move_delay = living_pawn.cached_multiplicative_slowdown + 0.1
+			addtimer(CALLBACK(src, PROC_REF(Movement), controller), move_delay)
+			return TRUE
+	finish_action(controller, FALSE)
+	return FALSE
+
+/datum/ai_behavior/big_bird_move/finish_action(datum/ai_controller/insane/enchanted/controller, succeeded)
+	. = ..()
+	var/mob/living/carbon/human/living_pawn = controller.pawn
+	var/mob/living/simple_animal/hostile/abnormality/big_bird/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
+	controller.pathing_attempts = 0
+	controller.current_path = list()
+	if(succeeded)
+		living_pawn.Stun(3 SECONDS)
 
 /datum/status_effect/big_enchant
 	id = "big_bird_enchantment"
 	status_type = STATUS_EFFECT_UNIQUE
 	duration = 6 SECONDS
-
 
 #undef BIGBIRD_HYPNOSIS_COOLDOWN
 #undef STATUS_EFFECT_ENCHANT
