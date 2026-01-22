@@ -123,7 +123,7 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(on_mob_death)) // Hell
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/Destroy()
-	for(var/mob/living/carbon/human/H in lured_list)
+	for(var/mob/living/carbon/human/H in enchanted_list)
 		EndEnchant(H)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
 	return ..()
