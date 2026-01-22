@@ -1,6 +1,5 @@
 #define BIGBIRD_HYPNOSIS_COOLDOWN (20 SECONDS)
-#define STATUS_EFFECT_ENCHANT_1 /datum/status_effect/big_enchant
-#define STATUS_EFFECT_ENCHANT_2 /datum/status_effect/big_enchant/long
+#define STATUS_EFFECT_ENCHANT /datum/status_effect/big_enchant
 /mob/living/simple_animal/hostile/abnormality/big_bird
 	name = "Big Bird"
 	desc = "A large, many-eyed bird that patrols the dark forest with an everlasting lamp. \
@@ -202,12 +201,12 @@
 				else
 					lowest_priority += L
 			else
-				if(L in target_turf || (L in get_turf(src))
+				if(L in target_turf || (L in get_turf(src)))
 					highest_priority += L
 				else
 					higher_priority += L
 		else
-			if(L in target_turf || (L in get_turf(src))
+			if(L in target_turf || (L in get_turf(src)))
 				lower_priority += L
 			else
 				lowest_priority += L
@@ -307,7 +306,7 @@
 			C.throw_at((src), 10, 2)
 		if(prob(66) || (C in hypno_1_old))
 			var/new_overlay = mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "enchanted", -HALO_LAYER)
-			if((C in hypno_1_old) || (C in hypno_1_old)
+			if((C in hypno_1_old) || (C in hypno_1_old))
 				to_chat(C, span_warning("The light..."))
 				new_overlay = mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "enchanted_red", -HALO_LAYER)
 			else
@@ -328,8 +327,8 @@
 			C.Stun(2 SECONDS)
 			var/new_overlay = mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "enchanted", -HALO_LAYER)
 			C.add_overlay(new_overlay)
-			addtimer(CALLBACK (C, TYPE_PROC_REF(/atom, cut_overlay), new_overlay), 2 SECONDS)
-			C.apply_status_effect(STATUS_EFFECT_ENCHANT_1)
+			addtimer(CALLBACK (C, TYPE_PROC_REF(/atom, cut_overlay), new_overlay), 6 SECONDS)
+			C.apply_status_effect(STATUS_EFFECT_ENCHANT)
 	SLEEP_CHECK_DEATH(0.5 SECONDS)
 	can_move = TRUE
 
@@ -367,13 +366,8 @@
 /datum/status_effect/big_enchant
 	id = "big_bird_enchantment"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 2 SECONDS
-
-/datum/status_effect/big_enchant/long
-	id = "big_bird_enchantment_long"
-	duration = 10 SECONDS
+	duration = 6 SECONDS
 
 
 #undef BIGBIRD_HYPNOSIS_COOLDOWN
-#undef STATUS_EFFECT_ENCHANT_1
-#undef STATUS_EFFECT_ENCHANT_2
+#undef STATUS_EFFECT_ENCHANT
