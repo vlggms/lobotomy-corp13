@@ -701,7 +701,7 @@
 		to_chat(usr, "<span class='boldnotice'>You must be dead to use this!</span>")
 		return
 
-	if(length(GLOB.clients) > 30 && LAZYLEN(SSlobotomy_corp.current_ordeals))
+	if((SSmaptype.maptype in list("standard", "skeld", "fishing", "wonderlabs")) && LAZYLEN(SSlobotomy_corp.current_ordeals))
 		var/list/ordeal_names = list()
 		for(var/datum/ordeal/O in SSlobotomy_corp.current_ordeals)
 			ordeal_names += O.name

@@ -25,8 +25,12 @@
 	var/color = COLOR_VERY_LIGHT_GRAY
 	/// If ordeal can be normally chosen
 	var/can_run = TRUE
+	///The Position of the ordeal in the list
+	var/ordeal_position = null
 	/// World.time when ordeal started
 	var/start_time
+	/// World.time when ordeal ends
+	var/end_time
 	/// Achivement for Surviving the Ordeal
 	var/ordeal_achievement
 
@@ -38,7 +42,9 @@
 // Runs the event itself
 /datum/ordeal/proc/Run()
 	start_time = ROUNDTIME
+	SSticker.ordeal_info += list(name, color, start_time, null)
 	SSlobotomy_corp.current_ordeals += src
+	ordeal_position = SSticker.ordeal_info.len
 	priority_announce(announce_text, name, sound='sound/vox_fem/..ogg') // We want this to be silent, so play a silent sound since null uses defaults
 	/// If dawn started - clear suppression options
 	if(level == 1 && !istype(SSlobotomy_corp.core_suppression))
@@ -49,10 +55,15 @@
 			ShowOrdealBlurb(watcher, 25, 40, color)
 			if(announce_sound)
 				player.playsound_local(get_turf(player), announce_sound, 35, 0)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ORDEAL_START, src)
 	return
 
 // Ends the event
 /datum/ordeal/proc/End()
+	if(end_time)
+		return
+	end_time = ROUNDTIME
+	SSticker.ordeal_info[ordeal_position] = list(name, color, start_time, end_time)
 	var/total_reward = max(SSlobotomy_corp.box_goal, 3000) * reward_percent
 	priority_announce("The Ordeal has ended. Facility has been rewarded with [reward_percent*100]% PE.", name, sound='sound/vox_fem/..ogg')
 	SSlobotomy_corp.AdjustAvailableBoxes(total_reward)

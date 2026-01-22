@@ -126,7 +126,7 @@
 	short_desc = "You are part of the 4th pack. A subsidiary of the miliaristic R corp which is assigned to handle requests from their long time client L corp."
 	flavour_text = "There is new information that LCorp is stealing your equipment. Graze them all."
 	uses = 20
-
+	assignedrole = "SGT_KILL"//we don't want them to count as players for ordeals
 
 //Wcorp Mobspawners
 /obj/effect/mob_spawn/human/supplypod/r_corp/wcorp_call
