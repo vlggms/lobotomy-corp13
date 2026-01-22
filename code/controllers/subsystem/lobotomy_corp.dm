@@ -430,3 +430,13 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	to_chat(world, span_danger("<b>All agents are dead or panicking! If ordeals are left unresolved, new agents don't join or a panicking agent isn't dealt with, the round will automatically end in <u>[round(time/10)] seconds!</u></b>"))
 	restart_timer = addtimer(CALLBACK(src, PROC_REF(DeathAutoRestart), max(0, time - 30 SECONDS)), 30 SECONDS, TIMER_STOPPABLE)
 	return TRUE
+
+/datum/controller/subsystem/lobotomy_corp/proc/CheckRepairState()
+	var/repaired_machines = GLOB.lobotomy_repairs
+	var/total_machines = GLOB.lobotomy_damages
+	var/facility_full_percentage = 100 * (repaired_machines / total_machines)
+
+	if(((next_ordeal_level - 1) * 20) < facility_full_percentage)
+		OrdealEvent()
+
+	return facility_full_percentage
