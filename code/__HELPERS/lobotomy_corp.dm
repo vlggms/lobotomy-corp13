@@ -25,7 +25,7 @@
 		. += 1
 
 /// Returns true if there's available agents and erts that can fight
-/proc/AreThereFighters()
+/proc/CheckForFighters()
 	. = FALSE
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		if(H.stat == DEAD)
