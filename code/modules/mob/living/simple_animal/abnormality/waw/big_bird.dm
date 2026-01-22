@@ -1,5 +1,6 @@
-#define BIGBIRD_HYPNOSIS_COOLDOWN (16 SECONDS)
-
+#define BIGBIRD_HYPNOSIS_COOLDOWN (20 SECONDS)
+#define STATUS_EFFECT_ENCHANT_1 /datum/status_effect/big_enchant
+#define STATUS_EFFECT_ENCHANT_2 /datum/status_effect/big_enchant/long
 /mob/living/simple_animal/hostile/abnormality/big_bird
 	name = "Big Bird"
 	desc = "A large, many-eyed bird that patrols the dark forest with an everlasting lamp. \
@@ -42,9 +43,8 @@
 	light_range = 5
 	light_power = 7
 
-	// This stuff is only done to non-humans and objects
 	melee_damage_type = RED_DAMAGE//It bites
-	melee_damage_lower = 40
+	melee_damage_lower = 35
 	melee_damage_upper = 50
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
@@ -83,8 +83,7 @@
 
 	var/list/hypno_1 = list()
 	var/list/hypno_2 = list()
-	var/list/hypno_3 = list()
-
+	var/list/enchanted_list = list()
 	//PLAYABLES ATTACKS
 	attack_action_types = list(/datum/action/cooldown/big_bird_hypnosis)
 
@@ -185,7 +184,7 @@
 
 	return
 
-/mob/living/simple_animal/hostile/abnormality/big_bird/proc/PickBiteVictim(list/Targets, atom/target) // We pick non hypnoed people directly infront of bb first
+/mob/living/simple_animal/hostile/abnormality/big_bird/proc/PickBiteVictim(list/Targets, atom/target, check_lower = FALSE) // We pick non hypnoed people directly infront or ontop of bb first
 	var/list/highest_priority = list()
 	var/list/higher_priority = list()
 	var/list/lower_priority = list()
@@ -197,18 +196,18 @@
 		if(faction_check_mob(target, FALSE))
 			continue
 		if(ishuman(L))
-			if(L.health < L.maxHealth*0.3 || has_status_effect(STATUS_EFFECT_STUN))
-				if(L in target_turf)
+			if(L.health < L.maxHealth*0.3 || L.has_status_effect(STATUS_EFFECT_ENCHANT_1))
+				if((L in target_turf) || (L in get_turf(src)))
 					lower_priority += L
 				else
 					lowest_priority += L
 			else
-				if(L in target_turf)
+				if(L in target_turf || (L in get_turf(src))
 					highest_priority += L
 				else
 					higher_priority += L
 		else
-			if(L in target_turf)
+			if(L in target_turf || (L in get_turf(src))
 				lower_priority += L
 			else
 				lowest_priority += L
@@ -216,10 +215,11 @@
 		return . = pick(higher_priority)
 	if(LAZYLEN(higher_priority))
 		return . = pick(highest_priority)
-	if(LAZYLEN(lower_priority))
-		return . = pick(lower_priority)
-	if(LAZYLEN(lowest_priority))
-		return . = pick(lowest_priority)
+	if(check_lower)
+		if(LAZYLEN(lower_priority))
+			return . = pick(lower_priority)
+		if(LAZYLEN(lowest_priority))
+			return . = pick(lowest_priority)
 	return null
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/AttackingTarget(atom/attacked_target)
@@ -234,14 +234,22 @@
 			return
 	dir = get_dir(src, attacked_target)
 	can_move = FALSE
-	to_chat(world, "[attacked_target]")
+	var/mob/living/carbon/current_guy = null
+	if(ishuman(attacked_target))
+		current_guy = attacked_target
 	var/turf/T = get_step(src,dir)
+	var/list/hit_turfs = get_sweep_turfs(T)
+	for(var/turf/TF in hit_turfs)
+		var/obj/effect/temp_visual/cult/sparks/C = new(TF)
+		C.duration = 8 SECONDS
 	icon_state = "big_bird_chomp"
 	SLEEP_CHECK_DEATH(8.5)
-	var/list/hit_turfs = get_sweep_turfs(T)
 	for(var/turf/TF in hit_turfs)
 		var/obj/effect/temp_visual/beakbite/B = new(TF)
 		B.color = COLOR_BLACK
+	var/mob/to_bite_some = PickBiteVictim(potential_targets, T)
+	if(to_bite_some)
+		attacked_target = to_bite_some
 	if(!(attacked_target in hit_turfs[1]) && !(attacked_target in hit_turfs[2]) && !(attacked_target in hit_turfs[3]) && !(attacked_target in get_turf(src)))
 		target = null
 		var/list/potential_targets = list()
@@ -255,7 +263,7 @@
 
 		potential_targets -= src
 
-		var/mob/to_bite = PickBiteVictim(potential_targets, T)
+		var/mob/to_bite = PickBiteVictim(potential_targets, T, TRUE)
 
 		if(!to_bite)
 			visible_message(span_danger("\The [src] bite the air!"))
@@ -267,7 +275,7 @@
 			SLEEP_CHECK_DEATH(1 SECONDS)
 			icon_state = icon_living
 			can_move = TRUE
-			bite_cooldown = world.time + bite_cooldown_time
+			bite_cooldown = world.time + bite_cooldown_time/2
 			return
 		else
 			attacked_target = to_bite
@@ -281,6 +289,10 @@
 /mob/living/simple_animal/hostile/abnormality/big_bird/proc/hypnotize()
 	if(hypnosis_cooldown > world.time)
 		return
+	var/list/hypno_1_old = hypno_1
+	var/list/hypno_2_old = hypno_2
+	hypno_1 = list()
+	hypno_2 = list()
 	hypnosis_cooldown = world.time + hypnosis_cooldown_time
 	can_move = FALSE
 	playsound(get_turf(src), 'sound/abnormalities/bigbird/hypnosis.ogg', 50, 1, 2)
@@ -293,22 +305,31 @@
 		if(ismoth(C))
 			pick(C.emote("scream"), C.visible_message(span_boldwarning("[C] lunges for the light!")))
 			C.throw_at((src), 10, 2)
-		if(prob(66))
-			to_chat(C, span_warning("You feel tired..."))
+		if(prob(66) || (C in hypno_1_old))
+			var/new_overlay = mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "enchanted", -HALO_LAYER)
+			if((C in hypno_1_old) || (C in hypno_1_old)
+				to_chat(C, span_warning("The light..."))
+				new_overlay = mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "enchanted_red", -HALO_LAYER)
+			else
+				to_chat(C, span_warning("You feel tired..."))
 			C.blur_eyes(5)
 			hypnotize_list += C
-			var/new_overlay = mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "enchanted", -HALO_LAYER)
 			C.add_overlay(new_overlay)
 			addtimer(CALLBACK (C, TYPE_PROC_REF(/atom, cut_overlay), new_overlay), 1.9 SECONDS)
 	SLEEP_CHECK_DEATH(2 SECONDS)
 	for(var/mob/living/carbon/C in hypnotize_list)
 		if(!(C in view(8, src)))
 			continue
-		C.blind_eyes(2)
-		C.Stun(2 SECONDS)
-		var/new_overlay = mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "enchanted", -HALO_LAYER)
-		C.add_overlay(new_overlay)
-		addtimer(CALLBACK (C, TYPE_PROC_REF(/atom, cut_overlay), new_overlay), 2 SECONDS)
+		if((C in hypno_1_old) || (C in hypno_2_old)
+			hypno_2 += C
+		else
+			hypno_1 += C
+			C.blind_eyes(2)
+			C.Stun(2 SECONDS)
+			var/new_overlay = mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "enchanted", -HALO_LAYER)
+			C.add_overlay(new_overlay)
+			addtimer(CALLBACK (C, TYPE_PROC_REF(/atom, cut_overlay), new_overlay), 2 SECONDS)
+			C.apply_status_effect(STATUS_EFFECT_ENCHANT_1)
 	SLEEP_CHECK_DEATH(0.5 SECONDS)
 	can_move = TRUE
 
@@ -335,4 +356,24 @@
 	datum_reference.qliphoth_change(-1)
 	return
 
+/mob/living/simple_animal/hostile/abnormality/big_bird/proc/EndEnchant(mob/living/carbon/human/victim)
+	if(victim in enchanted_list)
+		enchanted_list.Remove(victim)
+		victim.cut_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "enchanted_red", -HALO_LAYER))
+		if(istype(victim.ai_controller,/datum/ai_controller/insane/enchanted))
+			to_chat(victim, "<span class='boldwarning'>You snap out of your trance!")
+			qdel(victim.ai_controller)
+
+/datum/status_effect/big_enchant
+	id = "big_bird_enchantment"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 2 SECONDS
+
+/datum/status_effect/big_enchant/long
+	id = "big_bird_enchantment_long"
+	duration = 10 SECONDS
+
+
 #undef BIGBIRD_HYPNOSIS_COOLDOWN
+#undef STATUS_EFFECT_ENCHANT_1
+#undef STATUS_EFFECT_ENCHANT_2
