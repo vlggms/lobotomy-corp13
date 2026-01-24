@@ -324,7 +324,7 @@
 				set_coefficient = 2
 			if(TRUMPET_1)
 				set_coefficient = 1
-			if(SEC_LEVEL_BLUE)
+			if(TRUMPET_2)
 				set_coefficient = 0.8
 			else
 				set_coefficient = 0.6
