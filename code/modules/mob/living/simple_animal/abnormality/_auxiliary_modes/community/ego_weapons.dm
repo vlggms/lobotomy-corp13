@@ -849,41 +849,6 @@
 	pixel_x = 0
 	base_pixel_x = 0
 
-/datum/status_effect/display/rend//find a better file to put these in
-	id = "rend_red"
-	status_type = STATUS_EFFECT_UNIQUE
-	display_name = "red"
-	duration = 60 //6 seconds
-	alert_type = null
-	var/modifier_path = /datum/dc_change/rend/red
-
-/datum/status_effect/display/rend/on_apply()
-	. = ..()
-	if(!istype(owner, /mob/living/simple_animal))
-		qdel(src)
-		return
-	var/mob/living/simple_animal/M = owner
-	M.AddModifier(modifier_path)
-//20% damage increase. Hitting any abnormality that has a negative value will cause this
-//to be a buff to their healing.
-
-/datum/status_effect/display/rend/on_remove()
-	if(!istype(owner, /mob/living/simple_animal))
-		return ..()
-	var/mob/living/simple_animal/M = owner
-	M.RemoveModifier(modifier_path)
-	..()
-
-/datum/status_effect/display/rend/white
-	id = "rend_white"
-	display_name = "white"
-	modifier_path = /datum/dc_change/rend/white
-
-/datum/status_effect/display/rend/black/weak//10% damage
-	id = "rend_black_weak"
-	display_name = "black"
-	modifier_path = /datum/dc_change/rend/black/weak
-
 /datum/status_effect/display/crash_curse
 	id = "crashing_curse"
 	display_name = "evildragon"

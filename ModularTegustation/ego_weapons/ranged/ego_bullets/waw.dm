@@ -242,9 +242,9 @@
 	. = ..()
 	if(isliving(target))
 		var/mob/living/simple_animal/M = target
-		if(!ishuman(M) && !M.has_status_effect(/datum/status_effect/rend_red))
+		if(!ishuman(M) && !M.has_status_effect(/datum/status_effect/display/rend))
 			new /obj/effect/temp_visual/cult/sparks(get_turf(M))
-			M.apply_status_effect(/datum/status_effect/rend_red)
+			M.apply_status_effect(/datum/status_effect/display/rend)
 
 //feather of valor
 /obj/projectile/ego_bullet/ego_warring
