@@ -338,6 +338,7 @@
 /mob/living/simple_animal/hostile/abnormality/distortedform/death(gibbed)
 	if(changed)
 		ChangeForm()
+	SSticker.superbosses |= initial(name)
 	can_act = FALSE
 	icon_state = icon_dead
 	icon = 'ModularTegustation/Teguicons/abno_cores/aleph.dmi'

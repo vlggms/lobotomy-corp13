@@ -324,8 +324,10 @@
 				set_coefficient = 2
 			if(TRUMPET_1)
 				set_coefficient = 1
+			if(SEC_LEVEL_BLUE)
+				set_coefficient = 0.8
 			else
-				set_coefficient = 0.5
+				set_coefficient = 0.6
 	var/call_time = SSshuttle.emergencyCallTime * set_coefficient * engine_coeff
 	switch(mode)
 		// The shuttle can not normally be called while "recalling", so
