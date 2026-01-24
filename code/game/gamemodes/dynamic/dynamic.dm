@@ -237,8 +237,8 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 
 	print_command_report(., "Central Command Status Summary", announce=FALSE)
 	priority_announce("A summary has been copied and printed to all communications consoles.", "Security level elevated.", ANNOUNCER_INTERCEPT)
-	if(GLOB.security_level < SEC_LEVEL_BLUE)
-		set_security_level(SEC_LEVEL_BLUE)
+	if(GLOB.emergency_level < TRUMPET_1)
+		SSlobotomy_emergency.SetEmergencyLevel(TRUMPET_1)
 
 // Yes, this is copy pasted from game_mode
 /datum/game_mode/dynamic/check_finished(force_ending)

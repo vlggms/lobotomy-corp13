@@ -43,6 +43,9 @@
 	/// The last lines used for changing the status display
 	var/static/last_status_display
 
+	var/emergency_cooldown
+	var/emergency_cooldown_time = 5 MINUTES
+
 /obj/machinery/computer/communications/Initialize()
 	. = ..()
 	GLOB.shuttle_caller_list += src
@@ -127,9 +130,9 @@
 				return
 
 			// Check if they have
-			if (!issilicon(usr))
-				var/obj/item/held_item = usr.get_active_held_item()
-				var/obj/item/card/id/id_card = held_item?.GetID()
+			if(isliving(usr))
+				var/mob/living/L = usr
+				var/obj/item/card/id/id_card = L.get_idcard(hand_first = TRUE)
 				if (!istype(id_card))
 					to_chat(usr, "<span class='warning'>You need to swipe your ID!</span>")
 					playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)
@@ -139,21 +142,21 @@
 					playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)
 					return
 
-			var/new_sec_level = seclevel2num(params["newSecurityLevel"])
-			if (new_sec_level != SEC_LEVEL_GREEN && new_sec_level != SEC_LEVEL_BLUE && new_sec_level != SEC_LEVEL_RED && new_sec_level != SEC_LEVEL_DELTA)
+			var/new_sec_level = emgcylevel2num(params["newSecurityLevel"])
+			if (new_sec_level != TRUMPET_0 && new_sec_level != TRUMPET_1 && new_sec_level != TRUMPET_2 && new_sec_level != TRUMPET_3)
 				return
-			if (GLOB.security_level == new_sec_level)
+			if (GLOB.emergency_level == new_sec_level)
 				return
 
-			set_security_level(new_sec_level)
-
+			SSlobotomy_emergency.SetEmergencyLevel(new_sec_level, TRUE)
+			emergency_cooldown = emergency_cooldown_time + world.time
 			to_chat(usr, "<span class='notice'>Authorization confirmed. Modifying security level.</span>")
 			playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
 
 			// Only notify people if an actual change happened
-			log_game("[key_name(usr)] has changed the security level to [params["newSecurityLevel"]] with [src] at [AREACOORD(usr)].")
-			message_admins("[ADMIN_LOOKUPFLW(usr)] has changed the security level to [params["newSecurityLevel"]] with [src] at [AREACOORD(usr)].")
-			deadchat_broadcast(" has changed the security level to [params["newSecurityLevel"]] with [src] at <span class='name'>[get_area_name(usr, TRUE)]</span>.", "<span class='name'>[usr.real_name]</span>", usr, message_type=DEADCHAT_ANNOUNCEMENT)
+			log_game("[key_name(usr)] has changed the emergency level to [params["newSecurityLevel"]] with [src] at [AREACOORD(usr)].")
+			message_admins("[ADMIN_LOOKUPFLW(usr)] has changed the emergency level to [params["newSecurityLevel"]] with [src] at [AREACOORD(usr)].")
+			deadchat_broadcast(" has changed the emergency level to [params["newSecurityLevel"]] with [src] at <span class='name'>[get_area_name(usr, TRUE)]</span>.", "<span class='name'>[usr.real_name]</span>", usr, message_type=DEADCHAT_ANNOUNCEMENT)
 
 			alert_level_tick += 1
 		if ("deleteMessage")
@@ -373,7 +376,12 @@
 				data["shuttleCalled"] = FALSE
 				data["shuttleLastCalled"] = FALSE
 
-				data["alertLevel"] = get_security_level()
+				data["alertLevel"] = get_emergency_level()
+				data["canChangeEmergency"] = can_change_emergency()
+				data["noEmergencyFail"] = (SSlobotomy_emergency.score_min > 0)
+				data["firstTrumpetFail"] = (SSlobotomy_emergency.score_min > SSlobotomy_emergency.trumpet_1)
+				data["secondTrumpetFail"] = (SSlobotomy_emergency.score_min > SSlobotomy_emergency.trumpet_2)
+				data["thirdTrumpetFail"] = (SSlobotomy_emergency.score_min > SSlobotomy_emergency.trumpet_3)
 				data["authorizeName"] = authorize_name
 				data["canLogOut"] = !issilicon(user)
 				data["shuttleCanEvacOrFailReason"] = SSshuttle.canEvac(user)
@@ -545,6 +553,13 @@
 	var/list/possible_answers = list()
 	var/answered
 	var/datum/callback/answer_callback
+
+/// Check if the emergency cooldown is over
+/// Returns TRUE if it is. Otherwise, returns the cooldown time.
+/obj/machinery/computer/communications/proc/can_change_emergency()
+	if(world.time < emergency_cooldown)
+		return "[DisplayTimeText(emergency_cooldown - world.time)]"
+	return TRUE
 
 /datum/comm_message/New(new_title,new_content,new_possible_answers)
 	..()

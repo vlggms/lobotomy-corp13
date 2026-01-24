@@ -85,7 +85,7 @@
 			var/turf/T = get_turf(L)
 			visible_message("<span class='danger'>[L] is submerged in slime as another slime pawn appears!</span>")
 			L.gib()
-			new /mob/living/simple_animal/hostile/slime(T)
+			new /mob/living/simple_animal/hostile/aminion/slime(T)
 			return BULLET_ACT_HIT
 		if(!isbot(L))
 			L.visible_message("<span class='warning'>[L] is hit by [src], they seem to wither away!</span>")
@@ -401,10 +401,10 @@
 	nodamage = TRUE	//Damage is calculated later
 	var/list/safe_mobs = list(
 	/mob/living/simple_animal/hostile/abnormality/last_shot,
-	/mob/living/simple_animal/hostile/meatblob,
-	/mob/living/simple_animal/hostile/meatblob/gunner,
-	/mob/living/simple_animal/hostile/meatblob/gunner/shotgun,
-	/mob/living/simple_animal/hostile/meatblob/gunner/sniper,
+	/mob/living/simple_animal/hostile/aminion/meatblob,
+	/mob/living/simple_animal/hostile/aminion/meatblob/gunner,
+	/mob/living/simple_animal/hostile/aminion/meatblob/gunner/shotgun,
+	/mob/living/simple_animal/hostile/aminion/meatblob/gunner/sniper,
 	)
 
 /obj/projectile/bonebullet/on_hit(atom/target, blocked = FALSE)

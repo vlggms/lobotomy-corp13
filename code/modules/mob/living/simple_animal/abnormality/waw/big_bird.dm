@@ -22,7 +22,7 @@
 	see_in_dark = 10
 	stat_attack = HARD_CRIT
 
-	move_to_delay = 5
+	move_to_delay = 7
 	threat_level = WAW_LEVEL
 	can_breach = TRUE
 	start_qliphoth = 5
@@ -116,6 +116,10 @@
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
 	return ..()
 
+/mob/living/simple_animal/hostile/abnormality/big_bird/Life()
+	. = ..()
+	emergency_check()
+
 /mob/living/simple_animal/hostile/abnormality/big_bird/Moved()
 	. = ..()
 	if(!(status_flags & GODMODE)) // Whitaker nerf
@@ -186,6 +190,16 @@
 	if(!died.mind)
 		return FALSE
 	datum_reference.qliphoth_change(-1) // One death reduces it
+	return TRUE
+
+//I fucking hate that this can be added now - Crabby
+/mob/living/simple_animal/hostile/abnormality/big_bird/proc/emergency_check()
+	//if CONTAINED and shits going down
+	if(IsContained() && (GLOB.emergency_level >= TRUMPET_2) && (datum_reference?.emergency_breach))
+		BreachEffect() // FUCK YOU!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		if(datum_reference)
+			datum_reference.emergency_breach = FALSE
+			datum_reference.qliphoth_meter = 0
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/SuccessEffect(mob/living/carbon/human/user, work_type, pe)

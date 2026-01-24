@@ -101,7 +101,7 @@
 	density = FALSE
 	playsound(src, 'sound/abnormalities/doomsdaycalendar/Doomsday_Dead.ogg', 100, 1)
 	icon = 'ModularTegustation/Teguicons/abno_cores/he.dmi'
-	for(var/mob/living/simple_animal/hostile/doomsday_doll/D in spawned_dolls) //delete the dolls when suppressed
+	for(var/mob/living/simple_animal/hostile/aminion/doomsday_doll/D in spawned_dolls) //delete the dolls when suppressed
 		D.death()
 		QDEL_IN(D, rand(1,5) SECONDS)
 		spawned_dolls -= D
@@ -309,10 +309,10 @@
 	if(M.stat != DEAD)
 		return FALSE
 	if(do_after(user, 20, target = M))
-		if(!ishuman(M) && !istype(M, /mob/living/simple_animal/hostile/doomsday_doll))
+		if(!ishuman(M) && !istype(M, /mob/living/simple_animal/hostile/aminion/doomsday_doll))
 			to_chat(user, span_warning("[src] rejects your offering!"))
 			return
-		if(istype(M ,/mob/living/simple_animal/hostile/doomsday_doll))
+		if(istype(M ,/mob/living/simple_animal/hostile/aminion/doomsday_doll))
 			spawned_dolls -= M
 		to_chat(user, span_nicegreen("[src] is sated by your offering!"))
 		M.gib()
@@ -324,7 +324,7 @@
 
 //***Simple Mobs***//
 //clay dolls
-/mob/living/simple_animal/hostile/doomsday_doll
+/mob/living/simple_animal/hostile/aminion/doomsday_doll
 	name = "doomsday clay doll"
 	desc = "A vaguely humanoid figure bearing a heavy clay helmet."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
@@ -348,10 +348,11 @@
 	stat_attack = HARD_CRIT
 	del_on_death = FALSE
 	density = TRUE
-	var/list/breach_affected = list()
+	threat_level = TETH_LEVEL
+	score_divider = 4//they're cannon fodder anyways
 	var/can_act = TRUE
 
-/mob/living/simple_animal/hostile/doomsday_doll/Initialize()
+/mob/living/simple_animal/hostile/aminion/doomsday_doll/Initialize()
 	. = ..()
 	base_pixel_x = rand(-6,6)
 	pixel_x = base_pixel_x
@@ -363,5 +364,5 @@
 	if (doll_count >= doll_count_maximum)
 		return
 	for(var/i = doll_count, i < doll_count_maximum, i++)//This counts up
-		var /mob/living/simple_animal/hostile/doomsday_doll/D= new(get_turf(src))
+		var /mob/living/simple_animal/hostile/aminion/doomsday_doll/D= new(get_turf(src))
 		spawned_dolls += D

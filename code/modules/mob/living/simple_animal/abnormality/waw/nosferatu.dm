@@ -241,7 +241,7 @@
 /mob/living/simple_animal/hostile/abnormality/nosferatu/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
 	var/list/units_to_add = list(
-		/mob/living/simple_animal/hostile/nosferatu_mob = 8
+		/mob/living/simple_animal/hostile/aminion/nosferatu_mob = 8
 		)
 	AddComponent(/datum/component/ai_leadership, units_to_add, 4)
 	mist_cooldown = world.time + mist_cooldown_time
@@ -371,7 +371,7 @@
 		return
 
 	//Actually spawning them
-	var/mob/living/simple_animal/hostile/nosferatu_mob/B = new(get_turf(target_atom))
+	var/mob/living/simple_animal/hostile/aminion/nosferatu_mob/B = new(get_turf(target_atom))
 	spawned_bats+=B
 
 /mob/living/simple_animal/hostile/abnormality/nosferatu/proc/Banquet()//AOE attack
@@ -488,9 +488,9 @@
 
 // This snippet of code makes it so that attacks from its minions give it blood.
 /mob/living/simple_animal/hostile/abnormality/nosferatu/attack_animal(mob/living/simple_animal/M)
-	if(!istype(M, /mob/living/simple_animal/hostile/nosferatu_mob))
+	if(!istype(M, /mob/living/simple_animal/hostile/aminion/nosferatu_mob))
 		return ..()
-	var/mob/living/simple_animal/hostile/nosferatu_mob/blood_transfer_target = M
+	var/mob/living/simple_animal/hostile/aminion/nosferatu_mob/blood_transfer_target = M
 	var/datum/component/bloodfeast/target_bloodfeast = blood_transfer_target.GetComponent(/datum/component/bloodfeast)
 	if(target_bloodfeast.blood_amount >= 100)
 		var/amount_to_transfer = clamp(target_bloodfeast.blood_amount, 100, 1000)
@@ -502,7 +502,7 @@
 		blood_transfer_target.LoseTarget()
 
 // Bat minion - A non-dense trash mob that automatically harvests blood on attacks and returns blood to nosferatu. Dangeorus.
-/mob/living/simple_animal/hostile/nosferatu_mob
+/mob/living/simple_animal/hostile/aminion/nosferatu_mob
 	name = "\improper Sanguine bat"
 	desc = "It looks like a bat."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
@@ -528,16 +528,18 @@
 	ranged = TRUE
 	retreat_distance = 3
 	minimum_distance = 1
+	threat_level = HE_LEVEL
+	score_divider = 8
 
-/mob/living/simple_animal/hostile/nosferatu_mob/Initialize(mapload)
+/mob/living/simple_animal/hostile/aminion/nosferatu_mob/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/bloodfeast, range = 1)
 
-/mob/living/simple_animal/hostile/nosferatu_mob/proc/AdjustThirst(blood_amount)
+/mob/living/simple_animal/hostile/aminion/nosferatu_mob/proc/AdjustThirst(blood_amount)
 	var/datum/component/bloodfeast/bloodfeast = GetComponent(/datum/component/bloodfeast)
 	bloodfeast.AdjustBlood(blood_amount)
 
-/mob/living/simple_animal/hostile/nosferatu_mob/AttackingTarget(atom/attacked_target) // They gain blood on hit
+/mob/living/simple_animal/hostile/aminion/nosferatu_mob/AttackingTarget(atom/attacked_target) // They gain blood on hit
 	. = ..()
 	if(!ishuman(attacked_target))
 		return
@@ -548,13 +550,13 @@
 		return
 	AdjustThirst(100)
 
-/mob/living/simple_animal/hostile/nosferatu_mob/OpenFire(atom/A)
+/mob/living/simple_animal/hostile/aminion/nosferatu_mob/OpenFire(atom/A)
 	if(istype(A, /mob/living/simple_animal/hostile/abnormality/nosferatu))
 		return
 	visible_message(span_danger("<b>[src]</b> flies around, seemingly aiming for [A]!"))
 	ranged_cooldown = world.time + ranged_cooldown_time
 
-/mob/living/simple_animal/hostile/nosferatu_mob/PickTarget(list/Targets)
+/mob/living/simple_animal/hostile/aminion/nosferatu_mob/PickTarget(list/Targets)
 	var/list/priority = list()
 	for(var/mob/living/L in Targets)
 		if(istype(L, /mob/living/simple_animal/hostile/abnormality/nosferatu))
@@ -568,12 +570,12 @@
 	if(LAZYLEN(priority))
 		return pick(priority)
 
-/mob/living/simple_animal/hostile/nosferatu_mob/CanAttack(atom/the_target)
+/mob/living/simple_animal/hostile/aminion/nosferatu_mob/CanAttack(atom/the_target)
 	if(istype(the_target, /mob/living/simple_animal/hostile/abnormality/nosferatu))
 		return TRUE
 	return ..()
 
-/mob/living/simple_animal/hostile/nosferatu_mob/death(gibbed)
+/mob/living/simple_animal/hostile/aminion/nosferatu_mob/death(gibbed)
 	var/datum/component/bloodfeast/bloodfeast = GetComponent(/datum/component/bloodfeast)
 	var/obj/effect/decal/cleanable/blood/B = new(get_turf(src))
 	B.bloodiness = (bloodfeast.blood_amount * 0.5) // drops half of its blood on death. This is potentially far more than what fits in a splatter.
