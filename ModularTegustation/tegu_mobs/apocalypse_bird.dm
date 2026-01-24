@@ -45,9 +45,9 @@
 	score_divider = 1.5//Worth 50 points since jbirb, bbird, and pbird add an additional 140 so 190 total.
 	var/list/eggs = list()
 	var/list/egg_types = list(
-						/mob/living/simple_animal/apocalypse_egg/beak,
-						/mob/living/simple_animal/apocalypse_egg/arm,
-						/mob/living/simple_animal/apocalypse_egg/eyes,
+						/mob/living/simple_animal/hostile/aminion/apocalypse_egg/beak,
+						/mob/living/simple_animal/hostile/aminion/apocalypse_egg/arm,
+						/mob/living/simple_animal/hostile/aminion/apocalypse_egg/eyes,
 						)
 	var/list/birds = list()
 	/// If TRUE - will prevent abilities from activating
@@ -83,10 +83,10 @@
 	meltdown_cooldown = world.time + 30 SECONDS
 	var/list/potential_locs = shuffle(GLOB.department_centers)
 	for(var/E in egg_types)
-		if(!ispath(E, /mob/living/simple_animal/apocalypse_egg))
+		if(!ispath(E, /mob/living/simple_animal/hostile/aminion/apocalypse_egg))
 			continue
 		var/turf/T = pick(potential_locs)
-		var/mob/living/simple_animal/apocalypse_egg/EGG = new E(T)
+		var/mob/living/simple_animal/hostile/aminion/apocalypse_egg/EGG = new E(T)
 		EGG.bird = src
 		eggs += EGG
 		potential_locs -= T
@@ -394,7 +394,7 @@
 /* Structures */
 // I really love making "mob-structures", because I'm special
 //													- Egor
-/mob/living/simple_animal/apocalypse_egg
+/mob/living/simple_animal/hostile/aminion/apocalypse_egg
 	name = "Egg"
 	desc = "A mysterious entity..."
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
@@ -407,6 +407,8 @@
 	pull_force = MOVE_FORCE_STRONG
 	mob_size = MOB_SIZE_HUGE
 	layer = ABOVE_ALL_MOB_LAYER
+	threat_level = ALEPH_LEVEL
+	can_affect_emergency = FALSE
 	/// What icon_state it is using when below 50% health
 	var/icon_damaged
 	/// Reference to the bird itself
@@ -414,26 +416,18 @@
 	/// Text shown to everyone on death
 	var/blurb_text = "Guh?"
 
-/mob/living/simple_animal/apocalypse_egg/add_to_mob_list()
-	. = ..()
-	GLOB.abnormality_mob_list |= src//They should count
-
-/mob/living/simple_animal/apocalypse_egg/remove_from_mob_list()
-	. = ..()
-	GLOB.abnormality_mob_list -= src
-
-/mob/living/simple_animal/apocalypse_egg/CanAttack(atom/the_target)
+/mob/living/simple_animal/hostile/aminion/apocalypse_egg/CanAttack(atom/the_target)
 	return FALSE
 
-/mob/living/simple_animal/apocalypse_egg/Move()
+/mob/living/simple_animal/hostile/aminion/apocalypse_egg/Move()
 	return FALSE
 
-/mob/living/simple_animal/apocalypse_egg/bullet_act(obj/projectile/P, def_zone, piercing_hit = FALSE)
+/mob/living/simple_animal/hostile/aminion/apocalypse_egg/bullet_act(obj/projectile/P, def_zone, piercing_hit = FALSE)
 	if(istype(P, /obj/projectile/apocalypse))
 		return BULLET_ACT_FORCE_PIERCE
 	return ..()
 
-/mob/living/simple_animal/apocalypse_egg/death(gibbed)
+/mob/living/simple_animal/hostile/aminion/apocalypse_egg/death(gibbed)
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 5 SECONDS, blurb_text, 25))
 	for(var/mob/M in GLOB.player_list)
 		if(M.z == z && M.client)
@@ -442,7 +436,7 @@
 		bird.EggDeath(src)
 	..()
 
-/mob/living/simple_animal/apocalypse_egg/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
+/mob/living/simple_animal/hostile/aminion/apocalypse_egg/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	..()
 	if(stat != DEAD)
 		if(prob(3) && bird)
@@ -452,7 +446,7 @@
 		else // In case it healed up
 			icon_state = icon_living
 
-/mob/living/simple_animal/apocalypse_egg/beak
+/mob/living/simple_animal/hostile/aminion/apocalypse_egg/beak
 	name = "Small Beak"
 	icon_state = "egg_beak"
 	icon_living = "egg_beak"
@@ -461,12 +455,12 @@
 	damage_coeff = list(RED_DAMAGE = -2, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.5)
 	blurb_text = "And Little Bird's mouth that devours everything has been shut."
 
-/mob/living/simple_animal/apocalypse_egg/beak/death(gibbed)
+/mob/living/simple_animal/hostile/aminion/apocalypse_egg/beak/death(gibbed)
 	if(istype(bird))
 		bird.bite_possible = FALSE
 	..()
 
-/mob/living/simple_animal/apocalypse_egg/arm
+/mob/living/simple_animal/hostile/aminion/apocalypse_egg/arm
 	name = "Long Arm"
 	icon_state = "egg_arm"
 	icon_living = "egg_arm"
@@ -475,12 +469,12 @@
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = -2)
 	blurb_text = "A head that looked up to the cosmos has been lowered."
 
-/mob/living/simple_animal/apocalypse_egg/arm/death(gibbed)
+/mob/living/simple_animal/hostile/aminion/apocalypse_egg/arm/death(gibbed)
 	if(istype(bird))
 		bird.judge_possible = FALSE
 	..()
 
-/mob/living/simple_animal/apocalypse_egg/eyes
+/mob/living/simple_animal/hostile/aminion/apocalypse_egg/eyes
 	name = "Big Eyes"
 	icon_state = "egg_eyes"
 	icon_living = "egg_eyes"
@@ -489,7 +483,7 @@
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = -2, PALE_DAMAGE = 0.5)
 	blurb_text = "Far-sighted eyes of Big Bird have been blinded."
 
-/mob/living/simple_animal/apocalypse_egg/eyes/death(gibbed)
+/mob/living/simple_animal/hostile/aminion/apocalypse_egg/eyes/death(gibbed)
 	if(istype(bird))
 		bird.big_possible = FALSE
 	for(var/area/facility_hallway/F in GLOB.sortedAreas)
@@ -502,7 +496,7 @@
 
 // Portal
 
-/mob/living/simple_animal/forest_portal
+/mob/living/simple_animal/hostile/aminion/forest_portal
 	name = "Entrance to the Black Forest"
 	desc = "A portal leading to a dark place, far worse than the one you're in right now..."
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
@@ -519,6 +513,8 @@
 	icon_state = "forest_portal"
 	icon_living = "forest_portal"
 	del_on_death = TRUE
+	threat_level = ALEPH_LEVEL
+	can_affect_emergency = FALSE
 	/// List of birds that entered it. We don't delete/kill them for the sake of abnormality respawn mechanics.
 	var/list/stored_birds = list("spoken" = list(), "unspoken" = list())
 	/// These are the birds.
@@ -532,21 +528,21 @@
 	COOLDOWN_DECLARE(speak_bird)
 	COOLDOWN_DECLARE(summon_bird)
 
-/mob/living/simple_animal/forest_portal/add_to_mob_list()
+/mob/living/simple_animal/hostile/aminion/forest_portal/add_to_mob_list()
 	. = ..()
-	GLOB.abnormality_mob_list |= src//They should count
+	GLOB.abnormality_minion_list |= src//They should count
 
-/mob/living/simple_animal/forest_portal/remove_from_mob_list()
+/mob/living/simple_animal/hostile/aminion/forest_portal/remove_from_mob_list()
 	. = ..()
-	GLOB.abnormality_mob_list -= src
+	GLOB.abnormality_minion_list -= src
 
-/mob/living/simple_animal/forest_portal/CanAttack(atom/the_target)
+/mob/living/simple_animal/hostile/aminion/forest_portal/CanAttack(atom/the_target)
 	return FALSE
 
-/mob/living/simple_animal/forest_portal/Move()
+/mob/living/simple_animal/hostile/aminion/forest_portal/Move()
 	return FALSE
 
-/mob/living/simple_animal/forest_portal/Initialize()
+/mob/living/simple_animal/hostile/aminion/forest_portal/Initialize()
 	. = ..()
 	for(var/mob/M in GLOB.player_list)
 		if(M.z == z && M.client)
@@ -556,7 +552,7 @@
 	COOLDOWN_START(src, summon_bird, 30 SECONDS)
 	force_bird_time = world.time + 3 MINUTES
 
-/mob/living/simple_animal/forest_portal/Life()
+/mob/living/simple_animal/hostile/aminion/forest_portal/Life()
 	. = ..()
 	var/list/range_area = orange(2, src)
 	if(force_bird_time < world.time)
@@ -577,7 +573,7 @@
 		SummonBird()
 		COOLDOWN_START(src, summon_bird, 30 SECONDS) // So they keep trying to move towards the portal, even if temporarily blocked.
 
-/mob/living/simple_animal/forest_portal/Bumped(atom/movable/AM)
+/mob/living/simple_animal/hostile/aminion/forest_portal/Bumped(atom/movable/AM)
 	if(!isliving(AM))
 		return ..()
 	if(!ishostile(AM))
@@ -585,7 +581,7 @@
 	ConsumeBird(AM)
 	return
 
-/mob/living/simple_animal/forest_portal/update_overlays()
+/mob/living/simple_animal/hostile/aminion/forest_portal/update_overlays()
 	. = ..()
 	var/bird_len = length(stored_birds["spoken"])
 	if(bird_len <= 0)
@@ -601,7 +597,7 @@
 
 	. += bird_overlay
 
-/mob/living/simple_animal/forest_portal/death(gibbed)
+/mob/living/simple_animal/hostile/aminion/forest_portal/death(gibbed)
 	SSlobotomy_events.AB_types |= bird_types // Restore so it may happen again
 	for(var/mob/living/simple_animal/hostile/abnormality/bird in SSlobotomy_events.AB_breached)
 		bird.death()
@@ -610,7 +606,7 @@
 	. = ..()
 	return
 
-/mob/living/simple_animal/forest_portal/proc/ConsumeBird(mob/living/simple_animal/hostile/abnormality/bird)
+/mob/living/simple_animal/hostile/aminion/forest_portal/proc/ConsumeBird(mob/living/simple_animal/hostile/abnormality/bird)
 	if(!istype(bird))
 		return FALSE
 	if(!(bird.type in bird_types))
@@ -621,7 +617,7 @@
 	stored_birds["unspoken"] += bird
 	return TRUE
 
-/mob/living/simple_animal/forest_portal/proc/SpeakBird()
+/mob/living/simple_animal/hostile/aminion/forest_portal/proc/SpeakBird()
 	if(!COOLDOWN_FINISHED(src, speak_bird))
 		return FALSE
 	var/blurb_text
@@ -661,7 +657,7 @@
 	COOLDOWN_START(src, speak_bird, 8 SECONDS)
 	return TRUE
 
-/mob/living/simple_animal/forest_portal/proc/SummonBird()
+/mob/living/simple_animal/hostile/aminion/forest_portal/proc/SummonBird()
 	var/birds = SSlobotomy_events.AB_breached
 	birds -= stored_birds["spoken"]
 	birds -= stored_birds["unspoken"]

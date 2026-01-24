@@ -91,7 +91,7 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 
 /datum/controller/subsystem/lobotomy_emergency/proc/UpdateMin()
 	var/min = 0
-	for(var/mob/living/simple_animal/hostile/aminion/A in GLOB.abnormality_mob_list)
+	for(var/mob/living/simple_animal/hostile/aminion/A in GLOB.abnormality_minion_list)
 		if(!A.can_affect_emergency)
 			continue
 		if(A.stat == DEAD)//The dead shouldn't count
@@ -99,6 +99,8 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 		min += ((threat_to_score[A.threat_level]/2)/A.score_divider)/score_divider
 
 	for(var/mob/living/simple_animal/hostile/abnormality/A in GLOB.abnormality_mob_list)
+		if(istype(A, /mob/living/simple_animal/hostile/abnormality/training_rabbit))
+			continue
 		if(A.IsContained())
 			continue
 		if(A.stat == DEAD)//The dead shouldn't count

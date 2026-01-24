@@ -36,11 +36,11 @@
 
 /mob/living/simple_animal/hostile/aminion/add_to_mob_list()
 	. = ..()
-	GLOB.abnormality_mob_list |= src//They should count
+	GLOB.abnormality_minion_list |= src//They should count
 
 /mob/living/simple_animal/hostile/aminion/remove_from_mob_list()
 	. = ..()
-	GLOB.abnormality_mob_list -= src
+	GLOB.abnormality_minion_list -= src
 
 /mob/living/simple_animal/hostile/aminion/Life()
 	. = ..()
