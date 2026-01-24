@@ -44,9 +44,9 @@
 	SSlobotomy_corp.active_core_suppressions -= src
 	SSticker.news_report = max(SSticker.news_report, CORE_SUPPRESSED)
 	if(after_midnight)
-		SSticker.post_midnight_core = src
+		SSticker.post_midnight_core = name
 	else
-		SSticker.core_suppression = src
+		SSticker.core_suppression = name
 	if(legitimate)
 		SSpersistence.UpdateClearedCores(src)
 	qdel(src)

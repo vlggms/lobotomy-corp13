@@ -680,16 +680,15 @@
 		parts += "No Core Supressions happened this shift!</div>"
 		return parts.Join("<br>")
 	if(SSticker.core_suppression)
-		parts += "<span style='color: [core_color(SSticker.core_suppression)]'>[SSticker.core_suppression.name]</span> was completed!"
+		parts += "<span style='color: [core_color(SSticker.core_suppression)]'>[SSticker.core_suppression]</span> was completed!"
 	if(SSticker.post_midnight_core)
-		parts += "<span style='color: [core_color(SSticker.post_midnight_core)]'>[SSticker.post_midnight_core.name]</span> was completed!"
+		parts += "<span style='color: [core_color(SSticker.post_midnight_core)]'>[SSticker.post_midnight_core]</span> was completed!"
 	parts += "</div>"
 	return parts.Join("<br>")
 
 /datum/controller/subsystem/ticker/proc/core_color(datum/suppression/S)
 	var/color = "red"
-	var/core_suppression_name = S.name
-	switch(core_suppression_name)
+	switch(name)
 		if(CONTROL_CORE_SUPPRESSION)
 			color = "yellow"
 
