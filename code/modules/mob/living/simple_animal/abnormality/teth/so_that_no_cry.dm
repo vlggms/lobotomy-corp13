@@ -7,6 +7,7 @@
 	icon_state = "so_that_no_cry"
 	icon_living = "so_that_no_cry"
 	portrait = "so_that_no_cry"
+	core_icon = "cry_egg"
 	maxHealth = 300 //High health, can be stunned.
 	health = 300
 	rapid_melee = 2

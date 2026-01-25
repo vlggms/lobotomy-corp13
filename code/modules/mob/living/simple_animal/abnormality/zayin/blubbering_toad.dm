@@ -6,7 +6,8 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "blubbering"
 	icon_living = "blubbering"
-	icon_dead = "blubbering_egg"
+	icon_dead = "blubbering_death"
+	core_icon = "blubbering_egg"
 	portrait = "blubbering_toad"
 	var/icon_tongue = "blubbering_tongue"
 	del_on_death = FALSE
