@@ -688,6 +688,7 @@
 	projectile_phasing = (ALL & (~PASSMOB))
 	hitsound = 'sound/magic/arbiter/pillar_hit.ogg'
 	var/obj/effect/trail_type = /obj/effect/temp_visual/revenant
+	var/stored_damage_falloff = 0
 	var/list/been_hit = list()
 
 /obj/projectile/magic/aoe/pillar/Initialize()
@@ -704,6 +705,14 @@
 	for(var/turf/T in range(1, get_turf(src)))
 		new trail_type(T)
 
+/obj/projectile/magic/aoe/pillar/on_hit(atom/target, blocked = FALSE)
+	damage = initial(damage) + stored_damage_falloff
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		if(H.is_working)//Ehh they can tank a low damage pillar instead of eating shit
+			damage *= 0.25
+	. = ..()
+
 /obj/projectile/magic/aoe/pillar/Range()
 	if(proxdet)
 		for(var/obj/machinery/computer/abnormality/CA in range(1, get_turf(src)))
@@ -712,6 +721,7 @@
 			CA.start_meltdown(MELTDOWN_NORMAL, 40, 60)
 			playsound(CA, hitsound, 50, TRUE, 4)
 	..()
+	stored_damage_falloff += damage_falloff_tile
 
 /obj/projectile/magic/aoe/pillar/red
 	icon_state = "pillar_red"

@@ -216,7 +216,7 @@
 	if(fairy_cooldown > world.time)
 		return
 	fairy_cooldown = world.time + fairy_cooldown_time
-
+	setDir(get_dir(src, target))
 	charging = TRUE
 	var/effect_type = /obj/effect/temp_visual/cult/sparks
 	var/projectile_type = /obj/projectile/beam/fairy
