@@ -28,6 +28,7 @@
 	gift_type =  /datum/ego_gifts/luckdraw
 	pixel_x = -16
 	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
+	can_spawn = FALSE // Normally doesn't appear
 	var/coin_status
 	var/has_flipped
 	var/static/gambled_prior = list()
