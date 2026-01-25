@@ -24,6 +24,7 @@
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 	chem_type = /datum/reagent/abnormality/sin/gloom
 
+	can_spawn = FALSE // Normally doesn't appear
 	var/list/blackout_list = list()
 
 	//Observation is mostly mirror dungeon but with some changed phrasing
