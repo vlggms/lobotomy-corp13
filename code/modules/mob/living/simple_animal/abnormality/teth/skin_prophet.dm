@@ -23,6 +23,7 @@
 		/datum/ego_datum/armor/visions,
 	)
 	gift_type = /datum/ego_gifts/visions
+	can_spawn = FALSE // Normally doesn't appear
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 	chem_type = /datum/reagent/abnormality/sin/wrath
 
