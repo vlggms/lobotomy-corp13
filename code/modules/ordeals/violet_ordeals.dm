@@ -40,6 +40,22 @@
 		M.ordeal_reference = src
 		spawned_in += 1
 
+/datum/ordeal/simplespawn/violet_dusk
+	name = "The Dusk of Violet"
+	flavor_name = "Rushing Arms of Rest"
+	announce_text = "Only helpless hand of the weak could reach us, and fled for mercy and love of them."
+	end_announce_text = "A god, an evil, them. They embraced us on the day of rest."
+	announce_sound = 'sound/effects/ordeals/violet_start.ogg'
+	end_sound = 'sound/effects/ordeals/violet_end.ogg'
+	level = 3
+	reward_percent = 0.2
+	color = "#B642F5"
+	spawn_places = 2
+	spawn_amount = 1
+	place_player_multiplicator = 0.1
+	spawn_player_multiplicator = 0
+	spawn_type = /mob/living/simple_animal/hostile/ordeal/violet_dusk
+
 // Noon
 /datum/ordeal/violet_midnight
 	name = "The Midnight of Violet"
