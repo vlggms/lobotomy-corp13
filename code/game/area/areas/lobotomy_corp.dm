@@ -35,7 +35,7 @@
 
 /area/department_main/Entered(atom/movable/M)
 	. = ..()
-	if(!isabnormalitymob(M) && !isabnormalityminionmob(A)) // only do updates on Abnormality entering/leaving
+	if(!isabnormalitymob(M) && !isabnormalityminionmob(M)) // only do updates on Abnormality entering/leaving
 		return
 	if(istype(M, /mob/living/simple_animal/hostile/abnormality/big_bird))
 		big_bird = TRUE
@@ -49,7 +49,7 @@
 
 /area/department_main/Exited(atom/movable/M)
 	. = ..()
-	if(!isabnormalitymob(M) && !isabnormalityminionmob(A))
+	if(!isabnormalitymob(M) && !isabnormalityminionmob(M))
 		return
 	if(istype(M, /mob/living/simple_animal/hostile/abnormality/big_bird))
 		for(var/area/facility_hallway/F in adjacent_areas)
@@ -146,7 +146,7 @@
 
 /area/facility_hallway/Entered(atom/movable/M)
 	. = ..()
-	if(!isabnormalitymob(M) && !isabnormalityminionmob(A)) // only do updates on Abnormality entering/leaving
+	if(!isabnormalitymob(M) && !isabnormalityminionmob(M)) // only do updates on Abnormality entering/leaving
 		return
 	if(istype(M, /mob/living/simple_animal/hostile/abnormality/big_bird))
 		big_bird = TRUE
@@ -160,7 +160,7 @@
 
 /area/facility_hallway/Exited(atom/movable/M)
 	. = ..()
-	if(!isabnormalitymob(M) && !isabnormalityminionmob(A)) // only do updates on Abnormality entering/leaving
+	if(!isabnormalitymob(M) && !isabnormalityminionmob(M)) // only do updates on Abnormality entering/leaving
 		return
 	if(istype(M, /mob/living/simple_animal/hostile/abnormality/big_bird))
 		for(var/area/facility_hallway/F in adjacent_areas)
