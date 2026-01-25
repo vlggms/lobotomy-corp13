@@ -5,7 +5,9 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "little_prince"
 	portrait = "little_prince"
-	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
+	health = 1500
+	maxHealth = 1500
+	damage_coeff = list(RED_DAMAGE = 1.3, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.1, PALE_DAMAGE = 1.5)
 	threat_level = WAW_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(0, 0, 40, 40, 40),
@@ -43,10 +45,17 @@
 	var/list/once = list()
 	var/list/twice = list()
 	var/list/hypnotized = list()
+	var/list/fungus_list = list()
 	var/user_check = FALSE
 	var/mutable_appearance/spore_icon
 	base_pixel_x = -16
 	pixel_x = -16
+
+/mob/living/simple_animal/hostile/abnormality/little_prince/Move()
+	return FALSE
+
+/mob/living/simple_animal/hostile/abnormality/little_prince/CanAttack(atom/the_target)
+	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/little_prince/Life()
 	..()
@@ -78,25 +87,13 @@
 	hypnotized += user
 	return
 
-/mob/living/simple_animal/hostile/abnormality/little_prince/proc/Infect(mob/living/carbon/human/user)
-	set waitfor = 0
-	for (var/i=0, i<5, i++)
-		user.deal_damage(rand(5, 10), WHITE_DAMAGE)
-		to_chat(user, span_warning("You feel something growing from under your skin..."))
-		if (user.sanity_lost)
-			Hypno(user)
-			return
-		SLEEP_CHECK_DEATH(4 SECONDS)
-	return
-
 //it was easier for me to keep track of this here
 /mob/living/simple_animal/hostile/abnormality/little_prince/proc/PrinceDeath(datum/source, gibbed)
 	SIGNAL_HANDLER
 	playsound(get_turf(source), 'sound/abnormalities/bee/spores.ogg', 50, 1, 5)
-	for(var/turf/T in view(2, source))
-		new /obj/effect/temp_visual/bee_gas(T)
-		for(var/mob/living/carbon/human/user in T.contents)
-			Infect(user)
+	for(var/obj/effect/prince_mushrooms/P in fungus_list)
+		if(!P.active)
+			P.Activate()
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/little_prince/proc/Fungify(mob/living/carbon/human/user)
@@ -109,6 +106,7 @@
 	user.emote("scream")
 	user.gib()
 	var /mob/living/simple_animal/hostile/little_prince_1/S = new(T)
+	S.connected_abno = src
 	RegisterSignal(S, COMSIG_LIVING_DEATH, PROC_REF(PrinceDeath))
 	return
 
@@ -187,6 +185,13 @@
 		Hypno(pick(potential_hypno))
 	return
 
+/mob/living/simple_animal/hostile/abnormality/little_prince/Destroy()
+	for(var/obj/effect/prince_mushrooms/P in fungus_list)
+		P.connected_abno = null
+		P.Despawn()
+	fungus_list.Cut()
+	return ..()
+
 /* Prince-01 */
 /mob/living/simple_animal/hostile/little_prince_1
 	name = "Little Prince-1"
@@ -201,7 +206,7 @@
 	maxHealth = 545
 	move_to_delay = 3
 	melee_damage_type = BLACK_DAMAGE
-	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
+	damage_coeff = list(RED_DAMAGE = 1.3, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.1, PALE_DAMAGE = 1.5)
 	melee_damage_lower = 15
 	melee_damage_upper = 20		//slow melee and has nothing else.
 	stat_attack = HARD_CRIT
@@ -211,6 +216,24 @@
 	attack_sound = 'sound/abnormalities/littleprince/Prince_Attack.ogg'
 	death_message = "shakes violently."
 	can_patrol = TRUE
+	var/mob/living/simple_animal/hostile/abnormality/little_prince/connected_abno
+
+/mob/living/simple_animal/hostile/little_prince_1/Move()
+	. = ..()
+	for(var/turf/open/T in view(src, 1))
+		if(!isturf(T) || isspaceturf(T))
+			continue
+		if(locate(/obj/effect/prince_mushrooms) in T)
+			continue
+		if(locate(/turf/open/water/deep) in T)
+			continue
+		if(prob(15))
+			var/obj/effect/prince_mushrooms/P = new(T)
+			if(connected_abno)
+				P.connected_abno = connected_abno
+				P.connected_abno.fungus_list += P
+			else
+				P.Activate()
 
 /mob/living/simple_animal/hostile/little_prince_1/Initialize()
 	. = ..()
@@ -225,6 +248,69 @@
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
 	..()
+
+
+/obj/effect/prince_mushrooms
+	name = "fungus"
+	desc = "A pile of blue and purple mushrooms growing from the floor."
+	icon = 'ModularTegustation/Teguicons/48x48.dmi'
+	icon_state = "prince_fungus"
+	layer = TURF_LAYER
+	anchored = TRUE
+	base_pixel_x = -8
+	pixel_x = -8
+	base_pixel_y = -8
+	pixel_y = -8
+	var/active = FALSE
+	var/despawning = FALSE
+	var/mob/living/simple_animal/hostile/abnormality/little_prince/connected_abno
+
+/obj/effect/prince_mushrooms/Initialize()
+	. = ..()
+	//Might as well have some randomness
+	setDir(pick(NORTH, SOUTH, EAST, WEST))
+	var/x_rand = rand(-2,2)
+	var/y_rand = rand(-2,2)
+	base_pixel_x += x_rand
+	pixel_x += x_rand
+	base_pixel_y += y_rand
+	pixel_y += y_rand
+	alpha = 0
+	var/matrix/init_transform = transform
+	transform *= 0.1
+	animate(src, alpha = 255, transform = init_transform, time = 5 + rand(0,5))
+	color = "#666666"
+
+/obj/effect/prince_mushrooms/Crossed(atom/movable/AM)
+	. = ..()
+	if(!ishuman(AM))
+		return
+	if(!active || despawning)
+		return
+	var/mob/living/carbon/human/H = AM
+	H.deal_damage(rand(2, 5), WHITE_DAMAGE)
+	to_chat(H, span_warning("You feel something weird touching your skin..."))
+	if (H.sanity_lost && connected_abno)
+		connected_abno.Hypno(H)
+
+/obj/effect/prince_mushrooms/proc/Activate()
+	active = TRUE
+	color = "#FFFFFF"
+	if(connected_abno)
+		addtimer(CALLBACK(src, PROC_REF(Despawn)), 2 MINUTES)
+		return
+	addtimer(CALLBACK(src, PROC_REF(Despawn)), 30 SECONDS)
+
+/obj/effect/prince_mushrooms/proc/Despawn()
+	var/despawn_time = rand(5, 10)
+	despawning = TRUE
+	animate(src, alpha = 0, transform = transform, time = despawn_time)
+	QDEL_IN(src, despawn_time)
+
+/obj/effect/prince_mushrooms/Destroy()
+	if(connected_abno)
+		connected_abno.fungus_list -= src
+	return ..()
 
 //AI taken from Apoc
 /datum/ai_controller/insane/hypno

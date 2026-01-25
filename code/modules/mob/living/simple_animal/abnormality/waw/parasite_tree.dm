@@ -103,6 +103,7 @@
 		cut_overlays()
 		var/mutable_appearance/colored_overlay = mutable_appearance(icon, "parasitetreeeye", layer + 0.1)
 		add_overlay(colored_overlay)
+		icon_state = "parasitetreeshine_purple"
 		for(var/datum/status_effect/display/parasite_tree_blessing/P in blessed)
 			P.facadeFalls()
 	else
@@ -127,6 +128,7 @@
 	add_overlay(colored_overlay)
 
 /mob/living/simple_animal/hostile/abnormality/parasite_tree/proc/resetQliphoth()
+	icon_state = "parasitetreeshine"
 	datum_reference.qliphoth_change(6)
 
 /mob/living/simple_animal/hostile/abnormality/parasite_tree/proc/endBreach()
@@ -168,8 +170,8 @@
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "sapling"
 	icon_living = "sapling"
-	maxHealth = 200
-	health = 200
+	maxHealth = 400
+	health = 400
 	can_patrol = FALSE
 	wander = 0
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.8)
