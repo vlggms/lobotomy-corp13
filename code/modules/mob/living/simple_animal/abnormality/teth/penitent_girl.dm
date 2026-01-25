@@ -28,6 +28,7 @@
 	)
 	gift_type =  /datum/ego_gifts/sorrow
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
+	can_spawn = FALSE // Normally doesn't appear
 
 	observation_prompt = "A girl in front of you dances, stumbling to and fro. <br>\
 		Her feet are chopped off at the ankles, and yet they still move. <br>\
