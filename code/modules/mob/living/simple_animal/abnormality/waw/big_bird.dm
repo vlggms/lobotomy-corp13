@@ -116,6 +116,12 @@
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
 	return ..()
 
+/mob/living/simple_animal/hostile/abnormality/big_bird/EscapeConfinement()
+	if(!isturf(targets_from.loc) && targets_from.loc != null)//Did someone put us in something?
+		if(istype(targets_from.loc, /mob/living/simple_animal/forest_portal) || istype(targets_from.loc, /mob/living/simple_animal/hostile/megafauna/apocalypse_bird))
+			return
+	. = ..()
+
 /mob/living/simple_animal/hostile/abnormality/big_bird/Moved()
 	. = ..()
 	if(!(status_flags & GODMODE)) // Whitaker nerf
