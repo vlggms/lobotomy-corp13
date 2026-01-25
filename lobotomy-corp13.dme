@@ -3161,6 +3161,7 @@
 #include "code\modules\mob\living\simple_animal\hostile\ordeal\steel\dusk.dm"
 #include "code\modules\mob\living\simple_animal\hostile\ordeal\steel\noon.dm"
 #include "code\modules\mob\living\simple_animal\hostile\ordeal\violet\dawn.dm"
+#include "code\modules\mob\living\simple_animal\hostile\ordeal\violet\dusk.dm"
 #include "code\modules\mob\living\simple_animal\hostile\ordeal\violet\midnight.dm"
 #include "code\modules\mob\living\simple_animal\hostile\ordeal\violet\noon.dm"
 #include "code\modules\mob\living\simple_animal\hostile\ordeal\white\fixers.dm"
