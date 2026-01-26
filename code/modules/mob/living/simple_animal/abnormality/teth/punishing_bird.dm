@@ -237,11 +237,6 @@
 	see &= targeting // Remove all entries that aren't in enemies
 	return see
 
-/mob/living/simple_animal/hostile/abnormality/punishing_bird/RegisterAttackAggro(damage_amount, damage_type, source)
-	if(omw_to_apoc) // Ts ain't nothin to me man
-		return
-	. = ..()
-
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/FindTarget(list/possible_targets, HasTargetsList)
 	if(omw_to_apoc) // Nah I'd Walk
 		return
