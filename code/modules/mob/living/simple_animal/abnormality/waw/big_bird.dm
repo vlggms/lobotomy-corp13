@@ -83,6 +83,8 @@
 	var/list/hypno_1 = list()
 	var/list/hypno_2 = list()
 	var/list/enchanted_list = list()
+	var/omw_to_apoc = FALSE
+
 	//PLAYABLES ATTACKS
 	attack_action_types = list(/datum/action/cooldown/big_bird_hypnosis)
 
@@ -102,7 +104,7 @@
 	var/mob/living/simple_animal/hostile/abnormality/big_bird/big_bird = owner
 	if(big_bird.IsContained()) // No more using cooldowns while contained
 		return FALSE
-	if(!big_bird.can_act)
+	if(!big_bird.can_act || omw_to_apoc)
 		return FALSE
 	StartCooldown()
 	big_bird.hypnotize()
@@ -120,7 +122,7 @@
 			LoseTarget()
 	if(client)
 		return
-	if(hypnosis_cooldown <= world.time && can_act)
+	if(hypnosis_cooldown <= world.time && can_act && !omw_to_apoc)
 		hypnotize()
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/Initialize()
@@ -134,12 +136,6 @@
 		EndEnchant(H)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
 	return ..()
-
-/mob/living/simple_animal/hostile/abnormality/big_bird/EscapeConfinement()
-	if(!isturf(targets_from.loc) && targets_from.loc != null)//Did someone put us in something?
-		if(istype(targets_from.loc, /mob/living/simple_animal/forest_portal) || istype(targets_from.loc, /mob/living/simple_animal/hostile/megafauna/apocalypse_bird))
-			return
-	. = ..()
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/Moved()
 	. = ..()
@@ -245,6 +241,8 @@
 	return null
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/AttackingTarget(atom/attacked_target)
+	if(omw_to_apoc)
+		return
 	if(!isliving(attacked_target))
 		return ..()
 	if(client)
@@ -341,6 +339,8 @@
 		nested_item.forceMove(nest)
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/MobBump(mob/M)
+	if(omw_to_apoc)
+		return ..()
 	if(!ishuman(M)) //We want to attack people in the way
 		return ..()
 	if(client)
@@ -446,6 +446,29 @@
 /mob/living/simple_animal/hostile/abnormality/big_bird/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
 	datum_reference.qliphoth_change(-1)
+	return
+
+// Following overrides are so we can meander down to the Black Forest Portal unimpeded
+/mob/living/simple_animal/hostile/abnormality/big_bird/RegisterAttackAggro(damage_amount, damage_type, source)
+	if(omw_to_apoc) // Ts ain't nothin to me man
+		return
+	. = ..()
+
+/mob/living/simple_animal/hostile/abnormality/big_bird/FindTarget(list/possible_targets, HasTargetsList)
+	if(omw_to_apoc) // Nah I'd Walk
+		return
+	. = ..()
+
+/mob/living/simple_animal/hostile/abnormality/big_bird/ListTargets()
+	if(omw_to_apoc) // I have places to be
+		return list()
+	else
+		return ..()
+
+/mob/living/simple_animal/hostile/abnormality/punishing_bird/BreachEffect(mob/living/carbon/human/user, breach_type)
+	omw_to_apoc = FALSE
+	docile_confinement = FALSE
+	. = ..()
 	return
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/proc/EndEnchant(mob/living/carbon/human/victim, Snapped = TRUE)

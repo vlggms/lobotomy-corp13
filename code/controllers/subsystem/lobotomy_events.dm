@@ -152,10 +152,12 @@ SUBSYSTEM_DEF(lobotomy_events)
 				if(istype(A, /mob/living/simple_animal/hostile/abnormality/punishing_bird))
 					var/mob/living/simple_animal/hostile/abnormality/punishing_bird/PB = A
 					deltimer(PB.death_timer)
+				A.LoseTarget()
 				A.patrol_reset()
 				A.patrol_to(get_turf(portal), TRUE)
 				A.density = FALSE // They ignore you and walk past you.
-				A.AIStatus = AI_OFF
+				A.toggle_ai(AI_OFF) // This lobotomizes them and they'll only wake up once they get hit with SummonBird()
+				A.docile_confinement = TRUE // Stops them from attacking Apocalypse Bird when inside it
 				A.can_patrol = FALSE
 				A.ChangeResistances(list(BRUTE = 0, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)) // You can kill the portal but not them.
 			AB_types = list() // So the event can't run again.
