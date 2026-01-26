@@ -26,7 +26,7 @@
 	start_qliphoth = 3
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(5, 10, 25, 25, 30),
-		ABNORMALITY_WORK_INSIGHT = 0,
+		ABNORMALITY_WORK_INSIGHT = -25,
 		ABNORMALITY_WORK_ATTACHMENT = 15,
 		ABNORMALITY_WORK_REPRESSION = list(5, 10, 25, 25, 30),
 	)
@@ -146,10 +146,6 @@
 	return prudence_work_chance + chance - work_chance_negative
 
 /mob/living/simple_animal/hostile/abnormality/sphinx/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
-	if(pe >= 16)
-		var/turf/dispense_turf = get_step(src, EAST)
-		var/reward = pick(workloot)
-		new reward(dispense_turf)
 	if(user.sanity_lost)
 		QDEL_NULL(user.ai_controller)
 		user.ai_controller = /datum/ai_controller/insane/wander/sphinx
