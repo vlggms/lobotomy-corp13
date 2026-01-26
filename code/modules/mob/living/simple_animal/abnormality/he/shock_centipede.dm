@@ -143,6 +143,7 @@
 
 /* Success Effect */
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if (!CheckQliphoth(user, work_type, pe))
 		return
 	if(datum_reference?.qliphoth_meter == 2)
@@ -154,6 +155,7 @@
 
 /* Neutral Effect */
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if (!CheckQliphoth(user, work_type, pe))
 		return
 	if(datum_reference?.qliphoth_meter == 2)
@@ -167,6 +169,7 @@
 
 /* Failure Effect */
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if (!CheckQliphoth(user, work_type, pe))
 		return
 	datum_reference.qliphoth_change(-1)
