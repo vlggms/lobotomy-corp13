@@ -68,6 +68,8 @@
 
 /mob/living/simple_animal/hostile/abnormality/fetus/Life()
 	. = ..()
+	if(status_flags & GODMODE)
+		return
 	if(cry_cooldown <= world.time && !satisfied)
 		cry_cooldown = world.time + cry_cooldown_time
 		Cry()
@@ -117,14 +119,14 @@
 
 //Work-related
 /mob/living/simple_animal/hostile/abnormality/fetus/WorkChance(mob/living/carbon/human/user, chance, work_type)
-	return chance + (satisfied * 30)
+	return chance + (satisfied * 20)
 
 /mob/living/simple_animal/hostile/abnormality/fetus/ZeroQliphoth(mob/living/carbon/human/user)
 	if(satisfied)
 		satisfied = FALSE
 		hunger = 0
 		datum_reference.qliphoth_change(1)
-		visible_message(span_userdanger("The fetus is starting to look famished!"))
+		visible_message(span_userdanger("The fetus is starts to wimper but only for a second!"))
 	else
 		for(var/mob/living/carbon/human/H in GLOB.player_list)	//Way harder to get a list of living humans.
 			if(H.stat != DEAD)
@@ -141,7 +143,7 @@
 			visible_message(span_userdanger("The fetus is starting to look famished!"))
 
 /mob/living/simple_animal/hostile/abnormality/fetus/user_buckle_mob(mob/living/M, mob/user, check_loc)
-	if(crying || user == src || !ishuman(M) || (GODMODE in M.status_flags))
+	if(crying || user == src || !ishuman(M) || (GODMODE in M.status_flags) || M.stat != DEAD)
 		to_chat(user, span_warning("[src] rejects your offering!"))
 		return FALSE
 	. = ..()
@@ -156,10 +158,26 @@
 
 //Are they nearby?
 /mob/living/simple_animal/hostile/abnormality/fetus/proc/check_range()
+	var/list/corpses = list()
+	var/satisfied = FALSE
+	for(var/mob/living/carbon/human/H in view(1,src))
+		if(!Adjacent(H))
+			continue
+		if(H.stat == DEAD)
+			corpses += H
+	var/mob/living/carbon/human/corpse = pick(corpses)
+	if(corpse)
+		calling = null
+		corpse.gib()
+		corpse = null
+		hunger += 4 //Not as much compared to fresh meat
+		satisfied = TRUE
 	if(calling && Adjacent(calling))
 		calling.gib()
 		calling = null
 		hunger += 12 //Ehh might as well triple the effectiveness of it being fed if you have to die.
+		satisfied = TRUE
+	if(satisfied)
 		for(var/mob/living/carbon/human/H in GLOB.player_list)
 			to_chat(H, span_userdanger("The creature is satisfied."))
 
