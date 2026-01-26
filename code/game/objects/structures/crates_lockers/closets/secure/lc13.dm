@@ -12,7 +12,7 @@
 	new /obj/item/records/information(src)
 	new /obj/item/records/abnodelay(src)
 	new /obj/item/records/meltdown_extend(src)
-
+	new /obj/item/records_revive(src)
 
 /obj/structure/closet/secure_closet/discipline
 	name = "\proper disciplinary officer's locker"
@@ -23,9 +23,13 @@
 /obj/structure/closet/secure_closet/discipline/PopulateContents()
 	..()
 //	new /obj/effect/spawner/bundle/combat_pages(src)
-	new /obj/item/clothing/suit/armor/ego_gear/disc_off(src)
-
-
+	//placeholder for now?
+	new /obj/item/ego_weapon/city/lcorp/baton(src)
+	new /obj/item/ego_weapon/ranged/city/lcorp/pistol(src)
+	new /obj/item/ego_weapon/shield/lcorp_shield(src)
+	new /obj/item/egoshard(src)
+	new /obj/item/egoshard/white(src)
+	new /obj/item/egoshard/black(src)
 
 //need to use a god damn bundle for this
 /obj/effect/spawner/bundle/combat_pages
