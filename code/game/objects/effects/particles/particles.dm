@@ -137,7 +137,7 @@
 	drift = generator("vector", list(0.2, -0.2), list(-0.2, -0.2))
 
 /particles/fragment_song/fetus
-	icon_state = "fetus_cry_large"
+	icon_state = "fetus_cry"
 	width = 500
 	height = 500
 	count = 100
