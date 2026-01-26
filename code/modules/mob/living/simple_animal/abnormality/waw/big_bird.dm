@@ -300,11 +300,13 @@
 			playsound(loc, attack_sound, 50, TRUE, TRUE)
 			do_attack_animation(T)
 			attack_cooldown = max(attack_cooldown, 1)
-			changeNext_move(attack_cooldown)
+			changeNext_move(attack_cooldown/2)
 			SLEEP_CHECK_DEATH(0.5 SECONDS)
 			icon_state = icon_living
 			can_act = TRUE
 			bite_cooldown = world.time + bite_cooldown_time/2
+			for(var/mob/living/carbon/human/H in view(4, src))
+				EndEnchant(H)
 			return
 		else
 			attacked_target = to_bite
@@ -332,6 +334,8 @@
 	can_act = TRUE
 	if(!bite_of_87)
 		bite_cooldown = world.time + bite_cooldown_time
+		for(var/mob/living/carbon/human/H in view(4, src))
+			EndEnchant(H)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/proc/NestedItems(mob/living/simple_animal/hostile/nest, obj/item/nested_item)
