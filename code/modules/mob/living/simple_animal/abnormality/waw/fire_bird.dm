@@ -275,7 +275,7 @@
 	name = "Burnt Eyes"
 	desc = "The Firebird has burnt your eyes and made it harder to work!"
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "bg_template"
+	icon_state = "burnt_eyes"
 
 /datum/status_effect/blinded/on_apply()
 	. = ..()
