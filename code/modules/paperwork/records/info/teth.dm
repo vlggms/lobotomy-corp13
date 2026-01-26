@@ -418,9 +418,11 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/clayman
 	abno_code = "O-04-204"
 	abno_info = list(
-		"Employees who worked on O-04-204 reported no meaningful difference between work types.",
+		"No meaningful difference between work types could be noticed on the first work.",
 		"During work and breaches, the damage type dealt seemed to vary from hit to hit.",
-		"When the work result was Bad, the Qliphoth Counter lowered."
+		"However, each work increased the chances of a successful work on the revelant work by an estimated 10%, with other work being reduced by 5%",
+		"However, should any work type's base success rate reach 100%, O-04-204 would proceed to fall apart, putting all work rates at an equal but very low percentage.",
+		"When the work result was Bad and O-04-204 wasn't falling apart, the Qliphoth Counter lowered."
 	)
 	abno_work_damage_type = "Random"
 
