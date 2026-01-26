@@ -171,12 +171,6 @@
 			qdel(F)
 	return ..()
 
-//Preventing her from trying to hit Oberon
-/mob/living/simple_animal/hostile/abnormality/titania/EscapeConfinement()
-	if(fused)
-		return
-	. = ..()
-
 //------------------------------------------------------------------------------
 //Fairy Laws
 //------------------------------------------------------------------------------
