@@ -187,12 +187,6 @@
 	QDEL_IN(src, 10 SECONDS)
 	..()
 
-// Following overrides are so we can meander down to the Black Forest Portal unimpeded
-/mob/living/simple_animal/hostile/abnormality/judgement_bird/RegisterAttackAggro(damage_amount, damage_type, source)
-	if(omw_to_apoc) // Ts ain't nothin to me man
-		return
-	. = ..()
-
 /mob/living/simple_animal/hostile/abnormality/judgement_bird/ListTargets()
 	if(omw_to_apoc) // I have places to be
 		return list()

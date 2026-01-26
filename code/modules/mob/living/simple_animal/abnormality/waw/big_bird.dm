@@ -104,7 +104,7 @@
 	var/mob/living/simple_animal/hostile/abnormality/big_bird/big_bird = owner
 	if(big_bird.IsContained()) // No more using cooldowns while contained
 		return FALSE
-	if(!big_bird.can_act || omw_to_apoc)
+	if(!big_bird.can_act || big_bird.omw_to_apoc)
 		return FALSE
 	StartCooldown()
 	big_bird.hypnotize()
@@ -447,12 +447,6 @@
 	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
-
-// Following overrides are so we can meander down to the Black Forest Portal unimpeded
-/mob/living/simple_animal/hostile/abnormality/big_bird/RegisterAttackAggro(damage_amount, damage_type, source)
-	if(omw_to_apoc) // Ts ain't nothin to me man
-		return
-	. = ..()
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/FindTarget(list/possible_targets, HasTargetsList)
 	if(omw_to_apoc) // Nah I'd Walk
