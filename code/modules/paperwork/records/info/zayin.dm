@@ -110,7 +110,8 @@
 		"When the seal is broken, an employee can simply walk up to the abnormality and pick up the hammer.",
 		"When a level 1 employee tried to pick up the hammer, they were reduced to ashes by its power.",
 		"When agent YumYum picked up the unsealed hammer, they were granted the immense power required to resolve the emergency situation.",
-		"However, once the situation began to settle down, YumYum disappeared.")
+		"However, once the situation began to settle down, YumYum stumbled and collapsed.",
+		"Agent YumYum recovered after a period of extreme weakness, yet subsequent medical examinations revealed a significant reduction in her expected lifespan.")
 
 //Vending Machine and Oceanic Waves
 /obj/item/paper/fluff/info/zayin/oceanic_waves
