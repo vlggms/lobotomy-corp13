@@ -356,7 +356,7 @@
 		return ..()
 	if(faction_check_mob(L, FALSE))
 		return ..()
-	if(!L in patrol_path[1])
+	if(!(L in patrol_path[1]))
 		return ..()
 	if(!CanAttack(L))
 		return ..()
