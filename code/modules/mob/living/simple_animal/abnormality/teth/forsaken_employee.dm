@@ -5,8 +5,8 @@
 	icon_state = "forsaken_employee"
 	portrait = "forsaken_employee"
 
-	maxHealth = 300
-	health = 300
+	maxHealth = 250
+	health = 250
 	move_to_delay = 3
 
 	can_breach = TRUE
@@ -95,6 +95,7 @@
 
 /obj/effect/decal/cleanable/wrath_acid/enkephalin/Crossed(atom/movable/AM)
 	if(!ishuman(AM))
-		return
+		return FALSE
 	var/mob/living/carbon/human/H = AM
 	H.apply_damage(1, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+	. = ..()
