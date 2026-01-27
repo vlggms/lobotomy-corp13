@@ -595,11 +595,11 @@
 	desc = "Unregulated ingestion of Enkephalin may cause a wide range of unverified psychopathological symptoms."
 	icon_state = "denial"
 	force = 15
-	damtype = RED_DAMAGE
+	damtype = WHITE_DAMAGE
 	attack_speed = 1.5
 	attack_verb_continuous = list("smashes", "bludgeons", "crushes")
 	attack_verb_simple = list("smash", "bludgeon", "crush")
-	hitsound = 'sound/weapons/fixer/generic/club3.ogg'
+	hitsound = 'sound/abnormalities/ichthys/slap.ogg'
 
 /obj/item/ego_weapon/rapunzel
 	name = "rapunzel"
