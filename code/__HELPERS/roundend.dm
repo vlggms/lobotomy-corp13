@@ -599,7 +599,7 @@
 				text = "<span style='color: yellow'>Disto</span><span style='color: red'>rted</span> <span style='color: purple'>Form</span>"
 			else if(name == "Nobody Is")
 				text = "<span style='color: [COLOR_STRONG_MAGENTA]'>Oberon an</span><span style='color: [COLOR_VERY_PALE_LIME_GREEN]'>d Titania</span>"
-			else if(name == "Apocalypse bird")
+			else if(name == "Apocalypse Bird")
 				text = "<span style='color: [COLOR_MAROON]'>[name]</span>"
 			else if(name == "WhiteNight")
 				text = "<span style='color: red'>[name]</span>"

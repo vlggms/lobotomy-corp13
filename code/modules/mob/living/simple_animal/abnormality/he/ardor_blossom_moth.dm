@@ -6,6 +6,7 @@
 	base_pixel_x = -8
 	icon_state = "blossom_moth"
 	icon_living = "blossom_moth"
+	core_icon = "moth_egg"
 	portrait = "blossom_moth"
 	maxHealth = 300
 	health = 300

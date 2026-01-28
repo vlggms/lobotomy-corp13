@@ -345,6 +345,7 @@
 		can_act = FALSE
 		oberon_mode = TRUE
 		T.fused = TRUE
+		T.docile_confinement = TRUE
 		say("It's you,")
 		SLEEP_CHECK_DEATH(2 SECONDS)
 		T.say("My nemesis, my beloved devil,")

@@ -40,7 +40,7 @@
 	var/counter_interval = 5 MINUTES
 	var/next_counter_gain //What was the next time you gain Qlip?
 	var/reset_time = 1 MINUTES
-	var/damage_amount = 6
+	var/damage_amount = 5
 	var/run_num = 2		//How many things you breach
 
 	var/list/blacklist = list(
