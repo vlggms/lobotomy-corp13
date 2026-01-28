@@ -111,8 +111,8 @@
 				ramping_speed -= 0.2
 			if(8 to 20)
 				ramping_speed -= 0.5
-		user.deal_damage(1, RED_DAMAGE) // say goodbye to a bit more than your kneecaps... (total damage is 100 RED).
-		total_damage += 1
+		user.deal_damage(4, RED_DAMAGE) // say goodbye to a bit more than your kneecaps... (total damage is 400 RED).
+		total_damage += 4
 
 /mob/living/simple_animal/hostile/abnormality/we_can_change_anything/SpeedWorktickOverride(mob/living/carbon/human/user, work_speed, init_work_speed, work_type)
 	if(!sacrifice)
@@ -125,11 +125,11 @@
 	else
 		playsound(src, 'sound/abnormalities/we_can_change_anything/change_gas.ogg', 50, TRUE)
 		sacrifice = FALSE
-		var/energy_generated = round(10 ** (total_damage * 0.003)) // exponential formula, caps out at 100 damage, generating 1000 PE.
+		var/energy_generated = round(10 ** (total_damage * 0.0075)) // exponential formula, caps out at 400 damage, generating 1000 PE.
 
 		if(user.health <= 0)
 			qdel(user) //reduced to atoms
-			energy_generated += total_damage/8 //adds the normal work PE boxes, since those are normally lost on death
+			energy_generated += total_damage/4 //adds the normal work PE boxes, since those are normally lost on death
 		else
 			ReleaseWorker()
 		datum_reference.stored_boxes += energy_generated // adds PE to the console, only half actually counts towards the goal for balance reasons.
