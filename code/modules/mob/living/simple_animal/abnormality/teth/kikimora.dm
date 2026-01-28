@@ -32,6 +32,7 @@
 	//envy due to being a curse
 	chem_type = /datum/reagent/abnormality/sin/envy
 	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
+	can_spawn = FALSE // Normally doesn't appear
 
 	observation_prompt = "Kikimora? <br> Kikimora. <br>\
 	Kikimora Kikimora Kikimora Kikimora <br>\

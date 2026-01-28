@@ -35,6 +35,7 @@
 	)
 	gift_type = /datum/ego_gifts/blossoming
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
+	can_spawn = FALSE // Normally doesn't appear
 
 	observation_prompt = "This isn't worth being called a sacrifice, is it? <br>I've always wanted to be a hero, but... <br>Even when I'm ordered forth to die a worthless death... <br>\
 		I find myself laughable for deciding to do it still. <br>I joined this company to save people. <br>If I can save the lives of those I love, I have no regrets."

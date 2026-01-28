@@ -48,6 +48,7 @@
 		/mob/living/simple_animal/hostile/abnormality/we_can_change_anything = 1.5,
 	)
 
+	can_spawn = FALSE // Normally doesn't appear
 	observation_prompt = "I wipe everything. <br>\
 		Cleaning is enjoyable. <br>\
 		I like to be the same as others. <br>\

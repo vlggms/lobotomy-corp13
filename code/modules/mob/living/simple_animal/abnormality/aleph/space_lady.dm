@@ -32,6 +32,7 @@
 	)
 	gift_type =  /datum/ego_gifts/space
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
+	can_spawn = FALSE // Normally doesn't appear
 	ranged = TRUE
 	minimum_distance = 3
 	retreat_distance = 3

@@ -45,6 +45,7 @@
 	)
 	gift_type =  /datum/ego_gifts/hearth
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
+	can_spawn = FALSE // Normally doesn't appear
 
 	observation_prompt = "\"I am a home.\" <br>\
 		A happy little home, just for you. <br>\
