@@ -42,8 +42,8 @@
 	chem_type = /datum/reagent/abnormality/sin/envy
 
 	ego_list = list(
-		/datum/ego_datum/weapon/replica,
-		/datum/ego_datum/armor/replica,
+		/datum/ego_datum/weapon/regs,
+		/datum/ego_datum/armor/regs,
 	)
 	gift_type =  /datum/ego_gifts/replica
 	gift_message = "The abnormality hands you a pendant made from circuits and sinews."

@@ -201,11 +201,11 @@
 	. = ..()
 	sleep(0.5 SECONDS)
 	target.apply_damage(force*2, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
-	target.apply_status_effect(/datum/status_effect/rend_black/w_corp)
+	target.apply_status_effect(/datum/status_effect/display/rend/black/w_corp)
 	playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, TRUE)
 	new /obj/effect/temp_visual/justitia_effect(get_turf(target))
 
-/datum/status_effect/rend_black/w_corp // Duplicate of "rend_black", giving it a unique id so it can stack.
+/datum/status_effect/display/rend/black/w_corp // Duplicate of "rend_black", giving it a unique id so it can stack.
 	id = "w-corp rend black armor"
 
 //Type C weapons

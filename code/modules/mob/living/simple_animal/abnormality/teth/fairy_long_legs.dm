@@ -47,8 +47,8 @@
 	)
 
 	ego_list = list(
-		/datum/ego_datum/weapon/fourleaf_clover,
-		/datum/ego_datum/armor/fourleaf_clover,
+		/datum/ego_datum/weapon/sticking,
+		/datum/ego_datum/armor/sticking,
 	)
 	gift_type =  /datum/ego_gifts/fourleaf_clover
 

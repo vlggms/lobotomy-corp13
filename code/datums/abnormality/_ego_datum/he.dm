@@ -326,13 +326,13 @@
 	item_path = /obj/item/ego_weapon/jackrabbit
 	cost = 35*/
 
-//KQE-1J-23 - Replica
-/datum/ego_datum/armor/replica
-	item_path = /obj/item/clothing/suit/armor/ego_gear/he/replica
+//KQE-1J-23 - Move-in Reg.
+/datum/ego_datum/armor/regs
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/regs
 	cost = 35
 
-/datum/ego_datum/weapon/replica
-	item_path = /obj/item/ego_weapon/replica
+/datum/ego_datum/weapon/regs
+	item_path = /obj/item/ego_weapon/regs
 	cost = 35
 
 //Wayward Passenger - Dimension Shredder
@@ -420,13 +420,13 @@
 	item_path = /obj/item/ego_weapon/morii
 	cost = 35
 
-//Will You Play - Voodoo doll
-/datum/ego_datum/armor/voodoo
-	item_path = /obj/item/clothing/suit/armor/ego_gear/he/voodoo
+//Will You Play - I'll go fer scissors. How 'bout you?
+/datum/ego_datum/armor/scissors
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/scissors
 	cost = 35
 
-/datum/ego_datum/weapon/voodoo
-	item_path = /obj/item/ego_weapon/mini/voodoo
+/datum/ego_datum/weapon/scissors
+	item_path = /obj/item/ego_weapon/mini/scissors
 	cost = 35
 
 //Eris - Coiling
@@ -447,13 +447,13 @@
 	item_path = /obj/item/ego_weapon/uturn
 	cost = 35
 
-//Steam Transport Machine - Nixie Divergence (PH)
-/datum/ego_datum/armor/nixie
-	item_path = /obj/item/clothing/suit/armor/ego_gear/he/nixie
+//Steam Transport Machine - Crushbound Past
+/datum/ego_datum/armor/crushbound
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/crushbound
 	cost = 35
 
-/datum/ego_datum/weapon/nixie
-	item_path = /obj/item/ego_weapon/nixie
+/datum/ego_datum/weapon/crushbound
+	item_path = /obj/item/ego_weapon/crushbound
 	cost = 35
 
 //Drifting Fox - Sunshower

@@ -102,7 +102,7 @@
 
 /obj/item/clothing/suit/armor/ego_gear/aleph/nightmares//stat total of 260, between regular ALEPH and PL
 	name = "lucid nightmares"
-	desc = "My father once told me of a mysterious cabin deep within the creek. I had found the fabled place within the recesses of my mind, wherein a horrible beast lurked..."
+	desc = "Long ago, my father told me of a mysterious cabin deep within the brambles. It came to me in my dreams, that horrible beast therein."
 	icon_state = "nightmares"
 	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_armor.dmi'
 	worn_icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_worn.dmi'

@@ -242,9 +242,9 @@
 	. = ..()
 	if(isliving(target))
 		var/mob/living/simple_animal/M = target
-		if(!ishuman(M) && !M.has_status_effect(/datum/status_effect/rend_red))
+		if(!ishuman(M) && !M.has_status_effect(/datum/status_effect/display/rend))
 			new /obj/effect/temp_visual/cult/sparks(get_turf(M))
-			M.apply_status_effect(/datum/status_effect/rend_red)
+			M.apply_status_effect(/datum/status_effect/display/rend)
 
 //feather of valor
 /obj/projectile/ego_bullet/ego_warring
@@ -289,8 +289,7 @@
 /obj/projectile/ego_bullet/ego_warring2/on_hit(atom/target, blocked = FALSE)
 	. = ..()
 	var/mob/living/carbon/human/H = target
-	var/mob/living/user = firer
-	if(user.faction_check_mob(H))//player faction
+	if(ishuman(H))
 		H.adjustSanityLoss(-damage*0.2)
 		H.electrocute_act(1, src, flags = SHOCK_NOSTUN)
 		H.Knockdown(50)
@@ -393,6 +392,7 @@
 
 /obj/projectile/ego_bullet/special_fellbullet/proc/MagicBulletEffect(angle, atom/direct_target)
 	var/obj/effect/fellcircle/circle = new(get_turf(src))
+	circle.AdjustCircle(Angle, firer)//visual dir thingy
 	circle.FireBullets(Angle, damage)
 
 /obj/effect/fellcircle//thing that shoots
@@ -424,3 +424,21 @@
 			bullet.damage *= damage_mult
 			bullet.fire(angle)
 	QDEL_IN(src, 1 SECONDS)
+
+/obj/effect/fellcircle/proc/AdjustCircle(angle, atom/movable/firer)
+	if(!firer)
+		return
+	var/matrix/M = matrix(transform)
+	var/rot_angle = angle
+	M.Turn(rot_angle)
+	switch(firer.dir)
+		if(EAST)
+			M.Scale(0.5, 1)
+			M.Translate(12, 0)
+		if(WEST)
+			M.Scale(0.5, 1)
+			M.Translate(-16, 0)
+		if(NORTH)
+			M.Translate(0, 8)
+			layer -= 0.2
+	transform = M

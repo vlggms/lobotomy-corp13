@@ -281,13 +281,13 @@
 	item_path = /obj/item/ego_weapon/shield/capote
 	cost = 20
 
-// Fairy-Long-Legs - Four-Leaf Clover
-/datum/ego_datum/armor/fourleaf_clover
-	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/fourleaf_clover
+// Fairy-Long-Legs - Sticking
+/datum/ego_datum/armor/sticking
+	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/sticking
 	cost = 20
 
-/datum/ego_datum/weapon/fourleaf_clover
-	item_path = /obj/item/ego_weapon/mini/fourleaf_clover
+/datum/ego_datum/weapon/sticking
+	item_path = /obj/item/ego_weapon/mini/sticking
 	cost = 20
 
 // Red Blooded American - Patriot
@@ -308,13 +308,13 @@
 	item_path = /obj/item/ego_weapon/zauberhorn
 	cost = 20
 
-// Skin Prophecy - Visions of Future Past
-/datum/ego_datum/armor/visions
-	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/visions
+// Skin Prophecy - 9:2
+/datum/ego_datum/armor/skinprophet
+	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/skinprophet
 	cost = 20
 
-/datum/ego_datum/weapon/visions
-	item_path = /obj/item/ego_weapon/lance/visions
+/datum/ego_datum/weapon/skinprophet
+	item_path = /obj/item/ego_weapon/lance/skinprophet
 	cost = 20
 
 // All-Around Cleaner - Sanitizer

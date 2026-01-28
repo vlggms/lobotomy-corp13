@@ -49,8 +49,8 @@
 	projectilesound = 'sound/abnormalities/steam/steamfire.ogg'
 
 	ego_list = list(
-		/datum/ego_datum/weapon/nixie,
-		/datum/ego_datum/armor/nixie,
+		/datum/ego_datum/weapon/crushbound,
+		/datum/ego_datum/armor/crushbound,
 	)
 	gift_type =  /datum/ego_gifts/nixie
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
