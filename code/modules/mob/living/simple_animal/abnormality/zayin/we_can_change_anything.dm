@@ -56,7 +56,7 @@
 
 	var/grinding = FALSE
 	var/grind_duration = 5 SECONDS
-	var/grind_damage = 2 // Dealt 100 times
+	var/grind_damage = 0.4 // Dealt 100 times
 
 	chem_type = /datum/reagent/abnormality/we_can_change_anything
 	harvest_phrase = span_notice("You scoop up some goo from the inner lip of %ABNO using %VESSEL.")

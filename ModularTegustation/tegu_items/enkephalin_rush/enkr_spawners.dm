@@ -27,12 +27,12 @@
 	var/spawning = pick(possible_items)
 	new spawning(get_turf(src))
 
+GLOBAL_DATUM_INIT(map_enemy, /datum/enemy, new)
 
 //map-based enemy faction selection
 /obj/effect/spawner/map_enemy
 	var/level = 1//risk level
 	var/obj/effect/spawner/mobspawner/chosen_spawner//the spawner this copies vars from
-	var/global/map_enemy//enemy type determined when initialized the first time in a given round
 	var/list/ordeal_types = list()//the types of ordeals the enemy type can spawn
 	var/list/spawner_types = list(//TODO: this needs to be determined by specific maps. Default is currently for District 4
 			/datum/enemy/gold,
@@ -48,13 +48,14 @@
 	..()
 
 /obj/effect/spawner/map_enemy/Initialize()
-	if(!map_enemy)
+	if(istype(GLOB.map_enemy, /datum/enemy))
 		if("whales" in SSmaptype.map_tags)//50% chance to roll whales, 50% anything else
 			spawner_types += list(/datum/enemy/whales, /datum/enemy/whales, /datum/enemy/whales, /datum/enemy/whales)
 		if("wineberrycreek" in SSmaptype.map_tags)
 			spawner_types += /datum/enemy/gold//Make wineberry abnos their own enemy type later. This currently doubles their odds of appearing.
-		map_enemy = pick(spawner_types)
-	var/datum/enemy/myenemy = new map_enemy()
+		var/datum/enemy/selection = pick(spawner_types)
+		GLOB.map_enemy = new selection()
+	var/datum/enemy/myenemy = GLOB.map_enemy
 	if(istype(myenemy,/datum/enemy))
 		ordeal_types = myenemy.ordeal_types
 	var/i = 0
@@ -68,6 +69,7 @@
 
 /datum/enemy
 	var/ordeal_types = list()
+	var/spawn_data = list()
 
 //amber ordeals
 /datum/enemy/amber

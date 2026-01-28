@@ -377,12 +377,12 @@
 	response_disarm_simple = "push aside"
 	verb_ask = "chirps"
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
-	maxHealth = 250
-	health = 250 // easier to kill
+	maxHealth = 100
+	health = 100 // easier to kill
 	speed = 3
 	attack_sound = 'sound/weapons/bite.ogg'
-	melee_damage_lower = 5
-	melee_damage_upper = 15 // crit damage
+	melee_damage_lower = 1
+	melee_damage_upper = 5 // crit damage
 	turns_per_move = 2
 	butcher_difficulty = 2
 	butcher_results = list(/obj/item/food/meat/slab/chicken = 2, /obj/item/food/meat/slab/human = 1, /obj/item/food/egg = 1,) // chicken and human for what he eats, egg? |MESSAGE BELOW|
@@ -417,11 +417,11 @@
 	attack_verb_simple = "flash"
 	verb_ask = "buzzes"
 	mob_biotypes = MOB_ROBOTIC
-	maxHealth = 300
-	health = 300
+	maxHealth = 100
+	health = 100
 	move_to_delay = 2
 	melee_damage_lower = 1
-	melee_damage_upper = 8 // should annoy, not kill
+	melee_damage_upper = 3 // should annoy, not kill
 	turns_per_move = 3
 	butcher_difficulty = 3
 	butcher_results = list(/obj/item/reagent_containers/hypospray/medipen/safety/kcorp = 1, /obj/item/assembly/flash/handheld = 1)
@@ -499,8 +499,8 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	see_in_dark = 7
 	vision_range = 12
 	aggro_vision_range = 20
-	maxHealth = 80
-	health = 80
+	maxHealth = 40
+	health = 40
 	move_to_delay = 4
 	stat_attack = HARD_CRIT
 	melee_damage_type = RED_DAMAGE
@@ -545,8 +545,8 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	desc = "A mass of flesh and bulbous growths that flails and gurgles helplessly."
 	icon_state = "lovetown_suicidal"
 	icon_living = "lovetown_suicidal"
-	maxHealth = 80 //very weak
-	health = 80
+	maxHealth = 40 //very weak
+	health = 40
 	move_to_delay = 8 //very slow
 	ranged = TRUE
 	mob_spawn_amount = 0 //so we dont recursively spawn more
@@ -588,11 +588,11 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	desc = "A mass of flesh and teeth, it has a destroyed appendage with pure muscle coming out of it, sharpened by wicked design."
 	icon_state = "lovetown_slasher"
 	icon_living = "lovetown_slasher"
-	maxHealth = 300
-	health = 300
+	maxHealth = 150
+	health = 150
 	move_to_delay = 4
-	melee_damage_lower = 18
-	melee_damage_upper = 22
+	melee_damage_lower = 9
+	melee_damage_upper = 11
 	attack_sound = 'sound/weapons/fixer/generic/knife2.ogg'
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
@@ -603,10 +603,10 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	desc = "A mass of flesh and bulbous growths with a protusion on top, flailing aggressively."
 	icon_state = "lovetown_stabber"
 	icon_living = "lovetown_stabber"
-	maxHealth = 220 //weaker than slashers...
-	health = 220
-	melee_damage_lower = 8 //...weaker damage too, though...
-	melee_damage_upper = 10
+	maxHealth = 110 //weaker than slashers...
+	health = 110
+	melee_damage_lower = 4 //...weaker damage too, though...
+	melee_damage_upper = 5
 	rapid_melee = 2 //... in turn it attacks much faster...
 	move_to_delay = 3 //...and it's faster.
 	attack_sound = 'sound/effects/ordeals/green/stab.ogg'
@@ -619,10 +619,10 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	desc = "A hunk of flesh that ends in a gigantic fist at the top."
 	icon_state = "lovetown_slammer"
 	icon_living = "lovetown_slammer"
-	maxHealth = 300
-	health = 300
-	melee_damage_lower = 28 //much higher damage...
-	melee_damage_upper = 36
+	maxHealth = 150
+	health = 150
+	melee_damage_lower = 14 //much higher damage...
+	melee_damage_upper = 18
 	rapid_melee = 0.5 //...much slower attack...
 	melee_queue_distance = 2
 	move_to_delay = 6 //...and speed.
@@ -642,8 +642,8 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	icon_state = "lovetown_shambler"
 	icon_living = "lovetown_shambler"
 	icon_dead = "lovetown_shambler"
-	maxHealth = 900
-	health = 900
+	maxHealth = 300
+	health = 300
 	move_to_delay = 6
 	ranged = TRUE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.4, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
@@ -691,10 +691,10 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	icon_dead = "lovetown_slumberer"
 	base_pixel_x = -16
 	pixel_x = -16
-	maxHealth = 1000
-	health = 1000
-	melee_damage_lower = 25
-	melee_damage_upper = 30
+	maxHealth = 500
+	health = 500
+	melee_damage_lower = 15
+	melee_damage_upper = 20
 	melee_damage_type = RED_DAMAGE
 	attack_sound = 'sound/creatures/lc13/lovetown/slam.ogg'
 	attack_verb_continuous = "grapples"
@@ -707,7 +707,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 
 	var/grab_ready = FALSE //are we ready to grab
 	var/countering = FALSE //are we grabbing them right now
-	var/counter_threshold = 350 //2 counters at most
+	var/counter_threshold = 200 //2 counters at most
 	var/damage_taken
 
 /mob/living/simple_animal/hostile/lovetown/slumberer/proc/DisableCounter()
@@ -775,14 +775,14 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	icon_dead = "lovetown_abomination"
 	base_pixel_x = -32
 	pixel_x = -32
-	maxHealth = 6000 //CHONKY
-	health = 6000
+	maxHealth = 3000 //CHONKY
+	health = 3000
 	melee_queue_distance = 2 //since our attacks are AoEs, this makes it harder to kite us
 	move_to_delay = 6
 	ranged = TRUE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 1.5)
-	melee_damage_lower = 60
-	melee_damage_upper = 80
+	melee_damage_lower = 45
+	melee_damage_upper = 60
 	attack_sound = 'sound/creatures/lc13/lovetown/slam.ogg'
 	attack_verb_continuous = "slams"
 	attack_verb_simple = "slam"
@@ -793,7 +793,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 
 	var/can_act = TRUE
 	var/current_stage = 1 //changes behaviour slightly on phase 2
-	var/stage_threshold = 3000 // enters stage 2 at or below this threshold
+	var/stage_threshold = 1500 // enters stage 2 at or below this threshold
 	var/attack_delay = 0.5 SECONDS //0.5 seconds at stage 1, 1 second at stage 2
 	var/countering = FALSE //are we
 
@@ -802,7 +802,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 
 	var/counter_speed = 2 //subtracted from the movedelay when dashing
 
-	var/lovewhip_damage = 100
+	var/lovewhip_damage = 75
 	var/damage_taken
 
 /mob/living/simple_animal/hostile/lovetown/abomination/Initialize(mapload)
@@ -1015,7 +1015,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 			can_act = TRUE
 			return
 		for(var/mob/living/carbon/human/H in view(7, get_turf(src)))
-			H.apply_damage(50, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			H.apply_damage(35, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 		new /obj/effect/temp_visual/lovetown_shapes(get_turf(TH))
 		TH.gib()
 //		animate(TH, pixel_y = pixel_y_before, time = 10, , easing = BACK_EASING | EASE_OUT, flags = ANIMATION_END_NOW) //animate the shape back when you add it Mel

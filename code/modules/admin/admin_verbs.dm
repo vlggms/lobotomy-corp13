@@ -32,6 +32,7 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/game_panel,			/*game panel, allows to change game-mode etc*/
 	/client/proc/check_ai_laws,			/*shows AI and borg laws*/
 	/client/proc/ghost_pool_protection,	/*opens a menu for toggling ghost roles*/
+	/client/proc/enemy_panel,			/*enemy panel, views the mob generating datum for enkephalin rush*/
 	/datum/admins/proc/toggleooc,		/*toggles ooc on/off for everyone*/
 	/datum/admins/proc/toggleoocdead,	/*toggles ooc on/off for everyone who is dead*/
 	/datum/admins/proc/togglecrosscomms,/*toggles cross-server communications*/
@@ -212,6 +213,7 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	/datum/admins/proc/toggleguests,
 	/datum/admins/proc/announce,
 	/datum/admins/proc/set_admin_notice,
+	/datum/admins/proc/enemy_panel,
 	/client/proc/admin_ghost,
 	/client/proc/toggle_view_range,
 	/client/proc/cmd_admin_subtle_message,
@@ -850,6 +852,15 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 	log_admin("[key_name(usr)] has fully understood [abno_type].")
 	message_admins("[key_name(usr)] has fully understood [abno_type].")
+
+//Views or Changes enemies in Enkephalin Rush
+/client/proc/enemy_panel()
+	set name = "Enemy Panel"
+	set category = "Admin.Game"
+	set desc = "view enemies spawned by enkephalin rush mining events"
+	if(holder)
+		holder.enemy_panel()
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Enemy Panel") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 //Breaches a LC13 Abnormality
 /client/proc/BreachAbno()

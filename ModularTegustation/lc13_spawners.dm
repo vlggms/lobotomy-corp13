@@ -116,10 +116,14 @@
 	var/radius = 1
 	///This weighted list acts as the loot table for the spawner
 	var/list/mobspawn_table
+	var/enabled = TRUE
 
 
 /obj/effect/spawner/mobspawner/Initialize()
 	..()
+	if(!enabled)
+		return INITIALIZE_HINT_QDEL
+
 	if(!length(mobspawn_table))
 		return INITIALIZE_HINT_QDEL
 

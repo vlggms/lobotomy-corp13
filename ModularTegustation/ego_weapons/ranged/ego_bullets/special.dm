@@ -37,7 +37,7 @@
 	damage_type = PALE_DAMAGE
 
 /obj/projectile/ego_bullet/ego_kcorp
-	damage = 15
+	damage = 5
 
 /obj/projectile/ego_bullet/ego_knade
 	damage = 15
