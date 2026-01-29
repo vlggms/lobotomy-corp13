@@ -1527,7 +1527,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	if(istype(I, /obj/item/ego_weapon))
 		var/obj/item/ego_weapon/theweapon = I
 		damage *= theweapon.force_multiplier
-		apply_damage(H, (damage * weakness), I.damtype, source = user, flags = (DAMAGE_WHITE_HEALABLE), attack_type = (ATTACK_TYPE_MELEE), def_zone = def_zone, wound_bonus = Iwound_bonus, bare_wound_bonus = I.bare_wound_bonus, sharpness = I.get_sharpness())
+	apply_damage(H, (damage * weakness), I.damtype, source = user, flags = (DAMAGE_WHITE_HEALABLE), attack_type = (ATTACK_TYPE_MELEE), def_zone = def_zone, wound_bonus = Iwound_bonus, bare_wound_bonus = I.bare_wound_bonus, sharpness = I.get_sharpness())
 	if(!I.force)
 		return FALSE //item force is zero
 
