@@ -402,9 +402,8 @@
 	abno_code = "T-01-201" //We can change the number once we figure out the proper code
 	abno_info = list(
 		"When the work result was Bad, the Qliphoth Counter lowered.",
-		"When the Qliphoth Counter reached 0, the abnormality let out a yell that seems to damage the electricity of the nearest connected circuit.",
-		"Considering how the containment cells are designed, the nearest circuits seem to be the ciruitry for the facility's lighting.",
-		"The energy lost from an electric surge from this abnormality will be taken out of the quota.")
+		"When Foresaken Employee escaped, it spilled chemicals that inflict WHITE damage to employees that crossed it.",
+		)
 
 //Tangle
 /obj/item/paper/fluff/info/teth/tangle

@@ -1,10 +1,15 @@
 /mob/living/simple_animal/hostile/abnormality/forsaken_employee
 	name = "Forsaken Employee"
-	desc = "A person who seems to be wearing an L Corp Uniform and is covered in chains, as well as wearing a box with what looks like Enkephalin in it on their head."
+	desc = "A person who seems to be wearing an L Corp Uniform covered in chains. A box resembling Enkephalin is stuck on their head."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "forsaken_employee"
 	portrait = "forsaken_employee"
 
+	maxHealth = 250
+	health = 250
+	move_to_delay = 3
+
+	can_breach = TRUE
 	threat_level = TETH_LEVEL
 	start_qliphoth = 1
 	work_chances = list(
@@ -14,7 +19,13 @@
 		ABNORMALITY_WORK_REPRESSION = list(60, 60, 50, 50, 50),
 	)
 	work_damage_lower = 3
-	work_damage_type = RED_DAMAGE
+	work_damage_type = BLACK_DAMAGE
+
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.3, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
+	melee_damage_lower = 1
+	melee_damage_upper = 3
+	melee_damage_type = BLACK_DAMAGE
+	attack_sound = 'sound/abnormalities/ichthys/slap.ogg'
 
 	ego_list = list(
 		/datum/ego_datum/weapon/denial,
@@ -24,8 +35,8 @@
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 	chem_type = /datum/reagent/abnormality/sin/gloom
 
-	can_spawn = FALSE // Normally doesn't appear
-	var/list/blackout_list = list()
+	var/splash_cooldown
+	var/splash_cooldown_time = 2 SECONDS
 
 	//Observation is mostly mirror dungeon but with some changed phrasing
 	observation_prompt = "The sound of plastic crashing is accompanied by the sloshing of a liquid. <br>\
@@ -48,28 +59,43 @@
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/forsaken_employee/ZeroQliphoth(mob/living/carbon/human/user)
-	. = ..()
-	datum_reference.qliphoth_change(1)
-	visible_message("[src] lets out a muffled scream!")
-	playsound(get_turf(src), 'sound/voice/human/malescream_6.ogg', 15, 3, 3)
-	SSlobotomy_corp.AdjustGoalBoxes(-25)
-	var/list/possible_areas = list()
-	if(LAZYLEN(blackout_list) < 3)
-		for(var/area/A in world)
-			if(istype(A, /area/facility_hallway) || istype(A, /area/department_main))
-				if(A.z == z && A.lightswitch == TRUE)
-					possible_areas += A
-		if(length(possible_areas) != 0)
-			var/area/chosen_area = pick(possible_areas)
-			blackout_list += chosen_area
-			chosen_area.lightswitch = FALSE
-			chosen_area.update_icon()
-			chosen_area.power_change()
-			addtimer(CALLBACK(src, PROC_REF(TurnOn), chosen_area), 10 MINUTES)
+/mob/living/simple_animal/hostile/abnormality/forsaken_employee/BreachEffect(mob/living/carbon/human/user, breach_type)
+	..()
+	AddElement(/datum/element/waddling)
+	AddComponent(/datum/component/knockback, 1, FALSE, TRUE)
 
-/mob/living/simple_animal/hostile/abnormality/forsaken_employee/proc/TurnOn(area/A)
-	A.lightswitch = TRUE
-	blackout_list -= A
-	A.update_icon()
-	A.power_change()
+/mob/living/simple_animal/hostile/abnormality/forsaken_employee/AttackingTarget(atom/attacked_target)
+	splash()
+	..()
+
+/mob/living/simple_animal/hostile/abnormality/forsaken_employee/Life()
+	. = ..()
+	if(status_flags & GODMODE)
+		return
+	if(splash_cooldown <= world.time)
+		playsound(src, 'sound/abnormalities/ichthys/hardslap.ogg', 60, 1)
+		splash()
+
+
+/mob/living/simple_animal/hostile/abnormality/forsaken_employee/proc/splash()
+	new /obj/effect/gibspawner/generic/silent/wrath_acid/enkephalin(loc)
+	splash_cooldown = world.time + splash_cooldown_time
+
+/obj/effect/gibspawner/generic/silent/wrath_acid/enkephalin
+	gibtypes = list(/obj/effect/decal/cleanable/wrath_acid/enkephalin)
+	gibamounts = list(5)
+
+/obj/effect/decal/cleanable/wrath_acid/enkephalin
+	name = "Enkephalin"
+	desc = "There are some harsh fumes coming off of it."
+	icon_state = "acid_greyscale"
+	random_icon_states = list("acid_greyscale")
+	color = "#ffffa3"
+	duration = 30 SECONDS
+
+/obj/effect/decal/cleanable/wrath_acid/enkephalin/Crossed(atom/movable/AM)
+	if(!ishuman(AM))
+		return FALSE
+	var/mob/living/carbon/human/H = AM
+	H.apply_damage(1, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+	. = ..()
