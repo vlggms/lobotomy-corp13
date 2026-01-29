@@ -741,7 +741,6 @@
 	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 	var/justicemod = 1 + userjust/100
 	var/list/been_hit = list(target)
-	var/list/turfs = list()
 	for(var/turf/T in Make_Slash(get_turf(user), target_turf, 3, 240))
 		if(user in T)
 			continue
