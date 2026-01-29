@@ -14,7 +14,7 @@
 /datum/ai_behavior/say_line/insanity_lines/insanity_wander/perform(delta_time, datum/ai_controller/controller)
 	. = ..()
 	var/mob/living/living_pawn = controller.pawn
-	var/sanity_damage = get_user_level(living_pawn) * 5
+	var/sanity_damage = get_user_level(living_pawn)//This is how it is calculated in LC
 	for(var/mob/living/carbon/human/H in view(9, living_pawn))
 		if(H == living_pawn)
 			continue
