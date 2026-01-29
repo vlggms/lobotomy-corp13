@@ -1015,7 +1015,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 			can_act = TRUE
 			return
 		for(var/mob/living/carbon/human/H in view(7, get_turf(src)))
-			H.deal_damage(35, WHITE_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL)))
+			H.deal_damage(35, WHITE_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL))
 		new /obj/effect/temp_visual/lovetown_shapes(get_turf(TH))
 		TH.gib()
 //		animate(TH, pixel_y = pixel_y_before, time = 10, , easing = BACK_EASING | EASE_OUT, flags = ANIMATION_END_NOW) //animate the shape back when you add it Mel

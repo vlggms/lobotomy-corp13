@@ -869,7 +869,7 @@
 	UnregisterSignal(owner, COMSIG_ATOM_BULLET_ACT)
 	if(!current_damage)//0 damage stacked
 		return
-	owner.apply_damage(current_damage, BLACK_DAMAGE)
+	owner.deal_damage(current_damage, BLACK_DAMAGE, attack_type = (ATTACK_TYPE_STATUS))
 	new /obj/effect/temp_visual/explosion(get_turf(owner))
 
 /datum/status_effect/display/crash_curse/proc/stack_damage()
