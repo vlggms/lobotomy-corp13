@@ -344,6 +344,7 @@
 	var/armor = run_armor_check(affecting, M.melee_damage_type, armour_penetration = M.armour_penetration)
 	deal_damage(damage, M.melee_damage_type, source = M, attack_type = (ATTACK_TYPE_MELEE), def_zone = affecting, blocked = armor, wound_bonus = M.wound_bonus, bare_wound_bonus = M.bare_wound_bonus, sharpness = M.sharpness)
 
+
 /mob/living/carbon/human/attack_slime(mob/living/simple_animal/slime/M)
 	. = ..()
 	if(!.) // slime attack failed
