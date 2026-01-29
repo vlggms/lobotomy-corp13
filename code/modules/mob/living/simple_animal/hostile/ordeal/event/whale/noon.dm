@@ -80,7 +80,7 @@
 	for(var/mob/living/carbon/human/H in view(8, src))
 		if(H.z != z)
 			continue
-		H.deal_damage(pulse_damage, WHITE_DAMAGE)
+		H.deal_damage(pulse_damage, WHITE_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL))
 		H.stuttering = 20
 		if(H.sanity_lost)
 			H.SanityLossEffect(PRUDENCE_ATTRIBUTE)

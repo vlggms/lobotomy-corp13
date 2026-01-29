@@ -372,39 +372,37 @@
 			user.adjustBruteLoss(-5)
 			user.adjustSanityLoss(-5)
 		if(7, 8)
-			user.apply_status_effect(/datum/status_effect/interventionshield)
+			user.apply_shield(/datum/status_effect/interventionshield, shield_health = 50, shield_duration = 15 SECONDS)
 		if(9, 10)
-			user.apply_status_effect(/datum/status_effect/interventionshield/white)
+			user.apply_shield(/datum/status_effect/interventionshield/white, shield_health = 50, shield_duration = 15 SECONDS)
 		if(11, 12)
-			user.apply_status_effect(/datum/status_effect/interventionshield/black)
+			user.apply_shield(/datum/status_effect/interventionshield/black, shield_health = 50, shield_duration = 15 SECONDS)
 		if(15, 16)
-			user.apply_status_effect(/datum/status_effect/interventionshield/pale)
+			user.apply_shield(/datum/status_effect/interventionshield/pale, shield_health = 50, shield_duration = 15 SECONDS)
 		if(17, 18)
 			var/turf/proj_turf = user.loc
 			if(!isturf(proj_turf))
 				return
-			reflect_cooldown = world.time + reflect_cooldown_time
 			var/obj/projectile/ego_bullet/swan/S = new /obj/projectile/ego_bullet/swan(proj_turf)
 			S.fired_from = src //for signal check
 			playsound(user, 'sound/weapons/resonator_blast.ogg', 30, TRUE)
 			S.firer = user
 			S.preparePixelProjectile(attacker, user)
 			S.fire()
-			S.damage *= force_multiplier * 2
+			S.damage *= force_multiplier * 3
 		if(19, 20)
 			user.visible_message(span_danger("[user]'s [src] screaches!"), \
 					span_userdanger("Your [src] screaches!"), vision_distance = COMBAT_MESSAGE_RANGE, ignored_mobs = user)
 			playsound(user, "sound/abnormalities/distortedform/screech4.ogg", 75, FALSE, 8)
-			for(var/i = 1 to 8)
-				new /obj/effect/temp_visual/fragment_song(get_turf(src))
-				for(var/mob/living/L in ohearers(8, src))
-					if(L.z != z || (L.status_flags & GODMODE))
-						continue
-					if(user.faction_check_mob(L, FALSE))
-						continue
-					if(L.stat == DEAD)
-						continue
-					L.deal_damage(3, WHITE_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL))
+			new /obj/effect/temp_visual/fragment_song(get_turf(src))
+			for(var/mob/living/L in ohearers(8, src))
+				if(L.z != z || (L.status_flags & GODMODE))
+					continue
+				if(user.faction_check_mob(L, FALSE))
+					continue
+				if(L.stat == DEAD)
+					continue
+				L.deal_damage(30, WHITE_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL))
 		if(21)
 			user.visible_message(span_danger("[user]'s [src] explodes!"), \
 						span_userdanger("Your [src] explodes!"), ignored_mobs = user)
@@ -437,7 +435,7 @@
 			for(var/mob/living/carbon/human/L in livinginview(8, user))
 				if((!ishuman(L)) || L.stat == DEAD)
 					continue
-				L.apply_status_effect(/datum/status_effect/interventionshield/perfect)
+				L.apply_shield(/datum/status_effect/interventionshield/perfect, shield_health = 50, shield_duration = 15 SECONDS)
 
 /obj/item/ego_weapon/shield/distortion/DisableBlock(mob/living/carbon/human/user)
 	if(!block)
