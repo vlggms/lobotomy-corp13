@@ -349,7 +349,7 @@
 			continue;
 		var/obj/effect/temp_visual/slice/blood = new(T)
 		blood.color = "#b52e19"
-		hit_list = HurtInTurf(T, hit_list, slash_damage, RED_DAMAGE, null, TRUE, TRUE, TRUE, hurt_structure = TRUE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
+		hit_list = HurtInTurf(T, hit_list, slash_damage, RED_DAMAGE, null, TRUE, TRUE, TRUE, hurt_structure = TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 	for (var/hit in hit_list)
 		if (istype(hit, /mob/living))
 			var/mob/living/L = hit
