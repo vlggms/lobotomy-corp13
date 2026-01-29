@@ -732,22 +732,27 @@
 	update_icon_state()
 
 /obj/item/ego_weapon/space/attack(mob/living/target, mob/living/user)
-	..()
+	var/turf/target_turf = get_turf(target)
+	. = ..()
 	if(!CanUseEgo(user))
 		return
 	if(!aoe_mode)
 		return
 	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 	var/justicemod = 1 + userjust/100
-	for(var/turf/T in orange(2, user))
-		new /obj/effect/temp_visual/smash_effect(T)
-	for(var/mob/living/L in range(2, user))
-		var/aoe = 20
-		aoe*=justicemod
-		aoe*=force_multiplier
-		if(L == user || ishuman(L) || L == target)
+	var/list/been_hit = list(target)
+	var/list/turfs = list()
+	for(var/turf/T in Make_Slash(get_turf(user), target_turf, 3, 240))
+		if(user in T)
 			continue
-		L.deal_damage(aoe, aoe_damtype)
+		new /obj/effect/temp_visual/smash_effect(T)
+		for(var/mob/living/L in T)
+			var/aoe = 20
+			aoe*=justicemod
+			aoe*=force_multiplier
+			if(L == user || ishuman(L))
+				continue
+			been_hit = user.HurtInTurf(T, been_hit, aoe, WHITE_DAMAGE, hurt_mechs = TRUE, hurt_structure = FALSE)
 
 /obj/item/ego_weapon/seasons
 	name = "Seasons Greetings"
