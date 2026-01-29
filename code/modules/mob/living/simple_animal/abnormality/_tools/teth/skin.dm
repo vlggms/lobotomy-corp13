@@ -9,8 +9,8 @@
 	full_boost_message = "You've learned all that you could."
 
 	ego_list = list(
-		/datum/ego_datum/weapon/visions,
-		/datum/ego_datum/armor/visions,
+		/datum/ego_datum/weapon/skinprophet,
+		/datum/ego_datum/armor/skinprophet,
 	)
 
 /obj/structure/toolabnormality/attribute_giver/skin/attack_hand(mob/living/carbon/human/user)

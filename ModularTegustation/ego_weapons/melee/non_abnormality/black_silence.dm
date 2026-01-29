@@ -421,9 +421,9 @@
 	hitsound = 'sound/weapons/ego/spear1.ogg'
 	if(isliving(M))
 		var/mob/living/simple_animal/target = M
-		if(!ishuman(target) && !target.has_status_effect(/datum/status_effect/rend_black))
+		if(!ishuman(target) && !target.has_status_effect(/datum/status_effect/display/rend/black))
 			new /obj/effect/temp_visual/cult/sparks(get_turf(target))
-			target.apply_status_effect(/datum/status_effect/rend_black)
+			target.apply_status_effect(/datum/status_effect/display/rend/black)
 
 // litrally just vergil, I don't even care
 /obj/item/ego_weapon/black_silence_gloves/mook

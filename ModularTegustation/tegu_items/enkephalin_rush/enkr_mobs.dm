@@ -167,7 +167,7 @@
 /obj/effect/dragon_circle
 	name = "magic circle"
 	desc = "A magical circle with a strange poppet design."
-	icon = 'icons/effects/effects.dmi'
+	icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
 	icon_state = "woodcircle"
 	pixel_x = 8
 	base_pixel_x = 8

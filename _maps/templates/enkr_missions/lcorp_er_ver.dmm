@@ -94,7 +94,7 @@
 /obj/effect/turf_decal/weather/dirt{
 	dir = 8
 	},
-/turf/open/floor/plating/asteroid/basalt,
+/turf/open/floor/stone,
 /area/city/backstreets_alley)
 "aE" = (
 /obj/structure/pe_sales/l_corp,
@@ -204,7 +204,7 @@
 /mob/living/simple_animal/hostile/meatblob/gunner/sniper{
 	faction = list("gold_ordeal")
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/stone,
 /area/city/backstreets_alley)
 "bE" = (
 /obj/structure/bonfire/prelit,
@@ -278,7 +278,7 @@
 "cs" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/trash/sosjerky,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/stone,
 /area/city/backstreets_alley)
 "cu" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -374,7 +374,6 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/ego_weapon/mini/fourleaf_clover,
 /obj/item/ego_weapon/lance/curfew,
 /obj/item/clothing/suit/armor/ego_gear/teth/eyes,
 /turf/open/floor/facility/halls,
@@ -391,9 +390,6 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/city/backstreets_alley)
-"cX" = (
-/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
 "da" = (
 /obj/machinery/door/airlock/vault{
@@ -629,7 +625,10 @@
 /mob/living/simple_animal/hostile/distortion/bunnyman{
 	faction = list("gold_ordeal")
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/stone,
+/area/city/backstreets_alley)
+"eu" = (
+/turf/open/floor/stone,
 /area/city/backstreets_alley)
 "ev" = (
 /obj/machinery/light/broken{
@@ -1176,7 +1175,7 @@
 /area/awaymission/enkr)
 "hM" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/sandy_dirt,
 /area/city/backstreets_alley)
 "hP" = (
 /obj/structure/table_frame,
@@ -1765,6 +1764,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
 /area/city/backstreets_alley)
+"lA" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/rack,
+/obj/item/clothing/suit/armor/ego_gear/teth/sticking,
+/turf/open/floor/facility/halls,
+/area/awaymission/enkr)
 "lC" = (
 /obj/effect/turf_decal/siding/green{
 	dir = 4
@@ -2635,7 +2640,7 @@
 /area/awaymission/enkr)
 "qW" = (
 /obj/structure/fence,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/stone,
 /area/city/backstreets_alley)
 "qZ" = (
 /obj/machinery/computer/crew,
@@ -2784,7 +2789,6 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/clothing/suit/armor/ego_gear/teth/fourleaf_clover,
 /obj/item/ego_weapon/lantern,
 /obj/item/ego_weapon/mini/wrist,
 /turf/open/floor/facility/halls,
@@ -3682,6 +3686,12 @@
 /obj/structure/mineral_door/wood,
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_alley)
+"xf" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/rack,
+/obj/item/ego_weapon/mini/sticking,
+/turf/open/floor/facility/halls,
+/area/awaymission/enkr)
 "xh" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/carpet/green,
@@ -3739,7 +3749,7 @@
 "xy" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/flora/rock,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/sandy_dirt,
 /area/city/backstreets_alley)
 "xz" = (
 /obj/effect/portal/permanent{
@@ -3750,7 +3760,7 @@
 /area/awaymission/enkr)
 "xA" = (
 /obj/item/trash/popcorn,
-/turf/open/floor/plating/asteroid/basalt,
+/turf/open/floor/stone,
 /area/city/backstreets_alley)
 "xB" = (
 /obj/structure/chair/wood{
@@ -3968,7 +3978,7 @@
 /area/awaymission/enkr)
 "zC" = (
 /obj/structure/flora/rock/pile,
-/turf/open/floor/plating/asteroid/basalt,
+/turf/open/floor/plating/sandy_dirt,
 /area/city/backstreets_alley)
 "zE" = (
 /obj/effect/turf_decal/siding/purple{
@@ -4143,7 +4153,7 @@
 /area/awaymission/enkr)
 "Av" = (
 /obj/structure/fence/cut/large,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/stone,
 /area/city/backstreets_alley)
 "Aw" = (
 /obj/effect/turf_decal/siding/green/corner{
@@ -4454,7 +4464,7 @@
 /mob/living/simple_animal/hostile/ordeal/sin_lust{
 	faction = list("gold_ordeal")
 	},
-/turf/open/floor/plating/asteroid/basalt,
+/turf/open/floor/stone,
 /area/city/backstreets_alley)
 "Cu" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -4497,10 +4507,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/facility/halls,
 /area/awaymission/enkr)
-"CS" = (
-/obj/structure/bonfire/prelit,
-/turf/open/floor/plating/ashplanet/rocky,
-/area/city/backstreets_alley)
 "CT" = (
 /obj/structure/rack,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -5063,7 +5069,7 @@
 "Gp" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/gateway/away,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/stone,
 /area/city/backstreets_alley)
 "Gr" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -5161,7 +5167,8 @@
 /turf/open/floor/facility/white,
 /area/city/backstreets_alley)
 "GX" = (
-/turf/closed/indestructible/rock,
+/obj/structure/bonfire/prelit,
+/turf/open/floor/stone,
 /area/city/backstreets_alley)
 "GZ" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -5621,7 +5628,7 @@
 /mob/living/simple_animal/hostile/meatblob{
 	faction = list("gold_ordeal")
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/stone,
 /area/city/backstreets_alley)
 "JP" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -5812,7 +5819,7 @@
 /area/awaymission/enkr)
 "KN" = (
 /obj/item/trash/sosjerky,
-/turf/open/floor/plating/asteroid/basalt,
+/turf/open/floor/plating/sandy_dirt,
 /area/city/backstreets_alley)
 "KO" = (
 /obj/structure/table,
@@ -5893,7 +5900,6 @@
 /area/city/backstreets_alley)
 "Li" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/abnormality/my_sweet_home,
 /obj/effect/gibspawner/human/bodypartless,
 /turf/open/floor/facility/dark,
 /area/awaymission/enkr)
@@ -5932,7 +5938,7 @@
 /mob/living/simple_animal/hostile/ordeal/sin_lust/noon{
 	faction = list("gold_ordeal")
 	},
-/turf/open/floor/plating/asteroid/basalt,
+/turf/open/floor/stone,
 /area/city/backstreets_alley)
 "Lt" = (
 /obj/structure/table/glass,
@@ -6138,6 +6144,10 @@
 /obj/effect/decal/cleanable/garbage,
 /turf/open/floor/facility/halls,
 /area/awaymission/enkr)
+"MR" = (
+/obj/effect/gibspawner/robot,
+/turf/open/floor/stone,
+/area/city/backstreets_alley)
 "MT" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/trash/candy,
@@ -6293,7 +6303,7 @@
 /area/awaymission/enkr)
 "NN" = (
 /obj/structure/flora/rock,
-/turf/open/floor/plating/asteroid/basalt,
+/turf/open/floor/plating/sandy_dirt,
 /area/city/backstreets_alley)
 "NO" = (
 /obj/structure/chair/office,
@@ -6305,7 +6315,7 @@
 /area/space)
 "NU" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/closed/indestructible/rock,
+/turf/open/floor/stone,
 /area/city/backstreets_alley)
 "NV" = (
 /obj/structure/table/glass,
@@ -6567,11 +6577,6 @@
 /obj/machinery/camera,
 /turf/open/floor/facility/halls,
 /area/awaymission/enkr)
-"Pw" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/flora/rock/pile,
-/turf/open/floor/plating/ashplanet/rocky,
-/area/city/backstreets_alley)
 "Py" = (
 /obj/effect/turf_decal/siding/green{
 	dir = 4
@@ -6681,7 +6686,7 @@
 /area/awaymission/enkr)
 "Qi" = (
 /obj/item/ego_weapon/city/ncorp_mark,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/stone,
 /area/city/backstreets_alley)
 "Qj" = (
 /obj/item/ego_weapon/city/ncorp_mark/white,
@@ -7535,7 +7540,7 @@
 /mob/living/simple_animal/hostile/meatblob/gunner/shotgun{
 	faction = list("gold_ordeal")
 	},
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/stone,
 /area/city/backstreets_alley)
 "Vd" = (
 /obj/effect/turf_decal/siding/green{
@@ -7683,7 +7688,7 @@
 /obj/effect/turf_decal/weather/dirt{
 	dir = 4
 	},
-/turf/open/floor/plating/asteroid/basalt,
+/turf/open/floor/stone,
 /area/city/backstreets_alley)
 "VQ" = (
 /obj/machinery/door/airlock/highsecurity{
@@ -7916,7 +7921,7 @@
 "Xj" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/trash/popcorn,
-/turf/open/floor/plating/ashplanet/rocky,
+/turf/open/floor/plating/sandy_dirt,
 /area/city/backstreets_alley)
 "Xk" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -10954,11 +10959,11 @@ yc
 yc
 yc
 yc
-yc
-yc
-yc
-yc
-yc
+fh
+fh
+fh
+fh
+fh
 yc
 yc
 yc
@@ -11065,11 +11070,11 @@ yc
 yc
 yc
 yc
-yc
-yc
-yc
-yc
-yc
+fh
+eu
+GX
+eu
+fh
 yc
 yc
 yc
@@ -11174,15 +11179,15 @@ yc
 yc
 yc
 yc
-yc
-yc
-yc
-yc
-yc
-yc
-yc
-yc
-yc
+fh
+fh
+fh
+eu
+eu
+eu
+fh
+fh
+fh
 yc
 yc
 yc
@@ -11285,15 +11290,15 @@ yc
 yc
 yc
 yc
-yc
-yc
-yc
-GX
-GX
-GX
-GX
-yc
-yc
+fh
+eu
+eu
+eu
+eu
+eu
+eu
+eu
+fh
 yc
 yc
 yc
@@ -11396,15 +11401,15 @@ yc
 yc
 yc
 yc
-yc
-yc
+fh
 GX
-GX
+eu
+eu
 Gp
-hM
+NU
 NU
 GX
-yc
+fh
 yc
 yc
 yc
@@ -11507,14 +11512,14 @@ yc
 yc
 yc
 yc
-yc
-GX
-GX
-Pw
-hM
-hM
+fh
+eu
+eu
+NU
+NU
+NU
 cs
-GX
+eu
 fh
 yc
 yc
@@ -11618,12 +11623,12 @@ yc
 yc
 yc
 yc
-GX
-GX
+fh
+vP
 hM
-hM
-hM
-hM
+NU
+NU
+NU
 hM
 NN
 fh
@@ -11729,15 +11734,15 @@ yc
 yc
 yc
 yc
-GX
+fh
 hM
 Xj
 cs
-cX
+eu
 xA
-cX
-cX
-cX
+vP
+vP
+vP
 fh
 yc
 yc
@@ -11840,14 +11845,14 @@ yc
 yc
 yc
 yc
-GX
+fh
 xy
-cX
-cX
-cX
-cX
-cX
-cX
+vP
+eu
+eu
+eu
+vP
+vP
 NN
 fh
 yc
@@ -11951,12 +11956,12 @@ yc
 yc
 fh
 fh
-GX
-GX
+fh
+fh
 zC
-cX
-cX
-cX
+eu
+eu
+eu
 KN
 zC
 fh
@@ -12062,11 +12067,11 @@ yc
 fh
 fh
 bE
-cX
-GX
-GX
-cX
-cX
+eu
+fh
+fh
+eu
+eu
 xA
 fh
 fh
@@ -12171,14 +12176,14 @@ fh
 fh
 fh
 fh
-cX
-cX
-cX
-cX
-cX
-cX
+eu
+eu
+eu
+eu
+eu
+eu
 Cn
-cX
+eu
 fh
 yc
 yc
@@ -12277,19 +12282,19 @@ yc
 yc
 yc
 fh
-cX
-cX
-cX
+eu
+eu
+eu
 aC
-cX
-cX
-cX
+eu
+eu
+eu
 Cn
-cX
-cX
-cX
-cX
-cX
+eu
+eu
+eu
+eu
+eu
 fh
 yc
 yc
@@ -12388,14 +12393,14 @@ yc
 yc
 yc
 fh
-cX
-cX
-cX
+eu
+eu
+eu
 Lq
-cX
-cX
-cX
-cX
+eu
+eu
+eu
+eu
 OE
 fh
 fh
@@ -12499,9 +12504,9 @@ yc
 yc
 yc
 fh
-cX
-cX
-cX
+eu
+eu
+eu
 VP
 VP
 VP
@@ -12610,8 +12615,8 @@ yc
 yc
 yc
 fh
-cX
-cX
+eu
+eu
 bE
 fh
 fh
@@ -12721,8 +12726,8 @@ yc
 yc
 yc
 fh
-cX
-cX
+eu
+eu
 fh
 fh
 yc
@@ -12832,8 +12837,8 @@ fh
 fh
 fh
 OE
-oH
-oH
+eu
+eu
 fh
 yc
 yc
@@ -13054,8 +13059,8 @@ vP
 vP
 fh
 bC
-oH
-oH
+eu
+eu
 fh
 yc
 yc
@@ -13164,9 +13169,9 @@ vP
 vP
 vP
 fh
-oH
-oH
-oH
+eu
+eu
+eu
 fh
 yc
 yc
@@ -13275,9 +13280,9 @@ oH
 oH
 vP
 fh
-oH
-oH
-oH
+eu
+eu
+eu
 fh
 yc
 yc
@@ -13386,8 +13391,8 @@ oH
 oH
 vP
 fh
-oH
-oH
+eu
+eu
 JN
 fh
 yc
@@ -13497,9 +13502,9 @@ YX
 oH
 vP
 fh
-oH
-oH
-oH
+eu
+eu
+eu
 fh
 yc
 yc
@@ -13608,9 +13613,9 @@ oH
 oH
 vP
 fh
-oH
+eu
 Vb
-oH
+eu
 fh
 yc
 yc
@@ -13719,9 +13724,9 @@ oH
 ig
 vP
 fh
-oH
-oH
-oH
+eu
+eu
+eu
 fh
 yc
 yc
@@ -13830,9 +13835,9 @@ oH
 oH
 vP
 fh
-oH
-oH
-oH
+eu
+eu
+eu
 fh
 yc
 yc
@@ -13941,9 +13946,9 @@ oH
 oH
 fh
 fh
-CS
-oH
-oH
+GX
+eu
+eu
 xY
 yc
 yc
@@ -14051,10 +14056,10 @@ vP
 oH
 oH
 fh
-oH
+eu
 JN
-oH
-oH
+eu
+eu
 fh
 yc
 yc
@@ -14162,10 +14167,10 @@ vP
 oH
 oH
 PI
-YX
-oH
-oH
-oH
+MR
+eu
+eu
+eu
 fh
 yc
 yc
@@ -14273,10 +14278,10 @@ oH
 oH
 oH
 PI
-oH
-oH
-oH
-oH
+eu
+eu
+eu
+eu
 fh
 yc
 yc
@@ -14385,9 +14390,9 @@ oH
 oH
 xe
 Qi
-oH
-oH
-oH
+eu
+eu
+eu
 fh
 yc
 yc
@@ -14495,10 +14500,10 @@ oH
 oH
 oH
 xe
-oH
-oH
-oH
-oH
+eu
+eu
+eu
+eu
 fh
 yc
 yc
@@ -14606,10 +14611,10 @@ oH
 oH
 oH
 PI
-oH
-oH
-oH
-oH
+eu
+eu
+eu
+eu
 fh
 yc
 yc
@@ -14717,10 +14722,10 @@ vP
 oH
 oH
 PI
-oH
-oH
-oH
-oH
+eu
+eu
+eu
+eu
 fh
 yc
 yc
@@ -14828,10 +14833,10 @@ vP
 oH
 oH
 fh
-YX
-oH
-oH
-oH
+MR
+eu
+eu
+eu
 fh
 yc
 yc
@@ -14940,9 +14945,9 @@ oH
 oH
 fh
 fh
-oH
+eu
 es
-oH
+eu
 fh
 yc
 yc
@@ -21080,8 +21085,8 @@ hh
 FH
 hy
 FH
-ss
-ss
+lA
+xf
 dk
 FH
 FH

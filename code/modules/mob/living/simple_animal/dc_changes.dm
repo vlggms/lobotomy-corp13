@@ -17,6 +17,9 @@
 /datum/dc_change/rend/black
 	damage_type = BLACK_DAMAGE
 
+/datum/dc_change/rend/black/weak
+	potency = 1.1
+
 /datum/dc_change/rend/pale // Unused atm
 	damage_type = PALE_DAMAGE
 
