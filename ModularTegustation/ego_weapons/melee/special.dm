@@ -298,7 +298,7 @@
 	special = "This weapon requires two hands to use and always blocks ranged attacks. The first time blocking a non ranged attack results in 1 of 15 random effects."
 	icon_state = "distortion"
 	force = 20 //Twilight but lower in terms of damage
-	attack_speed = 2.2
+	attack_speed = 2
 	damtype = RED_DAMAGE
 	knockback = KNOCKBACK_MEDIUM
 	attack_verb_continuous = list("pulverizes", "bashes", "slams", "blockades")
