@@ -7,8 +7,8 @@
 	icon_state = "blossom_moth"
 	icon_living = "blossom_moth"
 	portrait = "blossom_moth"
-	maxHealth = 300
-	health = 300
+	maxHealth = 800
+	health = 800
 	blood_volume = 0
 	ranged = TRUE
 	attack_verb_continuous = "sears"
@@ -23,8 +23,7 @@
 	aggro_vision_range = 20
 
 	can_breach = TRUE
-	threat_level = HE_LEVEL
-	faction = list("neutral", "hostile")
+	threat_level = WAW_LEVEL
 	start_qliphoth = 3
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 45,
@@ -33,7 +32,7 @@
 		ABNORMALITY_WORK_REPRESSION = 50,
 	)
 	work_damage_upper = 6
-	work_damage_lower = 3
+	work_damage_lower = 4
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/wrath
 	patrol_cooldown_time = 3 SECONDS
@@ -57,7 +56,7 @@
 			Another glow attaches to your body, then four, then eight. <br>\
 			They multiply until you have been entirely shrouded in light."),
 		"Turn around" = list(FALSE, "Resisting the temptation to reach out, <br>\
-			you decide it‚Äôs better to stay away from such dubious warmth. <br>\
+			you decide itÅfs better to stay away from such dubious warmth. <br>\
 			You feel a cold wave crawl up your spine in an instant, but it may be the right choice. <br>\
 			Even children know not to play with fire."),
 	)
@@ -114,5 +113,5 @@
 
 /obj/effect/turf_fire/ardor/DoDamage(mob/living/fuel)
 	if(ishuman(fuel))
-		fuel.deal_damage(2, FIRE)
-		fuel.apply_lc_burn(1)
+		fuel.deal_damage(3, FIRE)
+		fuel.apply_lc_burn(2)
