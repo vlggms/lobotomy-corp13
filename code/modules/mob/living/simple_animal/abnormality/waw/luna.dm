@@ -107,7 +107,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/luna/Worktick(mob/living/carbon/human/user, work_type)
 	if(performance)
-		user.deal_damage(work_damage_amount*0.60, BLACK_DAMAGE, flags = (DAMAGE_FORCED))	//take work damage
+		user.deal_damage(work_damage_upper*0.60, BLACK_DAMAGE, flags = (DAMAGE_FORCED))	//take work damage
 
 
 /mob/living/simple_animal/hostile/abnormality/luna/AttemptWork(mob/living/carbon/human/user, work_type)
