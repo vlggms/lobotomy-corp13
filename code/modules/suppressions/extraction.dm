@@ -29,13 +29,13 @@
 /mob/living/simple_animal/hostile/megafauna/arbiter
 	name = "Arbiter"
 	desc = "The elite agent of the head; Despite being a mere imitation, it is nonetheless an intimidating foe."
-	health = 10000
-	maxHealth = 10000
+	health = 4000
+	maxHealth = 4000
 	damage_coeff = list(RED_DAMAGE = 0.1, WHITE_DAMAGE = 0.1, BLACK_DAMAGE = 0.1, PALE_DAMAGE = 0.1)
 	icon_state = "arbiter"
 	icon_living = "arbiter"
 	icon_dead = "arbiter"
-	icon = 'ModularTegustation/Teguicons/64x64.dmi'
+	icon = 'ModularTegustation/Teguicons/64x96.dmi'
 	faction = list("hostile", "silicon", "apostle", "slime", "warden", "blueshep", "Head") // Cannot be attacked by any abnormality
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	light_color = "#AAAAAA"
@@ -80,11 +80,14 @@
 	var/stop_storm_effect = FALSE
 	// Ability variables
 	var/fairy_count = 5
+	var/wave_count = 5
+	var/list/waves = list()
 	// Cooldowns for abilities
 	var/spikes_cooldown
-	var/spikes_cooldown_time = 90 SECONDS
+	var/spikes_cooldown_time = 30 SECONDS
 	var/fairy_cooldown
 	var/fairy_cooldown_time = 10 SECONDS
+	var/attack_color = "black"
 	var/key_cooldown
 	var/key_cooldown_time = 20 SECONDS
 	var/meltdown_cooldown
@@ -158,6 +161,8 @@
 
 /mob/living/simple_animal/hostile/megafauna/arbiter/proc/StageChange()
 	if(life_stage >= 3)
+		for(var/obj/effect/black_wave/W in waves)
+			W.Remove()
 		return FALSE // Death
 	life_stage += 1
 	adjustHealth(-maxHealth, forced = TRUE)
@@ -211,9 +216,25 @@
 	if(fairy_cooldown > world.time)
 		return
 	fairy_cooldown = world.time + fairy_cooldown_time
-
+	setDir(get_dir(src, target))
 	charging = TRUE
-	icon_state = "arbiter_fairy"
+	var/effect_type = /obj/effect/temp_visual/cult/sparks
+	var/projectile_type = /obj/projectile/beam/fairy
+	attack_color = pick("red","white","black","pale")
+	switch(attack_color)
+		if("red")
+			effect_type = /obj/effect/temp_visual/cult/sparks
+			projectile_type = /obj/projectile/beam/fairy/red
+		if("white")
+			effect_type = /obj/effect/temp_visual/sparkles
+			projectile_type = /obj/projectile/beam/fairy/white
+		if("black")
+			effect_type = /obj/effect/temp_visual/revenant
+			projectile_type = /obj/projectile/beam/fairy/black
+		if("pale")
+			effect_type = /obj/effect/temp_visual/pale_sparks
+			projectile_type = /obj/projectile/beam/fairy/pale
+	icon_state = "arbiter_ability_" + attack_color
 	if(prob(35))
 		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), pick("Disperse.", "Heed my words, Fairies.", "Analyze. Compress. Expand.", "Do not dare to stand before me."))
 
@@ -222,13 +243,14 @@
 	for(var/turf/T in getline(start_loc, get_ranged_target_turf_direct(start_loc, target_loc, 14)))
 		if(T.density)
 			break
-		new /obj/effect/temp_visual/cult/sparks(T)
+		new effect_type(T)
 
 	SLEEP_CHECK_DEATH(0.5 SECONDS)
 
+	icon_state = "arbiter_fairy"
 	playsound(get_turf(src), 'sound/magic/arbiter/fairy.ogg', 100, FALSE, 12)
 	for(var/i = 1 to fairy_count)
-		var/obj/projectile/P = new /obj/projectile/beam/fairy(start_loc)
+		var/obj/projectile/P = new projectile_type(start_loc)
 		P.starting = start_loc
 		P.firer = src
 		P.fired_from = src
@@ -254,17 +276,32 @@
 	icon_state = "arbiter_ability"
 	if(prob(35))
 		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), pick("Condensing the Key.", "Focus.", "Open.", "Wreak havoc.", "Come on out.", "Crumble."))
+	var/effect_type = /obj/effect/temp_visual/cult/sparks
+	var/projectile_type = /obj/projectile/magic/aoe/pillar
+	attack_color = pick("red","white","black","pale")
+	switch(attack_color)
+		if("red")
+			effect_type = /obj/effect/temp_visual/cult/sparks
+			projectile_type = /obj/projectile/magic/aoe/pillar/red
+		if("white")
+			effect_type = /obj/effect/temp_visual/sparkles
+			projectile_type = /obj/projectile/magic/aoe/pillar/white
+		if("black")
+			effect_type = /obj/effect/temp_visual/revenant
+			projectile_type = /obj/projectile/magic/aoe/pillar
+		if("pale")
+			effect_type = /obj/effect/temp_visual/pale_sparks
+			projectile_type = /obj/projectile/magic/aoe/pillar/pale
 
 	var/turf/target_loc = get_turf(target)
 	var/turf/start_loc = get_turf(src)
 	for(var/turf/T in getline(start_loc, get_ranged_target_turf_direct(start_loc, target_loc, 24)))
-		new /obj/effect/temp_visual/cult/sparks(T)
+		new effect_type(T)
 
 	SLEEP_CHECK_DEATH(0.5 SECONDS)
 
 	playsound(get_turf(src), 'sound/magic/arbiter/pillar_start.ogg', 75, FALSE, 12)
 
-	var/projectile_type = pick(typesof(/obj/projectile/magic/aoe/pillar))
 	var/obj/projectile/P = new projectile_type(start_loc)
 	P.starting = start_loc
 	P.firer = src
@@ -316,6 +353,19 @@
 			meltdown_text = "Meltdown of Gold has occured in containment zones of the following abnormalities:"
 		if(MELTDOWN_PURPLE)
 			meltdown_text = "Meltdown of Waves has occured in containment zones of the following abnormalities:"
+			var/list/spawn_turfs = GLOB.xeno_spawn.Copy()
+			for (var/i = 0 to wave_count)
+				if(!length(spawn_turfs)) //if list empty, recopy xeno spawns
+					spawn_turfs = GLOB.xeno_spawn.Copy()
+				var/X = pick_n_take(spawn_turfs)
+				var/turf/T = get_turf(X)
+				var/list/deployment_area = list()
+				var/turf/deploy_spot = T //spot you are being deployed
+				if(LAZYLEN(deployment_area)) //if deployment zone is empty just spawn at xeno spawn
+					deploy_spot = pick_n_take(deployment_area)
+				var/obj/effect/black_wave/W = new get_turf(deploy_spot)
+				waves += W
+				W.binah= src
 		if(MELTDOWN_CYAN)
 			meltdown_text = "Meltdown of Pillars has occured in containment zones of the following abnormalities:"
 			meltdown_min_time = 45
@@ -390,6 +440,8 @@
 			charging = FALSE
 		if(MELTDOWN_PURPLE)
 			INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 5 SECONDS, "The waves will rock the shore again.", 1 SECONDS, "black", "yellow", "center", "CENTER-6,BOTTOM+2")
+			for(var/obj/effect/black_wave/W in waves)
+				W.Remove()
 		if(MELTDOWN_CYAN)
 			INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 5 SECONDS, "Excellent.", 1 SECONDS, "black", "yellow", "center", "CENTER-6,BOTTOM+2")
 			INVOKE_ASYNC(src, PROC_REF(StopPillarStorm))
@@ -417,7 +469,7 @@
 		var/turf/T = get_step(src, direction)
 		var/turf/TT = get_step(get_step(T, direction), direction)
 		var/projectile_type = pick(typesof(/obj/projectile/magic/aoe/pillar))
-		var/obj/projectile/P = new projectile_type(T)
+		var/obj/projectile/magic/aoe/pillar/P = new projectile_type(T)
 		P.starting = T
 		P.firer = src
 		P.fired_from = T
@@ -439,7 +491,9 @@
 	if(stop_storm_effect)
 		return
 	for(var/turf/T in orange(1, src))
-		new /obj/effect/temp_visual/revenant(T)
+		var/effect_type = /obj/effect/temp_visual/cult/sparks
+		effect_type = pick(/obj/effect/temp_visual/cult/sparks, /obj/effect/temp_visual/sparkles, /obj/effect/temp_visual/revenant, /obj/effect/temp_visual/pale_sparks)
+		new effect_type(T)
 	addtimer(CALLBACK(src, PROC_REF(PillarStormEffect)), 1 SECONDS)
 
 /mob/living/simple_animal/hostile/megafauna/arbiter/proc/FirePillarStorm()
@@ -498,7 +552,7 @@
 
 /* Objects & Effects */
 // Spikes: Arbiter will spawn these from time to time around the agents, which after short delay will damage everything
-// on its tile for 100 BLACK damage
+// on its tile for 40 BLACK damage
 /obj/effect/arbiter_spike
 	name = "dark spikes"
 	desc = "A weird construction. You should probably stay away from it..."
@@ -509,7 +563,7 @@
 	/// How much time must pass after Initialize() to activate
 	var/activation_delay = 2 SECONDS
 	/// Amount of BLACK damage done on activation
-	var/damage = 150
+	var/damage = 40
 
 /obj/effect/arbiter_spike/Initialize()
 	. = ..()
@@ -532,3 +586,137 @@
 	animate(src, alpha = 0, time = 4)
 	sleep(4)
 	QDEL_NULL(src)
+
+/obj/effect/black_wave
+	name = "black wave"
+	icon = 'ModularTegustation/Teguicons/64x48.dmi'
+	icon_state = "binah_wave"
+	var/list/faction = list("hostile", "silicon", "apostle", "slime", "warden", "blueshep", "Head") // Cannot be attacked by any abnormality
+	pixel_x = -16
+	base_pixel_x = -16
+	density = FALSE
+	var/dash_num = 50	//Mostly a safeguard
+	var/list/been_hit = list()
+	var/can_act = TRUE
+	var/charge_damage = 80
+	var/duration = 4 MINUTES
+	var/mob/living/simple_animal/hostile/megafauna/arbiter/binah = null
+
+/obj/effect/black_wave/Initialize()
+	. = ..()
+	duration += world.time
+	setDir(get_direction())
+	addtimer(CALLBACK(src, PROC_REF(charge_check)), 6)
+
+/obj/effect/black_wave/process(delta_time)
+	if(world.time > duration)
+		Remove()
+
+/obj/effect/black_wave/proc/Remove()
+	if(binah)
+		binah.waves -= src
+		binah = null
+	animate(src, time = (5 SECONDS), alpha = 0)
+	QDEL_IN(src, 5 SECONDS)
+
+/obj/effect/black_wave/proc/startTeleport()
+	can_act = FALSE
+	animate(src, alpha = 0, time = 1.9)
+	addtimer(CALLBACK(src, PROC_REF(endTeleport)), 2)
+
+/obj/effect/black_wave/proc/endTeleport()
+	var/turf/T = pick(GLOB.xeno_spawn)
+	animate(src, alpha = 255, time = 5)
+	forceMove(T)
+	can_act = TRUE
+	setDir(get_direction())
+	addtimer(CALLBACK(src, PROC_REF(charge_check)), 6)
+
+/obj/effect/black_wave/proc/charge_check()
+	if(!can_act)
+		return
+	var/move_direction = NORTH
+	move_direction = get_direction()
+	if(move_direction)
+		can_act = FALSE
+		charge(move_direction, 0)
+	return
+
+/obj/effect/black_wave/proc/is_turf_solid(turf/T)
+	if(!T)
+		return TRUE
+	if(T.density)
+		return TRUE
+	for(var/obj/machinery/door/D in T.contents)
+		if(D.density)
+			return TRUE
+	return FALSE
+
+/obj/effect/black_wave/proc/get_direction()
+	var/new_direction = NORTH
+	var/old_length = 0
+	var/new_length = 0
+	for (var/dir in list(NORTH,SOUTH,EAST,WEST))
+		var/turf/source_turf = get_turf(src)
+		for(var/i = 0 to 5)
+			source_turf = get_step(source_turf, dir)
+			new_length = i
+			if(is_turf_solid(source_turf))
+				break
+		if (new_length > old_length)
+			old_length = new_length
+			new_direction = dir
+		if (new_length == old_length)
+			new_direction = pick(new_direction, dir)
+	return new_direction
+
+/obj/effect/black_wave/proc/charge(move_dir, times_ran)
+	setDir(move_dir)
+	var/stop_charge = FALSE
+	if(times_ran >= dash_num)
+		stop_charge = TRUE
+	var/turf/T = get_step(get_turf(src), move_dir)
+	if(!T)
+		been_hit = list()
+		stop_charge = TRUE
+		return
+	if(T.density)
+		stop_charge = TRUE
+	for(var/obj/structure/window/W in T.contents)
+		W.obj_destruction()
+	for(var/obj/machinery/door/D in T.contents)
+		if(D.density)
+			stop_charge = TRUE
+
+	//Stop charging
+	if(stop_charge)
+		can_act = FALSE
+		endCharge()
+		been_hit = list()
+		return
+	forceMove(T)
+
+	//Hiteffect stuff
+	var/list/new_hits = list()
+	for(var/turf/U in range(1, T))
+		for(var/mob/living/L in U)
+			new_hits += L
+		new_hits -= been_hit
+		been_hit += new_hits
+		for(var/mob/living/L in new_hits)
+			if(!faction_check(faction, L.faction, FALSE))
+				L.visible_message(span_boldwarning("[src] crashes into [L]!"), span_userdanger("[src] crashes into you!"))
+				new /obj/effect/temp_visual/kinetic_blast(get_turf(L))
+				L.deal_damage(charge_damage, BLACK_DAMAGE)
+				if(L.stat >= HARD_CRIT)
+					L.gib()
+				playsound(L, 'sound/abnormalities/kog/GreedHit1.ogg', 20, 1)
+				playsound(L, 'sound/abnormalities/kog/GreedHit2.ogg', 50, 1)
+
+	playsound(src,'sound/magic/arbiter/wave_move.ogg', 50, TRUE, 16)
+	for(var/turf/open/R in range(1, src))
+		new /obj/effect/temp_visual/small_smoke/halfsecond(R)
+	addtimer(CALLBACK(src, PROC_REF(charge), move_dir, (times_ran + 1)), 4)
+
+/obj/effect/black_wave/proc/endCharge()
+	startTeleport()
