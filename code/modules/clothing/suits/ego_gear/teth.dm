@@ -259,7 +259,7 @@
 	name = "denial"
 	desc = "Spare a thought for the poor employees at the branches that fail, trapped and abandoned - buried alive."
 	icon_state = "denial"
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = -20, BLACK_DAMAGE = 0, PALE_DAMAGE = 20)
+	armor = list(RED_DAMAGE = -10, WHITE_DAMAGE = 10, BLACK_DAMAGE = 20, PALE_DAMAGE = -20)
 
 /obj/item/clothing/suit/armor/ego_gear/teth/rapunzel
 	name = "rapunzel"
