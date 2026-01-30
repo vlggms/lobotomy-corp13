@@ -274,7 +274,7 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 			var/shield_hp = GetFacilityUpgradeValue(UPGRADE_BULLET_SHIELD_HEALTH)
 			if(bullet_type == MANAGER_QUAD_BULLET)
 				shield_hp *= 2
-			H.apply_status_effect(bullet_types_to_status[bullet_type], shield_health = shield_hp)
+			H.apply_shield(bullet_types_to_status[bullet_type], shield_health = shield_hp)
 		if(MANAGER_DUAL_BULLET)
 			if(H.sanity_lost)
 				playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
