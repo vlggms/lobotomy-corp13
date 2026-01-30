@@ -45,7 +45,6 @@
 	pet_bonus = "hums" // saves a few lines of code by allowing funpet() to be called by attack_hand()
 	var/sealed = TRUE
 	var/hammer_present = TRUE
-	var/hammer_used = FALSE
 	var/list/spawned_mobs = list()
 	var/list/banned = list()
 	var/mob/living/carbon/human/current_user = null
@@ -95,7 +94,7 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, PROC_REF(Check))
 
 /mob/living/simple_animal/hostile/abnormality/hammer_light/proc/Check() // A lot going on here, but basically we assess how bad the situation in the facility is
-	if((!hammer_present) || usable_cooldown > world.time || (hammer_used))
+	if((!hammer_present) || usable_cooldown > world.time)
 		return
 	points = 0
 	for(var/mob/living/simple_animal/hostile/abnormality/A in GLOB.abnormality_mob_list) // How many breaching abnormalities? How dangerous are they?
@@ -159,9 +158,6 @@
 	if(!hammer_present)
 		to_chat(H, span_warning("The hammer is not there!"))
 		return
-	if(hammer_used)
-		to_chat(H, span_warning("The hammer is not responding, the price has been paid already."))
-		return
 	if(sealed)
 		to_chat(H, span_warning("The hammer is sealed!"))
 		return
@@ -186,7 +182,6 @@
 	chosen_arms = new /obj/item/ego_weapon/hammer_light(get_turf(user))
 	user.put_in_hands(chosen_arms, forced = TRUE)
 	hammer_present = FALSE
-	hammer_used = TRUE
 	playsound(get_turf(src), "[pick(pickup_sounds)]", 75, 0, -9)
 	user.hairstyle = "Bald"
 	user.update_hair()
