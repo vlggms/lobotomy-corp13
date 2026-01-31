@@ -201,7 +201,7 @@
 			if(T.density)
 				break
 			if(idiot in T)
-				idiot.deal_damage(tongue_damage, BLACK_DAMAGE)
+				idiot.deal_damage(tongue_damage, BLACK_DAMAGE, src, attack_type = (ATTACK_TYPE_RANGED | ATTACK_TYPE_SPECIAL))
 				new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(idiot), pick(GLOB.alldirs))
 				if(!idiot.anchored)
 					var/whack_speed = (prob(60) ? 1 : 4)

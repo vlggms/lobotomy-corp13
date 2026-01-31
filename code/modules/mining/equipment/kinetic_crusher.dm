@@ -136,12 +136,12 @@
 			if((user.dir & backstab_dir) && (L.dir & backstab_dir))
 				if(!QDELETED(C))
 					C.total_damage += detonation_damage + backstab_bonus //cheat a little and add the total before killing it, so certain mobs don't have much lower chances of giving an item
-				L.apply_damage(detonation_damage + backstab_bonus, BRUTE, blocked = def_check)
+				L.deal_damage(detonation_damage + backstab_bonus, BRUTE, source = user, attack_type = (ATTACK_TYPE_MELEE), blocked = def_check)
 				playsound(user, 'sound/weapons/kenetic_accel.ogg', 100, TRUE) //Seriously who spelled it wrong
 			else
 				if(!QDELETED(C))
 					C.total_damage += detonation_damage
-				L.apply_damage(detonation_damage, BRUTE, blocked = def_check)
+				L.deal_damage(detonation_damage, BRUTE, source = user, attack_type = (ATTACK_TYPE_MELEE), blocked = def_check)
 
 /obj/item/kinetic_crusher/proc/Recharge()
 	if(!charged)

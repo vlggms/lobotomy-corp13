@@ -79,5 +79,5 @@
 		H.visible_message(span_danger("[H] steps on [caltrop]."), \
 					span_userdanger("You step on [caltrop]!"))
 
-	H.apply_damage(damage, BRUTE, picked_def_zone, wound_bonus = CANT_WOUND)
+	H.deal_damage(damage, BRUTE, attack_type = (ATTACK_TYPE_ENVIRONMENT), def_zone = picked_def_zone, wound_bonus = CANT_WOUND)
 	H.Paralyze(60)

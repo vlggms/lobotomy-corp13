@@ -69,7 +69,7 @@
 		for(var/mob/living/L in T.contents)
 			if(L in beenHit)
 				continue
-			L.apply_damage(140, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(140, BLACK_DAMAGE, attack_type = (ATTACK_TYPE_RANGED | ATTACK_TYPE_SPECIAL))
 			L.apply_dark_flame(14)
 			beenHit |= L
 			visible_message("<span class='boldwarning'>[src] pierces through [L]!</span>")
@@ -77,7 +77,7 @@
 		for(var/mob/living/L in nearMiss)
 			if(L in beenHit)
 				continue
-			L.apply_damage(70, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(70, BLACK_DAMAGE, attack_type = (ATTACK_TYPE_RANGED | ATTACK_TYPE_SPECIAL))
 			L.apply_dark_flame(6)
 			beenHit |= L
 			visible_message("<span class='warning'>[src] just barely brushes past [L]!</span>")

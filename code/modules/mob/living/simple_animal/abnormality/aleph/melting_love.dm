@@ -126,7 +126,7 @@
 			var/obj/effect/temp_visual/small_smoke/halfsecond/S = new(T)
 			S.color = "#FF0081"
 			var/list/got_hit = list()
-			got_hit = HurtInTurf(T, got_hit, radius_damage, BLACK_DAMAGE, null, TRUE, FALSE, TRUE)
+			got_hit = HurtInTurf(T, got_hit, radius_damage, BLACK_DAMAGE, null, TRUE, FALSE, TRUE, attack_type = (ATTACK_TYPE_MELEE))
 			for(var/mob/living/L in got_hit)
 				L.apply_status_effect(STATUS_EFFECT_SLIMED)
 	return ..()
@@ -218,7 +218,7 @@
 /mob/living/simple_animal/hostile/abnormality/melting_love/proc/DissolveGifted(mob/living/carbon/C)
 	to_chat(C, span_userdanger("You feel like you are about to burst!"))
 	C.emote("scream")
-	C.deal_damage(270, BLACK_DAMAGE)
+	C.deal_damage(270, BLACK_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_STATUS))
 	C.remove_status_effect(STATUS_EFFECT_MELTYLOVE)
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/proc/UnregisterGiftedSignals(mob/living/carbon/human/user)
@@ -312,7 +312,7 @@
 
 /mob/living/simple_animal/hostile/slime/proc/decay()
 	to_chat(src, span_userdanger("You feel yourself falling apart..."))
-	src.deal_damage(decay_damage, BLACK_DAMAGE)
+	src.deal_damage(decay_damage, BLACK_DAMAGE, flags = (DAMAGE_FORCED))
 	if (stat != DEAD)
 		addtimer(CALLBACK(src, PROC_REF(decay)), decay_timer SECONDS, TIMER_STOPPABLE)
 
@@ -324,7 +324,7 @@
 			new /obj/effect/decal/cleanable/melty_slime(R)
 		for(var/mob/living/L in view(death_slime_range, src))
 			if(L.stat != DEAD && !istype(L, /mob/living/simple_animal/hostile/slime))
-				L.apply_damage(death_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+				L.deal_damage(death_damage, BLACK_DAMAGE, attack_type = (ATTACK_TYPE_SPECIAL))
 	return ..()
 
 /mob/living/simple_animal/hostile/slime/CanAttack(atom/the_target)
@@ -539,7 +539,7 @@
 	if(!isliving(owner))
 		return
 	var/mob/living/L = owner
-	L.deal_damage(5, BLACK_DAMAGE)
+	L.deal_damage(5, BLACK_DAMAGE, attack_type = (ATTACK_TYPE_STATUS))
 	owner.playsound_local(owner, 'sound/effects/wounds/sizzle2.ogg', 25, TRUE)
 	if(!ishuman(L))
 		return

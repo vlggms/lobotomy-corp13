@@ -157,5 +157,5 @@
 		if(faction_check_mob(L))
 			continue
 		to_chat(L, span_userdanger("Visions of a horrible future flash before your eyes!"))
-		L.deal_damage((150 - get_dist(src, L)), WHITE_DAMAGE)
+		L.deal_damage((150 - get_dist(src, L)), WHITE_DAMAGE, attack_type = (ATTACK_TYPE_SPECIAL))
 	qdel(src)

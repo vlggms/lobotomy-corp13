@@ -184,7 +184,7 @@
 	animate(D, alpha = 0, transform = matrix()*1.5, time = 5)
 	for(var/mob/living/L in view(1, src))
 		if(!faction_check_mob(L))
-			L.apply_damage(25, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+			L.deal_damage(25, RED_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 
 	burrow_cooldown = world.time + burrow_cooldown_time
 	burrowing = FALSE

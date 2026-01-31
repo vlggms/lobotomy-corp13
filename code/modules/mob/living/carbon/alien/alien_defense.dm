@@ -76,7 +76,7 @@ In all, this is a lot like the monkey code. /N
 	if(..())
 		if (stat != DEAD)
 			var/obj/item/bodypart/affecting = get_bodypart(ran_zone(M.zone_selected))
-			apply_damage(rand(1, 3), BRUTE, affecting)
+			deal_damage(rand(1, 3), BRUTE, source = M, attack_type = (ATTACK_TYPE_MELEE), def_zone = affecting)
 
 
 /mob/living/carbon/alien/attack_animal(mob/living/simple_animal/M)

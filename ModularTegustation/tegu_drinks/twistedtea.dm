@@ -78,7 +78,7 @@
 	var/obj/item/bodypart/affecting = target.get_bodypart(BODY_ZONE_CHEST)
 	var/armor_block = target.run_armor_check(affecting, MELEE)
 
-	target.apply_damage(rand(40,50), STAMINA, affecting, armor_block)
+	target.deal_damage(rand(40,50), STAMINA, source = user, def_zone = affecting, blocked = armor_block)
 	target.Knockdown(90)
 
 	playsound(src, hitsound, 60, TRUE)

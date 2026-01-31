@@ -143,7 +143,7 @@
 		if(faction_check_mob(L))
 			continue
 		var/distance_decrease = get_dist(src, L) * 40
-		L.apply_damage((400 - distance_decrease), RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+		L.deal_damage((400 - distance_decrease), RED_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 		if(L.health < 0)
 			L.gib()
 	SLEEP_CHECK_DEATH(5)

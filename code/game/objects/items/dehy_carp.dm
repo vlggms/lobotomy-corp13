@@ -58,7 +58,7 @@
 			return SHAME
 		if(!QDELETED(H))
 			H.spawn_gibs()
-			H.apply_damage(200, def_zone = BODY_ZONE_CHEST)
+			H.deal_damage(200, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_OTHER), def_zone = BODY_ZONE_CHEST)
 			forceMove(get_turf(H)) //we move it back
 		icon = 'icons/mob/carp.dmi'
 		flick("carp_swell", src)

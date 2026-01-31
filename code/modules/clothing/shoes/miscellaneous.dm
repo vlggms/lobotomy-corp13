@@ -434,7 +434,7 @@
 			occupant.forceMove(user.drop_location())
 			user.visible_message("<span class='warning'>[user] recoils as something slithers out of [src].</span>", "<span class='userdanger'>You feel a sudden stabbing pain in your [pick("foot", "toe", "ankle")]!</span>")
 			user.Knockdown(20) //Is one second paralyze better here? I feel you would fall on your ass in some fashion.
-			user.apply_damage(5, BRUTE, pick(BODY_ZONE_R_LEG, BODY_ZONE_L_LEG))
+			user.deal_damage(5, BRUTE, flags = (DAMAGE_FORCED), def_zone = pick(BODY_ZONE_R_LEG, BODY_ZONE_L_LEG))
 			if(istype(occupant, /mob/living/simple_animal/hostile/retaliate/poison))
 				user.reagents.add_reagent(/datum/reagent/toxin, 7)
 		occupants.Cut()

@@ -81,7 +81,7 @@
 	var/list/damtypes = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 	var/damage = pick(damtypes)
 	work_damage_type = damage
-	user.deal_damage(damage_amount, damage) // take 5 random damage each time
+	user.deal_damage(damage_amount, damage, flags = (DAMAGE_FORCED)) // take 5 random damage each time
 	WorkDamageEffect()
 
 //Prevents red work damage effecs from appearing

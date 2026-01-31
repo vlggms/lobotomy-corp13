@@ -105,7 +105,7 @@
 
 //Breach Mechanics
 // All damage reflection stuff is down here
-/mob/living/simple_animal/hostile/abnormality/so_that_no_cry/proc/ReflectDamage(mob/living/attacker, attack_type = RED_DAMAGE, damage)
+/mob/living/simple_animal/hostile/abnormality/so_that_no_cry/proc/ReflectDamage(mob/living/attacker, damage_type = RED_DAMAGE, damage)
 	if(damage < 1)
 		return
 	if(!damage_reflection)
@@ -117,7 +117,7 @@
 	playsound(src, 'sound/abnormalities/so_that_no_cry/counter.ogg', min(15 + damage, 100), TRUE, 4)
 	attacker.visible_message(span_danger("[src] hits [attacker] with a barrage of punches!"), span_userdanger("[src] counters your attack!"))
 	do_attack_animation(attacker)
-	attacker.deal_damage(damage, attack_type)
+	attacker.deal_damage(damage, damage_type)
 	new /obj/effect/temp_visual/revenant(get_turf(attacker))
 
 /mob/living/simple_animal/hostile/abnormality/so_that_no_cry/Move()
@@ -129,56 +129,47 @@
 	..()
 	if(!.)
 		return
-	if(damage_reflection && M.a_intent == INTENT_HARM)
-		ReflectDamage(M, M?.dna?.species?.attack_type, M?.dna?.species?.punchdamagehigh)
 	if(ishuman(M))
 		TryAttachTalisman(M)
 
 /mob/living/simple_animal/hostile/abnormality/so_that_no_cry/attack_paw(mob/living/carbon/human/M)
 	..()
-	if(damage_reflection && M.a_intent != INTENT_HELP)
-		ReflectDamage(M, M?.dna?.species?.attack_type, 5)
 	if(ishuman(M))
 		TryAttachTalisman(M)
-
-/mob/living/simple_animal/hostile/abnormality/so_that_no_cry/attack_animal(mob/living/simple_animal/M)
-	. = ..()
-	if(!damage_reflection)
-		return
-	if(.)
-		var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
-		if(damage > 0)
-			ReflectDamage(M, M.melee_damage_type, damage)
-
-/mob/living/simple_animal/hostile/abnormality/so_that_no_cry/bullet_act(obj/projectile/Proj, def_zone, piercing_hit = FALSE)
-	..()
-	if(damage_reflection && Proj.firer)
-		if(get_dist(Proj.firer, src) < 5)
-			ReflectDamage(Proj.firer, Proj.damage_type, Proj.damage)
 
 /mob/living/simple_animal/hostile/abnormality/so_that_no_cry/attackby(obj/item/I, mob/living/user, params)
 	..()
 	if(ishuman(user))
 		TryAttachTalisman(user)
-	if(!damage_reflection)
-		return
-	var/damage = I.force
-	if(ishuman(user))
-		damage *= 1 + (get_attribute_level(user, JUSTICE_ATTRIBUTE)/100)
-	ReflectDamage(user, I.damtype, damage)
 
-//Reflect Code
-/mob/living/simple_animal/hostile/abnormality/so_that_no_cry/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
+/// While reflecting, all damage on us will be prevented. This is basically just keeping the original behaviour of STNWC: it used to set its coeffs to 0 while deflecting.
+/// On top of that, we will counterattack against certain kinds of attacks.
+// Mind, any damage that uses the DAMAGE_FORCED flag will punch through this.
+/mob/living/simple_animal/hostile/abnormality/so_that_no_cry/PreDamageReaction(damage_amount, damage_type, source, attack_type)
+	. = ..()
+	if(!damage_reflection || !isliving(source)) // Only execute the rest of the code if we're reflecting damage and we were provided with a source for it
+		return
+	if((attack_type & (ATTACK_TYPE_COUNTER | ATTACK_TYPE_ENVIRONMENT | ATTACK_TYPE_STATUS))) // Don't counter these types of attacks, but prevent the damage on them anyway.
+		return FALSE
+	if((attack_type & (ATTACK_TYPE_RANGED | ATTACK_TYPE_SPECIAL)) && get_dist(src, source) >= 5) // Counter these types of attacks only if within 5 tiles (as it used to work)
+		return FALSE
+
+	ReflectDamage(source, damage_type, damage_amount)
+	return FALSE // Damage is prevented on us yippee
+
+// Tallies up incoming damage and enters damage reflection after taking 400 (cumulative).
+/mob/living/simple_animal/hostile/abnormality/so_that_no_cry/PostDamageReaction(damage_amount, damage_type, source, attack_type)
 	. = ..()
 	if(. > 0)
 		damage_taken += .
-	if(health < 0)
+	if(health < 0 || stat >= DEAD)
 		damage_reflection = FALSE
 		return
 	if(!can_act)
 		return
 	if(damage_taken > maxHealth * 0.4 && !damage_reflection)
-		StartReflecting()
+		damage_reflection = TRUE
+		INVOKE_ASYNC(src, PROC_REF(StartReflecting))
 
 /mob/living/simple_animal/hostile/abnormality/so_that_no_cry/proc/StartReflecting()
 	can_act = FALSE
@@ -187,10 +178,8 @@
 	playsound(src, 'sound/abnormalities/so_that_no_cry/prepare.ogg', 50, TRUE, 7)
 	visible_message(span_warning("[src] assumes a stance!"))
 	icon_state = "so_that_no_cry_guard"
-	ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))
 	SLEEP_CHECK_DEATH(10 SECONDS)
 	icon_state = icon_living
-	ChangeResistances(list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 2))
 	damage_reflection = FALSE
 	can_act = TRUE
 

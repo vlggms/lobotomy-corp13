@@ -195,7 +195,7 @@
 		playsound(T, 'sound/weapons/fixer/generic/fire3.ogg', 30, TRUE, 3)
 		new /obj/effect/temp_visual/smash_effect(T)
 		new /obj/effect/temp_visual/fire/fast(T)
-		been_hit = user.HurtInTurf(T, been_hit, aoe_damage, FIRE, check_faction = TRUE)
+		been_hit = user.HurtInTurf(T, been_hit, aoe_damage, FIRE, check_faction = TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 
 /obj/item/ego_weapon/sunspit/get_clamped_volume()
 	return 40
@@ -317,7 +317,7 @@
 				continue
 			if(special_checks_faction && source.faction_check_mob(L))
 				continue
-			L.apply_damage(10, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(10, RED_DAMAGE, source, attack_type = (ATTACK_TYPE_SPECIAL | ATTACK_TYPE_COUNTER))
 			L.apply_lc_burn(2)
 	..()
 
@@ -373,7 +373,7 @@
 				if(L in been_hit || L == user)
 					continue
 				user.visible_message(span_boldwarning("[user] blazes through [L]!"))
-				L.apply_damage((special_damage + extra_damage), RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+				L.deal_damage((special_damage + extra_damage), RED_DAMAGE, user, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 				been_hit += L
 
 	// Remove burn if it's safety is on
@@ -513,7 +513,7 @@
 	for(var/turf/T in view(1, target))
 		var/obj/effect/temp_visual/small_smoke/halfsecond/FX =  new(T)
 		FX.color = "#96BB00"
-		user.HurtInTurf(T, list(), damage_dealt, BLACK_DAMAGE, check_faction = TRUE)
+		user.HurtInTurf(T, list(), damage_dealt, BLACK_DAMAGE, check_faction = TRUE, attack_type = (ATTACK_TYPE_SPECIAL))
 	return
 
 /obj/effect/decal/cleanable/liquid_miasma
@@ -568,7 +568,7 @@
 	if(!isliving(AM))
 		return FALSE
 	var/mob/living/L = AM
-	L.deal_damage(damage_dealt, BLACK_DAMAGE)
+	L.deal_damage(damage_dealt, BLACK_DAMAGE, attack_type = (ATTACK_TYPE_ENVIRONMENT))
 	new /obj/effect/temp_visual/damage_effect/black(get_turf(L))
 
 /obj/effect/gibspawner/generic/silent/liquid_miasma
@@ -869,7 +869,7 @@
 	UnregisterSignal(owner, COMSIG_ATOM_BULLET_ACT)
 	if(!current_damage)//0 damage stacked
 		return
-	owner.apply_damage(current_damage, BLACK_DAMAGE)
+	owner.deal_damage(current_damage, BLACK_DAMAGE, attack_type = (ATTACK_TYPE_STATUS))
 	new /obj/effect/temp_visual/explosion(get_turf(owner))
 
 /datum/status_effect/display/crash_curse/proc/stack_damage()

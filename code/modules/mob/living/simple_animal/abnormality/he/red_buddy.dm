@@ -227,7 +227,7 @@
 			continue
 		if(L == awakened_master)
 			awakened_master.adjustHealth(35) // Takes approximatively 8 howls to take shepherd down
-		L.deal_damage(10, WHITE_DAMAGE)
+		L.deal_damage(10, WHITE_DAMAGE, src, attack_type = (ATTACK_TYPE_SPECIAL))
 		heard_awoo = TRUE
 	if(health >= 75 && heard_awoo && !abused)
 		adjustHealth(75)

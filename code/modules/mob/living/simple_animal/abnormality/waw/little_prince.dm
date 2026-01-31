@@ -64,7 +64,7 @@
 /mob/living/simple_animal/hostile/abnormality/little_prince/proc/Hypno(mob/living/carbon/human/user)
 	if (!(user.sanity_lost))
 		playsound(get_turf(user), 'sound/abnormalities/littleprince/Prince_Active.ogg', 50, 0, 2)
-		user.deal_damage(user.maxSanity, WHITE_DAMAGE)
+		user.deal_damage(user.maxSanity, WHITE_DAMAGE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL))
 		if (!(user.sanity_lost))
 			//Check Sanity twice to make sure you're actually insane
 			twice -= user
@@ -80,7 +80,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/little_prince/proc/Infect(mob/living/carbon/human/user)
 	for (var/i=0, i<5, i++)
-		user.deal_damage(rand(10, 20), WHITE_DAMAGE)
+		user.deal_damage(rand(10, 20), WHITE_DAMAGE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_STATUS))
 		to_chat(user, span_warning("You feel something growing from under your skin..."))
 		if (user.sanity_lost)
 			Hypno(user)

@@ -405,7 +405,7 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 	if(!ishuman(owner))
 		owner.adjustBruteLoss(stacks * -1)//heals abnormalities
 		return
-	H.apply_damage(stacks * 0.5, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE))
+	H.deal_damage(stacks * 0.5, WHITE_DAMAGE, attack_type = (ATTACK_TYPE_STATUS))
 	if(H.sanity_lost)
 		qdel(src)
 
@@ -745,7 +745,7 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 		new /obj/effect/temp_visual/ribbon_attack(T)
 		for(var/mob/living/L in T)
 			if(ishuman(L))
-				L.apply_damage(root_damage, WHITE_DAMAGE, null, spread_damage = TRUE)
+				L.deal_damage(root_damage, WHITE_DAMAGE, master, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL))
 				var/mob/living/carbon/human/H = L
 				if(H.sanity_lost) //drop aggro on panicked people
 					master.Apply_Urge(H)

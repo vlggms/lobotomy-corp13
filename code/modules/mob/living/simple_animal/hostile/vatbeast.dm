@@ -95,7 +95,7 @@
 	playsound(owner, 'sound/effects/assslap.ogg', 90)
 	var/atom/throw_target = get_edge_target_turf(target, ranged_ability_user.dir)
 	living_target.throw_at(throw_target, 6, 4, owner)
-	living_target.apply_damage(30)
+	living_target.deal_damage(30, source = owner, attack_type = (ATTACK_TYPE_MELEE))
 	current_cooldown = world.time + cooldown
 	remove_ranged_ability()
 	return TRUE

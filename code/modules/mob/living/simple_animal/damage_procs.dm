@@ -93,3 +93,12 @@
 		if(GLOB.damage_type_shuffler?.is_enabled)
 			damage_coeff_value = damage_coeff.getCoeff(GLOB.damage_type_shuffler.mapping_defense[PALE_DAMAGE])
 		. = adjustHealth(amount * damage_coeff_value * CONFIG_GET(number/damage_multiplier), updating_health, forced)
+
+// This override is used to get the correct amount of damage for PostDamageReaction to use in case of there being a damage shuffle.
+/mob/living/simple_animal/PostDamageReaction(damage_amount, damage_type, source, attack_type)
+	. = damage_amount
+	var/coeff_to_use = damage_coeff.getCoeff(damage_type)
+	if(GLOB.damage_type_shuffler?.is_enabled && IsColorDamageType(damage_type))
+		var/defensive_damage_type = GLOB.damage_type_shuffler.mapping_defense[damage_type]
+		coeff_to_use = damage_coeff.getCoeff(defensive_damage_type)
+	return . * coeff_to_use

@@ -148,7 +148,7 @@
 	playsound(src, 'sound/weapons/fixer/generic/finisher2.ogg', 75, TRUE, 2)
 	for(var/turf/T in range(2, src))
 		new /obj/effect/temp_visual/smash_effect(T)
-		been_hit = HurtInTurf(T, been_hit, counter_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, mech_damage = 15)
+		been_hit = HurtInTurf(T, been_hit, counter_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, mech_damage = 15, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_COUNTER))
 		for(var/mob/living/carbon/human/H in T)
 			H.Knockdown(20)
 	countering = FALSE
@@ -203,10 +203,10 @@
 
 
 /mob/living/simple_animal/hostile/distortion/kim/proc/Finisher(mob/living/target) //This is super hard to avoid
-	target.apply_damage(10, PALE_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE) //10% of your health in red damage
+	target.deal_damage(10, PALE_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL), blocked = target.run_armor_check(null, RED_DAMAGE)) //10% of your health in red damage
 	to_chat(target, span_danger("[src] is trying to cut you in half!"))
 	if(!ishuman(target))
-		target.deal_damage(100, PALE_DAMAGE) //bit more than usual DPS in pale damage
+		target.deal_damage(100, PALE_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL)) //bit more than usual DPS in pale damage
 		return
 	if(target.health > 0)
 		return
@@ -272,7 +272,7 @@
 		to_chat(L, span_userdanger("[src] slashes through you!"))
 		var/turf/LT = get_turf(L)
 		new /obj/effect/temp_visual/slice(LT)
-		L.apply_damage(dash_damage,RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		L.deal_damage(dash_damage, RED_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 		been_hit += L
 		playsound(L, 'sound/distortions/KimBasicSlash.ogg', 75, 1)
 		if(!ishuman(L))
@@ -434,7 +434,7 @@
 		return
 	for(var/turf/T in RANGE_TURFS(1, src))
 	playsound(src, 'sound/effects/ordeals/white/white_reflect.ogg', min(15 + damage, 100), TRUE, 4)
-	attacker.apply_damage(damage, attack_type, null, attacker.getarmor(null, attack_type))
+	attacker.deal_damage(damage, attack_type, src, attack_type = (ATTACK_TYPE_COUNTER))
 
 /mob/living/simple_animal/hostile/distortion/kim/attack_hand(mob/living/carbon/human/M)
 	. = ..()
@@ -526,7 +526,7 @@
 			new /obj/effect/temp_visual/small_smoke/halfsecond(TT)
 			for(var/mob/living/target in TT)
 				to_chat(target, span_userdanger("\The [src] slashes you!"))
-				target.apply_damage(serumA_damage, PALE_DAMAGE, null, target.run_armor_check(null, PALE_DAMAGE))
+				target.deal_damage(serumA_damage, PALE_DAMAGE, src)
 				new /obj/effect/temp_visual/cleave(target.loc)
 				playsound(target, 'sound/distortions/kim_bone_claim.ogg', 25, 0, 5)
 

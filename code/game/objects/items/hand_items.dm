@@ -63,7 +63,7 @@
 		span_hear("You hear a dull thud!"))
 	log_combat(owner, owner, "bopped", src.name, "(self)")
 	owner.do_attack_animation(owner)
-	owner.apply_damage(100, STAMINA)
+	owner.deal_damage(100, STAMINA, flags = (DAMAGE_FORCED))
 	owner.Knockdown(10)
 	qdel(src)
 
@@ -94,7 +94,7 @@
 		owner.visible_message(span_danger("[owner] bops [sucker] with [owner.p_their()] [src.name] much harder than intended, sending [sucker.p_them()] flying!"), \
 			span_danger("You bop [sucker] with your [src.name] much harder than intended, sending [sucker.p_them()] flying!"), span_hear("You hear a sickening sound of flesh hitting flesh!"), ignored_mobs=list(sucker))
 		to_chat(sucker, span_userdanger("[owner] bops you incredibly hard with [owner.p_their()] [src.name], sending you flying!"))
-		sucker.apply_damage(50, STAMINA)
+		sucker.deal_damage(50, STAMINA, source = owner)
 		sucker.Knockdown(50)
 		log_combat(owner, sucker, "bopped", src.name, "(setup- Hulk)")
 		var/atom/throw_target = get_edge_target_turf(sucker, owner.dir)
@@ -102,7 +102,7 @@
 	else
 		owner.visible_message(span_danger("[owner] bops [sucker] with [owner.p_their()] [src.name]!"), span_danger("You bop [sucker] with your [src.name]!"), \
 			span_hear("You hear a dull thud!"), ignored_mobs=list(sucker))
-		sucker.apply_damage(15, STAMINA)
+		sucker.deal_damage(15, STAMINA, source = owner)
 		log_combat(owner, sucker, "bopped", src.name, "(setup)")
 		to_chat(sucker, span_userdanger("[owner] bops you with [owner.p_their()] [src.name]!"))
 	qdel(src)
@@ -190,7 +190,7 @@
 		target.emote("scream")
 
 	log_combat(user, target, "given a noogie to", addition = "([damage] brute before armor)")
-	target.apply_damage(damage, BRUTE, BODY_ZONE_HEAD)
+	target.deal_damage(damage, BRUTE, source = user, attack_type = (ATTACK_TYPE_OTHER), def_zone = BODY_ZONE_HEAD)
 	user.adjustStaminaLoss(iteration + 5)
 	playsound(get_turf(user), pick('sound/effects/rustle1.ogg','sound/effects/rustle2.ogg','sound/effects/rustle3.ogg','sound/effects/rustle4.ogg','sound/effects/rustle5.ogg'), 50)
 

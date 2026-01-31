@@ -76,7 +76,7 @@
 		)
 	jedi.Stun(3 SECONDS)
 	new /obj/effect/gibspawner/generic(get_turf(jedi), jedi)
-	jedi.apply_damage(30, BRUTE, BODY_ZONE_HEAD)
+	jedi.deal_damage(30, BRUTE, flags = (DAMAGE_FORCED), def_zone = BODY_ZONE_HEAD)
 	if(QDELETED(jedi))
 		return // damage was too much
 	if(jedi.stat == DEAD)
@@ -92,7 +92,7 @@
 	if(QDELETED(jedi))
 		return
 	new /obj/effect/gibspawner/generic(get_turf(jedi), jedi)
-	jedi.apply_damage(30, BRUTE, BODY_ZONE_HEAD)
+	jedi.deal_damage(30, BRUTE, flags = (DAMAGE_FORCED), def_zone = BODY_ZONE_HEAD)
 	if(QDELETED(jedi))
 		return // damage was too much
 	if(jedi.stat == DEAD)
@@ -109,7 +109,7 @@
 	if(QDELETED(jedi))
 		return
 	new /obj/effect/gibspawner/generic(get_turf(jedi), jedi)
-	jedi.apply_damage(30, BRUTE, BODY_ZONE_HEAD)
+	jedi.deal_damage(30, BRUTE, flags = (DAMAGE_FORCED), def_zone = BODY_ZONE_HEAD)
 	if(QDELETED(jedi))
 		return // damage was too much
 	jedi.ghostize()
