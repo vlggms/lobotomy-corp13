@@ -122,6 +122,8 @@
 			LoseTarget()
 	if(client)
 		return
+	if(IsContained())
+		return
 	if(hypnosis_cooldown <= world.time && can_act && !omw_to_apoc)
 		hypnotize()
 
