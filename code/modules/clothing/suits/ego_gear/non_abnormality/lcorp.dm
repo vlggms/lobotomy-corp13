@@ -70,7 +70,7 @@ Scaled through out the round currently but should probably get their stats boost
 	worn_icon = 'icons/mob/clothing/ego_gear/lcorp.dmi'
 	desc = "A poorly made patchwork coat made from a bunch of spare cloth, dyed black. Worn by the Extraction Officer"
 	icon_state = "extraction"
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 20)//armor is set later
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 10, BLACK_DAMAGE = 10, PALE_DAMAGE = 10)//armor is set later
 	equip_slowdown = 0
 	flags_inv = null
 	var/allowed_role = "Extraction Officer"//we dont want other Roles to wear this!
@@ -165,7 +165,7 @@ Scaled through out the round currently but should probably get their stats boost
 	icon = 'icons/obj/clothing/ego_gear/suits.dmi'
 	worn_icon = 'icons/mob/clothing/ego_gear/suit.dmi'
 	icon_state = "disc_officer"
-	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 20, BLACK_DAMAGE = 30, PALE_DAMAGE = 20)
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 10, BLACK_DAMAGE = 20, PALE_DAMAGE = 10)
 	allowed_role = "Disciplinary Officer"
 
 //This is tutorial armor
