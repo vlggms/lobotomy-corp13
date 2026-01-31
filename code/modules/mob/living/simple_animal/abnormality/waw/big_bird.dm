@@ -362,8 +362,6 @@
 		return ..()
 	if(!CanAttack(L))
 		return ..()
-	if(CanPassThrough(L, patrol_path[1]))
-		return ..()
 	if(L.a_intent == INTENT_HELP)
 		return ..()
 	AttackingTarget(L)
