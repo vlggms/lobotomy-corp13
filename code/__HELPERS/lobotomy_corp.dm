@@ -24,7 +24,7 @@
 			continue
 		. += 1
 
-/// Returns true if there's available agents, officers, and erts that can fight
+/// Returns true if there's an available agent, officer or ert that can fight
 /proc/CheckForFighters()
 	. = FALSE
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
@@ -32,7 +32,7 @@
 			continue
 		if(!H.mind)
 			continue
-		if(!(H.mind.assigned_role in GLOB.fighter_positions) ||!(H.has_status_effect(/datum/status_effect/chosen)))//Puss buffed guys count
+		if(!(H.mind.assigned_role in GLOB.fighter_positions) && !(H.has_status_effect(/datum/status_effect/chosen)))//Puss buffed guys count
 			continue
 		if(!H.client)
 			continue
