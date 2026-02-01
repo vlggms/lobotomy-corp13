@@ -13,13 +13,13 @@
 	icon = 'ModularTegustation/Teguicons/lcorp_weapons.dmi'
 	lefthand_file = 'ModularTegustation/Teguicons/lcorp_left.dmi'
 	righthand_file = 'ModularTegustation/Teguicons/lcorp_right.dmi'
-	force = 8
+	force = 6
 	var/list/allowed_roles = list("Training Officer","Disciplinary Officer", "Extraction Officer","Records Officer")//we dont want other Roles to wear this!
 	var/current_holder = null
 	var/current_level = 1
 	var/max_level = 5
-	var/list/level_to_force = list(8, 14, 20, 28, 40)
-	var/extra_text = "This weapon can only be wielded by any Officer. This weapon also increase in power the more ordeals are defeated."
+	var/list/level_to_force = list(6, 12, 18, 26, 35)
+	var/extra_text = "This weapon can only be wielded by any Officer. This weapon also increases in power the more ordeals are defeated."
 
 /obj/item/ego_weapon/officer/examine(mob/user)
 	. = ..()
@@ -77,7 +77,7 @@
 	var/max_level = 5
 	var/list/level_to_force = list(20, 32, 46, 52, 70)
 	var/list/initial_reductions = list(20,20,20,20)
-	var/extra_text = "This weapon can only be wielded by any Officer. This weapon also increase in power the more ordeals are defeated."
+	var/extra_text = "This weapon can only be wielded by any Officer. This weapon also increases in power the more ordeals are defeated."
 	var/armor_increase = 10
 
 /obj/item/ego_weapon/shield/officer/examine(mob/user)
@@ -94,7 +94,7 @@
 /obj/item/ego_weapon/shield/officer/Initialize()
 	. = ..()
 	if(SSlobotomy_corp.next_ordeal)
-		current_level = min(max_level, SSlobotomy_corp.next_ordeal.level)
+		current_level = min(max_level, ceil(1 + SSlobotomy_corp.ordeal_stats/5))
 	refresh_stats()
 	RegisterSignal(SSdcs, COMSIG_GLOB_ORDEAL_END, PROC_REF(update_stats))
 
@@ -194,14 +194,14 @@
 	desc = "A bulky sword that could leave a large dent into most things. Used by the Disciplinary Officer "
 
 	special = "Use in hand to make your next attack deal more damage."
-	force = 27
-	attack_speed = 3
+	force = 18
+	attack_speed = 2
 	attack_verb_continuous = list("cleaves", "cuts")
 	attack_verb_simple = list("cleaves", "cuts")
 	hitsound = 'sound/weapons/fixer/generic/finisher1.ogg'
-	level_to_force = list(27, 39, 63, 84, 120)
+	level_to_force = list(18, 26, 42, 56, 80)
 	allowed_roles = list("Disciplinary Officer")
-	extra_text = "This weapon can only be wielded by the Disciplinary Officer. This weapon also increase in power the more ordeals are defeated."
+	extra_text = "This weapon can only be wielded by the Disciplinary Officer. This weapon also increases in power the more ordeals are defeated."
 	swingstyle = WEAPONSWING_LARGESWEEP
 	var/charged = FALSE
 
@@ -213,6 +213,7 @@
 	if(charged)
 		var/obj/effect/temp_visual/dir_setting/slash/s = new(get_turf(M))
 		s.dir = 0
+		s.layer = M.layer + 0.1
 		to_chat(user, "You cleave through [M]!")
 		hitsound = initial(hitsound)
 		refresh_stats()
@@ -233,26 +234,28 @@
 	icon_state = "officer_ring"
 	desc = "A black ring that can tap into a small bit of a singularity from a former G-Corp. Used by the Extraction Officer "
 	force = 5
+	attack_speed = 1.2
 	damtype = BLACK_DAMAGE
 	knockback = KNOCKBACK_MEDIUM
 	attack_verb_continuous = list("punts", "bashes")
 	attack_verb_simple = list("punts", "bash")
-	level_to_force = list(5, 8, 12, 16, 25)
+	level_to_force = list(5, 8, 12, 18, 28)
 	allowed_roles = list("Extraction Officer")
 	special = "This weapon has a ranged attack that will jump from targets to target.\nUse in hand to cast a shockwave that pushes back anything damaged by it."
-	extra_text = "This weapon can only be wielded by the Extraction Officer. This weapon also increase in power the more ordeals are defeated."
-	var/ranged_cooldown
-	var/fairy_cooldown_time = 4 SECONDS
+	extra_text = "This weapon can only be wielded by the Extraction Officer. This weapon also increases in power the more ordeals are defeated."
+	var/fairy_cooldown
+	var/shockwave_cooldown
+	var/fairy_cooldown_time = 3 SECONDS
 	var/shockwave_cooldown_time = 8 SECONDS
-	var/list/fairy_damage = list(10,20,35,50,75)
-	var/list/shockwave_damage = list(5,10,18,25,40)
+	var/list/fairy_damage = list(15,25,40,60,100)
+	var/list/shockwave_damage = list(10,20,35,50,75)
 	var/charging_attack = FALSE
 	var/shockwave_range = 6
 
 /obj/item/ego_weapon/officer/extraction/attack_self(mob/living/user)
 	if(!CanUseEgo(user) || charging_attack)
 		return
-	if(ranged_cooldown <= world.time)
+	if(shockwave_cooldown <= world.time)
 		var/turf/proj_turf = user.loc
 		if(!isturf(proj_turf))
 			return
@@ -266,24 +269,24 @@
 		playsound(user, 'sound/magic/arbiter/repulse.ogg', 50, TRUE)
 		for(var/i = 0 to shockwave_range)
 			addtimer(CALLBACK(src, PROC_REF(shockwave), turfs,proj_turf,i, user), i)
-		ranged_cooldown = world.time + shockwave_cooldown_time
+		shockwave_cooldown = world.time + shockwave_cooldown_time
 		return
 
 /obj/item/ego_weapon/officer/extraction/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
 	if(!CanUseEgo(user) || charging_attack)
 		return
-	if(!proximity_flag && ranged_cooldown <= world.time)
+	if(!proximity_flag && fairy_cooldown <= world.time)
 		var/turf/proj_turf = user.loc
 		if(!isturf(proj_turf))
 			return
 		charging_attack = TRUE
 		playsound(user, 'sound/magic/arbiter/pillar_start.ogg', 50, TRUE)
-		if(!do_after(user, 5))
+		if(!do_after(user, 3))
 			charging_attack = FALSE
 			return
 		charging_attack = FALSE
 		playsound(user, 'sound/magic/arbiter/fairy.ogg', 50, TRUE)
-		ranged_cooldown = world.time + fairy_cooldown_time
+		fairy_cooldown = world.time + fairy_cooldown_time
 		var/obj/projectile/beam/officer/F = new(proj_turf)
 		F.firer = user
 		F.preparePixelProjectile(target, user, clickparams)
@@ -334,7 +337,6 @@
 	bare_wound_bonus = -100
 	damage = 10
 	range = 10 // Don't want people shooting it through the entire facility
-	var/list/hurt_targets = list()
 	var/detect_range = 4
 
 /obj/projectile/beam/officer/on_hit(atom/target, blocked = FALSE)
@@ -345,6 +347,10 @@
 	if(user.faction_check_mob(enemy))
 		return
 	. = ..()
+	damage *= 0.8
+	if(damage < 1)
+		qdel(src)
+		return
 	for(var/mob/living/L in range(detect_range, src))
 		if(user.faction_check_mob(L))
 			continue
@@ -367,13 +373,13 @@
 	name = "officer sabre"
 	desc = "An old sabre that also functions as a walking cane. Used by the Records Officer "
 	special = "This weapon gives the user a speed boost while held in hand."
-	force = 3
+	force = 2
 	attack_speed = 0.5
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("stabs", "attacks", "slashes")
 	attack_verb_simple = list("stab", "attack", "slash")
 	hitsound = 'sound/weapons/ego/rapier1.ogg'
-	level_to_force = list(3, 5, 7, 10, 15)//Meant to be overall bad for dps since its both a parry weapon and a speed boost
+	level_to_force = list(2, 4, 6, 9, 14)//Meant to be overall bad for dps since its both a parry weapon and a speed boost
 	initial_reductions = list(20,10,10,0)
 	projectile_block_duration = 0.75 SECONDS
 	block_duration = 1.25 SECONDS
@@ -384,7 +390,7 @@
 	slowdown = -0.3//its a walking cane
 	item_flags = SLOWS_WHILE_IN_HAND
 	allowed_roles = list("Records Officer")
-	extra_text = "This weapon can only be wielded by the Records Officer. This weapon also increase in power the more ordeals are defeated."
+	extra_text = "This weapon can only be wielded by the Records Officer. This weapon also increases in power the more ordeals are defeated."
 
 ///////////////////////
 ////AGENT EQUIPMENT////

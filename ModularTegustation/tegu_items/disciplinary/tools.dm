@@ -5,24 +5,10 @@
 	reagent_flags = NONE
 	reagent_ids = list(/datum/reagent/medicine/omnizine, /datum/reagent/medicine/atropine)
 	chem_capacity = 10
-	var/current_holder = null
-
-/obj/item/reagent_containers/hypospray/emais/combat/equipped(mob/living/carbon/human/user, slot)
-	. = ..()
-	if(!user)
-		return
-	current_holder = user
-
-/obj/item/reagent_containers/hypospray/emais/combat/dropped(mob/user)
-	. = ..()
-	current_holder = null
 
 /obj/item/reagent_containers/hypospray/emais/combat/clerk_check(mob/living/carbon/human/H)
 	var/list/allowed_roles = list("Disciplinary Officer")
 	var/datum/status_effect/chosen/C = H.has_status_effect(/datum/status_effect/chosen)
-	if(H == current_holder)
-		to_chat(H, span_warning("You aren't permitted to use it on yourself!"))
-		return FALSE
 	if(C)
 		to_chat(H, span_warning("A mysterious force prevents you from using this!"))
 		return FALSE
@@ -30,6 +16,33 @@
 		return TRUE
 	to_chat(H, span_warning("You don't know how to use this."))
 	return FALSE
+
+/obj/item/reagent_containers/hypospray/emais/combat/attack(mob/living/carbon/M, mob/user)
+	if(!clerk_check(user))
+		return
+	if(M == user)
+		to_chat(user, span_warning("You aren't permitted to use it on yourself!"))
+		return
+	if(GetCoreSuppression(/datum/suppression/safety))
+		to_chat(user, span_warning("[src] seems to be remotely disabled."))
+		return
+	var/datum/reagents/R = reagent_list[mode]
+	if(!R.total_volume)
+		to_chat(user, span_warning("[src] is empty!"))
+		return
+	if(!istype(M))
+		return
+	if(R.total_volume && M.can_inject(user, 1, user.zone_selected,bypass_protection))
+		to_chat(M, span_warning("You feel a tiny prick!"))
+		to_chat(user, span_notice("You inject [M] with [src]."))
+		if(M.reagents)
+			var/trans = R.trans_to(M, amount_per_transfer_from_this, transfered_by = user, methods = INJECT)
+			to_chat(user, span_notice("[trans] unit\s injected. [R.total_volume] unit\s remaining."))
+
+	var/list/injected = list()
+	for(var/datum/reagent/RG in R.reagent_list)
+		injected += RG.name
+	log_combat(user, M, "injected", src, "(CHEMICALS: [english_list(injected)])")
 
 /obj/item/reagent_containers/hypospray/emais/combat/ChooseReagent(mob/user)
 	var/list/temp_reag = list()

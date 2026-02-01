@@ -147,10 +147,24 @@ GLOBAL_LIST_INIT(w_corp_positions, list(
 	"W-Corp L1 Cleanup Agent",
 ))
 
-GLOBAL_LIST_INIT(ert_positions, list(
+//Exists to check who can fight stuff
+GLOBAL_LIST_INIT(fighter_positions, list(
 	//K Corp
 	"Class 1",
 	"Class 3",
+
+	//L Corp
+	"Extraction Officer",
+	"Records Officer",
+	"Training Officer",
+	"Disciplinary Officer",
+	"Department Head",
+	"Department Captain",
+	"Agent Captain",
+	"Agent Lieutenant",
+	"Senior Agent",
+	"Agent",
+	"Agent Intern",
 
 	//R Corp
 	"SPC",

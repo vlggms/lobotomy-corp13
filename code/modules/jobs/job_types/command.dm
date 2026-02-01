@@ -48,7 +48,7 @@
 
 	job_attribute_limit = 130
 	var/normal_attribute_level = 20
-	var/extra_starting_stats = 10//Just so they dont eat shit and die way too early in a round
+	var/extra_starting_stats = 0//used for RO
 
 /datum/job/command/after_spawn(mob/living/carbon/human/outfit_owner, mob/M, latejoin = FALSE)
 	ADD_TRAIT(outfit_owner, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
@@ -85,9 +85,8 @@
 
 			if(79 to 100) // ALEPHs around here (20 Abnormalities)
 				set_attribute *= 4
-
+	set_attribute = max(30, set_attribute)//Just so they dont eat shit and die way too early in a round
 	set_attribute += GetFacilityUpgradeValue(UPGRADE_AGENT_STATS) + SSlobotomy_corp.ordeal_stats + extra_starting_stats
-
 	for(var/attribute in roundstart_attributes)
 		roundstart_attributes[attribute] = round(set_attribute)
 
@@ -163,7 +162,7 @@
 		/obj/item/melee/classic_baton,
 		/obj/item/announcementmaker/lcorp,
 		/obj/item/powered_gadget/enkephalin_injector,
-		/obj/item/disc_researcher,
+		///obj/item/disc_researcher, // Turns out making a role that can only kill shit gets boring fast
 		/obj/item/reagent_containers/hypospray/emais/combat,
 		/obj/item/restraints/handcuffs,
 		/obj/item/restraints/legcuffs/bola,
