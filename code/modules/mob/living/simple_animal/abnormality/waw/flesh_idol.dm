@@ -73,7 +73,6 @@
 		if(H.stat != DEAD)
 			H.adjustBruteLoss(-heal_amount) // It heals everyone by 50 or 100 points
 			H.adjustSanityLoss(-heal_amount) // It heals everyone by 50 or 100 points
-			new /obj/effect/temp_visual/healing(get_turf(H))
 	heal_amount = initial(heal_amount)
 
 

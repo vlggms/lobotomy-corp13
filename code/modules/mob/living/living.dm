@@ -2,6 +2,7 @@
 	. = ..()
 	create_reagents(1000)
 	register_init_signals()
+	astype(get_area(src), /area)?.Entered(src) // We can move this back to atom/movable if we want, but for now it stays here for the purposes that we need it for.
 	if(unique_name)
 		set_name()
 	var/datum/atom_hud/data/human/medical/advanced/medhud = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
@@ -37,6 +38,7 @@
 		buckled.unbuckle_mob(src,force=1)
 
 	remove_from_all_data_huds()
+	cleanup_area_presence()
 	GLOB.mob_living_list -= src
 	QDEL_LIST(diseases)
 	return ..()
@@ -1689,6 +1691,7 @@
 		if(DEAD)
 			remove_from_dead_mob_list()
 			add_to_alive_mob_list()
+			restore_area_presence()
 	switch(stat) //Current stat.
 		if(CONSCIOUS)
 			if(. >= UNCONSCIOUS)
@@ -1718,6 +1721,7 @@
 			REMOVE_TRAIT(src, TRAIT_CRITICAL_CONDITION, STAT_TRAIT)
 			remove_from_alive_mob_list()
 			add_to_dead_mob_list()
+			cleanup_area_presence()
 
 
 ///Reports the event of the change in value of the buckled variable.

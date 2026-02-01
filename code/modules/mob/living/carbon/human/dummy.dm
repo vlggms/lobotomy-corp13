@@ -1,6 +1,7 @@
 
 /mob/living/carbon/human/dummy
 	real_name = "Test Dummy"
+	area_index = FROZEN_INDEX // Index frozen because dummies do not have area tracking rights.
 	status_flags = GODMODE|CANPUSH
 	mouse_drag_pointer = MOUSE_INACTIVE_POINTER
 	var/in_use = FALSE

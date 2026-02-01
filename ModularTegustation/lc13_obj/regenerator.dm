@@ -12,9 +12,10 @@
 	var/alert_icon = "regen_alert"
 
 	/// How many HP and SP we restore on each process tick
-	var/regeneration_amount = 6
+	var/regeneration_amount = 3
 	/// Pre-declared variable
 	var/modified = FALSE // Whether or not the regenerator is currently undergoing modified action
+	var/threat = FALSE
 	var/hp_bonus = 0
 	var/sp_bonus = 0
 	var/critical_heal = FALSE // Whether it heals people who are in critical condition (sanity loss/health loss)
@@ -24,7 +25,7 @@
 	var/long_duration = 60 SECONDS
 	var/reset_timer = 0
 	var/colored_overlay
-	var/Threat = FALSE
+	var/area = null
 
 /obj/machinery/regenerator/Initialize()
 	. = ..()
@@ -51,40 +52,58 @@
 	var/area/A = get_area(src)
 	if(!istype(A))
 		return
+	threat = FALSE
 	var/regen_amt = regeneration_amount
-	Threat = FALSE //Assume there is no enemies
-	for(var/mob/living/L in A)
-		if(!("neutral" in L.faction) && L.stat != DEAD && !(L.status_flags & GODMODE)) // Enemy spotted
-			regen_amt *= 0.5
-			if(!Threat)
-				icon_state = alert_icon
-				Threat = TRUE
-			break
-	regen_amt += GetFacilityUpgradeValue(UPGRADE_REGENERATOR_HEALING)
+	var/regen_mult = 1
+	var/regen_add = GetFacilityUpgradeValue(UPGRADE_REGENERATOR_HEALING)
 	if(burst)
-		regen_amt *= 7.5
+		regen_mult *= 7.5
+		regen_add *= 7.5
 		burst = FALSE
 		burst_cooldown = TRUE
 		reset_timer = short_duration + world.time
-	for(var/mob/living/carbon/human/H in A)
-		if(H.sanity_lost && !critical_heal)
-			continue
-		if(H.health < 0 && !critical_heal)
-			continue
-		var/hp_amt = regen_amt+hp_bonus
-		var/sp_amt = regen_amt+sp_bonus
-		H.adjustBruteLoss(-H.maxHealth * (hp_amt/100))
-		H.adjustFireLoss(-H.maxHealth * (hp_amt/100))
-		H.adjustSanityLoss(-H.maxSanity * (sp_amt/100))
-	if(icon_state != "regen" && !Threat)
+	var/list/people_to_heal
+	for(var/key, value in A.area_living)
+		if(key & MOB_HUMAN_INDEX)
+			for(var/mob/living/carbon/human/bro in value)
+				if(((bro.sanity_lost || bro.health < 0) && !critical_heal) || bro.is_working)
+					continue
+				LAZYADD(people_to_heal, bro)
+		// We assume that any simple_mob/hostile is, in fact, hostile. (If you do not want your super friendly simplemob/hostile to block regenerators, assign a different area_index var to your mob (code\__DEFINES\areas.dm))
+		// This also includes composite indexes that include the hostile or abnormality index.
+		if(!threat && (key & (MOB_HOSTILE_INDEX | MOB_ABNORMALITY_INDEX)))
+			icon_state = alert_icon
+			threat = TRUE
+	if(threat)
+		regen_mult *= 0.5
+	if(icon_state != "regen" && !threat)
 		icon_state = initial(icon_state)
+
+	if(LAZYLEN(people_to_heal))
+		// The math is weird, but it is intentional. Feel free to change it, but be careful as mults on top of base heal increases go wild quick.
+		var/hp_amt = ((regen_amt * regen_mult) + regen_add) + hp_bonus
+		var/sp_amt = ((regen_amt * regen_mult) + regen_add) + sp_bonus
+		new/obj/effect/temp_visual/health(get_turf(src), hp_amt)
+		new/obj/effect/temp_visual/health/sanity(get_turf(src), sp_amt)
+		for(var/mob/living/carbon/human/dude as anything in people_to_heal)
+			dude.adjustBruteLoss(-dude.maxHealth * (hp_amt/100))
+			dude.adjustFireLoss(0.1 * (-dude.maxHealth * (hp_amt/100)))	//Heals at 1/10th speed. Supposed to be slower healing than brute and sanity
+			dude.adjustSanityLoss(-dude.maxSanity * (sp_amt/100))
 
 /obj/machinery/regenerator/examine(mob/user)
 	. = ..()
 	if(burst_cooldown)
 		. += span_warning("[src] is currently offline!")
 		return
-	. += span_info("[src] restores [regeneration_amount+hp_bonus+GetFacilityUpgradeValue(UPGRADE_REGENERATOR_HEALING)]% HP and [regeneration_amount+sp_bonus+GetFacilityUpgradeValue(UPGRADE_REGENERATOR_HEALING)]% SP every 2 seconds.")
+	var/regen_add = GetFacilityUpgradeValue(UPGRADE_REGENERATOR_HEALING)
+	var/regen_mult = 1
+	if(burst)
+		regen_mult *= 7.5
+		regen_add *= 7.5
+	if(threat)
+		regen_mult *= 0.5
+		. += span_danger("WARNING: Thread detected. Base healing is halved!")
+	. += span_info("[src] restores [(regeneration_amount * regen_mult)+hp_bonus+regen_add]% HP and [(regeneration_amount * regen_mult)+sp_bonus+regen_add]% SP every 2 seconds.")
 
 /obj/machinery/regenerator/proc/ProduceIcon(Icon_Color, Type) //Used to be called ProduceGas but due to me using it for a button i had to change it. ProduceGas was a cooler name. -IP
 	var/mutable_appearance/colored_overlay = mutable_appearance(icon, Type)

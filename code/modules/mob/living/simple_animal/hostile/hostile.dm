@@ -5,6 +5,7 @@ GLOBAL_LIST_EMPTY(marked_players)
 	stop_automated_movement_when_pulled = 0
 	obj_damage = 40
 	environment_smash = ENVIRONMENT_SMASH_STRUCTURES //Bitflags. Set to ENVIRONMENT_SMASH_STRUCTURES to break closets,tables,racks, etc; ENVIRONMENT_SMASH_WALLS for walls; ENVIRONMENT_SMASH_RWALLS for rwalls
+	area_index = MOB_HOSTILE_INDEX
 	var/atom/target
 	var/ranged = FALSE
 	var/rapid = 0 //How many shots per volley.

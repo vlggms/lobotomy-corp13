@@ -188,18 +188,19 @@
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/puss_in_boots/BreachEffect(mob/living/carbon/human/user, breach_type)
-	. = ..()
 	desc = "He's got a sword!"
 	if(friendly)
 		fear_level = ZAYIN_LEVEL
 		health = 300 //He's pretty tough at max HP
+		breach_index = MOB_ABNO_PASSIVE_INDEX
 		addtimer(CALLBACK(src, PROC_REF(escape)), 45 SECONDS)
 		GoToFriend()
 		density = FALSE
 		icon_state = icon_friendly
 		update_icon()
-		return
+		return ..()
 	if(!density) //sanity check for if he was friendly breaching and is no longer friendly
+		breach_index = MOB_ABNORMALITY_INDEX
 		density = TRUE
 		fear_level = HE_LEVEL
 		FearEffect()
@@ -207,7 +208,7 @@
 	icon_state = icon_aggro
 	update_icon()
 	faction = list("hostile") //he's gone feral!
-	return
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/puss_in_boots/proc/GoToFriend()
 	if(!blessed_human)
@@ -316,6 +317,7 @@
 /mob/living/simple_animal/hostile/abnormality/puss_in_boots/death(gibbed)
 	if(health <= 0)
 		playsound(get_turf(src), 'sound/effects/limbus_death.ogg', 50, 0, 2)
+	swap_area_index(MOB_ABNORMALITY_INDEX)
 	density = FALSE
 	animate(src, alpha = 0, time = 5 SECONDS)
 	QDEL_IN(src, 5 SECONDS)
