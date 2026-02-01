@@ -70,7 +70,7 @@ Scaled through out the round currently but should probably get their stats boost
 	worn_icon = 'icons/mob/clothing/ego_gear/lcorp.dmi'
 	desc = "A poorly made patchwork coat made from a bunch of spare cloth, dyed black. Worn by the Extraction Officer"
 	icon_state = "extraction"
-	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 10, BLACK_DAMAGE = 10, PALE_DAMAGE = 10)//armor is set later
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 10, BLACK_DAMAGE = 10, PALE_DAMAGE = 10)//armor is set later 80-240
 	equip_slowdown = 0
 	flags_inv = null
 	var/allowed_role = "Extraction Officer"//we dont want other Roles to wear this!
@@ -99,7 +99,7 @@ Scaled through out the round currently but should probably get their stats boost
 /obj/item/clothing/suit/armor/ego_gear/officer/Initialize()
 	. = ..()
 	if(SSlobotomy_corp.next_ordeal)
-		current_level = min(max_level, SSlobotomy_corp.next_ordeal.level)
+		current_level = min(max_level, ceil(1 + SSlobotomy_corp.ordeal_stats/5))
 	boost_stats(current_level)
 	RegisterSignal(SSdcs, COMSIG_GLOB_ORDEAL_END, PROC_REF(update_stats))
 
@@ -127,7 +127,7 @@ Scaled through out the round currently but should probably get their stats boost
 	inited = TRUE
 	current_holder = null
 
-/obj/item/clothing/suit/armor/extraction/arbiter
+/obj/item/clothing/suit/armor/arbiter
 	name = "arbiter's armored coat"
 	desc = "A coat made out of quality cloth, providing immense protection against most damage sources. It is quite heavy."
 	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 90, BLACK_DAMAGE = 90, PALE_DAMAGE = 90)
@@ -165,7 +165,7 @@ Scaled through out the round currently but should probably get their stats boost
 	icon = 'icons/obj/clothing/ego_gear/suits.dmi'
 	worn_icon = 'icons/mob/clothing/ego_gear/suit.dmi'
 	icon_state = "disc_officer"
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 10, BLACK_DAMAGE = 20, PALE_DAMAGE = 10)
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 10, BLACK_DAMAGE = 20, PALE_DAMAGE = 10)//100-260
 	allowed_role = "Disciplinary Officer"
 
 //This is tutorial armor

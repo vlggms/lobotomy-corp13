@@ -68,15 +68,14 @@
 	priority_announce("The Ordeal has ended. Facility has been rewarded with [reward_percent*100]% PE.", name, sound='sound/vox_fem/..ogg')
 	SSlobotomy_corp.AdjustAvailableBoxes(total_reward)
 	SSlobotomy_corp.current_ordeals -= src
-	if(level % 2 == 0)
-		SSlobotomy_corp.ordeal_stats += 10
-		for(var/mob/living/carbon/human/person as anything in SSlobotomy_corp.active_officers)
-			if(!istype(person) || QDELETED(person)) // gibbed or cryo'd, we no longer care about them
-				SSlobotomy_corp.active_officers -= person
-				continue
+	SSlobotomy_corp.ordeal_stats += 5
+	for(var/mob/living/carbon/human/person as anything in SSlobotomy_corp.active_officers)
+		if(!istype(person) || QDELETED(person)) // gibbed or cryo'd, we no longer care about them
+			SSlobotomy_corp.active_officers -= person
+			continue
 
-			person.adjust_all_attribute_levels(10)
-			to_chat(person, span_notice("You feel stronger than before."))
+		person.adjust_all_attribute_levels(5)
+		to_chat(person, span_notice("You feel stronger than before."))
 	//Gives a medal to survivors.
 	RewardSurvivors()
 	SSlobotomy_corp.AddLobPoints(level * 0.5, "Ordeal Reward")

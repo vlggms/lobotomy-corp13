@@ -48,21 +48,32 @@
 	//Training Stat update
 /obj/item/stat_equalizer
 	name = "training stat equalizer"
-	desc = "A localized source of stats, only usable by the Training Officers to equalize the stats of them and any interns."
+	desc = "A localized source of stats, only usable by the Training Officers to equalize the stats of them and any agents or interns."
 	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
 	icon_state = "records_stats"
 	w_class = WEIGHT_CLASS_SMALL
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
+	var/list/allowed_roles = list(
+		"Department Head",
+		"Department Captain",
+		"Agent Captain",
+		"Agent Lieutenant",
+		"Senior Agent",
+		"Agent",
+		"Agent Intern"
+	)
 
 /obj/item/stat_equalizer/attack_self(mob/living/carbon/human/user)
 	if(!istype(user) || user?.mind?.assigned_role != "Training Officer")
 		to_chat(user, span_notice("The Gadget's light flashes red. You aren't a Training Officer. Check the label before use."))
 		return
-	update_stats(user)
 
 /obj/item/stat_equalizer/attack(mob/living/M, mob/user)
 	if(!istype(user) || user?.mind?.assigned_role != "Training Officer")
 		to_chat(user, span_notice("The Gadget's light flashes red. You aren't a Training Officer. Check the label before use."))
+		return
+	if(!ishuman(M) || !(M?.mind?.assigned_role in allowed_roles))
+		to_chat(user, span_notice("The Gadget's light flashes red. You aren't allowed to use it on non agents. Check the label before use."))
 		return
 	update_stats(M)
 
