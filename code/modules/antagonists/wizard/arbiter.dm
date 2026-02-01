@@ -73,7 +73,7 @@
 	name = "Arbiter"
 
 	uniform = /obj/item/clothing/under/suit/lobotomy/extraction/arbiter
-	suit = /obj/item/clothing/suit/armor/extraction/arbiter
+	suit = /obj/item/clothing/suit/armor/arbiter
 	neck = /obj/item/clothing/neck/cloak/arbiter
 	shoes = /obj/item/clothing/shoes/combat
 	ears = /obj/item/radio/headset/headset_head/alt

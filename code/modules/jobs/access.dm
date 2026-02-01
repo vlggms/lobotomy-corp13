@@ -374,7 +374,7 @@
 
 /proc/get_all_jobs()
 	return list("Clerk","Agent Intern", "Agent", "Senior Agent", "Veteran Agent", "Agent Lieutenant", "Agent Captain", "Department Captain", "Department Head", "Sephirah", "Records Officer", "Extraction Officer", "Manager", "Main Office Representative",
-		"Rabbit Team", "Rabbit Team Leader", "Disciplinary Officer", "Combat Research Agent", "Training Officer",
+		"Rabbit Team", "Rabbit Team Leader", "Disciplinary Officer", "Training Officer",
 
 		//R Corp Assault
 		"Ground Commander",	"Lieutenant Commander",	"Operations Officer", "Rabbit Squad Captain", "Reindeer Squad Captain", "Rhino Squad Captain", "Raven Squad Captain",

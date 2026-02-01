@@ -12,7 +12,7 @@
 	var/list/attribute_requirements = list()
 	var/special
 	var/is_ranged //Is this a ranged weapon? Mostly deals with examines.
-
+	var/is_city_gear = FALSE//If a weapon is from gatcha
 	/// How much knockback does this weapon deal, if at all?
 	var/knockback = FALSE
 
@@ -104,7 +104,6 @@
 		else				//and red if you cannot use it
 			. += span_danger("You cannot use this EGO!")
 			. += span_danger("It has <a href='byond://?src=[REF(src)];list_attributes=1'>certain requirements</a> for the wearer.")
-
 	var/list/typecache_small = typecacheof(GLOB.small_ego)
 	if(is_type_in_typecache(src, typecache_small))
 		. += span_nicegreen("This weapon fits in an EGO belt.")

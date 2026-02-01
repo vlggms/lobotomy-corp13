@@ -94,7 +94,9 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	var/max_core_options = 3
 	/// Points used for facility upgrades
 	var/lob_points = 2
-	/// Stats for Era/Do after an ordeal is done
+	//Officers that exist
+	var/list/active_officers = list()
+	/// Stats for Officers after an ordeal is done
 	var/ordeal_stats = 0
 
 	/// If TRUE - will not count deaths for auto restart

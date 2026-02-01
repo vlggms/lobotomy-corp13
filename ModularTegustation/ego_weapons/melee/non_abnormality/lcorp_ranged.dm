@@ -29,7 +29,7 @@
 	damage_tier = list(1,2,4,6,9)
 
 ///////////////////////
-//ERA/AGENT EQUIPMENT//
+////AGENT EQUIPMENT////
 ///////////////////////
 
 /obj/item/ego_weapon/ranged/city/lcorp
@@ -43,15 +43,23 @@
 							TEMPERANCE_ATTRIBUTE = 20,
 							JUSTICE_ATTRIBUTE = 20
 							)
+	is_city_gear = FALSE
 	var/installed_shard
 	var/equipped
 	var/tier = 0
 
+/obj/item/ego_weapon/ranged/city/lcorp/update_projectile_examine()
+	if(isnull(projectile_path))
+		message_admins("[src] has an invalid projectile path.")
+		return
+	var/obj/projectile/ego_bullet/lcorp/projectile = new projectile_path(src, src)
+	last_projectile_damage = projectile.damage_tier[max(1, tier)]
+	last_projectile_type = damtype
+	qdel(projectile)
+
+
 /obj/item/ego_weapon/ranged/city/lcorp/examine(mob/user)
 	. = ..()
-	if(user.mind)
-		if(user.mind.assigned_role in list("Disciplinary Officer", "Combat Research Agent"))
-			. += span_notice("Due to your abilties, you get a +20 to your stats when equipping this weapon.")
 	if(!installed_shard)
 		. += span_warning("This weapon can be enhanced with an egoshard.")
 	else
