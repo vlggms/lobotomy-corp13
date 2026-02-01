@@ -165,6 +165,9 @@
 			continue
 		if(H.stat == DEAD)
 			corpses += H
+	if(!LAZYLEN(corpses))
+		addtimer(CALLBACK(src, PROC_REF(check_range)), 2 SECONDS)
+		return
 	var/mob/living/carbon/human/corpse = pick(corpses)
 	if(corpse)
 		calling = null

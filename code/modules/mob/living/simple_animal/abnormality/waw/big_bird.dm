@@ -151,6 +151,8 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/proc/CanBeFinished(mob/living/carbon/human/H)
+	if(!ishuman(H))
+		return FALSE
 	var/datum/status_effect/big_enchant/B = H.has_status_effect(/datum/status_effect/big_enchant)
 	. = (!(H.status_flags & GODMODE) && (B || H.health < H.maxHealth*0.3 || (H in enchanted_list) || H.sanity_lost))
 
