@@ -468,3 +468,17 @@
 	damage = 5
 	alpha = 120
 	spread = 5
+
+/obj/projectile/moth_fire
+	name = "fireball"
+	desc = "A ball of fire"
+	icon_state = "fireball"
+	damage = 5
+	damage_type = FIRE
+
+/obj/projectile/moth_fire/on_hit(target)
+	. = ..()
+	if(!isliving(target))
+		return
+	var/mob/living/L = target
+	L.apply_lc_burn(5)

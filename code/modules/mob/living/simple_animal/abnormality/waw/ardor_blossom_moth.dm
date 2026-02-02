@@ -7,29 +7,28 @@
 	icon_state = "blossom_moth"
 	icon_living = "blossom_moth"
 	portrait = "blossom_moth"
-	maxHealth = 800
-	health = 800
+	maxHealth = 1000
+	health = 1000
 	blood_volume = 0
-	ranged = TRUE
 	attack_verb_continuous = "sears"
 	attack_verb_simple = "sear"
 	is_flying_animal = TRUE
 	stat_attack = HARD_CRIT
 	melee_damage_lower = 4
 	melee_damage_upper = 6
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 2, FIRE = 0.2)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.5, FIRE = 0.1)
 	speak_emote = list("flutters")
 	vision_range = 14
 	aggro_vision_range = 20
 
 	can_breach = TRUE
 	threat_level = WAW_LEVEL
-	start_qliphoth = 3
+	start_qliphoth = 5
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = 45,
-		ABNORMALITY_WORK_INSIGHT = 35,
-		ABNORMALITY_WORK_ATTACHMENT = 20,
-		ABNORMALITY_WORK_REPRESSION = 50,
+		ABNORMALITY_WORK_INSTINCT = list(40, 40, 45, 45, 50),
+		ABNORMALITY_WORK_INSIGHT = list(0, 0, 20, 25, 30),
+		ABNORMALITY_WORK_ATTACHMENT = 0,
+		ABNORMALITY_WORK_REPRESSION = list(10, 15, 45, 45, 50),
 	)
 	work_damage_upper = 6
 	work_damage_lower = 4
@@ -61,49 +60,294 @@
 			Even children know not to play with fire."),
 	)
 
-	var/stoked
-	var/stoke_timer
 	light_color = COLOR_ORANGE
 	light_range = 5
 	light_power = 7
-	light_on = FALSE
+	light_on = TRUE
+	projectiletype = /obj/projectile/moth_fire
+	projectilesound = 'sound/abnormalities/ardor_moth/ardor_projectile.ogg'
+	ranged_cooldown_time = 2 SECONDS
 
-/mob/living/simple_animal/hostile/abnormality/ardor_moth/WorkChance(mob/living/carbon/human/user, chance, work_type)
-	if(stoked)
-		chance+=10
-		datum_reference.qliphoth_change(1)
-	return chance
+	var/list/dumbasses = list()
+	var/list/embers = list()
 
-/mob/living/simple_animal/hostile/abnormality/ardor_moth/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
-	if(!stoked && work_type != ABNORMALITY_WORK_ATTACHMENT)
-		if(prob(30))
-			datum_reference.qliphoth_change(-2)
+	var/can_act = TRUE
+	var/attacking = FALSE
+	var/charging = FALSE
+	var/explode_charge_cooldown
+	var/explode_charge_cooldown_time = 20 SECONDS
+	var/explode_charge_explosion_damage = 20
+	var/melee_cooldown
+	var/melee_cooldown_time = 6 SECONDS
+	var/melee_damage = 10
+	var/melee_width = 2
+	var/melee_length = 2
 
-	switch(work_type)
-		if(ABNORMALITY_WORK_ATTACHMENT)
-			stoked = TRUE
-			light_on = TRUE
-			update_light()
-			deltimer(stoke_timer)
-			stoke_timer = addtimer(CALLBACK(src, PROC_REF(Stoke)), 2 MINUTES, TIMER_STOPPABLE)
-			to_chat(user, span_notice("You stoke the flames, and it burns hotter."))
+//Work Related Stuff
+/mob/living/simple_animal/hostile/abnormality/ardor_moth/PostSpawn()
+	. = ..()
+	SpawnEmbers()
 
-/mob/living/simple_animal/hostile/abnormality/ardor_moth/proc/Stoke()
-	stoked = FALSE
-	light_on = FALSE
-	update_light()
+/mob/living/simple_animal/hostile/abnormality/ardor_moth/proc/SpawnEmbers()
+	if(!IsContained())
+		return
+	var/turf/self_turf = src.loc
+	var/turf/start = locate(self_turf.x + 3, self_turf.y - 4, self_turf.z)
+	if(start)
+		for(var/turf/T in range(start, 2))
+			if(!T || isclosedturf(T))
+				continue
+			if(locate(/obj/structure/window) in T.contents)
+				return FALSE
+			if(locate(/obj/structure/table) in T.contents)
+				continue
+			if(locate(/obj/structure/railing) in T.contents)
+				continue
+			for(var/obj/machinery/door/D in T.contents)
+				if(D.density)
+					continue
+			if(T.y > y - 3 || T.y < start.y - 1 )
+				continue
+			var/obj/effect/embers/E = new(T)
+			E.connected_abno = src
+			embers += E
 
-/mob/living/simple_animal/hostile/abnormality/ardor_moth/Destroy(force)
-	deltimer(stoke_timer)
-	return ..()
+/mob/living/simple_animal/hostile/abnormality/ardor_moth/proc/RemoveEmbers()
+	for(var/obj/effect/embers/E in embers)
+		qdel(E)
+/mob/living/simple_animal/hostile/abnormality/ardor_moth/Life()
+	. = ..()
+	if(IsContained()) // Contained
+		return
+	if(charging || !can_act)
+		return
+	if(health/maxHealth <= 0.2)
+		DeathExplosion()
+	if(melee_cooldown <= world.time)
+		if(retreat_distance > 1)
+			retreat_distance = null
+			minimum_distance = null
+			ranged = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/ardor_moth/Move()
+	if(charging || !can_act)
+		return
 	..()
-	for(var/turf/open/T in range(1, src))
-		if(locate(/obj/effect/turf_fire/ardor) in T)
-			for(var/obj/effect/turf_fire/ardor/floor_fire in T)
-				qdel(floor_fire)
-		new /obj/effect/turf_fire/ardor(T)
+	CreateFire(get_turf(src))
+
+/mob/living/simple_animal/hostile/abnormality/ardor_moth/AttackingTarget(atom/attacked_target)
+	if(charging || !can_act)
+		return
+	if(!isliving(attacked_target))
+		return ..()
+	if(explode_charge_cooldown <= world.time && prob(33))
+		return ChargeExplode(attacked_target)
+	if(melee_cooldown <= world.time)
+		return FireSlash(attacked_target)
+
+/mob/living/simple_animal/hostile/abnormality/ardor_moth/proc/FireSlash(target)
+	if (get_dist(src, target) > 3)
+		return
+	var/dir_to_target = get_cardinal_dir(get_turf(src), get_turf(target))
+	var/turf/source_turf = get_turf(src)
+	var/turf/area_of_effect = list()
+	var/turf/middle_line = list()
+	switch(dir_to_target)
+		if(EAST)
+			middle_line = getline(get_step_towards(source_turf, target), get_ranged_target_turf(source_turf, EAST, melee_length))
+			for(var/turf/T in middle_line)
+				if(T.density)
+					break
+				for(var/turf/Y in getline(T, get_ranged_target_turf(T, NORTH, melee_width)))
+					if (Y.density)
+						break
+					if (Y in area_of_effect)
+						continue
+					area_of_effect += Y
+				for(var/turf/U in getline(T, get_ranged_target_turf(T, SOUTH, melee_width)))
+					if (U.density)
+						break
+					if (U in area_of_effect)
+						continue
+					area_of_effect += U
+		if(WEST)
+			middle_line = getline(get_step_towards(source_turf, target), get_ranged_target_turf(source_turf, WEST, melee_length))
+			for(var/turf/T in middle_line)
+				if(T.density)
+					break
+				for(var/turf/Y in getline(T, get_ranged_target_turf(T, NORTH, melee_width)))
+					if (Y.density)
+						break
+					if (Y in area_of_effect)
+						continue
+					area_of_effect += Y
+				for(var/turf/U in getline(T, get_ranged_target_turf(T, SOUTH, melee_width)))
+					if (U.density)
+						break
+					if (U in area_of_effect)
+						continue
+					area_of_effect += U
+		if(SOUTH)
+			middle_line = getline(get_step_towards(source_turf, target), get_ranged_target_turf(source_turf, SOUTH, melee_length))
+			for(var/turf/T in middle_line)
+				if(T.density)
+					break
+				for(var/turf/Y in getline(T, get_ranged_target_turf(T, EAST, melee_width)))
+					if (Y.density)
+						break
+					if (Y in area_of_effect)
+						continue
+					area_of_effect += Y
+				for(var/turf/U in getline(T, get_ranged_target_turf(T, WEST, melee_width)))
+					if (U.density)
+						break
+					if (U in area_of_effect)
+						continue
+					area_of_effect += U
+		if(NORTH)
+			middle_line = getline(get_step_towards(source_turf, target), get_ranged_target_turf(source_turf, NORTH, melee_length))
+			for(var/turf/T in middle_line)
+				if(T.density)
+					break
+				for(var/turf/Y in getline(T, get_ranged_target_turf(T, EAST, melee_width)))
+					if (Y.density)
+						break
+					if (Y in area_of_effect)
+						continue
+					area_of_effect += Y
+				for(var/turf/U in getline(T, get_ranged_target_turf(T, WEST, melee_width)))
+					if (U.density)
+						break
+					if (U in area_of_effect)
+						continue
+					area_of_effect += U
+		else
+			for(var/turf/T in view(1, src))
+				if (T.density)
+					break
+				if (T in area_of_effect)
+					continue
+				area_of_effect |= T
+	if (!LAZYLEN(area_of_effect))
+		return
+	can_act = FALSE
+	face_atom(target)
+	playsound(get_turf(src), 'sound/abnormalities/ardor_moth/ardor_prepair_attack.ogg', 50, 0, 5)
+	for(var/turf/T in area_of_effect)
+		new /obj/effect/temp_visual/cult/sparks(T)
+	SLEEP_CHECK_DEATH(0.8 SECONDS)
+	do_attack_animation(get_step(src, dir))
+	playsound(get_turf(src), 'sound/abnormalities/ardor_moth/ardor_attack.ogg', 50, 0, 5)
+	for(var/turf/T in area_of_effect)
+		CreateFire(T)
+		for(var/mob/living/L in T)
+			if(faction_check_mob(L))
+				continue
+			if (L == src)
+				continue
+			HurtInTurf(T, list(), melee_damage, FIRE, check_faction = TRUE, hurt_mechs = TRUE)
+			L.apply_lc_burn(6)
+			SEND_SIGNAL(src, COMSIG_HOSTILE_ATTACKINGTARGET, L)
+			L.visible_message(span_danger("\The [src] [attack_verb_continuous] [L]!"), \
+					span_userdanger("\The [src] [attack_verb_continuous] you!"), null, COMBAT_MESSAGE_RANGE, src)
+			to_chat(src, span_danger("You [attack_verb_simple] [L]!"))
+	SLEEP_CHECK_DEATH(0.5 SECONDS)
+	retreat_distance = 5
+	minimum_distance = 5
+	ranged = TRUE
+	can_act = TRUE
+	melee_cooldown = melee_cooldown_time + world.time
+
+/mob/living/simple_animal/hostile/abnormality/ardor_moth/OpenFire()
+	if(charging || !can_act)
+		return
+
+	if(explode_charge_cooldown <= world.time && prob(33))
+		ChargeExplode(target)
+	if(ranged)
+		return ..()
+
+/mob/living/simple_animal/hostile/abnormality/ardor_moth/proc/CreateFire(turf/T)
+	if(locate(/obj/effect/turf_fire/ardor) in T)
+		for(var/obj/effect/turf_fire/ardor/floor_fire in T)
+			qdel(floor_fire)
+	new /obj/effect/turf_fire/ardor(T)
+
+/mob/living/simple_animal/hostile/abnormality/ardor_moth/proc/ChargeExplode(dash_target)
+	can_act = FALSE
+	if(IsContained() || charging)
+		return
+	var/turf/target_turf = get_turf(dash_target)
+	face_atom(dash_target)
+	playsound(get_turf(src), 'sound/abnormalities/ardor_moth/ardor_charge_start.ogg', 50, 0, 5)
+	SLEEP_CHECK_DEATH(1 SECONDS)
+	playsound(get_turf(src), 'sound/abnormalities/ardor_moth/ardor_charge.ogg', 50, 0, 5)
+	charging = TRUE
+	var/should_explode = FALSE
+	var/turf/end_turf = get_ranged_target_turf_direct(src, target_turf, 12, 0)
+	var/list/turf_list = getline(src, end_turf) - get_turf(src)
+	for(var/turf/T in turf_list)
+		if(!charging)
+			break
+		if(T.density)
+			should_explode = TRUE
+		if(locate(/obj/structure/window) in T.contents)
+			should_explode = TRUE
+		for(var/obj/machinery/door/D in T.contents)
+			if(D.density)
+				should_explode = TRUE
+		for(var/mob/living/L in T)
+			if(!faction_check_mob(L))
+				should_explode = TRUE
+		if(should_explode)
+			break
+		SLEEP_CHECK_DEATH(1)
+		forceMove(T)
+		for(var/turf/T2 in orange(get_turf(src), 1))
+			if(isclosedturf(T2))
+				continue
+			CreateFire(T2)
+	charging = FALSE
+	if(should_explode)
+		Explode()
+		return
+	explode_charge_cooldown = world.time + explode_charge_cooldown_time
+	can_act = TRUE
+
+/mob/living/simple_animal/hostile/abnormality/ardor_moth/proc/Explode()
+	playsound(get_turf(src), 'sound/abnormalities/ardor_moth/ardor_explode.ogg', 50, 0, 8)
+	for(var/turf/T in view(get_turf(src), 3))
+		CreateFire(T)
+	for(var/mob/living/carbon/human/H in view(2, src))
+		H.deal_damage(explode_charge_explosion_damage, RED_DAMAGE)
+		H.deal_damage(explode_charge_explosion_damage * 0.5, FIRE)
+		H.apply_lc_burn(10)
+		if(H.health < 0)
+			H.gib()
+	new /obj/effect/temp_visual/explosion(get_turf(src))
+	SLEEP_CHECK_DEATH(4 SECONDS)
+	can_act = TRUE
+	explode_charge_cooldown = world.time + explode_charge_cooldown_time
+
+
+/mob/living/simple_animal/hostile/abnormality/ardor_moth/proc/DeathExplosion()
+	color = "#FFAAAA"
+	light_color = COLOR_RED
+	playsound(get_turf(src), 'sound/abnormalities/ardor_moth/ardor_death_boom_start.ogg', 75, 0, 5)
+	can_act = FALSE
+	SLEEP_CHECK_DEATH(3 SECONDS)
+	playsound(get_turf(src), 'sound/abnormalities/ardor_moth/ardor_explode.ogg', 100, 0, 8)
+	for(var/turf/T in view(get_turf(src), 7))
+		CreateFire(T)
+	for(var/mob/living/carbon/human/H in view(3, src))
+		H.deal_damage(explode_charge_explosion_damage * 2, RED_DAMAGE)
+		H.deal_damage(explode_charge_explosion_damage, FIRE)
+		H.apply_lc_burn(30)
+		if(H.health < 0)
+			H.gib()
+	var/obj/effect/temp_visual/explosion/boom = new(get_turf(src))
+	boom.transform *= 2
+	gib()
 
 /mob/living/simple_animal/hostile/abnormality/ardor_moth/spawn_gibs()
 	return new /obj/effect/decal/cleanable/ash(drop_location(), src)
@@ -113,5 +357,40 @@
 
 /obj/effect/turf_fire/ardor/DoDamage(mob/living/fuel)
 	if(ishuman(fuel))
-		fuel.deal_damage(3, FIRE)
-		fuel.apply_lc_burn(2)
+		fuel.deal_damage(2, FIRE)
+		fuel.apply_lc_burn(3)
+
+/obj/effect/embers
+	gender = PLURAL
+	name = "embers"
+	desc = "Bunch of small flames."
+	icon = 'icons/effects/weather_effects.dmi'
+	icon_state = "light_ash"
+	anchored = TRUE
+	layer = ABOVE_MOB_LAYER
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	var/mob/living/simple_animal/hostile/abnormality/ardor_moth/connected_abno = null
+
+/obj/effect/embers/Crossed(atom/movable/AM)
+	. = ..()
+	if(isliving(AM))
+		DamageCheck(AM)
+
+/obj/effect/embers/proc/DamageCheck(mob/living/L)
+	if(!isliving(L))
+		return
+	var/chance = 100
+	if(L.m_intent == MOVE_INTENT_WALK)
+		chance = 5//Taking your time is key to not getting scorched
+	if(prob(chance))
+		L.deal_damage(1, FIRE)
+		if(ishuman(L) && connected_abno)
+			if(!(L in connected_abno.dumbasses))
+				connected_abno.dumbasses += L
+				connected_abno.datum_reference?.qliphoth_change(-1)
+
+/obj/effect/embers/Destroy()
+	if(connected_abno)
+		if(src in connected_abno.embers)
+			connected_abno.embers -= src
+	. = ..()

@@ -495,3 +495,13 @@
 	icon_state = "heaven"
 	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 10) // 140. LobCorp original stats: 1.2, 0.8, 0.6, 1.2.
 	attribute_requirements = list(FORTITUDE_ATTRIBUTE = 80) //Requires Fortitude Level 3 in LobCorp.
+
+/obj/item/clothing/suit/armor/ego_gear/waw/ardor_star
+	name = "ardor blossom star"
+	desc = "A dress with a bright orange jacket. Warm to the touch."
+	icon_state = "ardor_blossom"
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 20, BLACK_DAMAGE = 30, PALE_DAMAGE = 30, FIRE = 60) // 140
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60,
+							PRUDENCE_ATTRIBUTE = 60,
+							)

@@ -465,15 +465,6 @@
 	item_path = /obj/item/ego_weapon/sunshower
 	cost = 35
 
-//Ardor Blossom Moth - Ardor Blossom Star
-/datum/ego_datum/armor/ardor_star
-	item_path = /obj/item/clothing/suit/armor/ego_gear/he/ardor_star
-	cost = 35
-
-/datum/ego_datum/weapon/ardor_star
-	item_path = /obj/item/ego_weapon/ranged/ardor_star
-	cost = 35
-
 //Alleyway Watchdog - Telepole
 /datum/ego_datum/armor/telepole
 	item_path = /obj/item/clothing/suit/armor/ego_gear/he/telepole

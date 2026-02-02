@@ -456,15 +456,6 @@
 							TEMPERANCE_ATTRIBUTE = 40
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/he/ardor_star
-	name = "ardor blossom star"
-	desc = "A dress with a bright orange jacket. Warm to the touch."
-	icon_state = "ardor_blossom"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 0, BLACK_DAMAGE = 10, PALE_DAMAGE = 10, FIRE = 40) // 70
-	attribute_requirements = list(
-							PRUDENCE_ATTRIBUTE = 40
-							)
-
 /obj/item/clothing/suit/armor/ego_gear/he/telepole
 	name = "telepole"
 	desc = "Alright, I'll sear you down to your guts!"
