@@ -302,7 +302,7 @@
 	//Lifespan of the fire effect.
 	var/burn_time = 30 SECONDS
 	//Fire check timer and how long until we check again.
-	var/fire_turf_check_time = 2 SECONDS
+	var/fire_turf_check_time = 4
 	//Total health only used in reaction to getting extinguished
 	var/fire_health = 4
 
@@ -327,7 +327,6 @@
 		//arbitrary max fire damage so corpses still get burned
 		if(H.getFireLoss() < 1000 && H.stat != DEAD)
 			DoDamage(H)
-			dealt_damage = TRUE
 	if(!dealt_damage)
 		damaging = FALSE
 		return
