@@ -265,6 +265,10 @@
 	name = "spooky lights"
 	icon_state = "purplesparkles"
 
+/obj/effect/temp_visual/pale_sparks
+	name = "pale lights"
+	icon_state = "shieldsparkles"
+
 /obj/effect/temp_visual/revenant/cracks
 	name = "glowing cracks"
 	icon_state = "purplecrack"
