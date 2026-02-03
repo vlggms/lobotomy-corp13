@@ -28,18 +28,17 @@
 	roundstart_attributes = list(FORTITUDE_ATTRIBUTE, PRUDENCE_ATTRIBUTE, TEMPERANCE_ATTRIBUTE, JUSTICE_ATTRIBUTE)
 	var/normal_attribute_level = 20 // Scales with round time & facility upgrades
 
+	var/department
+
 /datum/job/agent/after_spawn(mob/living/carbon/human/outfit_owner, mob/M, latejoin = FALSE)
 	// Assign department security
 	job_attribute_limit = 130		//Have to set because it's a datum and may be changed later
-	var/department
 	if(M && M.client && M.client.prefs)
-		department = M.client.prefs.prefered_agent_department
+		if(!department)
+			department = M.client.prefs.prefered_agent_department
 	var/ears = null
 	var/accessory = null
 	switch(department)
-		if("Control")
-			ears = /obj/item/radio/headset/headset_control
-			accessory = /obj/item/clothing/accessory/armband/lobotomy
 		if("Command")
 			ears = /obj/item/radio/headset/headset_command
 			accessory = /obj/item/clothing/accessory/armband/lobotomy/command
@@ -61,9 +60,16 @@
 		if("Record")
 			ears = /obj/item/radio/headset/headset_records
 			accessory = /obj/item/clothing/accessory/armband/lobotomy/records
-		else //Pick a department or get training.
+		if("Training")
 			ears = /obj/item/radio/headset/headset_training
 			accessory = /obj/item/clothing/accessory/armband/lobotomy/training
+		if("Architecture")
+			ears = /obj/item/radio/headset/headset_command//Do not distribute the architecture one
+			accessory = /obj/item/clothing/accessory/armband/lobotomy/architecture
+
+		else //Pick a department or get control.
+			ears = /obj/item/radio/headset/headset_control
+			accessory = /obj/item/clothing/accessory/armband/lobotomy
 
 	if(accessory)
 		var/obj/item/clothing/under/U = outfit_owner.w_uniform

@@ -20,7 +20,7 @@
 			heirloom_type = pick(/obj/item/toy/plush/binah)
 		if("Records Officer")
 			heirloom_type = pick(/obj/item/toy/plush/hokma)
-		if("Agent Captain")
+		if("Control Team Captain")
 			heirloom_type = pick(/obj/item/toy/plush/mosb, /obj/item/toy/plush/melt)
 		if("Sephirah") //Today im NOT giving a GUN to HOD
 			heirloom_type = pick(/obj/item/toy/plush/malkuth, /obj/item/toy/plush/netzach, /obj/item/toy/plush/hod, /obj/item/toy/plush/lisa, /obj/item/toy/plush/enoch, /obj/item/toy/plush/yesod, /obj/item/toy/plush/gebura)
