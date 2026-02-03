@@ -28,10 +28,10 @@
 	threat_level = WAW_LEVEL
 	start_qliphoth = 5
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = list(40, 40, 45, 45, 50),
+		ABNORMALITY_WORK_INSTINCT = list(30, 35, 40, 40, 45),
 		ABNORMALITY_WORK_INSIGHT = list(0, 0, 20, 25, 30),
 		ABNORMALITY_WORK_ATTACHMENT = 0,
-		ABNORMALITY_WORK_REPRESSION = list(10, 15, 45, 50, 55),
+		ABNORMALITY_WORK_REPRESSION = list(10, 20, 40, 45, 50),
 	)
 	work_damage_upper = 6
 	work_damage_lower = 4
@@ -140,41 +140,28 @@
 	for(var/obj/effect/embers/E in embers)
 		qdel(E)
 
-/mob/living/simple_animal/hostile/abnormality/ardor_moth/proc/RemoveSomeEmbers(count)
-	if(!LAZYLEN(embers))
-		return
-	for(var/i = 1 to count)
-		if(!LAZYLEN(embers))
-			break
-		var/obj/effect/embers/E = pick(embers)
-		if(E)
-			qdel(E)
-
 /mob/living/simple_animal/hostile/abnormality/ardor_moth/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
 	if(!LAZYLEN(embers))
 		return
 	if(prob(70))//Removes the embers for some time
 		RemoveEmbers()
-	else
-		RemoveSomeEmbers(30)
-	if(ember_respawn_timer)
-		deltimer(ember_respawn_timer)
-	ember_respawn_timer = addtimer(CALLBACK(src, PROC_REF(SpawnEmbers)), ember_respawn_time, TIMER_STOPPABLE & TIMER_OVERRIDE)
+		if(ember_respawn_timer)
+			deltimer(ember_respawn_timer)
+		ember_respawn_timer = addtimer(CALLBACK(src, PROC_REF(SpawnEmbers)), ember_respawn_time, TIMER_STOPPABLE & TIMER_OVERRIDE)
+	datum_reference.qliphoth_change(1)
 
 
 /mob/living/simple_animal/hostile/abnormality/ardor_moth/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
 	if(!LAZYLEN(embers))
 		return
-	RemoveSomeEmbers(10)
-	if(ember_respawn_timer)
-		deltimer(ember_respawn_timer)
-	ember_respawn_timer = addtimer(CALLBACK(src, PROC_REF(SpawnEmbers)), ember_respawn_time, TIMER_STOPPABLE & TIMER_OVERRIDE)
+	if(prob(20))
+		datum_reference.qliphoth_change(1)
 
 /mob/living/simple_animal/hostile/abnormality/ardor_moth/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
-	datum_reference.qliphoth_change(-1)
+	datum_reference.qliphoth_change(-2)
 
 /mob/living/simple_animal/hostile/abnormality/ardor_moth/BreachEffect(mob/living/carbon/human/user)
 	. = ..()
@@ -456,7 +443,7 @@
 		return
 	var/chance = 100
 	if(L.m_intent == MOVE_INTENT_WALK)
-		chance = 5//Taking your time is key to not getting scorched... most of the time
+		chance = 10//Taking your time is key to not getting scorched... most of the time
 	if(prob(chance))
 		to_chat(L, span_userdanger("A burning ember attaches to you!"))
 		L.deal_damage(min(2, L.maxHealth/20), FIRE)//Just so Clerks won't eat shit and die
@@ -482,5 +469,5 @@
 	. = ..()
 	if(!isliving(owner))
 		return
-	if(locate(/obj/effect/embers) in view(owner, 3))
+	if(locate(/obj/effect/embers) in owner.loc)
 		duration = world.time + 10 SECONDS

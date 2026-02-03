@@ -574,12 +574,12 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/ardor_moth
 	abno_code = "T-02-182"
 	abno_info = list(
-		"When the work result was Bad, the Qliphoth Counter lowered.",
+		"When the work result was Bad, the Qliphoth Counter decreased by 2.",
 		"At regular intervals, the area in front of and inside of T-02-182's containment cell will be littered with embers.",
 		"When the embers landed an employee, the Qliphoth Counter lowered.",
 		"When an employee walked slowly through the embers, the chances of one landing on them would be significantly lowered.",
-		"When the work result was Good, there was a high probability that all embers would dissipate for some time.",
-		"Upon breaching, T-02-182 will leave lingering piles of fire everywhere it goes."
+		"When the work result was Normal while embers were present, the Qliphoth Counter increased with a low probability.",
+		"When the work result was Good while embers were present, the Qliphoth Counter increased and there was a high probability that the embers would dissipate for some time.",
 	)
 	abno_breach_damage_type = "Fire/Red"
 	abno_breach_damage_count = "Very High"
