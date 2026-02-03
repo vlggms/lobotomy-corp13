@@ -684,15 +684,13 @@
 	damage_type = RED_DAMAGE
 	icon_state = "ice_1"
 
-
 /obj/item/ego_weapon/space
 	name = "out of space"
 	desc = "It hails from realms whose mere existence stuns the brain and numbs us with the black extra-cosmic gulfs it throws open before our frenzied eyes."
-	special = "Use this weapon in hand unsheathe it, changing it's damage type to white and causing ti to do an AOE on hit."
+	special = "Use this weapon in hand to dash. Attack after a dash for an AOE."
 	icon_state = "space"
-	force = 24
-	attack_speed = 0.6
-	damtype = BLACK_DAMAGE
+	force = 22.5	//Half white, half black.
+	damtype = WHITE_DAMAGE
 	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_verb_continuous = list("cuts", "attacks", "slashes")
 	attack_verb_simple = list("cut", "attack", "slash")
@@ -703,10 +701,7 @@
 							TEMPERANCE_ATTRIBUTE = 100,
 							JUSTICE_ATTRIBUTE = 80
 							)
-	var/aoe_mode = FALSE
-	var/aoe_force = 35
-	var/aoe_attack_speed = 1
-	var/aoe_damtype = WHITE_DAMAGE
+	var/canaoe
 
 /obj/item/ego_weapon/space/Initialize()
 	. = ..()
@@ -715,43 +710,61 @@
 /obj/item/ego_weapon/space/attack_self(mob/living/carbon/user)
 	if(!CanUseEgo(user))
 		return
-	aoe_mode = !aoe_mode
-	if(!aoe_mode)
-		icon_state = "space"
-		force = initial(force)
-		attack_speed = initial(attack_speed)
-		damtype = initial(damtype)
-		to_chat(user, span_notice("You decided to sheathe the [src]."))
-	else
-		icon_state = "space_aoe"
-		force = aoe_force
-		attack_speed = aoe_attack_speed
-		damtype = aoe_damtype
-		to_chat(user, span_notice("You decided to unsheathe the [src]."))
-	playsound(src, 'sound/items/screwdriver2.ogg', 50, TRUE)
+	var/dodgelanding
+	if(user.dir == 1)
+		dodgelanding = locate(user.x, user.y + 5, user.z)
+	if(user.dir == 2)
+		dodgelanding = locate(user.x, user.y - 5, user.z)
+	if(user.dir == 4)
+		dodgelanding = locate(user.x + 5, user.y, user.z)
+	if(user.dir == 8)
+		dodgelanding = locate(user.x - 5, user.y, user.z)
+
+	//Nullcatch (should never happen)
+	if(!dodgelanding)
+		return
+
+	icon_state = "space_aoe"
 	update_icon_state()
+	user.density = FALSE
+	user.adjustStaminaLoss(15, TRUE, TRUE)
+	user.throw_at(dodgelanding, 3, 2, spin = FALSE) // This still collides with people, by the way.
+	canaoe = TRUE
+	sleep(3)
+	user.density = TRUE
 
 /obj/item/ego_weapon/space/attack(mob/living/target, mob/living/user)
-	var/turf/target_turf = get_turf(target)
-	. = ..()
+	..()
 	if(!CanUseEgo(user))
-		return
-	if(!aoe_mode)
 		return
 	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 	var/justicemod = 1 + userjust/100
-	var/list/been_hit = list(target)
-	for(var/turf/T in Make_Slash(get_turf(user), target_turf, 3, 240))
-		if(user in T)
-			continue
-		new /obj/effect/temp_visual/smash_effect(T)
-		for(var/mob/living/L in T)
-			var/aoe = 20
+	var/damage = force * justicemod * force_multiplier
+	target.apply_damage(damage, BLACK_DAMAGE, null, target.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+
+	if(!canaoe)
+		return
+	if(do_after(user, 5, src, IGNORE_USER_LOC_CHANGE))
+		playsound(src, 'sound/weapons/rapierhit.ogg', 100, FALSE, 4)
+		for(var/turf/T in orange(2, user))
+			new /obj/effect/temp_visual/smash_effect(T)
+
+		for(var/mob/living/L in range(2, user))
+			var/aoe = 15
 			aoe*=justicemod
 			aoe*=force_multiplier
 			if(L == user || ishuman(L))
 				continue
-			been_hit = user.HurtInTurf(T, been_hit, aoe, WHITE_DAMAGE, hurt_mechs = TRUE, hurt_structure = FALSE)
+			L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			L.apply_damage(aoe, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+	icon_state = "space"
+	update_icon_state()
+	canaoe = FALSE
+
+/obj/item/ego_weapon/space/EgoAttackInfo(mob/user)
+	if(force_multiplier != 1)
+		return span_notice("It deals [round((force * 2) * force_multiplier)] white and black damage combined. (+ [(force_multiplier - 1) * 100]%)")
+	return span_notice("It deals [force * 2] white and black damage combined.")
 
 /obj/item/ego_weapon/seasons
 	name = "Seasons Greetings"
