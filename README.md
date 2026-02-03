@@ -8,7 +8,7 @@
 [![Average time to resolve an issue](https://isitmaintained.com/badge/resolution/vlggms/tegustation.svg)](https://isitmaintained.com/project/vlggms/tegustation "Average time to resolve an issue")
 
 ## Community
-[<img src=".github/assets/discord.png" alt="Discord" width="150" align="left">](https://discord.gg/UmfQBAuFbj)
+[<img src=".github/assets/discord.png" alt="Discord" width="150" align="left">](https://discord.gg/VhgVuNXMPK)
 [Discord] (https://discord.gg/hKm3caurDY) is the place where most of the discussion happens, due to absence of a forum. Here you can contact administrators, ask mentors for help, or simply discuss your rounds. It is also a place where you can find links to ban appeals, admin applications and others, which could be really useful.
 
 This server is based on the game **Lobotomy Corporation** created by **Project Moon**.
