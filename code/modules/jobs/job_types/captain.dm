@@ -1,7 +1,7 @@
 
 // Captain
 /datum/job/agent/captain
-	title = "Agent Captain"
+	title = "Control Team Captain"
 	selection_color = "#BB9999"
 	total_positions = 1
 	spawn_positions = 1
@@ -17,8 +17,29 @@
 	job_important = "You are an Agent Captain. As an experienced Agent, you are expected to disseminate important information and use your experience lead other Agents."
 
 	job_abbreviation = "CPT"
+	department = "Control"
 
 /datum/job/agent/captain/after_spawn(mob/living/carbon/human/outfit_owner, mob/M, latejoin = FALSE)
+	var/my_rank = M.client.prefs.alt_titles_preferences[title]
+	switch(my_rank)
+		if("Information Team Captain")
+			department = "Information"
+		if("Training Team Captain")
+			department = "Training"
+		if("Safety Team Captain")
+			department = "Safety"
+		if("Welfare Team Captain")
+			department = "Welfare"
+		if("Disciplinary Team Captain")
+			department = "Disciplinary"
+		if("Central Command Team Captain")
+			department = "Command"
+		if("Extraction Team Captain")
+			department = "Extraction"
+		if("Record Team Captain")
+			department = "Record"
+		if("Architecture Team Captain")
+			department = "Architecture"
 	..()
 	var/datum/action/G = new /datum/action/cooldown/warbanner/captain
 	G.Grant(outfit_owner)
@@ -27,7 +48,7 @@
 	G.Grant(outfit_owner)
 
 /datum/outfit/job/agent/captain
-	name = "Agent Captain"
+	name = "Control Team Captain"
 	jobtype = /datum/job/agent/captain
 	head = /obj/item/clothing/head/hos/beret
 	ears = /obj/item/radio/headset/heads/agent_captain/alt

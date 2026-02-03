@@ -174,7 +174,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/headset_architecture
 	name = "architecture headset"
-	desc = "A headset used by the mysterious architecture department. Is that a thing?"
+	desc = "A headset used by the mysterious architecture department."
 	icon_state = "med_headset"
 	keyslot = new /obj/item/encryptionkey/headset_architecture
 
