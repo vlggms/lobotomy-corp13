@@ -157,13 +157,6 @@
 	speed = 1.3
 	range = 6
 
-/obj/projectile/ego_bullet/ardor_star
-	name = "ardor blossom star"
-	icon_state = "gaussstrong"
-	damage_type = RED_DAMAGE
-	damage = 26
-	projectile_piercing = PASSMOB
-
 /obj/projectile/ego_bullet/ego_squeak
 	name = "squeak"
 	damage = 3

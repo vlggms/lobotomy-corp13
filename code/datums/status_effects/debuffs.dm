@@ -1156,7 +1156,10 @@
 	stacks -= 3
 
 /datum/status_effect/stacking/lc_burn/proc/DealDamage()
-	owner.apply_damage(max(1, stacks * 0.25), FIRE, null, owner.run_armor_check(null, FIRE))
+	var/mult = 0.25
+	if(!ishuman(owner))
+		mult = 1//Non human mobs take 1 damage per stack
+	owner.apply_damage(max(1, stacks * mult), FIRE, null, owner.run_armor_check(null, FIRE))
 
 //Update burn appearance
 /datum/status_effect/stacking/lc_burn/proc/Update_Burn_Overlay(mob/living/owner)

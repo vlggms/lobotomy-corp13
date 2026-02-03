@@ -312,24 +312,6 @@
 							PRUDENCE_ATTRIBUTE = 40
 	)
 
-
-/obj/item/ego_weapon/ranged/ardor_star
-	name = "ardor blossom star"
-	desc = "Though I can't guide you... I can offer a warm embrace."
-	icon_state = "ardor_star"
-	inhand_icon_state = "ardor_star"
-	force = 15
-	attack_speed = 1.8
-	projectile_path = /obj/projectile/ego_bullet/ardor_star
-	weapon_weight = WEAPON_HEAVY
-	fire_sound = 'sound/weapons/gun/sniper/shot.ogg'
-	fire_delay = 10
-	shotsleft = 4
-	reloadtime = 2.1 SECONDS
-	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 40
-							)
-
 /obj/item/ego_weapon/ranged/pistol/deathdealer
 	name = "death dealer"
 	desc = "A gilded revolver which seems to defy all known laws of gun manufacturing... Feel lucky?"

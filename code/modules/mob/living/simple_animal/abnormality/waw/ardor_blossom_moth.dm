@@ -7,8 +7,9 @@
 	icon_state = "blossom_moth"
 	icon_living = "blossom_moth"
 	portrait = "blossom_moth"
-	maxHealth = 1000
-	health = 1000
+	core_icon = "moth_egg"
+	maxHealth = 800
+	health = 800
 	blood_volume = 0
 	attack_verb_continuous = "sears"
 	attack_verb_simple = "sear"
@@ -20,7 +21,9 @@
 	speak_emote = list("flutters")
 	vision_range = 14
 	aggro_vision_range = 20
-
+	melee_damage_lower = 7
+	melee_damage_upper = 15
+	melee_damage_type = FIRE
 	can_breach = TRUE
 	threat_level = WAW_LEVEL
 	start_qliphoth = 5
@@ -28,7 +31,7 @@
 		ABNORMALITY_WORK_INSTINCT = list(40, 40, 45, 45, 50),
 		ABNORMALITY_WORK_INSIGHT = list(0, 0, 20, 25, 30),
 		ABNORMALITY_WORK_ATTACHMENT = 0,
-		ABNORMALITY_WORK_REPRESSION = list(10, 15, 45, 45, 50),
+		ABNORMALITY_WORK_REPRESSION = list(10, 15, 45, 50, 55),
 	)
 	work_damage_upper = 6
 	work_damage_lower = 4
@@ -61,14 +64,17 @@
 	)
 
 	light_color = COLOR_ORANGE
-	light_range = 5
-	light_power = 7
+	light_range = 3
+	light_power = 4
 	light_on = TRUE
+
+	ranged = TRUE
 	projectiletype = /obj/projectile/moth_fire
 	projectilesound = 'sound/abnormalities/ardor_moth/ardor_projectile.ogg'
 	ranged_cooldown_time = 2 SECONDS
 
-	var/list/dumbasses = list()
+	var/ember_respawn_timer = null
+	var/ember_respawn_time = 5 MINUTES
 	var/list/embers = list()
 
 	var/can_act = TRUE
@@ -79,7 +85,6 @@
 	var/explode_charge_explosion_damage = 20
 	var/melee_cooldown
 	var/melee_cooldown_time = 6 SECONDS
-	var/melee_damage = 10
 	var/melee_width = 2
 	var/melee_length = 2
 
@@ -91,30 +96,93 @@
 /mob/living/simple_animal/hostile/abnormality/ardor_moth/proc/SpawnEmbers()
 	if(!IsContained())
 		return
+	if(LAZYLEN(embers))
+		RemoveEmbers()
+	playsound(get_turf(src), 'sound/effects/burn.ogg', 50, 0, 5)
+	var/list/turfs = list()
 	var/turf/self_turf = src.loc
-	var/turf/start = locate(self_turf.x + 3, self_turf.y - 4, self_turf.z)
-	if(start)
-		for(var/turf/T in range(start, 2))
+	var/turf/inside = locate(self_turf.x+1, self_turf.y, self_turf.z)
+	var/turf/outside = locate(self_turf.x+3, self_turf.y-4, self_turf.z)
+	if(inside)//I know in limbus it mentions it only having embers outside but that looked kind of wierd.
+		for(var/turf/T in range(inside, 2))
 			if(!T || isclosedturf(T))
 				continue
 			if(locate(/obj/structure/window) in T.contents)
-				return FALSE
+				continue
+			if(locate(/obj/structure/table) in T.contents)
+				continue
+			if(locate(/obj/structure/railing) in T.contents)
+				continue
+			turfs += T
+	if(outside)
+		for(var/turf/T in range(outside, 1))
+			var/dense = FALSE
+			if(!T || isclosedturf(T))
+				continue
+			if(locate(/obj/structure/window) in T.contents)
+				continue
 			if(locate(/obj/structure/table) in T.contents)
 				continue
 			if(locate(/obj/structure/railing) in T.contents)
 				continue
 			for(var/obj/machinery/door/D in T.contents)
 				if(D.density)
-					continue
-			if(T.y > y - 3 || T.y < start.y - 1 )
+					dense = TRUE
+			if(dense)
 				continue
-			var/obj/effect/embers/E = new(T)
-			E.connected_abno = src
-			embers += E
+			turfs += T
+	for(var/turf/T in turfs)
+		var/obj/effect/embers/E = new(T)
+		E.connected_abno = src
+		embers += E
 
 /mob/living/simple_animal/hostile/abnormality/ardor_moth/proc/RemoveEmbers()
 	for(var/obj/effect/embers/E in embers)
 		qdel(E)
+
+/mob/living/simple_animal/hostile/abnormality/ardor_moth/proc/RemoveSomeEmbers(count)
+	if(!LAZYLEN(embers))
+		return
+	for(var/i = 1 to count)
+		if(!LAZYLEN(embers))
+			break
+		var/obj/effect/embers/E = pick(embers)
+		if(E)
+			qdel(E)
+
+/mob/living/simple_animal/hostile/abnormality/ardor_moth/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
+	if(!LAZYLEN(embers))
+		return
+	if(prob(70))//Removes the embers for some time
+		RemoveEmbers()
+	else
+		RemoveSomeEmbers(30)
+	if(ember_respawn_timer)
+		deltimer(ember_respawn_timer)
+	ember_respawn_timer = addtimer(CALLBACK(src, PROC_REF(SpawnEmbers)), ember_respawn_time, TIMER_STOPPABLE & TIMER_OVERRIDE)
+
+
+/mob/living/simple_animal/hostile/abnormality/ardor_moth/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
+	if(!LAZYLEN(embers))
+		return
+	RemoveSomeEmbers(10)
+	if(ember_respawn_timer)
+		deltimer(ember_respawn_timer)
+	ember_respawn_timer = addtimer(CALLBACK(src, PROC_REF(SpawnEmbers)), ember_respawn_time, TIMER_STOPPABLE & TIMER_OVERRIDE)
+
+/mob/living/simple_animal/hostile/abnormality/ardor_moth/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
+	datum_reference.qliphoth_change(-1)
+
+/mob/living/simple_animal/hostile/abnormality/ardor_moth/BreachEffect(mob/living/carbon/human/user)
+	. = ..()
+	RemoveEmbers()
+	if(ember_respawn_timer)
+		deltimer(ember_respawn_timer)
+
+//Breach Stuff
 /mob/living/simple_animal/hostile/abnormality/ardor_moth/Life()
 	. = ..()
 	if(IsContained()) // Contained
@@ -127,7 +195,8 @@
 		if(retreat_distance > 1)
 			retreat_distance = null
 			minimum_distance = null
-			ranged = FALSE
+			if(target)
+				MoveToTarget(list(target))
 
 /mob/living/simple_animal/hostile/abnormality/ardor_moth/Move()
 	if(charging || !can_act)
@@ -245,7 +314,7 @@
 				continue
 			if (L == src)
 				continue
-			HurtInTurf(T, list(), melee_damage, FIRE, check_faction = TRUE, hurt_mechs = TRUE)
+			HurtInTurf(T, list(), rand(melee_damage_lower, melee_damage_upper), melee_damage_type, check_faction = TRUE, hurt_mechs = TRUE)
 			L.apply_lc_burn(6)
 			SEND_SIGNAL(src, COMSIG_HOSTILE_ATTACKINGTARGET, L)
 			L.visible_message(span_danger("\The [src] [attack_verb_continuous] [L]!"), \
@@ -254,9 +323,10 @@
 	SLEEP_CHECK_DEATH(0.5 SECONDS)
 	retreat_distance = 5
 	minimum_distance = 5
-	ranged = TRUE
 	can_act = TRUE
 	melee_cooldown = melee_cooldown_time + world.time
+	if(target)
+		MoveToTarget(list(target))
 
 /mob/living/simple_animal/hostile/abnormality/ardor_moth/OpenFire()
 	if(charging || !can_act)
@@ -264,7 +334,7 @@
 
 	if(explode_charge_cooldown <= world.time && prob(33))
 		ChargeExplode(target)
-	if(ranged)
+	if(retreat_distance > 1)
 		return ..()
 
 /mob/living/simple_animal/hostile/abnormality/ardor_moth/proc/CreateFire(turf/T)
@@ -333,6 +403,8 @@
 /mob/living/simple_animal/hostile/abnormality/ardor_moth/proc/DeathExplosion()
 	color = "#FFAAAA"
 	light_color = COLOR_RED
+	visible_message(span_userdanger("[src]'s flames are burning intensely!"), \
+						span_userdanger("You're ready to go out with a bang!"), null, COMBAT_MESSAGE_RANGE, null)
 	playsound(get_turf(src), 'sound/abnormalities/ardor_moth/ardor_death_boom_start.ogg', 75, 0, 5)
 	can_act = FALSE
 	SLEEP_CHECK_DEATH(3 SECONDS)
@@ -357,15 +429,15 @@
 
 /obj/effect/turf_fire/ardor/DoDamage(mob/living/fuel)
 	if(ishuman(fuel))
-		fuel.deal_damage(2, FIRE)
-		fuel.apply_lc_burn(3)
+		fuel.deal_damage(3, FIRE)
+		fuel.apply_lc_burn(4)
 
 /obj/effect/embers
 	gender = PLURAL
 	name = "embers"
 	desc = "Bunch of small flames."
 	icon = 'icons/effects/weather_effects.dmi'
-	icon_state = "light_ash"
+	icon_state = "heavy_ash"
 	anchored = TRUE
 	layer = ABOVE_MOB_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
@@ -379,18 +451,36 @@
 /obj/effect/embers/proc/DamageCheck(mob/living/L)
 	if(!isliving(L))
 		return
+	var/datum/status_effect/ember_touched/E = L.has_status_effect(/datum/status_effect/ember_touched)
+	if(E)
+		return
 	var/chance = 100
 	if(L.m_intent == MOVE_INTENT_WALK)
-		chance = 5//Taking your time is key to not getting scorched
+		chance = 5//Taking your time is key to not getting scorched... most of the time
 	if(prob(chance))
-		L.deal_damage(1, FIRE)
+		to_chat(L, span_userdanger("A burning ember attaches to you!"))
+		L.deal_damage(min(2, L.maxHealth/20), FIRE)//Just so Clerks won't eat shit and die
+		L.apply_lc_burn(1)
 		if(ishuman(L) && connected_abno)
-			if(!(L in connected_abno.dumbasses))
-				connected_abno.dumbasses += L
-				connected_abno.datum_reference?.qliphoth_change(-1)
+			L.apply_status_effect(/datum/status_effect/ember_touched)
+			connected_abno.datum_reference?.qliphoth_change(-1)
 
 /obj/effect/embers/Destroy()
 	if(connected_abno)
 		if(src in connected_abno.embers)
 			connected_abno.embers -= src
 	. = ..()
+
+//This handles if someone walked through moth's embers or not
+/datum/status_effect/ember_touched
+	id = "ember_touched"
+	status_type = STATUS_EFFECT_REPLACE
+	duration = 10 SECONDS
+	tick_interval = 2 SECONDS
+
+/datum/status_effect/ember_touched/tick()
+	. = ..()
+	if(!isliving(owner))
+		return
+	if(locate(/obj/effect/embers) in view(owner, 3))
+		duration = world.time + 10 SECONDS

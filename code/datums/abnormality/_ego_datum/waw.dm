@@ -544,5 +544,5 @@
 	cost = 50
 
 /datum/ego_datum/weapon/ardor_star
-	item_path = /obj/item/ego_weapon/ranged/ardor_star
+	item_path = /obj/item/ego_weapon/ardor_star
 	cost = 50
