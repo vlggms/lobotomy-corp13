@@ -10,8 +10,11 @@
 	ultra_senior_title = "Veteran Agent"
 
 /datum/job/agent/captain
-	alt_titles = list()
-	senior_title = "Senior Agent Captain"
+	alt_titles = list("Control Team Captain", "Information Team Captain",
+			"Training Team Captain", "Safety Team Captain",
+			"Welfare Team Captain", "Disciplinary Team Captain",
+			"Central Command Team Captain", "Extraction Team Captain", "Record Team Captain")
+	senior_title = "Architecture Team Captain"
 	ultra_senior_title = "Veteran Agent Captain"
 
 /// Service

@@ -131,10 +131,8 @@
 	name = "Agent"
 	jobtype = /datum/job/agent
 
-	head = /obj/item/clothing/head/beret/tegu/lobotomy/agent
 	belt = /obj/item/pda/security
 	ears = /obj/item/radio/headset/alt
-	glasses = /obj/item/clothing/glasses/sunglasses
 	uniform = /obj/item/clothing/under/suit/lobotomy
 	shoes = /obj/item/clothing/shoes/laceup
 	gloves = /obj/item/clothing/gloves/color/black
