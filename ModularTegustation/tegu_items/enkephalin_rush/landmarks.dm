@@ -5,7 +5,6 @@ GLOBAL_LIST_INIT(assiyah, list(//HE's and TETHs
 //	/mob/living/simple_animal/hostile/abnormality/der_freischutz,//buff its firing speed or range in #2723
 	/mob/living/simple_animal/hostile/abnormality/golden_apple,
 	/mob/living/simple_animal/hostile/abnormality/shock_centipede,
-	/mob/living/simple_animal/hostile/abnormality/ardor_moth,
 	/mob/living/simple_animal/hostile/abnormality/porccubus,
 	/mob/living/simple_animal/hostile/abnormality/funeral,
 	/mob/living/simple_animal/hostile/abnormality/kqe,
@@ -18,6 +17,7 @@ GLOBAL_LIST_INIT(briah, list(//WAW
 	/mob/living/simple_animal/hostile/abnormality/sphinx,
 	/mob/living/simple_animal/hostile/abnormality/warden,
 	/mob/living/simple_animal/hostile/abnormality/red_hood,
+	/mob/living/simple_animal/hostile/abnormality/ardor_moth,
 	null,
 ))
 
