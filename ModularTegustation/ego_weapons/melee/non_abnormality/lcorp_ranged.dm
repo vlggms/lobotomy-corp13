@@ -4,7 +4,7 @@
 
 /obj/projectile/ego_bullet/lcorp
 	name = "bullet"
-	damage = 2
+	damage = 1.5
 	damage_type = RED_DAMAGE
 	var/list/damage_tier = list(2,4,6,9,18) //These numbers are just for reference
 
@@ -20,12 +20,12 @@
 
 /obj/projectile/ego_bullet/lcorp/pistol
 	name = "bullet"
-	damage = 5
+	damage = 3
 	damage_tier = list(5,10,15,20,30)
 
 /obj/projectile/ego_bullet/lcorp/automatic
 	name = "bullet"
-	damage = 1
+	damage = 0.75
 	damage_tier = list(1,2,4,6,9)
 
 ///////////////////////
