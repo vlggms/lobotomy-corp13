@@ -702,6 +702,8 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 	var/canaoe
+	var/dash_distance = 5
+	var/aoe_damage = 15
 
 /obj/item/ego_weapon/space/Initialize()
 	. = ..()
@@ -712,13 +714,13 @@
 		return
 	var/dodgelanding
 	if(user.dir == 1)
-		dodgelanding = locate(user.x, user.y + 5, user.z)
+		dodgelanding = locate(user.x, user.y + dash_distance, user.z)
 	if(user.dir == 2)
-		dodgelanding = locate(user.x, user.y - 5, user.z)
+		dodgelanding = locate(user.x, user.y - dash_distance, user.z)
 	if(user.dir == 4)
-		dodgelanding = locate(user.x + 5, user.y, user.z)
+		dodgelanding = locate(user.x + dash_distance, user.y, user.z)
 	if(user.dir == 8)
-		dodgelanding = locate(user.x - 5, user.y, user.z)
+		dodgelanding = locate(user.x - dash_distance, user.y, user.z)
 
 	//Nullcatch (should never happen)
 	if(!dodgelanding)
@@ -728,9 +730,8 @@
 	update_icon_state()
 	user.density = FALSE
 	user.adjustStaminaLoss(15, TRUE, TRUE)
-	user.throw_at(dodgelanding, 3, 2, spin = FALSE) // This still collides with people, by the way.
+	user.throw_at(dodgelanding, 3, 2, spin = FALSE, gentle = TRUE) // This still collides with people, by the way.
 	canaoe = TRUE
-	sleep(3)
 	user.density = TRUE
 
 /obj/item/ego_weapon/space/attack(mob/living/target, mob/living/user)
@@ -744,22 +745,27 @@
 
 	if(!canaoe)
 		return
-	if(do_after(user, 5, src, IGNORE_USER_LOC_CHANGE))
-		playsound(src, 'sound/weapons/rapierhit.ogg', 100, FALSE, 4)
-		for(var/turf/T in orange(2, user))
-			new /obj/effect/temp_visual/smash_effect(T)
-
-		for(var/mob/living/L in range(2, user))
-			var/aoe = 15
-			aoe*=justicemod
-			aoe*=force_multiplier
-			if(L == user || ishuman(L))
-				continue
-			L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
-			L.apply_damage(aoe, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+	for(var/turf/T in range(2, user))
+		new /obj/effect/temp_visual/revenant/halfsecond(T)
+	addtimer(CALLBACK(src, PROC_REF(CreateAoe), get_turf(user), user), 5)
 	icon_state = "space"
 	update_icon_state()
 	canaoe = FALSE
+
+/obj/item/ego_weapon/space/proc/CreateAoe(turf/start, mob/living/user)
+	if(!user)
+		return
+	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+	var/justicemod = 1 + userjust/100
+	var/aoe = aoe_damage * justicemod * force_multiplier
+	playsound(start, 'sound/weapons/rapierhit.ogg', 100, FALSE, 4)
+	for(var/turf/T in range(2, start))
+		new /obj/effect/temp_visual/smash_effect(T)
+	for(var/mob/living/L in range(2, start))
+		if(L == user || ishuman(L))
+			continue
+		L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		L.apply_damage(aoe, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 
 /obj/item/ego_weapon/space/EgoAttackInfo(mob/user)
 	if(force_multiplier != 1)
