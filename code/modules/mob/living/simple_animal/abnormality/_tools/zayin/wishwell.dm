@@ -12,6 +12,9 @@
 	)
 //We dont want officers to put their gear in here,
 	var/list/blacklist = list(
+		/obj/item/clothing/suit/armor/ego_gear/officer,
+		/obj/item/ego_weapon/shield/officer,
+		/obj/item/ego_weapon/officer,
 		/obj/item/clothing/suit/armor/ego_gear/city/lcorp_vest,
 		/obj/item/ego_weapon/city/lcorp,
 		/obj/item/ego_weapon/shield/lcorp_shield,

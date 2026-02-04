@@ -62,7 +62,7 @@
 	icon_state = "armorvest_[egoshard.damage_type]"
 
 /*Officer coats.
-Scaled through out the round currently but should probably get their stats boosted under a different system.
+Scales through out the round currently but should probably get their stats boosted under a different system.
 */
 /obj/item/clothing/suit/armor/ego_gear/officer
 	name = "patchwork coat"
