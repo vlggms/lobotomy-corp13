@@ -465,14 +465,14 @@
 	icon_state = "machete"
 	desc = "A sharp machete issued by L-Corp to those who cannot utilize E.G.O."
 	hitsound = 'sound/weapons/fixer/generic/sword2.ogg'
-	force = 5
+	force = 6
 	attack_speed = 0.5
 	custom_price = 100
 
 
 /obj/item/ego_weapon/city/lcorp/machete/IncreaseAttributes(mob/living/user, obj/item/egoshard/egoshard)
 	..()
-	force = (egoshard.base_damage * 0.5)
+	force = floor(egoshard.base_damage * 0.6)
 
 /obj/item/ego_weapon/city/lcorp/club
 	name = "l-corp club"
@@ -488,7 +488,7 @@
 
 /obj/item/ego_weapon/city/lcorp/club/IncreaseAttributes(mob/living/user, obj/item/egoshard/egoshard)
 	..()
-	force = (egoshard.base_damage * 1.4)
+	force = floor(egoshard.base_damage * 1.4)
 	if(egoshard.tier >= 3)
 		knockback = KNOCKBACK_MEDIUM
 	if(egoshard.tier >= 5)
@@ -547,7 +547,7 @@
 
 /obj/item/ego_weapon/shield/lcorp_shield/proc/IncreaseAttributes(mob/living/user, obj/item/egoshard/egoshard)
 	damtype = egoshard.damage_type
-	force = (egoshard.base_damage * 2) //2* base damage, 3 attack speed for shields
+	force = floor(egoshard.base_damage * 2) //2* base damage, 3 attack speed for shields
 	for(var/atr in attribute_requirements)
 		attribute_requirements[atr] = egoshard.stat_requirement
 	to_chat(user, span_warning("The requirements to equip [src] have increased!"))
