@@ -109,35 +109,14 @@
 			return TRUE
 	return FALSE
 
-/mob/living/simple_animal/hostile/abnormality/yang/bullet_act(obj/projectile/P, def_zone, piercing_hit = FALSE)
-	apply_damage(P.damage, P.damage_type)
-	P.on_hit(src, 0, piercing_hit)
-	if(!P.firer)
-		return BULLET_ACT_HIT
-	Reflect(P.firer, P.damage)
-	return BULLET_ACT_HIT
-
-/mob/living/simple_animal/hostile/abnormality/yang/attacked_by(obj/item/I, mob/living/user)
+/mob/living/simple_animal/hostile/abnormality/yang/PostDamageReaction(damage_amount, damage_type, source, attack_type)
 	. = ..()
-	Reflect(user, I.force)
-	return
-
-/mob/living/simple_animal/hostile/abnormality/yang/attack_hand(mob/living/carbon/human/M)
-	. = ..()
-	Reflect(M, 2)
-	return
-
-/mob/living/simple_animal/hostile/abnormality/yang/attack_animal(mob/living/simple_animal/M)
-	. = ..()
-	Reflect(M, M.melee_damage_upper)
-	return
+	if((. <= 0) || !isliving(source) || (attack_type & (ATTACK_TYPE_COUNTER | ATTACK_TYPE_ENVIRONMENT | ATTACK_TYPE_STATUS)))
+		return
+	Reflect(source, .)
 
 /mob/living/simple_animal/hostile/abnormality/yang/proc/Reflect(mob/living/attacker, damage)
-	if(ishuman(attacker))
-		var/mob/living/carbon/human/H = attacker
-		var/justice_mod = 1 + (get_attribute_level(H, JUSTICE_ATTRIBUTE)/100)
-		damage *= justice_mod
-	attacker.deal_damage(damage, WHITE_DAMAGE)
+	attacker.deal_damage(damage, WHITE_DAMAGE, source = src, attack_type = (ATTACK_TYPE_COUNTER | ATTACK_TYPE_SPECIAL))
 	return
 
 /mob/living/simple_animal/hostile/abnormality/yang/death()
@@ -186,7 +165,7 @@
 			if(get_dist(src, T) > i)
 				continue
 			new /obj/effect/temp_visual/dir_setting/speedbike_trail(T)
-			HurtInTurf(T, list(), explosion_damage, WHITE_DAMAGE, hurt_mechs = TRUE)
+			HurtInTurf(T, list(), explosion_damage, WHITE_DAMAGE, hurt_mechs = TRUE, flags = (DAMAGE_UNTRACKABLE), attack_type = (ATTACK_TYPE_SPECIAL))
 			all_turfs -= T
 		SLEEP_CHECK_DEATH(1)
 

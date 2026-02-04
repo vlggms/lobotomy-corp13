@@ -65,7 +65,7 @@
 	else if(israt(target))
 		var/mob/living/simple_animal/hostile/rat/ratt = target
 		visible_message("<span class='boldannounce'>Clink!</span>")
-		ratt.apply_damage(5) //Not lethal, but just enought to make a mark.
+		ratt.deal_damage(5, attack_type = (ATTACK_TYPE_ENVIRONMENT)) //Not lethal, but just enought to make a mark.
 		ratt.Stun(1 SECONDS)
 	else if(isregalrat(target))
 		visible_message("<span class='boldannounce'>Skreeeee!</span>") //He's simply too large to be affected by a tiny mouse trap.

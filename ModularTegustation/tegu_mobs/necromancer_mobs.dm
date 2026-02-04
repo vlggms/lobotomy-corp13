@@ -56,6 +56,6 @@
 				for(var/mob/living/L in TC)
 					if("necromancer" in L.faction)
 						continue
-					L.apply_damage(25, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+					L.deal_damage(25, BLACK_DAMAGE, src)
 					to_chat(L, span_userdanger("You're hit by a death field!"))
 			SLEEP_CHECK_DEATH(1.5)

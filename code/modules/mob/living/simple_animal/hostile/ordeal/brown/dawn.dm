@@ -80,7 +80,7 @@
 			for(var/mob/living/L in T)
 				if(faction_check_mob(L))
 					continue
-				L.deal_damage(jump_damage, melee_damage_type)
+				L.deal_damage(jump_damage, melee_damage_type, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 				if(L.health < 0)
 					L.gib()
 					continue
@@ -129,7 +129,7 @@
 				devour(L)
 				return
 			new /obj/effect/temp_visual/damage_effect/rupture(get_turf(L))
-			L.deal_damage(rupture_damage, BRUTE)
+			L.deal_damage(rupture_damage, BRUTE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_MELEE))
 		else
 			devour(L)
 
@@ -218,13 +218,13 @@
 		for(var/mob/living/L in T)
 			if(faction_check_mob(L))
 				continue
-			L.deal_damage(damage_dealt, melee_damage_type)
+			L.deal_damage(damage_dealt, melee_damage_type, src)
 			new /obj/effect/temp_visual/damage_effect/sinking(get_turf(L))
 			if(ishuman(L))
 				var/mob/living/carbon/human/H = L
 				H.adjustSanityLoss(sinking_damage)
 			else
-				L.deal_damage(sinking_damage, melee_damage_type)
+				L.deal_damage(sinking_damage, melee_damage_type, src, attack_type = (ATTACK_TYPE_SPECIAL))
 		for(var/obj/vehicle/sealed/mecha/V in T)
 			V.take_damage(damage_dealt, melee_damage_type)
 	SLEEP_CHECK_DEATH(8)
@@ -351,7 +351,7 @@
 		L.visible_message(span_warning("[src] shreds [L] as it passes by!"), span_boldwarning("[src] shreds you!"))
 		var/turf/LT = get_turf(L)
 		new /obj/effect/temp_visual/kinetic_blast(LT)
-		L.apply_damage(dash_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		L.deal_damage(dash_damage, BLACK_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 		been_hit += L
 		playsound(L, 'sound/weapons/fixer/generic/sword4.ogg', 75, 1)
 		if(!ishuman(L))
@@ -463,7 +463,7 @@
 	Beam(T, "tentacle", time = 10)
 	playsound(src, 'sound/weapons/ego/censored1.ogg', 75, FALSE, 5)
 	for(var/turf/TT in turf_list)
-		for(var/mob/living/L in HurtInTurf(TT, list(), ability_damage, melee_damage_type, null, TRUE, FALSE, TRUE, hurt_structure = TRUE))
+		for(var/mob/living/L in HurtInTurf(TT, list(), ability_damage, RED_DAMAGE, null, TRUE, FALSE, TRUE, hurt_structure = TRUE, attack_type = (ATTACK_TYPE_RANGED | ATTACK_TYPE_SPECIAL)))
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
 			L.apply_lc_bleed(15)
 	can_act = TRUE
@@ -579,7 +579,7 @@
 				if(ishuman(L))
 					var/mob/living/carbon/human/H = L
 					H.apply_lc_burn(burn_stacks)
-				L.deal_damage(charge_damage, melee_damage_type)
+				L.deal_damage(charge_damage, melee_damage_type, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 				if(L.health < 0)
 					L.gib()
 					playsound(src, 'sound/effects/ordeals/brown/tentacle_explode.ogg', 75, 1)

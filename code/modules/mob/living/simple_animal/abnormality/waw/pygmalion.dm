@@ -204,17 +204,15 @@
 	QDEL_IN(src, 5 SECONDS)
 	..()
 
-/mob/living/simple_animal/hostile/abnormality/pygmalion/attackby(obj/item/W, mob/user, params)
+/mob/living/simple_animal/hostile/abnormality/pygmalion/PostDamageReaction(damage_amount, damage_type, source, attack_type)
 	. = ..()
-	CounterAttack(user)
-
-/mob/living/simple_animal/hostile/abnormality/pygmalion/bullet_act(obj/projectile/P)
-	. = ..()
-	CounterAttack(P.firer)
+	if((. <= 0) || (!isliving(source)) || (attack_type & (ATTACK_TYPE_COUNTER | ATTACK_TYPE_STATUS | ATTACK_TYPE_ENVIRONMENT)))
+		return
+	CounterAttack(source)
 
 /mob/living/simple_animal/hostile/abnormality/pygmalion/proc/CounterAttack(mob/living/attacker)
 	if (attacker == sculptor)
-		attacker.deal_damage(retaliation, PALE_DAMAGE)
+		attacker.deal_damage(retaliation, PALE_DAMAGE, src, attack_type = (ATTACK_TYPE_COUNTER))
 		to_chat(attacker, span_userdanger("You feel your heart break!"))
 
 /datum/status_effect/sculptor

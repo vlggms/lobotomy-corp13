@@ -468,11 +468,13 @@ No Ability	260
 /obj/item/clothing/suit/armor/ego_gear/realization/fallencolors/proc/Reset()
 	canSUCC = TRUE
 
-/obj/item/clothing/suit/armor/ego_gear/realization/fallencolors/proc/OnDamaged(mob/living/carbon/human/user)
+/obj/item/clothing/suit/armor/ego_gear/realization/fallencolors/proc/OnDamaged(mob/living/carbon/human/user, damage_amount, damage_type, def_zone, attacker, damage_flags, attack_type)
 	//goonchem_vortex(get_turf(src), 1, 3)
 	if(!canSUCC)
 		return
 	if(user.is_working)
+		return
+	if(damage_amount <= 0 || !isliving(attacker) || user == attacker || (attack_type & (ATTACK_TYPE_COUNTER | ATTACK_TYPE_ENVIRONMENT | ATTACK_TYPE_STATUS)))
 		return
 	canSUCC = FALSE
 	addtimer(CALLBACK(src, PROC_REF(Reset)), 2 SECONDS)
@@ -485,7 +487,7 @@ No Ability	260
 				continue
 			var/atom/throw_target = get_edge_target_turf(L, get_dir(L, get_step_away(L, get_turf(src))))
 			L.throw_at(throw_target, 1, 1)
-			L.apply_damage(5, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(20, WHITE_DAMAGE, user, attack_type = (ATTACK_TYPE_SPECIAL| ATTACK_TYPE_COUNTER))
 
 
 /* Effloresced (Personal) E.G.O */

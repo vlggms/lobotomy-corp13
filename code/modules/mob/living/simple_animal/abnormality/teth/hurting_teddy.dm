@@ -176,9 +176,9 @@
 		ReleaseHug()
 		return
 	do_attack_animation(get_step(src, dir), no_effect = TRUE)
-	hug_victim.deal_damage(hug_damage, BLACK_DAMAGE)
+	hug_victim.deal_damage(hug_damage, BLACK_DAMAGE, src, flags = (DAMAGE_FORCED))
 	new /obj/effect/temp_visual/smash1(get_turf(src))
-	hug_victim.deal_damage(crush_damage, BRUTE)
+	hug_victim.deal_damage(crush_damage, BRUTE, src, flags = (DAMAGE_FORCED))
 	hug_victim.Immobilize(10)
 	playsound(get_turf(src), 'sound/abnormalities/sweethome/smash.ogg', 50, 1)
 	switch(count)
@@ -188,10 +188,10 @@
 		if(4)  //apply more damage
 			playsound(get_turf(src), 'sound/effects/wounds/crackandbleed.ogg', 200, 0, 7)
 			to_chat(hug_victim, span_userdanger("It hurts so much!"))
-			hug_victim.deal_damage(crush_damage, BRUTE)
+			hug_victim.deal_damage(crush_damage, BRUTE, src, flags = (DAMAGE_FORCED))
 		else      //Apply ramping damage
 			playsound(get_turf(src), 'sound/effects/wounds/crackandbleed.ogg', 200, 0, 7)
-			hug_victim.deal_damage((crush_damage + count), BRUTE)
+			hug_victim.deal_damage((crush_damage + count), BRUTE, src, flags = (DAMAGE_FORCED))
 	count += 1
 	if(hug_victim.sanity_lost)
 		hug_victim.Stun(10)
@@ -203,10 +203,10 @@
 		hug_victim = null
 		can_act = TRUE
 
-/mob/living/simple_animal/hostile/abnormality/hurting_teddy/apply_damage(damage, damagetype, def_zone, blocked, forced, spread_damage, wound_bonus, bare_wound_bonus, sharpness, white_healable)
+/mob/living/simple_animal/hostile/abnormality/hurting_teddy/PostDamageReaction(damage_amount, damage_type, source, attack_type)
 	. = ..()
 	if(hug_victim)
-		release_damage = clamp (release_damage + damage, 0, release_threshold)
+		release_damage = clamp (release_damage + ., 0, release_threshold)
 	if(release_damage >= release_threshold)
 		ReleaseHug()
 

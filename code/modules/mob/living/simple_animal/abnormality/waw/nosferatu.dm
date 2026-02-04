@@ -417,7 +417,7 @@
 	var/obj/effect/temp_visual/smash_effect/bloodeffect =  new(T)
 	bloodeffect.color = "#b52e19"
 	playsound(T, 'sound/abnormalities/nosferatu/attack_special.ogg', 25, 0, 5)
-	for(var/mob/living/L in HurtInTurf(T, list(), banquet_damage, BLACK_DAMAGE, check_faction = TRUE, exact_faction_match = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE))
+	for(var/mob/living/L in HurtInTurf(T, list(), banquet_damage, BLACK_DAMAGE, check_faction = TRUE, exact_faction_match = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL)))
 		all_turfs -= T
 		if(ishuman(L))
 			var/mob/living/carbon/human/H = L
@@ -426,7 +426,7 @@
 				AdjustThirst(H.blood_volume) // gain up to 2000 blood by draining a corpse
 				H.Drain()
 		else
-			L.deal_damage(banquet_damage * 0.5, BLACK_DAMAGE) // deal extra damage instead of bleed to nonhumans
+			L.deal_damage(banquet_damage * 0.5, BLACK_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL)) // deal extra damage instead of bleed to nonhumans
 
 /mob/living/simple_animal/hostile/abnormality/nosferatu/proc/MistForm()
 	if(!can_act)
@@ -461,8 +461,8 @@
 		return
 	mist_cooldown = world.time + mist_cooldown_time
 	MistForm()
-	AIStatus = AI_OFF
-	target = null
+	toggle_ai(AI_OFF)
+	LoseTarget(FALSE)
 	walk_to(src, 0)
 	TemporarySpeedChange(-2, 3 SECONDS)
 	//stolen from patrol select
@@ -483,7 +483,7 @@
 	StopFleeing()
 
 /mob/living/simple_animal/hostile/abnormality/nosferatu/proc/StopFleeing()
-	AIStatus = AI_ON
+	toggle_ai(AI_ON)
 	update_icon()
 
 // This snippet of code makes it so that attacks from its minions give it blood.

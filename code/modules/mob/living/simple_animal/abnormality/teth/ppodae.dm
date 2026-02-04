@@ -269,7 +269,7 @@
 	var/smash_damage = rand(smash_damage_low, smash_damage_high)
 	for(var/turf/T in area_of_effect)
 		new /obj/effect/temp_visual/smash_effect(T)
-		HurtInTurf(T, list(), smash_damage, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE)
+		HurtInTurf(T, list(), smash_damage, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 	playsound(get_turf(src), 'sound/abnormalities/ppodae/bark.wav', 100, 0, 5)
 	playsound(get_turf(src), 'sound/abnormalities/ppodae/attack.wav', 50, 0, 5)
 	SLEEP_CHECK_DEATH(0.5 SECONDS)

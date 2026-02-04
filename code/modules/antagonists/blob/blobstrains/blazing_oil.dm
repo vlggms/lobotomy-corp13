@@ -38,6 +38,6 @@
 	exposed_mob.adjust_fire_stacks(round(reac_volume/10))
 	exposed_mob.IgniteMob()
 	if(exposed_mob)
-		exposed_mob.apply_damage(0.8*reac_volume, FIRE, wound_bonus=CANT_WOUND)
+		exposed_mob.deal_damage(0.8*reac_volume, FIRE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_OTHER), wound_bonus = CANT_WOUND)
 	if(iscarbon(exposed_mob))
 		exposed_mob.emote("scream")

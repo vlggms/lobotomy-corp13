@@ -68,7 +68,7 @@
 				SLEEP_CHECK_DEATH(3)
 				TH.attack_animal(src)
 				for(var/mob/living/carbon/human/H in view(7, get_turf(src)))
-					H.apply_damage(3, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+					H.deal_damage(3, WHITE_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL))
 			if(!targets_from.Adjacent(TH) || QDELETED(TH) || TH.health > 0)
 				finishing = FALSE
 				return

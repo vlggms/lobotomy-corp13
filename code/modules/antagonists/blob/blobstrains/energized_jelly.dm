@@ -32,4 +32,4 @@
 	exposed_mob.losebreath += round(0.2*reac_volume)
 	exposed_mob.adjustStaminaLoss(reac_volume * 1.2)
 	if(exposed_mob)
-		exposed_mob.apply_damage(0.6*reac_volume, OXY)
+		exposed_mob.deal_damage(0.6*reac_volume, OXY, flags = (DAMAGE_FORCED))

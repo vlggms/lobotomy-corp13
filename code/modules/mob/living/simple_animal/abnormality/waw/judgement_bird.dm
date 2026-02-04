@@ -122,7 +122,7 @@
 			var/dist = get_dist(src, L)
 			if(dist > 5)
 				dealt_damage -= (dist - 5) * 5
-			L.deal_damage(dealt_damage, PALE_DAMAGE)
+			L.deal_damage(dealt_damage, PALE_DAMAGE, src, attack_type = (ATTACK_TYPE_SPECIAL))
 
 	else
 		for(var/mob/living/L in urange(judgement_range, src))
@@ -135,7 +135,7 @@
 			var/dist = get_dist(src, L)
 			if(dist > 5)
 				dealt_damage -= (dist - 5) * 5
-			L.deal_damage(dealt_damage, PALE_DAMAGE)
+			L.deal_damage(dealt_damage, PALE_DAMAGE, src, attack_type = (ATTACK_TYPE_SPECIAL))
 
 			if(L.stat == DEAD)	//Gotta fucking check again in case it kills you. Real moment
 				if(!IsCombatMap())
@@ -159,7 +159,7 @@
 			var/dist = get_dist(src, V)
 			if(dist > 5)
 				dealt_damage -= (dist - 5) * 5
-			occupant.deal_damage(dealt_damage, PALE_DAMAGE)
+			occupant.deal_damage(dealt_damage, PALE_DAMAGE, src, attack_type = (ATTACK_TYPE_SPECIAL))
 
 	icon_state = icon_living
 	judging = FALSE

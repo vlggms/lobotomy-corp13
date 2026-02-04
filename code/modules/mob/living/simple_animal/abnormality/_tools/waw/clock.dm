@@ -92,11 +92,11 @@
 		if(A in exceptions)
 			continue
 		new /obj/effect/temp_visual/sparks/quantum(A)
-		A.deal_damage(damage_dealt, BRUTE)
+		A.deal_damage(damage_dealt, BRUTE, source = src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL | ATTACK_TYPE_ENVIRONMENT))
 
 	for(var/mob/living/L in GLOB.ordeal_list)
 		new /obj/effect/temp_visual/sparks/quantum(L)
-		L.deal_damage(damage_dealt, BRUTE)
+		L.deal_damage(damage_dealt, BRUTE, source = src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL | ATTACK_TYPE_ENVIRONMENT))
 
 
 /obj/structure/toolabnormality/clock/update_overlays()

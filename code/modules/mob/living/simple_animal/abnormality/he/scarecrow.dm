@@ -133,7 +133,7 @@
 			H.melee_damage_lower = min_dam_old
 			H.melee_damage_upper = max_dam_old
 			H.move_to_delay = punishment_speed
-			H.deal_damage(20, WHITE_DAMAGE)
+			H.deal_damage(20, WHITE_DAMAGE, flags = (DAMAGE_FORCED))
 			H.color = null
 			H.manual_emote("starts slowing down...")
 			to_chat(H, span_userdanger("No... I need that wisdom..."))

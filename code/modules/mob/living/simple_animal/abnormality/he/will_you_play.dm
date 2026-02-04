@@ -99,7 +99,7 @@
 //Player wins RPS, loses an arm tho
 /mob/living/simple_animal/hostile/abnormality/willyouplay/proc/Win(mob/living/carbon/human/user, work_type)
 	say("You lose.")
-	user.deal_damage(20, RED_DAMAGE)
+	user.deal_damage(20, RED_DAMAGE, flags = (DAMAGE_FORCED))
 	IncreaseStats(user, 1, FALSE)
 
 	//Less than 80 fort and you lose an arm

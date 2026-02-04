@@ -64,7 +64,7 @@
 		if(L.stat == DEAD)
 			continue
 		playsound(get_turf(src), 'sound/spookoween/girlscream.ogg', 400)
-		L.deal_damage(scream_damage, WHITE_DAMAGE)
+		L.deal_damage(scream_damage, WHITE_DAMAGE, attack_type = (ATTACK_TYPE_SPECIAL))
 
 /mob/living/simple_animal/hostile/abnormality/wall_gazer/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	// If you do work while having low Temperance, fuck you and you go insane for turning your back to face her

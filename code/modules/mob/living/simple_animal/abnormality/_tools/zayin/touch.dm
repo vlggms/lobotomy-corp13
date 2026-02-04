@@ -65,7 +65,7 @@
 			M.playsound_local(M, 'sound/abnormalities/donttouch/panic.ogg', 50, FALSE)
 			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
-				H.apply_damage(5000, WHITE_DAMAGE, null, null, spread_damage = TRUE) // You cannot escape.
+				H.deal_damage(5000, WHITE_DAMAGE, flags = (DAMAGE_FORCED | DAMAGE_PIERCING)) // You cannot escape.
 
 /obj/structure/toolabnormality/touch/proc/BreachEffect(mob/living/carbon/human/user)
 	if(!do_after(user, 60 SECONDS))

@@ -180,7 +180,7 @@
 				visible_message(span_boldwarning("[user] claws through [L]!"))
 				playsound(L, 'ModularTegustation/Tegusounds/claw/stab.ogg', 25, 1)
 				new /obj/effect/temp_visual/cleave(get_turf(L))
-				L.apply_damage(justicemod*60, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+				L.deal_damage(justicemod*60, RED_DAMAGE, user, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 			dash_charges--
 			if(dash_charges == 0)
 				special_attack = FALSE
@@ -250,7 +250,7 @@
 			if(AA == target)
 				continue
 			to_chat(AA, span_userdanger("[user] slashes you!"))
-			AA.apply_damage(justicemod*50, BLACK_DAMAGE, null, AA.run_armor_check(null, BLACK_DAMAGE))
+			AA.deal_damage(justicemod*50, BLACK_DAMAGE, user, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 			new /obj/effect/temp_visual/cleave(get_turf(AA))
 		for(var/obj/item/I in get_turf(target))
 			if(I.anchored)
@@ -276,7 +276,7 @@
 		if(AA == target)
 			continue
 		to_chat(AA, span_userdanger("You start gushing blood!"))
-		AA.apply_damage(justicemod*60, BLACK_DAMAGE, null, AA.run_armor_check(null, BLACK_DAMAGE)) // Shouldn't have gotten close.
+		AA.deal_damage(justicemod*60, BLACK_DAMAGE, user, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL)) // Shouldn't have gotten close.
 		new /obj/effect/temp_visual/cleave(get_turf(AA))
 	user.AdjustStun(-60 SECONDS, ignore_canstun = TRUE)
 	target.AdjustStun(-60 SECONDS, ignore_canstun = TRUE)
@@ -285,7 +285,7 @@
 		span_warning("[target] suddenly gushes blood!"),
 		span_userdanger("As [user] lets go, you start gushing blood!")
 	)
-	target.apply_damage(justicemod*150, BLACK_DAMAGE, null, target.run_armor_check(null, BLACK_DAMAGE)) // 150 so that it can scale form justice to about 300
+	target.deal_damage(justicemod*150, BLACK_DAMAGE, user, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL)) // 150 so that it can scale form justice to about 300
 	for(var/turf/T in range(1, target))
 		if(prob(35))
 			var/obj/effect/decal/cleanable/blood/B = new /obj/effect/decal/cleanable/blood(get_turf(target))
@@ -322,7 +322,7 @@
 		user.forceMove(tp_loc)
 		to_chat(L, span_userdanger("[user] decimates you!"))
 		playsound(L, 'ModularTegustation/Tegusounds/claw/eviscerate2.ogg', 100, 1)
-		L.apply_damage(justicemod*60, PALE_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+		L.deal_damage(justicemod*60, PALE_DAMAGE, user, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL), blocked = L.run_armor_check(null, BLACK_DAMAGE))
 		prev_loc.Beam(tp_loc, "bsa_beam", time=25)
 		new /obj/effect/temp_visual/cleave(get_turf(L))
 		sleep(3)

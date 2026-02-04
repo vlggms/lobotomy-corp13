@@ -126,14 +126,13 @@
 		return TRUE
 	log_combat(A, D, "punched")
 	var/obj/item/bodypart/affecting = D.get_bodypart(ran_zone(A.zone_selected))
-	var/armor_block = D.run_armor_check(affecting, RED_DAMAGE)
 	var/picked_hit_type = pick("punch", "kick")
 	var/bonus_damage = 0
 	if(D.body_position == LYING_DOWN)
 		bonus_damage += 10
 		picked_hit_type = "stomp"
 	if(A.has_status_effect(/datum/status_effect/hunter))
-		D.apply_damage(rand(25,30) + bonus_damage, RED_DAMAGE, affecting, armor_block)
+		D.deal_damage(rand(25,30) + bonus_damage, RED_DAMAGE, source = A, attack_type = (ATTACK_TYPE_MELEE), def_zone = affecting)
 		if(ishuman(D) && D.stat != DEAD && prob(5))
 			var/mob/living/carbon/human/human_target = D
 			var/obj/item/bodypart/chest/LC = human_target.get_bodypart(BODY_ZONE_CHEST)
@@ -144,7 +143,7 @@
 				log_game("[key_name(human_target)] was infected by a niaojia-ren at [loc_name(T)]")
 	else
 		to_chat(A, span_warning("You attack pathetically, re-enter your territory!"))
-		D.apply_damage(rand(10,14) + bonus_damage, RED_DAMAGE, affecting, armor_block)
+		D.deal_damage(rand(10,14) + bonus_damage, RED_DAMAGE, source = A, attack_type = (ATTACK_TYPE_MELEE), def_zone = affecting)
 	playsound(get_turf(D), 'sound/abnormalities/big_wolf/Wolf_Scratch.ogg', 50, TRUE, -1)
 	if(picked_hit_type == "kick" || picked_hit_type == "stomp")
 		A.do_attack_animation(D, ATTACK_EFFECT_KICK)
@@ -173,9 +172,9 @@
 		to_chat(A, span_danger("You [atk_verb] [D] with such inhuman strength!"))
 		playsound(D, 'sound/effects/meteorimpact.ogg', 25, TRUE, -1)
 		if(A.has_status_effect(/datum/status_effect/hunter))
-			D.apply_damage(150, RED_DAMAGE)
+			D.deal_damage(150, RED_DAMAGE, source = A, attack_type = (ATTACK_TYPE_MELEE))
 		else
-			D.apply_damage(75, RED_DAMAGE)
+			D.deal_damage(75, RED_DAMAGE, source = A, attack_type = (ATTACK_TYPE_MELEE))
 			to_chat(A, span_warning("You attack pathetically, re-enter your territory!"))
 		if(atk_verb)
 			log_combat(A, D, "[atk_verb] (Cuckoo Punch)")

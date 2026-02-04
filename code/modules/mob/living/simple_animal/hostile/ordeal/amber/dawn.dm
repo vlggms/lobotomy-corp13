@@ -153,7 +153,7 @@
 	animate(D, alpha = 0, transform = matrix()*1.5, time = 5)
 	for(var/mob/living/L in target_turf)
 		if(!faction_check_mob(L))
-			L.apply_damage(5, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+			L.deal_damage(5, RED_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 	burrow_cooldown = world.time + burrow_cooldown_time
 	burrowing = FALSE
 
@@ -354,7 +354,7 @@
 	var/bug_spawned = feeding_stage + 2 //Should go 3,4,5 bugs then explode, for a total of 12 bugs per body over 4.5 minutes.
 	feeding_duration = world.time + (feeding_interval)
 	feeding_stage++
-	H.apply_damage(feeding_stage * 3, RED_DAMAGE, null, H.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+	H.deal_damage(feeding_stage * 3, RED_DAMAGE, flags = (DAMAGE_FORCED))
 	visible_message(span_danger("[feeding_stage] bugs eat their way out of [H]'s body!"))
 	playsound(get_turf(src), 'sound/effects/ordeals/amber/dawn_dig_out.ogg', 25, 1)
 	if(H.stat != DEAD)

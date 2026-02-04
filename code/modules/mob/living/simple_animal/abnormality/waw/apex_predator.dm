@@ -135,7 +135,7 @@
 				var/mob/living/V = attacked_target
 				visible_message(span_danger("The [src] rips out [attacked_target]'s guts!"))
 				new /obj/effect/gibspawner/generic(get_turf(V))
-				V.deal_damage(backstab_damage, RED_DAMAGE)
+				V.deal_damage(backstab_damage, RED_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 			//Backstab succeeds from any one of 3 tiles behind a mecha, backstab from directly behind gets boosted by mecha directional armor weakness
 			else if(ismecha(attacked_target))
 				var/relative_angle = abs(dir2angle(attacked_target.dir) - dir2angle(get_dir(attacked_target, src)))
@@ -212,7 +212,7 @@
 	icon_state = "apex_crouch"
 	playsound(src, 'sound/effects/meteorimpact.ogg', 300, FALSE, 9)
 	for(var/turf/T in range(1, src))
-		HurtInTurf(T, list(), jump_damage, RED_DAMAGE, null, TRUE, FALSE, TRUE)
+		HurtInTurf(T, list(), jump_damage, RED_DAMAGE, null, TRUE, FALSE, TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 		new /obj/effect/temp_visual/kinetic_blast(T)
 	addtimer(CALLBACK(src, PROC_REF(Reset)), 12)
 

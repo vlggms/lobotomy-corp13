@@ -169,7 +169,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/Worktick(mob/living/carbon/human/user)
 	if(bonusRed) // If you have bonus red damage to apply...
-		user.deal_damage(bonusRed, RED_DAMAGE)
+		user.deal_damage(bonusRed, RED_DAMAGE, flags = (DAMAGE_FORCED))
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/OnQliphothChange(mob/living/carbon/human/user)//woodsman icon change
@@ -266,7 +266,7 @@
 						A.datum_reference.qliphoth_change(-1)
 					if(faction_check_mob(H))
 						continue
-					H.deal_damage(aflame_damage, BLACK_DAMAGE)
+					H.deal_damage(aflame_damage, BLACK_DAMAGE, src, attack_type = (ATTACK_TYPE_SPECIAL))
 					if(H.stat >= SOFT_CRIT || H.health < 0)
 						H.fire_stacks += 1
 						H.IgniteMob()//unforunately this fire isn' blue.
@@ -277,7 +277,7 @@
 	for(var/mob/living/L in livinginview(10, src))
 		if(faction_check_mob(L))
 			continue
-		L.deal_damage(pulse_damage, RED_DAMAGE)
+		L.deal_damage(pulse_damage, RED_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL))
 
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/proc/EnableFire()
 	if(current_phase_num <= 1)

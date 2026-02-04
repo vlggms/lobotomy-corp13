@@ -300,7 +300,7 @@
 	for(var/mob/living/L in view(4, src))
 		if(faction_check_mob(L))
 			continue
-		L.apply_damage(coil_discharge_aoe_damage, coil_discharge_aoe_damagetype, null, L.run_armor_check(null, coil_discharge_aoe_damagetype), spread_damage = TRUE)
+		L.deal_damage(coil_discharge_aoe_damage, coil_discharge_aoe_damagetype, src, attack_type = (ATTACK_TYPE_SPECIAL))
 		L.Stun(coil_discharge_aoe_stun_duration)
 		count ++
 	playsound(get_turf(src), 'sound/abnormalities/kqe/hitsound2.ogg', 100, 0, 8)
@@ -378,7 +378,7 @@
 			if(TF.density)
 				continue
 			new /obj/effect/temp_visual/smash_effect(TF)
-			been_hit = HurtInTurf(TF, been_hit, tailattack_damage, tailattack_damagetype, null, null, TRUE, FALSE, TRUE, TRUE)
+			been_hit = HurtInTurf(TF, been_hit, tailattack_damage, tailattack_damagetype, null, null, TRUE, FALSE, TRUE, TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 	AdjustCharge(length(been_hit) * tailattack_charge_per_target)
 	playsound(get_turf(src), 'sound/weapons/fixer/generic/energyfinisher1.ogg', 75, 1)
 	can_act = TRUE

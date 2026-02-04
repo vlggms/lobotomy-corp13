@@ -287,7 +287,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 		uses -= 1
 		to_chat(H, span_userdanger("You try to open the book AND IT BITES YOU!"))
 		playsound(src.loc, 'sound/effects/snap.ogg', 50, TRUE)
-		H.apply_damage(5, BRUTE, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
+		H.deal_damage(5, BRUTE, flags = (DAMAGE_FORCED), def_zone = pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
 		to_chat(H, span_notice("Your name appears on the inside cover, in blood."))
 		var/ownername = H.real_name
 		desc += span_warning("The name [ownername] is written in blood inside the cover.")

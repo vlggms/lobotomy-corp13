@@ -21,9 +21,9 @@
 	new /obj/effect/temp_visual/explosion(get_turf(src))
 	playsound(loc, 'sound/effects/ordeals/steel/gcorp_boom.ogg', 75, TRUE)
 	for(var/mob/living/simple_animal/H in view(explosion_range, src))
-		H.apply_damage(explosion_damage, explosion_damage_type, null, H.run_armor_check(null, RED_DAMAGE))
+		H.deal_damage(explosion_damage, explosion_damage_type, aThrower, attack_type = (ATTACK_TYPE_SPECIAL))
 	for(var/mob/living/carbon/C in view(explosion_range, src))
-		C.apply_damage(C == aThrower ? explosion_damage * 0.5 : explosion_damage * carbon_damagemod, explosion_damage_type, null, C.run_armor_check(null, RED_DAMAGE))
+		C.deal_damage(C == aThrower ? explosion_damage * 0.5 : explosion_damage * carbon_damagemod, explosion_damage_type, aThrower, attack_type = (ATTACK_TYPE_SPECIAL))
 	qdel(src)
 
 /obj/item/grenade/r_corp/white
