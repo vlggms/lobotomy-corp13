@@ -659,15 +659,20 @@
 	parts += "<div class='panel stationborder'>"
 	if(!LAZYLEN(SSticker.ordeal_info))
 		parts += "<b>The facility had faced no ordeals!</b>"
-	else if(SSticker.ordeal_info.len == 1)
+	if(SSticker.ordeal_info.len %4 != 0)
+		WARNING("The list isnt a multiple of 4.")
+		return parts.Join("<br>")
+	else if(SSticker.ordeal_info.len == 4)
 		parts += "<b>The facility had faced 1 ordeal:</b>"
 	else
-		parts += "[FOURSPACES]<b>The facility had faced [SSticker.ordeal_info.len] ordeals:</b>"
-	for(var/list/O in SSticker.ordeal_info)
-		if(O[4] != null)
-			parts += "[FOURSPACES]<span style='color: [O[2]]'>[O[1]]</span>: Started at <b>[DisplayTimeText(O[3])]</b> and took <b>[DisplayTimeText(O[4] - O[3])]</b> to be delt with."
+		parts += "[FOURSPACES]<b>The facility had faced [SSticker.ordeal_info.len/4] ordeals:</b>"
+	var/list/O = SSticker.ordeal_info
+	for(var/i in 0 to (SSticker.ordeal_info.len/4) - 1)
+		if(O[(i * 4) + 4] >= 0)
+			parts += "[FOURSPACES]<span style='color: [O[(i * 4) + 2]]'>[O[(i * 4) + 1]]</span>: Started at <b>[DisplayTimeText(O[(i * 4) + 3])]</b> and took <b>[DisplayTimeText(O[(i * 4) + 4] - O[(i * 4) + 3])]</b> to be delt with."
 		else
-			parts += "[FOURSPACES]<span style='color: [O[2]]'>[O[1]]</span>: Started at <b>[DisplayTimeText(O[3])]</b> and was <b>never beaten</b>!"
+			to_chat(world, "AAA")
+			parts += "[FOURSPACES]<span style='color: [O[(i * 4) + 2]]'>[O[(i * 4) + 1]]</span>: Started at <b>[DisplayTimeText(O[(i * 4) + 3])]</b> and was <b>never beaten</b>!"
 	parts += "</div>"
 	return parts.Join("<br>")
 
