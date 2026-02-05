@@ -3668,7 +3668,7 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
-	resistance_flags = s
+	resistance_flags = 115
 	},
 /turf/open/floor/facility,
 /area/facility_hallway/records)
