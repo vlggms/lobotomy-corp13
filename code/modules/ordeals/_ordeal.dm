@@ -42,7 +42,7 @@
 // Runs the event itself
 /datum/ordeal/proc/Run()
 	start_time = ROUNDTIME
-	SSticker.ordeal_info += list(name, color, start_time, null)
+	SSticker.ordeal_info += list(name, color, start_time, -1)
 	SSlobotomy_corp.current_ordeals += src
 	ordeal_position = SSticker.ordeal_info.len
 	priority_announce(announce_text, name, sound='sound/vox_fem/..ogg') // We want this to be silent, so play a silent sound since null uses defaults
@@ -64,7 +64,7 @@
 	if(end_time)
 		return
 	end_time = ROUNDTIME
-	SSticker.ordeal_info[ordeal_position] = list(name, color, start_time, end_time)
+	SSticker.ordeal_info[ordeal_position] = end_time
 	var/total_reward = max(SSlobotomy_corp.box_goal, 3000) * reward_percent
 	priority_announce("The Ordeal has ended. Facility has been rewarded with [reward_percent*100]% PE.", name, sound='sound/vox_fem/..ogg')
 	SSlobotomy_corp.AdjustAvailableBoxes(total_reward)
