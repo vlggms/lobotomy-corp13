@@ -416,8 +416,8 @@
 
 /obj/effect/turf_fire/ardor/DoDamage(mob/living/fuel)
 	if(ishuman(fuel))
-		fuel.deal_damage(3, FIRE)
-		fuel.apply_lc_burn(4)
+		fuel.deal_damage(0.1, FIRE)
+		fuel.apply_lc_burn(1)
 
 /obj/effect/embers
 	gender = PLURAL
@@ -449,8 +449,9 @@
 		L.deal_damage(min(2, L.maxHealth/20), FIRE)//Just so Clerks won't eat shit and die
 		L.apply_lc_burn(1)
 		if(ishuman(L) && connected_abno)
-			L.apply_status_effect(/datum/status_effect/ember_touched)
-			connected_abno.datum_reference?.qliphoth_change(-1)
+			if(!connected_abno.datum_reference.working)
+				L.apply_status_effect(/datum/status_effect/ember_touched)
+				connected_abno.datum_reference?.qliphoth_change(-1)
 
 /obj/effect/embers/Destroy()
 	if(connected_abno)
