@@ -32,7 +32,6 @@
 	)
 	gift_type =  /datum/ego_gifts/space
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
-	can_spawn = FALSE // Normally doesn't appear
 	ranged = TRUE
 	minimum_distance = 3
 	retreat_distance = 3
@@ -55,6 +54,9 @@
 	var/explosion_damage = 30
 	var/can_act = TRUE
 	var/negative_range = 10
+	var/negative_damage = 20
+	var/negative_damage_scale = 10
+	var/list/been_hit = list()
 
 //She can't move or attack.
 /mob/living/simple_animal/hostile/abnormality/space_lady/Move()
@@ -131,7 +133,7 @@
 	var/turf/T = pick(GLOB.department_centers)
 	forceMove(T)
 
-//Inverts Sanity, kills the insane
+//Does white damage that scales with range, kills the insane
 /mob/living/simple_animal/hostile/abnormality/space_lady/proc/NegativeField()
 	say("Ashes to ashes...")
 	can_act = FALSE
@@ -145,14 +147,17 @@
 				continue
 			new /obj/effect/temp_visual/negativelook(T)
 			for(var/mob/living/carbon/human/L in T)
+				if(L in been_hit)
+					continue
+				been_hit += L
 				if(L.sanity_lost)					//DIE FOOL. LADY BLAST
-					L.death()
-				var/sanity_holder = L.sanityhealth	//Hold your current sanity
-				L.restoreSanity() 			//bring you back to full sanity
-				L.adjustSanityLoss(sanity_holder)	//and then deal damage equal to your sanity before this attack
-
+					L.dust()
+				L.deal_damage(negative_damage, WHITE_DAMAGE)
 			all_turfs -= T
+		negative_damage += negative_damage_scale//Every tile it traves it does 10 more damage up to 120
 		SLEEP_CHECK_DEATH(3)
+	negative_damage = initial(negative_damage)
+	been_hit = list()
 	can_act = TRUE
 
 //Time stop
