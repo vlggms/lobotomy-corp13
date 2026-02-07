@@ -8,7 +8,7 @@
 	base_pixel_x = -8
 	maxHealth = 150
 	health = 150
-	threat_level = HE_LEVEL
+	threat_level = HE_LEVEL	//Should be a teth.
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 65,
 		ABNORMALITY_WORK_INSIGHT = 65,
@@ -26,6 +26,7 @@
 	)
 	gift_type = /datum/ego_gifts/fury
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
+	can_spawn = FALSE // Does Nothing.
 
 	observation_prompt = "This abnormality has a notorious reputation for being particularly dry to work with. <br>It's hard to tell what it's thinking or what work it prefers. <br>\
 		What type of work will you attempt?"
