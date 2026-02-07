@@ -21,6 +21,7 @@
 	work_damage_lower = 4
 	work_damage_type = PALE_DAMAGE	//Lawyers take your fucking soul
 	chem_type = /datum/reagent/abnormality/sin/lust
+	can_spawn = FALSE // Useless slop abno.
 
 	ego_list = list(
 		/datum/ego_datum/weapon/infinity,

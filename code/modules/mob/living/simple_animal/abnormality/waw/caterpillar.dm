@@ -17,6 +17,7 @@
 	melee_damage_upper = 4
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0)
 	speak_emote = list("flutters")
+	can_spawn = FALSE // Garbage Abno.
 
 	can_breach = TRUE
 	threat_level = WAW_LEVEL

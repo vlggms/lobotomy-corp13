@@ -34,6 +34,7 @@
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/lust
 
+	can_spawn = FALSE // Does Nothing.
 	ego_list = list(
 		/datum/ego_datum/weapon/coiling,
 		/datum/ego_datum/armor/coiling,
