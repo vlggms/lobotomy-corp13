@@ -170,18 +170,18 @@
 		deltimer(ember_respawn_timer)
 
 //Breach Stuff
-/mob/living/simple_animal/hostile/abnormality/ardor_moth/death()
-	if(health > 0)
-		return
+/mob/living/simple_animal/hostile/abnormality/ardor_moth/death(gibbed)
 	playsound(src, 'sound/effects/limbus_death.ogg', 100, 1)
 	light_on = FALSE
 	color = COLOR_WHITE
+	can_act = FALSE
+	update_light()
+	is_flying_animal = FALSE
 	icon = 'ModularTegustation/Teguicons/abno_cores/waw.dmi'
 	density = FALSE
-	..()
-	sleep(5 SECONDS)
 	animate(src, alpha = 0, time = 10 SECONDS)
-	QDEL_IN(src, 5 SECONDS)
+	QDEL_IN(src, 10 SECONDS)
+	..()
 
 /mob/living/simple_animal/hostile/abnormality/ardor_moth/Life()
 	. = ..()
@@ -189,7 +189,7 @@
 		return
 	if(charging || !can_act || src.stat == DEAD)
 		return
-	if(health/maxHealth <= 0.2)
+	if(health/maxHealth <= 0.15)
 		DeathExplosion()
 	if(melee_cooldown <= world.time)
 		if(retreat_distance > 1)
@@ -468,7 +468,7 @@
 		L.deal_damage(min(2, L.maxHealth/20), FIRE)//Just so Clerks won't eat shit and die
 		L.apply_lc_burn(1)
 		if(ishuman(L) && connected_abno)
-			if(connected_abno.datum_reference.working)
+			if(!connected_abno.datum_reference.working)
 				L.apply_status_effect(/datum/status_effect/ember_touched)
 				connected_abno.datum_reference?.qliphoth_change(-1)
 

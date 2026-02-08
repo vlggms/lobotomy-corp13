@@ -498,7 +498,7 @@
 
 /obj/item/clothing/suit/armor/ego_gear/waw/ardor_star
 	name = "ardor blossom star"
-	desc = "A dress with a bright orange jacket. Warm to the touch."
+	desc = "A brown jacket with fiery frills at the ends. Warm to the touch."
 	icon_state = "ardor_blossom"
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 20, BLACK_DAMAGE = 30, PALE_DAMAGE = 30, FIRE = 60) // 140
 	attribute_requirements = list(
