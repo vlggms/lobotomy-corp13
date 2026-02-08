@@ -7,7 +7,9 @@
 	icon_state = "blossom_moth"
 	icon_living = "blossom_moth"
 	portrait = "blossom_moth"
+	icon_dead = "moth_egg"
 	core_icon = "moth_egg"
+	del_on_death = FALSE
 	maxHealth = 800
 	health = 800
 	blood_volume = 0
@@ -91,7 +93,7 @@
 //Work Related Stuff
 /mob/living/simple_animal/hostile/abnormality/ardor_moth/PostSpawn()
 	. = ..()
-	SpawnEmbers()
+	ember_respawn_timer = addtimer(CALLBACK(src, PROC_REF(SpawnEmbers)), 3 MINUTES, TIMER_STOPPABLE & TIMER_OVERRIDE)
 
 /mob/living/simple_animal/hostile/abnormality/ardor_moth/proc/SpawnEmbers()
 	if(!IsContained())
@@ -142,20 +144,18 @@
 
 /mob/living/simple_animal/hostile/abnormality/ardor_moth/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
-	if(!LAZYLEN(embers))
-		return
 	if(prob(70))//Removes the embers for some time
+		datum_reference.qliphoth_change(1)
+		if(!LAZYLEN(embers))
+			return
 		RemoveEmbers()
 		if(ember_respawn_timer)
 			deltimer(ember_respawn_timer)
 		ember_respawn_timer = addtimer(CALLBACK(src, PROC_REF(SpawnEmbers)), ember_respawn_time, TIMER_STOPPABLE & TIMER_OVERRIDE)
-	datum_reference.qliphoth_change(1)
 
 
 /mob/living/simple_animal/hostile/abnormality/ardor_moth/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
-	if(!LAZYLEN(embers))
-		return
 	if(prob(20))
 		datum_reference.qliphoth_change(1)
 
@@ -170,11 +170,24 @@
 		deltimer(ember_respawn_timer)
 
 //Breach Stuff
+/mob/living/simple_animal/hostile/abnormality/ardor_moth/death()
+	if(health > 0)
+		return
+	playsound(src, 'sound/effects/limbus_death.ogg', 100, 1)
+	light_on = FALSE
+	color = COLOR_WHITE
+	icon = 'ModularTegustation/Teguicons/abno_cores/waw.dmi'
+	density = FALSE
+	..()
+	sleep(5 SECONDS)
+	animate(src, alpha = 0, time = 10 SECONDS)
+	QDEL_IN(src, 5 SECONDS)
+
 /mob/living/simple_animal/hostile/abnormality/ardor_moth/Life()
 	. = ..()
 	if(IsContained()) // Contained
 		return
-	if(charging || !can_act)
+	if(charging || !can_act || src.stat == DEAD)
 		return
 	if(health/maxHealth <= 0.2)
 		DeathExplosion()
@@ -388,13 +401,19 @@
 
 
 /mob/living/simple_animal/hostile/abnormality/ardor_moth/proc/DeathExplosion()
-	color = "#FFAAAA"
+	color = "#FF8888"
 	light_color = COLOR_RED
 	visible_message(span_userdanger("[src]'s flames are burning intensely!"), \
 						span_userdanger("You're ready to go out with a bang!"), null, COMBAT_MESSAGE_RANGE, null)
 	playsound(get_turf(src), 'sound/abnormalities/ardor_moth/ardor_death_boom_start.ogg', 75, 0, 5)
 	can_act = FALSE
+	update_light()
 	SLEEP_CHECK_DEATH(3 SECONDS)
+	playsound(get_turf(src), 'sound/effects/burn.ogg', 100, 0, 5)
+	light_power = 10
+	update_light()
+	color = "#FF5555"
+	SLEEP_CHECK_DEATH(2 SECONDS)
 	playsound(get_turf(src), 'sound/abnormalities/ardor_moth/ardor_explode.ogg', 100, 0, 8)
 	for(var/turf/T in view(get_turf(src), 7))
 		CreateFire(T)
@@ -406,7 +425,7 @@
 			H.gib()
 	var/obj/effect/temp_visual/explosion/boom = new(get_turf(src))
 	boom.transform *= 2
-	gib()
+	adjustBruteLoss(99999)
 
 /mob/living/simple_animal/hostile/abnormality/ardor_moth/spawn_gibs()
 	return new /obj/effect/decal/cleanable/ash(drop_location(), src)
@@ -449,7 +468,7 @@
 		L.deal_damage(min(2, L.maxHealth/20), FIRE)//Just so Clerks won't eat shit and die
 		L.apply_lc_burn(1)
 		if(ishuman(L) && connected_abno)
-			if(!connected_abno.datum_reference.working)
+			if(connected_abno.datum_reference.working)
 				L.apply_status_effect(/datum/status_effect/ember_touched)
 				connected_abno.datum_reference?.qliphoth_change(-1)
 
