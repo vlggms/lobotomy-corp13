@@ -223,7 +223,7 @@
 	name = "Hex"
 	desc = "You take more RED and BLACK damage"
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "schismatic" //placeholder. Yell at spriters if you want this fixed.
+	icon_state = "nail"
 
 /datum/status_effect/hex/on_apply()
 	. = ..()
