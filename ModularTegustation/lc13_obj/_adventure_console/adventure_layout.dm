@@ -43,13 +43,13 @@
 	var/datum/adventure_event/event_data
 	///Used in event chances.
 	var/list/virtual_stats = list(
-		WRATH_STAT = 10,
-		LUST_STAT = 10,
-		SLOTH_STAT = 10,
-		GLUTT_STAT = 10,
-		GLOOM_STAT = 10,
-		PRIDE_STAT = 10,
-		ENVY_STAT = 10,
+		/*WRATH_STAT =*/ 10,
+		/*LUST_STAT =*/ 10,
+		/*SLOTH_STAT =*/ 10,
+		/*GLUTT_STAT =*/ 10,
+		/*GLOOM_STAT =*/ 10,
+		/*PRIDE_STAT =*/ 10,
+		/*ENVY_STAT =*/ 10,
 	)
 	///Used in the adventure mechanics. Generated paths will be put here until they are walked.
 	var/list/paths_to_tread = list()

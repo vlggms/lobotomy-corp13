@@ -76,11 +76,11 @@
 	var/abnos_breached = 0
 	//brothers from left to right
 	var/list/family_status = list(
-		1 = FALSE,
-		2 = FALSE,
-		3 = FALSE,
-		4 = FALSE,
-		5 = FALSE,
+		/*1 =*/ FALSE,
+		/*2 =*/ FALSE,
+		/*3 =*/ FALSE,
+		/*4 =*/ FALSE,
+		/*5 =*/ FALSE,
 	)
 	//If is in closed or open mode
 	var/beak_closed = FALSE
