@@ -1515,6 +1515,14 @@
 	name = "Short (White)"
 	icon_state = "white_short"
 
+/datum/sprite_accessory/socks/black_thigh
+	name = "Thigh-high (Black)"
+	icon_state = "black_thigh"
+
+/datum/sprite_accessory/socks/white_thigh
+	name = "Thigh-high (White)"
+	icon_state = "white_thigh"
+
 //////////.//////////////////
 // MutantParts Definitions //
 /////////////////////////////
