@@ -252,7 +252,7 @@
 
 //Lady facing the Wall - Wedge
 /datum/ego_datum/weapon/wedge
-	item_path = /obj/item/ego_weapon/ranged/wedge
+	item_path = /obj/item/ego_weapon/ranged/crossbow/wedge
 	cost = 35
 
 //You Must Become Strong - Get Strong

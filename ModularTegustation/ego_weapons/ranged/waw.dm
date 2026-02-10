@@ -361,18 +361,15 @@
 							PRUDENCE_ATTRIBUTE = 80
 	)
 
-/obj/item/ego_weapon/ranged/aroma
+/obj/item/ego_weapon/ranged/crossbow/aroma
 	name = "faint aroma"
 	desc = "Simply carrying it gives the illusion that you're standing in a forest in the middle of nowhere. \
 			The arrowhead is dull and sprouts flowers of vivid color wherever it strikes."
 	icon_state = "aroma"
 	inhand_icon_state = "aroma"
-	force = 14
+	force = 22
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_aroma
-	weapon_weight = WEAPON_HEAVY
-	fire_delay = 25
-	fire_sound = 'sound/weapons/ego/crossbow.ogg'
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 80
 	)
@@ -556,7 +553,6 @@
 
 /obj/item/ego_weapon/ranged/banquet/can_shoot()
 	if(bloodshot_ready)
-		forced_melee = FALSE
 		return TRUE
 	..()
 
@@ -622,26 +618,23 @@
 							PRUDENCE_ATTRIBUTE = 80
 	)
 
-/obj/item/ego_weapon/ranged/hypocrisy
+/obj/item/ego_weapon/ranged/crossbow/hypocrisy
 	name = "hypocrisy"
 	desc = "The tree turned out to be riddled with hypocrisy and deception; those who wear its blessing act in the name of bravery and faith."
 	icon_state = "hypocrisy"
 	inhand_icon_state = "hypocrisy"
 	worn_icon_state = "hypocrisy"
-	special = "Use this weapon in hand to place a trap that inflicts \
-		50 RED damage and alerts the user of the area it was triggered."
-	force = 14
-	damtype = WHITE_DAMAGE
+	special = "Use the middle mouse button click/alt click to place a trap that inflicts \
+		30 RED damage and alerts the user of the area it was triggered."
+	force = 22
+	damtype = RED_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_hypocrisy
-	weapon_weight = WEAPON_HEAVY
-	fire_delay = 25
-	fire_sound = 'sound/weapons/ego/crossbow.ogg'
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 80
 	)
 	var/trap_cooldown = 0
 
-/obj/item/ego_weapon/ranged/hypocrisy/attack_self(mob/living/carbon/user)
+/obj/item/ego_weapon/ranged/crossbow/hypocrisy/AltClick(mob/living/carbon/user)
 	if(locate(/obj/structure/liars_trap) in range(1, get_turf(src)))
 		to_chat(user,span_notice("Your too close to another trap."))
 		return
@@ -682,7 +675,7 @@
 		var/mob/living/L = AM
 		if(!faction_check(faction, L.faction))
 			playsound(get_turf(src), 'sound/machines/clockcult/steam_whoosh.ogg', 10, 1)
-			L.apply_damage(20, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = FALSE)
+			L.apply_damage(30, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = FALSE)
 			new /obj/effect/temp_visual/cloud_swirl(get_turf(L)) //placeholder
 			to_chat(creator, span_warning("You feel a itch towards [get_area(L)]."))
 			qdel(src)
@@ -777,7 +770,6 @@
 	playsound(src, 'sound/abnormalities/fluchschutze/fell_aim.ogg', 50, TRUE)
 	if(do_after(user, reloadtime, src)) //gotta reload
 		shotsleft = initial(shotsleft)
-		forced_melee = FALSE //no longer forced to resort to melee
 	is_reloading = FALSE
 
 /obj/item/ego_weapon/ranged/fellbullet/proc/AdjustCircle(mob/living/user, atom/theportal, atom/target)

@@ -200,7 +200,7 @@
 	cost = 50
 
 /datum/ego_datum/weapon/aroma
-	item_path = /obj/item/ego_weapon/ranged/aroma
+	item_path = /obj/item/ego_weapon/ranged/crossbow/aroma
 	cost = 50
 
 // Yang - Assonance
@@ -428,7 +428,7 @@
 	cost = 50
 
 /datum/ego_datum/weapon/hypocrisy
-	item_path = /obj/item/ego_weapon/ranged/hypocrisy
+	item_path = /obj/item/ego_weapon/ranged/crossbow/hypocrisy
 	cost = 50
 
 // Pygmalion - My own Bride

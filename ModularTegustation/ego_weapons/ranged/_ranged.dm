@@ -2,21 +2,11 @@
 
 /obj/item/ego_weapon/ranged
 	name = "ego gun"
-	desc = "Some sort of weapon..?"
-	icon = 'icons/obj/ego_weapons.dmi'
-	lefthand_file = 'icons/mob/inhands/weapons/ego_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/ego_righthand.dmi'
 	icon_state = "detective"
 	inhand_icon_state = "gun"
 	worn_icon_state = "gun"
 	flags_1 =  CONDUCT_1
-	slot_flags = ITEM_SLOT_BELT
-	custom_materials = list(/datum/material/iron=2000)
-	w_class = WEIGHT_CLASS_BULKY //No more stupid 10 egos in bag
-	throwforce = 5
-	throw_speed = 3
-	throw_range = 5
-	force = 5
+	force = 4
 	item_flags = NEEDS_PERMIT
 	attack_verb_continuous = list("strikes", "hits", "bashes")
 	attack_verb_simple = list("strike", "hit", "bash")
@@ -42,14 +32,42 @@
 	//// Reload/Ammo mechanics
 	/// The amount of shots we hold.
 	var/shotsleft = 0
+	/// The ammo lost when we shoot
+	var/ammo_per_shot = 1
+	/// Whether the gun can manually reload or not.
+	var/can_reload = TRUE
+	/// If set to true, the user can move during the reload at the cost of speed.
+	var/mobile_reload = FALSE
 	/// How long it takes to reload this weapon, if blank it wont need to be reloaded
 	var/reloadtime = 0 SECONDS
 	/// Are we currently reloading?
 	var/is_reloading = FALSE
+	/// How much ammo do we gain when we reload? If null, it'll reload the ammo amount
+	var/ammo_on_reload = null
+
+	/// If true the gun is passively reload its ammo based off the reload time
+	var/passive_reload = FALSE
+	var/passive_reload_cooldown
+	var/passive_reloadtime = 0 SECONDS
+	var/ammo_on_passive_reload = null
 
 	/// Vars used for when you examine a gun
 	var/last_projectile_damage = 0
 	var/last_projectile_type = RED_DAMAGE
+
+	/// What the ammo it has is called
+	var/ammo_name = "ammo"
+	var/ammo_name_plural = "ammo"
+
+	/// The message for reloading
+	var/reload_text = "You start loading a new magazine."
+	/// The message for running out of ammo
+	var/out_of_ammo = "The gun is out of ammo."
+	// The message for loading a bullet.
+	var/round_text = "You start loading a bullet."
+	/// Used for a better desc stuff
+	var/projectile_name = "round"
+	var/projectile_name_plural = "rounds"
 
 	/// Controls if pacifists can use the gun or not. Should be TRUE unless you are doing something funky
 	var/lethal = TRUE
@@ -60,6 +78,8 @@
 	var/vary_fire_sound = TRUE
 	var/fire_sound_volume = 50
 	var/dry_fire_sound = 'sound/weapons/gun/general/dry_fire.ogg'
+	var/reload_start_sound = 'sound/weapons/gun/general/slide_lock_1.ogg'
+	var/reload_success_sound = 'sound/weapons/gun/general/bolt_rack.ogg'
 
 	var/recoil = 0						//boom boom shake the room
 	var/burst_size = 1					//how large a burst is
@@ -67,7 +87,6 @@
 	var/firing_burst = 0				//Prevent the weapon from firing again while already firing
 	var/semicd = 0						//cooldown handler
 	var/dual_wield_spread = 24			//additional spread when dual wielding
-	var/forced_melee = FALSE			//forced to melee attack. Currently only used for the ego_gun subtype
 
 	var/spread = 0						//Spread induced by the gun itself.
 	var/randomspread = 1				//Set to 0 for shotguns. This is used for weapons that don't fire all their bullets at once.
@@ -87,7 +106,52 @@
 
 /obj/item/ego_weapon/ranged/pistol
 	attack_speed = 0.5
+	force = 2
+	fire_delay = 5
+	shotsleft = 12
+
+/// Low ammo, Long reloads, Slow fire rate, Extreme Damage
+/obj/item/ego_weapon/ranged/cannon
+	attack_speed = 1.5
+	force = 7
+	fire_delay = 15
+	shotsleft = 3
+	round_text = "You start loading a shell."
+	projectile_name = "shell"
+	projectile_name_plural = "shells"
+	ammo_on_reload = 1
+	reloadtime = 1.25 SECONDS
+	weapon_weight = WEAPON_HEAVY
+	fire_sound = 'sound/weapons/ego/cannon.ogg'
+
+/obj/item/ego_weapon/ranged/crossbow
+	attack_speed = 1.3
 	force = 6
+	shotsleft = 1
+	reload_text = "You start loading an arrow."
+	projectile_name = "arrow"
+	projectile_name_plural = "arrows"
+	mobile_reload = TRUE
+	fire_delay = 5
+	reloadtime = 2.5 SECONDS
+	spread = 0
+	fire_sound = 'sound/weapons/ego/crossbow.ogg'
+	weapon_weight = WEAPON_HEAVY
+
+obj/item/ego_weapon/ranged/crossbow/Initialize()
+	. = ..()
+	shotsleft = 0//Starts unloaded
+
+obj/item/ego_weapon/ranged/crossbow/OnReload()
+	icon_state = inhand_icon_state = "[initial(icon_state)]_loaded"
+
+obj/item/ego_weapon/ranged/crossbow/process_chamber()
+	icon_state = inhand_icon_state = "[initial(icon_state)]"
+	return ..()
+
+/obj/item/ego_weapon/ranged/maw
+	attack_speed = 0.5
+	force = 3
 
 /obj/item/ego_weapon/ranged/Initialize()
 	. = ..()
@@ -99,7 +163,10 @@
 
 	update_projectile_examine()
 
-/obj/item/ego_weapon/ranged/Destroy()
+/obj/item/ego_weapon/ranged/Destroy(mob/user)
+	if(user)
+		if(user.has_movespeed_modifier(/datum/movespeed_modifier/reloading))
+			user.remove_movespeed_modifier(/datum/movespeed_modifier/reloading)
 	if(isobj(pin)) //Can still be the initial path, then we skip
 		QDEL_NULL(pin)
 	if(azoom)
@@ -116,11 +183,10 @@
 	. += GunAttackInfo()
 	if(!reloadtime)
 		. += span_notice("This weapon has unlimited ammo.")
-	else if(shotsleft>0)
+	else if(shotsleft>= ammo_per_shot)
 		. += span_notice("Ammo Counter: [shotsleft]/[initial(shotsleft)].")
 	else
 		. += span_danger("Ammo Counter: [shotsleft]/[initial(shotsleft)].")
-
 	if(reloadtime)
 		switch(reloadtime)
 			if(0 to 0.71 SECONDS)
@@ -133,7 +199,13 @@
 				. += span_danger("This weapon has a slow reload.")
 			if(2.51 to INFINITY)
 				. += span_danger("This weapon has an extremely slow reload.")
-
+		if(mobile_reload)
+			. += span_notice("This weapon can be reloaded while moving at the cost of movespeed.")
+		if(ammo_on_reload)
+			if(ammo_on_reload > 1)
+				. += span_notice("This weapon reloads [ammo_on_reload] [projectile_name_plural] at a time.")
+			else
+				. += span_notice("This weapon reloads one [projectile_name] at a time.")
 	switch(weapon_weight)
 		if(WEAPON_HEAVY)
 			. += span_danger("This weapon requires both hands to fire.")
@@ -159,7 +231,7 @@
 		var/rpm = 600 / autofire
 		rpm = round(rpm,5)
 		. += span_nicegreen("This weapon is automatic.")
-		. += span_notice("This weapon fires at [rpm] rounds per minute.")
+		. += span_notice("This weapon fires at [rpm] [projectile_name_plural] per minute.")
 
 	. += span_notice("Examine this weapon more for melee information.")
 
@@ -199,19 +271,52 @@
 
 /obj/item/ego_weapon/ranged/attack_self(mob/user)
 	if(reloadtime && !is_reloading)
-		INVOKE_ASYNC(src, PROC_REF(reload_ego), user)
+		if(ammo_on_reload)
+			INVOKE_ASYNC(src, PROC_REF(rounds_reload), user)
+		else
+			INVOKE_ASYNC(src, PROC_REF(reload_ego), user)
 	return ..()
 
 /obj/item/ego_weapon/ranged/proc/reload_ego(mob/user)
 	is_reloading = TRUE
-	to_chat(user,span_notice("You start loading a new magazine."))
-	playsound(src, 'sound/weapons/gun/general/slide_lock_1.ogg', 50, TRUE)
-	if(do_after(user, reloadtime, src)) //gotta reload
-		playsound(src, 'sound/weapons/gun/general/bolt_rack.ogg', 50, TRUE)
+	to_chat(user,span_notice(reload_text))
+	playsound(src, reload_start_sound, 50, TRUE)
+	var/flags = 0
+	if(mobile_reload)
+		flags = IGNORE_USER_LOC_CHANGE
+		user.add_movespeed_modifier(/datum/movespeed_modifier/reloading)
+	if(do_after(user, reloadtime, src, flags)) //gotta reload
+		playsound(src, reload_success_sound, 50, TRUE)
 		shotsleft = initial(shotsleft)
-		forced_melee = FALSE //no longer forced to resort to melee
-
+		OnReload(user)
+	if(user.has_movespeed_modifier(/datum/movespeed_modifier/reloading))
+		user.remove_movespeed_modifier(/datum/movespeed_modifier/reloading)
 	is_reloading = FALSE
+
+/obj/item/ego_weapon/ranged/proc/rounds_reload(mob/user)
+	if(shotsleft == initial(shotsleft))
+		if(user.has_movespeed_modifier(/datum/movespeed_modifier/reloading))
+			user.remove_movespeed_modifier(/datum/movespeed_modifier/reloading)
+		is_reloading = FALSE
+		return
+	is_reloading = TRUE
+	to_chat(user, span_notice(round_text))
+	var/flags = 0
+	if(mobile_reload)
+		flags = IGNORE_USER_LOC_CHANGE
+		user.add_movespeed_modifier(/datum/movespeed_modifier/reloading)
+	if(do_after(user, reloadtime, src, flags)) //gotta reload
+		playsound(src, reload_success_sound, 50, TRUE)
+		shotsleft = min(shotsleft + ammo_on_reload, initial(shotsleft))
+		OnReload(user)
+		INVOKE_ASYNC(src, PROC_REF(rounds_reload), user)
+		return
+	if(user.has_movespeed_modifier(/datum/movespeed_modifier/reloading))
+		user.remove_movespeed_modifier(/datum/movespeed_modifier/reloading)
+	is_reloading = FALSE
+
+//Used for some weapons to do things
+/obj/item/ego_weapon/ranged/proc/OnReload(mob/user)
 
 /obj/item/ego_weapon/ranged/equipped(mob/living/user, slot)
 	. = ..()
@@ -225,6 +330,8 @@
 
 /obj/item/ego_weapon/ranged/dropped(mob/user)
 	. = ..()
+	if(user.has_movespeed_modifier(/datum/movespeed_modifier/reloading))
+		user.remove_movespeed_modifier(/datum/movespeed_modifier/reloading)
 	if(azoom)
 		azoom.Remove(user)
 	if(zoomed)
@@ -233,13 +340,13 @@
 //called after the gun has successfully fired its chambered ammo.
 /obj/item/ego_weapon/ranged/proc/process_chamber()
 	if(reloadtime && shotsleft)
-		shotsleft -= 1
+		shotsleft = max(0, shotsleft - ammo_per_shot)
 
 //check if there's enough ammo to shoot one time
 //i.e if clicking would make it shoot
 /obj/item/ego_weapon/ranged/proc/can_shoot()
-	if(reloadtime && !shotsleft)
-		visible_message(span_notice("The gun is out of ammo."))
+	if(reloadtime && shotsleft < ammo_per_shot)
+		visible_message(span_notice(out_of_ammo))
 		shoot_with_empty_chamber()
 		return FALSE
 
@@ -288,7 +395,7 @@
 	if(flag) //It's adjacent, is the user, or is on the user's person
 		if(target in user.contents) //can't shoot stuff inside us.
 			return
-		if(!ismob(target) || user.a_intent == INTENT_HARM || forced_melee) //melee attack
+		if(!ismob(target)) //melee attack
 			return
 		if(target == user && user.zone_selected != BODY_ZONE_PRECISE_MOUTH) //so we can't shoot ourselves (unless mouth selected)
 			return
@@ -452,16 +559,9 @@
 	semicd = FALSE
 
 /obj/item/ego_weapon/ranged/attack(mob/M as mob, mob/user)
-	if(!CanUseEgo(user))
+	if(is_reloading)
 		return FALSE
-
-	if(!can_shoot())
-		forced_melee = TRUE // Forces us to melee
-
-	if(user.a_intent == INTENT_HARM || forced_melee) //Flogging
-		return ..()
-
-	return TRUE
+	return ..()
 
 /obj/item/ego_weapon/ranged/proc/handle_suicide(mob/living/carbon/human/user, mob/living/carbon/human/target, params, bypass_timer)
 	if(!ishuman(user) || !ishuman(target))
@@ -601,3 +701,7 @@
 		else if(knockback)
 			msg += span_notice("This weapon has [knockback >= 10 ? "neck-snapping": ""] enemy knockback.")
 	return msg
+
+/datum/movespeed_modifier/reloading
+	multiplicative_slowdown = 1
+	variable = TRUE

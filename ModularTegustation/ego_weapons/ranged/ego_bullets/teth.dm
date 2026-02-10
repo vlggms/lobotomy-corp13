@@ -1,9 +1,9 @@
 /obj/projectile/ego_bullet/ego_match
 	name = "match"
 	icon_state = "pulse0"
-	damage = 10 // Direct hit
+	damage = 25 // Direct hit
 	damage_type = RED_DAMAGE
-	var/aoe_damage = 6
+	var/aoe_damage = 10
 
 /obj/projectile/ego_bullet/ego_match/on_hit(atom/target, blocked = FALSE)
 	..()

@@ -191,7 +191,7 @@
 /obj/projectile/ego_bullet/ego_aroma
 	name = "aroma"
 	icon_state = "arrow_aroma"
-	damage = 70
+	damage = 85
 	damage_type = WHITE_DAMAGE
 
 //Assonance, our one hitscan laser
@@ -233,7 +233,7 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "nakednest_serpent"
 	desc = "A sterile naked nest serpent"
-	damage = 60
+	damage = 160
 	damage_type = RED_DAMAGE
 	hitsound = "sound/effects/wounds/pierce1.ogg"
 
@@ -298,7 +298,7 @@
 /obj/projectile/ego_bullet/ego_banquet
 	name = "banquet"
 	icon_state = "pulse0"
-	damage = 60
+	damage = 130
 	damage_type = BLACK_DAMAGE
 
 
@@ -326,7 +326,7 @@
 	name = "hypocrisy"
 	icon_state = "arrow_greyscale"
 	color = "#AAFF00"
-	damage = 45 //20 damage is transfered to the spawnable trap
+	damage = 70 //15 damage is transfered to the spawnable trap
 	damage_type = RED_DAMAGE
 
 

@@ -24,7 +24,7 @@
 
 // Scorched girl - Fourth match flame
 /datum/ego_datum/weapon/match
-	item_path = /obj/item/ego_weapon/ranged/match
+	item_path = /obj/item/ego_weapon/ranged/cannon/match
 	cost = 25
 
 /datum/ego_datum/armor/match

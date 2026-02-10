@@ -281,16 +281,7 @@
 
 	shotsleft = 16	//Based off a henry .44
 	reloadtime = 0.5 SECONDS
-
-/obj/item/ego_weapon/ranged/arcadia/reload_ego(mob/user)
-	if(shotsleft == initial(shotsleft))
-		return
-	is_reloading = TRUE
-	to_chat(user,"<span class='notice'>You start loading a bullet.</span>")
-	if(do_after(user, reloadtime, src)) //gotta reload
-		playsound(src, 'sound/weapons/gun/general/slide_lock_1.ogg', 50, TRUE)
-		shotsleft +=1
-	is_reloading = FALSE
+	ammo_on_reload = 1
 
 /obj/item/ego_weapon/ranged/arcadia/judge
 	name = "Judge"

@@ -102,7 +102,7 @@
 
 /obj/projectile/ego_bullet/ego_wedge
 	name = "screaming"
-	damage = 10
+	damage = 48
 	damage_type = WHITE_DAMAGE
 
 /obj/projectile/ego_bullet/regs

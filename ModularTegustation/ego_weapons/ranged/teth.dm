@@ -2,21 +2,15 @@
 //All Teth Pistols should hit about
 
 //Does slightly less damage due to AOE.
-/obj/item/ego_weapon/ranged/match
+/obj/item/ego_weapon/ranged/cannon/match
 	name = "fourth match flame"
 	desc = "The light of the match will not go out until it has burned away happiness, warmth, light, \
 	and all the other good things of the world; there's no need to worry about it being quenched."
 	icon_state = "match"
 	inhand_icon_state = "match"
 	special = "This weapon does AOE damage."
-	force = 8
-	attack_speed = 1.8
+	force = 12
 	projectile_path = /obj/projectile/ego_bullet/ego_match
-	weapon_weight = WEAPON_HEAVY
-	fire_delay = 15
-	shotsleft = 8
-	reloadtime = 2.2 SECONDS
-	fire_sound = 'sound/weapons/ego/cannon.ogg'
 
 /obj/item/ego_weapon/ranged/beak
 	name = "beak"
@@ -35,7 +29,7 @@
 
 /obj/item/ego_weapon/ranged/pistol/beakmagnum
 	name = "beak mk2"
-	desc = "A heavy revolver that fires at a surprisingly fast rate, and is deadly accurate."
+	desc = "A heavy pistol that fires at a surprisingly fast rate, and is deadly accurate."
 	icon_state = "beakmagnum"
 	inhand_icon_state = "beakmagnum"
 	force = 5

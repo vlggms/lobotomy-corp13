@@ -218,18 +218,14 @@
 							PRUDENCE_ATTRIBUTE = 40
 							)
 
-/obj/item/ego_weapon/ranged/wedge
+/obj/item/ego_weapon/ranged/crossbow/wedge
 	name = "screaming wedge"
 	desc = "Hair has grown on the crossbow as if to express that the woman’s dejection will never be forgotten."
 	icon_state = "screamingwedge"
 	inhand_icon_state = "screamingwedge"
-	force = 10
+	force = 14
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_wedge
-	weapon_weight = WEAPON_HEAVY
-	fire_delay = 10
-
-	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40
 							)
