@@ -77,7 +77,7 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 	if(istype(M, /mob/living/simple_animal/hostile/aminion))
 		var/mob/living/simple_animal/hostile/aminion/abno = M
 		if(!abno.can_affect_emergency)
-			return
+			return FALSE
 		UpdateScore(threat_to_score[abno.threat_level]/abno.score_divider)
 		return
 
@@ -128,6 +128,7 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 	if(LAZYLEN(SSlobotomy_corp.current_ordeals))
 		min += SSlobotomy_corp.current_ordeals.len * (ordeal_amount/2)
 	score_min = min(score_cap, min)
+	SSlobotomy.CheckMin(score_min)
 
 /datum/controller/subsystem/lobotomy_emergency/proc/UpdateScore(amount, divide_score = TRUE, long_cooldown = TRUE)
 	if(divide_score)

@@ -408,7 +408,9 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		DeathAutoRestart()
 	return TRUE
 
-/datum/controller/subsystem/lobotomy_corp/proc/OrdealStartOrFinish(datum/source)
+/datum/controller/subsystem/lobotomy_corp/proc/CheckForRestart(datum/source, mob/living/L)
+
+/datum/controller/subsystem/lobotomy_corp/proc/CheckMin(score)
 	SIGNAL_HANDLER
 	if(auto_restart_in_progress)
 		if(!OrdealDeathCheck())
