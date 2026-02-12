@@ -335,7 +335,7 @@
 #include "code\controllers\subsystem\language.dm"
 #include "code\controllers\subsystem\lighting.dm"
 #include "code\controllers\subsystem\lobotomy_corp.dm"
-#include "code\controllers\subsystem\lobotomy_emergency_level.dm"
+#include "code\controllers\subsystem\lobotomy_emergency.dm"
 #include "code\controllers\subsystem\lobotomy_events.dm"
 #include "code\controllers\subsystem\machines.dm"
 #include "code\controllers\subsystem\mapping.dm"
