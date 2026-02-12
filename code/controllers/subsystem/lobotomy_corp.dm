@@ -392,33 +392,44 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		return FALSE
 	return TRUE
 
+/datum/controller/subsystem/lobotomy_corp/proc/CheckMin()
+	if(SSlobotomy_emergency.score_min < SSlobotomy_emergency.trumpet_2/2)
+		return FALSE
+	if(!DeathCheck())
+		return FALSE
+	return TRUE
+
 /datum/controller/subsystem/lobotomy_corp/proc/CheckForRestart(datum/source, mob/living/L)
 	SIGNAL_HANDLER
 	if(!(SSmaptype.maptype in list("standard", "skeld", "fishing", "wonderlabs")))
 		return FALSE
 	if(!ishuman(L))
 		return FALSE
+	DoRestartCheck()
+
+/datum/controller/subsystem/lobotomy_corp/proc/DoRestartCheck()
 	if(auto_restart_in_progress)
 		if(!DeathCheck())
 			deltimer(restart_timer)
 			auto_restart_in_progress = FALSE
 			to_chat(world, span_nicegreen("<b>An agent has either joined or had came back to their senses, the round ending automatically is canceled for now!</b>"))
 		return FALSE
-	if(OrdealDeathCheck() && !auto_restart_in_progress)
+	if((OrdealDeathCheck() || CheckMin()) && !auto_restart_in_progress)
 		DeathAutoRestart()
 	return TRUE
 
-/datum/controller/subsystem/lobotomy_corp/proc/CheckForRestart(datum/source, mob/living/L)
-
-/datum/controller/subsystem/lobotomy_corp/proc/CheckMin(score)
+/datum/controller/subsystem/lobotomy_corp/proc/OrdealStartOrFinish(datum/source, mob/living/L)
 	SIGNAL_HANDLER
 	if(auto_restart_in_progress)
+		if(CheckMin())
+			return FALSE
 		if(!OrdealDeathCheck())
 			deltimer(restart_timer)
 			auto_restart_in_progress = FALSE
 			to_chat(world, span_nicegreen("<b>All ordeals have ended, the round ending automatically is canceled for now!</b>"))
 			return FALSE
-	if(OrdealDeathCheck() && !auto_restart_in_progress)
+		return FALSE
+	if((OrdealDeathCheck() || CheckMin()) && !auto_restart_in_progress)
 		DeathAutoRestart()
 	return TRUE
 
