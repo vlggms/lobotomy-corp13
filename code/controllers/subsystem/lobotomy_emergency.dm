@@ -128,7 +128,7 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 	if(LAZYLEN(SSlobotomy_corp.current_ordeals))
 		min += SSlobotomy_corp.current_ordeals.len * (ordeal_amount/2)
 	score_min = min(score_cap, min)
-	SSlobotomy.CheckMin(score_min)
+	SSlobotomy.DoRestartCheck()
 
 /datum/controller/subsystem/lobotomy_emergency/proc/UpdateScore(amount, divide_score = TRUE, long_cooldown = TRUE)
 	if(divide_score)
