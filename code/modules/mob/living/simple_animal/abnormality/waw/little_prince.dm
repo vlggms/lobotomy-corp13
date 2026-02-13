@@ -263,7 +263,7 @@
 	pixel_y = -8
 	var/active = FALSE
 	var/damaging = FALSE
-	var/fungus_turf_check_time = 2 SECONDS
+	var/fungus_turf_check_time = 1 SECONDS
 	var/despawning = FALSE
 	var/mob/living/simple_animal/hostile/abnormality/little_prince/connected_abno
 
