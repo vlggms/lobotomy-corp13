@@ -263,7 +263,7 @@
 	pixel_y = -8
 	var/active = FALSE
 	var/damaging = FALSE
-	var/fungus_turf_check_time = 1 SECONDS
+	var/fungus_turf_check_time = 4
 	var/despawning = FALSE
 	var/mob/living/simple_animal/hostile/abnormality/little_prince/connected_abno
 
@@ -310,7 +310,7 @@
 
 //The Damage Proc
 /obj/effect/prince_mushrooms/proc/DoDamage(mob/living/carbon/human/H)
-	H.deal_damage(rand(2, 5), WHITE_DAMAGE)
+	H.deal_damage(rand(1, 3), WHITE_DAMAGE)
 	to_chat(H, span_warning("You feel something weird touching your skin..."))
 	if (H.sanity_lost && connected_abno)
 		connected_abno.Hypno(H)
