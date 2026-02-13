@@ -327,6 +327,7 @@
 		//arbitrary max fire damage so corpses still get burned
 		if(H.getFireLoss() < 1000 && H.stat != DEAD)
 			DoDamage(H)
+			dealt_damage = TRUE
 	if(!dealt_damage)
 		damaging = FALSE
 		return
