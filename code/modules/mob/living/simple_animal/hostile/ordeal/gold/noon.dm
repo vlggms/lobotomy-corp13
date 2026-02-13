@@ -1,7 +1,7 @@
 // Gold Noon - Boss with minions
 /mob/living/simple_animal/hostile/ordeal/white_lake_corrosion
 	name = "Lady of the Lake"
-	desc = "An agent captain of the central command team, corrupted by an abnormality. But how?"
+	desc = "A captain of the central command team, corrupted by an abnormality. But how?"
 	icon = 'ModularTegustation/Teguicons/32x64.dmi'
 	icon_state = "lake_corrosion"
 	icon_living = "lake_corrosion"
