@@ -212,7 +212,7 @@
 	attack_verb_simple = "thrashs"
 	var/in_charging = FALSE
 	var/thrash_range = 2
-	var/thrash_damage = 22
+	var/thrash_damage = 20
 	var/thrash_cooldown
 	var/thrash_cooldown_time = 10 SECONDS
 	var/thrash_count = 6
