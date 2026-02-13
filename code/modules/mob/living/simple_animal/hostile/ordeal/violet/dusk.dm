@@ -212,7 +212,7 @@
 	attack_verb_simple = "thrashs"
 	var/in_charging = FALSE
 	var/thrash_range = 2
-	var/thrash_damage = 20
+	var/thrash_damage = 18
 	var/thrash_cooldown
 	var/thrash_cooldown_time = 10 SECONDS
 	var/thrash_count = 6
@@ -303,7 +303,7 @@
 	icon_living = "violet_dusk_hand_portal"
 	base_pixel_x = -8
 	pixel_x = -8
-	var/slam_damage = 50
+	var/slam_damage = 45
 	var/teleport_cooldown
 	var/teleport_cooldown_time = 5 SECONDS
 	var/Attacking = FALSE
@@ -400,7 +400,7 @@
 	playsound(get_turf(src), 'sound/effects/ordeals/violet/midnight_portal_on.ogg', 100, 1)
 	animate(src, alpha = 255, time = 5)
 	new /obj/effect/temp_visual/fistwarning(target_turf)
-	SLEEP_CHECK_DEATH(2 SECONDS)
+	SLEEP_CHECK_DEATH(3 SECONDS)
 	icon_state = "violet_dusk_hand_attack"
 	SLEEP_CHECK_DEATH(7)
 	Vulnerable = TRUE
@@ -429,4 +429,4 @@
 /obj/effect/temp_visual/fistwarning
 	name = "fist warning"
 	icon_state = "fistwarning"
-	duration = 2 SECONDS
+	duration = 3.5 SECONDS
