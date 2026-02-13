@@ -1,0 +1,32 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><base href="../"><link rel="stylesheet" href="dmdoc.css"><title>/datum/adventure_event - /tg/ Station 13</title></head><body><header><a href="index.html">/tg/ Station 13</a> - <a href="index.html#modules">Modules</a> - <a href="index.html#types">Types</a> — <a href="datum/adventure_event.html#proc">Proc Details</a></header><main><h1>adventure_event <aside>/<a href="datum.html">datum</a>/<a href="datum/adventure_event.html">adventure_event</a></aside> <a href="https://github.com/vlggms/lobotomy-corp13/blob/08140444b5642175f3b266d497d6dd4cd54bacc1/ModularTegustation/lc13_obj/_adventure_console/adventure_events/_event.dm#L5"><img src="git.png" width="16" height="16" title="ModularTegustation/lc13_obj/_adventure_console/adventure_events/_event.dm 5"></a></h1><p>Unique events can be the memories of the abnormalities, their victims, or formative encounters.
+Just a interesting event that may or may not provide or be based on the lore.</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Procs</h2></td></tr><tr><th><a href="datum/adventure_event.html#proc/ChanceCords">ChanceCords</a></th><td>This is inconviently weird/simple? meaning if you want it to be more complext you need to override it.
+The place where the chance buttons appear would be A on the flavor text list.
+If it succeeds it would then go to B.
+If it fails then it would go to C.
+So when structuring the adventure cords list keep it in mind.
+Visual example:
+list(
+&quot;Ability Challenge&quot;,
+&quot;YES WE DID IT&quot;,
+&quot;Ah, eto... Bleh!&quot;,
+)
+-IP</td></tr><tr><th><a href="datum/adventure_event.html#proc/Event">Event</a></th><td>This proc is called by the adventure datum in order to build the UI.
+Its like a hub where all other general things are called.</td></tr><tr><th><a href="datum/adventure_event.html#proc/EventChoiceFormat">EventChoiceFormat</a></th><td>This is where most of the choices and effects will appear.
+After your condition for the choice is made with &quot;if(cords == 2)&quot; remember to add a return if you do not want the continue button to appear.
+Since we have link to the profile and the user we can use their stats for checks if we are clever.</td></tr><tr><th><a href="datum/adventure_event.html#proc/UI_Display">UI_Display</a></th><td>Formating stuff such as UI display that is returned to the calling userface
+such as the events name, current cords, and flavor text.</td></tr></table><h2 id="proc">Proc Details</h2><h3 id="proc/ChanceCords"><aside class="declaration">proc </aside>ChanceCords<aside>(input_num)  <a href="https://github.com/vlggms/lobotomy-corp13/blob/08140444b5642175f3b266d497d6dd4cd54bacc1/ModularTegustation/lc13_obj/_adventure_console/adventure_events/_event.dm#L153"><img src="git.png" width="16" height="16" title="ModularTegustation/lc13_obj/_adventure_console/adventure_events/_event.dm 153"></a></aside></h3><p>This is inconviently weird/simple? meaning if you want it to be more complext you need to override it.
+The place where the chance buttons appear would be A on the flavor text list.
+If it succeeds it would then go to B.
+If it fails then it would go to C.
+So when structuring the adventure cords list keep it in mind.
+Visual example:
+list(
+&quot;Ability Challenge&quot;,
+&quot;YES WE DID IT&quot;,
+&quot;Ah, eto... Bleh!&quot;,
+)
+-IP</p><h3 id="proc/Event"><aside class="declaration">proc </aside>Event<aside>(/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/requester, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/H)  <a href="https://github.com/vlggms/lobotomy-corp13/blob/08140444b5642175f3b266d497d6dd4cd54bacc1/ModularTegustation/lc13_obj/_adventure_console/adventure_events/_event.dm#L62"><img src="git.png" width="16" height="16" title="ModularTegustation/lc13_obj/_adventure_console/adventure_events/_event.dm 62"></a></aside></h3><p>This proc is called by the adventure datum in order to build the UI.
+Its like a hub where all other general things are called.</p><h3 id="proc/EventChoiceFormat"><aside class="declaration">proc </aside>EventChoiceFormat<aside>(/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/M, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/H)  <a href="https://github.com/vlggms/lobotomy-corp13/blob/08140444b5642175f3b266d497d6dd4cd54bacc1/ModularTegustation/lc13_obj/_adventure_console/adventure_events/_event.dm#L51"><img src="git.png" width="16" height="16" title="ModularTegustation/lc13_obj/_adventure_console/adventure_events/_event.dm 51"></a></aside></h3><p>This is where most of the choices and effects will appear.
+After your condition for the choice is made with &quot;if(cords == 2)&quot; remember to add a return if you do not want the continue button to appear.
+Since we have link to the profile and the user we can use their stats for checks if we are clever.</p><h3 id="proc/UI_Display"><aside class="declaration">proc </aside>UI_Display<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/H)  <a href="https://github.com/vlggms/lobotomy-corp13/blob/08140444b5642175f3b266d497d6dd4cd54bacc1/ModularTegustation/lc13_obj/_adventure_console/adventure_events/_event.dm#L81"><img src="git.png" width="16" height="16" title="ModularTegustation/lc13_obj/_adventure_console/adventure_events/_event.dm 81"></a></aside></h3><p>Formating stuff such as UI display that is returned to the calling userface
+such as the events name, current cords, and flavor text.</p></main><footer>lobotomy-corp13.dme <a href="https://github.com/vlggms/lobotomy-corp13/tree/08140444b5642175f3b266d497d6dd4cd54bacc1">0814044</a> (master) — <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.11.0</a></footer></body></html>
