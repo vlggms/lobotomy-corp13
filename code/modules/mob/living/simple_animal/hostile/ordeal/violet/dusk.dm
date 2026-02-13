@@ -20,7 +20,7 @@
 	var/retaliation_health = 10 // Initialized later
 	var/hand_limit = 4
 	var/hand_cooldown
-	var/hand_cooldown_time = 60 SECONDS
+	var/hand_cooldown_time = 90 SECONDS
 	var/list/spawned_arms = list()
 	var/arm_cooldown
 	var/arm_cooldown_time = 45 SECONDS
@@ -182,8 +182,8 @@
 	desc = "A portal with a hand coming out of it."
 	icon = 'ModularTegustation/Teguicons/48x96.dmi'
 	faction = list("violet_ordeal")
-	maxHealth = 350
-	health = 350
+	maxHealth = 320
+	health = 320
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.2)
 	density = FALSE
 	del_on_death = TRUE
@@ -212,7 +212,7 @@
 	attack_verb_simple = "thrashs"
 	var/in_charging = FALSE
 	var/thrash_range = 2
-	var/thrash_damage = 26
+	var/thrash_damage = 22
 	var/thrash_cooldown
 	var/thrash_cooldown_time = 10 SECONDS
 	var/thrash_count = 6
@@ -303,7 +303,7 @@
 	icon_living = "violet_dusk_hand_portal"
 	base_pixel_x = -8
 	pixel_x = -8
-	var/slam_damage = 60
+	var/slam_damage = 50
 	var/teleport_cooldown
 	var/teleport_cooldown_time = 5 SECONDS
 	var/Attacking = FALSE
