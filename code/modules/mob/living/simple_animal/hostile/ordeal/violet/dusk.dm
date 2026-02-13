@@ -379,7 +379,7 @@
 		if(locate(/mob/living/simple_animal/hostile/ordeal/violet_spawn/hand) in get_turf(L))
 			continue
 		potentialmarked += L
-	var/numbermarked = 1 + round(LAZYLEN(potentialmarked) / 5, 1) //1 + 1 in 5 potential players, to the nearest whole number
+	var/numbermarked = 1 + round(length(potentialmarked) / 5, 1) //1 + 1 in 5 potential players, to the nearest whole number
 	for(var/i = numbermarked, i>=1, i--)
 		if(potentialmarked.len <= 0)
 			break
