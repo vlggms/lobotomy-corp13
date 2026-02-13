@@ -2482,3 +2482,27 @@
 
 /obj/item/ego_weapon/contempt/get_clamped_volume()
 	return 25
+
+/obj/item/ego_weapon/ardor_star
+	name = "ardor blossom star"
+	desc = "Though I can't guide you... I can offer a warm embrace."
+	icon_state = "ardor_star"
+	inhand_icon_state = "ardor_star"
+	special = "This weapon deal additional fire damage."
+	force = 20
+	attack_speed = 1.8
+	attack_verb_continuous = list("bashes", "crushes")
+	attack_verb_simple = list("bash", "crush")
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80
+							)
+
+/obj/item/ego_weapon/ardor_star/attack(mob/living/target, mob/living/user)
+	..()
+	if(!CanUseEgo(user))
+		return
+	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+	var/justicemod = 1 + userjust/100
+	var/damage = force * justicemod * force_multiplier * 0.5
+	target.apply_damage(damage, FIRE, null, target.run_armor_check(null, FIRE), spread_damage = TRUE)
+	target.apply_lc_burn(3)

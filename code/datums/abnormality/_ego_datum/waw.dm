@@ -537,3 +537,12 @@
 /datum/ego_datum/armor/tiara
 	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/tiara
 	cost = 50
+
+//Ardor Blossom Moth - Ardor Blossom Star
+/datum/ego_datum/armor/ardor_star
+	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/ardor_star
+	cost = 50
+
+/datum/ego_datum/weapon/ardor_star
+	item_path = /obj/item/ego_weapon/ardor_star
+	cost = 50

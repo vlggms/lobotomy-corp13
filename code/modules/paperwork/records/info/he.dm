@@ -509,17 +509,6 @@
 		"If the employee won the game, they took severe RED damage, and if their fortitude was under level 3, T-01-187 cut off their arm. The employee also would get some stats under level 4, but not as much as compared to losing.",
 		"If the employee lost the game, T-01-187 presented them with a blessing, increasing all of their stats under level 4. If T-01-187 is going through a meltdown. Stats at level 4 and higher would increase by a smaller amount.")
 
-
-// Ardor Blossom Moth
-/obj/item/paper/fluff/info/he/ardor_blossom_moth
-	abno_type = /mob/living/simple_animal/hostile/abnormality/ardor_moth
-	abno_code = "T-02-182"
-	abno_info = list(
-		"When Attachment work was completed on T-02-182 the employee working started to stoke the moth's flames.",
-		"While stoked, work chance was increased, and the Qliphoth Counter increased.",
-		"Employees who worked on Ardor Blossom Moth without a proper fire had a small chance of lowering the Qliphoth counter by 2.",
-		)
-
 // Highway Devotee
 /obj/item/paper/fluff/info/he/highway
 	abno_type = /mob/living/simple_animal/hostile/abnormality/highway_devotee

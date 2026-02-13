@@ -984,22 +984,13 @@
 	prudence_bonus = 4
 	slot = HAT
 
-/datum/ego_gifts/ardor_moth
-	name = "Ardor Star"
-	icon_state = "ardor_star"
-	desc = "Provides the user with 10% resistance to FIRE damage."
-	fortitude_bonus = 5
-	temperance_bonus = -2
-	slot = RIGHTBACK
-
-/datum/ego_gifts/ardor_moth/Initialize(mob/living/carbon/human/user)
-	. = ..()
-	user.physiology.burn_mod *= 0.9
-
-
-/datum/ego_gifts/ardor_moth/Remove(mob/living/carbon/human/user)
-	user.physiology.burn_mod /= 0.9
-	return ..()
+/datum/ego_gifts/fellbullet
+	name = "Pendant of Nostalgia"
+	icon_state = "fell_bullet"
+	fortitude_bonus = 2
+	temperance_bonus = 2
+	justice_bonus = 2
+	slot = NECKWEAR
 
 /**
  * WAW EGO Gifts
@@ -1191,14 +1182,6 @@
 	fortitude_bonus = 3
 	slot = HELMET
 
-/datum/ego_gifts/fellbullet
-	name = "Pendant of Nostalgia"
-	icon_state = "fell_bullet"
-	fortitude_bonus = 2
-	temperance_bonus = 2
-	justice_bonus = 2
-	slot = NECKWEAR
-
 // This code is so that the elf ears are colored the same as the users skin tone
 /datum/ego_gifts/hypocrisy/FormatOverlay(mob/living/carbon/human/user)
 	. = ..()
@@ -1379,6 +1362,24 @@
 	justice_bonus = 10
 	temperance_bonus = -2 //smoking kills
 	slot = LEFTBACK
+
+/datum/ego_gifts/ardor_moth
+	name = "Ardor Star"
+	icon_state = "ardor_star"
+	desc = "Provides the user with 10% resistance to FIRE damage."
+	fortitude_bonus = 5
+	temperance_bonus = -2
+	justice_bonus = 3
+	slot = RIGHTBACK
+
+/datum/ego_gifts/ardor_moth/Initialize(mob/living/carbon/human/user)
+	. = ..()
+	user.physiology.burn_mod *= 0.9
+
+
+/datum/ego_gifts/ardor_moth/Remove(mob/living/carbon/human/user)
+	user.physiology.burn_mod /= 0.9
+	return ..()
 
 /**
  * ALEPH EGO Gifts
