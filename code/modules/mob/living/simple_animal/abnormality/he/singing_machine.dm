@@ -63,6 +63,8 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 	var/datum/looping_sound/singing_music/musicNoise
 	var/list/musicalAddicts = list()
 
+	var/obj/particle_emitter/singing_note/particle_note
+
 /mob/living/simple_animal/hostile/abnormality/singing_machine/Life()
 	if(playStatus > 0) // If playstatus isn't 0, deal some damage in range.
 		for(var/mob/living/carbon/human/H in livinginrange(playRange, src))
@@ -81,6 +83,12 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 
 /mob/living/simple_animal/hostile/abnormality/singing_machine/CanAttack(atom/the_target)
 	return FALSE
+
+/mob/living/simple_animal/hostile/abnormality/singing_machine/Destroy()
+	if(!particle_note)
+		return ..()
+	particle_note.fadeout()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/singing_machine/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(work_type == ABNORMALITY_WORK_INSTINCT)
@@ -173,6 +181,9 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 	if(musicNoise)
 		QDEL_NULL(musicNoise)
 	playStatus = 0 // This exists solely because I needed to call it via a callback.
+	if(!particle_note)
+		return
+	particle_note.fadeout()
 
 /mob/living/simple_animal/hostile/abnormality/singing_machine/proc/eatBody(mob/living/carbon/human/user)
 	user.gib()
@@ -187,6 +198,10 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 	datum_reference.qliphoth_change(2)
 	grindNoise = new(list(src), TRUE)
 	musicNoise = new(list(src), TRUE)
+	if(!particle_note)
+		particle_note = new(get_turf(src))
+		particle_note.pixel_x = 18
+		particle_note.pixel_y = 22
 	addtimer(CALLBACK(src, PROC_REF(stopPlaying)), playLength) // This is the callback from earlier.
 
 /mob/living/simple_animal/hostile/abnormality/singing_machine/proc/driveInsane(list/addicts)

@@ -295,8 +295,8 @@
 		"An employee who constantly worked with The Little Prince, showed signs of acute pain in the Containment Unit. After that, tissues similar to The Little Prince emerged in their body, and NAME began to transform into The Little Prince-1.",
 		"The Little Prince attracted an employee to its containment unit when its Qliphoth Counter hit 0. When the lured employee entered the Containment Unit, the same phenomenon as described previously occurred.",
 		"When suppressing The Little Prince-1, please pay attention to the spores that are released from its body upon death. Those spores will cause sustained mental damage, and employees who panic from the spores may attempt to enter The Little Prince’s Containment Unit, which should be immediately stopped.")
-	abno_can_breach = TRUE // Info for the minion
-	abno_breach_damage_type = "Black"
+	abno_can_breach = TRUE // Info for the minion + fungi
+	abno_breach_damage_type = "Black/White"
 	abno_breach_damage_count = "High"
 
 //Flesh Idol

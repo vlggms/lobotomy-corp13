@@ -1,5 +1,7 @@
 // Coded by Coxswain, sprites by Mel, Coxwswain and glowinthedarkmannhandler.
 #define STATUS_EFFECT_EVENING_TWILIGHT /datum/status_effect/evening_twilight
+#define STATUS_EFFECT_DAYBREAK /datum/status_effect/daybreak
+
 /mob/living/simple_animal/hostile/abnormality/hammer_light
 	name = "Hammer of Light"
 	desc = "A white hammer engraved with yellow runic writing."
@@ -176,15 +178,11 @@
 	banned += user.ckey
 	current_user = user
 	RegisterSignal(current_user, COMSIG_LIVING_DEATH, PROC_REF(UserDeath))
-	user.apply_status_effect(STATUS_EFFECT_EVENING_TWILIGHT)
+	user.apply_status_effect(STATUS_EFFECT_EVENING_TWILIGHT, src)
 	chosen_arms = new /obj/item/ego_weapon/hammer_light(get_turf(user))
 	user.put_in_hands(chosen_arms, forced = TRUE)
 	hammer_present = FALSE
 	playsound(get_turf(src), "[pick(pickup_sounds)]", 75, 0, -9)
-	ADD_TRAIT(user, TRAIT_COMBATFEAR_IMMUNE, "Abnormality")
-	ADD_TRAIT(user, TRAIT_WORK_FORBIDDEN, "Abnormality")
-	ADD_TRAIT(user, TRAIT_IGNOREDAMAGESLOWDOWN, "Abnormality")
-	ADD_TRAIT(user, TRAIT_NODROP, "Abnormality")
 	user.hairstyle = "Bald"
 	user.update_hair()
 	update_icon()
@@ -196,6 +194,7 @@
 		RecoverHammer()
 
 /mob/living/simple_animal/hostile/abnormality/hammer_light/proc/RecoverHammer()
+	UnregisterSignal(current_user, COMSIG_LIVING_DEATH)
 	qdel(chosen_arms)
 	chosen_arms = null
 	current_user = null
@@ -205,7 +204,6 @@
 	update_icon()
 
 /mob/living/simple_animal/hostile/abnormality/hammer_light/proc/UserDeath(mob/living/carbon/human/user)
-	UnregisterSignal(current_user, COMSIG_LIVING_DEATH)
 	if(!QDELETED(current_user)) // in case they died without being dusted
 		current_user.dust()
 	RecoverHammer()
@@ -379,12 +377,21 @@
 	duration = 5 MINUTES // max duration
 	alert_type = null
 	var/attribute_bonus = 0
+	var/mob/living/simple_animal/hostile/abnormality/hammer_light/parent
+
+/datum/status_effect/evening_twilight/on_creation(mob/living/new_owner, hammer)
+	. = ..()
+	parent = hammer
 
 /datum/status_effect/evening_twilight/on_apply()
 	if(!ishuman(owner))
 		return
 	var/mob/living/carbon/human/status_holder = owner
 	to_chat(status_holder, span_nicegreen("You feel powerful."))
+	ADD_TRAIT(status_holder, TRAIT_COMBATFEAR_IMMUNE, "Abnormality")
+	ADD_TRAIT(status_holder, TRAIT_WORK_FORBIDDEN, "Abnormality")
+	ADD_TRAIT(status_holder, TRAIT_IGNOREDAMAGESLOWDOWN, "Abnormality")
+	ADD_TRAIT(status_holder, TRAIT_NODROP, "Abnormality")
 	status_holder.add_overlay(mutable_appearance('ModularTegustation/Teguicons/32x32.dmi', "hammer_overlay", -ABOVE_MOB_LAYER))
 	status_holder.physiology.red_mod *= 0.3
 	status_holder.physiology.white_mod *= 0.3
@@ -396,8 +403,49 @@
 /datum/status_effect/evening_twilight/on_remove()
 	if(!ishuman(owner))
 		return
-	var/mob/living/status_holder = owner
-	status_holder.dust()
+	parent.RecoverHammer()
+	var/mob/living/carbon/human/status_holder = owner
+	REMOVE_TRAIT(status_holder, TRAIT_COMBATFEAR_IMMUNE, "Abnormality")
+	REMOVE_TRAIT(status_holder, TRAIT_WORK_FORBIDDEN, "Abnormality")
+	REMOVE_TRAIT(status_holder, TRAIT_IGNOREDAMAGESLOWDOWN, "Abnormality")
+	REMOVE_TRAIT(status_holder, TRAIT_NODROP, "Abnormality")
+	status_holder.apply_status_effect(/datum/status_effect/daybreak)
+	return ..()
+
+// Daybreak - Massive debuff applied after you run out of time with the Hammer.
+/datum/status_effect/daybreak
+	id = "daybreak"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 5 MINUTES
+	alert_type = null
+
+/datum/status_effect/daybreak/on_apply()
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	playsound(get_turf(owner), 'sound/effects/burn.ogg', 75, FALSE)
+	to_chat(status_holder, span_userdanger("The light leaves your body, taking far more than what it gave. You feel extremely weak."))
+	status_holder.cut_overlay(mutable_appearance('ModularTegustation/Teguicons/32x32.dmi', "hammer_overlay", -ABOVE_MOB_LAYER))
+	status_holder.physiology.red_mod /= 0.3
+	status_holder.physiology.white_mod /= 0.3
+	status_holder.physiology.black_mod /= 0.3
+	status_holder.physiology.pale_mod /= 0.3
+	status_holder.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -60)
+	status_holder.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -60)
+	status_holder.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -60)
+	status_holder.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -60)
+	return ..()
+
+/datum/status_effect/daybreak/on_remove()
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	to_chat(status_holder, span_danger("Your feel whole again, yet also diminished. The searing light has irreparably burnt a part of your soul."))
+	status_holder.adjust_attribute_limit(-10) // It burns some of your potential, permanently.
+	status_holder.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 60)
+	status_holder.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 60)
+	status_holder.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 60)
+	status_holder.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 60)
 	return ..()
 
 // Heroism - A powerful healing effect applied to people at low hp by the work mechanic. Heals 30% of HP/HP over 3 seconds

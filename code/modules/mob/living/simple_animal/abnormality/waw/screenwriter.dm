@@ -236,7 +236,7 @@ Defeating the murderer also surpresses the abnormality.
 		status_holder.adjust_attribute_bonus(stat, -stat_modifier)
 	else
 		return
-	stat_modifier = -100
+	stat_modifier = -40
 	status_holder.adjust_all_attribute_bonuses(stat_modifier)
 	owner.cut_overlay(mutable_appearance('icons/effects/32x64.dmi', role, -ABOVE_MOB_LAYER))
 	role = "victim"
@@ -249,16 +249,16 @@ Defeating the murderer also surpresses the abnormality.
 	owner.add_overlay(mutable_appearance('icons/effects/32x64.dmi', role, -ABOVE_MOB_LAYER))
 	switch(role)
 		if("coward")
-			stat_modifier = -75
+			stat_modifier = -30
 			stat = JUSTICE_ATTRIBUTE
 		if("broken")
-			stat_modifier = -100
+			stat_modifier = -40
 			stat = FORTITUDE_ATTRIBUTE
 		if("failed")
-			stat_modifier = -100
+			stat_modifier = -40
 			stat = PRUDENCE_ATTRIBUTE
 		if("victim")
-			stat_modifier = -100
+			stat_modifier = -40
 			status_holder.adjust_all_attribute_bonuses(stat_modifier)
 			return
 	status_holder.adjust_attribute_bonus(stat, stat_modifier)
@@ -273,11 +273,11 @@ Defeating the murderer also surpresses the abnormality.
 	icon_living = "actor"
 	icon_dead = "actor_dead"
 	faction = list("hostile")
-	maxHealth = 1400
-	health = 1400
+	maxHealth = 700
+	health = 700
 	melee_damage_type = WHITE_DAMAGE
-	melee_damage_lower = 10
-	melee_damage_upper = 20
+	melee_damage_lower = 5
+	melee_damage_upper = 10
 	rapid_melee = 3
 	melee_queue_distance = 4
 	ranged = TRUE

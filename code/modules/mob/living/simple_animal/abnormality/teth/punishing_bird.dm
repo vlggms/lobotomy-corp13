@@ -79,6 +79,7 @@
 	var/angry_damage_human = 1200
 
 	var/death_timer
+	var/omw_to_apoc = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/Initialize()
 	. = ..()
@@ -147,12 +148,6 @@
 	if(prob(33))
 		datum_reference.qliphoth_change(-1)
 	return TRUE
-
-/mob/living/simple_animal/hostile/abnormality/punishing_bird/EscapeConfinement()
-	if(!isturf(targets_from.loc) && targets_from.loc != null)//Did someone put us in something?
-		if(istype(targets_from.loc, /mob/living/simple_animal/forest_portal) || istype(targets_from.loc, /mob/living/simple_animal/hostile/megafauna/apocalypse_bird))
-			return
-	. = ..()
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/Life()
 	if(..())
@@ -232,7 +227,7 @@
 			return A
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/ListTargets()
-	if(!enemies.len && !pecking_targets.len)
+	if(omw_to_apoc || (!enemies.len && !pecking_targets.len))
 		return list()
 	var/list/see = ..()
 	var/list/targeting = list()
@@ -241,6 +236,11 @@
 		targeting |= pecking_targets
 	see &= targeting // Remove all entries that aren't in enemies
 	return see
+
+/mob/living/simple_animal/hostile/abnormality/punishing_bird/FindTarget(list/possible_targets, HasTargetsList)
+	if(omw_to_apoc) // Nah I'd Walk
+		return
+	. = ..()
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/HandleStructures()
 	. = ..()
@@ -299,6 +299,8 @@
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
+	omw_to_apoc = FALSE
+	docile_confinement = FALSE
 	icon_state = initial(icon_state)
 	icon_living = initial(icon_living)
 	pixel_x = initial(pixel_x)

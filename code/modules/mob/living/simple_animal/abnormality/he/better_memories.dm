@@ -540,9 +540,9 @@
 /datum/status_effect/display/better_memories_curse/on_apply()
 	. = ..()
 	var/mob/living/carbon/human/L = owner
-	L.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -30)
+	L.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -20)
 	L.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -30)
-	L.physiology.work_success_mod -= 0.25
+	L.physiology.work_success_mod *= 0.8
 	to_chat(owner, span_warning("You're distracted by memories of your past."))
 
 /datum/status_effect/display/better_memories_curse/tick()
@@ -564,9 +564,9 @@
 
 /datum/status_effect/display/better_memories_curse/on_remove()
 	var/mob/living/carbon/human/L = owner
-	L.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 30)
+	L.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 20)
 	L.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 30)
-	L.physiology.work_success_mod += 0.25
+	L.physiology.work_success_mod /= 0.8
 	return ..()
 
 #undef MEMORY_DEBUFF

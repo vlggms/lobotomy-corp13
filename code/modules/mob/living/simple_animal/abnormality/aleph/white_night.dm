@@ -73,6 +73,10 @@ GLOBAL_LIST_EMPTY(apostles)
 	var/list/apostles = list()
 	/// List of Living People on Breach
 	var/list/heretics = list()
+	/// The guy that did confession work
+	var/mob/living/devil
+	//used for wn's aura
+	var/obj/particle_emitter/white_night/aura
 
 	var/datum/reusable_visual_pool/RVP = new(500)
 
@@ -107,14 +111,19 @@ GLOBAL_LIST_EMPTY(apostles)
 			revive_humans()
 
 /mob/living/simple_animal/hostile/abnormality/white_night/death(gibbed)
-	SSticker.superbosses |= initial(name)
-	GrantMedal()
-	for(var/mob/living/carbon/human/heretic in heretics)
-		if(heretic.stat == DEAD || !heretic.ckey)
-			continue
-		heretic.Apply_Gift(new /datum/ego_gifts/blessing)
-		heretic.playsound_local(get_turf(heretic), 'sound/abnormalities/whitenight/apostle_bell.ogg', 50)
-		to_chat(heretic, span_userdanger("[heretic], your Heresy will not be forgotten!"))
+	if(devil)
+		devil.playsound_local(get_turf(devil), 'sound/abnormalities/whitenight/apostle_bell.ogg', 50)
+		to_chat(devil, span_userdanger("[devil], your Heresy will not be forgotten!"))
+		devil.dust()
+	if(LAZYLEN(loot))
+		SSticker.superbosses |= initial(name)
+		GrantMedal()
+		for(var/mob/living/carbon/human/heretic in heretics)
+			if(heretic.stat == DEAD || !heretic.ckey)
+				continue
+			heretic.Apply_Gift(new /datum/ego_gifts/blessing)
+			heretic.playsound_local(get_turf(heretic), 'sound/abnormalities/whitenight/apostle_bell.ogg', 50)
+			to_chat(heretic, span_userdanger("[heretic], your Heresy will not be forgotten!"))
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/white_night/Destroy()
@@ -122,7 +131,8 @@ GLOBAL_LIST_EMPTY(apostles)
 		A.death()
 		QDEL_IN(A, 1.5 SECONDS)
 	apostles = null
-	QDEL_NULL(particles)
+	if(aura)
+		aura.fadeout()
 	particles = null
 	QDEL_NULL(RVP)
 	return ..()
@@ -202,11 +212,11 @@ GLOBAL_LIST_EMPTY(apostles)
 /mob/living/simple_animal/hostile/abnormality/white_night/OnQliphothChange(mob/living/carbon/human/user)
 	if(datum_reference.qliphoth_meter <= 0)
 		return
-	var/flashing_color = COLOR_ORANGE
+	var/flashing_color = LIGHT_COLOR_PURPLE
 	if(datum_reference.qliphoth_meter == 1)
-		flashing_color = COLOR_SOFT_RED
+		flashing_color = COLOR_VIVID_RED
 	if(datum_reference.qliphoth_meter == 3)
-		flashing_color = COLOR_GREEN
+		flashing_color = COLOR_BLUE_LIGHT
 	for(var/mob/M in GLOB.player_list)
 		flash_color(M, flash_color = flashing_color, flash_time = 25)
 	sound_to_playing_players('sound/abnormalities/whitenight/apostle_bell.ogg', (25 * (3 - datum_reference.qliphoth_meter)))
@@ -235,13 +245,16 @@ GLOBAL_LIST_EMPTY(apostles)
 		if(M.stat != DEAD && ishuman(M) && M.ckey)
 			heretics += M
 		flash_color(M, flash_color = COLOR_RED, flash_time = 100)
+	set_light_color("#FF7777")
+	light_power = 12
 	sound_to_playing_players('sound/abnormalities/whitenight/apostle_bell.ogg')
-	add_filter("apostle", 1, rays_filter(size = 64, color = "#FFFF00", offset = 6, density = 16, threshold = 0.05))
+	add_filter("aura", 1,outline_filter(size=1, color=rgb(255, 0, 0), flags = OUTLINE_SHARP))
+	add_filter("apostle", 2, rays_filter(size = 64, color = "#FF0000", offset = 6, density = 16, threshold = 0.05))
 	if(LAZYLEN(GLOB.department_centers))
 		var/turf/T = pick(GLOB.department_centers)
 		forceMove(T)
 	SpawnApostles()
-	particles = new /particles/white_night()
+	aura = new(get_turf(src))
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(sound_to_playing_players), 'sound/abnormalities/whitenight/rapture2.ogg', 50), 10 SECONDS)
 	return
 

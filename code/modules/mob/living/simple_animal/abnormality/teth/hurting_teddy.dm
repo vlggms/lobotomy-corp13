@@ -223,7 +223,7 @@
 	name = "Hex"
 	desc = "You take more RED and BLACK damage"
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "schismatic" //placeholder. Yell at spriters if you want this fixed.
+	icon_state = "nail"
 
 /datum/status_effect/hex/on_apply()
 	. = ..()
@@ -255,7 +255,7 @@
 	name = "Nails"
 	desc = "The nails stuck inside you bear a heavy curse. You gain bleed whenever you receive damage."
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "sacrifice" //placeholder. Yell at spriters if you want this fixed.
+	icon_state = "hex_nail"
 
 /datum/status_effect/nails/on_apply()
 	. = ..()
