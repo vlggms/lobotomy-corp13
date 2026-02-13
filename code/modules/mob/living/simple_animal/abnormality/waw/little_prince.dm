@@ -319,7 +319,7 @@
 	active = TRUE
 	color = "#FFFFFF"
 	if(connected_abno)
-		addtimer(CALLBACK(src, PROC_REF(Despawn)), 2 MINUTES)
+		addtimer(CALLBACK(src, PROC_REF(Despawn)), 1 MINUTES)
 		return
 	addtimer(CALLBACK(src, PROC_REF(Despawn)), 30 SECONDS)
 
