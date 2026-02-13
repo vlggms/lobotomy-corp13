@@ -4,7 +4,7 @@
 
 /obj/projectile/ego_bullet/lcorp
 	name = "bullet"
-	damage = 2
+	damage = 1.5
 	damage_type = RED_DAMAGE
 	var/list/damage_tier = list(2,4,6,9,18) //These numbers are just for reference
 
@@ -12,24 +12,25 @@
 	if(fired_from)
 		if(istype(fired_from, /obj/item/ego_weapon/ranged/city/lcorp))
 			var/obj/item/ego_weapon/ranged/city/lcorp/our_weapon = fired_from
-			damage_type = our_weapon.damtype
-			damage = damage_tier[max(1, our_weapon.tier)]
-			if(damage_type == PALE_DAMAGE) //pale deals 25% less damage
-				damage = floor(damage * 0.75)
+			if(our_weapon.tier > 0)
+				damage_type = our_weapon.damtype
+				damage = damage_tier[max(1, our_weapon.tier)]
+				if(damage_type == PALE_DAMAGE) //pale deals 15% less damage before rounding down
+					damage = floor(damage * 0.85)
 	return ..()
 
 /obj/projectile/ego_bullet/lcorp/pistol
 	name = "bullet"
 	damage = 5
-	damage_tier = list(5,10,15,20,30)
+	damage_tier = list(8,12,17,24,35)
 
 /obj/projectile/ego_bullet/lcorp/automatic
 	name = "bullet"
-	damage = 1
-	damage_tier = list(1,2,4,6,9)
+	damage = 2
+	damage_tier = list(3,5,8,12,18)
 
 ///////////////////////
-//ERA/AGENT EQUIPMENT//
+////AGENT EQUIPMENT////
 ///////////////////////
 
 /obj/item/ego_weapon/ranged/city/lcorp
@@ -43,15 +44,24 @@
 							TEMPERANCE_ATTRIBUTE = 20,
 							JUSTICE_ATTRIBUTE = 20
 							)
+	is_city_gear = FALSE
 	var/installed_shard
 	var/equipped
 	var/tier = 0
 
+/obj/item/ego_weapon/ranged/city/lcorp/update_projectile_examine()
+	if(isnull(projectile_path))
+		message_admins("[src] has an invalid projectile path.")
+		return
+	var/obj/projectile/ego_bullet/lcorp/projectile = new projectile_path(src, src)
+	last_projectile_damage = projectile.damage_tier[max(1, tier)]
+	last_projectile_type = damtype
+	qdel(projectile)
+
+
 /obj/item/ego_weapon/ranged/city/lcorp/examine(mob/user)
+	update_projectile_examine()
 	. = ..()
-	if(user.mind)
-		if(user.mind.assigned_role in list("Disciplinary Officer", "Combat Research Agent"))
-			. += span_notice("Due to your abilties, you get a +20 to your stats when equipping this weapon.")
 	if(!installed_shard)
 		. += span_warning("This weapon can be enhanced with an egoshard.")
 	else
@@ -82,14 +92,13 @@
 
 /obj/item/ego_weapon/ranged/city/lcorp/proc/IncreaseAttributes(mob/living/user, obj/item/egoshard/egoshard)
 	damtype = egoshard.damage_type
-	force = (egoshard.base_damage * 0.7) //70% of base damage which is to be expected of guns. Currently all guns override this with their own values.
+	force = floor(egoshard.base_damage * 0.7) //70% of base damage which is to be expected of guns. Currently all guns override this with their own values.
 	tier = egoshard.tier
 	for(var/atr in attribute_requirements)
 		attribute_requirements[atr] = egoshard.stat_requirement
 	to_chat(user, span_warning("The requirements to equip [src] have increased!"))
 	to_chat(user, span_nicegreen("[src] has been successfully improved!"))
 	icon_state = "[initial(icon_state)]_[egoshard.damage_type]"
-	update_projectile_examine()
 
 /obj/item/ego_weapon/ranged/city/lcorp/pistol
 	name = "l-corp suppression pistol"
@@ -100,8 +109,8 @@
 	projectile_path = /obj/projectile/ego_bullet/lcorp/pistol
 	attack_speed = 0.5
 	force = 3
-	fire_delay = 10
-	shotsleft = 7
+	fire_delay = 5
+	shotsleft = 12
 	reloadtime = 2.1 SECONDS
 	fire_sound = 'sound/weapons/gun/revolver/shot_alt.ogg'
 	vary_fire_sound = FALSE
@@ -110,7 +119,7 @@
 
 /obj/item/ego_weapon/ranged/city/lcorp/pistol/IncreaseAttributes(mob/living/user, obj/item/egoshard/egoshard)
 	..()
-	force = (egoshard.base_damage * 0.42) // 2 attacks per attack cycle due to being a pistol
+	force = floor(egoshard.base_damage * 0.35) // 2 attacks per attack cycle due to being a pistol
 
 /obj/item/ego_weapon/ranged/city/lcorp/automatic_pistol
 	name = "l-corp automatic pistol"
@@ -123,13 +132,13 @@
 	force = 3
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	vary_fire_sound = FALSE
-	shotsleft = 20
+	shotsleft = 30
 	reloadtime = 1.2 SECONDS
 	autofire = 0.2 SECONDS
 
 /obj/item/ego_weapon/ranged/city/lcorp/automatic_pistol/IncreaseAttributes(mob/living/user, obj/item/egoshard/egoshard)
 	..()
-	force = (egoshard.base_damage * 0.42) // 2 attacks per attack cycle due to being a pistol
+	force = floor(egoshard.base_damage * 0.35) // 2 attacks per attack cycle due to being a pistol
 
 ///////////////////
 //CLERK EQUIPMENT//

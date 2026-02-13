@@ -10,7 +10,16 @@
 		/datum/ego_datum/weapon/bucket,
 		/datum/ego_datum/armor/bucket,
 	)
-
+//We dont want officers to put their gear in here,
+	var/list/blacklist = list(
+		/obj/item/clothing/suit/armor/ego_gear/officer,
+		/obj/item/ego_weapon/shield/officer,
+		/obj/item/ego_weapon/officer,
+		/obj/item/clothing/suit/armor/ego_gear/city/lcorp_vest,
+		/obj/item/ego_weapon/city/lcorp,
+		/obj/item/ego_weapon/shield/lcorp_shield,
+		/obj/item/ego_weapon/ranged/city/lcorp
+	)
 //loot lists
 	var/list/superEGO = list( //do NOT put this in the loot lists ever. SuperEGO is for inputs only so people can throw away twilight for no good reason.
 		/obj/item/ego_weapon/paradise,
@@ -214,6 +223,20 @@
 		return
 	RunGacha(I, user)
 
+/obj/structure/toolabnormality/wishwell/proc/isBlackList(obj/item/I)
+	if(istype(I, /obj/item/clothing/suit/armor/ego_gear))
+		var/obj/item/clothing/suit/armor/ego_gear/G = I
+		if(G.is_city_gear)
+			return FALSE
+	if(is_ego_weapon(I))
+		var/obj/item/ego_weapon/W = I
+		if(W.is_city_gear)
+			return FALSE
+	for(var/path in blacklist)
+		if(istype(I, path))
+			return TRUE
+	return FALSE
+
 /obj/structure/toolabnormality/wishwell/proc/RunGacha(obj/item/I, mob/living/carbon/human/user)
 	var/output = null
 	if(istype(I, /obj/item/holochip))
@@ -221,6 +244,9 @@
 		to_chat(user, span_notice("You hear a plop as the holochip comes in contact with the water..."))
 		user.playsound_local(user, 'sound/items/coinflip.ogg', 80, TRUE)
 	else if(istype(I, /obj/item/clothing/suit/armor/ego_gear) || is_ego_weapon(I))
+		if(isBlackList(I))//Prevents city and officer gear
+			to_chat(user, span_userdanger("The well rejects your item!"))
+			return
 		to_chat(user, span_notice("You hear the ego dissolve as it comes in contact with the water..."))
 		user.playsound_local(user, 'sound/effects/wounds/sizzle1.ogg', 40, TRUE)
 		if(locate(I) in tethitem)

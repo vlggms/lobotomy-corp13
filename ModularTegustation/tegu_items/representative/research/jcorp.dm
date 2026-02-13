@@ -39,7 +39,7 @@ GLOBAL_LIST_EMPTY(jcorp_upgrades)
 
 /datum/data/lc13research/gacha_chance4
 	research_name = "Crate Rarity Upgrade IV"
-	research_desc = "With some power, we can provide the facility with a final upgrade for better chances to get rarer products from places they sell to. The Suppression Agents and Extraction Officer will likely love you with this research."
+	research_desc = "With some power, we can provide the facility with a final upgrade for better chances to get rarer products from places they sell to. The Disciplinary and Extraction Officer will likely love you with this research."
 	cost = HIGH_RESEARCH_PRICE
 	corp = J_CORP_REP
 	required_research = /datum/data/lc13research/gacha_chance3

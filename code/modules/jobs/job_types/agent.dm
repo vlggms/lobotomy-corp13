@@ -118,13 +118,6 @@
 		if(upgradecheck == "Health Hud")
 			var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
 			medsensor.add_hud_to(outfit_owner)
-
-	//Enable suppression agents.
-	for(var/datum/job/processing in SSjob.occupations)
-		if(istype(processing, /datum/job/suppression/captain))
-			processing.total_positions = 1
-
-
 	return ..()
 
 /datum/outfit/job/agent

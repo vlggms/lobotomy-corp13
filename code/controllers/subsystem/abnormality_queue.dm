@@ -40,10 +40,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 	var/fucked_it_lets_rolled = FALSE
 	/// Due to Managers not passing the Litmus Test, divine approval is now necessary for red roll
 	var/hardcore_roll_enabled = FALSE
-
-	/// Contains all suppression agents, clears itself of agents that are without a body.
-	var/list/active_suppression_agents = list()
-	/// the % values of when we give the agents in active_suppression_agents +10 attributes
+	/// the % values of when we give the officers +10 attributes
 	var/list/abnormality_milestones = list(0.15, 0.29, 0.44, 0.59, 0.69, 0.79, 1000000)
 	/// How far we currently are along the chain of milestones
 	var/current_milestone = 1
@@ -133,9 +130,9 @@ SUBSYSTEM_DEF(abnormality_queue)
 		return
 
 	current_milestone += 1
-	for(var/mob/living/carbon/human/person as anything in active_suppression_agents)
+	for(var/mob/living/carbon/human/person as anything in SSlobotomy_corp.active_officers)
 		if(!istype(person) || QDELETED(person)) // gibbed or cryo'd, we no longer care about them
-			active_suppression_agents -= person
+			SSlobotomy_corp.active_officers -= person
 			continue
 
 		person.adjust_all_attribute_levels(10)

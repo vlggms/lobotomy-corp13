@@ -290,7 +290,6 @@
 	new /obj/item/ego_gift_extractor(src)
 	new /obj/item/trait_injector/clerk_fear_immunity_injector(src)
 	new /obj/item/trait_injector/agent_workchance_trait_injector(src)
-	new /obj/item/trait_injector/officer_upgrade_injector(src)
 
 /obj/item/storage/box/corporation/rcorp
 	name = "R-Corp care package"

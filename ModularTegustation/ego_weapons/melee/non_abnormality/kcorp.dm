@@ -87,6 +87,7 @@
 	block_cooldown = 4 SECONDS
 	block_duration = 2 SECONDS
 	item_flags = SLOWS_WHILE_IN_HAND
+	is_city_gear = TRUE
 
 // Guns below
 /obj/item/ego_weapon/ranged/pistol/kcorp
@@ -104,21 +105,7 @@
 	reloadtime = 0.8 SECONDS
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	fire_sound_volume = 70
-
-/obj/item/ego_weapon/ranged/pistol/kcorp/examine(mob/user)
-	. = ..()
-	if(user.mind)
-		if(user.mind.assigned_role in list("Disciplinary Officer", "Combat Research Agent")) //These guys get a bonus to equipping gacha.
-			. += span_notice("Due to your abilities, you get a -20 reduction to stat requirements when equipping this weapon.")
-
-/obj/item/ego_weapon/ranged/pistol/kcorp/CanUseEgo(mob/living/user)
-	if(user.mind)
-		if(user.mind.assigned_role in list("Disciplinary Officer", "Combat Research Agent")) //These guys get a bonus to equipping gacha.
-			equip_bonus = 20
-		else
-			equip_bonus = 0
-	. = ..()
-
+	is_city_gear = TRUE
 
 // Guns below
 /obj/item/ego_weapon/ranged/pistol/kcorp/smg

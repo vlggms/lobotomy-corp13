@@ -76,8 +76,29 @@
 	w_class = WEIGHT_CLASS_SMALL
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
 	custom_price = 1
-
+	allowed_roles = list(
+		"Extraction Officer",
+		"Records Officer",
+		"Training Officer",
+		"Disciplinary Officer",
+		"Department Head",
+		"Department Captain",
+		"Agent Captain",
+		"Agent Lieutenant",
+		"Senior Agent",
+		"Agent",
+		"Agent Intern"
+	)
+	var/list/officer_roles = list(
+		"Extraction Officer",
+		"Records Officer",
+		"Training Officer",
+		"Disciplinary Officer",
+	)
 /obj/item/stat_equalizer/mining/attack_self(mob/living/carbon/human/user)
+	if(!istype(user) || !(user?.mind?.assigned_role in allowed_roles))
+		to_chat(user, span_notice("You don't really understand the infomation within the [src]."))
+		return
 	update_stats(user)
 	to_chat(user, span_notice("Your attributes have been updated."))
 
@@ -107,6 +128,14 @@
 		if(69 to 100)
 			set_attribute *= 4
 	set_attribute += GetFacilityUpgradeValue(UPGRADE_AGENT_STATS)
+	if(user?.mind?.assigned_role in officer_roles)
+		set_attribute = max(30, set_attribute)
+		set_attribute += SSlobotomy_corp.ordeal_stats
+	if(user?.mind?.assigned_role == "Records Officer")
+		if (GetFacilityUpgradeValue(UPGRADE_RECORDS_1))
+			set_attribute += 10
+		if (GetFacilityUpgradeValue(UPGRADE_RECORDS_2))
+			set_attribute += 10
 	for(var/A in attribute_list)
 		var/processing = get_raw_level(user, A)
 		if(processing <= set_attribute)//sets each attribute below set_attribute to 0, then raises them by that amount.

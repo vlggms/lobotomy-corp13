@@ -17,6 +17,7 @@
 	var/obj/item/clothing/neck/ego_neck/neck = null // Neckwear, see clothing/neck/_neck.dm
 	var/list/attribute_requirements = list()
 	var/equip_bonus
+	var/is_city_gear = FALSE //Used for City Gear
 
 /obj/item/clothing/suit/armor/ego_gear/Initialize()
 	. = ..()

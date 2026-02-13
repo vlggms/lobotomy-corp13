@@ -48,7 +48,7 @@
 	var/static/list/medical = list("Chief Medical Officer" = "C.M.O.", "Medical Doctor" = "M.D.", "Chemist" = "Pharm.D.")
 	var/static/list/research = list("Research Director" = "Ph.D.", "Roboticist" = "M.S.", "Scientist" = "B.S.")
 	var/static/list/legal = list("Lawyer" = "Esq.")
-	var/static/list/LC_highStaff = list("Arbiter"="Arbiter","Manager"="Manager","Sephirah"="Sephirah","Extraction Officer" = "EO.","Records Officer" = "RO.", "Agent Captain"="Agent Cpt.", "Department Head"="Dep. Head")
+	var/static/list/LC_highStaff = list("Arbiter"="Arbiter","Manager"="Manager","Sephirah"="Sephirah","Training Officer"="TO","Disciplinary Officer"="DO","Extraction Officer" = "EO.","Records Officer" = "RO.", "Agent Captain"="Agent Cpt.", "Department Head"="Dep. Head")
 	var/static/list/LC_lowStaff = list("Department Captain"="Dep. Cpt.","Veteran Agent"="Veteran","Senior Agent"="Sr. Agent","Agent"="Agent","Agent Intern"="Intern")
 	var/static/list/LC_clerks = list("Clerk"="Clerk")
 
