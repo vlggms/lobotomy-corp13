@@ -1116,3 +1116,8 @@
 	icon = 'icons/obj/manager_bullets.dmi'
 	icon_state = "execution"
 	duration = 10
+
+/obj/effect/temp_visual/seasons_wisp_death
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "seasons_wisp_death"
+	duration = 15
