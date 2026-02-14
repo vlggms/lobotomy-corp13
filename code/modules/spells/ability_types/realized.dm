@@ -1173,6 +1173,7 @@
 	threat_level = WAW_LEVEL
 	can_affect_emergency = FALSE
 	fear_level = 0
+
 /mob/living/simple_animal/hostile/aminion/shrimp/friendly/Initialize()
 	.=..()
 	AddComponent(/datum/component/knockback, 1, FALSE, TRUE)

@@ -21,7 +21,7 @@
 	see_in_dark = 10
 	stat_attack = HARD_CRIT
 
-	move_to_delay = 7
+	move_to_delay = 5
 	threat_level = WAW_LEVEL
 	can_breach = TRUE
 	start_qliphoth = 5
@@ -530,7 +530,7 @@
 	if(IS_DEAD_OR_INCAP(living_pawn))
 		return
 
-	var/mob/living/simple_animal/hostile/megafauna/apocalypse_bird/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
+	var/mob/living/simple_animal/hostile/aminion/apocalypse_bird/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
 	if(!istype(target))
 		finish_action(controller, FALSE)
 		return
