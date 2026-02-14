@@ -905,8 +905,9 @@
 	icon_state = "syrinx"
 	desc = "Provides the user with 5% resistance to white damage."
 	slot = HELMET
-	fortitude_bonus = 1
-	prudence_bonus = 1
+	fortitude_bonus = -2
+	prudence_bonus = -2
+	justice_bonus = 6
 
 /datum/ego_gifts/syrinx/Initialize(mob/living/carbon/human/user) // grants resistance
 	. = ..()
