@@ -455,7 +455,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	if(min)
 		dialog = "All agents are dead or panicking! If the current situation is left unresolved, new agents don't join, or a panicking agent isn't dealt with"
 	to_chat(world, span_danger("<b>[dialog], the round will automatically end in <u>[round(time/10)] seconds!</u></b>"))
-	restart_timer = addtimer(CALLBACK(src, PROC_REF(DeathAutoRestart), time = max(0, time - 30 SECONDS), min = MinCheck()), 30 SECONDS, TIMER_STOPPABLE)
+	restart_timer = addtimer(CALLBACK(src, PROC_REF(DeathAutoRestart), max(0, time - 30 SECONDS), MinCheck()), 30 SECONDS, TIMER_STOPPABLE)
 	return TRUE
 
 /datum/controller/subsystem/lobotomy_corp/proc/CheckRepairState()
