@@ -201,7 +201,7 @@
 /turf/open/floor/facility/halls,
 /area/awaymission/enkr)
 "bC" = (
-/mob/living/simple_animal/hostile/meatblob/gunner/sniper{
+/mob/living/simple_animal/hostile/aminion/meatblob/gunner/sniper{
 	faction = list("gold_ordeal")
 	},
 /turf/open/floor/stone,
@@ -236,7 +236,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/yagaslave{
+/mob/living/simple_animal/hostile/aminion/yagaslave{
 	melee_damage_lower = 10;
 	melee_damage_upper = 12;
 	faction = list("gold_ordeal")
@@ -341,7 +341,7 @@
 /obj/structure/cable/layer1,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/remains/human,
-/mob/living/simple_animal/hostile/meatblob{
+/mob/living/simple_animal/hostile/aminion/meatblob{
 	faction = list("gold_ordeal")
 	},
 /turf/open/floor/mineral/plastitanium/red,
@@ -782,7 +782,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/trash/popcorn,
-/mob/living/simple_animal/hostile/yagaslave{
+/mob/living/simple_animal/hostile/aminion/yagaslave{
 	melee_damage_lower = 10;
 	melee_damage_upper = 12;
 	faction = list("gold_ordeal")
@@ -812,7 +812,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/robot_debris/general_scrap,
-/mob/living/simple_animal/hostile/meatblob{
+/mob/living/simple_animal/hostile/aminion/meatblob{
 	faction = list("gold_ordeal")
 	},
 /turf/open/floor/carpet/orange,
@@ -1886,7 +1886,7 @@
 "mx" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/meatblob/gunner/shotgun{
+/mob/living/simple_animal/hostile/aminion/meatblob/gunner/shotgun{
 	faction = list("gold_ordeal")
 	},
 /turf/open/floor/carpet/red,
@@ -2320,7 +2320,7 @@
 "pe" = (
 /obj/effect/turf_decal/siding/purple,
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/yagaslave{
+/mob/living/simple_animal/hostile/aminion/yagaslave{
 	melee_damage_lower = 10;
 	melee_damage_upper = 12;
 	faction = list("gold_ordeal")
@@ -3716,7 +3716,7 @@
 /area/awaymission/enkr)
 "xn" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/meatblob/gunner/sniper{
+/mob/living/simple_animal/hostile/aminion/meatblob/gunner/sniper{
 	faction = list("gold_ordeal")
 	},
 /turf/open/floor/carpet/orange,
@@ -3899,7 +3899,7 @@
 /obj/effect/turf_decal/siding/brown{
 	dir = 8
 	},
-/mob/living/simple_animal/hostile/meatblob/gunner/sniper{
+/mob/living/simple_animal/hostile/aminion/meatblob/gunner/sniper{
 	faction = list("gold_ordeal")
 	},
 /turf/open/floor/facility/halls,
@@ -4027,7 +4027,7 @@
 "zR" = (
 /obj/effect/turf_decal/siding/brown/corner,
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/meatblob/gunner{
+/mob/living/simple_animal/hostile/aminion/meatblob/gunner{
 	faction = list("gold_ordeal")
 	},
 /turf/open/floor/facility/halls,
@@ -4120,7 +4120,7 @@
 /obj/effect/turf_decal/siding/purple,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/yagaslave{
+/mob/living/simple_animal/hostile/aminion/yagaslave{
 	melee_damage_lower = 10;
 	melee_damage_upper = 12;
 	faction = list("gold_ordeal")
@@ -5625,7 +5625,7 @@
 /turf/open/floor/facility/halls,
 /area/awaymission/enkr)
 "JN" = (
-/mob/living/simple_animal/hostile/meatblob{
+/mob/living/simple_animal/hostile/aminion/meatblob{
 	faction = list("gold_ordeal")
 	},
 /turf/open/floor/stone,
@@ -6478,7 +6478,7 @@
 /turf/open/floor/plating,
 /area/awaymission/enkr)
 "OM" = (
-/mob/living/simple_animal/hostile/meatblob/gunner/shotgun{
+/mob/living/simple_animal/hostile/aminion/meatblob/gunner/shotgun{
 	faction = list("gold_ordeal")
 	},
 /turf/open/floor/carpet/red,
@@ -6720,7 +6720,7 @@
 /area/awaymission/enkr)
 "Qx" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/meatblob/gunner{
+/mob/living/simple_animal/hostile/aminion/meatblob/gunner{
 	faction = list("gold_ordeal")
 	},
 /turf/open/floor/mineral/plastitanium/red,
@@ -6733,7 +6733,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/yagaslave{
+/mob/living/simple_animal/hostile/aminion/yagaslave{
 	melee_damage_lower = 10;
 	melee_damage_upper = 12;
 	faction = list("gold_ordeal")
@@ -7322,7 +7322,7 @@
 /obj/effect/turf_decal/siding/brown{
 	dir = 5
 	},
-/mob/living/simple_animal/hostile/meatblob{
+/mob/living/simple_animal/hostile/aminion/meatblob{
 	faction = list("gold_ordeal")
 	},
 /turf/open/floor/facility/halls,
@@ -7537,7 +7537,7 @@
 /turf/open/floor/facility/halls,
 /area/awaymission/enkr)
 "Vb" = (
-/mob/living/simple_animal/hostile/meatblob/gunner/shotgun{
+/mob/living/simple_animal/hostile/aminion/meatblob/gunner/shotgun{
 	faction = list("gold_ordeal")
 	},
 /turf/open/floor/stone,
@@ -7674,7 +7674,7 @@
 "VL" = (
 /obj/effect/turf_decal/siding/brown,
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/meatblob/gunner/shotgun{
+/mob/living/simple_animal/hostile/aminion/meatblob/gunner/shotgun{
 	faction = list("gold_ordeal")
 	},
 /turf/open/floor/carpet/orange,
@@ -8249,7 +8249,7 @@
 "YV" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/insectguts,
-/mob/living/simple_animal/hostile/meatblob{
+/mob/living/simple_animal/hostile/aminion/meatblob{
 	faction = list("gold_ordeal")
 	},
 /turf/open/floor/mineral/plastitanium/red,

@@ -49,8 +49,6 @@
 	var/list/banned = list()
 	var/mob/living/carbon/human/current_user = null
 	var/obj/item/ego_weapon/chosen_arms = null
-	var/points
-	var/points_threshold = 150
 	var/usable_cooldown
 	var/usable_cooldown_time = 5 MINUTES
 	var/healing_cooldown
@@ -90,50 +88,16 @@
 // Lock/Unlocking system
 /mob/living/simple_animal/hostile/abnormality/hammer_light/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(Check))
-	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, PROC_REF(Check))
+	RegisterSignal(SSdcs, COMSIG_TRUMPET_CHANGED, PROC_REF(on_trumpet_change))
 
-/mob/living/simple_animal/hostile/abnormality/hammer_light/proc/Check() // A lot going on here, but basically we assess how bad the situation in the facility is
-	if((!hammer_present) || usable_cooldown > world.time)
-		return
-	points = 0
-	for(var/mob/living/simple_animal/hostile/abnormality/A in GLOB.abnormality_mob_list) // How many breaching abnormalities? How dangerous are they?
-		if(A.IsContained())
-			continue
-		if(A.z != z)
-			continue
-		switch(A.threat_level)
-			if(ZAYIN_LEVEL)
-				points += 5 // practically nothing
-			if(TETH_LEVEL)
-				points += 20
-			if(HE_LEVEL)
-				points += 40
-			if(WAW_LEVEL)
-				points += 60
-			if(ALEPH_LEVEL)
-				points += 80
-			else
-				continue
-
-	if(LAZYLEN(SSlobotomy_corp.current_ordeals)) // Is there an ordeal? How dangerous is it?
-		for(var/datum/ordeal/O in SSlobotomy_corp.current_ordeals)
-			points += (O.level * 20)
-
-	var/playercount = get_active_player_count()
-	for(var/mob/dead/observer/G in GLOB.player_list) // How many dead players are there?
-		if(G.started_as_observer) // Exclude people who started as observers
-			continue
-		if(!G.mind)
-			continue
-		points += (100 / playercount) // A dead guy has more impact if there's less people, so we run a quick calculation
-
-	if(points >= points_threshold) // If we have enough points, we unseal
+/mob/living/simple_animal/hostile/abnormality/hammer_light/proc/on_trumpet_change(datum/source, level)
+	SIGNAL_HANDLER
+	if(level >= TRUMPET_2)
 		if(sealed)
 			playsound(get_turf(src), 'sound/abnormalities/lighthammer/chain.ogg', 75, 0, -9)
 		sealed = FALSE
-	else
-		if(!sealed) // If we don't have enough points, we seal
+	else if(level == TRUMPET_0) // If a trumpet isn't happening we seal
+		if(!sealed)
 			playsound(get_turf(src), "[pick(lock_sounds)]", 75, 0, -9)
 		sealed = TRUE
 	update_icon()
@@ -173,7 +137,6 @@
 	if(user.ckey in banned)
 		to_chat(user, span_warning("[src] rejects you, not even reacting to your presence at all. You feel empty inside."))
 		return
-	points_threshold += 150
 	usable_cooldown = world.time + usable_cooldown_time
 	banned += user.ckey
 	current_user = user
@@ -255,7 +218,7 @@
 	var/spawned_mob_max = 4
 	var/spawn_cooldown = 0
 	var/spawn_cooldown_time = 20 SECONDS
-	var/banned_list = list(/mob/living/simple_animal/hostile/megafauna/apocalypse_bird)
+	var/banned_list = list(/mob/living/simple_animal/hostile/aminion/apocalypse_bird)
 	var/obj/effect/proc_holder/ability/hammer_ability = /obj/effect/proc_holder/ability/evening_twilight
 
 /obj/item/ego_weapon/hammer_light/Initialize()

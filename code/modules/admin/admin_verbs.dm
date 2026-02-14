@@ -829,7 +829,8 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 		if(abno.IsContained())
 			continue
 		abno.death()
-
+	for(var/mob/living/simple_animal/L in GLOB.abnormality_minion_list)
+		L.death()
 	log_admin("[key_name(usr)] has suppressed all abnormalities.")
 	message_admins("[key_name(usr)] has suppressed all abnormalities.")
 

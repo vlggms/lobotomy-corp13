@@ -116,7 +116,6 @@
 	RegisterSignal(user, COMSIG_LIVING_DEATH, PROC_REF(BlessedDeath))
 	RegisterSignal(user, COMSIG_HUMAN_INSANE, PROC_REF(BlessedDeath))
 	RegisterSignal(user, COMSIG_WORK_STARTED, PROC_REF(OnWorkStart))
-	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, PROC_REF(OnAbnoBreach))
 
 /mob/living/simple_animal/hostile/abnormality/puss_in_boots/proc/BlessedDeath(datum/source, gibbed)
 	SIGNAL_HANDLER
@@ -136,23 +135,18 @@
 		return FALSE
 	BlessedDeath(blessed_human)
 
-//Qliphoth Stuff
-/mob/living/simple_animal/hostile/abnormality/puss_in_boots/proc/OnAbnoBreach(datum/source, mob/living/simple_animal/hostile/abnormality/abno)
-	SIGNAL_HANDLER
-	if(!IsContained(src))
-		return
-	if(abno == src)
-		if(client)
-			to_chat(src, span_notice("You start feeling a bit impatient."))
-		else
-			manual_emote("perks up for a moment, then settles back down, looking annoyed.")
-		return
-	if(datum_reference.qliphoth_meter > 1)
-		if(client)
-			to_chat(src, span_notice("You hear something..."))
-		else
-			manual_emote("perks up slightly, as though it hears something.")
-	datum_reference.qliphoth_change(-1)
+/mob/living/simple_animal/hostile/abnormality/puss_in_boots/proc/emergency_check()
+	if(!IsContained() && friendly && (GLOB.emergency_level == TRUMPET_0))
+		death()
+		return TRUE
+	//if CONTAINED and shits going down
+	if(IsContained() && friendly && (GLOB.emergency_level >= TRUMPET_1) && (datum_reference?.emergency_breach))
+		ignored = FALSE
+		BreachEffect() // We must help our friend!
+		if(datum_reference)
+			datum_reference.emergency_breach = FALSE
+			datum_reference.qliphoth_meter = 0
+	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/puss_in_boots/MeltdownStart()
 	. = ..()
@@ -176,6 +170,7 @@
 	if(get_user_level(blessed_human) >= 2) //no buffing to get ahead
 		BlessedDeath(blessed_human)
 		return
+	emergency_check()
 
 /mob/living/simple_animal/hostile/abnormality/puss_in_boots/Move()
 	if(!can_act)
@@ -193,7 +188,6 @@
 	if(friendly)
 		fear_level = ZAYIN_LEVEL
 		health = 300 //He's pretty tough at max HP
-		addtimer(CALLBACK(src, PROC_REF(escape)), 45 SECONDS)
 		GoToFriend()
 		density = FALSE
 		icon_state = icon_friendly

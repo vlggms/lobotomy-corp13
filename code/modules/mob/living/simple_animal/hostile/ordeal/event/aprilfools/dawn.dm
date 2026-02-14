@@ -34,12 +34,14 @@
 		del_on_death = FALSE
 
 //friendly spawned shrimp from soda E.G.O.'s passive
-/mob/living/simple_animal/hostile/shrimp/grieving
+/mob/living/simple_animal/hostile/aminion/shrimp/grieving
 	name = "wellcheers obituary serviceman"
 	desc = "A shrimp that appears to be grieving. A moment of silence, please."
 	icon_state = "wellcheers_funeral"
 	icon_living = "wellcheers_funeral"
 	faction = list("neutral", "shrimp")
+	fear_level = 0
+	can_affect_emergency = FALSE
 
 // extra buff shrimp i guess
 /mob/living/simple_animal/hostile/senior_shrimp

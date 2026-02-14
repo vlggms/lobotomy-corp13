@@ -94,7 +94,7 @@
 		var/mob/living/L = the_target
 		if(L.stat == DEAD)
 			return FALSE
-		if(L.type == /mob/living/simple_animal/hostile/slime && health <= maxHealth * 0.8) // We need healing
+		if(L.type == /mob/living/simple_animal/hostile/aminion/slime && health <= maxHealth * 0.8) // We need healing
 			return TRUE
 	return ..()
 
@@ -111,8 +111,8 @@
 			return SlimeConvert(H)
 
 	// Consume a slime. Cannot work on the big one, so the check is not istype()
-	if(attacked_target.type == /mob/living/simple_animal/hostile/slime)
-		var/mob/living/simple_animal/hostile/slime/S = attacked_target
+	if(attacked_target.type == /mob/living/simple_animal/hostile/aminion/slime)
+		var/mob/living/simple_animal/hostile/aminion/slime/S = attacked_target
 		visible_message(span_warning("[src] consumes \the [S], restoring its own health."))
 		. = ..() // We do a normal attack without AOE and then consume the slime to restore HP
 		adjustBruteLoss(-maxHealth * 0.2)
@@ -155,7 +155,7 @@
 		//The status effect should explode them eventually. If not we have a bigger problem.
 		return FALSE
 	visible_message(span_danger("[src] glomps on \the [H] as another slime pawn appears!"))
-	new /mob/living/simple_animal/hostile/slime(get_turf(H))
+	new /mob/living/simple_animal/hostile/aminion/slime(get_turf(H))
 	H.gib(FALSE, TRUE, TRUE)
 	return TRUE
 
@@ -251,14 +251,14 @@
 	adjustBruteLoss(-maxHealth, forced = TRUE)
 	desc += " It looks angry."
 
-/mob/living/simple_animal/hostile/abnormality/melting_love/proc/SpawnBigSlime(mob/living/simple_animal/hostile/slime/big/S)
+/mob/living/simple_animal/hostile/abnormality/melting_love/proc/SpawnBigSlime(mob/living/simple_animal/hostile/aminion/slime/big/S)
 	gifted_human = null
 	datum_reference.qliphoth_change(-9)
 	if(S)
 		RegisterSignal(S, COMSIG_LIVING_DEATH, PROC_REF(SlimeDeath))
 
 /* Slimes (HE) */
-/mob/living/simple_animal/hostile/slime
+/mob/living/simple_animal/hostile/aminion/slime
 	name = "slime pawn"
 	desc = "The skeletal remains of a former employee is floating in it..."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
@@ -285,6 +285,8 @@
 	robust_searching = TRUE
 	stat_attack = DEAD
 	del_on_death = TRUE
+	score_divider = 2
+	threat_level = HE_LEVEL
 	var/spawn_sound = 'sound/abnormalities/meltinglove/pawn_convert.ogg'
 	var/statuschance = 25
 	var/death_damage = 10
@@ -292,7 +294,7 @@
 	var/decay_damage = 10
 	var/decay_timer = 4
 
-/mob/living/simple_animal/hostile/slime/Login()
+/mob/living/simple_animal/hostile/aminion/slime/Login()
 	. = ..()
 	to_chat(src, "<h1>You are a Slime Pawn, A Melting Love minion.</h1><br>\
 		<b>|Combust...|: You take 20 BLACK damage every 4 Seconds, Which means you have 40 seconds to live, unless someone attacks you with RED damage. \
@@ -300,7 +302,7 @@
 		<br>\
 		|Mother?|: Melting Love is able to attack you to devour you and heal 20% of her HP.</b>")
 
-/mob/living/simple_animal/hostile/slime/Initialize()
+/mob/living/simple_animal/hostile/aminion/slime/Initialize()
 	. = ..()
 	playsound(get_turf(src), spawn_sound, 50, 1)
 	var/matrix/init_transform = transform
@@ -310,31 +312,31 @@
 	if(SSmaptype.maptype == "rcorp")
 		addtimer(CALLBACK(src, PROC_REF(decay)), decay_timer SECONDS, TIMER_STOPPABLE)
 
-/mob/living/simple_animal/hostile/slime/proc/decay()
+/mob/living/simple_animal/hostile/aminion/slime/proc/decay()
 	to_chat(src, span_userdanger("You feel yourself falling apart..."))
 	src.deal_damage(decay_damage, BLACK_DAMAGE)
 	if (stat != DEAD)
 		addtimer(CALLBACK(src, PROC_REF(decay)), decay_timer SECONDS, TIMER_STOPPABLE)
 
-/mob/living/simple_animal/hostile/slime/death()
+/mob/living/simple_animal/hostile/aminion/slime/death()
 	for(var/atom/movable/AM in src)
 		AM.forceMove(get_turf(src))
 	if(SSmaptype.maptype == "rcorp")
 		for(var/turf/open/R in range(death_slime_range, src))
 			new /obj/effect/decal/cleanable/melty_slime(R)
 		for(var/mob/living/L in view(death_slime_range, src))
-			if(L.stat != DEAD && !istype(L, /mob/living/simple_animal/hostile/slime))
+			if(L.stat != DEAD && !istype(L, /mob/living/simple_animal/hostile/aminion/slime))
 				L.apply_damage(death_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
 	return ..()
 
-/mob/living/simple_animal/hostile/slime/CanAttack(atom/the_target)
+/mob/living/simple_animal/hostile/aminion/slime/CanAttack(atom/the_target)
 	if(isliving(the_target) && !ishuman(the_target))
 		var/mob/living/L = the_target
 		if(L.stat == DEAD)
 			return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/slime/AttackingTarget(atom/attacked_target)
+/mob/living/simple_animal/hostile/aminion/slime/AttackingTarget(atom/attacked_target)
 	// Convert
 	if(ishuman(attacked_target))
 		var/mob/living/carbon/human/H = attacked_target
@@ -344,21 +346,21 @@
 			H.apply_status_effect(STATUS_EFFECT_SLIMED)
 	return ..()
 
-/mob/living/simple_animal/hostile/slime/proc/SlimeConvert(mob/living/carbon/human/H)
+/mob/living/simple_animal/hostile/aminion/slime/proc/SlimeConvert(mob/living/carbon/human/H)
 	if(!istype(H))
 		return FALSE
 	visible_message(span_danger("[src] glomps on \the [H] as another slime pawn appears!"))
-	new /mob/living/simple_animal/hostile/slime(get_turf(H))
+	new /mob/living/simple_animal/hostile/aminion/slime(get_turf(H))
 	H.gib(FALSE, TRUE, TRUE)
 	return TRUE
 
 //3 monsters including parasite tree sapling and naked nest use this proc i might make it part of the root in the future -IP
-/mob/living/simple_animal/hostile/slime/proc/NestedItems(mob/living/simple_animal/hostile/nest, obj/item/nested_item)
+/mob/living/simple_animal/hostile/aminion/slime/proc/NestedItems(mob/living/simple_animal/hostile/nest, obj/item/nested_item)
 	if(nested_item)
 		nested_item.forceMove(nest)
 
 /* Big Slimes (WAW) */
-/mob/living/simple_animal/hostile/slime/big
+/mob/living/simple_animal/hostile/aminion/slime/big
 	name = "big slime"
 	desc = "The skeletal remains of the former gifted employee is floating in it..."
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
@@ -373,6 +375,8 @@
 	melee_damage_upper = 20
 	spawn_sound = 'sound/abnormalities/meltinglove/pawn_big_convert.ogg'
 	statuschance = 75
+	score_divider = 2
+	threat_level = WAW_LEVEL
 
 /*
 * MELTY BLESSING
@@ -420,7 +424,7 @@
 	if(H)
 		H.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -30)
 		if(H.stat == DEAD)
-			var/mob/living/simple_animal/hostile/slime/big/new_mob = new(owner.loc)
+			var/mob/living/simple_animal/hostile/aminion/slime/big/new_mob = new(owner.loc)
 			NestedItems(new_mob, H.get_item_by_slot(ITEM_SLOT_SUITSTORE))
 			NestedItems(new_mob, H.get_item_by_slot(ITEM_SLOT_BELT))
 			NestedItems(new_mob, H.get_item_by_slot(ITEM_SLOT_BACK))
@@ -448,8 +452,8 @@
 	var/timer2
 	var/list/slime_types = list(
 		/mob/living/simple_animal/hostile/abnormality/melting_love,
-		/mob/living/simple_animal/hostile/slime/big,
-		/mob/living/simple_animal/hostile/slime
+		/mob/living/simple_animal/hostile/aminion/slime/big,
+		/mob/living/simple_animal/hostile/aminion/slime
 	)
 
 /obj/effect/decal/cleanable/melty_slime/Initialize(mapload, list/datum/disease/diseases)
@@ -545,7 +549,7 @@
 		return
 	if((L.sanityhealth <= 0) || (L.health <= 0))
 		var/turf/T = get_turf(L)
-		new /mob/living/simple_animal/hostile/slime(T)
+		new /mob/living/simple_animal/hostile/aminion/slime(T)
 		L.gib(TRUE, TRUE, TRUE)
 
 /datum/status_effect/melty_slimed/on_apply()

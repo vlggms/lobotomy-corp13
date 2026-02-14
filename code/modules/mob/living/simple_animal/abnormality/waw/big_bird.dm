@@ -139,6 +139,10 @@
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
 	return ..()
 
+/mob/living/simple_animal/hostile/abnormality/big_bird/Life()
+	. = ..()
+	emergency_check()
+
 /mob/living/simple_animal/hostile/abnormality/big_bird/Moved()
 	. = ..()
 	if(!(status_flags & GODMODE)) // Whitaker nerf
@@ -444,6 +448,16 @@
 	datum_reference.qliphoth_change(-1) // One death reduces it
 	return TRUE
 
+//I fucking hate that this can be added now - Crabby
+/mob/living/simple_animal/hostile/abnormality/big_bird/proc/emergency_check()
+	//if CONTAINED and shits going down
+	if(IsContained() && (GLOB.emergency_level >= TRUMPET_2) && (datum_reference?.emergency_breach))
+		BreachEffect() // FUCK YOU!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		if(datum_reference)
+			datum_reference.emergency_breach = FALSE
+			datum_reference.qliphoth_meter = 0
+	return TRUE
+
 /mob/living/simple_animal/hostile/abnormality/big_bird/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
 	datum_reference.qliphoth_change(1)
@@ -516,7 +530,7 @@
 	if(IS_DEAD_OR_INCAP(living_pawn))
 		return
 
-	var/mob/living/simple_animal/hostile/megafauna/apocalypse_bird/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
+	var/mob/living/simple_animal/hostile/aminion/apocalypse_bird/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
 	if(!istype(target))
 		finish_action(controller, FALSE)
 		return

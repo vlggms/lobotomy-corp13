@@ -837,18 +837,18 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 /client/proc/admin_change_sec_level()
 	set category = "Admin.Events"
-	set name = "Set Security Level"
-	set desc = "Changes the security level. Announcement only, i.e. setting to Delta won't activate nuke"
+	set name = "Set Emergency Level"
+	set desc = "Changes the emergency level. Announcement only, i.e. setting to Third won't activate nuke"
 
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/level = input("Select security level to change to","Set Security Level") as null|anything in list("no warning","first warning","second warning","third warning")
+	var/level = input("Select security level to change to","Set Emergency Level") as null|anything in list("no emergency","first trumpet","second trumpet","third trumpet")
 	if(level)
-		set_security_level(level)
+		SSlobotomy_emergency.SetEmergencyLevel(level, TRUE)
 
-		log_admin("[key_name(usr)] changed the security level to [level]")
-		message_admins("[key_name_admin(usr)] changed the security level to [level]")
+		log_admin("[key_name(usr)] changed the emergency level to [level]")
+		message_admins("[key_name_admin(usr)] changed the emergency level to [level]")
 		SSblackbox.record_feedback("tally", "admin_verb", 1, "Set Security Level [capitalize(level)]") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/toggle_nuke(obj/machinery/nuclearbomb/N in GLOB.nuke_list)

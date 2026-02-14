@@ -35,7 +35,7 @@
 
 /area/department_main/Entered(atom/movable/M)
 	. = ..()
-	if(!isabnormalitymob(M)) // only do updates on Abnormality entering/leaving
+	if(!isabnormalitymob(M) && !isabnormalityminionmob(M)) // only do updates on Abnormality entering/leaving
 		return
 	if(istype(M, /mob/living/simple_animal/hostile/abnormality/big_bird))
 		big_bird = TRUE
@@ -49,7 +49,7 @@
 
 /area/department_main/Exited(atom/movable/M)
 	. = ..()
-	if(!isabnormalitymob(M))
+	if(!isabnormalitymob(M) && !isabnormalityminionmob(M))
 		return
 	if(istype(M, /mob/living/simple_animal/hostile/abnormality/big_bird))
 		for(var/area/facility_hallway/F in adjacent_areas)
@@ -74,11 +74,11 @@
 		if(TR)
 			search_through -= TR
 		fire = FALSE
-		if((GLOB.security_level >= SEC_LEVEL_BLUE))
-			for(var/mob/living/simple_animal/hostile/abnormality/A in search_through)
+		if((GLOB.emergency_level >= TRUMPET_1))
+			for(var/mob/living/simple_animal/A in search_through)
 				if(QDELETED(A) || (A.stat == DEAD))
 					continue
-				if(A)
+				if(A && (isabnormalitymob(A) || isabnormalityminionmob(A)))
 					fire = TRUE
 					break
 	for(var/obj/machinery/light/L in src)
@@ -146,7 +146,7 @@
 
 /area/facility_hallway/Entered(atom/movable/M)
 	. = ..()
-	if(!isabnormalitymob(M)) // only do updates on Abnormality entering/leaving
+	if(!isabnormalitymob(M) && !isabnormalityminionmob(M)) // only do updates on Abnormality entering/leaving
 		return
 	if(istype(M, /mob/living/simple_animal/hostile/abnormality/big_bird))
 		big_bird = TRUE
@@ -160,7 +160,7 @@
 
 /area/facility_hallway/Exited(atom/movable/M)
 	. = ..()
-	if(!isabnormalitymob(M)) // only do updates on Abnormality entering/leaving
+	if(!isabnormalitymob(M) && !isabnormalityminionmob(M)) // only do updates on Abnormality entering/leaving
 		return
 	if(istype(M, /mob/living/simple_animal/hostile/abnormality/big_bird))
 		for(var/area/facility_hallway/F in adjacent_areas)
@@ -185,11 +185,11 @@
 		if(TR)
 			search_through -= TR
 		fire = FALSE
-		if((GLOB.security_level >= SEC_LEVEL_BLUE))
-			for(var/mob/living/simple_animal/hostile/abnormality/A in search_through)
+		if((GLOB.emergency_level >= TRUMPET_1))
+			for(var/mob/living/simple_animal/A in search_through)
 				if(QDELETED(A) || (A.stat == DEAD))
 					continue
-				if(A)
+				if(A && (isabnormalitymob(A) || isabnormalityminionmob(A)))
 					fire = TRUE
 					break
 	for(var/obj/machinery/light/L in src)

@@ -75,15 +75,17 @@
 					serialized["orbiters"] = number_of_orbiters
 				ghosts += list(serialized)
 
+
 			else if (isabnormalitymob(M)) // LOBOTOMYCORPORATION ADDITION -- Abnormalities
 				var/mob/living/simple_animal/hostile/abnormality/abno = M
 				if(!abno.can_spawn)
 					npcs += list(serialized)
 					continue
-
 				serialized["is_contained"] = abno.IsContained()
 				abnormalities += list(serialized)
-
+			else if (isabnormalityminionmob(M)) // LOBOTOMYCORPORATION ADDITION -- Abnormalities
+				serialized["is_contained"] = FALSE
+				abnormalities += list(serialized)
 			else if (M.stat == DEAD)
 				dead += list(serialized)
 			else if (M.mind == null)

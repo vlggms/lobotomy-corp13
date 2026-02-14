@@ -206,7 +206,7 @@
 	if(!R || !iscyborg(R))
 		return FALSE
 
-	if((GLOB.security_level < SEC_LEVEL_RED && shot.harmful) && !R.emagged) //If we're emagged we don't care about alert level
+	if((GLOB.emergency_level < TRUMPET_2 && shot.harmful) && !R.emagged) //If we're emagged we don't care about alert level
 		playsound(loc, 'sound/machines/buzz-two.ogg', get_clamped_volume(), TRUE, -1)
 		to_chat(loc,span_warning("ERROR: Weapon cannot fire on lethal modes while the alert level is less than red."))
 		return FALSE

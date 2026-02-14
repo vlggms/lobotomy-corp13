@@ -68,10 +68,10 @@
 	var/playrange = 40
 
 	var/list/possible_minion_list = list(//these should generally be humanoid enemies, maybe dependent on gamemode. In a LC facility, these will be abnormality minions that require a dead human to create. That means no shrimps
-		/mob/living/simple_animal/hostile/grown_strong,//TODO: make these require corresponding abnormalities
-		/mob/living/simple_animal/hostile/yagaslave,
-		/mob/living/simple_animal/hostile/thunder_zombie,
-		/mob/living/simple_animal/hostile/azure_stave,
+		/mob/living/simple_animal/hostile/aminion/grown_strong,//TODO: make these require corresponding abnormalities
+		/mob/living/simple_animal/hostile/aminion/yagaslave,
+		/mob/living/simple_animal/hostile/aminion/thunder_zombie,
+		/mob/living/simple_animal/hostile/aminion/azure_stave,
 		/mob/living/simple_animal/hostile/ordeal/steel_dusk,//non-abnormality minions
 		/mob/living/simple_animal/hostile/ordeal/indigo_noon,
 		/mob/living/simple_animal/hostile/humanoid/rat/knife,//lc13_humanoids.dm, replace these with an N corp grosshammer and jefe de los mariachis

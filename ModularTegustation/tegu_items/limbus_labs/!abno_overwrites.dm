@@ -78,17 +78,17 @@
 	if(SSmaptype.maptype == "limbus_labs")
 		faction = list("neutral", "nosferatu")
 
-/mob/living/simple_animal/hostile/nosferatu_mob/Initialize()
+/mob/living/simple_animal/hostile/aminion/nosferatu_mob/Initialize()
 	. = ..()
 	if(SSmaptype.maptype == "limbus_labs")
 		faction = list("neutral", "nosferatu")
 
-/mob/living/simple_animal/hostile/nosferatu_mob/Login()
+/mob/living/simple_animal/hostile/aminion/nosferatu_mob/Login()
 	. = ..()
 	if(SSmaptype.maptype == "limbus_labs")
 		faction = list("hostile", "nosferatu")
 
-/mob/living/simple_animal/hostile/nosferatu_mob/Logout()
+/mob/living/simple_animal/hostile/aminion/nosferatu_mob/Logout()
 	. = ..()
 	if(SSmaptype.maptype == "limbus_labs")
 		faction = list("neutral", "nosferatu")
@@ -153,17 +153,17 @@
 	if(SSmaptype.maptype == "limbus_labs")
 		faction = list("neutral", "bee")
 
-/mob/living/simple_animal/hostile/soldier_bee/Initialize()
+/mob/living/simple_animal/hostile/aminion/soldier_bee/Initialize()
 	. = ..()
 	if(SSmaptype.maptype == "limbus_labs")
 		faction = list("neutral", "bee")
 
-/mob/living/simple_animal/hostile/soldier_bee/Login()
+/mob/living/simple_animal/hostile/aminion/soldier_bee/Login()
 	. = ..()
 	if(SSmaptype.maptype == "limbus_labs")
 		faction = list("hostile", "bee")
 
-/mob/living/simple_animal/hostile/soldier_bee/Logout()
+/mob/living/simple_animal/hostile/aminion/soldier_bee/Logout()
 	. = ..()
 	if(SSmaptype.maptype == "limbus_labs")
 		faction = list("neutral", "bee")

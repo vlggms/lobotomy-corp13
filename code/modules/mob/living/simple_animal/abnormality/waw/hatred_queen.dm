@@ -282,6 +282,7 @@
 		if(datum_reference?.qliphoth_meter == 1)
 			addtimer(CALLBACK(src, PROC_REF(SpawnHeart)), rand(2,8))
 			addtimer(CALLBACK(src, PROC_REF(SpawnHeart)), rand(4,10))
+		emergency_check()
 	if(.)
 		if(!friendly && can_act)
 			switch(hp_teleport_counter)
@@ -321,11 +322,17 @@
 	//if BREACHED, check if death_counter over the death limit
 	if(!IsContained() && breach_max_death && (death_counter >= breach_max_death) && !SSmaptype.maptype == "limbus_labs")
 		GoHysteric()
-	//if CONTAINED and lots of death before qliphoth triggers (TEMP)
-	if(IsContained() && (death_counter > 3)) // Omagah a lot of dead people!
-		BreachEffect() // We must help them!
-		datum_reference.qliphoth_meter = 0
 	return TRUE
+
+/mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/emergency_check()
+	if(!IsContained() && friendly && (GLOB.emergency_level == TRUMPET_0) && !nihil_present)
+		death()
+	//if CONTAINED and shits going down
+	if(IsContained() && (datum_reference?.qliphoth_meter == 2) && (GLOB.emergency_level >= TRUMPET_2) && (datum_reference?.emergency_breach))
+		BreachEffect() // We must help them!
+		if(datum_reference)
+			datum_reference.emergency_breach = FALSE//She shouldn't be able to breach again passively until the next qliphoth event.
+			datum_reference.qliphoth_meter = 0
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/ArcanaBeats(target)
 	if(beats_cooldown > world.time)
@@ -615,7 +622,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/OnQliphothEvent()
 	if(!IsContained()) //Breached
-		return
+		return ..()
 	if(death_counter < 2)
 		counter_amount += 1
 		if(counter_amount >= 3)

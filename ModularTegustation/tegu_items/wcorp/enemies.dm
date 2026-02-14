@@ -203,7 +203,7 @@ GLOBAL_VAR_INIT(wcorp_boss_spawn, FALSE)
 				//10% Remnant / 90% Corporal
 				if(1 to 3)
 					if(prob(10))
-						spawntype = /mob/living/simple_animal/hostile/shrimp
+						spawntype = /mob/living/simple_animal/hostile/aminion/shrimp
 
 				if(4 to 7)
 					switch(rand(1, 100))
@@ -212,7 +212,7 @@ GLOBAL_VAR_INIT(wcorp_boss_spawn, FALSE)
 						if(55 to 100)
 							spawntype = /mob/living/simple_animal/hostile/shrimp_rifleman
 						else
-							spawntype = /mob/living/simple_animal/hostile/shrimp
+							spawntype = /mob/living/simple_animal/hostile/aminion/shrimp
 
 
 				if(8 to 11)
@@ -222,7 +222,7 @@ GLOBAL_VAR_INIT(wcorp_boss_spawn, FALSE)
 						if(65 to 100)
 							spawntype = /mob/living/simple_animal/hostile/shrimp_rifleman
 						else
-							spawntype = /mob/living/simple_animal/hostile/shrimp
+							spawntype = /mob/living/simple_animal/hostile/aminion/shrimp
 
 
 
@@ -231,11 +231,11 @@ GLOBAL_VAR_INIT(wcorp_boss_spawn, FALSE)
 						if(45 to 55)
 							spawntype = /mob/living/simple_animal/hostile/senior_shrimp
 						if(55 to 75)
-							spawntype = /mob/living/simple_animal/hostile/shrimp_soldier
+							spawntype = /mob/living/simple_animal/hostile/aminion/shrimp_soldier
 						if(75 to 100)
 							spawntype = /mob/living/simple_animal/hostile/shrimp_rifleman
 						else
-							spawntype = /mob/living/simple_animal/hostile/shrimp
+							spawntype = /mob/living/simple_animal/hostile/aminion/shrimp
 
 				if(14 to INFINITY)
 					switch(rand(1, 100))
@@ -244,9 +244,9 @@ GLOBAL_VAR_INIT(wcorp_boss_spawn, FALSE)
 						if(55 to 90)
 							spawntype = /mob/living/simple_animal/hostile/shrimp_rifleman
 						if(90 to 100)
-							spawntype = /mob/living/simple_animal/hostile/shrimp_soldier
+							spawntype = /mob/living/simple_animal/hostile/aminion/shrimp_soldier
 						else
-							spawntype = /mob/living/simple_animal/hostile/shrimp
+							spawntype = /mob/living/simple_animal/hostile/aminion/shrimp
 
 		if("bloodfiends")
 			spawntype = /mob/living/simple_animal/hostile/humanoid/blood/bag
