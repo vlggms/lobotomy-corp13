@@ -266,12 +266,12 @@
 	attack_verb_simple = "attack"
 	attack_sound = 'sound/abnormalities/censored/mini_attack.ogg'
 	/* Stats */
-	health = 600
-	maxHealth = 600
+	health = 300
+	maxHealth = 300
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1)
 	melee_damage_type = BLACK_DAMAGE
-	melee_damage_lower = 25
-	melee_damage_upper = 30
+	melee_damage_lower = 13
+	melee_damage_upper = 18
 	speed = 2
 	move_to_delay = 2
 	robust_searching = TRUE
