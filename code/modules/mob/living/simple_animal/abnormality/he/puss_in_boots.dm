@@ -123,7 +123,6 @@
 	UnregisterSignal(blessed_human, COMSIG_LIVING_DEATH)
 	UnregisterSignal(blessed_human, COMSIG_HUMAN_INSANE)
 	UnregisterSignal(blessed_human, COMSIG_WORK_STARTED)
-	RegisterSignal(SSdcs, COMSIG_TRUMPET_CHANGED)
 	friendly = FALSE
 	GoToFriend()
 	BreachEffect()
@@ -136,9 +135,10 @@
 		return FALSE
 	BlessedDeath(blessed_human)
 
-/mob/living/simple_animal/hostile/abnormality/puss_in_boots/proc/emergency_check(datum/source, level)
-	if(!IsContained() && friendly && (level == TRUMPET_0))
+/mob/living/simple_animal/hostile/abnormality/puss_in_boots/proc/emergency_check()
+	if(!IsContained() && friendly && (GLOB.emergency_level == TRUMPET_0))
 		death()
+		return TRUE
 	//if CONTAINED and shits going down
 	if(IsContained() && friendly && (GLOB.emergency_level >= TRUMPET_1) && (datum_reference?.emergency_breach))
 		ignored = FALSE

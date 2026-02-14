@@ -147,7 +147,7 @@
 	realboy.name = "Pinocchio the Liar"
 	realboy.real_name = "Pinocchio the Liar"
 	realboy.adjust_all_attribute_levels(100)
-	realboy.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, 400) // 500 health
+	realboy.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, 240) // 340 health
 	realboy.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -100)
 	realboy.health = realboy.maxHealth
 	realboy.alpha = 0

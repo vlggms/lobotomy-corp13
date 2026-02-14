@@ -21,7 +21,7 @@
 	see_in_dark = 10
 	stat_attack = HARD_CRIT
 
-	move_to_delay = 7
+	move_to_delay = 5
 	threat_level = WAW_LEVEL
 	can_breach = TRUE
 	start_qliphoth = 5
