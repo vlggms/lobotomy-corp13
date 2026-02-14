@@ -400,9 +400,9 @@
 	playsound(get_turf(src), 'sound/effects/ordeals/violet/midnight_portal_on.ogg', 100, 1)
 	animate(src, alpha = 255, time = 5)
 	new /obj/effect/temp_visual/fistwarning(target_turf)
-	SLEEP_CHECK_DEATH(3 SECONDS)
+	SLEEP_CHECK_DEATH(2.5 SECONDS)
 	icon_state = "violet_dusk_hand_attack"
-	SLEEP_CHECK_DEATH(7)
+	SLEEP_CHECK_DEATH(5)
 	Vulnerable = TRUE
 	density = TRUE
 	visible_message(span_danger("[src] slams down!"))
@@ -412,6 +412,11 @@
 	for(var/mob/living/L in view(2, src))
 		if(faction_check_mob(L, TRUE)) //so it doesn't kill its partners
 			continue
+		if(ishuman(L))
+			var/mob/living/carbon/human/H = L
+			if(H.is_working)//Is this nonsensical? Yes but it dealing damage was a bit bullshit
+				to_chat(H, span_notice("Somehow, you managed to narrowly avoid [src]'s slam."))
+				continue
 		L.deal_damage(slam_damage, BLACK_DAMAGE)
 		if(L.health < 0)
 			L.gib()
@@ -429,4 +434,4 @@
 /obj/effect/temp_visual/fistwarning
 	name = "fist warning"
 	icon_state = "fistwarning"
-	duration = 3.5 SECONDS
+	duration = 2.5 SECONDS
