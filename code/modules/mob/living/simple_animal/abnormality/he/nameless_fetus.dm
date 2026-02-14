@@ -271,7 +271,3 @@
 	if(prob(80))
 		datum_reference.qliphoth_change(-1)
 	return
-
-/mob/living/simple_animal/hostile/abnormality/fetus/BreachEffect(mob/living/carbon/human/user, breach_type)
-	. = ..()
-	datum_reference.qliphoth_change(-1)
