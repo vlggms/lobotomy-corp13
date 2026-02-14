@@ -241,7 +241,7 @@
 	//Babies crying hurts your head
 	playsound(src, 'sound/abnormalities/fetus/crying.ogg', 100, FALSE, 7, 5)
 	SLEEP_CHECK_DEATH(3)
-	for(var/i = 1 to 10)
+	for(var/i = 1 to 8)
 		for(var/mob/living/L in urange(15, src))
 			if(faction_check_mob(L, FALSE))
 				continue
@@ -251,8 +251,8 @@
 				hearers += L
 				to_chat(L, span_warning("The crying hurts your head..."))
 			L.deal_damage(rand(1,2), WHITE_DAMAGE)
-		SLEEP_CHECK_DEATH(3)
-	SLEEP_CHECK_DEATH(5)
+		SLEEP_CHECK_DEATH(4)
+	SLEEP_CHECK_DEATH(3)
 	can_act = TRUE
 	if(!particle_cry)
 		return
