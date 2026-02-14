@@ -227,6 +227,7 @@
 	set waitfor = 0
 	can_act = FALSE
 	var/list/qliphoth_abnos = list()
+	var/list/hearers = list()
 	for(var/mob/living/simple_animal/hostile/abnormality/V in urange(15, src))
 		if(V.IsContained())
 			qliphoth_abnos += V
@@ -240,14 +241,18 @@
 	//Babies crying hurts your head
 	playsound(src, 'sound/abnormalities/fetus/crying.ogg', 100, FALSE, 7, 5)
 	SLEEP_CHECK_DEATH(3)
-	for(var/mob/living/L in urange(15, src))
-		if(faction_check_mob(L, FALSE))
-			continue
-		if(L.stat == DEAD)
-			continue
-		to_chat(L, span_warning("The crying hurts your head..."))
-		L.deal_damage(rand(8,12), WHITE_DAMAGE)
-	SLEEP_CHECK_DEATH(35)
+	for(var/i = 1 to 10)
+		for(var/mob/living/L in urange(15, src))
+			if(faction_check_mob(L, FALSE))
+				continue
+			if(L.stat == DEAD)
+				continue
+			if(!(L in hearers))
+				hearers += L
+				to_chat(L, span_warning("The crying hurts your head..."))
+			L.deal_damage(rand(1,2), WHITE_DAMAGE)
+		SLEEP_CHECK_DEATH(3)
+	SLEEP_CHECK_DEATH(5)
 	can_act = TRUE
 	if(!particle_cry)
 		return
