@@ -24,8 +24,8 @@
 	max_boxes = 18
 	melee_damage_type = RED_DAMAGE
 	stat_attack = DEAD
-	melee_damage_lower = 25
-	melee_damage_upper = 40
+	melee_damage_lower = 15
+	melee_damage_upper = 30
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
 	attack_sound = 'sound/abnormalities/mountain/bite.ogg'
@@ -126,11 +126,12 @@
 		satisfied = FALSE
 		hunger = 0
 		datum_reference.qliphoth_change(1)
-		visible_message(span_userdanger("The fetus is starts to wimper but only for a second!"))
+		visible_message(span_userdanger("The fetus starts to wimper but only for a moment..."))
 	else
+		criesleft = 5
 		for(var/mob/living/carbon/human/H in GLOB.player_list)	//Way harder to get a list of living humans.
 			if(H.stat != DEAD)
-				criesleft+=3		//Get a max of 3 cries per person.
+				criesleft+=1		//Get a max of 1 additional cry per person.
 		crying = TRUE
 		check_players()
 		check_range()
@@ -220,27 +221,28 @@
 
 		notify_ghosts("The fetus calls out for [calling.real_name].", source = src, action = NOTIFY_ORBIT, header="Something Interesting!") // bless this mess
 	Cry()
-	addtimer(CALLBACK(src, PROC_REF(check_players)), 20 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(check_players)), 10 SECONDS)
 
 /mob/living/simple_animal/hostile/abnormality/fetus/proc/Cry()
 	set waitfor = 0
 	can_act = FALSE
 	var/list/qliphoth_abnos = list()
-	for(var/mob/living/simple_animal/hostile/abnormality/V in GLOB.abnormality_mob_list)
+	var/list/hearers = list()
+	for(var/mob/living/simple_animal/hostile/abnormality/V in urange(15, src))
 		if(V.IsContained())
 			qliphoth_abnos += V
-
-	var/list/hearers = list()
+	if(src in qliphoth_abnos)
+		qliphoth_abnos -= src
 	if(LAZYLEN(qliphoth_abnos))
 		var/mob/living/simple_animal/hostile/abnormality/meltem = pick(qliphoth_abnos)
 		meltem.datum_reference.qliphoth_change(-1)
 	particle_cry = new(get_turf(src))
 	particle_cry.pixel_y = 4
 	//Babies crying hurts your head
-	playsound(src, 'sound/abnormalities/fetus/crying.ogg', 100, FALSE, 10, 5)
+	playsound(src, 'sound/abnormalities/fetus/crying.ogg', 100, FALSE, 7, 5)
 	SLEEP_CHECK_DEATH(3)
-	for(var/i = 1 to 10)
-		for(var/mob/living/L in urange(20, src))
+	for(var/i = 1 to 8)
+		for(var/mob/living/L in urange(15, src))
 			if(faction_check_mob(L, FALSE))
 				continue
 			if(L.stat == DEAD)
@@ -248,9 +250,9 @@
 			if(!(L in hearers))
 				hearers += L
 				to_chat(L, span_warning("The crying hurts your head..."))
-			L.deal_damage(2, WHITE_DAMAGE)
-		SLEEP_CHECK_DEATH(3)
-	SLEEP_CHECK_DEATH(5)
+			L.deal_damage(rand(1,2), WHITE_DAMAGE)
+		SLEEP_CHECK_DEATH(4)
+	SLEEP_CHECK_DEATH(3)
 	can_act = TRUE
 	if(!particle_cry)
 		return
