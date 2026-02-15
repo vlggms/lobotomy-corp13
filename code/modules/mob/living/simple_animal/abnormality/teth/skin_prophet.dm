@@ -3,20 +3,39 @@
 	desc = "A little fleshy being reading a tiny book."
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "skin_prophet"
+	icon_dead = "prophet_egg"
 	core_icon = "prophet_egg"
 	portrait = "skin_prophet"
-	maxHealth = 140
-	health = 140
+	del_on_death = FALSE
+	maxHealth = 300
+	health = 300
 	threat_level = TETH_LEVEL
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = list(70, 60, 50, 50, 40),
-		ABNORMALITY_WORK_INSIGHT = list(70, 60, 50, 50, 40),
-		ABNORMALITY_WORK_ATTACHMENT = 0,
+		ABNORMALITY_WORK_INSTINCT = 60,
+		ABNORMALITY_WORK_INSIGHT = 60,
+		ABNORMALITY_WORK_ATTACHMENT = 30,
 		ABNORMALITY_WORK_REPRESSION = 0,
 	)
 	work_damage_upper = 3
-	work_damage_lower = 2	//Gets more later
+	work_damage_lower = 2
 	work_damage_type = WHITE_DAMAGE
+
+	rapid_melee = 0.4//extremely slow
+	melee_damage_type = RED_DAMAGE
+	melee_damage_lower = 4
+	melee_damage_upper = 5
+	ranged = TRUE
+	ranged_cooldown_time = 1 SECONDS
+	attack_sound = 'sound/abnormalities/skinprophet/Skin_Counter.ogg'
+
+	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
+	see_in_dark = 10
+	can_breach = TRUE
+	start_qliphoth = 2
+
+	light_color = LIGHT_COLOR_FIRE
+	light_range = 2
+	light_power = 7
 
 	ego_list = list(
 		/datum/ego_datum/weapon/skinprophet,
@@ -52,54 +71,231 @@
 		"@#$!!@#*!",
 		"@*()!%&$(^!!!!@&(@)",
 	)
-	var/candles = 0
+	var/list/candles = list()
+	var/list/breach_candles = list()
+	var/lit_candles = 0
+	var/write_cooldown = 1
+	var/write_cooldown_time = 3 SECONDS
 
-/mob/living/simple_animal/hostile/abnormality/skin_prophet/WorkChance(mob/living/carbon/human/user, chance)
-	//work damage starts at 7, + candles stuffed
-	work_damage_upper = initial(work_damage_upper) + candles
 
-	//If you're doing rep or temeprance then your work chance is your total buffs combined, and damage is increased too
-	if(chance == 0)
-		var/totalbuff = get_level_buff(user, FORTITUDE_ATTRIBUTE) + get_level_buff(user, PRUDENCE_ATTRIBUTE) + get_level_buff(user, TEMPERANCE_ATTRIBUTE) + get_level_buff(user, JUSTICE_ATTRIBUTE)
-		chance = totalbuff
-		work_damage_upper += totalbuff/10
-	return chance
+/mob/living/simple_animal/hostile/abnormality/skin_prophet/OpenFire(atom/A)//spams too much
+	WriteAttack(target)
+	ranged_cooldown = world.time + (ranged_cooldown_time + (ranged_cooldown_time * LAZYLEN(breach_candles)))
+
+/mob/living/simple_animal/hostile/abnormality/skin_prophet/Move()
+	return FALSE
+
+/mob/living/simple_animal/hostile/abnormality/skin_prophet/death(gibbed)
+	SetLights(TRUE)
+	playsound(src, 'sound/effects/limbus_death.ogg', 100, 1)
+	icon = 'ModularTegustation/Teguicons/abno_cores/teth.dmi'
+	pixel_x = -16
+	density = FALSE
+	animate(src, alpha = 0, time = 10 SECONDS)
+	QDEL_IN(src, 10 SECONDS)
+	..()
+
+/mob/living/simple_animal/hostile/abnormality/skin_prophet/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
+	if(!LAZYLEN(breach_candles))
+		return ..()
+	var/damage_penalty = LAZYLEN(breach_candles)
+	amount -= amount * (0.3 * damage_penalty)
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/skin_prophet/WorktickFailure(mob/living/carbon/human/user)
 	if(prob(30))
 		say(pick(speak_list))
 	..()
 
-//If you success on temperance or repression, clear all your temperance/justice buffs and then add to your max stats.
-//You're on the hook for any changes in your attribute
-/mob/living/simple_animal/hostile/abnormality/skin_prophet/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/skin_prophet/AttemptWork(mob/living/carbon/human/user, work_type)
+	..()
+	HandleCandles()
+	return TRUE
+
+/mob/living/simple_animal/hostile/abnormality/skin_prophet/WorkChance(mob/living/carbon/human/user, chance, work_type)//set the new work chances
+	. = chance // Set default Return to chance
+	switch(work_type)
+		if(ABNORMALITY_WORK_INSIGHT, ABNORMALITY_WORK_INSTINCT)
+			chance -= (3 ** lit_candles)//3 to the power of candles. Ranges from 3-81
+		if(ABNORMALITY_WORK_REPRESSION)
+			chance += (lit_candles * 16)
+	return chance
+
+/mob/living/simple_animal/hostile/abnormality/skin_prophet/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
-	if(work_type == ABNORMALITY_WORK_ATTACHMENT)
-		say(pick(speak_list))
-
-		//Don't try it without any buffs.
-		if(get_level_buff(user, TEMPERANCE_ATTRIBUTE) <=0)
-			user.dust()
-			return
-		user.adjust_attribute_limit(get_level_buff(user, TEMPERANCE_ATTRIBUTE))
-		user.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -get_level_buff(user, TEMPERANCE_ATTRIBUTE))
-
-	if(work_type == ABNORMALITY_WORK_REPRESSION)
-		say(pick(speak_list))
-
-		if(get_level_buff(user, JUSTICE_ATTRIBUTE) <=0)
-			user.dust()
-			return
-
-		user.adjust_attribute_limit(get_level_buff(user, JUSTICE_ATTRIBUTE))
-		user.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -get_level_buff(user, JUSTICE_ATTRIBUTE))
-	return
+	if(prob(30))
+		datum_reference.qliphoth_change(-1)
+		return
+	if(work_type != ABNORMALITY_WORK_REPRESSION)
+		HandleCandles(lighting = TRUE)
 
 /mob/living/simple_animal/hostile/abnormality/skin_prophet/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
-	say(pick(speak_list))
-	//He has 10 candles. Each snuffed candle deals more work damage
-	if(candles != 10)
-		candles += 1
-	return
+	datum_reference.qliphoth_change(-1)
 
+/mob/living/simple_animal/hostile/abnormality/skin_prophet/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
+	if(canceled)
+		return
+	if(work_type == ABNORMALITY_WORK_REPRESSION)
+		ExtinguishCandles()
+	else
+		if(pe >= datum_reference.success_boxes)
+			HandleCandles(lighting = TRUE)
+
+/mob/living/simple_animal/hostile/abnormality/skin_prophet/PostSpawn()
+	..()
+	for(var/obj/machinery/light/L in range(3, src)) //blows out the lights
+		L.on = 0
+		L.break_light_tube()
+
+/mob/living/simple_animal/hostile/abnormality/skin_prophet/HandleStructures()
+	. = ..()
+	if(!.)
+		return
+	if(!locate(/obj/structure/skin_candle) in datum_reference.connected_structures)
+		candles += SpawnConnectedStructure(/obj/structure/skin_candle, 1, 0)
+		candles += SpawnConnectedStructure(/obj/structure/skin_candle, -1, 0)
+		candles += SpawnConnectedStructure(/obj/structure/skin_candle, 0, 1)
+		candles += SpawnConnectedStructure(/obj/structure/skin_candle, 0, -1)
+
+//***Breach Procs***//
+/mob/living/simple_animal/hostile/abnormality/skin_prophet/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
+	ExtinguishCandles()
+	if(breach_type != BREACH_MINING)
+		var/turf/T = pick(GLOB.department_centers)
+		forceMove(T)
+	for(var/i = 1, i <= 4 ,i++)
+		var/turf/T = get_ranged_target_turf(src, (angle2dir(-45 + (i * 90))), rand(2,4))//angle2dir fetches diagonal dirs, starting at 45 degrees.
+		var/mob/living/simple_animal/hostile/skin_candle/C = new(T)
+		breach_candles += C
+		C.master = src
+	SetLights(FALSE)
+
+/mob/living/simple_animal/hostile/abnormality/skin_prophet/proc/HandleCandles(lighting = FALSE)
+	if(LAZYLEN(candles) == 0)
+		for(var/obj/structure/skin_candle/thing in datum_reference.connected_structures)
+			candles += thing
+	if(lighting)
+		if(lit_candles > 4)
+			BreachEffect()
+			return
+		var/obj/structure/skin_candle/C = candles[lit_candles + 1]
+		C.LightUp()
+		++lit_candles
+
+/mob/living/simple_animal/hostile/abnormality/skin_prophet/bullet_act(obj/projectile/Proj, def_zone, piercing_hit = FALSE)
+	if(!LAZYLEN(breach_candles))
+		return ..()
+	if(istype(Proj, /obj/projectile/skin_fire))
+		return
+	..()
+	if(Proj.firer)
+		WriteAttack(Proj.firer)
+
+/mob/living/simple_animal/hostile/abnormality/skin_prophet/attackby(obj/item/I, mob/living/user, params)
+	if(!LAZYLEN(breach_candles))
+		return ..()
+	..()
+	if(user)
+		Counter(user)
+
+//***Work-related procs***
+/mob/living/simple_animal/hostile/abnormality/skin_prophet/proc/ExtinguishCandles()
+	for(var/obj/structure/skin_candle/C in candles)
+		C.LightOff()
+	lit_candles = 0
+
+/mob/living/simple_animal/hostile/abnormality/skin_prophet/proc/SetLights(power = TRUE)
+	var/area/A = get_area(src)
+	A.lightswitch = power
+	A.update_icon()
+	A.power_change()
+
+/mob/living/simple_animal/hostile/abnormality/skin_prophet/proc/Counter(atom/target)
+	if(isliving(target))
+		var/mob/living/L = target
+		L.throw_at(get_step(src, get_dir(src, target)), 2)
+	if(prob(50))
+		playsound(src, attack_sound, 75, 0, 3)
+	else
+		playsound(src, 'sound/abnormalities/skinprophet/Skin_Hit.ogg', 75, 0, 3)
+	for(var/turf/T in view(2, src))
+		new /obj/effect/temp_visual/smash_effect(T)
+		HurtInTurf(T, list(), melee_damage_upper, RED_DAMAGE, check_faction = FALSE, hurt_mechs = TRUE, hurt_structure = TRUE)
+
+/mob/living/simple_animal/hostile/abnormality/skin_prophet/proc/WriteAttack(atom/target)
+	playsound(src, 'sound/abnormalities/skinprophet/Skin_Write.ogg', 75, 0, 3)
+	var/target_turf = get_turf(target)
+	for (var/turf/T in range(target_turf, 1))
+		new /obj/effect/temp_visual/cult/sparks(T)
+		spawn(15)
+			HurtInTurf(T, list(), melee_damage_lower, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE)
+			new /obj/effect/temp_visual/smash_effect(T)
+	SLEEP_CHECK_DEATH(1.5 SECONDS)
+	playsound(target_turf, 'sound/abnormalities/skinprophet/Skin_Hit.ogg', 75, 0, 3)
+
+//***Containment Structure***
+/obj/structure/skin_candle
+	name = "candle"
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "candle"
+	var/lit_icon = "candle_lit"
+	anchored = TRUE
+	layer = TURF_LAYER
+	plane = FLOOR_PLANE
+	resistance_flags = INDESTRUCTIBLE
+	light_color = LIGHT_COLOR_FIRE
+	light_range = 0
+	light_power = 0
+
+/obj/structure/skin_candle/proc/LightUp()
+	icon_state = lit_icon
+	light_range = 2
+	light_power = 7
+	set_light_on(TRUE)
+	update_light()
+
+/obj/structure/skin_candle/proc/LightOff()
+	icon_state = initial(icon_state)
+	set_light_on(FALSE)
+
+//***Breaching minion***
+/mob/living/simple_animal/hostile/skin_candle
+	name = "candle"
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "candle_lit"
+	icon_dead = "candle"
+	maxHealth = 15
+	health = 15
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.5)
+	ranged = TRUE
+	check_friendly_fire = TRUE
+	gender = NEUTER
+	density = FALSE
+	projectiletype = /obj/projectile/skin_fire
+	projectilesound = 'sound/abnormalities/skinprophet/Skin_Candle.ogg'
+	del_on_death = FALSE
+	light_color = LIGHT_COLOR_FIRE
+	light_range = 2
+	light_power = 7
+	var/mob/living/simple_animal/hostile/abnormality/skin_prophet/master
+
+/mob/living/simple_animal/hostile/skin_candle/Move()
+	return FALSE
+
+/mob/living/simple_animal/hostile/skin_candle/death()
+	..()
+	light_range = 0
+	update_light()
+	if(master)
+		master.breach_candles -= src
+	QDEL_IN(src, 15 SECONDS)
+
+/mob/living/simple_animal/hostile/skin_candle/Destroy()
+	if(master)
+		master.breach_candles -= src
+	..()
+
+/mob/living/simple_animal/hostile/skin_candle/AttackingTarget(atom/attacked_target)
+	OpenFire(attacked_target)
