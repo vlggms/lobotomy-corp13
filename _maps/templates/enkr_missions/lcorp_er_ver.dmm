@@ -5625,7 +5625,7 @@
 /turf/open/floor/facility/halls,
 /area/awaymission/enkr)
 "JN" = (
-/mob/living/simple_animal/hostile/aminion/aminion/meatblob{
+/mob/living/simple_animal/hostile/aminion/meatblob{
 	faction = list("gold_ordeal")
 	},
 /turf/open/floor/stone,
