@@ -375,8 +375,8 @@
 /mob/living/simple_animal/hostile/red_shoe
 	name = "Red Shoe"
 	desc = "Teeth and leg bones jut out of this ragged shoe, as if the wearer's will was made manifest."
-	health = 200
-	maxHealth = 200
+	health = 150
+	maxHealth = 150
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "redshoes_breach2"
 	icon_living = "redshoes_breach2"
