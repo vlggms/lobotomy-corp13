@@ -2798,7 +2798,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/red_shoe{
+/mob/living/simple_animal/hostile/aminion/red_shoe{
 	melee_damage_lower = 18;
 	melee_damage_upper = 18;
 	health = 400;
@@ -3469,7 +3469,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/blood/old,
 /obj/item/trash/waffles,
-/mob/living/simple_animal/hostile/red_shoe{
+/mob/living/simple_animal/hostile/aminion/red_shoe{
 	melee_damage_lower = 18;
 	melee_damage_upper = 18;
 	health = 400;
@@ -5625,14 +5625,14 @@
 /turf/open/floor/facility/halls,
 /area/awaymission/enkr)
 "JN" = (
-/mob/living/simple_animal/hostile/aminion/meatblob{
+/mob/living/simple_animal/hostile/aminion/aminion/meatblob{
 	faction = list("gold_ordeal")
 	},
 /turf/open/floor/stone,
 /area/city/backstreets_alley)
 "JP" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/red_shoe{
+/mob/living/simple_animal/hostile/aminion/red_shoe{
 	melee_damage_lower = 18;
 	melee_damage_upper = 18;
 	health = 400;
@@ -7821,7 +7821,7 @@
 /area/city/backstreets_alley)
 "WA" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/red_shoe{
+/mob/living/simple_animal/hostile/aminion/red_shoe{
 	melee_damage_lower = 18;
 	melee_damage_upper = 18;
 	health = 400;
