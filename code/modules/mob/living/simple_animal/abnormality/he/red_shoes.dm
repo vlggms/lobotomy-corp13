@@ -215,12 +215,12 @@
 		icon_living = "redshoes_breach"
 		ChangeResistances(list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.5))
 		sleep(10)
-		new /mob/living/simple_animal/hostile/red_shoe(get_turf(src))
+		new /mob/living/simple_animal/hostile/aminion/red_shoe(get_turf(src))
 	datum_reference.qliphoth_change(-2)
 
 /mob/living/simple_animal/hostile/abnormality/red_shoes/Found(atom/A)//The solo breach generally sticks together
-	if(istype(A, /mob/living/simple_animal/hostile/red_shoe))
-		var/mob/living/simple_animal/hostile/red_shoe/S = A
+	if(istype(A, /mob/living/simple_animal/hostile/aminion/red_shoe))
+		var/mob/living/simple_animal/hostile/aminion/red_shoe/S = A
 		if(S.stat != DEAD && !S.target && !S.client && faction_check_mob(S))//cannibalized from steel ordeals
 			S.Goto(src,S.move_to_delay,1)
 
@@ -372,7 +372,7 @@
 	controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = null
 
 //Simple mob
-/mob/living/simple_animal/hostile/red_shoe
+/mob/living/simple_animal/hostile/aminion/red_shoe
 	name = "Red Shoe"
 	desc = "Teeth and leg bones jut out of this ragged shoe, as if the wearer's will was made manifest."
 	health = 150
@@ -391,9 +391,11 @@
 	melee_damage_type = RED_DAMAGE
 	speed = 1
 	move_to_delay = 3
+	threat_level = HE_LEVEL
+	score_divider = 2
 	var/steppy = 0
 
-/mob/living/simple_animal/hostile/red_shoe/AttackingTarget(atom/attacked_target)
+/mob/living/simple_animal/hostile/aminion/red_shoe/AttackingTarget(atom/attacked_target)
 	. = ..()
 	if(!ishuman(attacked_target))
 		return
@@ -401,7 +403,7 @@
 	if(istype(H) && (H.stat >= SOFT_CRIT || H.health < 0))
 		ChopFeet(H)
 
-/mob/living/simple_animal/hostile/red_shoe/proc/ChopFeet(mob/living/carbon/human/H)
+/mob/living/simple_animal/hostile/aminion/red_shoe/proc/ChopFeet(mob/living/carbon/human/H)
 	var/obj/item/bodypart/l_foot = H.get_bodypart(BODY_ZONE_L_LEG)//Feet are defined as BODY_ZONE_PRECISE_L_FOOT. Does the dismember proc not affect them?
 	var/obj/item/bodypart/r_foot = H.get_bodypart(BODY_ZONE_R_LEG)
 	if(HAS_TRAIT(H, TRAIT_NODISMEMBER))

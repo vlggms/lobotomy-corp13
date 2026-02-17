@@ -237,8 +237,8 @@ SUBSYSTEM_DEF(shuttle)
 
 	var/area/signal_origin = get_area(user)
 	var/emergency_reason = "\nNature of emergency:\n\n[call_reason]"
-	var/security_num = emgcylevel2num(get_emergency_level())
-	switch(security_num)
+	var/emergency_num = emgcylevel2num(get_emergency_level())
+	switch(emergency_num)
 		if(TRUMPET_2,TRUMPET_3)
 			emergency.request(null, signal_origin, html_decode(emergency_reason), 1) //There is a serious threat we gotta move no time to give them five minutes.
 		else
