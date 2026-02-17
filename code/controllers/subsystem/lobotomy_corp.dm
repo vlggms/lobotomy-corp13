@@ -450,7 +450,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 			to_chat(world, span_nicegreen("<b>All ordeals have ended, the round ending automatically is canceled for now!</b>"))
 		return FALSE
 	if((OrdealDeathCheck()) && !auto_restart_in_progress)
-		DeathAutoRestart(min = MinCheck())
+		DeathAutoRestart()
 	return TRUE
 
 /// Restarts the round when time reaches 0
