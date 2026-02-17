@@ -103,6 +103,8 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	var/auto_restart_in_progress = FALSE
 	/// The timer that goes down for when shits fucked
 	var/restart_timer = null
+	/// If the shuttle is comming or not
+	var/shuttle = FALSE
 
 /datum/controller/subsystem/lobotomy_corp/Initialize(timeofday)
 	if(SSmaptype.maptype in SSmaptype.combatmaps) // sleep
@@ -415,6 +417,12 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	DoRestartCheck()
 
 /datum/controller/subsystem/lobotomy_corp/proc/DoRestartCheck()
+	if(shuttle)
+		if(auto_restart_in_progress)
+			deltimer(restart_timer)
+			auto_restart_in_progress = FALSE
+			to_chat(world, span_nicegreen("<b>The shuttle has been called, the round ending automatically is canceled for now!</b>"))
+		return FALSE
 	if(auto_restart_in_progress)
 		if(!DeathCheck())
 			deltimer(restart_timer)
@@ -428,7 +436,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 			return FALSE
 		return FALSE
 	if((OrdealDeathCheck() || MinDeathCheck()) && !auto_restart_in_progress)
-		DeathAutoRestart(min = MinCheck())
+		DeathAutoRestart()
 	return TRUE
 
 /datum/controller/subsystem/lobotomy_corp/proc/OrdealStartOrFinish(datum/source, mob/living/L)
@@ -446,7 +454,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	return TRUE
 
 /// Restarts the round when time reaches 0
-/datum/controller/subsystem/lobotomy_corp/proc/DeathAutoRestart(time = 120 SECONDS, min = FALSE)
+/datum/controller/subsystem/lobotomy_corp/proc/DeathAutoRestart(time = 120 SECONDS)
 	auto_restart_in_progress = TRUE
 	if(time <= 0)
 		message_admins("The round is over because all agents are dead while one or more threats are unresolved!")
@@ -454,10 +462,10 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		SSticker.force_ending = TRUE
 		return TRUE
 	var/dialog = "All agents are dead or panicking! If ordeals are left unresolved, new agents don't join, or a panicking agent isn't dealt with"
-	if(min)
+	if(MinCheck())
 		dialog = "All agents are dead or panicking! If the current situation is left unresolved, new agents don't join, or a panicking agent isn't dealt with"
 	to_chat(world, span_danger("<b>[dialog], the round will automatically end in <u>[round(time/10)] seconds!</u></b>"))
-	restart_timer = addtimer(CALLBACK(src, PROC_REF(DeathAutoRestart), max(0, time - 30 SECONDS), MinCheck()), 30 SECONDS, TIMER_STOPPABLE)
+	restart_timer = addtimer(CALLBACK(src, PROC_REF(DeathAutoRestart), max(0, time - 30 SECONDS)), 30 SECONDS, TIMER_STOPPABLE)
 	return TRUE
 
 /datum/controller/subsystem/lobotomy_corp/proc/CheckRepairState()

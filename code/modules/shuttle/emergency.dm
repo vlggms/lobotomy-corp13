@@ -313,7 +313,8 @@
 		if(src == SSshuttle.emergency)
 			// If we're the selected emergency shuttle
 			SSshuttle.emergencyDeregister()
-
+	SSlobotomy_corp.shuttle = FALSE
+	SSlobotomy_corp.DoRestartCheck()
 	. = ..()
 
 /obj/docking_port/mobile/emergency/request(obj/docking_port/stationary/S, area/signalOrigin, reason, redAlert, set_coefficient=null, noannounce=FALSE)
@@ -327,6 +328,8 @@
 			else
 				set_coefficient = 0.6
 	var/call_time = SSshuttle.emergencyCallTime * set_coefficient * engine_coeff
+	SSlobotomy_corp.shuttle = TRUE
+	SSlobotomy_corp.DoRestartCheck()
 	switch(mode)
 		// The shuttle can not normally be called while "recalling", so
 		// if this proc is called, it's via admin fiat
@@ -352,6 +355,8 @@
 	if(SSshuttle.emergencyNoRecall)
 		return
 
+	SSlobotomy_corp.shuttle = FALSE
+	SSlobotomy_corp.DoRestartCheck()
 	invertTimer()
 	mode = SHUTTLE_RECALL
 

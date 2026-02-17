@@ -35,7 +35,7 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 	var/long_timer = 30 SECONDS
 
 /datum/controller/subsystem/lobotomy_emergency/Initialize(timeofday)
-	if(SSmaptype.maptype in SSmaptype.combatmaps) // sleep
+	if(SSmaptype.maptype in SSmaptype.combatmaps || SSmaptype.maptype == "enkephalin_rush") // sleep
 		flags |= SS_NO_FIRE
 		return ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(OnMobDeath))
@@ -87,7 +87,10 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 		return
 	if(istype(abno, /mob/living/simple_animal/hostile/abnormality/training_rabbit))
 		return
-	UpdateScore(threat_to_score[abno.threat_level])
+	else if(istype(abno, /mob/living/simple_animal/hostile/abnormality/red_shoes))
+		UpdateScore(threat_to_score[abno.threat_level]/2)//A wierd edge case but its due to red shoes being 2 seperate mobs.
+	else
+		UpdateScore(threat_to_score[abno.threat_level])
 
 /datum/controller/subsystem/lobotomy_emergency/proc/UpdateMin()
 	var/min = 0
@@ -123,6 +126,8 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 			var/mob/living/simple_animal/hostile/abnormality/puss_in_boots/puss = A
 			if(!puss.friendly)
 				min += (threat_to_score[A.threat_level]/2)/score_divider
+		else if(istype(A, /mob/living/simple_animal/hostile/abnormality/red_shoes))
+			min += (threat_to_score[A.threat_level]/4)/score_divider
 		else
 			min += (threat_to_score[A.threat_level]/2)/score_divider
 	if(LAZYLEN(SSlobotomy_corp.current_ordeals))

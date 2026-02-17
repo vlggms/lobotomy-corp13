@@ -498,7 +498,6 @@
 	return parts.Join()
 
 /datum/controller/subsystem/ticker/proc/facility_report()
-	to_chat(world, "A")
 	var/list/parts = list()
 	parts += "<span class='header'>Facility Records:</span>"
 	parts += "<div class='panel stationborder'>"
