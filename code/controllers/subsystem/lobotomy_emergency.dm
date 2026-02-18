@@ -5,6 +5,8 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 	name = "Lobotomy Emergency System"
 	flags = SS_KEEP_TIMING | SS_BACKGROUND | SS_NO_FIRE
 
+	//We Really REALLY don't want it to calc the score in modes where it wouldn't make sense or would cause issues with how the rounds work.
+	var/should_calc_score = TRUE
 	var/current_score = 0
 	var/score_cap = 100
 	var/score_min = 0
@@ -35,8 +37,9 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 	var/long_timer = 30 SECONDS
 
 /datum/controller/subsystem/lobotomy_emergency/Initialize(timeofday)
-	if(SSmaptype.maptype in SSmaptype.combatmaps || SSmaptype.maptype == "enkephalin_rush") // sleep
+	if((SSmaptype.maptype in SSmaptype.combatmaps) || SSmaptype.maptype == "enkephalin_rush") // sleep
 		flags |= SS_NO_FIRE
+		should_calc_score = FALSE
 		return ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(OnMobDeath))
 	RegisterSignal(SSdcs, COMSIG_GLOB_HUMAN_INSANE, PROC_REF(OnHumanInsane))
@@ -93,6 +96,8 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 		UpdateScore(threat_to_score[abno.threat_level])
 
 /datum/controller/subsystem/lobotomy_emergency/proc/UpdateMin()
+	if(!should_calc_score)
+		return
 	var/min = 0
 	for(var/mob/living/simple_animal/hostile/aminion/A in GLOB.abnormality_minion_list)
 		if(!A.can_affect_emergency)
