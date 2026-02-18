@@ -35,7 +35,7 @@
 	hand_cooldown = hand_cooldown_time + world.time + rand(10 SECONDS, 30 SECONDS)
 	arm_cooldown = arm_cooldown_time + world.time
 	retaliation_cooldown = retaliation_cooldown_time + world.time
-	retaliation_health = maxHealth * 0.75
+	retaliation_health = maxHealth * 0.5
 
 /mob/living/simple_animal/hostile/ordeal/violet_dusk/Life()
 	. = ..()
