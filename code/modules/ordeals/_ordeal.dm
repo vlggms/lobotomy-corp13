@@ -70,6 +70,9 @@
 	priority_announce("The Ordeal has ended. Facility has been rewarded with [reward_percent*100]% PE.", name, sound='sound/vox_fem/..ogg')
 	SSlobotomy_corp.AdjustAvailableBoxes(total_reward)
 	SSlobotomy_corp.current_ordeals -= src
+	if(!(SSmaptype.maptype in SSmaptype.combatmaps || SSmaptype.maptype == "enkephalin_rush"))
+		SSlobotomy_emergency.UpdateMin()
+		SSlobotomy_emergency.score_divider = min(SSlobotomy_emergency.divide_cap, SSlobotomy_emergency.score_divider + 1)
 	SSlobotomy_corp.ordeal_stats += 5
 	for(var/mob/living/carbon/human/person as anything in SSlobotomy_corp.active_officers)
 		if(!istype(person) || QDELETED(person)) // gibbed or cryo'd, we no longer care about them
