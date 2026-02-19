@@ -200,7 +200,7 @@
 			var/list/valid_roles = list(
 				"Manager",
 				"Clerk",
-				"Agent Captain",
+				"Control Team Captain",
 				"Agent",
 				"Agent Intern",
 				"Extraction Officer",
