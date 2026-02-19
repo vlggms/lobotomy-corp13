@@ -28,9 +28,9 @@
 	start_qliphoth = 1
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(50, 55, 55, 55, 60),
-		ABNORMALITY_WORK_INSIGHT = list(40, 30, 20, 40, 40),
-		ABNORMALITY_WORK_ATTACHMENT = 30,
-		ABNORMALITY_WORK_REPRESSION = list(55, 60, 60, 60, 55),
+		ABNORMALITY_WORK_INSIGHT = 20,
+		ABNORMALITY_WORK_ATTACHMENT = 20,
+		ABNORMALITY_WORK_REPRESSION = 20,
 	)
 	work_damage_upper = 6
 	work_damage_lower = 3
@@ -87,6 +87,10 @@
 	var/dash_cooldown = 0
 	var/dash_cooldown_time = 4 SECONDS
 	var/list/been_hit = list() // Don't get hit twice.
+	//work vars
+	var/portal_type = "RED"
+	var/rifting = FALSE
+
 
 /datum/action/innate/abnormality_attack/wayward_tele
 	name = "Teleport"
@@ -114,15 +118,13 @@
 
 /mob/living/simple_animal/hostile/abnormality/wayward/Life()
 	. = ..()
-	if(!.)
-		return
 	if(IsContained())
+		CheckView()
 		return
 	if(client || IsCombatMap())
 		return
 	if((teleport_cooldown <= world.time) && can_act)
 		TryTeleport()
-	return
 
 /mob/living/simple_animal/hostile/abnormality/wayward/Move()
 	if(!can_act)
@@ -149,13 +151,6 @@
 	. = ..()
 	if(prob(75))
 		datum_reference.qliphoth_change(-1)
-	return
-
-/mob/living/simple_animal/hostile/abnormality/wayward/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
-	if(prob(20))
-		datum_reference.qliphoth_change(-1)
-	return
 
 /mob/living/simple_animal/hostile/abnormality/wayward/FearEffectText(mob/affected_mob, level = 0)
 	level = num2text(clamp(level, -1, 4))
@@ -166,6 +161,27 @@
 		"4" = list("Is that... from a wing?!", "No... it can't be...", "WHAT IS THAT THING?!"),
 	)
 	return pick(result_text_list[level])
+
+/mob/living/simple_animal/hostile/abnormality/wayward/proc/CheckView()
+	for(var/mob/living/carbon/human/H in ohearers(7, src))
+		icon_state = initial(icon_state)
+		color = null
+		rifting = FALSE
+		return
+	if(rifting)
+		return
+	rifting = TRUE
+	portal_type = pick(list("RED", "WHITE", "BLACK", "PALE"))
+	icon_state = "rift_work"
+	switch(portal_type)
+		if("RED")
+			color = COLOR_RED
+		if("WHITE")
+			color = null
+		if("BLACK")
+			color = COLOR_BLACK
+		if("PALE")
+			color = COLOR_ORANGE
 
 //*** Breach mechanics ***
 
