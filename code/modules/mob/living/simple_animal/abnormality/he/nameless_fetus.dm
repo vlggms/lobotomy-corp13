@@ -126,7 +126,7 @@
 		satisfied = FALSE
 		hunger = 0
 		datum_reference.qliphoth_change(1)
-		visible_message(span_userdanger("The fetus starts to wimper but only for a moment..."))
+		visible_message(span_userdanger("The fetus starts to wimper, but only for a moment..."))
 	else
 		criesleft = 5
 		for(var/mob/living/carbon/human/H in GLOB.player_list)	//Way harder to get a list of living humans.
