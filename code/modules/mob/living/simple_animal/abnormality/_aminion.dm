@@ -33,6 +33,8 @@
 	. = ..()
 	if(fear_level == null)
 		fear_level = threat_level
+	if(SSlobotomy_emergency.should_calc_score)
+		SSlobotomy_emergency.OnAbnoMinionSpawn(src)
 
 /mob/living/simple_animal/hostile/aminion/add_to_mob_list()
 	. = ..()
