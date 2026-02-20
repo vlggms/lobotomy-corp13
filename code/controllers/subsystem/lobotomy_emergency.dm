@@ -44,7 +44,6 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(OnMobDeath))
 	RegisterSignal(SSdcs, COMSIG_GLOB_HUMAN_INSANE, PROC_REF(OnHumanInsane))
 	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, PROC_REF(OnAbnoBreach))
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_CREATED, PROC_REF(OnMobCreated))
 	return ..()
 
 /datum/controller/subsystem/lobotomy_emergency/proc/OnMobDeath(datum/source, mob/living/died, gibbed)
@@ -73,16 +72,13 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 		UpdateScore((agent_death * get_user_level(H))/agent_count)//If a higher level agent panics it should probably matter more
 
 
-/datum/controller/subsystem/lobotomy_emergency/proc/OnMobCreated(datum/source, mob/M)
-	SIGNAL_HANDLER
+/datum/controller/subsystem/lobotomy_emergency/proc/OnAbnoMinionSpawn(mob/living/simple_animal/hostile/aminion/M)
 	if(is_tutorial_level(M.z))
 		return
-	if(istype(M, /mob/living/simple_animal/hostile/aminion))
-		var/mob/living/simple_animal/hostile/aminion/abno = M
-		if(!abno.can_affect_emergency)
-			return FALSE
-		UpdateScore(threat_to_score[abno.threat_level]/abno.score_divider)
-		return
+	if(!M.can_affect_emergency)
+		return FALSE
+	UpdateScore(threat_to_score[M.threat_level]/M.score_divider)
+	return
 
 /datum/controller/subsystem/lobotomy_emergency/proc/OnAbnoBreach(datum/source, mob/living/simple_animal/hostile/abnormality/abno)
 	SIGNAL_HANDLER
