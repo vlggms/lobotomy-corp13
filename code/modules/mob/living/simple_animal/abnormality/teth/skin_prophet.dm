@@ -80,7 +80,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/skin_prophet/OpenFire(atom/A)
 	WriteAttack(target)
-	ranged_cooldown = world.time + (ranged_cooldown_time + (ranged_cooldown_time * LAZYLEN(breach_candles)))
+	ranged_cooldown = world.time + (ranged_cooldown_time + (ranged_cooldown_time * length(breach_candles)))
 
 /mob/living/simple_animal/hostile/abnormality/skin_prophet/Move()
 	return FALSE
@@ -91,14 +91,23 @@
 	icon = 'ModularTegustation/Teguicons/abno_cores/teth.dmi'
 	pixel_x = -16
 	density = FALSE
+	for (var/mob/living/simple_animal/hostile/skin_candle/C in breach_candles)
+		C.death()
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
 	..()
 
+/mob/living/simple_animal/hostile/abnormality/skin_prophet/Destroy(force)
+	candles = null
+	for (var/mob/living/simple_animal/hostile/skin_candle/C in breach_candles)
+		C.master = null
+	breach_candles = null
+	return ..()
+
 /mob/living/simple_animal/hostile/abnormality/skin_prophet/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
-	if(!LAZYLEN(breach_candles))
+	if(!length(breach_candles))
 		return ..()
-	var/damage_penalty = LAZYLEN(breach_candles)
+	var/damage_penalty = length(breach_candles)
 	amount -= amount * (0.3 * damage_penalty)
 	return ..()
 
@@ -173,7 +182,7 @@
 	SetLights(FALSE)
 
 /mob/living/simple_animal/hostile/abnormality/skin_prophet/proc/HandleCandles(lighting = FALSE)
-	if(LAZYLEN(candles) == 0)
+	if(length(candles) == 0)
 		for(var/obj/structure/skin_candle/thing in datum_reference.connected_structures)
 			candles += thing
 	if(lighting)
@@ -193,7 +202,7 @@
 	S.fire()
 
 /mob/living/simple_animal/hostile/abnormality/skin_prophet/bullet_act(obj/projectile/Proj, def_zone, piercing_hit = FALSE)
-	if(!LAZYLEN(breach_candles))
+	if(!length(breach_candles))
 		return ..()
 	if(istype(Proj, /obj/projectile/skin_fire))
 		return
@@ -202,7 +211,7 @@
 		FireProjectile(Proj.firer)
 
 /mob/living/simple_animal/hostile/abnormality/skin_prophet/attackby(obj/item/I, mob/living/user, params)
-	if(!LAZYLEN(breach_candles))
+	if(!length(breach_candles))
 		return ..()
 	..()
 	if(user)
@@ -296,14 +305,13 @@
 	..()
 	light_range = 0
 	update_light()
-	if(master)
-		master.breach_candles -= src
 	QDEL_IN(src, 15 SECONDS)
 
 /mob/living/simple_animal/hostile/skin_candle/Destroy(force)
 	if(master)
 		master.breach_candles -= src
-	..()
+	master = null
+	return ..()
 
 /mob/living/simple_animal/hostile/skin_candle/AttackingTarget(atom/attacked_target)
 	OpenFire(attacked_target)
