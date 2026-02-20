@@ -57,6 +57,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/training)
+"aj" = (
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 1
+	},
+/obj/machinery/text_adventure_console,
+/turf/open/floor/carpet/royalblack,
+/area/department_main/extraction)
 "al" = (
 /obj/effect/turf_decal/tile{
 	color = "BBBBBB";
@@ -1444,6 +1452,9 @@
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 8
+	},
+/obj/machinery/defibrillator_mount/loaded{
+	pixel_x = -32
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/safety)
@@ -3301,7 +3312,7 @@
 	dir = 4;
 	light_color = "#e8eaff"
 	},
-/turf/open/space/basic,
+/turf/open/floor/plasteel/dark,
 /area/department_main/welfare)
 "jF" = (
 /obj/effect/turf_decal/siding/yellow{
@@ -4982,7 +4993,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/space/basic,
+/turf/open/floor/plasteel/dark,
 /area/department_main/welfare)
 "oO" = (
 /obj/effect/turf_decal/siding/brown{
@@ -5003,6 +5014,12 @@
 	},
 /turf/open/floor/noslip,
 /area/facility_hallway/manager)
+"oR" = (
+/obj/machinery/telecomms/server/presets/supply{
+	name = "Control Server"
+	},
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/south)
 "oS" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -5865,6 +5882,10 @@
 /obj/machinery/door/poddoor/shutters/window/preopen{
 	id = "extraction2"
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 6;
+	resistance_flags = 115
+	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
 "rl" = (
@@ -6074,13 +6095,6 @@
 /obj/structure/closet/secure_closet/freezer/fridge/open{
 	anchored = 1
 	},
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
 /obj/item/food/meat/slab,
 /obj/item/food/meat/slab,
 /obj/item/food/meat/slab,
@@ -7484,11 +7498,12 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
 "vZ" = (
-/obj/effect/turf_decal/siding{
-	color = "#7D6521"
+/obj/structure/disposalpipe/segment{
+	color = "#d80000";
+	dir = 4;
+	resistance_flags = 115
 	},
-/obj/structure/closet/crate,
-/turf/open/floor/carpet/royalblack,
+/turf/closed/indestructible/reinforced,
 /area/department_main/extraction)
 "wa" = (
 /obj/machinery/light{
@@ -7789,6 +7804,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/command)
+"wX" = (
+/obj/structure/disposalpipe/segment{
+	dir = 9;
+	resistance_flags = 115
+	},
+/turf/closed/indestructible/reinforced,
+/area/department_main/extraction)
 "wY" = (
 /obj/machinery/vending/hydronutrients,
 /obj/effect/turf_decal/siding/brown{
@@ -8902,7 +8924,11 @@
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/south)
 "zW" = (
-/obj/structure/toolabnormality/wishwell,
+/obj/structure/disposalpipe/segment{
+	color = "#d80000";
+	dir = 4;
+	resistance_flags = 115
+	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
 "zX" = (
@@ -9208,7 +9234,12 @@
 /turf/open/floor/wood,
 /area/department_main/information)
 "AU" = (
-/obj/machinery/light,
+/obj/structure/toolabnormality/wishwell,
+/obj/structure/disposalpipe/segment{
+	color = "#d80000";
+	dir = 4;
+	resistance_flags = 115
+	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
 "AX" = (
@@ -9249,6 +9280,19 @@
 	},
 /turf/open/floor/facility/white,
 /area/department_main/command)
+"Bd" = (
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	resistance_flags = 115
+	},
+/obj/machinery/computer/abnormality_logs{
+	dir = 8
+	},
+/turf/open/floor/carpet/royalblack,
+/area/department_main/extraction)
 "Bf" = (
 /obj/effect/turf_decal/siding/brown/corner{
 	dir = 4
@@ -9772,6 +9816,10 @@
 /obj/machinery/gibber,
 /turf/open/floor/plasteel/white,
 /area/department_main/training)
+"CM" = (
+/obj/machinery/announcement_system,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/facility_hallway/south)
 "CO" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
@@ -10302,6 +10350,7 @@
 /obj/structure/disposalpipe/segment{
 	resistance_flags = 115
 	},
+/obj/effect/landmark/refinerspawn,
 /turf/open/floor/carpet/royalblack,
 /area/department_main/extraction)
 "En" = (
@@ -10317,14 +10366,11 @@
 /turf/open/floor/plasteel/dark/side,
 /area/facility_hallway/control)
 "Eo" = (
-/obj/effect/turf_decal/siding{
-	color = "#7D6521";
-	dir = 4
-	},
 /obj/structure/disposalpipe/segment{
+	dir = 4;
 	resistance_flags = 115
 	},
-/turf/open/floor/carpet/royalblack,
+/turf/closed/indestructible/reinforced,
 /area/department_main/extraction)
 "Ep" = (
 /obj/effect/turf_decal/siding/wideplating,
@@ -10702,18 +10748,6 @@
 /obj/item/reagent_containers/food/condiment/flour,
 /obj/item/reagent_containers/food/condiment/flour,
 /obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
 /obj/item/storage/fancy/egg_box,
 /obj/item/storage/fancy/egg_box,
 /obj/item/storage/fancy/egg_box,
@@ -11966,6 +12000,13 @@
 	},
 /turf/open/floor/carpet,
 /area/department_main/control)
+"Js" = (
+/obj/structure/disposalpipe/segment{
+	resistance_flags = 115
+	},
+/obj/machinery/navbeacon/wayfinding/architecturedepartment,
+/turf/open/floor/facility/dark,
+/area/facility_hallway/manager)
 "Jt" = (
 /obj/item/toy/plush/qoh,
 /obj/structure/chair/wood{
@@ -12921,9 +12962,7 @@
 /turf/open/floor/facility/white,
 /area/facility_hallway/safety)
 "Ma" = (
-/obj/machinery/computer/abnormality_logs{
-	dir = 3
-	},
+/obj/machinery/computer/abnormality_logs,
 /obj/effect/turf_decal/tile{
 	color = "BBBBBB";
 	dir = 1
@@ -13214,6 +13253,13 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/facility_hallway/extraction)
+"Nj" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	resistance_flags = 115
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/extraction)
 "Nk" = (
 /obj/machinery/light{
 	dir = 1
@@ -13755,15 +13801,12 @@
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
 "Pb" = (
-/obj/machinery/computer/extraction_cargo,
-/obj/effect/turf_decal/siding{
-	color = "#7D6521";
-	dir = 5
-	},
+/obj/machinery/light,
 /obj/structure/disposalpipe/segment{
+	dir = 4;
 	resistance_flags = 115
 	},
-/turf/open/floor/carpet/royalblack,
+/turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
 "Pc" = (
 /obj/effect/turf_decal/siding{
@@ -15224,6 +15267,19 @@
 	},
 /turf/open/floor/plating,
 /area/department_main/discipline)
+"TP" = (
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	resistance_flags = 115
+	},
+/obj/machinery/computer/extraction_cargo{
+	dir = 8
+	},
+/turf/open/floor/carpet/royalblack,
+/area/department_main/extraction)
 "TR" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 6
@@ -15357,6 +15413,19 @@
 /obj/effect/turf_decal/tile/purple,
 /turf/open/floor/plasteel,
 /area/department_main/information)
+"Uh" = (
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 5
+	},
+/obj/structure/disposalpipe/segment{
+	resistance_flags = 115
+	},
+/obj/machinery/computer/ego_purchase{
+	dir = 8
+	},
+/turf/open/floor/carpet/royalblack,
+/area/department_main/extraction)
 "Ui" = (
 /obj/effect/turf_decal/tile/blue{
 	color = "#3234B9";
@@ -25787,7 +25856,7 @@ jx
 jx
 jx
 NO
-ZF
+Js
 ZF
 ZF
 ZF
@@ -48823,9 +48892,9 @@ jl
 jl
 jl
 jl
-jl
-jl
-jl
+dr
+dr
+dr
 jl
 jl
 jl
@@ -48896,10 +48965,10 @@ VQ
 VQ
 VQ
 VQ
-jl
-lq
-IQ
-jl
+VQ
+vZ
+Eo
+VQ
 jl
 jl
 jl
@@ -49081,7 +49150,7 @@ jl
 jl
 dr
 dr
-dr
+CM
 dr
 dr
 jl
@@ -49152,11 +49221,11 @@ bC
 Ec
 Ec
 ed
+aE
+HA
+zW
+Nj
 VQ
-jl
-lq
-IQ
-jl
 jl
 jl
 jl
@@ -49409,11 +49478,11 @@ Eg
 id
 id
 CS
+wm
+gh
+AU
+Pb
 VQ
-jl
-lq
-IQ
-jl
 jl
 jl
 jl
@@ -49666,11 +49735,11 @@ Cv
 id
 mJ
 Dk
+aE
+gh
+zW
+Nj
 VQ
-jl
-lq
-IQ
-jl
 jl
 jl
 jl
@@ -49924,10 +49993,10 @@ id
 mJ
 CS
 VQ
-jl
-lq
-IQ
-jl
+VQ
+vZ
+Eo
+VQ
 jl
 jl
 jl
@@ -51137,7 +51206,7 @@ jl
 jl
 dr
 dr
-dr
+oR
 dr
 dr
 jl
@@ -51204,7 +51273,7 @@ bH
 bH
 AP
 Ox
-Eg
+aj
 id
 id
 lj
@@ -51393,9 +51462,9 @@ jl
 jl
 jl
 jl
-jl
-jl
-jl
+dr
+dr
+dr
 jl
 jl
 jl
@@ -51461,10 +51530,10 @@ bH
 bH
 AP
 Vu
-Eg
+bU
 id
 id
-vZ
+WL
 VQ
 jl
 jl
@@ -51718,7 +51787,7 @@ bH
 bH
 AP
 Vu
-bU
+XI
 id
 id
 Bg
@@ -51975,14 +52044,14 @@ bH
 bH
 AP
 rk
-XI
-id
-id
-WL
-VQ
-jl
-jl
-IQ
+Uh
+TP
+Bd
+Em
+Gv
+ED
+ED
+Ow
 jl
 jl
 jl
@@ -52231,15 +52300,15 @@ QW
 rD
 VS
 xm
-Gv
-Pb
-Eo
-Eo
-Em
-Gv
-ED
-ED
-Ow
+wX
+VQ
+VQ
+VQ
+VQ
+VQ
+jl
+jl
+jl
 jl
 jl
 jl
@@ -52489,11 +52558,11 @@ VQ
 qU
 VQ
 VQ
-VQ
-aE
-wm
-aE
-VQ
+jl
+jl
+jl
+jl
+jl
 jl
 jl
 jl
@@ -52746,11 +52815,11 @@ Ei
 pa
 jZ
 ns
-VQ
-HA
-gh
-gh
-VQ
+jl
+jl
+jl
+jl
+jl
 jl
 jl
 jl
@@ -53003,11 +53072,11 @@ as
 fs
 jR
 ns
-VQ
-gh
-zW
-AU
-VQ
+jl
+jl
+jl
+jl
+jl
 jl
 jl
 jl
@@ -53260,11 +53329,11 @@ as
 fs
 jR
 ns
-VQ
-gh
-gh
-gh
-VQ
+jl
+jl
+jl
+jl
+jl
 jl
 jl
 jl
@@ -53517,11 +53586,11 @@ as
 fs
 jR
 ns
-VQ
-VQ
-VQ
-VQ
-VQ
+jl
+jl
+jl
+jl
+jl
 jl
 jl
 jl
