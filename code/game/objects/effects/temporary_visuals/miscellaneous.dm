@@ -1121,3 +1121,34 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "seasons_wisp_death"
 	duration = 15
+
+/obj/effect/temp_visual/dimshredder_in
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "ripper_in"
+	duration = 20
+	pixel_y = 10
+	pixel_x = 20
+
+/obj/effect/temp_visual/dimshredder_in/Initialize()
+	. = ..()
+	var/matrix/M = matrix()
+	if(prob(50))
+		pixel_x = -20
+		transform = M.Turn(rand(-30, -90))
+	else
+		transform = M.Turn(rand(30, 90))
+	animate(src, transform = transform, time = 2)
+
+/obj/effect/temp_visual/dimshredder_out
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "ripper_out"
+	duration = 20
+	layer = ABOVE_MOB_LAYER
+
+/obj/effect/temp_visual/dimshredder_out/Initialize()
+	. = ..()
+	var/matrix/M = matrix()
+	pixel_y = rand(10, 30)
+	transform = M.Turn(180)
+	transform = M.Turn(rand(-60, 60))
+	animate(src, transform = transform, time = 2)

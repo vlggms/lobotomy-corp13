@@ -460,7 +460,7 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/wayward
 	abno_code = "T-02-170"// T-02-21-07 in LCB
 	abno_info = list(
-		"The entity rips open and enters a dimensional door in regular intervals. However, it has been confirmed to return shuld another being enter the containment unit.",
+		"The entity rips open and enters a dimensional door in regular intervals. However, it has been confirmed to return should another being enter the containment unit.",
 		"Its work preferences shifted based on which color of dimensional door it had entered immediately prior.",
 		"When the work result was Bad, the Qliphoth Counter lowered at a high probability.",
 		"Agents who witnessed the movements of Wayward Passenger reported unusually high levels of mental corruption.")

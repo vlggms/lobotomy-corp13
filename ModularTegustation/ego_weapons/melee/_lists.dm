@@ -3,7 +3,7 @@ GLOBAL_LIST_INIT(small_ego, list (
 	//EGO weapons
 	/obj/item/ego_weapon/ranged/pistol,
 	/obj/item/ego_weapon/mini,
-	/obj/item/ego_weapon/warp/knife,
+	/obj/item/ego_weapon/dimension_shredder,
 	/obj/item/ego_weapon/support/letter_opener,
 	/obj/item/ego_weapon/warring,
 	/obj/item/ego_weapon/feather,
