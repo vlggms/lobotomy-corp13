@@ -1561,3 +1561,84 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	if(W || D || V || G)
 		return FALSE
 	return TRUE
+//Creates a damage pop up
+/atom/proc/DamageEffect(amount, damtype, scale = 1, extratext = "")
+	var/effect_name
+	var/text_color = "#FFFFFF"
+	switch(damtype)
+		if(RED_DAMAGE, BRUTE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE, FIRE, TOX)
+			if(!amount)
+				return HealingEffect("no_dam", scale)
+			if(amount < 0)
+				return HealingEffect("healing", scale)
+		if(RED_DAMAGE, BRUTE)
+			effect_name = "dam_red"
+			text_color = "#FF0000"
+		if(WHITE_DAMAGE)
+			effect_name = "dam_white"
+			text_color = "#DEDDB6"
+		if(BLACK_DAMAGE)
+			effect_name = "dam_black"
+			text_color = "#8A4091"
+		if(PALE_DAMAGE)
+			effect_name = "dam_pale"
+			text_color = "#80C8ff"
+		if(FIRE)
+			effect_name = "dam_burn"
+			text_color = "#F2961D"
+		if(TOX)
+			effect_name = "dam_tox"
+			text_color = "#FF0000"
+		//Some Other non damage effects
+	if(!effect_name)
+		return null
+	effect_name += "[rand(1,2)]"
+	var/image/dam_effect = image('ModularTegustation/Teguicons/lc13_coloreffect.dmi', get_turf(src), effect_name, src.layer + 0.1)
+	dam_effect.pixel_x = rand(-12, 12)
+	dam_effect.pixel_y = rand(-9, 0)
+	dam_effect.plane = GAME_PLANE
+	dam_effect.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+	if(amount)
+		dam_effect.pixel_y = rand(-9, 9)
+		dam_effect.pixel_x = rand(-16, 8)// Move it a bit more to the side to make way for text
+		if(isnum(amount))
+			dam_effect.maptext_x = 22
+			dam_effect.maptext_y = 10
+			dam_effect.maptext_height = 32
+			dam_effect.maptext_width = 32
+			var/style = "font-family: 'Better VCR'; font-size: 5px; -dm-text-outline: 1px black; color: [text_color];"
+			dam_effect.maptext = "<span style=\"[style]\">[round(amount, 0.1)][extratext]</span>"
+		animate(dam_effect, pixel_x = pixel_x + rand(1, 4), pixel_y = pixel_y + 10, alpha = 0, time = rand(8, 12), easing = SINE_EASING)
+	if(scale != 1)
+		dam_effect.transform *= scale
+	if(typesof(src, /mob/living/simple_animal/hostile))
+		var/mob/living/simple_animal/hostile/H = src
+		if(length(H.projectile_blockers) > 0)
+			dam_effect.pixel_x += rand(-H.occupied_tiles_left_current * 32, H.occupied_tiles_right_current * 32)
+			dam_effect.pixel_y += rand(-H.occupied_tiles_down_current * 32, H.occupied_tiles_up_current * 32)
+	flick_overlay(dam_effect, GLOB.clients, 8)
+	return dam_effect
+
+//Creates a healing/sanity/no effect and charge effect
+/atom/proc/HealingEffect(type, scale = 1)
+	var/effect_name
+	switch(type)
+		if("healing")
+			effect_name = "healing"
+		if("sanity")
+			effect_name = "sanity"
+		if("charge")
+			effect_name = "charge"
+		if("no_dam")
+			effect_name = "no_dam"
+	if(!effect_name)
+		return null
+	var/image/heal_effect = image('ModularTegustation/Teguicons/lc13_coloreffect.dmi', get_turf(src), effect_name, src.layer + 0.1)
+	heal_effect.pixel_x = rand(-12, 12)
+	heal_effect.pixel_y = rand(-9, 0)
+	heal_effect.plane = GAME_PLANE
+	heal_effect.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+	if(scale != 1)
+		heal_effect.transform *= scale
+	flick_overlay(heal_effect, GLOB.clients, 8)
+	return heal_effect
