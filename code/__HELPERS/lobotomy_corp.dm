@@ -9,7 +9,7 @@
 			continue
 		if(!H.mind.assigned_role)
 			continue
-		if(!(H.mind.assigned_role in GLOB.security_positions))
+		if(!(H.mind.assigned_role in GLOB.security_positions)  && !(H.mind.assigned_role in officer_roles))
 			continue
 		if(HAS_TRAIT(H, TRAIT_WORK_FORBIDDEN))
 			if(officercount == FALSE || !(H.mind.assigned_role in officer_roles))

@@ -346,6 +346,8 @@
 	move_to_delay = 3
 	robust_searching = TRUE
 	stat_attack = HARD_CRIT
+	move_resist = MOVE_RESIST_DEFAULT
+	pull_force = PULL_FORCE_DEFAULT
 	del_on_death = FALSE
 	density = TRUE
 	threat_level = TETH_LEVEL
