@@ -1561,6 +1561,7 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	if(W || D || V || G)
 		return FALSE
 	return TRUE
+
 //Creates a damage pop up
 /atom/proc/DamageEffect(amount, damtype, scale = 1, extratext = "")
 	var/effect_name
