@@ -39,8 +39,9 @@ GLOBAL_LIST_EMPTY(ego_datums)
 /datum/ego_datum/weapon/New(datum/abnormality/DA)
 	. = ..()
 	if(!ispath(item_path, /obj/item/ego_weapon))
-		if(!ispath(item_path, /obj/item/ego_weapon/ranged))
-			return
+		return
+
+	if(ispath(item_path, /obj/item/ego_weapon/ranged))
 		var/obj/item/ego_weapon/ranged/E = new item_path(src)
 		var/bullet_damage_type = E.last_projectile_type
 		var/bullet_damage = E.last_projectile_damage
@@ -67,6 +68,7 @@ GLOBAL_LIST_EMPTY(ego_datums)
 				information["attack_speed"] = "Extremely slow"
 		qdel(E)
 		return
+
 	var/obj/item/ego_weapon/E = new item_path(src)
 	var/damage_type = E.damtype
 	var/damage = E.force
