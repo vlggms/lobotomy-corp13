@@ -387,7 +387,7 @@ GLOBAL_LIST_EMPTY(marked_players)
 /*-------------------\
 |Damage Visual Effect|
 \-------------------*/
-/mob/living/proc/DamageEffect(damage, damtype)
+/*/mob/living/proc/DamageEffect(damage, damtype)
 	if(damage > 0)
 		switch(damtype)
 			if(RED_DAMAGE, BRUTE)
@@ -437,19 +437,20 @@ GLOBAL_LIST_EMPTY(marked_players)
 	if(length(projectile_blockers) > 0)
 		dam_effect.pixel_x += rand(-occupied_tiles_left_current * 32, occupied_tiles_right_current * 32)
 		dam_effect.pixel_y += rand(-occupied_tiles_down_current * 32, occupied_tiles_up_current * 32)
-	return dam_effect
+	return dam_effect*/
 
 /mob/living/simple_animal/hostile/adjustBruteLoss(amount, updating_health, forced)
 	var/was_alive = stat != DEAD
-	. = ..()
 	if(was_alive)
 		DamageEffect(., BRUTE)
+	. = ..()
+
 
 /mob/living/simple_animal/hostile/adjustRedLoss(amount, updating_health, forced)
 	var/was_alive = stat != DEAD
-	. = ..()
 	if(was_alive)
 		DamageEffect(., RED_DAMAGE)
+	. = ..()
 
 /mob/living/simple_animal/hostile/adjustWhiteLoss(amount, updating_health, forced, white_healable)
 	var/was_alive = stat != DEAD
@@ -459,27 +460,28 @@ GLOBAL_LIST_EMPTY(marked_players)
 
 /mob/living/simple_animal/hostile/adjustBlackLoss(amount, updating_health, forced, white_healable)
 	var/was_alive = stat != DEAD
-	. = ..()
 	if(was_alive)
 		DamageEffect(., BLACK_DAMAGE)
+	. = ..()
 
 /mob/living/simple_animal/hostile/adjustPaleLoss(amount, updating_health, forced)
 	var/was_alive = stat != DEAD
-	. = ..()
 	if(was_alive)
 		DamageEffect(., PALE_DAMAGE)
+	. = ..()
 
 /mob/living/simple_animal/hostile/adjustFireLoss(amount, updating_health, forced)
 	var/was_alive = stat != DEAD
-	. = ..()
 	if(was_alive)
 		DamageEffect(., FIRE)
+	. = ..()
 
 /mob/living/simple_animal/hostile/adjustToxLoss(amount, updating_health, forced)
 	var/was_alive = stat != DEAD
-	. = ..()
 	if(was_alive)
 		DamageEffect(., TOX)
+	. = ..()
+
 
 /*Used in LC13 abnormality calculations.
 	Moved here so we can use it for all hostiles.
