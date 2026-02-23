@@ -15,7 +15,7 @@ HHPP Employee
 	antag_rep = 7
 	display_order = JOB_DISPLAY_ORDER_HHPP
 	exp_requirements = 60
-
+	mind_traits = list(TRAIT_WORK_FORBIDDEN)
 	job_attribute_limit = 0
 
 	allow_bureaucratic_error = FALSE
@@ -25,7 +25,6 @@ HHPP Employee
 //Why would you work as a HHPP chef is beyond me.
 /datum/job/chef/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
 	. = ..()
-	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
 	to_chat(M, "<span class='userdanger'>HamHamPangPang requires that you take payment in exchange for food. </span>")
 	to_chat(M, "<span class='userdanger'>HamHamPangPang does not approve the use of human meat in their food, it \
 		may cause the regional director to launch an investigation. </span>")

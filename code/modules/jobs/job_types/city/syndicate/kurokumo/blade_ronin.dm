@@ -20,7 +20,7 @@
 				Your life's work is to hunt them down and kill them. \
 				All other blade lineage rules apply; and Kurokumo Clan members are always dishonorable."
 	job_notice = "Avoid killing other players without a reason. Killing weak players not in self-defense is cowardly."
-
+	mind_traits = list(TRAIT_WORK_FORBIDDEN, TRAIT_COMBATFEAR_IMMUNE)
 
 	roundstart_attributes = list(
 								FORTITUDE_ATTRIBUTE = 100,
@@ -28,11 +28,6 @@
 								TEMPERANCE_ATTRIBUTE = 100,
 								JUSTICE_ATTRIBUTE = 100
 								)
-
-/datum/job/cutthroat/after_spawn(mob/living/carbon/human/H, mob/M)
-	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
-	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
-	. = ..()
 
 
 /datum/outfit/job/ronin

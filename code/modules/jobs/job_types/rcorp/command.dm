@@ -11,14 +11,14 @@
 	exp_type_department = EXP_TYPE_SECURITY
 	maptype = "rcorp"
 	trusted_only = TRUE
-
+	mind_traits = list(TRAIT_COMBATFEAR_IMMUNE)
 	outfit = /datum/outfit/job/commander
 	display_order = 1
 
 	access = list(ACCESS_ARMORY, ACCESS_RND, ACCESS_COMMAND, ACCESS_MEDICAL, ACCESS_MANAGER)
 	minimal_access = list(ACCESS_ARMORY, ACCESS_RND, ACCESS_COMMAND, ACCESS_MEDICAL, ACCESS_MANAGER)
 	departments = DEPARTMENT_COMMAND | DEPARTMENT_R_CORP
-
+	mind_traits = list(TRAIT_COMBATFEAR_IMMUNE)
 	roundstart_attributes = list(
 								FORTITUDE_ATTRIBUTE = 100,
 								PRUDENCE_ATTRIBUTE = 100,
@@ -40,7 +40,6 @@
 
 /datum/job/rcorp_captain/commander/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()
-	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 	var/datum/action/G = new /datum/action/cooldown/warbanner/captain
 	G.Grant(H)
 
@@ -116,10 +115,6 @@
 	name = "ground commander's suit"
 	desc = "Worn by the rcorp commander of the 4th pack."
 	icon_state = "rcorp_command"
-
-/datum/job/rcorp_captain/after_spawn(mob/living/carbon/human/H, mob/M)
-	. = ..()
-	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 
 /*
 Rcorp Ranks in order:

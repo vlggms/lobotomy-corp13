@@ -15,7 +15,7 @@
 
 	job_important = "You are a fishing office fixer, hired by L-Corp. You're on this facility to get everyone fresh fish! To start fishing use the fishing rod on a body of water."
 	job_notice = "To start fishing, use your fishing rod on a body of water."
-
+	mind_traits = list(TRAIT_WORK_FORBIDDEN)
 	alt_titles = list()
 	senior_title = "Kingfisher"
 	ultra_senior_title = "The Fishmaster"
@@ -25,13 +25,11 @@
 								TEMPERANCE_ATTRIBUTE = 20,
 								JUSTICE_ATTRIBUTE = 20
 								)
-	loadalways = FALSE
 	maptype = "fishing"
 
 
 /datum/job/fisher/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
 	H.set_attribute_limit(20)
-	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
 
 /datum/outfit/job/fishing
 	name = "Fishhook Office Fixer"

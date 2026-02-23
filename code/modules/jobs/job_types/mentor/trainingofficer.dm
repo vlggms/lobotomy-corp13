@@ -8,14 +8,10 @@
 	exp_requirements = 0
 	job_important = "You are a Training Officer. Your primary goal is to assist interns and clerks in learning. You are not here to win, but to teach."
 	job_notice = "Abandoning your duties, or abusing your tools will result in a report to the admin team."
-
+	mind_traits = list(TRAIT_ATTRIBUTES_VISION)
 	job_abbreviation = "TO"
 	mentor_only = TRUE
 	alt_titles = list()
-
-/datum/job/command/training_officer/after_spawn(mob/living/carbon/human/outfit_owner, mob/M)
-	ADD_TRAIT(outfit_owner, TRAIT_ATTRIBUTES_VISION, JOB_TRAIT)
-	. = ..()
 
 
 /datum/job/command/training_officer/announce(mob/living/carbon/human/outfit_owner)

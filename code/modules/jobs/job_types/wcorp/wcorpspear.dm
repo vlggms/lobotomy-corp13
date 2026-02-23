@@ -15,7 +15,7 @@ GLOBAL_LIST_INIT(l2dsquads, list("Axe", "Buckler", "Cleaver"))
 
 	outfit = /datum/outfit/job/wcorpl2spear
 	display_order = 4.9
-
+	mind_traits = list(TRAIT_COMBATFEAR_IMMUNE)
 	access = list() //add accesses as necessary
 	minimal_access = list()
 	departments = DEPARTMENT_W_CORP
@@ -31,7 +31,6 @@ GLOBAL_LIST_INIT(l2dsquads, list("Axe", "Buckler", "Cleaver"))
 	job_notice = "You are a agent armed with a w-corp spear. Support your squadron with your equipment."
 
 /datum/job/wcorpl2spear/after_spawn(mob/living/carbon/human/outfit_owner, mob/M)
-	ADD_TRAIT(outfit_owner, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 	var/squad = pick_n_take(GLOB.l2dsquads)
 	. = ..()
 	var/ears = null

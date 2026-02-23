@@ -17,7 +17,9 @@ Civilian
 	allow_bureaucratic_error = FALSE
 	maptype = list("city", "fixers")
 	paycheck = 170
+	mind_traits = list(TRAIT_WORK_FORBIDDEN, TRAIT_COMBATFEAR_IMMUNE)
 	var/static/list/possible_books = null
+	loadalways = TRUE // Civilian is the default fallback job if no job can be found
 
 /datum/job/civilian/equip(mob/living/carbon/human/H, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, datum/outfit/outfit_override = null, client/preference_source)
 	//Don't dupe money.
@@ -46,8 +48,6 @@ Civilian
 		return 4
 
 /datum/job/civilian/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
-	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
-	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
 	job_important = "You are an average civilian in The City. You have no goals! However, if you would like to join a fixer office, contact the Hana representative in town."
 
 	//You get one shot at good stats.

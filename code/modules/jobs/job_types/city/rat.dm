@@ -26,11 +26,9 @@ Scavenger
 								)
 	paycheck = 0
 	job_important = "Your sole purpose is to cause chaos in the city. You have no rules."
-
+	mind_traits = list(TRAIT_WORK_FORBIDDEN, TRAIT_COMBATFEAR_IMMUNE)
 
 /datum/job/scavenger/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
-	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
-	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
 	..()
 
 /datum/outfit/job/scavenger

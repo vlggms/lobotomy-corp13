@@ -26,7 +26,7 @@
 
 	/// Values set in after_spawn() depending on var/normal_attribute_level and abnormality number per total abnormality cells
 	roundstart_attributes = list(FORTITUDE_ATTRIBUTE, PRUDENCE_ATTRIBUTE, TEMPERANCE_ATTRIBUTE, JUSTICE_ATTRIBUTE)
-	var/normal_attribute_level = 20 // Scales with round time & facility upgrades
+	normal_attribute_level = 20 // Scales with round time & facility upgrades
 
 	var/department
 
@@ -84,6 +84,16 @@
 	else
 		to_chat(M, "<b>You have not been assigned to any department.</b>")
 
+	//Check the lcorp global upgrades
+	for(var/upgradecheck in GLOB.lcorp_upgrades)
+		if(upgradecheck == "Agent Workchance")
+			ADD_TRAIT(outfit_owner, TRAIT_WORK_KNOWLEDGE, JOB_TRAIT)
+		if(upgradecheck == "Health Hud")
+			var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
+			medsensor.add_hud_to(outfit_owner)
+	return ..()
+
+/datum/job/agent/RespawnStats()
 	var/set_attribute = normal_attribute_level
 	var/facility_full_percentage = 0
 	if(SSabnormality_queue.spawned_abnos) // dont divide by 0
@@ -91,7 +101,6 @@
 	// how full the facility is, from 0 abnormalities out of 24 cells being 0% and 24/24 cells being 100%
 	if(GLOB.lobotomy_damages)//Enkephalin Rush baby!
 		facility_full_percentage = 100 * (GLOB.lobotomy_repairs / GLOB.lobotomy_damages)
-
 	else
 		switch(facility_full_percentage)
 			if(15 to 29) // Shouldn't be anything more than TETHs (4 Abnormalities)
@@ -113,18 +122,7 @@
 				set_attribute *= 4
 
 	set_attribute += GetFacilityUpgradeValue(UPGRADE_AGENT_STATS)
-
-	for(var/attribute in roundstart_attributes)
-		roundstart_attributes[attribute] = round(set_attribute)
-
-	//Check the lcorp global upgrades
-	for(var/upgradecheck in GLOB.lcorp_upgrades)
-		if(upgradecheck == "Agent Workchance")
-			ADD_TRAIT(outfit_owner, TRAIT_WORK_KNOWLEDGE, JOB_TRAIT)
-		if(upgradecheck == "Health Hud")
-			var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
-			medsensor.add_hud_to(outfit_owner)
-	return ..()
+	return set_attribute
 
 /datum/outfit/job/agent
 	name = "Agent"

@@ -22,6 +22,9 @@
 									JUSTICE_ATTRIBUTE = 0
 									)
 
+	/// The current baseline for jobs with varying attributes
+	var/normal_attribute_level = 0
+
 	//Determines who can demote this position
 	var/department_head = list()
 
@@ -70,7 +73,7 @@
 	var/paycheck = PAYCHECK_MINIMAL
 	var/paycheck_department = ACCOUNT_CIV
 
-	var/list/mind_traits // Traits added to the mind of the mob assigned this job
+	var/list/mind_traits // Traits added to the mob with this job
 
 	///Lazylist of traits added to the liver of the mob assigned this job (used for the classic "cops heal from donuts" reaction, among others)
 	var/list/liver_traits = null
@@ -127,20 +130,25 @@
 	if(isnum(jobs_changes["total_positions"]))
 		total_positions = jobs_changes["total_positions"]
 
+/datum/job/proc/ApplyJobTraits(mob/living/H)
+	if(mind_traits)
+		for(var/t in mind_traits)
+			ADD_TRAIT(H, t, JOB_TRAIT)
+	var/obj/item/organ/liver/liver = H.getorganslot(ORGAN_SLOT_LIVER)
+	if(liver)
+		for(var/t in liver_traits)
+			ADD_TRAIT(liver, t, JOB_TRAIT)
+
+/datum/job/proc/RespawnStats() // used for jobs that have dynamic respawn stats
+	if(normal_attribute_level)
+		return normal_attribute_level
+
 //Only override this proc
 //H is usually a human unless an /equip override transformed it
 /datum/job/proc/after_spawn(mob/living/H, mob/M, latejoin = FALSE)
 	//do actions on H but send messages to M as the key may not have been transferred_yet
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_JOB_AFTER_SPAWN, src, H, M, latejoin)
-	if(mind_traits)
-		for(var/t in mind_traits)
-			ADD_TRAIT(H.mind, t, JOB_TRAIT)
-
-	var/obj/item/organ/liver/liver = H.getorganslot(ORGAN_SLOT_LIVER)
-
-	if(liver)
-		for(var/t in liver_traits)
-			ADD_TRAIT(liver, t, JOB_TRAIT)
+	ApplyJobTraits(H)
 
 	var/list/roundstart_experience
 
@@ -159,6 +167,11 @@
 		var/mob/living/carbon/human/experiencer = H
 		for(var/i in roundstart_experience)
 			experiencer.mind.adjust_experience(i, roundstart_experience[i], TRUE)
+
+	var/set_attribute = RespawnStats()
+	if(set_attribute)
+		for(var/attribute in roundstart_attributes)
+			roundstart_attributes[attribute] = round(set_attribute)
 
 	if(roundstart_attributes.len)
 		var/mob/living/carbon/human/HA = H
@@ -345,6 +358,8 @@
 	var/datum/job/J = SSjob.GetJobType(jobtype)
 	if(!J)
 		J = SSjob.GetJob(H.job)
+		if(!J) //  We have no job or our job is somehow not enabled in the round
+			J = SSjob.GetJob("Civilian")
 
 	// Tegu edit - Alt job titles
 	var/assigned_job //This is assigned to both the ID and PDA

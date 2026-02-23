@@ -22,7 +22,7 @@
 		You only start with Mittlehammers and a Grosshammer, you need to recruit new Kleinhammers. \
 		Your base is hidden in the alleyway in the east behind the NO ENTRY Door."
 	job_notice = "You may kill anyone with prosthetics, or anyone sympathetic to prosthetics."
-
+	mind_traits = list(TRAIT_WORK_FORBIDDEN, TRAIT_COMBATFEAR_IMMUNE)
 	roundstart_attributes = list(
 								FORTITUDE_ATTRIBUTE = 120,
 								PRUDENCE_ATTRIBUTE = 120,
@@ -31,8 +31,6 @@
 								)
 
 /datum/job/grandinquis/after_spawn(mob/living/carbon/human/H, mob/M)
-	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
-	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
 	//Don't spawn these goobers without a director.
 	for(var/datum/job/processing in SSjob.occupations)
 		if(istype(processing, /datum/job/grosshammer))

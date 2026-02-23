@@ -346,7 +346,7 @@
 			if(!key)
 				var/mob/dead/observer/ghost = get_ghost()
 				if(!ghost || !ghost.client)
-					msg += "<span class='deadsay'>[t_He] [t_is] totally catatonic. The stresses of life in deep-space must have been too much for [t_him]. Any recovery is unlikely.</span>\n"
+					msg += "<span class='deadsay'>[t_He] [t_is] totally catatonic. The stresses of life in the city must have been too much for [t_him]. Any recovery is unlikely.</span>\n"
 			else if(!client)
 //				msg += "[t_He] [t_has] a blank, absent-minded stare and appears completely unresponsive to anything. [t_He] may snap out of it soon.\n" // LOBOTOMYCORPORATION EDIT OLD
 				msg += "[t_He] [t_has] a blank, absent-minded stare and [t_has] been completely unresponsive to anything for [round(((world.time - lastclienttime) / (1 MINUTES)),1)] minutes. [t_He] may snap out of it soon.\n" // LOBOTOMYCORPORATION EDIT NEW

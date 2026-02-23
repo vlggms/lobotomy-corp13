@@ -19,7 +19,7 @@
 								TEMPERANCE_ATTRIBUTE = 40,
 								JUSTICE_ATTRIBUTE = 40
 								)
-
+	mind_traits = list(TRAIT_WORK_FORBIDDEN, TRAIT_COMBATFEAR_IMMUNE)
 	job_attribute_limit = 40
 
 	liver_traits = list(TRAIT_MEDICAL_METABOLISM)
@@ -31,8 +31,6 @@
 
 /datum/job/prosdoctor/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
 	..()
-	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
-	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 
 /datum/outfit/job/prosdoctor
 	name = "Prosthetics Surgeon"

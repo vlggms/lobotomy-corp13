@@ -19,7 +19,7 @@ GLOBAL_LIST_INIT(l2bsquads, list("Axe", "Buckler", "Cleaver"))
 	access = list() //add accesses as necessary
 	minimal_access = list()
 	departments = DEPARTMENT_W_CORP
-
+	mind_traits = list(TRAIT_COMBATFEAR_IMMUNE)
 	roundstart_attributes = list(
 		FORTITUDE_ATTRIBUTE = 80,
 		PRUDENCE_ATTRIBUTE = 80,
@@ -31,7 +31,6 @@ GLOBAL_LIST_INIT(l2bsquads, list("Axe", "Buckler", "Cleaver"))
 	job_notice = "You are a agent armed with a specialized w-corp weapon that mends the wounds of your allies when fully charged. Support your squadron with your equipment."
 
 /datum/job/wcorpl2support/after_spawn(mob/living/carbon/human/outfit_owner, mob/M)
-	ADD_TRAIT(outfit_owner, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 	var/squad = pick_n_take(GLOB.l2bsquads)
 	. = ..()
 	var/ears = null

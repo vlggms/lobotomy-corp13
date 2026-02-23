@@ -916,9 +916,6 @@
 	if (HAS_TRAIT(src, TRAIT_HUSK))
 		return DEFIB_FAIL_HUSK
 
-	if ((getBruteLoss() >= MAX_REVIVE_BRUTE_DAMAGE) || (getFireLoss() >= MAX_REVIVE_FIRE_DAMAGE))
-		return DEFIB_FAIL_TISSUE_DAMAGE
-
 	// Only check for a heart if they actually need a heart. Who would've thunk
 	if (needs_heart())
 		var/obj/item/organ/heart = getorgan(/obj/item/organ/heart)
@@ -926,18 +923,12 @@
 		if (!heart)
 			return DEFIB_FAIL_NO_HEART
 
-		if (heart.organ_flags & ORGAN_FAILING)
-			return DEFIB_FAIL_FAILING_HEART
-
 	// Carbons with HARS do not need a brain
 	if (!dna?.check_mutation(HARS))
 		var/obj/item/organ/brain/BR = getorgan(/obj/item/organ/brain)
 
 		if (QDELETED(BR))
 			return DEFIB_FAIL_NO_BRAIN
-
-		if (BR.organ_flags & ORGAN_FAILING)
-			return DEFIB_FAIL_FAILING_BRAIN
 
 		if (BR.suicided || BR.brainmob?.suiciding)
 			return DEFIB_FAIL_NO_INTELLIGENCE

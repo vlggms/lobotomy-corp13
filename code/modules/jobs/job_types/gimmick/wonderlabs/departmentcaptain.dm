@@ -36,9 +36,9 @@ GLOBAL_LIST_INIT(captain_departments, list(
 								JUSTICE_ATTRIBUTE = 20
 								)
 	maptype = "wonderlabs"
-	var/normal_attribute_level = 20 // Scales with round time
+	normal_attribute_level = 20 // Scales with round time
 
-/datum/job/departmentcaptain/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
+/datum/job/departmentcaptain/RespawnStats()
 	var/set_attribute = normal_attribute_level
 	if(world.time >= 75 MINUTES) // Full facility expected
 		set_attribute *= 4
@@ -50,10 +50,9 @@ GLOBAL_LIST_INIT(captain_departments, list(
 		set_attribute *= 2
 	else if(world.time >= 15 MINUTES) // Usual time for HEs
 		set_attribute *= 1.5
+	return set_attribute
 
-	for(var/A in roundstart_attributes)
-		roundstart_attributes[A] = round(set_attribute)
-
+/datum/job/departmentcaptain/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
 	if(!LAZYLEN(GLOB.captain_departments))
 		return
 

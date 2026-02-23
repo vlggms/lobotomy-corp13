@@ -16,7 +16,7 @@
 	access = list(ACCESS_MEDICAL)
 	minimal_access = list(ACCESS_MEDICAL)
 	departments = DEPARTMENT_R_CORP | DEPARTMENT_MEDICAL
-
+	mind_traits = list(TRAIT_COMBATFEAR_IMMUNE)
 	roundstart_attributes = list(
 								FORTITUDE_ATTRIBUTE = 60,
 								PRUDENCE_ATTRIBUTE = 60,
@@ -29,8 +29,6 @@
 
 /datum/job/reindeer/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()
-	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
-
 	//Adding huds, blame some guy from at least 3 years ago.
 	var/datum/atom_hud/secsensor = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
 	var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]

@@ -20,7 +20,7 @@
 			You do not need to hide, do not wear disguises. \
 			Your base is hidden in the alleyway in the east behind the NO ENTRY Door."
 	job_notice = "Avoid killing other players without a reason. Killing a player for stopping your prescripts is a valid reason."
-
+	mind_traits = list(TRAIT_WORK_FORBIDDEN, TRAIT_COMBATFEAR_IMMUNE)
 
 	roundstart_attributes = list(
 								FORTITUDE_ATTRIBUTE = 100,
@@ -30,8 +30,6 @@
 								)
 
 /datum/job/messenger/after_spawn(mob/living/carbon/human/H, mob/M)
-	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
-	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
 	//Don't spawn these goobers without a director.
 	for(var/datum/job/processing in SSjob.occupations)
 		if(istype(processing, /datum/job/proxy))

@@ -14,6 +14,7 @@
 	minimal_access = list(ACCESS_NETWORK, ACCESS_COMMAND, ACCESS_MANAGER, ACCESS_CHANGE_IDS)
 	departments = DEPARTMENT_HANA
 	paycheck = 0
+	mind_traits = list(TRAIT_WORK_FORBIDDEN, TRAIT_COMBATFEAR_IMMUNE)
 	maptype = list("city", "fixers")
 	job_important = "You are the city's administrator, and have a small sort of power over the local association. \
 		You MUST assist new fixer offices in getting set up, as well as issuing fixer licenses. \
@@ -32,8 +33,6 @@
 	)
 
 /datum/job/hana/after_spawn(mob/living/carbon/human/outfit_owner, mob/M)
-	ADD_TRAIT(outfit_owner, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
-	ADD_TRAIT(outfit_owner, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 
 	//Don't give this shit to the interns, my lord
 	if(paycheck==0)
