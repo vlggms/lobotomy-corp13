@@ -1535,7 +1535,8 @@
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab = 1)
 	score_divider = 5
 	threat_level = HE_LEVEL
-	var/list/breach_affected = list()
+	move_resist = MOVE_RESIST_DEFAULT
+	pull_force = PULL_FORCE_DEFAULT
 	var/can_act = TRUE
 	var/mob/living/simple_animal/hostile/abnormality/seasons/master
 
