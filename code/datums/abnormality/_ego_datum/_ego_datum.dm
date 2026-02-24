@@ -220,12 +220,12 @@ GLOBAL_LIST_EMPTY(ego_datums)
 		dat += "Throw force: [information["throwforce"]].<br>"
 	if(information["reach"] > 1)
 		dat += "This weapon has a reach of [information["reach"]].<br>"
- 	if("stun_time" in information)
- 		dat += "This weapon stuns you for a [information["stun_time"]] duration on hit.<br>"
+	if("stun_time" in information)
+		dat += "This weapon stuns you for a [information["stun_time"]] duration on hit.<br>"
 	if("lance" in information)
 		dat += "[information["lance"]]<br>"
- 	if("knockback" in information)
- 		dat += "[information["knockback"]]<br>"
+	if("knockback" in information)
+		dat += "[information["knockback"]]<br>"
 	return dat
 
 /datum/ego_datum/armor
