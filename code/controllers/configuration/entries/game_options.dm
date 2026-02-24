@@ -177,13 +177,13 @@
 	config_entry_value = "Emergency level has been reset. All dangerous abnormalities have been re-contained and situation is under control."
 
 /datum/config_entry/string/alert_first_trumpet
-	config_entry_value = "First Trumpet achieved. Few dangerous abnormalities have breached the containment or an agent might be dead or out of control."
+	config_entry_value = "Few dangerous abnormalities have breached the containment or an agent might be dead or out of control."
 
 /datum/config_entry/string/alert_second_trumpet
-	config_entry_value = "Second Trumpet achieved. Most dangerous abnormalities have breached containment and several agents might be dead or out of control."
+	config_entry_value = "Most dangerous abnormalities have breached containment and several agents might be dead or out of control."
 
 /datum/config_entry/string/alert_third_trumpet
-	config_entry_value = "Third Trumpet achieved. Facility's integrity is in danger. Most if not all of the dangerous abnormalities have breached containment and many agents have been lost."
+	config_entry_value = "Facility's integrity is in danger. Most if not all of the dangerous abnormalities have breached containment and many agents have been lost."
 
 /datum/config_entry/flag/revival_pod_plants
 

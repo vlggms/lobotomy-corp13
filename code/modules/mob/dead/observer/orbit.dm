@@ -83,7 +83,7 @@
 					continue
 				serialized["is_contained"] = abno.IsContained()
 				abnormalities += list(serialized)
-			else if (isabnormalityminionmob(M)) // LOBOTOMYCORPORATION ADDITION -- Abnormalities
+			else if (isabnormalityminion(M)) // LOBOTOMYCORPORATION ADDITION -- Abnormalities
 				serialized["is_contained"] = FALSE
 				abnormalities += list(serialized)
 			else if (M.stat == DEAD)
