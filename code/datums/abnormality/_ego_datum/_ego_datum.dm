@@ -50,6 +50,8 @@ GLOBAL_LIST_EMPTY(ego_datums)
 			var/new_damage_type = shuffler.mapping_offense[bullet_damage_type]
 			bullet_damage_type = new_damage_type
 		information["projectile_info"] = "Its bullets deal [bullet_damage] [bullet_damage_type] damage."
+		if(G.pellets > 1)
+			information["projectile_info"] = "Its bullets deal [bullet_damage] x [G.pellets] [bullet_damage_type] damage."
 		var/fire_delay = G.fire_delay
 		if(G.autofire)
 			fire_delay = G.autofire * 0.75
@@ -167,8 +169,8 @@ GLOBAL_LIST_EMPTY(ego_datums)
 				information["knockback"] += "This weapon has [E.knockback >= 10 ? "neck-snapping": ""] enemy knockback."
 	if(E.charge)
 		information["charge"] += "This weapon has charge mechanics[E.attack_charge_gain ? " and gains a charge upon every hit" : ""].<br>"
-		information["charge"] += "This weapon currently has [E.charge_amount] charge out of [E.charge_cap] maximum charge.<br>"
-		information["charge"] += "You can activate this weapons special ability with [E.charge_cost] charge by clicking on it.<br>"
+		information["charge"] += "This weapon can hold up to [E.charge_cap] charge.<br>"
+		information["charge"] += "Ability cost: [E.charge_cost].<br>"
 		if(E.charge_effect)
 			information["charge"] += "Ability: [E.charge_effect]"
 	qdel(E)
