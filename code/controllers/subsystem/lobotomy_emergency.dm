@@ -385,4 +385,4 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 /atom/movable/screen/alert/status_effect/trumpetlevel/level4
 	icon_state = "level4"
 	name = "Fourth Trumpet"
-	desc = "Shit's fucked ; Fortitude, Prudence and Justice are increased."
+	desc = "Shit's fucked; Fortitude, Prudence and Justice are increased."
