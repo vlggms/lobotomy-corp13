@@ -707,7 +707,7 @@
 			if(!faction_check(faction, L.faction, FALSE))
 				L.visible_message(span_boldwarning("[src] crashes into [L]!"), span_userdanger("[src] crashes into you!"))
 				new /obj/effect/temp_visual/kinetic_blast(get_turf(L))
-				L.deal_damage(charge_damage, BLACK_DAMAGE)
+				L.deal_damage(charge_damage, BLACK_DAMAGE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_ENVIRONMENT))
 				if(L.stat >= HARD_CRIT)
 					L.gib()
 				playsound(L, 'sound/abnormalities/kog/GreedHit1.ogg', 20, 1)

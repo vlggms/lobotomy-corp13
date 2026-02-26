@@ -2470,5 +2470,5 @@
 		return
 	var/justicemod = get_attack_multiplier(user)
 	var/damage = force * justicemod * force_multiplier * 0.5
-	target.apply_damage(damage, FIRE, null, target.run_armor_check(null, FIRE), spread_damage = TRUE)
+	target.deal_damage(damage, FIRE, src, attack_type = (ATTACK_TYPE_MELEE))
 	target.apply_lc_burn(3)
