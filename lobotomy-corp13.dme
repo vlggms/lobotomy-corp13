@@ -2798,6 +2798,7 @@
 #include "code\modules\mob\living\simple_animal\abnormality\_auxiliary_modes\community\ego_armor.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\_auxiliary_modes\community\ego_weapons.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\_auxiliary_modes\community\aleph\crying_children.dm"
+#include "code\modules\mob\living\simple_animal\abnormality\_auxiliary_modes\community\he\tumblebug.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\_auxiliary_modes\community\tools\zayin\dragon_skull.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\_tools\basic_attribute_giver.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\_tools\tool_abnormality.dm"

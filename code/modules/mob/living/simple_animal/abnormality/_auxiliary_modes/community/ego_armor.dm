@@ -11,10 +11,10 @@
 // Teth
 
 // He
-/obj/item/clothing/suit/armor/ego_gear/he/sunspit
-	name = "sunspit"
+/obj/item/clothing/suit/armor/ego_gear/he/gleaming
+	name = "incandescent gleaming"
 	desc = "Praise the sun!"
-	icon_state = "sunspit"
+	icon_state = "gleaming"
 	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_armor.dmi'
 	worn_icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_worn.dmi'
 	flags_inv = NONE

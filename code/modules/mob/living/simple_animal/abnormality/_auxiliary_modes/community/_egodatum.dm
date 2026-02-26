@@ -19,13 +19,13 @@
 // He //
 ////////
 
-// Eternity Roller - Sunspit
-/datum/ego_datum/weapon/sunspit // rank-bumped
-	item_path = /obj/item/ego_weapon/sunspit
+// Gleaming Tumblebug - Incandescent Gleaming
+/datum/ego_datum/weapon/gleaming // rank-bumped
+	item_path = /obj/item/ego_weapon/gleaming
 	cost = 50
 
-/datum/ego_datum/armor/sunspit
-	item_path = /obj/item/clothing/suit/armor/ego_gear/he/sunspit
+/datum/ego_datum/armor/gleaming
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/gleaming
 	cost = 35
 
 // Creek Transportation Agency - Security (Enkephalin Rush)

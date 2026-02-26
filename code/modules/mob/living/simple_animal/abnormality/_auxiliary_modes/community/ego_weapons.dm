@@ -97,11 +97,11 @@
 	user.apply_status_effect(/datum/status_effect/display/glimpse_thermal)
 
 //WAW
-/obj/item/ego_weapon/sunspit
-	name = "sunspit"
+/obj/item/ego_weapon/gleaming
+	name = "incandescent gleaming"
 	desc = "Goodness gracious, great mauls of fire!"
 	special = "Use in hand to prepare a powerful area attack. This attack requires charge to use, but deals armor-piercing burn damage."
-	icon_state = "sunspit"
+	icon_state = "gleaming"
 	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/community/!icons/ego_weapons.dmi'
 	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
@@ -131,10 +131,10 @@
 	var/wide_slash_angle = 290
 	var/current_orientation = 1
 
-/obj/item/ego_weapon/sunspit/proc/spin_reset()
+/obj/item/ego_weapon/gleaming/proc/spin_reset()
 	can_spin = TRUE
 
-/obj/item/ego_weapon/sunspit/attack(mob/living/target, mob/living/user)
+/obj/item/ego_weapon/gleaming/attack(mob/living/target, mob/living/user)
 	if(spinning)
 		return FALSE
 	..()
@@ -143,7 +143,7 @@
 	can_spin = FALSE
 	addtimer(CALLBACK(src, PROC_REF(spin_reset)), 12)
 
-/obj/item/ego_weapon/sunspit/attack_self(mob/living/user)
+/obj/item/ego_weapon/gleaming/attack_self(mob/living/user)
 	if(!charge || !CanUseEgo(user))
 		return ..()
 	if(charge_amount >= charge_cost)
@@ -151,7 +151,7 @@
 		return
 	return ..()
 
-/obj/item/ego_weapon/sunspit/ChargeAttack(mob/living/target, mob/living/user)
+/obj/item/ego_weapon/gleaming/ChargeAttack(mob/living/target, mob/living/user)
 	if(!can_spin)
 		to_chat(user,span_warning("You attacked too recently."))
 		return
@@ -164,7 +164,7 @@
 		aoe_damage = (force * justicemod)
 		addtimer(CALLBACK(src, PROC_REF(WideSlash), user), 1)
 
-/obj/item/ego_weapon/sunspit/proc/WideSlash(mob/living/carbon/human/user)
+/obj/item/ego_weapon/gleaming/proc/WideSlash(mob/living/carbon/human/user)
 	var/turf/TT = get_turf(get_step(user, user.dir))
 	var/turf/T = get_turf(src)
 	current_orientation = -current_orientation // Makes it so AOE is flipped each time
@@ -187,7 +187,7 @@
 		line = getline(T, T2)
 		addtimer(CALLBACK(src, PROC_REF(DoLineAttack), line, TT, user), i * 0.12)
 
-/obj/item/ego_weapon/sunspit/proc/DoLineAttack(list/line, atom/target, mob/living/carbon/human/user)
+/obj/item/ego_weapon/gleaming/proc/DoLineAttack(list/line, atom/target, mob/living/carbon/human/user)
 	var/list/been_hit = list()
 	for(var/turf/T in line)
 		if(locate(/obj/effect/temp_visual/smash_effect) in T)
@@ -197,7 +197,7 @@
 		new /obj/effect/temp_visual/fire/fast(T)
 		been_hit = user.HurtInTurf(T, been_hit, aoe_damage, FIRE, check_faction = TRUE)
 
-/obj/item/ego_weapon/sunspit/get_clamped_volume()
+/obj/item/ego_weapon/gleaming/get_clamped_volume()
 	return 40
 
 /obj/item/ego_weapon/furrows

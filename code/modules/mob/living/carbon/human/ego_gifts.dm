@@ -1,19 +1,21 @@
-#define HAT "Hat Slot"
-#define HELMET "Helmet Slot"
-#define EYE "Eye Slot"
-#define FACE "Face Slot"
-#define MOUTH_1 "Mouth Slot 1"
-#define MOUTH_2 "Mouth Slot 2"
-#define CHEEK "Cheek Slot"
-#define BROOCH "Brooch Slot"
-#define NECKWEAR "Neckwear Slot"
+/// Ego gifts should visually match the slot if possible. Some slots will render underneath others.
+
+#define HAT "Hat Slot" // Hats, above the head sprite.
+#define HELMET "Helmet Slot" // On or above the head. Possibly covering the head.
+#define EYE "Eye Slot" // Eye level, glasses or bandanas
+#define FACE "Face Slot" // Scars or face paint
+#define MOUTH_1 "Mouth Slot 1" // Typically a face mask of some sort
+#define MOUTH_2 "Mouth Slot 2" // Any other mouth accessory
+#define CHEEK "Cheek Slot" // Similar to face, but smaller.
+#define BROOCH "Brooch Slot" // badges, accessories on the torso
+#define NECKWEAR "Neckwear Slot" // Necklaces or similar
 #define LEFTBACK "Left Back Slot"
 #define RIGHTBACK "Right Back Slot"
-#define HAND_1 "Hand Slot 1"
-#define HAND_2 "Hand Slot 2"
+#define HAND_1 "Hand Slot 1" // Hand accessories
+#define HAND_2 "Hand Slot 2" // Usually, but not always gloves
 #define SPECIAL "Special/Other Slot"
 
-// Helper lists
+/// Helper lists
 #define EGO_GIFT_BONUSES list("fortitude_bonus", "prudence_bonus", "temperance_bonus", "justice_bonus", \
 						"instinct_mod", "insight_mod", "attachment_mod", "repression_mod")
 
@@ -186,7 +188,7 @@
 			qdel(gift_overlay)
 			visible = FALSE
 
-//Overridable overlay proc for coloring gifts based on attribute, skin tone, or other aspects.
+/// Overridable overlay proc for coloring gifts based on attribute, skin tone, or other aspects.
 /datum/ego_gifts/proc/FormatOverlay(mob/living/carbon/human/user)
 	return mutable_appearance(src.icon, src.icon_state, src.layer)
 
@@ -712,7 +714,7 @@
 	temperance_bonus = -4
 	justice_bonus = -4
 	insight_mod = 4
-	slot = HEAD
+	slot = HAT
 
 /datum/ego_gifts/aedd
 	name = "AEDD"
@@ -992,6 +994,13 @@
 	temperance_bonus = 2
 	justice_bonus = 2
 	slot = NECKWEAR
+
+/datum/ego_gifts/gleaming
+	name = "Incandescent Gleaming"
+	icon_state = "gleaming"
+	fortitude_bonus = 3
+	temperance_bonus = 1
+	slot = FACE
 
 /**
  * WAW EGO Gifts
@@ -1275,7 +1284,7 @@
 
 /datum/ego_gifts/rosa
 	name = "Crown of Roses"
-	icon_state = "penitence"//TODO: make an actual sprite
+	icon_state = "rosa"
 	prudence_bonus = 3
 	temperance_bonus = 3
 	slot = HAT
@@ -1298,7 +1307,7 @@
 /datum/ego_gifts/stem
 	name = "Green Stem"
 	icon_state = "green_stem"
-	prudence_bonus = 6 //originally a SP bonus
+	prudence_bonus = 6 // originally a SP bonus
 	slot = BROOCH
 
 /datum/ego_gifts/swan
@@ -1349,7 +1358,7 @@
 	slot = HAND_1
 
 /datum/ego_gifts/good_intentions
-	name = "Good Intentions" //no stat bonuses but a minor boost to all works
+	name = "Good Intentions" // no stat bonuses but a minor boost to all works
 	icon_state = "good_intentions"
 	instinct_mod = 3
 	insight_mod = 3
@@ -1361,7 +1370,7 @@
 	name = "Havana"
 	icon_state = "havana"
 	justice_bonus = 10
-	temperance_bonus = -2 //smoking kills
+	temperance_bonus = -2 // smoking kills
 	slot = LEFTBACK
 
 /datum/ego_gifts/ardor_moth
@@ -1432,7 +1441,7 @@
 /datum/ego_gifts/dacapo
 	name = "Da Capo"
 	icon_state = "dacapo"
-	desc = "Provides the user with 20% resistance to WHITE damage."//man it really needed something
+	desc = "Provides the user with 20% resistance to WHITE damage."// man it really needed something
 	temperance_bonus = 4
 	slot = EYE
 
@@ -1474,7 +1483,7 @@
 	prudence_bonus = 5
 	slot = HAND_1
 
-/datum/ego_gifts/nihil //May be subject to change when the event is added proper
+/datum/ego_gifts/nihil // May be subject to change when the event is added proper
 	name = "Nihil"
 	icon_state = "nihil"
 	fortitude_bonus = 10
