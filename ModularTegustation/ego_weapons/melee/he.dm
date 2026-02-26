@@ -1133,7 +1133,7 @@
 		charge_amount += added_charge
 		accumulated_charge += 1
 		if(accumulated_charge >= 10)
-			new /obj/effect/temp_visual/healing/charge(get_turf(src))
+			HealingEffect("charge")
 			accumulated_charge = 0
 
 /obj/effect/portal/warp

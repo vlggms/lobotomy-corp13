@@ -41,7 +41,7 @@
 		addtimer(CALLBACK(src, PROC_REF(Recall),), 1 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 
 		human.Immobilize(3 SECONDS)
-		new /obj/effect/temp_visual/weapon_stun(get_turf(owner))
+		human.HealingEffect("stun")
 		StartCooldown()
 
 /datum/action/cooldown/standproud/proc/Recall()

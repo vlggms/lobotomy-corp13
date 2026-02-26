@@ -197,7 +197,7 @@
 	var/failure_penalty = (pe - 24)
 	user.adjustBruteLoss(failure_penalty * 3)
 	user.apply_lc_bleed(failure_penalty)
-	new /obj/effect/temp_visual/damage_effect/bleed(get_turf(user))
+	user.OtherDamageEffect(failure_penalty * 3, "bleed")
 	AdjustThirst(failure_penalty * 25) // We're angry so lets suck some blood
 	failed = TRUE
 	to_chat(user, span_warning("[src] suddenly sucks your blood!"))
@@ -210,7 +210,7 @@
 		AdjustThirst(500)
 		user.apply_lc_bleed(5)
 		user.adjustBruteLoss(15)
-		new /obj/effect/temp_visual/damage_effect/bleed(get_turf(user))
+		OtherDamageEffect(15, "bleed")
 		if(!failed)
 			to_chat(user, span_warning("[src] suddenly sucks your blood!"))
 	if(failed || datum_reference.qliphoth_meter < 3) // We sucked blood at least once, lets check the perp

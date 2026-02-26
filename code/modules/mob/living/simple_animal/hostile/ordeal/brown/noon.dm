@@ -89,7 +89,6 @@
 		return
 	do_attack_animation(get_step(src, dir), no_effect = TRUE)
 	grab_victim.deal_damage(melee_damage_upper, RED_DAMAGE)
-	new /obj/effect/temp_visual/damage_effect/rupture(get_turf(src))
 	grab_victim.deal_damage(rupture_damage, BRUTE)
 	grab_victim.Immobilize(10)
 	playsound(get_turf(src), 'sound/effects/ordeals/brown/flower_attack.ogg', 50, 0, 7)
@@ -175,10 +174,10 @@
 			if(faction_check_mob(L))
 				continue
 			L.deal_damage(damage_dealt, melee_damage_type)
-			new /obj/effect/temp_visual/damage_effect/sinking(get_turf(L))
 			if(ishuman(L))
 				var/mob/living/carbon/human/H = L
 				H.adjustSanityLoss(sinking_damage)
+				H.OtherDamageEffect(sinking_damage, "sinking")
 			else
 				L.deal_damage(sinking_damage, WHITE_DAMAGE)
 		for(var/obj/vehicle/sealed/mecha/V in T)

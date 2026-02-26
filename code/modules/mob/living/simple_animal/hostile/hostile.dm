@@ -387,70 +387,146 @@ GLOBAL_LIST_EMPTY(marked_players)
 /*-------------------\
 |Damage Visual Effect|
 \-------------------*/
-/*/mob/living/proc/DamageEffect(damage, damtype)
-	if(damage > 0)
-		switch(damtype)
-			if(RED_DAMAGE, BRUTE)
-				return new /obj/effect/temp_visual/damage_effect/red(get_turf(src), damage)
-			if(WHITE_DAMAGE)
-				return new /obj/effect/temp_visual/damage_effect/white(get_turf(src), damage)
-			if(BLACK_DAMAGE)
-				return new /obj/effect/temp_visual/damage_effect/black(get_turf(src), damage)
-			if(PALE_DAMAGE)
-				return new /obj/effect/temp_visual/damage_effect/pale(get_turf(src), damage)
-			if(FIRE)
-				return new /obj/effect/temp_visual/damage_effect/burn(get_turf(src), damage)
-			if(TOX)
-				return new /obj/effect/temp_visual/damage_effect/tox(get_turf(src), damage)
-			else
-				return null
-
-/mob/living/simple_animal/hostile/DamageEffect(damage, damtype)
-	var/obj/effect/dam_effect = null
-	if(!damage)
-		dam_effect = new /obj/effect/temp_visual/healing/no_dam(get_turf(src))
-		if(damage_effect_scale != 1)
-			dam_effect.transform *= damage_effect_scale
-		return dam_effect
-	if(damage < 0)
-		dam_effect = new /obj/effect/temp_visual/healing(get_turf(src))
-		if(damage_effect_scale != 1)
-			dam_effect.transform *= damage_effect_scale
-		return dam_effect
+/mob/living/simple_animal/hostile/DamageEffect(amount, damtype, scale = 1, extratext = "", forced = FALSE)
+	var/effect_name
+	var/text_color = "#FFFFFF"
+	if(!forced)
+		to_chat(world, amount)
+		if(!amount)
+			return HealingEffect("no_dam", scale)
+		if(amount < 0)
+			return HealingEffect("healing", scale)
 	switch(damtype)
-		if(RED_DAMAGE, BRUTE)
-			dam_effect = new /obj/effect/temp_visual/damage_effect/red(get_turf(src), damage)
+		if(BRUTE)
+			effect_name = "rupture"
+			text_color = "#80C8ff"
+		if(RED_DAMAGE)
+			effect_name = "dam_red"
+			text_color = "#FF0000"
 		if(WHITE_DAMAGE)
-			dam_effect = new /obj/effect/temp_visual/damage_effect/white(get_turf(src), damage)
+			effect_name = "dam_white"
+			text_color = "#DEDDB6"
 		if(BLACK_DAMAGE)
-			dam_effect = new /obj/effect/temp_visual/damage_effect/black(get_turf(src), damage)
+			effect_name = "dam_black"
+			text_color = "#8A4091"
 		if(PALE_DAMAGE)
-			dam_effect = new /obj/effect/temp_visual/damage_effect/pale(get_turf(src), damage)
+			effect_name = "dam_pale"
+			text_color = "#80C8ff"
 		if(FIRE)
-			dam_effect = new /obj/effect/temp_visual/damage_effect/burn(get_turf(src), damage)
+			effect_name = "dam_burn"
+			text_color = "#F2961D"
 		if(TOX)
-			dam_effect = new /obj/effect/temp_visual/damage_effect/tox(get_turf(src), damage)
-		else
-			return null
-	if(damage_effect_scale != 1)
-		dam_effect.transform *= damage_effect_scale
+			effect_name = "dam_tox"
+			text_color = "#1A8709"
+	if(!effect_name)
+		return null
+	effect_name += "[rand(1,2)]"
+	var/image/dam_effect = image('ModularTegustation/Teguicons/lc13_coloreffect.dmi', get_turf(src), effect_name, src.layer + 0.1)
+	dam_effect.pixel_x = rand(-12, 12)
+	dam_effect.pixel_y = rand(-9, 0)
+	dam_effect.plane = GAME_PLANE
+	dam_effect.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+	if(amount)
+		dam_effect.pixel_y = rand(-9, 9)
+		dam_effect.pixel_x = rand(-16, 8)// Move it a bit more to the side to make way for text
+		if(isnum(amount))
+			dam_effect.maptext_x = 22
+			dam_effect.maptext_y = 10
+			dam_effect.maptext_height = 32
+			dam_effect.maptext_width = 32
+			var/style = "font-family: 'Better VCR'; font-size: 5px; -dm-text-outline: 1px black; color: [text_color];"
+			dam_effect.maptext = "<span style=\"[style]\">[round(amount, 0.1)][extratext]</span>"
+		animate(dam_effect, pixel_x = pixel_x + rand(1, 4), pixel_y = pixel_y + 10, alpha = 0, time = rand(8, 12), easing = SINE_EASING)
+	if(scale != 1)
+		dam_effect.transform *= scale * damage_effect_scale
 	if(length(projectile_blockers) > 0)
 		dam_effect.pixel_x += rand(-occupied_tiles_left_current * 32, occupied_tiles_right_current * 32)
 		dam_effect.pixel_y += rand(-occupied_tiles_down_current * 32, occupied_tiles_up_current * 32)
-	return dam_effect*/
+	flick_overlay(dam_effect, GLOB.clients, 12)
+	return dam_effect
+
+/mob/living/simple_animal/hostile/OtherDamageEffect(amount, type, scale = 1, extratext = "")
+	var/effect_name
+	var/text_color = "#FFFFFF"
+	switch(type)
+		if("bleed")
+			effect_name = "dam_bleed"
+			text_color = "#FF0000"
+		if("sinking")
+			effect_name = "sinking"
+			text_color = "#298CE3"
+		if("tremor")
+			effect_name = "tremor"
+			text_color = "#D0E329"
+	if(!effect_name)
+		return null
+	effect_name += "[rand(1,2)]"
+	var/image/other_effect = image('ModularTegustation/Teguicons/lc13_coloreffect.dmi', get_turf(src), effect_name, src.layer + 0.1)
+	other_effect.pixel_x = rand(-12, 12)
+	other_effect.pixel_y = rand(-9, 0)
+	other_effect.plane = GAME_PLANE
+	other_effect.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+	if(amount)
+		other_effect.pixel_y = rand(-9, 9)
+		other_effect.pixel_x = rand(-16, 8)// Move it a bit more to the side to make way for text
+		if(isnum(amount))
+			other_effect.maptext_x = 22
+			other_effect.maptext_y = 10
+			other_effect.maptext_height = 32
+			other_effect.maptext_width = 32
+			var/style = "font-family: 'Better VCR'; font-size: 5px; -dm-text-outline: 1px black; color: [text_color];"
+			other_effect.maptext = "<span style=\"[style]\">[round(amount, 0.1)][extratext]</span>"
+		animate(other_effect, pixel_x = pixel_x + rand(1, 4), pixel_y = pixel_y + 10, alpha = 0, time = rand(8, 12), easing = SINE_EASING)
+	if(scale != 1)
+		other_effect.transform *= scale * damage_effect_scale
+	if(length(projectile_blockers) > 0)
+		other_effect.pixel_x += rand(-occupied_tiles_left_current * 32, occupied_tiles_right_current * 32)
+		other_effect.pixel_y += rand(-occupied_tiles_down_current * 32, occupied_tiles_up_current * 32)
+	flick_overlay(other_effect, GLOB.clients, 12)
+	return other_effect
+
+/mob/living/simple_animal/hostile/HealingEffect(type, scale = 1)
+	var/effect_name
+	var/variance = FALSE
+	switch(type)
+		if("healing")
+			effect_name = "healing"
+			variance = TRUE
+		if("charge")
+			effect_name = "charge"
+			variance = TRUE
+		if("no_dam")
+			effect_name = "no_dam"
+			variance = TRUE
+		if("stun")
+			effect_name = "stun"
+		if("tremorburst")
+			effect_name = "tremorburst"
+	if(!effect_name)
+		return null
+	var/image/heal_effect = image('ModularTegustation/Teguicons/lc13_coloreffect.dmi', get_turf(src), effect_name, src.layer + 0.1)
+	if(variance)
+		heal_effect.pixel_x = rand(-12, 12)
+		heal_effect.pixel_y = rand(-9, 0)
+	heal_effect.plane = GAME_PLANE
+	heal_effect.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+	if(scale != 1)
+		heal_effect.transform *= scale * damage_effect_scale
+	flick_overlay(heal_effect, GLOB.clients, 8)
+	return heal_effect
+
 
 /mob/living/simple_animal/hostile/adjustBruteLoss(amount, updating_health, forced)
 	var/was_alive = stat != DEAD
+	. = ..()
 	if(was_alive)
 		DamageEffect(., BRUTE)
-	. = ..()
-
 
 /mob/living/simple_animal/hostile/adjustRedLoss(amount, updating_health, forced)
 	var/was_alive = stat != DEAD
+	. = ..()
 	if(was_alive)
 		DamageEffect(., RED_DAMAGE)
-	. = ..()
 
 /mob/living/simple_animal/hostile/adjustWhiteLoss(amount, updating_health, forced, white_healable)
 	var/was_alive = stat != DEAD
@@ -460,28 +536,27 @@ GLOBAL_LIST_EMPTY(marked_players)
 
 /mob/living/simple_animal/hostile/adjustBlackLoss(amount, updating_health, forced, white_healable)
 	var/was_alive = stat != DEAD
+	. = ..()
 	if(was_alive)
 		DamageEffect(., BLACK_DAMAGE)
-	. = ..()
 
 /mob/living/simple_animal/hostile/adjustPaleLoss(amount, updating_health, forced)
 	var/was_alive = stat != DEAD
+	. = ..()
 	if(was_alive)
 		DamageEffect(., PALE_DAMAGE)
-	. = ..()
 
 /mob/living/simple_animal/hostile/adjustFireLoss(amount, updating_health, forced)
 	var/was_alive = stat != DEAD
+	. = ..()
 	if(was_alive)
 		DamageEffect(., FIRE)
-	. = ..()
 
 /mob/living/simple_animal/hostile/adjustToxLoss(amount, updating_health, forced)
 	var/was_alive = stat != DEAD
+	. = ..()
 	if(was_alive)
 		DamageEffect(., TOX)
-	. = ..()
-
 
 /*Used in LC13 abnormality calculations.
 	Moved here so we can use it for all hostiles.

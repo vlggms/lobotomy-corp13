@@ -106,7 +106,7 @@
 	var/mob/living/carbon/human/status_holder = owner
 	var/sanitytolose = clamp(status_holder.maxSanity * 0.025, 0, status_holder.sanityhealth - 1)
 	status_holder.adjustSanityLoss(sanitytolose) // hopefully keeps them at at least 1 sanity
-	new /obj/effect/temp_visual/damage_effect/sinking(get_turf(status_holder))
+	status_holder.OtherDamageEffect(sanitytolose, "sinking")
 	var/new_boost = (status_holder.maxSanity - status_holder.sanityhealth) * 0.5
 	var/boost_difference = new_boost - current_boost
 	status_holder.adjust_attribute_buff(JUSTICE_ATTRIBUTE, boost_difference)
@@ -147,7 +147,7 @@
 		to_chat(H, span_userdanger("You drink some of your serum."))
 		H.playsound_local(get_turf(H), 'sound/abnormalities/someonesportrait/panic.ogg', 40, FALSE)
 		H.adjustSanityLoss(H.maxSanity * 0.25) // lose a quarter your sanity insantly
-		new /obj/effect/temp_visual/damage_effect/sinking(get_turf(H))
+		H.OtherDamageEffect(H.maxSanity * 0.25, "sinking")
 		H.apply_status_effect(STATUS_EFFECT_HYDE)
 		StartCooldown()
 		return
@@ -192,7 +192,7 @@
 	var/mob/living/carbon/human/status_holder = owner
 	var/sanitytolose = (status_holder.maxSanity * 0.05)
 	status_holder.adjustSanityLoss(sanitytolose) // hopefully keeps them at at least 1 sanity
-	new /obj/effect/temp_visual/damage_effect/sinking(get_turf(status_holder))
+	status_holder.OtherDamageEffect(sanitytolose, "sinking")
 
 #undef STATUS_EFFECT_DR_JEKYLL
 #undef STATUS_EFFECT_HYDE

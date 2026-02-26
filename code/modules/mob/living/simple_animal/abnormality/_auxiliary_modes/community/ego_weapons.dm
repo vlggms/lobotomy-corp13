@@ -449,7 +449,7 @@
 	user.changeNext_move(CLICK_CD_MELEE * attack_speed)
 	user.Immobilize(stuntime)
 	//Visual stuff to give you better feedback
-	new /obj/effect/temp_visual/weapon_stun(get_turf(user))
+	user.HealingEffect("stun")
 
 /obj/projectile/ego_bullet/ochre
 	name = "ochre sheet"
@@ -569,7 +569,6 @@
 		return FALSE
 	var/mob/living/L = AM
 	L.deal_damage(damage_dealt, BLACK_DAMAGE)
-	new /obj/effect/temp_visual/damage_effect/black(get_turf(L))
 
 /obj/effect/gibspawner/generic/silent/liquid_miasma
 	gibtypes = list(/obj/effect/decal/cleanable/liquid_miasma)

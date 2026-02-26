@@ -156,5 +156,5 @@
 		var/mob/living/carbon/human/H = target
 		if(H.sanity_lost)
 			H.adjustSanityLoss((-damage * 0.5), FALSE) // deal fixed white damage to panicked employees, ignoring armor
-			new /obj/effect/temp_visual/damage_effect/sinking(get_turf(H))
+			H.OtherDamageEffect((-damage * 0.5), "sinking")
 	..()
