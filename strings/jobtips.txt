@@ -4,7 +4,7 @@ As the Extraction Officer, keep note of the EGO available, and assist the manage
 As the Extraction Officer, be sure to dish out gadgets as well as PE boxes and EGO. They increase Clerk efficiency greatly.
 As the Extraction Officer, give clerks abnormality chemistry equipment. They increase efficiency greatly.
 As the Extraction Officer, sort your workspace. Use racks, vendors, and more.
-As the Extraction Officer, use your tools to help speed up agent efficiency.
+As the Extraction Officer, you can use your tools to support agents. When used correctly, they can increase agent efficiency greatly.
 As the Extraction Officer, your job is to keep track of everyone working and give ego to those who either earned it first, before general distribution
 As the Records Officer, you can use a spraycan on a door with harm intent to color it. Remember, ZAYIN is green, TETH is blue, HE is yellow, WAW is purple, ALEPH is red.
 As the Records Officer, you can delay an abnomalities arrival by 5 minutes with your Bronze Watch, it may be useful to delay a dangerous abnormality if the facility is struggling during a supression.
@@ -12,8 +12,8 @@ As the Records Officer, your silver watch can give information not even the mana
 As the Records Officer, you are the number 1 distributor of information. Pin info on doors, send information via PDA or comms, read up on new abnormalities, and assist Agent Interns.
 As the Records Officer, your copper watch can store agent data and revive them from the dead if fully charged!
 As the Disciplinary Officer, you have access to the strongest weapon and armor out of any Officer, make sure to spend your time fighting when possible.
-As the Disciplinary Officer, can help support agents using your specialized E.M.I.A.S or by offloading early ordeals, allowing agents to work more often!
-The Disciplinary Officer has an extra cargo console in their office on the manager's floor. You can buy gear for yourself and others there.
+As the Disciplinary Officer, can help support agents using your specialized E.M.A.I.S or by offloading early ordeals, allowing agents to work more often!
+The Disciplinary Officer has an extra cargo console in their office on the manager's floor. You can buy equipment for yourself and for others there.
 As an Officer, you have access to your own starting weapon and armor. When an ordeal ends, your weapon and armor gets stronger!
 As an Officer, you are unable to work, but you gain attributes thoughout the round and when an ordeal ends.
 As a Clerk, RAKs can modify a Regenerator to change how it works. Use it in hand to change the specific function.
