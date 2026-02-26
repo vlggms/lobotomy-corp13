@@ -208,7 +208,7 @@ GLOBAL_LIST_EMPTY(ego_datums)
 		if("wield_stats" in information)
 			dat += "[information["wield_stats"]]<br>"
 		if("wield_special" in information)
-			dat += "[information["wield_stats"]]<br>"
+			dat += "[information["wield_special"]]<br>"
 		if("armor" in information)
 			dat += "[information["shield"]]<br>"
 			dat += "Deflect values:<br>"
