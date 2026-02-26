@@ -117,7 +117,7 @@
 				var/obj/effect/temp_visual/onesin_blessing/OB = new(get_turf(WN))
 				OB.layer = WN.layer + 0.1
 				OB.pixel_x += rand(-6,6)
-				WN.deal_damage(3330, PALE_DAMAGE)//Does 666 damage to WN
+				WN.deal_damage(3330, PALE_DAMAGE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_ENVIRONMENT))//Does 666 damage to WN
 			sleep(5 SECONDS)
 			for(var/mob/M in GLOB.player_list)
 				if(M.client)
