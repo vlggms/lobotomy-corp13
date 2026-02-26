@@ -615,7 +615,7 @@
 				continue
 			var/obj/structure/thorn_bomb/thebomb = new(get_turf(L))
 			plants += thebomb
-			L.deal_damage(slam_damage, melee_damage_type src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
+			L.deal_damage(slam_damage, melee_damage_type, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 			if(ishuman(L))
 				Finisher(L)
 	SLEEP_CHECK_DEATH(3)

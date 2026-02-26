@@ -152,7 +152,7 @@
 				been_hit += L
 				if(L.sanity_lost)					//DIE FOOL. LADY BLAST
 					L.dust()
-				L.deal_damage(negative_damage, WHITE_DAMAGE)
+				L.deal_damage(negative_damage, WHITE_DAMAGE, src, attack_type = (ATTACK_TYPE_SPECIAL))
 			all_turfs -= T
 		negative_damage += negative_damage_scale//Every tile it traves it does 10 more damage up to 120
 		SLEEP_CHECK_DEATH(3)

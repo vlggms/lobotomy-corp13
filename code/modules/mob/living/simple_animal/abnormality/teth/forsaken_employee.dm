@@ -97,5 +97,5 @@
 	if(!ishuman(AM))
 		return FALSE
 	var/mob/living/carbon/human/H = AM
-	H.apply_damage(1, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+	H.deal_damage(1, WHITE_DAMAGE, attack_type = (ATTACK_TYPE_ENVIRONMENT))
 	. = ..()

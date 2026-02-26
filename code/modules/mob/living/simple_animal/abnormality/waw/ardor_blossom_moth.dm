@@ -314,7 +314,7 @@
 				continue
 			if (L == src)
 				continue
-			HurtInTurf(T, list(), rand(melee_damage_lower, melee_damage_upper), melee_damage_type, check_faction = TRUE, hurt_mechs = TRUE)
+			HurtInTurf(T, list(), rand(melee_damage_lower, melee_damage_upper), melee_damage_type, check_faction = TRUE, hurt_mechs = TRUE, attack_type = (ATTACK_TYPE_MELEE))
 			L.apply_lc_burn(6)
 			SEND_SIGNAL(src, COMSIG_HOSTILE_ATTACKINGTARGET, L)
 			L.visible_message(span_danger("\The [src] [attack_verb_continuous] [L]!"), \
@@ -389,8 +389,8 @@
 	for(var/turf/T in view(get_turf(src), 3))
 		CreateFire(T)
 	for(var/mob/living/carbon/human/H in view(2, src))
-		H.deal_damage(explode_charge_explosion_damage, RED_DAMAGE)
-		H.deal_damage(explode_charge_explosion_damage * 0.5, FIRE)
+		H.deal_damage(explode_charge_explosion_damage, RED_DAMAGE, src, attack_type = (ATTACK_TYPE_SPECIAL))
+		H.deal_damage(explode_charge_explosion_damage * 0.5, FIRE, src, attack_type = (ATTACK_TYPE_SPECIAL))
 		H.apply_lc_burn(10)
 		if(H.health < 0)
 			H.gib()
@@ -418,8 +418,8 @@
 	for(var/turf/T in view(get_turf(src), 7))
 		CreateFire(T)
 	for(var/mob/living/carbon/human/H in view(3, src))
-		H.deal_damage(explode_charge_explosion_damage * 2, RED_DAMAGE)
-		H.deal_damage(explode_charge_explosion_damage, FIRE)
+		H.deal_damage(explode_charge_explosion_damage * 2, RED_DAMAGE, src, attack_type = (ATTACK_TYPE_SPECIAL))
+		H.deal_damage(explode_charge_explosion_damage, FIRE, src, attack_type = (ATTACK_TYPE_SPECIAL))
 		H.apply_lc_burn(30)
 		if(H.health < 0)
 			H.gib()
@@ -435,7 +435,7 @@
 
 /obj/effect/turf_fire/ardor/DoDamage(mob/living/fuel)
 	if(ishuman(fuel))
-		fuel.deal_damage(0.5, FIRE)
+		fuel.deal_damage(0.5, FIRE, attack_type = (ATTACK_TYPE_ENVIRONMENT))
 		fuel.apply_lc_burn(1)
 
 /obj/effect/embers
@@ -465,7 +465,7 @@
 		chance = 10//Taking your time is key to not getting scorched... most of the time
 	if(prob(chance))
 		to_chat(L, span_userdanger("A burning ember attaches to you!"))
-		L.deal_damage(min(2, L.maxHealth/20), FIRE)//Just so Clerks won't eat shit and die
+		L.deal_damage(min(2, L.maxHealth/20), FIRE, attack_type = (ATTACK_TYPE_ENVIRONMENT))//Just so Clerks won't eat shit and die
 		L.apply_lc_burn(1)
 		if(ishuman(L) && connected_abno)
 			if(!connected_abno.datum_reference.working)

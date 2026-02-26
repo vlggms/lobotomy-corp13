@@ -302,7 +302,7 @@
 			for(var/mob/living/L in T) //knocks enemies away from you
 				if(L == user || ishuman(L))
 					continue
-				L.apply_damage(shockwave_damage[current_level] * force_multiplier, damtype, null, L.run_armor_check(null, damtype), spread_damage = TRUE)
+				L.deal_damage(shockwave_damage[current_level] * force_multiplier, damtype, src, attack_type = (ATTACK_TYPE_SPECIAL))
 				var/throw_target = get_edge_target_turf(L, get_dir(L, get_step_away(L, start)))
 				if(!L.anchored)
 					var/whack_speed = 10
