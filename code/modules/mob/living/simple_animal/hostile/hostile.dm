@@ -391,7 +391,6 @@ GLOBAL_LIST_EMPTY(marked_players)
 	var/effect_name
 	var/text_color = "#FFFFFF"
 	if(!forced)
-		to_chat(world, amount)
 		if(!amount)
 			return HealingEffect("no_dam", scale)
 		if(amount < 0)
