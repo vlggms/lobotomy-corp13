@@ -396,9 +396,6 @@
 	health = 500
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
 	del_on_death = TRUE
-	threat_level = WAW_LEVEL
-	fear_level = 0
-	can_affect_emergency = FALSE//More of a fragment of the abnormality than a minion
 	var/flower_damage_type
 	var/mob/living/simple_animal/hostile/abnormality/rose_sign/master
 	var/mob/living/status_target
