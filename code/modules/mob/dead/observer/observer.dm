@@ -1034,3 +1034,24 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			client.images += t_ray_images
 		else
 			client.images -= stored_t_ray_images
+
+/mob/dead/observer/verb/jumptohatchery() // Moves the ghost to a random hatchery. LC13 Unique.
+	set category = "Ghost"
+	set name = "Jump to Hatchery"
+	set desc = "Teleport to a hatchery"
+
+	if(isobserver(usr)) //Make sure they're an observer!
+		var/destination = pick(GLOB.hatcheries)
+		var/mob/A = src
+
+		if (!destination)//Make sure we actually have a target
+			to_chat(A, span_danger("A hatchery is not located in the game world."))
+			return
+		else
+			var/turf/T = get_turf(destination) //Turf of the destination mob
+
+			if(T && isturf(T))	//Make sure the turf exists, then move the source to that destination.
+				A.forceMove(T)
+				A.update_parallax_contents()
+			else
+				to_chat(A, span_danger("ERROR - A hatchery was found but not on a valid turf. Report this to a dev!"))
