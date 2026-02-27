@@ -90,7 +90,7 @@
 	desc = "There are some harsh fumes coming off of it."
 	icon_state = "acid_greyscale"
 	random_icon_states = list("acid_greyscale")
-	color = "#62ff55"
+	color = "#20f8ac"
 	duration = 30 SECONDS
 
 /obj/effect/decal/cleanable/wrath_acid/enkephalin/Crossed(atom/movable/AM)
