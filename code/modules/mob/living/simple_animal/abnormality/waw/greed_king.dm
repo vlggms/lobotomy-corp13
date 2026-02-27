@@ -162,15 +162,13 @@
 		addtimer(CALLBACK(src, PROC_REF(startTeleport)), 5 SECONDS)
 
 /mob/living/simple_animal/hostile/abnormality/greed_king/proc/charge_check()
-	//targeting
-	var/mob/living/carbon/human/target
 	if(!can_act)
 		return
 	var/list/possible_targets = list()
 	for(var/mob/living/carbon/human/H in view(20, src))
 		possible_targets += H
 	if(LAZYLEN(possible_targets))
-		target = pick(possible_targets)
+		FindTarget(list(pick(possible_targets)), TRUE) // The list(pick()) here makes it equally likely for anyone to be targeted. If you removed it, it'd be based on individual threat level
 		//Start charge
 		var/dir_to_target = get_cardinal_dir(get_turf(src), get_turf(target))
 		if(dir_to_target)
@@ -223,7 +221,7 @@
 	//Hiteffect stuff
 
 	for(var/turf/U in range(1, T))
-		var/list/new_hits = HurtInTurf(U, been_hit, 0, RED_DAMAGE, hurt_mechs = TRUE) - been_hit
+		var/list/new_hits = HurtInTurf(U, been_hit, 0, RED_DAMAGE, hurt_mechs = TRUE, flags = (DAMAGE_FORCED | DAMAGE_UNTRACKABLE)) - been_hit
 		been_hit += new_hits
 		for(var/mob/living/L in new_hits)
 			if(!nihil_present)
@@ -231,7 +229,7 @@
 				playsound(L, attack_sound, 75, 1)
 				new /obj/effect/temp_visual/kinetic_blast(get_turf(L))
 				if(ishuman(L))
-					L.deal_damage(charge_damage, RED_DAMAGE)
+					L.deal_damage(charge_damage, RED_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 				else
 					L.adjustRedLoss(100)
 				if(L.stat >= HARD_CRIT)

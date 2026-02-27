@@ -188,8 +188,8 @@
 			continue
 		to_chat(L, span_userdanger("You're boiling alive from the heat of a miniature sun!"))
 		playsound(L, 'sound/abnormalities/crying_children/attack_aoe.ogg', 50, TRUE)
-		L.deal_damage(175, RED_DAMAGE)
-		L.deal_damage(75, FIRE)
+		L.deal_damage(175, RED_DAMAGE, src, attack_type = (ATTACK_TYPE_SPECIAL))
+		L.deal_damage(75, FIRE, src, attack_type = (ATTACK_TYPE_SPECIAL))
 		L.apply_lc_burn(50)
 		new /obj/effect/temp_visual/fire/fast(get_turf(L))
 
@@ -310,7 +310,7 @@
 		S.pixel_x = rand(-8, 8)
 		S.pixel_y = rand(-8, 8)
 		animate(S, alpha = 0, time = 1.5)
-		var/list/new_hits = HurtInTurf(T, been_hit, 60, RED_DAMAGE, null, TRUE, FALSE, TRUE, TRUE) - been_hit
+		var/list/new_hits = HurtInTurf(T, been_hit, 60, RED_DAMAGE, null, TRUE, FALSE, TRUE, TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL)) - been_hit
 		been_hit += new_hits
 		for(var/mob/living/L in new_hits)
 			to_chat(L, span_userdanger("[src] stabs you!"))
@@ -368,7 +368,7 @@
 	playsound(src, 'sound/abnormalities/crying_children/attack_aoe.ogg', 50, FALSE)
 	for(var/turf/T in view(4, src))
 		new /obj/effect/temp_visual/fire/fast(T)
-		var/list/new_hits = HurtInTurf(T, been_hit, 250, RED_DAMAGE, null, TRUE, FALSE, TRUE, TRUE) - been_hit
+		var/list/new_hits = HurtInTurf(T, been_hit, 250, RED_DAMAGE, null, TRUE, FALSE, TRUE, TRUE, attack_type = (ATTACK_TYPE_SPECIAL)) - been_hit
 		been_hit += new_hits
 		for(var/mob/living/L in new_hits)
 			to_chat(L, span_userdanger("You were scorched by [src]'s flames!"))
@@ -506,9 +506,9 @@
 		toggle_ai(initial(src.AIStatus))
 		for(var/mob/living/carbon/human/H in view(src, 10)) // Immediately attacks on getting tagged
 			if(get_dist(src, H) < get_dist(src, target))
-				target = H
+				FindTarget(list(H), TRUE)
 			if(!target)
-				target = H
+				FindTarget(list(H), TRUE)
 		if(target in view(1, src))
 			AttackingTarget(target)
 		tagged = TRUE

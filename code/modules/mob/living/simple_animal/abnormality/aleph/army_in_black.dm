@@ -312,7 +312,7 @@ GLOBAL_LIST_EMPTY(army)
 			continue
 		P.datum_reference.qliphoth_change(-1)
 	for(var/mob/living/carbon/human/H in view(20, src))
-		H.deal_damage(boom_damage, WHITE_DAMAGE)
+		H.deal_damage(boom_damage, WHITE_DAMAGE, attack_type = (ATTACK_TYPE_SPECIAL))
 	new /obj/effect/temp_visual/black_explosion(get_turf(src))
 	qdel(src)
 
@@ -351,7 +351,7 @@ GLOBAL_LIST_EMPTY(army)
 	for(var/mob/living/L in view(4, src))
 		if(faction_check_mob(L))
 			continue
-		L.deal_damage(25, BLACK_DAMAGE)
+		L.deal_damage(25, BLACK_DAMAGE, src, attack_type = (ATTACK_TYPE_SPECIAL))
 	playsound(get_turf(src), 'sound/abnormalities/armyinblack/black_attack.ogg', 100, 0, 8)
 	shot_cooldown = world.time + shot_cooldown_time
 

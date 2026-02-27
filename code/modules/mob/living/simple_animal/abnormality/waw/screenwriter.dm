@@ -394,7 +394,7 @@ Defeating the murderer also surpresses the abnormality.
 		for(var/mob/living/carbon/human/H in view(7, human_pawn))
 			if(HAS_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE))
 				continue
-			H.deal_damage(sanity_damage, WHITE_DAMAGE)
+			H.deal_damage(sanity_damage, WHITE_DAMAGE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL))
 
 
 #undef STATUS_EFFECT_ACTOR

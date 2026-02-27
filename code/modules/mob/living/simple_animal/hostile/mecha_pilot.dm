@@ -69,7 +69,7 @@
 /mob/living/simple_animal/hostile/syndicate/mecha_pilot/proc/enter_mecha(obj/vehicle/sealed/mecha/M)
 	if(!M)
 		return 0
-	target = null //Target was our mecha, so null it out
+	LoseTarget(FALSE) //Target was our mecha, so null it out
 	M.aimob_enter_mech(src)
 	targets_from = M
 	allow_movement_on_non_turfs = TRUE //duh
@@ -104,7 +104,7 @@
 	var/search_aggressiveness = 2
 	for(var/obj/vehicle/sealed/mecha/combat/C in range(vision_range,src))
 		if(is_valid_mecha(C))
-			target = C
+			FindTarget(list(C), TRUE)
 			search_aggressiveness = 3 //We can see a mech? RUN FOR IT, IGNORE MOBS!
 			break
 	search_objects = search_aggressiveness
@@ -188,7 +188,7 @@
 				return
 			else
 				if(!CanAttack(M))
-					target = null
+					LoseTarget(FALSE)
 					return
 
 		return target.attack_animal(src)

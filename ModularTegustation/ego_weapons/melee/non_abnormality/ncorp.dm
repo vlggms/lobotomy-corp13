@@ -60,7 +60,7 @@
 
 	for(var/mob/living/M in marked)
 		playsound(M, 'sound/weapons/fixer/generic/nail2.ogg', 100, FALSE, 4)
-		M.apply_damage(I.force, I.damtype, null, M.run_armor_check(null, I.damtype), spread_damage = TRUE, white_healable = TRUE)
+		M.deal_damage(I.force, I.damtype, user, flags = (DAMAGE_WHITE_HEALABLE), attack_type = (ATTACK_TYPE_SPECIAL))
 		new /obj/effect/temp_visual/remorse(get_turf(M))
 		marked -= M
 

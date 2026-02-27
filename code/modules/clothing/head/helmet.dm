@@ -418,7 +418,7 @@
 	if(!ismonkey(user) || user.ckey)
 		var/mob/living/something = user
 		to_chat(something, "<span class='boldnotice'>You feel a stabbing pain in the back of your head for a moment.</span>")
-		something.apply_damage(5,BRUTE,BODY_ZONE_HEAD,FALSE,FALSE,FALSE) //notably: no damage resist (it's in your helmet), no damage spread (it's in your helmet)
+		something.deal_damage(5,BRUTE, flags = (DAMAGE_FORCED | DAMAGE_NO_SPREAD), def_zone = BODY_ZONE_HEAD) //notably: no damage resist (it's in your helmet), no damage spread (it's in your helmet)
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 30, TRUE)
 		return
 	if(!(GLOB.ghost_role_flags & GHOSTROLE_STATION_SENTIENCE))
@@ -460,7 +460,7 @@
 				if(1) //blood rage
 					magnification.ai_controller.blackboard[BB_MONKEY_AGRESSIVE] = TRUE
 				if(2) //brain death
-					magnification.apply_damage(500,BRAIN,BODY_ZONE_HEAD,FALSE,FALSE,FALSE)
+					magnification.deal_damage(500,BRAIN, flags = (DAMAGE_FORCED | DAMAGE_NO_SPREAD), def_zone = BODY_ZONE_HEAD)
 				if(3) //primal gene (gorilla)
 					magnification.gorillize()
 				if(4) //genetic mass susceptibility (gib)

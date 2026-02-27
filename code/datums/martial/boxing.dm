@@ -38,7 +38,7 @@
 					span_userdanger("You're [atk_verb]ed by [A]!"), span_hear("You hear a sickening sound of flesh hitting flesh!"), COMBAT_MESSAGE_RANGE, A)
 	to_chat(A, span_danger("You [atk_verb]ed [D]!"))
 
-	D.apply_damage(damage, STAMINA, affecting, armor_block)
+	D.deal_damage(damage, STAMINA, source = attacker_human, attack_type = (ATTACK_TYPE_MELEE), def_zone = affecting)
 	log_combat(A, D, "punched (boxing) ")
 	if(D.getStaminaLoss() > 50 && istype(D.mind?.martial_art, /datum/martial_art/boxing))
 		var/knockout_prob = D.getStaminaLoss() + rand(-15,15)

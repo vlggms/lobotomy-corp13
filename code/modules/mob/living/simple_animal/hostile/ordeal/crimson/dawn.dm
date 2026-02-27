@@ -100,5 +100,5 @@
 	visible_message(span_danger("[src] suddenly explodes!"))
 	for(var/mob/living/L in view(5, src))
 		if(!faction_check_mob(L))
-			L.apply_damage(10, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+			L.deal_damage(10, RED_DAMAGE, attack_type = (ATTACK_TYPE_SPECIAL))
 	gib()

@@ -137,10 +137,10 @@
 		playsound(get_turf(src), 'sound/abnormalities/laetitia/spider_born.ogg', 50, 1)
 		if (istype(user, /mob/living))
 			var/mob/living/L = user
-			L.apply_damage((basepower*strength), RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), FALSE, TRUE)
+			L.deal_damage((basepower*strength), RED_DAMAGE, flags = (DAMAGE_FORCED))
 		for(var/turf/T in range(2, user))
 			new /obj/effect/temp_visual/smash_effect(T)
-			user.HurtInTurf(T, list(), (basepower*strength), RED_DAMAGE, check_faction = FALSE, hurt_mechs = TRUE)
+			user.HurtInTurf(T, list(), (basepower*strength), RED_DAMAGE, check_faction = FALSE, hurt_mechs = TRUE, flags = (DAMAGE_FORCED | DAMAGE_UNTRACKABLE))
 		to_chat(user, "You opened the gift!")
 		qdel(src)
 	opening = FALSE
@@ -288,7 +288,7 @@
 	var/atom/throw_target = get_edge_target_turf(status_holder, rand_dir)
 	if(!status_holder.anchored)
 		status_holder.throw_at(throw_target, rand(1, 3), 7, status_holder)
-	status_holder.deal_damage(50, RED_DAMAGE)//Usually a kill, you can block it if you're good
+	status_holder.deal_damage(50, RED_DAMAGE, attack_type = (ATTACK_TYPE_STATUS))//Usually a kill, you can block it if you're good
 
 /datum/status_effect/pranked/proc/TriggerPrank()
 	//immediately set to 10 seconds, don't shorten if less than 10 seconds remaining

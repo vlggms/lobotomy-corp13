@@ -179,7 +179,7 @@
 
 		playsound(loc, weapon.hitsound, weapon.get_clamped_volume(), TRUE, extrarange = weapon.stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
 		do_attack_animation(C)
-		C.apply_damage(1, weapon.damtype, pick(list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)), C.run_armor_check(null, weapon.damtype), FALSE, TRUE)
+		C.deal_damage(1, weapon.damtype, source = src, attack_type = (ATTACK_TYPE_MELEE), def_zone = pick(list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)))
 		visible_message(span_warning("[src] nicks [C]!"), span_nicegreen("You steal [C]'s job!"))
 
 /mob/living/simple_animal/bot/cleanbot/attackby(obj/item/W, mob/user, params)

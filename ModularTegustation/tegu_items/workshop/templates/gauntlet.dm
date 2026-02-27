@@ -35,7 +35,7 @@
 	if(target.stat != DEAD)
 		weapon_xp++
 
-	target.deal_damage(force, damtype) //MASSIVE fuckoff punch
+	target.deal_damage(force, damtype, user, attack_type = (ATTACK_TYPE_MELEE)) //MASSIVE fuckoff punch
 
 	playsound(src, 'sound/weapons/resonator_blast.ogg', 50, TRUE)
 	var/atom/throw_target = get_edge_target_turf(target, user.dir)

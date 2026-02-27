@@ -44,7 +44,7 @@
 		cure(FALSE)
 		return
 
-	H.apply_damage((H.maxSanity * 0.06), WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+	H.deal_damage((H.maxSanity * 0.06), WHITE_DAMAGE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_STATUS))
 	if(prob(25))
 		var/turf/T = get_turf(H)
 		new /obj/effect/temp_visual/dancing_lights(T)

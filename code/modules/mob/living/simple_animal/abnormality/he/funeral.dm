@@ -137,7 +137,7 @@
 	for(var/turf/T in line_of_sight)
 		if(DensityCheck(T))
 			return
-	cooler_target.deal_damage(gun_damage, WHITE_DAMAGE)
+	cooler_target.deal_damage(gun_damage, WHITE_DAMAGE, src, attack_type = (ATTACK_TYPE_RANGED | ATTACK_TYPE_SPECIAL))
 	visible_message(span_danger("[cooler_target] is hit by butterflies!"))
 	//No longer because fuck you.
 	if(ishuman(target))
@@ -242,14 +242,14 @@
 /mob/living/simple_animal/hostile/abnormality/funeral/proc/SwarmTurfLinger(turf/T)
 	for(var/i = 1 to 40) //40 times
 		if(SSmaptype.maptype == "limbus_labs")
-			for(var/mob/living/carbon/human/H in HurtInTurf(T, list(), swarm_damage, WHITE_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE))
+			for(var/mob/living/carbon/human/H in HurtInTurf(T, list(), swarm_damage, WHITE_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL)))
 				if(H.stat == DEAD)
 					continue
 				if(H.sanity_lost)
 					H.death()
 					KillAnimation(H)
 		else
-			for(var/mob/living/carbon/human/H in HurtInTurf(T, list(), swarm_damage, WHITE_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
+			for(var/mob/living/carbon/human/H in HurtInTurf(T, list(), swarm_damage, WHITE_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL)))
 				if(H.stat == DEAD)
 					continue
 				if(H.sanity_lost)

@@ -113,7 +113,7 @@ GLOBAL_LIST_EMPTY(nuke_rats_players)
 	SLEEP_CHECK_DEATH(1 SECONDS)
 	forceMove(slash_end)
 	for(var/turf/T in hitline)
-		for(var/mob/living/L in HurtInTurf(T, list(), dash_damage, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE))
+		for(var/mob/living/L in HurtInTurf(T, list(), dash_damage, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL)))
 			to_chat(L, span_userdanger("[src] quickly slashes you!"))
 	new /datum/beam(slash_start.Beam(slash_end, "1-full", time=3))
 	playsound(src, attack_sound, 50, FALSE, 4)
@@ -392,7 +392,7 @@ GLOBAL_LIST_EMPTY(nuke_rats_players)
 				var/mob/living/simple_animal/hostile/metal_fixer_statue/S = L
 				qdel(S)
 				hit_statue = TRUE
-		HurtInTurf(T, list(), aoe_damage, BLACK_DAMAGE, null, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE)
+		HurtInTurf(T, list(), aoe_damage, BLACK_DAMAGE, null, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 
 	if(hit_statue)
 		say("...")
@@ -644,7 +644,7 @@ GLOBAL_LIST_EMPTY(nuke_rats_players)
 				new /obj/effect/temp_visual/mech_fire(T)
 				for(var/mob/living/L in T)
 					if(!faction_check_mob(L, FALSE) && !(locate(L) in hit_mob))
-						L.apply_damage(dash_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+						L.deal_damage(dash_damage, RED_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 						LAZYADD(hit_mob, L)
 
 
@@ -725,8 +725,8 @@ GLOBAL_LIST_EMPTY(nuke_rats_players)
 	playsound(src, 'sound/weapons/ego/burn_guard.ogg', min(15 + damage, 75), TRUE, 4)
 	attacker.visible_message(span_danger("[src] hits [attacker] with a counterattack!"), span_userdanger("[src] counters your attack!"))
 	do_attack_animation(attacker)
-	attacker.apply_damage(damage * 2, attack_type, null, attacker.getarmor(null, attack_type))
-	attacker.apply_damage(damage, STAMINA, null, null)
+	attacker.deal_damage(damage * 2, attack_type, source = src, attack_type = (ATTACK_TYPE_COUNTER))
+	attacker.deal_damage(damage, STAMINA, source = src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_COUNTER))
 
 
 

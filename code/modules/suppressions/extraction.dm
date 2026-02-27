@@ -579,7 +579,7 @@
 			continue
 		if(L.stat == DEAD)
 			continue
-		L.apply_damage(damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		L.deal_damage(damage, BLACK_DAMAGE, attack_type = (ATTACK_TYPE_SPECIAL))
 		L.visible_message("<span class='danger'>[L] has been hit by [name]!</span>",
 						"<span class='userdanger'>You've been hit by [name]!</span>")
 	sleep(6)
@@ -707,7 +707,7 @@
 			if(!faction_check(faction, L.faction, FALSE))
 				L.visible_message(span_boldwarning("[src] crashes into [L]!"), span_userdanger("[src] crashes into you!"))
 				new /obj/effect/temp_visual/kinetic_blast(get_turf(L))
-				L.deal_damage(charge_damage, BLACK_DAMAGE)
+				L.deal_damage(charge_damage, BLACK_DAMAGE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_ENVIRONMENT))
 				if(L.stat >= HARD_CRIT)
 					L.gib()
 				playsound(L, 'sound/abnormalities/kog/GreedHit1.ogg', 20, 1)

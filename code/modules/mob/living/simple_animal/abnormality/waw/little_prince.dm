@@ -73,7 +73,7 @@
 /mob/living/simple_animal/hostile/abnormality/little_prince/proc/Hypno(mob/living/carbon/human/user)
 	if (!(user.sanity_lost))
 		playsound(get_turf(user), 'sound/abnormalities/littleprince/Prince_Active.ogg', 50, 0, 2)
-		user.deal_damage(user.maxSanity, WHITE_DAMAGE)
+		user.deal_damage(user.maxSanity, WHITE_DAMAGE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL))
 		if (!(user.sanity_lost))
 			//Check Sanity twice to make sure you're actually insane
 			twice -= user
@@ -310,7 +310,7 @@
 
 //The Damage Proc
 /obj/effect/prince_mushrooms/proc/DoDamage(mob/living/carbon/human/H)
-	H.deal_damage(rand(1, 3), WHITE_DAMAGE)
+	H.deal_damage(rand(1, 3), WHITE_DAMAGE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_ENVIRONMENT))
 	to_chat(H, span_warning("You feel something weird touching your skin..."))
 	if (H.sanity_lost && connected_abno)
 		connected_abno.Hypno(H)
