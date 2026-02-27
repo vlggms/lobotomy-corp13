@@ -19,7 +19,8 @@
 		return
 	for(var/organ in H.internal_organs)
 		var/obj/item/organ/O = organ
-		O.applyOrganDamage(-1)
+		O.applyOrganDamage(-3)
+	H.cure_all_traumas(TRAUMA_RESILIENCE_LOBOTOMY)
 	if(M.getBruteLoss() > (M.maxHealth*0.25))
 		M.adjustBruteLoss(-2*REM, 0)
 	else

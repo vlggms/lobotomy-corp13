@@ -4407,6 +4407,7 @@
 #include "ModularTegustation\tegu_items\safety\bandages.dm"
 #include "ModularTegustation\tegu_items\safety\chemicals.dm"
 #include "ModularTegustation\tegu_items\safety\injectors.dm"
+#include "ModularTegustation\tegu_items\safety\machines.dm"
 #include "ModularTegustation\tegu_items\safety\pills.dm"
 #include "ModularTegustation\tegu_items\wcorp\berets.dm"
 #include "ModularTegustation\tegu_items\wcorp\enemies.dm"
