@@ -1,6 +1,5 @@
 GLOBAL_VAR_INIT(emergency_level, TRUMPET_0)
 
-// Seperated to prevent bloat
 SUBSYSTEM_DEF(lobotomy_emergency)
 	name = "Lobotomy Emergency System"
 	flags = SS_KEEP_TIMING | SS_BACKGROUND | SS_NO_FIRE
@@ -256,7 +255,7 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 				D.visible_message("<span class='notice'>[D] whirrs as it automatically lifts access requirements!</span>")
 				playsound(D, 'sound/machines/boltsup.ogg', 50, TRUE)
 	SSblackbox.record_feedback("tally", "security_level_changes", 1, get_emergency_level())
-	RefreshtrumpetlevelEffects()
+	RefreshTrumpetLevelEffects()
 
 /proc/get_emergency_level()
 	switch(GLOB.emergency_level)
@@ -297,7 +296,7 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 		if("fourth trumpet")
 			return TRUMPET_4
 
-/proc/RefreshtrumpetlevelEffects()
+/proc/RefreshTrumpetLevelEffects()
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		ApplyTrumpetLevelEffect(H)
 

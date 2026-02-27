@@ -103,7 +103,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	var/auto_restart_in_progress = FALSE
 	/// The timer that goes down for when shits fucked
 	var/restart_timer = null
-	/// If the shuttle is comming or not
+	/// If the shuttle is coming or not
 	var/shuttle = FALSE
 
 /datum/controller/subsystem/lobotomy_corp/Initialize(timeofday)
@@ -427,12 +427,12 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		if(!DeathCheck())
 			deltimer(restart_timer)
 			auto_restart_in_progress = FALSE
-			to_chat(world, span_nicegreen("<b>An agent has either joined or had came back to their senses, the round ending automatically is canceled for now!</b>"))
+			to_chat(world, span_nicegreen("<b>An agent has either joined or had came back to their senses, the round automatically ending has been canceled for now!</b>"))
 			return FALSE
 		if(!MinCheck() && !LAZYLEN(current_ordeals))
 			deltimer(restart_timer)
 			auto_restart_in_progress = FALSE
-			to_chat(world, span_nicegreen("<b>Most of the breaching abnormalities have been recontained, the round ending automatically is canceled for now!</b>"))
+			to_chat(world, span_nicegreen("<b>Most of the breaching abnormalities have been recontained, the round automatically ending has been canceled for now!</b>"))
 			return FALSE
 		return FALSE
 	if((OrdealDeathCheck() || MinDeathCheck()) && !auto_restart_in_progress)
@@ -447,7 +447,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		if(!OrdealDeathCheck())
 			deltimer(restart_timer)
 			auto_restart_in_progress = FALSE
-			to_chat(world, span_nicegreen("<b>All ordeals have ended, the round ending automatically is canceled for now!</b>"))
+			to_chat(world, span_nicegreen("<b>The ordeal has ended, the round automatically ending has been canceled for now!</b>"))
 		return FALSE
 	if((OrdealDeathCheck()) && !auto_restart_in_progress)
 		DeathAutoRestart()
@@ -457,11 +457,11 @@ SUBSYSTEM_DEF(lobotomy_corp)
 /datum/controller/subsystem/lobotomy_corp/proc/DeathAutoRestart(time = 120 SECONDS)
 	auto_restart_in_progress = TRUE
 	if(time <= 0)
-		message_admins("The round is over because all agents are dead while one or more threats are unresolved!")
-		to_chat(world, span_danger("<b>The round is over because all agents are dead while one or more threats are unresolved!</b>"))
+		message_admins("The round is ending because all agents are dead while one or more threats are unresolved!")
+		to_chat(world, span_danger("<b>The round is ending because all agents are dead while one or more threats are unresolved!</b>"))
 		SSticker.force_ending = TRUE
 		return TRUE
-	var/dialog = "All agents are dead or panicking! If ordeals are left unresolved, new agents don't join, or a panicking agent isn't dealt with"
+	var/dialog = "All agents are dead or panicking! If the ordeal is left unresolved, new agents don't join, or a panicking agent isn't dealt with"
 	if(MinCheck())
 		dialog = "All agents are dead or panicking! If the current situation is left unresolved, new agents don't join, or a panicking agent isn't dealt with"
 	to_chat(world, span_danger("<b>[dialog], the round will automatically end in <u>[round(time/10)] seconds!</u></b>"))
