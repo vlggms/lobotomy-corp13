@@ -421,18 +421,18 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		if(auto_restart_in_progress)
 			deltimer(restart_timer)
 			auto_restart_in_progress = FALSE
-			to_chat(world, span_nicegreen("<b>The shuttle has been called, the round ending automatically is canceled for now!</b>"))
+			to_chat(world, span_nicegreen("<b>The shuttle has been called, the site burial sequence has been suspended!</b>"))
 		return FALSE
 	if(auto_restart_in_progress)
 		if(!DeathCheck())
 			deltimer(restart_timer)
 			auto_restart_in_progress = FALSE
-			to_chat(world, span_nicegreen("<b>An agent has either joined or had came back to their senses, the round automatically ending has been canceled for now!</b>"))
+			to_chat(world, span_nicegreen("<b>An agent has either joined or had came back to their senses, the site burial sequence has been suspended!</b>"))
 			return FALSE
 		if(!MinCheck() && !LAZYLEN(current_ordeals))
 			deltimer(restart_timer)
 			auto_restart_in_progress = FALSE
-			to_chat(world, span_nicegreen("<b>Most of the breaching abnormalities have been recontained, the round automatically ending has been canceled for now!</b>"))
+			to_chat(world, span_nicegreen("<b>Most of the breaching abnormalities have been suppressed, the site burial sequence has been suspended!</b>"))
 			return FALSE
 		return FALSE
 	if((OrdealDeathCheck() || MinDeathCheck()) && !auto_restart_in_progress)
@@ -447,7 +447,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		if(!OrdealDeathCheck())
 			deltimer(restart_timer)
 			auto_restart_in_progress = FALSE
-			to_chat(world, span_nicegreen("<b>The ordeal has ended, the round automatically ending has been canceled for now!</b>"))
+			to_chat(world, span_nicegreen("<b>The current ordeal has ended, the site burial sequence has been suspended</b>"))
 		return FALSE
 	if((OrdealDeathCheck()) && !auto_restart_in_progress)
 		DeathAutoRestart()
@@ -461,10 +461,10 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		to_chat(world, span_danger("<b>The round is ending because all agents are dead while one or more threats are unresolved!</b>"))
 		SSticker.force_ending = TRUE
 		return TRUE
-	var/dialog = "All agents are dead or panicking! If the ordeal is left unresolved, new agents don't join, or a panicking agent isn't dealt with"
+	var/dialog = "All agents are dead or in a panic! If the ordeal is left unresolved"
 	if(MinCheck())
-		dialog = "All agents are dead or panicking! If the current situation is left unresolved, new agents don't join, or a panicking agent isn't dealt with"
-	to_chat(world, span_danger("<b>[dialog], the round will automatically end in <u>[round(time/10)] seconds!</u></b>"))
+		dialog = "All agents are dead or in a panic! If the current situation is left unresolved"
+	to_chat(world, span_danger("<b>[dialog], the site burial sequence will begin in <u>[round(time/10)] seconds!</u></b>"))
 	restart_timer = addtimer(CALLBACK(src, PROC_REF(DeathAutoRestart), max(0, time - 30 SECONDS)), 30 SECONDS, TIMER_STOPPABLE)
 	return TRUE
 
