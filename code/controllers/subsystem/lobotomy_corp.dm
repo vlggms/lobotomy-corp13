@@ -458,7 +458,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	auto_restart_in_progress = TRUE
 	if(time <= 0)
 		message_admins("The round is ending because all agents are dead while one or more threats are unresolved!")
-		to_chat(world, span_danger("<b>The round is ending because all agents are dead while one or more threats are unresolved!</b>"))
+		to_chat(world, span_danger("<b>The site burial sequence has been initiated due to one or more threats being unresolved while most if not all agents are dead!</b>"))
 		SSticker.force_ending = TRUE
 		return TRUE
 	var/dialog = "All agents are dead or in a panic! If the ordeal is left unresolved"
