@@ -250,7 +250,7 @@
 	var/no_emergency = FALSE	// if true, this light cannot ever have an emergency mode
 	var/bulb_emergency_brightness_mul = 0.25	// multiplier for this light's base brightness in emergency power mode
 	var/bulb_emergence_colour_small = null	// We set these later
-	var/bulb_emergence_colour_mid = null
+	var/bulb_emergency_colour_mid = null
 	var/bulb_emergency_colour = "#FF3232"	// determines the colour of the light while it's in emergency mode
 	var/bulb_emergency_pow_mul = 0.75	// the multiplier for determining the light's power in emergency mode
 	var/bulb_emergency_pow_min = 0.5	// the minimum value for the light's power in emergency mode
@@ -362,9 +362,9 @@
 	if(!bulb_emergence_colour_small)
 		var/LerpFactor = 1/3
 		bulb_emergence_colour_small = rgb(BColor[1] + ((EColor[1] - BColor[1]) * LerpFactor), BColor[2] + ((EColor[2] - BColor[2]) * LerpFactor), BColor[3] + ((EColor[3] - BColor[3]) * LerpFactor))
-	if(!bulb_emergence_colour_mid)
+	if(!bulb_emergency_colour_mid)
 		var/LerpFactor = 2/3
-		bulb_emergence_colour_mid = rgb(BColor[1] + ((EColor[1] - BColor[1]) * LerpFactor), BColor[2] + ((EColor[2] - BColor[2]) * LerpFactor), BColor[3] + ((EColor[3] - BColor[3]) * LerpFactor))
+		bulb_emergency_colour_mid = rgb(BColor[1] + ((EColor[1] - BColor[1]) * LerpFactor), BColor[2] + ((EColor[2] - BColor[2]) * LerpFactor), BColor[3] + ((EColor[3] - BColor[3]) * LerpFactor))
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/light/LateInitialize()
@@ -438,7 +438,7 @@
 				if(TRUMPET_1, TRUMPET_0)
 					CO = bulb_emergence_colour_small
 				if(TRUMPET_2)
-					CO = bulb_emergence_colour_mid
+					CO = bulb_emergency_colour_mid
 		else if (nightshift_enabled)
 			BR = nightshift_brightness
 			PO = nightshift_light_power

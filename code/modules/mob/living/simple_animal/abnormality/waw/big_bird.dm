@@ -128,6 +128,7 @@
 /mob/living/simple_animal/hostile/abnormality/big_bird/Initialize()
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(on_mob_death)) // Hell
+	RegisterSignal(SSdcs, COMSIG_TRUMPET_CHANGED, PROC_REF(emergency_check)) // Hell 2
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/Destroy()
 	for(var/atom/movable/AM in src) //Here, have your friend's heads back!
@@ -135,11 +136,8 @@
 	for(var/mob/living/carbon/human/H in enchanted_list)
 		EndEnchant(H)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
+	UnregisterSignal(SSdcs, COMSIG_TRUMPET_CHANGED)
 	return ..()
-
-/mob/living/simple_animal/hostile/abnormality/big_bird/Life()
-	. = ..()
-	emergency_check()
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/Moved()
 	. = ..()
@@ -448,9 +446,9 @@
 	return TRUE
 
 //I fucking hate that this can be added now - Crabby
-/mob/living/simple_animal/hostile/abnormality/big_bird/proc/emergency_check()
+/mob/living/simple_animal/hostile/abnormality/big_bird/proc/emergency_check(datum/source, level)
 	//if CONTAINED and shits going down
-	if(IsContained() && (GLOB.emergency_level >= TRUMPET_2) && (datum_reference?.emergency_breach))
+	if(IsContained() && (level >= TRUMPET_2) && (datum_reference?.emergency_breach))
 		BreachEffect() // FUCK YOU!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		if(datum_reference)
 			datum_reference.emergency_breach = FALSE
