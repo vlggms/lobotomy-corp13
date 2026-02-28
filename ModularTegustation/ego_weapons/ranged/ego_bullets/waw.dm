@@ -224,7 +224,7 @@
 				continue
 			Yin.adjustBruteLoss(-10)
 			Yin.adjustSanityLoss(-10)
-			new /obj/effect/temp_visual/healing(get_turf(Yin))
+			Yin.HealingEffect("healing")
 			break
 	return
 

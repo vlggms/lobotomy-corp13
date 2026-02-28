@@ -44,7 +44,7 @@
 		if((reach >= 2 && !user.Adjacent(target)) ||  reach < 2) // Reach weapon stuff
 			user.Immobilize(stuntime)
 			//Visual stuff to give you better feedback
-			new /obj/effect/temp_visual/weapon_stun(get_turf(user))
+			user.HealingEffect("stun")
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))

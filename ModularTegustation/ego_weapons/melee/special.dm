@@ -211,7 +211,7 @@
 	var/attacktime = (CLICK_CD_MELEE * attack_speed * 1.5)
 	user.changeNext_move(attacktime)
 	user.Immobilize(attacktime + 0.2)
-	new /obj/effect/temp_visual/weapon_stun(get_turf(user))
+	user.HealingEffect("stun")
 	ranged_cooldown = world.time + ranged_cooldown_time
 
 /obj/item/ego_weapon/twilight/attack(mob/living/M, mob/living/user)

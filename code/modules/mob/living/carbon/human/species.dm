@@ -1626,7 +1626,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			if(BP)
 				if(BP.receive_damage(damage_amount, 0, wound_bonus = wound_bonus, bare_wound_bonus = bare_wound_bonus, sharpness = sharpness))
 					H.update_damage_overlays()
-				new /obj/effect/temp_visual/damage_effect/red(get_turf(H), damage_amount) // Since bodypart damage bypasses bruteloss, we just make vfx here.
+				H.DamageEffect(damage_amount, BRUTE) // Since bodypart damage bypasses bruteloss, we just make vfx here.
 			else//no bodypart, we deal damage with a more general method.
 				H.adjustBruteLoss(damage_amount)
 		if(FIRE, LASER, ENERGY, RAD)
@@ -1635,7 +1635,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			if(BP)
 				if(BP.receive_damage(0, damage_amount, wound_bonus = wound_bonus, bare_wound_bonus = bare_wound_bonus, sharpness = sharpness))
 					H.update_damage_overlays()
-				new /obj/effect/temp_visual/damage_effect/burn(get_turf(H), damage_amount)
+				H.DamageEffect(damage_amount, FIRE)
 			else
 				H.adjustFireLoss(damage_amount)
 		if(TOX, BIO)

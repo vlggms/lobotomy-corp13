@@ -181,7 +181,7 @@
 	if(amount > 0)
 		accumulated_charge += amount
 	while(accumulated_charge >= 1)
-		new /obj/effect/temp_visual/healing/charge(get_turf(src))
+		HealingEffect("charge")
 		accumulated_charge = clamp(accumulated_charge - 1,0,20)
 	charge = clamp(charge + amount, 0, max_charge)
 

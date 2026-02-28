@@ -897,7 +897,7 @@
 				been_hit += L
 				L.adjustBruteLoss(-70)
 				L.adjustSanityLoss(-70)
-				new /obj/effect/temp_visual/healing(get_turf(L))
+				HealingEffect("healing")
 				if(istype(L.get_item_by_slot(ITEM_SLOT_OCLOTHING), /obj/item/clothing/suit/armor/ego_gear/realization/duality_yin))
 					L.apply_status_effect(/datum/status_effect/duality_yang)
 			all_turfs -= T
@@ -1211,7 +1211,7 @@
 		H.adjustBruteLoss(-70)
 		H.adjustSanityLoss(-70)
 		H.apply_status_effect(/datum/status_effect/flesh2)
-		new /obj/effect/temp_visual/healing(get_turf(H))
+		HealingEffect("healing")
 	return ..()
 
 /datum/status_effect/flesh1

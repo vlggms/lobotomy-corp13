@@ -1226,11 +1226,11 @@
 		if(!B)
 			B = new /obj/effect/decal/cleanable/blood(get_turf(owner))
 			B.bloodiness = 100
+	var/damage_done = stacks*2
 	if(ishuman(owner))
-		owner.adjustBruteLoss(max(stacks * 0.125, 1))
-	else
-		owner.adjustBruteLoss(stacks*2) // x2 on non humans
-	new /obj/effect/temp_visual/damage_effect/bleed(get_turf(owner))
+		damage_done = max(stacks * 0.125, 1)
+	owner.adjustBruteLoss(damage_done) // x2 on non humans
+	owner.OtherDamageEffect(damage_done, "bleed")
 	stacks = round(stacks/2)
 	if(stacks == 0)
 		qdel(src)
@@ -1368,7 +1368,7 @@
 		qdel(src)
 
 /datum/status_effect/stacking/lc_tremor/proc/TremorBurst()
-	new /obj/effect/temp_visual/weapon_stun/tremorburst(get_turf(owner))
+	owner.HealingEffect("tremorburst")
 	playsound(owner, 'sound/effects/tremorburst.ogg', 50, FALSE)
 	if(ishuman(owner))
 		owner.Knockdown(stacks)
@@ -1382,12 +1382,12 @@
 	var/datum/status_effect/stacking/lc_tremor/T = src.has_status_effect(/datum/status_effect/stacking/lc_tremor)
 	if(!T)
 		src.apply_status_effect(/datum/status_effect/stacking/lc_tremor, stacks)
-		new /obj/effect/temp_visual/damage_effect/tremor(get_turf(src))
+		src.OtherDamageEffect(stacks, "tremor")
 		return
 
 	if(T.stacks < tremorburst)
 		T.add_stacks(stacks)
-		new /obj/effect/temp_visual/damage_effect/tremor(get_turf(src))
+		src.OtherDamageEffect(stacks, "tremor")
 		T.new_stack = TRUE
 		return
 	T.TremorBurst()

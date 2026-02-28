@@ -103,7 +103,7 @@
 		return
 	var/mob/living/carbon/human/H = M
 	H.adjustSanityLoss(5 * REM) // hopefully keeps them at at least 1 sanity
-	new /obj/effect/temp_visual/damage_effect/sinking(get_turf(H))
+	H.OtherDamageEffect(5 * REM, "sinking")
 	..()
 	. = 1
 

@@ -276,7 +276,7 @@
 	if(!P.firer)
 		return ..()
 	if((get_dist(P.firer, src) > 4))
-		new /obj/effect/temp_visual/healing/no_dam(get_turf(src))
+		HealingEffect("no_dam")
 		visible_message(span_userdanger("[src] blocks \the [P]!"))
 		P.Destroy()
 	return ..()
@@ -404,7 +404,7 @@
 
 /mob/living/simple_animal/hostile/ordeal/dog_corrosion/bullet_act(obj/projectile/P)
 	if(charging || charge_ready)
-		new /obj/effect/temp_visual/healing/no_dam(get_turf(src))
+		HealingEffect("no_dam")
 		visible_message(span_userdanger("[src] swiftly avoids \the [P]!"))
 		P.Destroy()
 		return

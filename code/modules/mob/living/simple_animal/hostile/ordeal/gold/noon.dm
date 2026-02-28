@@ -171,7 +171,7 @@
 /mob/living/simple_animal/hostile/ordeal/white_lake_corrosion/bullet_act(obj/projectile/P)
 	if(!can_act) //Too busy attacking to block
 		return ..()
-	new /obj/effect/temp_visual/healing/no_dam(get_turf(src))
+	HealingEffect("no_dam")
 	visible_message(span_userdanger("[P] is easily deflected by [src]!"))
 	P.Destroy()
 	return
@@ -181,7 +181,7 @@
 		return ..()
 	var/checkdir = check_target_facings(user, src)
 	if((get_dist(user, src) > 1) || checkdir == FACING_EACHOTHER)
-		new /obj/effect/temp_visual/healing/no_dam(get_turf(src))
+		HealingEffect("no_dam")
 		user.visible_message(span_danger("[user]'s attack is easily deflected by [src]!"), span_userdanger("Your attack is easily deflected by [src]!"))
 		return
 	CallForHelp(user)

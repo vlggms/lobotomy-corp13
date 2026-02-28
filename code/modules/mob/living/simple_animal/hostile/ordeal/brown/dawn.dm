@@ -128,7 +128,6 @@
 			if(L.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(L, TRAIT_NODEATH))
 				devour(L)
 				return
-			new /obj/effect/temp_visual/damage_effect/rupture(get_turf(L))
 			L.deal_damage(rupture_damage, BRUTE)
 		else
 			devour(L)
@@ -219,10 +218,10 @@
 			if(faction_check_mob(L))
 				continue
 			L.deal_damage(damage_dealt, melee_damage_type)
-			new /obj/effect/temp_visual/damage_effect/sinking(get_turf(L))
 			if(ishuman(L))
 				var/mob/living/carbon/human/H = L
 				H.adjustSanityLoss(sinking_damage)
+				H.OtherDamageEffect(sinking_damage, "sinking")
 			else
 				L.deal_damage(sinking_damage, melee_damage_type)
 		for(var/obj/vehicle/sealed/mecha/V in T)

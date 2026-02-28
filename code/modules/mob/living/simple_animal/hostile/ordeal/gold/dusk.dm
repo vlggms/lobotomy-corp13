@@ -89,7 +89,7 @@
 
 /mob/living/simple_animal/hostile/ordeal/centipede_corrosion/proc/AdjustCharge(addition)
 	if(addition > 0 && charge_level < charge_level_cap)
-		new /obj/effect/temp_visual/healing/charge(get_turf(src))
+		HealingEffect("charge")
 	charge_level = clamp(charge_level + addition, 0, charge_level_cap)
 	update_icon()
 
@@ -220,7 +220,7 @@
 
 /mob/living/simple_animal/hostile/ordeal/thunderbird_corrosion/proc/AdjustCharge(addition)
 	if(addition > 0 && charge_level < charge_level_cap)
-		new /obj/effect/temp_visual/healing/charge(get_turf(src))
+		HealingEffect("charge")
 	charge_level = clamp(charge_level + addition, 0, charge_level_cap)
 
 /mob/living/simple_animal/hostile/ordeal/thunderbird_corrosion/proc/Recharge(atom/A) // Recharging the centipede
