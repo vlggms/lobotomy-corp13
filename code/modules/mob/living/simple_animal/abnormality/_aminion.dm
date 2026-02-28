@@ -13,7 +13,6 @@
 	vision_range = 12
 	aggro_vision_range = 20
 	move_resist = MOVE_FORCE_STRONG // They kept stealing my abnormalities
-	pull_force = MOVE_FORCE_STRONG
 	can_buckle_to = FALSE // Please. I beg you. Stop stealing my vending machines.
 	mob_size = MOB_SIZE_HUGE // No more lockers, Whitaker
 	simple_mob_flags = SILENCE_RANGED_MESSAGE
