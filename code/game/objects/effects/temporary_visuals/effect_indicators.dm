@@ -66,9 +66,9 @@
 			dam_effect.maptext_width = 32
 			var/style = "font-family: 'Better VCR'; font-size: 5px; -dm-text-outline: 1px black; color: [text_color];"
 			dam_effect.maptext = "<span style=\"[style]\">[round(amount, 0.1)][extratext]</span>"
-		animate(dam_effect, pixel_x = pixel_x + rand(1, 4), pixel_y = pixel_y + 10, alpha = 0, time = rand(8, 12), easing = SINE_EASING)
 	if(scale != 1)
 		dam_effect.transform *= scale
+	animate(dam_effect, pixel_x = pixel_x + rand(1, 4), pixel_y = pixel_y + 10, alpha = 0, time = rand(8, 12), easing = SINE_EASING)
 	flick_overlay(dam_effect, GLOB.clients, 12)
 	return dam_effect
 
@@ -108,9 +108,9 @@
 			other_effect.maptext_width = 32
 			var/style = "font-family: 'Better VCR'; font-size: 5px; -dm-text-outline: 1px black; color: [text_color];"
 			other_effect.maptext = "<span style=\"[style]\">[round(amount, 0.1)][extratext]</span>"
-		animate(other_effect, pixel_x = pixel_x + rand(1, 4), pixel_y = pixel_y + 10, alpha = 0, time = rand(8, 12), easing = SINE_EASING)
 	if(scale != 1)
 		other_effect.transform *= scale
+	animate(other_effect, pixel_x = pixel_x + rand(1, 4), pixel_y = pixel_y + 10, alpha = 0, time = rand(8, 12), easing = SINE_EASING)
 	flick_overlay(other_effect, GLOB.clients, 12)
 	return other_effect
 
