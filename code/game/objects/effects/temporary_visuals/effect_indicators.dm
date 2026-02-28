@@ -90,6 +90,12 @@
 		if("tremor")
 			effect_name = "tremor"
 			text_color = "#D0E329"
+		if("healing")
+			effect_name = "healing"
+			text_color = "#88FB94"
+		if("sanity")
+			effect_name = "sanity"
+			text_color = "#8EFDFF"
 	if(!effect_name)
 		return null
 	effect_name += "[rand(1,2)]"
