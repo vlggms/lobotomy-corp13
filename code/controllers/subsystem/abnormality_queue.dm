@@ -176,7 +176,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 	return TRUE
 
 /datum/controller/subsystem/abnormality_queue/proc/HandleStartingAbnormalities()
-	var/player_count = AvailableAgentCount()
+	var/player_count = length(GLOB.clients)
 	var/i
 	for(i=1 to round(clamp(player_count, 5, 30) / 5))
 		sleep(15 SECONDS) // Allows manager to select abnormalities if he is fast enough.
