@@ -117,12 +117,14 @@
 	//Temp too high, random damage type time.
 	if(get_attribute_level(user, JUSTICE_ATTRIBUTE) <= 60)
 		work_damage_upper = 7
+		work_damage_lower = 5
 	if(datum_reference?.qliphoth_meter == 1)
 		work_damage_type = BLACK_DAMAGE
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
 	work_damage_upper = initial(work_damage_upper)
+	work_damage_lower = initial(work_damage_lower)
 	work_damage_type = initial(work_damage_type)
 
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/proc/CheckQliphoth(mob/living/carbon/human/user, work_type, pe, work_time, canceled)

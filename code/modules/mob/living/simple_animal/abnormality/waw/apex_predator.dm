@@ -105,13 +105,15 @@
 /mob/living/simple_animal/hostile/abnormality/apex_predator/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(user.health != user.maxHealth)
 		work_damage_upper = 10
+		work_damage_lower = 7
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/apex_predator/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(user.health < 0)
 		datum_reference.qliphoth_change(-1)
 
-	work_damage_upper = initial(work_damage_lower)
+	work_damage_upper = initial(work_damage_upper)
+	work_damage_lower = initial(work_damage_lower)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/apex_predator/BreachEffect(mob/living/carbon/human/user, breach_type)

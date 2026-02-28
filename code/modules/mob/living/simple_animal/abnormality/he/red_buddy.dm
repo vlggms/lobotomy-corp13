@@ -119,6 +119,7 @@
 /mob/living/simple_animal/hostile/abnormality/red_buddy/WorktickFailure(mob/living/carbon/human/user)
 	AdjustSuffering(1)
 	work_damage_upper = suffering * 0.5
+	work_damage_lower = suffering * 0.25
 	UpdateScars()
 	return ..()
 

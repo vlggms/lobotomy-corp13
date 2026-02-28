@@ -47,6 +47,8 @@
 		return FALSE
 	work_damage_upper = (get_attribute_level(user, PRUDENCE_ATTRIBUTE) -60) * -0.2
 	work_damage_upper = max(3, work_damage_upper)	//So you don't get healing
+	work_damage_lower = (get_attribute_level(user, PRUDENCE_ATTRIBUTE) -60) * -0.1
+	work_damage_lower = max(1, work_damage_lower)	//So you don't get healing
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/drownedsisters/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)

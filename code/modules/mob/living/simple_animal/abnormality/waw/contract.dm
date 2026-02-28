@@ -93,10 +93,13 @@
 
 /mob/living/simple_animal/hostile/abnormality/contract/AttemptWork(mob/living/carbon/human/user, work_type)
 	work_damage_upper = initial(work_damage_upper)
+	work_damage_lower = initial(work_damage_lower)
 	if(ContractedUser(user, work_type) && .)
 		work_damage_upper *= 0.3
+		work_damage_lower *= 0.3
 	if(user in total_havers)
 		work_damage_upper *= 0.8
+		work_damage_lower *= 0.8
 		say("Yes, yes... I remember the contract.")
 
 	. = ..()
@@ -190,6 +193,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/contract/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	work_damage_upper = initial(work_damage_upper)
+	work_damage_lower = initial(work_damage_lower)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/contract/NeutralEffect(mob/living/carbon/human/user, work_type, pe)

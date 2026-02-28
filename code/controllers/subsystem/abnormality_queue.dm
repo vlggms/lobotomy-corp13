@@ -177,7 +177,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 /datum/controller/subsystem/abnormality_queue/proc/HandleStartingAbnormalities()
 	var/player_count = length(GLOB.clients)
 	var/i
-	for(i=1 to round(clamp(player_count, 5, 30) / 5))
+	for(i=1 to 1 + (floor(min(player_count, 15) / 3)))
 		sleep(15 SECONDS) // Allows manager to select abnormalities if he is fast enough.
 		SpawnAbno()
 	message_admins("[i] round-start abnormalities have been spawned.")

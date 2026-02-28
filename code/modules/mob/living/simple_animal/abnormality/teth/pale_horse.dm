@@ -70,7 +70,7 @@
 	if(user.health < (user.maxHealth * 0.5))
 		return
 	else
-		user.deal_damage(work_damage_upper, PALE_DAMAGE)
+		user.deal_damage(rand(work_damage_lower, work_damage_upper), PALE_DAMAGE)
 
 /mob/living/simple_animal/hostile/abnormality/pale_horse/Initialize()
 	. = ..()

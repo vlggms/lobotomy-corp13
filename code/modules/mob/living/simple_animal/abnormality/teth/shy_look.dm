@@ -63,18 +63,23 @@
 		if(1) //From Smiling to angry
 			chance_modifier = 1.3
 			work_damage_upper = initial(work_damage_upper)*0.5
+			work_damage_lower = initial(work_damage_lower)*0.5
 		if(2)
 			chance_modifier = 1.1
 			work_damage_upper = initial(work_damage_upper)
+			work_damage_lower = initial(work_damage_lower)
 		if(3)
 			chance_modifier = 1
 			work_damage_upper = initial(work_damage_upper)
+			work_damage_lower = initial(work_damage_lower)
 		if(4)
 			chance_modifier = 0.7
 			work_damage_upper = initial(work_damage_upper)*1.5
+			work_damage_lower = initial(work_damage_lower)*1.5
 		if(5)
 			chance_modifier = 0.5
 			work_damage_upper = initial(work_damage_upper)*2
+			work_damage_lower = initial(work_damage_lower)*2
 	if(!special_breach)
 		ChangeIcon()
 		return
