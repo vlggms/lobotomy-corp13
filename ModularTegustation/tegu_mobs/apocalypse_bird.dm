@@ -42,7 +42,7 @@
 		/obj/item/clothing/suit/armor/ego_gear/aleph/twilight
 		)
 	threat_level = ALEPH_LEVEL
-	score_divider = 1.5//Worth 50 points since jbirb, bbird, and pbird add an additional 140 so 190 total.
+	score_divider = 0.75//Worth about 100 points but it gets divided
 	var/list/eggs = list()
 	var/list/egg_types = list(
 						/mob/living/simple_animal/hostile/aminion/apocalypse_egg/beak,
@@ -427,7 +427,6 @@
 	mob_size = MOB_SIZE_HUGE
 	layer = ABOVE_ALL_MOB_LAYER
 	threat_level = ALEPH_LEVEL
-	can_affect_emergency = FALSE
 	/// What icon_state it is using when below 50% health
 	var/icon_damaged
 	/// Reference to the bird itself
