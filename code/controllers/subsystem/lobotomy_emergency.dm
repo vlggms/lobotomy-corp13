@@ -87,6 +87,24 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 		return
 	else if(istype(abno, /mob/living/simple_animal/hostile/abnormality/red_shoes))
 		UpdateScore(threat_to_score[abno.threat_level]/2)//A wierd edge case but its due to red shoes being 2 seperate mobs.
+	if(istype(abno, /mob/living/simple_animal/hostile/abnormality/white_night) || istype(abno, /mob/living/simple_animal/hostile/abnormality/distortedform))//Is there a better way of doing this?
+		UpdateScore(75)
+	else if(istype(abno, /mob/living/simple_animal/hostile/abnormality/hatred_queen))
+		var/mob/living/simple_animal/hostile/abnormality/hatred_queen/QOH = abno
+		if(!QOH.friendly)
+			UpdateScore(threat_to_score[abno.threat_level])
+	else if(istype(abno, /mob/living/simple_animal/hostile/abnormality/wrath_servant))
+		var/mob/living/simple_animal/hostile/abnormality/wrath_servant/SOW = abno
+		if(!SOW.friendly)
+			UpdateScore(threat_to_score[abno.threat_level])
+	else if(istype(abno, /mob/living/simple_animal/hostile/abnormality/pygmalion))
+		var/mob/living/simple_animal/hostile/abnormality/pygmalion/P = abno
+		if(!P.sculptor)
+			UpdateScore(threat_to_score[abno.threat_level])
+	else if(istype(abno, /mob/living/simple_animal/hostile/abnormality/puss_in_boots))
+		var/mob/living/simple_animal/hostile/abnormality/puss_in_boots/puss = abno
+		if(!puss.friendly)
+			UpdateScore(threat_to_score[abno.threat_level])
 	else
 		UpdateScore(threat_to_score[abno.threat_level])
 
@@ -102,7 +120,7 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 		min += ((threat_to_score[A.threat_level]/2)/A.score_divider)/score_divider
 
 	for(var/mob/living/simple_animal/hostile/abnormality/A in GLOB.abnormality_mob_list)
-		if(istype(A, /mob/living/simple_animal/hostile/abnormality/training_rabbit))
+		if(istype(A, /mob/living/simple_animal/hostile/abnormality/training_rabbit) || istype(A, /mob/living/simple_animal/hostile/abnormality/punishing_bird))
 			continue
 		if(A.IsContained())
 			continue
