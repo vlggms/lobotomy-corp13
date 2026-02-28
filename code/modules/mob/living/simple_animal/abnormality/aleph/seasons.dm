@@ -1428,6 +1428,7 @@
 	light_power = 3
 	can_affect_emergency = FALSE
 	threat_level = HE_LEVEL
+	move_resist = MOVE_RESIST_DEFAULT
 	fear_level = 0
 	var/can_act = TRUE
 	var/bomb_damage = 75
@@ -1538,7 +1539,6 @@
 	score_divider = 5
 	threat_level = HE_LEVEL
 	move_resist = MOVE_RESIST_DEFAULT
-	pull_force = PULL_FORCE_DEFAULT
 	var/can_act = TRUE
 	var/mob/living/simple_animal/hostile/abnormality/seasons/master
 

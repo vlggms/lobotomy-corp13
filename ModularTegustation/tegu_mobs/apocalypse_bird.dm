@@ -455,7 +455,7 @@
 	..()
 
 /mob/living/simple_animal/hostile/aminion/apocalypse_egg/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
-	..()
+	. = ..()
 	if(stat != DEAD)
 		if(prob(3) && bird)
 			bird.teleport_priority |= get_turf(src)
@@ -534,7 +534,7 @@
 	icon_living = "forest_portal"
 	del_on_death = TRUE
 	threat_level = ALEPH_LEVEL
-	can_affect_emergency = FALSE
+	score_divider = 10 //To prevent the trumpet from getting set back to 0 due to the birds despawning
 	/// List of birds that entered it. We don't delete/kill them for the sake of abnormality respawn mechanics.
 	var/list/stored_birds = list("spoken" = list(), "unspoken" = list())
 	/// These are the birds.
