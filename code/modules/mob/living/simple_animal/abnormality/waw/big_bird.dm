@@ -120,11 +120,9 @@
 	if(target)
 		if(!CanBeFinished(target))
 			LoseTarget()
-	if(client)
+	if(IsContained() || omw_to_apoc || client)
 		return
-	if(IsContained())
-		return
-	if(hypnosis_cooldown <= world.time && can_act && !omw_to_apoc)
+	if(hypnosis_cooldown <= world.time && can_act)
 		hypnotize()
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/Initialize()
@@ -328,7 +326,8 @@
 				head.dismember()
 				NestedItems(src, head)
 				H.regenerate_icons()
-				visible_message(span_danger("\The [src] bites [H]'s head off!"))
+				H.set_ssd_indicator(FALSE) // No they aren't in SSD, they're fucking dead
+				visible_message(span_danger("\The [src] bites off [H]'s head!"))
 	if(current_guy)
 		EndEnchant(current_guy)
 	. = ..()
@@ -465,9 +464,10 @@
 	else
 		return ..()
 
-/mob/living/simple_animal/hostile/abnormality/punishing_bird/BreachEffect(mob/living/carbon/human/user, breach_type)
+/mob/living/simple_animal/hostile/abnormality/big_bird/BreachEffect(mob/living/carbon/human/user, breach_type)
 	omw_to_apoc = FALSE
 	docile_confinement = FALSE
+	hypnosis_cooldown = world.time + hypnosis_cooldown_time
 	. = ..()
 	return
 
