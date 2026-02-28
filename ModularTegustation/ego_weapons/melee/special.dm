@@ -127,7 +127,7 @@
 		if(get_open_turf_in_dir(target_turf, dir))
 			new /obj/effect/temp_visual/paradise_attack_large/right(get_step(target_turf,dir))
 	for(var/turf/open/T in range(target_turf, 1))
-		for(var/mob/living/L in user.HurtInTurf(T, been_hit, modified_damage, PALE_DAMAGE, hurt_mechs = TRUE) - been_hit)
+		for(var/mob/living/L in user.HurtInTurf(T, been_hit, modified_damage, PALE_DAMAGE, hurt_mechs = TRUE))
 			been_hit += L
 			if((L.stat < DEAD) && !(L.status_flags & GODMODE))
 				healing_amount += healing

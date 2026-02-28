@@ -130,13 +130,14 @@ SUBSYSTEM_DEF(abnormality_queue)
 		return
 
 	current_milestone += 1
-	for(var/mob/living/carbon/human/person as anything in SSlobotomy_corp.active_officers)
-		if(!istype(person) || QDELETED(person)) // gibbed or cryo'd, we no longer care about them
-			SSlobotomy_corp.active_officers -= person
-			continue
+	if(current_milestone > 2)
+		for(var/mob/living/carbon/human/person as anything in SSlobotomy_corp.active_officers)
+			if(!istype(person) || QDELETED(person)) // gibbed or cryo'd, we no longer care about them
+				SSlobotomy_corp.active_officers -= person
+				continue
 
-		person.adjust_all_attribute_levels(10)
-		to_chat(person, span_notice("You feel stronger than before."))
+			person.adjust_all_attribute_levels(10)
+			to_chat(person, span_notice("You feel stronger than before."))
 
 /datum/controller/subsystem/abnormality_queue/proc/PickAbno()
 	if(!length(available_levels))
