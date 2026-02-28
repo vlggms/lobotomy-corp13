@@ -373,7 +373,6 @@
 	guaranteed_butcher_results = list(/obj/item/food/badrecipe = 1)
 	threat_level = HE_LEVEL
 	score_divider = 4
-	move_resist = MOVE_RESIST_DEFAULT
 	pull_force = PULL_FORCE_DEFAULT
 	var/list/breach_affected = list()
 	var/can_act = TRUE
