@@ -420,7 +420,7 @@ GLOBAL_LIST_EMPTY(marked_players)
 	if(!effect_name)
 		return null
 	effect_name += "[rand(1,2)]"
-	var/image/dam_effect = image('ModularTegustation/Teguicons/lc13_coloreffect.dmi', get_turf(src), effect_name, src.layer + 0.1)
+	var/image/dam_effect = image('ModularTegustation/Teguicons/lc13_coloreffect.dmi', get_turf(src), effect_name, EMISSIVE_LAYER)
 	dam_effect.pixel_x = rand(-12, 12)
 	dam_effect.pixel_y = rand(-9, 0)
 	dam_effect.plane = GAME_PLANE
@@ -440,7 +440,7 @@ GLOBAL_LIST_EMPTY(marked_players)
 	if(length(projectile_blockers) > 0)
 		dam_effect.pixel_x += rand(-occupied_tiles_left_current * 32, occupied_tiles_right_current * 32)
 		dam_effect.pixel_y += rand(-occupied_tiles_down_current * 32, occupied_tiles_up_current * 32)
-	animate(dam_effect, pixel_x = pixel_x + rand(1, 4), pixel_y = pixel_y + 10, alpha = 0, time = rand(8, 12), easing = SINE_EASING)
+	animate(dam_effect, pixel_x = dam_effect.pixel_x + rand(1, 4), pixel_y = dam_effect.pixel_y + 10, alpha = 0, time = rand(8, 12), easing = SINE_EASING)
 	flick_overlay(dam_effect, GLOB.clients, 12)
 	return dam_effect
 
@@ -460,7 +460,7 @@ GLOBAL_LIST_EMPTY(marked_players)
 	if(!effect_name)
 		return null
 	effect_name += "[rand(1,2)]"
-	var/image/other_effect = image('ModularTegustation/Teguicons/lc13_coloreffect.dmi', get_turf(src), effect_name, src.layer + 0.1)
+	var/image/other_effect = image('ModularTegustation/Teguicons/lc13_coloreffect.dmi', get_turf(src), effect_name, EMISSIVE_LAYER)
 	other_effect.pixel_x = rand(-12, 12)
 	other_effect.pixel_y = rand(-9, 0)
 	other_effect.plane = GAME_PLANE
@@ -480,7 +480,7 @@ GLOBAL_LIST_EMPTY(marked_players)
 	if(length(projectile_blockers) > 0)
 		other_effect.pixel_x += rand(-occupied_tiles_left_current * 32, occupied_tiles_right_current * 32)
 		other_effect.pixel_y += rand(-occupied_tiles_down_current * 32, occupied_tiles_up_current * 32)
-	animate(other_effect, pixel_x = pixel_x + rand(1, 4), pixel_y = pixel_y + 10, alpha = 0, time = rand(8, 12), easing = SINE_EASING)
+	animate(other_effect, pixel_x = other_effect.pixel_x + rand(1, 4), pixel_y = other_effect.pixel_y + 10, alpha = 0, time = rand(8, 12), easing = SINE_EASING)
 	flick_overlay(other_effect, GLOB.clients, 12)
 	return other_effect
 
@@ -503,7 +503,7 @@ GLOBAL_LIST_EMPTY(marked_players)
 			effect_name = "tremorburst"
 	if(!effect_name)
 		return null
-	var/image/heal_effect = image('ModularTegustation/Teguicons/lc13_coloreffect.dmi', get_turf(src), effect_name, src.layer + 0.1)
+	var/image/heal_effect = image('ModularTegustation/Teguicons/lc13_coloreffect.dmi', get_turf(src), effect_name, EMISSIVE_LAYER)
 	if(variance)
 		heal_effect.pixel_x = rand(-12, 12)
 		heal_effect.pixel_y = rand(-9, 0)
