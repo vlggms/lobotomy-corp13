@@ -117,7 +117,7 @@
 		BLACK_DAMAGE = (2 - (gear * 0.1)),
 		PALE_DAMAGE = (1.5 - (gear * 0.1)),
 	))
-	melee_damage_lower = (4 + (3 * gear))
+	melee_damage_lower = (5 + (3 * gear))
 	melee_damage_upper = (7 + (3 * gear))
 	steam_damage = (2 + (2 * gear))
 	var/oldhealth = maxHealth
