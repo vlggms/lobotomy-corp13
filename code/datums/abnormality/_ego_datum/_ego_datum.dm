@@ -127,19 +127,22 @@ GLOBAL_LIST_EMPTY(ego_datums)
 	information["special"] = E.special
 	information["attribute_requirements"] = E.attribute_requirements.Copy()
 	information["reach"] = E.reach
-	if(E.attack_speed < 0.4)
+	var/attack_speed = E.attack_speed
+	if(E.modified_attack_speed)
+		attack_speed = E.modified_attack_speed
+	if(attack_speed < 0.4)
 		information["attack_speed"] = "Very fast"
-	else if(E.attack_speed<0.7)
+	else if(attack_speed<0.7)
 		information["attack_speed"] = "Fast"
-	else if(E.attack_speed<1)
+	else if(attack_speed<1)
 		information["attack_speed"] = "Somewhat fast"
-	else if(E.attack_speed == 1)
+	else if(attack_speed == 1)
 		information["attack_speed"] = "Normal"
-	else if(E.attack_speed<1.5)
+	else if(attack_speed<1.5)
 		information["attack_speed"] = "Somewhat slow"
-	else if(E.attack_speed<2)
+	else if(attack_speed<2)
 		information["attack_speed"] = "Slow"
-	else if(E.attack_speed>=2)
+	else if(attack_speed>=2)
 		information["attack_speed"] = "Extremely slow"
 	if(E.stuntime)
 		switch(E.stuntime)
