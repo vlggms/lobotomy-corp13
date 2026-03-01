@@ -213,8 +213,8 @@
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(solo_punish)
-		work_damage_lower = 12
-		work_damage_upper = 15
+		work_damage_lower = 9
+		work_damage_upper = 12
 		return ..()
 	work_damage_lower = initial(work_damage_lower)
 	work_damage_upper = initial(work_damage_upper)

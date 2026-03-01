@@ -116,8 +116,8 @@
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/AttemptWork(mob/living/carbon/human/user, work_type)
 	//Temp too high, random damage type time.
 	if(get_attribute_level(user, JUSTICE_ATTRIBUTE) <= 60)
-		work_damage_upper = 7
-		work_damage_lower = 5
+		work_damage_upper = 6
+		work_damage_lower = 4
 	if(datum_reference?.qliphoth_meter == 1)
 		work_damage_type = BLACK_DAMAGE
 	return ..()

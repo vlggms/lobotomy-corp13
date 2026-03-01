@@ -37,7 +37,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(25, 20, 15, 10, 0),
 		ABNORMALITY_WORK_REPRESSION = list(0, 0, 50, 55, 55),
 	)
-	work_damage_upper = 7
+	work_damage_upper = 6
 	work_damage_lower = 4
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/apex_predator
@@ -104,8 +104,8 @@
 
 /mob/living/simple_animal/hostile/abnormality/apex_predator/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(user.health != user.maxHealth)
-		work_damage_upper = 10
-		work_damage_lower = 7
+		work_damage_upper = 8
+		work_damage_lower = 6
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/apex_predator/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
