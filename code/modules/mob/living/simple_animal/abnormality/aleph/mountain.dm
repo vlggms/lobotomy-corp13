@@ -225,7 +225,7 @@
 	// Increase stage
 	if(increase)
 		if(belly >= 2)
-			if(phase < 3 && SSmaptype.maptype != "limbus_labs")
+			if(phase < 3)
 				playsound(get_turf(src), 'sound/abnormalities/mountain/level_up.ogg', 75, 1)
 				adjustHealth(-5000)
 				maxHealth *= 2

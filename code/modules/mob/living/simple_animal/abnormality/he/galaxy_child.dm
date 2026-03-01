@@ -67,11 +67,6 @@
 /mob/living/simple_animal/hostile/abnormality/galaxy_child/PostSpawn()
 	. = ..()
 	datum_reference.qliphoth_meter = 1
-	if((SSmaptype.maptype == "limbus_labs"))
-		var/datum/action/cooldown/friend_gift/gift = new()
-		gift.Grant(src)
-		var/datum/action/cooldown/galaxygiftbreak/antigift = new()
-		antigift.Grant(src)
 
 /mob/living/simple_animal/hostile/abnormality/galaxy_child/Destroy(force)
 	break_gifts()

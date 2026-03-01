@@ -72,29 +72,6 @@
 
 	var/list/beespawn = list()
 
-	attack_action_types = list(
-		/datum/action/innate/change_icon_gbee,
-	)
-
-
-/datum/action/innate/change_icon_gbee
-	name = "Toggle Icon"
-	desc = "Toggle your icon between breached and contained. (Works only for Limbus Company Labratories)"
-
-/datum/action/innate/change_icon_gbee/Activate()
-	. = ..()
-	if(SSmaptype.maptype == "limbus_labs")
-		owner.icon = 'ModularTegustation/Teguicons/48x48.dmi'
-		owner.icon_state = "generalbee"
-		active = 1
-
-/datum/action/innate/change_icon_gbee/Deactivate()
-	. = ..()
-	if(SSmaptype.maptype == "limbus_labs")
-		owner.icon = 'ModularTegustation/Teguicons/48x96.dmi'
-		owner.icon_state = "general_breach"
-		active = 0
-
 /mob/living/simple_animal/hostile/abnormality/general_b/Login()
 	. = ..()
 	if(!. || !client)
@@ -112,11 +89,6 @@
 	if(IsCombatMap())
 		combat_map = TRUE
 		sight_ability.new_sight = SEE_TURFS
-		if(SSmaptype.maptype == "limbus_labs")
-			var/mob/living/simple_animal/hostile/soldier_bee/V = new(get_turf(src))
-			beespawn+=V
-			V = new(get_turf(src))
-			beespawn+=V
 	else
 		sight_ability.new_sight = SEE_TURFS | SEE_THRU
 
@@ -479,10 +451,7 @@
 
 /obj/effect/beeshell/Initialize()
 	. = ..()
-	if(SSmaptype.maptype == "limbus_labs")
-		addtimer(CALLBACK(src, PROC_REF(explode)), 5 SECONDS)
-	else
-		addtimer(CALLBACK(src, PROC_REF(explode)), 3.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(explode)), 3.5 SECONDS)
 
 /obj/effect/beeshell/New(loc, ...)
 	. = ..()
@@ -495,10 +464,7 @@
 	for(var/mob/living/L in view(2, src))
 		if(faction_check(faction, L.faction, FALSE))
 			continue
-		if(SSmaptype.maptype == "limbus_labs")
-			L.deal_damage(boom_damage*0.5, list(RED_DAMAGE, BLACK_DAMAGE))
-		else
-			L.deal_damage(boom_damage, list(RED_DAMAGE, BLACK_DAMAGE))
+		L.deal_damage(boom_damage, list(RED_DAMAGE, BLACK_DAMAGE))
 		if(L.health < 0)
 			L.gib()
 	new /obj/effect/temp_visual/explosion(get_turf(src))

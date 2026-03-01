@@ -84,7 +84,6 @@
 	attack_action_types = list(
 		/datum/action/cooldown/nosferatu_banquet,
 		/datum/action/cooldown/nosferatu_mistform,
-		/datum/action/innate/change_icon_nosf,
 	)
 
 // Playables buttons
@@ -95,24 +94,6 @@
 	check_flags = AB_CHECK_CONSCIOUS
 	transparent_when_unavailable = TRUE
 	cooldown_time = NOSFERATU_BANQUET_COOLDOWN //12 seconds
-
-/datum/action/innate/change_icon_nosf
-	name = "Toggle Icon"
-	desc = "Toggle your icon between breached and contained. (Works only for Limbus Company Labratories)"
-
-/datum/action/innate/change_icon_nosf/Activate()
-	. = ..()
-	if(SSmaptype.maptype == "limbus_labs")
-		owner.icon = 'ModularTegustation/Teguicons/32x48.dmi'
-		owner.icon_state = "nosferatu"
-		active = 1
-
-/datum/action/innate/change_icon_nosf/Deactivate()
-	. = ..()
-	if(SSmaptype.maptype == "limbus_labs")
-		owner.icon = 'ModularTegustation/Teguicons/32x48.dmi'
-		owner.icon_state = "nosferatu_breach"
-		active = 0
 
 /datum/action/cooldown/nosferatu_banquet/Trigger()
 	if(!..())
@@ -342,8 +323,6 @@
 		return ..()
 	var/mob/living/carbon/human/H = attacked_target
 	AdjustThirst(200)
-	if(SSmaptype.maptype == "limbus_labs")
-		return ..()
 	if(H.health < 0 || H.stat == DEAD)
 		AdjustThirst(H.blood_volume) // gain up to 2000 blood by draining a corpse
 		H.Drain()

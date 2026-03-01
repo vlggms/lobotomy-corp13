@@ -74,7 +74,7 @@
 	var/mob/living/carbon/human/H = target
 
 	// Check if target is an agent (allow mindless for debugging)
-	if(H.mind && !(H.mind.assigned_role in list("Records Officer", "Disciplinary Officer", "Manager", "Extraction Officer","Training Officer", "Agent", "Senior Agent", "Captain", "Lieutenant", "Officer", "Clerk")))
+	if(H.mind && !(H.mind.assigned_role in list("Records Officer", "Disciplinary Officer", "Manager", "Extraction Officer","Training Officer", "Agent Intern", "Agent", "Senior Agent", "Captain", "Lieutenant", "Officer", "Clerk")))
 		to_chat(user, span_warning("This device only works on L-Corp staff!"))
 		return
 
@@ -290,18 +290,16 @@
 		new_body.mind.assigned_role = stored_agent_data["assigned_role"]
 		// Equip appropriate outfit based on role
 		switch(stored_agent_data["assigned_role"])
-			if("Agent")
-				new_body.equipOutfit(/datum/outfit/job/agent)
 			if("Clerk")
-				new_body.equipOutfit(/datum/outfit/job/staff)
+				new_body.equipOutfit(/datum/outfit/job/assistant)
 			if("Captain")
 				new_body.equipOutfit(/datum/outfit/job/agent/captain)
 			if("Lieutenant")
 				new_body.equipOutfit(/datum/outfit/job/agent)
 			if("Manager")
-				new_body.equipOutfit(/datum/outfit/job/officer)
+				new_body.equipOutfit(/datum/outfit/job/manager)
 			else
-				new_body.equipOutfit(/datum/outfit/job/agent) // Default to agent for officers, just to prevent them from getting multiples of their gear
+				new_body.equipOutfit(/datum/outfit/job/agent) // Default to agent for officers, just to prevent them from getting multiple copies of their gear
 
 	// Restore skills
 	if(stored_agent_data["skills"])
