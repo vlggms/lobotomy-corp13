@@ -121,8 +121,8 @@
 	melee_damage_upper = (7 + (3 * gear))
 	steam_damage = (2 + (2 * gear))
 	var/oldhealth = maxHealth
-	maxHealth = (1600 + (400 * gear))
-	adjustBruteLoss(oldhealth - maxHealth) //Heals 400 health in a gear shift if it's already breached
+	maxHealth = (320 + (160 * gear))
+	adjustBruteLoss(oldhealth - maxHealth) //Heals 160 health in a gear shift if it's already breached
 	work_damage_upper = (3 + (2 * gear))
 	ranged_cooldown_time = (40 - (5 * gear))
 	start_qliphoth = (max(1,(4 - gear)))
