@@ -8,8 +8,8 @@
 	core_icon = "steammachine_egg"
 	portrait = "steam_transport_machine"
 	del_on_death = FALSE
-	maxHealth = 320
-	health = 320
+	maxHealth = 400
+	health = 400
 	blood_volume = 0
 	ranged = TRUE
 	attack_sound = 'sound/abnormalities/steam/attack.ogg'
@@ -121,7 +121,7 @@
 	melee_damage_upper = (7 + (3 * gear))
 	steam_damage = (2 + (2 * gear))
 	var/oldhealth = maxHealth
-	maxHealth = (320 + (160 * gear))
+	maxHealth = (400 + (200 * gear))
 	adjustBruteLoss(oldhealth - maxHealth) //Heals 160 health in a gear shift if it's already breached
 	work_damage_upper = (3 + (2 * gear))
 	ranged_cooldown_time = (40 - (5 * gear))
