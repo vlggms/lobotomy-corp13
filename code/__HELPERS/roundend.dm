@@ -671,7 +671,6 @@
 		if(O[(i * 4) + 4] >= 0)
 			parts += "[FOURSPACES]<span style='color: [O[(i * 4) + 2]]'>[O[(i * 4) + 1]]</span>: Started at <b>[DisplayTimeText(O[(i * 4) + 3])]</b> and took <b>[DisplayTimeText(O[(i * 4) + 4] - O[(i * 4) + 3])]</b> to be delt with."
 		else
-			to_chat(world, "AAA")
 			parts += "[FOURSPACES]<span style='color: [O[(i * 4) + 2]]'>[O[(i * 4) + 1]]</span>: Started at <b>[DisplayTimeText(O[(i * 4) + 3])]</b> and was <b>never beaten</b>!"
 	parts += "</div>"
 	return parts.Join("<br>")
