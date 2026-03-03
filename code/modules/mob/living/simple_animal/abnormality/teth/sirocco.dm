@@ -128,6 +128,7 @@
 /* Qliphoth/Breach effects */
 /mob/living/simple_animal/hostile/abnormality/sirocco/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
+	UnregisterSignal(SSdcs, COMSIG_TRUMPET_CHANGED)
 	addtimer(CALLBACK(src, PROC_REF(Grabber)), cooldown_time)
 	addtimer(CALLBACK(src, PROC_REF(RefreshList)), list_refresh_time)
 	icon_state = breach_icon
@@ -137,7 +138,7 @@
 		ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.4))
 
 /mob/living/simple_animal/hostile/abnormality/sirocco/proc/EndStorm()
-	if(level != TRUMPET_0)
+	if(GLOB.emergency_level != TRUMPET_0)
 		addtimer(CALLBACK(src, PROC_REF(EndStorm)), lowered_breached_time)
 		return
 	grabbed_list = list()
