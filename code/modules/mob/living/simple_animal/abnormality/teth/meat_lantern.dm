@@ -22,6 +22,7 @@
 	can_breach = TRUE
 	del_on_death = FALSE
 	death_message = "explodes in a shower of gore."
+	trigger_lights = FALSE
 
 	work_damage_upper = 3
 	work_damage_lower = 1
