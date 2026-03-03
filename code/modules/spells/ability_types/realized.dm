@@ -1172,6 +1172,7 @@
 	faction = list("neutral", "shrimp")
 	threat_level = WAW_LEVEL
 	can_affect_emergency = FALSE
+	trigger_lights = FALSE
 	fear_level = 0
 
 /mob/living/simple_animal/hostile/aminion/shrimp/friendly/Initialize()

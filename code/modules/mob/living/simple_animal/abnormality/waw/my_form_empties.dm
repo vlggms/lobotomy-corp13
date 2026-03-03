@@ -185,12 +185,14 @@
 	for(var/i = 1, i <= minion_amount ,i++)
 		var/karma_vis = new /obj/effect/karma_halo
 		var/picked = pick(pick(possible_minion_list))
-		var/mob/living/minion = new picked(get_turf(src))
+		var/mob/living/simple_animal/hostile/minion = new picked(get_turf(src))
+		minion.can_affect_emergency = FALSE
 		minion.name = "Lured " + "[minion.name]"
 		minion.maxHealth = 2000
 		minion.faction = faction
 		minion.vis_contents += karma_vis
 		current_minions += minion
+	SSlobotomy_emergency.UpdateMin()//Note due to being unable to change if a minion can affect the score at all, they'll will be able to only change the base score and not the min score.
 	if(!staff)
 		T = get_ranged_target_turf(T, EAST, 1)
 		staff = new(T)

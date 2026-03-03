@@ -71,11 +71,14 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 		UpdateScore((agent_death * get_user_level(H))/agent_count)//If a higher level agent panics it should probably matter more
 
 
-/datum/controller/subsystem/lobotomy_emergency/proc/OnAbnoMinionSpawn(mob/living/simple_animal/hostile/aminion/M)
+/datum/controller/subsystem/lobotomy_emergency/proc/OnAbnoMinionSpawn(mob/living/simple_animal/hostile/M)
 	if(is_tutorial_level(M.z))
 		return
 	if(!M.can_affect_emergency)
-		return FALSE
+		return
+	if(M.set_score)
+		UpdateScore(M.set_score, FALSE)
+		return
 	UpdateScore(threat_to_score[M.threat_level]/M.score_divider)
 	return
 
@@ -83,71 +86,42 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 	SIGNAL_HANDLER
 	if(is_tutorial_level(abno.z))
 		return
-	if(istype(abno, /mob/living/simple_animal/hostile/abnormality/training_rabbit))
+	if(!abno.can_affect_emergency)
 		return
-	else if(istype(abno, /mob/living/simple_animal/hostile/abnormality/red_shoes))
-		UpdateScore(threat_to_score[abno.threat_level]/2)//A wierd edge case but its due to red shoes being 2 seperate mobs.
-	if(istype(abno, /mob/living/simple_animal/hostile/abnormality/white_night) || istype(abno, /mob/living/simple_animal/hostile/abnormality/distortedform))//Is there a better way of doing this?
-		UpdateScore(75)
-	else if(istype(abno, /mob/living/simple_animal/hostile/abnormality/hatred_queen))
-		var/mob/living/simple_animal/hostile/abnormality/hatred_queen/QOH = abno
-		if(!QOH.friendly)
-			UpdateScore(threat_to_score[abno.threat_level])
-	else if(istype(abno, /mob/living/simple_animal/hostile/abnormality/wrath_servant))
-		var/mob/living/simple_animal/hostile/abnormality/wrath_servant/SOW = abno
-		if(!SOW.friendly)
-			UpdateScore(threat_to_score[abno.threat_level])
-	else if(istype(abno, /mob/living/simple_animal/hostile/abnormality/pygmalion))
-		var/mob/living/simple_animal/hostile/abnormality/pygmalion/P = abno
-		if(!P.sculptor)
-			UpdateScore(threat_to_score[abno.threat_level])
-	else if(istype(abno, /mob/living/simple_animal/hostile/abnormality/puss_in_boots))
-		var/mob/living/simple_animal/hostile/abnormality/puss_in_boots/puss = abno
-		if(!puss.friendly)
-			UpdateScore(threat_to_score[abno.threat_level])
-	else
-		UpdateScore(threat_to_score[abno.threat_level])
+	if(abno.set_score)
+		UpdateScore(abno.set_score, FALSE)
+		return
+	var/addedscore = threat_to_score[abno.threat_level]/abno.score_divider
+	UpdateScore(addedscore)
 
 /datum/controller/subsystem/lobotomy_emergency/proc/UpdateMin()
 	if(!should_calc_score)
 		return
 	var/min = 0
-	for(var/mob/living/simple_animal/hostile/aminion/A in GLOB.abnormality_minion_list)
-		if(!A.can_affect_emergency)
+	for(var/mob/living/simple_animal/hostile/A in GLOB.abnormality_minion_list)
+		if(!A.can_affect_emergency || !A.can_affect_min)
 			continue
 		if(A.stat == DEAD)//The dead shouldn't count
 			continue
-		min += ((threat_to_score[A.threat_level]/2)/A.score_divider)/score_divider
+		var/added_min = threat_to_score[A.threat_level]/(A.score_divider * score_divider * 2)
+		if(A.set_score)
+			min += A.set_score
+		else
+			min += added_min
 
 	for(var/mob/living/simple_animal/hostile/abnormality/A in GLOB.abnormality_mob_list)
-		if(istype(A, /mob/living/simple_animal/hostile/abnormality/training_rabbit) || istype(A, /mob/living/simple_animal/hostile/abnormality/punishing_bird))
+		if(!A.can_affect_emergency || !A.can_affect_min)
 			continue
 		if(A.IsContained())
 			continue
 		if(A.stat == DEAD)//The dead shouldn't count
 			continue
-		if(istype(A, /mob/living/simple_animal/hostile/abnormality/white_night) || istype(A, /mob/living/simple_animal/hostile/abnormality/distortedform))//Is there a better way of doing this?
-			min += 75//Perma Second trumpet until either are killed
-		else if(istype(A, /mob/living/simple_animal/hostile/abnormality/hatred_queen))
-			var/mob/living/simple_animal/hostile/abnormality/hatred_queen/QOH = A
-			if(!QOH.friendly)
-				min += (threat_to_score[A.threat_level]/2)/score_divider
-		else if(istype(A, /mob/living/simple_animal/hostile/abnormality/wrath_servant))
-			var/mob/living/simple_animal/hostile/abnormality/wrath_servant/SOW = A
-			if(!SOW.friendly)
-				min += (threat_to_score[A.threat_level]/2)/score_divider
-		else if(istype(A, /mob/living/simple_animal/hostile/abnormality/pygmalion))
-			var/mob/living/simple_animal/hostile/abnormality/pygmalion/P = A
-			if(!P.sculptor)
-				min += (threat_to_score[A.threat_level]/2)/score_divider
-		else if(istype(A, /mob/living/simple_animal/hostile/abnormality/puss_in_boots))
-			var/mob/living/simple_animal/hostile/abnormality/puss_in_boots/puss = A
-			if(!puss.friendly)
-				min += (threat_to_score[A.threat_level]/2)/score_divider
-		else if(istype(A, /mob/living/simple_animal/hostile/abnormality/red_shoes))
-			min += (threat_to_score[A.threat_level]/4)/score_divider
+		var/added_min = threat_to_score[A.threat_level]/(A.score_divider * score_divider * 2)
+		if(A.set_score)
+			min += A.set_score
 		else
-			min += (threat_to_score[A.threat_level]/2)/score_divider
+			min += added_min
+
 	if(LAZYLEN(SSlobotomy_corp.current_ordeals))
 		min += SSlobotomy_corp.current_ordeals.len * (ordeal_amount/2)
 	score_min = min(score_cap, min)

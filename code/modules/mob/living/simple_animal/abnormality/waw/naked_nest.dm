@@ -180,6 +180,7 @@
 	del_on_death = 1
 	vision_range = 18 //two screens away
 	minbodytemp = INHOSPITABLE_FOR_NESTING
+	trigger_lights = FALSE
 	fear_level = 0
 	can_affect_emergency = FALSE// Too small to count
 	var/panic_timer = 0

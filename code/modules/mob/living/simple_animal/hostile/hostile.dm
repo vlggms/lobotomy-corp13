@@ -98,6 +98,19 @@ GLOBAL_LIST_EMPTY(marked_players)
 	var/ending_looting_line = "That's it, you asked for this."
 	var/list/glob_faction = list()
 
+	/// This is used for the emergency system but it'll need some extra code to work
+	//Does this enemy count for the emergency system
+	var/can_affect_emergency = FALSE
+	//The threat level of a threat. Only used for abnormaltiies and their minions currently
+	var/threat_level = ZAYIN_LEVEL
+	//The divider for score for the emergency system. We don't want minion spam to count too much
+	var/score_divider = 1
+	//Incase you want an enemy to add a constant amount of points
+	var/set_score = null
+	//Does this enemy count for the min emergency level?
+	var/can_affect_min = TRUE
+	//If true, this entity can trigger the change in lighting during a trumpet
+	var/trigger_lights = FALSE
 	// When this var is TRUE, will not attempt to break out of somewhere it's confined in or buckled to.
 	var/docile_confinement = FALSE
 
@@ -109,7 +122,10 @@ GLOBAL_LIST_EMPTY(marked_players)
 	. = ..()
 	if(SSmaptype.maptype in SSmaptype.citymaps)
 		vision_range = min(vision_range, 8)
-
+	if(trigger_lights)
+		var/area/A = get_area(src)
+		if(istype(A))
+			A.RefreshLights()
 	if(attack_cooldown == 0)
 		attack_cooldown = SSnpcpool.wait / rapid_melee
 	old_rapid_melee = rapid_melee
@@ -188,6 +204,11 @@ GLOBAL_LIST_EMPTY(marked_players)
 	if(mark_once_attacked)
 		UnregisterSignal(SSdcs, COMSIG_CRATE_LOOTING_STARTED)
 		UnregisterSignal(SSdcs, COMSIG_CRATE_LOOTING_ENDED)
+	if(trigger_lights)
+		trigger_lights = FALSE
+		var/area/A = get_area(src)
+		if(istype(A))
+			A.RefreshLights()
 	return ..()
 
 /mob/living/simple_animal/hostile/death(gibbed)
@@ -207,7 +228,11 @@ GLOBAL_LIST_EMPTY(marked_players)
 					L.client.give_award(/datum/award/achievement/lc13/city/nuke_rats_genocide, L)
 			// Clear the killers list after awarding
 			GLOB.nuke_rats_killers.Cut()
-
+	if(trigger_lights)
+		trigger_lights = FALSE
+		var/area/A = get_area(src)
+		if(istype(A))
+			A.RefreshLights()
 	return ..()
 
 /mob/living/simple_animal/hostile/Life()

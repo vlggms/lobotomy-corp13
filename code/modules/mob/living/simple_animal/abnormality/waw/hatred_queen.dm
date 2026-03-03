@@ -13,6 +13,8 @@
 	portrait = "hatred_queen"
 	faction = list("neutral")
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+	can_affect_emergency = FALSE
+	trigger_lights = FALSE
 
 	ranged = TRUE
 	retreat_distance = 1
@@ -229,11 +231,11 @@
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/Life()
 	. = ..()
+	emergency_check()
 	if(IsContained()) // Contained
 		if(datum_reference?.qliphoth_meter == 1)
 			addtimer(CALLBACK(src, PROC_REF(SpawnHeart)), rand(2,8))
 			addtimer(CALLBACK(src, PROC_REF(SpawnHeart)), rand(4,10))
-		emergency_check()
 	if(.)
 		if(!friendly && can_act)
 			switch(hp_teleport_counter)
@@ -618,9 +620,10 @@
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/HostileTransform()
+/mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/HostileTransform(contained = FALSE)
 	if(stat == DEAD)
 		return
+	HostileMode(!contained)
 	visible_message(span_bolddanger("[src] transforms!")) //Begin Hostile breach
 	if(HAS_TRAIT_FROM(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT))
 		REMOVE_TRAIT(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT)
@@ -664,7 +667,7 @@
 		if(!nihil_present)
 			addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, say), "In the name of Love and Justice~ Here comes Magical Girl!"))
 		return ..()
-	HostileTransform()
+	HostileTransform(TRUE)
 	return ..()
 
 //Nihil Event Code - Fights like the friendly version

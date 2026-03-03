@@ -165,6 +165,12 @@
 		stunned_effect = null
 		density = TRUE
 		revive(full_heal = TRUE, admin_revive = TRUE)
+		if(!trigger_lights)
+			trigger_lights = TRUE
+			var/area/A = get_area(src)
+			if(!istype(A))
+				return
+			A.RefreshLights()
 		GoToFriend()
 		return
 	animate(src, alpha = 0, time = 3 SECONDS)

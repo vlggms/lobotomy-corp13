@@ -254,6 +254,7 @@
 	icon_dead = "wellcheers_soldier_dead"
 	faction = list("neutral", "shrimp")
 	can_affect_emergency = FALSE
+	trigger_lights = FALSE
 	fear_level = 0
 
 /obj/item/grenade/spawnergrenade/shrimp
