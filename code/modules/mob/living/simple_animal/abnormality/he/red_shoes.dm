@@ -207,6 +207,7 @@
 	soundloop.stop()
 	for(var/mob/living/carbon/human/H in GLOB.mob_living_list)//stops possessing people, prevents runtimes. Panicked players are ghosted so use mob_living_list
 		UnPossess(H)
+	score_divider = 2 //Weird case due to it being 2 entities.
 	. = ..()
 	if(!possessee)
 		name = "Red Shoe"

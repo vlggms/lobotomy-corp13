@@ -24,6 +24,8 @@
 	can_breach = TRUE
 	ranged = TRUE
 	start_qliphoth = 2
+	can_affect_emergency = FALSE
+	trigger_lights = FALSE
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 60,
 		ABNORMALITY_WORK_INSIGHT = 0,
@@ -193,6 +195,7 @@
 		icon_state = icon_friendly
 		update_icon()
 		return
+	HostileMode(!density)
 	if(!density) //sanity check for if he was friendly breaching and is no longer friendly
 		density = TRUE
 		fear_level = HE_LEVEL

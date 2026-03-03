@@ -1577,6 +1577,12 @@
 	revive(full_heal = TRUE, admin_revive = FALSE)
 	visible_message(span_boldwarning("[src] staggers back on their feet!"))
 	playsound(get_turf(src), 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, 0, 8)
+	if(!trigger_lights)
+		trigger_lights = TRUE
+		var/area/A = get_area(src)
+		if(!istype(A))
+			return
+		A.RefreshLights()
 
 //Zombie conversion from other zombies
 /mob/living/simple_animal/hostile/aminion/flora_zombie/proc/Convert(mob/living/carbon/human/H)

@@ -12,6 +12,8 @@
 	faction = list("wrath")
 	speak_emote = list()
 	gender = FEMALE
+	can_affect_emergency = FALSE
+	trigger_lights = FALSE
 
 	ranged = TRUE
 	maxHealth = 600
@@ -405,6 +407,7 @@
 	status_flags &= ~GODMODE
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ABNORMALITY_BREACH, src)
 	FearEffect()
+	HostileMode(TRUE)
 	say("EMBODIMENTS OF EVIL!!!")
 	desc = "A large red monster with white bandages hanging from it. Its flesh oozes a bubble acid."
 	can_act = TRUE

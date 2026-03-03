@@ -20,12 +20,14 @@
 	blood_volume = BLOOD_VOLUME_NORMAL // THERE WILL BE BLOOD. SHED.
 	simple_mob_flags = SILENCE_RANGED_MESSAGE
 	can_patrol = TRUE
+	can_affect_emergency = TRUE
+	trigger_lights = TRUE
 	/// Can this abnormality spawn normally during the round?
 	var/can_spawn = TRUE
 	/// Reference to the datum we use
 	var/datum/abnormality/datum_reference = null
 	/// The threat level of the abnormality. It is passed to the datum on spawn
-	var/threat_level = ZAYIN_LEVEL
+	threat_level = ZAYIN_LEVEL
 	/// Separate level of fear. If null - will use threat level.
 	var/fear_level = null
 	/// Maximum qliphoth level, passed to datum
@@ -210,10 +212,7 @@
 	else if(core_enabled)//Abnormality Cores are spawned if there is no console tied to the abnormality
 		CreateAbnoCore(name, core_icon)//If cores are manually disabled for any reason, they won't generate.
 	. = ..()
-	if(loc)
-		if(isarea(loc))
-			var/area/a = loc
-			a.RefreshLights()
+	SSlobotomy_emergency.UpdateMin()//A fail safe incase they get deleted
 
 /mob/living/simple_animal/hostile/abnormality/add_to_mob_list()
 	. = ..()
@@ -602,6 +601,12 @@ The variable's key needs to be non-numerical.*/
 			C.icon = 'ModularTegustation/Teguicons/abno_cores/waw.dmi'
 		if(5)
 			C.icon = 'ModularTegustation/Teguicons/abno_cores/aleph.dmi'
+
+/mob/living/simple_animal/hostile/abnormality/proc/HostileMode(should_trigger)//this is used by a few abnormalities to turn on a breaching mode
+	QuickChangeLights(TRUE)
+	can_affect_emergency = TRUE
+	if(should_trigger)
+		SSlobotomy_emergency.OnAbnoBreach(null, src)
 
 /mob/living/simple_animal/hostile/abnormality/spawn_gibs()
 	if(blood_volume <= 0)

@@ -142,6 +142,8 @@
 	. = ..()
 	if(user.stat != DEAD && !sculptor && istype(user))
 		sculptor = user
+		can_affect_emergency = FALSE
+		trigger_lights = FALSE
 		RegisterSignal(user, COMSIG_LIVING_DEATH, PROC_REF(SculptorDeathOrInsane))
 		RegisterSignal(user, COMSIG_HUMAN_INSANE, PROC_REF(SculptorDeathOrInsane))
 		user.apply_status_effect(STATUS_EFFECT_SCULPTOR)
@@ -153,12 +155,17 @@
 	UnregisterSignal(sculptor, COMSIG_HUMAN_INSANE)
 	remove_status_effect(STATUS_EFFECT_SCULPTOR)
 	threat_level = WAW_LEVEL
+	HostileMode(!IsContained())
+	if(IsContained())
+		BreachEffect()
+
 	if (sculptor)
 		sculptor.remove_status_effect(STATUS_EFFECT_SCULPTOR)
 	if (missing_prudence)
 		restorePrudence()
 	faction = list()
 	sculptor = null
+
 	if(client)
 		to_chat(src, span_userdanger("The sculptor has fallen. It is now your duty to avenge this tragedy!"))
 	return TRUE

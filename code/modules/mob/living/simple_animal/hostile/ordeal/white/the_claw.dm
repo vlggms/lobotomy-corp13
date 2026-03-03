@@ -34,6 +34,7 @@
 	death_message = "falls to the ground, decaying into glowing particles."
 	death_sound = 'ModularTegustation/Tegusounds/claw/death.ogg'
 	footstep_type = FOOTSTEP_MOB_HEAVY
+	trigger_lights = TRUE
 	attack_action_types = list(/datum/action/innate/megafauna_attack/swift_dash,
 							   /datum/action/innate/megafauna_attack/swift_dash_long,
 							   /datum/action/innate/megafauna_attack/serum_a,

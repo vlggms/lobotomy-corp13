@@ -431,10 +431,11 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/sirocco
 	abno_code = "C-01-205"
 	abno_info = list(
+		"When the work result was Good, the Qliphoth Counter raised.",
+		"When the work result was Bad, the Qliphoth Counter lowered.",
+		"When the emergency situation in the facility went up, the Qliphoth Counter was lowered by the difference.",
 		"Once the Qliphoth Counter reaches 0, Sirocco leaves her containment cell to play.",
-		"Every two minutes, the Qliphoth Counter lowered by one.",
-		"When the work result was Normal, the Qliphoth Counter raised.",
-		"When the work result was Good, Sirocco was quicker to return to her cell in a later breach."
+		"Once the emergency situation in the facility returned to normal, Sirocco faded away after sometime.",
 	)
 
 //Hurting Teddy Bear
