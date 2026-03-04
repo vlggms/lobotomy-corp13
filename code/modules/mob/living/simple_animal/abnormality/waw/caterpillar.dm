@@ -15,7 +15,7 @@
 	stat_attack = HARD_CRIT
 	melee_damage_lower = 3
 	melee_damage_upper = 4
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.2, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.3, PALE_DAMAGE = 0)
 	speak_emote = list("flutters")
 	can_spawn = FALSE // Garbage Abno.
 
