@@ -122,7 +122,7 @@
 
 /mob/living/simple_animal/hostile/ordeal/sin_gluttony/AttackingTarget(atom/attacked_target)
 	. = ..()
-	if(. && isliving(attacked_target) && SSmaptype.maptype != "limbus_labs")
+	if(. && isliving(attacked_target))
 		var/mob/living/L = attacked_target
 		if(L.stat != DEAD)
 			if(L.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(L, TRAIT_NODEATH))
@@ -283,8 +283,7 @@
 		return
 	var/mob/living/carbon/human/H = attacked_target
 	if(H.health < 0)
-		if(SSmaptype.maptype != "limbus_labs")
-			H.gib()
+		H.gib()
 		playsound(src, 'sound/weapons/fixer/generic/blade4.ogg', 75, 1)
 	return
 

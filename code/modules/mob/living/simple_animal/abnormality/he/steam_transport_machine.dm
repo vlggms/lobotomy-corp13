@@ -111,26 +111,15 @@
 
 /mob/living/simple_animal/hostile/abnormality/steam/proc/UpdateStats()
 	src.set_light(3, (gear * 2), "D4FAF37")
-	if(SSmaptype.maptype == "limbus_labs")
-		ChangeResistances(list(
-			RED_DAMAGE = (1 - (gear * 0.1)),
-			WHITE_DAMAGE = (1 - (gear * 0.1)),
-			BLACK_DAMAGE = (2 - (gear * 0.1)),
-			PALE_DAMAGE = (1.5 - (gear * 0.1)),
-		))
-		melee_damage_lower = (5 + (2 * gear))
-		melee_damage_upper = (7 + (2 * gear))
-		steam_damage = (2 + (1.5 * gear))
-	else
-		ChangeResistances(list(
-			RED_DAMAGE = (0.5 - (gear * 0.1)),
-			WHITE_DAMAGE = (1 - (gear * 0.1)),
-			BLACK_DAMAGE = (2 - (gear * 0.1)),
-			PALE_DAMAGE = (1.5 - (gear * 0.1)),
-		))
-		melee_damage_lower = (4 + (3 * gear))
-		melee_damage_upper = (7 + (3 * gear))
-		steam_damage = (2 + (2 * gear))
+	ChangeResistances(list(
+		RED_DAMAGE = (0.5 - (gear * 0.1)),
+		WHITE_DAMAGE = (1 - (gear * 0.1)),
+		BLACK_DAMAGE = (2 - (gear * 0.1)),
+		PALE_DAMAGE = (1.5 - (gear * 0.1)),
+	))
+	melee_damage_lower = (4 + (3 * gear))
+	melee_damage_upper = (7 + (3 * gear))
+	steam_damage = (2 + (2 * gear))
 	var/oldhealth = maxHealth
 	maxHealth = (1600 + (400 * gear))
 	adjustBruteLoss(oldhealth - maxHealth) //Heals 400 health in a gear shift if it's already breached

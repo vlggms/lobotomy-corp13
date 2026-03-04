@@ -29,12 +29,7 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 		var/obj/effect/proc_holder/spell/targeted/night_vision/bloodspell = new
 		A.AddSpell(bloodspell)
 		if(!(SSmaptype.maptype in SSmaptype.citymaps))
-			if(SSmaptype.maptype == "limbus_labs")
-				if(!A.client)
-					A.faction += "hostile"
-
-			else
-				A.faction += "hostile"
+			A.faction += "hostile"
 
 	if(SSmaptype.maptype in SSmaptype.autoend)
 		switch(SSmaptype.maptype)
@@ -65,12 +60,6 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 				addtimer(CALLBACK(src, PROC_REF(facility_warning_2)), 7 MINUTES)
 				addtimer(CALLBACK(src, PROC_REF(facility_warning_3)), 11 MINUTES)
 				RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(CheckLiving))
-
-			//Limbus Labs
-			if("limbus_labs")
-				addtimer(CALLBACK(src, PROC_REF(roundendwarning)), 60 MINUTES)
-				addtimer(CALLBACK(src, PROC_REF(endround)), 70 MINUTES)
-				to_chat(world, span_userdanger("Shift will last 70 minutes."))
 
 			//Fixers
 			if("fixers")
@@ -137,9 +126,6 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 
 /datum/game_mode/combat/proc/roundendwarning()
 	switch (SSmaptype.maptype)
-		if("limbus_labs")
-			minor_announce("Reminder that 10 minutes are left in the shift. Please wrap up all research and file all paperwork. Overtime has not been authorized for this shift." , "Automatic Limbus Company Punchclock ")
-
 		if("fixers")
 			to_chat(world, span_userdanger("There are 10 minutes left in the week."))
 

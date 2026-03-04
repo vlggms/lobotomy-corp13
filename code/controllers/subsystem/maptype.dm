@@ -19,19 +19,19 @@ SUBSYSTEM_DEF(maptype)
 	var/list/map_tags = list()//For specific mechanics that maptypes don't cover. This needs to be an array with brackets [] in the json.
 
 	//All the map tags that delete all jobs and replace them with others.
-	var/list/clearmaps = list("rcorp", "city", "wcorp", "limbus_labs", "fixers", "office")
+	var/list/clearmaps = list("rcorp", "city", "wcorp", "fixers", "office")
 
 	//LC13 Maps, this enables Traits and cores
 	var/list/lc_maps = list("standard", "fishing")
 
 	//All the map tags that are combat maps and need abnos to breach immediately
-	var/list/combatmaps = list("rcorp", "wcorp", "limbus_labs", "fixers", "office")
+	var/list/combatmaps = list("rcorp", "wcorp", "fixers", "office")
 
 	//Ghosts should be possessbale at all times
-	var/list/autopossess = list("rcorp", "limbus_labs")
+	var/list/autopossess = list("rcorp")
 
 	//These end after a certain number of minutes.
-	var/list/autoend = list("rcorp", "wcorp", "limbus_labs", "fixers", "office")
+	var/list/autoend = list("rcorp", "wcorp", "fixers", "office")
 
 	//This map is city stuff
 	var/list/citymaps = list("wonderlabs", "city", "fixers", "office", "lcorp_city")
@@ -40,10 +40,10 @@ SUBSYSTEM_DEF(maptype)
 	var/list/spacemaps = list("skeld")
 
 	//This is for maps where crafting is enabled.
-	var/list/craftingmaps = list("skeld", "limbus_labs", "enkephalin_rush")
+	var/list/craftingmaps = list("skeld", "enkephalin_rush")
 
 	//Maps that give no fear. Everyone cannot work as is fear immune.
-	var/list/nofear = list("limbus_labs")
+	var/list/nofear = list()
 
 	//What departments are we looking at
 	var/list/departments = list("Command", "Security", "Service")
@@ -63,8 +63,6 @@ SUBSYSTEM_DEF(maptype)
 			departments = list("Command", "Hana", "Association", "Fixers", "Medical", "Service")
 		if("office")
 			departments = list("Command", "Fixers")
-		if("limbus_labs")
-			departments = list("Command", "Security", "Medical", "Science", "Engineering", "Service" )
 		if("rcorp")
 			departments = list("Command", "R Corp", "Medical")
 		if("wcorp")

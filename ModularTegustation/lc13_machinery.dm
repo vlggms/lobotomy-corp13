@@ -140,6 +140,13 @@
 	var/organic_cost = 800
 	var/obj/item/organ/brain/slotted_brain
 
+//Torso Fabricator is free for this mode, but 100 ahn for an organic body.
+/obj/machinery/body_fabricator/Initialize()
+	. = ..()
+	if(SSmaptype.maptype == "enkephalin_rush")
+		prosthetic_cost = 0
+		organic_cost = 100
+
 /obj/machinery/body_fabricator/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/holochip))
 		var/obj/item/holochip/H = I
