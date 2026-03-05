@@ -132,12 +132,17 @@
 	if(damage_cooldown < world.time)
 		damage_cooldown = world.time + damage_cooldown_time
 		if(has_buckled_mobs())
-			playsound(loc, 'sound/creatures/venus_trap_hurt.ogg', 60, TRUE)
+			var/dealt_damage = FALSE
 			for(var/mob/living/carbon/human/H in buckled_mobs)
+				if(H.stat == DEAD)
+					continue
 				H.deal_damage(damage, BRUTE)
 				H.hallucination += 5
-				if(H.health < 0 || H.stat == DEAD)
+				if(H.health < 0)
 					H.Drain()
+				dealt_damage = TRUE
+			if(dealt_damage)
+				playsound(loc, 'sound/creatures/venus_trap_hurt.ogg', 60, TRUE)
 
 /obj/structure/swarming_roots/proc/release_mob(mob/living/M)
 	M.pixel_x = M.base_pixel_x

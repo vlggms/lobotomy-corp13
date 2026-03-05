@@ -2289,3 +2289,18 @@
 		A.attackby(src,user)
 	playsound(src, 'sound/weapons/fixer/generic/dodge.ogg', 50, FALSE, 9)
 	to_chat(user, "<span class='warning'>You dash to [A]!")
+
+/obj/item/ego_weapon/lutemia
+	name = "dear lutemia"
+	desc = "Don't you want your cares to go away?"
+	icon_state = "lutemia"
+	force = 9
+	reach = 4		//Has 4 Square Reach.
+	attack_speed = 0.7
+	damtype = WHITE_DAMAGE
+	attack_verb_continuous = list("whips", "lashes", "tears")
+	attack_verb_simple = list("whip", "lash", "tear")
+	hitsound = 'sound/weapons/whip.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
