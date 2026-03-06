@@ -81,6 +81,7 @@
 /mob/living/simple_animal/hostile/abnormality/caterpillar/BreachEffect()
 	icon = 'ModularTegustation/Teguicons/64x96.dmi'
 	icon_state = "caterpillar"
+	desc = "A large humanoid bug that's spewing smoke."
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/caterpillar/proc/SpawnSmoke()
@@ -156,7 +157,7 @@
 //Structure
 /obj/structure/hookah_mushroom
 	name = "Big Mushroom"
-	desc = "A large pink mushroom with a red top, acting like a cushion."
+	desc = "A large pink mushroom with a red top acting like a cushion."
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "caterpillar_mushroon"
 	anchored = TRUE
