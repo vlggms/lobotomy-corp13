@@ -1321,7 +1321,8 @@
 /obj/item/ego_weapon/wield/discord
 	name = "discord"
 	desc = "The existence of evil proves the existence of good, just as light proves the existence of darkness."
-	special = "This weapon attacks thrice in rapid succession when being wielded.\nAttacks with this weapon will heal a nearby ally using Assonance."
+	special = "This weapon attacks thrice in rapid succession when being wielded.\n \
+		Attacks with this weapon will heal a nearby ally using Assonance."
 	icon_state = "discord"
 	force = 19
 	wielded_force = 22
