@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "caterpillar"
 	icon_living = "caterpillar"
+	core_icon = "caterpillar_egg"
 	portrait = "hookah"
 	pixel_x = -16
 	base_pixel_x = -16
