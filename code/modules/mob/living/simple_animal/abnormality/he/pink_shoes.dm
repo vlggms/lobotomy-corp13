@@ -60,7 +60,7 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 	var/mob/living/possessee
 	var/list/dense_ribbon_list = list()
 	var/static/list/ribbon_list = list()
-	var/mob/living/simple_animal/hostile/grown_strong/special_possessee
+	var/mob/living/simple_animal/hostile/aminion/grown_strong/special_possessee
 
 //*** Simple Mob Procs ***//
 /mob/living/simple_animal/hostile/abnormality/pink_shoes/Life()
@@ -299,7 +299,7 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 
 /mob/living/simple_animal/hostile/abnormality/pink_shoes/proc/Convert(mob/living/target)
 	playsound(src, 'sound/abnormalities/pinkshoes/Pinkshoes_Binding.ogg', 100, 1)
-	var/mob/living/simple_animal/hostile/pink_zombie/Z = new(get_turf(target), target)
+	var/mob/living/simple_animal/hostile/aminion/pink_zombie/Z = new(get_turf(target), target)
 	Z.name = target.name
 
 //this is essentially GetStaticIcon() with a different icon.
@@ -411,7 +411,7 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 
 /datum/status_effect/stacking/urge/proc/Convert(mob/living/target)//Turns human corpses into pink shoes enchantees when dead with urge
 	playsound(src, 'sound/abnormalities/pinkshoes/Pinkshoes_Binding.ogg', 100, 1)
-	var/mob/living/simple_animal/hostile/pink_zombie/Z = new(get_turf(target), target)
+	var/mob/living/simple_animal/hostile/aminion/pink_zombie/Z = new(get_turf(target), target)
 	Z.name = target.name
 
 /datum/status_effect/panicked_type/desirous
@@ -503,7 +503,7 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 	controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = null
 
 //***Simple Mob Definition***//
-/mob/living/simple_animal/hostile/pink_zombie
+/mob/living/simple_animal/hostile/aminion/pink_zombie
 	name = "Pink Shoes Enchantee"
 	desc = "A humanoid covered in pink ribbons that reeks of decay."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
@@ -526,9 +526,11 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 	stat_attack = HARD_CRIT
 	del_on_death = TRUE
 	density = TRUE
+	threat_level = TETH_LEVEL
+	score_divider = 2
 	var/mob/living/possessed_mob
 
-/mob/living/simple_animal/hostile/pink_zombie/Initialize(loc, mob/living/H)
+/mob/living/simple_animal/hostile/aminion/pink_zombie/Initialize(loc, mob/living/H)
 	..()
 	if(!IsCombatMap())
 		icon_state = "pinkshoes_zombie2"
@@ -544,14 +546,14 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 	base_pixel_y = rand(-6,6)
 	pixel_y = base_pixel_y
 
-/mob/living/simple_animal/hostile/pink_zombie/Life()
+/mob/living/simple_animal/hostile/aminion/pink_zombie/Life()
 	. = ..()
 	if(!.) // Dead
 		return FALSE
 	if(status_flags & GODMODE)
 		return FALSE
 
-/mob/living/simple_animal/hostile/pink_zombie/death(gibbed)
+/mob/living/simple_animal/hostile/aminion/pink_zombie/death(gibbed)
 	for(var/obj/O in src)
 		O.forceMove(loc)
 	if(possessed_mob)
@@ -622,7 +624,7 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 			/obj/effect,
 			/mob/dead,
 			/mob/living/simple_animal/hostile/abnormality/pink_shoes,
-			/mob/living/simple_animal/hostile/pink_zombie,
+			/mob/living/simple_animal/hostile/aminion/pink_zombie,
 			))
 
 /obj/structure/spreading/pink_ribbon/attacked_by(obj/item/I, mob/living/user)

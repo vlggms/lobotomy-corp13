@@ -122,7 +122,7 @@
 		else
 			ChangeResistances(list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 0.2)) //In regular gamemodes you are now esentially forced to suppress the heart
 			var/X = pick(GLOB.department_centers)
-			var/mob/living/simple_animal/hostile/kqe_heart/H = new(get_turf(X))
+			var/mob/living/simple_animal/hostile/aminion/kqe_heart/H = new(get_turf(X))
 			heart = H
 			H.abno_host = src
 		Stagger()
@@ -138,7 +138,7 @@
 	base_pixel_x = -16
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
-	if(istype(heart, /mob/living/simple_animal/hostile/kqe_heart))
+	if(istype(heart, /mob/living/simple_animal/hostile/aminion/kqe_heart))
 		qdel(heart)
 	..()
 
@@ -326,7 +326,7 @@
 	randomdir = 0
 	pixel_y = 0
 
-/mob/living/simple_animal/hostile/kqe_heart
+/mob/living/simple_animal/hostile/aminion/kqe_heart
 	name = "Heart of The Townsfolk"
 	desc = "A massive protrusion of wires shaped like a human heart. Arcs of electricity pulse on its surface.."
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
@@ -343,15 +343,17 @@
 	speed = 5
 	density = TRUE
 	faction = list("hostile", "KQE")
+	threat_level = HE_LEVEL
+	can_affect_emergency = FALSE//Its an extention of kqe rather than a minion
 	var/mob/living/simple_animal/hostile/abnormality/kqe/abno_host//This is KQE!
 
-/mob/living/simple_animal/hostile/kqe_heart/Move()
+/mob/living/simple_animal/hostile/aminion/kqe_heart/Move()
 	return FALSE
 
-/mob/living/simple_animal/hostile/kqe_heart/CanAttack(atom/the_target)//should only attack when it has fists
+/mob/living/simple_animal/hostile/aminion/kqe_heart/CanAttack(atom/the_target)//should only attack when it has fists
 	return FALSE
 
-/mob/living/simple_animal/hostile/kqe_heart/death()
+/mob/living/simple_animal/hostile/aminion/kqe_heart/death()
 	if(abno_host)
 		abno_host.death()
 	animate(src, alpha = 0, time = 10 SECONDS)

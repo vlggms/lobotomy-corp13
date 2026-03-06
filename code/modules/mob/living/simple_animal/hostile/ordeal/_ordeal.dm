@@ -6,6 +6,7 @@
 	see_in_dark = 7
 	vision_range = 12
 	aggro_vision_range = 20
+	trigger_lights = TRUE
 	var/datum/ordeal/ordeal_reference
 	var/ordeal_remove_ondeath = TRUE
 

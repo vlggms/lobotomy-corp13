@@ -68,10 +68,10 @@
 	var/playrange = 40
 
 	var/list/possible_minion_list = list(//these should generally be humanoid enemies, maybe dependent on gamemode. In a LC facility, these will be abnormality minions that require a dead human to create. That means no shrimps
-		/mob/living/simple_animal/hostile/grown_strong,//TODO: make these require corresponding abnormalities
-		/mob/living/simple_animal/hostile/yagaslave,
-		/mob/living/simple_animal/hostile/thunder_zombie,
-		/mob/living/simple_animal/hostile/azure_stave,
+		/mob/living/simple_animal/hostile/aminion/grown_strong,//TODO: make these require corresponding abnormalities
+		/mob/living/simple_animal/hostile/aminion/yagaslave,
+		/mob/living/simple_animal/hostile/aminion/thunder_zombie,
+		/mob/living/simple_animal/hostile/aminion/azure_stave,
 		/mob/living/simple_animal/hostile/ordeal/steel_dusk,//non-abnormality minions
 		/mob/living/simple_animal/hostile/ordeal/indigo_noon,
 		/mob/living/simple_animal/hostile/humanoid/rat/knife,//lc13_humanoids.dm, replace these with an N corp grosshammer and jefe de los mariachis
@@ -185,12 +185,14 @@
 	for(var/i = 1, i <= minion_amount ,i++)
 		var/karma_vis = new /obj/effect/karma_halo
 		var/picked = pick(pick(possible_minion_list))
-		var/mob/living/minion = new picked(get_turf(src))
+		var/mob/living/simple_animal/hostile/minion = new picked(get_turf(src))
+		minion.can_affect_emergency = FALSE
 		minion.name = "Lured " + "[minion.name]"
 		minion.maxHealth = 2000
 		minion.faction = faction
 		minion.vis_contents += karma_vis
 		current_minions += minion
+	SSlobotomy_emergency.UpdateMin()//Note due to being unable to change if a minion can affect the score at all, they'll will be able to only change the base score and not the min score.
 	if(!staff)
 		T = get_ranged_target_turf(T, EAST, 1)
 		staff = new(T)

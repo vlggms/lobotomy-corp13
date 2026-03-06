@@ -76,6 +76,9 @@
 	//Check for Neutral abnormalities
 	var/good_hater = FALSE
 
+	//Exists to make sure some Abnormalities won't breach again after a trumpet level has been reached and a meltdown hasn't happened
+	var/emergency_breach = TRUE
+
 /datum/abnormality/New(obj/effect/landmark/abnormality_spawn/new_landmark, mob/living/simple_animal/hostile/abnormality/new_type = null)
 	if(!istype(new_landmark))
 		CRASH("Abnormality datum was created without reference to landmark.")

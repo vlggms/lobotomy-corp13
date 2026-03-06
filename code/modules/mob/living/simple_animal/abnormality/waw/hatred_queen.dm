@@ -13,6 +13,8 @@
 	portrait = "hatred_queen"
 	faction = list("neutral")
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+	can_affect_emergency = FALSE
+	trigger_lights = FALSE
 
 	ranged = TRUE
 	retreat_distance = 1
@@ -229,6 +231,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/Life()
 	. = ..()
+	emergency_check()
 	if(IsContained()) // Contained
 		if(datum_reference?.qliphoth_meter == 1)
 			addtimer(CALLBACK(src, PROC_REF(SpawnHeart)), rand(2,8))
@@ -272,11 +275,17 @@
 	//if BREACHED, check if death_counter over the death limit
 	if(!IsContained() && breach_max_death && (death_counter >= breach_max_death))
 		GoHysteric()
-	//if CONTAINED and lots of death before qliphoth triggers (TEMP)
-	if(IsContained() && (death_counter > 3)) // Omagah a lot of dead people!
-		BreachEffect() // We must help them!
-		datum_reference.qliphoth_meter = 0
 	return TRUE
+
+/mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/emergency_check()
+	if(!IsContained() && friendly && (GLOB.emergency_level == TRUMPET_0) && !nihil_present)
+		death()
+	//if CONTAINED and shits going down
+	if(IsContained() && (datum_reference?.qliphoth_meter == 2) && (GLOB.emergency_level >= TRUMPET_2) && (datum_reference?.emergency_breach))
+		BreachEffect() // We must help them!
+		if(datum_reference)
+			datum_reference.emergency_breach = FALSE//She shouldn't be able to breach again passively until the next qliphoth event.
+			datum_reference.qliphoth_meter = 0
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/ArcanaBeats(target)
 	if(beats_cooldown > world.time)
@@ -554,7 +563,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/OnQliphothEvent()
 	if(!IsContained()) //Breached
-		return
+		return ..()
 	if(death_counter < 2)
 		counter_amount += 1
 		if(counter_amount >= 3)
@@ -611,9 +620,10 @@
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/HostileTransform()
+/mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/HostileTransform(contained = FALSE)
 	if(stat == DEAD)
 		return
+	HostileMode(!contained)
 	visible_message(span_bolddanger("[src] transforms!")) //Begin Hostile breach
 	if(HAS_TRAIT_FROM(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT))
 		REMOVE_TRAIT(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT)
@@ -657,7 +667,7 @@
 		if(!nihil_present)
 			addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, say), "In the name of Love and Justice~ Here comes Magical Girl!"))
 		return ..()
-	HostileTransform()
+	HostileTransform(TRUE)
 	return ..()
 
 //Nihil Event Code - Fights like the friendly version

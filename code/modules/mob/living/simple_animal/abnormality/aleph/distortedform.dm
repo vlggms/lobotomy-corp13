@@ -42,6 +42,7 @@
 	work_damage_type = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 	chem_type = /datum/reagent/abnormality/sin/lust
 	max_boxes = 35
+	set_score = 75
 
 	ego_list = list(
 		/datum/ego_datum/armor/distortion,

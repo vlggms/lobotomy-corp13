@@ -162,7 +162,7 @@
 	for(var/i = 1 to 3)
 		new /obj/effect/gibspawner/generic/silent(get_turf(src))
 		SLEEP_CHECK_DEATH(5.5)
-	var/mob/living/simple_animal/hostile/mini_censored/C = new(get_turf(src))
+	var/mob/living/simple_animal/hostile/aminion/mini_censored/C = new(get_turf(src))
 	if(!QDELETED(H))
 		C.desc = "What the hell is this? It shouldn't exist... On the second thought, it reminds you of [H.real_name]..."
 		H.gib()
@@ -255,7 +255,7 @@
 	return
 
 /* The mini censoreds */
-/mob/living/simple_animal/hostile/mini_censored
+/mob/living/simple_animal/hostile/aminion/mini_censored
 	name = "???"
 	desc = "What the hell is this? It shouldn't exist..."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
@@ -278,10 +278,12 @@
 	stat_attack = HARD_CRIT
 	del_on_death = TRUE
 	density = FALSE
-	var/list/breach_affected = list()
+	score_divider = 2
+	threat_level = WAW_LEVEL
+	fear_level = ALEPH_LEVEL + 2
 	var/recoved_sanity = 0.2
 
-/mob/living/simple_animal/hostile/mini_censored/Initialize()
+/mob/living/simple_animal/hostile/aminion/mini_censored/Initialize()
 	. = ..()
 	playsound(get_turf(src), 'sound/abnormalities/censored/mini_born.ogg', 50, 1, 4)
 	base_pixel_x = rand(-6,6)
@@ -291,7 +293,7 @@
 	if(SSmaptype.maptype == "rcorp")
 		density = TRUE
 
-/mob/living/simple_animal/hostile/mini_censored/Life()
+/mob/living/simple_animal/hostile/aminion/mini_censored/Life()
 	. = ..()
 	if(!.) // Dead
 		return FALSE
@@ -300,28 +302,13 @@
 	for(var/i = 1 to 2)
 		addtimer(CALLBACK(src, PROC_REF(ShakePixels)), i*5 + rand(1, 4))
 	ShakePixels()
-	FearEffect()
 	return
 
-/mob/living/simple_animal/hostile/mini_censored/proc/ShakePixels()
+/mob/living/simple_animal/hostile/aminion/mini_censored/proc/ShakePixels()
 	animate(src, pixel_x = base_pixel_x + rand(-3, 3), pixel_y = base_pixel_y + rand(-3, 3), time = 2)
 	return
 
-// Applies fear damage to everyone in range, copied from abnormalities
-/mob/living/simple_animal/hostile/mini_censored/proc/FearEffect()
-	for(var/mob/living/carbon/human/H in view(7, src))
-		if(H in breach_affected)
-			continue
-		if(HAS_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE))
-			continue
-		breach_affected += H
-		H.adjustSanityLoss(20)
-		if(H.sanity_lost)
-			continue
-		to_chat(H, span_warning("Damn, it's scary."))
-	return
-
-/mob/living/simple_animal/hostile/mini_censored/death(gibbed)
+/mob/living/simple_animal/hostile/aminion/mini_censored/death(gibbed)
 	if(SSmaptype.maptype == "rcorp")
 		for(var/mob/living/carbon/human/H in view(5, src))
 			if(H.stat == DEAD)

@@ -244,7 +244,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module))
 		return
 	if (owner_AI.stat != DEAD)
 		priority_announce("Hostile runtimes detected in all station systems, please deactivate your AI to prevent possible damage to its morality core.", "Anomaly Alert", ANNOUNCER_AIMALF)
-		set_security_level(SEC_LEVEL_DELTA)
+		SSlobotomy_emergency.SetEmergencyLevel(TRUMPET_3)
 		var/obj/machinery/doomsday_device/DOOM = new(owner_AI)
 		owner_AI.nuking = TRUE
 		owner_AI.doomsday_device = DOOM
@@ -280,7 +280,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/ai_module))
 	STOP_PROCESSING(SSfastprocess, src)
 	SSshuttle.clearHostileEnvironment(src)
 	SSmapping.remove_nuke_threat(src)
-	set_security_level(SEC_LEVEL_RED)
+	SSlobotomy_emergency.SetEmergencyLevel(TRUMPET_2)
 	for(var/mob/living/silicon/robot/borg in owner.connected_robots)
 		borg.lamp_doom = FALSE
 		borg.toggle_headlamp(FALSE, TRUE) //forces borg lamp to update

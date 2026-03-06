@@ -19,10 +19,10 @@
 	stat_attack = HARD_CRIT
 	can_breach = TRUE
 	threat_level = TETH_LEVEL
-	start_qliphoth = 5
+	start_qliphoth = 3
 	del_on_death = FALSE
 	move_to_delay = 6
-
+	can_affect_min = FALSE // She should be able to subside normally
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(50, 50, 40, 30, 30),
 		ABNORMALITY_WORK_INSIGHT = list(30, 15, -50, -50, -50),
@@ -73,9 +73,23 @@
 	var/cooldown_time = 3 // Cooldown between grab attempts
 	var/list/grabbed_list = list()
 	var/list_refresh_time = 30
-	var/breached_time = 5 MINUTES
-	var/lowered_breached_time = 3 MINUTES
+	var/breached_time = 4 MINUTES
+	var/lowered_breached_time = 15 SECONDS
+	var/current_level = 0
 	var/grab_range = 3
+
+/mob/living/simple_animal/hostile/abnormality/sirocco/Initialize()
+	. = ..()
+	current_level = GLOB.emergency_level
+	RegisterSignal(SSdcs, COMSIG_TRUMPET_CHANGED, PROC_REF(on_trumpet_change))
+
+/mob/living/simple_animal/hostile/abnormality/sirocco/proc/on_trumpet_change(datum/source, level)
+	SIGNAL_HANDLER
+	if(!IsContained())
+		return
+	if(level > current_level)
+		datum_reference.qliphoth_change(level - current_level)
+	current_level = level
 
 /mob/living/simple_animal/hostile/abnormality/sirocco/proc/Grabber()
 	if(stat == DEAD)
@@ -114,15 +128,19 @@
 /* Qliphoth/Breach effects */
 /mob/living/simple_animal/hostile/abnormality/sirocco/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
+	UnregisterSignal(SSdcs, COMSIG_TRUMPET_CHANGED)
 	addtimer(CALLBACK(src, PROC_REF(Grabber)), cooldown_time)
-	addtimer(CALLBACK(src, PROC_REF(EndStorm)), breached_time)
 	addtimer(CALLBACK(src, PROC_REF(RefreshList)), list_refresh_time)
 	icon_state = breach_icon
+	addtimer(CALLBACK(src, PROC_REF(EndStorm)), breached_time)
 	if(breach_type == BREACH_PINK)
 		move_to_delay = 2
 		ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.4))
 
 /mob/living/simple_animal/hostile/abnormality/sirocco/proc/EndStorm()
+	if(GLOB.emergency_level != TRUMPET_0)
+		addtimer(CALLBACK(src, PROC_REF(EndStorm)), lowered_breached_time)
+		return
 	grabbed_list = list()
 	death()
 
@@ -135,24 +153,10 @@
 
 /mob/living/simple_animal/hostile/abnormality/sirocco/SuccessEffect(mob/living/carbon/human/user, work_type, pe, canceled)
 	. = ..()
-	breached_time = lowered_breached_time // We don't breach as long
-
-/mob/living/simple_animal/hostile/abnormality/sirocco/NeutralEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
-	. = ..()
 	datum_reference.qliphoth_change(1)
 
 /mob/living/simple_animal/hostile/abnormality/sirocco/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
-	breached_time = initial(breached_time) // Longer breach due to failure
-
-/mob/living/simple_animal/hostile/abnormality/sirocco/PostSpawn()
-	. = ..()
-	work_timer = addtimer(CALLBACK(src, PROC_REF(WorkCheck)), time_to_lower, TIMER_OVERRIDE & TIMER_UNIQUE & TIMER_STOPPABLE)
-
-/mob/living/simple_animal/hostile/abnormality/sirocco/proc/WorkCheck()
-	if(!IsContained())
-		return
-	work_timer = addtimer(CALLBACK(src, PROC_REF(WorkCheck)), time_to_lower, TIMER_OVERRIDE & TIMER_UNIQUE & TIMER_STOPPABLE)
 	datum_reference.qliphoth_change(-1)
 
 /* Death cleanup */
