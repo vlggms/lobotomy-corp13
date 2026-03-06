@@ -89,6 +89,7 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 //On-kill visual effect
+//It's easy to accidentally kill someone instead of the roots. That is intentional
 /obj/structure/swarming_roots
 	name = "swarming roots"
 	desc = "A large amount of pink roots that are burrowing into someone!"
