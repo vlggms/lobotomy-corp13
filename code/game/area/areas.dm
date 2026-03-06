@@ -87,6 +87,16 @@
 
 	/// Shows all adjacent areas. Pain on start.
 	var/list/adjacent_areas = list()
+	///Used to see what other area is related to this area
+	var/area/hallway = null
+/**
+ * Associative list containing all living mobs present in the area separated into three internal lists depending on their subtype (carbon, hostiles and other_mobs)
+ *
+ * IMPORTANT: THIS IS A LAZY LIST, IT DOES *NOT* EXIST UNTIL A MOB ENTERS THE AREA AND ADDS THEIR INDEX TO IT, EVEN THEN IT WILL *ONLY* INCLUDE THE INDEXES OF MOBS THAT ARE CURRENTLY INSIDE THE AREA.
+ *
+ * IMPORTANT^2: IF YOU ARE GOING TO WORK WITH THIS LIST, USE THE FUCKING LAZYLIST HELPERS (Alist edition, please) OR YOU RISK SOME CATASTROPHIC RUNTIMES
+ */
+	var/alist/area_living// = list("other_mobs" = list(), "hostiles" = list(), "carbons" = list())
 
 /**
  * A list of teleport locations
@@ -672,3 +682,45 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 /// A hook so areas can modify the incoming args (of what??)
 /area/proc/PlaceOnTopReact(list/new_baseturfs, turf/fake_turf_type, flags)
 	return flags
+
+/**
+ * DEBUG PROC: Get all the mobs inside the sublists that correspond to the keys provided.
+ *
+ * It does not matter if the desired sublists actually exist or not in that moment.
+ *
+ * The comparison inside the iteration is performed using binary operations, keep this in mind when getting mobs across multiple sublists.
+ */
+/area/proc/get_mobs(keys)
+	. = list()
+	for(var/key, value in area_living)
+		if(key & keys)
+			for(var/i in value)
+				. += "([i])"
+	return .
+
+/**
+ * DEBUG PROC: Get all the mobs inside the moblist of the area.
+ */
+
+/area/proc/get_all_mobs()
+	. = list()
+	for(var/key, value in area_living)
+		for(var/mob in value)
+			. += "([key]: [mob])"
+	return .
+
+/**
+ * DEBUG PROC: Get all the existing keys inside the moblist of the arae.
+ */
+/area/proc/get_all_keys()
+	. = list()
+	for(var/key, value in area_living)
+		. += "([key])"
+	return .
+
+/area/proc/debug_all_areas_moblists()
+	var/debug = list()
+	for(var/area/A in world)
+		var/list/moblist = A.get_all_mobs()
+		debug[A.name] = moblist
+	return json_encode(debug)

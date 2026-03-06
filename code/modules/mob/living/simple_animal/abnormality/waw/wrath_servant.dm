@@ -399,6 +399,7 @@
 	fear_level = WAW_LEVEL
 	speak_emote = list("growls")
 	friendly = FALSE
+	swap_area_index(breach_index) // Disrupt regenerators
 	adjustBruteLoss(-src.getMaxHealth())
 	playsound(src, 'sound/abnormalities/wrath_servant/enrage.ogg', 100, FALSE, 40, falloff_distance = 20)
 	toggle_ai(AI_ON)
@@ -570,6 +571,7 @@
 	can_act = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/wrath_servant/death(gibbed)
+	swap_area_index(MOB_ABNORMALITY_INDEX)
 	if(!datum_reference)
 		return ..()
 	if(nihil_present)

@@ -158,6 +158,7 @@
 	if (missing_prudence)
 		restorePrudence()
 	faction = list()
+	swap_area_index(MOB_ABNORMALITY_INDEX)
 	sculptor = null
 	if(client)
 		to_chat(src, span_userdanger("The sculptor has fallen. It is now your duty to avenge this tragedy!"))
@@ -166,6 +167,7 @@
 /mob/living/simple_animal/hostile/abnormality/pygmalion/Life()
 	. = ..()
 	if (IsContained() && sculptor && (sculptor.health/sculptor.maxHealth < 0.5 || sculptor.sanityhealth/sculptor.maxSanity < 0.5) )
+		breach_index = MOB_ABNO_PASSIVE_INDEX // Won't disrupt regenerators
 		BreachEffect()
 		if(client)
 			to_chat(src, span_userdanger("The sculptor is in danger. It is now your duty to protect them!"))
@@ -195,6 +197,7 @@
 	to_chat(sculptor, span_nicegreen("As soon as Pygmalion has fallen, You feel like your mind is back on track."))
 
 /mob/living/simple_animal/hostile/abnormality/pygmalion/death(gibbed)
+	swap_area_index(MOB_ABNORMALITY_INDEX) // Return to normal.
 	if (sculptor)
 		sculptor.remove_status_effect(STATUS_EFFECT_SCULPTOR)
 		if (missing_prudence)
