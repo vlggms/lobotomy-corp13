@@ -170,7 +170,7 @@
 //A simple 30 second increased white damage taken
 /datum/status_effect/dangle
 	id = "dangle"
-	status_type = STATUS_EFFECT_REPLACE
+	status_type = STATUS_EFFECT_UNIQUE
 	duration = 30 SECONDS
 	alert_type = null
 
