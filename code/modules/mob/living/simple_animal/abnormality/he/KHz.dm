@@ -21,6 +21,7 @@
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/envy
 
+	can_spawn = FALSE // Does Nothing.
 	ego_list = list(
 		/datum/ego_datum/weapon/transmission,
 		/datum/ego_datum/armor/transmission,

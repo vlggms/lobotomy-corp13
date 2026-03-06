@@ -21,6 +21,7 @@
 	work_damage_lower = 4
 	work_damage_type = WHITE_DAMAGE	//He insults you
 	chem_type = /datum/reagent/abnormality/sin/pride
+	can_spawn = FALSE // OC slop, Doesn't belong in the game.
 
 	ego_list = list(
 		/datum/ego_datum/weapon/executive,
