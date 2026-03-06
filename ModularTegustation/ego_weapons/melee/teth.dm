@@ -211,7 +211,7 @@
 
 /obj/item/ego_weapon/home //From my sweet home.
 	name = "my home"
-	desc = ""
+	desc = "Because I'm a home, a happy little home."
 	special = "This weapon has a ranged attack."
 	icon_state = "home"
 	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
