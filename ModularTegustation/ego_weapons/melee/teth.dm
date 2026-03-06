@@ -35,28 +35,6 @@
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
 
-/obj/item/ego_weapon/shield/lutemia
-	name = "dear lutemia"
-	desc = "Don't you want your cares to go away?"
-	icon_state = "lutemia"
-	force = 10
-	attack_speed = 1
-	damtype = WHITE_DAMAGE
-	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
-	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
-	hitsound = 'sound/weapons/ego/spear1.ogg'
-	reductions = list(10, 30, 20, 0) // 60
-	projectile_block_duration = 0 SECONDS //No ranged parry
-	block_duration = 1 SECONDS
-	block_cooldown = 3 SECONDS
-	block_sound = 'sound/weapons/parry.ogg'
-	block_message = "You attempt to parry the attack!"
-	hit_message = "parries the attack!"
-	block_cooldown_message = "You rearm your blade."
-
-/obj/item/ego_weapon/shield/lutemia/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	return 0 //Prevents ranged  parry
-
 /obj/item/ego_weapon/eyes
 	name = "red eyes"
 	desc = "It is likely able to hear, touch, smell, as well as see. And most importantly, taste."
@@ -209,17 +187,39 @@
 	attack_verb_simple = list("slice", "slash", "stab")
 	hitsound = 'sound/weapons/fixer/generic/knife3.ogg'
 
-/obj/item/ego_weapon/hearth //From my sweet home.
+/obj/item/ego_weapon/shield/hearth
 	name = "hearth"
 	desc = "Home sweet home. Warmth and safety aplenty."
-	special = "This weapon has a ranged attack."
 	icon_state = "hearth"
+	force = 10
+	attack_speed = 1
+	damtype = WHITE_DAMAGE
+	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
+	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
+	hitsound = 'sound/weapons/ego/spear1.ogg'
+	reductions = list(10, 30, 20, 0) // 60
+	projectile_block_duration = 0 SECONDS //No ranged parry
+	block_duration = 1 SECONDS
+	block_cooldown = 3 SECONDS
+	block_sound = 'sound/weapons/parry.ogg'
+	block_message = "You attempt to parry the attack!"
+	hit_message = "parries the attack!"
+	block_cooldown_message = "You rearm your blade."
+
+/obj/item/ego_weapon/shield/hearth/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+	return 0 //Prevents ranged  parry
+
+/obj/item/ego_weapon/home //From my sweet home.
+	name = "my home"
+	desc = "Because I'm a home, a happy little home."
+	special = "This weapon has a ranged attack."
+	icon_state = "home"
 	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	var/icon_on = "hearth_glow"
-	var/icon_off = "hearth"
+	var/icon_on = "home_glow"
+	var/icon_off = "home"
 	force = 12
 	attack_speed = 1.2
 	damtype = BLACK_DAMAGE
@@ -239,11 +239,11 @@
 	//light_power = 5
 	//light_on = FALSE
 
-/obj/item/ego_weapon/hearth/proc/IconOff()
+/obj/item/ego_weapon/home/proc/IconOff()
 	icon_state = icon_off
 	//light_on = FALSE
 
-/obj/item/ego_weapon/hearth/afterattack(atom/A, mob/living/user, proximity_flag, params)
+/obj/item/ego_weapon/home/afterattack(atom/A, mob/living/user, proximity_flag, params)
 	if(ranged_cooldown > world.time)
 		return
 	if(!CanUseEgo(user))

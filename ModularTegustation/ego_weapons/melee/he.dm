@@ -2289,3 +2289,29 @@
 		A.attackby(src,user)
 	playsound(src, 'sound/weapons/fixer/generic/dodge.ogg', 50, FALSE, 9)
 	to_chat(user, "<span class='warning'>You dash to [A]!")
+
+/obj/item/ego_weapon/lutemia
+	name = "dear lutemia"
+	desc = "Don't you want your cares to go away?"
+	icon_state = "lutemia"
+	force = 7
+	reach = 4		//Has 4 Square Reach.
+	special = "Upon hit targets WHITE vulnerability is increased by 0.2."
+	attack_speed = 0.7
+	damtype = WHITE_DAMAGE
+	attack_verb_continuous = list("whips", "lashes", "tears")
+	attack_verb_simple = list("whip", "lash", "tear")
+	hitsound = 'sound/weapons/whip.ogg'
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 40
+							)
+
+/obj/item/ego_weapon/lutemia/attack(mob/living/target, mob/living/user)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(isliving(target))
+		var/mob/living/simple_animal/M = target
+		if(!ishuman(M) && !M.has_status_effect(/datum/status_effect/display/rend/white))
+			new /obj/effect/temp_visual/cult/sparks(get_turf(M))
+			M.apply_status_effect(/datum/status_effect/display/rend/white)
