@@ -5,7 +5,7 @@
 	icon = 'ModularTegustation/Teguicons/96x64.dmi'
 	icon_state = "sweet_home"
 	icon_living = "sweet_home"
-	icon_dead = "sweet_home_death"
+	icon_dead = "sweet_home"
 	core_icon = "sweet_home"
 	portrait = "my_sweet_home"
 	var/can_act = TRUE
@@ -171,12 +171,15 @@
 /mob/living/simple_animal/hostile/abnormality/my_sweet_home/BreachEffect(mob/living/carbon/human/user)//code grabbed from scorched_girl
 	. = ..()
 	update_icon_state()
-	desc = "A large, shadowy figure that's clearly too big to fit into the little house it's in."
+	desc = "A large, shadowy figure that's clearly too big to fit into the little house they're in."
+	pixel_x = -16
+	base_pixel_x = -16
+	icon_state = "sweet_home_breach"
 	if(user)
-		desc = "A large figure that's clearly too big to fit into the little house it's in... Wait, isn't that [user]?"
+		desc = "A large figure that's clearly too big to fit into the little house they're in... Wait, isn't that [user]?"
 		resident = user
 		user.forceMove(src)
-		death()
+		user.death()
 		var/hair_icon = "sweet_home_breach_hair"
 		if(user.hairstyle in longhair)
 			hair_icon = "sweet_home_breach_longhair"
@@ -194,20 +197,13 @@
 		if(user.hairstyle != "Bald")
 			add_overlay(hair_overlay)
 
-/mob/living/simple_animal/hostile/abnormality/my_sweet_home/update_icon_state() //code grabbed from forsaken_murderer and smile
-	if(status_flags & GODMODE || health<1)
-		cut_overlays()
-		icon_state = initial(icon)
-		pixel_x = 0
-		base_pixel_x = 0
-	else
-		pixel_x = -16
-		base_pixel_x = -16
-		icon_state = "sweet_home_breach"
-
 /mob/living/simple_animal/hostile/abnormality/my_sweet_home/death(gibbed)
 	density = FALSE
-	animate(src, alpha = 0, time = 5 SECONDS, delay = 5 SECONDS)
+	cut_overlays()
+	icon_state = "sweet_home"
+	pixel_x = 0
+	base_pixel_x = 0
+	animate(src, time = 10 SECONDS, alpha = 0)
 	QDEL_IN(src, 10 SECONDS)
 	..()
 
