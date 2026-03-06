@@ -213,7 +213,7 @@
 	abno_info = list(
 		"When an Agent finished Attachment work twice, My Sweet Home whispered in their mind.",
 		"Upon finising Attachment work thrice, the Agent was compelled to approach with the key.",
-		"Upon failing work or when an employee panicked during work, the same result would occure.")
+		"Upon failing work or when an employee panicked during work, the same result would occur.")
 
 //Meat Lantern
 /obj/item/paper/fluff/info/teth/meatlantern
