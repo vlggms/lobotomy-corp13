@@ -103,6 +103,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/redblooded/AttemptWork(mob/living/carbon/human/user, work_type)
 	work_damage_upper = 4 + bloodlust
+	work_damage_lower = 2 + bloodlust
 	if(work_type == ABNORMALITY_WORK_REPRESSION)
 		say(pick(fighting_quotes))
 		bloodlust +=2

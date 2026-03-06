@@ -574,12 +574,10 @@
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/GoCrazy()
 	icon_state = icon_crazy
 	chance_modifier = 0.8
-	work_damage_upper *= 2
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/GoNormal()
 	icon_state = icon_living
 	chance_modifier = 1
-	work_damage_upper = initial(work_damage_upper)
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/GoHysteric(retries = 0)
 	if(!friendly || !breach_max_death || nihil_present)

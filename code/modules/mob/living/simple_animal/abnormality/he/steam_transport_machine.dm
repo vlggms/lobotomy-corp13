@@ -124,6 +124,7 @@
 	maxHealth = (400 + (150 * gear))
 	adjustBruteLoss(oldhealth - maxHealth) //Heals 150 health in a gear shift if it's already breached
 	work_damage_upper = (3 + (2 * gear))
+	work_damage_lower = (2 + gear)
 	ranged_cooldown_time = (40 - (5 * gear))
 	start_qliphoth = (max(1,(4 - gear)))
 	if(datum_reference.qliphoth_meter > start_qliphoth) //we want to bring the qliphoth down to the new maximum

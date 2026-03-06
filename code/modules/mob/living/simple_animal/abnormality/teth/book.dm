@@ -70,6 +70,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/book/AttemptWork(mob/living/carbon/human/user, work_type)
 	work_damage_upper = 4 + wordcount
+	work_damage_lower = 2 + wordcount
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/book/WorkChance(mob/living/carbon/human/user, chance, work_type)

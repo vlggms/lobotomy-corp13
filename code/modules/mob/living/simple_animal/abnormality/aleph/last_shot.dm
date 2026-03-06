@@ -88,13 +88,16 @@ GLOBAL_LIST_EMPTY(meat_list)
 	else if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) >= 100)
 		newchance -= 10
 
+	work_damage_lower = initial(work_damage_lower)
 	work_damage_upper = initial(work_damage_upper)
 
 	//Fort or justice too low? take more damage.
 	if(get_attribute_level(user, JUSTICE_ATTRIBUTE) < 100)
-		work_damage_upper*=1.5
+		work_damage_lower += 3
+		work_damage_upper += 3
 	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) < 100)
-		work_damage_upper*=1.5
+		work_damage_lower += 3
+		work_damage_upper += 3
 	return newchance
 
 /mob/living/simple_animal/hostile/abnormality/last_shot/FailureEffect(mob/living/carbon/human/user, work_type, pe)
