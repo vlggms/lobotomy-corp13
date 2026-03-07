@@ -96,11 +96,11 @@ It has now been over four months. Now we get her for real. -Coxswain
 	var/mob/living/priority_target // Stores current request target.
 	var/fuzzy_tracking_cooldown = 10 SECONDS // How often red re-checks the closest landmark to the target.
 	var/list/tiered_request_costs = list(
-		ZAYIN_LEVEL = 100,
-		TETH_LEVEL = 200,
-		HE_LEVEL = 300,
-		WAW_LEVEL = 400,
-		ALEPH_LEVEL = 500
+		/*ZAYIN_LEVEL =*/ 100,
+		/*TETH_LEVEL =*/ 200,
+		/*HE_LEVEL =*/ 300,
+		/*WAW_LEVEL =*/ 400,
+		/*ALEPH_LEVEL =*/ 500
 	) // PE cost to hunt abnos, one per tier.
 	var/default_request_cost = 100 // PE cost to hunt anything not considered an abno, like an ordeal. Scales up with ordeals.
 	var/out_on_request = FALSE // Is she hunting something on request, or...?
