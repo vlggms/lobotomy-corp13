@@ -68,7 +68,7 @@
 	for(var/mob/living/carbon/human/H in urange(aoe_range, src))
 		if(H.stat == DEAD)
 			continue
-		if(!HAS_AI_CONTROLLER_TYPE(H, /datum/ai_controller/insane/dingle_possess) || !(H.buckled && istype(H.buckled, /obj/structure/swarming_roots)))
+		if(!H.has_status_effect(/datum/status_effect/panicked_type/dingle) || !HAS_AI_CONTROLLER_TYPE(H, /datum/ai_controller/insane/dingle_possess) || !(H.buckled && istype(H.buckled, /obj/structure/swarming_roots)))
 			if(get_attribute_level(H, PRUDENCE_ATTRIBUTE) >= 60) // at or above level 3
 				H.apply_status_effect(STATUS_EFFECT_DANGLE)
 
@@ -183,10 +183,14 @@
 	status_holder.physiology.white_mod *= 1.3
 	if(status_holder.sanity_lost)
 		qdel(src)
-	RegisterSignal(status_holder, COMSIG_HUMAN_INSANE, PROC_REF(OnInsane))
 
-/datum/status_effect/dangle/proc/OnInsane()
-	qdel(src)
+/datum/status_effect/dangle/tick()
+	. = ..()
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	if(status_holder.sanity_lost)
+		qdel(src)
 
 /datum/status_effect/dangle/on_remove()
 	. = ..()
@@ -199,7 +203,6 @@
 		status_holder.ai_controller = /datum/ai_controller/insane/dingle_possess
 		status_holder.InitializeAIController()
 		owner.apply_status_effect(/datum/status_effect/panicked_type/dingle)
-	UnregisterSignal(status_holder, COMSIG_GLOB_HUMAN_INSANE)
 	return ..()
 
 
@@ -238,12 +241,16 @@
 /datum/ai_behavior/dingle_move//define AI behavior
 	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT | AI_BEHAVIOR_MOVE_AND_PERFORM
 	var/list/current_path = list()
+	var/should_be_finished = FALSE
 
 /datum/ai_behavior/dingle_move/perform(delta_time, datum/ai_controller/controller)//Paths the pancicked to red shoes, causes runtimes if it's dead
 	. = ..()
 	var/walkspeed = 1
 	var/mob/living/carbon/human/living_pawn = controller.pawn//the panicked
 	if(IS_DEAD_OR_INCAP(living_pawn))//stop if the panicked is dead
+		return
+	if(!living_pawn.sanity_lost)
+		QDEL_NULL(living_pawn.ai_controller)
 		return
 	var/mob/living/simple_animal/hostile/abnormality/dingledangle/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
 	if(!istype(target))
@@ -267,9 +274,11 @@
 	var/mob/living/simple_animal/hostile/abnormality/dingledangle/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
 	if(!target)
 		if(living_pawn)//there's a runtime if you panic right next to it
+			QDEL_NULL(living_pawn.ai_controller)
 			living_pawn.SanityLossEffect(PRUDENCE_ATTRIBUTE)//switch to a suicide panic due to hanging yourself
 		return
 	if(!LAZYLEN(current_path))
+		QDEL_NULL(living_pawn.ai_controller)
 		living_pawn.SanityLossEffect(PRUDENCE_ATTRIBUTE)//ditto
 		return
 	var/target_turf = current_path[1]
@@ -285,7 +294,11 @@
 	var/mob/living/carbon/human/living_pawn = controller.pawn
 	var/obj/item/held = living_pawn.get_active_held_item()
 	var/mob/living/simple_animal/hostile/abnormality/dingledangle/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
+	if(!target)
+		QDEL_NULL(living_pawn.ai_controller)
+		return
 	if(succeeded)
 		living_pawn.dropItemToGround(held)
 		target.Consume(living_pawn)
+		QDEL_NULL(living_pawn.ai_controller)
 	controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = null

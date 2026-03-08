@@ -8,15 +8,15 @@
 	portrait = "hookah"
 	pixel_x = -16
 	base_pixel_x = -16
-	maxHealth = 800
-	health = 800
+	maxHealth = 1200
+	health = 1200
 	ranged = TRUE
-	attack_verb_continuous = "scolds"
-	attack_verb_simple = "scold"
+	attack_verb_continuous = "slashes"
+	attack_verb_simple = "slash"
 	stat_attack = HARD_CRIT
-	melee_damage_lower = 3
-	melee_damage_upper = 4
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.2, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.3, PALE_DAMAGE = 0)
+	melee_damage_lower = 7
+	melee_damage_upper = 5
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.2, WHITE_DAMAGE = 0.1, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0)
 	speak_emote = list("flutters")
 
 	can_breach = TRUE
@@ -146,6 +146,8 @@
 		if(eclosion_counter > 5)
 			datum_reference.qliphoth_change(-1)
 	else
+		if(user.stat >= SOFT_CRIT)
+			return
 		if(get_attribute_level(user, JUSTICE_ATTRIBUTE) >= 100)
 			icon_state = "caterpillar"
 			datum_reference.max_boxes = max_boxes
