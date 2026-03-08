@@ -29,7 +29,6 @@
 	attack_verb_simple = "stomp"
 	death_message = "crumbles."
 	faction = list("hostile")
-	start_qliphoth = 1
 
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(40, 40, 50, 50, 50),
@@ -64,13 +63,14 @@
 			But at the last minute, you are pulled away by another agent to safety."),
 	)
 
-	var/ranged_damage = 5
+	var/ranged_damage = 8
 	var/damage_dealt = 0
 	var/list/counter1 = list() //from FAN, although changed
 	var/list/counter2 = list()
 	var/slam_cooldown = 10 SECONDS
 	var/slam_cooldown_time
 	var/mob/living/carbon/human/resident = null //Who's currently living inside my sweet home?
+	var/someone_entering = FALSE
 	var/list/longhair = list(
 		"Floorlength Bedhead",
 		"Long Side Part",
@@ -99,10 +99,9 @@
 		to_chat(user, span_danger("...and you almost agree but refuse at the last moment."))
 	return
 
-/mob/living/simple_animal/hostile/abnormality/my_sweet_home/update_overlays()
-	. = ..()
-	if(stat == DEAD || status_flags & GODMODE)
-		cut_overlays()
+/mob/living/simple_animal/hostile/abnormality/my_sweet_home/AttemptWork(mob/living/carbon/human/user, work_type)
+	if(!someone_entering)
+		return ..()
 
 /mob/living/simple_animal/hostile/abnormality/my_sweet_home/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time) //grabbed from FAN
 	if(user.sanity_lost)
@@ -122,25 +121,29 @@
 /mob/living/simple_animal/hostile/abnormality/my_sweet_home/proc/Approach(mob/living/carbon/human/user)
 	if(user.stat >= SOFT_CRIT)
 		return
+	someone_entering = TRUE
 	if(user.sanity_lost)
 		QDEL_NULL(user.ai_controller)
 	user.Stun(5 SECONDS)
 	sleep(0.5 SECONDS)
 	if(QDELETED(user))
+		someone_entering = FALSE
 		return
 	to_chat(user, span_danger("You grip the key and approach."))
 	step_towards(user, src)
 	sleep(0.5 SECONDS)
 	if(QDELETED(user))
+		someone_entering = FALSE
 		return
 	step_towards(user, src)
 	sleep(0.5 SECONDS)
 	if(QDELETED(user))
+		someone_entering = FALSE
 		return
 	playsound(get_turf(src), 'sound/machines/door_open.ogg', 50, 1)
 	to_chat(user, span_danger("You open the door and..."))
 	sleep(0.5 SECONDS)
-	datum_reference.qliphoth_change(-1)
+	someone_entering = FALSE
 	BreachEffect(user)
 
 /mob/living/simple_animal/hostile/abnormality/my_sweet_home/proc/AoeAttack()
@@ -168,7 +171,9 @@
 	icon_state = "smash1"
 	duration = 3
 
-/mob/living/simple_animal/hostile/abnormality/my_sweet_home/BreachEffect(mob/living/carbon/human/user)//code grabbed from scorched_girl
+/mob/living/simple_animal/hostile/abnormality/my_sweet_home/BreachEffect(mob/living/carbon/human/user, breach_type)//code grabbed from scorched_girl
+	if(!user && (breach_type != BREACH_MINING && breach_type != BREACH_PINK))
+		return
 	. = ..()
 	update_icon_state()
 	desc = "A large, shadowy figure that's clearly too big to fit into the little house they're in."
@@ -176,6 +181,11 @@
 	base_pixel_x = -16
 	icon_state = "sweet_home_breach"
 	if(user)
+		melee_damage_lower = 8
+		melee_damage_upper = 10
+		ranged_damage = 10
+		maxHealth = 280
+		health = 280
 		desc = "A large figure that's clearly too big to fit into the little house they're in... Wait, isn't that [user]?"
 		resident = user
 		user.forceMove(src)
