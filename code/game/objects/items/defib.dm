@@ -300,7 +300,7 @@
 	resistance_flags = INDESTRUCTIBLE
 	base_icon_state = "defibpaddles"
 
-	var/revivecost = 1000
+	var/revivecost = 0
 	var/cooldown = FALSE
 	var/busy = FALSE
 	var/obj/item/defibrillator/defib
@@ -460,7 +460,7 @@
 /obj/item/shockpaddles/proc/shock_touching(dmg, mob/H)
 	if(isliving(H.pulledby))		//CLEAR!
 		var/mob/living/M = H.pulledby
-		if(M.electrocute_act(30, H))
+		if(M.electrocute_act(dmg, H))
 			M.visible_message("<span class='danger'>[M] is electrocuted by [M.p_their()] contact with [H]!</span>")
 			M.emote("scream")
 
@@ -523,7 +523,7 @@
 			playsound(src, 'sound/machines/defib_zap.ogg', 100, TRUE, -1)
 			playsound(src, 'sound/weapons/egloves.ogg', 100, TRUE, -1)
 			H.emote("scream")
-			shock_touching(45, H)
+			shock_touching(2, H)
 			if(H.can_heartattack() && !H.undergoing_cardiac_arrest())
 				if(!H.stat)
 					H.visible_message("<span class='warning'>[H] thrashes wildly, clutching at [H.p_their()] chest!</span>",
@@ -566,7 +566,7 @@
 				H.visible_message("<span class='warning'>[H]'s body convulses a bit.</span>")
 				playsound(src, "bodyfall", 50, TRUE)
 				playsound(src, 'sound/machines/defib_zap.ogg', 75, TRUE, -1)
-				shock_touching(30, H)
+				shock_touching(1, H)
 
 				var/defib_result = H.can_defib()
 				var/fail_reason
@@ -576,14 +576,8 @@
 						fail_reason = "Recovery of patient impossible. Further attempts futile."
 					if (DEFIB_FAIL_NO_HEART)
 						fail_reason = "Patient's heart is missing."
-					if (DEFIB_FAIL_FAILING_HEART)
-						fail_reason = "Patient's heart too damaged, replace or repair and try again."
-					if (DEFIB_FAIL_TISSUE_DAMAGE)
-						fail_reason = "Tissue damage too severe, repair and try again."
 					if (DEFIB_FAIL_HUSK)
 						fail_reason = "Patient's body is a mere husk, repair and try again."
-					if (DEFIB_FAIL_FAILING_BRAIN)
-						fail_reason = "Patient's brain is too damaged, repair and try again."
 					if (DEFIB_FAIL_NO_INTELLIGENCE)
 						fail_reason = "No intelligence pattern can be detected in patient's brain. Further attempts futile."
 					if (DEFIB_FAIL_NO_BRAIN)
