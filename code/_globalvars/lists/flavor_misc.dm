@@ -183,11 +183,6 @@ GLOBAL_LIST_INIT(wealth_prefs, list(WEALTHY, IMPOVERISHED, PENNILESS))
 #define DDUFFELBAG "Department Duffel Bag"
 GLOBAL_LIST_INIT(backpacklist, list(DBACKPACK, DSATCHEL, DDUFFELBAG, GBACKPACK, GSATCHEL, GDUFFELBAG, LSATCHEL))
 
-	//Suit/Skirt
-#define PREF_SUIT "Jumpsuit"
-#define PREF_SKIRT "Jumpskirt"
-GLOBAL_LIST_INIT(jumpsuitlist, list(PREF_SUIT, PREF_SKIRT))
-
 //Uplink spawn loc
 #define UPLINK_PDA		"PDA"
 #define UPLINK_RADIO	"Radio"

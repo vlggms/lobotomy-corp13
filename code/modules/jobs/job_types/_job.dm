@@ -331,14 +331,8 @@
 		else
 			back = backpack //Department backpack
 
-	//converts the uniform string into the path we'll wear, whether it's the skirt or regular variant
 	var/holder
-	if(H.jumpsuit_style == PREF_SKIRT)
-		holder = "[uniform]/skirt"
-		if(!text2path(holder))
-			holder = "[uniform]"
-	else
-		holder = "[uniform]"
+	holder = "[uniform]"
 	uniform = text2path(holder)
 
 /datum/outfit/job/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE, client/preference_source = null) // Tegu alt job titles
@@ -351,14 +345,18 @@
 
 	var/obj/item/card/id/C = H.wear_id
 	if(istype(C))
-		C.access = J.get_access()
+		if(J) // We may still not have a job if it somehow isn't enabled in this map
+			C.access = J.get_access()
 		shuffle_inplace(C.access) // Shuffle access list to make NTNet passkeys less predictable
 		C.registered_name = H.real_name
 		// Tegu edit - Alt job titles
 		if(preference_source && preference_source.prefs && preference_source.prefs.alt_titles_preferences[J.title])
 			C.assignment = preference_source.prefs.alt_titles_preferences[J.title]
 		else
-			C.assignment = J.title
+			if(J)
+				C.assignment = J.title
+			else
+				C.assignment = "Civilian"
 		// Tegu end
 		if(H.age)
 			C.registered_age = H.age
