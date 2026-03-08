@@ -575,3 +575,13 @@
 		return
 	var/mob/living/L = target
 	L.apply_lc_burn(5)
+
+/obj/projectile/skin_fire
+	name = "ember"
+	desc = "HOT!"
+	icon_state = "red_1"
+	damage_type = RED_DAMAGE
+	damage = 3
+	spread = 5
+	projectile_piercing = PASSMOB
+	hitsound = 'sound/abnormalities/skinprophet/Skin_Projectile_Impact.ogg'
