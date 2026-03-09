@@ -42,7 +42,7 @@
 		/obj/item/clothing/suit/armor/ego_gear/aleph/twilight
 		)
 	threat_level = ALEPH_LEVEL
-	set_score = 75
+	set_score = 50
 	var/list/eggs = list()
 	var/list/egg_types = list(
 						/mob/living/simple_animal/hostile/aminion/apocalypse_egg/beak,

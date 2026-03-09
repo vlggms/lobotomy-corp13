@@ -80,7 +80,6 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 		UpdateScore(M.set_score, FALSE)
 		return
 	UpdateScore(threat_to_score[M.threat_level]/M.score_divider)
-	return
 
 /datum/controller/subsystem/lobotomy_emergency/proc/OnAbnoBreach(datum/source, mob/living/simple_animal/hostile/abnormality/abno)
 	SIGNAL_HANDLER

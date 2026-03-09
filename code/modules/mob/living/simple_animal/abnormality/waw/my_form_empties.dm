@@ -192,7 +192,7 @@
 		minion.faction = faction
 		minion.vis_contents += karma_vis
 		current_minions += minion
-	SSlobotomy_emergency.UpdateMin()//Note due to being unable to change if a minion can affect the score at all, they'll will be able to only change the base score and not the min score.
+	SSlobotomy_emergency.UpdateMin()//This is a bandaid fix due to score added from aminions happening in initialize
 	if(!staff)
 		T = get_ranged_target_turf(T, EAST, 1)
 		staff = new(T)
