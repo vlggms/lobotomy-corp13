@@ -300,7 +300,7 @@
 		var/mob/to_bite = PickBiteVictim(potential_targets, T, TRUE)
 
 		if(!to_bite)
-			visible_message(span_danger("\The [src] bite the air!"))
+			visible_message(span_danger("\The [src] bites the air!"))
 			to_chat(src, span_danger("You missed your attack!"))
 			playsound(loc, attack_sound, 50, TRUE, TRUE)
 			do_attack_animation(T)

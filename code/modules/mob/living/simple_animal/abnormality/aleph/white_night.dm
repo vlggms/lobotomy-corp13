@@ -178,15 +178,9 @@ GLOBAL_LIST_EMPTY(apostles)
 		to_chat(L, span_userdanger("The holy light... IT BURNS!!"))
 	else
 		if(istype(L, /mob/living/simple_animal/hostile/aminion/apostle) && L.stat == DEAD)
-			var/mob/living/simple_animal/hostile/aminion/apostle/AP = L
 			L.revive(full_heal = TRUE, admin_revive = FALSE)
 			L.grab_ghost(force = TRUE)
 			to_chat(L, span_notice("The holy light compels you to live!"))
-			if(!AP.trigger_lights)
-				AP.trigger_lights = TRUE
-				var/area/A = get_area(AP)
-				if(istype(A))
-					A.RefreshLights()
 		else if(L.stat != DEAD)
 			L.adjustBruteLoss(-(holy_revival_damage * 0.75) * (L.maxHealth/100))
 			if(ishuman(L))

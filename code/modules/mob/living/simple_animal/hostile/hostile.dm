@@ -204,12 +204,9 @@ GLOBAL_LIST_EMPTY(marked_players)
 	if(mark_once_attacked)
 		UnregisterSignal(SSdcs, COMSIG_CRATE_LOOTING_STARTED)
 		UnregisterSignal(SSdcs, COMSIG_CRATE_LOOTING_ENDED)
+	. = ..()
 	if(trigger_lights)
-		trigger_lights = FALSE
-		var/area/A = get_area(src)
-		if(istype(A))
-			A.RefreshLights()
-	return ..()
+		QuickChangeLights(trigger_lights)
 
 /mob/living/simple_animal/hostile/death(gibbed)
 	// Check for nuke rats achievement
@@ -228,12 +225,9 @@ GLOBAL_LIST_EMPTY(marked_players)
 					L.client.give_award(/datum/award/achievement/lc13/city/nuke_rats_genocide, L)
 			// Clear the killers list after awarding
 			GLOB.nuke_rats_killers.Cut()
+	. = ..()
 	if(trigger_lights)
-		trigger_lights = FALSE
-		var/area/A = get_area(src)
-		if(istype(A))
-			A.RefreshLights()
-	return ..()
+		QuickChangeLights(trigger_lights)
 
 /mob/living/simple_animal/hostile/Life()
 	. = ..()
@@ -1473,5 +1467,14 @@ GLOBAL_LIST_EMPTY(marked_players)
 		step_to(src, dest)
 		patrol_reset()
 	return TRUE
+
+/mob/living/simple_animal/hostile/revive(full_heal = FALSE, admin_revive = FALSE)
+	var/wasDead = stat == DEAD
+	. = ..()
+	if(!.)
+		return
+	if(wasDead)
+		if(initial(trigger_lights))
+			QuickChangeLights(initial(trigger_lights))
 
 #undef MAX_DAMAGE_SUFFERED
