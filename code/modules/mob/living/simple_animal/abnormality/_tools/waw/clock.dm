@@ -65,7 +65,7 @@
 	Operate(get_user_level(user))
 	clock_cooldown = world.time + clock_cooldown_time
 	banned += user.ckey
-	user.dust()
+	user.dust(TRUE, TRUE)
 	light_count = 0
 	sleep(70)
 	update_icon()

@@ -151,7 +151,7 @@
 					continue
 				been_hit += L
 				if(L.sanity_lost)					//DIE FOOL. LADY BLAST
-					L.dust()
+					L.dust(TRUE, TRUE)
 				L.deal_damage(negative_damage, WHITE_DAMAGE)
 			all_turfs -= T
 		negative_damage += negative_damage_scale//Every tile it traves it does 10 more damage up to 120
@@ -239,6 +239,7 @@
 	if(get_user_level(user) < 3)
 		datum_reference.qliphoth_change(-1)
 		animate(user, transform = user.transform*0.01, time = 5)
+		user.death(TRUE)
 		QDEL_IN(user, 5)
 	return TRUE
 

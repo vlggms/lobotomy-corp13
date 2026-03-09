@@ -163,7 +163,7 @@
 		return
 	if(get_user_level(H) <= 1)
 		to_chat(H, span_warning("Your body is reduced to atoms by the power of [src]!"))
-		H.dust()
+		H.dust(TRUE, TRUE)
 		return
 	PickUpHammer(H)
 	return
@@ -205,7 +205,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/hammer_light/proc/UserDeath(mob/living/carbon/human/user)
 	if(!QDELETED(current_user)) // in case they died without being dusted
-		current_user.dust()
+		current_user.dust(TRUE, TRUE)
 	RecoverHammer()
 
 // Pink Midnight

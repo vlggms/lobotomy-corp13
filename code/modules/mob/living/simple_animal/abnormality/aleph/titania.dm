@@ -108,6 +108,7 @@
 	for(var/obj/item/W in H)
 		dropItemToGround(W)
 		W.forceMove(F)
+	H.death(TRUE)
 	qdel(H)
 
 // Modified patrolling

@@ -79,7 +79,7 @@
 
 		//Don't try it without any buffs.
 		if(get_level_buff(user, TEMPERANCE_ATTRIBUTE) <=0)
-			user.dust()
+			user.dust(TRUE, TRUE)
 			return
 		user.adjust_attribute_limit(get_level_buff(user, TEMPERANCE_ATTRIBUTE))
 		user.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -get_level_buff(user, TEMPERANCE_ATTRIBUTE))
@@ -88,7 +88,7 @@
 		say(pick(speak_list))
 
 		if(get_level_buff(user, JUSTICE_ATTRIBUTE) <=0)
-			user.dust()
+			user.dust(TRUE, TRUE)
 			return
 
 		user.adjust_attribute_limit(get_level_buff(user, JUSTICE_ATTRIBUTE))

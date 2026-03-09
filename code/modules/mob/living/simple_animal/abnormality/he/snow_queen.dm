@@ -217,7 +217,7 @@
 	if(ishuman(attacked_target))
 		var/mob/living/carbon/human/H = attacked_target
 		if(H.stat == DEAD && (H == storybook_hero || H == frozen_employee))
-			H.dust(TRUE, FALSE)
+			H.dust(TRUE, TRUE)
 			return FALSE
 	//If arena attacks is true then dont have a chance connected to it.
 	if(slash_cooldown < world.time && (prob(50) || arena_attacks))

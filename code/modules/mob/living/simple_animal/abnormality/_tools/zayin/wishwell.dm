@@ -417,6 +417,8 @@
 		if(480 to INFINITY)
 			deathgift = pick(alephitem)
 
+	if(M.stat != DEAD) // Suicide by well properly calls death
+		M.death(TRUE)
 	qdel(M)
 	playsound(src, 'sound/voice/human/wilhelm_scream.ogg', 50, TRUE, -3)
 	if((M.ckey in bastards)) //prevents respawn abuse

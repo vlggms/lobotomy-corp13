@@ -139,7 +139,7 @@
 /mob/living/simple_animal/hostile/abnormality/eris/proc/Dine(mob/living/carbon/human/poorfuck)
 	manual_emote("unhinges her jaw, revealing many rows of teeth!")
 	playsound(get_turf(src), 'sound/abnormalities/bigbird/bite.ogg', 50, 1, 2)
-	poorfuck.dust()
+	poorfuck.dust(TRUE, TRUE)
 	new /obj/effect/gibspawner/generic/silent(get_turf(poorfuck))
 
 	//Lose sanity
@@ -173,7 +173,7 @@
 
 	playsound(get_turf(src), 'sound/abnormalities/bigbird/bite.ogg', 50, 1, 2)
 	new /obj/effect/gibspawner/generic/silent(get_turf(current_petter))
-	current_petter.dust()
+	current_petter.dust(TRUE, TRUE)
 
 	SLEEP_CHECK_DEATH(20)
 	manual_emote("wipes her mouth with a hankerchief")
