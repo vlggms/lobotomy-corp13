@@ -38,16 +38,18 @@
 	if(!ishostile(M)) // only do updates on Abnormality entering/leaving
 		return
 	var/mob/living/simple_animal/hostile/H = M
-	if(!H.trigger_lights)
-		return
 	if(istype(H, /mob/living/simple_animal/hostile/abnormality/big_bird))
 		big_bird = TRUE
+		RefreshLights()
 		for(var/area/facility_hallway/F in adjacent_areas)
 			F.big_bird = TRUE
 			F.RefreshLights()
 		for(var/area/department_main/D in adjacent_areas)
 			D.big_bird = TRUE
 			D.RefreshLights()
+		return
+	if(!H.trigger_lights)
+		return
 	RefreshLights()
 
 /area/department_main/Exited(atom/movable/M)
@@ -55,8 +57,6 @@
 	if(!ishostile(M)) // only do updates on Abnormality entering/leaving
 		return
 	var/mob/living/simple_animal/hostile/H = M
-	if(!H.trigger_lights)
-		return
 	if(istype(H, /mob/living/simple_animal/hostile/abnormality/big_bird))
 		for(var/area/facility_hallway/F in adjacent_areas)
 			if(M in F.contents)
@@ -70,6 +70,10 @@
 			D.RefreshLights()
 		if(isdead(M) || QDELETED(M))
 			big_bird = FALSE
+			RefreshLights()
+		return
+	if(!H.trigger_lights)
+		return
 	RefreshLights()
 
 /area/department_main/RefreshLights()
@@ -159,12 +163,16 @@
 		return
 	if(istype(H, /mob/living/simple_animal/hostile/abnormality/big_bird))
 		big_bird = TRUE
+		RefreshLights()
 		for(var/area/facility_hallway/F in adjacent_areas)
 			F.big_bird = TRUE
 			F.RefreshLights()
 		for(var/area/department_main/D in adjacent_areas)
 			D.big_bird = TRUE
 			D.RefreshLights()
+		return
+	if(!H.trigger_lights)
+		return
 	RefreshLights()
 
 /area/facility_hallway/Exited(atom/movable/M)
@@ -172,8 +180,6 @@
 	if(!ishostile(M)) // only do updates on Abnormality entering/leaving
 		return
 	var/mob/living/simple_animal/hostile/H = M
-	if(!H.trigger_lights)
-		return
 	if(istype(H, /mob/living/simple_animal/hostile/abnormality/big_bird))
 		for(var/area/facility_hallway/F in adjacent_areas)
 			if(M in F.contents)
@@ -187,6 +193,10 @@
 			D.RefreshLights()
 		if(isdead(M) || QDELETED(M))
 			big_bird = FALSE
+			RefreshLights()
+		return
+	if(!H.trigger_lights)
+		return
 	RefreshLights()
 
 /area/facility_hallway/RefreshLights()
