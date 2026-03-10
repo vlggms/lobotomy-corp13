@@ -16,18 +16,28 @@
 	can_buckle_to = FALSE // Please. I beg you. Stop stealing my vending machines.
 	mob_size = MOB_SIZE_HUGE // No more lockers, Whitaker
 	simple_mob_flags = SILENCE_RANGED_MESSAGE
-	can_affect_emergency = TRUE
 	threat_level = ZAYIN_LEVEL
 	trigger_lights = TRUE
+	//Does this enemy count for the emergency system
+	var/can_affect_emergency = TRUE
+	//The divider for score for the emergency system. We don't want minion spam to count too much
+	var/score_divider = 1
+	//Incase you want an enemy to add a constant amount of points
+	var/set_score = null
+	//Does this enemy count for the min emergency level?
+	var/can_affect_min = TRUE
 	/// Separate level of fear. If null - will use threat level.
 	var/fear_level = null
 	/// List of humans that witnessed the abnormality minion
 	var/list/fear_affected = list()
 
-/mob/living/simple_animal/hostile/aminion/Initialize(mapload)
+/mob/living/simple_animal/hostile/aminion/Initialize(mapload, no_emergency)
 	. = ..()
 	if(fear_level == null)
 		fear_level = threat_level
+	if(no_emergency)
+		can_affect_emergency = FALSE
+		return
 	if(SSlobotomy_emergency.should_calc_score)
 		SSlobotomy_emergency.OnAbnoMinionSpawn(src)
 

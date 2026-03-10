@@ -97,18 +97,8 @@ GLOBAL_LIST_EMPTY(marked_players)
 	var/starting_looting_line = "Hand off, that is ours."
 	var/ending_looting_line = "That's it, you asked for this."
 	var/list/glob_faction = list()
-
-	/// This is used for the emergency system but it'll need some extra code to work
-	//Does this enemy count for the emergency system
-	var/can_affect_emergency = FALSE
 	//The threat level of a threat. Only used for abnormaltiies and their minions currently
 	var/threat_level = ZAYIN_LEVEL
-	//The divider for score for the emergency system. We don't want minion spam to count too much
-	var/score_divider = 1
-	//Incase you want an enemy to add a constant amount of points
-	var/set_score = null
-	//Does this enemy count for the min emergency level?
-	var/can_affect_min = TRUE
 	//If true, this entity can trigger the change in lighting during a trumpet
 	var/trigger_lights = FALSE
 	// When this var is TRUE, will not attempt to break out of somewhere it's confined in or buckled to.
