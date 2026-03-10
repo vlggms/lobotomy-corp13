@@ -47,7 +47,7 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 
 /datum/controller/subsystem/lobotomy_emergency/proc/OnMobDeath(datum/source, mob/living/died, gibbed)
 	SIGNAL_HANDLER
-	if(is_tutorial_level(died.z))
+	if(!is_station_level(died.z))
 		return
 	if(istype(died, /mob/living/simple_animal/hostile/abnormality) || istype(died, /mob/living/simple_animal/hostile/aminion))
 		UpdateMin()
@@ -62,7 +62,7 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 
 /datum/controller/subsystem/lobotomy_emergency/proc/OnHumanInsane(datum/source, mob/living/carbon/human/H, attribute)
 	SIGNAL_HANDLER
-	if(is_tutorial_level(H.z))
+	if(!is_station_level(H.z))
 		return
 	var/agent_count = 1 + (length(AllLivingAgents(TRUE)) - 1)/4 //More agents means each one's panic means less
 	if(!H.mind)
@@ -72,18 +72,18 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 
 
 /datum/controller/subsystem/lobotomy_emergency/proc/OnAbnoMinionSpawn(mob/living/simple_animal/hostile/M)
-	if(is_tutorial_level(M.z))
+	if(!is_station_level(M.z))
 		return
-	if(!M.can_affect_emergency)
+	if(!M?:can_affect_emergency)
 		return
-	if(M.set_score)
-		UpdateScore(M.set_score, FALSE)
+	if(M?:set_score)
+		UpdateScore(M?:set_score, FALSE)
 		return
-	UpdateScore(threat_to_score[M.threat_level]/M.score_divider)
+	UpdateScore(threat_to_score[M.threat_level]/M?:score_divider)
 
 /datum/controller/subsystem/lobotomy_emergency/proc/OnAbnoBreach(datum/source, mob/living/simple_animal/hostile/abnormality/abno)
 	SIGNAL_HANDLER
-	if(is_tutorial_level(abno.z))
+	if(!is_station_level(abno.z))
 		return
 	if(!abno.can_affect_emergency)
 		return
@@ -98,13 +98,13 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 		return
 	var/min = 0
 	for(var/mob/living/simple_animal/hostile/A in GLOB.abnormality_minion_list)
-		if(!A.can_affect_emergency || !A.can_affect_min)
+		if(!A?:can_affect_emergency || !A?:can_affect_min)
 			continue
 		if(A.stat == DEAD)//The dead shouldn't count
 			continue
-		var/added_min = threat_to_score[A.threat_level]/(A.score_divider * score_divider * 2)
-		if(A.set_score)
-			min += A.set_score
+		var/added_min = threat_to_score[A.threat_level]/(A?:score_divider * score_divider * 2)
+		if(A?:set_score)
+			min += A?:set_score
 		else
 			min += added_min
 

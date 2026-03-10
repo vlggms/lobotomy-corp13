@@ -20,8 +20,15 @@
 	blood_volume = BLOOD_VOLUME_NORMAL // THERE WILL BE BLOOD. SHED.
 	simple_mob_flags = SILENCE_RANGED_MESSAGE
 	can_patrol = TRUE
-	can_affect_emergency = TRUE
 	trigger_lights = TRUE
+	//Does this enemy count for the emergency system
+	var/can_affect_emergency = TRUE
+	//The divider for score for the emergency system. We don't want minion spam to count too much
+	var/score_divider = 1
+	//Incase you want an enemy to add a constant amount of points
+	var/set_score = null
+	//Does this enemy count for the min emergency level?
+	var/can_affect_min = TRUE
 	/// Can this abnormality spawn normally during the round?
 	var/can_spawn = TRUE
 	/// Reference to the datum we use
