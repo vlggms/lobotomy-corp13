@@ -87,8 +87,8 @@
 
 /mob/living/simple_animal/hostile/abnormality/my_sweet_home/FailureEffect(mob/living/carbon/human/user, work_type, pe, canceled)
 	. = ..()
-	//if(canceled)
-		//return
+	if(canceled)
+		return
 	to_chat(user, span_danger("It whispers in your mind..."))
 	user.Stun(1 SECONDS)
 	SLEEP_CHECK_DEATH(5)
@@ -116,7 +116,22 @@
 			to_chat(user, span_danger("It speaks in your mind, reassuring you, you feel safe."))
 		else
 			counter1+=user
+			RegisterSignal(user, COMSIG_WORK_STARTED, PROC_REF(OnAbnoWork))
 	return
+
+/mob/living/simple_animal/hostile/abnormality/my_sweet_home/proc/OnAbnoWork(datum/source, datum/abnormality/abno_datum, mob/user, work_type)
+	SIGNAL_HANDLER
+	if (abno_datum == datum_reference) // They worked on us!
+		return FALSE
+	if (user in counter2)
+		counter2 -= user
+		counter1 += user
+		return FALSE
+	if (user in counter1)
+		counter1 -= user
+		UnregisterSignal(user, COMSIG_WORK_STARTED)
+		return FALSE
+	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/my_sweet_home/proc/Approach(mob/living/carbon/human/user)
 	if(user.stat >= SOFT_CRIT)
@@ -126,18 +141,18 @@
 		QDEL_NULL(user.ai_controller)
 	user.Stun(5 SECONDS)
 	sleep(0.5 SECONDS)
-	if(QDELETED(user))
+	if(QDELETED(user) || user.stat >= SOFT_CRIT)
 		someone_entering = FALSE
 		return
 	to_chat(user, span_danger("You grip the key and approach."))
 	step_towards(user, src)
 	sleep(0.5 SECONDS)
-	if(QDELETED(user))
+	if(QDELETED(user) || user.stat >= SOFT_CRIT)
 		someone_entering = FALSE
 		return
 	step_towards(user, src)
 	sleep(0.5 SECONDS)
-	if(QDELETED(user))
+	if(QDELETED(user) || user.stat >= SOFT_CRIT)
 		someone_entering = FALSE
 		return
 	playsound(get_turf(src), 'sound/machines/door_open.ogg', 50, 1)
