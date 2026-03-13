@@ -83,7 +83,6 @@
 	pixel_y = 0
 	base_pixel_y = 0
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_FINISHED, PROC_REF(OnMeltdownFinish))
 	for(var/obj/structure/hookah_mushroom/shroom in datum_reference.connected_structures)
 		shroom.icon_state = "caterpillar_mushroon"
 
@@ -153,11 +152,9 @@
 		BreachEffect()
 
 //Meltdown Stuff
-/mob/living/simple_animal/hostile/abnormality/caterpillar/proc/OnMeltdownFinish(datum/source, datum/abnormality/abno_datum, worked)
-	SIGNAL_HANDLER
-	if(abno_datum == datum_reference)
-		if(!worked)
-			ForceEclosion()
+/mob/living/simple_animal/hostile/abnormality/caterpillar/proc/MeltdownEffect()
+	if(IsContained())
+		ForceEclosion()
 
 /mob/living/simple_animal/hostile/abnormality/caterpillar/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
 	if(work_type != ABNORMALITY_WORK_REPRESSION)
@@ -186,7 +183,6 @@
 	base_pixel_y = 0
 	Remove_Smoke()
 	fear_level = WAW_LEVEL
-	UnregisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_FINISHED)
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/caterpillar/Moved()
@@ -324,8 +320,8 @@
 		var/obj/effect/particle_effect/smoke/pale/foundsmoke = locate() in T //Don't spread smoke where there's already smoke!
 		if(foundsmoke && foundsmoke.lifetime > 0 && !QDELETED(foundsmoke))
 			continue
-		/*for(var/mob/living/L in T)
-			smoke_mob(L)*/
+		for(var/mob/living/L in T)
+			smoke_mob(L)
 		var/obj/effect/particle_effect/smoke/pale/S = new type(T, weak_mode)
 		if(Hook)
 			S.Hook = Hook
