@@ -525,6 +525,10 @@ The variable's key needs to be non-numerical.*/
 		datum_reference.overload_chance = list()
 	return
 
+// When qliphoth meltdown ends
+/mob/living/simple_animal/hostile/abnormality/proc/MeltdownEnd()
+	return
+
 /mob/living/simple_animal/hostile/abnormality/proc/OnQliphothChange(mob/living/carbon/human/user, amount = 0, pre_qlip = start_qliphoth)
 	return
 

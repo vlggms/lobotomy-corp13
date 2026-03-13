@@ -344,6 +344,7 @@
 	if(linked_panel)
 		linked_panel.console_status(src)
 	datum_reference.qliphoth_change(-999)
+	datum_reference.current.MeltdownEnd()
 	SEND_SIGNAL(src, COMSIG_MELTDOWN_FINISHED, datum_reference, FALSE)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MELTDOWN_FINISHED, datum_reference, FALSE)
 	return TRUE
