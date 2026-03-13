@@ -65,12 +65,8 @@
 	if(C.smoke_delay)
 		return FALSE
 	C.smoke_delay++
-	addtimer(CALLBACK(src, PROC_REF(remove_smoke_delay), C), 10)
+	addtimer(CALLBACK(C, TYPE_PROC_REF(/mob/living, remove_smoke_delay)), 10)
 	return TRUE
-
-/obj/effect/particle_effect/smoke/proc/remove_smoke_delay(mob/living/carbon/C)
-	if(C)
-		C.smoke_delay = 0
 
 /obj/effect/particle_effect/smoke/proc/spread_smoke()
 	var/turf/t_loc = get_turf(src)

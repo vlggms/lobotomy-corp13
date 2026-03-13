@@ -70,7 +70,11 @@
 			continue
 		if(!H.has_status_effect(/datum/status_effect/panicked_type/dingle) || !HAS_AI_CONTROLLER_TYPE(H, /datum/ai_controller/insane/dingle_possess) || !(H.buckled && istype(H.buckled, /obj/structure/swarming_roots)))
 			if(get_attribute_level(H, PRUDENCE_ATTRIBUTE) >= 60) // at or above level 3
-				H.apply_status_effect(STATUS_EFFECT_DANGLE)
+				var/datum/status_effect/dangle/D = H.has_status_effect(STATUS_EFFECT_DANGLE)
+				if(!D)
+					H.apply_status_effect(STATUS_EFFECT_DANGLE)
+				else
+					D.duration = initial(D.duration) + world.time
 
 /mob/living/simple_animal/hostile/abnormality/dingledangle/proc/Consume(mob/living/carbon/human/H)
 	if(!H)
@@ -137,8 +141,7 @@
 			for(var/mob/living/carbon/human/H in buckled_mobs)
 				if(H.stat == DEAD)
 					continue
-				H.deal_damage(damage, BRUTE)
-				H.hallucination += 5
+				H.deal_damage(damage * H.maxHealth/100, BRUTE)
 				if(H.health < 0)
 					H.Drain()
 				dealt_damage = TRUE
@@ -149,7 +152,7 @@
 	M.pixel_x = M.base_pixel_x
 	unbuckle_mob(M,force=1)
 	M.pixel_z = 0
-	src.visible_message(text("<span class='danger'>[M] falls free of [src]!</span>"))
+	src.visible_message(text("<span class='danger'>[M] is free from [src]!</span>"))
 	M.Knockdown(10, FALSE)
 	REMOVE_TRAIT(M, TRAIT_INCAPACITATED, type)
 	REMOVE_TRAIT(M, TRAIT_IMMOBILIZED, type)
@@ -173,13 +176,13 @@
 	status_type = STATUS_EFFECT_UNIQUE
 	duration = 30 SECONDS
 	alert_type = null
+	var/tries = 0
 
 /datum/status_effect/dangle/on_apply()
 	. = ..()
 	if(!ishuman(owner))
 		return
 	var/mob/living/carbon/human/status_holder = owner
-	status_holder.hallucination += 10
 	status_holder.physiology.white_mod *= 1.3
 	if(status_holder.sanity_lost)
 		qdel(src)
@@ -188,6 +191,12 @@
 	. = ..()
 	if(!ishuman(owner))
 		return
+	if(prob(5) || tries >= 8)
+		tries = 0
+		var/halpick = pickweight(GLOB.hallucination_list)
+		new halpick(owner, FALSE)
+	else
+		tries ++
 	var/mob/living/carbon/human/status_holder = owner
 	if(status_holder.sanity_lost)
 		qdel(src)

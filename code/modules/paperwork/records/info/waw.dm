@@ -561,7 +561,9 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/caterpillar
 	abno_code = "F-02-190"
 	abno_info = list(
+		"F-02-190 has its own Eclosion Counter and as such, the cell is provided with a detector to monitor the counter's current level.",
 		"Working on F-02-190 on a work type other than repression will increase it's Eclosion Counter.",
+		"When the work was proggressing smoothly, James endured WHITE damage until SP fell below 20%",
 		"When an employee with Justice 5 finished repression work on F-02-190, the Eclosion Counter was set back to 0.",
 		"The higher F-02-190's Eclosion Counter was, the more energy and PE boxes it could generate, so did the danger to the employee.",
 		"When the Eclosion Counter became too high, works other than repression on F-02-190 will cause it breach.",
