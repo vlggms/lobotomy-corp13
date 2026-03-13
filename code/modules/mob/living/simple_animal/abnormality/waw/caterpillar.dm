@@ -129,6 +129,8 @@
 		BreachEffect()
 
 /mob/living/simple_animal/hostile/abnormality/caterpillar/proc/ForceEclosion()
+	if(!IsContained())
+		return
 	if(eclosion_counter < 5)
 		var/eclosion = eclosion_counter
 		eclosion_counter = 5
@@ -150,10 +152,17 @@
 		playsound(get_turf(src), 'sound/effects/alertbeep.ogg', 50, FALSE)
 		BreachEffect()
 
+/mob/living/simple_animal/hostile/abnormality/caterpillar/proc/RestartEclosion()
+	Remove_Smoke()
+	icon_state = "caterpillar"
+	datum_reference.max_boxes = initial(max_boxes)
+	eclosion_counter = 0
+	for(var/obj/structure/hookah_mushroom/shroom in datum_reference.connected_structures)
+		shroom.icon_state = "caterpillar_mushroon"
+
 //Meltdown Stuff
-/mob/living/simple_animal/hostile/abnormality/caterpillar/proc/MeltdownEffect()
-	if(IsContained())
-		ForceEclosion()
+/mob/living/simple_animal/hostile/abnormality/caterpillar/MeltdownEnd()
+	ForceEclosion()
 
 /mob/living/simple_animal/hostile/abnormality/caterpillar/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
 	if(work_type != ABNORMALITY_WORK_REPRESSION)
@@ -164,13 +173,7 @@
 		if(user.stat >= SOFT_CRIT || user.sanity_lost || canceled)
 			return
 		if(get_attribute_level(user, JUSTICE_ATTRIBUTE) >= 100)
-			Remove_Smoke()
-			icon_state = "caterpillar"
-			datum_reference.max_boxes = initial(max_boxes)
-			eclosion_counter = 0
-			for(var/obj/structure/hookah_mushroom/shroom in datum_reference.connected_structures)
-				shroom.icon_state = "caterpillar_mushroon"
-
+			RestartEclosion()
 //Breach Stuff
 /mob/living/simple_animal/hostile/abnormality/caterpillar/BreachEffect()
 	icon = 'ModularTegustation/Teguicons/80x80.dmi'
