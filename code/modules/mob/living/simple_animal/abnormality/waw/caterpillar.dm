@@ -324,8 +324,8 @@
 		var/obj/effect/particle_effect/smoke/pale/foundsmoke = locate() in T //Don't spread smoke where there's already smoke!
 		if(foundsmoke && foundsmoke.lifetime > 0 && !QDELETED(foundsmoke))
 			continue
-		for(var/mob/living/L in T)
-			smoke_mob(L)
+		/*for(var/mob/living/L in T)
+			smoke_mob(L)*/
 		var/obj/effect/particle_effect/smoke/pale/S = new type(T, weak_mode)
 		if(Hook)
 			S.Hook = Hook
