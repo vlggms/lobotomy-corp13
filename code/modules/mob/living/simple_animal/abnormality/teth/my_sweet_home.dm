@@ -16,8 +16,8 @@
 	health = 150
 	move_to_delay = 5
 	damage_coeff = list(RED_DAMAGE = 0.9, WHITE_DAMAGE = 0.9, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)
-	melee_damage_lower = 6
-	melee_damage_upper = 8
+	melee_damage_lower = 4
+	melee_damage_upper = 6
 	rapid_melee = 1//Attacks really slow
 	melee_reach = 3//But it has long limbs
 	melee_damage_type = RED_DAMAGE
@@ -113,6 +113,7 @@
 			return
 		else if(user in counter1)
 			counter2+=user
+			counter1-=user
 			to_chat(user, span_danger("It speaks in your mind, reassuring you, you feel safe."))
 		else
 			counter1+=user
@@ -127,39 +128,51 @@
 		counter2 -= user
 		counter1 += user
 		return FALSE
-	if (user in counter1)
+	else if (user in counter1)
 		counter1 -= user
 		UnregisterSignal(user, COMSIG_WORK_STARTED)
 		return FALSE
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/my_sweet_home/proc/Approach(mob/living/carbon/human/user)
-	if(user.stat >= SOFT_CRIT)
+	if(GuyIsDead(user))
 		return
 	someone_entering = TRUE
 	if(user.sanity_lost)
 		QDEL_NULL(user.ai_controller)
 	user.Stun(5 SECONDS)
 	sleep(0.5 SECONDS)
-	if(QDELETED(user) || user.stat >= SOFT_CRIT)
+	if(GuyIsDead(user))
 		someone_entering = FALSE
 		return
 	to_chat(user, span_danger("You grip the key and approach."))
 	step_towards(user, src)
 	sleep(0.5 SECONDS)
-	if(QDELETED(user) || user.stat >= SOFT_CRIT)
+	if(GuyIsDead(user))
 		someone_entering = FALSE
 		return
 	step_towards(user, src)
 	sleep(0.5 SECONDS)
-	if(QDELETED(user) || user.stat >= SOFT_CRIT)
+	if(GuyIsDead(user))
 		someone_entering = FALSE
 		return
 	playsound(get_turf(src), 'sound/machines/door_open.ogg', 50, 1)
 	to_chat(user, span_danger("You open the door and..."))
 	sleep(0.5 SECONDS)
 	someone_entering = FALSE
+	if(GuyIsDead(user))
+		return
+	playsound(get_turf(src), 'sound/effects/alertbeep.ogg', 50, FALSE)
 	BreachEffect(user)
+
+/mob/living/simple_animal/hostile/abnormality/my_sweet_home/proc/GuyIsDead(mob/living/carbon/human/user)
+	if(QDELETED(user))
+		return TRUE
+	if(user.stat >= SOFT_CRIT)
+		if(user.sanity_lost)
+			user.adjustSanityLoss(-user.maxSanity)//We restore their sanity so they don't stand there like a dumbass after removing their panic ai
+		return TRUE
+	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/my_sweet_home/proc/AoeAttack()
 	damage_dealt = 0
@@ -196,8 +209,8 @@
 	base_pixel_x = -16
 	icon_state = "sweet_home_breach"
 	if(user)
-		melee_damage_lower = 8
-		melee_damage_upper = 10
+		melee_damage_lower = 6
+		melee_damage_upper = 8
 		ranged_damage = 10
 		maxHealth = 280
 		health = 280
