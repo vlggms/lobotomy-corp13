@@ -71,6 +71,7 @@
 			return
 		animate(user, alpha = 0,pixel_x = 0, pixel_z = 16, time = 3 SECONDS)
 		to_chat(user, span_userdanger("You will make it to the top, no matter what!"))
+		user.death(TRUE)
 		QDEL_IN(user, 3.5 SECONDS)
 
 //The special work, if you survive you get a powerful EGO gift.

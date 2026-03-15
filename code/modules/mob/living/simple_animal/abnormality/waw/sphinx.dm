@@ -172,7 +172,7 @@
 	while(!chosenorgan)
 		if(!eyes && !ears && !tongue)
 			to_chat(H, span_warning("With nothing left to lose, you lose your life."))
-			H.dust()
+			H.dust(TRUE, TRUE)
 			return
 		chosenorgan = pick(eyes,ears,tongue)
 	if(chosenorgan == eyes)

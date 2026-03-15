@@ -396,6 +396,7 @@
 		N.UpdateArmor(list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5))
 		//moved to creature proc since changing armor values in the status effect resulted in all naked nested having their armor values changed. Even admin spawned ones.
 	playsound(get_turf(host), 'sound/misc/soggy.ogg', 20, 1)
+	host.death(TRUE)
 	QDEL_IN(host, 2)
 
 /obj/item/organ/naked_nest/proc/TransformOverride(mob/living/carbon/human/H)

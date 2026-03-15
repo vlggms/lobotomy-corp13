@@ -277,7 +277,6 @@
 		if(QDELETED(head))
 			return
 		head.dismember()
-		QDEL_NULL(head)
 		H.regenerate_icons()
 		visible_message(span_danger("\The [src] bites [H]'s head off!"))
 		new /obj/effect/gibspawner/generic/silent(get_turf(H))

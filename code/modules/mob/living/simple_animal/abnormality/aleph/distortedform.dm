@@ -780,13 +780,13 @@
 			if(L.health < 0)
 				if(ishuman(L))
 					var/mob/living/carbon/human/H = L
-					H.dust()
+					H.dust(TRUE, TRUE)
 				else
 					L.gib()
 	else
 		target.deal_damage(250, PALE_DAMAGE) //You - you are probably going to die!
 		if(target.health < 0)
-			target.dust()
+			target.dust(TRUE, TRUE)
 	can_act = TRUE
 	transform_cooldown = world.time
 
@@ -1051,7 +1051,7 @@
 	for(var/mob/living/carbon/human/H in view(1, src))
 		H.deal_damage(boom_damage, PALE_DAMAGE)
 		if(H.health < 0)
-			H.dust()
+			H.dust(TRUE, TRUE)
 	new /obj/effect/temp_visual/beam_in(get_turf(src))
 	times_hit ++
 	if(times_hit >= 3)
@@ -1510,7 +1510,7 @@
 				to_chat(L, span_userdanger("MY EYES!!!"))
 				H.apply_damage(30, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 				if(H.sanity_lost) // They can't deal with being bald
-					H.dust()
+					H.dust(TRUE, TRUE)
 	if(!attack_chain)
 		BaldBlast(TRUE)
 		return
@@ -1606,7 +1606,7 @@
 			continue
 		var/mob/living/carbon/human/H = L
 		if(H.sanity_lost) // TODO: TEMPORARY AS HELL
-			H.death()
+			H.death(TRUE)
 			animate(H, transform = H.transform*0.01, time = 5)
 			QDEL_IN(H, 5)
 	SLEEP_CHECK_DEATH(3)

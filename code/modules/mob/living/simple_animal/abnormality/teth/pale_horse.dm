@@ -174,8 +174,8 @@
 				continue
 			H.deal_damage(ash_damage, PALE_DAMAGE)
 			if(H.health < 0 && ishuman(H))
-				H.dust()
-	T.dust()
+				H.dust(TRUE, TRUE)
+	T.dust(TRUE, TRUE)
 
 //Combat
 /mob/living/simple_animal/hostile/abnormality/pale_horse/CanAttack(atom/the_target)
@@ -295,7 +295,7 @@
 /datum/status_effect/mortis/tick()
 	owner.deal_damage(damage, PALE_DAMAGE)
 	if(owner.health < 0 && ishuman(owner))
-		owner.dust()
+		owner.dust(TRUE, TRUE)
 
 /datum/status_effect/mortis/on_apply()
 	. = ..()

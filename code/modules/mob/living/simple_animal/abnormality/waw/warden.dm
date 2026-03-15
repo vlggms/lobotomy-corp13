@@ -97,7 +97,7 @@
 			SLEEP_CHECK_DEATH(5)
 
 			//Takes your skin and leaves your bone. You are now a flesh servant under her skirt in GBJ
-			H.dust()
+			H.dust(TRUE, TRUE)
 
 			// it gets faster.
 
