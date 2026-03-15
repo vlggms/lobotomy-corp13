@@ -260,7 +260,7 @@
 	if(C.has_status_effect(THE_TREE_CURSE)) //If you have the status effect already dont mess with them.
 		return FALSE
 	C.smoke_delay++
-	addtimer(CALLBACK(src, PROC_REF(remove_smoke_delay), C), 10)
+	addtimer(CALLBACK(C, TYPE_PROC_REF(/mob/living, remove_smoke_delay)), 10)
 	return smoke_mob_effect(C)
 
 

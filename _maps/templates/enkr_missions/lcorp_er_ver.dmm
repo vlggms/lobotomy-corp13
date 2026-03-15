@@ -7003,7 +7003,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/clothing/suit/armor/ego_gear/teth/match,
-/obj/item/ego_weapon/hearth,
+/obj/item/ego_weapon/shield/hearth,
 /obj/item/ego_weapon/sanitizer,
 /turf/open/floor/facility/halls,
 /area/awaymission/enkr)
