@@ -28,9 +28,9 @@
 	start_qliphoth = 1
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(50, 55, 55, 55, 60),
-		ABNORMALITY_WORK_INSIGHT = list(40, 30, 20, 40, 40),
-		ABNORMALITY_WORK_ATTACHMENT = 30,
-		ABNORMALITY_WORK_REPRESSION = list(55, 60, 60, 60, 55),
+		ABNORMALITY_WORK_INSIGHT = 20,
+		ABNORMALITY_WORK_ATTACHMENT = 20,
+		ABNORMALITY_WORK_REPRESSION = 20,
 	)
 	work_damage_upper = 6
 	work_damage_lower = 3
@@ -42,9 +42,9 @@
 	pixel_x = -8
 
 	ego_list = list(
-		/datum/ego_datum/weapon/warp,
-		/datum/ego_datum/weapon/warp/spear,
-		/datum/ego_datum/armor/warp,
+		/datum/ego_datum/weapon/dimension_shredder,
+		/datum/ego_datum/weapon/dimension_spear,
+		/datum/ego_datum/armor/dimension_shredder,
 	)
 	gift_type =  /datum/ego_gifts/warp
 	gift_message = "This lighter is branded with a certain company logo."
@@ -87,6 +87,11 @@
 	var/dash_cooldown = 0
 	var/dash_cooldown_time = 4 SECONDS
 	var/list/been_hit = list() // Don't get hit twice.
+	//work vars
+	var/portal_type = "RED"
+	var/rifting = FALSE
+	var/obj/structure/fakeportal/work_portal
+
 
 /datum/action/innate/abnormality_attack/wayward_tele
 	name = "Teleport"
@@ -114,15 +119,13 @@
 
 /mob/living/simple_animal/hostile/abnormality/wayward/Life()
 	. = ..()
-	if(!.)
-		return
 	if(IsContained())
+		CheckView()
 		return
 	if(client || IsCombatMap())
 		return
 	if((teleport_cooldown <= world.time) && can_act)
 		TryTeleport()
-	return
 
 /mob/living/simple_animal/hostile/abnormality/wayward/Move()
 	if(!can_act)
@@ -145,17 +148,22 @@
 		Dash(target)
 
 //*** Work mechanics ***
+/mob/living/simple_animal/hostile/abnormality/wayward/WorkChance(mob/living/carbon/human/user, chance, work_type)
+	if(work_type == ABNORMALITY_WORK_INSTINCT)
+		if(portal_type != "RED")
+			chance -= 35
+	if(work_type == ABNORMALITY_WORK_INSIGHT && portal_type == "WHITE")
+		chance += 40
+	if(work_type == ABNORMALITY_WORK_ATTACHMENT && portal_type == "BLACK")
+		chance += 40
+	if(work_type == ABNORMALITY_WORK_REPRESSION && portal_type == "PALE")
+		chance += 40
+	return chance
+
 /mob/living/simple_animal/hostile/abnormality/wayward/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
 	if(prob(75))
 		datum_reference.qliphoth_change(-1)
-	return
-
-/mob/living/simple_animal/hostile/abnormality/wayward/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
-	. = ..()
-	if(prob(20))
-		datum_reference.qliphoth_change(-1)
-	return
 
 /mob/living/simple_animal/hostile/abnormality/wayward/FearEffectText(mob/affected_mob, level = 0)
 	level = num2text(clamp(level, -1, 4))
@@ -167,6 +175,43 @@
 	)
 	return pick(result_text_list[level])
 
+/mob/living/simple_animal/hostile/abnormality/wayward/proc/CheckView()
+	for(var/mob/living/carbon/human/H in ohearers(7, src))
+		if(!rifting)
+			return
+		playsound(src, 'sound/abnormalities/wayward_passenger/teleport2.ogg', 100, 1)
+		flick("wayward_tpend", src)
+		work_portal.alpha = 0
+		icon_state = initial(icon_state)
+		rifting = FALSE
+		return
+	if(rifting)
+		return
+	rifting = TRUE
+	portal_type = pick(list("RED", "WHITE", "BLACK", "PALE"))
+	playsound(src, 'sound/abnormalities/wayward_passenger/teleport.ogg', 600, 1)
+	flick("wayward_tpstart", src)
+	SLEEP_CHECK_DEATH(3)
+	icon_state = ""
+	work_portal.alpha = 255
+	switch(portal_type)//TODO: Make unique sprites for each portal
+		if("RED")
+			work_portal.color = "#CC0C0C"
+		if("WHITE")
+			work_portal.color = "#1ef2af"//It's yellow tinted
+		if("BLACK")
+			work_portal.color = "#571278"
+		if("PALE")
+			work_portal.color = null
+
+/mob/living/simple_animal/hostile/abnormality/wayward/HandleStructures()
+	. = ..()
+	if(!.)
+		return
+	if(!locate(/obj/structure/fakeportal) in datum_reference.connected_structures)
+		SpawnConnectedStructure(/obj/structure/fakeportal)
+	work_portal = locate(/obj/structure/fakeportal) in datum_reference.connected_structures
+
 //*** Breach mechanics ***
 
 /mob/living/simple_animal/hostile/abnormality/wayward/BreachEffect(mob/living/carbon/human/user, breach_type)
@@ -174,11 +219,21 @@
 	playsound(src, 'sound/abnormalities/thunderbird/tbird_zombify.ogg', 45, FALSE, 5)//this is the sound effect used for Tomerry in the lovetown reception
 	. = ..()
 
+/mob/living/simple_animal/hostile/abnormality/wayward/proc/CleaveAttack()
+	for(var/turf/T in view(1, src))
+		new /obj/effect/temp_visual/revenant(T)
+	SLEEP_CHECK_DEATH(10)
+	playsound(get_turf(src), attack_sound, 75, 0, 3)
+	for(var/turf/T in view(1, src))
+		new /obj/effect/temp_visual/smash_effect(T)
+		HurtInTurf(T, list(), (melee_damage_upper * 2), RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE)
+	SLEEP_CHECK_DEATH(3)
+
 //*** Teleport code ***//
 /mob/living/simple_animal/hostile/abnormality/wayward/proc/TryTeleport(turf/teleport_target)//argument is used when the proc is called with a client
 	if(teleport_cooldown > world.time || !can_act)
 		return FALSE
-	teleport_cooldown = world.time + teleport_cooldown_time//so it doesn't get called twice by life()
+	teleport_cooldown = world.time + teleport_cooldown_time
 	if(!teleport_target)
 		var/list/teleport_potential = list()
 		for(var/mob/living/L in GLOB.mob_living_list)
@@ -193,7 +248,7 @@
 				if(H.is_working)
 					continue
 			teleport_potential += get_turf(L)
-		if(!LAZYLEN(teleport_potential))
+		if(!LAZYLEN(teleport_potential))//Are there no human targets available?
 			if(!LAZYLEN(GLOB.department_centers))
 				return
 			var/turf/P = pick(GLOB.department_centers)
@@ -215,9 +270,9 @@
 	P2.link_portal(P1)
 	icon_state = "wayward_tpend"
 	playsound(src, 'sound/abnormalities/wayward_passenger/teleport2.ogg', 100, 1)
+	CleaveAttack()
 	SLEEP_CHECK_DEATH(2 SECONDS) //2 seconds to teleport
 	density = TRUE
-	SLEEP_CHECK_DEATH(4)
 	can_act = TRUE
 	icon_state = "wayward_breach"
 	can_dash = TRUE
@@ -290,6 +345,14 @@
 		V.take_damage(12, RED_DAMAGE, attack_dir = get_dir(V, src))
 		been_hit += V
 	addtimer(CALLBACK(src, PROC_REF(Do_Dash), move_dir, (times_ran + 1)), 1)
+
+/obj/structure/fakeportal
+	name = "dimensional rift"
+	desc = "A glowing, pulsating rift through space and time."
+	icon = 'ModularTegustation/Teguicons/48x96.dmi'
+	icon_state = "rift_big"
+	base_pixel_x = -8
+	pixel_x = -8
 
 /obj/effect/portal/abno_warp
 	name = "dimensional rift"
