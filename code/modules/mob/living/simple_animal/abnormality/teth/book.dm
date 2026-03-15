@@ -142,6 +142,7 @@
 	if(isabnormalitymob(spawnedmob))
 		var/mob/living/simple_animal/hostile/abnormality/abno = spawnedmob
 		abno.core_enabled = FALSE
+		abno.score_divider *= 4
 		abno.BreachEffect()
 	if(spawnedmob.butcher_results)
 		spawnedmob.butcher_results = list(/obj/item/paper = 1)

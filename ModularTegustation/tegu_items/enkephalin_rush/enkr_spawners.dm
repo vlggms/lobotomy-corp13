@@ -228,45 +228,45 @@ GLOBAL_DATUM_INIT(map_enemy, /datum/enemy, new)
 	name = "teth abnormality thrall spawn"
 	max_spawns = 1
 	mobspawn_table = list(
-		/mob/living/simple_animal/hostile/doomsday_doll = 10,
-		/mob/living/simple_animal/hostile/azure_stave = 1,//servant of wrath minion
+		/mob/living/simple_animal/hostile/aminion/doomsday_doll = 10,
+		/mob/living/simple_animal/hostile/aminion/azure_stave = 1,//servant of wrath minion
 		)
 
 /obj/effect/spawner/mobspawner/he
 	name = "he abnormality thrall spawn"
 	max_spawns = 1
 	mobspawn_table = list(
-		/mob/living/simple_animal/hostile/shrimp = 10,//shrimp liquidation intern
-		/mob/living/simple_animal/hostile/shrimp_soldier = 1,//shotgun shrimp
-		/mob/living/simple_animal/hostile/gift = 1,//laetitia spider
-		/mob/living/simple_animal/hostile/grown_strong = 1,
-		/mob/living/simple_animal/hostile/nosferatu_mob = 10,
-		/mob/living/simple_animal/hostile/worker_bee = 10,
-		/mob/living/simple_animal/hostile/soldier_bee = 10,//identical to above, has a hat
-		/mob/living/simple_animal/hostile/artillery_bee = 5,
-		/mob/living/simple_animal/hostile/slime = 1,//ML slime (small)
+		/mob/living/simple_animal/hostile/aminion/shrimp = 10,//shrimp liquidation intern
+		/mob/living/simple_animal/hostile/aminion/shrimp_soldier = 1,//shotgun shrimp
+		/mob/living/simple_animal/hostile/aminion/gift = 1,//laetitia spider
+		/mob/living/simple_animal/hostile/aminion/grown_strong = 1,
+		/mob/living/simple_animal/hostile/aminion/nosferatu_mob = 10,
+		/mob/living/simple_animal/hostile/aminion/worker_bee = 10,
+		/mob/living/simple_animal/hostile/aminion/soldier_bee = 10,//identical to above, has a hat
+		/mob/living/simple_animal/hostile/aminion/artillery_bee = 5,
+		/mob/living/simple_animal/hostile/aminion/slime = 1,//ML slime (small)
 		)
 
 /obj/effect/spawner/mobspawner/waw
 	name = "waw abnormality thrall spawn"
 	max_spawns = 1
 	mobspawn_table = list(
-		/mob/living/simple_animal/hostile/yagaslave = 5,
-		/mob/living/simple_animal/hostile/parasite_tree_sapling = 1,
-		/mob/living/simple_animal/hostile/thunder_zombie = 5,
+		/mob/living/simple_animal/hostile/aminion/yagaslave = 5,
+		/mob/living/simple_animal/hostile/aminion/parasite_tree_sapling = 1,
+		/mob/living/simple_animal/hostile/aminion/thunder_zombie = 5,
 		)
 
 /obj/effect/spawner/mobspawner/aleph
 	name = "aleph abnormality thrall spawn"
 	max_spawns = 1
 	mobspawn_table = list(
-		/mob/living/simple_animal/hostile/little_prince_1 = 1,//this guy has a wopping 1200 hp
-		/mob/living/simple_animal/hostile/mini_censored = 1,
-		/mob/living/simple_animal/hostile/meatblob = 10,
-		/mob/living/simple_animal/hostile/meatblob/gunner = 5,
-		/mob/living/simple_animal/hostile/meatblob/gunner/shotgun = 5,
-		/mob/living/simple_animal/hostile/meatblob/gunner/sniper = 5,
-		/mob/living/simple_animal/hostile/slime/big = 2,//ML's chosen
+		/mob/living/simple_animal/hostile/aminion/little_prince_1 = 1,//this guy has a wopping 1200 hp
+		/mob/living/simple_animal/hostile/aminion/mini_censored = 1,
+		/mob/living/simple_animal/hostile/aminion/meatblob = 10,
+		/mob/living/simple_animal/hostile/aminion/meatblob/gunner = 5,
+		/mob/living/simple_animal/hostile/aminion/meatblob/gunner/shotgun = 5,
+		/mob/living/simple_animal/hostile/aminion/meatblob/gunner/sniper = 5,
+		/mob/living/simple_animal/hostile/aminion/slime/big = 2,//ML's chosen
 		)
 
 //Steel Singles

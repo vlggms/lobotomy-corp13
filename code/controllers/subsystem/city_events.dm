@@ -96,7 +96,7 @@ SUBSYSTEM_DEF(cityevents)
 
 		//Harmful events
 		if("shrimps")
-			spawnatlandmark(/mob/living/simple_animal/hostile/shrimp, 20)
+			spawnatlandmark(/mob/living/simple_animal/hostile/aminion/shrimp, 20)
 		if("drones")
 			spawnatlandmark(/mob/living/simple_animal/hostile/kcorp/drone, -10)//extremely low chance
 		if("lovetowneasy")

@@ -20,7 +20,7 @@
 		return
 	// check abnos
 	var/count = 0
-	var/mob/living/simple_animal/hostile/better_memories_minion/B = locate()
+	var/mob/living/simple_animal/hostile/aminion/better_memories_minion/B = locate()
 	var/mob/living/carbon/human/species/pinocchio/P = locate()
 	if (P)
 		count++

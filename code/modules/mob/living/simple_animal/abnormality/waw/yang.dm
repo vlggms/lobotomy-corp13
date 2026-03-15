@@ -16,6 +16,7 @@
 	pixel_y = -8
 	base_pixel_y = -8
 	stat_attack = HARD_CRIT
+	trigger_lights = FALSE //I'm friendly I swear!(lie)
 
 	//work stuff
 	can_breach = TRUE

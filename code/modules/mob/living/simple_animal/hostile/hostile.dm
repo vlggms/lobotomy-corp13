@@ -97,7 +97,10 @@ GLOBAL_LIST_EMPTY(marked_players)
 	var/starting_looting_line = "Hand off, that is ours."
 	var/ending_looting_line = "That's it, you asked for this."
 	var/list/glob_faction = list()
-
+	//The threat level of a threat. Only used for abnormaltiies and their minions currently
+	var/threat_level = ZAYIN_LEVEL
+	//If true, this entity can trigger the change in lighting during a trumpet
+	var/trigger_lights = FALSE
 	// When this var is TRUE, will not attempt to break out of somewhere it's confined in or buckled to.
 	var/docile_confinement = FALSE
 
@@ -109,7 +112,10 @@ GLOBAL_LIST_EMPTY(marked_players)
 	. = ..()
 	if(SSmaptype.maptype in SSmaptype.citymaps)
 		vision_range = min(vision_range, 8)
-
+	if(trigger_lights)
+		var/area/A = get_area(src)
+		if(istype(A))
+			A.RefreshLights()
 	if(attack_cooldown == 0)
 		attack_cooldown = SSnpcpool.wait / rapid_melee
 	old_rapid_melee = rapid_melee
@@ -188,7 +194,9 @@ GLOBAL_LIST_EMPTY(marked_players)
 	if(mark_once_attacked)
 		UnregisterSignal(SSdcs, COMSIG_CRATE_LOOTING_STARTED)
 		UnregisterSignal(SSdcs, COMSIG_CRATE_LOOTING_ENDED)
-	return ..()
+	. = ..()
+	if(trigger_lights)
+		QuickChangeLights(trigger_lights)
 
 /mob/living/simple_animal/hostile/death(gibbed)
 	// Check for nuke rats achievement
@@ -207,8 +215,9 @@ GLOBAL_LIST_EMPTY(marked_players)
 					L.client.give_award(/datum/award/achievement/lc13/city/nuke_rats_genocide, L)
 			// Clear the killers list after awarding
 			GLOB.nuke_rats_killers.Cut()
-
-	return ..()
+	. = ..()
+	if(trigger_lights)
+		QuickChangeLights(trigger_lights)
 
 /mob/living/simple_animal/hostile/Life()
 	. = ..()
@@ -1448,5 +1457,14 @@ GLOBAL_LIST_EMPTY(marked_players)
 		step_to(src, dest)
 		patrol_reset()
 	return TRUE
+
+/mob/living/simple_animal/hostile/revive(full_heal = FALSE, admin_revive = FALSE)
+	var/wasDead = stat == DEAD
+	. = ..()
+	if(!.)
+		return
+	if(wasDead)
+		if(initial(trigger_lights))
+			QuickChangeLights(initial(trigger_lights))
 
 #undef MAX_DAMAGE_SUFFERED

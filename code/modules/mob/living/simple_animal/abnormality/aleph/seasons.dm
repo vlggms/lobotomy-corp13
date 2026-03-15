@@ -356,7 +356,7 @@
 	EndWeather()
 	for(var/obj/effect/season_turf/newturf in spawned_turfs)
 		newturf.DoDelete()
-	for(var/mob/living/simple_animal/hostile/flora_zombie/thezombie in zombies)
+	for(var/mob/living/simple_animal/hostile/aminion/flora_zombie/thezombie in zombies)
 		thezombie.gib()
 	for(var/obj/structure/thorn_bomb/thebomb in plants)
 		thebomb.Wilt()
@@ -487,7 +487,7 @@
 		if(!QDELETED(H))
 			if(!H.real_name)
 				return FALSE
-			var/mob/living/simple_animal/hostile/flora_zombie/C = new(get_turf(H))
+			var/mob/living/simple_animal/hostile/aminion/flora_zombie/C = new(get_turf(H))
 			C.master = src
 			C.name = "[H.real_name]"//applies the target's name and adds the name to its description
 			C.icon_state = "flora_zombie"
@@ -591,7 +591,7 @@
 		L.deal_damage(melee_damage_upper * 2, melee_damage_type)
 		been_hit = TRUE
 	if(been_hit)
-		new /mob/living/simple_animal/hostile/flytrap(T)
+		new /mob/living/simple_animal/hostile/aminion/flytrap(T)
 
 /mob/living/simple_animal/hostile/abnormality/seasons/proc/SpringSlam()
 	slam_cooldown = world.time + slam_cooldown_time
@@ -663,7 +663,7 @@
 				continue
 			hit_list += L
 			L.deal_damage(special_attack_damage, melee_damage_type)
-			new /mob/living/simple_animal/hostile/flytrap(T)
+			new /mob/living/simple_animal/hostile/aminion/flytrap(T)
 			if(ishuman(L))
 				Finisher(L)
 		SLEEP_CHECK_DEATH(1)
@@ -865,7 +865,7 @@
 		if(prob(5))
 			continue
 		++count
-		var/mob/living/simple_animal/hostile/willowisp/W = new(T)
+		var/mob/living/simple_animal/hostile/aminion/willowisp/W = new(T)
 		W.progenitor = src
 	SLEEP_CHECK_DEATH(3)
 	can_act = TRUE
@@ -1408,7 +1408,7 @@
 	return
 
 //Summons
-/mob/living/simple_animal/hostile/willowisp
+/mob/living/simple_animal/hostile/aminion/willowisp
 	name = "corpse light"
 	desc = "Will-o the wisp."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
@@ -1426,21 +1426,25 @@
 	del_on_death = TRUE
 	light_color = "#6496FA"
 	light_power = 3
+	can_affect_emergency = FALSE
+	threat_level = HE_LEVEL
+	move_resist = MOVE_RESIST_DEFAULT
+	fear_level = 0
 	var/can_act = TRUE
 	var/bomb_damage = 75
 	var/mob/living/simple_animal/hostile/abnormality/seasons/progenitor
 
-/mob/living/simple_animal/hostile/willowisp/Move()
+/mob/living/simple_animal/hostile/aminion/willowisp/Move()
 	if(!can_act)
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/willowisp/AttackingTarget(atom/attacked_target)
+/mob/living/simple_animal/hostile/aminion/willowisp/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return
 	LightFuse()
 
-/mob/living/simple_animal/hostile/willowisp/proc/LightFuse()
+/mob/living/simple_animal/hostile/aminion/willowisp/proc/LightFuse()
 	can_act = FALSE
 	if(!progenitor)
 		qdel(src)
@@ -1448,7 +1452,7 @@
 	del_on_death = FALSE
 	death()
 
-/mob/living/simple_animal/hostile/willowisp/proc/Detonate()
+/mob/living/simple_animal/hostile/aminion/willowisp/proc/Detonate()
 	playsound(src, 'sound/abnormalities/seasons/boom.ogg', 40, FALSE, 10)
 	new /obj/effect/temp_visual/explosion(get_turf(src))
 	for(var/turf/T in view(2, src))
@@ -1461,12 +1465,12 @@
 			L.deal_damage(bomb_damage, BLACK_DAMAGE)
 			L.apply_dark_flame(10)
 
-/mob/living/simple_animal/hostile/willowisp/death()
+/mob/living/simple_animal/hostile/aminion/willowisp/death()
 	. = ..()
 	if(!del_on_death)
 		QDEL_IN(src, 13)
 
-/mob/living/simple_animal/hostile/flytrap
+/mob/living/simple_animal/hostile/aminion/flytrap
 	name = "Spring Triffid"
 	desc = "A massive fly trap..."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
@@ -1487,9 +1491,12 @@
 	speed = 5
 	attack_sound = 'sound/abnormalities/nosferatu/bat_attack.ogg'
 	density = FALSE
+	can_affect_emergency = FALSE
+	threat_level = TETH_LEVEL
+	fear_level = 0
 	var/attack_count = 0
 
-/mob/living/simple_animal/hostile/flytrap/AttackingTarget(atom/attacked_target)
+/mob/living/simple_animal/hostile/aminion/flytrap/AttackingTarget(atom/attacked_target)
 	. = ..()
 	if(ishuman(attacked_target))
 		var/mob/living/carbon/human/H = attacked_target
@@ -1498,7 +1505,7 @@
 	if(attack_count >= 5)
 		death()
 
-/mob/living/simple_animal/hostile/flora_zombie
+/mob/living/simple_animal/hostile/aminion/flora_zombie
 	name = "Flora Zombie"
 	desc = "What appears to be human, only mangled by vines and decayed..."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
@@ -1529,12 +1536,14 @@
 	del_on_death = FALSE
 	density = TRUE
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab = 1)
-	var/list/breach_affected = list()
+	score_divider = 5
+	threat_level = HE_LEVEL
+	move_resist = MOVE_RESIST_DEFAULT
 	var/can_act = TRUE
 	var/mob/living/simple_animal/hostile/abnormality/seasons/master
 
 //Zombie conversion from zombie kills
-/mob/living/simple_animal/hostile/flora_zombie/AttackingTarget()
+/mob/living/simple_animal/hostile/aminion/flora_zombie/AttackingTarget()
 	. = ..()
 	if(!can_act)
 		return
@@ -1546,11 +1555,11 @@
 		return
 	H.apply_venom(5)
 
-/mob/living/simple_animal/hostile/flora_zombie/Initialize()
+/mob/living/simple_animal/hostile/aminion/flora_zombie/Initialize()
 	. = ..()
 	playsound(get_turf(src), 'sound/abnormalities/ebonyqueen/attack.ogg', 50, 1, 4)
 
-/mob/living/simple_animal/hostile/flora_zombie/Life()
+/mob/living/simple_animal/hostile/aminion/flora_zombie/Life()
 	. = ..()
 	if(!.) // Dead
 		return FALSE
@@ -1558,11 +1567,11 @@
 		return FALSE
 
 //reanimated if god isn't suppressed within 30 seconds
-/mob/living/simple_animal/hostile/flora_zombie/death(gibbed)
+/mob/living/simple_animal/hostile/aminion/flora_zombie/death(gibbed)
 	addtimer(CALLBACK(src, PROC_REF(resurrect)), 30 SECONDS)
 	return ..()
 
-/mob/living/simple_animal/hostile/flora_zombie/proc/resurrect()
+/mob/living/simple_animal/hostile/aminion/flora_zombie/proc/resurrect()
 	if(QDELETED(src))
 		return
 	revive(full_heal = TRUE, admin_revive = FALSE)
@@ -1570,7 +1579,7 @@
 	playsound(get_turf(src), 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, 0, 8)
 
 //Zombie conversion from other zombies
-/mob/living/simple_animal/hostile/flora_zombie/proc/Convert(mob/living/carbon/human/H)
+/mob/living/simple_animal/hostile/aminion/flora_zombie/proc/Convert(mob/living/carbon/human/H)
 	if(!istype(H))
 		return
 	if(!can_act)
@@ -1581,7 +1590,7 @@
 	if(!QDELETED(H))
 		if(!H.real_name)
 			return FALSE
-		var/mob/living/simple_animal/hostile/flora_zombie/C = new(get_turf(src))
+		var/mob/living/simple_animal/hostile/aminion/flora_zombie/C = new(get_turf(src))
 		if(master)
 			master.zombies += C
 			C.master = master

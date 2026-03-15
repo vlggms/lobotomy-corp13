@@ -139,10 +139,10 @@ SUBSYSTEM_DEF(lobotomy_events)
 		return
 	switch(event_type)
 		if(APOCALYPSE)
-			var/mob/living/simple_animal/forest_portal/portal
+			var/mob/living/simple_animal/hostile/aminion/forest_portal/portal
 			for(var/turf/T in GLOB.department_centers)
 				if(istype(get_area(T),/area/department_main/command))
-					for(var/mob/living/simple_animal/forest_portal/FP in T.contents) // If we SOMEHOW have duplicates...
+					for(var/mob/living/simple_animal/hostile/aminion/forest_portal/FP in T.contents) // If we SOMEHOW have duplicates...
 						return
 					portal = new(T)
 					break
@@ -236,4 +236,4 @@ SUBSYSTEM_DEF(lobotomy_events)
 	SIGNAL_HANDLER
 	if(!istype(newbie))
 		return
-	ApplySecurityLevelEffect(newbie)
+	ApplyTrumpetLevelEffect(newbie)

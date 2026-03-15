@@ -28,6 +28,8 @@
 	//ego_list = list(datum/ego_datum/weapon/training, datum/ego_datum/armor/training)
 	gift_type =  /datum/ego_gifts/standard
 	can_patrol = FALSE
+	can_affect_emergency = FALSE
+	trigger_lights = FALSE
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	secret_chance = TRUE // people NEEDED a bunny girl waifu

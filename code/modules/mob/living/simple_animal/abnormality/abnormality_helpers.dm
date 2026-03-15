@@ -61,3 +61,13 @@
 		if(D.density)
 			return FALSE
 	return TRUE
+
+/*
+* Sets trigger_lights to true or false and refreshes the lights
+*/
+/mob/living/simple_animal/hostile/proc/QuickChangeLights(istrue)
+	trigger_lights = istrue
+	var/area/A = get_area(src)
+	if(!istype(A))
+		return
+	A.RefreshLights()
