@@ -481,9 +481,10 @@
 //This handles if someone walked through moth's embers or not
 /datum/status_effect/ember_touched
 	id = "ember_touched"
-	status_type = STATUS_EFFECT_REPLACE
+	status_type = STATUS_EFFECT_UNIQUE
 	duration = 10 SECONDS
 	tick_interval = 2 SECONDS
+	alert_type = null
 
 /datum/status_effect/ember_touched/tick()
 	. = ..()
