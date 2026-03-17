@@ -15,7 +15,7 @@
 	var/regeneration_amount = 6
 	/// Pre-declared variable
 	var/modified = FALSE // Whether or not the regenerator is currently undergoing modified action
-	var/threat = FALSE
+	var/threat_detected = FALSE
 	var/hp_bonus = 0
 	var/sp_bonus = 0
 	var/critical_heal = FALSE // Whether it heals people who are in critical condition (sanity loss/health loss)
@@ -52,7 +52,7 @@
 	var/area/A = get_area(src)
 	if(!istype(A))
 		return
-	threat = FALSE
+	threat_detected = FALSE
 	var/regen_amt = regeneration_amount
 	var/regen_mult = 1
 	var/regen_add = GetFacilityUpgradeValue(UPGRADE_REGENERATOR_HEALING)
@@ -71,12 +71,12 @@
 				LAZYADD(people_to_heal, bro)
 		// We assume that any simple_mob/hostile is, in fact, hostile. (If you do not want your super friendly simplemob/hostile to block regenerators, assign a different area_index var to your mob (code\__DEFINES\areas.dm))
 		// This also includes composite indexes that include the hostile or abnormality index.
-		if(!threat && (key & (MOB_HOSTILE_INDEX | MOB_ABNORMALITY_INDEX)))
+		if(!threat_detected && (key & (MOB_HOSTILE_INDEX | MOB_ABNORMALITY_INDEX)))
 			icon_state = alert_icon
-			threat = TRUE
-	if(threat)
+			threat_detected = TRUE
+	if(threat_detected)
 		regen_mult *= 0.5
-	if(icon_state != "regen" && !threat)
+	if(icon_state != "regen" && !threat_detected)
 		icon_state = initial(icon_state)
 
 	if(LAZYLEN(people_to_heal))
@@ -100,9 +100,9 @@
 	if(burst)
 		regen_mult *= 7.5
 		regen_add *= 7.5
-	if(threat)
+	if(threat_detected)
 		regen_mult *= 0.5
-		. += span_danger("WARNING: Thread detected. Base healing is halved!")
+		. += span_danger("WARNING: threat detected. Base healing is halved!")
 	. += span_info("[src] restores [(regeneration_amount * regen_mult)+hp_bonus+regen_add]% HP and [(regeneration_amount * regen_mult)+sp_bonus+regen_add]% SP every 2 seconds.")
 
 /obj/machinery/regenerator/proc/ProduceIcon(Icon_Color, Type) //Used to be called ProduceGas but due to me using it for a button i had to change it. ProduceGas was a cooler name. -IP
