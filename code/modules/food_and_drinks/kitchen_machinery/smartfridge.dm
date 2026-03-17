@@ -582,6 +582,111 @@
 	else
 		return FALSE
 
+/obj/machinery/smartfridge/extraction_storage/ego_weapon/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "EgoWeaponVend", name)
+		ui.set_autoupdate(FALSE)
+		ui.open()
+
+/obj/machinery/smartfridge/extraction_storage/ego_weapon/ui_data(mob/user)
+	. = list()
+	var/list/listofitems = list()
+	var/mob/living/carbon/human/H = ishuman(user) ? user : null
+	for(var/obj/item/ego_weapon/W in contents)
+		if(QDELETED(W))
+			continue
+		var/md5name = md5(W.name)
+		if(listofitems[md5name])
+			listofitems[md5name]["amount"]++
+		else
+			var/is_ranged = istype(W, /obj/item/ego_weapon/ranged)
+			var/damage = W.force
+			var/damage_type = W.damtype
+			var/speed = W.attack_speed
+			var/fire_rate = 0
+			var/fire_delay = 0
+			var/max_ammo = 0
+			var/needs_reload = FALSE
+			if(is_ranged)
+				var/obj/item/ego_weapon/ranged/R = W
+				damage = R.last_projectile_damage
+				damage_type = R.last_projectile_type
+				fire_rate = R.autofire
+				fire_delay = R.fire_delay
+				max_ammo = initial(R.shotsleft)
+				needs_reload = R.reloadtime > 0
+			var/list/attrs = list()
+			for(var/attr in W.attribute_requirements)
+				attrs[attr] = W.attribute_requirements[attr]
+			var/can_use = TRUE
+			if(H)
+				for(var/atr in W.attribute_requirements)
+					if(W.attribute_requirements[atr] > get_attribute_level(H, atr) + W.equip_bonus)
+						can_use = FALSE
+						break
+			listofitems[md5name] = list(
+				"name" = W.name,
+				"amount" = 1,
+				"damage" = damage,
+				"damtype" = damage_type,
+				"speed" = speed,
+				"fire_rate" = fire_rate,
+				"fire_delay" = fire_delay,
+				"max_ammo" = max_ammo,
+				"needs_reload" = needs_reload,
+				"is_ranged" = is_ranged,
+				"requirements" = attrs,
+				"can_use" = can_use
+			)
+	sortList(listofitems)
+	.["contents"] = listofitems
+	.["name"] = name
+
+/obj/machinery/smartfridge/extraction_storage/ego_armor/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "EgoArmorVend", name)
+		ui.set_autoupdate(FALSE)
+		ui.open()
+
+/obj/machinery/smartfridge/extraction_storage/ego_armor/ui_data(mob/user)
+	. = list()
+	var/list/listofitems = list()
+	var/mob/living/carbon/human/H = ishuman(user) ? user : null
+	for(var/obj/item/clothing/suit/armor/ego_gear/A in contents)
+		if(QDELETED(A))
+			continue
+		var/md5name = md5(A.name)
+		if(listofitems[md5name])
+			listofitems[md5name]["amount"]++
+		else
+			var/list/attrs = list()
+			for(var/attr in A.attribute_requirements)
+				attrs[attr] = A.attribute_requirements[attr]
+			var/list/resists = list("red" = 0, "white" = 0, "black" = 0, "pale" = 0)
+			if(A.armor)
+				resists["red"] = 1 - A.armor.red/100
+				resists["white"] = 1 - A.armor.white/100
+				resists["black"] = 1 - A.armor.black/100
+				resists["pale"] = 1 - A.armor.pale/100
+			var/can_use = TRUE
+			if(H)
+				for(var/atr in A.attribute_requirements)
+					if(A.attribute_requirements[atr] > get_attribute_level(H, atr) + A.equip_bonus)
+						can_use = FALSE
+						break
+			listofitems[md5name] = list(
+				"name" = A.name,
+				"amount" = 1,
+				"requirements" = attrs,
+				"resistances" = resists,
+				"can_use" = can_use
+			)
+	sortList(listofitems)
+	.["contents"] = listofitems
+	.["name"] = name
+
 // -------------------------
 //  Rack - Unpowered Smartfridge
 // -------------------------
