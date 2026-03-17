@@ -10,9 +10,11 @@
 
 /obj/item/extraction/delivery/examine(mob/user)
 	. = ..()
-	if(user.mind.assigned_role == "Extraction Officer")
-		if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_2))
-			. += span_notice("This tool seems to be upgraded, reducing the cost needed to extract by 15%.")
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(H.mind && H.mind.assigned_role == "Extraction Officer")
+			if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_2))
+				. += span_notice("This tool seems to be upgraded, reducing the cost needed to extract by 15%.")
 	if(linked_structure)
 		. += span_nicegreen("This tool is linked to an extraction arrival belt.")
 	else
