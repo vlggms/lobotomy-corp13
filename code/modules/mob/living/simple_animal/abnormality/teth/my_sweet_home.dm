@@ -12,12 +12,12 @@
 	threat_level = TETH_LEVEL
 	can_breach = TRUE
 	del_on_death = FALSE
-	maxHealth = 150
-	health = 150
+	maxHealth = 280
+	health = 280
 	move_to_delay = 5
 	damage_coeff = list(RED_DAMAGE = 0.9, WHITE_DAMAGE = 0.9, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)
-	melee_damage_lower = 4
-	melee_damage_upper = 6
+	melee_damage_lower = 6
+	melee_damage_upper = 8
 	rapid_melee = 1//Attacks really slow
 	melee_reach = 3//But it has long limbs
 	melee_damage_type = RED_DAMAGE
@@ -63,7 +63,7 @@
 			But at the last minute, you are pulled away by another agent to safety."),
 	)
 
-	var/ranged_damage = 8
+	var/ranged_damage = 10
 	var/damage_dealt = 0
 	var/list/attach_once = list()
 	var/list/attach_twice = list()
@@ -200,7 +200,7 @@
 	duration = 3
 
 /mob/living/simple_animal/hostile/abnormality/my_sweet_home/BreachEffect(mob/living/carbon/human/user, breach_type)//code grabbed from scorched_girl
-	if(!user && (breach_type != BREACH_MINING && breach_type != BREACH_PINK))
+	if(!user && breach_type == BREACH_NORMAL)
 		return
 	. = ..()
 	update_icon_state()
@@ -209,11 +209,6 @@
 	base_pixel_x = -16
 	icon_state = "sweet_home_breach"
 	if(user)
-		melee_damage_lower = 6
-		melee_damage_upper = 8
-		ranged_damage = 10
-		maxHealth = 280
-		health = 280
 		desc = "A large figure that's clearly too big to fit into the little house they're in... Wait, isn't that [user]?"
 		resident = user
 		user.forceMove(src)
@@ -234,6 +229,12 @@
 		add_overlay(eye_overlay)
 		if(user.hairstyle != "Bald")
 			add_overlay(hair_overlay)
+	else
+		melee_damage_lower = 4
+		melee_damage_upper = 6
+		ranged_damage = 7
+		maxHealth = 150
+		health = 150
 
 /mob/living/simple_animal/hostile/abnormality/my_sweet_home/death(gibbed)
 	density = FALSE
