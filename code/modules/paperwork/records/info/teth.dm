@@ -53,9 +53,9 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/dingledangle
 	abno_code = "T-04-111"
 	abno_info = list(
-		"When employees with Prudence Level 3 or higher completed their work, the employee suddenly fell into a panic unless their Fortitude was Level 4 or higher.",
+		"When an employee with Prudence Level 3 or higher completed their work, the employee suddenly fell into a panic unless their Fortitude was Level 4 or higher.",
 		"When employees with Prudence Level 3 or higher was around Dinge-Dangle's Containment Unit, they reported a sense of confusion as well taking increased white damage taken.",
-		"When an employees afflicted with delirium was panicking, they attempted to enter Dinge-Dangle's Containment Unit, thinking it was breaching.",
+		"When an employee afflicted with delirium was panicking, they attempted to enter Dinge-Dangle's Containment Unit, thinking it was breaching.",
 		"When a delirious employee approched Dingle-Dangle, they were then slowly consumed by it."
 		)
 
@@ -213,8 +213,8 @@
 	abno_info = list(
 		"When an Agent finished Attachment work twice, My Sweet Home whispered in their mind.",
 		"Upon finising Attachment work thrice, the Agent was compelled to approach with the key.",
-		"Upon failing work or when an employee panicked during work, the same result would occur.",
-		"When Agent Oliva did Attachment work on a different Abnormality, her attachment to My Sweet Home lessened.")
+		"When the work result was Bad or when an employee panicked during work, the same result would occur.",
+		"When Agent Oliva performed Attachment work on a different Abnormality, her attachment to My Sweet Home lessened.")
 
 //Meat Lantern
 /obj/item/paper/fluff/info/teth/meatlantern

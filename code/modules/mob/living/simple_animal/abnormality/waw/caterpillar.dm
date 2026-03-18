@@ -76,7 +76,7 @@
 	//Stuff Relating to it expanding its smoke cloud
 	var/smoke_expand_range = 8
 	var/smoke_expand_amount = 2
-	var/damage_needed = 100
+	var/break_threshold = 100
 	var/shell_broken = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/caterpillar/PostSpawn()
@@ -168,8 +168,6 @@
 /mob/living/simple_animal/hostile/abnormality/caterpillar/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
 	if(work_type != ABNORMALITY_WORK_REPRESSION)
 		UpdateEclosion()
-		//In Wonderlab, they were able to afford the Rabbit Team with the amount of energy Hookah was producing so safe to say it shits it out.
-		SSlobotomy_corp.AdjustAvailableBoxes(50 * (eclosion_counter - 1)) // 0 - 250
 	else
 		if(user.stat >= SOFT_CRIT || user.sanity_lost || canceled)
 			return
@@ -207,7 +205,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/caterpillar/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	. = ..()
-	if((!shell_broken) && (health <= maxHealth - damage_needed))
+	if((!shell_broken) && (health <= maxHealth - break_threshold))
 		shell_broken = TRUE
 		ChangeResistances(list(RED_DAMAGE = 2, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 0))
 		icon_state = "caterpillar_damaged"

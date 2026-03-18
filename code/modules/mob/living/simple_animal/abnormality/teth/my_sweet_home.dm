@@ -65,8 +65,8 @@
 
 	var/ranged_damage = 8
 	var/damage_dealt = 0
-	var/list/counter1 = list() //from FAN, although changed
-	var/list/counter2 = list()
+	var/list/attach_once = list()
+	var/list/attach_twice = list()
 	var/slam_cooldown = 10 SECONDS
 	var/slam_cooldown_time
 	var/mob/living/carbon/human/resident = null //Who's currently living inside my sweet home?
@@ -108,15 +108,15 @@
 		Approach(user)
 		return
 	if(work_type == ABNORMALITY_WORK_ATTACHMENT)
-		if(user in counter2)
+		if(user in attach_twice)
 			Approach(user)
 			return
-		else if(user in counter1)
-			counter2+=user
-			counter1-=user
+		else if(user in attach_once)
+			attach_twice+=user
+			attach_once-=user
 			to_chat(user, span_danger("It speaks in your mind, reassuring you, you feel safe."))
 		else
-			counter1+=user
+			attach_once+=user
 			RegisterSignal(user, COMSIG_WORK_STARTED, PROC_REF(OnAbnoWork))
 	return
 
@@ -124,48 +124,48 @@
 	SIGNAL_HANDLER
 	if (abno_datum == datum_reference) // They worked on us!
 		return FALSE
-	if (user in counter2)
-		counter2 -= user
-		counter1 += user
+	if (user in attach_twice)
+		attach_twice -= user
+		attach_once += user
 		return FALSE
-	else if (user in counter1)
-		counter1 -= user
+	else if (user in attach_once)
+		attach_once -= user
 		UnregisterSignal(user, COMSIG_WORK_STARTED)
 		return FALSE
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/my_sweet_home/proc/Approach(mob/living/carbon/human/user)
-	if(GuyIsDead(user))
+	if(IsAgentDead(user))
 		return
 	someone_entering = TRUE
 	if(user.sanity_lost)
 		QDEL_NULL(user.ai_controller)
 	user.Stun(5 SECONDS)
 	sleep(0.5 SECONDS)
-	if(GuyIsDead(user))
+	if(IsAgentDead(user))
 		someone_entering = FALSE
 		return
 	to_chat(user, span_danger("You grip the key and approach."))
 	step_towards(user, src)
 	sleep(0.5 SECONDS)
-	if(GuyIsDead(user))
+	if(IsAgentDead(user))
 		someone_entering = FALSE
 		return
 	step_towards(user, src)
 	sleep(0.5 SECONDS)
-	if(GuyIsDead(user))
+	if(IsAgentDead(user))
 		someone_entering = FALSE
 		return
 	playsound(get_turf(src), 'sound/machines/door_open.ogg', 50, 1)
 	to_chat(user, span_danger("You open the door and..."))
 	sleep(0.5 SECONDS)
 	someone_entering = FALSE
-	if(GuyIsDead(user))
+	if(IsAgentDead(user))
 		return
 	playsound(get_turf(src), 'sound/effects/alertbeep.ogg', 50, FALSE)
 	BreachEffect(user)
 
-/mob/living/simple_animal/hostile/abnormality/my_sweet_home/proc/GuyIsDead(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/my_sweet_home/proc/IsAgentDead(mob/living/carbon/human/user)
 	if(QDELETED(user))
 		return TRUE
 	if(user.stat >= SOFT_CRIT)
