@@ -311,19 +311,6 @@
 			acquired_chance += user.physiology.attachment_success_mod
 		if(ABNORMALITY_WORK_REPRESSION)
 			acquired_chance += user.physiology.repression_success_mod
-	switch(console.work_bonus)
-		if(EXTRACTION_KEY)
-			switch(threat_level) //Matches understanding bonus at 50% understanding
-				if(ZAYIN_LEVEL)
-					acquired_chance += 5
-				if(TETH_LEVEL)
-					acquired_chance += 5
-				if(HE_LEVEL)
-					acquired_chance += 4
-				if(WAW_LEVEL)
-					acquired_chance += 3
-				if(ALEPH_LEVEL)
-					acquired_chance += 3
 	if(overload_chance[user.ckey])
 		acquired_chance += overload_chance[user.ckey]
 	return clamp(acquired_chance, 0, 100)
