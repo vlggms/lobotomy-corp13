@@ -79,7 +79,7 @@
 				else
 					SEND_SOUND(M, sound('sound/misc/notice2.ogg'))
 
-/proc/custom_minor_announce(message, title = "Attention:", volume = 100, sound = 'sound/misc/notice1.ogg', html_encode = TRUE)
+/proc/custom_minor_announce(message, title = "Attention:", sound = 'sound/misc/notice2.ogg', newvolume = 100, html_encode = TRUE)
 	if(!message)
 		return
 
@@ -91,4 +91,4 @@
 		if(!isnewplayer(M) && M.can_hear())
 			to_chat(M, "<BR><span class='minorannounce'>[title]</span><BR><BR><font color = red>[message]</font color><BR><BR>")
 			if(M.client.prefs.toggles & SOUND_ANNOUNCEMENTS)
-				SEND_SOUND(M, sound(sound))
+				SEND_SOUND(M, sound(sound, volume = newvolume))
