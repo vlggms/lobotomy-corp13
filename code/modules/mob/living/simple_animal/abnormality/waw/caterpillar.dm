@@ -129,30 +129,6 @@
 		playsound(get_turf(src), 'sound/effects/alertbeep.ogg', 50, FALSE)
 		BreachEffect()
 
-/mob/living/simple_animal/hostile/abnormality/caterpillar/proc/ForceEclosion()
-	if(!IsContained())
-		return
-	if(eclosion_counter < 5)
-		var/eclosion = eclosion_counter
-		eclosion_counter = 5
-		if(!LAZYLEN(smoke))
-			var/datum/effect_system/smoke_spread/pale/S = new
-			S.set_up(6, get_turf(src))	//Spawn the smoke
-			S.Hook = src
-			S.weak_mode = TRUE
-			S.start()
-		else
-			if(eclosion < 4)
-				Expand_Smoke(2 * max(0, eclosion_counter - eclosion - 1), smoke) //Or make the smoke bigger
-		datum_reference.max_boxes = max_boxes + (eclosion_counter*6)
-
-		icon_state = "caterpillar_big"
-		for(var/obj/structure/hookah_mushroom/shroom in datum_reference.connected_structures)
-			shroom.icon_state = "caterpillar_mushroon_red"
-	else
-		playsound(get_turf(src), 'sound/effects/alertbeep.ogg', 50, FALSE)
-		BreachEffect()
-
 /mob/living/simple_animal/hostile/abnormality/caterpillar/proc/RestartEclosion()
 	Remove_Smoke()
 	icon_state = "caterpillar"
@@ -163,7 +139,8 @@
 
 //Meltdown Stuff
 /mob/living/simple_animal/hostile/abnormality/caterpillar/MeltdownEnd()
-	ForceEclosion()
+	playsound(get_turf(src), 'sound/effects/alertbeep.ogg', 50, FALSE)
+	BreachEffect()
 
 /mob/living/simple_animal/hostile/abnormality/caterpillar/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
 	if(work_type != ABNORMALITY_WORK_REPRESSION)

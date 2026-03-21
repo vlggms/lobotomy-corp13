@@ -191,7 +191,7 @@
 	. = ..()
 	if(!ishuman(owner))
 		return
-	if(prob(5) || tries >= 8)
+	if(prob(5) || tries >= 15)
 		tries = 0
 		var/halpick = pickweight(GLOB.hallucination_list)
 		new halpick(owner, FALSE)
