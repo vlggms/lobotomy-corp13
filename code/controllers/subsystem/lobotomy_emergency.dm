@@ -123,6 +123,8 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 
 	if(LAZYLEN(SSlobotomy_corp.current_ordeals))
 		min += SSlobotomy_corp.current_ordeals.len * (ordeal_amount/2)
+	if(SSlobotomy_corp.shuttle) //A pretty half assed fix to make sure it doesn't lower when the shuttle is comming
+		min += 1
 	score_min = min(score_cap, min)
 	SSlobotomy_corp.DoRestartCheck()
 
@@ -130,12 +132,12 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 	if(divide_score)
 		amount /= score_divider
 	UpdateMin()
-	current_score = clamp(score_min, score_cap, current_score + amount)
+	current_score = clamp(current_score + amount, score_min, score_cap)
 	CalculateEmergencyLevel(long_cooldown)
 
 /datum/controller/subsystem/lobotomy_emergency/proc/SetScore(amount, long_cooldown = TRUE)
 	UpdateMin()
-	current_score = clamp(score_min, score_cap, amount)
+	current_score = clamp(amount, score_min, score_cap)
 	CalculateEmergencyLevel(long_cooldown)
 
 /datum/controller/subsystem/lobotomy_emergency/proc/CalculateEmergencyLevel(long_cooldown = TRUE)
