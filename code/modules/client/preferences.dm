@@ -925,6 +925,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/displayed_rank = rank//tegu edit - alt job titles
 			if(job.alt_titles.len && (rank in alt_titles_preferences))
 				displayed_rank = alt_titles_preferences[rank]//tegu end
+			if(job.alts_only && !alt_titles_preferences[rank])//prevents the default name of the role from displaying
+				displayed_rank = job.alt_titles[1]
 			lastJob = job
 			if(is_banned_from(user.ckey, rank))
 				HTML += "<font color=red>[rank]</font></td><td><a href='byond://?_src_=prefs;bancheck=[rank]'> BANNED</a></td></tr>"
@@ -1197,6 +1199,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if(user.client.prefs.exp[job_title] >= ulsen_timelock) //Ultra important(no) job title. Need more than 500 hours to unlock.
 					if(J.ultra_senior_title)
 						titles_list += J.ultra_senior_title
+				if(J.alts_only)//Removes the default title from the alt selection list
+					titles_list = list()
 				for(var/i in J.alt_titles)
 					titles_list += i
 				var/chosen_title

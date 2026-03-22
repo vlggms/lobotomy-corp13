@@ -167,7 +167,7 @@
 	//Managers and Rabbits do not get this achivement.
 	var/list/valid_roles = list(
 		"Clerk",
-		"Control Team Captain",
+		"Agent Captain",
 		"Agent",
 		"Agent Intern",
 		"Disciplinary Officer",

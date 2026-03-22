@@ -1,12 +1,13 @@
 
 // Captain
 /datum/job/agent/captain
-	title = "Control Team Captain"
+	title = "Agent Captain"
 	selection_color = "#BB9999"
 	total_positions = 1
 	spawn_positions = 1
 	outfit = /datum/outfit/job/agent/captain
 	display_order = JOB_DISPLAY_ORDER_CAPTAIN
+	alts_only = TRUE
 
 	access = list(ACCESS_COMMAND) // LC13:To-Do
 	departments = DEPARTMENT_COMMAND | DEPARTMENT_SECURITY
@@ -48,7 +49,7 @@
 	G.Grant(outfit_owner)
 
 /datum/outfit/job/agent/captain
-	name = "Control Team Captain"
+	name = "Agent Captain"
 	jobtype = /datum/job/agent/captain
 	head = /obj/item/clothing/head/hos/beret
 	ears = /obj/item/radio/headset/heads/agent_captain/alt

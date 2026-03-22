@@ -8,7 +8,7 @@ GLOBAL_LIST_INIT(command_positions, list(
 	"Disciplinary Officer",
 	"Sephirah",
 	"Department Head",
-	"Control Team Captain",
+	"Agent Captain",
 
 	// City heads
 	"Doctor",
@@ -115,7 +115,7 @@ GLOBAL_LIST_INIT(security_positions, list(
 	"Department Head",
 	"Department Captain",
 
-	"Control Team Captain",
+	"Agent Captain",
 	"Agent Lieutenant",
 	"Senior Agent",
 	"Agent",
