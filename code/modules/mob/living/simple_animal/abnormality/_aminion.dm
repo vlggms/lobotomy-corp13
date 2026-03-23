@@ -98,7 +98,6 @@
 				H.apply_status_effect(/datum/status_effect/panicked_lvl_4)
 		H.adjustSanityLoss(sanity_damage)
 		SEND_SIGNAL(H, COMSIG_FEAR_EFFECT, fear_level, sanity_damage)
-	return
 
 /mob/living/simple_animal/hostile/aminion/proc/FearEffectText(mob/affected_mob, level = 0)
 	level = num2text(clamp(level, -1, 5))
