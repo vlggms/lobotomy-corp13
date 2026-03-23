@@ -435,7 +435,7 @@
 		"When the work result was Bad, the Qliphoth Counter lowered.",
 		"When the emergency situation in the facility went up, the Qliphoth Counter was lowered by the difference.",
 		"Once the Qliphoth Counter reaches 0, Sirocco leaves her containment cell to play.",
-		"Once the emergency situation in the facility returned to normal, Sirocco faded away after sometime.",
+		"Once the emergency situation in the facility returned to normal, Sirocco faded away after some time.",
 	)
 
 //Hurting Teddy Bear

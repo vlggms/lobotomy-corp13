@@ -39,7 +39,7 @@
 		"After an employee died within the facility, the Qliphoth Counter decreased.",
 		"When the work result was Bad, the Qliphoth Counter decreased.",
 		"When the work result was Good, the Qliphoth Counter increased.",
-		"Big Bird breached its Containment Unit regardless of its Qliphoth Counter when the emergency situation in the facility reached the 2nd Trumpet.",
+		"Big Bird breached its Containment Unit regardless of its Qliphoth Counter when the facility reached Trumpet Level 2",
 		"Employees who are near Big Bird may become enchanted whenever Big Bird swings its lamp.")
 	abno_breach_damage_type = "Instant Death"
 	abno_breach_damage_count = "N/A"
