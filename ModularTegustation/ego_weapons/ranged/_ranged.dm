@@ -40,6 +40,7 @@
 	var/mobile_reload = FALSE
 	/// How long it takes to reload this weapon, if blank it wont need to be reloaded
 	var/reloadtime = 0 SECONDS
+	var/reload_timer = null
 	/// Are we currently reloading?
 	var/is_reloading = FALSE
 	/// How much ammo do we gain when we reload? If null, it'll reload the ammo amount
@@ -80,7 +81,11 @@
 	var/dry_fire_sound = 'sound/weapons/gun/general/dry_fire.ogg'
 	var/reload_start_sound = 'sound/weapons/gun/general/slide_lock_1.ogg'
 	var/reload_success_sound = 'sound/weapons/gun/general/bolt_rack.ogg'
+	var/charge_sound = 'sound/weapons/gun/general/slide_lock_1.ogg'
+	var/charge_sound_volume = 50
 
+	var/chargetime = null
+	var/is_charging = FALSE
 	var/recoil = 0						//boom boom shake the room
 	var/burst_size = 1					//how large a burst is
 	var/fire_delay = 0					//rate of fire for burst firing and semi auto
@@ -114,7 +119,8 @@
 /obj/item/ego_weapon/ranged/cannon
 	attack_speed = 1.5
 	force = 7
-	fire_delay = 15
+	fire_delay = 5
+	chargetime = 20
 	shotsleft = 3
 	round_text = "You start loading a shell."
 	projectile_name = "shell"
@@ -165,12 +171,14 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber()
 
 /obj/item/ego_weapon/ranged/Destroy(mob/user)
 	if(user)
+		UnregisterSignal(user, COMSIG_ATOM_DIR_CHANGE)
 		if(user.has_movespeed_modifier(/datum/movespeed_modifier/reloading))
 			user.remove_movespeed_modifier(/datum/movespeed_modifier/reloading)
 	if(isobj(pin)) //Can still be the initial path, then we skip
 		QDEL_NULL(pin)
 	if(azoom)
 		QDEL_NULL(azoom)
+	reload_timer = null
 	return ..()
 
 /obj/item/ego_weapon/ranged/handle_atom_del(atom/A)
@@ -213,6 +221,17 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber()
 			. += span_notice("This weapon can be fired with one hand.")
 		if(WEAPON_LIGHT)
 			. += span_nicegreen("This weapon can be dual wielded.")
+
+	if(chargetime)
+		switch(chargetime)
+			if(0 to 5)
+				. += span_nicegreen("This weapon charges up very fast.")
+			if(6 to 10)
+				. += span_notice("This weapon charges up fast.")
+			if(11 to 15)
+				. += span_danger("This weapon charges up slowly.")
+			else
+				. += span_danger("This weapon charges up extremely slowly.")
 
 	if(!autofire)
 		switch(fire_delay)
@@ -285,12 +304,14 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber()
 	if(mobile_reload)
 		flags = IGNORE_USER_LOC_CHANGE
 		user.add_movespeed_modifier(/datum/movespeed_modifier/reloading)
-	if(do_after(user, reloadtime, src, flags)) //gotta reload
+	reload_timer = do_after(user, reloadtime, src, flags)
+	if(reload_timer) //gotta reload
 		playsound(src, reload_success_sound, 50, TRUE)
 		shotsleft = initial(shotsleft)
 		OnReload(user)
 	if(user.has_movespeed_modifier(/datum/movespeed_modifier/reloading))
 		user.remove_movespeed_modifier(/datum/movespeed_modifier/reloading)
+	reload_timer = null
 	is_reloading = FALSE
 
 /obj/item/ego_weapon/ranged/proc/rounds_reload(mob/user)
@@ -305,7 +326,8 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber()
 	if(mobile_reload)
 		flags = IGNORE_USER_LOC_CHANGE
 		user.add_movespeed_modifier(/datum/movespeed_modifier/reloading)
-	if(do_after(user, reloadtime, src, flags)) //gotta reload
+	reload_timer = do_after(user, reloadtime, src, flags)
+	if(reload_timer) //gotta reload
 		playsound(src, reload_success_sound, 50, TRUE)
 		shotsleft = min(shotsleft + ammo_on_reload, initial(shotsleft))
 		OnReload(user)
@@ -313,6 +335,7 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber()
 		return
 	if(user.has_movespeed_modifier(/datum/movespeed_modifier/reloading))
 		user.remove_movespeed_modifier(/datum/movespeed_modifier/reloading)
+	reload_timer = null
 	is_reloading = FALSE
 
 //Used for some weapons to do things
@@ -330,8 +353,10 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber()
 
 /obj/item/ego_weapon/ranged/dropped(mob/user)
 	. = ..()
-	if(user.has_movespeed_modifier(/datum/movespeed_modifier/reloading))
-		user.remove_movespeed_modifier(/datum/movespeed_modifier/reloading)
+	if(user)
+		UnregisterSignal(user, COMSIG_ATOM_DIR_CHANGE)
+		if(user.has_movespeed_modifier(/datum/movespeed_modifier/reloading))
+			user.remove_movespeed_modifier(/datum/movespeed_modifier/reloading)
 	if(azoom)
 		azoom.Remove(user)
 	if(zoomed)
@@ -350,7 +375,7 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber()
 		shoot_with_empty_chamber()
 		return FALSE
 
-	if(is_reloading)
+	if(is_reloading || is_charging)
 		return FALSE
 
 	return TRUE
@@ -433,6 +458,15 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber()
 	if(weapon_weight == WEAPON_HEAVY && (user.get_inactive_held_item() || !other_hand))
 		to_chat(user, span_warning("You need two hands to fire [src]!"))
 		return
+	if(chargetime)
+		is_charging = TRUE
+		playsound(user, charge_sound, charge_sound_volume, vary_fire_sound)
+		if(!do_after(user, chargetime, src))
+			is_charging = FALSE
+			to_chat(user, span_warning("You need to wait before firing [src]!"))
+			return
+		else
+			is_charging = FALSE
 	//DUAL (or more!) WIELDING
 	var/bonus_spread = 0
 	var/loop_counter = 0
@@ -559,8 +593,10 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber()
 	semicd = FALSE
 
 /obj/item/ego_weapon/ranged/attack(mob/M as mob, mob/user)
-	if(is_reloading)
+	if(is_charging)
 		return FALSE
+	if(is_reloading)
+		qdel(reload_timer)
 	return ..()
 
 /obj/item/ego_weapon/ranged/proc/handle_suicide(mob/living/carbon/human/user, mob/living/carbon/human/target, params, bypass_timer)
