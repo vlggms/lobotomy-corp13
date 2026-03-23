@@ -445,6 +445,8 @@
 			if(job_datum && IsJobUnavailable(job_datum.title, TRUE) == JOB_AVAILABLE)
 				var/altjobline = "" //tegu edit - alt job titles
 				var/command_bold = ""
+				if(job_datum.alts_only)//LC13 edit
+					altjobline = "(as [job_datum.alt_titles[1]])"//This is overwritten by any alt job prefs
 				if(client && client.prefs && client.prefs.alt_titles_preferences[job_datum.title])//tegu edit - alt job titles
 					altjobline = "(as [client.prefs.alt_titles_preferences[job_datum.title]])"//tegu edit - alt job titles
 				if(job in GLOB.command_positions)

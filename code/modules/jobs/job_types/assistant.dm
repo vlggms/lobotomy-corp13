@@ -31,11 +31,6 @@ GLOBAL_LIST_EMPTY(spawned_clerks)
 	job_abbreviation = "CLK"
 
 	job_attribute_limit = 0
-	alt_titles = list("Control Department Clerk", "Information Department Clerk",
-			"Training Department Clerk", "Safety Department Clerk",
-			"Welfare Department Clerk", "Disciplinary Department Clerk",
-			"Command Department Clerk", "Extraction Department Clerk", "Record Department Clerk")
-	senior_title = "Architecture Department Clerk"
 	var/list/clerk_belts = list(/obj/item/storage/belt/clerk/facility, /obj/item/storage/belt/clerk/agent)
 
 

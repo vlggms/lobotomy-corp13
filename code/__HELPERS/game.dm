@@ -580,6 +580,13 @@
 	var/displayed_rank = rank
 	if(character.client && character.client.prefs && character.client.prefs.alt_titles_preferences[rank])
 		displayed_rank = character.client.prefs.alt_titles_preferences[rank]
+
+	//LC13 alt jobs
+	var/datum/job/J = SSjob.GetJob(character.job)
+	if(J.alts_only && !character.client.prefs.alt_titles_preferences[J.title])//assign the first alt job if no preferences are loaded
+		displayed_rank = "[J.alt_titles[1]]"
+	//LC13 end
+
 	var/obj/machinery/announcement_system/announcer = pick(GLOB.announcement_systems)
 	announcer.announce("ARRIVAL", character.real_name, displayed_rank, list()) //make the list empty to make it announce it in common
 //Tegu edit ends

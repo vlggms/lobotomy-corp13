@@ -110,6 +110,9 @@
 	///Job abbreviation used when humans talk on radio. If null should not add anything to radio messages
 	var/job_abbreviation
 
+	//Make the default title unavailable. Used for Agent Captains, which consists of 10 alt jobs.
+	var/alts_only = FALSE
+
 /datum/job/New()
 	. = ..()
 	var/list/jobs_changes = GetMapChanges()
@@ -343,21 +346,27 @@
 	if(!J)
 		J = SSjob.GetJob(H.job)
 
+	// Tegu edit - Alt job titles
+	var/assigned_job //This is assigned to both the ID and PDA
+	if(preference_source && preference_source.prefs && preference_source.prefs.alt_titles_preferences[J.title])
+		assigned_job = preference_source.prefs.alt_titles_preferences[J.title]
+	else
+		if(J)
+			assigned_job = J.title
+		else
+			assigned_job = "Civilian"
+	//lc13 edit
+	if(J.alts_only && !preference_source.prefs.alt_titles_preferences[J.title])//assign the first alt job if no preferences are loaded
+		assigned_job = "[J.alt_titles[1]]"
+	//end of alt titles
+
 	var/obj/item/card/id/C = H.wear_id
 	if(istype(C))
 		if(J) // We may still not have a job if it somehow isn't enabled in this map
 			C.access = J.get_access()
 		shuffle_inplace(C.access) // Shuffle access list to make NTNet passkeys less predictable
 		C.registered_name = H.real_name
-		// Tegu edit - Alt job titles
-		if(preference_source && preference_source.prefs && preference_source.prefs.alt_titles_preferences[J.title])
-			C.assignment = preference_source.prefs.alt_titles_preferences[J.title]
-		else
-			if(J)
-				C.assignment = J.title
-			else
-				C.assignment = "Civilian"
-		// Tegu end
+		C.assignment = assigned_job
 		if(H.age)
 			C.registered_age = H.age
 		C.update_label()
@@ -370,12 +379,7 @@
 	var/obj/item/pda/PDA = H.get_item_by_slot(pda_slot)
 	if(istype(PDA))
 		PDA.owner = H.real_name
-		// Tegu edit - Alt job titles
-		if(preference_source && preference_source.prefs && preference_source.prefs.alt_titles_preferences[J.title])
-			PDA.ownjob = preference_source.prefs.alt_titles_preferences[J.title]
-		else
-			PDA.ownjob = J.title
-		// Tegu end
+		PDA.ownjob = assigned_job
 		PDA.update_label()
 
 	if(H.client?.prefs.playtime_reward_cloak)

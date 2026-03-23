@@ -7,6 +7,7 @@
 	spawn_positions = 1
 	outfit = /datum/outfit/job/agent/captain
 	display_order = JOB_DISPLAY_ORDER_CAPTAIN
+	alts_only = TRUE
 
 	access = list(ACCESS_COMMAND) // LC13:To-Do
 	departments = DEPARTMENT_COMMAND | DEPARTMENT_SECURITY
@@ -17,8 +18,29 @@
 	job_important = "You are an Agent Captain. As an experienced Agent, you are expected to disseminate important information and use your experience lead other Agents."
 
 	job_abbreviation = "CPT"
+	department = "Control"
 
 /datum/job/agent/captain/after_spawn(mob/living/carbon/human/outfit_owner, mob/M, latejoin = FALSE)
+	var/my_rank = M.client.prefs.alt_titles_preferences[title]
+	switch(my_rank)
+		if("Information Team Captain")
+			department = "Information"
+		if("Training Team Captain")
+			department = "Training"
+		if("Safety Team Captain")
+			department = "Safety"
+		if("Welfare Team Captain")
+			department = "Welfare"
+		if("Disciplinary Team Captain")
+			department = "Disciplinary"
+		if("Central Command Team Captain")
+			department = "Command"
+		if("Extraction Team Captain")
+			department = "Extraction"
+		if("Record Team Captain")
+			department = "Record"
+		if("Architecture Team Captain")
+			department = "Architecture"
 	..()
 	var/datum/action/G = new /datum/action/cooldown/warbanner/captain
 	G.Grant(outfit_owner)

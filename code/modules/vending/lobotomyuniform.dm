@@ -5,7 +5,9 @@
 	icon_deny = null
 	req_access = null //Shouldn't need access on lc13, can be changed
 	vend_reply = "Uniform vended."
-	products = list(/obj/item/clothing/under/suit/lobotomy = 20,
+	products = list(/obj/item/clothing/glasses/sunglasses = 20,
+					/obj/item/clothing/head/beret/tegu/lobotomy/agent = 20,
+					/obj/item/clothing/under/suit/lobotomy = 20,
 					/obj/item/clothing/under/suit/lobotomy/control = 20,
 					/obj/item/clothing/under/suit/lobotomy/information = 20,
 					/obj/item/clothing/under/suit/lobotomy/training = 20,
