@@ -108,7 +108,7 @@
 	if(!(status_flags & GODMODE)) // If it's breaching right now
 		return	//Yeah don't increase Qliphoth
 	var/artillerbee_count = 0
-	for(var/mob/living/simple_animal/hostile/artillery_bee/artillerbee in GLOB.mob_living_list)
+	for(var/mob/living/simple_animal/hostile/aminion/artillery_bee/artillerbee in GLOB.mob_living_list)
 		artillerbee_count++
 	if(artillerbee_count < 4)
 		SpawnBees()
@@ -184,9 +184,9 @@
 	var/mob/living/simple_animal/spawn_minion
 	for(var/turf/Y in spawn_turfs)
 		if(prob(60))
-			spawn_minion = new /mob/living/simple_animal/hostile/soldier_bee(Y)
+			spawn_minion = new /mob/living/simple_animal/hostile/aminion/soldier_bee(Y)
 		else if(prob(20))
-			spawn_minion = new /mob/living/simple_animal/hostile/artillery_bee(Y)
+			spawn_minion = new /mob/living/simple_animal/hostile/aminion/artillery_bee(Y)
 		if(spawn_minion && copy_faction)
 			spawn_minion.faction = faction.Copy()
 
@@ -224,12 +224,12 @@
 /mob/living/simple_animal/hostile/abnormality/general_b/proc/SpawnBees()
 	var/X = pick(GLOB.xeno_spawn)
 	var/turf/T = get_turf(X)
-	new /mob/living/simple_animal/hostile/artillery_bee(T)
+	new /mob/living/simple_animal/hostile/aminion/artillery_bee(T)
 	for(var/y = 1 to 5)
-		new /mob/living/simple_animal/hostile/soldier_bee(T)
+		new /mob/living/simple_animal/hostile/aminion/soldier_bee(T)
 
 /* Soldier bees */
-/mob/living/simple_animal/hostile/soldier_bee
+/mob/living/simple_animal/hostile/aminion/soldier_bee
 	name = "soldier bee"
 	desc = "A disfigured creature with nasty fangs, and a snazzy cap"
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
@@ -253,9 +253,11 @@
 	attack_verb_simple = "bite"
 	attack_sound = 'sound/weapons/bite.ogg'
 	speak_emote = list("buzzes")
+	threat_level = HE_LEVEL
+	score_divider = 5//Worth 8 points
 
 /* Artillery bees */
-/mob/living/simple_animal/hostile/artillery_bee
+/mob/living/simple_animal/hostile/aminion/artillery_bee
 	name = "artillery bee"
 	desc = "A disfigured creature with nasty fangs, and an oversized thorax"
 	icon = 'ModularTegustation/Teguicons/48x96.dmi'
@@ -273,6 +275,8 @@
 	del_on_death = TRUE
 	death_sound = 'sound/abnormalities/bee/death.ogg'
 	speak_emote = list("buzzes")
+	threat_level = HE_LEVEL
+	score_divider = 2//Worth 20 points
 
 	var/fire_cooldown_time = 10 SECONDS
 	var/fire_cooldown
@@ -281,7 +285,7 @@
 	var/combat_map = FALSE
 	var/datum/action/innate/toggle_artillery_sight/sight_ability
 
-/mob/living/simple_animal/hostile/artillery_bee/Login()
+/mob/living/simple_animal/hostile/aminion/artillery_bee/Login()
 	. = ..()
 	if(!. || !client)
 		return FALSE
@@ -291,7 +295,7 @@
 	else
 		sight_ability.new_sight = SEE_TURFS | SEE_THRU
 
-/mob/living/simple_animal/hostile/artillery_bee/Initialize()
+/mob/living/simple_animal/hostile/aminion/artillery_bee/Initialize()
 	. = ..()
 	var/obj/effect/proc_holder/ability/aimed/artillery_shell/shell_ability = new
 	src.AddSpell(shell_ability)
@@ -300,7 +304,7 @@
 	if (IsCombatMap())
 		combat_map = TRUE
 
-/mob/living/simple_animal/hostile/artillery_bee/Life()
+/mob/living/simple_animal/hostile/aminion/artillery_bee/Life()
 	. = ..()
 	if(!.) // Dead
 		return FALSE
@@ -308,7 +312,7 @@
 		if((fire_cooldown < world.time))
 			AimShell()
 
-/mob/living/simple_animal/hostile/artillery_bee/proc/AimShell()
+/mob/living/simple_animal/hostile/aminion/artillery_bee/proc/AimShell()
 	fire_cooldown = world.time + fire_cooldown_time
 	var/list/targets = list()
 	for(var/mob/living/L in livinginrange(fireball_range, src))
@@ -324,7 +328,7 @@
 	if(targets.len > 0)
 		FireShell(pick(targets), FALSE)
 
-/mob/living/simple_animal/hostile/artillery_bee/proc/FireShell(target, called_by_ability)
+/mob/living/simple_animal/hostile/aminion/artillery_bee/proc/FireShell(target, called_by_ability)
 	var/turf/target_turf = get_turf(target)
 	if(target_turf.density)
 		to_chat(src, span_notice("Can't fire at that location!"))

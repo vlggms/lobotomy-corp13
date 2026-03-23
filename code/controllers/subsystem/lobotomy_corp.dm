@@ -103,6 +103,8 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	var/auto_restart_in_progress = FALSE
 	/// The timer that goes down for when shits fucked
 	var/restart_timer = null
+	/// If the shuttle is coming or not
+	var/shuttle = FALSE
 
 /datum/controller/subsystem/lobotomy_corp/Initialize(timeofday)
 	if(SSmaptype.maptype in SSmaptype.combatmaps) // sleep
@@ -278,6 +280,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	qliphoth_state += 1
 	for(var/datum/abnormality/A in all_abnormality_datums)
 		if(istype(A.current))
+			A.emergency_breach = TRUE
 			A.current.OnQliphothEvent()
 	var/ran_ordeal = FALSE
 	if(qliphoth_state + 1 >= next_ordeal_time) // If ordeal is supposed to happen on the meltdown after that one
@@ -393,31 +396,60 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		return FALSE
 	return TRUE
 
+/datum/controller/subsystem/lobotomy_corp/proc/MinCheck()
+	if(SSlobotomy_emergency.score_min < SSlobotomy_emergency.trumpet_2/2)
+		return FALSE
+	return TRUE
+
+/datum/controller/subsystem/lobotomy_corp/proc/MinDeathCheck()
+	if(!DeathCheck())
+		return FALSE
+	if(!MinCheck())
+		return FALSE
+	return TRUE
+
 /datum/controller/subsystem/lobotomy_corp/proc/CheckForRestart(datum/source, mob/living/L)
 	SIGNAL_HANDLER
 	if(!(SSmaptype.maptype in list("standard", "skeld", "fishing", "wonderlabs")))
 		return FALSE
 	if(!ishuman(L))
 		return FALSE
+	DoRestartCheck()
+
+/datum/controller/subsystem/lobotomy_corp/proc/DoRestartCheck()
+	if(shuttle)
+		if(auto_restart_in_progress)
+			deltimer(restart_timer)
+			auto_restart_in_progress = FALSE
+			to_chat(world, span_nicegreen("<b>The shuttle has been called, the site burial sequence has been suspended!</b>"))
+		return FALSE
 	if(auto_restart_in_progress)
 		if(!DeathCheck())
 			deltimer(restart_timer)
 			auto_restart_in_progress = FALSE
-			to_chat(world, span_nicegreen("<b>An agent has either joined or had came back to their senses, the round ending automatically is canceled for now!</b>"))
+			to_chat(world, span_nicegreen("<b>An agent has either joined or had came back to their senses, the site burial sequence has been suspended!</b>"))
+			return FALSE
+		if(!MinCheck() && !LAZYLEN(current_ordeals))
+			deltimer(restart_timer)
+			auto_restart_in_progress = FALSE
+			to_chat(world, span_nicegreen("<b>Most of the breaching abnormalities have been suppressed, the site burial sequence has been suspended!</b>"))
+			return FALSE
 		return FALSE
-	if(OrdealDeathCheck() && !auto_restart_in_progress)
+	if((OrdealDeathCheck() || MinDeathCheck()) && !auto_restart_in_progress)
 		DeathAutoRestart()
 	return TRUE
 
-/datum/controller/subsystem/lobotomy_corp/proc/OrdealStartOrFinish(datum/source)
+/datum/controller/subsystem/lobotomy_corp/proc/OrdealStartOrFinish(datum/source, mob/living/L)
 	SIGNAL_HANDLER
 	if(auto_restart_in_progress)
+		if(MinDeathCheck())
+			return TRUE
 		if(!OrdealDeathCheck())
 			deltimer(restart_timer)
 			auto_restart_in_progress = FALSE
-			to_chat(world, span_nicegreen("<b>All ordeals have ended, the round ending automatically is canceled for now!</b>"))
-			return FALSE
-	if(OrdealDeathCheck() && !auto_restart_in_progress)
+			to_chat(world, span_nicegreen("<b>The current ordeal has ended, the site burial sequence has been suspended</b>"))
+		return FALSE
+	if((OrdealDeathCheck()) && !auto_restart_in_progress)
 		DeathAutoRestart()
 	return TRUE
 
@@ -425,11 +457,14 @@ SUBSYSTEM_DEF(lobotomy_corp)
 /datum/controller/subsystem/lobotomy_corp/proc/DeathAutoRestart(time = 120 SECONDS)
 	auto_restart_in_progress = TRUE
 	if(time <= 0)
-		message_admins("The round is over because all agents are dead while ordeals are unresolved!")
-		to_chat(world, span_danger("<b>The round is over because all agents are dead while ordeals are unresolved!</b>"))
+		message_admins("The round is ending because all agents are dead while one or more threats are unresolved!")
+		to_chat(world, span_danger("<b>The site burial sequence has been initiated due to one or more threats being unresolved while most if not all agents are dead!</b>"))
 		SSticker.force_ending = TRUE
 		return TRUE
-	to_chat(world, span_danger("<b>All agents are dead or panicking! If ordeals are left unresolved, new agents don't join or a panicking agent isn't dealt with, the round will automatically end in <u>[round(time/10)] seconds!</u></b>"))
+	var/dialog = "All agents are dead or in a panic! If the ordeal is left unresolved"
+	if(MinCheck())
+		dialog = "All agents are dead or in a panic! If the current situation is left unresolved"
+	to_chat(world, span_danger("<b>[dialog], the site burial sequence will begin in <u>[round(time/10)] seconds!</u></b>"))
 	restart_timer = addtimer(CALLBACK(src, PROC_REF(DeathAutoRestart), max(0, time - 30 SECONDS)), 30 SECONDS, TIMER_STOPPABLE)
 	return TRUE
 

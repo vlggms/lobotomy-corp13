@@ -78,3 +78,17 @@
 					SEND_SOUND(M, sound('sound/misc/notice1.ogg'))
 				else
 					SEND_SOUND(M, sound('sound/misc/notice2.ogg'))
+
+/proc/custom_minor_announce(message, title = "Attention:", sound = 'sound/misc/notice2.ogg', newvolume = 100, html_encode = TRUE)
+	if(!message)
+		return
+
+	if (html_encode)
+		title = html_encode(title)
+		message = html_encode(message)
+
+	for(var/mob/M in GLOB.player_list)
+		if(!isnewplayer(M) && M.can_hear())
+			to_chat(M, "<BR><span class='minorannounce'>[title]</span><BR><BR><font color = red>[message]</font color><BR><BR>")
+			if(M.client.prefs.toggles & SOUND_ANNOUNCEMENTS)
+				SEND_SOUND(M, sound(sound, volume = newvolume))

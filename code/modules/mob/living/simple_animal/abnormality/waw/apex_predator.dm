@@ -178,12 +178,14 @@
 	alpha = 10
 	revealed = FALSE
 	density = FALSE
+	QuickChangeLights(FALSE)
 
 /mob/living/simple_animal/hostile/abnormality/apex_predator/proc/Decloak()
 	recloak_time = world.time + recloak_time_cooldown
 	alpha = 255
 	revealed = TRUE
 	density = TRUE
+	QuickChangeLights(TRUE)
 
 /mob/living/simple_animal/hostile/abnormality/apex_predator/OpenFire()
 	if(!revealed)

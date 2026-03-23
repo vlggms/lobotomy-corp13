@@ -35,23 +35,29 @@
 
 /area/department_main/Entered(atom/movable/M)
 	. = ..()
-	if(!isabnormalitymob(M)) // only do updates on Abnormality entering/leaving
+	if(!ishostile(M)) // only do updates on Abnormality entering/leaving
 		return
-	if(istype(M, /mob/living/simple_animal/hostile/abnormality/big_bird))
+	var/mob/living/simple_animal/hostile/H = M
+	if(istype(H, /mob/living/simple_animal/hostile/abnormality/big_bird))
 		big_bird = TRUE
+		RefreshLights()
 		for(var/area/facility_hallway/F in adjacent_areas)
 			F.big_bird = TRUE
 			F.RefreshLights()
 		for(var/area/department_main/D in adjacent_areas)
 			D.big_bird = TRUE
 			D.RefreshLights()
+		return
+	if(!H.trigger_lights)
+		return
 	RefreshLights()
 
 /area/department_main/Exited(atom/movable/M)
 	. = ..()
-	if(!isabnormalitymob(M))
+	if(!ishostile(M)) // only do updates on Abnormality entering/leaving
 		return
-	if(istype(M, /mob/living/simple_animal/hostile/abnormality/big_bird))
+	var/mob/living/simple_animal/hostile/H = M
+	if(istype(H, /mob/living/simple_animal/hostile/abnormality/big_bird))
 		for(var/area/facility_hallway/F in adjacent_areas)
 			if(M in F.contents)
 				continue
@@ -64,6 +70,10 @@
 			D.RefreshLights()
 		if(isdead(M) || QDELETED(M))
 			big_bird = FALSE
+			RefreshLights()
+		return
+	if(!H.trigger_lights)
+		return
 	RefreshLights()
 
 /area/department_main/RefreshLights()
@@ -74,11 +84,11 @@
 		if(TR)
 			search_through -= TR
 		fire = FALSE
-		if((GLOB.security_level >= SEC_LEVEL_BLUE))
-			for(var/mob/living/simple_animal/hostile/abnormality/A in search_through)
+		if((GLOB.emergency_level >= TRUMPET_1))
+			for(var/mob/living/simple_animal/hostile/A in search_through)
 				if(QDELETED(A) || (A.stat == DEAD))
 					continue
-				if(A)
+				if(A && A.trigger_lights)
 					fire = TRUE
 					break
 	for(var/obj/machinery/light/L in src)
@@ -146,23 +156,31 @@
 
 /area/facility_hallway/Entered(atom/movable/M)
 	. = ..()
-	if(!isabnormalitymob(M)) // only do updates on Abnormality entering/leaving
+	if(!ishostile(M)) // only do updates on Abnormality entering/leaving
 		return
-	if(istype(M, /mob/living/simple_animal/hostile/abnormality/big_bird))
+	var/mob/living/simple_animal/hostile/H = M
+	if(!H.trigger_lights)
+		return
+	if(istype(H, /mob/living/simple_animal/hostile/abnormality/big_bird))
 		big_bird = TRUE
+		RefreshLights()
 		for(var/area/facility_hallway/F in adjacent_areas)
 			F.big_bird = TRUE
 			F.RefreshLights()
 		for(var/area/department_main/D in adjacent_areas)
 			D.big_bird = TRUE
 			D.RefreshLights()
+		return
+	if(!H.trigger_lights)
+		return
 	RefreshLights()
 
 /area/facility_hallway/Exited(atom/movable/M)
 	. = ..()
-	if(!isabnormalitymob(M)) // only do updates on Abnormality entering/leaving
+	if(!ishostile(M)) // only do updates on Abnormality entering/leaving
 		return
-	if(istype(M, /mob/living/simple_animal/hostile/abnormality/big_bird))
+	var/mob/living/simple_animal/hostile/H = M
+	if(istype(H, /mob/living/simple_animal/hostile/abnormality/big_bird))
 		for(var/area/facility_hallway/F in adjacent_areas)
 			if(M in F.contents)
 				continue
@@ -175,6 +193,10 @@
 			D.RefreshLights()
 		if(isdead(M) || QDELETED(M))
 			big_bird = FALSE
+			RefreshLights()
+		return
+	if(!H.trigger_lights)
+		return
 	RefreshLights()
 
 /area/facility_hallway/RefreshLights()
@@ -185,11 +207,11 @@
 		if(TR)
 			search_through -= TR
 		fire = FALSE
-		if((GLOB.security_level >= SEC_LEVEL_BLUE))
-			for(var/mob/living/simple_animal/hostile/abnormality/A in search_through)
+		if((GLOB.emergency_level >= TRUMPET_1))
+			for(var/mob/living/simple_animal/hostile/A in search_through)
 				if(QDELETED(A) || (A.stat == DEAD))
 					continue
-				if(A)
+				if(A && A.trigger_lights)
 					fire = TRUE
 					break
 	for(var/obj/machinery/light/L in src)
