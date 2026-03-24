@@ -639,7 +639,6 @@
 	teleport_cooldown_time = 10 SECONDS
 	retreat_distance = null //this is annoying
 	beam_cooldown = world.time + beam_cooldown_time
-	swap_area_index(MOB_ABNORMALITY_INDEX) // Now able to disrupt regenerators
 	if(wand)
 		qdel(wand)
 	addtimer(CALLBACK(src, PROC_REF(TryTeleport), TRUE), 5)

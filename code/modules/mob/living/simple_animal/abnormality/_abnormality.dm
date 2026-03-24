@@ -620,6 +620,8 @@ The variable's key needs to be non-numerical.*/
 /mob/living/simple_animal/hostile/abnormality/proc/HostileMode(should_trigger)//this is used by a few abnormalities to turn on a breaching mode
 	QuickChangeLights(TRUE)
 	can_affect_emergency = TRUE
+	breach_index = MOB_ABNORMALITY_INDEX // Now able to disrupt regenerators
+	swap_area_index(breach_index)
 	if(should_trigger)
 		SSlobotomy_emergency.OnAbnoBreach(null, src)
 
