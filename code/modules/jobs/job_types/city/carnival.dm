@@ -24,12 +24,10 @@
 								TEMPERANCE_ATTRIBUTE = 80,
 								JUSTICE_ATTRIBUTE = 80
 								)
-
+	mind_traits = list(TRAIT_WORK_FORBIDDEN, TRAIT_COMBATFEAR_IMMUNE)
 
 
 /datum/job/carnival/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
-	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
-	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 	H.set_species(/datum/species/synth)
 	job_important = "You are allowed to enter the ruins to hunt for silk. However, DO NOT LOOT THE WEAPONS, CASH OR ARMOR FROM THE BACKSTREETS! \
 			Your primary goal is to kill monsters in the ruins and/or humans to weave silk so you can then sell it to the humans. \

@@ -11,7 +11,7 @@
 	outfit = /datum/outfit/job/roadrunner
 	display_order = 13
 	maptype = "rcorp_fifth"
-
+	mind_traits = list(TRAIT_COMBATFEAR_IMMUNE)
 	access = list()
 	minimal_access = list()
 	departments = DEPARTMENT_R_CORP
@@ -25,10 +25,6 @@
 	rank_title = "SGT"
 	job_important = "You take the role of skirmishers."
 	job_notice = "You are a Roadrunner armed with a multiphase gun and shield. You harass the enemy and give them no time to recover between assaults."
-
-/datum/job/roadrunner/after_spawn(mob/living/carbon/human/H, mob/M)
-	. = ..()
-	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 
 
 /datum/job/rcorp_captain/roadrunner

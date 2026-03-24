@@ -22,7 +22,7 @@
 		You are supplied with two hosa and three wakashu. The hosa get money from your territory, and you and the Wakashu are to proetct it. \
 		Your base is hidden in the alleyway in the east behind the NO ENTRY Door."
 	job_notice = "You may kill other kurokumo for any major disrespect to kurokumo or thumb."
-
+	mind_traits = list(TRAIT_WORK_FORBIDDEN, TRAIT_COMBATFEAR_IMMUNE)
 	roundstart_attributes = list(
 								FORTITUDE_ATTRIBUTE = 100,
 								PRUDENCE_ATTRIBUTE = 100,
@@ -31,8 +31,6 @@
 								)
 
 /datum/job/kurocaptain/after_spawn(mob/living/carbon/human/H, mob/M)
-	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
-	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
 	//Don't spawn these goobers without a director.
 	for(var/datum/job/processing in SSjob.occupations)
 		if(istype(processing, /datum/job/kuroenforcer))

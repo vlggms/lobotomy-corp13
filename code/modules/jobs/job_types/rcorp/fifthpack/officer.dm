@@ -12,7 +12,7 @@
 	maptype = "rcorp_fifth"
 	outfit = /datum/outfit/job/supportofficer
 	display_order = 1.99
-
+	mind_traits = list(TRAIT_COMBATFEAR_IMMUNE)
 	roundstart_attributes = list(
 								FORTITUDE_ATTRIBUTE = 60,
 								PRUDENCE_ATTRIBUTE = 60,
@@ -28,7 +28,6 @@
 
 /datum/job/supportofficer/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()
-	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 	var/datum/action/G = new /datum/action/cooldown/warbanner/captain
 	G.Grant(H)
 

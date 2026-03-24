@@ -16,7 +16,7 @@
 	access = list() //add accesses as necessary
 	minimal_access = list()
 	departments = DEPARTMENT_W_CORP
-
+	mind_traits = list(TRAIT_COMBATFEAR_IMMUNE)
 	roundstart_attributes = list(
 		FORTITUDE_ATTRIBUTE = 60,
 		PRUDENCE_ATTRIBUTE = 60,
@@ -28,7 +28,6 @@
 	job_notice = "You are a agent armed with a w-corp baton with charge capabilities. You form the first line of offense during cleanup operations."
 
 /datum/job/wcorpl1/after_spawn(mob/living/carbon/human/outfit_owner, mob/M)
-	ADD_TRAIT(outfit_owner, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 	//Squad assignmnet
 	var/chosensquad = pick("Axe", "Buckler", "Cleaver")
 	. = ..()

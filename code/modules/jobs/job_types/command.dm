@@ -43,21 +43,18 @@
 
 	mapexclude = list("mini")
 	job_important = "You are the Extraction Officer. Your job is to manage the EGO console, Extraction purchase console, and power generation system. Your main goal is to ensure Agents are well-equipped with EGO."
-
 	job_abbreviation = "EO"
-
+	mind_traits = list(TRAIT_WORK_FORBIDDEN, TRAIT_COMBATFEAR_IMMUNE, TRAIT_ATTRIBUTES_VISION)
 	job_attribute_limit = 130
-	var/normal_attribute_level = 20
+	normal_attribute_level = 20
 	var/extra_starting_stats = 0//used for RO
 
 /datum/job/command/after_spawn(mob/living/carbon/human/outfit_owner, mob/M, latejoin = FALSE)
-	ADD_TRAIT(outfit_owner, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
-	ADD_TRAIT(outfit_owner, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
-	ADD_TRAIT(outfit_owner, TRAIT_ATTRIBUTES_VISION, JOB_TRAIT)
 	outfit_owner.grant_language(/datum/language/bong, TRUE, FALSE, LANGUAGE_MIND) //So they can understand the bong-bong but not speak it
 	SSlobotomy_corp.active_officers += M
+	return ..()
 
-	//Blatant Copypasta. pls fix
+/datum/job/command/RespawnStats()
 	var/set_attribute = normal_attribute_level
 	var/facility_full_percentage = 0
 	if(SSabnormality_queue.spawned_abnos) // dont divide by 0
@@ -87,10 +84,7 @@
 				set_attribute *= 4
 	set_attribute = max(30, set_attribute)//Just so they dont eat shit and die way too early in a round
 	set_attribute += GetFacilityUpgradeValue(UPGRADE_AGENT_STATS) + SSlobotomy_corp.ordeal_stats + extra_starting_stats
-	for(var/attribute in roundstart_attributes)
-		roundstart_attributes[attribute] = round(set_attribute)
-
-	return ..()
+	return set_attribute
 
 /datum/outfit/job/command/extraction
 	name = "Extraction Officer"
@@ -123,10 +117,6 @@
 	job_notice = "Being in charge of handling Abnormality documentation, you should also assist new Interns and Clerks in learning how to work at L-Corp."
 
 	job_abbreviation = "RO"
-
-/datum/job/command/records/after_spawn(mob/living/outfit_owner, mob/M)
-	. = ..()
-	ADD_TRAIT(outfit_owner, TRAIT_WORK_KNOWLEDGE, JOB_TRAIT)
 
 /datum/outfit/job/command/records
 	name = "Records Officer"

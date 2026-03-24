@@ -14,12 +14,10 @@
 	minimal_access = list(ACCESS_PHARMACY, ACCESS_COMMAND)
 	departments = DEPARTMENT_COMMAND
 	mapexclude = list("wonderlabs", "mini", "enkephalin_rush")
-
+	mind_traits = list(TRAIT_WORK_FORBIDDEN, TRAIT_COMBATFEAR_IMMUNE)
 	job_abbreviation = "REP"
 
 /datum/job/representative/after_spawn(mob/living/carbon/human/outfit_owner, mob/M)
-	ADD_TRAIT(outfit_owner, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
-	ADD_TRAIT(outfit_owner, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)	//My guy you aren't even from this corporation
 	outfit_owner.set_attribute_limit(0)
 	to_chat(M, span_userdanger("This is a roleplay role. You are expected to roleplay as the representative for the corporation you chose. Feel free to ask any online admins to further any deals you make."))
 	return ..()

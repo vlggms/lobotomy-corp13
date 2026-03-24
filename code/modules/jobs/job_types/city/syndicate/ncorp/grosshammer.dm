@@ -17,18 +17,13 @@
 	job_important = "You are an NCorp grosshammer. Your main goal is to kill and maim all prosthetic users. \
 			Follow the orders of the Grand Inquisitor, and lead the mittlehammers and kleinhammers into combat."
 	job_notice = "You may kill anyone with prosthetics, or anyone sympathetic to prosthetics."
-
+	mind_traits = list(TRAIT_WORK_FORBIDDEN, TRAIT_COMBATFEAR_IMMUNE)
 	roundstart_attributes = list(
 								FORTITUDE_ATTRIBUTE = 100,
 								PRUDENCE_ATTRIBUTE = 100,
 								TEMPERANCE_ATTRIBUTE = 100,
 								JUSTICE_ATTRIBUTE = 100
 								)
-
-/datum/job/grosshammer/after_spawn(mob/living/carbon/human/H, mob/M)
-	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
-	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
-	. = ..()
 
 
 /datum/outfit/job/grosshammer

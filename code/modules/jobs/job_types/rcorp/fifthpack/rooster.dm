@@ -15,7 +15,7 @@
 	access = list()
 	minimal_access = list()
 	departments = DEPARTMENT_R_CORP
-
+	mind_traits = list(TRAIT_COMBATFEAR_IMMUNE)
 	roundstart_attributes = list(
 								FORTITUDE_ATTRIBUTE = 100,
 								PRUDENCE_ATTRIBUTE = 100,
@@ -25,10 +25,6 @@
 	rank_title = "SGT" // Keep SGT becaues they're akin to Rhinos, but without mechs.
 	job_important = "You take the role of heavy ranged infantry."
 	job_notice = "You are a Rooster armed with a fully automatic light machinegun. You push forward and help define the frontline."
-
-/datum/job/rooster/after_spawn(mob/living/carbon/human/H, mob/M)
-	. = ..()
-	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 
 
 /datum/job/rcorp_captain/rooster

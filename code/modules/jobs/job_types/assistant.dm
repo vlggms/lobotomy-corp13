@@ -19,6 +19,7 @@ GLOBAL_LIST_EMPTY(spawned_clerks)
 	minimal_access = list(ACCESS_ROBOTICS)
 	departments = DEPARTMENT_SERVICE
 
+	mind_traits = list(TRAIT_WORK_FORBIDDEN)
 	liver_traits = list(TRAIT_GREYTIDE_METABOLISM)
 
 	allow_bureaucratic_error = FALSE
@@ -39,12 +40,6 @@ GLOBAL_LIST_EMPTY(spawned_clerks)
 	. = ..()
 	outfit_owner.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 10)
 	outfit_owner.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 10)
-	ADD_TRAIT(outfit_owner, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
-
-	for(var/upgradecheck in GLOB.lcorp_upgrades)
-		if(upgradecheck == "Clerk Buff")
-			outfit_owner.set_attribute_limit(40)
-			outfit_owner.adjust_all_attribute_levels(40)
 
 	if(outfit_owner.ckey in GLOB.spawned_clerks)
 		return

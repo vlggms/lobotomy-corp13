@@ -130,6 +130,10 @@ GLOBAL_LIST_EMPTY(lcorp_upgrades)
 			H.adjust_all_attribute_levels(40)
 
 	GLOB.lcorp_upgrades += "Clerk Buff"
+	var/datum/job/J = SSjob.GetJob("Clerk")
+	if(J)
+		J.normal_attribute_level = 40
+		J.job_attribute_limit = 40
 	..()
 
 //Agent Workchange injector

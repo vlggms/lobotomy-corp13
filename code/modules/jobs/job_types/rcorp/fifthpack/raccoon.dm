@@ -15,7 +15,7 @@
 	access = list()
 	minimal_access = list()
 	departments = DEPARTMENT_R_CORP
-
+	mind_traits = list(TRAIT_COMBATFEAR_IMMUNE)
 	roundstart_attributes = list(
 								FORTITUDE_ATTRIBUTE = 40,
 								PRUDENCE_ATTRIBUTE = 40,
@@ -25,10 +25,6 @@
 	rank_title = "SPC"
 	job_important = "You take the role of a stealth recon unit."
 	job_notice = "You are a Raccoon armed with camouflage technology. You report on enemy positions and find opportune moments to take advantage of."
-
-/datum/job/raccoon/after_spawn(mob/living/carbon/human/H, mob/M)
-	. = ..()
-	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 
 
 /datum/job/raccoon/sniper

@@ -10,6 +10,7 @@
 	minimal_access = list(ACCESS_NETWORK, ACCESS_COMMAND, ACCESS_MANAGER)
 	departments = DEPARTMENT_COMMAND
 	mapexclude = list("wonderlabs", "mini", "lcorp_city", "enkephalin_rush")
+	mind_traits = list(TRAIT_SANITYIMMUNE)
 	job_important = "You are a roleplay role, and may not partake in combat. Assist the manager and roleplay with the agents and clerks"
 	job_notice = "\
 		In the gamemaster tab, you may adjust game perimeters. \
@@ -23,7 +24,6 @@
 /datum/job/command/sephirah/after_spawn(mob/living/carbon/human/outfit_owner, mob/M)
 	. = ..()
 	//You're a fucking robot.
-	ADD_TRAIT(outfit_owner, TRAIT_SANITYIMMUNE, JOB_TRAIT)
 	//Okay maybe don't JUST let them grief.
 	add_verb(outfit_owner, /mob/living/carbon/human/proc/QuestComplete)
 

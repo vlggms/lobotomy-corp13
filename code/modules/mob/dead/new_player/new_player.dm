@@ -320,8 +320,19 @@
 		return JOB_NOT_MENTOR
 	return JOB_AVAILABLE
 
+/mob/dead/new_player/proc/IsNameUnavailable()
+	for(var/datum/data/record/t in GLOB.data_core.general)
+		var/name = t.fields["name"]
+		if(client.prefs.real_name == name)
+			return TRUE
+	return FALSE
+
 /mob/dead/new_player/proc/AttemptLateSpawn(rank)
-	var/error = IsJobUnavailable(rank)
+	var/error = IsNameUnavailable()
+	if(error)
+		alert(src, "You cannot join again under the same name. Please pick a different name.")
+		return FALSE
+	error = IsJobUnavailable(rank)
 	if(error != JOB_AVAILABLE)
 		alert(src, get_job_unavailable_error_message(error, rank))
 		return FALSE

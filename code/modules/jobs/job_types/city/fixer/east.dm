@@ -4,9 +4,6 @@
 /datum/job/fixer/eastdirector
 	title = "East Office Director"
 	outfit = /datum/outfit/job/edirector
-	department_head = list("your office")
-	faction = "Station"
-	supervisors = "your office"
 	selection_color = "#8f6791"
 	total_positions = 1
 	spawn_positions = 1
@@ -26,11 +23,10 @@
 								TEMPERANCE_ATTRIBUTE = 80,
 								JUSTICE_ATTRIBUTE = 80
 								)
+	mind_traits = list(TRAIT_WORK_FORBIDDEN, TRAIT_COMBATFEAR_IMMUNE)
 
 /datum/job/fixer/eastdirector/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()
-	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
-	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)	//My guy you aren't even from this corporation
 	to_chat(M, "<span class='userdanger'>Fixers of the East office need to purchase their weapons from the workshop. You are not affiliated with L Corporation. \
 	Do not enter the lower levels of the facility without the manager's permission. Please use the beacon in your office to choose your association. \
 	Do not assist L Corporation without significant payment.</span>")
@@ -78,11 +74,10 @@
 								TEMPERANCE_ATTRIBUTE = 60,
 								JUSTICE_ATTRIBUTE = 60
 								)
+	mind_traits = list(TRAIT_WORK_FORBIDDEN)
 
 /datum/job/fixer/east/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()
-	//Not fear immune you're basically some goober
-	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)	//My guy you aren't even from this corporation
 	to_chat(M, "<span class='userdanger'>Fixers of the East office need to purchase their weapons from the workshop.\
 	Follow your Office Leader. You are not affiliated with L Corporation. \
 	Do not enter the lower levels of the facility without the manager's permission. </span>")

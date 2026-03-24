@@ -23,6 +23,7 @@
 								TEMPERANCE_ATTRIBUTE = 100,
 								JUSTICE_ATTRIBUTE = 100
 								)
+	mind_traits = list(TRAIT_WORK_FORBIDDEN)
 	job_important = "This is a role to assist existing offices in getting a foothold in the city. You are not to enter the ruins alone."
 	job_notice = "You are to assist the offices in their backstreet endeavors. Cryoing to re-roll your association is not allowed and will result in a de-trusting. \
 		You are a fixer that recently blew into town to assist the local offices in their endeavors."
@@ -32,8 +33,6 @@
 	var/list/rare_associations = list("hana", "liu2")
 
 /datum/job/associateroaming/after_spawn(mob/living/carbon/human/H, mob/M)
-	//Not fear immune you're basically some goober
-	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)	//My guy you aren't even from this corporation
 	H.set_attribute_limit(100)
 	. = ..()
 

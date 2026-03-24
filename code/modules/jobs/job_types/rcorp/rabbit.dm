@@ -7,7 +7,7 @@
 	exp_requirements = 120
 	supervisors = "the rabbit team captain and the commander"
 	selection_color = "#d9b555"
-
+	mind_traits = list(TRAIT_COMBATFEAR_IMMUNE)
 	outfit = /datum/outfit/job/rabbit
 	display_order = 9
 	maptype = "rcorp"
@@ -26,10 +26,6 @@
 	rank_title = "SGT"
 	job_important = "You take the role of mobile ranged infantry."
 	job_notice = "You are a Senior rabbit armed with a fully automatic rifle and multiphase blade. You are highly mobile and pack a punch."
-
-/datum/job/rabbit/after_spawn(mob/living/carbon/human/H, mob/M)
-	. = ..()
-	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 
 /datum/job/rabbit/assault
 	title = "R-Corp Assault Rabbit"

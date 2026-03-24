@@ -21,7 +21,7 @@
 			If anyone uses cheese tactics against you, or attacks you for no reason while not in a duel, they are dishonorable. \
 			You, or anyone in blade lineage may kill anyone dishonorable in any way, without hesitation, or remorse."
 	job_notice = "Avoid killing other players without a reason. Killing weak players not in self-defense is cowardly."
-
+	mind_traits = list(TRAIT_WORK_FORBIDDEN, TRAIT_COMBATFEAR_IMMUNE)
 
 	roundstart_attributes = list(
 								FORTITUDE_ATTRIBUTE = 60,
@@ -29,11 +29,6 @@
 								TEMPERANCE_ATTRIBUTE = 60,
 								JUSTICE_ATTRIBUTE = 60
 								)
-
-/datum/job/salsu/after_spawn(mob/living/carbon/human/H, mob/M)
-	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
-	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
-	. = ..()
 
 
 /datum/outfit/job/roamingsalsu

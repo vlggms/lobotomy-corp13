@@ -233,10 +233,13 @@
 	destroy_all_skillchips()
 	return ..()
 
+/// Removed for LC13 - The brain damage death value is simply used as a maximum brain damage for heavily damaged cadavers.
+/*
 /obj/item/organ/brain/on_life()
 	if(damage >= BRAIN_DAMAGE_DEATH) //rip
 		to_chat(owner, span_userdanger("The last spark of life in your brain fizzles out..."))
 		owner.death()
+*/
 
 /obj/item/organ/brain/check_damage_thresholds(mob/M)
 	. = ..()

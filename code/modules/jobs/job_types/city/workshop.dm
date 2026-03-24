@@ -16,7 +16,7 @@ Workshop employee
 	display_order = JOB_DISPLAY_ORDER_CIVILIAN
 	exp_requirements = 60
 	paycheck = 700
-
+	mind_traits = list(TRAIT_WORK_FORBIDDEN)
 	job_attribute_limit = 0
 
 	allow_bureaucratic_error = FALSE
@@ -26,7 +26,6 @@ Workshop employee
 //My guy you work in a workshop
 /datum/job/workshop/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
 	. = ..()
-	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
 	job_important = "Make weapons for the fixers who come asking in exchange for money. You cannot give away weapons for free."
 	job_notice = "Your workshop is northwest, of the city."
 	..()
