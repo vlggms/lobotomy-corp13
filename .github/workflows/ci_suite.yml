@@ -74,7 +74,7 @@ jobs:
           path: tgui/.yarn/cache
           key: ${{ runner.os }}-yarn
       - name: Compile All Maps
-                run: |
+        run: |
           bash tools/ci/install_byond.sh
           source $HOME/BYOND/byond/bin/byondsetup
           python3 tools/ci/template_dm_generator.py
