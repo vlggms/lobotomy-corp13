@@ -74,11 +74,16 @@ jobs:
           path: tgui/.yarn/cache
           key: ${{ runner.os }}-yarn
       - name: Compile All Maps
-        run: |
+                run: |
           bash tools/ci/install_byond.sh
           source $HOME/BYOND/byond/bin/byondsetup
           python3 tools/ci/template_dm_generator.py
           tgui/bin/tgui --build
+          echo "byond dependencies:"
+          ldd $HOME/BYOND/byond/bin/DreamMaker || true
+          echo "libcurl on system"
+          ldconfig -p | grep libcurl || true
+          dpkg -l | grep libcurl || true
           bash tools/ci/dm.sh -DCIBUILDING -DCITESTING -DALL_MAPS lobotomy-corp13.dme
 
   run_all_tests:
