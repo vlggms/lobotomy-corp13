@@ -68,13 +68,21 @@
 	for(var/mob/living/carbon/human/H in urange(aoe_range, src))
 		if(H.stat == DEAD)
 			continue
-		if(!H.has_status_effect(/datum/status_effect/panicked_type/dingle) || !HAS_AI_CONTROLLER_TYPE(H, /datum/ai_controller/insane/dingle_possess) || !(H.buckled && istype(H.buckled, /obj/structure/swarming_roots)))
-			if(get_attribute_level(H, PRUDENCE_ATTRIBUTE) >= 60) // at or above level 3
-				var/datum/status_effect/dangle/D = H.has_status_effect(STATUS_EFFECT_DANGLE)
-				if(!D)
-					H.apply_status_effect(STATUS_EFFECT_DANGLE)
-				else
-					D.duration = initial(D.duration) + world.time
+		if(get_attribute_level(H, PRUDENCE_ATTRIBUTE) < 60) // less than level 3
+			continue
+		if(H.buckled)
+			if(istype(H.buckled, /obj/structure/swarming_roots))
+				continue
+		if((STATUS_EFFECT_DANGLE in H.status_effects) || HAS_AI_CONTROLLER_TYPE(H, /datum/ai_controller/insane/dingle_possess))
+			continue
+		else
+			to_chat(world, "Doesn't have it")
+
+		var/datum/status_effect/dangle/D = H.has_status_effect(STATUS_EFFECT_DANGLE)
+		if(!D)
+			H.apply_status_effect(STATUS_EFFECT_DANGLE)
+		else
+			D.duration = initial(D.duration) + world.time
 
 /mob/living/simple_animal/hostile/abnormality/dingledangle/proc/Consume(mob/living/carbon/human/H)
 	if(!H)
@@ -272,7 +280,7 @@
 			return
 	if(!ishuman(living_pawn))
 		return
-	walkspeed -= (max(0.95,((get_attribute_level(living_pawn, JUSTICE_ATTRIBUTE)) * 0.01)))//one-hundreth of a second for every point of justice, capped at 95
+	walkspeed -= (min(0.95,((get_attribute_level(living_pawn, JUSTICE_ATTRIBUTE)) * 0.01)))//one-hundreth of a second for every point of justice, capped at 95
 	addtimer(CALLBACK(src, PROC_REF(Movement), controller), walkspeed SECONDS, TIMER_UNIQUE)
 	if(isturf(target.loc) && living_pawn.Adjacent(target))
 		finish_action(controller, TRUE)
