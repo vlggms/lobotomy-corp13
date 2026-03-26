@@ -488,3 +488,8 @@
 /datum/ego_datum/armor/fellbullet //the weapons are WAW
 	item_path = /obj/item/clothing/suit/armor/ego_gear/he/fellbullet
 	cost = 35
+
+// Dingle-Dangle - Dear Lutemia
+/datum/ego_datum/weapon/lutemia
+	item_path = /obj/item/ego_weapon/lutemia // rank-bumped
+	cost = 35
