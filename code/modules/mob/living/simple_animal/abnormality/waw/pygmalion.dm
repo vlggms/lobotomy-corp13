@@ -21,6 +21,7 @@
 	stat_attack = HARD_CRIT
 	can_breach = TRUE
 	vision_range = 7
+	can_spawn = FALSE // Garbage abno, Friendly breaches don't belong in Waw
 
 	del_on_death = FALSE
 

@@ -29,6 +29,7 @@
 	work_damage_lower = 3
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/sloth
+	can_spawn = FALSE // Does Nothing.
 
 	ego_list = list(
 		/datum/ego_datum/weapon/morii,

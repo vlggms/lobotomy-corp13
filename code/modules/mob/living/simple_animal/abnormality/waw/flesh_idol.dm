@@ -21,6 +21,7 @@
 	work_damage_lower = 0		//Work damage is later
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/lust
+	can_spawn = FALSE // Should be a Tool
 
 	ego_list = list(
 		/datum/ego_datum/weapon/heart,
