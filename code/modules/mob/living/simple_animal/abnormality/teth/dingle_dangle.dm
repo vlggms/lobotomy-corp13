@@ -73,11 +73,9 @@
 		if(H.buckled)
 			if(istype(H.buckled, /obj/structure/swarming_roots))
 				continue
+		// We have to check differently due to all panic types shairing the same id
 		if((STATUS_EFFECT_DANGLE in H.status_effects) || HAS_AI_CONTROLLER_TYPE(H, /datum/ai_controller/insane/dingle_possess))
 			continue
-		else
-			to_chat(world, "Doesn't have it")
-
 		var/datum/status_effect/dangle/D = H.has_status_effect(STATUS_EFFECT_DANGLE)
 		if(!D)
 			H.apply_status_effect(STATUS_EFFECT_DANGLE)
