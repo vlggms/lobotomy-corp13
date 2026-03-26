@@ -83,7 +83,7 @@
 	///Damage type of a simple mob's melee attack, should it do damage.
 	var/melee_damage_type = RED_DAMAGE
 	/// 1 for full damage , 0 for none , -1 for 1:1 heal from that source., Starts as a list and becomes a datum post Initialize()
-	var/datum/dam_coeff/damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+	var/datum/dam_coeff/damage_coeff = alist(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	/// The unmodified values for the dam_coeff datum
 	var/datum/dam_coeff/unmodified_damage_coeff_datum
 	/// The list of all modifiers to the current DC datum

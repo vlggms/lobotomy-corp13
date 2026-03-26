@@ -249,10 +249,10 @@
 	var/obj/item/clothing/suit/ego_armor = clothing[SLOT_MANNEQUIN_OCLOTHING]
 	if(ego_armor)
 		dat += "<BR>Mannequin Armor:<BR> \
-			[1-(ego_armor.armor[RED_DAMAGE]/100)] RED|\
-			[1-(ego_armor.armor[WHITE_DAMAGE]/100)] WHITE|\
-			[1-(ego_armor.armor[BLACK_DAMAGE]/100)] BLACK|\
-			[1-(ego_armor.armor[PALE_DAMAGE]/100)] PALE"
+			[1-(ego_armor.armor.getRating(RED_DAMAGE)/100)] RED|\
+			[1-(ego_armor.armor.getRating(WHITE_DAMAGE)/100)] WHITE|\
+			[1-(ego_armor.armor.getRating(BLACK_DAMAGE)/100)] BLACK|\
+			[1-(ego_armor.armor.getRating(PALE_DAMAGE)/100)] PALE"
 	dat += "<BR>---"
 	dat += "<BR><B>RightHand:</B> <A href='byond://?src=\ref[src];item=[SLOT_MANNEQUIN_RIGHT_HAND]'>[makeStrippingButton(clothing[SLOT_MANNEQUIN_RIGHT_HAND])]</A>"
 	dat += "<BR><B>LeftHand:</B> <A href='byond://?src=\ref[src];item=[SLOT_MANNEQUIN_LEFT_HAND]'>[makeStrippingButton(clothing[SLOT_MANNEQUIN_LEFT_HAND])]</A><BR>"

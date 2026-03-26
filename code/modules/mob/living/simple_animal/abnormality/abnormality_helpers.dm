@@ -9,20 +9,20 @@
 	var/temperance
 	var/justice
 	if(host_armor)
-		if(host_armor.armor[RED_DAMAGE])
-			fortitude = 1 - (host_armor.armor[RED_DAMAGE] / 100) // 100 armor / 100 = 1
+		if(host_armor.armor.getRating(RED_DAMAGE))
+			fortitude = 1 - (host_armor.armor.getRating(RED_DAMAGE) / 100) // 100 armor / 100 = 1
 			if(fortitude <= damage_list[RED_DAMAGE] && fortitude > 0) //if armor is less than current red armor and is more than 0 since anything 0 or below is healing or immune to damage
 				damage_list[RED_DAMAGE] = fortitude
-		if(host_armor.armor[WHITE_DAMAGE])
-			prudence = 1 - (host_armor.armor[WHITE_DAMAGE] / 100)
+		if(host_armor.armor.getRating(WHITE_DAMAGE))
+			prudence = 1 - (host_armor.armor.getRating(WHITE_DAMAGE) / 100)
 			if(prudence <= damage_list[WHITE_DAMAGE] && prudence > 0)
 				damage_list[WHITE_DAMAGE] = prudence
-		if(host_armor.armor[BLACK_DAMAGE])
-			temperance = 1 - (host_armor.armor[BLACK_DAMAGE] / 100)
+		if(host_armor.armor.getRating(BLACK_DAMAGE))
+			temperance = 1 - (host_armor.armor.getRating(BLACK_DAMAGE) / 100)
 			if(temperance > 0)
 				damage_list[BLACK_DAMAGE] = temperance
-		if(host_armor.armor[PALE_DAMAGE])
-			justice = 1 - (host_armor.armor[PALE_DAMAGE] / 100)
+		if(host_armor.armor.getRating(PALE_DAMAGE))
+			justice = 1 - (host_armor.armor.getRating(PALE_DAMAGE) / 100)
 			if(justice > 0)
 				damage_list[PALE_DAMAGE] = justice
 		ChangeResistances(damage_list)
