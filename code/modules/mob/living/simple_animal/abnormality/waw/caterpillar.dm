@@ -10,8 +10,8 @@
 	base_pixel_x = -16
 	pixel_y = -16
 	base_pixel_y = -16
-	maxHealth = 1100
-	health = 1100
+	maxHealth = 900
+	health = 900
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
 	attack_sound = 'sound/abnormalities/big_wolf/Wolf_Scratch.ogg'
