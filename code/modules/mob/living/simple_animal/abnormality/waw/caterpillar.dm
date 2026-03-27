@@ -1,3 +1,4 @@
+//This is a test
 /mob/living/simple_animal/hostile/abnormality/caterpillar
 	name = "Hookah Caterpillar"
 	desc = "A pathetic bug sitting on a leaf."
