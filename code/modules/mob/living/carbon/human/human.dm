@@ -160,7 +160,7 @@
 	popup.open(FALSE)
 
 
-// Shows the list of specifically selected list of core suppressions and their status for this player
+// Shows the list of specifically selected list of core suppressions and their status for this player.
 /mob/living/carbon/human/verb/show_cores_info()
 	set category = "IC"
 	set name = "Display Cores Info"
