@@ -1,5 +1,5 @@
 //See also controllers/globals.dm
-
+// This is a test
 /// Creates a global initializer with a given InitValue expression, do not use
 #define GLOBAL_MANAGED(X, InitValue)\
 /datum/controller/global_vars/proc/InitGlobal##X(){\

@@ -32,7 +32,8 @@ jobs:
           key: ${{ runner.os }}-yarn
       - name: Install Tools
         run: |
-          pip3 install setuptools
+          python3 -m pip install --upgrade pip
+          python3 -m pip install --upgrade 'setuptools<=74.1.0' 'wheel>=0.43'
           bash tools/ci/install_spaceman_dmm.sh dreamchecker
           tools/bootstrap/python -c ''
       - name: Run Linters
