@@ -25,7 +25,6 @@
 	can_breach = TRUE
 	threat_level = WAW_LEVEL
 	fear_level = TETH_LEVEL
-	faction = list("neutral", "hostile")
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 50,
 		ABNORMALITY_WORK_INSIGHT = list(90, 90, 75, 65, 50),
@@ -87,6 +86,8 @@
 
 /mob/living/simple_animal/hostile/abnormality/caterpillar/examine(mob/user)
 	. = ..()
+	if(IsContained() && eclosion_counter == 5)
+		. += "It isn't moving."
 	if(shell_broken)
 		. += "Its shell looks heavily damaged."
 
@@ -149,6 +150,7 @@
 			return
 		if(get_attribute_level(user, JUSTICE_ATTRIBUTE) >= 100)
 			RestartEclosion()
+
 //Breach Stuff
 /mob/living/simple_animal/hostile/abnormality/caterpillar/BreachEffect()
 	icon = 'ModularTegustation/Teguicons/80x80.dmi'
@@ -179,6 +181,16 @@
 	Remove_Smoke()
 	. = ..()
 
+/mob/living/simple_animal/hostile/abnormality/caterpillar/CanAttack(atom/the_target)
+	if(!shell_broken)
+		return FALSE
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/caterpillar/FindTarget(list/possible_targets, HasTargetsList = 0)
+	if(!shell_broken)
+		return FALSE
+	return ..()
+
 /mob/living/simple_animal/hostile/abnormality/caterpillar/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	. = ..()
 	if((!shell_broken) && (health <= maxHealth - break_threshold))
@@ -188,7 +200,6 @@
 		ChangeMoveToDelay(2.5)
 		playsound(get_turf(src), 'sound/effects/wounds/crack2.ogg', 200, 0, 7)
 		visible_message(span_warning("[src]'s shell finally breaks!"), span_boldwarning("Your shell is heavily damaged!"))
-		faction -= "neutral"//Its pissed!
 
 /mob/living/simple_animal/hostile/abnormality/caterpillar/Life()
 	. = ..()
