@@ -257,6 +257,8 @@
 	var/mob/living/simple_animal/hostile/abnormality/caterpillar/Hook = locate() in range(src, 3)
 	if(Hook && Hook.IsContained())
 		. += span_info("Current Eclosion Counter: [100*(Hook.eclosion_counter/5)]%.")
+	else
+		. += span_info("ERROR: The abnormality isn't contained currently!")
 
 /////////////////////////////////////////////
 // Bad smoke
