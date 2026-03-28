@@ -2294,13 +2294,14 @@
 	name = "dear lutemia"
 	desc = "Don't you want your cares to go away?"
 	icon_state = "lutemia"
-	force = 7
+	force = 6
 	reach = 3		//Has 3 Square Reach.
-	special = "This weapon has a combo system."
-	modified_attack_speed = 0.7
+	special = "This weapon has a combo system. To turn off this combo system, use in hand."
+	modified_attack_speed = 0.6
 	var/combo = 0
 	var/combo_time
 	var/combo_wait = 10
+	var/combo_on = TRUE
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("whips", "lashes", "tears")
 	attack_verb_simple = list("whip", "lash", "tear")
@@ -2309,22 +2310,37 @@
 							PRUDENCE_ATTRIBUTE = 40
 							)
 
+/obj/item/ego_weapon/lutemia/attack_self(mob/user)
+	..()
+	if(combo_on)
+		to_chat(user,span_warning("You change your stance, and will no longer perform a finisher."))
+		combo_on = FALSE
+		return
+	if(!combo_on)
+		to_chat(user,span_warning("You change your stance, and will now perform a finisher."))
+		combo_on =TRUE
+		return
+
 /obj/item/ego_weapon/lutemia/attack(mob/living/target, mob/living/user)
 	if(!CanUseEgo(user))
 		return
 	if(world.time > combo_time)
 		combo = 1
+	if(!combo_on)
+		combo = 0
 	combo_time = world.time + combo_wait
 	switch(combo)
+		if(0)
+			user.changeNext_move(CLICK_CD_MELEE * 0.6)
 		if(1)
 			force *= 0.8
-			user.changeNext_move(CLICK_CD_MELEE * 0.4)
+			user.changeNext_move(CLICK_CD_MELEE * 0.5)
 		if(2)
 			user.changeNext_move(CLICK_CD_MELEE * 0.6)
 		if(3)
 			combo = 0
-			force *= 2
-			user.changeNext_move(CLICK_CD_MELEE * 2)
+			force *= 3
+			user.changeNext_move(CLICK_CD_MELEE * 1.6)
 	. = ..()
 	combo += 1
 	force = initial(force)
