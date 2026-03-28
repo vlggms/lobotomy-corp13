@@ -2324,7 +2324,6 @@
 		if(3)
 			combo = 0
 			force *= 2
-			combo_finisher = TRUE
 			user.changeNext_move(CLICK_CD_MELEE * 2)
 	. = ..()
 	combo += 1
