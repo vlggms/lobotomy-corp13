@@ -2312,7 +2312,6 @@
 /obj/item/ego_weapon/lutemia/attack(mob/living/target, mob/living/user)
 	if(!CanUseEgo(user))
 		return
-	var/combo_finisher = FALSE
 	if(world.time > combo_time)
 		combo = 1
 	combo_time = world.time + combo_wait

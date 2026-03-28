@@ -105,7 +105,7 @@
 	desc = "A large amount of pink roots that are burrowing into someone!"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "dingle_roots_person"
-	max_integrity = 20
+	max_integrity = 40
 	buckle_lying = 90
 	density = FALSE
 	anchored = TRUE
