@@ -2294,10 +2294,10 @@
 	name = "dear lutemia"
 	desc = "Don't you want your cares to go away?"
 	icon_state = "lutemia"
-	force = 7
+	force = 6
 	reach = 4		//Has 4 Square Reach.
-	special = "Upon hit targets WHITE vulnerability is increased by 0.2."
-	attack_speed = 0.7
+	special = "This weapon does more damage the less sanity you have."
+	attack_speed = 0.6
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("whips", "lashes", "tears")
 	attack_verb_simple = list("whip", "lash", "tear")
@@ -2306,12 +2306,8 @@
 							PRUDENCE_ATTRIBUTE = 40
 							)
 
-/obj/item/ego_weapon/lutemia/attack(mob/living/target, mob/living/user)
+/obj/item/ego_weapon/lutemia/attack(mob/living/target, mob/living/carbon/human/user)
+	var/sanity_mult = clamp(2 - (user.sanityhealth / user.maxSanity),1, 1.8)//caps out at a 1.8x damage boost
+	force *= sanity_mult
 	. = ..()
-	if(!.)
-		return FALSE
-	if(isliving(target))
-		var/mob/living/simple_animal/M = target
-		if(!ishuman(M) && !M.has_status_effect(/datum/status_effect/display/rend/white))
-			new /obj/effect/temp_visual/cult/sparks(get_turf(M))
-			M.apply_status_effect(/datum/status_effect/display/rend/white)
+	force = initial(force)

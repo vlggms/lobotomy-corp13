@@ -112,7 +112,7 @@
 	can_buckle = TRUE
 	layer = ABOVE_MOB_LAYER
 	pixel_y = -6
-	var/damage = 5
+	var/damage = 8
 	var/damage_cooldown
 	var/damage_cooldown_time = 5 SECONDS
 
@@ -197,7 +197,7 @@
 	. = ..()
 	if(!ishuman(owner))
 		return
-	if(prob(5) || tries >= 15)
+	if(prob(4) || tries >= 18)
 		tries = 0
 		var/halpick = pickweight(GLOB.hallucination_list)
 		new halpick(owner, FALSE)
