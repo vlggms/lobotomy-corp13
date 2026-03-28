@@ -431,7 +431,7 @@
 			NestedItems(new_mob, H.get_item_by_slot(ITEM_SLOT_OCLOTHING))
 			if(connected_abno)
 				connected_abno.SpawnBigSlime(new_mob)
-			H.gib(TRUE, TRUE, TRUE)
+			H.gib(FALSE, TRUE, TRUE)
 			return new_mob
 
 /datum/status_effect/display/melting_love_blessing/proc/NestedItems(mob/living/simple_animal/hostile/nest, obj/item/nested_item)
@@ -550,7 +550,7 @@
 	if((L.sanityhealth <= 0) || (L.health <= 0))
 		var/turf/T = get_turf(L)
 		new /mob/living/simple_animal/hostile/aminion/slime(T)
-		L.gib(TRUE, TRUE, TRUE)
+		L.gib(FALSE, TRUE, TRUE)
 
 /datum/status_effect/melty_slimed/on_apply()
 	owner.add_movespeed_modifier(/datum/movespeed_modifier/slimed)

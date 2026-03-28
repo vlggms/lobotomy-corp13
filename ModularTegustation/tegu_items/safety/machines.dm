@@ -44,19 +44,36 @@
 	..()
 
 /obj/machinery/hatchery/attackby(obj/item/I, mob/user, params)
-	if(!istype(I, /obj/item/bodypart/head))
-		return ..()
-	var/obj/item/bodypart/head/newmob = I
-	if(!newmob.brainmob)
-		FailureResponse("ERROR: No brain waves detected.")
+	if(istype(I, /obj/item/bodypart/head))
+		var/obj/item/bodypart/head/newmob = I
+		if(!newmob.brainmob)
+			FailureResponse("ERROR: No signs of life.")
+			return
+		RevivePreCheck(newmob, null, newmob.brainmob.real_name, newmob.brainmob.ckey, newmob.brainmob.mind, newmob.brainmob.client)
+	if(istype(I, /obj/item/organ/brain))
+		var/obj/item/organ/brain/newmob = I
+		if(!newmob.brainmob)
+			FailureResponse("ERROR: No signs of life.")
+			return
+		RevivePreCheck(newmob, null, newmob.brainmob.real_name, newmob.brainmob.ckey, newmob.brainmob.mind, newmob.brainmob.client)
+
+/obj/machinery/hatchery/proc/RevivePreCheck(obj/item/I, mob/living/carbon/human/H, realname, ckey, mind, client)
+	if(!stored_bodies[realname])
+		FailureResponse("ERROR: No stored data for [realname].")
 		return
-	if(newmob.brainmob.mind)
-		if(revive_body(newmob.brainmob.real_name, newmob.brainmob.ckey, TRUE))
-			qdel(newmob)
+	if(!ckey || !mind)
+		FailureResponse("ERROR: [realname] is totally unresponsive.")
 		return
+	if(!client)
+		FailureResponse("ERROR: [realname] is currently unresponsive, but may return.")
+		return
+	if(revive_body(realname, ckey, TRUE))
+		if(I)
+			qdel(I)
+		if(H)
+			H.gib(TRUE, TRUE, TRUE)
 	else
-		FailureResponse("ERROR: No brain waves detected.")
-		return
+		FailureResponse("ERROR: Unknown error. Contact an administrator.")
 
 /obj/machinery/hatchery/ui_interact(mob/user)
 	. = ..()
@@ -181,7 +198,7 @@
 	else
 		log_game("Body Preservation Unit: Stored DNA for [real_name] was invalid.")
 		qdel(new_body)
-		FailureResponse("ERROR: Stored DNA for [real_name] was invalid.", real_name)
+		FailureResponse("ERROR: Stored DNA for [real_name] was invalid.")
 		return FALSE
 
 	// Check if the species type is valid
@@ -191,7 +208,7 @@
 	else
 		log_game("Body Preservation Unit: Stored species type for [real_name] was invalid.")
 		qdel(new_body)
-		FailureResponse("ERROR: Non-human detected.", real_name)
+		FailureResponse("ERROR: Non-human detected.")
 		return FALSE
 
 	var/underwear = stored_data["underwear"]
@@ -290,13 +307,9 @@
 			FailureResponse("ERROR: Subject not dead.")
 			return
 		var/mob/living/carbon/human/H = M
-		if(!stored_bodies[H.real_name])
-			FailureResponse("ERROR: No stored data for [H.real_name].", H.real_name)
-			return
-		if(revive_body(H.real_name, H.ckey, TRUE))
-			H.gib()
+		RevivePreCheck(null, H, H.real_name, H.ckey, H.mind, H.client)
 
-/obj/machinery/hatchery/proc/FailureResponse(reason, real_name)
+/obj/machinery/hatchery/proc/FailureResponse(reason)
 	if(flick_cooldown >= world.time)
 		return
 	flick_cooldown = flick_cooldown_time + world.time

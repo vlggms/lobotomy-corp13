@@ -343,7 +343,7 @@
 					target_hit = TRUE
 					addtimer(CALLBACK(src, PROC_REF(DigestPerson), L), 5 SECONDS)
 				else
-					L.gib(TRUE, TRUE, TRUE)
+					L.gib(FALSE, TRUE, TRUE)
 		if (!target_hit)
 			addtimer(CALLBACK(src, PROC_REF(BecomeRotten)), 5 SECONDS)//if nobody got killed
 	can_act = TRUE
