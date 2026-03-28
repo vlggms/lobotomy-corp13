@@ -95,6 +95,12 @@
 	set_vehicle_dir_layer(EAST, OBJ_LAYER)
 	set_vehicle_dir_layer(WEST, OBJ_LAYER)
 
+/datum/component/riding/vehicle/atv/lobotomy
+	vehicle_move_delay = 0
+	keytype = null
+
+/datum/component/riding/vehicle/atv/lobotomy/vehicle_bump(atom/movable/movable_parent, obj/machinery/door/possible_bumped_door)
+
 /datum/component/riding/vehicle/bicycle
 	ride_check_flags = RIDER_NEEDS_LEGS | RIDER_NEEDS_ARMS | UNBUCKLE_DISABLED_RIDER
 	vehicle_move_delay = 0
