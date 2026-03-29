@@ -769,7 +769,7 @@
 		if(get_user_level(H) < 3)
 			say("Pardon me.")
 			var/turf/TT = get_turf(H)
-			H.gib(TRUE, TRUE, TRUE)
+			H.gib(FALSE, TRUE, TRUE)
 			var/mob/living/simple_animal/hostile/aminion/azure_stave/AS = new(TT)
 			staves += AS
 			AS = new(TT)
@@ -982,7 +982,7 @@
 		return
 	if((status_holder.sanityhealth <= 0) || (status_holder.health <= 0))
 		var/turf/spawner_turf = get_turf(status_holder)
-		status_holder.gib(TRUE, TRUE, TRUE)
+		status_holder.gib(FALSE, TRUE, TRUE)
 		new /mob/living/simple_animal/hostile/aminion/azure_stave(spawner_turf)
 
 #undef STATUS_EFFECT_ACIDIC_GOO

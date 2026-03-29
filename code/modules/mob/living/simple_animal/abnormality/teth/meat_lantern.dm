@@ -106,7 +106,7 @@
 			continue
 		L.deal_damage(chop_damage, RED_DAMAGE)
 		if(L.health < 0)
-			L.gib(FALSE,FALSE,TRUE)
+			L.gib(FALSE,TRUE,TRUE)
 	SLEEP_CHECK_DEATH(2.5)
 	icon = initial(icon)
 	pixel_x = base_pixel_x
