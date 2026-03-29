@@ -255,7 +255,7 @@
 	name = "Blazing"
 	desc = "The Firebird's flames are healing your wounds"
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "bg_template"
+	icon_state = "rest"
 
 /datum/status_effect/blazing/tick()
 	..()
