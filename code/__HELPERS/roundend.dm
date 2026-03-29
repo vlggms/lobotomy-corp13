@@ -191,9 +191,6 @@
 		var/datum/mind/M = human_mob.mind
 		if(M.get_skill_level(/datum/skill/fishing) >= 6)
 			player_client.give_award(/datum/award/achievement/lc13/scorpworld, human_mob)
-		//If you join not from roundstart you do not apply for these achivements.
-		if(M.late_joiner)
-			return FALSE
 
 		if(SSmaptype.maptype == "standard")
 			//Standard LC13 Gamemode Achivements.

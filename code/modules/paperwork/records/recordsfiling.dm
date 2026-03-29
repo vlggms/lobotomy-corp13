@@ -14,6 +14,11 @@ GLOBAL_LIST_EMPTY(records_cabinets)
 		/obj/item/paper/fluff/info/teth,
 		/obj/item/paper/fluff/info/he,
 	)
+	var/list/cabinet_names = list(
+		"ZAYIN",
+		"TETH",
+		"HE",
+	)
 
 /obj/effect/mapping_helpers/records_spawner/Initialize()
 	. = ..()
@@ -23,12 +28,23 @@ GLOBAL_LIST_EMPTY(records_cabinets)
 		GLOB.records_cabinets += cabinet // Cabinets in this list are populated at round-start automatically
 
 		cabinet.desired_type = desired_papers[i]
+		cabinet.name = (cabinet_names[i] + " Information")
+		cabinet.myoverlay = (cabinet_names[i] + "_overlay")
 		cabinet.pixel_x = current_location
+		cabinet.update_icon()
 
 		current_location += 10
 		if(!density)
 			cabinet.density = density
 			cabinet.pixel_y += 20
+
+/obj/structure/filingcabinet/smart
+	var/myoverlay = null
+
+/obj/structure/filingcabinet/smart/update_overlays()
+	. = ..()
+	if(myoverlay)
+		. += myoverlay
 
 /obj/effect/mapping_helpers/records_spawner/second
 	name = "WAW/ALEPH/TOOL records cabinet spawner"
@@ -36,6 +52,11 @@ GLOBAL_LIST_EMPTY(records_cabinets)
 		/obj/item/paper/fluff/info/waw,
 		/obj/item/paper/fluff/info/aleph,
 		/obj/item/paper/fluff/info/tool,
+	)
+	cabinet_names = list(
+		"WAW",
+		"ALEPH",
+		"Tool",
 	)
 
 /obj/effect/mapping_helpers/records_spawner/walk_through
