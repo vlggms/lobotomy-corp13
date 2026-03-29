@@ -1,7 +1,7 @@
 //LC13 ATV's
 /obj/vehicle/ridden/atv_lobotomy
 	name = "architecture kart"
-	desc = "A go-kart themed after the architecture department."
+	desc = "A department-colored go-kart."
 	icon_state = "atv"
 	max_integrity = 150
 	armor = list(MELEE = 50, BULLET = 25, LASER = 20, ENERGY = 0, BOMB = 50, BIO = 0, RAD = 0, FIRE = 60, ACID = 60)

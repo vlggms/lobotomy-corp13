@@ -252,6 +252,10 @@
 /obj/machinery/door/airlock/highsecurity{
 	name = "Extraction Department"
 	},
+/obj/structure/turnstile{
+	layer = 2;
+	alpha = 0
+	},
 /turf/open/floor/facility,
 /area/department_main/extraction)
 "bC" = (
@@ -264,10 +268,7 @@
 /area/city/outskirts)
 "bF" = (
 /obj/effect/turf_decal/siding/purple/corner,
-/turf/open/floor/mineral/titanium/yellow{
-	slowdown = -10;
-	name = "G-corp speed tile"
-	},
+/turf/open/floor/mineral/titanium/yellow,
 /area/department_main/information)
 "bI" = (
 /obj/machinery/vending/cola,
@@ -406,9 +407,11 @@
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
 "co" = (
-/obj/machinery/facility_holomap,
-/turf/open/floor/carpet/purple,
-/area/department_main/information)
+/obj/machinery/cryopod{
+	dir = 1
+	},
+/turf/open/floor/carpet/stellar,
+/area/department_main/command)
 "cs" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /obj/structure/flora/ausbushes/leafybush,
@@ -742,7 +745,7 @@
 "eH" = (
 /obj/structure/railing,
 /turf/open/floor/plating/ashplanet/rocky,
-/area/space)
+/area/city)
 "eJ" = (
 /turf/closed/indestructible/reinforced/old,
 /area/facility_hallway/extraction)
@@ -1240,10 +1243,7 @@
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/training)
 "gU" = (
-/turf/open/floor/mineral/titanium/yellow{
-	slowdown = -10;
-	name = "G-corp speed tile"
-	},
+/turf/open/floor/mineral/titanium/yellow,
 /area/facility_hallway/information)
 "gV" = (
 /obj/effect/turf_decal/stripes/line,
@@ -1418,7 +1418,7 @@
 	dir = 8
 	},
 /turf/open/floor/carpet/red,
-/area/space)
+/area/city)
 "ik" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -1554,7 +1554,7 @@
 	dir = 1
 	},
 /turf/open/floor/carpet/royalblue,
-/area/space)
+/area/city)
 "jq" = (
 /obj/machinery/button/door/indestructible{
 	id = "extraction";
@@ -1626,7 +1626,7 @@
 	dir = 5
 	},
 /turf/open/floor/plating/ashplanet/rocky,
-/area/space)
+/area/city)
 "jM" = (
 /obj/structure/rack,
 /obj/item/melee/classic_baton,
@@ -2051,10 +2051,7 @@
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "mm" = (
-/turf/open/floor/mineral/titanium/yellow{
-	slowdown = -10;
-	name = "G-corp speed tile"
-	},
+/turf/open/floor/mineral/titanium/yellow,
 /area/city)
 "mn" = (
 /obj/effect/mapping_helpers/records_spawner,
@@ -2076,6 +2073,10 @@
 	},
 /turf/open/floor/engine,
 /area/facility_hallway/architecture)
+"mr" = (
+/obj/machinery/facility_holomap,
+/turf/open/floor/carpet/cyan,
+/area/department_main/architecture)
 "ms" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -2088,7 +2089,8 @@
 /area/facility_hallway/training)
 "mu" = (
 /obj/machinery/door/airlock/wood{
-	name = "Manager's Office"
+	name = "Manager's Office";
+	req_access = list(19)
 	},
 /turf/open/floor/plasteel,
 /area/department_main/architecture)
@@ -2126,10 +2128,7 @@
 /obj/structure/sign/departments/command{
 	pixel_x = -32
 	},
-/turf/open/floor/mineral/titanium/yellow{
-	slowdown = -10;
-	name = "G-corp speed tile"
-	},
+/turf/open/floor/mineral/titanium/yellow,
 /area/facility_hallway/command)
 "mG" = (
 /obj/structure/table/wood,
@@ -2239,7 +2238,7 @@
 	dir = 5
 	},
 /turf/open/floor/carpet/red,
-/area/space)
+/area/city)
 "nj" = (
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
@@ -2318,7 +2317,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ashplanet/rocky,
-/area/space)
+/area/city)
 "nQ" = (
 /obj/machinery/light/floor,
 /obj/effect/turf_decal/siding/yellow/corner{
@@ -2369,6 +2368,10 @@
 /obj/machinery/door/airlock/highsecurity{
 	name = "Safety Department"
 	},
+/obj/structure/turnstile{
+	layer = 2;
+	alpha = 0
+	},
 /turf/open/floor/carpet/green,
 /area/facility_hallway/safety)
 "ok" = (
@@ -2376,7 +2379,7 @@
 	dir = 10
 	},
 /turf/open/floor/carpet/red,
-/area/space)
+/area/city)
 "ol" = (
 /obj/structure/table/reinforced,
 /obj/machinery/button/crematorium{
@@ -2630,7 +2633,9 @@
 /obj/machinery/status_display{
 	pixel_x = -32
 	},
-/obj/structure/fluff/hedge,
+/obj/machinery/cryopod{
+	dir = 1
+	},
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
 "pA" = (
@@ -2710,10 +2715,7 @@
 /turf/open/floor/facility/white,
 /area/department_main/command)
 "pS" = (
-/turf/open/floor/mineral/titanium/yellow{
-	slowdown = -10;
-	name = "G-corp speed tile"
-	},
+/turf/open/floor/mineral/titanium/yellow,
 /area/department_main/information)
 "pT" = (
 /turf/closed/indestructible/rock,
@@ -2744,7 +2746,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/ashplanet/rocky,
-/area/space)
+/area/city)
 "qa" = (
 /turf/closed/wall/mineral/cult,
 /area/space)
@@ -2807,10 +2809,7 @@
 /obj/effect/turf_decal/siding/purple{
 	dir = 8
 	},
-/turf/open/floor/mineral/titanium/yellow{
-	slowdown = -10;
-	name = "G-corp speed tile"
-	},
+/turf/open/floor/mineral/titanium/yellow,
 /area/department_main/information)
 "qC" = (
 /obj/structure/filingcabinet{
@@ -2914,16 +2913,15 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/mineral/titanium/yellow{
-	slowdown = -10;
-	name = "G-corp speed tile"
-	},
+/turf/open/floor/mineral/titanium/yellow,
 /area/city)
 "ra" = (
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/fluff/hedge,
+/obj/machinery/cryopod{
+	dir = 1
+	},
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
 "rc" = (
@@ -3001,7 +2999,7 @@
 	dir = 4
 	},
 /turf/open/floor/carpet/red,
-/area/space)
+/area/city)
 "rJ" = (
 /obj/structure/chair/plastic{
 	dir = 4
@@ -3169,10 +3167,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/mineral/titanium/yellow{
-	slowdown = -10;
-	name = "G-corp speed tile"
-	},
+/turf/open/floor/mineral/titanium/yellow,
 /area/facility_hallway/command)
 "sP" = (
 /obj/effect/turf_decal/tile/brown{
@@ -3313,10 +3308,7 @@
 /obj/structure/sign/departments/command{
 	pixel_y = -32
 	},
-/turf/open/floor/mineral/titanium/yellow{
-	slowdown = -10;
-	name = "G-corp speed tile"
-	},
+/turf/open/floor/mineral/titanium/yellow,
 /area/facility_hallway/command)
 "tC" = (
 /obj/effect/landmark/start{
@@ -3392,15 +3384,12 @@
 	dir = 8
 	},
 /turf/open/floor/carpet/royalblue,
-/area/space)
+/area/city)
 "tW" = (
 /obj/effect/turf_decal/siding/purple/corner{
 	dir = 1
 	},
-/turf/open/floor/mineral/titanium/yellow{
-	slowdown = -10;
-	name = "G-corp speed tile"
-	},
+/turf/open/floor/mineral/titanium/yellow,
 /area/department_main/information)
 "tZ" = (
 /obj/structure/weightmachine/weightlifter,
@@ -3410,10 +3399,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/mineral/titanium/yellow{
-	slowdown = -10;
-	name = "G-corp speed tile"
-	},
+/turf/open/floor/mineral/titanium/yellow,
 /area/city)
 "ui" = (
 /obj/structure/rack,
@@ -3467,7 +3453,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/ashplanet/rocky,
-/area/space)
+/area/city)
 "ur" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Information Department"
@@ -3475,6 +3461,10 @@
 /obj/effect/turf_decal/siding/purple,
 /obj/effect/turf_decal/siding/purple{
 	dir = 1
+	},
+/obj/structure/turnstile{
+	layer = 2;
+	alpha = 0
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/information)
@@ -3630,10 +3620,7 @@
 /obj/effect/turf_decal/siding/purple/corner{
 	dir = 8
 	},
-/turf/open/floor/mineral/titanium/yellow{
-	slowdown = -10;
-	name = "G-corp speed tile"
-	},
+/turf/open/floor/mineral/titanium/yellow,
 /area/department_main/information)
 "vx" = (
 /obj/effect/turf_decal/stripes/line{
@@ -3706,6 +3693,10 @@
 "vK" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Control Department"
+	},
+/obj/structure/turnstile{
+	layer = 2;
+	alpha = 0
 	},
 /turf/open/floor/carpet/red,
 /area/department_main/control)
@@ -3829,6 +3820,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/architecture)
+"wm" = (
+/obj/machinery/facility_holomap{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/department_main/welfare)
 "wn" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 9
@@ -4111,6 +4108,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/safety)
+"yb" = (
+/obj/machinery/facility_holomap,
+/turf/open/floor/carpet/red,
+/area/department_main/control)
 "yh" = (
 /obj/effect/turf_decal/siding/yellow,
 /turf/open/floor/facility/white,
@@ -4416,7 +4417,7 @@
 	dir = 5
 	},
 /turf/open/floor/carpet/royalblue,
-/area/space)
+/area/city)
 "zQ" = (
 /obj/machinery/camera/autoname{
 	dir = 8
@@ -4427,10 +4428,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/mineral/titanium/yellow{
-	slowdown = -10;
-	name = "G-corp speed tile"
-	},
+/turf/open/floor/mineral/titanium/yellow,
 /area/facility_hallway/command)
 "zS" = (
 /obj/effect/turf_decal/tile/brown{
@@ -4461,6 +4459,16 @@
 	},
 /turf/open/floor/carpet/red,
 /area/department_main/control)
+"zV" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "Welfare Department"
+	},
+/obj/structure/turnstile{
+	layer = 2;
+	alpha = 0
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/welfare)
 "zY" = (
 /obj/structure/railing/corner{
 	dir = 1
@@ -4569,8 +4577,9 @@
 /turf/open/floor/wood,
 /area/facility_hallway/command)
 "AG" = (
-/obj/effect/turf_decal/siding/white/end{
-	dir = 4
+/obj/effect/turf_decal/siding/white,
+/obj/effect/turf_decal/siding/white{
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/architecture)
@@ -4641,7 +4650,7 @@
 	dir = 10
 	},
 /turf/open/floor/carpet/royalblue,
-/area/space)
+/area/city)
 "Bg" = (
 /obj/structure/sign/poster/lobotomycorp/random{
 	pixel_x = -32
@@ -4687,10 +4696,7 @@
 /obj/effect/landmark/department_center,
 /obj/machinery/navbeacon/wayfinding/informationdepartment,
 /obj/machinery/holopad,
-/turf/open/floor/mineral/titanium/yellow{
-	slowdown = -10;
-	name = "G-corp speed tile"
-	},
+/turf/open/floor/mineral/titanium/yellow,
 /area/department_main/information)
 "Bq" = (
 /obj/effect/turf_decal/plaque{
@@ -4772,6 +4778,13 @@
 	},
 /turf/open/floor/facility/white,
 /area/department_main/command)
+"BL" = (
+/obj/effect/turf_decal/siding/white,
+/obj/machinery/facility_holomap{
+	dir = 1
+	},
+/turf/open/floor/stone,
+/area/department_main/records)
 "BM" = (
 /obj/structure/table,
 /turf/open/floor/carpet/cyan,
@@ -4893,7 +4906,7 @@
 	dir = 6
 	},
 /turf/open/floor/plating/ashplanet/rocky,
-/area/space)
+/area/city)
 "CN" = (
 /obj/effect/turf_decal/siding/green,
 /turf/open/floor/plasteel/white,
@@ -4946,10 +4959,7 @@
 /area/department_main/discipline)
 "Df" = (
 /obj/machinery/door/airlock/hatch,
-/turf/open/floor/mineral/titanium/yellow{
-	slowdown = -10;
-	name = "G-corp speed tile"
-	},
+/turf/open/floor/wood,
 /area/facility_hallway/extraction)
 "Dg" = (
 /obj/effect/turf_decal/plaque{
@@ -4989,7 +4999,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/ashplanet/rocky,
-/area/space)
+/area/city)
 "DB" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -5049,7 +5059,7 @@
 /area/department_main/safety)
 "DQ" = (
 /turf/open/floor/plating/ashplanet/rocky,
-/area/space)
+/area/city)
 "DS" = (
 /obj/effect/turf_decal/plaque{
 	alpha = 230;
@@ -5160,7 +5170,7 @@
 "EA" = (
 /obj/structure/railing/corner,
 /turf/open/floor/plating/ashplanet/rocky,
-/area/space)
+/area/city)
 "EB" = (
 /obj/machinery/light,
 /turf/open/floor/carpet/purple,
@@ -5196,7 +5206,11 @@
 	hackProof = 1;
 	name = "Records Department"
 	},
-/turf/open/floor/carpet/black,
+/obj/structure/turnstile{
+	layer = 2;
+	alpha = 0
+	},
+/turf/open/floor/stone,
 /area/facility_hallway/records)
 "EF" = (
 /turf/closed/indestructible/reinforced/old,
@@ -5223,7 +5237,7 @@
 	dir = 10
 	},
 /turf/open/floor/plating/ashplanet/rocky,
-/area/space)
+/area/city)
 "EN" = (
 /obj/structure/sign/departments/training,
 /turf/closed/indestructible/reinforced/ucorp,
@@ -5236,10 +5250,11 @@
 /obj/machinery/door/airlock/highsecurity{
 	name = "Architecture Department"
 	},
-/turf/open/floor/mineral/titanium/yellow{
-	slowdown = -10;
-	name = "G-corp speed tile"
+/obj/structure/turnstile{
+	layer = 2;
+	alpha = 0
 	},
+/turf/open/floor/plasteel,
 /area/facility_hallway/architecture)
 "ES" = (
 /obj/effect/turf_decal/plaque{
@@ -5291,7 +5306,7 @@
 	dir = 8
 	},
 /turf/open/floor/carpet/red,
-/area/space)
+/area/city)
 "Fi" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/caution,
@@ -5438,9 +5453,11 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/information)
 "Gg" = (
-/obj/machinery/facility_holomap,
-/turf/closed/indestructible/reinforced/old,
-/area/department_main/architecture)
+/obj/machinery/facility_holomap{
+	dir = 1
+	},
+/turf/open/floor/carpet/purple,
+/area/department_main/information)
 "Gh" = (
 /obj/structure/rack,
 /turf/open/floor/carpet/stellar,
@@ -5459,7 +5476,7 @@
 	dir = 9
 	},
 /turf/open/floor/carpet/red,
-/area/space)
+/area/city)
 "Gn" = (
 /obj/structure/chair/sofa/corp/right{
 	dir = 8
@@ -5557,6 +5574,7 @@
 /obj/effect/decal/cleanable/crayon{
 	icon_state = "like"
 	},
+/obj/item/candle/infinite,
 /turf/open/floor/stone,
 /area/facility_hallway/records)
 "GQ" = (
@@ -5661,10 +5679,7 @@
 /obj/effect/turf_decal/siding/purple/corner{
 	dir = 4
 	},
-/turf/open/floor/mineral/titanium/yellow{
-	slowdown = -10;
-	name = "G-corp speed tile"
-	},
+/turf/open/floor/mineral/titanium/yellow,
 /area/department_main/information)
 "HJ" = (
 /obj/effect/turf_decal/plaque{
@@ -5678,7 +5693,7 @@
 	dir = 8
 	},
 /turf/open/floor/carpet/royalblue,
-/area/space)
+/area/city)
 "HL" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -5690,6 +5705,9 @@
 /obj/effect/turf_decal/siding/yellow{
 	dir = 10
 	},
+/obj/machinery/facility_holomap{
+	dir = 1
+	},
 /turf/open/floor/facility,
 /area/department_main/extraction)
 "HQ" = (
@@ -5698,7 +5716,7 @@
 "HR" = (
 /obj/structure/railing,
 /turf/open/floor/carpet/royalblue,
-/area/space)
+/area/city)
 "HU" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -5816,6 +5834,10 @@
 /obj/effect/turf_decal/tile/yellow,
 /turf/open/floor/plasteel/white,
 /area/department_main/command)
+"IC" = (
+/obj/structure/turnstile,
+/turf/open/floor/mineral/titanium/yellow,
+/area/facility_hallway/command)
 "ID" = (
 /obj/structure/rack,
 /obj/item/clothing/suit/armor/vest/alt,
@@ -5869,7 +5891,7 @@
 	dir = 9
 	},
 /turf/open/floor/plating/ashplanet/rocky,
-/area/space)
+/area/city)
 "IL" = (
 /obj/structure/chair/comfy/brown{
 	dir = 8
@@ -5974,7 +5996,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/ashplanet/rocky,
-/area/space)
+/area/city)
 "Jq" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 10
@@ -6075,10 +6097,7 @@
 /obj/structure/sign/departments/command{
 	pixel_y = 32
 	},
-/turf/open/floor/mineral/titanium/yellow{
-	slowdown = -10;
-	name = "G-corp speed tile"
-	},
+/turf/open/floor/mineral/titanium/yellow,
 /area/facility_hallway/command)
 "Kb" = (
 /obj/structure/table/wood/fancy/green,
@@ -6119,6 +6138,10 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/siding/purple,
+/obj/structure/turnstile{
+	layer = 2;
+	alpha = 0
+	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/information)
 "Kr" = (
@@ -6126,10 +6149,7 @@
 /turf/closed/indestructible/reinforced,
 /area/department_main/training)
 "Ku" = (
-/turf/open/floor/mineral/titanium/yellow{
-	slowdown = -10;
-	name = "G-corp speed tile"
-	},
+/turf/open/floor/mineral/titanium/yellow,
 /area/facility_hallway/command)
 "Kv" = (
 /obj/structure/table/glass,
@@ -6224,10 +6244,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/mineral/titanium/yellow{
-	slowdown = -10;
-	name = "G-corp speed tile"
-	},
+/turf/open/floor/mineral/titanium/yellow,
 /area/facility_hallway/command)
 "KT" = (
 /obj/structure/table/glass,
@@ -6272,6 +6289,15 @@
 /obj/machinery/navbeacon/wayfinding/extractiondepartment,
 /turf/open/floor/facility,
 /area/department_main/extraction)
+"Ll" = (
+/obj/machinery/status_display{
+	pixel_x = 32
+	},
+/obj/machinery/cryopod{
+	dir = 1
+	},
+/turf/open/floor/carpet/stellar,
+/area/department_main/command)
 "Ln" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -6463,8 +6489,14 @@
 /turf/open/floor/carpet/cyan,
 /area/department_main/architecture)
 "Mu" = (
-/turf/closed/indestructible/rock,
-/area/department_main/control)
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/cryopod{
+	dir = 1
+	},
+/turf/open/floor/carpet/stellar,
+/area/department_main/command)
 "Mv" = (
 /obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
 /obj/effect/turf_decal/siding/red{
@@ -6526,10 +6558,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/mineral/titanium/yellow{
-	slowdown = -10;
-	name = "G-corp speed tile"
-	},
+/turf/open/floor/mineral/titanium/yellow,
 /area/city)
 "MN" = (
 /obj/machinery/computer/extraction_cargo/chemistry{
@@ -6553,7 +6582,7 @@
 	dir = 4
 	},
 /turf/open/floor/carpet/red,
-/area/space)
+/area/city)
 "Na" = (
 /obj/effect/turf_decal/siding/yellow,
 /obj/effect/turf_decal/siding/yellow/corner{
@@ -6633,10 +6662,7 @@
 /area/space)
 "NC" = (
 /obj/machinery/light,
-/turf/open/floor/mineral/titanium/yellow{
-	slowdown = -10;
-	name = "G-corp speed tile"
-	},
+/turf/open/floor/mineral/titanium/yellow,
 /area/facility_hallway/command)
 "ND" = (
 /obj/machinery/light{
@@ -6793,7 +6819,11 @@
 /obj/machinery/door/airlock/highsecurity{
 	name = "Training Department"
 	},
-/turf/open/floor/carpet/orange,
+/obj/structure/turnstile{
+	layer = 2;
+	alpha = 0
+	},
+/turf/open/floor/plasteel,
 /area/facility_hallway/training)
 "OG" = (
 /turf/open/floor/plating,
@@ -6873,9 +6903,9 @@
 /turf/open/floor/wood,
 /area/facility_hallway/training)
 "Pt" = (
-/obj/machinery/facility_holomap,
-/turf/closed/indestructible/reinforced/old,
-/area/department_main/control)
+/obj/item/candle/infinite,
+/turf/open/floor/stone,
+/area/facility_hallway/records)
 "Pu" = (
 /obj/machinery/telecomms/server/presets/medical,
 /turf/open/floor/circuit/telecomms/mainframe,
@@ -7038,7 +7068,7 @@
 	dir = 1
 	},
 /turf/open/floor/carpet/red,
-/area/space)
+/area/city)
 "Qw" = (
 /obj/effect/turf_decal/siding/purple/corner{
 	dir = 4
@@ -7096,6 +7126,10 @@
 "QM" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Disciplinary Department"
+	},
+/obj/structure/turnstile{
+	layer = 2;
+	alpha = 0
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/discipline)
@@ -7455,7 +7489,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ashplanet/rocky,
-/area/space)
+/area/city)
 "Tc" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
@@ -7539,10 +7573,7 @@
 /area/department_main/control)
 "TG" = (
 /obj/machinery/light,
-/turf/open/floor/mineral/titanium/yellow{
-	slowdown = -10;
-	name = "G-corp speed tile"
-	},
+/turf/open/floor/mineral/titanium/yellow,
 /area/city)
 "TN" = (
 /obj/effect/decal/cleanable/dirt,
@@ -7600,7 +7631,7 @@
 /area/department_main/training)
 "Uc" = (
 /turf/open/floor/carpet/royalblue,
-/area/space)
+/area/city)
 "Ue" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 8
@@ -7766,6 +7797,12 @@
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/command)
+"Vc" = (
+/obj/machinery/facility_holomap{
+	dir = 8
+	},
+/turf/open/floor/facility/dark,
+/area/department_main/discipline)
 "Vf" = (
 /turf/open/floor/wood,
 /area/department_main/welfare)
@@ -7858,10 +7895,7 @@
 /turf/open/floor/wood,
 /area/facility_hallway/welfare)
 "VA" = (
-/turf/open/floor/mineral/titanium/yellow{
-	slowdown = -10;
-	name = "G-corp speed tile"
-	},
+/turf/open/floor/mineral/titanium/yellow,
 /area/facility_hallway/records)
 "VB" = (
 /obj/machinery/door/airlock/highsecurity{
@@ -7938,10 +7972,7 @@
 /obj/effect/turf_decal/siding/purple{
 	dir = 4
 	},
-/turf/open/floor/mineral/titanium/yellow{
-	slowdown = -10;
-	name = "G-corp speed tile"
-	},
+/turf/open/floor/mineral/titanium/yellow,
 /area/department_main/information)
 "VV" = (
 /obj/effect/turf_decal/siding/green/corner{
@@ -7969,7 +8000,7 @@
 	dir = 4
 	},
 /turf/open/floor/carpet/royalblue,
-/area/space)
+/area/city)
 "Wc" = (
 /obj/structure/closet/crate/bin,
 /turf/open/floor/carpet/stellar,
@@ -7999,7 +8030,7 @@
 /area/department_main/architecture)
 "Wp" = (
 /turf/open/floor/carpet/red,
-/area/space)
+/area/city)
 "Wq" = (
 /obj/machinery/camera/autoname{
 	dir = 8
@@ -8066,7 +8097,7 @@
 	dir = 4
 	},
 /turf/open/floor/carpet/royalblue,
-/area/space)
+/area/city)
 "WO" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 1
@@ -8445,10 +8476,7 @@
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
 "Zp" = (
-/turf/open/floor/mineral/titanium/yellow{
-	slowdown = -10;
-	name = "G-corp speed tile"
-	},
+/turf/open/floor/mineral/titanium/yellow,
 /area/department_main/command)
 "Zs" = (
 /obj/structure/rack,
@@ -8502,10 +8530,7 @@
 /obj/structure/sign/departments/command{
 	pixel_x = 32
 	},
-/turf/open/floor/mineral/titanium/yellow{
-	slowdown = -10;
-	name = "G-corp speed tile"
-	},
+/turf/open/floor/mineral/titanium/yellow,
 /area/facility_hallway/command)
 "ZM" = (
 /obj/item/target,
@@ -11821,7 +11846,7 @@ NB
 gM
 hQ
 KY
-GP
+Pt
 KY
 hQ
 gM
@@ -12077,9 +12102,9 @@ NB
 NB
 gM
 Il
-GP
+Pt
 gh
-GP
+Pt
 Il
 gM
 NB
@@ -12335,7 +12360,7 @@ NB
 gM
 hQ
 KY
-GP
+Pt
 KY
 hQ
 gM
@@ -15935,7 +15960,7 @@ zj
 XG
 Wg
 JO
-hu
+BL
 rg
 NB
 NB
@@ -16887,7 +16912,7 @@ oe
 oe
 QA
 hc
-Vf
+wm
 pX
 pX
 NB
@@ -17146,7 +17171,7 @@ Iu
 hC
 Vf
 pX
-NB
+pX
 Jg
 Jg
 Jg
@@ -17397,13 +17422,13 @@ pX
 pX
 pX
 pX
-PO
+zV
 pX
 pX
 pX
 pX
 pX
-NB
+pX
 Uc
 Uc
 Uc
@@ -29989,9 +30014,9 @@ PK
 PK
 PK
 Rr
-Ku
-Ku
-Ku
+IC
+IC
+IC
 Rr
 PK
 PK
@@ -38990,7 +39015,7 @@ hi
 ZW
 py
 ra
-Lv
+co
 oF
 yn
 lN
@@ -39412,7 +39437,7 @@ Rp
 Xh
 Xn
 Ur
-Jg
+EF
 eN
 fT
 fT
@@ -39695,13 +39720,13 @@ OJ
 Zz
 hD
 Cg
-co
+hD
 wu
 kD
 hD
 hD
 hA
-hD
+Gg
 bt
 RR
 fT
@@ -40114,8 +40139,8 @@ fT
 jU
 LM
 rV
-Gg
-SZ
+rV
+mr
 kH
 kH
 kH
@@ -40684,8 +40709,8 @@ NB
 NB
 NB
 NB
-Pt
-HQ
+Ur
+yb
 Zu
 Oz
 md
@@ -40739,7 +40764,7 @@ Ak
 Ak
 fT
 bZ
-Ku
+IC
 Ku
 Ku
 Ku
@@ -40829,7 +40854,7 @@ Ku
 Ku
 Ku
 Ku
-Ku
+IC
 vx
 fT
 fT
@@ -40996,7 +41021,7 @@ Fd
 Ak
 Ak
 Av
-Ku
+IC
 Ku
 Ku
 Ku
@@ -41086,7 +41111,7 @@ Ku
 Ku
 Ku
 Ku
-Ku
+IC
 Ih
 Ak
 fT
@@ -41253,7 +41278,7 @@ Ak
 fT
 Ak
 bZ
-Ku
+IC
 Ku
 Ku
 Ku
@@ -41343,7 +41368,7 @@ sO
 Ku
 Ku
 Ku
-Ku
+IC
 vx
 Ak
 Ak
@@ -42496,7 +42521,7 @@ oS
 zv
 IY
 Ur
-Jg
+EF
 uV
 fT
 fT
@@ -42774,8 +42799,8 @@ fT
 fT
 fT
 Dv
-DQ
-nb
+EF
+lZ
 bt
 bt
 ur
@@ -43090,8 +43115,8 @@ pT
 yn
 yn
 qs
-oF
-oF
+yn
+yn
 Lv
 PQ
 oC
@@ -43100,9 +43125,9 @@ hi
 hi
 hi
 hi
-oC
-PQ
-Lv
+Ll
+Mu
+co
 yn
 yn
 lN
@@ -43348,11 +43373,11 @@ PK
 PK
 wU
 PK
-oF
-oF
-oF
-oF
-oF
+yn
+yn
+yn
+yn
+yn
 JY
 Ku
 tB
@@ -44292,7 +44317,7 @@ NB
 NB
 NB
 NB
-Mu
+NB
 vo
 DQ
 eH
@@ -51513,17 +51538,17 @@ fT
 fT
 Dv
 DQ
-IU
 nb
+NB
+NB
+NB
+NB
+NB
+NB
+NB
+NB
+NB
 nb
-nb
-nb
-nb
-nb
-nb
-nb
-nb
-IU
 DQ
 eH
 fT
@@ -51770,17 +51795,17 @@ fT
 fT
 Dv
 DQ
-DQ
-DQ
-DQ
-DQ
-DQ
-DQ
-DQ
-DQ
-DQ
-DQ
-DQ
+IU
+nb
+nb
+nb
+nb
+nb
+nb
+nb
+nb
+nb
+IU
 DQ
 eH
 fT
@@ -52091,9 +52116,9 @@ PK
 PK
 PK
 Rr
-Ku
-Ku
-Ku
+IC
+IC
+IC
 Rr
 PK
 PK
@@ -69568,7 +69593,7 @@ oW
 Rx
 lG
 yo
-pc
+Vc
 yo
 FW
 mZ
