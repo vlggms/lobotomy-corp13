@@ -24,16 +24,6 @@
 							PRUDENCE_ATTRIBUTE = 40
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/he/fury
-	name = "blind fury"
-	desc = "And all she saw was red."
-	icon_state = "fury"
-	//all in on red, minor negatives on all else
-	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = -20, BLACK_DAMAGE = -20, PALE_DAMAGE = -20) // 10
-	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 40
-							)
-
 /obj/item/clothing/suit/armor/ego_gear/he/paw
 	name = "bear paw"
 	desc = "The equipment is made of a material that may have been fluffy once, but now it just looks shabby."

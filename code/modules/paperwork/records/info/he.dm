@@ -16,15 +16,6 @@
 		"When the work result was Normal, the Qliphoth Counter lowered with a normal probability.",
 		"When the work result was Bad, the Qliphoth Counter lowered with a high probability.")
 
-// Red Queen
-/obj/item/paper/fluff/info/he/queen
-	abno_type = /mob/living/simple_animal/hostile/abnormality/red_queen
-	abno_code = "F-01-112"
-	abno_info = list(
-		"Due to Red Queen’s fickle nature, it prefers a different work type every shift but the desired work does not change during the shift.",
-		"Red Queen does not seem to provide feedback on what work it likes and will only communicate its dislikes by attempting to behead those who aggravate it.",
-		"Upon completion of a non-preferred work, there was a 1 in 5 chance she would attempt to behead the employee, dealing massive RED damage.")
-
 // Scarecrow
 /obj/item/paper/fluff/info/he/scarecrow
 	abno_type = /mob/living/simple_animal/hostile/abnormality/scarecrow
@@ -223,12 +214,12 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/watchman
 	abno_code = "O-01-132"
 	abno_info = list(
-		"When the work result was Bad, the Qliphoth Counter decreased.",
+		"When the work was completed after the first trumpet had been declared, The Watchman breached containment.",
 		"When the work result was Neutral, the Qliphoth Counter lowered with a moderate probability.",
-		"When employees with Temperance Level 3 or higher worked on The Watchman, the work rates were reduced.",
+		"When employees with Prudence Level 4 or higher worked on The Watchman, the work rates were reduced.",
 		"While breached, The Watchman flooded the surrounding area with darkness. This darkness had the same propogation characteristics as light.")
-	abno_breach_damage_type = "None"
-	abno_breach_damage_count = "None"
+	abno_breach_damage_type = "White"
+	abno_breach_damage_count = "Low"
 
 // Schadenfreude
 /obj/item/paper/fluff/info/he/schadenfreude
