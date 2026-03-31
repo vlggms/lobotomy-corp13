@@ -53,10 +53,14 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/dingledangle
 	abno_code = "T-04-111"
 	abno_info = list(
-		"When an employee with Prudence Level 3 or higher completed their work, the employee suddenly fell into a panic unless their Fortitude was Level 4 or higher.",
-		"When employees with Prudence Level 3 or higher was around Dinge-Dangle's Containment Unit, they reported a sense of confusion as well taking increased white damage taken.",
+		"When the work result was Normal, the Qliphoth Counter lowered with a low probability.",
+		"When the work result was Bad, the Qliphoth Counter lowered.",
+		"When an employee panicked within the facility, the Qliphoth Counter decreased.",
+		"When non Insight Work was finished by an employee with Prudence Level 3 or higher, they suddenly fell into a delirious panic.",
+		"When the Qliphoth Counter reached 0, an employee with Prudence Level 3 or higher reported a sense of confusion as well as increased mental strain.",
+		"When a delirious employee entered Dingle-Dangle's containment unit, they panicked",
 		"When an employee afflicted with delirium was panicking, they attempted to enter Dinge-Dangle's Containment Unit, thinking it was breaching.",
-		"When a delirious employee approched Dingle-Dangle, they were then slowly consumed by it."
+		"When a delirious employee approached Dingle-Dangle, they were then slowly consumed by it."
 		)
 
 //Beauty and the Beast
