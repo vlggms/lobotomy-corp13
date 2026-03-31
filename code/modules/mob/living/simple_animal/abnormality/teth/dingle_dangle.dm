@@ -101,7 +101,7 @@ GLOBAL_LIST_INIT(dingle_hallucination_list, list(
 		if(!H.mind)
 			continue
 		//If we don't have someone selected, we select the first guy that has the requirements
-		if(!H)
+		if(!marked)
 			marked = H
 			continue
 		var/H_dist = get_dist(src, H)
@@ -113,7 +113,7 @@ GLOBAL_LIST_INIT(dingle_hallucination_list, list(
 			//Then we see if the current guy we're checking has higher prudence
 			if(get_attribute_level(H, PRUDENCE_ATTRIBUTE) > get_attribute_level(marked, PRUDENCE_ATTRIBUTE))
 				marked = H
-			 //If both of them are the same distance away from dingle and have the same amount of prudence, it should be random
+			//If both of them are the same distance away from dingle and have the same amount of prudence, it should be random
 			else if(get_attribute_level(H, PRUDENCE_ATTRIBUTE) == get_attribute_level(marked, PRUDENCE_ATTRIBUTE))
 				if(prob(50))
 					marked = H
