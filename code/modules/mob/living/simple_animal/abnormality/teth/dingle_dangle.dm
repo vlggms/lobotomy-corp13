@@ -1,6 +1,6 @@
 #define STATUS_EFFECT_DANGLE /datum/status_effect/dangle
 GLOBAL_LIST_INIT(dingle_hallucination_list, list(
-	/datum/hallucination/chat = 50,
+	/datum/hallucination/chat = 30,
 	/datum/hallucination/fake_meltdown/dingle = 17,
 	/datum/hallucination/hudscrew = 12,
 	/datum/hallucination/fake_alert = 12,
@@ -98,9 +98,9 @@ GLOBAL_LIST_INIT(dingle_hallucination_list, list(
 			continue
 		if(get_attribute_level(H, PRUDENCE_ATTRIBUTE) < 60)
 			continue
-		if(!H.mind) // That wasn't a player at all...
+		if(!H.mind)
 			continue
-		//If we don't have someone selected, we select the first guy that has the requirements.
+		//If we don't have someone selected, we select the first guy that has the requirements
 		if(!H)
 			marked = H
 		else
@@ -113,13 +113,13 @@ GLOBAL_LIST_INIT(dingle_hallucination_list, list(
 				//Then we see if the current guy we're checking has higher prudence
 				if(get_attribute_level(H, PRUDENCE_ATTRIBUTE) > get_attribute_level(marked, PRUDENCE_ATTRIBUTE))
 					marked = H
-				 //If both of them are the same distance away from dingle and have the same amount of prudence, it should be random.
+				 //If both of them are the same distance away from dingle and have the same amount of prudence, it should be random
 				else if(get_attribute_level(H, PRUDENCE_ATTRIBUTE) == get_attribute_level(marked, PRUDENCE_ATTRIBUTE))
 					if(prob(50))
 						marked = H
 				//Otherwise we don't changed the selected guy
 			else
-				//If the guy we're checking is closer to dingle than the guy already selected, they will be selected instead.
+				//If the guy we're checking is closer to dingle than the guy already selected, they will be selected instead
 				marked = H
 	if(marked)
 		var/datum/status_effect/dangle/D = marked.has_status_effect(STATUS_EFFECT_DANGLE)
@@ -149,8 +149,6 @@ GLOBAL_LIST_INIT(dingle_hallucination_list, list(
 		if(!H.has_status_effect(STATUS_EFFECT_DANGLE))
 			continue
 		if(H.stat == DEAD || H.sanity_lost)
-			continue
-		if(H.y < y - 2)
 			continue
 		humans += H
 	if(LAZYLEN(humans))
@@ -258,7 +256,7 @@ GLOBAL_LIST_INIT(dingle_hallucination_list, list(
 	name = "Delirious"
 	desc = "Your weakened mental state is causing you to see and hear things!"
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "rest"
+	icon_state = "delirious"
 
 /datum/status_effect/dangle
 	id = "dangle"
@@ -290,7 +288,7 @@ GLOBAL_LIST_INIT(dingle_hallucination_list, list(
 	if(!ishuman(owner))
 		return
 	//It should cause a hallucination eventually without spamming it.
-	if(tries >= 3 && (prob(5) || tries >= 16))
+	if(tries >= 5 && (prob(4) || tries >= 20))
 		tries = 0
 		var/halpick = pickweight(GLOB.dingle_hallucination_list)
 		new halpick(owner, FALSE)
