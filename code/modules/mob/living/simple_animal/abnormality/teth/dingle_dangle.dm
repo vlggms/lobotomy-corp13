@@ -103,24 +103,24 @@ GLOBAL_LIST_INIT(dingle_hallucination_list, list(
 		//If we don't have someone selected, we select the first guy that has the requirements
 		if(!H)
 			marked = H
-		else
-			var/H_dist = get_dist(src, H)
-			var/marked_dist = get_dist(src, H)
-			//First we make sure the guy we're checking isn't further away than the selected guy
-			if(marked_dist < H_dist)
-				continue
-			else if(marked_dist == H_dist)
-				//Then we see if the current guy we're checking has higher prudence
-				if(get_attribute_level(H, PRUDENCE_ATTRIBUTE) > get_attribute_level(marked, PRUDENCE_ATTRIBUTE))
-					marked = H
-				 //If both of them are the same distance away from dingle and have the same amount of prudence, it should be random
-				else if(get_attribute_level(H, PRUDENCE_ATTRIBUTE) == get_attribute_level(marked, PRUDENCE_ATTRIBUTE))
-					if(prob(50))
-						marked = H
-				//Otherwise we don't changed the selected guy
-			else
-				//If the guy we're checking is closer to dingle than the guy already selected, they will be selected instead
+			continue
+		var/H_dist = get_dist(src, H)
+		var/marked_dist = get_dist(src, H)
+		//First we make sure the guy we're checking isn't further away than the selected guy
+		if(marked_dist < H_dist)
+			continue
+		else if(marked_dist == H_dist)
+			//Then we see if the current guy we're checking has higher prudence
+			if(get_attribute_level(H, PRUDENCE_ATTRIBUTE) > get_attribute_level(marked, PRUDENCE_ATTRIBUTE))
 				marked = H
+			 //If both of them are the same distance away from dingle and have the same amount of prudence, it should be random
+			else if(get_attribute_level(H, PRUDENCE_ATTRIBUTE) == get_attribute_level(marked, PRUDENCE_ATTRIBUTE))
+				if(prob(50))
+					marked = H
+			//Otherwise we don't changed the selected guy
+		else
+			//If the guy we're checking is closer to dingle than the guy already selected, they will be selected instead
+			marked = H
 	if(marked)
 		var/datum/status_effect/dangle/D = marked.has_status_effect(STATUS_EFFECT_DANGLE)
 		if(!D)
