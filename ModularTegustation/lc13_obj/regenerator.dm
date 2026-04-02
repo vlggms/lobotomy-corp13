@@ -83,8 +83,6 @@
 		// The math is weird, but it is intentional. Feel free to change it, but be careful as mults on top of base heal increases go wild quick.
 		var/hp_amt = ((regen_amt * regen_mult) + regen_add) + hp_bonus
 		var/sp_amt = ((regen_amt * regen_mult) + regen_add) + sp_bonus
-		OtherDamageEffect(hp_amt, "healing", extratext = "%")
-		OtherDamageEffect(sp_amt, "sanity", extratext = "%")
 		for(var/mob/living/carbon/human/dude as anything in people_to_heal)
 			dude.adjustBruteLoss(-dude.maxHealth * (hp_amt/100))
 			dude.adjustFireLoss(0.1 * (-dude.maxHealth * (hp_amt/100)))	//Heals at 1/10th speed. Supposed to be slower healing than brute and sanity
