@@ -31,6 +31,7 @@
 	layer = LYING_MOB_LAYER
 	var/static/mutable_appearance/overlay
 	max_buckled_mobs = 4
+	max_occupants = 4
 	var/crash_all = FALSE //CHAOS
 	pixel_y = -48
 	pixel_x = -48
