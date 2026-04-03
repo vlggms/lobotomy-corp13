@@ -18,8 +18,7 @@
 	damage_coeff = list(RED_DAMAGE = 0.9, WHITE_DAMAGE = 0.9, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)
 	melee_damage_lower = 6
 	melee_damage_upper = 8
-	rapid_melee = 1//Attacks really slow
-	melee_reach = 3//But it has long limbs
+	melee_reach = 3//Has long limbs
 	melee_damage_type = RED_DAMAGE
 	melee_queue_distance = 3
 	retreat_distance = 0
@@ -246,6 +245,8 @@
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/my_sweet_home/Destroy()
+	attach_twice = null
+	attach_once = null
 	if(!resident)
 		return ..()
 	//I know the body inside home goes back in when it dies in wonderlab, but we should probably just return the guy/girl instead
