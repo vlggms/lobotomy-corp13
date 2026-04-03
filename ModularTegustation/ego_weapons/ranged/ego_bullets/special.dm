@@ -1,6 +1,9 @@
 /obj/projectile/ego_bullet/ego_soda/rifle
-	damage = 4
+	damage = 17
 	speed = 0.25
+
+/obj/projectile/ego_bullet/ego_soda/rifle/weak
+	damage = 4
 
 /obj/projectile/ego_bullet/shrimp_red
 	name = "9mm soda bullet R"
