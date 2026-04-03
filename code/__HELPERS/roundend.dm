@@ -666,7 +666,7 @@
 	var/list/O = SSticker.ordeal_info
 	for(var/i in 0 to (SSticker.ordeal_info.len/4) - 1)
 		if(O[(i * 4) + 4] >= 0)
-			parts += "[FOURSPACES]<span style='color: [O[(i * 4) + 2]]'>[O[(i * 4) + 1]]</span>: Started at <b>[DisplayTimeText(O[(i * 4) + 3])]</b> and took <b>[DisplayTimeText(O[(i * 4) + 4] - O[(i * 4) + 3])]</b> to be delt with."
+			parts += "[FOURSPACES]<span style='color: [O[(i * 4) + 2]]'>[O[(i * 4) + 1]]</span>: Started at <b>[DisplayTimeText(O[(i * 4) + 3])]</b> and took <b>[DisplayTimeText(O[(i * 4) + 4] - O[(i * 4) + 3])]</b> to be dealt with."
 		else
 			parts += "[FOURSPACES]<span style='color: [O[(i * 4) + 2]]'>[O[(i * 4) + 1]]</span>: Started at <b>[DisplayTimeText(O[(i * 4) + 3])]</b> and was <b>never beaten</b>!"
 	parts += "</div>"
@@ -687,9 +687,9 @@
 	parts += "</div>"
 	return parts.Join("<br>")
 
-/datum/controller/subsystem/ticker/proc/core_color(datum/suppression/S)
+/datum/controller/subsystem/ticker/proc/core_color(S)
 	var/color = "red"
-	switch(name)
+	switch(S)
 		if(CONTROL_CORE_SUPPRESSION)
 			color = "yellow"
 

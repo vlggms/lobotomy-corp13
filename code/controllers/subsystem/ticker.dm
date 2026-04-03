@@ -67,8 +67,8 @@ SUBSYSTEM_DEF(ticker)
 
 	//ordeals that spawned
 	var/list/ordeal_info = list()
-	var/datum/suppression/core_suppression = null
-	var/datum/suppression/post_midnight_core = null
+	var/core_suppression = null
+	var/post_midnight_core = null
 	var/list/superbosses = list()
 
 /datum/controller/subsystem/ticker/Initialize(timeofday)
