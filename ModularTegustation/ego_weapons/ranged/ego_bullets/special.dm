@@ -1,17 +1,17 @@
 /obj/projectile/ego_bullet/ego_soda/rifle
-	damage = 17
+	damage = 4
 	speed = 0.25
 
 /obj/projectile/ego_bullet/shrimp_red
 	name = "9mm soda bullet R"
-	damage = 8
+	damage = 3
 	range = 12
 	spread = 20
 	damage_type = RED_DAMAGE
 
 /obj/projectile/ego_bullet/shrimp_white
 	name = "9mm soda bullet W"
-	damage = 70
+	damage = 30
 	speed = 0.1
 	damage_type = WHITE_DAMAGE
 	projectile_piercing = PASSMOB
@@ -27,7 +27,6 @@
 			if(QDELETED(head))
 				return
 			head.dismember()
-			QDEL_NULL(head)
 			H.regenerate_icons()
 			visible_message(span_danger("[H]'s head blew right off!"))
 

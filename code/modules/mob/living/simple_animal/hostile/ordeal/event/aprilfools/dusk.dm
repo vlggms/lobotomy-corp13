@@ -1,8 +1,8 @@
 /mob/living/simple_animal/hostile/ordeal/salmon_dusk
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	faction = list("shrimp")
-	health = 240
-	maxHealth = 240
+	health = 420
+	maxHealth = 420
 	melee_damage_type = RED_DAMAGE
 	melee_damage_lower = 7
 	melee_damage_upper = 9
