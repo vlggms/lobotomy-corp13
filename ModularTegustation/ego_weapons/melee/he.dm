@@ -2300,7 +2300,7 @@
 	modified_attack_speed = 0.6
 	var/combo = 0
 	var/combo_time
-	var/combo_wait = 10
+	var/combo_wait = 8
 	var/combo_on = TRUE
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("whips", "lashes", "tears")
@@ -2333,14 +2333,15 @@
 		if(0)
 			user.changeNext_move(CLICK_CD_MELEE * 0.6)
 		if(1)
-			force *= 0.8
-			user.changeNext_move(CLICK_CD_MELEE * 0.5)
+			force *= 0.6
+			user.changeNext_move(CLICK_CD_MELEE * 0.3)
+			combo_time = world.time + combo_wait - 3
 		if(2)
 			user.changeNext_move(CLICK_CD_MELEE * 0.6)
 		if(3)
 			combo = 0
-			force *= 3
-			user.changeNext_move(CLICK_CD_MELEE * 1.6)
+			force *= 4
+			user.changeNext_move(CLICK_CD_MELEE * 2)
 	. = ..()
 	combo += 1
 	force = initial(force)
