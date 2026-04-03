@@ -40,7 +40,6 @@
 	var/mobile_reload = FALSE
 	/// How long it takes to reload this weapon, if blank it wont need to be reloaded
 	var/reloadtime = 0 SECONDS
-	var/reload_timer = null
 	/// Are we currently reloading?
 	var/is_reloading = FALSE
 	/// How much ammo do we gain when we reload? If null, it'll reload the ammo amount
@@ -86,6 +85,7 @@
 
 	var/chargetime = null
 	var/is_charging = FALSE
+	var/charged = FALSE
 	var/recoil = 0						//boom boom shake the room
 	var/burst_size = 1					//how large a burst is
 	var/fire_delay = 0					//rate of fire for burst firing and semi auto
@@ -119,8 +119,8 @@
 /obj/item/ego_weapon/ranged/cannon
 	attack_speed = 1.5
 	force = 7
-	fire_delay = 5
-	chargetime = 20
+	fire_delay = 10
+	chargetime = 5
 	shotsleft = 3
 	round_text = "You start loading a shell."
 	projectile_name = "shell"
@@ -178,7 +178,6 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber()
 		QDEL_NULL(pin)
 	if(azoom)
 		QDEL_NULL(azoom)
-	reload_timer = null
 	return ..()
 
 /obj/item/ego_weapon/ranged/handle_atom_del(atom/A)
@@ -223,15 +222,16 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber()
 			. += span_nicegreen("This weapon can be dual wielded.")
 
 	if(chargetime)
+		. += span_notice("This weapon needs to be primed before firing.")
 		switch(chargetime)
 			if(0 to 5)
-				. += span_nicegreen("This weapon charges up very fast.")
+				. += span_nicegreen("This weapon primes very fast.")
 			if(6 to 10)
-				. += span_notice("This weapon charges up fast.")
+				. += span_notice("This weapon primes fast.")
 			if(11 to 15)
-				. += span_danger("This weapon charges up slowly.")
+				. += span_danger("This weapon primes slowly.")
 			else
-				. += span_danger("This weapon charges up extremely slowly.")
+				. += span_danger("This weapon primes extremely slowly.")
 
 	if(!autofire)
 		switch(fire_delay)
@@ -291,6 +291,8 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber()
 /obj/item/ego_weapon/ranged/attack_self(mob/user)
 	if(reloadtime && !is_reloading)
 		if(ammo_on_reload)
+			to_chat(user,span_notice(reload_text))
+			playsound(src, reload_start_sound, 50, TRUE)
 			INVOKE_ASYNC(src, PROC_REF(rounds_reload), user)
 		else
 			INVOKE_ASYNC(src, PROC_REF(reload_ego), user)
@@ -304,14 +306,12 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber()
 	if(mobile_reload)
 		flags = IGNORE_USER_LOC_CHANGE
 		user.add_movespeed_modifier(/datum/movespeed_modifier/reloading)
-	reload_timer = do_after(user, reloadtime, src, flags)
-	if(reload_timer) //gotta reload
+	if(do_after(user, reloadtime, src, flags, extra_checks=CALLBACK(src, PROC_REF(reload_check)))) //gotta reload
 		playsound(src, reload_success_sound, 50, TRUE)
 		shotsleft = initial(shotsleft)
 		OnReload(user)
 	if(user.has_movespeed_modifier(/datum/movespeed_modifier/reloading))
 		user.remove_movespeed_modifier(/datum/movespeed_modifier/reloading)
-	reload_timer = null
 	is_reloading = FALSE
 
 /obj/item/ego_weapon/ranged/proc/rounds_reload(mob/user)
@@ -326,8 +326,7 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber()
 	if(mobile_reload)
 		flags = IGNORE_USER_LOC_CHANGE
 		user.add_movespeed_modifier(/datum/movespeed_modifier/reloading)
-	reload_timer = do_after(user, reloadtime, src, flags)
-	if(reload_timer) //gotta reload
+	if(do_after(user, reloadtime, src, flags, extra_checks=CALLBACK(src, PROC_REF(reload_check)))) //gotta reload
 		playsound(src, reload_success_sound, 50, TRUE)
 		shotsleft = min(shotsleft + ammo_on_reload, initial(shotsleft))
 		OnReload(user)
@@ -335,7 +334,6 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber()
 		return
 	if(user.has_movespeed_modifier(/datum/movespeed_modifier/reloading))
 		user.remove_movespeed_modifier(/datum/movespeed_modifier/reloading)
-	reload_timer = null
 	is_reloading = FALSE
 
 //Used for some weapons to do things
@@ -455,18 +453,24 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber()
 		return
 
 	var/obj/item/bodypart/other_hand = user.has_hand_for_held_index(user.get_inactive_hand_index()) //returns non-disabled inactive hands
+
 	if(weapon_weight == WEAPON_HEAVY && (user.get_inactive_held_item() || !other_hand))
 		to_chat(user, span_warning("You need two hands to fire [src]!"))
 		return
+	//Charge up Stuff
 	if(chargetime)
-		is_charging = TRUE
-		playsound(user, charge_sound, charge_sound_volume, vary_fire_sound)
-		if(!do_after(user, chargetime, src))
+		if(!charged)
+			is_charging = TRUE
+			playsound(user, charge_sound, charge_sound_volume, vary_fire_sound)
+			if(do_after(user, chargetime, src, IGNORE_USER_LOC_CHANGE))
+				to_chat(user, span_nicegreen("You primed [src]."))
+				is_charging = FALSE
+				charged = TRUE
+				return
 			is_charging = FALSE
-			to_chat(user, span_warning("You need to wait before firing [src]!"))
+			to_chat(user, span_warning("You need to wait before priming [src]!"))
 			return
-		else
-			is_charging = FALSE
+		charged = FALSE
 	//DUAL (or more!) WIELDING
 	var/bonus_spread = 0
 	var/loop_counter = 0
@@ -596,7 +600,7 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber()
 	if(is_charging)
 		return FALSE
 	if(is_reloading)
-		qdel(reload_timer)
+		is_reloading = FALSE
 	return ..()
 
 /obj/item/ego_weapon/ranged/proc/handle_suicide(mob/living/carbon/human/user, mob/living/carbon/human/target, params, bypass_timer)
@@ -737,6 +741,9 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber()
 		else if(knockback)
 			msg += span_notice("This weapon has [knockback >= 10 ? "neck-snapping": ""] enemy knockback.")
 	return msg
+
+/obj/item/ego_weapon/ranged/proc/reload_check()
+	return is_reloading
 
 /datum/movespeed_modifier/reloading
 	multiplicative_slowdown = 1
