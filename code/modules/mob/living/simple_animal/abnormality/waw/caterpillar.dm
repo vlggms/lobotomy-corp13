@@ -10,15 +10,15 @@
 	base_pixel_x = -16
 	pixel_y = -16
 	base_pixel_y = -16
-	maxHealth = 900
-	health = 900
+	maxHealth = 1380
+	health = 1380
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
 	attack_sound = 'sound/abnormalities/big_wolf/Wolf_Scratch.ogg'
 	stat_attack = HARD_CRIT
 	melee_damage_type = PALE_DAMAGE
-	melee_damage_lower = 15
-	melee_damage_upper = 12
+	melee_damage_lower = 14
+	melee_damage_upper = 16
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.1, WHITE_DAMAGE = 0.1, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0)
 	speak_emote = list("flutters")
 
@@ -74,7 +74,7 @@
 	//Stuff Relating to it expanding its smoke cloud
 	var/smoke_expand_range = 8
 	var/smoke_expand_amount = 2
-	var/break_threshold = 100
+	var/break_threshold = 80
 	var/shell_broken = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/caterpillar/PostSpawn()
@@ -293,8 +293,9 @@
 	if(prob(damage_chance))
 		addtimer(CALLBACK(C, TYPE_PROC_REF(/mob/living, remove_smoke_delay)), 10)
 		C.deal_damage(damage_done, PALE_DAMAGE)
-		to_chat(C, span_danger("IT BURNS!"))
-		C.emote("scream")
+		if(prob(40))
+			to_chat(C, span_danger("IT BURNS!"))
+			C.emote("scream")
 	else
 		addtimer(CALLBACK(C, TYPE_PROC_REF(/mob/living, remove_smoke_delay)), 5)
 	return TRUE

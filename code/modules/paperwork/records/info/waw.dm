@@ -568,7 +568,7 @@
 		"When an employee with level 5 Justice finished repression work on F-02-190, the Eclosion Counter was set back to 0.",
 		"The higher F-02-190's Eclosion Counter was, the more energy and PE boxes it could generate, so did the danger to the employee.",
 		"When the Eclosion Counter became too high, works other than repression on F-02-190 would cause it breach.",
-		"Upon breaching, F-02-190 realeased smoke throughout the facility. This smoke dealt PALE damage to anyone breathing it in."
+		"Upon breaching, F-02-190 released smoke throughout the facility. This smoke dealt PALE damage to anyone breathing it in."
 	)
 	abno_breach_damage_type = "Pale"
 	abno_breach_damage_count = "Very High"
