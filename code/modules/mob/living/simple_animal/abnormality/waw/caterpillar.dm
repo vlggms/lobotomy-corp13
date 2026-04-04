@@ -170,7 +170,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/caterpillar/proc/SpreadSmoke()
 	//We don't want it to spread smoke twice in the same tick.
-	if(smoke_tick == world.time)
+	if(smoke_tick >= world.time)
 		return
 	smoke_tick = world.time
 	var/T = get_turf(src)
