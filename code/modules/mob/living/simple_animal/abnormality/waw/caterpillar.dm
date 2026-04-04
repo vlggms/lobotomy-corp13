@@ -10,8 +10,8 @@
 	base_pixel_x = -16
 	pixel_y = -16
 	base_pixel_y = -16
-	maxHealth = 1380
-	health = 1380
+	maxHealth = 1280
+	health = 1280
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
 	attack_sound = 'sound/abnormalities/big_wolf/Wolf_Scratch.ogg'
@@ -67,11 +67,9 @@
 	var/work_success_damage_upper = 4
 	var/work_success_damage_lower = 2
 	var/list/smoke = list()
-	//Stuff relating to refreshing smoke's duration
-	var/smoke_check
-	var/smoke_check_time = 5 SECONDS
 	var/smoke_check_range = 20
 	//Stuff Relating to it expanding its smoke cloud
+	var/smoke_tick
 	var/smoke_expand_range = 8
 	var/smoke_expand_amount = 2
 	var/break_threshold = 80
@@ -168,6 +166,13 @@
 	. = ..()
 	if(IsContained())
 		return
+	SpreadSmoke()
+
+/mob/living/simple_animal/hostile/abnormality/caterpillar/proc/SpreadSmoke()
+	//We don't want it to spread smoke twice in the same tick.
+	if(smoke_tick == world.time)
+		return
+	smoke_tick = world.time
 	var/T = get_turf(src)
 	if(!(locate(/obj/effect/particle_effect/smoke/pale) in T))
 		var/datum/effect_system/smoke_spread/pale/S = new
@@ -205,10 +210,9 @@
 	. = ..()
 	var/list/smoke_list = smoke
 	if(!IsContained())
+		SpreadSmoke()
 		smoke_list = view(loc, smoke_check_range)
 	Refresh_Smoke(smoke_list)
-	if(smoke_check <= world.time)
-		smoke_check = world.time + smoke_check_time
 
 /mob/living/simple_animal/hostile/abnormality/caterpillar/proc/Refresh_Smoke(list/smoke_list)
 	for(var/obj/effect/particle_effect/smoke/pale/P in smoke_list)
@@ -269,9 +273,9 @@
 	opaque = 0
 	lifetime = 8
 	var/mob/living/simple_animal/hostile/abnormality/caterpillar/Hook = null
-	var/damage_done = 12
+	var/damage_done = 16
 	var/weak_mode = FALSE
-	var/damage_chance = 80
+	var/damage_chance = 100
 
 /obj/effect/particle_effect/smoke/pale/Initialize(loc, is_weak)
 	if(is_weak)
