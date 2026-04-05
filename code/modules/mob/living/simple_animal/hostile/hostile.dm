@@ -364,6 +364,8 @@ GLOBAL_LIST_EMPTY(marked_players)
 
 /mob/living/simple_animal/hostile/deal_damage(damage_amount, damage_type, source = null, flags = null, attack_type = null, blocked = null, def_zone = null, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE)
 	. = ..() // Returns the final damage, post reductions
+	if(!.)
+		HealingEffect("no_dam")
 	RegisterAttackAggro(., damage_type, flags & DAMAGE_UNTRACKABLE ? null : source)
 
 /mob/living/simple_animal/hostile/death(gibbed)

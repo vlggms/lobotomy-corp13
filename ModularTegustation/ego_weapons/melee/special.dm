@@ -358,6 +358,7 @@
 	INVOKE_ASYNC(src, PROC_REF(ChaosShield), source, attacker, roll)
 	if(roll == 13 || roll == 14)//Done here to nullify the damage taken
 		to_chat(source,span_nicegreen("Your [src] fully nullified the attack!"))
+		source.HealingEffect("no_dam")
 		return COMPONENT_MOB_DENY_DAMAGE
 
 
@@ -402,7 +403,7 @@
 					continue
 				if(L.stat == DEAD)
 					continue
-				L.deal_damage(30, WHITE_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL))
+				L.deal_damage(30, WHITE_DAMAGE, user, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL))
 		if(21)
 			user.visible_message(span_danger("[user]'s [src] explodes!"), \
 						span_userdanger("Your [src] explodes!"), ignored_mobs = user)
