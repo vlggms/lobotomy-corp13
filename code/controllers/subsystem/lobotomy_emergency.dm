@@ -290,7 +290,7 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 			return TRUMPET_4
 
 /proc/RefreshTrumpetLevelEffects()
-	for(var/mob/living/carbon/human/H in GLOB.player_list)
+	for(var/mob/living/carbon/human/H in GLOB.human_list)
 		ApplyTrumpetLevelEffect(H)
 
 /proc/ApplyTrumpetLevelEffect(mob/living/carbon/human/H)
