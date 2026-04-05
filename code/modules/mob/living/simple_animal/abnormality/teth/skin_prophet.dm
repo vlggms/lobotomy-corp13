@@ -239,7 +239,7 @@
 		playsound(src, 'sound/abnormalities/skinprophet/Skin_Hit.ogg', 75, 0, 3)
 	for(var/turf/T in view(2, src))
 		new /obj/effect/temp_visual/smash_effect(T)
-		HurtInTurf(T, list(), melee_damage_upper, RED_DAMAGE, check_faction = FALSE, hurt_mechs = TRUE, hurt_structure = TRUE)
+		HurtInTurf(T, list(), melee_damage_upper, RED_DAMAGE, check_faction = FALSE, hurt_mechs = TRUE, hurt_structure = TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_COUNTER))
 
 /mob/living/simple_animal/hostile/abnormality/skin_prophet/proc/WriteAttack(atom/target)
 	playsound(src, 'sound/abnormalities/skinprophet/Skin_Write.ogg', 75, 0, 3)
@@ -247,7 +247,7 @@
 	for (var/turf/T in range(target_turf, 1))
 		new /obj/effect/temp_visual/cult/sparks(T)
 		spawn(15)
-			HurtInTurf(T, list(), melee_damage_lower, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE)
+			HurtInTurf(T, list(), melee_damage_lower, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE, attack_type = (ATTACK_TYPE_MELEE))
 			new /obj/effect/temp_visual/smash_effect(T)
 	SLEEP_CHECK_DEATH(1.5 SECONDS)
 	playsound(target_turf, 'sound/abnormalities/skinprophet/Skin_Hit.ogg', 75, 0, 3)
