@@ -198,9 +198,9 @@
 		return
 	. = ..()
 
-/mob/living/simple_animal/hostile/abnormality/skin_prophet/PreDamageReaction(damage_amount, damage_type, source, attack_type)
+/mob/living/simple_animal/hostile/abnormality/skin_prophet/PostDamageReaction(damage_amount, damage_type, source, attack_type)
 	. = ..()
-	if(!isliving(source) || !length(breach_candles)) // Only execute the rest of the code if we were provided with a source for it and we have candles up
+	if(. <= 0 || !isliving(source) || !length(breach_candles)) // Only execute the rest of the code if we were provided with a source for it and we have candles up
 		return
 	if((attack_type & ATTACK_TYPE_MELEE)) //Do its melee counter
 		Counter(source)
