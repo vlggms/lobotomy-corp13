@@ -261,7 +261,7 @@
 	playsound(get_turf(src), 'sound/abnormalities/fairy_longlegs/attack.ogg', 75, 0, 5)
 	for(var/turf/T in view(thrash_range,src))
 		new /obj/effect/temp_visual/smash_effect(T)
-		HurtInTurf(T, list(), thrash_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, src, attack_type = (ATTACK_TYPE_MELEE))
+		HurtInTurf(T, list(), thrash_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, attack_type = (ATTACK_TYPE_MELEE))
 
 /mob/living/simple_animal/hostile/ordeal/violet_spawn/arm/proc/DashChecker(atom/target)
 	var/dist = get_dist(target, src)
