@@ -324,6 +324,7 @@
 		ReflectDamage(source, damage_type, damage_amount)
 
 /mob/living/simple_animal/hostile/ordeal/white_fixer/PostDamageReaction(damage_amount, damage_type, source, attack_type)
+	. = ..()
 	if(. > 0)
 		damage_taken += .
 	if(damage_taken >= 480 && !damage_reflection)
