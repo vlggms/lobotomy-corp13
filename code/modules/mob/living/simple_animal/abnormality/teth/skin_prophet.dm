@@ -196,7 +196,7 @@
 /mob/living/simple_animal/hostile/abnormality/skin_prophet/bullet_act(obj/projectile/Proj, def_zone, piercing_hit = FALSE)
 	if(istype(Proj, /obj/projectile/skin_fire))
 		return
-	..()
+	. = ..()
 
 /mob/living/simple_animal/hostile/abnormality/skin_prophet/PreDamageReaction(damage_amount, damage_type, source, attack_type)
 	. = ..()
@@ -206,7 +206,6 @@
 		Counter(source)
 		return
 	FireProjectile(source)
-	return
 
 /mob/living/simple_animal/hostile/abnormality/skin_prophet/proc/FireProjectile(atom/target)
 	var/obj/projectile/skin_fire/S = new /obj/projectile/skin_fire(loc)
