@@ -69,9 +69,9 @@
 /mob/living/simple_animal/hostile/ordeal/violet_dusk/Move()
 	return FALSE
 
-/mob/living/simple_animal/hostile/ordeal/violet_dusk/apply_damage(damage, damagetype, def_zone, blocked, forced, spread_damage, wound_bonus, bare_wound_bonus, sharpness, white_healable)
+/mob/living/simple_animal/hostile/ordeal/violet_dusk/PostDamageReaction(damage_amount, damage_type, source, attack_type)
 	. = ..()
-	if(QDELETED(src) || stat == DEAD)
+	if(. <= 0)
 		return
 	if(retaliation_cooldown <= world.time + retaliation_cooldown_short)
 		retaliation_cooldown = retaliation_cooldown_short + world.time
@@ -92,7 +92,7 @@
 	icon_state = "violet_dusk"
 	playsound(get_turf(src), 'sound/effects/ordeals/violet/midnight_white_attack.ogg', 50, FALSE, 32)
 	for(var/turf/T in range(4, src))
-		HurtInTurf(T, list(), 30, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
+		HurtInTurf(T, list(), 30, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL))
 		new /obj/effect/temp_visual/revenant(T)
 	SSlobotomy_corp.InitiateMeltdown(round(SSlobotomy_corp.qliphoth_meltdown_amount/3)+1, TRUE)
 	if(teleport_arms)
@@ -261,7 +261,7 @@
 	playsound(get_turf(src), 'sound/abnormalities/fairy_longlegs/attack.ogg', 75, 0, 5)
 	for(var/turf/T in view(thrash_range,src))
 		new /obj/effect/temp_visual/smash_effect(T)
-		HurtInTurf(T, list(), thrash_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
+		HurtInTurf(T, list(), thrash_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, src, attack_type = (ATTACK_TYPE_MELEE))
 
 /mob/living/simple_animal/hostile/ordeal/violet_spawn/arm/proc/DashChecker(atom/target)
 	var/dist = get_dist(target, src)
@@ -417,7 +417,7 @@
 			if(H.is_working)//Is this nonsensical? Yes but it dealing damage was a bit bullshit
 				to_chat(H, span_notice("Somehow, you managed to narrowly avoid [src]'s slam."))
 				continue
-		L.deal_damage(slam_damage, BLACK_DAMAGE)
+		L.deal_damage(slam_damage, BLACK_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 		if(L.health < 0)
 			L.gib()
 	SLEEP_CHECK_DEATH(8 SECONDS)
