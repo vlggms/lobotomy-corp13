@@ -193,6 +193,21 @@
 		C.LightUp()
 		++lit_candles
 
+/mob/living/simple_animal/hostile/abnormality/skin_prophet/bullet_act(obj/projectile/Proj, def_zone, piercing_hit = FALSE)
+	if(istype(Proj, /obj/projectile/skin_fire))
+		return
+	..()
+
+/mob/living/simple_animal/hostile/abnormality/skin_prophet/PreDamageReaction(damage_amount, damage_type, source, attack_type)
+	. = ..()
+	if(!isliving(source) || !length(breach_candles)) // Only execute the rest of the code if we were provided with a source for it and we have candles up
+		return
+	if((attack_type & ATTACK_TYPE_MELEE)) //Do its melee counter
+		Counter(source)
+		return
+	FireProjectile(source)
+	return
+
 /mob/living/simple_animal/hostile/abnormality/skin_prophet/proc/FireProjectile(atom/target)
 	var/obj/projectile/skin_fire/S = new /obj/projectile/skin_fire(loc)
 	S.fired_from = src
@@ -200,22 +215,6 @@
 	playsound(src, 'sound/abnormalities/skinprophet/Skin_Candle.ogg', 100, TRUE)
 	S.preparePixelProjectile(target, src)
 	S.fire()
-
-/mob/living/simple_animal/hostile/abnormality/skin_prophet/bullet_act(obj/projectile/Proj, def_zone, piercing_hit = FALSE)
-	if(!length(breach_candles))
-		return ..()
-	if(istype(Proj, /obj/projectile/skin_fire))
-		return
-	..()
-	if(Proj.firer)
-		FireProjectile(Proj.firer)
-
-/mob/living/simple_animal/hostile/abnormality/skin_prophet/attackby(obj/item/I, mob/living/user, params)
-	if(!length(breach_candles))
-		return ..()
-	..()
-	if(user)
-		Counter(user)
 
 //***Work-related procs***
 /mob/living/simple_animal/hostile/abnormality/skin_prophet/proc/ExtinguishCandles()
