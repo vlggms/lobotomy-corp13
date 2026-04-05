@@ -23,7 +23,7 @@
 /obj/item/ammo_casing/caseless/ego_shrimprifle
 	name = "sodassniper casing"
 	desc = "A casing."
-	projectile_type = /obj/projectile/ego_bullet/ego_soda/rifle
+	projectile_type = /obj/projectile/ego_bullet/ego_soda/rifle/weak
 
 /obj/item/ammo_casing/caseless/red_minigun
 	name = "sodamini casing"

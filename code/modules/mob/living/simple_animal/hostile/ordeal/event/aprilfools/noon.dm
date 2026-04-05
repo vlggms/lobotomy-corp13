@@ -6,12 +6,12 @@
 	icon_living = "wellcheers_bad"
 	icon_dead = "wellcheers_bad_dead"
 	faction = list("shrimp")
-	health = 150
-	maxHealth = 150
+	health = 120
+	maxHealth = 120
 	melee_damage_type = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)
-	melee_damage_lower = 7
-	melee_damage_upper = 9
+	melee_damage_lower = 3
+	melee_damage_upper = 4
 	robust_searching = TRUE
 	stat_attack = HARD_CRIT
 	del_on_death = TRUE
