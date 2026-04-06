@@ -50,8 +50,12 @@
 	cost = 20
 
 // Dingle-Dangle - Dear Lutemia
+/datum/ego_datum/weapon/lutemia
+	item_path = /obj/item/ego_weapon/lutemia
+	cost = 20
+
 /datum/ego_datum/armor/lutemia
-	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/lutemia // weapon is HE
+	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/lutemia
 	cost = 20
 
 // Spider Bud - Red Eyes

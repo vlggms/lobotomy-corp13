@@ -43,7 +43,6 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/hearth,
-		/datum/ego_datum/weapon/home,
 		/datum/ego_datum/armor/hearth,
 	)
 	gift_type =  /datum/ego_gifts/hearth
