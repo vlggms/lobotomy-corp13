@@ -18,7 +18,8 @@
 	damage_coeff = list(RED_DAMAGE = 0.9, WHITE_DAMAGE = 0.9, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)
 	melee_damage_lower = 6
 	melee_damage_upper = 8
-	melee_reach = 3//Has long limbs
+	rapid_melee = 0.6//slow
+	melee_reach = 3//But has long range
 	melee_damage_type = RED_DAMAGE
 	melee_queue_distance = 3
 	retreat_distance = 0
