@@ -55,7 +55,8 @@
 		Won't you come inside?"
 	observation_choices = list(
 		"Don't go inside" = list(TRUE, "Some things are too good to be true. <br>\
-			You take the key from under the doormat, and leave."),
+			You take the key from under the doormat, and leave.<br>\
+			You also find something else from under the doormat too."),
 		"Go inside" = list(FALSE, "A key appears in your hand. <br>\
 			You move to open the door. <br>\
 			But at the last minute, you are pulled away by another agent to safety."),
@@ -77,6 +78,12 @@
 		"Long Hair 2",
 		"Silky",
 	)
+
+/mob/living/simple_animal/hostile/abnormality/my_sweet_home/ObservationResult(mob/living/carbon/human/user, success, reply)
+	. = ..()
+	if(success)
+		new /obj/item/ego_weapon/home/(get_turf(user))
+
 
 /mob/living/simple_animal/hostile/abnormality/my_sweet_home/Moved()
 	. = ..()

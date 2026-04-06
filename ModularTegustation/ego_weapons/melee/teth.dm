@@ -262,63 +262,6 @@
 /obj/item/ego_weapon/shield/hearth/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	return 0 //Prevents ranged  parry
 
-/obj/item/ego_weapon/home //From my sweet home.
-	name = "my home"
-	desc = "Because I'm a home, a happy little home."
-	special = "This weapon has a ranged attack."
-	icon_state = "home"
-	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
-	inhand_x_dimension = 64
-	inhand_y_dimension = 64
-	var/icon_on = "home_glow"
-	var/icon_off = "home"
-	force = 12
-	attack_speed = 1.2
-	damtype = BLACK_DAMAGE
-	attack_verb_continuous = list("swipes", "slashes")
-	attack_verb_simple = list("swipe", "slash")
-	hitsound = 'sound/weapons/fixer/generic/sword3.ogg'
-	attribute_requirements = list(
-							TEMPERANCE_ATTRIBUTE = 20
-							)
-	var/ranged_cooldown
-	var/ranged_cooldown_time = 1.3 SECONDS
-	var/ranged_damage = 10
-
-	//light_system = MOVABLE_LIGHT_DIRECTIONAL
-	//light_color = COLOR_ORANGE
-	//light_range = 4
-	//light_power = 5
-	//light_on = FALSE
-
-/obj/item/ego_weapon/home/proc/IconOff()
-	icon_state = icon_off
-	//light_on = FALSE
-
-/obj/item/ego_weapon/home/afterattack(atom/A, mob/living/user, proximity_flag, params)
-	if(ranged_cooldown > world.time)
-		return
-	if(!CanUseEgo(user))
-		return
-	var/turf/target_turf = get_turf(A)
-	if(!istype(target_turf))
-		return
-	if((get_dist(user, target_turf) < 2) || !(target_turf in view(5, user)))
-		return
-	..()
-	ranged_cooldown = world.time + ranged_cooldown_time
-	icon_state = icon_on
-	//light_on = TRUE
-	addtimer(CALLBACK(src, PROC_REF(IconOff)), 20)
-	playsound(target_turf, 'sound/weapons/pulse.ogg', 50, TRUE)
-	var/damage_dealt = 0
-	for(var/turf/open/T in range(target_turf, 0))
-		new /obj/effect/temp_visual/smash1(T)
-		for(var/mob/living/L in user.HurtInTurf(T, list(), ranged_damage, BLACK_DAMAGE, hurt_mechs = TRUE))
-			if((L.stat < DEAD) && !(L.status_flags & GODMODE))
-				damage_dealt += ranged_damage
-
 /obj/effect/temp_visual/smash1
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "smash1"
