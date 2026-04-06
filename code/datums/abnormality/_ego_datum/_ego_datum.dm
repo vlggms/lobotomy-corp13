@@ -30,7 +30,12 @@ GLOBAL_LIST_EMPTY(ego_datums)
 	return ..()
 
 /datum/ego_datum/proc/PrintOutInfo()
-	return
+	if(!ispath(item_path, /obj))
+		return
+	var/obj/O = new item_path(src)
+	var/dat = "[capitalize(name)]<br><br>"
+	dat += "[O.desc]<br>"
+	return dat
 
 // Because I'm lazy to type it all
 /datum/ego_datum/weapon

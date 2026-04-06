@@ -328,3 +328,57 @@
 							JUSTICE_ATTRIBUTE = 100
 	)
 	shotsleft = 200
+
+//Just a funny gold soda pistol. It was originally meant to just be a golden meme weapon, now it is the only pale gun, lol
+/obj/item/ego_weapon/ranged/pistol/executive
+	name = "executive"
+	desc = "A pistol painted in black with a gold finish. Whenever this EGO is used, a faint scent of fillet mignon wafts through the air."
+	icon_state = "executive"
+	inhand_icon_state = "executive"
+	special = "The final bullet of the clip does heavy damage. When the final bullet kills something, the weapon will produce a can of soda after reloading."
+	force = 15
+	damtype = PALE_DAMAGE
+	burst_size = 1
+	fire_delay = 5
+	shotsleft = 24
+	reloadtime = 1.2 SECONDS
+	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
+	vary_fire_sound = FALSE
+	fire_sound_volume = 70
+	projectile_path = /obj/projectile/ego_bullet/ego_executive
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 100
+	)
+	var/soda_ready = FALSE
+	var/list/sodas = list(
+		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red = 40,
+		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white = 40,
+		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_purple = 20,
+	)
+
+/obj/item/ego_weapon/ranged/pistol/executive/reload_ego(mob/user)
+	is_reloading = TRUE
+	to_chat(user,span_notice("You start loading a new magazine."))
+	playsound(src, 'sound/weapons/gun/general/slide_lock_1.ogg', 50, TRUE)
+	if(do_after(user, reloadtime, src)) //gotta reload
+		playsound(src, 'sound/weapons/gun/general/bolt_rack.ogg', 70, FALSE)
+		shotsleft = initial(shotsleft)
+		forced_melee = FALSE //no longer forced to resort to melee
+		if(soda_ready)
+			soda_ready = FALSE
+			playsound(src, 'sound/weapons/ego/executive_reload.ogg', 70, FALSE)
+			var/soda = pick(sodas)
+			new soda(get_turf(user))
+			to_chat(user, span_nicegreen("A [soda] falls out of a hidden compartment inside of [src]!"))
+	is_reloading = FALSE
+
+/obj/item/ego_weapon/ranged/pistol/executive/afterattack(atom/target, mob/user)
+	if(shotsleft == 1)
+		projectile_path = /obj/projectile/ego_bullet/ego_executive/kill_shot
+		fire_sound = 'sound/weapons/ego/executive_shot.ogg'
+	. = ..()
+	projectile_path = initial(projectile_path)
+	fire_sound = initial(fire_sound)

@@ -3,7 +3,6 @@ GLOBAL_LIST_INIT(unspawned_sales, list(
 	/obj/structure/pe_sales/w_corp,
 	/obj/structure/pe_sales/r_corp,
 	/obj/structure/pe_sales/k_corp,
-	/obj/structure/pe_sales/s_corp,
 	/obj/structure/pe_sales/n_corp,
 	/obj/structure/pe_sales/limbus,
 	/obj/structure/pe_sales/hana,

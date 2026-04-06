@@ -121,6 +121,31 @@
 
 /datum/ego_datum/weapon/executive
 	item_path = /obj/item/ego_weapon/ranged/pistol/executive
+	cost = 100
+
+/datum/ego_datum/executive_gun
+	item_category = "Gun Crate"
+	item_path = /obj/structure/lootcrate/s_corp_gun
+	cost = 40
+
+/datum/ego_datum/weapon/sodarifle
+	item_path = /obj/item/ego_weapon/ranged/sodarifle
+	cost = 35
+
+/datum/ego_datum/weapon/sodasmg
+	item_path = /obj/item/ego_weapon/ranged/sodasmg
+	cost = 50
+
+/datum/ego_datum/weapon/sodaminigun
+	item_path = /obj/item/ego_weapon/ranged/sodaminigun
+	cost = 50
+
+/datum/ego_datum/weapon/sodaassault
+	item_path = /obj/item/ego_weapon/ranged/sodaassault
+	cost = 50
+
+/datum/ego_datum/weapon/sodashotty
+	item_path = /obj/item/ego_weapon/ranged/sodashotty
 	cost = 50
 
 // Price Of Silence - Dead Silence

@@ -206,36 +206,6 @@
 							FORTITUDE_ATTRIBUTE = 80
 	)
 
-//Just a funny gold soda pistol. It was originally meant to just be a golden meme weapon, now it is the only pale gun, lol
-/obj/item/ego_weapon/ranged/pistol/executive
-	name = "executive"
-	desc = "A pistol painted in black with a gold finish. Whenever this EGO is used, a faint scent of fillet mignon wafts through the air."
-	icon_state = "executive"
-	inhand_icon_state = "executive"
-	special = "This gun scales with justice."
-	force = 6
-	damtype = PALE_DAMAGE
-	burst_size = 1
-	fire_delay = 5
-	shotsleft = 10
-	reloadtime = 0.7 SECONDS
-	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
-	vary_fire_sound = FALSE
-	fire_sound_volume = 70
-	projectile_path = /obj/projectile/ego_bullet/ego_executive
-	attribute_requirements = list(
-							JUSTICE_ATTRIBUTE = 80
-	)
-
-/obj/item/ego_weapon/ranged/pistol/executive/fire_projectile(atom/target, mob/living/user, params, distro, quiet, zone_override, spread, atom/fired_from, temporary_damage_multiplier)
-	if(!ishuman(user))
-		return ..()
-
-	var/userjust = get_attribute_level(user, JUSTICE_ATTRIBUTE)
-	var/justicemod = 1 + userjust/100
-	temporary_damage_multiplier = justicemod
-	return ..()
-
 /obj/item/ego_weapon/ranged/pistol/crimson
 	name = "crimson scar"
 	desc = "With steel in one hand and gunpowder in the other, there's nothing to fear in this place."
@@ -923,3 +893,79 @@
 		shotsleft = 1
 		projectile_path = ammo_2
 		playsound(src, 'sound/abnormalities/fluchschutze/fell_aim.ogg', 50, TRUE)
+
+/obj/item/ego_weapon/ranged/sodashotty
+	name = "soda shotgun"
+	desc = "A gun used by shrimp corp, apparently."
+	icon_state = "sodashotgun"
+	inhand_icon_state = "sodalong"
+	force = 18
+	attack_speed = 1.3
+	projectile_path = /obj/projectile/ego_bullet/soda_shotty
+	pellets = 3
+	variance = 12
+	pellets = 6
+	shotsleft = 12
+	reloadtime = 2 SECONDS
+	weapon_weight = WEAPON_HEAVY
+	fire_delay = 10
+	fire_sound = 'sound/weapons/gun/shotgun/shot.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							)
+
+/obj/item/ego_weapon/ranged/sodasmg
+	name = "soda submachinegun"
+	desc = "A gun used by shrimp corp, apparently."
+	icon_state = "sodasmg"
+	inhand_icon_state = "soda"
+	force = 14
+	projectile_path = /obj/projectile/ego_bullet/soda_smg
+	weapon_weight = WEAPON_HEAVY
+	spread = 8
+	shotsleft = 60
+	reloadtime = 1.7 SECONDS
+	fire_sound = 'sound/weapons/gun/smg/shot.ogg'
+	autofire = 0.15 SECONDS
+
+
+/obj/item/ego_weapon/ranged/sodaminigun
+	name = "soda minigun"
+	desc = "A gun used by shrimp corp, apparently."
+	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
+	icon_state = "sodaminigun"
+	inhand_icon_state = "sodaminigun"
+	force = 32
+	attack_speed = 1.8
+	projectile_path = /obj/projectile/ego_bullet/soda_mini
+	weapon_weight = WEAPON_HEAVY
+	drag_slowdown = 3
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							)
+	slowdown = 2
+	spread = 40
+	shotsleft = 800
+	reloadtime = 6 SECONDS
+	item_flags = SLOWS_WHILE_IN_HAND
+	fire_sound = 'sound/weapons/gun/smg/shot.ogg'
+	autofire = 0.04 SECONDS
+
+/obj/item/ego_weapon/ranged/sodaassault
+	name = "soda assault rifle"
+	desc = "A gun used by shrimp corp, apparently."
+	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
+	icon_state = "sodaassault"
+	inhand_icon_state = "sodaassault"
+	force = 16
+	attack_speed = 1.2
+	projectile_path = /obj/projectile/ego_bullet/soda_assault
+	weapon_weight = WEAPON_HEAVY
+	burst_size = 3
+	fire_delay = 4
+	shotsleft = 51
+	reloadtime = 1.2 SECONDS
+	fire_sound = 'sound/weapons/gun/rifle/shot.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							)

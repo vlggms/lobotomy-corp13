@@ -348,3 +348,20 @@
 		pellets = initial(pellets)
 		variance = initial(variance)
 	return ..()
+
+/obj/item/ego_weapon/ranged/sodarifle
+	name = "soda rifle"
+	desc = "A gun used by shrimp corp, apparently."
+	icon_state = "sodarifle"
+	inhand_icon_state = "sodalong"
+	force = 10
+	projectile_path = /obj/projectile/ego_bullet/soda_rifle
+	weapon_weight = WEAPON_HEAVY
+	fire_delay = 6
+	shotsleft = 10
+	reloadtime = 1.4 SECONDS
+	fire_sound = 'sound/weapons/gun/rifle/shot.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40,
+							)
+

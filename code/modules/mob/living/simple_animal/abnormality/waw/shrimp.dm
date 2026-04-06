@@ -21,11 +21,10 @@
 	work_damage_lower = 4
 	work_damage_type = WHITE_DAMAGE	//He insults you
 	chem_type = /datum/reagent/abnormality/sin/pride
-	can_spawn = FALSE // OC slop, Doesn't belong in the game.
 
 	ego_list = list(
-		/datum/ego_datum/weapon/executive,
 		/datum/ego_datum/armor/executive,
+		/datum/ego_datum/executive_gun,
 	)
 	gift_type =  /datum/ego_gifts/executive
 
@@ -50,6 +49,7 @@
 
 	var/liked
 	var/happy = TRUE
+	var/happy_works = 0
 	pet_bonus = "blurbles" //saves a few lines of code by allowing funpet() to be called by attack_hand()
 	var/hint_cooldown
 	var/hint_cooldown_time = 30 SECONDS
@@ -85,20 +85,8 @@
 		"Got a moment to chat about something important? Let's catch up over a cup of coffee and discuss some potential business moves. Your insights are always valuable to me.",
 		"I was wondering if you might be available to join me for a brief tête-à-tête over a cup of tea. Come on by when you are available.",
 	)
-
-	//A list of shit that it can create. Yes, it includes ego. How did a shrimp get ego? IDFK. I guess his company makes it.
-	//Could diversify clerks I guess.
-	var/list/dispenseitem= list(
-		/obj/item/grenade/spawnergrenade/shrimp,
-		/obj/item/grenade/spawnergrenade/shrimp/super,
-		/obj/item/ego_weapon/ranged/pistol/soda,
-		/obj/item/ego_weapon/ranged/sodasmg,
-		/obj/item/ego_weapon/ranged/sodashotty,
-		/obj/item/ego_weapon/ranged/sodarifle,
-		/obj/item/clothing/suit/armor/ego_gear/zayin/soda,
-		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red,
-		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white,
-	)
+	var/list/shrimps = list()
+	var/shrimp_cap = 30
 
 /mob/living/simple_animal/hostile/abnormality/shrimp_exec/WorkChance(mob/living/carbon/human/user, chance)
 	if(happy)
@@ -107,11 +95,12 @@
 
 /mob/living/simple_animal/hostile/abnormality/shrimp_exec/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
-	var/turf/dispense_turf = get_step(src, pick(1,2,4,5,6,8,9,10))
-	var/gift = pick(dispenseitem)
-	new gift(dispense_turf)
-	say("Here you are, my dear friend. High-quality firepower courtesy of shrimpcorp.")
-	return
+	if(happy_works >= 3)
+		happy_works = 0
+		var/turf/dispense_turf = get_step(src, pick(1,2,4,5,6,8,9,10))
+		new/obj/structure/lootcrate/s_corp(dispense_turf)
+		say("Here you are, my dear friend. High-quality items courtesy of shrimpcorp.")
+		return
 
 /mob/living/simple_animal/hostile/abnormality/shrimp_exec/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
@@ -120,6 +109,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/shrimp_exec/ZeroQliphoth(mob/living/carbon/human/user)
 	pissed()
+	happy_works = 0
 	datum_reference.qliphoth_change(1)
 	return
 
@@ -131,7 +121,9 @@
 /mob/living/simple_animal/hostile/abnormality/shrimp_exec/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(work_type == liked || !liked)
 		happy = TRUE
+		happy_works++
 	else
+		happy_works = 0
 		happy = FALSE
 	return TRUE
 
@@ -202,6 +194,7 @@
 	silk_results = list(/obj/item/stack/sheet/silk/shrimple_simple = 4)
 	threat_level = TETH_LEVEL
 	score_divider = 4
+	var/mob/living/simple_animal/hostile/abnormality/shrimp_exec/exec = null
 
 /mob/living/simple_animal/hostile/aminion/shrimp/Initialize()
 	. = ..()
@@ -241,6 +234,7 @@
 	silk_results = list(/obj/item/stack/sheet/silk/shrimple_simple = 8, /obj/item/stack/sheet/silk/shrimple_advanced = 4)
 	threat_level = HE_LEVEL
 	score_divider = 4
+	var/mob/living/simple_animal/hostile/abnormality/shrimp_exec/exec = null
 
 /mob/living/simple_animal/hostile/aminion/shrimp_soldier/Initialize()
 	. = ..()
@@ -270,3 +264,59 @@
 
 /obj/item/grenade/spawnergrenade/shrimp/hostile
 	spawner_type = list(/mob/living/simple_animal/hostile/aminion/shrimp, /mob/living/simple_animal/hostile/aminion/shrimp_soldier) //Gacha Only, just put it here with the other shrimp grenades.
+
+//Crates
+//S Corporation
+/obj/structure/lootcrate/s_corp
+	name = "S Corp Loot Crate"
+	desc = "A crate containing some knickknacks from the mysterious S-Corp. Open with a Crowbar."
+	icon_state = "crate_shrimp"
+	veryrarechance = 10
+	cosmeticchance = 10
+	lootlist =	list(
+		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red,
+		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white,
+		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_purple,
+		/obj/item/grenade/spawnergrenade/shrimp,
+		/obj/item/clothing/suit/armor/ego_gear/zayin/soda,
+		/obj/item/ego_weapon/ranged/pistol/soda
+	)
+
+	rareloot = list(
+		/obj/item/grenade/spawnergrenade/shrimp/super,
+		/obj/item/trait_injector/shrimp_injector,
+		/obj/item/fishing_rod/wellcheers,
+	)
+
+	veryrareloot = list(
+		/obj/item/grenade/spawnergrenade/shrimp/super,
+		/obj/item/grenade/spawnergrenade/shrimp/hostile,
+		/obj/item/reagent_containers/pill/shrimptoxin,
+	)
+
+	cosmeticloot = list(
+		/mob/living/simple_animal/hostile/aminion/shrimp,
+		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red,
+		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white,
+	)
+
+/obj/structure/lootcrate/s_corp_gun
+	name = "S Corp Gun Crate"
+	desc = "A crate containing a gun from the mysterious S-Corp. Open with a Crowbar."
+	icon_state = "crate_weapon_shrimp"
+	rarechance = 80
+	veryrarechance = 15
+	lootlist =	list(
+		/obj/item/ego_weapon/ranged/sodarifle,
+	)
+
+	rareloot =	list(
+		/obj/item/ego_weapon/ranged/sodaminigun,
+		/obj/item/ego_weapon/ranged/sodasmg,
+		/obj/item/ego_weapon/ranged/sodashotty,
+		/obj/item/ego_weapon/ranged/sodaassault,
+	)
+
+	veryrareloot = list(
+		/obj/item/ego_weapon/ranged/pistol/executive
+	)
