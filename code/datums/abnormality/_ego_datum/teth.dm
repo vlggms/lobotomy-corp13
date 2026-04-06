@@ -386,3 +386,7 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/white_gossypium
 	cost = 20
 
+//Red Queen - Blind Fury
+/datum/ego_datum/armor/fury
+	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/fury
+	cost = 20

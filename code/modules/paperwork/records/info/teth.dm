@@ -454,3 +454,18 @@
 		"When the work result was Bad, the Qliphoth Counter lowered by 1."
 	)
 
+// Red Queen
+/obj/item/paper/fluff/info/teth/red_queen
+	abno_type = /mob/living/simple_animal/hostile/abnormality/red_queen
+	abno_code = "F-01-112"
+	abno_info = list(
+		"Due to F-01-112’s fickle nature, it prefers a different work type every shift but the desired work does not change during the shift.",
+		"F-01-112 does not seem to provide feedback on what work it likes and will only communicate its dislikes by attempting to behead those who aggravate it.",
+		"Instinct work is never disliked by F-01-112.",
+		"When the work result was Bad, F-01-112 would attempt to behead the employee, dealing massive RED damage.")
+	abno_work_rates = list(
+	ABNORMALITY_WORK_INSTINCT = "Common",
+	ABNORMALITY_WORK_INSIGHT = "Unknown",
+	ABNORMALITY_WORK_ATTACHMENT = "Unknown",
+	ABNORMALITY_WORK_REPRESSION = "Unknown" ,
+	)

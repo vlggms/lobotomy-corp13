@@ -286,3 +286,9 @@
 	icon_state = "white_gossypium"
 	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = -40, PALE_DAMAGE = 0, FIRE = 0) //20. Made out of flammable cotton so fire resist sucks ass.
 
+/obj/item/clothing/suit/armor/ego_gear/teth/fury
+	name = "blind fury"
+	desc = "And all she saw was red."
+	icon_state = "fury"
+	//all in on red, minor negatives on all else
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = -20, BLACK_DAMAGE = -20, PALE_DAMAGE = -20) // -10

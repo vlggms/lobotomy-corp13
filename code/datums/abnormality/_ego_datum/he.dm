@@ -21,10 +21,6 @@
 	item_path = /obj/item/ego_weapon/fury
 	cost = 40
 
-/datum/ego_datum/armor/fury
-	item_path = /obj/item/clothing/suit/armor/ego_gear/he/fury
-	cost = 40
-
 // Happy Teddy Bear - Bear Paw
 /datum/ego_datum/weapon/paw
 	item_path = /obj/item/ego_weapon/paw
