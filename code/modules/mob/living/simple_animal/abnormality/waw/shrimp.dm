@@ -195,12 +195,35 @@
 	threat_level = TETH_LEVEL
 	score_divider = 4
 	var/mob/living/simple_animal/hostile/abnormality/shrimp_exec/exec = null
+	var/can_act = TRUE
+	var/can_be_attacked = TRUE
 
 /mob/living/simple_animal/hostile/aminion/shrimp/Initialize()
 	. = ..()
 	if(SSmaptype.maptype in SSmaptype.citymaps)
 		can_affect_emergency = FALSE
 		del_on_death = FALSE
+
+/mob/living/simple_animal/hostile/aminion/shrimp/Destroy()
+	if(exec)
+		exec.shrimp -= src
+		exec = null
+	. = ..()
+
+/mob/living/simple_animal/hostile/aminion/shrimp/OpenFire()
+	if(!can_act)
+		return
+	return ..()
+
+/mob/living/simple_animal/hostile/aminion/shrimp/AttackingTarget(atom/attacked_target)
+	if(!can_act)
+		return
+	return ..()
+
+/mob/living/simple_animal/hostile/aminion/shrimp/Move()
+	if(!can_act)
+		return FALSE
+	return ..()
 
 //You can put these guys about to guard an area.
 /mob/living/simple_animal/hostile/aminion/shrimp_soldier
@@ -235,12 +258,35 @@
 	threat_level = HE_LEVEL
 	score_divider = 4
 	var/mob/living/simple_animal/hostile/abnormality/shrimp_exec/exec = null
+	var/can_act = TRUE
+	var/can_be_attacked = TRUE
 
 /mob/living/simple_animal/hostile/aminion/shrimp_soldier/Initialize()
 	. = ..()
 	if(SSmaptype.maptype in SSmaptype.citymaps)
 		can_affect_emergency = FALSE
 		del_on_death = FALSE
+
+/mob/living/simple_animal/hostile/aminion/shrimp_soldier/Destroy()
+	if(exec)
+		exec.shrimp -= src
+		exec = null
+	. = ..()
+
+/mob/living/simple_animal/hostile/aminion/shrimp_soldier/OpenFire()
+	if(!can_act)
+		return
+	return ..()
+
+/mob/living/simple_animal/hostile/aminion/shrimp_soldier/AttackingTarget(atom/attacked_target)
+	if(!can_act)
+		return
+	return ..()
+
+/mob/living/simple_animal/hostile/aminion/shrimp_soldier/Move()
+	if(!can_act)
+		return FALSE
+	return ..()
 
 /mob/living/simple_animal/hostile/aminion/shrimp_soldier/friendly
 	name = "wellcheers corp assault officer"
