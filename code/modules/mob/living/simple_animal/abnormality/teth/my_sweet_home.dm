@@ -81,8 +81,11 @@
 
 /mob/living/simple_animal/hostile/abnormality/my_sweet_home/ObservationResult(mob/living/carbon/human/user, success, reply)
 	. = ..()
+	var/static/gave_weapon = FALSE
 	if(success)
-		new /obj/item/ego_weapon/home/(get_turf(user))
+		if(!gave_weapon)
+			gave_weapon = TRUE
+			new /obj/item/ego_weapon/home/(get_turf(user))
 
 
 /mob/living/simple_animal/hostile/abnormality/my_sweet_home/Moved()
