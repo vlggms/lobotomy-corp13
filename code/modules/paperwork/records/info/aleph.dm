@@ -73,11 +73,17 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/staining_rose
 	abno_code = "F-04-116"
 	abno_info = list(
-		"The first employee who works on Staining Rose will resonate with it and become the Chosen.",
-		"If anyone other than the Chosen worked on Staining Rose, they became more vulnerable to damage until Staining Rose wilted.",
-		"When an employee with Justice 4 or lower finished their work, Staining Rose seemed to reset its satisfaction. The employee became more vulnerable to damage until Staining Rose wilted.",
-		"Every 15 minutes, the Qliphoth Counter lowered unless Staining Rose was worked on within the time period.",
-		"When the Qliphoth Counter reached 0, Staining Rose shed its petals, and everyone in the facility became more vulnerable to damage.")
+		"F-04-116 will choose an employee that meets the \"Condition\" as its \"Chosen\". A level 4 employee or an employee with level 5 in any attribute fulfills this condition.",
+		"If anyone other than the \"Chosen\" worked on F-04-116, or the Qliphoth Counter reached 0 with no living \"Chosen\", the abnormality afflicted employees outside of  its containment with a disease that makes them cough up red rose petals.",
+		"The disease will spread from person to person, floor to floor, without end. Employees may be quarantined near a regenerator for safety.",
+		"F-04-116 was \"Stained\" red as work progressed with the \"Chosen\", progressively turning redder until the abnormality was ready to \"Bloom\". As the abnormality stained red, the employee progressively took more unavoidable PALE damage during work.",
+		"When F-04-116 was fully \"Stained\", or the Qliphoth Counter reached 0 with a \"Chosen\" employee alive, a \"Bloom\" event occured.",
+		"During a \"Bloom\" event, the chosen employee took massive, unavoidable PALE damage. If F-04-116 was not yet fully \"Stained\", the damage was fatal and afflicted the employee with a disease.",
+		"When a \"Bloom\" event was the result of a fully \"Stained\" Rose, the work was automatically completed with great success.",
+		"If the \"Chosen\" employee worked on an abnormality other than F-04-116 4 consecutive times, the Qliphoth Counter lowered.",
+		"If the \"Chosen\" employee perished for any reason, F-04-116 turned the entire facility into a rose garden.")
+	abno_breach_damage_type = "Pale"
+	abno_breach_damage_count = "Extreme"
 
 // Melting Love
 /obj/item/paper/fluff/info/aleph/melty

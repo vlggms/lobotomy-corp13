@@ -459,10 +459,12 @@ The variable's key needs to be non-numerical.*/
 
 // Additional effect on each individual work tick success
 /mob/living/simple_animal/hostile/abnormality/proc/WorktickSuccess(mob/living/carbon/human/user)
+	playsound(datum_reference.console, 'sound/machines/synth_yes.ogg', 25, FALSE, -4)
 	return
 
 // Additional effect on each individual work tick failure
 /mob/living/simple_animal/hostile/abnormality/proc/WorktickFailure(mob/living/carbon/human/user)
+	playsound(datum_reference.console, 'sound/machines/synth_no.ogg', 25, FALSE, -4)
 	user.deal_damage(rand(work_damage_lower,work_damage_upper), work_damage_type)
 	WorkDamageEffect()
 	return
