@@ -1001,3 +1001,74 @@
 	name = "freshman dagger"
 	icon_state = "freshman"
 	damtype = PALE_DAMAGE
+
+/obj/item/ego_weapon/home //From my sweet home.
+	name = "my home"
+	desc = "Because I'm a home, a happy little home."
+	special = "This weapon has a ranged attack."
+	icon_state = "home"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
+	force = 18
+	attack_speed = 1.2
+	damtype = BLACK_DAMAGE
+	attack_verb_continuous = list("swipes", "slashes")
+	attack_verb_simple = list("swipe", "slash")
+	hitsound = 'sound/weapons/fixer/generic/sword3.ogg'
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 40
+							)
+
+	charge = TRUE
+	charge_effect = "Fires a laser"
+	charge_cost = 4
+	charge_cap = 20
+	var/icon_timer
+	var/gun_cooldown
+	var/gun_cooldown_time = 0.8 SECONDS
+
+/obj/item/ego_weapon/home/Initialize()
+	. = ..()
+	AddElement(/datum/element/update_icon_updates_onmob)
+
+/obj/item/ego_weapon/home/proc/IconOff()
+	icon_state = "home"
+	update_icon_state()
+
+/obj/item/ego_weapon/home/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
+	..()
+
+	if(!currently_charging)
+		return
+
+	if(!proximity_flag && gun_cooldown <= world.time)
+		currently_charging = FALSE
+		var/turf/proj_turf = user.loc
+		if(!isturf(proj_turf))
+			return
+		icon_state = "home_glow"
+		update_icon_state()
+		if(icon_timer)
+			deltimer(icon_timer)
+		icon_timer = addtimer(CALLBACK(src, PROC_REF(IconOff)), 20)
+		var/obj/projectile/ego_bullet/home/G = new /obj/projectile/ego_bullet/home(proj_turf)
+		G.fired_from = src
+		playsound(user, 'sound/abnormalities/steam/exhale.ogg', 100, TRUE)
+		G.firer = user
+		G.preparePixelProjectile(target, user, clickparams)
+		G.fire()
+		gun_cooldown = world.time + gun_cooldown_time
+
+/obj/projectile/ego_bullet/home
+	name = "laser"
+	damage = 30
+	damage_type = BLACK_DAMAGE
+	hitscan = TRUE
+	muzzle_type = /obj/effect/projectile/muzzle/laser/snapshot
+	tracer_type = /obj/effect/projectile/tracer/laser/snapshot
+	impact_type = /obj/effect/projectile/impact/laser/snapshot
+	color = "#FF9C39"
+	wound_bonus = -100
+	bare_wound_bonus = -100

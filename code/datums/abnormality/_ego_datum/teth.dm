@@ -51,7 +51,7 @@
 
 // Dingle-Dangle - Dear Lutemia
 /datum/ego_datum/weapon/lutemia
-	item_path = /obj/item/ego_weapon/shield/lutemia
+	item_path = /obj/item/ego_weapon/lutemia
 	cost = 20
 
 /datum/ego_datum/armor/lutemia
@@ -186,13 +186,13 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/revelation
 	cost = 20
 
-// My Sweet Home - Hearth
+// My Sweet Home - My Home
 /datum/ego_datum/armor/hearth
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/hearth
 	cost = 20
 
 /datum/ego_datum/weapon/hearth
-	item_path = /obj/item/ego_weapon/hearth
+	item_path = /obj/item/ego_weapon/shield/hearth
 	cost = 20
 
 // Meat Lantern - Lantern

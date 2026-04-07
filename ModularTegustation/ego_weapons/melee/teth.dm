@@ -35,27 +35,58 @@
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
 
-/obj/item/ego_weapon/shield/lutemia
+/obj/item/ego_weapon/lutemia
 	name = "dear lutemia"
 	desc = "Don't you want your cares to go away?"
 	icon_state = "lutemia"
-	force = 10
-	attack_speed = 1
+	force = 4
+	reach = 3		//Has 3 Square Reach.
+	special = "This weapon has a combo system. To turn off this combo system, use in hand."
+	modified_attack_speed = 0.6
+	var/combo = 0
+	var/combo_time
+	var/combo_wait = 8
+	var/combo_on = TRUE
 	damtype = WHITE_DAMAGE
-	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
-	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
-	hitsound = 'sound/weapons/ego/spear1.ogg'
-	reductions = list(10, 30, 20, 0) // 60
-	projectile_block_duration = 0 SECONDS //No ranged parry
-	block_duration = 1 SECONDS
-	block_cooldown = 3 SECONDS
-	block_sound = 'sound/weapons/parry.ogg'
-	block_message = "You attempt to parry the attack!"
-	hit_message = "parries the attack!"
-	block_cooldown_message = "You rearm your blade."
+	attack_verb_continuous = list("whips", "lashes", "tears")
+	attack_verb_simple = list("whip", "lash", "tear")
+	hitsound = 'sound/weapons/whip.ogg'
 
-/obj/item/ego_weapon/shield/lutemia/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	return 0 //Prevents ranged  parry
+/obj/item/ego_weapon/lutemia/attack_self(mob/user)
+	..()
+	if(combo_on)
+		to_chat(user,span_warning("You change your stance, and will no longer perform a finisher."))
+		combo_on = FALSE
+		return
+	if(!combo_on)
+		to_chat(user,span_warning("You change your stance, and will now perform a finisher."))
+		combo_on =TRUE
+		return
+
+/obj/item/ego_weapon/lutemia/attack(mob/living/target, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	if(world.time > combo_time)
+		combo = 1
+	if(!combo_on)
+		combo = 0
+	combo_time = world.time + combo_wait
+	switch(combo)
+		if(0)
+			user.changeNext_move(CLICK_CD_MELEE * 0.6)
+		if(1)
+			force *= 0.6
+			user.changeNext_move(CLICK_CD_MELEE * 0.3)
+			combo_time = world.time + combo_wait - 3
+		if(2)
+			user.changeNext_move(CLICK_CD_MELEE * 0.6)
+		if(3)
+			combo = 0
+			force *= 4
+			user.changeNext_move(CLICK_CD_MELEE * 2)
+	. = ..()
+	combo += 1
+	force = initial(force)
 
 /obj/item/ego_weapon/eyes
 	name = "red eyes"
@@ -209,62 +240,27 @@
 	attack_verb_simple = list("slice", "slash", "stab")
 	hitsound = 'sound/weapons/fixer/generic/knife3.ogg'
 
-/obj/item/ego_weapon/hearth //From my sweet home.
+/obj/item/ego_weapon/shield/hearth
 	name = "hearth"
 	desc = "Home sweet home. Warmth and safety aplenty."
-	special = "This weapon has a ranged attack."
 	icon_state = "hearth"
-	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
-	inhand_x_dimension = 64
-	inhand_y_dimension = 64
-	var/icon_on = "hearth_glow"
-	var/icon_off = "hearth"
-	force = 12
-	attack_speed = 1.2
-	damtype = BLACK_DAMAGE
-	attack_verb_continuous = list("swipes", "slashes")
-	attack_verb_simple = list("swipe", "slash")
-	hitsound = 'sound/weapons/fixer/generic/sword3.ogg'
-	attribute_requirements = list(
-							TEMPERANCE_ATTRIBUTE = 20
-							)
-	var/ranged_cooldown
-	var/ranged_cooldown_time = 1.3 SECONDS
-	var/ranged_damage = 10
+	force = 10
+	attack_speed = 1
+	damtype = WHITE_DAMAGE
+	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
+	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
+	hitsound = 'sound/weapons/ego/spear1.ogg'
+	reductions = list(10, 30, 20, 0) // 60
+	projectile_block_duration = 0 SECONDS //No ranged parry
+	block_duration = 1 SECONDS
+	block_cooldown = 3 SECONDS
+	block_sound = 'sound/weapons/parry.ogg'
+	block_message = "You attempt to parry the attack!"
+	hit_message = "parries the attack!"
+	block_cooldown_message = "You rearm your blade."
 
-	//light_system = MOVABLE_LIGHT_DIRECTIONAL
-	//light_color = COLOR_ORANGE
-	//light_range = 4
-	//light_power = 5
-	//light_on = FALSE
-
-/obj/item/ego_weapon/hearth/proc/IconOff()
-	icon_state = icon_off
-	//light_on = FALSE
-
-/obj/item/ego_weapon/hearth/afterattack(atom/A, mob/living/user, proximity_flag, params)
-	if(ranged_cooldown > world.time)
-		return
-	if(!CanUseEgo(user))
-		return
-	var/turf/target_turf = get_turf(A)
-	if(!istype(target_turf))
-		return
-	if((get_dist(user, target_turf) < 2) || !(target_turf in view(5, user)))
-		return
-	..()
-	ranged_cooldown = world.time + ranged_cooldown_time
-	icon_state = icon_on
-	//light_on = TRUE
-	addtimer(CALLBACK(src, PROC_REF(IconOff)), 20)
-	playsound(target_turf, 'sound/weapons/pulse.ogg', 50, TRUE)
-	var/damage_dealt = 0
-	for(var/turf/open/T in range(target_turf, 0))
-		new /obj/effect/temp_visual/smash1(T)
-		for(var/mob/living/L in user.HurtInTurf(T, list(), ranged_damage, BLACK_DAMAGE, hurt_mechs = TRUE))
-			if((L.stat < DEAD) && !(L.status_flags & GODMODE))
-				damage_dealt += ranged_damage
+/obj/item/ego_weapon/shield/hearth/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+	return 0 //Prevents ranged  parry
 
 /obj/effect/temp_visual/smash1
 	icon = 'icons/effects/effects.dmi'

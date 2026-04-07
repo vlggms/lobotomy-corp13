@@ -53,11 +53,15 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/dingledangle
 	abno_code = "T-04-111"
 	abno_info = list(
-		"When the work result was Bad, the employee was immediately consumed by Dingle-Dangle with a normal probability.",
-		"When employees with Prudence Level 3 or higher completed their work, they were consumed by Dingle-Dangle unless their Fortitude was Level 4 or higher.",
-		"When employees with Prudence Level 2 or lower completed their work with Dingle-Dangle, the Qliphoth Counter decreased.",
-		"These employees reported a sense of confusion as well heightened combat capabilities.",
-		"When the Qliphoth Counter reached 0, everyone in the facility was afflicted with delirium.")
+		"When the work result was Normal, the Qliphoth Counter lowered with a low probability.",
+		"When the work result was Bad, the Qliphoth Counter lowered.",
+		"When an employee panicked within the facility, the Qliphoth Counter decreased.",
+		"When any work type apart from Insight was finished by an employee with Prudence Level 3 or higher, they suddenly fell into a delirious panic.",
+		"When the Qliphoth Counter reached 0, an employee with Prudence Level 3 or higher reported a sense of confusion as well as increased mental strain.",
+		"When a delirious employee entered Dingle-Dangle's containment unit, they panicked",
+		"When an employee afflicted with delirium was panicking, they attempted to enter Dinge-Dangle's Containment Unit, thinking it was breaching.",
+		"When a delirious employee approached Dingle-Dangle, they were then slowly consumed by it."
+		)
 
 //Beauty and the Beast
 /obj/item/paper/fluff/info/teth/beauty
@@ -212,8 +216,9 @@
 	abno_code = "T-04-138"
 	abno_info = list(
 		"When an Agent finished Attachment work twice, My Sweet Home whispered in their mind.",
-		"Upon finising Attachment work thrice, the Agent was compelled to approach with the key.",
-		"Upon failing work or getting to three Attachments, the abnormality breached after melding with the Agent.")
+		"Upon finishing Attachment work thrice, the Agent was compelled to approach with the key.",
+		"When the work result was Bad or when an employee panicked during work, the same result would occur.",
+		"When Agent Oliva performed Attachment work on a different Abnormality, her attachment to My Sweet Home lessened.")
 
 //Meat Lantern
 /obj/item/paper/fluff/info/teth/meatlantern

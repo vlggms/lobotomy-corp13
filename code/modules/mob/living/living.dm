@@ -1929,3 +1929,7 @@
 			if (INTENT_HELP)
 				attack_result = style.help_act(src, target)
 	return attack_result
+
+//I added this here since in smoke, it can end up bugging out and giving a mob smoke immunity
+/mob/living/proc/remove_smoke_delay()
+	smoke_delay = 0

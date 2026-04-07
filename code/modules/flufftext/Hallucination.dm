@@ -10,6 +10,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	/datum/hallucination/hudscrew = 12,
 	/datum/hallucination/fake_alert = 12,
 	/datum/hallucination/delusion = 7,
+	/datum/hallucination/fake_meltdown = 5,
 	/datum/hallucination/stationmessage = 2,
 	/datum/hallucination/self_delusion = 2
 	))
@@ -1141,16 +1142,16 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	feedback_details += "Type: [message]"
 	switch(message)
 		if("no alert")
-			to_chat(target, "<span class='minorannounce'><font color = red>Attention!</font color><BR>Warning level has been reset. All dangerous abnormalities have been re-contained and situation is under control.</span><BR>")
+			to_chat(target, "<span class='minorannounce'><font color = red>Attention!</font color><BR>Emergency level has been reset. All dangerous abnormalities have been re-contained and situation is under control.</span><BR>")
 			SEND_SOUND(target, sound('sound/misc/notice2.ogg'))
 		if("first")
-			to_chat(target, "<span class='minorannounce'><font color = red>Attention! First warning!</font color><BR>First warning level achieved. Few dangerous abnormalities have breached the containment.</span><BR>")
-			SEND_SOUND(target, sound('sound/misc/notice1.ogg'))
+			to_chat(target, "<span class='minorannounce'><font color = red>Attention! First Trumpet!</font color><BR>Few dangerous abnormalities have breached the containment, or an agent might be dead or out of control.</span><BR>")
+			SEND_SOUND(target, sound('sound/misc/siren.ogg', volume = 10))
 		if("second")
-			to_chat(target, "<span class='minorannounce'><font color = red>Attention! Second warning!</font color><BR>Second warning level achieved. Most dangerous abnormalities have breached containment and several agents might be dead or out of control.</span><BR>")
-			SEND_SOUND(target, sound('sound/misc/notice1.ogg'))
+			to_chat(target, "<span class='minorannounce'><font color = red>Attention! Second Trumpet!</font color><BR>Most dangerous abnormalities have breached containment and several agents might be dead or out of control.</span><BR>")
+			SEND_SOUND(target, sound('sound/effects/alertbeep.ogg', volume = 10))
 		if("third")
-			to_chat(target, "<span class='minorannounce'><font color = red>Attention! Third warning!</font color><BR>Warning level three achieved. Facility's integrity is in danger. Most if not all of the dangerous abnormalities have breached containment and many agents have been lost.</span><BR>")
+			to_chat(target, "<span class='minorannounce'><font color = red>Attention! Third Trumpet!</font color><BR>Facility's integrity is in danger. Most if not all of the dangerous abnormalities have breached containment and many agents have been lost.</span><BR>")
 			SEND_SOUND(target, sound('sound/misc/notice1.ogg'))
 
 /datum/hallucination/hudscrew
@@ -1655,3 +1656,57 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	H.preparePixelProjectile(target, start)
 	H.fire()
 	qdel(src)
+
+/datum/hallucination/fake_meltdown
+	var/dingle = FALSE
+
+/datum/hallucination/fake_meltdown/New(mob/living/carbon/C, forced = TRUE)
+	set waitfor = FALSE
+	..()
+	InitiateMeltdown(SSlobotomy_corp.qliphoth_meltdown_amount)
+
+/datum/hallucination/fake_meltdown/proc/InitiateMeltdown(meltdown_amount = 1)
+	var/list/computer_list = list()
+	var/list/meltdown_occured = list()
+	for(var/obj/machinery/computer/abnormality/cmp in shuffle(GLOB.lobotomy_devices))
+		if(!cmp.can_meltdown)
+			continue
+		if(dingle && istype(cmp.datum_reference.current, /mob/living/simple_animal/hostile/abnormality/dingledangle))
+			meltdown_amount -= 1
+			meltdown_occured += cmp
+			continue
+		if(cmp.meltdown || cmp.datum_reference.working)
+			continue
+		if(!cmp.datum_reference || !cmp.datum_reference.current)
+			continue
+		if(!cmp.datum_reference.current.IsContained()) // Does what the old check did, but allows it to be redefined by abnormalities that do so.
+			continue
+		if(!(cmp.datum_reference.threat_level in SSlobotomy_corp.qliphoth_meltdown_affected))
+			continue
+		computer_list += cmp
+	for(var/i = 1 to meltdown_amount + GLOB.Sephirahmeltmodifier)
+		if(!LAZYLEN(computer_list))
+			break
+		var/obj/machinery/computer/abnormality/computer = pick(computer_list)
+		meltdown_occured += computer
+	if(LAZYLEN(meltdown_occured))
+		var/text_info = ""
+		for(var/y = 1 to length(meltdown_occured))
+			var/obj/machinery/computer/abnormality/computer = meltdown_occured[y]
+			text_info += computer.datum_reference.name
+			if(y != length(meltdown_occured))
+				text_info += ", "
+		text_info += "."
+		// Announce next ordeal
+		if(SSlobotomy_corp.next_ordeal && (SSlobotomy_corp.qliphoth_state + 1 >= SSlobotomy_corp.next_ordeal_time))
+			text_info += "\n\n[SSlobotomy_corp.next_ordeal.name] will trigger on the next meltdown."
+		var/text = "Qliphoth meltdown occured in containment zones of the following abnormalities: [text_info]"
+		// All your text is gone. Enjoy.
+		var/datum/suppression/information/I = GetCoreSuppression(/datum/suppression/information)
+		if(istype(I))
+			text = Gibberish(text, TRUE, I.gibberish_value)
+		to_chat(target, "<h1 class='alert'>[command_name()] Update</h1><br><h2 class='alert'>Qliphoth Meltdown</h2><br><span class='alert'>[text]</span><br>")
+		SEND_SOUND(target, sound('sound/effects/meltdownAlert.ogg'))
+
+/datum/hallucination/fake_meltdown/dingle
+	dingle = TRUE
