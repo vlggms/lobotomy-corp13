@@ -261,7 +261,7 @@ GLOBAL_LIST_INIT(dingle_hallucination_list, list(
 /datum/status_effect/dangle
 	id = "dangle"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 4 MINUTES
+	duration = 2 MINUTES
 	alert_type = /atom/movable/screen/alert/status_effect/dangle
 	var/tries = 0
 	var/list/dingles = list()

@@ -1021,12 +1021,6 @@
 							TEMPERANCE_ATTRIBUTE = 40
 							)
 
-	//light_system = MOVABLE_LIGHT_DIRECTIONAL
-	//light_color = COLOR_ORANGE
-	//light_range = 4
-	//light_power = 5
-	//light_on = FALSE
-
 	charge = TRUE
 	charge_effect = "Fires a laser"
 	charge_cost = 4
@@ -1042,7 +1036,6 @@
 /obj/item/ego_weapon/home/proc/IconOff()
 	icon_state = "home"
 	update_icon_state()
-	//light_on = FALSE
 
 /obj/item/ego_weapon/home/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
 	..()
@@ -1057,7 +1050,6 @@
 			return
 		icon_state = "home_glow"
 		update_icon_state()
-		//light_on = TRUE
 		if(icon_timer)
 			deltimer(icon_timer)
 		icon_timer = addtimer(CALLBACK(src, PROC_REF(IconOff)), 20)

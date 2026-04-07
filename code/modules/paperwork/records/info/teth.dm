@@ -56,7 +56,7 @@
 		"When the work result was Normal, the Qliphoth Counter lowered with a low probability.",
 		"When the work result was Bad, the Qliphoth Counter lowered.",
 		"When an employee panicked within the facility, the Qliphoth Counter decreased.",
-		"When non Insight Work was finished by an employee with Prudence Level 3 or higher, they suddenly fell into a delirious panic.",
+		"When any work type apart from Insight was finished by an employee with Prudence Level 3 or higher, they suddenly fell into a delirious panic.",
 		"When the Qliphoth Counter reached 0, an employee with Prudence Level 3 or higher reported a sense of confusion as well as increased mental strain.",
 		"When a delirious employee entered Dingle-Dangle's containment unit, they panicked",
 		"When an employee afflicted with delirium was panicking, they attempted to enter Dinge-Dangle's Containment Unit, thinking it was breaching.",
@@ -216,7 +216,7 @@
 	abno_code = "T-04-138"
 	abno_info = list(
 		"When an Agent finished Attachment work twice, My Sweet Home whispered in their mind.",
-		"Upon finising Attachment work thrice, the Agent was compelled to approach with the key.",
+		"Upon finishing Attachment work thrice, the Agent was compelled to approach with the key.",
 		"When the work result was Bad or when an employee panicked during work, the same result would occur.",
 		"When Agent Oliva performed Attachment work on a different Abnormality, her attachment to My Sweet Home lessened.")
 
