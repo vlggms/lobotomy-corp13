@@ -15,7 +15,7 @@
 	var/list/aquatic_enemies = list(
 		/mob/living/simple_animal/hostile/aminion/shrimp,
 		/mob/living/simple_animal/hostile/distortion/shrimp_rambo/easy,
-		/mob/living/simple_animal/hostile/aminion/shrimp_soldier,
+		/mob/living/simple_animal/hostile/aminion/shrimp/soldier,
 		/mob/living/simple_animal/hostile/shrimp_rifleman,
 		/mob/living/simple_animal/hostile/senior_shrimp,
 	)

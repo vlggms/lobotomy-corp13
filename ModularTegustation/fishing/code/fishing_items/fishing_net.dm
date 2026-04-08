@@ -78,7 +78,7 @@
 		spawning = /mob/living/simple_animal/hostile/distortion/shrimp_rambo/easy
 
 	if(prob(5)) //Super rares first
-		spawning = /mob/living/simple_animal/hostile/aminion/shrimp_soldier
+		spawning = /mob/living/simple_animal/hostile/aminion/shrimp/soldier
 	if(prob(20))
 		spawning = pick(/mob/living/simple_animal/hostile/shrimp_rifleman, /mob/living/simple_animal/hostile/senior_shrimp)
 	else
