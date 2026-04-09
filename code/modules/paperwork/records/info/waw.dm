@@ -96,7 +96,7 @@
 		"After an employee completed their work, Shrimp Association Executive requested an idea or service.",
 		"The abnormality repeated its request when approached by an employee.",
 		"Observations have concluded that each request corresponded to a specific work type. Performing this work type will result in significantly increased work success rate.",
-		"When 3 requests have been completed in a row, Shrimp Association Executive ordered shrimp-themed merchandise for the employee. Possible items included:<br>\
+		"When 3 requests have been completed in a row, Shrimp Association Executive ordered a crate containing shrimp-themed merchandise for the employee. Possible items included:<br>\
 		<ol type=1>\
 			<li>\"Shrimp Corporation\" brand equipment</li>\
 			<li>Shrimp in a grenade</li>\

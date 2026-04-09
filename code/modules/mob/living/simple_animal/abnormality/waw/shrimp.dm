@@ -420,8 +420,7 @@
 		/obj/item/grenade/spawnergrenade/shrimp/super,
 		/obj/item/trait_injector/shrimp_injector,
 		/obj/item/fishing_rod/wellcheers,
-		/obj/item/clothing/suit/armor/ego_gear/zayin/soda,
-		/obj/item/ego_weapon/ranged/pistol/soda
+		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_purple,
 	)
 
 	veryrareloot = list(
