@@ -404,8 +404,8 @@
 //Crates
 //S Corporation
 /obj/structure/lootcrate/s_corp
-	name = "S Corp Loot Crate"
-	desc = "A crate containing some knickknacks from the mysterious S-Corp. Open with a Crowbar."
+	name = "Shrimp-Corp Loot Crate"
+	desc = "A crate containing some knickknacks from the mysterious Shrimp-Corp. Open with a Crowbar."
 	icon_state = "crate_shrimp"
 	veryrarechance = 10
 	cosmeticchance = 10
@@ -420,7 +420,8 @@
 		/obj/item/grenade/spawnergrenade/shrimp/super,
 		/obj/item/trait_injector/shrimp_injector,
 		/obj/item/fishing_rod/wellcheers,
-		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_purple,
+		/obj/item/clothing/suit/armor/ego_gear/zayin/soda,
+		/obj/item/ego_weapon/ranged/pistol/soda
 	)
 
 	veryrareloot = list(
@@ -437,8 +438,8 @@
 	)
 
 /obj/structure/lootcrate/s_corp_gun
-	name = "S Corp Gun Crate"
-	desc = "A crate containing a gun from the mysterious S-Corp. Open with a Crowbar."
+	name = "Shrimp-Corp Gun Crate"
+	desc = "A crate containing a gun from the mysterious Shrimp-Corp. Open with a Crowbar."
 	icon_state = "crate_weapon_shrimp"
 	rarechance = 80
 	veryrarechance = 15
@@ -458,6 +459,6 @@
 	)
 
 /obj/structure/closet/supplypod/extractionpod/shrimppod
-	name = "s corp drop pod"
+	name = "shrimp-borp drop pod"
 	desc = "A purple pod."
 	style = STYLE_SHRIMP

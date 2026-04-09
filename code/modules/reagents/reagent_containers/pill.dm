@@ -303,6 +303,6 @@
 
 /obj/item/reagent_containers/pill/shrimptoxin
 	name = "orange pill"
-	desc = "...What could this pill contain that S corp would send it to the facility?"
+	desc = "...What could this pill contain that Shrimp-Corp would send it to the facility?"
 	icon_state = "pill5"
 	list_reagents = list(/datum/reagent/mutationtoxin/shrimp = 5)

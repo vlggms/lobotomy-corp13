@@ -39,13 +39,13 @@
 	mappath = "_maps/RandomRooms/backstreets/large_north/robot_lnb.dmm"
 
 /datum/map_template/random_room/backstreets/large_north/scorp
-	name = "S-Corp Real Base of Operations"
+	name = "Shrimp-Corp Real Base of Operations"
 	room_id = "scorp"
 	mappath = "_maps/RandomRooms/backstreets/large_north/scorp.dmm"
 	stock = 1	//THE CANON HQ OF SCORP!!!!
 
 /datum/map_template/random_room/backstreets/large_north/scorp_warehouse
-	name = "S-Corp spare warehouse"
+	name = "Shrimp-Corp spare warehouse"
 	room_id = "scorp_warehouse"
 	mappath = "_maps/RandomRooms/backstreets/large_north/scorp_warehouse.dmm"
 	stock = 3 //Scorp has a lot of these
