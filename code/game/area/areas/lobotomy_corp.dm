@@ -99,7 +99,6 @@
 /area/department_main/manager
 	name = "Manager's Office"
 	icon_state = "mainroom_manager"
-	hallway = /area/facility_hallway/manager
 
 /area/department_main/control
 	name = "Control Main Room"
