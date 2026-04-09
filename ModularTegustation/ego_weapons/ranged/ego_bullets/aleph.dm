@@ -131,6 +131,7 @@
 /obj/projectile/ego_bullet/ego_executive
 	name = "executive"
 	damage = 35
+	spread = 0
 	damage_type = PALE_DAMAGE	//hehe
 
 /obj/projectile/ego_bullet/ego_executive/kill_shot

@@ -335,7 +335,7 @@
 	desc = "A pistol painted in black with a gold finish. Whenever this EGO is used, a faint scent of fillet mignon wafts through the air."
 	icon_state = "executive"
 	inhand_icon_state = "executive"
-	special = "The final bullet of the clip does heavy damage. When the final bullet kills something, the weapon will produce a can of soda after reloading."
+	special = "This weapon has pinpoint accuracy. \nThe final bullet of the clip does heavy damage. When the final bullet kills something, the weapon will produce a can of soda after reloading."
 	force = 15
 	damtype = PALE_DAMAGE
 	burst_size = 1
@@ -345,6 +345,9 @@
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 70
+	spread = 0
+	variance = 0
+	dual_wield_spread = 0
 	projectile_path = /obj/projectile/ego_bullet/ego_executive
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
