@@ -569,7 +569,7 @@
 	return null
 
 /proc/GetEffectiveItemForce(obj/item/I, considerRangedAttack = TRUE, justice = 0)
-	var/power = I.force * (1 + justice / 100)
+	var/power = I.force * (1 + (justice * GLOB.justice_multiplier) / 100)
 	if(istype(I, /obj/item/ego_weapon))
 		var/obj/item/ego_weapon/EW = I
 		power *= EW.force_multiplier
@@ -736,7 +736,7 @@
 	var/aggro = I.force
 	aggro *= I.force_multiplier
 	if(ishuman(user))
-		aggro *= 1 + get_modified_attribute_level(user, JUSTICE_ATTRIBUTE) * 0.01
+		aggro *= get_attack_multiplier(user)
 	RegisterAggroValue(user, aggro, I.damtype)
 	return
 
@@ -776,7 +776,7 @@
 		if(I.throwforce > 0 && ishuman(I.thrownby))
 			var/mob/living/carbon/human/H = I.thrownby
 			retaliate(H)
-			var/aggro = I.throwforce * (1 + get_modified_attribute_level(H, JUSTICE_ATTRIBUTE) * 0.01)
+			var/aggro = I.throwforce * get_attack_multiplier(H)
 			aggro *= I.force_multiplier
 			RegisterAggroValue(H, aggro, I.damtype)
 	return
