@@ -208,7 +208,7 @@
 
 /obj/item/ego_weapon/ranged/pistol/soda_premium
 	name = "soda premium"
-	desc = "A premium version of the classic soda pistol made by Shrimp-Corp. Its bullets use patented shrimp technology to remove the soul from the body."
+	desc = "A premium version of the classic soda pistol designed by Shrimp-Corp. Its bullets use patented shrimp technology to remove the soul from the body."
 	icon_state = "soda_premium"
 	inhand_icon_state = "soda_premium"
 	special = "This weapon has pinpoint accuracy."
