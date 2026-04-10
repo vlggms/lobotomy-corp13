@@ -206,6 +206,29 @@
 							FORTITUDE_ATTRIBUTE = 80
 	)
 
+/obj/item/ego_weapon/ranged/pistol/soda_premium
+	name = "soda premium"
+	desc = "A premium version of the classic soda pistol made by Shrimp-Corp. Its bullets use patented shrimp technology to remove the soul from the body."
+	icon_state = "soda_premium"
+	inhand_icon_state = "soda_premium"
+	special = "This weapon has pinpoint accuracy."
+	force = 7
+	damtype = PALE_DAMAGE
+	burst_size = 1
+	fire_delay = 5
+	shotsleft = 12
+	reloadtime = 0.8 SECONDS
+	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
+	vary_fire_sound = FALSE
+	fire_sound_volume = 70
+	spread = 0
+	variance = 0
+	dual_wield_spread = 0
+	projectile_path = /obj/projectile/ego_bullet/ego_soda_premium
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 80
+	)
+
 /obj/item/ego_weapon/ranged/pistol/crimson
 	name = "crimson scar"
 	desc = "With steel in one hand and gunpowder in the other, there's nothing to fear in this place."
@@ -896,7 +919,7 @@
 
 /obj/item/ego_weapon/ranged/sodashotty
 	name = "soda shotgun"
-	desc = "A gun used by shrimp corp, apparently."
+	desc = "A gun used by Shrimp-Corp, apparently."
 	icon_state = "sodashotgun"
 	inhand_icon_state = "sodalong"
 	force = 18
@@ -916,7 +939,7 @@
 
 /obj/item/ego_weapon/ranged/sodasmg
 	name = "soda submachinegun"
-	desc = "A gun used by shrimp corp, apparently."
+	desc = "A gun used by Shrimp-Corp, apparently."
 	icon_state = "sodasmg"
 	inhand_icon_state = "soda"
 	force = 14
@@ -931,7 +954,7 @@
 
 /obj/item/ego_weapon/ranged/sodaminigun
 	name = "soda minigun"
-	desc = "A gun used by shrimp corp, apparently."
+	desc = "A gun used by Shrimp-Corp, apparently."
 	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
 	icon_state = "sodaminigun"
 	inhand_icon_state = "sodaminigun"
@@ -944,7 +967,7 @@
 							FORTITUDE_ATTRIBUTE = 80,
 							)
 	slowdown = 2
-	spread = 40
+	spread = 30
 	shotsleft = 800
 	reloadtime = 6 SECONDS
 	item_flags = SLOWS_WHILE_IN_HAND
@@ -953,7 +976,7 @@
 
 /obj/item/ego_weapon/ranged/sodaassault
 	name = "soda assault rifle"
-	desc = "A gun used by shrimp corp, apparently."
+	desc = "A gun used by Shrimp-Corp, apparently."
 	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
 	icon_state = "sodaassault"
 	inhand_icon_state = "sodaassault"

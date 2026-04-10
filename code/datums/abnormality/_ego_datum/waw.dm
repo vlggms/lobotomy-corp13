@@ -128,6 +128,10 @@
 	item_path = /obj/structure/lootcrate/s_corp_gun
 	cost = 40
 
+/datum/ego_datum/weapon/soda_premium
+	item_path = /obj/item/ego_weapon/ranged/pistol/soda_premium
+	cost = 50
+
 /datum/ego_datum/weapon/sodarifle
 	item_path = /obj/item/ego_weapon/ranged/sodarifle
 	cost = 35

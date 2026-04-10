@@ -447,7 +447,8 @@
 		/obj/item/ego_weapon/ranged/sodarifle,
 	)
 
-	rareloot =	list(
+	rareloot = list(
+		/obj/item/ego_weapon/ranged/pistol/soda_premium,
 		/obj/item/ego_weapon/ranged/sodaminigun,
 		/obj/item/ego_weapon/ranged/sodasmg,
 		/obj/item/ego_weapon/ranged/sodashotty,

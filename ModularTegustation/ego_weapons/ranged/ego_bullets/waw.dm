@@ -105,6 +105,12 @@
 	if(!ishuman(target))
 		qdel(src)
 
+/obj/projectile/ego_bullet/ego_soda_premium
+	name = "soda premium"
+	damage = 14
+	spread = 0
+	damage_type = PALE_DAMAGE	//hehe
+
 /obj/projectile/ego_bullet/ego_crimson
 	name = "crimson"
 	damage = 7
