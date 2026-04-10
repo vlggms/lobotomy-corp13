@@ -135,7 +135,7 @@
 	damage_type = PALE_DAMAGE	//hehe
 
 /obj/projectile/ego_bullet/ego_executive/kill_shot
-	damage = 70
+	damage = 175
 
 /obj/projectile/ego_bullet/ego_executive/kill_shot/process()
 	. = ..()
@@ -147,15 +147,14 @@
 			S.pixel_y = pixel_y + rand(-8,8)
 
 /obj/projectile/ego_bullet/ego_executive/on_hit(atom/target, blocked = FALSE)
-	var/old_stat
-	var/mob/living/T
-	if(isliving(target))
-		T = target
-		old_stat = T.stat
 	. = ..()
-	if(!T || istype(target, /mob/living/simple_animal/hostile/clerkbot) || old_stat == DEAD)
+	var/mob/living/T = target
+	if(!isliving(target))
 		return
+	if(!isliving(firer))
+		return
+	var/mob/living/user = firer
 	if(T.stat == DEAD)
 		var/obj/item/ego_weapon/ranged/pistol/executive/gun = fired_from
-		gun.soda_ready = TRUE
+		gun.AutoReload(user)
 	return

@@ -335,7 +335,7 @@
 	desc = "A pistol painted in black with a gold finish. Whenever this EGO is used, a faint scent of fillet mignon wafts through the air."
 	icon_state = "executive"
 	inhand_icon_state = "executive"
-	special = "This weapon has pinpoint accuracy. \nThe final bullet of the clip does heavy damage. When the final bullet kills something, the weapon will produce a can of soda after reloading."
+	special = "This weapon has pinpoint accuracy. \nThe final bullet of the clip does heavy damage. When the final bullet kills something, this weapon will automatically reload."
 	force = 15
 	damtype = PALE_DAMAGE
 	burst_size = 1
@@ -355,28 +355,22 @@
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 100
 	)
-	var/soda_ready = FALSE
-	var/list/sodas = list(
-		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red = 40,
-		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white = 40,
-		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_purple = 20,
-	)
 
-/obj/item/ego_weapon/ranged/pistol/executive/reload_ego(mob/user)
-	is_reloading = TRUE
-	to_chat(user,span_notice("You start loading a new magazine."))
-	playsound(src, 'sound/weapons/gun/general/slide_lock_1.ogg', 50, TRUE)
-	if(do_after(user, reloadtime, src)) //gotta reload
-		playsound(src, 'sound/weapons/gun/general/bolt_rack.ogg', 70, FALSE)
-		shotsleft = initial(shotsleft)
-		forced_melee = FALSE //no longer forced to resort to melee
-		if(soda_ready)
-			soda_ready = FALSE
-			playsound(src, 'sound/weapons/ego/executive_reload.ogg', 70, FALSE)
-			var/soda = pick(sodas)
-			new soda(get_turf(user))
-			to_chat(user, span_nicegreen("A [soda] falls out of a hidden compartment inside of [src]!"))
-	is_reloading = FALSE
+/obj/item/ego_weapon/ranged/pistol/executive/proc/AutoReload(mob/user)
+	if(shotsleft == initial(shotsleft))
+		return
+	playsound(src, 'sound/weapons/ego/executive_reload.ogg', 70, FALSE)
+	shotsleft = initial(shotsleft)
+	to_chat(user, span_nicegreen("A new magazine materialized within [src]!"))
+	// Might as well reload the other gun
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		for(var/obj/item/ego_weapon/ranged/pistol/executive/G in H.held_items)
+			if(G == src || G.shotsleft == initial(G.shotsleft))
+				continue
+			G.shotsleft = initial(G.shotsleft)
+			playsound(G, 'sound/weapons/ego/executive_reload.ogg', 70, FALSE)
+			to_chat(user, span_nicegreen("A new magazine materialized within the other [G]!"))
 
 /obj/item/ego_weapon/ranged/pistol/executive/afterattack(atom/target, mob/user)
 	if(shotsleft == 1)
@@ -385,3 +379,4 @@
 	. = ..()
 	projectile_path = initial(projectile_path)
 	fire_sound = initial(fire_sound)
+	update_projectile_examine()
