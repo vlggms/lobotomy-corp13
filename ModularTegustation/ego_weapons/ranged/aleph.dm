@@ -340,7 +340,7 @@
 	damtype = PALE_DAMAGE
 	burst_size = 1
 	fire_delay = 5
-	shotsleft = 24
+	shotsleft = 12
 	reloadtime = 1.2 SECONDS
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	vary_fire_sound = FALSE

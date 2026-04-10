@@ -130,12 +130,12 @@
 
 /obj/projectile/ego_bullet/ego_executive
 	name = "executive"
-	damage = 35
+	damage = 40
 	spread = 0
 	damage_type = PALE_DAMAGE	//hehe
 
 /obj/projectile/ego_bullet/ego_executive/kill_shot
-	damage = 175
+	damage = 200
 
 /obj/projectile/ego_bullet/ego_executive/kill_shot/process()
 	. = ..()
@@ -146,7 +146,7 @@
 			S.dir = pick(NORTH, SOUTH, EAST, WEST)
 			S.pixel_y = pixel_y + rand(-8,8)
 
-/obj/projectile/ego_bullet/ego_executive/on_hit(atom/target, blocked = FALSE)
+/obj/projectile/ego_bullet/ego_executive/kill_shot/on_hit(atom/target, blocked = FALSE)
 	. = ..()
 	var/mob/living/T = target
 	if(!isliving(target))
