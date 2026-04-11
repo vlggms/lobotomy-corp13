@@ -477,7 +477,7 @@
 	var/original_force = force
 	if(M == user && !happy && istype(user))
 		var/mob/living/carbon/human/H = user
-		var/justicemod = get_attack_multiplier(H)
+		var/justice_mod = get_attack_multiplier(H)
 		H.adjustSanityLoss(force * justice_mod) //we artificially inflict the justice + force damage so it bypass armor. the sanity damage should always feel like a gamble even with armor.
 		missing_sanity = (1 - (H.sanityhealth / H.maxSanity)) * 50
 		force = 0
