@@ -227,9 +227,7 @@
 	beamloop.max_loops = 0
 	var/beam_stage = 1
 	var/beam_damage = 8
-	var/justice = get_attribute_level(H, JUSTICE_ATTRIBUTE)
-	justice /= 100
-	justice++
+	var/justice = get_attack_multiplier(H)
 	beam_damage *= justice
 	if(speak)
 		addtimer(CALLBACK(H, TYPE_PROC_REF(/atom/movable, say), "ARCANA SLAVE!"))

@@ -113,8 +113,7 @@
 
 /obj/item/ego_weapon/paradise/proc/DoAoe(mob/living/user, turf/target_turf)
 	playsound(target_turf, 'sound/weapons/ego/paradise_ranged.ogg', 50, TRUE)
-	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-	var/justicemod = 1 + userjust / 100
+	var/justicemod = get_attack_multiplier(user)
 	var/modified_damage = (aoe_damage*force_multiplier) * justicemod
 	new /obj/effect/temp_visual/paradise_attack_large(target_turf)
 	for(var/dir in list(NORTH,SOUTH))
@@ -256,8 +255,7 @@
 		addtimer(CALLBACK(user, TYPE_PROC_REF(/atom, remove_filter),"user_outline"), 30)
 	if(!do_after(user, 30, src))
 		return
-	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-	var/justicemod = 1 + userjust/100
+	var/justicemod = get_attack_multiplier(user)
 	var/newdamage = (force * 1.2)
 	newdamage *= justicemod
 	newdamage *= force_multiplier
@@ -452,8 +450,7 @@
 	if(!.)
 		return
 
-	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-	var/justicemod = 1 + userjust / 100
+	var/justicemod = get_attack_multiplier(user)
 
 	switch(form)
 		if("sword")
@@ -506,8 +503,7 @@
 /obj/item/ego_weapon/oberon/proc/Smash(mob/user, atom/target)
 	smashing = TRUE
 	playsound(user, 'sound/abnormalities/woodsman/woodsman_prepare.ogg', 50, 0, 3)
-	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-	var/justicemod = 1 + userjust/100
+	var/justicemod = get_attack_multiplier(user)
 	var/smash_damage = 85
 	smash_damage *= justicemod
 	sleep(0.5 SECONDS)
@@ -863,8 +859,7 @@
 				return
 			user.loc = T
 			var/aoe = charge_damage
-			var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-			var/justicemod = 1 + userjust / 100
+			var/justicemod = get_attack_multiplier(user)
 			aoe *= justicemod
 			aoe *= force_multiplier
 			for(var/mob/living/L in range(1, user))

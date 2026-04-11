@@ -22,8 +22,7 @@
 	if(!.)
 		return FALSE
 	var/aoe = 14
-	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-	var/justicemod = 1 + userjust / 100
+	var/justicemod = get_attack_multiplier(user)
 	aoe *= justicemod
 	aoe *= force_multiplier
 	for(var/mob/living/L in hearers(1, target_turf))
@@ -351,7 +350,7 @@
 	combo_time = world.time + combo_wait
 	if(combo >= 13)
 		combo = 0
-		force = get_modified_attribute_level(user, JUSTICE_ATTRIBUTE) * 0.5
+		force = get_modified_attribute_level(user, JUSTICE_ATTRIBUTE)
 		new /obj/effect/temp_visual/thirteen(get_turf(M))
 		playsound(src, 'sound/weapons/ego/price_of_silence.ogg', 25, FALSE, 9)
 	..()
@@ -574,8 +573,7 @@
 	for(var/turf/T in orange(1, user)) // Most of this code was jacked from Harvest tbh
 		new /obj/effect/temp_visual/smash_effect(T)
 	var/aoe = special_force * (1 + special_combo_mult * special_combo)
-	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-	var/justicemod = 1 + userjust/100
+	var/justicemod = get_attack_multiplier(user)
 	aoe*=justicemod
 	aoe*=force_multiplier
 	for(var/mob/living/L in range(1, user))
@@ -603,8 +601,7 @@
 			new /obj/effect/temp_visual/smash_effect(T)
 			for(var/mob/living/L in T.contents)
 				var/aoe = special_force * 1 + (special_combo_mult * special_combo)
-				var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-				var/justicemod = 1 + userjust/100
+				var/justicemod = get_attack_multiplier(user)
 				aoe*=justicemod
 				aoe*=force_multiplier
 				if(L == user)
@@ -901,8 +898,7 @@
 	inuse = FALSE
 	ability_cooldown = ability_cooldown_time + world.time
 	var/aoe = aoe_damage
-	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-	var/justicemod = 1 + userjust / 100
+	var/justicemod = get_attack_multiplier(user)
 	aoe *= justicemod
 	aoe *= force_multiplier
 	var/list/been_hit = list()
@@ -1034,8 +1030,7 @@
 	if(!CanUseEgo(user))
 		return
 	if(!(target.status_flags & GODMODE) && target.stat != DEAD)
-		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-		var/justicemod = 1 + userjust/100
+		var/justicemod = get_attack_multiplier(user)
 		AdjustThirst(force * justicemod)
 		var/heal_amt = force* 0.05
 		if(siphoning)
@@ -1120,7 +1115,7 @@
 			hitsound = 'sound/abnormalities/wrath_servant/big_smash2.ogg'
 		if(2)
 			hitsound = 'sound/abnormalities/wrath_servant/big_smash3.ogg'
-	var/damage = aoe_damage * (1 + (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))/100)
+	var/damage = aoe_damage * get_attack_multiplier(user)
 	damage *= force_multiplier
 	if(attacks == 0)
 		damage *= 3
@@ -1243,8 +1238,7 @@
 /obj/item/ego_weapon/mini/infinity/proc/cast(mob/living/target, mob/living/user, damage_color)
 	if(!target)
 		return
-	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-	var/justicemod = 1 + userjust/100
+	var/justicemod = get_attack_multiplier(user)
 	var/modified_damage = mark_damage
 	modified_damage *= justicemod
 	modified_damage *= force_multiplier
@@ -1294,8 +1288,7 @@
 	can_spin = FALSE
 	if(do_after(user, 13, src))
 		var/aoe = force
-		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-		var/justicemod = 1 + userjust/100
+		var/justicemod = get_attack_multiplier(user)
 		var/firsthit = TRUE //One target takes full damage
 		can_spin = TRUE
 		addtimer(CALLBACK(src, PROC_REF(spin_reset)), 13)
@@ -1473,8 +1466,7 @@
 		if(L.z != user.z) // Not on our level
 			continue
 		var/aoe = 15
-		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-		var/justicemod = 1 + userjust/100
+		var/justicemod = get_attack_multiplier(user)
 		aoe*=justicemod
 		aoe*=force_multiplier
 		if(L == user || ishuman(L))
@@ -1772,8 +1764,7 @@
 	var/turf/T = get_turf(src)
 	for(var/mob/living/L in view(1, T))
 		var/aoe = (charge_amount + 5) * 5
-		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-		var/justicemod = 1 + userjust/100
+		var/justicemod = get_attack_multiplier(user)
 		aoe*=justicemod
 		if(L == user || ishuman(L))
 			continue
@@ -1927,8 +1918,7 @@
 /obj/item/ego_weapon/rosa/attack(mob/living/M, mob/living/user)
 	..()
 	if(M==user)
-		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-		var/justicemod = 1 + userjust/100
+		var/justicemod = get_attack_multiplier(user)
 		var/heal_amount = (force * justicemod * 0.75)
 		var/armormod = (user.run_armor_check(null, WHITE_DAMAGE))
 		if(armormod)//skips all the math if you're not wearing armor
@@ -2055,7 +2045,7 @@
 	if(charged)
 		var/damage = 40
 		if(ishuman(thrownby))
-			damage *= 1 + (get_modified_attribute_level(thrownby, JUSTICE_ATTRIBUTE))/100
+			damage *= get_attack_multiplier(thrownby)
 			damage *= force_multiplier
 			for(var/turf/open/T in range(1, src))
 				var/obj/effect/temp_visual/small_smoke/halfsecond/smonk = new(T)
@@ -2168,8 +2158,7 @@
 		if(L.z != user.z) // Not on our level
 			continue
 		var/aoe = 28
-		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-		var/justicemod = 1 + userjust/100
+		var/justicemod = get_attack_multiplier(user)
 		aoe*=justicemod
 		aoe*=force_multiplier
 		if(L == user || ishuman(L))
@@ -2294,8 +2283,7 @@
 		addtimer(CALLBACK(src, PROC_REF(spin_reset)), 12)
 		playsound(src, 'sound/abnormalities/myformempties/MFEattack.ogg', 75, FALSE, 4)//get a proper sound for this
 		var/aoe = 20
-		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-		var/justicemod = 1 + userjust/100
+		var/justicemod = get_attack_multiplier(user)
 		aoe*=force_multiplier
 		aoe*=justicemod
 		var/turf/target_c = get_turf(src)
@@ -2502,8 +2490,7 @@
 	..()
 	if(!CanUseEgo(user))
 		return
-	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-	var/justicemod = 1 + userjust/100
-	var/damage = force * justicemod * force_multiplier * 0.5
+	var/justicemod = get_attack_multiplier(user)
+	var/damage = force * justicemod * 0.5
 	target.apply_damage(damage, FIRE, null, target.run_armor_check(null, FIRE), spread_damage = TRUE)
 	target.apply_lc_burn(3)

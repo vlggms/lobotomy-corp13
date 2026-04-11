@@ -94,7 +94,7 @@
 		var/justice_mod = 1
 		if(ishuman(thrown_item.thrownby))
 			var/mob/living/carbon/human/H = thrown_item.thrownby
-			justice_mod += get_modified_attribute_level(H, JUSTICE_ATTRIBUTE)/100
+			justice_mod = get_attack_multiplier(H)
 		apply_damage(thrown_item.throwforce * justice_mod, thrown_item.damtype, zone, armor, sharpness = thrown_item.get_sharpness(), wound_bonus = (nosell_hit * CANT_WOUND))
 		if(QDELETED(src)) //Damage can delete the mob.
 			return

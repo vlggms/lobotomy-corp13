@@ -19,8 +19,7 @@
 	if(!.)
 		return FALSE
 	//damage calculations
-	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-	var/justicemod = 1 + userjust / 100
+	var/justicemod = get_attack_multiplier(user)
 	var/damage_dealt = force * justicemod * force_multiplier
 	var/list/been_hit = QDELETED(target) ? list() : list(target)
 	user.HurtInTurf(T, been_hit, damage_dealt, RED_DAMAGE, hurt_mechs = TRUE, hurt_structure = TRUE)
@@ -70,8 +69,7 @@
 
 		for(var/mob/living/L in range(1, user))
 			var/aoe = 15
-			var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-			var/justicemod = 1 + userjust/100
+			var/justicemod = get_attack_multiplier(user)
 			aoe*=force_multiplier
 			aoe*=justicemod
 			if(L == user || ishuman(L))
@@ -367,7 +365,7 @@
 		var/list/been_hit = list()
 		for(var/turf/T in area_of_effect)
 			new /obj/effect/temp_visual/smash_effect(T)
-			var/smash_damage = (i > 2 ? 22 : 6)*(1+(get_modified_attribute_level(user, JUSTICE_ATTRIBUTE)/100))
+			var/smash_damage = (i > 2 ? 22 : 6)*get_attack_multiplier(user)
 			smash_damage*=force_multiplier
 			been_hit = user.HurtInTurf(T, been_hit, smash_damage, RED_DAMAGE)
 		if (i > 2)
@@ -479,7 +477,7 @@
 	var/original_force = force
 	if(M == user && !happy && istype(user))
 		var/mob/living/carbon/human/H = user
-		var/justice_mod = 1 + (get_modified_attribute_level(H, JUSTICE_ATTRIBUTE)/100)
+		var/justicemod = get_attack_multiplier(H)
 		H.adjustSanityLoss(force * justice_mod) //we artificially inflict the justice + force damage so it bypass armor. the sanity damage should always feel like a gamble even with armor.
 		missing_sanity = (1 - (H.sanityhealth / H.maxSanity)) * 50
 		force = 0
@@ -857,8 +855,7 @@
 			sacrifice = FALSE
 		for(var/mob/living/L in range(1, target))
 			var/aoe = 10
-			var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-			var/justicemod = 1 + userjust/100
+			var/justicemod = get_attack_multiplier(user)
 			aoe*=justicemod
 			aoe*=force_multiplier
 			if(L == user || ishuman(L))
@@ -947,8 +944,7 @@
 		if(L.z != user.z) // Not on our level
 			continue
 		var/aoe = 5
-		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-		var/justicemod = 1 + userjust/100
+		var/justicemod = get_attack_multiplier(user)
 		aoe*=justicemod
 		aoe*=force_multiplier
 		if(L == user || ishuman(L))
@@ -1202,8 +1198,7 @@
 	var/datum/status_effect/stacking/slab/S = user.has_status_effect(/datum/status_effect/stacking/slab)
 	if(!S)
 		return
-	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-	var/justicemod = 1 + userjust/100
+	var/justicemod = get_attack_multiplier(user)
 	punishment_damage = (force * justicemod)
 	punishment_size = max(2, (S.stacks / 3))//this is the same size as the AOE from theonite slab. Good luck lol
 	addtimer(CALLBACK(src, PROC_REF(WideSlash), target, user), 1)
@@ -1396,8 +1391,7 @@
 		charged = FALSE
 
 /obj/item/ego_weapon/aedd/proc/power_attack(mob/living/target, mob/living/user)
-	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-	var/justicemod = 1 + userjust/100
+	var/justicemod = get_attack_multiplier(user)
 	target.apply_damage((force * justicemod), BLACK_DAMAGE, null, target.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 	playsound(src, 'sound/abnormalities/thunderbird/tbird_charge.ogg', 50, TRUE)
 	var/turf/T = get_turf(target)
@@ -1544,8 +1538,7 @@
 		G.color = "#622F22"
 		G.fire()
 		G.damage*=force_multiplier
-		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-		var/justicemod = 1 + userjust/100
+		var/justicemod = get_attack_multiplier(user)
 		G.damage*=justicemod
 		firing_cooldown = firing_cooldown_time + world.time
 		stored_projectiles -= 1
@@ -1967,8 +1960,7 @@
 			new /obj/effect/temp_visual/smash_effect(T2)
 			for(var/mob/living/L in T2)
 				var/aoe = 11
-				var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-				var/justicemod = 1 + userjust/100
+				var/justicemod = get_attack_multiplier(user)
 				aoe*=justicemod
 				aoe*=force_multiplier
 				if(L == user || ishuman(L))
@@ -2108,8 +2100,7 @@
 			new /obj/effect/temp_visual/smash_effect(T)
 			for(var/mob/living/L in T.contents)
 				var/aoe = force
-				var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-				var/justicemod = 1 + userjust/100
+				var/justicemod = get_attack_multiplier(user)
 				aoe*=justicemod
 				aoe*=force_multiplier
 				if(L == user)

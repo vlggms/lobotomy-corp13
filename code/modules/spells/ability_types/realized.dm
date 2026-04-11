@@ -519,7 +519,7 @@
 /obj/effect/proc_holder/ability/justice_and_balance/proc/Smash(mob/user, on_use_charges)
 	playsound(user, SFX[on_use_charges], 25*(4-on_use_charges))
 	var/temp_dam = damage
-	temp_dam *= 1 + (get_attribute_level(user, JUSTICE_ATTRIBUTE)/100)
+	temp_dam *= get_attack_multiplier(user)
 	if(on_use_charges <= 1)
 		temp_dam *= 1.5
 	for(var/turf/open/T in range(3, user))
