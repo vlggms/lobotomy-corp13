@@ -1078,7 +1078,7 @@ GLOBAL_LIST_EMPTY(marked_players)
 	//We can't fire in melee range
 	var/in_range = melee_reach > 1 ? shootem.Adjacent(targets_from) || (get_dist(src, shootem) <= melee_reach && (shootem in view(src, melee_reach))) : shootem.Adjacent(targets_from)
 	if(in_range)
-		return
+		return FALSE
 	/*
 	* ranged cooldown has to be a minimum of 1 second because the npcpool
 	* only procs once per 2 seconds and this cooldown cannot cause it to
