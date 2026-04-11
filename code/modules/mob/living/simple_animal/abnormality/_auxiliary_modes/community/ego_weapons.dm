@@ -159,8 +159,7 @@
 		charge_amount -= charge_cost
 		addtimer(CALLBACK(src, PROC_REF(spin_reset)), 12)
 		playsound(src, 'sound/abnormalities/seasons/summer_attack.ogg', 75, FALSE, 4)
-		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-		var/justicemod = 1 + userjust/100
+		var/justicemod = get_attack_multiplier(user)
 		aoe_damage = (force * justicemod)
 		addtimer(CALLBACK(src, PROC_REF(WideSlash), user), 1)
 
@@ -442,8 +441,7 @@
 	G.preparePixelProjectile(target, user, clickparams)
 	G.fire()
 	G.damage*=force_multiplier
-	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-	var/justicemod = 1 + userjust/100
+	var/justicemod = get_attack_multiplier(user)
 	G.damage*=justicemod
 	firing_cooldown = firing_cooldown_time + world.time
 	user.changeNext_move(CLICK_CD_MELEE * attack_speed)
@@ -507,8 +505,7 @@
 	playsound(target, 'sound/abnormalities/bloodbath/Bloodbath_EyeOn.ogg', 80, TRUE, -3) //yes im reusing a sound bite me
 	var/damage_dealt = force
 	damage_dealt*=force_multiplier
-	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-	var/justicemod = 1 + userjust/100
+	var/justicemod = get_attack_multiplier(user)
 	damage_dealt*=justicemod
 	for(var/turf/T in view(1, target))
 		var/obj/effect/temp_visual/small_smoke/halfsecond/FX =  new(T)
