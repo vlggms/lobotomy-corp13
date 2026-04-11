@@ -2,7 +2,6 @@
 /obj/item/ego_weapon/ranged/rambominigun
 	name = "Shrimp Rambo's Minigun"
 	desc = "A gun used by THE shrimp rambo."
-	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
 	icon_state = "sodaminigun"
 	inhand_icon_state = "sodaminigun"
 	force = 52

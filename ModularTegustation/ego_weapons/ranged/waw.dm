@@ -955,7 +955,6 @@
 /obj/item/ego_weapon/ranged/sodaminigun
 	name = "soda minigun"
 	desc = "A gun used by Shrimp-Corp, apparently."
-	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
 	icon_state = "sodaminigun"
 	inhand_icon_state = "sodaminigun"
 	force = 32
@@ -977,7 +976,6 @@
 /obj/item/ego_weapon/ranged/sodaassault
 	name = "soda assault rifle"
 	desc = "A gun used by Shrimp-Corp, apparently."
-	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
 	icon_state = "sodaassault"
 	inhand_icon_state = "sodaassault"
 	force = 16
