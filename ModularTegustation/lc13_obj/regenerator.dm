@@ -45,6 +45,7 @@
 		sp_bonus = 0
 		critical_heal = FALSE
 		cut_overlays()
+		disabled = FALSE
 	if(disabled)
 		icon_state = broken_icon
 		cut_overlays()
