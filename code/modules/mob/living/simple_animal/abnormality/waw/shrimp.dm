@@ -257,6 +257,7 @@
 	can_affect_emergency = FALSE
 	trigger_lights = FALSE
 	fear_level = 0
+	area_index = MOB_SIMPLEANIMAL_INDEX // Don't trip regenerator threat mode
 
 /obj/item/grenade/spawnergrenade/shrimp
 	name = "instant shrimp task force grenade"

@@ -144,7 +144,6 @@
 	name = "Architecture Main Room"
 	icon_state = "mainroom_extraction"
 
-
 /area/facility_hallway
 	name = "Hallway"
 	icon_state = "hallA"

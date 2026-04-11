@@ -174,6 +174,7 @@
 /mob/living/simple_animal/hostile/abnormality/pygmalion/Life()
 	. = ..()
 	if (IsContained() && sculptor && (sculptor.health/sculptor.maxHealth < 0.5 || sculptor.sanityhealth/sculptor.maxSanity < 0.5) || get_emergency_level() >= TRUMPET_1)
+		breach_index = MOB_ABNO_PASSIVE_INDEX // Won't disrupt regenerators
 		BreachEffect()
 		if(client)
 			to_chat(src, span_userdanger("The sculptor is in danger. It is now your duty to protect them!"))

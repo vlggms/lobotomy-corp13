@@ -10,6 +10,7 @@
 	usable_legs = 0 //Populated on init through list/bodyparts
 	num_hands = 0 //Populated on init through list/bodyparts
 	usable_hands = 0 //Populated on init through list/bodyparts
+	area_index = MOB_CARBON_INDEX
 	mobility_flags = MOBILITY_FLAGS_CARBON_DEFAULT
 	///List of [/obj/item/organ] in the mob. They don't go in the contents for some reason I don't want to know.
 	var/list/internal_organs = list()

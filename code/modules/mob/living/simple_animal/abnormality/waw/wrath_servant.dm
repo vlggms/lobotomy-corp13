@@ -401,13 +401,13 @@
 	fear_level = WAW_LEVEL
 	speak_emote = list("growls")
 	friendly = FALSE
+	HostileMode(TRUE)
 	adjustBruteLoss(-src.getMaxHealth())
 	playsound(src, 'sound/abnormalities/wrath_servant/enrage.ogg', 100, FALSE, 40, falloff_distance = 20)
 	toggle_ai(AI_ON)
 	status_flags &= ~GODMODE
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ABNORMALITY_BREACH, src)
 	FearEffect()
-	HostileMode(TRUE)
 	say("EMBODIMENTS OF EVIL!!!")
 	desc = "A large red monster with white bandages hanging from it. Its flesh oozes a bubble acid."
 	can_act = TRUE
@@ -573,6 +573,7 @@
 	can_act = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/wrath_servant/death(gibbed)
+	swap_area_index(MOB_ABNORMALITY_INDEX)
 	if(!datum_reference)
 		return ..()
 	if(nihil_present)
