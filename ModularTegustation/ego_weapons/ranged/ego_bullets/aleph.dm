@@ -130,12 +130,12 @@
 
 /obj/projectile/ego_bullet/ego_executive
 	name = "executive"
-	damage = 40
+	damage = 30
 	spread = 0
 	damage_type = PALE_DAMAGE	//hehe
 
 /obj/projectile/ego_bullet/ego_executive/kill_shot
-	damage = 200
+	damage = 150
 
 /obj/projectile/ego_bullet/ego_executive/kill_shot/process()
 	. = ..()
