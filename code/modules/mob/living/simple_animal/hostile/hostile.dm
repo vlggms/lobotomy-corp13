@@ -1075,6 +1075,10 @@ GLOBAL_LIST_EMPTY(marked_players)
 /mob/living/simple_animal/hostile/proc/TakeAim(atom/shootem)
 	if(!shootem)
 		return FALSE
+	//We can't fire in melee range
+	var/in_range = melee_reach > 1 ? shootem.Adjacent(targets_from) || (get_dist(src, shootem) <= melee_reach && (shootem in view(src, melee_reach))) : shootem.Adjacent(targets_from)
+	if(in_range)
+		return
 	/*
 	* ranged cooldown has to be a minimum of 1 second because the npcpool
 	* only procs once per 2 seconds and this cooldown cannot cause it to
@@ -1096,11 +1100,6 @@ GLOBAL_LIST_EMPTY(marked_players)
 	if(QDELETED(src))
 		return
 	if(stat == DEAD)
-		return
-	if(!target)
-		return
-	var/in_range = melee_reach > 1 ? target.Adjacent(targets_from) || (get_dist(src, A) <= melee_reach && (target in view(src, melee_reach))) : target.Adjacent(targets_from)
-	if(in_range)
 		return
 
 	if(CheckFriendlyFire(A))
