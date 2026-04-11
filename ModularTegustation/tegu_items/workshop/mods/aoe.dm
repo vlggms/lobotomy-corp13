@@ -18,8 +18,7 @@
 			Aoe(L, user, T.force)
 
 /obj/item/workshop_mod/aoe/proc/Aoe(mob/living/L, mob/living/carbon/human/user, aoe_damage)
-	var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
-	var/justicemod = 1 + userjust/100
+	var/justicemod = get_attack_multiplier(user)
 	aoe_damage*=justicemod
 	if(L == user)
 		return
