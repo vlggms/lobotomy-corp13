@@ -136,7 +136,7 @@
 /mob/living/simple_animal/hostile/abnormality/yang/proc/Reflect(mob/living/attacker, damage)
 	if(ishuman(attacker))
 		var/mob/living/carbon/human/H = attacker
-		var/justice_mod = 1 + (get_attribute_level(H, JUSTICE_ATTRIBUTE)/100)
+		var/justice_mod = get_attack_multiplier(H)
 		damage *= justice_mod
 	attacker.deal_damage(damage, WHITE_DAMAGE)
 	return
