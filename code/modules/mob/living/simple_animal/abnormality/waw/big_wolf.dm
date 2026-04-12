@@ -43,8 +43,8 @@
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gluttony
 	melee_damage_type = RED_DAMAGE
-	melee_damage_lower = 7
-	melee_damage_upper = 16
+	melee_damage_lower = 9
+	melee_damage_upper = 14
 	attack_sound = 'sound/abnormalities/big_wolf/Wolf_Scratch.ogg'
 
 	attack_action_types = list(

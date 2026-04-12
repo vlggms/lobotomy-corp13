@@ -36,7 +36,7 @@
 		"Write GOODBYE" = 0,
 		"Write DUMBASS" = 0,
 	)
-	work_damage_upper = 8
+	work_damage_upper = 7
 	work_damage_lower = 4
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/envy

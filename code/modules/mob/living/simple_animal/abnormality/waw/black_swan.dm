@@ -27,8 +27,8 @@
 	vision_range = 14
 	aggro_vision_range = 20
 	melee_damage_type = RED_DAMAGE
-	melee_damage_lower = 5
-	melee_damage_upper = 8
+	melee_damage_lower = 9
+	melee_damage_upper = 12
 	threat_level = WAW_LEVEL
 	attack_sound = 'sound/abnormalities/blackswan/sis_bash.ogg'
 	attack_verb_continuous = "twacks"

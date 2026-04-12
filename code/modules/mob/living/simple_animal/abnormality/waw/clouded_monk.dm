@@ -13,7 +13,7 @@
 	rapid_melee = 2
 	ranged = TRUE
 	damage_coeff = list(BRUTE = 1.0, RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.5)
-	rapid_melee = 0.5
+	rapid_melee = 0.7
 	melee_damage_lower = 12
 	melee_damage_upper = 23
 	obj_damage = 22 //otherwise his charge just destroys everything
