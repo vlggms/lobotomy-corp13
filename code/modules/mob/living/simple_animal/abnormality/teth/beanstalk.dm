@@ -5,8 +5,8 @@
 	icon = 'ModularTegustation/Teguicons/64x98.dmi'
 	icon_state = "beanstalk"
 	portrait = "beanstalk"
-	maxHealth = 200
-	health = 200
+	maxHealth = 230
+	health = 230
 	threat_level = TETH_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(35, 45, 55, 0, 10),

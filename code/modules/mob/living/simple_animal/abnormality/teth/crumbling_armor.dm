@@ -5,8 +5,8 @@
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "crumbling"
 	portrait = "crumbling_armor"
-	maxHealth = 120
-	health = 120
+	maxHealth = 230
+	health = 230
 	start_qliphoth = 3
 	threat_level = TETH_LEVEL
 	work_chances = list(
