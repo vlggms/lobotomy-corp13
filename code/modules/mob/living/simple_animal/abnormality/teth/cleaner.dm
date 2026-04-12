@@ -5,8 +5,8 @@
 	icon_state = "cleaner"
 	icon_living = "cleaner"
 	portrait = "cleaner"
-	maxHealth = 320
-	health = 320
+	maxHealth = 220
+	health = 220
 	ranged = TRUE
 	attack_verb_continuous = "cleans"
 	attack_verb_simple = "cleans"

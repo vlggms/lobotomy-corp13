@@ -8,8 +8,8 @@
 	icon_dead = "faelantern_egg"
 	core_icon = "faelantern_egg"
 	portrait = "faelantern"
-	maxHealth = 300
-	health = 300
+	maxHealth = 400
+	health = 400
 	blood_volume = 0
 	base_pixel_x = -16
 	pixel_x = -16
@@ -59,10 +59,10 @@
 	)
 
 	var/can_act = FALSE
-	var/break_threshold = 450
+	var/break_threshold = 150
 	var/broken = FALSE
 	var/fairy_enabled
-	var/fairy_health = 1200
+	var/fairy_health = 400
 	var/lure_cooldown
 	var/lure_cooldown_time = 30 SECONDS
 	var/lure_damage = 5

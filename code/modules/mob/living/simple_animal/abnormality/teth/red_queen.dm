@@ -6,8 +6,8 @@
 	portrait = "red_queen"
 	pixel_x = -8
 	base_pixel_x = -8
-	maxHealth = 150
-	health = 150
+	maxHealth = 230
+	health = 230
 	threat_level = TETH_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 45,
