@@ -90,8 +90,8 @@
 	var/beats_damage = 100
 	var/list/beats_hit = list()
 	/// BLACK damage done in line each 0.5 second
-	var/beam_damage = 12
-	var/beam_maximum_ticks = 36
+	var/beam_damage = 8
+	var/beam_maximum_ticks = 60
 	var/datum/looping_sound/qoh_beam/beamloop
 	var/datum/beam/current_beam
 	var/list/spawned_effects = list()
