@@ -10,8 +10,8 @@
 	pixel_x = -8
 	base_pixel_x = -8
 
-	maxHealth = 800
-	health = 800
+	maxHealth = 1000
+	health = 1000
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1.5)
 
 	threat_level = WAW_LEVEL

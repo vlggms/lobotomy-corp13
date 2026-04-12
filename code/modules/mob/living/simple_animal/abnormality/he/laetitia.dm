@@ -209,6 +209,7 @@
 	stat_attack = HARD_CRIT
 	melee_damage_lower = 8
 	melee_damage_upper = 10
+	rapid_melee = 0.7
 	faction = list("hostile", "laetitia")
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"

@@ -8,8 +8,8 @@
 	icon_living = "snowwhitesapple_inert"
 	icon_dead = "snowwhitesapple_dead"
 	portrait = "snow_whites_apple"
-	maxHealth = 600
-	health = 600
+	maxHealth = 800
+	health = 800
 	blood_volume = 0
 	obj_damage = 0
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.0, BLACK_DAMAGE = 0, PALE_DAMAGE = 1.5)
@@ -168,7 +168,7 @@
 		if(W.last_expand <= world.time)
 			W.expand()
 		else if(nightmare_mode && ranged_cooldown <= world.time)
-			var/list/did_we_hit = HurtInTurf(get_turf(W), list(), 30, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
+			var/list/did_we_hit = HurtInTurf(get_turf(W), list(), 26, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
 			if(did_we_hit.len)
 				W.VineAttack(pick(did_we_hit))
 	if(teleport_cooldown <= world.time && !togglemovement && !client && !IsCombatMap())

@@ -11,7 +11,7 @@
 	maxHealth = 800 //It's fucking slow as hell, and you can beat it to death if you're alone for free
 	health = 800
 	move_to_delay = 5
-	damage_coeff = ChangeResistances(list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.0, PALE_DAMAGE = 1.5))
+	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.0, PALE_DAMAGE = 1.5)
 	melee_damage_lower = 8		//Yeah it's super slow, and you're not gonna get hit by it too often
 	melee_damage_upper = 12
 	melee_damage_type = RED_DAMAGE

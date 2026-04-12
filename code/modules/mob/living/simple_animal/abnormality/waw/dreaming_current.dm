@@ -59,7 +59,7 @@
 	var/charging = FALSE
 	var/dash_cooldown
 	var/dash_cooldown_time = 8 SECONDS
-	var/dash_damage = 120
+	var/dash_damage = 150
 	/// Delay between each subsequent move when charging
 	var/dash_speed = 0.8
 	/// How many paths do we create between several landmarks?
