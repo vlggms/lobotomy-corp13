@@ -27,8 +27,8 @@
 	)
 	gift_type =  /datum/ego_gifts/loyalty
 	loot = list(/obj/item/clothing/suit/armor/ego_gear/aleph/praetorian) // Don't think it was dropping before, this should make it do so
-	health = 1000
-	maxHealth = 1000
+	health = 1800
+	maxHealth = 1800
 	damage_coeff = list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
 	melee_damage_lower = 12
 	melee_damage_upper = 16
@@ -237,8 +237,8 @@
 	icon_living = "soldier_bee"
 	base_pixel_x = -8
 	pixel_x = -8
-	health = 150
-	maxHealth = 150
+	health = 200
+	maxHealth = 200
 	melee_damage_type = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
 	melee_damage_lower = 5
@@ -269,8 +269,8 @@
 	base_pixel_x = -8
 	pixel_y = -8
 	base_pixel_y = -8
-	health = 200
-	maxHealth = 200
+	health = 400
+	maxHealth = 400
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1) // Just so it's declared.
 	del_on_death = TRUE
 	death_sound = 'sound/abnormalities/bee/death.ogg'

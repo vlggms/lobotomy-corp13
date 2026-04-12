@@ -8,8 +8,8 @@
 	icon_dead = "ebonyqueen_dead"
 	core_icon = "ebonyqueen_dead"
 	portrait = "ebony_queen"
-	maxHealth = 700
-	health = 700
+	maxHealth = 900
+	health = 900
 	pixel_x = -16
 	base_pixel_x = -16
 	blood_volume = 0
@@ -268,7 +268,7 @@
 	icon_state = "vines"
 	duration = 6
 	layer = RIPPLE_LAYER	//We want this HIGH. SUPER HIGH. We want it so that you can absolutely, guaranteed, see exactly what is about to hit you.
-	var/root_damage = 15 //Black Damage
+	var/root_damage = 20 //Black Damage
 	var/mob/living/caster //who made this, anyway
 
 /obj/effect/temp_visual/root/Initialize(mapload, new_caster)

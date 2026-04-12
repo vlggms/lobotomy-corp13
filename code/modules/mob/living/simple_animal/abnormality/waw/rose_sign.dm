@@ -11,8 +11,8 @@
 	del_on_death = FALSE
 	gender = NEUTER
 	threat_level = WAW_LEVEL
-	maxHealth = 800
-	health = 800
+	maxHealth = 1200
+	health = 1200
 	max_boxes = 16
 	pixel_x = -16
 	base_pixel_x = -16
@@ -307,7 +307,7 @@
 	pull_force = INFINITY
 	generic_canpass = FALSE
 	movement_type = PHASING | FLYING
-	var/boom_damage = 15
+	var/boom_damage = 30
 	var/grabbed
 	layer = POINT_LAYER//Sprite should always be visible
 
@@ -350,7 +350,7 @@
 	generic_canpass = FALSE
 	movement_type = PHASING | FLYING
 	damtype = BLACK_DAMAGE
-	var/root_damage = 10 //Black Damage
+	var/root_damage = 20 //Black Damage
 	layer = POINT_LAYER//should always be visible.
 
 /obj/effect/roseRoot/Initialize()

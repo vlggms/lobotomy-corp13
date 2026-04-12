@@ -11,8 +11,8 @@
 	pixel_y = 64
 	base_pixel_y = 64
 	speak_emote = list("honks")
-	maxHealth = 600
-	health = 600
+	maxHealth = 900
+	health = 900
 	rapid_melee = 4
 	melee_queue_distance = 4
 	damage_coeff = list(BRUTE = 1.0, RED_DAMAGE = 1.0, WHITE_DAMAGE = 1.0, BLACK_DAMAGE = 1.3, PALE_DAMAGE = 1.5)
@@ -77,8 +77,8 @@
 	del_on_death = FALSE //for explosions
 	var/finishing = FALSE
 	var/step = FALSE
-	var/finishing_small_damage = 3
-	var/finishing_big_damage = 15
+	var/finishing_small_damage = 5
+	var/finishing_big_damage = 40
 
 /mob/living/simple_animal/hostile/abnormality/clown/Login()
 	. = ..()
