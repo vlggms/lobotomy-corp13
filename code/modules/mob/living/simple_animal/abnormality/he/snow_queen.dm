@@ -18,8 +18,8 @@
 	icon_dead = "snowqueen_dead"
 	portrait = "snow_queen"
 	mob_biotypes = MOB_MINERAL
-	maxHealth = 300
-	health = 300
+	maxHealth = 500
+	health = 500
 	blood_volume = 0
 	move_to_delay = 5
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.1, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.8, FIRE = 2) //ASK SOMEONE GOOD AT BALANCING ABOUT THIS -IP
@@ -29,7 +29,7 @@
 	del_on_death = FALSE
 	threat_level = HE_LEVEL
 	melee_damage_lower = 3
-	melee_damage_upper = 4
+	melee_damage_upper = 6
 	melee_damage_type = RED_DAMAGE
 	ranged = TRUE
 	ranged_cooldown_time = 10 SECONDS

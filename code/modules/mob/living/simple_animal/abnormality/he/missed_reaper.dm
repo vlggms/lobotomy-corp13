@@ -5,8 +5,8 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "reaper"
 	portrait = "missed_reaper"
-	maxHealth = 100
-	health = 100
+	maxHealth = 400
+	health = 400
 	melee_damage_lower = 7
 	melee_damage_upper = 9
 	melee_damage_type = PALE_DAMAGE

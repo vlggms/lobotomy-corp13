@@ -9,12 +9,12 @@
 	portrait = "norinori"
 	speak_emote = list("meows")
 	ranged = TRUE
-	maxHealth = 200
-	health = 200
+	maxHealth = 400
+	health = 400
 	attack_sound = 'sound/weapons/slashmiss.ogg'
 	melee_damage_type = RED_DAMAGE
 	melee_damage_lower = 4
-	melee_damage_upper = 5
+	melee_damage_upper = 7
 	rapid_melee = 1 //we change this later
 	melee_reach = 1
 	ranged = TRUE
@@ -132,7 +132,7 @@
 /mob/living/simple_animal/hostile/abnormality/norinori/funpet(mob/petter)
 	if(!IsContained())
 		return
-	if(get_attribute_level(petter, TEMPERANCE_ATTRIBUTE) <= 60)
+	if(get_attribute_level(petter, TEMPERANCE_ATTRIBUTE) < 60)
 		KillCheck(petter)
 	else
 		datum_reference.qliphoth_change(-1)

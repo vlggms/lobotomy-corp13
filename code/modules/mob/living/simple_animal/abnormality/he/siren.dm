@@ -7,8 +7,8 @@
 	base_pixel_x = -16
 	icon_state = "siren"
 	portrait = "siren"
-	maxHealth = 200
-	health = 200
+	maxHealth = 400
+	health = 400
 	speak_emote = list("plays")
 	threat_level = HE_LEVEL
 	start_qliphoth = 5

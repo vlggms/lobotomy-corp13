@@ -9,8 +9,8 @@
 	portrait = "happy_teddy_bear"
 	// adding this for when it drops you
 	layer = BELOW_OBJ_LAYER
-	maxHealth = 200
-	health = 200
+	maxHealth = 500
+	health = 500
 	threat_level = HE_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 0,

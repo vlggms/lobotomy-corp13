@@ -5,8 +5,8 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "galaxy"
 	portrait = "galaxy_child"
-	maxHealth = 150
-	health = 150
+	maxHealth = 350
+	health = 350
 	threat_level = HE_LEVEL
 	start_qliphoth = 5
 	work_chances = list(

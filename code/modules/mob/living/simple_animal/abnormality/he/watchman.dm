@@ -6,8 +6,8 @@
 	icon_living = "watchman"
 	portrait = "watchman"
 	del_on_death = FALSE
-	maxHealth = 350
-	health = 350
+	maxHealth = 520
+	health = 520
 	rapid_melee = 2
 	move_to_delay = 6
 	see_in_dark = 30

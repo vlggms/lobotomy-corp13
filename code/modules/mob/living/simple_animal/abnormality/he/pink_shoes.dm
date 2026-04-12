@@ -4,8 +4,8 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 /mob/living/simple_animal/hostile/abnormality/pink_shoes
 	name = "Pink Shoes"
 	desc = "A pair of girly pink shoes."
-	health = 500
-	maxHealth = 500
+	health = 600
+	maxHealth = 600
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "pinkshoes"
 	icon_living = "pinkshoes_breach"
@@ -514,8 +514,8 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 	attack_verb_continuous = "attacks"
 	attack_verb_simple = "attack"
 	attack_sound = 'sound/abnormalities/pinkshoes/Pinkshoes_Attack.ogg'
-	health = 50
-	maxHealth = 50
+	health = 100
+	maxHealth = 100
 	obj_damage = 300
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	melee_damage_type = WHITE_DAMAGE

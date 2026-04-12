@@ -6,8 +6,8 @@
 	icon_living = "derfreischutz"
 	icon_dead = "derfreischutz"
 	portrait = "der_freischutz"
-	maxHealth = 150
-	health = 150
+	maxHealth = 520
+	health = 520
 	ranged = TRUE
 	minimum_distance = 10
 	retreat_distance = 2

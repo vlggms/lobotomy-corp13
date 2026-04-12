@@ -9,14 +9,14 @@
 	portrait = "headless_icthys"
 	pixel_x = -16
 	base_pixel_x = -16
-	maxHealth = 300
-	health = 300
+	maxHealth = 450
+	health = 450
 	ranged = TRUE
 	attack_verb_continuous = "slaps"
 	attack_verb_simple = "slap"
 	attack_sound = 'sound/abnormalities/ichthys/slap.ogg'
 	stat_attack = HARD_CRIT
-	melee_damage_lower = 7
+	melee_damage_lower = 5
 	melee_damage_upper = 9
 	rapid_melee = 1
 	melee_queue_distance = 2

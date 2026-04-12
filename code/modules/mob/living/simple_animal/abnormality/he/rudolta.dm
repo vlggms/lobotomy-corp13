@@ -8,8 +8,8 @@
 	icon_living = "rudolta"
 	icon_dead = "rudolta_dead"
 	portrait = "rudolta"
-	maxHealth = 250
-	health = 250
+	maxHealth = 450
+	health = 450
 	pixel_x = -16
 	base_pixel_x = -16
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2, FIRE = 1.5)
