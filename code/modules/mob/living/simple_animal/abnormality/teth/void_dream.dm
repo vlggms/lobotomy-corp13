@@ -7,8 +7,8 @@
 	portrait = "void_dream"
 	del_on_death = TRUE
 	is_flying_animal = TRUE
-	maxHealth = 120
-	health = 120
+	maxHealth = 250
+	health = 250
 	rapid_melee = 2
 	move_to_delay = 6
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)

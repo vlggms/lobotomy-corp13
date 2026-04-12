@@ -46,8 +46,8 @@
 		"A puppy" = list(FALSE, "It's the cutest puppy I've ever seen."),
 	)
 
-	var/smash_damage_low = 4
-	var/smash_damage_high = 8
+	var/smash_damage_low = 3
+	var/smash_damage_high = 4
 	var/smash_length = 2
 	var/smash_width = 1
 	var/can_act = TRUE

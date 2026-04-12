@@ -8,8 +8,8 @@
 	icon_living = "so_that_no_cry"
 	portrait = "so_that_no_cry"
 	core_icon = "cry_egg"
-	maxHealth = 300 //High health, can be stunned.
-	health = 300
+	maxHealth = 370 //High health, can be stunned.
+	health = 370
 	rapid_melee = 2
 	move_to_delay = 3
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
