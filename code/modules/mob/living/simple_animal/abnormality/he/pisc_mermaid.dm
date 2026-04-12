@@ -13,8 +13,8 @@
 	death_sound = 'sound/abnormalities/piscinemermaid/waterjump.ogg'
 	attack_sound = 'sound/abnormalities/piscinemermaid/splashattack.ogg'
 	del_on_death = FALSE
-	maxHealth = 300
-	health = 300
+	maxHealth = 420
+	health = 420
 	pixel_x = -12
 	base_pixel_x = -12
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2) //not that bad without a lover

@@ -256,8 +256,8 @@
 	icon_state = "grown_strong"
 	icon_living = "grown_strong"
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
-	maxHealth = 100
-	health = 100
+	maxHealth = 120
+	health = 120
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0)
 
 	move_to_delay = 5

@@ -8,8 +8,8 @@
 	icon_state = "white_lake"
 	icon_living = "white_lake"
 	portrait = "white_lake"
-	maxHealth = 120
-	health = 120
+	maxHealth = 220
+	health = 220
 	threat_level = HE_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 0,

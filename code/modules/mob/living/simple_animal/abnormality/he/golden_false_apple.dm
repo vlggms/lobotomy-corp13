@@ -22,8 +22,8 @@
 	del_on_death = FALSE
 	death_message = "falls over."
 	death_sound = 'sound/abnormalities/goldenapple/Gold_Attack2.ogg'
-	maxHealth = 300
-	health = 300
+	maxHealth = 360
+	health = 360
 	light_color = "D4FAF37"
 	light_range = 5
 	light_power = 7
@@ -283,8 +283,8 @@
 	light_range = 0
 	light_power = 0
 	attack_sound = "sound/abnormalities/goldenapple/False_Attack3.ogg"
-	melee_damage_lower = 30
-	melee_damage_upper = 45
+	melee_damage_lower = 5
+	melee_damage_upper = 10
 	melee_reach = 2
 	attack_verb_continuous = "pummels"
 	attack_verb_simple = "pummel"
@@ -350,7 +350,8 @@
 
 /mob/living/simple_animal/hostile/abnormality/golden_apple/proc/DigestPerson(mob/living/carbon/human/H)//berserk mode
 	victim_name = "Yuri"
-	maxHealth = 1500
+	maxHealth = 520
+	adjustBruteLoss(-maxHealth)
 	BecomeRotten()
 	ChangeMoveToDelayBy(-0.5)
 	ChangeResistances(list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.3))

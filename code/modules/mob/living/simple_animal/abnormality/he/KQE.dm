@@ -1,8 +1,8 @@
 /mob/living/simple_animal/hostile/abnormality/kqe
 	name = "KQE-1J-23"
 	desc = "A mechanical puppet composed of metal plates, lights, and integrated circuits. Bare wires protrude with its every movement."
-	health = 350
-	maxHealth = 350
+	health = 500
+	maxHealth = 500
 	attack_verb_continuous = "whips"
 	attack_verb_simple = "whip"
 	attack_sound = 'sound/abnormalities/kqe/hitsound1.ogg'
@@ -36,7 +36,7 @@
 		"Write GOODBYE" = 0,
 		"Write DUMBASS" = 0,
 	)
-	work_damage_upper = 7
+	work_damage_upper = 8
 	work_damage_lower = 4
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/envy
@@ -77,7 +77,7 @@
 	var/can_act = TRUE
 	var/grab_cooldown
 	var/grab_cooldown_time = 15 SECONDS
-	var/grab_damage = 30
+	var/grab_damage = 20
 	var/work_penalty = FALSE
 	var/question = FALSE
 	var/work_count = 0
@@ -336,8 +336,8 @@
 	icon_living = "kqe_heart"
 	icon_dead = "kqe_egg"
 	/*Stats*/
-	health = 200
-	maxHealth = 200
+	health = 700
+	maxHealth = 700
 	obj_damage = 50
 	damage_coeff = list(RED_DAMAGE = 2, WHITE_DAMAGE = 2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
 	speed = 5
