@@ -5,8 +5,8 @@
 	icon_state = "fairy_gentleman"
 	core_icon = "fairygentleman_egg"
 	portrait = "fairy_gentleman"
-	maxHealth = 200
-	health = 200
+	maxHealth = 350
+	health = 350
 	ranged = TRUE
 	rapid_melee = 1
 	melee_queue_distance = 2

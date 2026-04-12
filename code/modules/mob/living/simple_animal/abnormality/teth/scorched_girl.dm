@@ -7,8 +7,8 @@
 	icon_living = "scorched"
 	core_icon = "scorch_egg"
 	portrait = "scorched_girl"
-	maxHealth = 120
-	health = 120
+	maxHealth = 100
+	health = 100
 	threat_level = TETH_LEVEL
 	stat_attack = HARD_CRIT
 	ranged = TRUE
