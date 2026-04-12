@@ -15,8 +15,8 @@
 	melee_damage_upper = 50
 	melee_damage_type = RED_DAMAGE
 	stat_attack = HARD_CRIT
-	health = 1200
-	maxHealth = 1200
+	health = 1600
+	maxHealth = 1600
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.3, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	threat_level = WAW_LEVEL
 	can_breach = TRUE
@@ -190,8 +190,8 @@
 	icon_state = "yagaslave"
 	icon_living = "yagaslave"
 	faction = list("hostile", "babayaga")
-	health = 100
-	maxHealth = 100
+	health = 230
+	maxHealth = 230
 	melee_damage_type = RED_DAMAGE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.3, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	melee_damage_lower = 5

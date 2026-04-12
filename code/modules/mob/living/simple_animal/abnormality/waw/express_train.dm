@@ -7,7 +7,8 @@
 	portrait = "express_train"
 	faction = list("hostile")
 	speak_emote = list("drones")
-
+	maxHealth = 1500
+	health = 1500
 	threat_level = WAW_LEVEL
 	start_qliphoth = 4
 	work_chances = list(

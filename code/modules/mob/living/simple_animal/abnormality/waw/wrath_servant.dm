@@ -16,8 +16,8 @@
 	trigger_lights = FALSE
 
 	ranged = TRUE
-	maxHealth = 600
-	health = 600
+	maxHealth = 1200
+	health = 1200
 	damage_coeff = list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1.5)
 
 	move_to_delay = 6
@@ -675,8 +675,8 @@
 	faction = list("hostile", "azure")
 	can_patrol = TRUE
 
-	maxHealth = 500
-	health = 500
+	maxHealth = 800
+	health = 800
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.2)
 
 	alpha = 0
@@ -858,8 +858,8 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "stave"
 	icon_living = "stave"
-	maxHealth = 50
-	health = 50
+	maxHealth = 120
+	health = 120
 	death_message = "crumples to dust."
 
 	a_intent = INTENT_HARM
