@@ -8,8 +8,8 @@
 	icon_dead = "forsakenmurdererdead"
 	portrait = "forsaken_murderer"
 	del_on_death = FALSE
-	maxHealth = 300
-	health = 300
+	maxHealth = 270
+	health = 270
 	//Attack speed modifier. 2 is twice the normal.
 	rapid_melee = 1
 	//If target is close enough start preparing to hit them if we have rapid_melee enabled. Originally was 4.

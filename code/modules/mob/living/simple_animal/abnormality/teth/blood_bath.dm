@@ -4,8 +4,8 @@
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "bloodbath"
 	portrait = "blood_bath"
-	maxHealth = 200
-	health = 200
+	maxHealth = 260
+	health = 260
 	rapid_melee = 1
 	melee_queue_distance = 2
 	move_to_delay = 3

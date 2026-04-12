@@ -133,8 +133,8 @@
 
 // Spawned Mob
 /mob/living/simple_animal/hostile/retaliate/goose/falada
-	maxHealth = 35
-	health = 35
+	maxHealth = 50
+	health = 50
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	faction = list("goose") //geese are demons
 	attack_same = FALSE

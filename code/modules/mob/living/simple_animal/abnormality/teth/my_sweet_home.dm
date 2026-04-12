@@ -241,8 +241,8 @@
 		melee_damage_lower = 4
 		melee_damage_upper = 6
 		ranged_damage = 7
-		maxHealth = 150
-		health = 150
+		maxHealth = 230
+		health = 230
 
 /mob/living/simple_animal/hostile/abnormality/my_sweet_home/death(gibbed)
 	density = FALSE

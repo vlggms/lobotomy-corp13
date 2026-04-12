@@ -4,8 +4,8 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "dealerdamned"
 	portrait = "dealer"
-	maxHealth = 100
-	health = 100
+	maxHealth = 230
+	health = 230
 	threat_level = TETH_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 35,
