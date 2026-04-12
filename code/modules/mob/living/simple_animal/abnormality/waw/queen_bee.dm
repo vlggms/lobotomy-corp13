@@ -7,6 +7,8 @@
 	portrait = "queen_bee"
 	faction = list("hostile")
 	speak_emote = list("buzzes")
+	maxHealth = 1200
+	health = 1200
 
 	pixel_x = -8
 	base_pixel_x = -8
@@ -104,12 +106,12 @@
 	icon_state = "worker_bee"
 	icon_living = "worker_bee"
 	base_pixel_x = -8
-	health = 250
-	maxHealth = 250
+	health = 360 // More hp due to them spawning less often than in LC
+	maxHealth = 360
 	melee_damage_type = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
 	melee_damage_lower = 6
-	melee_damage_upper = 8
+	melee_damage_upper = 10
 	rapid_melee = 2
 	obj_damage = 200
 	robust_searching = TRUE

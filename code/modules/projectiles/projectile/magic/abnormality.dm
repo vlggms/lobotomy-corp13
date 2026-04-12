@@ -53,7 +53,7 @@
 	name = "magic beam"
 	icon_state = "qoh1"
 	damage_type = BLACK_DAMAGE
-	damage = 7
+	damage = 15
 	spread = 15
 
 /obj/projectile/melting_blob
@@ -124,7 +124,7 @@
 	desc = "A blade thrown maliciously"
 	icon_state = "clown"
 	damage_type = RED_DAMAGE
-	damage = 3
+	damage = 6
 
 /obj/projectile/clown_throw/Initialize()
 	. = ..()

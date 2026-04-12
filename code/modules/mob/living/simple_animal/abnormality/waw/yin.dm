@@ -73,7 +73,7 @@
 
 	COOLDOWN_DECLARE(pulse)
 	var/pulse_cooldown = 5 SECONDS
-	var/pulse_damage = 20
+	var/pulse_damage = 26
 	var/pulse_distance = 4
 
 	var/busy = FALSE
@@ -258,6 +258,7 @@
 	var/turf/target_turf = get_ranged_target_turf_direct(src, target, beam_distance)
 	var/list/to_hit = getline(src, target_turf)
 	var/datum/beam/beam = Beam(get_turf(src),"volt_ray")
+	SLEEP_CHECK_DEATH(3 SECONDS)
 	for(var/turf/open/OT in to_hit)
 		if(!istype(OT) || OT.density)
 			break
@@ -398,7 +399,7 @@
 /obj/effect/temp_visual/revenant/cracks/yin
 	icon_state = "yincracks"
 	duration = 9
-	var/damage = 20
+	var/damage = 35
 	var/list/faction = list("hostile")
 
 /obj/effect/temp_visual/revenant/cracks/yin/Destroy()

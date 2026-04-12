@@ -16,8 +16,8 @@ It has now been over four months. Now we get her for real. -Coxswain
 	del_on_death = TRUE
 	pixel_x = -8
 	base_pixel_x = -8
-	maxHealth = 950 // More health than standard
-	health = 950 // Since she was apparently too easy to suppress
+	maxHealth = 100 // More health than standard
+	health = 1000 // Since she was apparently too easy to suppress
 	rapid_melee = 2
 	speed = 0.5
 	threat_level = WAW_LEVEL
@@ -120,13 +120,13 @@ It has now been over four months. Now we get her for real. -Coxswain
 	var/gun_cooldown = 5 SECONDS
 	var/gun_multishot_pause = 2.5 // How long to pause between shots in a volley
 	var/bullet_additional = 0 // How many extra times to shoot
-	var/bullet_damage = 12 // How much damage each hollowpoint shell does
+	var/bullet_damage = 18 // How much damage each hollowpoint shell does
 
 	var/throw_timer = 0
 	var/throw_cooldown = 11 SECONDS
 	var/throw_amount = 3 // How many blades to throw at once
 	var/throw_cone = 25 // Total firing angle of all red's projectiles.
-	var/throw_damage = 18 // Damage of each thrown blade
+	var/throw_damage = 13 // Damage of each thrown blade
 	var/leaving = FALSE
 
 	var/list/wolf_encounter_lines = list( // Encountering Big and Will Be Bad Wolf
