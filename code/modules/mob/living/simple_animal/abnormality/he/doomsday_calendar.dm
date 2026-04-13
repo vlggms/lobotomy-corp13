@@ -341,7 +341,7 @@
 	obj_damage = 50
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1.5)
 	melee_damage_type = RED_DAMAGE
-	melee_damage_lower = 3
+	melee_damage_lower = 4
 	melee_damage_upper = 6
 	move_to_delay = 3
 	robust_searching = TRUE
