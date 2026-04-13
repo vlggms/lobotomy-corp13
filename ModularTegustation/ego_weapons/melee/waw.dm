@@ -2491,6 +2491,6 @@
 	if(!CanUseEgo(user))
 		return
 	var/justicemod = get_attack_multiplier(user)
-	var/damage = force * justicemod * 0.5
+	var/damage = force * justicemod * force_multiplier * 0.5
 	target.apply_damage(damage, FIRE, null, target.run_armor_check(null, FIRE), spread_damage = TRUE)
 	target.apply_lc_burn(3)
