@@ -6,8 +6,8 @@
 	icon_living = "fairy"
 	portrait = "fairy_festival"
 	core_icon = "fairy"
-	maxHealth = 50
-	health = 50
+	maxHealth = 200
+	health = 200
 	move_to_delay = 5
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1.3, PALE_DAMAGE = 2)
 	melee_damage_lower = 1
@@ -226,8 +226,8 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "fairy_bastard"
 	icon_living = "fairy_bastard"
-	maxHealth = 10
-	health = 10
+	maxHealth = 20
+	health = 20
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
 	is_flying_animal = TRUE
@@ -280,8 +280,8 @@
 	icon_state = "fairy_mass"
 	icon_living = "fairy_mass"
 	icon_dead = "fairy_mass_dead"
-	maxHealth = 10
-	health = 10
+	maxHealth = 40
+	health = 40
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
 	is_flying_animal = TRUE
