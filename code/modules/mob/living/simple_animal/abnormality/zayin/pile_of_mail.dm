@@ -5,8 +5,8 @@
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "mailbox"
 	portrait = "pile_of_mail"
-	maxHealth = 100
-	health = 100
+	maxHealth = 160
+	health = 160
 	threat_level = ZAYIN_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 60,

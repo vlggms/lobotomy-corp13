@@ -5,8 +5,8 @@
 	icon_state = "onesin_halo_normal"
 	icon_living = "onesin_halo_normal"
 	portrait = "one_sin"
-	maxHealth = 75
-	health = 75
+	maxHealth = 177
+	health = 177
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	melee_damage_lower = 2
 	melee_damage_upper = 4
