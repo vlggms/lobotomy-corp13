@@ -16,7 +16,7 @@
 	attack_verb_simple = "slap"
 	attack_sound = 'sound/abnormalities/ichthys/slap.ogg'
 	stat_attack = HARD_CRIT
-	melee_damage_lower = 5
+	melee_damage_lower = 7
 	melee_damage_upper = 9
 	rapid_melee = 1
 	melee_queue_distance = 2
