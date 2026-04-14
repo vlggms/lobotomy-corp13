@@ -14,6 +14,7 @@
 	var/destinationTag = NONE	// changes if contains a delivery container
 	var/tomail = FALSE			// contains wrapped package
 	var/hasmob = FALSE			// contains a mob
+	var/area/source_area		// LC13 Addition: Used to clean up area index stuff because apparently using disposal pipes to travel avoids calling Exited() ??
 
 /obj/structure/disposalholder/Destroy()
 	QDEL_NULL(gas)
@@ -22,6 +23,7 @@
 
 // initialize a holder from the contents of a disposal unit
 /obj/structure/disposalholder/proc/init(obj/machinery/disposal/D)
+	source_area = get_area(D)
 	gas = D.air_contents// transfer gas resv. into holder object
 
 	//Check for any living mobs trigger hasmob.
