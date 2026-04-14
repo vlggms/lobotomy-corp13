@@ -185,7 +185,7 @@
 			var/obj/item/clothing/suit/armor/ego_gear/equippable_gear = new gear(get_turf(src))
 			equippable_gear.equip_slowdown = 0
 			egoist.equip_to_slot(equippable_gear,ITEM_SLOT_OCLOTHING, TRUE)
-			equippable_gear.equip_slowdown = 3
+			equippable_gear.equip_slowdown = 6 SECONDS
 		else
 			egoist.put_in_hands(new gear(egoist))
 

@@ -49,12 +49,16 @@
 		if(!newmob.brainmob)
 			FailureResponse("ERROR: No signs of life.")
 			return
+		newmob.brainmob.notify_ghost_cloning("Your head is being placed in the hatchery!")
+		newmob.brainmob.grab_ghost()
 		RevivePreCheck(newmob, null, newmob.brainmob.real_name, newmob.brainmob.ckey, newmob.brainmob.mind, newmob.brainmob.client)
 	if(istype(I, /obj/item/organ/brain))
 		var/obj/item/organ/brain/newmob = I
 		if(!newmob.brainmob)
 			FailureResponse("ERROR: No signs of life.")
 			return
+		newmob.brainmob.notify_ghost_cloning("Your brain is being placed in the hatchery!")
+		newmob.brainmob.grab_ghost()
 		RevivePreCheck(newmob, null, newmob.brainmob.real_name, newmob.brainmob.ckey, newmob.brainmob.mind, newmob.brainmob.client)
 
 /obj/machinery/hatchery/proc/RevivePreCheck(obj/item/I, mob/living/carbon/human/H, realname, ckey, mind, client)
@@ -67,7 +71,7 @@
 	if(!client)
 		FailureResponse("ERROR: [realname] is currently unresponsive, but may return.")
 		return
-	if(revive_body(realname, ckey, TRUE))
+	if(revive_body(realname, ckey, TRUE, H))
 		if(I)
 			qdel(I)
 		if(H)
@@ -170,7 +174,7 @@
 
 	stored_bodies[H.real_name] = preserved_data
 
-/obj/machinery/hatchery/proc/revive_body(real_name, ckey, nopenalty = FALSE)
+/obj/machinery/hatchery/proc/revive_body(real_name, ckey, nopenalty = FALSE, mob/living/carbon/human/oldbody)
 	if(!stored_bodies[real_name])
 		return FALSE
 
@@ -226,30 +230,65 @@
 	new_body.ckey = ckey
 	if(job)
 		new_body.mind.assigned_role = job
-	new_body.equipOutfit(/datum/outfit/job/patient) // At this point if we don't have a job, our job will be set to civilian.
+	if(oldbody)
+		var/oldclothes = oldbody.get_item_by_slot(ITEM_SLOT_ICLOTHING) // we need to equip a uniform first for everything else to properly equip
+		if(oldclothes)
+			new_body.equip_to_appropriate_slot(oldclothes, FALSE) // If we can grab clothes, then we can also grab belts, pockets, and id
+			if(oldbody.get_item_by_slot(ITEM_SLOT_BELT))
+				var/obj/item/thebelt = oldbody.get_item_by_slot(ITEM_SLOT_BELT)
+				new_body.equip_to_slot_if_possible(thebelt, ITEM_SLOT_BELT)
+			if(oldbody.get_item_by_slot(ITEM_SLOT_LPOCKET))
+				var/obj/item/leftpocket = oldbody.get_item_by_slot(ITEM_SLOT_LPOCKET)
+				new_body.equip_to_slot_if_possible(leftpocket, ITEM_SLOT_LPOCKET)
+			if(oldbody.get_item_by_slot(ITEM_SLOT_RPOCKET))
+				var/obj/item/rightpocket = oldbody.get_item_by_slot(ITEM_SLOT_RPOCKET)
+				new_body.equip_to_slot_if_possible(rightpocket, ITEM_SLOT_RPOCKET)
+		var/oldarmor = oldbody.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+		if(oldarmor)
+			if(istype(oldarmor, /obj/item/clothing/suit/armor/ego_gear))
+				var/obj/item/clothing/suit/armor/ego_gear/equippable_gear = oldarmor
+				var/oldslowdown = 0
+				if(equippable_gear.equip_slowdown)
+					oldslowdown = equippable_gear.equip_slowdown
+				equippable_gear.equip_slowdown = 0
+				var/list/cachedreqs = equippable_gear.attribute_requirements
+				equippable_gear.attribute_requirements = list()
+				new_body.equip_to_appropriate_slot(equippable_gear, FALSE)
+				equippable_gear.equip_slowdown = oldslowdown
+				equippable_gear.attribute_requirements = cachedreqs
+				if(oldbody.s_store)
+					new_body.equip_to_slot_if_possible(oldbody.s_store, ITEM_SLOT_SUITSTORE)
+		// Do not use this to grab belts, pockets, id, equip_to_appropriate_slot does not properly handle that.
+		for(var/obj/item/slotitem in oldbody.get_all_slots() - list(oldbody.w_uniform, oldbody.wear_suit, oldbody.l_store, oldbody.r_store, oldbody.s_store, oldbody.belt))
+			new_body.equip_to_appropriate_slot(slotitem, FALSE)
+	else // We didn't have an old body to grab clothes from
+		new_body.equipOutfit(/datum/outfit/job/patient)
 
-	if (!new_body.ckey)
+	if(!new_body.ckey)
 		log_game("Hatchery: Created a new body for [real_name] without a ckey.")
 		FailureResponse("ERROR: No prior brain activity detected.", real_name)
 		qdel(new_body)
 		return FALSE
-
-	var/obj/item/card/id/I = new_body.get_idcard()
-	I.assignment = job
-	I.update_label()
-	I.update_overlays() // Makes ID card reflect current job.
-	var/bank_id = stored_data["bank_account"]
-	new_body.account_id = bank_id
-	var/datum/bank_account/B = SSeconomy.bank_accounts_by_id["[bank_id]"]
-	if(B)
-		I.registered_account = B
-		B.bank_cards += I
-	else
-		to_chat(new_body, "<span class='warning'>ERROR - Could not find account information for ID preservation.</span>")
+	if(!oldbody)
+		var/obj/item/card/id/I = new_body.get_idcard()
+		I.assignment = job
+		I.update_label()
+		I.update_overlays() // Makes ID card reflect current job.
+		var/bank_id = stored_data["bank_account"]
+		new_body.account_id = bank_id
+		var/datum/bank_account/B = SSeconomy.bank_accounts_by_id["[bank_id]"]
+		if(B)
+			I.registered_account = B
+			B.bank_cards += I
+		else
+			to_chat(new_body, "<span class='warning'>ERROR - Could not find account information for ID preservation.</span>")
 
 	var/list/ego_gift_list = list()
 	ego_gift_list = stored_data["ego_gifts"]
 	var/datum/job/J = SSjob.GetJob(job)
+	if(!J)
+		job = "Civilian" // If our job is not loaded in SSjob (i.e "Unassigned", or any unavailable job), bad things will happen here.
+		J = SSjob.GetJob(job)
 	J.after_spawn(new_body, new_body, TRUE)
 	// Apply attribute penalty and set attributes
 	var/list/stored_attributes = stored_data["attributes"]
@@ -270,8 +309,21 @@
 	else
 		log_game("Body Preservation Unit: Stored attributes for [real_name] were invalid.")
 		FailureResponse("ERROR: Invalid attributes.")
+		if(oldbody)
+			new_body.unequip_everything()
 		qdel(new_body)
 		return FALSE
+
+	var/datum/outfit/U = new J.outfit
+	if(U.implants) // apply clerk HUD and such
+		for(var/implant_type in U.implants)
+			if(ispath(implant_type, /obj/item/implant))
+				var/obj/item/implant/M = new implant_type(new_body)
+				M.implant(new_body, null, TRUE)
+			else if(ispath(implant_type, /obj/item/organ))
+				var/obj/item/organ/O = new implant_type(new_body)
+				O.Insert(new_body, TRUE, FALSE)
+	qdel(U)
 
 	var/chat_message = "You have been revived in a new body, but your attributes have decreased slightly."
 	if(nopenalty)
@@ -285,6 +337,7 @@
 	to_chat(new_body, "<span class='warning'>[chat_message]</span>")
 	stored_bodies = stored_bodies - new_body.real_name
 	flick(icon_state_animation, src)
+	new_body.update_icons()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CREWMEMBER_JOINED, new_body, job) // Used to handle cores and such
 	return TRUE
 
@@ -307,6 +360,8 @@
 			FailureResponse("ERROR: Subject not dead.")
 			return
 		var/mob/living/carbon/human/H = M
+		H.notify_ghost_cloning("Your body is being placed in the hatchery!")
+		H.grab_ghost()
 		RevivePreCheck(null, H, H.real_name, H.ckey, H.mind, H.client)
 
 /obj/machinery/hatchery/proc/FailureResponse(reason)
