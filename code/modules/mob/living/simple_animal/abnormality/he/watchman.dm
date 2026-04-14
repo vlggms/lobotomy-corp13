@@ -46,10 +46,11 @@
 	observation_prompt = "\"Natureless creatures roam the night, you should find shelter.\" <br>\
 		The watchman beckons you over. <br>You..."
 	observation_choices = list(
-		"Approach" = list(TRUE, "Good. <br>It's not safe to roam the woods at night.<br>\
+		"Approach" = list(TRUE, "Good. <br>It's not safe to roam the backstreets at night.<br>\
 			Come now, I will guide you home."),
 		"Run away" = list(FALSE, "You don't get far before you start hearing howling and shrieking. <br>\
-			Numerous talons, claws, and fangs bite into you all at once. <br>Now you will know why you fear the night."),
+		The clock strikes 3:13 A.M., a mechanical hissing fills the air. <br>\
+		Numerous hooks, claws, and sickles bite into you all at once. <br>\ Now you will know why you fear the night."),
 	)
 
 	// Speech Lines
@@ -160,6 +161,7 @@
 	clear_filters()
 	icon_state = core_icon
 	icon = 'ModularTegustation/Teguicons/abno_cores/he.dmi'
+	set_light(0)
 	density = FALSE
 	animate(src, alpha = 0, time = 5 SECONDS)
 	QDEL_IN(src, 5 SECONDS)
@@ -205,6 +207,8 @@
 
 /mob/living/simple_animal/hostile/abnormality/watchman/proc/HandleSpeech()
 	// Add new threats.
+	if(health <= 0)
+		return
 	for(var/mob/living/simple_animal/hostile/H in view(7, src))
 		if(H == src)
 			continue
