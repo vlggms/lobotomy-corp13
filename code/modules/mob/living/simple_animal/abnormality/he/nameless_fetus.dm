@@ -166,21 +166,20 @@
 			continue
 		if(H.stat == DEAD)
 			corpses += H
-	if(!LAZYLEN(corpses))
-		addtimer(CALLBACK(src, PROC_REF(check_range)), 2 SECONDS)
-		return
-	var/mob/living/carbon/human/corpse = pick(corpses)
-	if(corpse)
-		calling = null
-		corpse.gib()
-		corpse = null
-		hunger += 4 //Not as much compared to fresh meat
-		satisfied = TRUE
-	if(calling && Adjacent(calling))
-		calling.gib()
-		calling = null
-		hunger += 12 //Ehh might as well triple the effectiveness of it being fed if you have to die.
-		satisfied = TRUE
+	if(LAZYLEN(corpses))
+		var/mob/living/carbon/human/corpse = pick(corpses)
+		if(corpse)
+			calling = null
+			corpse.gib()
+			corpse = null
+			hunger += 4 //Not as much compared to fresh meat
+			satisfied = TRUE
+	if(!satisfied)
+		if(calling && Adjacent(calling))
+			calling.gib()
+			calling = null
+			hunger += 12 //Ehh might as well triple the effectiveness of it being fed if you have to die.
+			satisfied = TRUE
 	if(satisfied)
 		for(var/mob/living/carbon/human/H in GLOB.player_list)
 			to_chat(H, span_userdanger("The creature is satisfied."))
