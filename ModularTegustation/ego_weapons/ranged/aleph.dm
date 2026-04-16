@@ -318,7 +318,8 @@
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 100
 	)
-	shotsleft = 200
+	reloadtime = 3 SECONDS
+	shotsleft = 600
 
 //Just a funny gold soda pistol. It was originally meant to just be a golden meme weapon, now it is the only pale gun, lol
 /obj/item/ego_weapon/ranged/pistol/executive
@@ -331,7 +332,7 @@
 	damtype = PALE_DAMAGE
 	burst_size = 1
 	fire_delay = 5
-	shotsleft = 12
+	max_shots = 12
 	reloadtime = 1.2 SECONDS
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	vary_fire_sound = FALSE
@@ -348,18 +349,18 @@
 	)
 
 /obj/item/ego_weapon/ranged/pistol/executive/proc/AutoReload(mob/user)
-	if(shotsleft == initial(shotsleft))
+	if(shotsleft == max_shots)
 		return
 	playsound(src, 'sound/weapons/ego/executive_reload.ogg', 70, FALSE)
-	shotsleft = initial(shotsleft)
+	shotsleft = max_shots
 	to_chat(user, span_nicegreen("A new magazine materialized within [src]!"))
 	// Might as well reload the other gun
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		for(var/obj/item/ego_weapon/ranged/pistol/executive/G in H.held_items)
-			if(G == src || G.shotsleft == initial(G.shotsleft))
+			if(G == src || G.shotsleft == G.max_shots)
 				continue
-			G.shotsleft = initial(G.shotsleft)
+			G.shotsleft = G.max_shots
 			playsound(G, 'sound/weapons/ego/executive_reload.ogg', 70, FALSE)
 			to_chat(user, span_nicegreen("A new magazine materialized within the other [G]!"))
 
@@ -368,6 +369,7 @@
 		projectile_path = /obj/projectile/ego_bullet/ego_executive/kill_shot
 		fire_sound = 'sound/weapons/ego/executive_shot.ogg'
 	. = ..()
-	projectile_path = initial(projectile_path)
-	fire_sound = initial(fire_sound)
-	update_projectile_examine()
+	if(!shotsleft)
+		projectile_path = initial(projectile_path)
+		fire_sound = initial(fire_sound)
+		update_projectile_examine()

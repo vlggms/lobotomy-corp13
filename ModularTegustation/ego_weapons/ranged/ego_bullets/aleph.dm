@@ -127,6 +127,8 @@
 	damage_type = PALE_DAMAGE
 	speed = 2
 	range = 6
+	projectile_piercing = PASSMOB
+	hit_nondense_targets = TRUE
 
 /obj/projectile/ego_bullet/ego_executive
 	name = "executive"

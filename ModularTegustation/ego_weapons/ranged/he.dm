@@ -79,8 +79,9 @@
 	force = 10
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_unrequited
-	fire_delay = 3
+	fire_delay = 10
 	burst_size = 3
+	burst_delay = 5
 	fire_sound = 'sound/weapons/gun/l6/shot.ogg'
 	vary_fire_sound = FALSE
 	weapon_weight = WEAPON_HEAVY
@@ -110,7 +111,6 @@
 	return ..()
 
 /obj/item/ego_weapon/ranged/unrequited/proc/ResetDelay()
-	fire_delay = 3
 	burst_size = 3
 
 /obj/item/ego_weapon/ranged/unrequited/SpecialEgoCheck(mob/living/carbon/human/H)
@@ -136,7 +136,6 @@
 			return
 		jammed = FALSE
 		jam_noticed = FALSE
-		fire_delay = 2
 		burst_size = 5
 		addtimer(CALLBACK(src, PROC_REF(ResetDelay)), 15 SECONDS)
 		to_chat(user,span_notice("You succesfully unjammed [src]!"))

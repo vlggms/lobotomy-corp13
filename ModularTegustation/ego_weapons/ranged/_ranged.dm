@@ -34,8 +34,6 @@
 	var/shotsleft = 0
 	/// The ammo lost when we shoot
 	var/ammo_per_shot = 1
-	/// Whether the gun can manually reload or not.
-	var/can_reload = TRUE
 	/// If set to true, the user can move during the reload at the cost of speed.
 	var/mobile_reload = FALSE
 	/// How long it takes to reload this weapon, if blank it wont need to be reloaded
@@ -47,9 +45,8 @@
 
 	/// If true the gun is passively reload its ammo based off the reload time
 	var/passive_reload = FALSE
-	var/passive_reload_cooldown
-	var/passive_reloadtime = 0 SECONDS
-	var/ammo_on_passive_reload = null
+	var/passive_reload_timer = null
+	var/passive_reloadtime_delay = 5 SECONDS
 
 	/// Vars used for when you examine a gun
 	var/last_projectile_damage = 0
@@ -86,8 +83,10 @@
 	var/chargetime = null
 	var/is_charging = FALSE
 	var/charged = FALSE
+	var charge_timer
 	var/recoil = 0						//boom boom shake the room
 	var/burst_size = 1					//how large a burst is
+	var/burst_delay = null				//the duration of the burst fire.
 	var/fire_delay = 0					//rate of fire for burst firing and semi auto
 	var/firing_burst = 0				//Prevent the weapon from firing again while already firing
 	var/semicd = 0						//cooldown handler
@@ -109,6 +108,10 @@
 	var/datum/action/toggle_scope_zoom/azoom
 	var/pb_knockback = 0
 
+/obj/item/ego_weapon/ranged/process()
+	. = ..()
+	to_chat(world, "A")
+
 /obj/item/ego_weapon/ranged/pistol
 	attack_speed = 0.5
 	force = 2
@@ -120,8 +123,9 @@
 	attack_speed = 1.5
 	force = 7
 	fire_delay = 10
-	chargetime = 5
+	chargetime = 10
 	shotsleft = 3
+	recoil = 0.1
 	round_text = "You start loading a shell."
 	projectile_name = "shell"
 	projectile_name_plural = "shells"
@@ -151,7 +155,7 @@ obj/item/ego_weapon/ranged/crossbow/Initialize()
 obj/item/ego_weapon/ranged/crossbow/OnReload()
 	icon_state = inhand_icon_state = "[initial(icon_state)]_loaded"
 
-obj/item/ego_weapon/ranged/crossbow/process_chamber()
+obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 	icon_state = inhand_icon_state = "[initial(icon_state)]"
 	return ..()
 
@@ -161,6 +165,8 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber()
 
 /obj/item/ego_weapon/ranged/Initialize()
 	. = ..()
+	if(!burst_delay)
+		burst_delay = fire_delay * 0.8
 	if(pin)
 		pin = new pin(src)
 	build_zooming()
@@ -174,6 +180,8 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber()
 		UnregisterSignal(user, COMSIG_ATOM_DIR_CHANGE)
 		if(user.has_movespeed_modifier(/datum/movespeed_modifier/reloading))
 			user.remove_movespeed_modifier(/datum/movespeed_modifier/reloading)
+	deltimer(passive_reload_timer)
+	deltimer(charge_timer)
 	if(isobj(pin)) //Can still be the initial path, then we skip
 		QDEL_NULL(pin)
 	if(azoom)
@@ -194,25 +202,28 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber()
 		. += span_notice("Ammo Counter: [shotsleft]/[initial(shotsleft)].")
 	else
 		. += span_danger("Ammo Counter: [shotsleft]/[initial(shotsleft)].")
-	if(reloadtime)
-		switch(reloadtime)
-			if(0 to 0.71 SECONDS)
-				. += span_nicegreen("This weapon has a very fast reload.")
-			if(0.71 SECONDS to 1.21 SECONDS)
-				. += span_notice("This weapon has a fast reload.")
-			if(1.21 SECONDS to 1.71 SECONDS)
-				. += span_notice("This weapon has a normal reload speed.")
-			if(1.71 SECONDS to 2.51 SECONDS)
-				. += span_danger("This weapon has a slow reload.")
-			if(2.51 to INFINITY)
-				. += span_danger("This weapon has an extremely slow reload.")
-		if(mobile_reload)
-			. += span_notice("This weapon can be reloaded while moving at the cost of movespeed.")
-		if(ammo_on_reload)
-			if(ammo_on_reload > 1)
-				. += span_notice("This weapon reloads [ammo_on_reload] [projectile_name_plural] at a time.")
-			else
-				. += span_notice("This weapon reloads one [projectile_name] at a time.")
+	if(passive_reload)
+		. += span_notice("This weapon passively reloads ammo.")
+	else
+		if(reloadtime)
+			switch(reloadtime)
+				if(0 to 0.71 SECONDS)
+					. += span_nicegreen("This weapon has a very fast reload.")
+				if(0.71 SECONDS to 1.21 SECONDS)
+					. += span_notice("This weapon has a fast reload.")
+				if(1.21 SECONDS to 1.71 SECONDS)
+					. += span_notice("This weapon has a normal reload speed.")
+				if(1.71 SECONDS to 2.51 SECONDS)
+					. += span_danger("This weapon has a slow reload.")
+				if(2.51 to INFINITY)
+					. += span_danger("This weapon has an extremely slow reload.")
+			if(mobile_reload)
+				. += span_notice("This weapon can be reloaded while moving at the cost of movespeed.")
+			if(ammo_on_reload)
+				if(ammo_on_reload > 1)
+					. += span_notice("This weapon reloads [ammo_on_reload] [projectile_name_plural] at a time.")
+				else
+					. += span_notice("This weapon reloads one [projectile_name] at a time.")
 	switch(weapon_weight)
 		if(WEAPON_HEAVY)
 			. += span_danger("This weapon requires both hands to fire.")
@@ -222,18 +233,20 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber()
 			. += span_nicegreen("This weapon can be dual wielded.")
 
 	if(chargetime)
-		. += span_notice("This weapon needs to be primed before firing.")
+		. += span_notice("This weapon needs to be charged up before firing.")
 		switch(chargetime)
 			if(0 to 5)
-				. += span_nicegreen("This weapon primes very fast.")
+				. += span_nicegreen("This weapon charges up very fast.")
 			if(6 to 10)
-				. += span_notice("This weapon primes fast.")
+				. += span_notice("This weapon charges up fast.")
 			if(11 to 15)
-				. += span_danger("This weapon primes slowly.")
+				. += span_danger("This weapon charges up slowly.")
 			else
-				. += span_danger("This weapon primes extremely slowly.")
+				. += span_danger("This weapon charges up extremely slowly.")
 
 	if(!autofire)
+		if(burst_size > 1)
+			. += span_notice("This weapon fires in a burst of [burst_size].")
 		switch(fire_delay)
 			if(0 to 5)
 				. += span_nicegreen("This weapon fires fast.")
@@ -289,7 +302,7 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber()
 	qdel(projectile)
 
 /obj/item/ego_weapon/ranged/attack_self(mob/user)
-	if(reloadtime && !is_reloading)
+	if(reloadtime && !is_reloading && !passive_reload)
 		if(ammo_on_reload)
 			to_chat(user,span_notice(reload_text))
 			playsound(src, reload_start_sound, 50, TRUE)
@@ -339,6 +352,16 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber()
 //Used for some weapons to do things
 /obj/item/ego_weapon/ranged/proc/OnReload(mob/user)
 
+/obj/item/ego_weapon/ranged/proc/PassiveReload(mob/user, showmessage = FALSE)
+	deltimer(passive_reload_timer)
+	OnReload(user)
+	if(ammo_on_reload)
+		shotsleft = min(shotsleft + ammo_on_reload, initial(shotsleft))
+	else
+		shotsleft = initial(shotsleft)
+	if(shotsleft < initial(shotsleft))
+		passive_reload_timer = addtimer(CALLBACK(src, PROC_REF(PassiveReload), user), reloadtime, TIMER_STOPPABLE)
+
 /obj/item/ego_weapon/ranged/equipped(mob/living/user, slot)
 	. = ..()
 	if(zoomed && user.get_active_held_item() != src)
@@ -355,13 +378,19 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber()
 		UnregisterSignal(user, COMSIG_ATOM_DIR_CHANGE)
 		if(user.has_movespeed_modifier(/datum/movespeed_modifier/reloading))
 			user.remove_movespeed_modifier(/datum/movespeed_modifier/reloading)
+		if(charged)
+			Uncharge()
 	if(azoom)
 		azoom.Remove(user)
 	if(zoomed)
 		zoom(user, user.dir)
 
 //called after the gun has successfully fired its chambered ammo.
-/obj/item/ego_weapon/ranged/proc/process_chamber()
+/obj/item/ego_weapon/ranged/proc/process_chamber(mob/living/user)
+	if(passive_reload)
+		if(passive_reload_timer)
+			deltimer(passive_reload_timer)
+		passive_reload_timer = addtimer(CALLBACK(src, PROC_REF(PassiveReload), user, TRUE), passive_reloadtime_delay, TIMER_STOPPABLE)
 	if(reloadtime && shotsleft)
 		shotsleft = max(0, shotsleft - ammo_per_shot)
 
@@ -373,7 +402,7 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber()
 		shoot_with_empty_chamber()
 		return FALSE
 
-	if(is_reloading || is_charging)
+	if(is_reloading)
 		return FALSE
 
 	return TRUE
@@ -459,17 +488,21 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber()
 		return
 	//Charge up Stuff
 	if(chargetime)
+		if(semicd)//You still need to wait till it's off cooldown first
+			return
 		if(!charged)
 			is_charging = TRUE
 			playsound(user, charge_sound, charge_sound_volume, vary_fire_sound)
-			if(do_after(user, chargetime, src, IGNORE_USER_LOC_CHANGE))
-				to_chat(user, span_nicegreen("You primed [src]."))
+			if(do_after(user, chargetime, src))
+				to_chat(user, span_nicegreen("You charge up [src]."))
 				is_charging = FALSE
 				charged = TRUE
+				charge_timer = addtimer(CALLBACK(src, PROC_REF(Uncharge), user), 4, TIMER_STOPPABLE)
 				return
 			is_charging = FALSE
-			to_chat(user, span_warning("You need to wait before priming [src]!"))
+			to_chat(user, span_warning("You need to wait before charging up [src]!"))
 			return
+		deltimer(charge_timer)
 		charged = FALSE
 	//DUAL (or more!) WIELDING
 	var/bonus_spread = 0
@@ -537,7 +570,7 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber()
 	if(iteration >= burst_size)
 		firing_burst = FALSE
 
-	process_chamber()
+	process_chamber(user)
 	return TRUE
 
 /obj/item/ego_weapon/ranged/proc/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, temporary_damage_multiplier = 1)
@@ -571,7 +604,7 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber()
 	if(burst_size > 1)
 		firing_burst = TRUE
 		for(var/i = 1 to burst_size)
-			addtimer(CALLBACK(src, PROC_REF(process_burst), user, target, message, params, zone_override, sprd, randomized_gun_spread, randomized_bonus_spread, rand_spr, i), fire_delay * (i - 1))
+			addtimer(CALLBACK(src, PROC_REF(process_burst), user, target, message, params, zone_override, sprd, randomized_gun_spread, randomized_bonus_spread, rand_spr, i), (burst_delay/burst_size) * (i - 1))
 	else
 		sprd = round((rand() - 0.5) * DUALWIELD_PENALTY_EXTRA_MULTIPLIER * (randomized_gun_spread + randomized_bonus_spread))
 
@@ -583,9 +616,9 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber()
 		else
 			shoot_live_shot(user, 0, target, message)
 
-		process_chamber()
-		semicd = TRUE
-		addtimer(CALLBACK(src, PROC_REF(reset_semicd)), fire_delay)
+		process_chamber(user)
+	semicd = TRUE
+	addtimer(CALLBACK(src, PROC_REF(reset_semicd)), fire_delay)
 
 	if(user)
 		user.update_inv_hands()
@@ -595,6 +628,12 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber()
 
 /obj/item/ego_weapon/ranged/proc/reset_semicd()
 	semicd = FALSE
+
+/obj/item/ego_weapon/ranged/proc/Uncharge(mob/living/user)
+	charged = FALSE
+	if(user)
+		to_chat(user, span_warning("The [src] loses its charge!"))
+	deltimer(charge_timer)
 
 /obj/item/ego_weapon/ranged/attack(mob/M as mob, mob/user)
 	if(is_charging)

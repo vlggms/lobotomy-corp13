@@ -45,11 +45,15 @@
 	icon_state = "hatred"
 	inhand_icon_state = "hatred"
 	special = "This weapon heals humans that it hits."
-	force = 14
+	force = 16
 	damtype = BLACK_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_hatred
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 15
+	fire_delay = 10
+	shotsleft = 20
+	passive_reload = TRUE
+	passive_reloadtime_delay = 8 SECONDS
+	reloadtime = 5
 	fire_sound = 'sound/abnormalities/hatredqueen/attack.ogg'
 
 	attribute_requirements = list(
@@ -556,7 +560,7 @@
 		return TRUE
 	..()
 
-/obj/item/ego_weapon/ranged/banquet/process_chamber()
+/obj/item/ego_weapon/ranged/banquet/process_chamber(mob/living/user)
 	if(bloodshot_ready && !shotsleft)
 		AdjustThirst(-150)
 	..()

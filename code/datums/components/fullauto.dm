@@ -16,7 +16,7 @@
 /datum/component/automatic_fire/Initialize(_autofire_shot_delay)
 	. = ..()
 	//if(!isgun(parent)) // LOBOTOMYCORPORATION EDIT CHANGE OLD -- EGO_GUNS
-	if(!isgun(parent) && !istype(parent, /obj/item/ego_weapon/ranged)) // LOBOTOMYCORPORATION EDIT CHANGE NEW -- EGO_GUNS
+	if(!isgun(parent) && !is_ego_ranged_weapon(parent)) // LOBOTOMYCORPORATION EDIT CHANGE NEW -- EGO_GUNS
 		return COMPONENT_INCOMPATIBLE
 	var/obj/item/gun = parent
 	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(wake_up))
@@ -112,10 +112,14 @@
 		return
 	if (L[ALT_CLICK])
 		return
+
 	if(source.mob.in_throw_mode)
 		return
 	if(!isturf(source.mob.loc)) //No firing inside lockers and stuff.
 		return
+
+	source.mob.face_atom(target) //Face the target like with click.dm
+
 	if(get_dist(source.mob, _target) < 2) //Adjacent clicking.
 		return
 	if(source.mob.next_move > world.time) //Too busy doing something else to fire
@@ -158,8 +162,14 @@
 		mouse_status = AUTOFIRE_MOUSEDOWN
 
 	RegisterSignal(shooter, COMSIG_MOB_SWAP_HANDS, PROC_REF(stop_autofiring))
+	if(istype(parent, /obj/item/ego_weapon/ranged)) // This can probably be thrown into a define like "israngedego" or something like that but I will leave it like that.
+		var/obj/item/ego_weapon/ranged/shoota = parent
+		if(!shoota.on_autofire_start(shooter)) // So, without this you can shoot double-handed automatic weapons with only one hand, fun right?
+			stop_autofiring()
+			to_chat(world, "AAA")
+			return
 
-	if(isgun(parent))
+	else if(isgun(parent))
 		var/obj/item/gun/shoota = parent
 		if(!shoota.on_autofire_start(shooter)) //This is needed because the minigun has a do_after before firing and signals are async.
 			stop_autofiring()
