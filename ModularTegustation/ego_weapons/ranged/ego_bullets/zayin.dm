@@ -10,11 +10,12 @@
 
 /obj/projectile/ego_bullet/ego_nostalgia
 	name = "nostalgia"
-	damage = 8
+	damage = 7
 	damage_type = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_nightshade
 	name = "nightshade dart"
+	icon_state = "nightshade"
 	damage = 6
 	damage_type = BLACK_DAMAGE
 
@@ -50,6 +51,6 @@
 
 /obj/projectile/ego_bullet/ego_oceanic
 	name = "oceanic"
-	damage = 6		//Worse than tough lol
+	damage = 3		//Worse than tough lol
 	damage_type = WHITE_DAMAGE
 

@@ -6,6 +6,7 @@
 	var/firing_effect_type = null //the visual effect appearing when the ammo is fired.
 
 /obj/item/ego_weapon/ranged/proc/fire_projectile(atom/target, mob/living/user, params, distro, quiet, zone_override, spread, atom/fired_from, temporary_damage_multiplier)
+	var/mult = 1 + (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE)) / 200
 	var/obj/projectile/projectile = new projectile_path(src, src)
 	projectile.original = target
 	projectile.firer = user
@@ -21,7 +22,7 @@
 	projectile.suppressed = quiet
 
 	projectile.damage *= projectile_damage_multiplier
-
+	projectile.justice_multiplier = mult
 	if(temporary_damage_multiplier)
 		projectile.damage *= temporary_damage_multiplier
 
@@ -43,6 +44,7 @@
 		casing.pellets = pellets
 		casing.variance = variance
 		casing.projectile_type = projectile_path
+		casing.justice_multiplier = mult
 		casing.BB = projectile
 		casing.AddComponent(/datum/component/pellet_cloud, projectile_path, pellets)
 		SEND_SIGNAL(casing, COMSIG_PELLET_CLOUD_INIT, target, user, fired_from, random_spread, spread, zone_override, params, distro)

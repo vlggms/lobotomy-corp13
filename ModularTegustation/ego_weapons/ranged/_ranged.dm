@@ -1,4 +1,74 @@
 #define DUALWIELD_PENALTY_EXTRA_MULTIPLIER 1.4
+/*
+	////////////////////////////////////////////////////
+	///A Brief Explanation of Guns and Their Jank DPS///
+	////////////////////////////////////////////////////
+
+	Part A - Sustained DPS
+		Sustained DPS is the hypothetical maximum damage per second a gun can do while factoring in ammo and reload compared to regular DPS just being damage/fire rate
+		Formula: (d * a)/((f * (a-1)) + max(f, r))
+		Note - A gun is able to be reloaded right after it fires a bullet.
+		Note - Sustained DPS is also different for charge up guns and passive reload guns
+		Charge up Formula: (d * a)/((f * (a-1))  + (c * a) + max(f, r))
+		Passive Reload Formula: (d * a)/((f * (a-1)) + max(f, (p + r))
+		If for some reason a gun uses both: (d * a)/((f * (a-1))  + (c * a) + max(f, (p + r))
+		Legend:
+			d -	The total damage from one shot(ie every pellet from a shotgun or Matchstick's base bullet damage + aoe)
+			f -	The Gun's fire rate in seconds, if the reload speed is slower than the reload speed, Sustained DPS will just end up being damage/fire rate.
+			a -	The maximum amount of ammo in a gun's clip
+			r -	The total time it takes to reload the gun to full in seconds(for guns that reload individual bullets, r is (reload * ceil(ammo/ammo on reload)))
+			c -	The time it takes for a gun to charge up before firing in seconds
+			p -	The initial passive reload delay that happens after the gun fires in seconds
+		Note - This cover's 99% of cases but there's probably a gun or 2 that have their own formula.
+	Part B - Gun Balancing
+		A Gun's Sustained DPS should be around these values based off of its risk level:
+			ZAYIN - 5 SDPS
+			TETH - 9 SDPS
+			HE - 14 SDPS
+			WAW - 21 SDPS
+			ALEPH - 35 SDPS
+		Note -	Despite Melee weapon DPS appearing as 6/10/16/24/40 per rank, its 25% more due to Melee Click Cooldown being 0.8 seconds.
+				This means that Melee DPS is actually 7.5/12.5/20/30/50.
+		Gun damage is balanced around being ~70% of Melee DPS for their melee and their bullet's Sustained DPS but there are some exceptions.
+		Weight
+			Light - 0.9x DPS
+				These guns can be used with one hand but can be dual wielded and can be placed in an arm belt.
+				Despite dual wielding allowing someone to shoot 2 guns at once,It isn't 2x dps mainly due to reload time being doubled and increased spread.
+			Medium - 1x DPS
+				These guns can be used with one hand but can't be dual wielded with. They're the baseline for guns overall.
+			Heavy - 1.2x DPS
+				These guns require an empty hand to be used. They have higher DPS due to needing any empty hand to use which could have a different weapon instead.
+		Gun Mechanics
+			Charged Weapons - 1.4x DPS
+				Used mainly for cannon type weapons.
+				Requires to be charged up before shooting. It being charged up lasts for a few deciseconds.
+				Should have higher dps due to needing to stand still to charge it up.
+				Note - This shouldn't be used for light weapons due to how dual wielding works!
+			Mobile Reload (mobile_reload)
+				Used for Crossbows
+				Allows the user to move while reloading at a slower pace.
+				This should overall be rare.
+			Multi Shot- 1.4x DPS
+				Used Mainly for Shotguns.
+				Fires multiple bullets at once in a spread.
+				Should have higher dps due to limited range, and friendly fire.
+			Passive Reload
+				Used by Magic Staves and Energy Guns
+				Automatically starts reloading after a long delay after firing.
+				Note - Passive Reload Weapons can't be reloaded manually!
+			Burst Fire - 1.2x DPS
+				Fires a burst of bullets one after another.
+				Should have higher dps due to needing to hit all of the bullets during a burst.
+			Alternate Firing Modes
+				An alternate mode that can be used for different mechanics compared to a guns standard mode
+			Rounds Reload
+				Allows for Guns to reload individual rounds instead of the clip.
+				If this is being used, the gun should reload slower due to being able to cancel mid reload and still regaining some bullets.
+			Range/Spread
+				Low range/high spread guns should have better DPS to compensate for hitting less often unless up close.
+			Added Abilities
+				If you add any other abilities to a new gun then it should have higher or lower dps depending on if they're harmful or helpful.
+*/
 
 /obj/item/ego_weapon/ranged
 	name = "ego gun"
@@ -6,7 +76,8 @@
 	inhand_icon_state = "gun"
 	worn_icon_state = "gun"
 	flags_1 =  CONDUCT_1
-	force = 4
+	force = 6
+	attack_speed = 1.3
 	item_flags = NEEDS_PERMIT
 	attack_verb_continuous = list("strikes", "hits", "bashes")
 	attack_verb_simple = list("strike", "hit", "bash")
@@ -22,6 +93,7 @@
 
 	/// Just 'slightly' snowflakey way to modify projectile damage for projectiles fired from this gun.
 	var/projectile_damage_multiplier = 1
+
 	/// If the weapon allows dual-weilding/can be used in 1 hand/needs 2 hands
 	var/weapon_weight = WEAPON_LIGHT
 
@@ -83,7 +155,8 @@
 	var/chargetime = null
 	var/is_charging = FALSE
 	var/charged = FALSE
-	var charge_timer
+	var/charge_timer
+
 	var/recoil = 0						//boom boom shake the room
 	var/burst_size = 1					//how large a burst is
 	var/burst_delay = null				//the duration of the burst fire.
@@ -108,10 +181,6 @@
 	var/datum/action/toggle_scope_zoom/azoom
 	var/pb_knockback = 0
 
-/obj/item/ego_weapon/ranged/process()
-	. = ..()
-	to_chat(world, "A")
-
 /obj/item/ego_weapon/ranged/pistol
 	attack_speed = 0.5
 	force = 2
@@ -120,8 +189,8 @@
 
 /// Low ammo, Long reloads, Slow fire rate, Extreme Damage
 /obj/item/ego_weapon/ranged/cannon
-	attack_speed = 1.5
-	force = 7
+	attack_speed = 1.8
+	force = 9
 	fire_delay = 10
 	chargetime = 10
 	shotsleft = 3
@@ -135,8 +204,6 @@
 	fire_sound = 'sound/weapons/ego/cannon.ogg'
 
 /obj/item/ego_weapon/ranged/crossbow
-	attack_speed = 1.3
-	force = 6
 	shotsleft = 1
 	reload_text = "You start loading an arrow."
 	projectile_name = "arrow"
@@ -159,10 +226,6 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 	icon_state = inhand_icon_state = "[initial(icon_state)]"
 	return ..()
 
-/obj/item/ego_weapon/ranged/maw
-	attack_speed = 0.5
-	force = 3
-
 /obj/item/ego_weapon/ranged/Initialize()
 	. = ..()
 	if(!burst_delay)
@@ -172,6 +235,7 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 	build_zooming()
 	if(autofire)
 		AddComponent(/datum/component/automatic_fire, autofire)
+		fire_delay = 0
 
 	update_projectile_examine()
 
@@ -203,27 +267,37 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 	else
 		. += span_danger("Ammo Counter: [shotsleft]/[initial(shotsleft)].")
 	if(passive_reload)
-		. += span_notice("This weapon passively reloads ammo.")
-	else
-		if(reloadtime)
-			switch(reloadtime)
-				if(0 to 0.71 SECONDS)
-					. += span_nicegreen("This weapon has a very fast reload.")
-				if(0.71 SECONDS to 1.21 SECONDS)
-					. += span_notice("This weapon has a fast reload.")
-				if(1.21 SECONDS to 1.71 SECONDS)
-					. += span_notice("This weapon has a normal reload speed.")
-				if(1.71 SECONDS to 2.51 SECONDS)
-					. += span_danger("This weapon has a slow reload.")
-				if(2.51 to INFINITY)
-					. += span_danger("This weapon has an extremely slow reload.")
-			if(mobile_reload)
-				. += span_notice("This weapon can be reloaded while moving at the cost of movespeed.")
-			if(ammo_on_reload)
-				if(ammo_on_reload > 1)
-					. += span_notice("This weapon reloads [ammo_on_reload] [projectile_name_plural] at a time.")
-				else
-					. += span_notice("This weapon reloads one [projectile_name] at a time.")
+		var/start = "This weapon passively reloads [projectile_name_plural] with a"
+		switch(passive_reload)
+			if(0 to 2.01 SECONDS)
+				. += span_nicegreen("[start] very short delay after firing.")
+			if(2.01 SECONDS to 4.01 SECONDS)
+				. += span_notice("[start] short delay after firing.")
+			if(4.01 SECONDS to 6.01 SECONDS)
+				. += span_notice("[start] delay after firing.")
+			if(6.01 SECONDS to 9.01 SECONDS)
+				. += span_danger("[start] long delay after firing.")
+			if(9.01 to INFINITY)
+				. += span_danger("[start]n extremely long delay after firing.")
+	if(reloadtime)
+		switch(reloadtime)
+			if(0 to 0.71 SECONDS)
+				. += span_nicegreen("This weapon has a very fast reload.")
+			if(0.71 SECONDS to 1.21 SECONDS)
+				. += span_notice("This weapon has a fast reload.")
+			if(1.21 SECONDS to 1.71 SECONDS)
+				. += span_notice("This weapon has a normal reload speed.")
+			if(1.71 SECONDS to 2.51 SECONDS)
+				. += span_danger("This weapon has a slow reload.")
+			if(2.51 to INFINITY)
+				. += span_danger("This weapon has an extremely slow reload.")
+		if(mobile_reload)
+			. += span_notice("This weapon can be reloaded while moving at the cost of movespeed.")
+		if(ammo_on_reload)
+			if(ammo_on_reload > 1)
+				. += span_notice("This weapon reloads [ammo_on_reload] [projectile_name_plural] at a time.")
+			else
+				. += span_notice("This weapon reloads one [projectile_name] at a time.")
 	switch(weapon_weight)
 		if(WEAPON_HEAVY)
 			. += span_danger("This weapon requires both hands to fire.")
@@ -245,8 +319,6 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 				. += span_danger("This weapon charges up extremely slowly.")
 
 	if(!autofire)
-		if(burst_size > 1)
-			. += span_notice("This weapon fires in a burst of [burst_size].")
 		switch(fire_delay)
 			if(0 to 5)
 				. += span_nicegreen("This weapon fires fast.")
@@ -264,7 +336,8 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 		rpm = round(rpm,5)
 		. += span_nicegreen("This weapon is automatic.")
 		. += span_notice("This weapon fires at [rpm] [projectile_name_plural] per minute.")
-
+	if(burst_size > 1)
+		. += span_notice("This weapon fires in a burst of [burst_size].")
 	. += span_notice("Examine this weapon more for melee information.")
 
 /obj/item/ego_weapon/ranged/EgoAttackInfo()
@@ -379,7 +452,7 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 		if(user.has_movespeed_modifier(/datum/movespeed_modifier/reloading))
 			user.remove_movespeed_modifier(/datum/movespeed_modifier/reloading)
 		if(charged)
-			Uncharge()
+			Uncharge(user)
 	if(azoom)
 		azoom.Remove(user)
 	if(zoomed)
@@ -497,6 +570,7 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 				to_chat(user, span_nicegreen("You charge up [src]."))
 				is_charging = FALSE
 				charged = TRUE
+				OnCharged(user)
 				charge_timer = addtimer(CALLBACK(src, PROC_REF(Uncharge), user), 4, TIMER_STOPPABLE)
 				return
 			is_charging = FALSE
@@ -504,6 +578,7 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 			return
 		deltimer(charge_timer)
 		charged = FALSE
+		OnDischarge(user)
 	//DUAL (or more!) WIELDING
 	var/bonus_spread = 0
 	var/loop_counter = 0
@@ -631,9 +706,16 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 
 /obj/item/ego_weapon/ranged/proc/Uncharge(mob/living/user)
 	charged = FALSE
+	OnDischarge(user)
 	if(user)
 		to_chat(user, span_warning("The [src] loses its charge!"))
 	deltimer(charge_timer)
+
+/obj/item/ego_weapon/ranged/proc/OnCharged(mob/living/user)
+	return
+
+/obj/item/ego_weapon/ranged/proc/OnDischarge(mob/living/user)
+	return
 
 /obj/item/ego_weapon/ranged/attack(mob/M as mob, mob/user)
 	if(is_charging)

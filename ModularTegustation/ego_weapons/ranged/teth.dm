@@ -9,30 +9,15 @@
 	icon_state = "match"
 	inhand_icon_state = "match"
 	special = "This weapon does AOE damage."
-	force = 12
+	force = 15
 	projectile_path = /obj/projectile/ego_bullet/ego_match
 
-/obj/item/ego_weapon/ranged/beak
-	name = "beak"
-	desc = "As if to prove that size doesn't matter when it comes to force, \
-	the weapon has high firepower despite its small size."
-	icon_state = "beak"
-	inhand_icon_state = "beak"
-	force = 5
-	projectile_path = /obj/projectile/ego_bullet/ego_beak
-	weapon_weight = WEAPON_MEDIUM
-	spread = 10
-	shotsleft = 30
-	reloadtime = 1.3 SECONDS
-	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
-	autofire = 0.14 SECONDS
-
 /obj/item/ego_weapon/ranged/pistol/beakmagnum
-	name = "beak mk2"
+	name = "beak"
 	desc = "A heavy pistol that fires at a surprisingly fast rate, and is deadly accurate."
 	icon_state = "beakmagnum"
 	inhand_icon_state = "beakmagnum"
-	force = 5
+	force = 4
 	special = "This weapon has pinpoint accuracy when dual wielded."
 	projectile_path = /obj/projectile/ego_bullet/ego_beakmagnum
 	fire_delay = 10
@@ -43,12 +28,27 @@
 	fire_sound_volume = 70
 	dual_wield_spread = 0
 
+/obj/item/ego_weapon/ranged/beak
+	name = "beak mk2"
+	desc = "As if to prove that size doesn't matter when it comes to force, \
+	the weapon has high firepower despite its small size."
+	icon_state = "beak"
+	inhand_icon_state = "beak"
+	force = 10
+	projectile_path = /obj/projectile/ego_bullet/ego_beak
+	weapon_weight = WEAPON_MEDIUM
+	spread = 10
+	shotsleft = 30
+	reloadtime = 1.3 SECONDS
+	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
+	autofire = 0.14 SECONDS
+
 /obj/item/ego_weapon/ranged/noise
 	name = "noise"
 	desc = "The noises take you back to the very moment of the day that everyone had forgotten."
 	icon_state = "noise"
 	inhand_icon_state = "noise"
-	force = 5
+	force = 10
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_noise
 	weapon_weight = WEAPON_HEAVY
@@ -64,12 +64,13 @@
 	desc = "A classic blue revolver, that gives you feelings of loneliness."
 	icon_state = "solitude"
 	inhand_icon_state = "solitude"
-	force = 5
+	force = 4
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_solitude
 	fire_delay = 10
-	shotsleft = 5
-	reloadtime = 2 SECONDS
+	shotsleft = 6
+	reloadtime = 0.5 SECONDS
+	ammo_on_reload = 1
 	fire_sound = 'sound/weapons/gun/revolver/shot_light.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 70
@@ -80,7 +81,7 @@
 	When throbbing emotions surge up from time to time, it's best to simply cover the face."
 	icon_state = "shy"
 	inhand_icon_state = "shy"
-	force = 5
+	force = 4
 	damtype = BLACK_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_shy
 	fire_sound = 'sound/effects/meatslap.ogg'
@@ -94,7 +95,8 @@
 	desc = "And when the crying stops, dawn will break."
 	icon_state = "dream"
 	inhand_icon_state = "dream"
-	force = 5
+	force = 8
+	attack_speed = 1
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_dream
 	weapon_weight = WEAPON_HEAVY
@@ -106,7 +108,7 @@
 	desc = "The pain of creation! The pain! The pain!"
 	icon_state = "page"
 	inhand_icon_state = "page"
-	force = 5
+	force = 10
 	damtype = BLACK_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_page
 	weapon_weight = WEAPON_HEAVY
@@ -121,7 +123,7 @@
 	icon_state = "snapshot"
 	inhand_icon_state = "snapshot"
 	special = "This weapon fires a hitscan beam."
-	force = 5
+	force = 10
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/beam/snapshot
 	weapon_weight = WEAPON_HEAVY
@@ -134,12 +136,14 @@
 	icon_state = "wishing_cairn"
 	inhand_icon_state = "wishing_cairn"
 	special = "This weapon has a combo system with a short range."
-	force = 5
+	force = 10
+	attack_speed = 1
 	damtype = BLACK_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_wishing
-	weapon_weight = WEAPON_HEAVY
-	fire_delay = 3
+	weapon_weight = WEAPON_MEDIUM
+	burst_delay = 6
 	burst_size = 2
+	fire_delay = 10
 	fire_sound = 'sound/abnormalities/pagoda/throw.ogg'
 	var/ammo2 = /obj/projectile/ego_bullet/ego_wishing2
 
@@ -158,9 +162,10 @@
 	icon_state = "aspiration"
 	inhand_icon_state = "aspiration"
 	special = "This weapon fires a hitscan beam at the cost of health. \n Upon hitting an ally, this weapon heals the target,"
-	force = 5
+	force = 8
+	attack_speed = 0.8
 	projectile_path = /obj/projectile/ego_bullet/ego_aspiration
-	weapon_weight = WEAPON_HEAVY
+	weapon_weight = WEAPON_MEDIUM
 	autofire = 0.5 SECONDS
 	fire_sound = 'sound/abnormalities/fragment/attack.ogg'
 
@@ -179,8 +184,7 @@
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	force = 5
-	attack_speed = 1.3
+	force = 10
 	projectile_path = /obj/projectile/ego_bullet/ego_patriot
 	pellets = 4
 	variance = 25
@@ -198,6 +202,7 @@
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
 	special = "This weapon's projectiles move slowly and pierce enemies."
+	force = 10
 	projectile_path = /obj/projectile/ego_bullet/ego_luckdraw
 	weapon_weight = WEAPON_HEAVY
 	autofire = 0.6 SECONDS
@@ -209,10 +214,10 @@
 	special = "Use this weapon in your hand when wearing matching armor to turn others nearby bald."
 	icon_state = "bald"
 	inhand_icon_state = "bald"
+	force = 4
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_tough
-	burst_size = 1
-	fire_delay = 10
+	fire_delay = 5
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 70

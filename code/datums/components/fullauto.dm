@@ -162,14 +162,7 @@
 		mouse_status = AUTOFIRE_MOUSEDOWN
 
 	RegisterSignal(shooter, COMSIG_MOB_SWAP_HANDS, PROC_REF(stop_autofiring))
-	if(istype(parent, /obj/item/ego_weapon/ranged)) // This can probably be thrown into a define like "israngedego" or something like that but I will leave it like that.
-		var/obj/item/ego_weapon/ranged/shoota = parent
-		if(!shoota.on_autofire_start(shooter)) // So, without this you can shoot double-handed automatic weapons with only one hand, fun right?
-			stop_autofiring()
-			to_chat(world, "AAA")
-			return
-
-	else if(isgun(parent))
+	if(isgun(parent) || is_ego_ranged_weapon(parent))
 		var/obj/item/gun/shoota = parent
 		if(!shoota.on_autofire_start(shooter)) //This is needed because the minigun has a do_after before firing and signals are async.
 			stop_autofiring()

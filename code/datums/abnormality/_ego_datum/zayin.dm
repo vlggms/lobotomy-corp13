@@ -85,7 +85,7 @@
 
 // Fallen Amurdad - Nightshade
 /datum/ego_datum/weapon/nightshade
-	item_path = /obj/item/ego_weapon/ranged/pistol/nightshade
+	item_path = /obj/item/ego_weapon/ranged/nightshade
 	cost = 12
 
 /datum/ego_datum/armor/nightshade
