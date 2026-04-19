@@ -332,7 +332,7 @@
 
 /obj/projectile/ego_bullet/ego_bride
 	name = "bride"
-	icon_state = "bride"
+	icon_state = "gaussphase"
 	damage = 27
 	damage_type = WHITE_DAMAGE
 

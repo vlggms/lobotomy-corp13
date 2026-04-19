@@ -181,23 +181,6 @@
 		return
 	..()
 
-/obj/projectile/bride_bolts
-	name = "mind bolts"
-	desc = "A magic white bolt, enchanted to protect or to avenge the sculptor."
-	icon_state = "bride_bolt"
-	damage_type = WHITE_DAMAGE
-
-	damage = 10
-	spread = 10
-
-/obj/projectile/bride_bolts_enraged
-	name = "mind bolts"
-	desc = "A magic white bolt, enchanted to protect or to avenge the sculptor."
-	icon_state = "bride_bolt_enraged"
-	damage_type = WHITE_DAMAGE
-	damage = 20
-	spread = 5
-
 /obj/projectile/season_projectile
 	name = "buggy mess"
 	desc = "Report this to a dev"

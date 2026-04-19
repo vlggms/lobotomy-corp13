@@ -403,12 +403,10 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/pygmalion
 	abno_code = "M-03-157"
 	abno_info = list(
-		"The first Employee that gets a Good work result will gain a mark from now on will be called the “Sculptor”" ,
-		"The “Sculptor” will have a higher work success chance with Pygmalion and will have a higher chance of getting the E.G.O gift" ,
-		"Pygmalion breaches when the “Sculptor” has 50% or less sanity or health or when the facility reached the 1st Trumpet." ,
-		"When Pygmalion breaches, They will teleport to the “Sculptor” and attack any abnormality in their way and any abnormality near the “Sculptor.”" ,
-		"The “Sculptor” will have their maximum sanity reduced while Pygmalion is breaching." ,
-		"If the “Sculptor” goes insane or dies, Pygmalion will become enraged and start attacking everyone near them.")
+		"The last employee to work on M-03-157 shall henceforth be referred to as a “Sculptor”." ,
+		"The “Sculptor” will be more successful when performing any work on M-03-157." ,
+		"When the ”Sculptor” achieved a good result, Qliphoth Counter lowered with a high probability.",
+		"When the work result was bad, Qliphoth counter lowered with a high probability.")
 
 //Parasite Tree
 /obj/item/paper/fluff/info/waw/parasite_tree
