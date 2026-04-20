@@ -405,7 +405,7 @@
 //S Corporation
 /obj/structure/lootcrate/s_corp
 	name = "Shrimp-Corp Loot Crate"
-	desc = "A crate containing some knickknacks from the mysterious Shrimp-Corp. Open with a Crowbar."
+	desc = "A crate containing some knickknacks from the mysterious Shrimp-Corp. Open with a Crowbar or with your hands."
 	icon_state = "crate_shrimp"
 	veryrarechance = 10
 	cosmeticchance = 10
@@ -437,12 +437,51 @@
 		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white,
 	)
 
-/obj/structure/lootcrate/s_corp_gun
+/obj/structure/lootcrate/s_corp/attack_hand(mob/living/carbon/human/user)
+	. = ..()
+	var/loot
+	var/cloot
+
+	rarechance += repmodifier
+	if(veryrarechance)
+		veryrarechance += (repmodifier/crate_multiplier)
+
+	if((SSmaptype.maptype in SSmaptype.citymaps) && (user?.mind?.assigned_role != "Extraction Officer"))	//Fuckers shouldn't loot like this, unless for some reason the EO exists.
+		SEND_GLOBAL_SIGNAL(COMSIG_CRATE_LOOTING_STARTED, user, src)
+		if(!do_after(user, 7 SECONDS, src))
+			return
+
+	//Mimic this
+	user.do_attack_animation(src)
+	playsound(src, 'sound/weapons/smash.ogg', 50, TRUE)
+
+	if(veryrarechance && prob(veryrarechance))
+		loot = pick(veryrareloot)
+
+	else if(prob(rarechance))
+		loot = pick(rareloot)
+
+	else
+		loot = pick(lootlist)
+
+	if(cosmeticchance && prob(cosmeticchance))
+		cloot = pick(cosmeticloot)
+		new cloot(get_turf(src))
+
+	to_chat(user, span_notice("You open the crate!"))
+	if(SSmaptype.maptype in SSmaptype.citymaps)
+		SEND_GLOBAL_SIGNAL(COMSIG_CRATE_LOOTING_ENDED, user, src)
+
+	new loot(get_turf(src))
+	qdel(src)
+
+/obj/structure/lootcrate/s_corp/gun
 	name = "Shrimp-Corp Gun Crate"
-	desc = "A crate containing a gun from the mysterious Shrimp-Corp. Open with a Crowbar."
+	desc = "A crate containing a gun from the mysterious Shrimp-Corp. Open with a Crowbar or with your hands."
 	icon_state = "crate_weapon_shrimp"
 	rarechance = 80
 	veryrarechance = 15
+	cosmeticchance = 0
 	lootlist =	list(
 		/obj/item/ego_weapon/ranged/sodarifle,
 	)
@@ -458,6 +497,7 @@
 	veryrareloot = list(
 		/obj/item/ego_weapon/ranged/pistol/executive
 	)
+	cosmeticloot = list()
 
 /obj/structure/closet/supplypod/extractionpod/shrimppod
 	name = "shrimp-borp drop pod"

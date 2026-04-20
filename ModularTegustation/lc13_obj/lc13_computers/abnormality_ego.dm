@@ -78,7 +78,7 @@
 				to_chat(usr, span_notice("[E.name] has been dispensed!"))
 
 			else
-				ShipOut(E.item_path)
+				ShipOut(E.item_path, E.packaged)
 				audible_message(span_notice("[usr.name] has purchased a [E.name]"))
 
 			A.stored_boxes -= E.cost * mult
@@ -95,7 +95,7 @@
 			popup.open()
 			return
 
-/obj/machinery/computer/ego_purchase/proc/ShipOut(obj/item/shipped)
+/obj/machinery/computer/ego_purchase/proc/ShipOut(obj/item/shipped, packaged = FALSE)
 	var/list/tablesinrange = list()
 	var/list/extractioninrange = list()
 	var/turf/T
@@ -106,8 +106,11 @@
 
 	if(LAZYLEN(extractioninrange))
 		T = get_turf(pick(extractioninrange))
-		var/obj/item/egopackage/E = new (T)
-		E.contained_ego = shipped
+		if(packaged)
+			var/obj/item/egopackage/E = new (T)
+			E.contained_ego = shipped
+			return
+		new shipped(T)
 		return
 
 	if(LAZYLEN(tablesinrange))

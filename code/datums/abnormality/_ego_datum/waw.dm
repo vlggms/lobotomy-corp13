@@ -125,7 +125,7 @@
 
 /datum/ego_datum/executive_gun
 	item_category = "Gun Crate"
-	item_path = /obj/structure/lootcrate/s_corp_gun
+	item_path = /obj/structure/lootcrate/s_corp/gun
 	cost = 40
 
 /datum/ego_datum/weapon/soda_premium
