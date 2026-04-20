@@ -451,11 +451,10 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/wayward
 	abno_code = "T-02-170"// T-02-21-07 in LCB
 	abno_info = list(
-		"When the work result was Neutral, the Qliphoth Counter lowered at a low probability.",
+		"The entity rips open and enters a dimensional door in regular intervals. However, it has been confirmed to return should another being enter the containment unit.",
+		"Its work preferences shifted based on which color of dimensional door it had entered immediately prior.",
 		"When the work result was Bad, the Qliphoth Counter lowered at a high probability.",
-		"Agents who witnessed the movements of Wayward Passenger reported unusually high levels of mental corruption.",
-		"When Wayward Passenger breached containment, it created spacial anomalies, dubbed T-01-170-1.",
-		"Agent Alex who entered T-01-170-1 found that it aided the suppression process.")
+		"Agents who witnessed the movements of Wayward Passenger reported unusually high levels of mental corruption.")
 
 // Norinori
 /obj/item/paper/fluff/info/he/norinori

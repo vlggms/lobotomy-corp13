@@ -332,18 +332,18 @@
 	cost = 35
 
 //Wayward Passenger - Dimension Shredder
-/datum/ego_datum/armor/warp
-	item_path = /obj/item/clothing/suit/armor/ego_gear/he/warp
+/datum/ego_datum/armor/dimension_shredder
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/dimension_shredder
 	cost = 35
 
-/datum/ego_datum/weapon/warp
+/datum/ego_datum/weapon/dimension_shredder
 	item_category = "Weapon (Knife)"
-	item_path = /obj/item/ego_weapon/warp/knife
+	item_path = /obj/item/ego_weapon/dimension_shredder
 	cost = 35
 
-/datum/ego_datum/weapon/warp/spear
+/datum/ego_datum/weapon/dimension_spear
 	item_category = "Weapon (Spear)"
-	item_path = /obj/item/ego_weapon/warp
+	item_path = /obj/item/ego_weapon/dimension_spear
 	cost = 35
 
 //Missed Reaper - Grasp
