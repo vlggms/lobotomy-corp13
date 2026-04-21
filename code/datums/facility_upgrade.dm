@@ -223,7 +223,7 @@
 	value_increase++
 
 /datum/facility_upgrade/regnenerator_healing/DisplayValue()
-	return "+[value]% healing"
+	return "+[value] healing"
 
 /datum/facility_upgrade/meltdown_increase
 	name = UPGRADE_MELTDOWN_INCREASE
