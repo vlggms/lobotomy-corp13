@@ -266,7 +266,9 @@
 	density = FALSE
 	can_be_hit = FALSE
 	animate(src, pixel_z = 0, alpha = 255, time = 30,  easing = CUBIC_EASING | EASE_IN)
-	SLEEP_CHECK_DEATH(2.9 SECONDS)
+	SLEEP_CHECK_DEATH(1.5 SECONDS)
+	playsound(get_turf(src), 'sound/items/zip.ogg', 50, TRUE, frequency = 0.7)
+	SLEEP_CHECK_DEATH(1.4 SECONDS)
 	can_be_hit = TRUE
 	status_flags &= ~GODMODE
 	density = TRUE
