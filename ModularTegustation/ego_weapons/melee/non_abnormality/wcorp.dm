@@ -99,8 +99,7 @@
 	sleep(0.2 SECONDS)
 	for(var/mob/living/L in range(1, src))
 		var/aoe = 25
-		var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
-		var/justicemod = 1 + userjust/100
+		var/justicemod = get_attack_multiplier(user)
 		aoe*=justicemod
 		if(L == user || ishuman(L))
 			continue

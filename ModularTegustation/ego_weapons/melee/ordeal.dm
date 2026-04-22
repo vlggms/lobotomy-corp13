@@ -45,8 +45,7 @@
 /obj/item/ego_weapon/the_claw/equipped(mob/living/user)
 	. = ..()
 	to_chat(user, span_warning("[src] attaches itself to your body!"))
-	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-	justicemod = 1 + userjust/100
+	justicemod = get_attack_multiplier(user)
 
 /obj/item/ego_weapon/the_claw/dropped()
 	src.visible_message(span_warning("The claw arm disappears, you've violated a crucial law of physics."))

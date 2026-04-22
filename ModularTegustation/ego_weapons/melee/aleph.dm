@@ -43,8 +43,7 @@
 			user.changeNext_move(CLICK_CD_MELEE * 1.2)
 			var/turf/T = get_turf(M)
 			new /obj/effect/temp_visual/justitia_effect(T)
-			var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-			var/justicemod = 1 + userjust / 100
+			var/justicemod = get_attack_multiplier(user)
 			var/damage_dealt = aoe_damage * justicemod * force_multiplier
 			user.HurtInTurf(T, list(), damage_dealt, PALE_DAMAGE)
 		else
@@ -182,8 +181,7 @@
 		new /obj/effect/temp_visual/nt_goodbye(T)
 		for(var/mob/living/L in T)
 			var/aoe = 35
-			var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-			var/justicemod = 1 + userjust/100
+			var/justicemod = get_attack_multiplier(user)
 			aoe*=justicemod
 			aoe*=force_multiplier
 			if(L == user || ishuman(L))
@@ -416,8 +414,7 @@
 		animate(user, alpha = 255,pixel_x = 0, pixel_z = -16, time = 0.1 SECONDS)
 		user.pixel_z = 0
 		var/aoe = force
-		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-		var/justicemod = 1 + userjust/100
+		var/justicemod = get_attack_multiplier(user)
 		var/firsthit = TRUE
 		aoe*=justicemod
 		aoe*=force_multiplier
@@ -738,8 +735,7 @@
 	..()
 	if(!CanUseEgo(user))
 		return
-	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-	var/justicemod = 1 + userjust/100
+	var/justicemod = get_attack_multiplier(user)
 	var/damage = force * justicemod * force_multiplier
 	target.apply_damage(damage, BLACK_DAMAGE, null, target.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 
@@ -755,8 +751,7 @@
 /obj/item/ego_weapon/space/proc/CreateAoe(turf/start, mob/living/user)
 	if(!user)
 		return
-	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-	var/justicemod = 1 + userjust/100
+	var/justicemod = get_attack_multiplier(user)
 	var/aoe = aoe_damage * justicemod * force_multiplier
 	playsound(start, 'sound/weapons/rapierhit.ogg', 100, FALSE, 4)
 	for(var/turf/T in range(2, start))
@@ -1128,8 +1123,7 @@
 
 	for(var/mob/living/L in view(2, target))
 		var/aoe = 25
-		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-		var/justicemod = 1 + userjust/100
+		var/justicemod = get_attack_multiplier(user)
 		aoe*=justicemod
 		if(user.faction_check_mob(L) || L == target)
 			continue
@@ -1251,8 +1245,7 @@
 		return
 	for(var/mob/living/L in view(1, M))
 		var/aoe = 15
-		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-		var/justicemod = 1 + userjust/100
+		var/justicemod = get_attack_multiplier(user)
 		aoe*=justicemod
 		aoe*=force_multiplier
 		if(L == user || ishuman(L))

@@ -25,8 +25,7 @@
 		specialmod.ActivateEffect(src, special_count, target, user)
 
 	//I gotta regrab  justice here
-	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-	var/justicemod = 1 + userjust/100
+	var/justicemod = get_attack_multiplier(user)
 	force *= justicemod
 
 	if(ishuman(target))

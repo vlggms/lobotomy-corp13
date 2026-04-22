@@ -357,10 +357,10 @@
 			return
 		..()
 		return
-	var/justice_mod = 1 + (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE)/100)
+	var/justicemod = get_attack_multiplier(user)
 	HT.apply_status_effect(/datum/status_effect/you_happy_buff)
 	var/datum/status_effect/you_happy_buff/Y = HT.has_status_effect(/datum/status_effect/you_happy_buff)
-	Y.EnableBuff((force * justice_mod) * force_multiplier)
+	Y.EnableBuff((force * justicemod) * force_multiplier)
 	playsound(get_turf(user), 'sound/effects/light_flicker.ogg', 25, TRUE, -9)
 	HT.visible_message(span_nicegreen("[HT] had their justice buffed with [src] by [user]!"))
 	user.changeNext_move(CLICK_CD_MELEE * 5)
@@ -368,7 +368,7 @@
 /datum/status_effect/you_happy_buff
 	id = "you must be happy ego buff"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 6 SECONDS
+	duration = 12 SECONDS
 	alert_type = null
 	var/buff_amount = 0
 

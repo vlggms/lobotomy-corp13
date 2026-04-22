@@ -5,8 +5,7 @@
 
 //Split damage, currently only red and white
 /obj/item/workshop_mod/split/ActivateEffect(obj/item/ego_weapon/template/T, special_count = 0, mob/living/target, mob/living/carbon/human/user)
-	var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
-	var/justicemod = 1 + userjust/100
+	var/justicemod = get_attack_multiplier(user)
 	var/splitdamage = justicemod*force
 	var/splitdamagetype
 	switch(T.damtype)

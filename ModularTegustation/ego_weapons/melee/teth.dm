@@ -310,8 +310,7 @@
 		return
 	if(proximity_flag && (LAZYLEN(traps) < traplimit))
 		var/obj/effect/temp_visual/lanterntrap/trap = new(T, user, src, mode)
-		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-		var/justicemod = 1 + userjust/100
+		var/justicemod = get_attack_multiplier(user)
 		trap.damage_multiplier*=justicemod
 		trap.damage_multiplier*=force_multiplier
 		user.changeNext_move(CLICK_CD_MELEE)
@@ -662,8 +661,7 @@
 		return
 	for(var/mob/living/L in hearers(2, target_turf))
 		var/heal_amt = force*0.025
-		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-		var/justicemod = 1 + userjust / 100
+		var/justicemod = get_attack_multiplier(user)
 		heal_amt *= justicemod
 		heal_amt *= force_multiplier
 		if(!ishuman(L))
@@ -717,8 +715,7 @@
 			var/turf/target_turf = get_turf(M)
 			for(var/mob/living/L in hearers(2, target_turf))
 				var/heal_amt = force*0.05
-				var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-				var/justicemod = 1 + userjust / 100
+				var/justicemod = get_attack_multiplier(user)
 				heal_amt *= justicemod
 				heal_amt *= force_multiplier
 				if(!ishuman(L))

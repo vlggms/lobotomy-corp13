@@ -228,8 +228,7 @@
 	for(var/mob/living/L in range(2, target))
 		if(L.z != user.z)
 			continue
-		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-		var/justicemod = 1 + userjust/100
+		var/justicemod = get_attack_multiplier(user)
 		aoe_damage *= justicemod
 		aoe_damage *= force_multiplier
 		if(L == user) //This WILL friendly fire there is no escape

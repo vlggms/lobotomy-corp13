@@ -49,7 +49,7 @@
 	if(overcharged)
 		to_chat(user, span_danger("You overcharged your weapon!."))
 
-	var/aoe = force * (1 + (get_attribute_level(user, JUSTICE_ATTRIBUTE))/100)
+	var/aoe = force * get_attack_multiplier(user)
 	for(var/turf/T in view(2, target))
 		new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(T))
 		for(var/mob/living/L in T)
