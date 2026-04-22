@@ -224,7 +224,7 @@ GLOBAL_LIST_INIT(dingle_hallucination_list, list(
 			for(var/mob/living/carbon/human/H in buckled_mobs)
 				if(H.stat == DEAD)
 					continue
-				H.deal_damage(damage * H.maxHealth/100, BRUTE)
+				H.deal_damage(damage * H.maxHealth/100, BRUTE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_ENVIRONMENT))
 				if(H.health < 0)
 					H.Drain()
 				dealt_damage = TRUE
