@@ -153,8 +153,6 @@
 		var/turf/W = pick(turfs)
 		var/obj/structure/shrimp_rope/R = new(W)
 		R.exec = src
-		R.pixel_x = rand(-4,4)
-		addtimer(CALLBACK(R, TYPE_PROC_REF(/obj/structure/shrimp_rope, SpawnShrimp)), rand(0,20)) //A bit of randomness
 		turfs -= W
 
 //repeat lines
@@ -186,11 +184,15 @@
 	max_integrity = 1
 	resistance_flags = INDESTRUCTIBLE
 	alpha = 0
+	pixel_z = 96
 	var/mob/living/simple_animal/hostile/abnormality/shrimp_exec/exec = null
 
+/obj/structure/shrimp_rope/Initialize()
+	. = ..()
+	pixel_x = rand(-4,4)
+	addtimer(CALLBACK(src, PROC_REF(SpawnShrimp)), rand(0,20)) //A bit of randomness
+
 /obj/structure/shrimp_rope/proc/SpawnShrimp()
-	set waitfor = FALSE
-	pixel_z = 96
 	animate(src, pixel_z = 0, alpha = 255, time = 20,  easing = SINE_EASING | EASE_IN)
 	sleep(3 SECONDS)
 	var/list/turfs = list()
@@ -201,16 +203,10 @@
 		if(length(exec.shrimps) >= exec.shrimp_cap)
 			should_spawn = FALSE
 	if(should_spawn)
-		var/mob/living/simple_animal/hostile/aminion/shrimp/S
 		if(prob(30))
-			S = new/mob/living/simple_animal/hostile/aminion/shrimp/soldier(pick(turfs))
+			new /mob/living/simple_animal/hostile/aminion/shrimp/soldier(pick(turfs), FALSE, TRUE, src)
 		else
-			S = new(pick(turfs))
-		if(exec)
-			S.exec = exec
-			exec.shrimps += S
-		S.dir = get_dir(S, src)
-		S.SpawnAnimation()
+			new /mob/living/simple_animal/hostile/aminion/shrimp(pick(turfs), FALSE, TRUE, src)
 		sleep(3 SECONDS)
 	resistance_flags &= ~INDESTRUCTIBLE
 
@@ -248,33 +244,38 @@
 	score_divider = 2
 	var/mob/living/simple_animal/hostile/abnormality/shrimp_exec/exec = null
 	var/can_act = TRUE
-	var/can_be_hit = TRUE
 
-/mob/living/simple_animal/hostile/aminion/shrimp/Initialize()
+/mob/living/simple_animal/hostile/aminion/shrimp/Initialize(mapload, no_emergency, special_spawn, obj/structure/shrimp_rope/rope)
 	. = ..()
 	if(SSmaptype.maptype in SSmaptype.citymaps)
 		can_affect_emergency = FALSE
 		del_on_death = FALSE
+	if(rope)//We have to do it here since the spawn animation happens before the post initialization
+		face_atom(rope)
+		if(rope.exec)
+			exec = rope.exec
+			exec.shrimps += src
+	if(special_spawn)
+		SpawnAnimation()
 
 /mob/living/simple_animal/hostile/aminion/shrimp/proc/SpawnAnimation()
-	set waitfor = FALSE
 	can_act = FALSE
 	docile_confinement = TRUE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	status_flags |= GODMODE
 	pixel_z = 96
 	alpha = 0
 	density = FALSE
-	can_be_hit = FALSE
 	animate(src, pixel_z = 0, alpha = 255, time = 30,  easing = CUBIC_EASING | EASE_IN)
 	SLEEP_CHECK_DEATH(1.5 SECONDS)
 	playsound(get_turf(src), 'sound/items/zip.ogg', 50, TRUE, frequency = 0.7)
 	SLEEP_CHECK_DEATH(1.4 SECONDS)
-	can_be_hit = TRUE
 	status_flags &= ~GODMODE
 	density = TRUE
+	mouse_opacity = MOUSE_OPACITY_ICON
 	SLEEP_CHECK_DEATH(0.1 SECONDS)
 	can_act = TRUE
-	docile_confinement = TRUE
+	docile_confinement = FALSE
 
 /mob/living/simple_animal/hostile/aminion/shrimp/Destroy()
 	if(exec)
@@ -301,31 +302,6 @@
 	if(!can_act)
 		return
 	return ..()
-
-/mob/living/simple_animal/hostile/aminion/shrimp/attack_hand(mob/living/carbon/human/M)
-	if(!can_be_hit)
-		return
-	. = ..()
-
-/mob/living/simple_animal/hostile/aminion/shrimp/attack_paw(mob/living/carbon/human/M)
-	if(!can_be_hit)
-		return
-	. = ..()
-
-/mob/living/simple_animal/hostile/aminion/shrimp/attack_animal(mob/living/simple_animal/M)
-	if(!can_be_hit)
-		return
-	. = ..()
-
-/mob/living/simple_animal/hostile/aminion/shrimp/bullet_act(obj/projectile/Proj, def_zone, piercing_hit = FALSE)
-	if(!can_be_hit)
-		return
-	. = ..()
-
-/mob/living/simple_animal/hostile/aminion/shrimp/attackby(obj/item/I, mob/living/user, params)
-	if(!can_be_hit)
-		return
-	. = ..()
 
 //You can put these guys about to guard an area.
 /mob/living/simple_animal/hostile/aminion/shrimp/soldier
