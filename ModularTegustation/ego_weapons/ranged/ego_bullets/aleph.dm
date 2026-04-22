@@ -127,3 +127,34 @@
 	damage_type = PALE_DAMAGE
 	speed = 2
 	range = 6
+
+/obj/projectile/ego_bullet/ego_executive
+	name = "executive"
+	damage = 30
+	spread = 0
+	damage_type = PALE_DAMAGE	//hehe
+
+/obj/projectile/ego_bullet/ego_executive/kill_shot
+	damage = 150
+
+/obj/projectile/ego_bullet/ego_executive/kill_shot/process()
+	. = ..()
+	for(var/i = 1 to 3)
+		if(prob(50))
+			var/obj/effect/temp_visual/sparkle/S = new(get_turf(loc))
+			S.pixel_x = pixel_x + rand(-8,8)
+			S.dir = pick(NORTH, SOUTH, EAST, WEST)
+			S.pixel_y = pixel_y + rand(-8,8)
+
+/obj/projectile/ego_bullet/ego_executive/kill_shot/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	var/mob/living/T = target
+	if(!isliving(target))
+		return
+	if(!isliving(firer))
+		return
+	var/mob/living/user = firer
+	if(T.stat == DEAD)
+		var/obj/item/ego_weapon/ranged/pistol/executive/gun = fired_from
+		gun.AutoReload(user)
+	return

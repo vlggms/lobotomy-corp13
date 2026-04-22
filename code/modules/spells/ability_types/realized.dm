@@ -94,10 +94,10 @@
 			var/mob/living/simple_animal/hostile/H = L
 			H.TemporarySpeedChange(damage_slowdown, 5 SECONDS) // Slow down
 
-/mob/living/simple_animal/hostile/aminion/shrimp_soldier/friendly/capitalism_shrimp
+/mob/living/simple_animal/hostile/aminion/shrimp/soldier/friendly/capitalism_shrimp
 	name = "wellcheers corp liquidation officer"
 
-/mob/living/simple_animal/hostile/aminion/shrimp_soldier/friendly/capitalism_shrimp/Initialize()
+/mob/living/simple_animal/hostile/aminion/shrimp/soldier/friendly/capitalism_shrimp/Initialize()
 	.=..()
 	QDEL_IN(src, (90 SECONDS))
 
@@ -112,7 +112,7 @@
 
 /obj/effect/proc_holder/ability/shrimp/Perform(target, mob/user)
 	for(var/i = 1 to 6)
-		new /mob/living/simple_animal/hostile/aminion/shrimp_soldier/friendly/capitalism_shrimp(get_turf(user))
+		new /mob/living/simple_animal/hostile/aminion/shrimp/soldier/friendly/capitalism_shrimp(get_turf(user))
 	return ..()
 
 /* Big Bird - Eyes of God */

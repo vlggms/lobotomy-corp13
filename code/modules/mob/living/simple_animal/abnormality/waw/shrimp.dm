@@ -21,11 +21,10 @@
 	work_damage_lower = 4
 	work_damage_type = WHITE_DAMAGE	//He insults you
 	chem_type = /datum/reagent/abnormality/sin/pride
-	can_spawn = FALSE // OC slop, Doesn't belong in the game.
 
 	ego_list = list(
-		/datum/ego_datum/weapon/executive,
 		/datum/ego_datum/armor/executive,
+		/datum/ego_datum/executive_gun,
 	)
 	gift_type =  /datum/ego_gifts/executive
 
@@ -50,6 +49,7 @@
 
 	var/liked
 	var/happy = TRUE
+	var/happy_works = 0
 	pet_bonus = "blurbles" //saves a few lines of code by allowing funpet() to be called by attack_hand()
 	var/hint_cooldown
 	var/hint_cooldown_time = 30 SECONDS
@@ -85,20 +85,8 @@
 		"Got a moment to chat about something important? Let's catch up over a cup of coffee and discuss some potential business moves. Your insights are always valuable to me.",
 		"I was wondering if you might be available to join me for a brief tête-à-tête over a cup of tea. Come on by when you are available.",
 	)
-
-	//A list of shit that it can create. Yes, it includes ego. How did a shrimp get ego? IDFK. I guess his company makes it.
-	//Could diversify clerks I guess.
-	var/list/dispenseitem= list(
-		/obj/item/grenade/spawnergrenade/shrimp,
-		/obj/item/grenade/spawnergrenade/shrimp/super,
-		/obj/item/ego_weapon/ranged/pistol/soda,
-		/obj/item/ego_weapon/ranged/sodasmg,
-		/obj/item/ego_weapon/ranged/sodashotty,
-		/obj/item/ego_weapon/ranged/sodarifle,
-		/obj/item/clothing/suit/armor/ego_gear/zayin/soda,
-		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red,
-		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white,
-	)
+	var/list/shrimps = list()
+	var/shrimp_cap = 24
 
 /mob/living/simple_animal/hostile/abnormality/shrimp_exec/WorkChance(mob/living/carbon/human/user, chance)
 	if(happy)
@@ -107,11 +95,15 @@
 
 /mob/living/simple_animal/hostile/abnormality/shrimp_exec/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
-	var/turf/dispense_turf = get_step(src, pick(1,2,4,5,6,8,9,10))
-	var/gift = pick(dispenseitem)
-	new gift(dispense_turf)
-	say("Here you are, my dear friend. High-quality firepower courtesy of shrimpcorp.")
-	return
+	if(happy_works >= 3)
+		happy_works = 0
+		var/turf/dispense_turf = get_step(src, pick(1,2,4,5,6,8,9,10))
+		var/obj/structure/closet/supplypod/extractionpod/shrimppod/pod = new()
+		pod.explosionSize = list(0,0,0,0)
+		new/obj/structure/lootcrate/s_corp(pod)
+		new /obj/effect/pod_landingzone(dispense_turf, pod)
+		say("Here you are, my dear friend. High-quality items courtesy of shrimpcorp.")
+		return
 
 /mob/living/simple_animal/hostile/abnormality/shrimp_exec/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
@@ -120,6 +112,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/shrimp_exec/ZeroQliphoth(mob/living/carbon/human/user)
 	pissed()
+	happy_works = 0
 	datum_reference.qliphoth_change(1)
 	return
 
@@ -131,7 +124,9 @@
 /mob/living/simple_animal/hostile/abnormality/shrimp_exec/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(work_type == liked || !liked)
 		happy = TRUE
+		happy_works++
 	else
+		happy_works = 0
 		happy = FALSE
 	return TRUE
 
@@ -146,17 +141,19 @@
 			say(pick(attachment))
 
 /mob/living/simple_animal/hostile/abnormality/shrimp_exec/proc/pissed()
-	var/turf/W = pick(GLOB.department_centers)
-	for(var/turf/T in orange(1, W))
-		var/obj/structure/closet/supplypod/extractionpod/pod = new()
-		pod.explosionSize = list(0,0,0,0)
-		if(prob(70))
-			new /mob/living/simple_animal/hostile/aminion/shrimp(pod)
-		else
-			new /mob/living/simple_animal/hostile/aminion/shrimp_soldier(pod)
-
-		new /obj/effect/pod_landingzone(T, pod)
-		stoplag(2)
+	set waitfor = FALSE
+	if(length(shrimps) >= shrimp_cap)
+		return
+	var/turf/Start = pick(GLOB.department_centers)
+	var/list/turfs = list()
+	for(var/turf/T in circlerange(center = Start, radius = 3))
+		turfs += T
+	var/amount = rand(4,8)
+	for(var/i = 1 to amount)
+		var/turf/W = pick(turfs)
+		var/obj/structure/shrimp_rope/R = new(W)
+		R.exec = src
+		turfs -= W
 
 //repeat lines
 /mob/living/simple_animal/hostile/abnormality/shrimp_exec/funpet()
@@ -175,6 +172,59 @@
 			say(pick(attachment))
 	return
 
+/* Rope */
+/obj/structure/shrimp_rope
+	name = "rope"
+	desc = "A long piece of rope connected to a newfound hole in the celling."
+	icon = 'icons/effects/32x96.dmi'
+	icon_state = "rope"
+	layer = MOB_LAYER
+	anchored = TRUE
+	density = FALSE
+	max_integrity = 1
+	resistance_flags = INDESTRUCTIBLE
+	alpha = 0
+	pixel_z = 96
+	var/mob/living/simple_animal/hostile/abnormality/shrimp_exec/exec = null
+
+/obj/structure/shrimp_rope/Initialize()
+	. = ..()
+	pixel_x = rand(-4,4)
+	addtimer(CALLBACK(src, PROC_REF(SpawnShrimp)), rand(0,20)) //A bit of randomness
+
+/obj/structure/shrimp_rope/proc/SpawnShrimp()
+	animate(src, pixel_z = 0, alpha = 255, time = 20,  easing = SINE_EASING | EASE_IN)
+	sleep(3 SECONDS)
+	var/list/turfs = list()
+	var/should_spawn = TRUE
+	for(var/turf/T in orange(1, get_turf(src)))
+		turfs += T
+	if(exec)
+		if(length(exec.shrimps) >= exec.shrimp_cap)
+			should_spawn = FALSE
+	if(should_spawn)
+		addtimer(CALLBACK(src, PROC_REF(BeBreakable)), 3 SECONDS)
+		var/mob/living/simple_animal/hostile/aminion/shrimp/S
+		if(prob(30))
+			S = new/mob/living/simple_animal/hostile/aminion/shrimp/soldier(pick(turfs))
+		else
+			S = new(pick(turfs))
+		if(exec)
+			S.exec = exec
+			exec.shrimps += S
+		S.dir = get_dir(S, src)
+		S.SpawnAnimation()
+	else
+		resistance_flags &= ~INDESTRUCTIBLE
+
+/obj/structure/shrimp_rope/proc/BeBreakable()
+	resistance_flags &= ~INDESTRUCTIBLE
+
+/obj/structure/shrimp_rope/Destroy()
+	if(exec)
+		exec = null
+	. = ..()
+
 /* Shrimpo boys */
 /mob/living/simple_animal/hostile/aminion/shrimp
 	name = "wellcheers corp liquidation intern"
@@ -184,12 +234,12 @@
 	icon_living = "wellcheers"
 	icon_dead = "wellcheers_dead"
 	faction = list("shrimp")
-	health = 100
-	maxHealth = 100
+	health = 220
+	maxHealth = 220
 	melee_damage_type = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)
-	melee_damage_lower = 5
-	melee_damage_upper = 6
+	melee_damage_lower = 6
+	melee_damage_upper = 8
 	robust_searching = TRUE
 	stat_attack = HARD_CRIT
 	del_on_death = TRUE
@@ -201,7 +251,9 @@
 	guaranteed_butcher_results = list(/obj/item/stack/spacecash/c10 = 1)
 	silk_results = list(/obj/item/stack/sheet/silk/shrimple_simple = 4)
 	threat_level = TETH_LEVEL
-	score_divider = 4
+	score_divider = 2
+	var/mob/living/simple_animal/hostile/abnormality/shrimp_exec/exec = null
+	var/can_act = TRUE
 
 /mob/living/simple_animal/hostile/aminion/shrimp/Initialize()
 	. = ..()
@@ -209,46 +261,105 @@
 		can_affect_emergency = FALSE
 		del_on_death = FALSE
 
+/mob/living/simple_animal/hostile/aminion/shrimp/proc/SpawnAnimation()
+	can_act = FALSE
+	docile_confinement = TRUE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	status_flags |= GODMODE
+	pixel_z = 96
+	alpha = 0
+	density = FALSE
+	animate(src, pixel_z = 0, alpha = 255, time = 30,  easing = CUBIC_EASING | EASE_IN)
+	SLEEP_CHECK_DEATH(1.5 SECONDS)
+	playsound(get_turf(src), 'sound/items/zip.ogg', 50, TRUE, frequency = 0.7)
+	SLEEP_CHECK_DEATH(1.4 SECONDS)
+	status_flags &= ~GODMODE
+	density = TRUE
+	mouse_opacity = MOUSE_OPACITY_ICON
+	SLEEP_CHECK_DEATH(0.1 SECONDS)
+	can_act = TRUE
+	docile_confinement = FALSE
+
+/mob/living/simple_animal/hostile/aminion/shrimp/Destroy()
+	if(exec)
+		exec.shrimps -= src
+		exec = null
+	. = ..()
+
+/mob/living/simple_animal/hostile/aminion/shrimp/OpenFire()
+	if(!can_act)
+		return
+	return ..()
+
+/mob/living/simple_animal/hostile/aminion/shrimp/AttackingTarget(atom/attacked_target)
+	if(!can_act)
+		return
+	return ..()
+
+/mob/living/simple_animal/hostile/aminion/shrimp/Move()
+	if(!can_act)
+		return
+	return ..()
+
+/mob/living/simple_animal/hostile/aminion/shrimp/PickTarget(list/Targets)
+	if(!can_act)
+		return
+	return ..()
+
 //You can put these guys about to guard an area.
-/mob/living/simple_animal/hostile/aminion/shrimp_soldier
+/mob/living/simple_animal/hostile/aminion/shrimp/soldier
 	name = "wellcheers corp hired liquidation officer"
 	desc = "A shrimp that is there to guard an area."
-	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "wellcheers_bad"
 	icon_living = "wellcheers_bad"
 	icon_dead = "wellcheers_bad_dead"
-	faction = list("shrimp")
-	health = 120 //They're here to help
-	maxHealth = 120
-	melee_damage_type = RED_DAMAGE
+	health = 300 //They're here to help
+	maxHealth = 300
 	damage_coeff = list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)
 	melee_damage_lower = 3
-	melee_damage_upper = 4
-	robust_searching = TRUE
-	stat_attack = HARD_CRIT
-	del_on_death = TRUE
-	attack_verb_continuous = "punches"
-	attack_verb_simple = "punches"
-	attack_sound = 'sound/weapons/bite.ogg'
-	speak_emote = list("burbles")
+	melee_damage_upper = 5
 	ranged = 1
 	retreat_distance = 2
 	minimum_distance = 3
 	casingtype = /obj/item/ammo_casing/caseless/ego_shrimpsoldier
 	projectilesound = 'sound/weapons/gun/pistol/shot_alt.ogg'
-	butcher_results = list(/obj/item/stack/spacecash/c50 = 1)
 	guaranteed_butcher_results = list(/obj/item/stack/spacecash/c20 = 1, /obj/item/stack/spacecash/c1 = 5)
 	silk_results = list(/obj/item/stack/sheet/silk/shrimple_simple = 8, /obj/item/stack/sheet/silk/shrimple_advanced = 4)
 	threat_level = HE_LEVEL
-	score_divider = 4
+	/// When at 0 - it will start "reloading"
+	var/ammo = 6
 
-/mob/living/simple_animal/hostile/aminion/shrimp_soldier/Initialize()
+/mob/living/simple_animal/hostile/aminion/shrimp/soldier/Life()
 	. = ..()
-	if(SSmaptype.maptype in SSmaptype.citymaps)
-		can_affect_emergency = FALSE
-		del_on_death = FALSE
+	if(!.)
+		return
+	if(ammo <= 0)
+		retreat_distance = 4
+		minimum_distance = 6
+	else
+		retreat_distance = 2
+		minimum_distance = 3
 
-/mob/living/simple_animal/hostile/aminion/shrimp_soldier/friendly
+/mob/living/simple_animal/hostile/aminion/shrimp/soldier/OpenFire(atom/A)
+	if(!can_act)
+		return FALSE
+	if(ammo <= 0)
+		StartReloading()
+		return FALSE
+	ammo -= 1
+	return ..()
+
+/mob/living/simple_animal/hostile/aminion/shrimp/soldier/proc/StartReloading()
+	can_act = FALSE
+	playsound(get_turf(src), 'sound/weapons/gun/general/slide_lock_1.ogg', 50, FALSE)
+	for(var/i = 1 to 6)
+		SLEEP_CHECK_DEATH(4)
+		playsound(get_turf(src), 'sound/weapons/gun/general/bolt_rack.ogg', 50, FALSE)
+	ammo = 6
+	can_act = TRUE
+
+
+/mob/living/simple_animal/hostile/aminion/shrimp/soldier/friendly
 	name = "wellcheers corp assault officer"
 	icon_state = "wellcheers_soldier"
 	icon_living = "wellcheers_soldier"
@@ -263,11 +374,114 @@
 	name = "instant shrimp task force grenade"
 	desc = "A grenade used to call for a shrimp task force."
 	icon_state = "shrimpnade"
-	spawner_type = /mob/living/simple_animal/hostile/aminion/shrimp_soldier/friendly
+	spawner_type = /mob/living/simple_animal/hostile/aminion/shrimp/soldier/friendly
 	deliveryamt = 3
 
 /obj/item/grenade/spawnergrenade/shrimp/super
 	deliveryamt = 7	//Just randomly get double money.
 
 /obj/item/grenade/spawnergrenade/shrimp/hostile
-	spawner_type = list(/mob/living/simple_animal/hostile/aminion/shrimp, /mob/living/simple_animal/hostile/aminion/shrimp_soldier) //Gacha Only, just put it here with the other shrimp grenades.
+	spawner_type = list(/mob/living/simple_animal/hostile/aminion/shrimp, /mob/living/simple_animal/hostile/aminion/shrimp/soldier) //Gacha Only, just put it here with the other shrimp grenades.
+
+//Crates
+//S Corporation
+/obj/structure/lootcrate/s_corp
+	name = "Shrimp-Corp Loot Crate"
+	desc = "A crate containing some knickknacks from the mysterious Shrimp-Corp. Open with a Crowbar or with your hands."
+	icon_state = "crate_shrimp"
+	veryrarechance = 10
+	cosmeticchance = 10
+	lootlist =	list(
+		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red,
+		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white,
+		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_purple,
+		/obj/item/grenade/spawnergrenade/shrimp,
+	)
+
+	rareloot = list(
+		/obj/item/grenade/spawnergrenade/shrimp/super,
+		/obj/item/trait_injector/shrimp_injector,
+		/obj/item/fishing_rod/wellcheers,
+		/obj/item/clothing/suit/armor/ego_gear/zayin/soda,
+		/obj/item/ego_weapon/ranged/pistol/soda
+	)
+
+	veryrareloot = list(
+		/obj/item/grenade/spawnergrenade/shrimp/super,
+		/obj/item/grenade/spawnergrenade/shrimp/hostile,
+		/obj/item/ego_weapon/ranged/sodarifle,
+		/obj/item/reagent_containers/pill/shrimptoxin,
+	)
+
+	cosmeticloot = list(
+		/mob/living/simple_animal/hostile/aminion/shrimp,
+		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red,
+		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white,
+	)
+
+/obj/structure/lootcrate/s_corp/attack_hand(mob/living/carbon/human/user)
+	. = ..()
+	var/loot
+	var/cloot
+
+	rarechance += repmodifier
+	if(veryrarechance)
+		veryrarechance += (repmodifier/crate_multiplier)
+
+	if((SSmaptype.maptype in SSmaptype.citymaps) && (user?.mind?.assigned_role != "Extraction Officer"))	//Fuckers shouldn't loot like this, unless for some reason the EO exists.
+		SEND_GLOBAL_SIGNAL(COMSIG_CRATE_LOOTING_STARTED, user, src)
+		if(!do_after(user, 7 SECONDS, src))
+			return
+
+	//Mimic this
+	user.do_attack_animation(src)
+	playsound(src, 'sound/weapons/smash.ogg', 50, TRUE)
+
+	if(veryrarechance && prob(veryrarechance))
+		loot = pick(veryrareloot)
+
+	else if(prob(rarechance))
+		loot = pick(rareloot)
+
+	else
+		loot = pick(lootlist)
+
+	if(cosmeticchance && prob(cosmeticchance))
+		cloot = pick(cosmeticloot)
+		new cloot(get_turf(src))
+
+	to_chat(user, span_notice("You open the crate!"))
+	if(SSmaptype.maptype in SSmaptype.citymaps)
+		SEND_GLOBAL_SIGNAL(COMSIG_CRATE_LOOTING_ENDED, user, src)
+
+	new loot(get_turf(src))
+	qdel(src)
+
+/obj/structure/lootcrate/s_corp/gun
+	name = "Shrimp-Corp Gun Crate"
+	desc = "A crate containing a gun from the mysterious Shrimp-Corp. Open with a Crowbar or with your hands."
+	icon_state = "crate_weapon_shrimp"
+	rarechance = 80
+	veryrarechance = 15
+	cosmeticchance = 0
+	lootlist =	list(
+		/obj/item/ego_weapon/ranged/sodarifle,
+	)
+
+	rareloot = list(
+		/obj/item/ego_weapon/ranged/pistol/soda_premium,
+		/obj/item/ego_weapon/ranged/sodaminigun,
+		/obj/item/ego_weapon/ranged/sodasmg,
+		/obj/item/ego_weapon/ranged/sodashotty,
+		/obj/item/ego_weapon/ranged/sodaassault,
+	)
+
+	veryrareloot = list(
+		/obj/item/ego_weapon/ranged/pistol/executive
+	)
+	cosmeticloot = list()
+
+/obj/structure/closet/supplypod/extractionpod/shrimppod
+	name = "shrimp-borp drop pod"
+	desc = "A purple pod."
+	style = STYLE_SHRIMP

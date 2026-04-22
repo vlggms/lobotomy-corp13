@@ -161,3 +161,7 @@
 	name = "squeak"
 	damage = 3
 	damage_type = RED_DAMAGE
+
+/obj/projectile/ego_bullet/soda_rifle
+	damage = 12
+	speed = 0.25

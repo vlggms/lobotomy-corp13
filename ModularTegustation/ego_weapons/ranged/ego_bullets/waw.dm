@@ -105,11 +105,11 @@
 	if(!ishuman(target))
 		qdel(src)
 
-/obj/projectile/ego_bullet/ego_executive
-	name = "executive"
-	damage = 6
+/obj/projectile/ego_bullet/ego_soda_premium
+	name = "soda premium"
+	damage = 14
+	spread = 0
 	damage_type = PALE_DAMAGE	//hehe
-
 
 /obj/projectile/ego_bullet/ego_crimson
 	name = "crimson"
@@ -441,3 +441,23 @@
 			M.Translate(0, 8)
 			layer -= 0.2
 	transform = M
+
+/obj/projectile/ego_bullet/soda_shotty
+	name = "9mm soda bullet"
+	damage = 7
+	damage_type = RED_DAMAGE
+
+/obj/projectile/ego_bullet/soda_assault
+	name = "9mm soda bullet"
+	damage = 20
+	damage_type = RED_DAMAGE
+
+/obj/projectile/ego_bullet/soda_mini
+	name = "9mm soda bullet"
+	damage = 3
+	damage_type = RED_DAMAGE
+
+/obj/projectile/ego_bullet/soda_smg
+	name = "9mm soda bullet"
+	damage = 8
+	damage_type = RED_DAMAGE

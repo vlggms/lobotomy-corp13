@@ -1103,3 +1103,7 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "seasons_wisp_death"
 	duration = 15
+
+/obj/effect/temp_visual/sparkle
+	icon_state = "sparkle"
+	duration = 5

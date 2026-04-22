@@ -143,40 +143,6 @@
 		/obj/item/powered_gadget/detector_gadget/ordeal,
 	)
 
-//S Corporation
-/obj/structure/lootcrate/s_corp
-	name = "S Corp Crate"
-	desc = "A crate recieved from the mysterious S-Corp. Open with a Crowbar."
-	icon_state = "crate_shrimp"
-	veryrarechance = 5
-	cosmeticchance = 5
-	lootlist =	list(
-		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red,
-		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white,
-		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_purple,
-		/obj/item/ego_weapon/ranged/sodashotty,
-		/obj/item/ego_weapon/ranged/sodarifle,
-		/obj/item/ego_weapon/ranged/sodasmg,
-		/obj/item/ego_weapon/ranged/shrimp/assault,
-	)
-
-	rareloot =	list(
-		/obj/item/ego_weapon/ranged/shrimp/minigun,
-		/obj/item/grenade/spawnergrenade/shrimp,
-		/obj/item/trait_injector/shrimp_injector,
-	)
-
-	veryrareloot = list(
-		/obj/item/grenade/spawnergrenade/shrimp/super,
-		/obj/item/grenade/spawnergrenade/shrimp/hostile,
-		/obj/item/reagent_containers/pill/shrimptoxin,
-		/obj/item/fishing_rod/wellcheers,
-	)
-
-	cosmeticloot = list(
-		/mob/living/simple_animal/hostile/aminion/shrimp,
-	)
-
 //W Corporation
 /obj/structure/lootcrate/w_corp
 	name = "W Corp Crate"

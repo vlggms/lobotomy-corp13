@@ -18,6 +18,8 @@ GLOBAL_LIST_EMPTY(ego_datums)
 	var/datum/abnormality/linked_abno
 	/// All the data needed for displaying information on EGO console
 	var/list/information = list()
+	/// If the item should be packaged or not
+	var/packaged = FALSE
 
 /datum/ego_datum/New(datum/abnormality/DA)
 	if(!name && item_path)
@@ -30,11 +32,17 @@ GLOBAL_LIST_EMPTY(ego_datums)
 	return ..()
 
 /datum/ego_datum/proc/PrintOutInfo()
-	return
+	if(!ispath(item_path, /obj))
+		return
+	var/obj/O = new item_path(src)
+	var/dat = "[capitalize(name)]<br><br>"
+	dat += "[O.desc]<br>"
+	return dat
 
 // Because I'm lazy to type it all
 /datum/ego_datum/weapon
 	item_category = "Weapon"
+	packaged = TRUE
 
 /datum/ego_datum/weapon/New(datum/abnormality/DA)
 	. = ..()
@@ -233,6 +241,7 @@ GLOBAL_LIST_EMPTY(ego_datums)
 
 /datum/ego_datum/armor
 	item_category = "Armor"
+	packaged = TRUE
 
 /datum/ego_datum/armor/New(datum/abnormality/DA)
 	. = ..()

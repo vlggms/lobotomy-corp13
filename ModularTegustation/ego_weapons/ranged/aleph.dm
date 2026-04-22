@@ -328,3 +328,55 @@
 							JUSTICE_ATTRIBUTE = 100
 	)
 	shotsleft = 200
+
+//Just a funny gold soda pistol. It was originally meant to just be a golden meme weapon, now it is the only pale gun, lol
+/obj/item/ego_weapon/ranged/pistol/executive
+	name = "executive"
+	desc = "A pistol painted in black with a gold finish. Whenever this EGO is used, a faint scent of fillet mignon wafts through the air."
+	icon_state = "executive"
+	inhand_icon_state = "executive"
+	special = "This weapon has pinpoint accuracy. \nThe final bullet of the clip does heavy damage. When the final bullet kills something, this weapon will automatically reload."
+	force = 15
+	damtype = PALE_DAMAGE
+	burst_size = 1
+	fire_delay = 5
+	shotsleft = 12
+	reloadtime = 1.2 SECONDS
+	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
+	vary_fire_sound = FALSE
+	fire_sound_volume = 70
+	spread = 0
+	variance = 0
+	dual_wield_spread = 0
+	projectile_path = /obj/projectile/ego_bullet/ego_executive
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 100
+	)
+
+/obj/item/ego_weapon/ranged/pistol/executive/proc/AutoReload(mob/user)
+	if(shotsleft == initial(shotsleft))
+		return
+	playsound(src, 'sound/weapons/ego/executive_reload.ogg', 70, FALSE)
+	shotsleft = initial(shotsleft)
+	to_chat(user, span_nicegreen("A new magazine materialized within [src]!"))
+	// Might as well reload the other gun
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		for(var/obj/item/ego_weapon/ranged/pistol/executive/G in H.held_items)
+			if(G == src || G.shotsleft == initial(G.shotsleft))
+				continue
+			G.shotsleft = initial(G.shotsleft)
+			playsound(G, 'sound/weapons/ego/executive_reload.ogg', 70, FALSE)
+			to_chat(user, span_nicegreen("A new magazine materialized within the other [G]!"))
+
+/obj/item/ego_weapon/ranged/pistol/executive/afterattack(atom/target, mob/user)
+	if(shotsleft == 1)
+		projectile_path = /obj/projectile/ego_bullet/ego_executive/kill_shot
+		fire_sound = 'sound/weapons/ego/executive_shot.ogg'
+	. = ..()
+	projectile_path = initial(projectile_path)
+	fire_sound = initial(fire_sound)
+	update_projectile_examine()

@@ -237,7 +237,7 @@ GLOBAL_DATUM_INIT(map_enemy, /datum/enemy, new)
 	max_spawns = 1
 	mobspawn_table = list(
 		/mob/living/simple_animal/hostile/aminion/shrimp = 10,//shrimp liquidation intern
-		/mob/living/simple_animal/hostile/aminion/shrimp_soldier = 1,//shotgun shrimp
+		/mob/living/simple_animal/hostile/aminion/shrimp/soldier = 1,//shotgun shrimp
 		/mob/living/simple_animal/hostile/aminion/gift = 1,//laetitia spider
 		/mob/living/simple_animal/hostile/aminion/grown_strong = 1,
 		/mob/living/simple_animal/hostile/aminion/nosferatu_mob = 10,

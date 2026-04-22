@@ -25,7 +25,7 @@
 
 /datum/award/achievement/lc13/scorpworld
 	name = "A Shrimple Arrangement"
-	desc = "One of your characters lived to be recruited by S corp."
+	desc = "One of your characters lived to be recruited by Shrimp-Corp."
 	database_id = MEDAL_SCORPWORLD
 	icon = "shrimp"
 

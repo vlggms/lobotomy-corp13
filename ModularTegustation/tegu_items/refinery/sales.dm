@@ -118,8 +118,8 @@
 	our_corporation = "R corp"
 
 /obj/structure/pe_sales/s_corp
-	name = "S-Corp Power Input"
-	desc = "A machine used to send PE to S-Corp."
+	name = "Shrimp-Corp Power Input"
+	desc = "A machine used to send PE to Shrimp-Corp."
 	icon_state = "machineshrimp"
 	crate = /obj/structure/lootcrate/s_corp
 	crate_timer = 120

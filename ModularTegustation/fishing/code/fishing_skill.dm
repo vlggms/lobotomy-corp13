@@ -13,7 +13,7 @@
 	levelUpMessages[3] = span_nicegreen("For a moment you swear you saw a large shrimp head watching you from the water...")
 	levelUpMessages[4] = span_nicegreen("One of the fish you catch tells you about how a signet ring that could command demons was once swallowed by a fish...")
 	levelUpMessages[5] = span_nicegreen("Your recent catch tells you of Nyami Nyami and how they cared for the Tonga people...")
-	levelUpMessages[6] = span_nicegreen("Written on a fish you catch is a message from S-corp, it says they noticed your progress and may have a offer for you at district 19 when your shift is over...")
+	levelUpMessages[6] = span_nicegreen("Written on a fish you catch is a message from Shrimp-corp, it says they noticed your progress and may have a offer for you at district 19 when your shift is over...")
 
 //Skill xp granter. Ill make this a more generalized root if its more widely used. -IP
 /obj/item/book/granter/fish_skill

@@ -61,9 +61,6 @@
 	)
 
 	var/list/heitem = list(
-		/obj/item/ego_weapon/ranged/sodashotty,
-		/obj/item/ego_weapon/ranged/sodarifle,
-		/obj/item/ego_weapon/ranged/sodasmg,
 		/obj/item/clothing/suit/armor/ego_gear/he/lutemis,
 		/obj/item/grenade/spawnergrenade/shrimp,
 		/obj/item/clothing/neck/beads,

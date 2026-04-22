@@ -1,6 +1,6 @@
 /obj/item/clothing/neck/cloak/skill_reward/fishing
 	name = "legendary fisher cloak"
-	desc = "Worn by someone who has mastered the art of fishing and gained the attention of S corp."
+	desc = "Worn by someone who has mastered the art of fishing and gained the attention of Shrimp-Corp."
 	icon = 'ModularTegustation/fishing/icons/clothes_items.dmi'
 	worn_icon = 'ModularTegustation/fishing/icons/clothes_worn.dmi'
 	icon_state = "fishing_cloak"
