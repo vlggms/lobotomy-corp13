@@ -4,11 +4,27 @@
 
 
 
+/mob/living/carbon/human/proc/adjustHealthLoss(amount, updating_health = TRUE, forced = FALSE, required_status)
+	if(!forced && (status_flags & GODMODE))
+		return FALSE
+	if(amount > 0)
+		take_overall_damage(amount, 0, 0, updating_health, required_status)
+	else if(forced || !HAS_TRAIT(src, TRAIT_PHYSICAL_HEALING_BLOCKED))
+		if(stat != DEAD)
+			HealingEffect("healing")
+		heal_overall_damage(abs(amount), 0, 0, required_status ? required_status : null, updating_health)
+	return amount
+
 //// Damage Effects
+/mob/living/carbon/human/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE)
+	if(stat != DEAD)
+		DamageEffect(amount, BRUTE)
+	return adjustHealthLoss(amount, forced = forced)
+
 /mob/living/carbon/human/adjustRedLoss(amount, updating_health = TRUE, forced = FALSE)
 	if(stat != DEAD)
 		DamageEffect(amount, RED_DAMAGE)
-	. = ..()
+	return adjustHealthLoss(amount, forced = forced)
 
 /mob/living/carbon/human/adjustWhiteLoss(amount, updating_health = TRUE, forced = FALSE, white_healable = FALSE)
 	var/damage_amt = amount
@@ -17,7 +33,7 @@
 	if(stat != DEAD)
 		DamageEffect(damage_amt, WHITE_DAMAGE)
 	if(HAS_TRAIT(src, TRAIT_BRUTESANITY))
-		adjustBruteLoss(amount, forced = forced)
+		adjustHealthLoss(amount, forced = forced)
 	else
 		adjustSanityLoss(damage_amt, forced)
 	if(updating_health)
@@ -30,7 +46,7 @@
 		damage_amt *= -1
 	if(stat != DEAD)
 		DamageEffect(amount, BLACK_DAMAGE)
-	adjustBruteLoss(amount, forced = forced)
+	adjustHealthLoss(amount, forced = forced)
 	if(!HAS_TRAIT(src, TRAIT_BRUTESANITY))
 		adjustSanityLoss(damage_amt, forced = forced)
 	return damage_amt
@@ -38,7 +54,10 @@
 /mob/living/carbon/human/adjustPaleLoss(amount, updating_health = TRUE, forced = FALSE)
 	if(stat != DEAD)
 		DamageEffect(amount, PALE_DAMAGE)
-	. = ..()
+	if(HAS_TRAIT(src, TRAIT_BRUTEPALE))
+		return adjustHealthLoss(amount, forced = forced)
+	var/damage_amt = maxHealth * (amount/100)
+	return adjustHealthLoss(damage_amt, forced = forced)
 
 /mob/living/carbon/human/adjustToxLoss(amount, updating_health = TRUE, forced = FALSE)
 	if(stat != DEAD)

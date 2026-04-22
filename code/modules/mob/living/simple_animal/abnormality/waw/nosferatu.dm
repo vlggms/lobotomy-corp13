@@ -190,7 +190,7 @@
 	if(datum_reference.qliphoth_meter < 3) // We're thirsty so lets suck some blood
 		AdjustThirst(500)
 		user.apply_lc_bleed(5)
-		user.adjustBruteLoss(15)
+		user.adjustHealthLoss(15)
 		OtherDamageEffect(15, "bleed")
 		if(!failed)
 			to_chat(user, span_warning("[src] suddenly sucks your blood!"))

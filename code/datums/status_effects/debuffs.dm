@@ -1228,8 +1228,11 @@
 			B.bloodiness = 100
 	var/damage_done = stacks*2
 	if(ishuman(owner))
+		var/mob/living/carbon/human/status_holder = owner
 		damage_done = max(stacks * 0.125, 1)
-	owner.adjustBruteLoss(damage_done) // x2 on non humans
+		status_holder.adjustHealthLoss(damage_done)
+	else
+		owner.adjustBruteLoss(damage_done) // x16 on non humans
 	owner.OtherDamageEffect(damage_done, "bleed")
 	stacks = round(stacks/2)
 	if(stacks == 0)
