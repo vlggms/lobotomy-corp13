@@ -38,7 +38,7 @@
 /mob/living/simple_animal/hostile/ordeal/mermaid_strand/OpenFire()
 	if(aiming)
 		return
-	TakeAim(target)
+	AimAttack(target)
 	if(aiming)
 		aiming = FALSE
 
@@ -67,7 +67,7 @@
 			continue
 		to_chat(H, span_warning("Damn, it's scary."))
 
-/mob/living/simple_animal/hostile/ordeal/mermaid_strand/proc/TakeAim(target)
+/mob/living/simple_animal/hostile/ordeal/mermaid_strand/proc/AimAttack(target)
 	ranged_cooldown = world.time + ranged_cooldown_time
 	playsound(src, 'sound/creatures/lc13/lake_entity/shot_1.ogg', 100)
 	aiming = TRUE

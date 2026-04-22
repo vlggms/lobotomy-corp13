@@ -30,12 +30,12 @@
 /mob/living/simple_animal/hostile/ordeal/mermaid_porous/OpenFire()
 	if(aiming)
 		return
-	TakeAim(target)
+	AimAttack(target)
 	..()
 	if(aiming)
 		aiming = FALSE
 
-/mob/living/simple_animal/hostile/ordeal/mermaid_porous/proc/TakeAim(target)
+/mob/living/simple_animal/hostile/ordeal/mermaid_porous/proc/AimAttack(target)
 	playsound(src, 'sound/creatures/lc13/lake_entity/shot_1.ogg', 100)
 	aiming = TRUE
 	flick("merm_open", src)
