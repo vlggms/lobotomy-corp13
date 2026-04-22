@@ -203,11 +203,21 @@
 		if(length(exec.shrimps) >= exec.shrimp_cap)
 			should_spawn = FALSE
 	if(should_spawn)
+		addtimer(CALLBACK(src, PROC_REF(BeBreakable)), 3 SECONDS)
+		var/mob/living/simple_animal/hostile/aminion/shrimp/S
 		if(prob(30))
-			new /mob/living/simple_animal/hostile/aminion/shrimp/soldier(pick(turfs), FALSE, TRUE, src)
+			S = new/mob/living/simple_animal/hostile/aminion/shrimp/soldier(pick(turfs))
 		else
-			new /mob/living/simple_animal/hostile/aminion/shrimp(pick(turfs), FALSE, TRUE, src)
-		sleep(3 SECONDS)
+			S = new(pick(turfs))
+		if(exec)
+			S.exec = exec
+			exec.shrimps += S
+		S.dir = get_dir(S, src)
+		S.SpawnAnimation()
+	else
+		resistance_flags &= ~INDESTRUCTIBLE
+
+/obj/structure/shrimp_rope/proc/BeBreakable()
 	resistance_flags &= ~INDESTRUCTIBLE
 
 /obj/structure/shrimp_rope/Destroy()
@@ -245,18 +255,11 @@
 	var/mob/living/simple_animal/hostile/abnormality/shrimp_exec/exec = null
 	var/can_act = TRUE
 
-/mob/living/simple_animal/hostile/aminion/shrimp/Initialize(mapload, no_emergency, special_spawn, obj/structure/shrimp_rope/rope)
+/mob/living/simple_animal/hostile/aminion/shrimp/Initialize()
 	. = ..()
 	if(SSmaptype.maptype in SSmaptype.citymaps)
 		can_affect_emergency = FALSE
 		del_on_death = FALSE
-	if(rope)//We have to do it here since the spawn animation happens before the post initialization
-		face_atom(rope)
-		if(rope.exec)
-			exec = rope.exec
-			exec.shrimps += src
-	if(special_spawn)
-		SpawnAnimation()
 
 /mob/living/simple_animal/hostile/aminion/shrimp/proc/SpawnAnimation()
 	can_act = FALSE
