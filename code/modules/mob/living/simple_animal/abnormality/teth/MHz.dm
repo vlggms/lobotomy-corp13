@@ -80,24 +80,8 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/mhz/ZeroQliphoth(mob/living/carbon/human/user)
-	var/rose_available
-	for(var/mob/living/simple_animal/hostile/abnormality/staining_rose/J in GLOB.mob_list)
-		rose_available = TRUE
-		break
-
 	addtimer(CALLBACK (datum_reference, TYPE_PROC_REF(/datum/abnormality, qliphoth_change), 4), reset_time)
-
-	if(!rose_available)
-		SSweather.run_weather(/datum/weather/mhz)
-		return
-
-	//Rose? Do a different, neutered effect
-	for(var/mob/living/L in GLOB.player_list)
-		if(faction_check_mob(L, FALSE) || L.z != z || L.stat == DEAD)
-			continue
-		new /obj/effect/temp_visual/dir_setting/ninja(get_turf(L))
-		L.deal_damage(6, WHITE_DAMAGE)
-
+	SSweather.run_weather(/datum/weather/mhz)
 
 //We're gonna make it a weather that affects all hallways.
 //We've tried the spreading stuff effect with Snow White and it's super laggy. Having 2 at once would be horrible.

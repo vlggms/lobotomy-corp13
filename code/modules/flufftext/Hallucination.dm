@@ -1177,15 +1177,11 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 /datum/hallucination/fake_alert/New(mob/living/carbon/C, forced = TRUE, specific, duration = 150)
 	set waitfor = FALSE
 	..()
-	alert_type = pick("rose 1", "rose 2", "silent girl 1", "firebird 1", "firebird 2", "porccubus", "galaxy child", "luna", "apple")
+	alert_type = pick("silent girl 1", "firebird 1", "firebird 2", "porccubus", "galaxy child", "luna", "apple")
 	if(specific)
 		alert_type = specific
 	feedback_details += "Type: [alert_type]"
 	switch(alert_type)
-		if("rose 1")
-			target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/sacrifice, override = TRUE)
-		if("rose 2")
-			target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/schismatic, override = TRUE)
 		if("silent girl 1")
 			target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/sg_guilty, override = TRUE)
 		if("firebird 1")

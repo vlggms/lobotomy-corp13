@@ -86,6 +86,7 @@
 
 //Prevents red work damage effecs from appearing
 /mob/living/simple_animal/hostile/abnormality/flesh_idol/WorktickFailure(mob/living/carbon/human/user)
+	playsound(datum_reference.console, 'sound/machines/synth_no.ogg', 25, FALSE, -4)
 	return
 
 //Meltdown
