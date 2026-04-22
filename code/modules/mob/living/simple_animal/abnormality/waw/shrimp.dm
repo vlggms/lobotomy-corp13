@@ -175,7 +175,7 @@
 /* Rope */
 /obj/structure/shrimp_rope
 	name = "rope"
-	desc = "A long piece of rope connected to a new found hole in the celling."
+	desc = "A long piece of rope connected to a newfound hole in the celling."
 	icon = 'icons/effects/32x96.dmi'
 	icon_state = "rope"
 	layer = MOB_LAYER
