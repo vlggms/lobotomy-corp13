@@ -24,7 +24,7 @@
 	for(var/mob/living/actor in orange(get_turf(spore), 1))
 		if(ROLE_BLOB in actor.faction) //no friendly fire
 			continue
-		actor.apply_damage(20, BRUTE, wound_bonus=CANT_WOUND)
+		actor.deal_damage(20, BRUTE, flags = (DAMAGE_FORCED), wound_bonus=CANT_WOUND)
 
 /datum/reagent/blob/explosive_lattice
 	name = "Explosive Lattice"
@@ -47,8 +47,8 @@
 			show_message = FALSE
 			touch_protection = nearby_mob.get_permeability_protection()
 			var/aoe_volume = ..()
-			nearby_mob.apply_damage(0.4*aoe_volume, BRUTE, wound_bonus=CANT_WOUND)
+			nearby_mob.deal_damage(0.4*aoe_volume, BRUTE, flags = (DAMAGE_FORCED), wound_bonus=CANT_WOUND)
 		if(exposed_mob)
-			exposed_mob.apply_damage(0.6*reac_volume, BRUTE, wound_bonus=CANT_WOUND)
+			exposed_mob.deal_damage(0.6*reac_volume, BRUTE, flags = (DAMAGE_FORCED), wound_bonus=CANT_WOUND)
 	else
-		exposed_mob.apply_damage(0.6*reac_volume, BRUTE, wound_bonus=CANT_WOUND)
+		exposed_mob.deal_damage(0.6*reac_volume, BRUTE, flags = (DAMAGE_FORCED), wound_bonus=CANT_WOUND)

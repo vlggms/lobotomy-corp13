@@ -51,7 +51,7 @@
 	var/mob/living/carbon/human/H = owner
 	HealthCheck()
 	if(ferventbeats && rage_safe_time < world.time)
-		H.deal_damage(H.maxHealth * (1/100), BRUTE) // Roughly standard regenerator healing
+		H.deal_damage(H.maxHealth * (1/100), BRUTE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_STATUS)) // Roughly standard regenerator healing
 	if(!raging)
 		return
 
@@ -59,7 +59,7 @@
 		to_chat(H, span_userdanger("You feel as if your heart barelly holds onto life!"))
 		return
 
-	H.deal_damage(H.maxHealth * (2/100), BRUTE) // You are most likely going to die, and very soon.
+	H.deal_damage(H.maxHealth * (2/100), BRUTE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_STATUS)) // You are most likely going to die, and very soon.
 
 /datum/status_effect/display/aspiration/proc/HealthCheck()
 	var/mob/living/carbon/human/H = owner

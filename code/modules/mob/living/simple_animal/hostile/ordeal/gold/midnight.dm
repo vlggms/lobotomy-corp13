@@ -57,7 +57,7 @@
 			if(faction_check_mob(L))
 				continue
 			var/dealt_damage = max(6, symphony_damage - round(get_dist(src, L) * 0.1))
-			L.deal_damage(dealt_damage, WHITE_DAMAGE)
+			L.deal_damage(dealt_damage, WHITE_DAMAGE, src, flags = (DAMAGE_FORCED | DAMAGE_UNTRACKABLE), attack_type = (ATTACK_TYPE_SPECIAL))
 
 	if(world.time >= next_movement_time) // Next movement
 		var/movement_volume = 50

@@ -302,7 +302,7 @@
 			for(var/mob/living/L in T) //knocks enemies away from you
 				if(L == user || ishuman(L))
 					continue
-				L.apply_damage(shockwave_damage[current_level] * force_multiplier, damtype, null, L.run_armor_check(null, damtype), spread_damage = TRUE)
+				L.deal_damage(shockwave_damage[current_level] * force_multiplier, damtype, src, attack_type = (ATTACK_TYPE_SPECIAL))
 				var/throw_target = get_edge_target_turf(L, get_dir(L, get_step_away(L, start)))
 				if(!L.anchored)
 					var/whack_speed = 10
@@ -696,12 +696,12 @@
 		to_chat(user, "<span class ='userdanger'>You hit yourself over the head!</span>")
 
 		user.Paralyze(knockdown_time_carbon * force)
-		user.apply_damage(stamina_damage, STAMINA, BODY_ZONE_HEAD)
+		user.deal_damage(stamina_damage, STAMINA, flags = (DAMAGE_FORCED | DAMAGE_NO_SPREAD), def_zone = BODY_ZONE_HEAD)
 
 		additional_effects_carbon(user) // user is the target here
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
-			H.apply_damage(2*force, BRUTE, BODY_ZONE_HEAD)
+			H.deal_damage(2*force, BRUTE, flags = (DAMAGE_FORCED | DAMAGE_NO_SPREAD), def_zone = BODY_ZONE_HEAD)
 		else
 			user.take_bodypart_damage(2*force)
 		return
@@ -759,11 +759,11 @@
 						target.Knockdown(knockdown_time_carbon * armor_effect)
 						log_combat(user, target, "tripped", src)
 						target.visible_message(desc["visibletrip"], desc["localtrip"])
-						target.apply_damage(stamina_damage*0.25, STAMINA, selected_bodypart_area, def_check)
+						target.deal_damage(stamina_damage*0.25, STAMINA, source = user, attack_type = (ATTACK_TYPE_MELEE), def_zone = selected_bodypart_area, blocked = def_check)
 					else
 						log_combat(user, target, "stunned", src)
 						target.visible_message(desc["visiblestun"], desc["localstun"])
-						target.apply_damage(stamina_damage, STAMINA, selected_bodypart_area, def_check)
+						target.deal_damage(stamina_damage, STAMINA, source = user, attack_type = (ATTACK_TYPE_MELEE), def_zone = selected_bodypart_area, blocked = def_check)
 
 				if(BODY_ZONE_L_ARM)
 					baton_disarm(user, target, LEFT_HANDS, selected_bodypart_area, def_check)
@@ -772,7 +772,7 @@
 					baton_disarm(user, target, RIGHT_HANDS, selected_bodypart_area, def_check)
 
 				else // Normal effect.
-					target.apply_damage(stamina_damage, STAMINA, selected_bodypart_area, def_check)
+					target.deal_damage(stamina_damage, STAMINA, source = user, attack_type = (ATTACK_TYPE_MELEE), def_zone = selected_bodypart_area, blocked = def_check)
 					log_combat(user, target, "stunned", src)
 					target.visible_message(desc["visiblestun"], desc["localstun"])
 
@@ -794,8 +794,8 @@
 	if(I && target.dropItemToGround(I)) // There is an item in this hand. Drop it and deal slightly less stamina damage.
 		log_combat(user, target, "disarmed", src)
 		target.visible_message(desc["visibledisarm"], desc["localdisarm"])
-		target.apply_damage(stamina_damage*0.5, STAMINA, bodypart_target, def_check)
+		target.deal_damage(stamina_damage*0.5, STAMINA, source = user, attack_type = (ATTACK_TYPE_MELEE), def_zone = bodypart_target, blocked = def_check)
 	else // No item in that hand. Deal normal stamina damage.
 		log_combat(user, target, "stunned", src)
 		target.visible_message(desc["visiblestun"], desc["localstun"])
-		target.apply_damage(stamina_damage, STAMINA, bodypart_target, def_check)
+		target.deal_damage(stamina_damage, STAMINA, source = user, attack_type = (ATTACK_TYPE_MELEE), def_zone = bodypart_target, blocked = def_check)

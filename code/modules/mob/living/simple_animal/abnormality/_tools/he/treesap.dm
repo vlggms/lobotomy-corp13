@@ -55,8 +55,7 @@
 
 /datum/status_effect/treesap/tick()
 	. = ..()
-	owner.adjustBruteLoss(-12) // Heals 10 HP per tick in LC, so this really should be 20
-
+	owner.adjustBruteLoss(-10) // Heals 10 HP per tick in LC
 
 // Status Effect
 /datum/status_effect/boomsap
@@ -67,13 +66,13 @@
 
 /datum/status_effect/boomsap/tick()
 	. = ..()
-	owner.adjustBruteLoss(-12) // Heals 10 HP per tick in LC, so this really should be 20
+	owner.adjustBruteLoss(-10) // Heals 10 HP per tick in LC
 
 /datum/status_effect/boomsap/on_remove()
 	. = ..()
 	owner.gib()
 	for(var/mob/living/carbon/human/L in urange(10, src))
-		L.deal_damage(60, WHITE_DAMAGE)
+		L.deal_damage(30, WHITE_DAMAGE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL))
 		to_chat(L, span_danger("Oh god, what the fuck was that!?"))
 
 #undef STATUS_EFFECT_TREESAP

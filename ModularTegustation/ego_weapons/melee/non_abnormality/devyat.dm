@@ -91,7 +91,7 @@
 			var/mob/living/carbon/human/theif = user
 			say("You are touching a devyat trunk without the correct access, please step away.")
 			playsound(get_turf(src), 'sound/weapons/ego/devyat_overclock.ogg', 25, 0, 4)
-			theif.apply_damage(theif_damage, BLACK_DAMAGE)
+			theif.deal_damage(theif_damage, BLACK_DAMAGE, flags = (DAMAGE_FORCED))
 		return FALSE
 	. = ..()
 
@@ -151,7 +151,7 @@
 			var/mob/living/carbon/human/theif = who
 			say("You are touching a devyat trunk without the correct access, please step away.")
 			playsound(get_turf(src), 'sound/weapons/ego/devyat_overclock.ogg', 25, 0, 4)
-			theif.apply_damage(theif_damage, BLACK_DAMAGE)
+			theif.deal_damage(theif_damage, BLACK_DAMAGE, flags = (DAMAGE_FORCED))
 		return FALSE
 	return ..()
 
@@ -243,7 +243,7 @@
 
 /obj/item/ego_weapon/city/devyat_trunk/proc/gain_courier_trunk(amount, mob/living/user)
 	if(overclock)
-		user.apply_damage(courier_trunk * overclock_mult, BLACK_DAMAGE)
+		user.deal_damage(courier_trunk * overclock_mult, BLACK_DAMAGE, flags = (DAMAGE_FORCED))
 		if(user.stat == DEAD)
 			playsound(get_turf(user), 'sound/weapons/ego/devyat_overclock_death.ogg', 50, 0, 4)
 			end_combat()

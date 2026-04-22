@@ -686,7 +686,7 @@
 		var/mob/living/L = AM
 		if(!faction_check(faction, L.faction))
 			playsound(get_turf(src), 'sound/machines/clockcult/steam_whoosh.ogg', 10, 1)
-			L.apply_damage(20, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = FALSE)
+			L.deal_damage(20, RED_DAMAGE, creator, flags = (DAMAGE_UNTRACKABLE), attack_type = (ATTACK_TYPE_ENVIRONMENT))
 			new /obj/effect/temp_visual/cloud_swirl(get_turf(L)) //placeholder
 			to_chat(creator, span_warning("You feel a itch towards [get_area(L)]."))
 			qdel(src)

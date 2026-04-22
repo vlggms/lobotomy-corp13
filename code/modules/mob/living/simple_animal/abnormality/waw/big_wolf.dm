@@ -223,7 +223,7 @@
 	playsound(get_turf(src), 'sound/abnormalities/big_wolf/Wolf_FogChange.ogg', 75, 1)
 	ADD_TRAIT(src, TRAIT_MOVE_PHASING, "fleeing")
 	AIStatus = AI_OFF
-	target = null
+	LoseTarget(FALSE)
 	walk_to(src, 0)
 	TemporarySpeedChange(-2, 3 SECONDS)
 	fleeing_now = TRUE
@@ -317,9 +317,9 @@
 				if(isclosedturf(T))
 					continue
 				new /obj/effect/temp_visual/slice(T)
-				hit_mob = HurtInTurf(T, hit_mob, 15, RED_DAMAGE, null, TRUE, FALSE, TRUE, hurt_structure = TRUE)
+				hit_mob = HurtInTurf(T, hit_mob, 15, RED_DAMAGE, null, TRUE, FALSE, TRUE, hurt_structure = TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 				for(var/mob/living/simple_animal/hostile/abnormality/red_hood/mercenary in hit_mob)
-					mercenary.deal_damage(50, RED_DAMAGE) //triple damge to red
+					mercenary.deal_damage(50, RED_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL)) //triple damge to red
 	can_act = TRUE
 
 //Used in Steel noons for if they are allowed to fly through something.
