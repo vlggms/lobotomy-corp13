@@ -73,10 +73,10 @@
 
 	var/hello_cooldown
 	var/hello_cooldown_time = 6 SECONDS
-	var/hello_damage = 40
+	var/hello_damage = 55
 	var/goodbye_cooldown
 	var/goodbye_cooldown_time = 20 SECONDS
-	var/goodbye_damage = 150
+	var/goodbye_damage = 300
 
 	var/last_heal_time = 0
 	var/heal_percent_per_second = 0.0085
@@ -265,7 +265,7 @@
 	. = ..()
 	if(damagetype == RED_DAMAGE || damage < 10)
 		return
-	last_heal_time = world.time + 10 SECONDS // Heal delayed when taking damage; Doubled because it was a little too quick.
+	last_heal_time = world.time + 20 SECONDS // Heal delayed when taking damage; Doubled because it was a little too quick.
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/proc/disguise_as(mob/living/M)
 	if(!(status_flags & GODMODE)) // Already breaching

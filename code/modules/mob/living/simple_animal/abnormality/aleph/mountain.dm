@@ -64,10 +64,10 @@
 	var/phase = 1
 	var/scream_cooldown
 	var/scream_cooldown_time = 6 SECONDS
-	var/scream_damage = 20
+	var/scream_damage = 25
 	var/slam_cooldown
 	var/slam_cooldown_time = 2 SECONDS
-	var/slam_damage = 10
+	var/slam_damage = 16
 	var/spit_cooldown
 	var/spit_cooldown_time = 8 SECONDS
 	/// Actually it fires this amount thrice, so, multiply it by 3 to get actual amount
