@@ -12,17 +12,18 @@
 	var/alert_icon = "regen_alert"
 
 	/// How many HP and SP we restore on each process tick
-	var/regeneration_amount = 6
+	var/regeneration_amount = 12
 	/// Pre-declared variable
 	var/modified = FALSE // Whether or not the regenerator is currently undergoing modified action
 	var/threat_detected = FALSE
 	var/hp_bonus = 0
 	var/sp_bonus = 0
+	var/progress = 0 // How close we are to healing everyone
 	var/critical_heal = FALSE // Whether it heals people who are in critical condition (sanity loss/health loss)
-	var/burst = FALSE // Set to heal in a large burst
-	var/burst_cooldown = FALSE // Whether it's operational due to Burst Cooldown
-	var/short_duration = 30 SECONDS
-	var/long_duration = 60 SECONDS
+	var/rapid = FALSE // Set to heal in small bursts
+	var/disabled = FALSE
+	var/short_duration = 2 MINUTES
+	var/long_duration = 4 MINUTES
 	var/reset_timer = 0
 	var/colored_overlay
 	var/area = null
@@ -39,13 +40,13 @@
 /obj/machinery/regenerator/process()
 	..()
 	if(reset_timer <= world.time)
-		burst_cooldown = FALSE
 		modified = FALSE
 		hp_bonus = 0
 		sp_bonus = 0
 		critical_heal = FALSE
 		cut_overlays()
-	if(burst_cooldown)
+		disabled = FALSE
+	if(disabled)
 		icon_state = broken_icon
 		cut_overlays()
 		return
@@ -53,55 +54,55 @@
 	if(!istype(A))
 		return
 	threat_detected = FALSE
-	var/regen_amt = regeneration_amount
-	var/regen_mult = 1
-	var/regen_add = GetFacilityUpgradeValue(UPGRADE_REGENERATOR_HEALING)
-	if(burst)
-		regen_mult *= 7.5
-		regen_add *= 7.5
-		burst = FALSE
-		burst_cooldown = TRUE
-		reset_timer = short_duration + world.time
-	var/list/people_to_heal
 	for(var/key, value in A.area_living)
-		if(key & MOB_HUMAN_INDEX)
-			for(var/mob/living/carbon/human/bro in value)
-				if(((bro.sanity_lost || bro.health < 0) && !critical_heal) || bro.is_working)
-					continue
-				LAZYADD(people_to_heal, bro)
 		// We assume that any simple_mob/hostile is, in fact, hostile. (If you do not want your super friendly simplemob/hostile to block regenerators, assign a different area_index var to your mob (code\__DEFINES\areas.dm))
 		// This also includes composite indexes that include the hostile or abnormality index.
 		if(!threat_detected && (key & (MOB_HOSTILE_INDEX | MOB_ABNORMALITY_INDEX)))
 			icon_state = alert_icon
 			threat_detected = TRUE
-	if(threat_detected)
-		regen_mult *= 0.5
+			break
+
+	progress++
+
+	var/max_progress = rapid ? 1 : 5
+	if(progress >= max_progress)
+		progress = 0
+		Heal(A)
+
 	if(icon_state != "regen" && !threat_detected)
 		icon_state = initial(icon_state)
 
+/obj/machinery/regenerator/proc/Heal(area/A)
+	var/list/people_to_heal
+	for(var/key, value in A.area_living)
+		if(key & MOB_HUMAN_INDEX)
+			for(var/mob/living/carbon/human/bro in value)
+				if(((bro.health <= 0) && !critical_heal) || bro.is_working)
+					continue
+				LAZYADD(people_to_heal, bro)
+
 	if(LAZYLEN(people_to_heal))
 		// The math is weird, but it is intentional. Feel free to change it, but be careful as mults on top of base heal increases go wild quick.
-		var/hp_amt = ((regen_amt * regen_mult) + regen_add) + hp_bonus
-		var/sp_amt = ((regen_amt * regen_mult) + regen_add) + sp_bonus
+		var/regen_amt = regeneration_amount + GetFacilityUpgradeValue(UPGRADE_REGENERATOR_HEALING)
+		var/regen_mult = rapid ? 0.2 : 1
+		if(threat_detected)
+			regen_mult *= 0.5
+		var/hp_amt = (regen_amt + hp_bonus) * regen_mult
+		var/sp_amt = (regen_amt + sp_bonus) * regen_mult
 		for(var/mob/living/carbon/human/dude as anything in people_to_heal)
-			dude.adjustBruteLoss(-dude.maxHealth * (hp_amt/100))
-			dude.adjustFireLoss(0.1 * (-dude.maxHealth * (hp_amt/100)))	//Heals at 1/10th speed. Supposed to be slower healing than brute and sanity
-			dude.adjustSanityLoss(-dude.maxSanity * (sp_amt/100))
+			dude.adjustBruteLoss(-hp_amt)
+			dude.adjustFireLoss(0.2 * -hp_amt)	//Heals at 1/5th speed. Supposed to be slower healing than brute and sanity
+			dude.adjustSanityLoss(-sp_amt)
 
 /obj/machinery/regenerator/examine(mob/user)
 	. = ..()
-	if(burst_cooldown)
-		. += span_warning("[src] is currently offline!")
-		return
 	var/regen_add = GetFacilityUpgradeValue(UPGRADE_REGENERATOR_HEALING)
-	var/regen_mult = 1
-	if(burst)
-		regen_mult *= 7.5
-		regen_add *= 7.5
+	var/regen_mult = rapid ? 0.2 : 1
+	var/time = rapid ? 2 : 10
 	if(threat_detected)
 		regen_mult *= 0.5
-		. += span_danger("WARNING: threat detected. Base healing is halved!")
-	. += span_info("[src] restores [(regeneration_amount * regen_mult)+hp_bonus+regen_add]% HP and [(regeneration_amount * regen_mult)+sp_bonus+regen_add]% SP every 2 seconds.")
+		. += span_danger("WARNING: Threat Detected. Healing is halved!")
+	. += span_info("[src] restores [(regeneration_amount+hp_bonus+regen_add)* regen_mult] HP and [(regeneration_amount+sp_bonus+regen_add)* regen_mult] SP every [time] seconds.")
 
 /obj/machinery/regenerator/proc/ProduceIcon(Icon_Color, Type) //Used to be called ProduceGas but due to me using it for a button i had to change it. ProduceGas was a cooler name. -IP
 	var/mutable_appearance/colored_overlay = mutable_appearance(icon, Type)
@@ -114,24 +115,24 @@
 /obj/machinery/regenerator/proc/HpFocus(mob/living/user)
 	if(user)
 		to_chat(user, span_notice("[src] is now calibrated to restore dramatically more HP but less SP."))
-	hp_bonus = 3
-	sp_bonus = -1
+	hp_bonus = 6
+	sp_bonus = -3
 	reset_timer = long_duration + world.time
 	ProduceIcon("#B90E0A", "regenspores") //Crimson
 
 /obj/machinery/regenerator/proc/SpFocus(mob/living/user)
 	if(user)
 		to_chat(user, span_notice("[src] is now calibrated to restore dramatically more SP but less HP."))
-	hp_bonus = -1
-	sp_bonus = 3
+	hp_bonus = -3
+	sp_bonus = 6
 	reset_timer = long_duration + world.time
 	ProduceIcon("#4ADED", "regenpuffs_heavy") //Teal
 
 /obj/machinery/regenerator/proc/EqualFocus(mob/living/user)
 	if(user)
 		to_chat(user, span_notice("[src] is now calibrated to restore slightly more HP and SP."))
-	hp_bonus = 1
-	sp_bonus = 1
+	hp_bonus = 2
+	sp_bonus = 2
 	reset_timer = short_duration + world.time
 	add_overlay("blueregenlight")
 	add_overlay(mutable_appearance('icons/effects/atmospherics.dmi', "miasma_old"))
@@ -142,19 +143,17 @@
 	if(user)
 		to_chat(user, span_notice("[src] is now calibrated to also heal people in critical conditions but at a lower rate."))
 	critical_heal = TRUE
-	hp_bonus = -1
-	sp_bonus = -1
+	hp_bonus = -3
 	reset_timer = short_duration + world.time
 	add_overlay("redregenlight")
 	ProduceIcon("#E30B5D", "regenspores") //Raspberry
 
-/obj/machinery/regenerator/proc/OverloadHeal(mob/living/user)
+/obj/machinery/regenerator/proc/RapidHeal(mob/living/user)
 	if(user)
-		to_chat(user, span_warning("You overload [src]’s sensors, causing [src] to rapidly discharge its resources!"))
-	burst = TRUE
+		to_chat(user, span_notice("[src] is now calibrated to heal more often but restore dramatically less SP and HP."))
+	reset_timer = short_duration + world.time
 	ProduceIcon("#800000", "regenpuffs_heavy") //Maroon
 	ProduceIcon("#B90E0A", "regenspores_heavy") //Crimson
-	// No Timer as it's an "instant" effect. Also handles turning off over there
 
 //Safety Plant Regenerator
 /obj/machinery/regenerator/safety

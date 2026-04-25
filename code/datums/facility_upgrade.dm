@@ -210,19 +210,20 @@
 /datum/facility_upgrade/regnenerator_healing
 	name = UPGRADE_REGENERATOR_HEALING
 	category = "Facility"
-	cost = 2
+	cost = 1
 	value = 0
-	max_value = 1.5
-	var/value_increase = 0.5
-	info = " - This upgrade inceases the healing of <b>Regenerators</b> by a flat +0.5% per upgrade.<br> - The additional healing does not get decreased when theres an <b>Abnormality/Ordeal</b> in the regenerator's deparment."
+	max_value = 6
+	var/value_increase = 1
+	info = " - This upgrade inceases the healing of <b>Regenerators</b> by +1/2/3 HP and SP per upgrade."
 
 /datum/facility_upgrade/regnenerator_healing/Upgrade()
 	value = min(max_value, value + value_increase)
 	. = ..()
-	cost += 1
+	cost++
+	value_increase++
 
 /datum/facility_upgrade/regnenerator_healing/DisplayValue()
-	return "+[value]% healing"
+	return "+[value] healing"
 
 /datum/facility_upgrade/meltdown_increase
 	name = UPGRADE_MELTDOWN_INCREASE

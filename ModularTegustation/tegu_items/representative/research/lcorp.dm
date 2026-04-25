@@ -26,22 +26,6 @@ GLOBAL_LIST_EMPTY(lcorp_upgrades)
 	minor_announce("Extraction has given you access to red rolls.", "Extraction Alert:", TRUE)
 	..()
 
-//RAKS overcharge
-/datum/data/lc13research/regenerator_overcharge
-	research_name = "Repeatable: RAK the Regenerator System"
-	research_desc = "The security department blueprints say that all the regenerators <br>healing systems are connected at a junction point. <br>A department clerk offers to take the 10 second trip to the junction <br>and overcharge the whole system at the cost of some refined PE."
-	cost = 2
-	corp = L_CORP_REP
-
-/datum/data/lc13research/regenerator_overcharge/ResearchEffect(obj/structure/representative_console/requester)
-	if(repeat_cooldown > world.time)
-		return
-	for(var/obj/machinery/regenerator/R in GLOB.lobotomy_devices)
-		R.burst = TRUE
-	requester.visible_message(span_notice("The [requester] rumbles for a moment soon after your message is delivered."))
-	repeat_cooldown = world.time + (10 SECONDS)
-
-
 //PE quota Stuff
 /datum/data/lc13research/pe_quota1
 	research_name = "Alter Facility PE Quota I"
