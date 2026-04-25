@@ -31,6 +31,7 @@
 	layer = LYING_MOB_LAYER
 	var/static/mutable_appearance/overlay
 	max_buckled_mobs = 4
+	max_occupants = 4
 	var/crash_all = FALSE //CHAOS
 	pixel_y = -48
 	pixel_x = -48
@@ -56,8 +57,7 @@
 	if(ishuman(A))
 		var/mob/living/carbon/human/H = A
 		H.Paralyze(100)
-		H.adjustStaminaLoss(30)
-		H.apply_damage(rand(20,35), BRUTE)
+		H.apply_damage(1, RED_DAMAGE)
 		if(!crash_all)
 			H.throw_at(throw_target, 4, 3)
 			visible_message("<span class='danger'>[src] crashes into [H]!</span>")
