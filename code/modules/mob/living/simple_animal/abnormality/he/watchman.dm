@@ -6,8 +6,8 @@
 	icon_living = "watchman"
 	portrait = "watchman"
 	del_on_death = FALSE
-	maxHealth = 520
-	health = 520
+	maxHealth = 420
+	health = 420
 	rapid_melee = 2
 	move_to_delay = 6
 	see_in_dark = 30
@@ -141,7 +141,7 @@
 		damage_taken = 0
 		TryTeleport()
 		times_fled += 1
-		adjustHealth(-350, TRUE, TRUE)
+		adjustHealth(-420, TRUE, TRUE)
 		adjustHealth(times_fled * 100, TRUE, TRUE)
 
 /mob/living/simple_animal/hostile/abnormality/watchman/proc/TryTeleport()

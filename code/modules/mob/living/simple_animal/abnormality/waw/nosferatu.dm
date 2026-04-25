@@ -8,8 +8,8 @@
 	icon_living = "nosferatu"
 	var/icon_aggro = "nosferatu_breach"
 	portrait = "nosferatu"
-	maxHealth = 1400
-	health = 1400
+	maxHealth = 1000
+	health = 1000
 	move_to_delay = 6
 	rapid_melee = 1
 	threat_level = WAW_LEVEL

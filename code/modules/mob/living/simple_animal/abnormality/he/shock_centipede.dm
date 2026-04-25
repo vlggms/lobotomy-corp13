@@ -6,8 +6,8 @@
 	icon_state = "shock_centipede"
 	icon_living = "shock_centipede"
 	portrait = "shock_centipede"
-	maxHealth = 440
-	health = 440
+	maxHealth = 480
+	health = 480
 	rapid_melee = 3
 	ranged = TRUE
 	attack_verb_continuous = "bites"

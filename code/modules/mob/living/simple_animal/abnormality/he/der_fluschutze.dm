@@ -6,8 +6,8 @@
 	icon_living = "DrFluShots"
 	icon_dead = "DrFluShots"
 	portrait = "der_fluschutze"
-	maxHealth = 520
-	health = 520
+	maxHealth = 420
+	health = 420
 	ranged = TRUE
 	can_breach = TRUE
 	casingtype = /obj/item/ammo_casing/caseless/ego_fellscatter

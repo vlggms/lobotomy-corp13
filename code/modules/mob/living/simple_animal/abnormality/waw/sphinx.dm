@@ -11,8 +11,8 @@
 	pixel_x = -16
 	base_pixel_x = -16
 	ranged = TRUE
-	maxHealth = 1300
-	health = 1300
+	maxHealth = 1100
+	health = 1100
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.5)
 	stat_attack = HARD_CRIT
 	move_to_delay = 4

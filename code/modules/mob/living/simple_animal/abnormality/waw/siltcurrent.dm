@@ -21,8 +21,8 @@
 	melee_damage_upper = 10
 	melee_damage_type = RED_DAMAGE
 	is_flying_animal = TRUE
-	maxHealth = 1400
-	health = 1400
+	maxHealth = 1200
+	health = 1200
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
 	stat_attack = HARD_CRIT
 	death_sound = 'sound/abnormalities/dreamingcurrent/dead.ogg'

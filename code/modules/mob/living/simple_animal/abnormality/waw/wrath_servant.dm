@@ -675,8 +675,8 @@
 	faction = list("hostile", "azure")
 	can_patrol = TRUE
 
-	maxHealth = 800
-	health = 800
+	maxHealth = 700
+	health = 700
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.2)
 
 	alpha = 0
