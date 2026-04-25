@@ -15,8 +15,8 @@
 	melee_damage_upper = 50
 	melee_damage_type = RED_DAMAGE
 	stat_attack = HARD_CRIT
-	health = 1600
-	maxHealth = 1600
+	health = 1300
+	maxHealth = 1300
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.3, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	threat_level = WAW_LEVEL
 	can_breach = TRUE

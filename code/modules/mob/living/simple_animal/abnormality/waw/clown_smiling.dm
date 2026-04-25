@@ -11,8 +11,8 @@
 	pixel_y = 64
 	base_pixel_y = 64
 	speak_emote = list("honks")
-	maxHealth = 900
-	health = 900
+	maxHealth = 740
+	health = 740
 	rapid_melee = 4
 	melee_queue_distance = 4
 	damage_coeff = list(BRUTE = 1.0, RED_DAMAGE = 1.0, WHITE_DAMAGE = 1.0, BLACK_DAMAGE = 1.3, PALE_DAMAGE = 1.5)

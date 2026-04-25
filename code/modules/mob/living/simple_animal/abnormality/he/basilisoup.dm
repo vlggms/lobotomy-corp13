@@ -8,8 +8,8 @@
 	portrait = "basilisoup"
 	pixel_x = -32
 	base_pixel_x = -32
-	maxHealth = 600 // Quite high HP
-	health = 600
+	maxHealth = 520 // Quite high HP
+	health = 520
 	move_to_delay = 4 //High range, and thus slow
 	rapid_melee = 1
 	melee_reach = 2 // Long neck = long range

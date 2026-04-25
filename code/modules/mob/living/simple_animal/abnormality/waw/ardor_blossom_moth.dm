@@ -10,8 +10,8 @@
 	icon_dead = "moth_egg"
 	core_icon = "moth_egg"
 	del_on_death = FALSE
-	maxHealth = 1100
-	health = 1100
+	maxHealth = 900
+	health = 900
 	blood_volume = 0
 	attack_verb_continuous = "sears"
 	attack_verb_simple = "sear"
