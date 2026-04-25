@@ -6,8 +6,8 @@
 	icon_living = "eris"
 	core_icon = "eris_egg"
 	portrait = "eris"
-	maxHealth = 300
-	health = 300
+	maxHealth = 600
+	health = 600
 	ranged = TRUE
 	attack_verb_continuous = "claws"
 	attack_verb_simple = "claw"

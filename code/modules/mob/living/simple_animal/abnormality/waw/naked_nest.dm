@@ -10,8 +10,8 @@
 	portrait = "naked_nest"
 	pixel_x = -8
 	base_pixel_x = -8
-	maxHealth = 800
-	health = 800
+	maxHealth = 1200
+	health = 1200
 	threat_level = WAW_LEVEL //If Naked Nest escaped from the facility it would result in a mass infestation of several civilians. That is bad.
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(40, 45, 50, 50, 55),
@@ -274,8 +274,8 @@
 	melee_damage_lower = 8
 	melee_damage_upper = 12
 	melee_damage_type = RED_DAMAGE
-	maxHealth = 200
-	health = 200
+	maxHealth = 300
+	health = 300
 	stat_attack = CONSCIOUS //When you are put into crit the nested will continue to transform into a nest. I thought about having the nested infest you if your in crit but that seemed a bit too cruel.
 	damage_coeff = list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
 	mob_size = MOB_SIZE_HUMAN
@@ -314,8 +314,8 @@
 
 /mob/living/simple_animal/hostile/aminion/naked_nested/hour_nesting //for dungeon gamemodes
 	name = "festering naked nested"
-	maxHealth = 500
-	health = 500
+	maxHealth = 1200
+	health = 1200
 	wander = FALSE
 	nesting_time = 1 HOURS
 

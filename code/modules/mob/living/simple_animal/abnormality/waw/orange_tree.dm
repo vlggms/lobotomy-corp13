@@ -8,6 +8,9 @@
 	portrait = "orange_tree"
 	faction = list("hostile")
 	speak_emote = list("hums")
+	maxHealth = 1000
+	health = 1000
+
 	is_flying_animal = TRUE
 	pixel_x = -8
 	base_pixel_x = -8

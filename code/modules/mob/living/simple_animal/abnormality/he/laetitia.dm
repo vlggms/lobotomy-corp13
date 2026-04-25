@@ -5,8 +5,8 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "laetitia"
 	portrait = "laetitia"
-	maxHealth = 300
-	health = 300
+	maxHealth = 400
+	health = 400
 	threat_level = HE_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(40, 45, 50, 50, 50),
@@ -201,14 +201,15 @@
 	icon_state = "witchfriend"
 	icon_living = "witchfriend"
 	icon_dead = "witchfriend_dead"
-	maxHealth = 150
-	health = 150
+	maxHealth = 350
+	health = 350
 	pixel_x = -16
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1)
 	melee_damage_type = RED_DAMAGE
 	stat_attack = HARD_CRIT
-	melee_damage_lower = 4
-	melee_damage_upper = 6
+	melee_damage_lower = 8
+	melee_damage_upper = 10
+	rapid_melee = 0.7
 	faction = list("hostile", "laetitia")
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"

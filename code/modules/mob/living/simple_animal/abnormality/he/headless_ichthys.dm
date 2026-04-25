@@ -9,8 +9,8 @@
 	portrait = "headless_icthys"
 	pixel_x = -16
 	base_pixel_x = -16
-	maxHealth = 300
-	health = 300
+	maxHealth = 450
+	health = 450
 	ranged = TRUE
 	attack_verb_continuous = "slaps"
 	attack_verb_simple = "slap"

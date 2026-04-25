@@ -6,8 +6,8 @@
 	icon_living = "warden"
 	icon_dead = "warden_dead"
 	portrait = "warden"
-	maxHealth = 750
-	health = 750
+	maxHealth = 1400
+	health = 1400
 	pixel_x = -8
 	base_pixel_x = -8
 	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1.5)

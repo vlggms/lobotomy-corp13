@@ -6,8 +6,8 @@
 	icon_state = "shock_centipede"
 	icon_living = "shock_centipede"
 	portrait = "shock_centipede"
-	maxHealth = 320
-	health = 320
+	maxHealth = 480
+	health = 480
 	rapid_melee = 3
 	ranged = TRUE
 	attack_verb_continuous = "bites"
@@ -84,7 +84,7 @@
 	var/currentShieldTimer = 0
 	var/coil_cooldown = 0
 	var/coil_cooldown_time = 100
-	var/coil_max_shield = 500
+	var/coil_max_shield = 200
 	var/coil_start_charge = 12
 	var/can_act = TRUE
 	var/immortal = FALSE

@@ -154,13 +154,13 @@
 	icon_state = "luna"
 	base_pixel_x = -8
 	pixel_x = -8
-	health = 900
-	maxHealth = 900
+	health = 1300
+	maxHealth = 1300
 	melee_damage_type = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
-	melee_damage_lower = 10
-	melee_damage_upper = 12
-	rapid_melee = 2
+	melee_damage_lower = 14
+	melee_damage_upper = 16
+	rapid_melee = 1
 	robust_searching = TRUE
 	ranged = TRUE
 	stat_attack = HARD_CRIT

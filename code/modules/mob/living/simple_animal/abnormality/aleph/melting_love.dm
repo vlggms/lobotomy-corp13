@@ -14,8 +14,8 @@
 	attack_verb_simple = "glomp"
 	/* Stats */
 	threat_level = ALEPH_LEVEL
-	health = 1500
-	maxHealth = 1500
+	health = 2000 //Lacks self healing
+	maxHealth = 2000
 	obj_damage = 60
 	damage_coeff = list(RED_DAMAGE = -1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0.8)
 	melee_damage_type = BLACK_DAMAGE
@@ -63,7 +63,7 @@
 
 	var/mob/living/carbon/human/gifted_human = null
 	/// Amount of BLACK damage done to all enemies around main target on melee attack. Also includes original target
-	var/radius_damage = 30
+	var/radius_damage = 14
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/Login()
 	. = ..()
@@ -245,8 +245,9 @@
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/proc/Empower()
 	ChangeMoveToDelayBy(-0.5)
-	melee_damage_lower = 27
-	melee_damage_upper = 32
+	melee_damage_lower += 8
+	melee_damage_upper += 8
+	radius_damage += 8
 	projectiletype = /obj/projectile/melting_blob/enraged
 	adjustBruteLoss(-maxHealth, forced = TRUE)
 	desc += " It looks angry."
@@ -268,8 +269,8 @@
 	attack_verb_continuous = "glomps"
 	attack_verb_simple = "glomp"
 	/* Stats */
-	health = 200
-	maxHealth = 200
+	health = 400
+	maxHealth = 400
 	obj_damage = 60
 	damage_coeff = list(RED_DAMAGE = -1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
 	melee_damage_type = BLACK_DAMAGE

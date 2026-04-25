@@ -8,8 +8,8 @@
 	portrait = "red_blooded_american"
 	var/icon_furious = "american_idle_injured"
 	del_on_death = TRUE
-	maxHealth = 160
-	health = 160
+	maxHealth = 260
+	health = 260
 	rapid_melee = 1
 	melee_queue_distance = 2
 	move_to_delay = 4

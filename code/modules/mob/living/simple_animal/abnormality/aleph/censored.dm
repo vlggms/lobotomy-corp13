@@ -25,6 +25,7 @@
 	ranged = TRUE
 	/* Works */
 	start_qliphoth = 2
+	good_hater = TRUE
 	can_breach = TRUE
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(80, 70, 60, 55, 50),
@@ -57,7 +58,7 @@
 	)
 
 	var/can_act = TRUE
-	var/ability_damage = 50
+	var/ability_damage = 60
 	var/ability_cooldown
 	var/ability_cooldown_time = 10 SECONDS
 
@@ -271,9 +272,9 @@
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1)
 	melee_damage_type = BLACK_DAMAGE
 	melee_damage_lower = 13
-	melee_damage_upper = 18
+	melee_damage_upper = 16
 	speed = 2
-	move_to_delay = 2
+	move_to_delay = 4
 	robust_searching = TRUE
 	stat_attack = HARD_CRIT
 	del_on_death = TRUE

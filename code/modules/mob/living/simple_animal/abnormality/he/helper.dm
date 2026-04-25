@@ -12,8 +12,8 @@
 	base_pixel_y = -16
 	del_on_death = FALSE
 	death_message = "falls to the ground, deactivating."
-	maxHealth = 200
-	health = 200
+	maxHealth = 300
+	health = 300
 	blood_volume = 0
 	rapid_melee = 4
 	ranged = TRUE
@@ -21,8 +21,8 @@
 	attack_verb_simple = "slash"
 	attack_sound = 'sound/abnormalities/helper/attack.ogg'
 	stat_attack = HARD_CRIT
-	melee_damage_lower = 4
-	melee_damage_upper = 5
+	melee_damage_lower = 6
+	melee_damage_upper = 7
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
 	speak_emote = list("states")
 	speech_span = SPAN_ROBOT
@@ -72,7 +72,8 @@
 	var/list/been_hit = list() // Don't get hit twice.
 	var/stuntime = 3 SECONDS
 	var/dir_to_target
-	var/dash_damage = 15
+	var/dash_damage_lower = 20
+	var/dash_damage_upper = 30
 	var/dash_speed = 1
 	var/clogged_blades_time = 1
 	var/dash_attack_volune = 75
@@ -238,13 +239,12 @@
 			playsound(L, attack_sound, dash_attack_volune, 1)
 			var/turf/LT = get_turf(L)
 			new /obj/effect/temp_visual/kinetic_blast(LT)
+			var/damage_done = rand(dash_damage_lower, dash_damage_upper)
 			if(!ishuman(L))
-				dash_damage = dash_damage * 2
-			L.deal_damage(dash_damage, melee_damage_type)
+				damage_done *= 2
+			L.deal_damage(damage_done, melee_damage_type)
 			if(IsCombatMap())
 				L.apply_lc_bleed(5)
-			if(!ishuman(L))
-				dash_damage = dash_damage / 2
 			if(L.stat >= HARD_CRIT)
 				L.gib()
 				continue
@@ -265,7 +265,7 @@
 		visible_message(span_boldwarning("[src] runs through [V]!"))
 		to_chat(V.occupants, span_userdanger("[src] pierces your mech with their spinning blades!"))
 		playsound(V, attack_sound, dash_attack_volune, 1)
-		V.take_damage(dash_damage, melee_damage_type, attack_dir = get_dir(V, src))
+		V.take_damage(dash_damage_upper, melee_damage_type, attack_dir = get_dir(V, src))
 		been_hit[V] = world.time
 	addtimer(CALLBACK(src, PROC_REF(do_dash), (times_ran + 1)), dash_speed)
 

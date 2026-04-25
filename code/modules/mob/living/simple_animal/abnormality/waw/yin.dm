@@ -73,7 +73,7 @@
 
 	COOLDOWN_DECLARE(pulse)
 	var/pulse_cooldown = 5 SECONDS
-	var/pulse_damage = 20
+	var/pulse_damage = 26
 	var/pulse_distance = 4
 
 	var/busy = FALSE

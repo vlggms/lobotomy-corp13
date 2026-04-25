@@ -69,7 +69,7 @@ GLOBAL_LIST_EMPTY(army)
 	var/protected_targets = list()
 	var/summoned_army = list()//hostile unit list
 	var/boom_radius = 20
-	var/boom_damage = 45
+	var/boom_damage = 40
 	var/adds_max = 1
 
 /***Simple mob procs***/
@@ -234,7 +234,7 @@ GLOBAL_LIST_EMPTY(army)
 	threat_level = ALEPH_LEVEL
 	var/shot_cooldown
 	var/shot_cooldown_time = 5 SECONDS
-	var/boom_damage = 45
+	var/boom_damage = 40
 	var/targetted_beacon
 	var/list/moving_path
 
@@ -347,7 +347,7 @@ GLOBAL_LIST_EMPTY(army)
 	for(var/mob/living/L in view(4, src))
 		if(faction_check_mob(L))
 			continue
-		L.deal_damage(25, BLACK_DAMAGE)
+		L.deal_damage(20, BLACK_DAMAGE)
 	playsound(get_turf(src), 'sound/abnormalities/armyinblack/black_attack.ogg', 100, 0, 8)
 	shot_cooldown = world.time + shot_cooldown_time
 

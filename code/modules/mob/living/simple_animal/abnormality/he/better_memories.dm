@@ -114,8 +114,8 @@
 	icon_state = "better_memories_a"
 	base_pixel_x = -16
 	pixel_x = -16
-	health = 150
-	maxHealth = 150
+	health = 200
+	maxHealth = 200
 	melee_damage_type = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
 	melee_damage_lower = 2

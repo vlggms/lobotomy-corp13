@@ -8,13 +8,14 @@
 	var/icon_aggro = "pretamonk"
 	icon_dead = "pretamonk"
 	portrait = "clouded_monk"
-	maxHealth = 700
-	health = 700
+	maxHealth = 1200
+	health = 1200
 	rapid_melee = 2
 	ranged = TRUE
 	damage_coeff = list(BRUTE = 1.0, RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.5)
-	melee_damage_lower = 11
-	melee_damage_upper = 14
+	rapid_melee = 0.7
+	melee_damage_lower = 12
+	melee_damage_upper = 23
 	obj_damage = 22 //otherwise his charge just destroys everything
 	melee_damage_type = RED_DAMAGE
 	see_in_dark = 10
@@ -57,8 +58,8 @@
 	var/monk_charge_cooldown = 0
 	var/monk_charge_cooldown_time = 6 SECONDS
 	var/deathcount
-	var/heal_amount = 60
-	var/charge_damage = 90
+	var/heal_amount = 120
+	var/charge_damage = 250
 	var/eaten = FALSE
 	var/damage_taken
 	var/slam_damage = 30
@@ -120,7 +121,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/clouded_monk/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
 	if(work_type == ABNORMALITY_WORK_INSIGHT)
-		user.adjustSanityLoss(-30) // It's healing
+		user.adjustSanityLoss(-15) // It's healing
 		to_chat(user, span_nicegreen("[src] guides you through a session of meditation."))
 	return
 

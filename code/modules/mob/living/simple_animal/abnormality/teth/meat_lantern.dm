@@ -5,8 +5,8 @@
 	icon_state = "lantern"
 	icon_living = "lantern"
 	portrait = "meat_lantern"
-	maxHealth = 250
-	health = 250
+	maxHealth = 330
+	health = 330
 	base_pixel_x = -16
 	pixel_x = -16
 	threat_level = TETH_LEVEL
@@ -50,7 +50,7 @@
 	var/detect_range = 1
 	var/chop_cooldown
 	var/chop_cooldown_time = 4 SECONDS
-	var/chop_damage = 80
+	var/chop_damage = 500
 
 /mob/living/simple_animal/hostile/abnormality/meat_lantern/PostSpawn()
 	. = ..()

@@ -10,8 +10,8 @@
 	icon_state = "quiet_day"
 	core_icon = "quiet_day"
 	portrait = "quiet_day"
-	maxHealth = 75
-	health = 75
+	maxHealth = 175
+	health = 175
 	blood_volume = 0
 	threat_level = ZAYIN_LEVEL
 	faction = list("hostile", "neutral")

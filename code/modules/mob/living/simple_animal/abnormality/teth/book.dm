@@ -4,8 +4,8 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "book_0"
 	portrait = "book"
-	maxHealth = 120
-	health = 120
+	maxHealth = 230
+	health = 230
 	blood_volume = 0
 	start_qliphoth = 2
 	threat_level = TETH_LEVEL

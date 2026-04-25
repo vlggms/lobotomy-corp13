@@ -8,8 +8,8 @@
 	icon_living = "nosferatu"
 	var/icon_aggro = "nosferatu_breach"
 	portrait = "nosferatu"
-	maxHealth = 800
-	health = 800
+	maxHealth = 1000
+	health = 1000
 	move_to_delay = 6
 	rapid_melee = 1
 	threat_level = WAW_LEVEL
@@ -496,8 +496,8 @@
 	attack_verb_simple = "bite"
 	attack_sound = 'sound/abnormalities/nosferatu/bat_attack.ogg'
 	del_on_death = TRUE
-	health = 60
-	maxHealth = 60
+	health = 120
+	maxHealth = 120
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 1.8, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 2)
 	melee_damage_type = RED_DAMAGE
 	melee_damage_lower = 2

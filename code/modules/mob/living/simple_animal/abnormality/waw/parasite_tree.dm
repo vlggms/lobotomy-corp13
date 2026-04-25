@@ -11,6 +11,8 @@
 	icon_state = "parasitetreeshine"
 	icon_living = "parasitetreeshine"
 	portrait = "parasite_tree"
+	maxHealth = 1200
+	health = 1200
 	pixel_x = -48
 	base_pixel_x = -48
 	pixel_y = -10
@@ -267,7 +269,7 @@
 
 
 /obj/effect/particle_effect/smoke/parasite_tree/proc/smoke_mob_effect(mob/living/carbon/human/M)
-	M.deal_damage(10, WHITE_DAMAGE)
+	M.deal_damage(15, WHITE_DAMAGE)
 	if(prob(15))
 		M.emote("cough")
 	if(M.sanity_lost)

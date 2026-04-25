@@ -5,8 +5,8 @@
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "porrcubus_inert"
 	portrait = "porccubus"
-	maxHealth = 300
-	health = 300
+	maxHealth = 830
+	health = 830
 	pixel_x = -10
 	base_pixel_x = -10
 	threat_level = HE_LEVEL
@@ -21,7 +21,7 @@
 	ranged = TRUE
 	ranged_cooldown_time = 15 SECONDS //will dash at people if they get out of range but not too often
 	melee_damage_lower = 3
-	melee_damage_upper = 4
+	melee_damage_upper = 8
 	rapid_melee = 3 //you can withdraw out of its range very easily so it needs to be a little harder to melee it
 	melee_reach = 2
 	work_damage_upper = 5

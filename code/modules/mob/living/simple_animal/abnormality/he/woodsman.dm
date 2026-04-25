@@ -6,8 +6,8 @@
 	icon_living = "woodsman_breach"
 	portrait = "woodsman"
 	layer = BELOW_OBJ_LAYER
-	maxHealth = 300
-	health = 300
+	maxHealth = 430
+	health = 430
 	ranged = TRUE
 	attack_verb_continuous = "chops"
 	attack_verb_simple = "chop"
@@ -400,7 +400,7 @@
 	src.visible_message(span_warning("[src] plunges their hand into [body]'s chest and rips out their heart!"), \
 		span_notice("You plung your hand into the body of [body] and take their heart, placing it into your cold chest. It's not enough."), \
 		span_hear("You hear a metal clange and squishing."))
-	src.adjustBruteLoss(-666) // Actually just the conversion of health he heals scaled to equivalent health that Helper has.
+	src.adjustBruteLoss(-200)
 	for(var/obj/item/organ/O in body.getorganszone(BODY_ZONE_CHEST, TRUE))
 		if(istype(O,/obj/item/organ/heart))
 			O.Remove(body)

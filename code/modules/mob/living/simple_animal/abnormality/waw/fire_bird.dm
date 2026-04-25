@@ -9,8 +9,8 @@
 	icon_living = "firebird_active"
 	portrait = "fire_bird"
 	threat_level = WAW_LEVEL
-	maxHealth = 700
-	health = 700
+	maxHealth = 1500
+	health = 1500
 	max_boxes = 24
 	pixel_x = -32
 	base_pixel_x = -32
@@ -63,7 +63,7 @@
 	var/dash_cooldown
 	var/dash_cooldown_time = 5 SECONDS
 	var/dash_max = 50
-	var/dash_damage = 50
+	var/dash_damage = 100
 	var/list/been_hit = list()
 
 //Initialize

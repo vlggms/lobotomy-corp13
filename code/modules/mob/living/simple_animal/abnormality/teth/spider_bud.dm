@@ -146,8 +146,8 @@
 	icon_state = "spider_minion"
 	icon_living = "spider_minion"
 	base_pixel_x = -8
-	maxHealth = 50
-	health = 50
+	maxHealth = 80
+	health = 80
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)

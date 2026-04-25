@@ -4,8 +4,8 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "sunset"
 	portrait = "sunset_traveller"
-	maxHealth = 80
-	health = 80
+	maxHealth = 180
+	health = 180
 	threat_level = ZAYIN_LEVEL
 
 	work_chances = list(

@@ -20,8 +20,8 @@
 	retreat_distance = 1
 	minimum_distance = 2
 
-	maxHealth = 800
-	health = 800
+	maxHealth = 1200
+	health = 1200
 	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 1.5)
 	stat_attack = HARD_CRIT
 	ranged_cooldown_time = 12
@@ -87,10 +87,10 @@
 	var/beam_startup = 2 SECONDS
 	var/beats_cooldown
 	var/beats_cooldown_time = 15 SECONDS
-	var/beats_damage = 50
+	var/beats_damage = 100
 	var/list/beats_hit = list()
 	/// BLACK damage done in line each 0.5 second
-	var/beam_damage = 4
+	var/beam_damage = 8
 	var/beam_maximum_ticks = 60
 	var/datum/looping_sound/qoh_beam/beamloop
 	var/datum/beam/current_beam
@@ -98,7 +98,7 @@
 	//Breach vars
 	var/friendly = TRUE
 	var/hp_teleport_counter = 3
-	var/explode_damage = 15
+	var/explode_damage = 26
 	var/breach_max_death = 0
 	//Nihil Related
 	var/nihil_present = FALSE

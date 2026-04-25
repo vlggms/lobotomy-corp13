@@ -12,8 +12,8 @@
 	del_on_death = FALSE
 	pixel_x = -16
 	base_pixel_x = -16
-	maxHealth = 400
-	health = 400
+	maxHealth = 450
+	health = 450
 	rapid_melee = 1
 	melee_queue_distance = 3
 	move_to_delay = 5 // it's tanky for a TETH. It should be slow.

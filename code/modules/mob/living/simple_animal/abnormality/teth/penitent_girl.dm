@@ -7,8 +7,8 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "penitent"
 	portrait = "penitent"
-	maxHealth = 100
-	health = 100
+	maxHealth = 230
+	health = 230
 	threat_level = TETH_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 50,
