@@ -276,7 +276,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	qliphoth_meter = 0
 	var/abno_amount = length(all_abnormality_datums)
 	var/player_count = AvailableAgentCount()
-	qliphoth_max = round((player_count > 1 ? 4 : 3) + player_count + GLOB.Sephirahordealspeed + GetFacilityUpgradeValue(UPGRADE_MELTDOWN_INCREASE)) // Some extra help on non solo rounds
+	qliphoth_max = round((player_count > 1 ? 4 : 3) + floor(player_count * 1.25)  + GLOB.Sephirahordealspeed + GetFacilityUpgradeValue(UPGRADE_MELTDOWN_INCREASE)) // Some extra help on non solo rounds
 	qliphoth_state += 1
 	for(var/datum/abnormality/A in all_abnormality_datums)
 		if(istype(A.current))
