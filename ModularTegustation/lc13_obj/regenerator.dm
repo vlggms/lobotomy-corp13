@@ -80,7 +80,7 @@
 	for(var/key, value in A.area_living)
 		if(key & MOB_HUMAN_INDEX)
 			for(var/mob/living/carbon/human/bro in value)
-				if(((bro.health < 0) && !critical_heal) || bro.is_working)
+				if(((bro.health <= 0) && !critical_heal) || bro.is_working)
 					continue
 				LAZYADD(people_to_heal, bro)
 
