@@ -109,6 +109,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 /datum/controller/subsystem/lobotomy_corp/Initialize(timeofday)
 	if(SSmaptype.maptype in SSmaptype.combatmaps) // sleep
 		flags |= SS_NO_FIRE
+		SSlobotomy_emergency.score_min = 0
 		return ..()
 
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(CheckForRestart))
@@ -397,9 +398,6 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	return TRUE
 
 /datum/controller/subsystem/lobotomy_corp/proc/MinCheck()
-	if((SSmaptype.maptype in SSmaptype.combatmaps) || SSmaptype.maptype == "enkephalin_rush")
-		SSlobotomy_emergency.score_min = 0
-		return FALSE
 	if(SSlobotomy_emergency.score_min < SSlobotomy_emergency.trumpet_2/2)
 		return FALSE
 	return TRUE
