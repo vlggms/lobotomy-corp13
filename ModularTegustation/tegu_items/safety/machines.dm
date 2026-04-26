@@ -49,12 +49,16 @@
 		if(!newmob.brainmob)
 			FailureResponse("ERROR: No signs of life.")
 			return
+		newmob.brainmob.notify_ghost_cloning("Your head is being placed in the hatchery!")
+		newmob.brainmob.grab_ghost()
 		RevivePreCheck(newmob, null, newmob.brainmob.real_name, newmob.brainmob.ckey, newmob.brainmob.mind, newmob.brainmob.client)
 	if(istype(I, /obj/item/organ/brain))
 		var/obj/item/organ/brain/newmob = I
 		if(!newmob.brainmob)
 			FailureResponse("ERROR: No signs of life.")
 			return
+		newmob.brainmob.notify_ghost_cloning("Your brain is being placed in the hatchery!")
+		newmob.brainmob.grab_ghost()
 		RevivePreCheck(newmob, null, newmob.brainmob.real_name, newmob.brainmob.ckey, newmob.brainmob.mind, newmob.brainmob.client)
 
 /obj/machinery/hatchery/proc/RevivePreCheck(obj/item/I, mob/living/carbon/human/H, realname, ckey, mind, client)
@@ -226,9 +230,9 @@
 	new_body.ckey = ckey
 	if(job)
 		new_body.mind.assigned_role = job
-	new_body.equipOutfit(/datum/outfit/job/patient) // At this point if we don't have a job, our job will be set to civilian.
+	new_body.equipOutfit(/datum/outfit/job/patient)
 
-	if (!new_body.ckey)
+	if(!new_body.ckey)
 		log_game("Hatchery: Created a new body for [real_name] without a ckey.")
 		FailureResponse("ERROR: No prior brain activity detected.", real_name)
 		qdel(new_body)
@@ -250,6 +254,9 @@
 	var/list/ego_gift_list = list()
 	ego_gift_list = stored_data["ego_gifts"]
 	var/datum/job/J = SSjob.GetJob(job)
+	if(!J)
+		job = "Civilian" // If our job is not loaded in SSjob (i.e "Unassigned", or any unavailable job), bad things will happen here.
+		J = SSjob.GetJob(job)
 	J.after_spawn(new_body, new_body, TRUE)
 	// Apply attribute penalty and set attributes
 	var/list/stored_attributes = stored_data["attributes"]
@@ -307,6 +314,8 @@
 			FailureResponse("ERROR: Subject not dead.")
 			return
 		var/mob/living/carbon/human/H = M
+		H.notify_ghost_cloning("Your body is being placed in the hatchery!")
+		H.grab_ghost()
 		RevivePreCheck(null, H, H.real_name, H.ckey, H.mind, H.client)
 
 /obj/machinery/hatchery/proc/FailureResponse(reason)

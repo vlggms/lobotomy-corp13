@@ -33,6 +33,15 @@
 	..()
 	. = 1
 
+/datum/reagent/medicine/helapoeisis/on_mob_metabolize(mob/living/L)
+	. = ..()
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = L
+		if(H.dna?.species)
+			H.dna.species.regenerate_organs(H, replace_current=FALSE)
+		H.regenerate_limbs(TRUE)
+
+
 /datum/reagent/medicine/helapoeisis/concentrated
 	name = "Concentrated Helapoeisis"
 	metabolization_rate = 2.5 * REAGENTS_METABOLISM
