@@ -109,6 +109,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 /datum/controller/subsystem/lobotomy_corp/Initialize(timeofday)
 	if(SSmaptype.maptype in SSmaptype.combatmaps) // sleep
 		flags |= SS_NO_FIRE
+		SSlobotomy_emergency.score_min = 0
 		return ..()
 
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(CheckForRestart))

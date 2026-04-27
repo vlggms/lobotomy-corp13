@@ -78,6 +78,9 @@ SUBSYSTEM_DEF(maptype)
 	//Make ghosts able to possess things
 	if(maptype in autopossess)
 		SSlobotomy_corp.enable_possession = TRUE
+	//Make sure the emergency system is disabled
+	if((maptype in combatmaps) || maptype == "enkephalin_rush")
+		SSlobotomy_emergency.should_calc_score = FALSE
 
 	//All the maptype specific stuff
 	switch(maptype)

@@ -38,7 +38,6 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 /datum/controller/subsystem/lobotomy_emergency/Initialize(timeofday)
 	if((SSmaptype.maptype in SSmaptype.combatmaps) || SSmaptype.maptype == "enkephalin_rush") // sleep
 		flags |= SS_NO_FIRE
-		should_calc_score = FALSE
 		return ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(OnMobDeath))
 	RegisterSignal(SSdcs, COMSIG_GLOB_HUMAN_INSANE, PROC_REF(OnHumanInsane))
