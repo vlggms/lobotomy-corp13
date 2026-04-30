@@ -52,6 +52,12 @@
 		"No" = list(FALSE, "Bah! When will someone worthy arrive?"),
 	)
 
+	work_start_lines = list("Have I ever told you the story of a humble farmer's son who I made a king?", "Rarely do I talk to humans. You should consider it an honor.")
+	early_work_lines = list("%ABNO doesn't appreciate petting, as it deems it as demeaning.",
+	"%ABNO regales %PERSON with its past feats and accomplishments.",
+	"%ABNO's determination of who is worthy seems backwards to %PERSON.", "%PERSON wants to hear more about the pauper who would be king.")
+	late_work_lines = list("Are you ready to claim your inheritance?", "%ABNO claims he can make %PERSON the Director of L-Corp to %PERSON's disbelieiving ears.")
+
 	//Work/misc Vars
 	var/list/stats = list(
 		FORTITUDE_ATTRIBUTE,

@@ -54,6 +54,15 @@
 			Like Pandora's Box, it will never go back into the sack."),
 	)
 
+	work_start_lines = list("When the rusty sleigh bells are ajingle, Christmas begins.",
+	"With a displaced jaw and lifeless tongue, words are swallowed instead of sung.", "Where is Santa for those unhappy?")
+	early_work_lines = list("The colorful lights were as bright as Christmas, and as dark as every child's nightmare and grimace.",
+	"The sewing looks crude, but the effort put into making it was nothing but obsessively shrewd.")
+	middle_work_lines = list("Christmas, oh the hideous carnival. Every Christmas, I was filled with the urge to pluck out the tongues of those who sing carols.",
+	"With my infinite hatred, I give you this gift.")
+	late_work_lines = list("%ABNO shows no sign of life, yet it moves nonetheless. This may be due to the energy it produces.",
+	"%ABNO roams around without purpose. It wants to give away its pile of gifts.")
+
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 1.8 SECONDS
 	var/pulse_damage = 5

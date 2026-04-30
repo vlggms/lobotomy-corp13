@@ -49,6 +49,10 @@
 		The people you love will remember you as yet another victim that lost their head."),
 	)
 
+	work_start_lines = list("%ABNO does not remember anything about its past. It lives for the feeling of exhilaration as it blows people into fireworks.")
+	middle_work_lines = list("Long ago, %ABNO joined the war for someone they loved dearly.")
+	work_end_lines = list("As with all pacts made with the Devil, %ABNO's request will not end peacefully.")
+
 	var/can_act = TRUE
 	var/bullet_cooldown
 	var/bullet_cooldown_time = 7 SECONDS

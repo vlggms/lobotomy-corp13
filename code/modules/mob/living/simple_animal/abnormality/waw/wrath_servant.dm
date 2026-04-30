@@ -72,6 +72,15 @@
 			I should have killed them when I had the chance! <br>Sinners!! <br>Embodiments of evil..!"),
 	)
 
+	work_start_lines = list("%ABNO is dwelling in the past, just like her sisters.", "Hello %PERSON, did you wish to hear about the Balance of this world?")
+	early_work_lines = list("%ABNO is by no means blind and the blindfold is merely symbolic.",
+	"%PERSON enjoys the silence with %ABNO.", "%PERSON asks about Justice and %ABNO is happy to oblige.")
+	middle_work_lines = list("%ABNO may seem calm now, but...", "%ABNO tells %PERSON all about the Duty she must uphold.",
+	"It's better for everyone if she doesn't remember.", "%ABNO's dress is immaculate and polished and suggests to %PERSON they follow the same standard.")
+	late_work_lines = list("Wounds dealt by those we trust cut deeper, and the poison they leave behind never fully clears.",
+	"%ABNO recalls a time a villain reformed after realizing the harm they caused.", "%ABNO once had a friend that was more precious than anything to them.")
+	work_end_lines = list("%ABNO seems calm and compliant, but nevertheless caution should be advised.", "It's best to not remind her of things like friendship.")
+
 	var/friendly = TRUE
 	var/list/friend_ship = list()
 	var/instability = 0

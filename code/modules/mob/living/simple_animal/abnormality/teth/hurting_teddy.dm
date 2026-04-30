@@ -67,6 +67,10 @@
 			After a few short moments, the teddy bear seems satisfied."),
 	)
 
+	work_start_lines = list("The bloodstains decorating %ABNO are a telling sign of all the time it spent in pain.")
+	middle_work_lines = list("A child's toy exists for the sake of the child - to be abused or played with, it's all the same to it.", "The stake through %ABNO's heart is proof that it was cared for - to be ignored, forgotten, is the worst fate for a beloved toy.")
+	work_end_lines = list("Perhaps it's unable to feel pain.")
+
 	var/bearfriended //the one who can work on it safely
 	var/mob/living/carbon/human/hug_victim = null
 	var/release_threshold = 20 //Total raw damage needed to break a player out of a grab (from any source)

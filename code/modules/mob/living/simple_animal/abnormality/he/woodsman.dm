@@ -57,6 +57,10 @@
 		"A warm heart" = list(FALSE, "You’re a machine, aren’t you? A heart is unnecessary for a machine."),
 	)
 
+	work_start_lines = list("There is no need for %PERSON to be afraid of %ABNO as long as they are a cold person.")
+	early_work_lines = list("%ABNO collects hearts. It thought that if its heart started beating, it would be able to love.")
+	late_work_lines = list("Things that may have once been hearts are now shoved into %ABNO indiscriminately.")
+
 	// Flurry Vars
 	var/flurry_cooldown = 0
 	var/flurry_cooldown_time = 15 SECONDS

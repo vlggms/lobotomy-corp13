@@ -56,6 +56,10 @@
 			The fairy walks away, stumbling along the way."),
 	)
 
+	work_start_lines = list("Been a while since I had visitors! I oughta give you a right treat.", "Would ya care for a drink?")
+	early_work_lines = list("%ABNO presses a wine glass into %PERSON's hand and compels them to drink.", "%ABNO slaps %PERSON's back playfully before topping up their glass.")
+	late_work_lines = list("%ABNO prefers its prey pickled and ineberiated.", "%ABNO's second maw salivates watching %PERSON sip their glass.")
+
 	var/can_act = TRUE
 	var/jump_cooldown = 0
 	var/jump_cooldown_time = 8 SECONDS

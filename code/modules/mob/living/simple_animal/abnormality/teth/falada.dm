@@ -43,6 +43,10 @@
 		"Why the long face?" = list(FALSE, "The horse head continues sobbing, despite your cheesy joke. <br>Maybe that wasn't the best approach."),
 	)
 
+	work_start_lines = list("%ABNO stares at %PERSON with dead eyes.")
+	middle_work_lines = list("%PERSON is starting to become accustomed to the sound of a horse head weeping.")
+	work_end_lines = list("%ABNO ceaselessly blames itself for what is dead and gone.")
+
 	var/liked
 	var/happy = TRUE
 	pet_bonus = "neighs" //saves a few lines of code by allowing funpet() to be called by attack_hand()
@@ -86,7 +90,7 @@
 		happy = TRUE
 	else
 		happy = FALSE
-	return TRUE
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/falada/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	liked = pick(

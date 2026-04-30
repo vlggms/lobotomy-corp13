@@ -62,6 +62,11 @@
 			The faux-wolf eats you in one bite."),
 	)
 
+	work_start_lines = list("%ABNO waits for their master, be it their affectionate hand or the hand that leaves rudded welts - anything but to be ignored.")
+	early_work_lines = list("%ABNO is a sheepdog, but %ABNO's master wants a wolf, red and vicious.", "%PERSON tries to console %ABNO as it tries to shake off its skin.")
+	middle_work_lines = list("I'm waiting for my master, waiting, waiting.... I'm waiting for them.")
+	late_work_lines = list("My life for my master... left only red scars.", "You can't stop the wolf with a touch gentler than my master's.")
+
 	///The blue smocked shepherd linked to red buddy
 	var/datum/abnormality/master
 	//the living shepherd it is currently fighting with
@@ -148,7 +153,7 @@
 	if(lying_timer)
 		datum_reference.qliphoth_change(1)
 		deltimer(lying_timer)
-	return TRUE
+	return ..()
 
 //makes buddy scarred if his suffering is high enough
 /mob/living/simple_animal/hostile/abnormality/red_buddy/proc/UpdateScars()

@@ -33,6 +33,10 @@
 		"Leave" = list(FALSE, "The man clearly needs help, you rush to find a medic."),
 	)
 
+	work_start_lines = list("The smell of vegetation is strong in %ABNO's Containment Unit - %PERSON feels at ease.")
+	middle_work_lines = list("Despite showing no signs of life at all, %ABNO's body doesn't decay a bit.", "Both Wholeness and Immortality are for sustenance.")
+	work_end_lines = list("And He will tell you the words you've been waiting your whole life to hear.")
+
 	var/seed_list = list(
 		/obj/item/seeds/grass/fairy,
 		/obj/item/seeds/apple/gold,

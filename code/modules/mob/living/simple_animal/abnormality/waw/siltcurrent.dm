@@ -80,6 +80,12 @@
 			So do return once you're ready.\""),
 	)
 
+	work_start_lines = list("%ABNO is forever chasing after the light at the end of the path.",
+	"The sign in the cell advises %PERSON not to panic and continue working if the cell should flood with water.")
+	middle_work_lines = list("Though %ABNO swims forever towards that light, it cannot recall why it began in the first place.", "%PERSON remembers a time they had a dream.")
+	late_work_lines = list("When obsession blinds you to all other paths, the only direction you can go is forward, even if it kills you.",
+	"To swim across the vast ocean that I've seen only through pictures. That was my dream. My only dream.")
+
 	var/stunned = FALSE
 	//Stuff relating to the dive attack
 	var/diving = FALSE
@@ -219,6 +225,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/siltcurrent/Worktick(mob/living/carbon/human/user)
 	user.adjustOxyLoss(1.5, updating_health=TRUE, forced=TRUE)//haha drown.
+	..()
 
 /mob/living/simple_animal/hostile/abnormality/siltcurrent/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)

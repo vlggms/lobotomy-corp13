@@ -35,6 +35,26 @@
 	)
 	abnormality_origin = ABNORMALITY_ORIGIN_JOKE
 
+	observation_prompt = "38 Hand picked riders <br> Free Admission <br> Extensive design and scenery <br> Extensive safety testing <br>\
+	30,696 ft of track <br> ... <br> One month has passed, the ride is getting boring..."
+	observation_choices = list(
+		"Wait out the ride" = list(TRUE, "I want to get off MR BONES WILD RIDE<br>\
+			I want to get off MR BONES WILD RIDE<br>\
+			I want to get off MR BONES WILD RIDE<br>\
+			I want to get off MR BONES WILD RIDE<br>\
+			I want to get off MR BONES WILD RIDE<br>\
+			I want to get off MR BONES WILD RIDE<br>\
+			I want to get off MR BONES WILD RIDE<br>\
+			I want to get off MR BONES WILD RIDE<br>\
+			I want to get off MR BONES WILD RIDE<br>\
+			I want to get off MR BONES WILD RIDE<br>\
+			I want to get off MR BONES WILD RIDE<br>\
+			"),
+
+	)
+	work_start_lines = list("THE RIDE NEVER ENDS.")
+	middle_work_lines = list("I want to get off MR BONES WILD RIDE")
+
 	var/works_in_a_row = 0
 	var/saved_work_type = null
 
@@ -59,7 +79,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/wild_ride/Worktick(mob/living/carbon/human/user) //THE RIDE NEVER ENDS
 	user.SetImmobilized(21 + (3 * works_in_a_row), ignore_canstun = TRUE)  //I want off this wild ride! (You can't get off!)
-	return
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/wild_ride/NeutralEffect(mob/living/carbon/human/user, work_type, pe) //THE RIDE NEVER ENDS
 	. = ..()

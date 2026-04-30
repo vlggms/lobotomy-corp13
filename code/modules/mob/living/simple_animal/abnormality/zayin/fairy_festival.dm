@@ -67,6 +67,9 @@
 			You retreat from the cell and the fairies' hungry gazes. <br>You've always known the true meaning of The Fairies' Care."),
 	)
 
+	work_start_lines = list("If %PERSON can show that they are competent, then they may be able to draw %ABNO's attention.")
+	middle_work_lines = list("Most of the employees do not know the true meaning of \"The Fairies' Care\".")
+
 /mob/living/simple_animal/hostile/abnormality/fairy_festival/proc/FairyHeal()
 	for(var/mob/living/carbon/human/P in protected_people)
 		if(heal_cooldown <= world.time)

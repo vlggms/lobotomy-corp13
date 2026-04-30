@@ -50,6 +50,20 @@
 			You who will soon become ashes just like me."),
 	)
 
+	work_start_lines = list("Please be advised that %ABNO's Encyclopedia is incomplete, so anything undocumented could occur.",
+	"The entries on %ABNO are almost complete, so as long as we remain cautious, work will successfully finish with her.")
+	early_work_lines = list("%ABNO hides in the corner as soon as %PERSON enters the unit.", "%ABNO observes how %PERSON responds but backs up towards the wall.",
+	"%ABNO watches %PERSON work while standing in the corner.", "%ABNO seems frightened and moves to one of the corners of the unit.")
+	middle_work_lines = list("%PERSON stands perfectly still, as if the burning flames do not hurt her one bit.",
+	"Only the match piercing %ABNO burns wildly.", "Unlike the fiery and vibrant match, %ABNO stands motionless in the Containment Unit.",
+	"The match burns ever brightly, but %ABNO does not move an inch.")
+	late_work_lines = list("%PERSON closely examines the remaining length of the match.",
+	"If the match is almost burned through, it will be very dangerous. %PERSON tensely watches %ABNO.",
+	"Fortunately, there's still enough of the match left to burn.", "Ashes scatter around the Containment Unit. Half of the match still seems unburnt.")
+	work_end_lines = list("%PERSON completes their work while the fire gently flickers.",
+	"There is no one inside the fire, however, %ABNO's eyes gleam as if she sees someone.",
+	"There is nothing and nobody inside that flame.", "Only the ashes of the burnt match scatter over %ABNO.")
+
 	/// Restrict movement when this is set to TRUE
 	var/exploding = FALSE
 	/// Current cooldown for the players

@@ -57,6 +57,14 @@
 			Blood.... <br>The blood brings me eternal happiness, forfeiting false hope, let's forget all pretenses of humanity..."),
 	)
 
+	work_start_lines = list("Welcome. I am more than willing to greet those of you who are thirsty.")
+	early_work_lines = list("%ABNO is not a real bloodfiend, so there is no fear of falling under its thrall from a bite.",
+	"It is forbidden to bring water into %ABNO's cell.", "%ABNO stares longingly at %PERSON's nape.")
+	middle_work_lines = list("%PERSON can't help but notice %ABNO's eyes are more akin to pools of blood than irises.",
+	"There is no escape from this thirst!", "%PERSON can't help but feel %ABNO is similar to them, in some way.")
+	late_work_lines = list("%ABNO appears lost for a moment, looking for something but can't describe what he wanted to find to %PERSON.")
+	work_end_lines = list("... And the thirst would never truly be quenched.")
+
 	// Work Stuff
 	var/last_drawn = null
 	var/last_drawn_check = 0

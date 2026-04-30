@@ -63,6 +63,10 @@ GLOBAL_LIST_EMPTY(army)
 		"Salute him back" = list(FALSE, "The soldier in pink smiles. <br>\"Glad to have you on board Sir, with our help, there will be no more black hearts.\""),
 	)
 
+	work_start_lines = list("%ABNO tells %PERSON all about love.")
+	middle_work_lines = list("%ABNO's goal is to make sure goodhearted people are safe.")
+	work_end_lines = list("%PERSON feels hope from seeing %ABNO's friendly color.")
+
 	//Unique variables
 	var/death_counter = 0
 	var/protection_duration = 120 SECONDS

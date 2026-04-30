@@ -31,6 +31,21 @@
 	)
 	//gift_type =  /datum/ego_gifts/skub
 	abnormality_origin = ABNORMALITY_ORIGIN_JOKE
+
+
+	observation_prompt = "Will you accept skub into your life?"
+
+	observation_choices = list(
+		"Accept Skub" = list(TRUE, "Skub really is the best thing ever! <br>\
+		Who in their right mind would reject it?"),
+		"Reject Skub" = list(TRUE, "Skub is truly an awful thing. <br>\
+		Who in their right mind would accept it?"),
+	)
+
+	work_start_lines = list("Skub is known as the greatest thing in the world.", "Skub is generally considered to be the most overrated thing in the world.")
+	late_work_lines = list("Thousands of people have lost their lives fighting over Skub.")
+	work_end_lines = list("%PERSON can't stop thinking about Skub.")
+
 	var/list/currently_insane = list()
 	var/insanity_counter
 	var/riot_cooldown

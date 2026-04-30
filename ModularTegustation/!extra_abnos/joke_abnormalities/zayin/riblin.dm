@@ -27,6 +27,19 @@
 	)
 	abnormality_origin = ABNORMALITY_ORIGIN_JOKE
 
+	observation_prompt = "The abnormality suddenly hands you a menu. <br>\
+	\"Next one's on me. Have a nice Mcrib!\" <br>\
+	What will you do?"
+
+	observation_choices = list(
+		"Order the McRib" = list(TRUE, "You order the ultra-processed pork patty, and it is delicious."),
+		"Order something else" = list(FALSE, "You state that you would prefer to have the Big Mac instead. <br>\
+		The Riblin looks at you disapprovingly."),
+	)
+
+	work_start_lines = list("%PERSON can smell authentic Kansas City Barbecue Sauce.")
+	middle_work_lines = list("%ABNO hasn't eaten a vegetable in weeks.")
+
 /mob/living/simple_animal/hostile/abnormality/riblin/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
 	playsound(src, 'sound/abnormalities/mcrib/enjoy.ogg', 50, FALSE)

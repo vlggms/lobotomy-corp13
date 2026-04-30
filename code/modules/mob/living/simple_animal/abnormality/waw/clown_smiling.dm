@@ -74,6 +74,11 @@
 		"It's just a tool" = list(FALSE, "I thought it was a tool. <br>Just for that moment."),
 	)
 
+	work_start_lines = list("%PERSON feels an inexplicable flash of fear at the sight of %ABNO.")
+	early_work_lines = list("%PERSON wishes to flee the Containment Unit as soon as possible.", "Seeing that I wasn't amused, it took out another tool.")
+	late_work_lines = list("I thought it was a tool. Just that moment.", "%PERSON cannot recall where, but they're certain they have seen %ABNO before as a child.")
+	work_end_lines = list("Did it just move?")
+
 	del_on_death = FALSE //for explosions
 	var/finishing = FALSE
 	var/step = FALSE

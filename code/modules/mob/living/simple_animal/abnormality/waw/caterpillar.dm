@@ -63,6 +63,14 @@
 			To create silk... The silkworm must be boiled."),
 	)
 
+	work_start_lines = list("%ABNO seems just like %PERSON.")
+	early_work_lines = list("%PERSON feels revulsion staring at %ABNO.", "%ABNO produces a smoke that influences the mind of those who breathe it.")
+	middle_work_lines = list("Repression, the emotion of refusal to face oneself will not yield anything on its own.",
+	"%ABNO will fatten up from the despair it must feel from the emotions and doubts towards it.")
+	late_work_lines = list("However, to create silk... The silkworm must be \"boiled\".",
+	"As the Eclosion Counter draws closer to being filled, the closer %ABNO draws to metamorphosing into a butterfly.", "One must face themselves through constant Insight.")
+	work_end_lines = list("It really is just like me.")
+
 	var/eclosion_counter = 0 //How many times you worked on it without doing repression work
 	var/work_success_damage_upper = 4
 	var/work_success_damage_lower = 2

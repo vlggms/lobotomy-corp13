@@ -37,6 +37,11 @@
 		"Climb the beanstalk" = list(FALSE, "You begin to climb the beanstalk, but no matter how much you climb there's always more stalk. You peer at the clouds, squinting your eyes, but still can't see anyone..."),
 	)
 
+	work_start_lines = list("%PERSON peers up at an impossibly tall beanstalk.")
+	early_work_lines = list("No effort or artifice can contain %ABNO purely inside its own cell.",
+	"%PERSON recalls an employee obsessed with this abnormality and climbed it to the top, he never came back down.")
+	late_work_lines = list("Perhaps the employees that have scaled %ABNO are doing okay up there.", "They say a terrible man-eating giant also lives atop %ABNO.")
+
 	var/climbing = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/beanstalk/Move()
@@ -51,7 +56,7 @@
 		work_damage_upper *= 2
 		work_damage_lower *= 1.5
 		climbing = TRUE
-	return TRUE
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/beanstalk/proc/ResetWorkDamage()
 	work_damage_upper = initial(work_damage_upper)

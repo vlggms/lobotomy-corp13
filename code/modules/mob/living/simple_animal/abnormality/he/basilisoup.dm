@@ -51,6 +51,10 @@
 		"Knock it over" = list(FALSE, "The contents put out the flames as the pot tumbles the floor, water and a singular stone coat the floor. Soup from a stone? Ridiculous."),
 	)
 
+	work_start_lines = list("A coiling lizard with a head not unlike a cauldron.")
+	middle_work_lines = list("Ancient stew boils vigorously from within the cauldron.")
+	work_end_lines = list("The stew hasd been boiling for so long that it's become impossible to tell what the original ingredients may have been.")
+
 	var/spit_cooldown
 	var/spit_cooldown_time = 12 SECONDS
 	var/can_act = TRUE

@@ -64,6 +64,19 @@
 			It smiles. <br>No, it pretends to smile. <br>Who could be it?"),
 	)
 
+	work_start_lines = list("%ABNO's appearance is just like that of a human being. However, employees with sharp eyes will notice a sense of incompatibility.",
+	"%ABNO is different from ordinary Abnormalities. The biggest difference between them is that it has never once shown its true nature.",
+	"Do you know the difference between the terms \"shell\" and \"skin\"?")
+	early_work_lines = list("%ABNO meaninglessly grinds its teeth while staring at %PERSON.", "The bone, which appears to be a rib of %ABNO, makes a crunching sound.",
+	"%ABNO gazes at %PERSON, the twisted neck of its shell snapping and turning unnaturally.",
+	"The organ that's something akin to a mouth belonging to %ABNO occasionally drips intestines that may have belonged to a human once.")
+	middle_work_lines = list("%PERSON tries their best to avoid stepping on the unknown secretions of %ABNO.",
+	"Even though %ABNO makes not a single threatening action towards %PERSON, their entire body shivers in fear.",
+	"%PERSON is aware that the Abnormality is not going to attack them right away, but they are still extremely terrified of being in its containment.")
+	late_work_lines = list("While %PERSON works, they find %ABNO to be somewhat familiar in an odd way.", "%PERSON spots something from %ABNO.")
+	work_end_lines = list("\"She\" was %PERSON's senior. They had never spoken a word to each other, but they may have been good coworkers.",
+	"%PERSON had seen \"her\" employee profile. The reason why %PERSON could remember \"her\" is that she had a distinguishable mole on her face.")
+
 	var/shelled
 	var/mob/living/disguise_ref
 	var/saved_appearance
@@ -390,7 +403,7 @@
 	var/growl_prob = (work_type in list(ABNORMALITY_WORK_REPRESSION, ABNORMALITY_WORK_INSIGHT)) ? 100 : 25
 	if(prob(growl_prob)) // Spooky
 		playsound(get_turf(src), 'sound/abnormalities/nothingthere/growl.ogg', 25, 0)
-	return TRUE
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/WorkChance(mob/living/carbon/human/user, chance)
 	var/adjusted_chance = chance

@@ -50,6 +50,13 @@
 			The amber-colored sky is beautiful. <br>Oh, I'm getting hungry again."),
 	)
 
+	work_start_lines = list("When %ABNO assumes the form of an egg, you can faintly see a smiling girl inside it.",
+	"Some of our employees think that %ABNO is trapped inside this thing that resembles an egg, however, the truth is that she shut herself inside it.")
+	early_work_lines = list("The glamorous amber pattern on %ABNO at times fascinates our workers.", "%ABNO's color is that of a brilliant and lustrous gold.")
+	middle_work_lines = list("The world that %ABNO may have once loved is now being devoured by her.",
+	"%ABNO once had eyes as red as the setting sun, but greed has consumed all, leaving nothing behind.")
+	work_end_lines = list("%ABNO surrendered to hunger and started devouring itself.", "The day %ABNO's hunger ceases will be the end of everything.")
+
 	//Some Variables cannibalized from helper
 	var/charge_check_time = 1 SECONDS
 	var/teleport_cooldown

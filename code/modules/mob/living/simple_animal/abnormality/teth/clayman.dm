@@ -53,6 +53,11 @@
 		"It still needs a soul" = list(TRUE, "The price to be paid cannot be measured in time or money. <br>The results speak for themselves."),
 	)
 
+	work_start_lines = list("\"REDACTED-brand clay! Let your imagination run free!\" - Product tag-line from a company that no longer exists.")
+	middle_work_lines = list("A long, long time ago, they say the first men and women were sculpted from mud and clay and ensouled with life.",
+	"Make of yourself a canvas, and your creativity cannot be limited.")
+	late_work_lines = list("To make something in the visage of a human is Taboo.")
+
 	var/dashready = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/clayman/WorktickFailure(mob/living/carbon/human/user)

@@ -38,6 +38,14 @@
 		"Dont't put it on" = list(FALSE, "The armor waits for another reckless one."),
 	)
 
+	work_start_lines = list("Cowardly employees sense something ominous about %ABNO.", "Alone with the armor, %PERSON feels the Abnormality’s piercing gaze upon them. \
+	Of course, there is not a single living thing inside that armor.", "Rumor has it that passionate battle cries or shouts such as \"CHARGE!\" can be heard from the armor in the middle of the night.")
+	early_work_lines = list("Although it is slightly broken, this armor is in an unbelievably well-preserved state considering that it is an artifact forged hundreds of years ago.",
+	"Many past generals had possession of this armor. Nobody knows whether it was the war or the armor that took their lives.")
+	middle_work_lines = list("The right arm of the suit is broken. After a light investigation, the conclusion was that the damage stemmed from the inside, not externally",
+	"%ABNO was forged hundreds of years ago. The craftsman that created this armor remains unidentified, but at the very least it is certain that he hated cowards.")
+	work_end_lines = list("The armor still awaits those who are reckless, and those who have given up on life.")
+
 	var/buff_icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
 	var/user_armored
 	var/numbermarked

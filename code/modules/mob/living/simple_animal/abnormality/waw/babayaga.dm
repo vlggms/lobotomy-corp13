@@ -48,6 +48,10 @@
 			Eventually you collapse in the snow, your whole body frozen. <br>Ahh... <br>There's no more pain..."),
 	)
 
+	work_start_lines = list("The palace of ice is so cold, %PERSON can't bear to stand at the door for long.")
+	early_work_lines = list("%PERSON hesitates to knock on %ABNO's door, lest the terrifying witch inside answer.", "Stay frozen... and there will be no pain.")
+	middle_work_lines = list("%PERSON rubs their own arms for warmth, but the cold refuses to let up.")
+
 	var/jump_cooldown = 0
 	var/jump_cooldown_time = 35 SECONDS
 	var/list/spawned_mobs = list()

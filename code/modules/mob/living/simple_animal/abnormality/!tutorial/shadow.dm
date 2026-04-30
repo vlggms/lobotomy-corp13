@@ -27,6 +27,10 @@
 	start_qliphoth = 2
 	can_spawn = FALSE // Normally doesn't appear
 
+	// Tutorial abnormality - doesn't really need a final observation.
+	work_start_lines = list("%ABNO's cell is perpetually gloomy.")
+	middle_work_lines = list("Humanity has always feared the dark, the denizens of the City know exactly what the night holds")
+
 /mob/living/simple_animal/hostile/abnormality/shadow/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(work_type == ABNORMALITY_WORK_ATTACHMENT)
 		datum_reference.qliphoth_change(-1)

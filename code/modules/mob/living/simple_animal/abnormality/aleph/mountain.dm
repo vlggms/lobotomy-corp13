@@ -56,6 +56,9 @@
 		"I don't recognize them" = list(FALSE, "They're holding all the laughter of those who cannot be seen here. <br>The mounds begins to shamble, upon borrowed hands and feet, it has your scent now and it will never be satisfied."),
 	)
 
+	work_start_lines = list("%ABNO is searching for the smell of a body, carrying the smiles of many.")
+	middle_work_lines = list("%ABNO waits for the oncoming smell of blood, holding all of the laughter of those who cannot be seen here.")
+
 	/// Is user performing work hurt at the beginning?
 	var/agent_hurt = FALSE
 	var/death_counter = 0
@@ -382,7 +385,7 @@
 /mob/living/simple_animal/hostile/abnormality/mountain/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(user.health != user.maxHealth)
 		agent_hurt = TRUE
-	return TRUE
+	return ..()
 
 /* Abnormality breach */
 

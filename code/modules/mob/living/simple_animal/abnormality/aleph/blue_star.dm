@@ -59,6 +59,9 @@
 			You opened your eyes and looked again at the heart. <br>It remains in the air, floating towards a new beginning."),
 	)
 
+	work_start_lines = list("Often, some of our employees will be eager to throw themselves into %ABNO.")
+	middle_work_lines = list("Our %ABNO was born in an abyss of despair and floats towards a new beginning.")
+
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 8 SECONDS
 	var/pulse_damage = 30 // Scales with distance; Ideally, you shouldn't be able to outheal it with white V armor or less
@@ -123,7 +126,7 @@
 		animate(user, transform = user.transform*0.01, time = 5)
 		QDEL_IN(user, 5)
 		return FALSE
-	return TRUE
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/bluestar/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) < 100)

@@ -26,6 +26,13 @@
 	)
 	gift_type = /datum/ego_gifts/voodoo
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
+
+	work_start_lines = list("") // This doesn't spawn currently, so we'll add work quotes later.
+	early_work_lines = list("")
+	middle_work_lines = list("")
+	late_work_lines = list("")
+	work_end_lines = list("")
+
 	var/janken = 0			//0 for scissors, 1 for Rock, 2 for paper
 	var/player = 0			//0 for scissors, 1 for Rock, 2 for paper
 	var/last_worked	//You get less if you just worked her.
@@ -40,7 +47,7 @@
 		say("You again? Fine. We'll play again.")
 	else
 		say("I'll go fer scissors. How 'bout you?")
-	return TRUE
+	return ..()
 
 
 //Losing is good, Lose means the player loses the game

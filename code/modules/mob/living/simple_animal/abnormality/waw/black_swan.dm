@@ -70,6 +70,9 @@
 			They spread their wings and took flight to the sky, high above the fog, leaving the black swan behind. Elijah clutched her brooch tighter, she only had to work a little harder..."),
 	)
 
+	work_start_lines = list("%ABNO's brothers just blink; it's as if that's the only thing they can do inside the Containment Unit.")
+	middle_work_lines = list("When her brothers show any sign of pain, %ABNO will approach them, dragging her exhausted body.")
+
 	//family breach conditions
 	var/insane_humans = 0
 	var/dead_humans = 0

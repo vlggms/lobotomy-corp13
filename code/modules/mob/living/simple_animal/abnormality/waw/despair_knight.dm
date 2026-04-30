@@ -58,6 +58,9 @@
 		"Accept her blessing" = list(FALSE, "Thank you, though I am but a pitiful knight, I still yearn to protect, if I can't protect others, I may as well disappear..."),
 	)
 
+	work_start_lines = list("%ABNO occasionally sheds helpless tears while the work goes on, not saying anything to %PERSON.")
+	middle_work_lines = list("%ABNO still dwells in her past glories, just like her sisters.")
+
 	var/mob/living/carbon/human/blessed_human = null
 	var/teleport_cooldown
 	var/teleport_cooldown_time = 20 SECONDS

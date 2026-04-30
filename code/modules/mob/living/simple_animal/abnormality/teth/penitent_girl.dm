@@ -41,12 +41,15 @@
 			The girl continues shifting about without a care in the world."),
 	)
 
+	work_start_lines = list("%ABNO proffers up her own shoes to %PERSON, the feet she cut off still wearing them. In spite of this, she couldn't look more at peace.")
+	early_work_lines = list("Please %PERSON, chop off your feet...", "%PERSON feels shame for having their own feet whilst %ABNO doesn't, before discarding the thought.")
+
 //Work Mechanics
 /mob/living/simple_animal/hostile/abnormality/penitentgirl/AttemptWork(mob/living/carbon/human/user, work_type)
 	//Prudence too high, random damage type time.
 	if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) >= 40)
 		work_damage_type = pick(WHITE_DAMAGE, RED_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
-	return TRUE
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/penitentgirl/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	// you are going to cut your own leg off

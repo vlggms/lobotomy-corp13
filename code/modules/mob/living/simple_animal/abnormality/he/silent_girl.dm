@@ -43,6 +43,13 @@
 		"Plead your ignorance" = list(FALSE, "The nails pierce your heart as the girl in the white dress hammers them home."),
 	)
 
+	work_start_lines = list("%PERSON freezes as they lock eyes with %ABNO", "%ABNO is concealing something behind her back, but no matter how hard %PERSON looks they can't see what it is.")
+	early_work_lines = list("%PERSON recalls every time they felt guilt bubble up to the surface.",
+	"%ABNO leers at %PERSON but makes no motion to approach.", "Anxiety blooms in %PERSON's heart.", "A frightful shiver breezes through %PERSON just for a moment.")
+	middle_work_lines = list("...", "A cracked mind will easily shatter to pieces at the lightest tap.",
+	"To feel remorse is not enough.", "Guilt digs into the mind's smallest cracks...")
+	work_end_lines = list("%ABNO has never taken a step towards an employee, %PERSON is no exception.", "To err is human, to forgive is divine.")
+
 /mob/living/simple_animal/hostile/abnormality/silent_girl/proc/GuiltEffect(mob/living/carbon/human/user, enable_qliphoth = TRUE, stack_count = 1)
 	if (user.stat == DEAD)
 		return

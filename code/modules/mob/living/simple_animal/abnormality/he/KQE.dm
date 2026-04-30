@@ -66,13 +66,18 @@
 		"Hello" = list(TRUE, "The robot lifts both arms with some struggle. <br>\
 			The terminal prints out its words: <br>\
 			<Welcome, Dear Guest. Have you enjoyed the town tour? \
-			We’d like you to have a souvenir. :-)> <br>\
+			We'd like you to have a souvenir. :-)> <br>\
 			A smile is displayed on the terminal, <br>\
 			but in the robot’s gestures, you feel a plea for help."),
 		"Goodbye" = list(FALSE, "The terminal’s light goes red, and warnings start to blare. <br>\
 			The robot shakes intensely as if in pain. <br>\
 			<Farewell. <br>Farewell, <br>FarewellFarewellFarewellFarewellFarewellFarewellFarewellFarewellFarewell>"),
 	)
+
+	work_start_lines = list("In the Backstreets, you could sometimes find toys from ages ago.")
+	early_work_lines = list("%ABNO is clearly unfinished, for what purpose it was created is uncertain.")
+	middle_work_lines = list("Due to power failure or some other issue, a terminal on %ABNO's chest is dark.")
+	work_end_lines = list("%PERSON wonders about the \"Souvenier\" %ABNO occasionally mentions.", "%ABNO attempts to raise a hand in farewell, but is unable to do so.")
 
 	var/can_act = TRUE
 	var/grab_cooldown
@@ -156,7 +161,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/kqe/AttemptWork(mob/living/carbon/human/user, work_type)
 	if((work_type != "Write HELLO") && (work_type != "Write GOODBYE") && (work_type != "Write DUMBASS") && !question)
-		return TRUE
+		return ..()
 	if(((work_type == "Write HELLO") || (work_type == "Write GOODBYE") || (work_type == "Write DUMBASS")) && !question)
 		to_chat(user, span_notice("The terminal is blank."))
 		return FALSE

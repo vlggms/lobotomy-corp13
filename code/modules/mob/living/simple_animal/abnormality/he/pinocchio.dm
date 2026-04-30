@@ -41,6 +41,17 @@
 		"You're human" = list(FALSE, "Did I look just like a human? <br>I hope I fooled you, it's other people's fault for falling for my lies."),
 	)
 
+	work_start_lines = list("%PERSON reminds %ABNO who is the Agent and who is the Abnormality.",
+	"%ABNO is ready to begin the work order.", "I'm keen to learn as usual. Would you like to see me learn?")
+	early_work_lines = list("I dream of becoming a human.", "%PERSON scratches an itch that %ABNO copies.",
+	"The City cannot suffer anything that which can think and isn't human.", "Lalala... I sing along to the song of lies all the people sing.")
+	middle_work_lines = list("People lie all the time. Why is that a bad thing?",
+	"%PERSON feels frustration at %ABNO's incessant emulation.", "Did I look just like a human? I hope I did...")
+	late_work_lines = list("There was no choice, I had to lie to become a human...",
+	"%ABNO says something that %PERSON knows isn't true and tells %ABNO to stop lying.", "%PERSON wonders if the Head staying their hand means %ABNO really is human after all.")
+	work_end_lines = list("Can I... not become a human..?", "Why aren't you being fooled..? That was almost perfect...",
+	"%ABNO tries to leave with %PERSON before being reminded only humans are permitted to leave.")
+
 	var/lying = FALSE
 	var/caught_lie = FALSE
 	var/mob/living/carbon/human/species/pinocchio/realboy = null

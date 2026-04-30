@@ -41,6 +41,12 @@
 		"Fold" = list(FALSE, "You fold, wishing to cling to what little remains of your wealth. Despite lacking any facial features, you can feel the Dealer's disappointment..."),
 	)
 
+	work_start_lines = list("") // Disabled currently
+	early_work_lines = list("")
+	middle_work_lines = list("")
+	late_work_lines = list("")
+	work_end_lines = list("")
+
 //Coinflip V1; Expect Jank
 /mob/living/simple_animal/hostile/abnormality/dealerdamned/funpet(mob/petter)
 	..()
@@ -74,7 +80,7 @@
 		say("Hey, I know I'm all for high stakes, but you've already put your life on the line once. I've got standards.")
 		return FALSE
 	else
-		return TRUE
+		return ..()
 
 //TODO: Add the revolver open sprite, replace gibbing with "death" sprite
 /mob/living/simple_animal/hostile/abnormality/dealerdamned/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)

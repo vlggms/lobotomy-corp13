@@ -52,6 +52,10 @@
 			Though the tone of its mantra remains consistent, you knew its chants are imbued with a curse.")
 	)
 
+	work_start_lines = list("%PERSON is nervous about entering the Containment Unit.","%PERSON is unsettled by the sound that %ABNO makes.")
+	early_work_lines = list("While the face carved on %ABNO is calm and serene, the flesh underneath is an unsettling sight.")
+	late_work_lines = list("While %ABNO occasionally makes symbolic gestures with its left hand, the meaning is lost on %PERSON.")
+
 	var/anatman_state = FALSE
 	var/praying = FALSE
 

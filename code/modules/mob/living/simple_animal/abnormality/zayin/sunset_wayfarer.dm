@@ -50,6 +50,10 @@
 			\"Another time, I suppose!\""),
 	)
 
+	work_start_lines = list("Wasn't it tiring coming all the way here?")
+	early_work_lines = list("What distinguishes moths from butterflies?")
+	work_end_lines = list("Looks like some of them want to tag along!")
+
 	light_color = COLOR_ORANGE
 	light_range = 5
 	light_power = 7

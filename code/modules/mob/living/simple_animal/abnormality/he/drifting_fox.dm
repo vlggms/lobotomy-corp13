@@ -72,6 +72,9 @@
 			It seemed to reprimand your attitude of pursuing resolution without forethought."),
 	)
 
+	work_start_lines = list("When left alone, %ABNO occasionally cries, as if looking at the sky and howling.")
+	middle_work_lines = list("%PERSON imagines %ABNO sulking between alleyways in the backstreets.", "The umbrellas on %ABNO's back might have once been pristine, but are now useless and covered in grime.")
+
 	var/list/pet = list()
 	pet_bonus = "yips"
 	var/umbrella_spawn_number = 1

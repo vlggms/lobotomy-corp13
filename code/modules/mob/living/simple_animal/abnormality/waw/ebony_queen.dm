@@ -63,6 +63,16 @@
 		"Rot into nothing" = list(FALSE, "An apple culminates when it shrivels up and attracts lesser creatures. <br>I'm just an apple, I can't change a thing."),
 	)
 
+	work_start_lines = list("\"Mirror, mirror on the wall - who now is the fairest of them all?\", asked the witch again, but the mirror's answer remained the same.",
+	"With her plan a failure, the witch's envy remains.")
+	early_work_lines = list("%ABNO never held eyes, for to see the world would only invite further enmity into its heart.",
+	"%ABNO's Containment Unit once had some foliage growing inside of it.",
+	"The sound of wind rustling through dead branches can be heard from %ABNO's Containment Unit.")
+	middle_work_lines = list("%ABNO was alone for a very long time. Not even the lowest creatures could bring themselves to consume %ABNO.",
+	"%ABNO thought of the princess and the witch that cursed her.")
+	late_work_lines = list("%ABNO was cursed inadvertenly by the witch, and the princess was to blame.", "Only futility remained.", "Bring me Snow White.")
+	work_end_lines = list("%ABNO grew, stewing in spiteful envy and distrust.")
+
 	var/barrier_cooldown
 	var/barrier_cooldown_time = 4 SECONDS
 	var/barrage_cooldown

@@ -54,6 +54,10 @@
 			I keep watching and listening. A more attentive hearing reveals that the sounds have a rhythm. Perhaps there is delight to be found in it."),
 	)
 
+	work_start_lines = list("%PERSON recognizes the apparel of company L's employees.", "%PERSON wonders why another employee is in this cell and thinks a mistake has been made.")
+	early_work_lines = list("\"Unregulated ingestion of Enkephalin may cause a wide range of unverified psychopathological symptoms.\" - Employee handbook.")
+	work_end_lines = list("Who'll spare a thought for the employees of the failed branches? Trapped and buried alive.")
+
 /mob/living/simple_animal/hostile/abnormality/forsaken_employee/FailureEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
 	. = ..()
 	datum_reference.qliphoth_change(-1)

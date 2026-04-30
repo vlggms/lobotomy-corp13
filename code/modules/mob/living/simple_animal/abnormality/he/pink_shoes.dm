@@ -52,6 +52,13 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 		"Refuse" = list(TRUE, "\"Snap out of it! It's all a lie!\" <br>A haggard employee manages to stop you at the last second. <br>Thanks to that warning, you avoided the desire-laden ribbons."),
 	)
 
+	work_start_lines = list("%PERSON wonders what their shoes are doing here, before reminding themselves they don't own any shoes like these.",
+	"I'll carry you wherever you wish to go...")
+	middle_work_lines = list("%PERSON feels a strong urge to wear %ABNO.", "What is your desire?..", "Put me on.")
+	late_work_lines = list("%PERSON feels an enthralling desire to act out every urge they ever had.",
+	"%PERSON wonders what it would feel like to be tangled up in %ABNO's ribbons before dismissing the thought.")
+	work_end_lines = list("%ABNO has a ribbon out of place that %PERSON resists the urge to fix.")
+
 	ranged = TRUE
 	environment_smash = FALSE//this stops it from smashing its own ribbons when breaching independently
 	minimum_distance = 1

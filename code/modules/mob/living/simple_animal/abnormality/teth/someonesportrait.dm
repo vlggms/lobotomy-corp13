@@ -37,6 +37,11 @@
 			It turned out I was right, it was waiting to attack and I got into its striking range when no one else was around..."),
 	)
 
+	work_start_lines = list("%PERSON makes sure there's ample distance between them and %ABNO in case it attacks.")
+	late_work_lines = list("The subject of the painting has never been identified however many claim a familiarity, but have never been able to provide a name.",
+	"%ABNO has never caused an employee fatality, nor any injuries - nevertheless, %PERSON is convinced it's waiting to strike.", "The lights in %ABNO's cell are always faulty.")
+	work_end_lines = list("It's just waiting for its chance - why can't anybody else see it?")
+
 //Initialize
 /mob/living/simple_animal/hostile/abnormality/someones_portrait/PostSpawn()
 	..()
@@ -54,6 +59,7 @@
 		PanicUser(user, TRUE)
 
 /mob/living/simple_animal/hostile/abnormality/someones_portrait/Worktick(mob/living/carbon/human/user) //We apply hallucination every worktick due to varying work time
+	..()
 	if(!user.hallucination)
 		user.hallucination += 3 //Attempt to get them to cancel work out of paranoia.
 

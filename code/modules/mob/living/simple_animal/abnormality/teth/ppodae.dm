@@ -46,6 +46,11 @@
 		"A puppy" = list(FALSE, "It's the cutest puppy I've ever seen."),
 	)
 
+	work_start_lines = list("%ABNO is oh so fluffy and soft. It’s so sweet it could cure your depression.")
+	early_work_lines = list("Many of our employees have at least 55 different pictures of %ABNO from various angles saved on their phones.")
+	late_work_lines = list("If you dislike %ABNO, well, that’s enough reason to demote you on the spot.")
+	work_end_lines = list("I mean, sometimes we found some weird bones from what looks like a human skeleton around %ABNO, but it’s just so cute! So really, who cares?")
+
 	var/smash_damage_low = 4
 	var/smash_damage_high = 8
 	var/smash_length = 2

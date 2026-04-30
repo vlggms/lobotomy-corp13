@@ -46,6 +46,10 @@
 		"Lie down" = list(FALSE, "You lay your head down into your soft and comfy pillow. You can always try again tomorrow."),
 	)
 
+	work_start_lines = list("A cozy bed, a warm blanket, a respite from it all - %PERSON wants to take a break.")
+	middle_work_lines = list("%ABNO looks so inviting, surely a break couldn't hurt?", "You can always try again tomorrow.")
+	work_end_lines = list("There'll be time to rest for %PERSON when they're dead.")
+
 	var/grab_cooldown
 	var/grab_cooldown_time = 20 SECONDS
 

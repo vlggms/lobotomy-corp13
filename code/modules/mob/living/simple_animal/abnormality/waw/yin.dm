@@ -57,6 +57,10 @@
 			If you can't accept the darkness of the world, you're not ready to accept the darkness in you."),
 	)
 
+	work_start_lines = list("Please ensure these two pendants are contained in separate rooms.")
+	early_work_lines = list("%ABNO brings chaos to the world, yet also erases such chaos.")
+	late_work_lines = list("The world will be overturned the day the black carp and white carp meet.")
+
 	faction = list("neutral", "hostile") // Not fought by anything, typically. But...
 	var/faction_override = list("hostile") // The effects hit non-hostiles.
 

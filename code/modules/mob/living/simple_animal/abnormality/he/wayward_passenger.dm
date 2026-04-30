@@ -76,6 +76,12 @@
 			preparing to go through the motions."),
 	)
 
+	work_start_lines = list("%PERSON recognises the apparel of a W-Corp employee.")
+	early_work_lines = list("%PERSON recalls boarding a WARP train before work today, before wondering why that thought provokes tears.")
+	middle_work_lines = list("The train can take you to any place in the City, in no more than 10 seconds.", "The stranded employee only goes through the motions...")
+	late_work_lines = list("Lost and abandoned, tossed out like trash, having no place left in the City....", "%ABNO will guide you to the right exit.")
+	work_end_lines = list("No matter how many times %ABNO traverse the path, it can never find its way back.")
+
 	//teleport vars
 	var/teleport_cooldown
 	var/teleport_cooldown_time = 10 SECONDS

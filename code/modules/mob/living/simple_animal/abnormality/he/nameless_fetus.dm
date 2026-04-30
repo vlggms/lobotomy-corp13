@@ -48,6 +48,27 @@
 			You plugged your ears silently. <br>No sound is heard."),
 	)
 
+	work_start_lines = list("%ABNO is so premature that it does not even have its organs properly formed.",
+	"%ABNO sucks its thumb and cries from time to time.", "There is a long scarlike line across the abdomen of %ABNO.",
+	"If you happen to hear a child crying, that means soon one of us will have to disappear for good.")
+	early_work_lines = list("Unlike other babies, %ABNO does not whine nor search for its mother.",
+	"Coated in an unidentifiable slime, %ABNO is completely dissimilar to other babies, which are wrapped up in warm blankets, happily cooing and dreaming.",
+	"Around %ABNO, unrecognizable objects resembling an umbilical cord are messily scattered. Despite being a room where a \"baby\" resides, it is eerely quiet, devoid of any whines or cries.",
+	"%PERSON has just entered the Containment Unit, however, %ABNO does not respond to their entrance like other babies would.")
+	middle_work_lines = list("Big, pitch-black pupils that gaze at nothing. They don't even blink.",
+	"The only thing that makes %ABNO resemble normal babies is that it sucks a body part (which we assume to be its thumb) as if it were hungry, showing its dismal desire.",
+	"Once in a while, %ABNO “babbles” just like any other baby. However, all the employees recognize that this is not just a simple \"babble\".",
+	"%ABNO often makes a sound just like a normal baby babbling. There is no need to worry about this yet because its desire is not yet overwhelming.")
+	late_work_lines = list("While working, %PERSON makes some sort of rhythmic sound to %ABNO, as if they were caring for a child of their own.",
+	"%PERSON takes a moment away from the work and approaches %ABNO, barely keeping a smile as to not alert the \"fetus\".",
+	"%PERSON looks back to check on %ABNO. Luckily, %ABNO gets through %PERSON's work without crying.",
+	"Worried about %ABNO, %PERSON checks on it repeatedly through the work process. Though, we should all know what they're actually worried about.")
+	work_end_lines = list("%ABNO opens its mouth and licks its lips. Its pitch-black pupils secretly show its instinctual desire.",
+	"%ABNO closes its eyes. This is certainly not an act out of tiredness, %ABNO only desires one thing.",
+	"All of a sudden, %ABNO turns its head and gazes at %PERSON who has almost finished their work. There is no ill intention in its watch whatsoever, \
+	however, it is surely not the gaze of a creature that thinks of its eyed interest as \"human\".",
+	"%ABNO feels hunger, and all of a sudden, stares at %PERSON. %ABNO's pure evil in its gaze penetrates through the employee.")
+
 	var/mob/living/carbon/human/calling = null
 	var/criesleft
 	var/crying = FALSE

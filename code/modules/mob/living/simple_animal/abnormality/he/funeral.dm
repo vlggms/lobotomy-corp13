@@ -63,6 +63,18 @@
 			A kaledioscope of butterflies follows you as you leave the containment unit."),
 	)
 
+	work_start_lines = list("Having someone to mourn for you after your death is a blessing.",
+	"Those who remain have no time to remember those who've died, all they can do is prepare for the next death.", "%ABNO gazes upon %PERSON in still silence.")
+	early_work_lines = list("%ABNO dreams. The curtain draws down on the ideal born in vain, but it is without an accompanying conclusion.",
+	"The huge coffin isn't nearly enough to substitute the hundreds of undug graves.", "%PERSON witnesses the funeral procession of the butterflies.",
+	"The burdensome fluttering wings come closer in a familiar yet strange way.")
+	middle_work_lines = list("There are no flowers or trees in this place, so where do all these butterflies come from?",
+	"The employees cannot return to whence they came, and have no choice but to endlessly repeat the day.", "The funeral procession never ends; %PERSON continues to calmly mourn.",
+	"%PERSON thinks about the end of one's life.")
+	late_work_lines = list("Returning to whence one came in one piece is now a miracle that will never happen.", "Peaceful death in one's finest hour is an unexpected blessing.",
+	"In fact, most of the employees who've died here wanted to live as long as they could.")
+	work_end_lines = list("Some thought death would be a new beginning; however, there is nothing but the void after death.")
+
 	var/gun_cooldown
 	var/gun_cooldown_time = 4 SECONDS
 	var/gun_damage = 20

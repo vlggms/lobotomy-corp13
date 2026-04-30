@@ -26,6 +26,10 @@
 	start_qliphoth = 1
 	can_spawn = FALSE // Normally doesn't appear
 
+	// Tutorial abnormality - doesn't really need a final observation.
+	work_start_lines = list("%ABNO waves at %PERSON")
+	middle_work_lines = list("\"Are you enjoying your first day at the company?\"")
+
 /mob/living/simple_animal/hostile/abnormality/bill/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
 	if(prob(40))

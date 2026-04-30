@@ -49,6 +49,9 @@
 			The box comes to life with saws and blades, but all it is for - is to catch your attention."),
 	)
 
+	work_start_lines = list("The warning to not look at %ABNO has caused many employees to fall curious, leading to many a terrible incident.")
+	middle_work_lines = list("When you feel an unrelenting gaze upon you even while you are alone, it is already too late.")
+
 	var/seen //Are you being looked at right now?
 	var/solo_punish	//Is an agent alone on the Z level, but not overall?
 	var/total_players

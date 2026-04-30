@@ -68,6 +68,12 @@
 			The electrified water fell right on your head."),
 	)
 
+	work_start_lines = list("\"This centipede is capable of discharging a high voltage\", says a sign inside %ABNO's cell")
+	early_work_lines = list("\"Apply stimulation and pain to the centipede to increase the discharge intensity\", so says the warning above the console.")
+	middle_work_lines = list("%PERSON feels nothing watching the %ABNO writhe around.", "%ABNO almost looks like its dancing, but it doesn't seem to be out of enjoyment.")
+	work_end_lines = list("For the sake of reaching quota in a timely manner, %ABNO must suffer on our behalf.",
+	"%ABNO's treatment may seem cruel, but it is in no more suffering than any other abnormality.")
+
 // Work vars
 	var/bonus_pe = 6
 	var/repression_override = 50
