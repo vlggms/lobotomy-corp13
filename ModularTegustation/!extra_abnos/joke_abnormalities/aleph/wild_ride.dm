@@ -35,6 +35,8 @@
 	)
 	abnormality_origin = ABNORMALITY_ORIGIN_JOKE
 
+	work_start_lines = list("THE RIDE NEVER ENDS.")
+
 	var/works_in_a_row = 0
 	var/saved_work_type = null
 
@@ -59,7 +61,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/wild_ride/Worktick(mob/living/carbon/human/user) //THE RIDE NEVER ENDS
 	user.SetImmobilized(21 + (3 * works_in_a_row), ignore_canstun = TRUE)  //I want off this wild ride! (You can't get off!)
-	return
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/wild_ride/NeutralEffect(mob/living/carbon/human/user, work_type, pe) //THE RIDE NEVER ENDS
 	. = ..()

@@ -86,7 +86,7 @@
 		happy = TRUE
 	else
 		happy = FALSE
-	return TRUE
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/falada/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	liked = pick(

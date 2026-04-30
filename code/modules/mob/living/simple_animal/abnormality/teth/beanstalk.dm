@@ -51,7 +51,7 @@
 		work_damage_upper *= 2
 		work_damage_lower *= 1.5
 		climbing = TRUE
-	return TRUE
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/beanstalk/proc/ResetWorkDamage()
 	work_damage_upper = initial(work_damage_upper)

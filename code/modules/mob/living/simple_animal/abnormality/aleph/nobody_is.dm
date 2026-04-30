@@ -55,6 +55,10 @@
 		"Shake their hand" = list(FALSE, "The you in the mirror smiles. <br>\"Just you wait, I'll show you what we can do.\""),
 	)
 
+	work_start_lines = list("For a brief moment, %PERSON sees themselves in the mirror.", "The desires of this Abnormality are reflected in its base form.")
+	middle_work_lines = list("%PERSON does their best to avoid touching %ABNO while they work.", "%PERSON flinches as %ABNO attempts to connect with their mind.")
+	work_end_lines = list("While %PERSON works, they find %ABNO to be somewhat familiar in an odd way.", "%PERSON turns away from the mirror, suddenly.")
+
 	//Contained Variables
 	var/reflect_timer
 	var/shelled = FALSE

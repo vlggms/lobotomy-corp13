@@ -43,6 +43,13 @@
 			Gradually, my exipation was drawing to an end hectically."),
 	)
 
+	work_start_lines = list("The one who was born naked, shall return to the earth naked.", "%ABNO remembers the scorches inside.")
+	early_work_lines = list("Perchance we tried to make a human without a heart.", "Unwithering flowers violently blossom.")
+	middle_work_lines = list("%PERSON wants to hibernate cozily in a bed of flowers.", "%PERSON is deeply impressed by the lavender that suffuses the Containment Unit.")
+	late_work_lines = list("Once bloomed and withered, %ABNO realized the meaning of resurrection; wherever it may head, its traces will remain, and all lives will gather with %ABNO.",
+	"A refreshing scent gushes out of %PERSON instead of metallic blood as they fall asleep, covered in flowers.")
+	work_end_lines = list("A flower blooms in everyone’s heart.")
+
 	/// Currently displayed petals. When value is at 3 - reset to 0 and perform attack
 	var/petals_current = 0
 	/// World time when petals_current will increase by 1

@@ -58,6 +58,12 @@
 			I feel something sprout from my body..."),
 	)
 
+	work_start_lines = list("%PERSON can feel the delicate scent of grass embracing the air.", "%PERSON feels a gentle breeze, which couldn't possibly originate inside a Containment Unit.")
+	early_work_lines = list("The sound of rustling leaves is incredibly tranquil.", "A flowery scent lingers in %PERSON's nose.")
+	middle_work_lines = list("A majority of the employees here are discontent; even the smallest blessing gives them great happiness.")
+	late_work_lines = list("A blessing more radiant than anything approaches employee %PERSON.")
+	work_end_lines = list("When the flower of blessing finally blooms from %ABNO, then...")
+
 	var/origin_cooldown = 0 //null when compared to numbers is a eldritch concept so world.time cannot be more or less.
 	var/static/list/blessed = list() //keeps track of status effected individuals
 	var/static/list/minions = list() //keeps track of minions if suppressed forcefully

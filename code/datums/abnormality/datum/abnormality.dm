@@ -130,6 +130,7 @@
 		max_boxes = (threat_level * 4) + 6
 		if(threat_level >= 5)
 			max_boxes += 4
+		current.max_boxes = max_boxes // Prevents abnormalities from having 0 max_boxes at the mob level.
 	else
 		max_boxes = current.max_boxes
 	if(!current.success_boxes)

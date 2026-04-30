@@ -72,6 +72,19 @@
 			I see light. <br>I hear people. <br>I will be free from this torment. <br>For I will meet my redemption"),
 	)
 
+	work_start_lines = list("\"Mirror, mirror on the wall, who's the fairest of them all?\" asked the witch in a room which was no longer visited by anyone.",
+	"The mirror lay silent, but the witch heard the answer.","The day a ripe apple fell off the tree in the garden where the princess and the king stood, the witch's heart shattered.",
+	"The witch cast the most powerful spell she knew on that apple, sacrificing herself.")
+	early_work_lines = list("%PERSON can see branches covering the Containment Unit.", "%ABNO's Containment Unit has some foliage growing inside of it.",
+	"When you approach %ABNO's Containment Unit, you will be able to see the branches that intertwine it.", "The faint sound of rustling leaves can be heard from %ABNO's Containment Unit.")
+	middle_work_lines = list("If you look closely, you can see that the branches are withered. ",
+	"Those things are dried to such a crisp that a single touch would render them dust; they look much too horrible to be called \"plants\".",
+	"Although withered, the branches and leaves are still growing.")
+	late_work_lines = list("%ABNO's eyes are long gone, feasted on by birds and bugs in the past. %ABNO later grew by feasting on their carcasses nearby.",
+	"%ABNO was alone for a very long time. Around %ABNO, the remains of bugs and birds that died from consuming parts of it were scattered about.")
+	work_end_lines = list("%ABNO thought of the princess and the prince who walked down a path of flowers amidst everyone's blessings.",
+	"%ABNO was cursed by the witch, and the princess who fell asleep because of it eventually lived happily ever after.", "%ABNO grew, stewed in jealousy, wrath, and loneliness.")
+
 	initial_language_holder = /datum/language_holder/plant //essentially flavor
 	var/togglemovement = FALSE
 	var/toggleplants = TRUE

@@ -66,6 +66,10 @@
 			The Thunderbird can be spoken to, but never reasoned with."),
 	)
 
+	work_start_lines = list("The scent of wet charcoal permeates the containment unit.", "%ABNO sits motionless.", "%PERSON senses a gaze from the pile of skulls.")
+	middle_work_lines = list("%ABNO can be spoken to, but cannot be reasoned with.", "%PERSON feels shameful, but doesn't know why.")
+	work_end_lines = list("The stench of the viscera was nauseating", "%ABNO was born from the wishes of the forgotten.")
+
 /*---Combat---*/
 	//Melee stats
 	attack_sound = 'sound/abnormalities/thunderbird/tbird_peck.ogg'

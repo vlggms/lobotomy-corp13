@@ -41,6 +41,9 @@
 		"No" = list(FALSE, "\"That's great to hear! Let's see the biggest smile you can put on to make those in the Outskirts jealous!\""),
 	)
 
+	work_start_lines = list("There's no sunlight to be found inside this facility, yet %ABNO delicately dries their own skin.")
+	middle_work_lines = list("The City encouraged %ABNO to keep smiling, but they who were too shy to reveal themself and instead chose to...")
+
 	var/chance_modifier = 1
 	var/previous_mood
 	var/next_mood

@@ -83,6 +83,7 @@
 	work_damage_type = damage
 	user.deal_damage(damage_amount, damage) // take 5 random damage each time
 	WorkDamageEffect()
+	..()
 
 //Prevents red work damage effecs from appearing
 /mob/living/simple_animal/hostile/abnormality/flesh_idol/WorktickFailure(mob/living/carbon/human/user)

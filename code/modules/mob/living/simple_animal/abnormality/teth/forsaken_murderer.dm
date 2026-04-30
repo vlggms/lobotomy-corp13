@@ -90,6 +90,11 @@
 		"Cut the rope" = list(FALSE, "\"You think I'm pathetic, huh? But is you people who are really pathetic. Because you get killed. By people like me.\""),
 	)
 
+	work_start_lines = list("%ABNO stands like a statue in the corner of the Containment Unit.", "At times, %ABNO murmurs while shaking.", "%ABNO may scream from time to time, but as he’s tied up, there probably isn’t any need to worry.")
+	early_work_lines = list("%PERSON senses despair.", "%PERSON smells the unbearable odor of despair.")
+	middle_work_lines = list("Why is this place always so dark and cold?", "In the darkness, %ABNO’s brain slowly rotted.")
+	late_work_lines = list("Forsaken even by death, %ABNO shall remain confined here till the end of time.", "It was no longer rage, but a deeper and more twisted, maniacal abhorrence that found him.")
+
 	//Unique variable im defining for this abnormality. This is the timer for their during work emotes.
 	var/work_emote_cooldown = 0
 

@@ -49,6 +49,21 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 		"Listen to the music" = list(FALSE, "Aah. The music gives you sense of warm coziness and relaxation."),
 	)
 
+	work_start_lines = list("It may appear to just be an ordinary grinder, but please be careful. Every Abnormality may not have a reason to exist, but they all have a will to persist.",
+	"Its force of suction is extremely powerful.", "The music it lets out is said to be terribly beautiful.", "One's blood shall make wondrous chords, and one's flesh shall make great harmonies.")
+	early_work_lines = list("%ABNO will not be set in motion if nobody is nearby.", "Before %PERSON entered, not a single movement came from %ABNO. ",
+	"Prior to %PERSON entering the unit, %ABNO was nothing more than a shut-off machine.", "If %ABNO happened to have a power switch, %PERSON may be a bit more comfortable working with it.")
+	middle_work_lines = list("%PERSON works with %ABNO as cautiously as they can.",
+	"%PERSON must always be careful when working in this unit, as %ABNO could activate at any moment.",
+	"%ABNO gives no form of response or reaction to %PERSON, as if it were digesting bits of flesh internally.", "%PERSON tries to get the work with %ABNO done quickly while it is motionless.")
+	late_work_lines = list("It's rather simple to figure out when %ABNO activates; just open its lid and check how much flesh it has digested.",
+	"%PERSON doesn't have the guts to open up %ABNO's lid to its mechanical guts and check when it will next activate.",
+	"Rumor has it that any employee who opened %ABNO's lid later requested a sick leave.",
+	"In fact, %ABNO's insides are said to be sophisticated, but no employee dares to check it with their own eyes.")
+	work_end_lines = list("Today is %PERSON's lucky day; %ABNO hasn't activated.",
+	"%PERSON is rather thankful that %ABNO is inactive, however, they give their best condolences to whichever employee will work with it next.",
+	"%ABNO's decided to take the day off.", "%ABNO doesn't respond as it is still finishing up its leftovers.")
+
 	var/cleanliness = "clean"
 	var/statChecked = 0
 	var/bonusRed = 0

@@ -44,6 +44,10 @@
 		"Because I don't have a knife" = list(FALSE, "You are lying. You know you can pull out that knife out from your pocket whenever you want."),
 	)
 
+	work_start_lines = list("%ABNO forever searches for someone to lift the curse.", "%ABNO is so appalled by its grotesque appearance, it repeatedly tries to kill itself.")
+	middle_work_lines = list("However, the curse continues eternally, never broken.", "The curse has existed for centuries, inflicting agony upon many unfortunate victims.")
+	work_end_lines = list("Death is another form of joy brought by birth.")
+
 	var/injured = FALSE
 
 //it needs to use PostSpawn or we can't get the datum of beauty

@@ -61,6 +61,11 @@
 			You pull your hand away, but it comes out with the slime. <br>You try to retreat, but you are already caught in her trap. <br>\"Don't betray me, okay?\" <br>Those are the last words you ever hear..."),
 	)
 
+	work_start_lines = list("%ABNO makes those who look at it feel affection without realizing it.")
+	early_work_lines = list("Composed entirely of pink slime, %ABNO is sliding around its Containment Unit.")
+	middle_work_lines = list("If %PERSON feels like they may want to ignore some of the safety and sanitary protocols, it will result in a slimy hell.")
+	work_end_lines = list("Unbeknownst to all, %ABNO's army grows day by day.")
+
 	var/mob/living/carbon/human/gifted_human = null
 	/// Amount of BLACK damage done to all enemies around main target on melee attack. Also includes original target
 	var/radius_damage = 30

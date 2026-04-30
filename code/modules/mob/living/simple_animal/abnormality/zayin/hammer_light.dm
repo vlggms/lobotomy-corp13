@@ -39,8 +39,14 @@
 		Someday, someone made an offer to me. \"If you accept it, your whole world will change.\"<br>\
 		Such a tempting offer. I would become something that I could only hope to be."
 	observation_choices = list(
-		"Accept the offer" = list(TRUE, "I accepted the offer and paid the price. <br>The $0 Hammer of Light shined.")
+		"Accept the offer" = list(TRUE, "I accepted the offer and paid the price. <br>The Hammer of Light shined.")
 	)
+
+	work_start_lines = list("There is a hammer, chained like a prisoner who haven’t seen sunlight for a long time.")
+	early_work_lines = list("The hammer and the chains are not separated. They are one abnormality.", "It seems safe, for it is chained.",
+	"Chains are binding the hammer tightly to make sure no one can lift it.")
+	middle_work_lines = list("%PERSON is curious about the chains binding $0.", "Employee %PERSON feels shame for working for the company while managing %ABNO.")
+	work_end_lines = list("%ABNO waits for the day to be free from these chains.")
 
 	pet_bonus = "hums" // saves a few lines of code by allowing funpet() to be called by attack_hand()
 	var/sealed = TRUE
@@ -201,7 +207,7 @@
 // Item version
 /obj/item/ego_weapon/hammer_light
 	name = "hammer of light"
-	desc = "The $0 \[Hammer of Light\] is such a simple abnormality. It takes as much it gave to you. What price will you pay to it?"
+	desc = "The \"Hammer of Light\" is such a simple abnormality. It takes as much it gave to you. What price did you pay to it?"
 	special = "Use in hand to summon an army of spectral warriors to your location."
 	icon_state = "hammer_light"
 	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'

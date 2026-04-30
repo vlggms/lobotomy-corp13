@@ -44,6 +44,11 @@
 		"Refuse" = list(FALSE, "She gives no indication of being disappointed. <br>Perhaps if you played, you might understand the truth behind yourself as she did."),
 	)
 
+	work_start_lines = list("We can feel the passion and fire that emerges from deep inside %ABNO.")
+	early_work_lines = list("Even without a guiding score, %ABNO will allow anyone to make the greatest performance of their life.")
+	late_work_lines = list("The sonata played by the performer possessed by the moon is breathtakingly alluring to the point that it shatters the walls between man.")
+	work_end_lines = list("Music sets all free with no prejudice.")
+
 	var/performance = FALSE
 	var/performance_length = 60 SECONDS
 	var/breach_length = 404 SECONDS		//How long the song is (when I finally finish it)
@@ -108,6 +113,7 @@
 /mob/living/simple_animal/hostile/abnormality/luna/Worktick(mob/living/carbon/human/user, work_type)
 	if(performance)
 		user.deal_damage(rand(work_damage_lower,work_damage_upper)*0.60, BLACK_DAMAGE)	//take work damage
+	..()
 
 
 /mob/living/simple_animal/hostile/abnormality/luna/AttemptWork(mob/living/carbon/human/user, work_type)
@@ -123,7 +129,7 @@
 
 		if(breached)	//You will have to start a new performance to delete the breached abno.
 			killspawn = TRUE
-	return TRUE
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/luna/proc/BreachEnd(mob/living/carbon/human/user)
 	datum_reference.qliphoth_change(3)

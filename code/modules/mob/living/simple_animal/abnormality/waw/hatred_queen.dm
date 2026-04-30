@@ -74,6 +74,20 @@
 			Why is still so peaceful..?"),
 	)
 
+	// TODO - different lines when hysteric
+	work_start_lines = list("%ABNO is perhaps the most active and cheerful girl out of all our Abnormalities. However, there may be more than meets the eye to her.",
+	"%ABNO seems to be friendly and good to us for now, but caution should still be maintained.",
+	"The potential threat %ABNO possesses is well known to most of our employees. Please remain cautious.", "In fact, \"peace\" is not what %ABNO desires.")
+	early_work_lines = list("%ABNO is humming while looking out the window, she seems well.", "%ABNO welcomes %PERSON with a radiant smile just as they step through the door.",
+	"%ABNO happily greets %PERSON. \"What a beautiful day it is!\"", "%ABNO is evidently glad to see %PERSON.")
+	middle_work_lines = list("%ABNO proudly recounts the time she defeated 3 villains all by herself to %PERSON.",
+	"%PERSON listens to one of %ABNO's stories. Even though she has told this one several times already, she never gets sick of telling it again.",
+	"%ABNO is talking about a villain who virtuously reformed because of her. As %PERSON compliments her for the act, she laughs delightfully.")
+	late_work_lines = list("Her \"Magic Shoes\" occasionally click together, making a cheerful sound.", "The \"Magic Jewelry\" around her neck shimmers in the light.",
+	"The lace of her luxuriant magical outfit is swinging exuberantly.")
+	work_end_lines = list("%ABNO speaks of her \"Duty\" to %PERSON. She whispers that it is very important and secretive.",
+	"%ABNO talks about \"Justice\" to %PERSON. She whispers that her work in itself is justice.")
+
 	var/obj/effect/qoh_wand/wand
 	var/chance_modifier = 1
 	var/death_counter = 0

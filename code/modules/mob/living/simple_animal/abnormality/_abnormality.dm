@@ -102,8 +102,20 @@
 	var/list/grouped_abnos = list()
 	//Abnormaltiy portrait, updated on spawn if they have one.
 	var/portrait = "UNKNOWN"
+
+	/// Abnormality core icon and info
 	var/core_icon = ""
 	var/core_enabled = TRUE
+
+	/// Floating text object reference
+	var/obj/effect/overlay/workflavortext/flavor_text = null
+	var/list/work_start_lines = list("%PERSON started working on %ABNO...")
+	var/list/early_work_lines = list()
+	var/list/middle_work_lines = list()
+	var/list/late_work_lines = list()
+	var/list/work_end_lines = list()
+	var/nextline_boxes = -1
+	var/boxes_divisor = -1
 
 	/// If an abnormality should not be possessed even if possessibles are enabled, mainly for admins.
 	var/do_not_possess = FALSE
@@ -279,14 +291,14 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/proc/HarvestChem(obj/item/reagent_containers/C, mob/user)
-	visible_message(HarvestMessageProcess(harvest_phrase_third, user, C), HarvestMessageProcess(harvest_phrase, user, C))
+	visible_message(MessageProcess(harvest_phrase_third, user, C), MessageProcess(harvest_phrase, user, C))
 	if(chem_type)
 		C.reagents.add_reagent(chem_type, chem_yield)
 	else
 		C.reagents.add_reagent(pick(dummy_chems), chem_yield)
 	chem_cooldown_timer = world.time + chem_cooldown
 
-/mob/living/simple_animal/hostile/abnormality/proc/HarvestMessageProcess(str, user, vessel) // Jacked from announcement_system.dm
+/mob/living/simple_animal/hostile/abnormality/proc/MessageProcess(str, user, vessel) // Jacked from announcement_system.dm
 	str = replacetext(str, "%PERSON", "[user]")
 	str = replacetext(str, "%VESSEL", "[vessel]")
 	str = replacetext(str, "%ABNO", "[src]")
@@ -401,6 +413,9 @@ The variable's key needs to be non-numerical.*/
 // Called by datum_reference when work is done
 /mob/living/simple_animal/hostile/abnormality/proc/WorkComplete(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
 	SHOULD_CALL_PARENT(TRUE)
+	if(flavor_text)
+		flavor_text.FadeOut()
+	flavor_text = null
 	if(pe >= datum_reference.success_boxes)
 		SuccessEffect(user, work_type, pe, work_time, canceled)
 	else if(pe >= datum_reference.neutral_boxes)
@@ -457,7 +472,10 @@ The variable's key needs to be non-numerical.*/
 	return TRUE
 
 // Additional effect on each work tick, whether successful or not
-/mob/living/simple_animal/hostile/abnormality/proc/Worktick(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/proc/Worktick(mob/living/carbon/human/user, boxes)
+	if(boxes != nextline_boxes)
+		return
+	FlavorTextHandler(user, boxes, FALSE)
 	return
 
 // Additional effect on each individual work tick success
@@ -487,6 +505,7 @@ The variable's key needs to be non-numerical.*/
 
 // Dictates whereas this type of work can be performed at the moment or not
 /mob/living/simple_animal/hostile/abnormality/proc/AttemptWork(mob/living/carbon/human/user, work_type)
+	FlavorTextHandler(user, null, TRUE)
 	return TRUE
 
 // Overrides the normal work delay. Called in abnormality_work.dm each worktick.
@@ -631,6 +650,41 @@ The variable's key needs to be non-numerical.*/
 	if(blood_volume <= 0)
 		return
 	return new /obj/effect/gibspawner/generic(drop_location(), src, get_static_viruses())
+
+// This could be optimized. A LOT! Currently should be considered a draft.
+// Really, these numbers suck and are weird, but they're the first numbers that I could come up with that worked.
+// TODO - try more divisors, make sure that all quotes are at least somewhat evenly spaced out across all max_boxes
+/mob/living/simple_animal/hostile/abnormality/proc/FlavorTextHandler(mob/living/carbon/human/user, boxes, started = FALSE)
+	var/display_text
+	var/display_text_style = "font-family: 'Railway'; text-align: center; font-size:9pt;"
+	if(started)
+		if(flavor_text) // How do we have one? Get rid of it
+			flavor_text.FadeOut()
+		var/turf/target_turf = get_ranged_target_turf(src, SOUTHWEST, 1)
+		var/obj/effect/overlay/workflavortext/T = new(target_turf)
+		flavor_text = T
+		display_text = pick(work_start_lines)
+		boxes_divisor = (round(datum_reference.max_boxes * 0.2))
+		nextline_boxes = boxes_divisor
+	else if(boxes)
+		if(boxes == boxes_divisor)
+			if(early_work_lines.len)
+				display_text = pick(early_work_lines)
+			nextline_boxes = boxes_divisor * 2
+		if(boxes == (boxes_divisor * 2))
+			if(middle_work_lines.len)
+				display_text = pick(middle_work_lines)
+			nextline_boxes = (boxes_divisor * 3)
+		if(boxes == (boxes_divisor * 3))
+			if(late_work_lines.len)
+				display_text = pick(late_work_lines)
+			nextline_boxes = (boxes_divisor * 4)
+		if(boxes == (boxes_divisor * 4))
+			if(work_end_lines.len)
+				display_text = pick(work_end_lines)
+	if(display_text)
+		flavor_text.maptext = "<span style=\"[display_text_style]\">[MessageProcess(display_text, user, "NULL")]</span><br>"
+	return TRUE
 
 // Actions
 /datum/action/innate/abnormality_attack

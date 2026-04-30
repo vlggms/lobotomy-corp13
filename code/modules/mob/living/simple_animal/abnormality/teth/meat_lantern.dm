@@ -46,6 +46,10 @@
 		"Call for security" = list(FALSE, "Something so beautiful had no right to exist in the City. You called for security and left in a hurry back to your grey workplace."),
 	)
 
+	work_start_lines = list("%ABNO watches %PERSON with its mysteriously luminous organ protruding out of the ground.")
+	early_work_lines = list("Not a single employee has seen %ABNO’s full form.")
+	late_work_lines = list("If %ABNO completely gets out of its Containment Unit, our corporation may collapse.")
+
 	var/can_act = TRUE
 	var/detect_range = 1
 	var/chop_cooldown

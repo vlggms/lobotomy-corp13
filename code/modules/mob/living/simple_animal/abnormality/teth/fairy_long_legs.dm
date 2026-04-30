@@ -106,7 +106,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/fairy_longlegs/AttemptWork(mob/living/carbon/human/user, work_type)
 	if((work_type != "Take cover")&& !raining)
-		return TRUE
+		return ..()
 	if((work_type == "Take cover") && !raining) //dumbass
 		to_chat(user, span_notice("There's no reason, the skies are clear."))
 		return FALSE
@@ -122,7 +122,7 @@
 		work_count = 0
 		ignored = TRUE
 		raining = FALSE
-		return TRUE
+		return ..()
 
 
 /mob/living/simple_animal/hostile/abnormality/fairy_longlegs/FailureEffect(mob/living/carbon/human/user, work_type, pe)

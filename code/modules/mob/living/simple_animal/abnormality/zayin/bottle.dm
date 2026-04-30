@@ -76,7 +76,7 @@
 	if(work_type != "Dining" && work_type != "Drink")
 		if(datum_reference.console.meltdown)
 			cake_regen = TRUE
-		return TRUE
+		return ..()
 	if(work_type == "Drink")
 		//it's just work speed
 		var/consume_speed = 2 SECONDS / (1 + ((get_attribute_level(user, TEMPERANCE_ATTRIBUTE) + datum_reference.understanding) / 100))
@@ -91,7 +91,7 @@
 		datum_reference.working = FALSE
 		return null
 
-	return TRUE
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/bottle/update_icon_state()
 	if(cake == 3)

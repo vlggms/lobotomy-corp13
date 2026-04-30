@@ -54,6 +54,9 @@
 		"Don't eat the candy" = list(FALSE, "I don't eat the candy given to me. <br>When will mom and dad come? <br>Why aren't they here? <br>It doesn't stop hurting, <br>I'm scared..."),
 	)
 
+	work_start_lines = list("%ABNO's dreams are those of running outside of the facility in total freedom.")
+	middle_work_lines = list("Just as everyone wished for, %ABNO can live here forever.")
+
 	var/list/movement_path = list()
 	var/list/been_hit = list()
 	var/charging = FALSE

@@ -47,6 +47,10 @@
 			Nothing matters. <br>We will repeat this song and dance until the end of time.<br> I can only laugh at this pointless endeavor."),
 	)
 
+	work_start_lines = list("%ABNO says nothing to %PERSON, only humming to itself.", "Just being near %ABNO can be quite unsettling.")
+	middle_work_lines = list("%PERSON avoids looking directly into %ABNO's lightless eyes.", "An oppressive, intangible substance emanates from %ABNO.")
+	work_end_lines = list("%ABNO always found itself at the end of the road.", "%ABNO blindly marches on, leaving behind nothingness.")
+
 	var/can_act = TRUE
 	//Teleports
 	var/icon_inverted

@@ -54,6 +54,9 @@
 		"Cover your mouth" = list(FALSE, "They could infect you at any time through any orifice, you best leave in a hurry."),
 	)
 
+	work_start_lines = list("%ABNO appears to form a wet and sleek sphere. It is not unreasonable that it would mistake %PERSON's brain as a nest.")
+	middle_work_lines = list("If %PERSON's skin becomes a hideously green shade, it is already too late for them.")
+
 	var/serpentsnested = 4
 	var/origin_cooldown = 0
 

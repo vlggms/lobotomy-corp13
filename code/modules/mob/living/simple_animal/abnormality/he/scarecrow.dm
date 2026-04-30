@@ -57,6 +57,10 @@
 		"Wisdom" = list(FALSE, "Come closer. <br>I’ll help you forget all of your woes and worries."),
 	)
 
+	work_start_lines = list("We are still in the midst of our journey. We followed the yellow brick road to make our dreams come true.")
+	middle_work_lines = list("The treatment miraculously made everyone silent, even those who refused to be quiet after any other therapy.")
+	work_end_lines = list("%ABNO began to chase after smart brains instead of scaring away birds.")
+
 	/// Can't move/attack when it's TRUE
 	var/finishing = FALSE
 	var/braineating = TRUE

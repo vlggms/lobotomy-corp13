@@ -64,6 +64,14 @@ GLOBAL_LIST_EMPTY(apostles)
 		"Why have you come?" = list(FALSE, "Thy question is empty, I cannot answer"),
 	)
 
+	work_start_lines = list("%PERSON, repented, enters the Containment Unit, following His divine light.", "\"What maketh thee hesitate? I work miracles here.\"")
+	early_work_lines = list("%ABNO looks like a fetus, but it seems as though He needs no nannying.",
+	"When the bell struck twelve, the facility was swallowed by a blinding light. It was the light of redemption for His disciples.")
+	middle_work_lines = list("Only silence fills the air around %ABNO.", "%ABNO absorbs all light and sound which surrounds Him.")
+	late_work_lines = list("%ABNO came here to redeem you and lead the new world.", "%ABNO arrived from the end of the world, and He walks towards the beginning of the new world.")
+	work_end_lines = list("\"%PERSON, why art thou in fear? I shall not leave thee until I have completed my mission.\"",
+	"\"%PERSON, be not frightened. I am thy savior and I shall be with thee.\"", "\"I heard thy cries. Thy heart reached me. %PERSON, thou hath called me.\"")
+
 	var/holy_revival_cooldown
 	var/holy_revival_cooldown_base = 75 SECONDS
 	var/holy_revival_damage = 80 // Pale damage, scales with distance

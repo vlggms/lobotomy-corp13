@@ -64,6 +64,18 @@
 			Numbers of tools, which were devoid of for my friends, were put into me. <br>When I was sent to a new home, I gave them a present."),
 	)
 
+	work_start_lines = list("%ABNO spins around %PERSON, however, %PERSON continues to concentrate on the task at hand.",
+	"%ABNO is well versed in all manner of cleaning. It was designed to take care of a family household all on its own.",
+	"When it was discovered that %ABNO contained a critical error, it had already been sent to a household.",
+	"Blood covered the whole floor, screams echoed, people were running away, and %ABNO was gleefully learning the concept of “cleaning”.")
+	early_work_lines = list("A pristine white surface sleek with fine lines and short but efficient legs, %ABNO was created to help people.",
+	"XX Incorporated, the manufacturer of %ABNO, was famous for its robotics products.")
+	middle_work_lines = list("%ABNO has various functions installed in its body. From burglar alarms and a monitoring system to a coffee maker and light control, it contains everything a household needs.",
+	"You may be surprised to learn the numerous functionalities %ABNO contains in its compact body. If you were to dismantle it, you would be even more impressed by how efficiently they packed all the necessary equipment into it.")
+	late_work_lines = list("If %ABNO were to have any capacity of emotion, it would likely feel very proud of itself for all the help it provides to others.",
+	"%ABNO always ponders on how it can do more to help.", "Most people are unaware of this, but %ABNO makes amazing coffee. Of course, no one is likely to ask it to do such a thing now.")
+	work_end_lines = list("%PERSON has decided against buying a robot vacuum cleaner after seeing %ABNO.", "%PERSON only hopes that %ABNO's \"cleaning\" mode is never activated.")
+
 	var/charging = FALSE
 	var/clogged_blades = FALSE
 	var/dash_num = 50

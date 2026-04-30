@@ -31,52 +31,17 @@
 	gift_type =  /datum/ego_gifts/standard // Way too lazy to make its own gift
 	abnormality_origin = ABNORMALITY_ORIGIN_JOKE
 
-	observation_prompt = "We're no strangers to love <br>\
-		You know the rules and so do I <br>\
-		A full commitment's what I'm thinkin' of <br>\
-		You wouldn't get this from any other guy <br>\
-		I just wanna tell you how I'm feeling <br>\
-		Gotta make you understand <br>\
-		Never gonna give you up, never gonna let you down <br>\
-		Never gonna run around and desert you <br>\
-		Never gonna make you cry, never gonna say goodbye <br>\
-		Never gonna tell a lie and hurt you <br>\
-		We've known each other for so long <br>\
-		Your heart's been aching, but you're too shy to say it <br>\
-		Inside, we both know what's been going on <br>\
-		We know the game and we're gonna play it <br>\
-		And if you ask me how I'm feeling <br>\
-		Don't tell me you're too blind to see <br>\
-		Never gonna give you up, never gonna let you down <br>\
-		Never gonna run around and desert you <br>\
-		Never gonna make you cry, never gonna say goodbye <br>\
-		Never gonna tell a lie and hurt you <br>\
-		Never gonna give you up, never gonna let you down <br>\
-		Never gonna run around and desert you <br>\
-		Never gonna make you cry, never gonna say goodbye <br>\
-		Never gonna tell a lie and hurt you <br>\
-		We've known each other for so long <br>\
-		Your heart's been aching, but you're too shy to say it <br>\
-		Inside, we both know what's been going on <br>\
-		We know the game and we're gonna play it <br>\
-		I just wanna tell you how I'm feeling <br>\
-		Gotta make you understand <br>\
-		Never gonna give you up, never gonna let you down <br>\
-		Never gonna run around and desert you <br>\
-		Never gonna make you cry, never gonna say goodbye <br>\
-		Never gonna tell a lie and hurt you <br>\
-		Never gonna give you up, never gonna let you down <br>\
-		Never gonna run around and desert you <br>\
-		Never gonna make you cry, never gonna say goodbye <br>\
-		Never gonna tell a lie and hurt you <br>\
-		Never gonna give you up, never gonna let you down <br>\
-		Never gonna run around and desert you <br>\
-		Never gonna make you cry, never gonna say goodbye <br>\
-		Never gonna tell a lie and hurt you"
+	observation_prompt = "//TODO - Add Observation Prompt" // This is intentional.
 
 	observation_choices = list(
-		"Give up" = list(TRUE, "You give up and embrace the jank. A gift materializes on you a few moments later."),
+		"What?" = list(TRUE, "A gift materializes on you a few moments later."),
 	)
+
+	work_start_lines = list("%ABNO's existance stretches the definition of \"An Abnormality.\"")
+	early_work_lines = list("%ABNO looks exactly like one of the cutsey drawings in the manual.", "%ABNO doesn't resemble any sort of living creature that %PERSON knows about.")
+	middle_work_lines = list("%PERSON hesitantly pokes %ABNO, no response.")
+	late_work_lines = list("%ABNO flickers out of existance for a moment, surprising %PERSON.", "%PERSON hears muffled laughter in the distance.")
+	work_end_lines = list("Is %ABNO really an abnormality?")
 
 /mob/living/simple_animal/hostile/abnormality/an_abnormality/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(25))

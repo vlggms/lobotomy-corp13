@@ -119,7 +119,7 @@
 /mob/living/simple_animal/hostile/abnormality/skin_prophet/AttemptWork(mob/living/carbon/human/user, work_type)
 	..()
 	HandleCandles()
-	return TRUE
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/skin_prophet/WorkChance(mob/living/carbon/human/user, chance, work_type)//set the new work chances
 	. = chance // Set default Return to chance

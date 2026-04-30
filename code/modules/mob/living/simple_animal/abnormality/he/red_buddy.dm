@@ -148,7 +148,7 @@
 	if(lying_timer)
 		datum_reference.qliphoth_change(1)
 		deltimer(lying_timer)
-	return TRUE
+	return ..()
 
 //makes buddy scarred if his suffering is high enough
 /mob/living/simple_animal/hostile/abnormality/red_buddy/proc/UpdateScars()

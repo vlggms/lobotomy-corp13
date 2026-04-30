@@ -50,6 +50,14 @@
 			Everything started when I began to study that pheromone."),
 	)
 
+	work_start_lines = list("For bees, a damaged hive is something that cannot be tolerated.", "They say a hive's drones spend their entire life providing food for the queen.")
+	early_work_lines = list("The highest priority for bees would be the safety of their hive.",
+	"If someone happens to damage %ABNO, even by accident, something that can never be undone may occur.")
+	late_work_lines = list("If %PERSON happens to feel abdominal pain and a tingling sensation in their neck, the only option they would have is to look at the great blue sky one last time.",
+	"%PERSON makes a conscious effort to take in as little breath of the Containment Unit's air as possible.")
+	work_end_lines = list("'%ABNO desires more and more and more and more drones; they will bring prosperity to its kingdom.",
+	"'%ABNO will be completed by the work of its drones' Such will be the beginning of its kingdom.")
+
 	var/datum/looping_sound/queenbee/soundloop
 	var/breached_others = FALSE
 

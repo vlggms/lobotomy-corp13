@@ -219,6 +219,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/siltcurrent/Worktick(mob/living/carbon/human/user)
 	user.adjustOxyLoss(1.5, updating_health=TRUE, forced=TRUE)//haha drown.
+	..()
 
 /mob/living/simple_animal/hostile/abnormality/siltcurrent/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
