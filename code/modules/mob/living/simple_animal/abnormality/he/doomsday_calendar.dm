@@ -1,8 +1,8 @@
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar
 	name = "Doomsday Calendar"
 	desc = "Likely a tool for predicting a date of some kind, judging from the many letters carved on the bricks."
-	health = 2012
-	maxHealth = 2012
+	health = 1212
+	maxHealth = 1212
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "doomsday_inert"
 	icon_living = "doomsday_inert"
@@ -17,7 +17,7 @@
 	can_breach = TRUE
 	can_buckle = TRUE
 	threat_level = HE_LEVEL
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.7, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 1)//only when initialized
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.1, PALE_DAMAGE = 0.3)//only when initialized
 	start_qliphoth = 5
 	max_boxes = 18 // This must be defined here for later code to work.
 	work_chances = list(
@@ -270,7 +270,7 @@
 					if(H.stat >= SOFT_CRIT || H.health < 0)
 						H.fire_stacks += 1
 						H.IgniteMob()//unforunately this fire isn' blue.
-			adjustBruteLoss(1000)
+			adjustBruteLoss(500)
 
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/proc/AoeBurn()
 	pulse_cooldown = world.time + pulse_cooldown_time
@@ -317,7 +317,7 @@
 		to_chat(user, span_nicegreen("[src] is sated by your offering!"))
 		M.gib()
 		is_fed = TRUE
-		adjustBruteLoss(300)
+		adjustBruteLoss(150)
 		pulse_damage -= 1
 		playsound(get_turf(src),'sound/effects/limbus_death.ogg', 50, 1)
 		AddModifier(/datum/dc_change/sacrificed)
