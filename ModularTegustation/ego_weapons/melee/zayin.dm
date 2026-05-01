@@ -133,6 +133,10 @@
 	desc = "A hammer made with the desire to change anything"
 	special = "Attack a friendly human while wearing matching armor to heal their HP slightly."
 	icon_state = "change"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
 	force = 6
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("slams", "strikes", "smashes")
@@ -192,6 +196,10 @@
 	desc = "I accepted the offer and paid the price."
 	special = "Use this weapon in your hand when wearing matching armor to generate weak pale shields for others nearby."
 	icon_state = "evening"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
 	force = 5
 	damtype = PALE_DAMAGE
 	attack_verb_continuous = list("slams", "strikes", "smashes")
@@ -418,6 +426,10 @@
 	desc = "You've pressed it numerous times and you still have something you want to know about it?"
 	special = "Attack an enemy while wearing matching armor to make them lose interest in you. Might also just make them angry."
 	icon_state = "touch"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
 	force = 6
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("sprays", "hoses", "mists", "drizzles")
