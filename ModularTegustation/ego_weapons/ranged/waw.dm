@@ -272,7 +272,7 @@
 	name = "praetorian"
 	desc = "And with her guard, she conquered all."
 	icon_state = "praetorian"
-	inhand_icon_state = "executive"
+	inhand_icon_state = "praetorian"
 	special = "This weapon fires IFF bullets."
 	force = 14
 	projectile_path = /obj/projectile/ego_bullet/ego_praetorian
