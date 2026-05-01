@@ -26,6 +26,7 @@
 	/* Works */
 	start_qliphoth = 2
 	good_hater = TRUE
+	success_boxes = 99 // Under normal circumstances, impossible
 	can_breach = TRUE
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(80, 70, 60, 55, 50),
