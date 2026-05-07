@@ -16,7 +16,7 @@ It has now been over four months. Now we get her for real. -Coxswain
 	del_on_death = TRUE
 	pixel_x = -8
 	base_pixel_x = -8
-	maxHealth = 100 // More health than standard
+	maxHealth = 1000 // More health than standard
 	health = 1000 // Since she was apparently too easy to suppress
 	rapid_melee = 2
 	speed = 0.5
