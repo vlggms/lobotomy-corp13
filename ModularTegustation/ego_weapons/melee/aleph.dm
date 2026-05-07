@@ -1179,8 +1179,16 @@
 			swingstyle = WEAPONSWING_SMALLSWEEP
 	if(form == "bat")
 		knockback = KNOCKBACK_LIGHT
+		lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+		righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+		inhand_x_dimension = 64
+		inhand_y_dimension = 64
 	else
-		knockback = null
+		knockback = FALSE
+		lefthand_file = 'icons/mob/inhands/weapons/ego_lefthand.dmi'
+		righthand_file = 'icons/mob/inhands/weapons/ego_righthand.dmi'
+		inhand_x_dimension = 32
+		inhand_y_dimension = 32
 
 /obj/item/ego_weapon/shield/gasharpoon
 	name = "gasharpoon"
