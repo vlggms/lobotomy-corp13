@@ -43,9 +43,3 @@
 	if(A.datum_reference.understanding < A.datum_reference.max_understanding)
 		to_chat(installer, span_notice("Abnormality is not yet fully understood."))
 		return FALSE
-
-/obj/item/work_console_upgrade/work_prediction_attachment
-	name = "predictive workrate formula upgrade"
-	desc = "Using information collected from employee files and security footage this upgrade allows the user to see their success rate."
-	upgrade_slot = "workrate"
-	color = COLOR_SOFT_RED

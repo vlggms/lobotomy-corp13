@@ -48,6 +48,9 @@
 	/// Simulated Observation Bonuses
 	var/understanding = 0
 	var/max_understanding = 0
+	/// Percentage progress to reveal a new work type's chances. Relative to max_understanding
+	var/next_reveal = 0
+	var/reveal_interval = 0
 	/// The limit for maximum attribute level you can achieve working on this abnormality
 	var/maximum_attribute_level = 0
 	/// A list of performed works on it
@@ -91,6 +94,9 @@
 	RespawnAbno()
 	FillEgoList()
 	ModifyOdds()
+	next_reveal = ((1 / available_work.len) * max_understanding)
+
+	reveal_interval = next_reveal
 
 /datum/abnormality/Destroy()
 	SSlobotomy_corp.all_abnormality_datums -= src
@@ -226,10 +232,10 @@
 	stored_boxes += round(pe * SSlobotomy_corp.box_work_multiplier)
 	overload_chance[user.ckey] = max(overload_chance[user.ckey] + overload_chance_amount, overload_chance_limit)
 
-/datum/abnormality/proc/UpdateUnderstanding(percent, pe)
+/datum/abnormality/proc/UpdateUnderstanding(percent, pe, forced = FALSE)
 	// Lower agent pop gets a bonus
 	var/agent_count = max(AvailableAgentCount(), 1)
-	if(percent)
+	if(percent && !forced)
 		percent *= 1 + max(0.5, (3 / agent_count))
 
 	if(understanding != max_understanding) // This should render "full_understood" not required.
@@ -252,6 +258,20 @@
 			SSlobotomy_corp.understood_abnos--
 	if(understanding == max_understanding && prob((pe / max_boxes) + current.gift_chance))
 		observation_ready = TRUE
+	while(understanding >= next_reveal) // while loop, as in lowpop, multiple could be revealed at once.
+		next_reveal += reveal_interval
+		var/list/worktypes = available_work.Copy()
+		var/revealed_work
+		while(!revealed_work)
+			var/pickedoption = pick(worktypes)
+			worktypes -= pickedoption
+			if(!pickedoption)
+				break
+			if(pickedoption in console.revealed_list)
+				continue
+			revealed_work = pickedoption
+		if(revealed_work)
+			console.revealed_list += revealed_work
 
 	if(understanding >= (max_understanding / 2)) //Understanding is over 50% - EO lock tool breaks
 		console.ApplyEOTool(EXTRACTION_KEY, TRUE)

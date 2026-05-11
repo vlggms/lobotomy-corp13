@@ -14,19 +14,21 @@
 	var/can_meltdown = TRUE
 	/// Will works send signals and be logged?
 	var/recorded = TRUE
-	/// Special tutorial abnormality behaviors
+	/// Special tutorial abnormality behaviors.
 	var/tutorial = FALSE
-	/// Work types will instead redirect to those, if listed
+	/// Work types will instead redirect to those, if listed.
 	var/list/scramble_list = list()
+	/// Work types revealed by understanding
+	var/list/revealed_list = list()
 	///Linked Panel
 	var/obj/machinery/containment_panel/linked_panel
 	/// Accumulated abnormality chemical.
 	var/chem_charges = 0
-	/// Extraction Officer Visual effect
+	/// Extraction Officer Visual effect.
 	var/obj/effect/vfx = null
-	/// Extraction Officer Work bonus/penalty
+	/// Extraction Officer Work bonus/penalty.
 	var/work_bonus = 0
-	/// Stored reference to Extraction Officer Tool
+	/// Stored reference to Extraction Officer Tool.
 	var/obj/item/extraction/key/EOTool = null
 	/// Console Upgrades
 	var/list/mechanical_upgrades = list(
@@ -106,7 +108,7 @@
 	//Abnormality portraits
 	for(var/pahs in GLOB.abnormality_portraits)
 		user << browse_rsc(pahs)
-	dat += {"<div style="float:right; width: 60%;">
+	dat += {"<div style="float:right; width: 50%;">
 	<img src='[datum_reference.GetPortrait()].png' class="fit-picture" width="192" height="192">
 	</div>"}
 	dat += "<br>"
@@ -121,12 +123,12 @@
 		var/datum/suppression/information/I = GetCoreSuppression(/datum/suppression/information)
 		if(!tutorial && istype(I))
 			work_display = Gibberish(work_display, TRUE, I.gibberish_value)
-		if(HAS_TRAIT(user, TRAIT_WORK_KNOWLEDGE) || mechanical_upgrades["workrate"])
-			dat += "<A href='byond://?src=[REF(src)];do_work=[wt]'>[work_display] \[[datum_reference.get_work_chance(wt, user)]%\]</A> <br>"
+		if(HAS_TRAIT(user, TRAIT_WORK_KNOWLEDGE) || mechanical_upgrades["workrate"] || (wt in revealed_list))
+			dat += "<A href='byond://?src=[REF(src)];do_work=[wt]'>[work_display] \[[floor(datum_reference.get_work_chance(wt, user))]%\]</A> <br>"
 		else
 			dat += "<A href='byond://?src=[REF(src)];do_work=[wt]'>[work_display]</A> <br>"
 
-	var/datum/browser/popup = new(user, "abno_work", "Abnormality Work Console", 400, 350)
+	var/datum/browser/popup = new(user, "abno_work", "Abnormality Work Console", 450, 350)
 	popup.set_content(dat)
 	popup.open()
 	return

@@ -849,7 +849,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	to_chat(src, span_interface("Abnormality Observation status successfully set to ready."))
 	if(abno_datum.understanding == abno_datum.max_understanding)
 		return to_chat(src, span_interface("Error - Abnormality Already Full Understanding."))
-	abno_datum.understanding = abno_datum.max_understanding
+	abno_datum.UpdateUnderstanding(100,100,TRUE)
 
 	log_admin("[key_name(usr)] has fully understood [abno_type].")
 	message_admins("[key_name(usr)] has fully understood [abno_type].")

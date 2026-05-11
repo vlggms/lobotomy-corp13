@@ -55,10 +55,6 @@
 	to_chat(target, span_danger("You feel a tiny prick"))
 	target.adjust_all_attribute_levels(injection_amount)
 
-/**
- * Very similar to /obj/item/trait_injector/agent_workchance_trait_injector
- * except this one has no safeties in terms of who can use it
- */
 /obj/item/lc_debug/work_chance_injector
 	name = "Agent Work Chance Injector"
 	desc = "An injector containing liquid that allows agents to view their chances before work. Use in hand to activate."
