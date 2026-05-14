@@ -1163,7 +1163,6 @@
 
 /obj/item/ego_weapon/mockery/proc/Transform()
 	icon_state = "mockery_[form]"
-	update_icon_state()
 	if(current_holder)
 		to_chat(current_holder,span_notice("[src] suddenly transforms!"))
 		current_holder.update_inv_hands()
@@ -1193,6 +1192,7 @@
 		righthand_file = 'icons/mob/inhands/weapons/ego_righthand.dmi'
 		inhand_x_dimension = 32
 		inhand_y_dimension = 32
+	update_icon_state()
 
 /obj/item/ego_weapon/shield/gasharpoon
 	name = "gasharpoon"
