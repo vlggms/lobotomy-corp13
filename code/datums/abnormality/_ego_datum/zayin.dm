@@ -101,7 +101,7 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/letter_opener
 	cost = 12
 
-// Sunset Traveller - Eclipse of Scarlet Moths
+// Sunset Wayfarer - Eclipse of Scarlet Moths
 /datum/ego_datum/weapon/eclipse
 	item_path = /obj/item/ego_weapon/eclipse
 	cost = 12

@@ -1,9 +1,9 @@
-/mob/living/simple_animal/hostile/abnormality/sunset_traveller
-	name = "Sunset Traveller"
+/mob/living/simple_animal/hostile/abnormality/sunset_wayfarer
+	name = "Sunset Wayfarer"
 	desc = "A yellow creature with orange butterflies floating around it."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "sunset"
-	portrait = "sunset_traveller"
+	portrait = "sunset_wayfarer"
 	maxHealth = 80
 	health = 80
 	threat_level = ZAYIN_LEVEL
@@ -55,24 +55,21 @@
 	light_power = 7
 	var/healing = FALSE
 
-/mob/living/simple_animal/hostile/abnormality/sunset_traveller/AttemptWork(mob/living/carbon/human/user, work_type)
-	if(healing)
-		return FALSE
-	return ..()
-
-/mob/living/simple_animal/hostile/abnormality/sunset_traveller/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/sunset_wayfarer/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
+	if(healing)
+		return
 	new /mob/living/simple_animal/hostile/scarlet_moths(src)
 	new /mob/living/simple_animal/hostile/scarlet_moths(src)
 
-/mob/living/simple_animal/hostile/abnormality/sunset_traveller/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
+/mob/living/simple_animal/hostile/abnormality/sunset_wayfarer/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(pe == 0)
 		return
 	if(healing)
 		return
 	Heal(user)
 
-/mob/living/simple_animal/hostile/abnormality/sunset_traveller/proc/Heal(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/sunset_wayfarer/proc/Heal(mob/living/carbon/human/user)
 	set waitfor = FALSE
 	healing = TRUE
 	say("Look at those butterflies! Aren't they just beautiful?")
@@ -80,7 +77,7 @@
 	say("And gander at that sunset, too! Really makes you want to go for a stroll.")
 	SLEEP_CHECK_DEATH(15)
 	say("Why don't you stop for a moment and take a breather here?")
-	while (PlayerCheck(user))
+	while(PlayerCheck(user))
 		for(var/mob/living/carbon/human/H in view(3, src))
 			//Heal 5% for every 1.5 seconds you're here
 			H.adjustBruteLoss(-(H.maxHealth*0.05))
@@ -91,7 +88,7 @@
 		SLEEP_CHECK_DEATH(15)
 	healing = FALSE
 
-/mob/living/simple_animal/hostile/abnormality/sunset_traveller/proc/PlayerCheck(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/sunset_wayfarer/proc/PlayerCheck(mob/living/carbon/human/user)
 	if(user in view(5, src))
 		return TRUE
 	else
@@ -100,7 +97,7 @@
 
 // Pink Midnight
 
-/mob/living/simple_animal/hostile/abnormality/sunset_traveller/BreachEffect(mob/living/carbon/human/user, breach_type)
+/mob/living/simple_animal/hostile/abnormality/sunset_wayfarer/BreachEffect(mob/living/carbon/human/user, breach_type)
 	if(breach_type == BREACH_PINK)
 		can_breach = TRUE
 		for(var/mob/living/simple_animal/hostile/ordeal/pink_midnight/pm in GLOB.ordeal_list)
@@ -116,16 +113,16 @@
 		return
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/sunset_traveller/Move()
+/mob/living/simple_animal/hostile/abnormality/sunset_wayfarer/Move()
 	return FALSE
 
-/mob/living/simple_animal/hostile/abnormality/sunset_traveller/CanAttack(atom/the_target)
+/mob/living/simple_animal/hostile/abnormality/sunset_wayfarer/CanAttack(atom/the_target)
 	return FALSE
 
-/mob/living/simple_animal/hostile/abnormality/sunset_traveller/CanBeAttacked()
+/mob/living/simple_animal/hostile/abnormality/sunset_wayfarer/CanBeAttacked()
 	return FALSE
 
-/mob/living/simple_animal/hostile/abnormality/sunset_traveller/proc/HealAlt()
+/mob/living/simple_animal/hostile/abnormality/sunset_wayfarer/proc/HealAlt()
 	set waitfor = FALSE
 	while (stat != DEAD)
 		for(var/mob/living/L in view(5, src))
