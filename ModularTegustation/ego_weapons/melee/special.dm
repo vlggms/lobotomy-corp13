@@ -712,6 +712,10 @@
 	desc = "Just open up the machine, step inside, and press the button to make it shut. Now everything will be just fine.."
 	special = "This weapon builds up the amount of times it hits as you attack, at maximum speed it will damage you per hit, increasing more and more, use it in hands."
 	icon_state = "iron_maiden"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
 	force = 14 //DPS of 14, 28, 42, 56 at each ramping level
 	damtype = RED_DAMAGE
 

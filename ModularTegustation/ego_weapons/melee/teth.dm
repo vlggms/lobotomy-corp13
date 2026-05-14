@@ -2,6 +2,10 @@
 	name = "training hammer"
 	desc = "E.G.O intended for Manager Education"
 	icon_state = "training"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
 	force = 8
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("smacks", "hammers", "beats")
@@ -578,6 +582,10 @@
 	name = "kiki mora"
 	desc = "Many would speak her name."
 	icon_state = "kikimora"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
 	force = 16
 	attack_speed = 1.6
 	damtype = RED_DAMAGE
@@ -589,6 +597,10 @@
 	name = "denial"
 	desc = "Unregulated ingestion of Enkephalin may cause a wide range of unverified psychopathological symptoms."
 	icon_state = "denial"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
 	force = 15
 	damtype = WHITE_DAMAGE
 	attack_speed = 1.5
