@@ -920,7 +920,7 @@
 	name = "soda shotgun"
 	desc = "A gun used by Shrimp-Corp, apparently."
 	icon_state = "sodashotgun"
-	inhand_icon_state = "sodalong"
+	inhand_icon_state = "sodashotgun"
 	force = 18
 	attack_speed = 1.3
 	projectile_path = /obj/projectile/ego_bullet/soda_shotty
@@ -940,7 +940,7 @@
 	name = "soda submachinegun"
 	desc = "A gun used by Shrimp-Corp, apparently."
 	icon_state = "sodasmg"
-	inhand_icon_state = "soda"
+	inhand_icon_state = "sodasmg"
 	force = 14
 	projectile_path = /obj/projectile/ego_bullet/soda_smg
 	weapon_weight = WEAPON_HEAVY

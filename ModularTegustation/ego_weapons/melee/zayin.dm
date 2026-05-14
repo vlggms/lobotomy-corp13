@@ -432,8 +432,8 @@
 	inhand_y_dimension = 64
 	force = 6
 	damtype = WHITE_DAMAGE
-	attack_verb_continuous = list("sprays", "hoses", "mists", "drizzles")
-	attack_verb_simple = list("spray", "hose", "mist", "drizzle")
+	attack_verb_continuous = list("slams", "strikes", "smashes")
+	attack_verb_simple = list("slam", "strike", "smash")
 	hitsound = 'sound/effects/spray3.ogg'
 
 /obj/item/ego_weapon/prohibited/attack(mob/living/M, mob/living/user)

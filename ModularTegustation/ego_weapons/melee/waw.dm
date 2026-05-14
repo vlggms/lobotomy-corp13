@@ -5,6 +5,10 @@
 	special = "This weapon attacks all non-humans in an AOE. \
 			This weapon deals double damage on direct attack."
 	icon_state = "lamp"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
 	force = 12 // Does +14 with AOE
 	attack_speed = 1.3
 	damtype = BLACK_DAMAGE
@@ -328,6 +332,10 @@
 	desc = "Time flows as life does, and life goes as time does."
 	special = "This weapon deals an absurd amount of damage on the 13th hit."
 	icon_state = "thirteen"
+	lefthand_file = 'icons/mob/inhands/96x96_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
+	inhand_x_dimension = 96
+	inhand_y_dimension = 96
 	force = 20
 	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = PALE_DAMAGE
@@ -1081,6 +1089,10 @@
 	name = "Blind Rage"
 	desc = "Those who suffer injustice tend to lash out at all those around them."
 	icon_state = "blind_rage"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
 	force = 32
 	attack_speed = 1.2
 	special = "This weapon possesses a devastating Red AND Black damage AoE. Be careful!"
@@ -1171,6 +1183,10 @@
 	desc = "Many employees have sustained injuries from erroneous calculation."
 	special = "This weapon deals double damage to targets under 40% HP."
 	icon_state = "diffraction"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
 	force = 20
 	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = WHITE_DAMAGE

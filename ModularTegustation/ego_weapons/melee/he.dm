@@ -1344,6 +1344,10 @@
 	desc = "Anyone damaged by it will lose themselves for a moment. \
 	As the equipment was forged from snow, it shall disappear without a trace someday."
 	icon_state = "frostsplinter"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
 	force = 19
 	reach = 2		//Has 2 Square Reach.
 	stuntime = 5	//Longer reach, gives you a short stun.
