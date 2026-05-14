@@ -744,6 +744,10 @@
 	Hitting with the spear and sword improve the damage of the next gauntlet. \n\
 	This weapon stuns you for a short period of time on spear mode."
 	icon_state = "become_strong_sp"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
 	worn_icon = 'icons/obj/clothing/belt_overlays.dmi'
 	worn_icon_state = "become_strong"
 	force = 14
@@ -755,7 +759,7 @@
 	hitsound = 'sound/weapons/ego/spear1.ogg'
 	var/mode = "Spear"
 	var/list/mode_stats = list(
-		"Spear" = list("_sp", 16, 1, 2, list("pokes", "jabs"), list("poke", "jab"), 'sound/weapons/ego/spear1.ogg'),	//Now immobilizes you.
+		"Spear" = list("_sp", 14, 1, 2, list("pokes", "jabs"), list("poke", "jab"), 'sound/weapons/ego/spear1.ogg'),	//Now immobilizes you.
 		"Sword" = list("_sw", 16, 1, 1, list("slashes", "slices"), list("slash", "slice"), 'sound/weapons/bladeslice.ogg'),
 		"Gauntlet" = list("_f", 48, 3, 1, list("crushes", "smashes"), list("crush", "smash"), 'sound/weapons/ego/strong_gauntlet.ogg')
 		)

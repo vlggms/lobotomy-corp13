@@ -374,6 +374,10 @@
 				will hit all hostiles in a 3 tile range around the user. If vine burst is used at 30% sanity the damage is \
 				increased by 50% but will hit allies due to the intense hatred of F-04-42 influencing the user."
 	icon_state = "green_stem"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
 	force = 24
 	reach = 2		//Has 2 Square Reach.
 	stuntime = 5	//Longer reach, gives you a short stun.
@@ -784,6 +788,10 @@
 	All that was left is a worn parasol it once treasured."
 	special = "This weapon has a small windup before blocking, and performs a counterattack upon a successful block."
 	icon_state = "swan_closed"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
 	force = 10
 	attack_speed = 0.5
 	damtype = BLACK_DAMAGE

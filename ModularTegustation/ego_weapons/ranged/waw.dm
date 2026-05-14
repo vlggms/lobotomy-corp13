@@ -401,6 +401,10 @@
 	desc = "A chunk of the naked nest inigrated with a launching mechanism."
 	icon_state = "exuviae"
 	inhand_icon_state = "exuviae"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
 	force = 16
 	attack_speed = 1.3
 	projectile_path = /obj/projectile/ego_bullet/ego_exuviae
