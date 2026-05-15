@@ -214,7 +214,7 @@
 	value = 0
 	max_value = 6
 	var/value_increase = 1
-	info = " - This upgrade inceases the healing of <b>Regenerators</b> by +1/2/3 HP and SP per upgrade."
+	info = " - This upgrade inceases the healing of <b>Regenerators</b> by +1/2/3 HP and SP per upgrade.<br> - The additional healing does not get decreased when theres an <b>Abnormality/Ordeal</b> in the regenerator's deparment."
 
 /datum/facility_upgrade/regnenerator_healing/Upgrade()
 	value = min(max_value, value + value_increase)

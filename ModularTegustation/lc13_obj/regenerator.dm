@@ -83,12 +83,13 @@
 
 	if(LAZYLEN(people_to_heal))
 		// The math is weird, but it is intentional. Feel free to change it, but be careful as mults on top of base heal increases go wild quick.
-		var/regen_amt = regeneration_amount + GetFacilityUpgradeValue(UPGRADE_REGENERATOR_HEALING)
 		var/regen_mult = rapid ? 0.2 : 1
+		var/regen_add = GetFacilityUpgradeValue(UPGRADE_REGENERATOR_HEALING)
+		var/threat_mult = 1
 		if(threat_detected)
-			regen_mult *= 0.5
-		var/hp_amt = (regen_amt + hp_bonus) * regen_mult
-		var/sp_amt = (regen_amt + sp_bonus) * regen_mult
+			threat_mult *= 0.5
+		var/hp_amt = (((regeneration_amount + hp_bonus) * threat_mult) + regen_add) * regen_mult
+		var/sp_amt = (((regeneration_amount + sp_bonus) * threat_mult) + regen_add) * regen_mult
 		for(var/mob/living/carbon/human/dude as anything in people_to_heal)
 			dude.adjustBruteLoss(-hp_amt)
 			dude.adjustFireLoss(0.2 * -hp_amt)	//Heals at 1/5th speed. Supposed to be slower healing than brute and sanity
@@ -99,10 +100,11 @@
 	var/regen_add = GetFacilityUpgradeValue(UPGRADE_REGENERATOR_HEALING)
 	var/regen_mult = rapid ? 0.2 : 1
 	var/time = rapid ? 2 : 10
+	var/threat_mult = 1
 	if(threat_detected)
-		regen_mult *= 0.5
-		. += span_danger("WARNING: Threat Detected. Healing is halved!")
-	. += span_info("[src] restores [(regeneration_amount+hp_bonus+regen_add)* regen_mult] HP and [(regeneration_amount+sp_bonus+regen_add)* regen_mult] SP every [time] seconds.")
+		threat_mult *= 0.5
+		. += span_danger("WARNING: Threat Detected. Base healing is halved!")
+	. += span_info("[src] restores [(((regeneration_amount + hp_bonus) * threat_mult) + regen_add) * regen_mult] HP and [(((regeneration_amount + sp_bonus) * threat_mult) + regen_add) * regen_mult] SP every [time] seconds.")
 
 /obj/machinery/regenerator/proc/ProduceIcon(Icon_Color, Type) //Used to be called ProduceGas but due to me using it for a button i had to change it. ProduceGas was a cooler name. -IP
 	var/mutable_appearance/colored_overlay = mutable_appearance(icon, Type)
