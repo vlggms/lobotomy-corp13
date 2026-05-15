@@ -638,13 +638,13 @@
 	gender = NEUTER
 	mob_biotypes = MOB_ROBOTIC
 	faction = list("neutral")
-	health = 150
-	maxHealth = 150
+	health = 50
+	maxHealth = 50
 	healable = FALSE
 	melee_damage_type = RED_DAMAGE
-	damage_coeff = list(RED_DAMAGE = 0.9, WHITE_DAMAGE = 0.9, BLACK_DAMAGE = 0.9, PALE_DAMAGE = 1.5)
-	melee_damage_lower = 12
-	melee_damage_upper = 14
+	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 2, PALE_DAMAGE = 1) // its a robot so we just give it green dawn armor
+	melee_damage_lower = 2
+	melee_damage_upper = 5
 	robust_searching = TRUE
 	stat_attack = HARD_CRIT
 	del_on_death = TRUE
@@ -657,6 +657,7 @@
 	verb_yell = "alarms"
 	bubble_icon = "machine"
 	speech_span = SPAN_ROBOT
+	area_index = MOB_SIMPLEANIMAL_INDEX // Does not block regenerators
 
 /mob/living/simple_animal/hostile/clerkbot/Initialize()
 	if(prob(50))
@@ -757,3 +758,41 @@
 	to_chat(user, span_nicegreen("[target.gift_message]"))
 	to_chat(user, span_nicegreen("You extract [target]'s gift!"))
 	qdel(src)
+
+/obj/item/reagent_containers/spray/chemsprayer/janitor/clerk
+	name = "clerk chem sprayer"
+	list_reagents = list(/datum/reagent/space_cleaner/lc13 = 1000)
+	volume = 1000
+	amount_per_transfer_from_this = 5
+	generate_type = /datum/reagent/space_cleaner/lc13
+
+/obj/item/mop/advanced/lc13
+	desc = "A self-wetting mop, filled with powerful acid. Can be used to quickly dissolve corpses."
+	mopspeed = 3
+	refill_reagent = /datum/reagent/space_cleaner/lc13
+	refill_rate = 5
+	can_toggle_refill = FALSE
+
+/obj/item/mop/advanced/lc13/attack_self(mob/user)
+	return
+
+/obj/item/mop/advanced/lc13/clean(turf/A, mob/living/cleaner) // needed to give the cleaner cleaning experience. Why did I do this again?
+	if(reagents.has_reagent(/datum/reagent/space_cleaner/lc13, 1))
+		// If there's a cleaner with a mind, let's gain some experience!
+		if(cleaner?.mind)
+			var/total_experience_gain = 0
+			for(var/obj/effect/decal/cleanable/cleanable_decal in A)
+				total_experience_gain += max(round(cleanable_decal.beauty / CLEAN_SKILL_BEAUTY_ADJUSTMENT, 1), 0)
+			cleaner.mind.adjust_experience(/datum/skill/cleaning, total_experience_gain)
+		A.wash(CLEAN_SCRUB)
+
+	reagents.expose(A, TOUCH, 10)	//Needed for proper floor wetting.
+	for(var/obj/exposed_obj in A.contents)
+		reagents.expose(exposed_obj, TOUCH, 10)
+	var/val2remove = 1
+	if(cleaner?.mind)
+		val2remove = round(cleaner.mind.get_skill_modifier(/datum/skill/cleaning, SKILL_SPEED_MODIFIER),0.1)
+	reagents.remove_any(val2remove)
+
+/obj/item/mop/advanced/lc13/ComponentInitialize()
+	AddComponent(/datum/component/butchering, _speed = 10, _effectiveness = 5, _bonus_modifier = 0, _can_be_blunt = TRUE) // 0% effectiveness, mobs drop no meat.

@@ -1457,27 +1457,7 @@
 /obj/item/pushbroom,
 /obj/item/pushbroom,
 /obj/item/pushbroom,
-/obj/item/reagent_containers/spray/cleaner{
-	pixel_x = 5;
-	pixel_y = -1
-	},
-/obj/item/reagent_containers/spray/cleaner{
-	pixel_x = 5;
-	pixel_y = -1
-	},
 /obj/item/soap,
-/obj/item/reagent_containers/spray/cleaner{
-	pixel_x = 5;
-	pixel_y = -1
-	},
-/obj/item/reagent_containers/spray/cleaner{
-	pixel_x = 5;
-	pixel_y = -1
-	},
-/obj/item/reagent_containers/spray/cleaner{
-	pixel_x = 5;
-	pixel_y = -1
-	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/training)
 "le" = (
@@ -3496,21 +3476,21 @@
 "AY" = (
 /obj/structure/rack,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/storage/box/lights/tubes,
-/obj/item/storage/box/lights/mixed,
-/obj/item/mop/advanced,
+/obj/item/mop/advanced/lc13,
+/obj/item/mop/advanced/lc13,
+/obj/item/mop/advanced/lc13,
+/obj/item/mop/advanced/lc13,
+/obj/item/mop/advanced/lc13,
+/obj/item/reagent_containers/spray/chemsprayer/janitor/clerk,
+/obj/item/reagent_containers/spray/chemsprayer/janitor/clerk,
+/obj/item/reagent_containers/spray/chemsprayer/janitor/clerk,
+/obj/item/reagent_containers/spray/chemsprayer/janitor/clerk,
+/obj/item/reagent_containers/spray/chemsprayer/janitor/clerk,
+/obj/item/lightreplacer,
+/obj/item/lightreplacer,
+/obj/item/lightreplacer,
+/obj/item/lightreplacer,
+/obj/item/lightreplacer,
 /turf/open/floor/plasteel/dark,
 /area/department_main/training)
 "Bl" = (
@@ -4491,9 +4471,7 @@
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/information)
 "KD" = (
-/obj/structure/closet/crate/trashcart,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/toy/plush/melt,
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
 /area/department_main/training)
@@ -6115,9 +6093,9 @@
 /area/facility_hallway/training)
 "Wu" = (
 /obj/effect/turf_decal/bot,
-/obj/structure/mopbucket,
-/obj/item/mop,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/crate/trashcart,
+/obj/item/toy/plush/melt,
 /turf/open/floor/plasteel/dark,
 /area/department_main/training)
 "Ww" = (
@@ -33284,8 +33262,8 @@ ZL
 ZL
 ZL
 sZ
-yL
 lZ
+gz
 QO
 oW
 gI

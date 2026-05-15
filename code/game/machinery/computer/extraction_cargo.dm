@@ -14,8 +14,6 @@
 
 	var/list/order_list = list( //if you add something to this, please, for the love of god, sort it by price/type. use tabs and not spaces.
 		//Gadgets - More Technical Equipment, Usually active
-		new /datum/data/extraction_cargo("Barrier Grenade Kit ",		/obj/item/storage/box/barrier,										60, CAT_GADGET) = 1,
-		new /datum/data/extraction_cargo("Forcefield Projector ",		/obj/item/forcefield_projector,										150, CAT_GADGET) = 1,
 		new /datum/data/extraction_cargo("Tracking Implant Kit ", 		/obj/item/storage/box/minertracker,									150, CAT_GADGET) = 1,
 		new /datum/data/extraction_cargo("Command Projector ",			/obj/item/commandprojector,											150, CAT_GADGET) = 1,
 		new /datum/data/extraction_cargo("'DEEPSCAN' Kit ",				/obj/item/deepscanner,												150, CAT_GADGET) = 1,
@@ -31,7 +29,6 @@
 		new /datum/data/extraction_cargo("Vitals Projector ",			/obj/item/powered_gadget/vitals_projector,							300, CAT_GADGET) = 1,
 		new /datum/data/extraction_cargo("Shrimp Injector ",			/obj/item/trait_injector/shrimp_injector,							300, CAT_GADGET) = 1,
 		new /datum/data/extraction_cargo("EMAIS	Autoinjector ",			/obj/item/reagent_containers/hypospray/emais,						300, CAT_GADGET) = 1,
-		new /datum/data/extraction_cargo("W-Corp Teleporter ",			/obj/item/powered_gadget/teleporter,								300, CAT_GADGET) = 1,
 		new /datum/data/extraction_cargo("Meson Scanner Goggles ",		/obj/item/clothing/glasses/meson,									500, CAT_GADGET) = 1,
 		new /datum/data/extraction_cargo("Gar Meson Scanner Goggles ",	/obj/item/clothing/glasses/meson/gar,								600, CAT_GADGET) = 1,
 		new /datum/data/extraction_cargo("Agent Work Chance Injector ",	/obj/item/trait_injector/agent_workchance_trait_injector,			700, CAT_GADGET) = 1,

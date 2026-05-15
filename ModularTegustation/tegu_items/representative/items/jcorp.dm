@@ -98,7 +98,6 @@ GLOBAL_LIST_EMPTY(possible_loot_jcorp)
 	)
 	var/list/safe_items = list(
 		/obj/item/grenade/firecracker,
-		/obj/item/grenade/barrier,
 		/obj/item/grenade/chem_grenade/cleaner,
 		/obj/item/grenade/chem_grenade/ez_clean,
 		/obj/item/grenade/chem_grenade/colorful,

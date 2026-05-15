@@ -13,33 +13,27 @@
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_BULKY
 	STR.max_combined_w_class = 600
-	STR.max_items = 5
+	STR.max_items = 7
 	STR.set_holdable(list(
 		/obj/item/powered_gadget,
 		/obj/item/pet_whistle,
 		/obj/item/deepscanner,
 		/obj/item/safety_kit,
+		/obj/item/crowbar,
 		/obj/item/clerkbot_gadget,
 		/obj/item/reagent_containers/hypospray/emais,
-		/obj/item/forcefield_projector
+		/obj/item/reagent_containers/spray/chemsprayer/janitor/clerk,
+		 /obj/item/mop/advanced/lc13,
+		 /obj/item/lightreplacer
 		))
 
-//For fucking about outside of combat
-/obj/item/storage/belt/clerk/facility/PopulateContents()
+/obj/item/storage/belt/clerk/PopulateContents()
 	new /obj/item/safety_kit(src)
 	new /obj/item/reagent_containers/hypospray/emais(src)
 	new /obj/item/crowbar(src)
-	new /obj/item/powered_gadget/teleporter(src)
-	new /obj/item/forcefield_projector(src)
-
-
-//For fucking about inside combat
-/obj/item/storage/belt/clerk/agent/PopulateContents()
-	new /obj/item/powered_gadget/slowingtrapmk1(src)
-	new /obj/item/deepscanner(src)
-	new /obj/item/clerkbot_gadget(src)
-	new /obj/item/powered_gadget/vitals_projector(src)
-	new /obj/item/powered_gadget/handheld_taser(src)
+	new /obj/item/reagent_containers/spray/chemsprayer/janitor/clerk(src)
+	new /obj/item/mop/advanced/lc13(src)
+	new /obj/item/lightreplacer(src)
 
 //So rhino can repair their shit and keep their weapons
 /obj/item/storage/belt/rhino

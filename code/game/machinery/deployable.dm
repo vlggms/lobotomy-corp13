@@ -13,7 +13,7 @@
 	desc = "Looks like this would make good cover."
 	anchored = TRUE
 	density = TRUE
-	max_integrity = 100
+	max_integrity = 50
 	var/proj_pass_rate = 50 //How many projectiles will pass the cover. Lower means stronger cover
 	var/bar_material = METAL
 
@@ -68,13 +68,13 @@
 	desc = "This space is blocked off by a crude assortment of planks."
 	icon_state = "woodenbarricade-old"
 	drop_amount = 1
-	max_integrity = 50
+	max_integrity = 25
 	proj_pass_rate = 65
 
 /obj/structure/barricade/wooden/crude/snow
 	desc = "This space is blocked off by a crude assortment of planks. It seems to be covered in a layer of snow."
 	icon_state = "woodenbarricade-snow-old"
-	max_integrity = 75
+	max_integrity = 35
 
 /obj/structure/barricade/wooden/make_debris()
 	new /obj/item/stack/sheet/mineral/wood(get_turf(src), drop_amount)
@@ -85,7 +85,7 @@
 	icon = 'icons/obj/smooth_structures/sandbags.dmi'
 	icon_state = "sandbags-0"
 	base_icon_state = "sandbags"
-	max_integrity = 500
+	max_integrity = 250
 	proj_pass_rate = 20
 	pass_flags_self = LETPASSTHROW
 	bar_material = SAND
@@ -104,7 +104,7 @@
 	icon_state = "barrier0"
 	density = FALSE
 	anchored = FALSE
-	max_integrity = 180
+	max_integrity = 80
 	proj_pass_rate = 20
 	armor = list(MELEE = 10, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 100, RAD = 100, FIRE = 10, ACID = 0)
 
