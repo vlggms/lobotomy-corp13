@@ -59,7 +59,7 @@
 	var/monk_charge_cooldown_time = 6 SECONDS
 	var/deathcount
 	var/heal_amount = 120
-	var/charge_damage = 250
+	var/charge_damage = 150
 	var/eaten = FALSE
 	var/damage_taken
 	var/slam_damage = 30
