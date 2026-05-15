@@ -3859,10 +3859,10 @@
 /turf/open/floor/plasteel/white,
 /area/mine/hydroponics)
 "ol" = (
-/obj/machinery/body_fabricator,
 /obj/effect/turf_decal/siding/blue{
 	dir = 8
 	},
+/obj/machinery/hatchery,
 /turf/open/floor/facility/white,
 /area/city)
 "om" = (
@@ -9304,11 +9304,11 @@
 /area/department_main/command)
 "Ic" = (
 /obj/structure/rack,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
+/obj/item/reagent_containers/spray/chemsprayer/janitor/clerk,
+/obj/item/reagent_containers/spray/chemsprayer/janitor/clerk,
+/obj/item/reagent_containers/spray/chemsprayer/janitor/clerk,
+/obj/item/reagent_containers/spray/chemsprayer/janitor/clerk,
+/obj/item/reagent_containers/spray/chemsprayer/janitor/clerk,
 /turf/open/floor/pod,
 /area/city/shop)
 "Id" = (
@@ -9897,10 +9897,10 @@
 /turf/closed/indestructible/reinforced/old,
 /area/facility_hallway/information)
 "Kj" = (
-/obj/machinery/sleeper/syndie,
 /obj/effect/turf_decal/siding/blue{
 	dir = 8
 	},
+/obj/machinery/sleeper/facility,
 /turf/open/floor/facility/white,
 /area/city)
 "Kk" = (
@@ -10239,21 +10239,18 @@
 "Lv" = (
 /obj/structure/rack,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
 /obj/item/storage/box/lights/tubes,
 /obj/item/storage/box/lights/mixed,
-/obj/item/mop/advanced,
+/obj/item/mop/advanced/lc13,
+/obj/item/mop/advanced/lc13,
+/obj/item/mop/advanced/lc13,
+/obj/item/mop/advanced/lc13,
+/obj/item/mop/advanced/lc13,
+/obj/item/reagent_containers/spray/chemsprayer/janitor/clerk,
+/obj/item/reagent_containers/spray/chemsprayer/janitor/clerk,
+/obj/item/reagent_containers/spray/chemsprayer/janitor/clerk,
+/obj/item/reagent_containers/spray/chemsprayer/janitor/clerk,
+/obj/item/reagent_containers/spray/chemsprayer/janitor/clerk,
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "Lw" = (

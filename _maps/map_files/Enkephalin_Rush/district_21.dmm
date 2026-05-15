@@ -2146,21 +2146,16 @@
 /area/city)
 "vo" = (
 /obj/structure/rack,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/reagent_containers/spray/chemsprayer/janitor,
-/obj/item/storage/box/lights/tubes,
-/obj/item/storage/box/lights/mixed,
-/obj/item/mop/advanced,
+/obj/item/mop/advanced/lc13,
+/obj/item/mop/advanced/lc13,
+/obj/item/mop/advanced/lc13,
+/obj/item/mop/advanced/lc13,
+/obj/item/mop/advanced/lc13,
+/obj/item/reagent_containers/spray/chemsprayer/janitor/clerk,
+/obj/item/reagent_containers/spray/chemsprayer/janitor/clerk,
+/obj/item/reagent_containers/spray/chemsprayer/janitor/clerk,
+/obj/item/reagent_containers/spray/chemsprayer/janitor/clerk,
+/obj/item/reagent_containers/spray/chemsprayer/janitor/clerk,
 /turf/open/floor/plasteel/dark,
 /area/city)
 "vs" = (
@@ -4241,8 +4236,8 @@
 /turf/closed/mineral/random/facility/pallid/briah,
 /area/department_main/command)
 "Qf" = (
-/obj/machinery/body_fabricator,
 /obj/effect/turf_decal/bot,
+/obj/machinery/hatchery,
 /turf/open/floor/facility/white,
 /area/city)
 "Qj" = (
@@ -4718,8 +4713,8 @@
 /turf/closed/mineral/random/facility/pallid,
 /area/department_main/safety)
 "UN" = (
-/obj/machinery/sleeper/syndie,
 /obj/effect/turf_decal/bot,
+/obj/machinery/sleeper/facility,
 /turf/open/floor/facility/white,
 /area/city)
 "UQ" = (

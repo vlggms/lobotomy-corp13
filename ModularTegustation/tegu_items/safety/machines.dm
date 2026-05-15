@@ -174,7 +174,7 @@
 
 	stored_bodies[H.real_name] = preserved_data
 
-/obj/machinery/hatchery/proc/revive_body(real_name, ckey, nopenalty = FALSE, mob/living/carbon/human/oldbody)
+/obj/machinery/hatchery/proc/revive_body(real_name, ckey, nopenalty = FALSE, mob/living/carbon/human/old_body)
 	if(!stored_bodies[real_name])
 		return FALSE
 
@@ -230,47 +230,30 @@
 	new_body.ckey = ckey
 	if(job)
 		new_body.mind.assigned_role = job
-	if(oldbody)
-		var/oldclothes = oldbody.get_item_by_slot(ITEM_SLOT_ICLOTHING) // we need to equip a uniform first for everything else to properly equip
-		if(oldclothes)
-			new_body.equip_to_appropriate_slot(oldclothes, FALSE) // If we can grab clothes, then we can also grab belts, pockets, and id
-			if(oldbody.get_item_by_slot(ITEM_SLOT_BELT))
-				var/obj/item/thebelt = oldbody.get_item_by_slot(ITEM_SLOT_BELT)
-				new_body.equip_to_slot_if_possible(thebelt, ITEM_SLOT_BELT)
-			if(oldbody.get_item_by_slot(ITEM_SLOT_LPOCKET))
-				var/obj/item/leftpocket = oldbody.get_item_by_slot(ITEM_SLOT_LPOCKET)
-				new_body.equip_to_slot_if_possible(leftpocket, ITEM_SLOT_LPOCKET)
-			if(oldbody.get_item_by_slot(ITEM_SLOT_RPOCKET))
-				var/obj/item/rightpocket = oldbody.get_item_by_slot(ITEM_SLOT_RPOCKET)
-				new_body.equip_to_slot_if_possible(rightpocket, ITEM_SLOT_RPOCKET)
-		var/oldarmor = oldbody.get_item_by_slot(ITEM_SLOT_OCLOTHING)
-		if(oldarmor)
-			if(istype(oldarmor, /obj/item/clothing/suit/armor/ego_gear))
-				var/obj/item/clothing/suit/armor/ego_gear/equippable_gear = oldarmor
-				var/oldslowdown = 0
-				if(equippable_gear.equip_slowdown)
-					oldslowdown = equippable_gear.equip_slowdown
-				equippable_gear.equip_slowdown = 0
-				var/list/cachedreqs = equippable_gear.attribute_requirements
-				equippable_gear.attribute_requirements = list()
-				new_body.equip_to_appropriate_slot(equippable_gear, FALSE)
-				equippable_gear.equip_slowdown = oldslowdown
-				equippable_gear.attribute_requirements = cachedreqs
-				if(oldbody.s_store)
-					new_body.equip_to_slot_if_possible(oldbody.s_store, ITEM_SLOT_SUITSTORE)
-		// Do not use this to grab belts, pockets, id, equip_to_appropriate_slot does not properly handle that.
-		for(var/obj/item/slotitem in oldbody.get_all_slots() - list(oldbody.w_uniform, oldbody.wear_suit, oldbody.l_store, oldbody.r_store, oldbody.s_store, oldbody.belt))
-			new_body.equip_to_appropriate_slot(slotitem, FALSE)
-	else // We didn't have an old body to grab clothes from
-		new_body.equipOutfit(/datum/outfit/job/patient)
+	var/has_id
+	if(old_body)
+		var/obj/item/storage/box/hatchery/ourbox = new(get_turf(new_body))
+		var/obj/item/card/id/C = old_body.get_idcard(TRUE)
+		if(C)
+			has_id = TRUE
+		var/list/old_items = list()
+		for(var/obj/item/sloties in old_body.get_all_slots())
+			if(istype(sloties, /obj/item/storage/box/hatchery))
+				continue
+			old_items += sloties
+		for(var/obj/item/slotitem in old_items)
+			old_body.dropItemToGround(slotitem, force = TRUE)
+			slotitem.forceMove(ourbox)
+		new_body.put_in_hands(ourbox)
+	new_body.equipOutfit(/datum/outfit/job/patient)
 
 	if(!new_body.ckey)
 		log_game("Hatchery: Created a new body for [real_name] without a ckey.")
 		FailureResponse("ERROR: No prior brain activity detected.", real_name)
 		qdel(new_body)
 		return FALSE
-	if(!oldbody)
-		var/obj/item/card/id/I = new_body.get_idcard()
+	var/obj/item/card/id/I = new_body.get_idcard()
+	if(!has_id)
 		I.assignment = job
 		I.update_label()
 		I.update_overlays() // Makes ID card reflect current job.
@@ -282,6 +265,8 @@
 			B.bank_cards += I
 		else
 			to_chat(new_body, "<span class='warning'>ERROR - Could not find account information for ID preservation.</span>")
+	else
+		qdel(I)
 
 	var/list/ego_gift_list = list()
 	ego_gift_list = stored_data["ego_gifts"]
@@ -309,7 +294,7 @@
 	else
 		log_game("Body Preservation Unit: Stored attributes for [real_name] were invalid.")
 		FailureResponse("ERROR: Invalid attributes.")
-		if(oldbody)
+		if(old_body)
 			new_body.unequip_everything()
 		qdel(new_body)
 		return FALSE
@@ -371,3 +356,11 @@
 	flick(icon_failure, src)
 	if(reason)
 		say("[reason]")
+
+/obj/item/storage/box/hatchery
+	name = "hatchery gear recovery box"
+	desc = "A large, bulky box full of goodies."
+	icon = 'ModularTegustation/Teguicons/refiner.dmi'
+	icon_state = "randomcrate"
+	illustration = null
+	w_class = WEIGHT_CLASS_HUGE

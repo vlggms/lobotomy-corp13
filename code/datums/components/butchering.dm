@@ -30,9 +30,6 @@
 
 /datum/component/butchering/proc/onItemAttack(obj/item/source, mob/living/M, mob/living/user)
 	SIGNAL_HANDLER
-
-	if(user.a_intent != INTENT_HARM)
-		return
 	if(M.stat == DEAD && checkButchering(source, M, user)) //can we butcher it?
 		INVOKE_ASYNC(src, PROC_REF(startButcher), source, M, user)
 		return COMPONENT_CANCEL_ATTACK_CHAIN
