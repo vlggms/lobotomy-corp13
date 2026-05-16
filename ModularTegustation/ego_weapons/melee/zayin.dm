@@ -434,7 +434,6 @@
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("slams", "strikes", "smashes")
 	attack_verb_simple = list("slam", "strike", "smash")
-	hitsound = 'sound/effects/spray3.ogg'
 
 /obj/item/ego_weapon/prohibited/attack(mob/living/M, mob/living/user)
 	. = ..()
