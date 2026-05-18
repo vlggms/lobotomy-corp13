@@ -92,7 +92,7 @@
 		var/sp_amt = (((regeneration_amount + sp_bonus) * threat_mult) + regen_add) * regen_mult
 		for(var/mob/living/carbon/human/dude as anything in people_to_heal)
 			dude.adjustBruteLoss(-hp_amt)
-			dude.adjustFireLoss(0.2 * -hp_amt)	//Heals at 1/5th speed. Supposed to be slower healing than brute and sanity
+			dude.adjustFireLoss(-hp_amt/4)	//Heals at 1/4th speed. Supposed to be slower healing than brute and sanity
 			dude.adjustSanityLoss(-sp_amt)
 
 /obj/machinery/regenerator/examine(mob/user)
