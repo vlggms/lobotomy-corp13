@@ -367,19 +367,6 @@
 		bulb_emergency_colour_mid = rgb(BColor[1] + ((EColor[1] - BColor[1]) * LerpFactor), BColor[2] + ((EColor[2] - BColor[2]) * LerpFactor), BColor[3] + ((EColor[3] - BColor[3]) * LerpFactor))
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/light/LateInitialize()
-	. = ..()
-	switch(fitting)
-		if("tube")
-			brightness = 8
-			if(prob(2))
-				break_light_tube(1)
-		if("bulb")
-			brightness = 4
-			if(prob(5))
-				break_light_tube(1)
-	addtimer(CALLBACK(src, PROC_REF(update), 0), 1)
-
 /obj/machinery/light/ComponentInitialize()
 	. = ..()
 	AddElement(/datum/element/atmos_sensitive)
