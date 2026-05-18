@@ -152,10 +152,10 @@
 
 		// if the target has a weapon, chance to disarm them
 		if(W && DT_PROB(MONKEY_ATTACK_DISARM_PROB, delta_time))
-			living_pawn.a_intent = INTENT_DISARM
+			living_pawn.a_intent_change(INTENT_DISARM)
 			monkey_attack(controller, target, delta_time)
 		else
-			living_pawn.a_intent = INTENT_HARM
+			living_pawn.a_intent_change(INTENT_HARM)
 			monkey_attack(controller, target, delta_time)
 
 
@@ -220,7 +220,7 @@
 
 	if(target.pulledby != living_pawn && !HAS_AI_CONTROLLER_TYPE(target.pulledby, /datum/ai_controller/monkey)) //Dont steal from my fellow monkeys.
 		if(living_pawn.Adjacent(target) && isturf(target.loc))
-			living_pawn.a_intent = INTENT_GRAB
+			living_pawn.a_intent_change(INTENT_GRAB)
 			target.grabbedby(living_pawn)
 		return //Do the rest next turn
 

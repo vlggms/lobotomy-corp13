@@ -105,17 +105,23 @@
 	status_type = STATUS_EFFECT_REPLACE
 	alert_type = null
 	var/icon = "berserk"
+	var/saved_intent = null
 
 /datum/status_effect/panicked_type/on_apply()
 	. = ..()
 	owner.add_overlay(mutable_appearance('icons/effects/effects.dmi', icon, -ABOVE_MOB_LAYER))
+	saved_intent = owner.a_intent
 
 /datum/status_effect/panicked_type/on_remove()
 	. = ..()
 	owner.cut_overlay(mutable_appearance('icons/effects/effects.dmi', icon, -ABOVE_MOB_LAYER))
+	if(saved_intent && owner)
+		owner.a_intent_change(saved_intent)
 
 /datum/status_effect/panicked_type/be_replaced()
 	owner.cut_overlay(mutable_appearance('icons/effects/effects.dmi', icon, -ABOVE_MOB_LAYER))
+	if(saved_intent && owner)
+		owner.a_intent_change(saved_intent)
 	return ..()
 
 /datum/status_effect/panicked_type/murder
