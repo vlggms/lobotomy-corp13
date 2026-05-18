@@ -36,6 +36,7 @@
 			Extract()
 		extracting = FALSE
 		return
+
 	var/obj/structure/itemselling/I = over_object//item selling machine
 	if(istype(I))
 		var/response = alert(usr,"Will you sell [src]?","This cannot be reversed.","Yes","No")
@@ -48,22 +49,26 @@
 			usr.put_in_hands(holochip)
 			qdel(src)
 			return
-	var/obj/machinery/abno_core_seller/P = over_object//item selling machine
-	if(istype(P))//This code requires some serious cleanup.
+
+	var/obj/machinery/abno_core_seller/P = over_object//Abnocore selling machine
+	if(istype(P))
 		var/response = alert(usr,"Will you sell [src]?","This cannot be reversed.","Yes","No")
 		if(response == "Yes" && do_after(usr, 10, src))
 			if(!contained_abno || !threat_level)//is there no risk level or abnormality inside?
 				qdel(src)
 				return
-			var/payment_amt = threat_level * threat_level * 50//this is awarded to every player. Should be lower than the regular fixer selling machine
-			for(var/mob/living/carbon/human/person in GLOB.mob_living_list)
-				if(person.stat == DEAD || !person.client)
+			var/payment_amt = threat_level * threat_level * 50//this is awarded to every player
+			var/list/typecache_bank = typecacheof(list(/datum/bank_account/department, /datum/bank_account/remote))//similar loop to the market report
+			for(var/i in SSeconomy.bank_accounts_by_id)
+				var/datum/bank_account/current_acc = SSeconomy.bank_accounts_by_id[i]
+				if(typecache_bank[current_acc.type])
 					continue
-				var/obj/structure/closet/supplypod/centcompod/pod = new()
-				new /obj/item/holochip(pod, payment_amt)
-				pod.explosionSize = list(0,0,0,0)
-				to_chat(person, "<span class='nicegreen'>An abnormality core has been shipped to HQ. All employees on site earn a bonus!</span>")
-				new /obj/effect/pod_landingzone(get_turf(person), pod)
+				var/datum/bank_account/B = SSeconomy.bank_accounts_by_id["[i]"]
+				if(B)
+					B.adjust_money(payment_amt)
+			for(var/mob/living/carbon/human/H in GLOB.player_list)
+				to_chat(H, span_notice("[payment_amt] ahn has been deposited into your account."))
+			sound_to_playing_players('sound/weapons/ego/executive_reload.ogg', 70, FALSE)
 			qdel(src)
 
 /obj/structure/abno_core/proc/Extract()
