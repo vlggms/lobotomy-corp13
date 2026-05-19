@@ -34,7 +34,6 @@
 		new /datum/data/extraction_cargo("W-Corp Teleporter ",			/obj/item/powered_gadget/teleporter,								300, CAT_GADGET) = 1,
 		new /datum/data/extraction_cargo("Meson Scanner Goggles ",		/obj/item/clothing/glasses/meson,									500, CAT_GADGET) = 1,
 		new /datum/data/extraction_cargo("Gar Meson Scanner Goggles ",	/obj/item/clothing/glasses/meson/gar,								600, CAT_GADGET) = 1,
-		new /datum/data/extraction_cargo("Agent Work Chance Injector ",	/obj/item/trait_injector/agent_workchance_trait_injector,			700, CAT_GADGET) = 1,
 
 		//Equipment - Passive equipment, or less technical stuff.
 		new /datum/data/extraction_cargo("'Seclite' Flashlight ",		/obj/item/flashlight/seclite,										30, CAT_EQUIP) = 1,
@@ -72,7 +71,6 @@
 		new /datum/data/extraction_cargo("Yellow Filter ",				/obj/item/refiner_filter/yellow,									5, CAT_RESOURCE) = 1,
 		new /datum/data/extraction_cargo("Raw PE Box ",					/obj/item/rawpe,													50, CAT_RESOURCE) = 1,
 		new /datum/data/extraction_cargo("Chemical Extraction Upgrade ",/obj/item/work_console_upgrade/chemical_extraction_attachment,		150, CAT_RESOURCE) = 1,
-		new /datum/data/extraction_cargo("Workchance Calculator Upgrade ",/obj/item/work_console_upgrade/work_prediction_attachment,		200, CAT_RESOURCE) = 1,
 		new /datum/data/extraction_cargo("AbnoChem Starter Pack ",		/obj/structure/closet/crate/science/abnochem_startercrate,			250, CAT_RESOURCE) = 1,
 		new /datum/data/extraction_cargo("Mysterious Invitation ",		/obj/item/invitation,												1500, CAT_RESOURCE) = 1,
 

@@ -136,20 +136,6 @@ GLOBAL_LIST_EMPTY(lcorp_upgrades)
 		J.job_attribute_limit = 40
 	..()
 
-//Agent Workchange injector
-/datum/data/lc13research/agentworkchance
-	research_name = "Global Agent Workchance"
-	research_desc = "An authorization to allow all agents to see work chances. <br>We have this feature off to save money."
-	cost = HIGH_RESEARCH_PRICE
-	corp = L_CORP_REP
-
-/datum/data/lc13research/agentworkchance/ResearchEffect(obj/structure/representative_console/requester)
-	for(var/mob/living/carbon/human/H in GLOB.player_list)
-		ADD_TRAIT(H, TRAIT_WORK_KNOWLEDGE, JOB_TRAIT)
-
-	GLOB.lcorp_upgrades += "Agent Workchance"
-	..()
-
 //EGO Gift Extractor
 /datum/data/lc13research/ego_gift_extractor
 	research_name = "Repeatable: EGO Gift Extractor"

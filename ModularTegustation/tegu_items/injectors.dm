@@ -25,20 +25,6 @@
 	qdel(src)
 	return
 
-/obj/item/trait_injector/agent_workchance_trait_injector
-	name = "Agent Work Chance Injector"
-	desc = "An injector containing liquid that allows agents to view their chances before work. Use in hand to activate. A small note on the injector states that 'agent' means anyone under the security detail. Another note states that Officers aren't security detail."
-	icon_state = "oddity7_orange"
-	trait = TRAIT_WORK_KNOWLEDGE
-	error_message = "You aren't an agent."
-	success_message = "You feel enlightened and wiser."
-
-/obj/item/trait_injector/agent_workchance_trait_injector/attack_self(mob/living/carbon/human/user)
-	if(!istype(user) || HAS_TRAIT(user, TRAIT_WORK_FORBIDDEN))
-		to_chat(user, span_notice("The injector light flashes red. [error_message] Check the label before use."))
-		return
-	InjectTrait(user)
-
 /obj/item/trait_injector/clerk_fear_immunity_injector
 	name = "C-Fear Protection Injector"
 	desc = "Contains fire water that protects clerks from the downsides of witnessing dangerous abnormalities. Use in hand to activate. A small note on the injector states that 'clerk' means anyone with a job under service positions."

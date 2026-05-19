@@ -86,8 +86,6 @@
 
 	//Check the lcorp global upgrades
 	for(var/upgradecheck in GLOB.lcorp_upgrades)
-		if(upgradecheck == "Agent Workchance")
-			ADD_TRAIT(outfit_owner, TRAIT_WORK_KNOWLEDGE, JOB_TRAIT)
 		if(upgradecheck == "Health Hud")
 			var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
 			medsensor.add_hud_to(outfit_owner)

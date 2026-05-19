@@ -27,7 +27,6 @@
 
 	//Injectors and rare extractors, quite desireable as they are quite expensive.
 	veryrareloot =	list(
-		/obj/item/trait_injector/agent_workchance_trait_injector,
 		/obj/item/trait_injector/clerk_fear_immunity_injector,
 		/obj/item/ego_gift_extractor,
 	)
