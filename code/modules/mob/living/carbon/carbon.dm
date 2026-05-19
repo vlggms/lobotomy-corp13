@@ -775,7 +775,7 @@
 		clear_fullscreen("oxy")
 
 	//Fire and Brute damage overlay (BSSR)
-	var/hurtdamage = getBruteLoss() + getFireLoss() + damageoverlaytemp
+	var/hurtdamage = 100 * (getBruteLoss() + getFireLoss() + damageoverlaytemp)/maxHealth
 	if(hurtdamage)
 		var/severity = 0
 		switch(hurtdamage)
@@ -799,26 +799,47 @@
 	if(!client || !hud_used)
 		return
 	if(hud_used.healths)
+		hud_used.healths.cut_overlays()
+		var/currentstate = 7
 		if(stat != DEAD)
 			. = 1
 			if(shown_health_amount == null)
 				shown_health_amount = health
 			if(shown_health_amount >= maxHealth)
-				hud_used.healths.icon_state = "health0"
+				currentstate = "0"
 			else if(shown_health_amount > maxHealth*0.8)
-				hud_used.healths.icon_state = "health1"
+				currentstate = "1"
 			else if(shown_health_amount > maxHealth*0.6)
-				hud_used.healths.icon_state = "health2"
+				currentstate = "2"
 			else if(shown_health_amount > maxHealth*0.4)
-				hud_used.healths.icon_state = "health3"
+				currentstate = "3"
 			else if(shown_health_amount > maxHealth*0.2)
-				hud_used.healths.icon_state = "health4"
+				currentstate = "4"
 			else if(shown_health_amount > 0)
-				hud_used.healths.icon_state = "health5"
+				currentstate = "5"
 			else
-				hud_used.healths.icon_state = "health6"
-		else
-			hud_used.healths.icon_state = "health7"
+				currentstate = "6"
+		var/currenttox = 0
+		var/toxdamage = getToxLoss()
+		if(toxdamage > 0)
+			currenttox = 1
+			if(toxdamage >= maxHealth*0.2 && toxdamage < maxHealth*0.5)
+				currenttox = 2
+			else if(toxdamage >= maxHealth*0.5)
+				currenttox = 3
+		var/currentfire = 0
+		var/firedamage = getFireLoss()
+		if(firedamage > 0)
+			currentfire = 1
+			if(firedamage >= maxHealth*0.2 && firedamage < maxHealth*0.4)
+				currentfire = 2
+			else if(firedamage >= maxHealth*0.4&& firedamage < maxHealth*0.7)
+				currentfire = 3
+			else if(firedamage >= maxHealth*0.7)
+				currentfire = 4
+		hud_used.healths.icon_state = "health[currentstate]"
+		hud_used.healths.add_overlay(mutable_appearance('icons/hud/screen_gen.dmi', "fire[currentfire]"))
+		hud_used.healths.add_overlay(mutable_appearance('icons/hud/screen_gen.dmi', "tox[currenttox]"))
 
 /mob/living/carbon/proc/update_internals_hud_icon(internal_state = 0)
 	if(hud_used?.internals)
