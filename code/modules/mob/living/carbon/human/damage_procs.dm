@@ -31,7 +31,7 @@
 	if(sanity_lost && white_healable) // Heal sanity instead.
 		damage_amt *= -1
 	if(stat != DEAD)
-		DamageEffect(damage_amt, WHITE_DAMAGE)
+		DamageEffect(amount, WHITE_DAMAGE)
 	if(HAS_TRAIT(src, TRAIT_BRUTESANITY))
 		adjustHealthLoss(amount, forced = forced)
 	else
@@ -69,6 +69,10 @@
 		DamageEffect(amount, FIRE)
 	. = ..()
 
+/mob/living/carbon/human/adjustOxyLoss(amount, updating_health = TRUE, forced = FALSE, required_status)
+	if(stat != DEAD)
+		DamageEffect(amount, OXY)
+	. = ..()
 //
 
 /mob/living/carbon/human/proc/adjustSanityLoss(amount, forced = FALSE)
