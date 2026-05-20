@@ -411,25 +411,28 @@ GLOBAL_LIST_EMPTY(marked_players)
 	switch(damtype)
 		if(BRUTE)
 			effect_name = "rupture"
-			text_color = "#80C8ff"
+			text_color = "#19E0B6"
 		if(RED_DAMAGE)
 			effect_name = "dam_red"
-			text_color = "#FF0000"
+			text_color = "#CC2743"
 		if(WHITE_DAMAGE)
 			effect_name = "dam_white"
-			text_color = "#DEDDB6"
+			text_color = "#EFECBF"
 		if(BLACK_DAMAGE)
 			effect_name = "dam_black"
-			text_color = "#8A4091"
+			text_color = "#824A84"
 		if(PALE_DAMAGE)
 			effect_name = "dam_pale"
-			text_color = "#80C8ff"
+			text_color = "#00EADB"
 		if(FIRE)
 			effect_name = "dam_burn"
-			text_color = "#F2961D"
+			text_color = "#FFA50A"
 		if(TOX)
 			effect_name = "dam_tox"
-			text_color = "#1A8709"
+			text_color = "#008004"
+		if(OXY)
+			effect_name = "dam_oxy"
+			text_color = "#1FA3E0"
 	if(!effect_name)
 		return null
 	effect_name += "[rand(1,2)]"
@@ -463,13 +466,19 @@ GLOBAL_LIST_EMPTY(marked_players)
 	switch(type)
 		if("bleed")
 			effect_name = "dam_bleed"
-			text_color = "#FF0000"
+			text_color = "#C92020"
 		if("sinking")
 			effect_name = "sinking"
-			text_color = "#298CE3"
+			text_color = "#395CDE"
 		if("tremor")
 			effect_name = "tremor"
-			text_color = "#D0E329"
+			text_color = "#FF9907"
+		if("healing")
+			effect_name = "healing"
+			text_color = "#88FB94"
+		if("sanity")
+			effect_name = "sanity"
+			text_color = "#8EFDFF"
 	if(!effect_name)
 		return null
 	effect_name += "[rand(1,2)]"
@@ -569,6 +578,12 @@ GLOBAL_LIST_EMPTY(marked_players)
 	. = ..()
 	if(was_alive)
 		DamageEffect(., TOX)
+
+/mob/living/simple_animal/hostile/adjustOxyLoss(amount, updating_health, forced)
+	var/was_alive = stat != DEAD
+	. = ..()
+	if(was_alive)
+		DamageEffect(., OXY)
 
 /*Used in LC13 abnormality calculations.
 	Moved here so we can use it for all hostiles.
