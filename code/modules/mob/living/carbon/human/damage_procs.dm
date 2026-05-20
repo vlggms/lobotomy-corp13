@@ -19,7 +19,7 @@
 /mob/living/carbon/human/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE)
 	if(stat != DEAD)
 		DamageEffect(amount, BRUTE)
-	return adjustHealthLoss(amount, forced = forced)
+	return ..()
 
 /mob/living/carbon/human/adjustRedLoss(amount, updating_health = TRUE, forced = FALSE)
 	if(stat != DEAD)
