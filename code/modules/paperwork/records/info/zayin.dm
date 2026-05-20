@@ -123,14 +123,13 @@
 		"The chances of recieving a soda with healing properties increased the better the work result.",
 		"When the work result was bad, soda cans were violently ejected at nearby employees.")
 
-//Sunset Traveller
-/obj/item/paper/fluff/info/zayin/sunset_traveller
-	abno_type = /mob/living/simple_animal/hostile/abnormality/sunset_traveller
+//Sunset Wayfarer
+/obj/item/paper/fluff/info/zayin/sunset_wayfarer
+	abno_type = /mob/living/simple_animal/hostile/abnormality/sunset_wayfarer
 	abno_code = "O-02-183"
 	abno_info = list(
 		"After work was completed, the fireflies glowed brighter.",
-		"The fireflies increased healing of HP and SP as long as the employee stayed in the room.",
-		"While the fireflies were glowing, no other work could be completed on O-02-183.")
+		"The fireflies increased healing of HP and SP as long as the employee stayed in the room.")
 
 //Oracle of No Future
 /obj/item/paper/fluff/info/zayin/oracle

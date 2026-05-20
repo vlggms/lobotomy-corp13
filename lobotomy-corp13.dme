@@ -2971,7 +2971,7 @@
 #include "code\modules\mob\living\simple_animal\abnormality\zayin\pile_of_mail.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\zayin\quiet_day.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\zayin\sleeping_beauty.dm"
-#include "code\modules\mob\living\simple_animal\abnormality\zayin\sunset_traveller.dm"
+#include "code\modules\mob\living\simple_animal\abnormality\zayin\sunset_wayfarer.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\zayin\we_can_change_anything.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\zayin\wellcheers.dm"
 #include "code\modules\mob\living\simple_animal\bot\bot.dm"
