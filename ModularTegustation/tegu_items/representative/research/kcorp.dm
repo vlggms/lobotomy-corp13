@@ -56,11 +56,6 @@
 	ItemUnlock(requester.order_list, "K Corp Chem Implant",	/obj/item/implantcase/chem, 300)
 	..()
 
-/datum/data/lc13research/regenerator_overcharge/kcorp
-	research_name = "Repeatable: RAK the Regenerator System"
-	research_desc = "KCorp made this system for LCorp. <br>All you need to do is enter the following code into the machine, 9887. <br>Don't let LCorp know or they'll use it all the time and they'll break it; they have warranty."
-	corp = K_CORP_REP
-
 //ERTs
 /datum/data/lc13research/mobspawner/k1team
 	research_name = "Class 1 Strike Team"

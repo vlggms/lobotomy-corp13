@@ -418,7 +418,7 @@
 #define RAK_SP_MODE "SP mode"
 #define RAK_DUAL_MODE "Dual mode"
 #define RAK_CRIT_MODE "Crit mode"
-#define RAK_BURST_MODE "Burst mode"
+#define RAK_RAPID_MODE "Rapid mode"
 /obj/item/safety_kit
 	name = "\improper Safety Department Regenerator Augmentation Kit"
 	desc = "This gadget is necessary for making temporary modifications on regenerators."
@@ -477,8 +477,8 @@
 			R.EqualFocus(user)
 		if(RAK_CRIT_MODE)
 			R.CriticalFocus(user)
-		if(RAK_BURST_MODE)
-			R.OverloadHeal(user)
+		if(RAK_RAPID_MODE)
+			R.RapidHeal(user)
 	return TRUE
 
 /obj/item/safety_kit/proc/ModifiedCheck(obj/machinery/regenerator/R)
@@ -486,7 +486,7 @@
 
 /obj/item/safety_kit/proc/ChangeMode(mob/user)
 	var/list/choice_list = list()
-	for(var/modes in list(RAK_HP_MODE, RAK_SP_MODE, RAK_DUAL_MODE, RAK_CRIT_MODE, RAK_BURST_MODE))
+	for(var/modes in list(RAK_HP_MODE, RAK_SP_MODE, RAK_DUAL_MODE, RAK_CRIT_MODE, RAK_RAPID_MODE))
 		choice_list[modes] = image(icon = icon, icon_state = modes+"_rak")
 
 	var/choice = show_radial_menu(user, src, choice_list, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 42, require_near = TRUE)
@@ -505,9 +505,8 @@
 			to_chat(user, span_notice("You will now slightly improve the overall performance of regenerators."))
 		if(RAK_CRIT_MODE)
 			to_chat(user, span_notice("You will now enable regenerators to heal those in critical conditions at the cost of overall performance."))
-		if(RAK_BURST_MODE)
-			to_chat(user, span_notice("You will now cause regenerators to provide a large burst of HP and SP recovery."))
-			to_chat(user, span_warning("This will cause regenerators to go on a cooldown period afterwards."))
+		if(RAK_RAPID_MODE)
+			to_chat(user, span_notice("You will now cause regenerators to heal more often at the cost of dramatically less SP and HP."))
 
 
 /obj/item/safety_kit/proc/check_menu(mob/user)
@@ -530,9 +529,8 @@
 			. += span_info("Currently set to slightly increase both HP and SP regen.")
 		if(RAK_CRIT_MODE)
 			. += span_info("Currently set to enable healing insane and crit people but reducing overall healing.")
-		if(RAK_BURST_MODE)
-			. += span_info("Currently set to cause regenerators to create a burst of healing.")
-			. += span_warning("This will disable regenerators for a short period afterwards.")
+		if(RAK_RAPID_MODE)
+			. += span_notice("Currently set to cause regenerators to heal more often at the cost of dramatically less SP and HP.")
 
 /obj/item/safety_kit/proc/clerk_check(mob/living/carbon/human/H)
 	if(istype(H) && (H?.mind?.assigned_role in list("Clerk")))
@@ -543,7 +541,7 @@
 #undef RAK_SP_MODE
 #undef RAK_DUAL_MODE
 #undef RAK_CRIT_MODE
-#undef RAK_BURST_MODE
+#undef RAK_RAPID_MODE
 
 //Lobotomizer
 /obj/item/lobotomizer
