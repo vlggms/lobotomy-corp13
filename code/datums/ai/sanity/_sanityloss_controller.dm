@@ -144,7 +144,7 @@
 		return
 	total_locations |= GLOB.xeno_spawn // Avoids Department centers, unlike Wander Panic
 	var/mob/living/L = pawn
-	L.a_intent = INTENT_HARM
+	L.a_intent_change(INTENT_HARM)
 	L.active_hand_index = 1
 
 /datum/ai_controller/insane/murder/PerformMovement(delta_time)

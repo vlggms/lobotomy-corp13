@@ -383,10 +383,10 @@
 				break
 		// if the target has a weapon, chance to disarm them
 		if(W && DT_PROB(25, delta_time))
-			living_pawn.a_intent = INTENT_DISARM
+			living_pawn.a_intent_change(INTENT_DISARM)
 		living_pawn.UnarmedAttack(target)
 		living_pawn.changeNext_move(CLICK_CD_MELEE)
-		living_pawn.a_intent = INTENT_HARM
+		living_pawn.a_intent_change(INTENT_HARM)
 
 /// attack using this GUN we found.
 /datum/ai_behavior/insanity_attack_mob/proc/ranged_attack(datum/ai_controller/insane/murder/controller, atom/target, delta_time)
