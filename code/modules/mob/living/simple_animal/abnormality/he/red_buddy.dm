@@ -9,8 +9,8 @@
 	del_on_death = FALSE
 	pixel_x = -8
 	base_pixel_x = -8
-	maxHealth = 400 //Tanky but hurts itself every now and then to make up for it
-	health = 400
+	maxHealth = 740 //Tanky but hurts itself every now and then to make up for it
+	health = 740
 	move_to_delay = 5
 	stop_automated_movement_when_pulled = TRUE
 	rapid_melee = 1

@@ -1,8 +1,8 @@
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar
 	name = "Doomsday Calendar"
 	desc = "Likely a tool for predicting a date of some kind, judging from the many letters carved on the bricks."
-	health = 400
-	maxHealth = 400
+	health = 1212
+	maxHealth = 1212
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "doomsday_inert"
 	icon_living = "doomsday_inert"
@@ -119,7 +119,7 @@
 	if(IsContained() && datum_reference.qliphoth_meter != datum_reference.qliphoth_meter_max)
 		if(do_after(user, gibtime, target = src))
 			to_chat(user, span_warning("[src] bites you! It seems to have been appeased."))
-			user.adjustBruteLoss(18 - (datum_reference.qliphoth_meter * 4))
+			user.adjustBruteLoss(9 - (datum_reference.qliphoth_meter * 2))
 			datum_reference.qliphoth_change(1)
 			return
 		else
@@ -270,7 +270,7 @@
 					if(H.stat >= SOFT_CRIT || H.health < 0)
 						H.fire_stacks += 1
 						H.IgniteMob()//unforunately this fire isn' blue.
-			adjustBruteLoss(1000)
+			adjustBruteLoss(500)
 
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/proc/AoeBurn()
 	pulse_cooldown = world.time + pulse_cooldown_time
@@ -317,7 +317,7 @@
 		to_chat(user, span_nicegreen("[src] is sated by your offering!"))
 		M.gib()
 		is_fed = TRUE
-		adjustBruteLoss(50)
+		adjustBruteLoss(150)
 		pulse_damage -= 1
 		playsound(get_turf(src),'sound/effects/limbus_death.ogg', 50, 1)
 		AddModifier(/datum/dc_change/sacrificed)
@@ -336,8 +336,8 @@
 	attack_verb_simple = "claw"
 	attack_sound = 'sound/abnormalities/doomsdaycalendar/Doomsday_Slash.ogg'
 	/*Stats*/
-	health = 50
-	maxHealth = 50
+	health = 150
+	maxHealth = 150
 	obj_damage = 50
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1.5)
 	melee_damage_type = RED_DAMAGE

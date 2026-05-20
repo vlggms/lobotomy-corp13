@@ -5,8 +5,8 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "willyouplay"
 	portrait = "will_you_play"
-	maxHealth = 120
-	health = 120
+	maxHealth = 220
+	health = 220
 	threat_level = HE_LEVEL
 	work_chances = list(
 		"Rock" = 60,

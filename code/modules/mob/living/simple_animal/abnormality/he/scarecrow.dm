@@ -7,13 +7,13 @@
 	icon_dead = "scarecrow_dead"
 	portrait = "scarecrow"
 	del_on_death = FALSE
-	maxHealth = 200
-	health = 200
+	maxHealth = 500
+	health = 500
 	rapid_melee = 2
 	move_to_delay = 3
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)
-	melee_damage_lower = 4
-	melee_damage_upper = 5
+	melee_damage_lower = 3
+	melee_damage_upper = 7
 	melee_damage_type = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
 	attack_sound = 'sound/abnormalities/scarecrow/attack.ogg'

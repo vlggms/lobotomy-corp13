@@ -16,8 +16,8 @@
 	pixel_x = -16
 	base_pixel_x = -16
 
-	maxHealth = 900
-	health = 900
+	maxHealth = 2000
+	health = 2000
 	del_on_death = FALSE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1)
 	see_in_dark = 10
@@ -44,7 +44,7 @@
 	chem_type = /datum/reagent/abnormality/sin/gluttony
 	melee_damage_type = RED_DAMAGE
 	melee_damage_lower = 9
-	melee_damage_upper = 12
+	melee_damage_upper = 14
 	attack_sound = 'sound/abnormalities/big_wolf/Wolf_Scratch.ogg'
 
 	attack_action_types = list(
@@ -317,7 +317,7 @@
 				if(isclosedturf(T))
 					continue
 				new /obj/effect/temp_visual/slice(T)
-				hit_mob = HurtInTurf(T, hit_mob, 15, RED_DAMAGE, null, TRUE, FALSE, TRUE, hurt_structure = TRUE)
+				hit_mob = HurtInTurf(T, hit_mob, 19, RED_DAMAGE, null, TRUE, FALSE, TRUE, hurt_structure = TRUE)
 				for(var/mob/living/simple_animal/hostile/abnormality/red_hood/mercenary in hit_mob)
 					mercenary.deal_damage(50, RED_DAMAGE) //triple damge to red
 	can_act = TRUE

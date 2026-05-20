@@ -8,8 +8,8 @@
 	portrait = "greed_king"
 	pixel_x = -16
 	base_pixel_x = -16
-	maxHealth = 1000
-	health = 1000
+	maxHealth = 1500
+	health = 1500
 	ranged = TRUE
 	attack_verb_continuous = "chomps"
 	attack_verb_simple = "chomps"
@@ -56,7 +56,7 @@
 	var/dash_num = 100000	//Mostly a safeguard
 	var/list/been_hit = list()
 	var/can_act = TRUE
-	var/initial_charge_damage = 200
+	var/initial_charge_damage = 400
 	var/growing_charge_damage = 0
 
 	var/nihil_present = FALSE
@@ -215,7 +215,7 @@
 	//Stop charging
 	if(stop_charge)
 		can_act = FALSE
-		addtimer(CALLBACK(src, PROC_REF(endCharge)), 7 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(endCharge)), 10 SECONDS)
 		been_hit = list()
 		return
 	forceMove(T)
@@ -260,7 +260,7 @@
 		new /obj/effect/temp_visual/small_smoke/halfsecond(R)
 	if (IsCombatMap())
 		charge_damage = charge_damage + growing_charge_damage
-	addtimer(CALLBACK(src, PROC_REF(charge), move_dir, (times_ran + 1), charge_damage), 2)
+	addtimer(CALLBACK(src, PROC_REF(charge), move_dir, (times_ran + 1), charge_damage), 3)
 
 /mob/living/simple_animal/hostile/abnormality/greed_king/proc/endCharge()
 	can_act = TRUE

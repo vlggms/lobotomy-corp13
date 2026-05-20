@@ -11,8 +11,8 @@
 	pixel_y = -16
 	base_pixel_y = -16
 
-	maxHealth = 800
-	health = 800
+	maxHealth = 600
+	health = 600
 	blood_volume = 0
 	density = FALSE
 	damage_coeff = list(RED_DAMAGE = 0, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
@@ -51,8 +51,8 @@
 		"Exit the containment unit" = list(FALSE, "The manual says to leave the chamber immediately if the cup's condition becomes violent. <br>As I leave, the water falls still."),
 	)
 
-	var/cooldown_time = 3
-	var/aoe_damage = 6
+	var/cooldown_time = 2
+	var/aoe_damage = 10
 
 /mob/living/simple_animal/hostile/abnormality/dimensional_refraction/proc/Melter()
 	for(var/mob/living/L in livinginview(1, src))

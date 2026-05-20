@@ -10,8 +10,8 @@
 	base_pixel_x = -16
 
 
-	maxHealth = 600
-	health = 600
+	maxHealth = 800
+	health = 800
 	density = FALSE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.2, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	ranged = TRUE

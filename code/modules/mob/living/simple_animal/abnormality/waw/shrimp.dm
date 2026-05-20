@@ -9,6 +9,9 @@
 	portrait = "shrimp_executive"
 	faction = list("neutral")
 	speak_emote = list("burbles")
+	maxHealth = 1000
+	health = 1000
+
 	threat_level = WAW_LEVEL
 	start_qliphoth = 1
 	work_chances = list(

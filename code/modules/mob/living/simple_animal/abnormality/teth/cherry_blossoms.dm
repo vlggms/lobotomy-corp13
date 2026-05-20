@@ -9,8 +9,8 @@
 	base_pixel_x = -48
 	pixel_y = -16
 	base_pixel_y = -16
-	maxHealth = 150
-	health = 150
+	maxHealth = 230
+	health = 230
 	threat_level = TETH_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 40,

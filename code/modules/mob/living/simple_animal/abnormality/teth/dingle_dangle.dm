@@ -15,8 +15,8 @@ GLOBAL_LIST_INIT(dingle_hallucination_list, list(
 	icon = 'ModularTegustation/Teguicons/64x96.dmi'
 	icon_state = "dangle"
 	portrait = "dingle_dangle"
-	maxHealth = 120
-	health = 120
+	maxHealth = 230
+	health = 230
 	threat_level = TETH_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(70, 60, 40, 40, 40),

@@ -5,8 +5,8 @@
 	icon = 'ModularTegustation/Teguicons/96x64.dmi'
 	icon_state = "sisters"
 	portrait = "drowned_sisters"
-	maxHealth = 80
-	health = 80
+	maxHealth = 230
+	health = 230
 	threat_level = TETH_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 50,

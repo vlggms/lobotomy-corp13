@@ -10,8 +10,8 @@
 	pixel_x = -8
 	base_pixel_x = -8
 
-	maxHealth = 150
-	health = 150
+	maxHealth = 230
+	health = 230
 	del_on_death = FALSE
 	threat_level = TETH_LEVEL
 	work_chances = list(

@@ -5,8 +5,8 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "radio"
 	portrait = "khz"
-	maxHealth = 100
-	health = 100
+	maxHealth = 300
+	health = 300
 	threat_level = HE_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 40,

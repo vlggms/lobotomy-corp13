@@ -10,8 +10,8 @@
 	pixel_x = -16
 	base_pixel_x = -16
 
-	maxHealth = 120
-	health = 120
+	maxHealth = 230
+	health = 230
 	move_to_delay = 5
 	melee_damage_upper = 1
 	melee_damage_type = BLACK_DAMAGE

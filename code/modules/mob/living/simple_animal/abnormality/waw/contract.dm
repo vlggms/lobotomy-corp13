@@ -7,6 +7,8 @@
 	icon = 'ModularTegustation/Teguicons/64x48.dmi'
 	icon_state = "firstfold"
 	portrait = "contract"
+	maxHealth = 1000
+	health = 1000
 	threat_level = WAW_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(0, 0, 35, 45, 55),

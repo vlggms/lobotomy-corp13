@@ -5,6 +5,9 @@
 	icon = 'ModularTegustation/Teguicons/32x64.dmi'
 	icon_state = "silence"
 	portrait = "silence"
+	maxHealth = 1000
+	health = 1000
+
 	threat_level = WAW_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(0, 0, 40, 50, 50),

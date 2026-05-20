@@ -2,8 +2,8 @@
 /mob/living/simple_animal/hostile/abnormality/red_shoes
 	name = "Red Shoes"
 	desc = "A pair of elegant red women's shoes. The design is antique, but there is no telling where and how they were made."
-	health = 150
-	maxHealth = 150
+	health = 220
+	maxHealth = 220
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "redshoes"
 	icon_living = "redshoes"
@@ -376,8 +376,8 @@
 /mob/living/simple_animal/hostile/aminion/red_shoe
 	name = "Red Shoe"
 	desc = "Teeth and leg bones jut out of this ragged shoe, as if the wearer's will was made manifest."
-	health = 150
-	maxHealth = 150
+	health = 220
+	maxHealth = 220
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "redshoes_breach2"
 	icon_living = "redshoes_breach2"

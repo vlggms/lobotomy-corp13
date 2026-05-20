@@ -4,8 +4,8 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "oceanicwaves"
 	portrait = "oceanicwaves"
-	maxHealth = 100
-	health = 100
+	maxHealth = 140
+	health = 140
 	threat_level = ZAYIN_LEVEL
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.8)
 	speak_emote = list("advertises")

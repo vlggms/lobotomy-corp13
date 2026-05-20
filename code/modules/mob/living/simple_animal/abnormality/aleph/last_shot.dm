@@ -271,8 +271,8 @@ GLOBAL_LIST_EMPTY(meat_list)
 	icon_state = "meatboi"
 	icon_living = "meatboi"
 	faction = list("hostile")
-	health = 250
-	maxHealth = 250
+	health = 340
+	maxHealth = 340
 	melee_damage_type = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2)
 	melee_damage_lower = 5
@@ -364,8 +364,8 @@ GLOBAL_LIST_EMPTY(meat_list)
 	desc = "A writhing ball of flesh, vaguely humanoid in shape. This one has a shotgun."
 	icon_state = "meatboi_shotgun"
 	icon_living = "meatboi_shotgun"
-	health = 200
-	maxHealth = 200
+	health = 300
+	maxHealth = 300
 	melee_damage_lower = 10
 	melee_damage_upper = 15
 	projectiletype = null

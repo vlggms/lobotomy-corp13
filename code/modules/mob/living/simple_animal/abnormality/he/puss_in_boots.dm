@@ -9,8 +9,8 @@
 	var/icon_friendly = "cat_breached_friendly"
 	icon_dead = "cat_breached"  //defeated icon? Maybe someday.
 	portrait = "puss_in_boots"
-	maxHealth = 200
-	health = 200
+	maxHealth = 400
+	health = 400
 	threat_level = HE_LEVEL
 	faction = list("neutral")
 	del_on_death = FALSE
@@ -188,8 +188,8 @@
 	desc = "He's got a sword!"
 	if(friendly)
 		fear_level = ZAYIN_LEVEL
-		maxHealth = 300
-		health = 300 //He's pretty tough at max HP
+		maxHealth = 600
+		health = 600 //He's pretty tough at max HP
 		breach_index = MOB_ABNO_PASSIVE_INDEX
 		GoToFriend()
 		density = FALSE

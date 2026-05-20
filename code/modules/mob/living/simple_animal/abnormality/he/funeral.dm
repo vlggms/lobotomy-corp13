@@ -7,8 +7,8 @@
 	icon_dead = "funeral_dead"
 	portrait = "funeral"
 	del_on_death = FALSE
-	maxHealth = 350
-	health = 350
+	maxHealth = 400
+	health = 400
 	blood_volume = 0
 
 	ranged = TRUE

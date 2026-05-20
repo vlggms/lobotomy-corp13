@@ -7,8 +7,8 @@
 	portrait = "ppodae"
 	pixel_x = -8
 	base_pixel_x = -8
-	maxHealth = 120 //fast but low hp abno
-	health = 120
+	maxHealth = 230 //fast but low hp abno
+	health = 230
 	threat_level = TETH_LEVEL
 	move_to_delay = 1
 	faction = list("hostile")

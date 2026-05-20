@@ -11,8 +11,8 @@
 	pixel_x = -16
 	base_pixel_x = -16
 	ranged = TRUE
-	maxHealth = 700
-	health = 700
+	maxHealth = 1100
+	health = 1100
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.5)
 	stat_attack = HARD_CRIT
 	move_to_delay = 4
@@ -80,7 +80,7 @@
 	var/curse_cooldown_time = 12 SECONDS
 	var/quake_cooldown
 	var/quake_cooldown_time = 6 SECONDS
-	var/quake_damage = 6
+	var/quake_damage = 20
 
 //Playables buttons
 	attack_action_types = list(
@@ -460,7 +460,7 @@
 	icon_state = "rockwarning"
 	duration = 10
 	layer = RIPPLE_LAYER // We want this HIGH. SUPER HIGH. We want it so that you can absolutely, guaranteed, see exactly what is about to hit you.
-	var/damage = 12 //Red Damage
+	var/damage = 24 //Red Damage
 	var/mob/living/caster // who made this, anyway
 
 /obj/effect/temp_visual/rockwarning/Initialize(mapload, new_caster)

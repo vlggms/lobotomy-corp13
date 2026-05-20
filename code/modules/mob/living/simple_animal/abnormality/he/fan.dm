@@ -6,8 +6,8 @@
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "fan"
 	portrait = "fan"
-	maxHealth = 100
-	health = 100
+	maxHealth = 300
+	health = 300
 	speak_emote = list("states")
 	speech_span = SPAN_ROBOT
 	threat_level = HE_LEVEL

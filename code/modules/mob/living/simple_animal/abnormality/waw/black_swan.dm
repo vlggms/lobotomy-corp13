@@ -12,8 +12,8 @@
 	var/icon_aggro = "blackswan_closed"
 	portrait = "black_swan"
 	del_on_death = FALSE
-	maxHealth = 1000
-	health = 1000
+	maxHealth = 1500
+	health = 1500
 	ranged_cooldown_time = 10 SECONDS
 
 	move_to_delay = 4
@@ -268,7 +268,7 @@
 				continue
 			if(L.stat == DEAD)
 				continue
-			L.deal_damage(25, WHITE_DAMAGE)
+			L.deal_damage(45, WHITE_DAMAGE)
 		playsound(get_turf(src), 'sound/abnormalities/blackswan/sis_roar.ogg', 30, 0, 4)
 	cut_overlay(visual_overlay)
 	can_act = TRUE

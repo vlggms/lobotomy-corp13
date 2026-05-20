@@ -9,8 +9,8 @@
 	base_pixel_x = -32
 	pixel_y = -32
 	base_pixel_y = -32
-	maxHealth = 100
-	health = 100
+	maxHealth = 230
+	health = 230
 	blood_volume = 0
 	start_qliphoth = 4
 	threat_level = TETH_LEVEL

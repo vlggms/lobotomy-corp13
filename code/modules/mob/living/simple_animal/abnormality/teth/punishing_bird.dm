@@ -13,8 +13,8 @@
 	response_disarm_continuous = "flails at"
 	response_disarm_simple = "flail at"
 	density = FALSE
-	maxHealth = 120
-	health = 120
+	maxHealth = 200
+	health = 200
 	damage_coeff = list(RED_DAMAGE = 2, WHITE_DAMAGE = 2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
 	see_in_dark = 10
 	move_to_delay = 2
@@ -106,7 +106,8 @@
 	obj_damage = 2500
 	environment_smash = ENVIRONMENT_SMASH_STRUCTURES
 	stat_attack = DEAD
-	ChangeResistances(list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5))
+	maxHealth = 1000
+	health = 1000
 	bird_angry = TRUE
 	update_icon()
 

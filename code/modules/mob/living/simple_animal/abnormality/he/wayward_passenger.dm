@@ -8,8 +8,8 @@
 	core_icon = "waywardpass_egg"
 	portrait = "wayward_passenger"
 	del_on_death = FALSE
-	maxHealth = 220
-	health = 220
+	maxHealth = 430
+	health = 430
 
 	move_to_delay = 4
 	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1.5)//lovetown residents LOVE physical pain, so highly resistant to black and red

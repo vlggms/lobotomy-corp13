@@ -4,8 +4,8 @@
 	icon = 'ModularTegustation/Teguicons/64x96.dmi'
 	icon_state = "flesh_idol"
 	portrait = "flesh_idol"
-	maxHealth = 600
-	health = 600
+	maxHealth = 700
+	health = 700
 	threat_level = WAW_LEVEL
 	pixel_x = -16
 	base_pixel_x = -16

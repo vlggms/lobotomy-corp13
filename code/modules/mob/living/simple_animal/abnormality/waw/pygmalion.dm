@@ -15,8 +15,8 @@
 	ranged_cooldown_time = 2 SECONDS
 	minimum_distance = 2
 
-	maxHealth = 800
-	health = 800
+	maxHealth = 1000
+	health = 1000
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.5)
 	stat_attack = HARD_CRIT
 	can_breach = TRUE

@@ -5,8 +5,8 @@
 	icon_state = "road_home"
 	icon_living = "road_home"
 	portrait = "road_home"
-	maxHealth = 200
-	health = 200
+	maxHealth = 400
+	health = 400
 	move_resist = MOVE_FORCE_STRONG //So she can't be yeeted away and delayed indefinitely
 	move_to_delay = 13 //She needs to be slow so she doesn't reach home too fast
 	damage_coeff = list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2) //Endure red because catt mentions physical attacks can't hurt her at all.

@@ -273,8 +273,8 @@ Defeating the murderer also surpresses the abnormality.
 	icon_living = "actor"
 	icon_dead = "actor_dead"
 	faction = list("hostile")
-	maxHealth = 700
-	health = 700
+	maxHealth = 800
+	health = 800
 	melee_damage_type = WHITE_DAMAGE
 	melee_damage_lower = 5
 	melee_damage_upper = 10

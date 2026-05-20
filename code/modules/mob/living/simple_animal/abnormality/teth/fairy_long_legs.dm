@@ -10,8 +10,8 @@
 	del_on_death = FALSE
 	pixel_x = -16
 	base_pixel_x = -16
-	maxHealth = 200
-	health = 200
+	maxHealth = 260
+	health = 260
 	rapid_melee = 0.5
 	move_to_delay = 4
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)

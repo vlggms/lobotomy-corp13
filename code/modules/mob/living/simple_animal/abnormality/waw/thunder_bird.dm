@@ -26,8 +26,8 @@
 	base_pixel_x = -16
 
 	//suppression info
-	maxHealth = 700
-	health = 700
+	maxHealth = 930
+	health = 930
 	move_to_delay = 4
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.7)
 
@@ -357,8 +357,8 @@
 	attack_sound = 'sound/abnormalities/thunderbird/tbird_zombieattack.ogg'
 
 	/*Zombie Stats */
-	health = 50//subject to change; they all die when thunderbird is suppressed
-	maxHealth = 50
+	health = 100//subject to change; they all die when thunderbird is suppressed
+	maxHealth = 100
 	obj_damage = 60
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
 	melee_damage_type = BLACK_DAMAGE

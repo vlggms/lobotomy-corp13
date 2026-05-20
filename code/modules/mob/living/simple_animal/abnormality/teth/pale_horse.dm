@@ -10,8 +10,8 @@
 	portrait = "pale_horse"
 	speak_emote = list("neighs")
 	threat_level = TETH_LEVEL
-	maxHealth = 150
-	health = 150
+	maxHealth = 270
+	health = 270
 	pixel_x = -16
 	base_pixel_x = -16
 	stat_attack = DEAD

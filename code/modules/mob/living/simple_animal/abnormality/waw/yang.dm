@@ -8,8 +8,8 @@
 	icon_dead = "yang_slain"
 	portrait = "yang"
 	is_flying_animal = TRUE
-	maxHealth = 300	//It is helpful and therefore weak.
-	health = 300
+	maxHealth = 800	//It is helpful and therefore weak.
+	health = 800
 	move_to_delay = 7
 	pixel_x = -16
 	base_pixel_x = -16
@@ -73,7 +73,7 @@
 			If you can't accept the goodness in yourself, you're not ready to accept the goodness of the world."),
 	)
 
-	var/explosion_damage = 50
+	var/explosion_damage = 100
 	var/explosion_timer = 7 SECONDS
 	var/explosion_range = 15
 	var/exploding = FALSE
@@ -81,7 +81,7 @@
 	//slowly heals sanity over time
 	var/heal_cooldown
 	var/heal_cooldown_time = 3 SECONDS
-	var/heal_amount = 5
+	var/heal_amount = 10
 
 
 /mob/living/simple_animal/hostile/abnormality/yang/New(loc, ...)
@@ -208,7 +208,7 @@
 	name = "yang beam"
 	icon_state = "omnilaser"
 	hitscan = TRUE
-	damage = 20
+	damage = 35
 	damage_type = WHITE_DAMAGE
 	muzzle_type = /obj/effect/projectile/muzzle/laser/white
 	tracer_type = /obj/effect/projectile/tracer/laser/white

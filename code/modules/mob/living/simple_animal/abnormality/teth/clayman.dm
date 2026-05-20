@@ -7,8 +7,8 @@
 	icon_dead = "bluro"
 	portrait = "clayman"
 	del_on_death = TRUE
-	maxHealth = 200
-	health = 200
+	maxHealth = 250
+	health = 250
 	ranged = TRUE
 	rapid_melee = 1
 	melee_queue_distance = 2

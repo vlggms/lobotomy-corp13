@@ -8,12 +8,12 @@
 	pixel_x = -16
 	base_pixel_x = -16
 	del_on_death = TRUE
-	maxHealth = 350 //It's fucking slow as hell, and you can beat it to death if you're alone for free
-	health = 350
+	maxHealth = 800 //It's fucking slow as hell, and you can beat it to death if you're alone for free
+	health = 800
 	move_to_delay = 5
-	damage_coeff = list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.7)
+	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.0, PALE_DAMAGE = 1.5)
 	melee_damage_lower = 8		//Yeah it's super slow, and you're not gonna get hit by it too often
-	melee_damage_upper = 9
+	melee_damage_upper = 12
 	melee_damage_type = RED_DAMAGE
 	stat_attack = HARD_CRIT
 	attack_sound = 'sound/abnormalities/scarecrow/attack.ogg'
@@ -84,10 +84,8 @@
 		datum_reference.qliphoth_change(-1)
 	if(people_watching == 1)
 		seen = FALSE
-		ChangeResistances(list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.7))
 	else	//any amount of people that's not 1.
 		seen = TRUE
-		ChangeResistances(list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.0, PALE_DAMAGE = 1.5))
 
 //Stuff that needs sight check
 /mob/living/simple_animal/hostile/abnormality/schadenfreude/Move()
