@@ -51,6 +51,9 @@
 		"Exit the containment unit" = list(FALSE, "The manual says to leave the chamber immediately if the cup's condition becomes violent. <br>As I leave, the water falls still."),
 	)
 
+	work_start_lines = list("Many employees are dying under the cognition of %ABNO.")
+	middle_work_lines = list("The longer %PERSON stays, the worse the situation becomes.")
+
 	var/cooldown_time = 3
 	var/aoe_damage = 6
 

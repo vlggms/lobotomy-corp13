@@ -45,6 +45,14 @@
 		"Gave an applause" = list(FALSE, "The performance never ends. <br>And Da Capo."),
 	)
 
+	work_start_lines = list("The conductor of %ABNO is awaiting the musicians.", "The conductor of %ABNO is usually quiet. The Containment Unit is also still.",
+	"A conductor is a magician that brings forth life; a shaman who evokes spirits.", "From break and ruin, the most beautiful performance begins.")
+	early_work_lines = list("%ABNO prepares the music of the apocalypse. ", "It is without a doubt that %ABNO is the best ensemble in the company.",
+	"%ABNO's sensational performance shall mesmerize everyone.")
+	middle_work_lines = list("Musicians live for the audience's applause at the finale.", "The life of a performer begins and ends with the audience's clapping.",
+	"A standing ovation is the most honorable gift the audience can bestow upon the conductor.")
+	work_end_lines = list("%PERSON, who may soon become part of the audience for %ABNO, has almost finished the work process.", "%PERSON handles the task with %ABNO without any trouble.")
+
 	/// Range of the damage
 	var/symphony_range = 20
 	/// Amount of white damage every tick

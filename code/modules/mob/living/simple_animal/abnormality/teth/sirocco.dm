@@ -65,6 +65,10 @@
 			Oh well. Maybe one day it'll tire itself out. <br>Best to leave it alone for now."),
 	)
 
+	work_start_lines = list("%ABNO is glad that someone finally decided to visit it.", "%ABNO asks when it is going to be allowed out of its cell.")
+	early_work_lines = list("Childish giggling echoes throughout the cell.")
+	late_work_lines = list("%PERSON violently wheezes as sand floods their mouth.", "%PERSON barely ducks in time as the %ABNO tosses a loose screw at them.")
+
 	// Work Variables
 	var/work_timer
 	var/time_to_lower = 2 MINUTES // Time to lower qliphoth

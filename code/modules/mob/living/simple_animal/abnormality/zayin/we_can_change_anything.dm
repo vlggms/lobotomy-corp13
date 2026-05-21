@@ -89,7 +89,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/we_can_change_anything/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(work_type != "Enter machine")
-		return TRUE
+		return ..()
 	if(total_energy >= 2000) // Cant just spam the work
 		say("[total_energy] PE Boxes accumulated, processing energy, please stay on standby!")
 		return FALSE
@@ -98,9 +98,10 @@
 	StoreWorker(user) //Yoink.
 	datum_reference.max_boxes = 100 //much longer than a normal work.
 	sacrifice = TRUE
-	return TRUE
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/we_can_change_anything/Worktick(mob/living/carbon/human/user)
+	..()
 	if(!sacrifice)
 		user.deal_damage(1, RED_DAMAGE) // say goodbye to your kneecaps chucklenuts!
 	else

@@ -38,6 +38,10 @@
 			... <br>That's all."),
 	)
 
+	work_start_lines = list("The %ABNO desires only a single person that satisfies the \'condition\' to manage it. It wants them to 'resonate' with it.")
+	middle_work_lines = list("%PERSON folds paper roses in %ABNO's cell.", "Painted with sploshes of red, %ABNO resembles a blood-stained flower.")
+	work_end_lines = list("Once it's fully satisfied, %ABNO turns a vivid red.")
+
 	var/mob/living/carbon/human/chosen = null
 	var/safe = FALSE //work on it and you're safe for 15 minutes
 	var/check_timer

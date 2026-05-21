@@ -47,6 +47,23 @@
 		"Leave it alone" = list(FALSE, "You don't know what to do with it so you just left it alone. <br>The teddy sits there without any movement."),
 	)
 
+	work_start_lines = list("%ABNO looks just like the teddy bears everyone had when they were young.", "%ABNO always wanted to hug children.",
+	"%ABNO loves hugs. Its memories began with a warm hug.", "A teddy bear is born from happiness, so it needs to be happy at all times.")
+	early_work_lines = list("%ABNO appears to be lost in thought, forlornly gazing at the stuffing that pokes and spills out of its seams.",
+	"The dirty ribbon around %ABNO’s neck ruffles gently even though there is no wind to move it. The name that was written on that ribbon is worn away and unrecognizable by now.",
+	"%ABNO doesn’t move an inch, as if it is gazing towards nothing. In fact, it’s looking at a photo of a young girl.",
+	"%ABNO’s plastic eye silently dangles by a thread on the left side of its face.")
+	middle_work_lines = list("While %PERSON is busy working, %ABNO continues to gaze upon the picture frame.",
+	"Even if there’s a commotion, %ABNO will fixedly stare at the picture.", "It seems the picture in front of it is the only thing that matters to %ABNO.",
+	"%PERSON was unable to draw %ABNO’s attention away from the photo.")
+	late_work_lines = list("While working, %PERSON approaches %ABNO and refastens its frayed ribbon.",
+	"%PERSON takes a moment to dust off the picture frame %ABNO so dotingly gazes upon.", "When %PERSON begins to mend the tears and rips on its plush body, %ABNO does not react.",
+	"%PERSON tidies up %ABNO a bit, however it does not react.")
+	work_end_lines = list("%ABNO remembers the birthday party of that wonderful seven-year-old girl. It waited to surprise her inside a large and colorful box.",
+	"%ABNO remembers going on a wonderfully fun vacation with the young girl. It was named \"Bearly\".",
+	"%ABNO recalls the numerous nights it protected that young girl from the dark as she snuggled up in its arms.",
+	"%ABNO fondly remembers the child, now grown. Somewhere beneath her dresser, moth balls were collecting on its body.")
+
 	/// if the same person works on Happy Teddy Bear twice in a row, the person will die unless certain requirements are met.
 	var/last_worker = null
 	var/hugging = FALSE
@@ -119,4 +136,4 @@
 		Strangle(user)
 		return FALSE
 	last_worker = user
-	return TRUE
+	return ..()

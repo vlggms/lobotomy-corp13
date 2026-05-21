@@ -45,6 +45,19 @@
 		"Stay" = list(FALSE, "If no one comes to get me, I'll remain here - never noticing the passing of time..."),
 	)
 
+	work_start_lines = list("Even though it may not have noumenon , it will somehow try to show itself out.", "Everyone has their own sweet orange tree in their heart.",
+	"If you have any piece of innocence of childhood left.", "\"Why should children grow up?\"")
+	early_work_lines = list("Thousands of particles in the isolation sector have penetrated into %PERSON's nerve center of their brain.",
+	"Part of 'My Sweet Orange Tree' is entering %PERSON's memory right away.", "The subparticles of 'My Sweet Orange Tree' are so extremely small that they could wander into %PERSON's mind.",
+	"'My Sweet Orange Tree' is wandering in %PERSON's time.")
+	middle_work_lines = list("'My Sweet Orange Tree' visualizes what we have dreamt of.", "'My Sweet Orange Tree' recovers what we have forgotten.",
+	"Numerous employees find what they have lost before.", "%PERSON will find their own Orange Tree in 'My Sweet Orange Tree'.")
+	late_work_lines = list("%PERSON looks exhausted and weary.", "What %PERSON is right now is far different from who they imagined they would be in childhood.",
+	"%PERSON is only thinking of leaving work", "%PERSON wanted to become an astronaut during their childhood.")
+	work_end_lines = list("%PERSON have dropped working when %PERSON saw unbelievable sight during the work. ",
+	"%PERSON confronts what %PERSON had forgotten for long time.", "%PERSON can step into the world that %PERSON created in the early years of their life.",
+	"%PERSON is enjoying the scenery just in front of themself, not even thinking of coming out of the containment cell.")
+
 	var/datum/looping_sound/orangetree_ambience/soundloop
 
 //Spawn/Del Procs

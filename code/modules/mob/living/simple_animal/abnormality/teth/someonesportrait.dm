@@ -54,6 +54,7 @@
 		PanicUser(user, TRUE)
 
 /mob/living/simple_animal/hostile/abnormality/someones_portrait/Worktick(mob/living/carbon/human/user) //We apply hallucination every worktick due to varying work time
+	..()
 	if(!user.hallucination)
 		user.hallucination += 3 //Attempt to get them to cancel work out of paranoia.
 

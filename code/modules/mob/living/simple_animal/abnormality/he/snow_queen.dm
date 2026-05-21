@@ -59,6 +59,11 @@
 		"Saved Kai" = list(FALSE, "Gerda saved Kai and returned home. <br>They lived happily ever after."),
 	)
 
+	work_start_lines = list("%ABNO's Containment Unit is storming with a frosty blizzard.", "%ABNO's Containment Unit glims with ice and frost.",
+	"Kai would have been gifted with the world if he had failed to complete the sculpture of \"eternity\" with splinters of ice.")
+	middle_work_lines = list("%ABNO's palace is cold and lonesome. %PERSON wants to leave this place as soon as they can.",
+	"The road to %ABNO's palace is freezing cold and still so long. %PERSON longs for warmth.")
+
 	ego_list = list(
 		/datum/ego_datum/weapon/frostsplinter,
 		/datum/ego_datum/armor/frostsplinter,

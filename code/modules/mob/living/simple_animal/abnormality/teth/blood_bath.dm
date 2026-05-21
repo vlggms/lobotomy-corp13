@@ -49,6 +49,13 @@
 		"Did not grab a hand" = list(FALSE, "You looked away. <br>This is not the first time you ignore them. <br>It will be the same afterwards."),
 	)
 
+	work_start_lines = list("\"You know, after joining Lobotomy Corporation I really feel like I have my life back together.\"", "%PERSON can feel the sadness of %ABNO.",
+	"%PERSON's wrist aches when they look at %ABNO.")
+	middle_work_lines = list("\"Depression is a disease of the mind. We are the first doctors who discovered how to be happy.\"", "%PERSON stares at the despair which floats in the bath.",
+	"%PERSON senses overwhelming despair and sadness.")
+	work_end_lines = list("\"Medicine to heal the body has developed at such a tremendous rate, meanwhile treatments for the mind lie stagnant.\"",
+	"%PERSON can see upcoming hardship and failure.", "%PERSON can see upcoming hardship and many ordeals in the future. No matter what they do, it will only result in failure.")
+
 	var/hands = 0
 	var/can_act = TRUE
 	var/special_attack_cooldown

@@ -52,8 +52,18 @@
 			You have great power. <br>You willingly lift the axe for the greater good."),
 	)
 
-	var/halo_status = "onesin_halo_normal" //used for changing the halo overlays
+	work_start_lines = list("%PERSON is understandably terrified of entering the Containment Unit.", "Depending on the situation, %ABNO may have a positive effect on employees.",
+	"It may be best to send an “honest” employee to tend to %ABNO.", "%ABNO can see straight through you.")
+	early_work_lines = list("%ABNO awaits humanity's sin.", "The sins of %PERSON shall reach %ABNO soon.",
+	"At times, %ABNO will menacingly click its teeth, but it's nothing to worry about.","%ABNO floats gently in the air, moving sluggishly.")
+	middle_work_lines = list("Although %ABNO has no eyes, it recognizes the presence of %PERSON in the room.",
+	"%ABNO is your punisher.", "%PERSON witnesses the solemnity of %ABNO, and reveres it.")
+	late_work_lines = list("%PERSON has completed the task, but %ABNO was indifferent.", "As %PERSON's work proceeded, %ABNO did not respond at all.",
+	"%PERSON failed to elicit a response from %ABNO.")
+	work_end_lines = list("To be willing to bear pain is half the atonement.", "Only those who deceive themselves can live truly happy lives. Ignorance is bliss.",
+	"Is it not possible to just once forgive an act of evil, as long as the intentions behind it were pure?")
 
+	var/halo_status = "onesin_halo_normal" //used for changing the halo overlays
 	var/wn_work = FALSE
 
 //Overlay stuff
@@ -84,7 +94,7 @@
 		else
 			to_chat(user, span_warning("The abnormality seems to be ignoring you... maybe try confessing."))
 			return FALSE
-	return TRUE
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/onesin/SpeedWorktickOverride(mob/living/carbon/human/user, work_speed, init_work_speed, work_type) //THE RIDE NEVER ENDS
 	if(wn_work)

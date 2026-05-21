@@ -62,6 +62,10 @@
 			Salt water fills your lungs as you lose consciousness."),
 	)
 
+	work_start_lines = list("Bags of sea salt line the edge of the water.", "\"I love you.\"", "%ABNO innocent appearance hides its true nature.")
+	middle_work_lines = list("After sternly reaching into a bag, %PERSON throws a handful of salt at %ABNO.", "\"I'll love you for all eternity...\"")
+	work_end_lines = list("Just a round, red ball of crawling... love.", "%ABNO sinks deep into the depths.")
+
 	response_help_continuous = "pets" //You sick fuck
 	response_help_simple = "pet"
 	pet_bonus = TRUE
@@ -99,7 +103,7 @@
 		icon_living = "pmermaid_laying"
 		icon_state = "pmermaid_laying"
 		workingflag = TRUE
-	return TRUE
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/pisc_mermaid/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(status_flags & GODMODE)

@@ -27,6 +27,9 @@
 	)
 	abnormality_origin = ABNORMALITY_ORIGIN_JOKE
 
+	work_start_lines = list("%PERSON can smell authentic Kansas City Barbecue Sauce.")
+	middle_work_lines = list("%ABNO hasn't eaten a vegetable in weeks.")
+
 /mob/living/simple_animal/hostile/abnormality/riblin/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
 	playsound(src, 'sound/abnormalities/mcrib/enjoy.ogg', 50, FALSE)

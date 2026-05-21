@@ -49,6 +49,10 @@
 			Black feathers and regret..."),
 	)
 
+	work_start_lines = list("One day, %ABNO fell out of the sky.", "%ABNO appeared seemingly out of nowhere, once upon a time.", "%PERSON knows almost nothing about the %ABNO.")
+	middle_work_lines = list("%PERSON wonders what lies beyond the stars.", "%ABNO does not understand humans, and is beyond comprehension by humankind.")
+	work_end_lines = list("One day, %ABNO will return to a place above the stars.", "%PERSON can't look directly at %ABNO without feeling strange.")
+
 	var/explosion_timer = 2 SECONDS
 	var/explosion_state = 3
 	var/explosion_damage = 30
@@ -241,7 +245,7 @@
 		animate(user, transform = user.transform*0.01, time = 5)
 		user.death(TRUE)
 		QDEL_IN(user, 5)
-	return TRUE
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/space_lady/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()

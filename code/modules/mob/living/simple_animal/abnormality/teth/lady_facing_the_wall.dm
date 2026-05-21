@@ -40,6 +40,23 @@
 		"Do not turn back" = list(FALSE, "Something terrible could happen if you turn back. You exit the room, without looking back."),
 	)
 
+	work_start_lines = list("Not much is known about %ABNO, except that she faces the wall.",
+	"No one has ever seen %ABNO’s face. This doesn’t mean that anybody actually wants to see her face, though.",
+	"After listening to %ABNO’s murmuring, one can assume that she is longing for someone.", "It’s best to simply let her stay attached to the wall.",
+	"One can only hope that %PERSON remembered to bring earplugs.")
+	early_work_lines = list("%ABNO always keeps herself in the same pose. If it weren’t for her babbling, one may well believe her to be a statue.",
+	"%PERSON doesn’t seem to worry too much about %ABNO. It’s likely because she just remains by the wall no matter who enters the Containment Unit.",
+	"%PERSON seems okay working around %ABNO. It’s likely because she stays still as if she’s pinned to the wall whenever anyone enters the Containment Unit.",
+	"The wall near %ABNO is covered in mold, but no one cares to do anything about it.")
+	middle_work_lines = list("As %PERSON works, %ABNO lets out incomprehensible mumbles.",
+	"While %PERSON is working, the Containment Unit is completely silent. %ABNO breaks that silence by whispering frantically.",
+	"%ABNO doesn’t even twitch, however, it seems she can feel the presence of %PERSON in the Containment Unit.", "Even though %ABNO hasn’t moved an inch, %PERSON still finds her unnerving.")
+	late_work_lines = list("Her words are faint and muffled.", "Her whispering seems to be getting louder.",
+	"It almost seems like someone could understand what she’s saying if only they were to concentrate a bit harder, but of course, nobody dares to do so.",
+	"As always, her muffled whispers are incomprehensible and ignored by all.")
+	work_end_lines = list("%PERSON tries to concentrate on the task at hand.", "%PERSON knows that ignoring %ABNO is the best choice.",
+	"%PERSON does not respond to anything %ABNO says; they even pretend to be deaf.", "%PERSON hurries to finish up their task to leave the room as soon as possible.")
+
 /mob/living/simple_animal/hostile/abnormality/wall_gazer/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
 	if(prob(40))

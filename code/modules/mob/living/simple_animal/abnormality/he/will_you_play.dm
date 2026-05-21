@@ -40,7 +40,7 @@
 		say("You again? Fine. We'll play again.")
 	else
 		say("I'll go fer scissors. How 'bout you?")
-	return TRUE
+	return ..()
 
 
 //Losing is good, Lose means the player loses the game

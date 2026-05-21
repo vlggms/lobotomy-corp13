@@ -53,6 +53,11 @@ GLOBAL_LIST_EMPTY(meat_list)
 			You can't help but to shudder in disgust as you exit the cell. <br>Was it right? You'll never know."),
 	)
 
+	work_start_lines = list("The overwhelming stench of rotting meat is nearly impossible to stomach.")
+	early_work_lines = list("Despite lacking eyes, %PERSON feels like %ABNO is watching their every move.","%PERSON must stay vigilant of their surroundings at all times.")
+	middle_work_lines = list("The flesh-covered walls twist and morph before %PERSON’s eyes.", "%ABNO flesh pokes at %PERSON’s leg, looking for an opening.")
+	work_end_lines = list("Even the slightest hint of weakness is sure to incur %ABNO’s wrath")
+
 	var/list/gremlins = list()	//For the meatballs
 	var/list/meat = list()		//For the floors
 

@@ -111,7 +111,7 @@
 		return FALSE
 	if(!(work_type in list("YES", "NO")) && !question && ..())
 		icon_state = "you_strong_work"
-		return TRUE
+		return ..()
 	if((work_type in list("YES", "NO")) && !question)
 		to_chat(user, span_notice("You have not been prompted."))
 		return FALSE

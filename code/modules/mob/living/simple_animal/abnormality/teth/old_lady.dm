@@ -38,6 +38,19 @@
 		"Get out" = list(FALSE, "I turned around to get out of this place. Once again, I bit lips in self-hatred while escaping."),
 	)
 
+	work_start_lines = list("Inside of %ABNO's unit, a suffocating silence draws near.")
+	early_work_lines = list("The stillness that encroaches upon the room is broken by the horrible creaking of the rocking chair.",
+	"%ABNO's rocking chair, which stands atop an unnaturally mold-covered floor, creaks.",
+	"Being unable to bear the stories %ABNO recounts, the floor and walls of the Containment Unit have cracked here and there.")
+	middle_work_lines = list("An old curse permeates %ABNO's tales.", "%ABNO's soul faded away in solitude long ago.",
+	"Her numerous stories once fascinated people, but after a long time, a curse has seeped into her tales.",
+	"Her stories are poisonous things. They infiltrate all those who surround and listen, leading them into an unbearable world.")
+	late_work_lines = list("%ABNO is deaf and nearly blind, yet she still recognizes the presence of %PERSON.",
+	"%ABNO doesn't need to look at %PERSON. They'll look at her once she begins storytelling anyhow.", "Conversation is meaningless to %ABNO. All she needs is an audience, %PERSON.")
+	work_end_lines = list("%PERSON has finished their designated work. They scamper out of %ABNO's Containment Unit quickly.",
+	"%PERSON leaves the unit after finishing up their work. The solitude that replaces their presence will be filled with %ABNO's stories.",
+	"Before %ABNO's ever-winding story began, %PERSON managed to finish their work quickly to get out of there safely.")
+
 	var/meltdown_cooldown_time = 120 SECONDS
 	var/meltdown_cooldown
 //for solitude effects
@@ -58,10 +71,10 @@
 
 /mob/living/simple_animal/hostile/abnormality/old_lady/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(work_type == "Clear Solitude" && datum_reference.qliphoth_meter == 0)
-		return TRUE
+		return ..()
 	else if(datum_reference.qliphoth_meter == 0 || work_type == "Clear Solitude")
 		return FALSE
-	return TRUE
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/old_lady/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	if(work_type == "Clear Solitude")

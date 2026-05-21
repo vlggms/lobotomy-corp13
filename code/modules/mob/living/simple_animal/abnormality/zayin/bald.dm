@@ -49,6 +49,12 @@
 		"No" = list(FALSE, "Come back after watching the fast and the furious 7 five more times."),
 	)
 
+	work_start_lines = list("%PERSON is starting to feel that hair is just a burden.", "%PERSON is beginning to think that having a tattoo on a bald head would be super cool.",
+	"%PERSON is taking off their wig because they feel proud of their partial balding.")
+	middle_work_lines = list("You can look just like Bruce Willis if you’re bald!", "Somehow, bald people always look professional no matter what they’re doing!",
+	"If you’re bald, you never have to worry about clogging the drain!")
+	work_end_lines = list("So you still have your silky hair?")
+
 	var/bald_users = list()
 	chem_type = /datum/reagent/abnormality/bald
 

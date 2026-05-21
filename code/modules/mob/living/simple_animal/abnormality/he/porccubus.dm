@@ -57,6 +57,11 @@
 			Poppy flowers like this one have ruined many lives and now it's ruined yours, but for now - you're happy."),
 	)
 
+	work_start_lines = list("When the game of trust with %ABNO reaches its maximum, it will gently pet your head with the thorns on its tail.",
+	"They say the pleasure it provides exceeds the amount a human can bear, but there is no one who can explain how it truly feels.")
+	middle_work_lines = list("%ABNO has a shackle-like necklace around its neck. Nobody knows who tied it up.")
+	work_end_lines = list("Some employees who were addicted to %ABNO’s pleasure tried to pull out its thorns, but failed.")
+
 	//the agent that started work on porccubus
 	var/agent_ckey
 	var/teleport_cooldown_time = 5 MINUTES

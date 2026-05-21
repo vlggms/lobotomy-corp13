@@ -58,6 +58,11 @@
 			As you're about to leave, you hear the old man croak out something. \"Who are you again?\""),
 	)
 
+	work_start_lines = list("The distant sounds of birds and rain can be heard within the cell.")
+	early_work_lines = list("%PERSON swears they’ve seen the bench somewhere during their childhood.")
+	late_work_lines = list("%PERSON feels tempted to tell their own stories after listening to %ABNO")
+	work_end_lines = list("%ABNO struggles to remember the ending to his latest story.", "%ABNO apologizes for rambling %PERSON’s ear off for so long.")
+
 	var/performed_work
 	var/datum/looping_sound/quietday_ambience/soundloop
 

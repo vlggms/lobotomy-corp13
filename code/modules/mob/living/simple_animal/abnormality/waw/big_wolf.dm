@@ -69,6 +69,18 @@
 			(The wolf seems unhappy)"),
 	)
 
+	work_start_lines = list("Hey, %PERSON. By any chance, is there a little chubby baby pig in this place? Oh, it’s nothing important. \
+	He was my friend, I just want to see how he’s doing nowadays.", "Oh little %PERSON, will you open the door, please? I won’t hurt anyone, I swear it. I’m just a little bit hungry.",
+	"%PERSON, I’ll give you something good if you let me out!")
+	early_work_lines = list("%ABNO vividly remembers the moment when his belly was torn open and his guts spilled out.",
+	"%ABNO likes meat over anything else. He used to be always hungry, now he wants to be always full.")
+	middle_work_lines = list("%ABNO suffers from chronic indigestion. The origin of this problem of his goes back to the very, very far past...",
+	"According to reports from employees who have been inside %ABNO’s stomach, it is a dark, empty, lonely place.")
+	late_work_lines = list("What big teeth I have, all the better for eating with.", "\"I’ll huff, and I’ll puff, and I’ll blow this room away with one breath!\"",
+	"\"Open the door sweetheart, I’ve brought you a basket of gifts from the forest.\"")
+	work_end_lines = list("I am a big bad wolf, I’ll gobble you all up and get out of this place!", "%{PERSON, #0, I’m telling this secret only to you.\
+	If you ever build a house, make it a sturdy brick house.")
+
 	var/can_act = TRUE
 	//For when the wolf becomes incorporal and flees.
 	var/last_reached_health = 75

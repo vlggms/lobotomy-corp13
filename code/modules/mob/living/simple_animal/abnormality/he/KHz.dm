@@ -70,7 +70,7 @@
 	else if(work_type == "Input Zero" || work_type == "Input Zero" && !isopen)
 		to_chat(user, span_notice("You have not recieved an input."))
 		return FALSE
-	return TRUE
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/khz/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	if(!isopen)	//Can't input the first time

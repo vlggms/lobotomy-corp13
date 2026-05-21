@@ -46,7 +46,7 @@
 	//Prudence too high, random damage type time.
 	if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) >= 40)
 		work_damage_type = pick(WHITE_DAMAGE, RED_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
-	return TRUE
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/penitentgirl/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	// you are going to cut your own leg off

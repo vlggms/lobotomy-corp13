@@ -128,7 +128,7 @@
 	else
 		happy_works = 0
 		happy = FALSE
-	return TRUE
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/shrimp_exec/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	liked = pick(ABNORMALITY_WORK_INSTINCT, ABNORMALITY_WORK_INSIGHT, ABNORMALITY_WORK_ATTACHMENT)

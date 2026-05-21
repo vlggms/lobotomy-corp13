@@ -74,7 +74,7 @@
 		say("Hey, I know I'm all for high stakes, but you've already put your life on the line once. I've got standards.")
 		return FALSE
 	else
-		return TRUE
+		return ..()
 
 //TODO: Add the revolver open sprite, replace gibbing with "death" sprite
 /mob/living/simple_animal/hostile/abnormality/dealerdamned/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
