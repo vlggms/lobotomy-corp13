@@ -1,0 +1,18 @@
+{
+	"version": 1,
+	"map_name": "City Drifters",
+	"map_path": "map_files/Event",
+	"map_file": [
+		"city_drifter.dmm"
+	],
+	"traits": [
+		{
+			"Baseturf": "/turf/open/floor/plating/asteroid"
+		}
+	],
+	"space_ruin_levels": 0,
+	"space_empty_levels": 0,
+	"minetype": "none",
+	"maptype": "standard",
+	"map_tags": [""]
+}
