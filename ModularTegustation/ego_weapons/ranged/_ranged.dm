@@ -39,7 +39,7 @@
 			Heavy - 1.2x DPS
 				These guns require an empty hand to be used. They have higher DPS due to needing any empty hand to use which could have a different weapon instead.
 		Gun Mechanics
-			Charged Weapons - 1.3x DPS
+			Charged Weapons - 1.4x DPS
 				Used mainly for cannon type weapons.
 				Requires to be charged up before shooting. It being charged up lasts for a few deciseconds.
 				Should have higher dps due to needing to stand still to charge it up.
@@ -48,7 +48,7 @@
 				Used for Crossbows
 				Allows the user to move while reloading at a slower pace.
 				This should overall be rare.
-			Multi Shot- 1.3x DPS
+			Multi Shot- 1.4x DPS
 				Used Mainly for Shotguns.
 				Fires multiple bullets at once in a spread.
 				Should have higher dps due to limited range, and friendly fire.
