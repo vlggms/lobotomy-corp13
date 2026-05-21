@@ -614,7 +614,7 @@
 				damage_type = R.last_projectile_type
 				fire_rate = R.autofire
 				fire_delay = R.fire_delay
-				max_ammo = initial(R.shotsleft)
+				max_ammo = initial(R.max_shots)
 				needs_reload = R.reloadtime > 0
 			var/list/attrs = list()
 			for(var/attr in W.attribute_requirements)

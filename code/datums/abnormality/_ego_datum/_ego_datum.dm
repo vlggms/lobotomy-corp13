@@ -78,7 +78,7 @@ GLOBAL_LIST_EMPTY(ego_datums)
 		if(!G.reloadtime)
 			information["reload_speed"] += "This weapon has unlimited ammo."
 		else
-			information["ammo"] += G.shotsleft
+			information["ammo"] += G.max_shots
 			switch(G.reloadtime)
 				if(0 to 0.71 SECONDS)
 					information["reload_speed"] += "Reload speed: Very fast."

@@ -11,7 +11,7 @@
 	pellets = 8
 	variance = 20
 	fire_delay = 7
-	shotsleft = 12
+	max_shots = 12
 	reloadtime = 1.4 SECONDS
 	fire_sound = 'sound/weapons/gun/shotgun/shot_auto.ogg'
 
@@ -31,7 +31,7 @@
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/weapons/gun/rifle/leveraction.ogg'
 	fire_delay = 2
-	shotsleft = 10
+	max_shots = 10
 	reloadtime = 1.4 SECONDS
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80
@@ -50,7 +50,7 @@
 	projectile_path = /obj/projectile/ego_bullet/ego_hatred
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 10
-	shotsleft = 20
+	max_shots = 20
 	passive_reload = TRUE
 	passive_reloadtime_delay = 8 SECONDS
 	reloadtime = 5
@@ -90,7 +90,7 @@
 	projectile_path = /obj/projectile/ego_bullet/ego_magicbullet
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 30	//Put on the armor, jackass.
-	shotsleft = 7
+	max_shots = 7
 	reloadtime = 2.1 SECONDS
 	fire_sound = 'sound/abnormalities/freischutz/shoot.ogg'
 
@@ -129,7 +129,7 @@
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_solemnlament
 	fire_delay = 5
-	shotsleft = 18
+	max_shots = 18
 	reloadtime = 0.7 SECONDS
 	fire_sound = 'sound/abnormalities/funeral/spiritgunwhite.ogg'
 	fire_sound_volume = 30
@@ -166,7 +166,7 @@
 	damtype = BLACK_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_solemnvow
 	fire_delay = 5
-	shotsleft = 18
+	max_shots = 18
 	reloadtime = 0.7 SECONDS
 	fire_sound = 'sound/abnormalities/funeral/spiritgunblack.ogg'
 	fire_sound_volume = 30
@@ -201,7 +201,7 @@
 	projectile_path = /obj/projectile/ego_bullet/ego_loyalty/iff
 	weapon_weight = WEAPON_HEAVY
 	spread = 26
-	shotsleft = 95
+	max_shots = 95
 	reloadtime = 3.2 SECONDS
 	special = "This weapon has IFF capabilities."
 	fire_sound = 'sound/weapons/gun/smg/vp70.ogg'
@@ -220,7 +220,7 @@
 	damtype = PALE_DAMAGE
 	burst_size = 1
 	fire_delay = 5
-	shotsleft = 12
+	max_shots = 12
 	reloadtime = 0.8 SECONDS
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	vary_fire_sound = FALSE
@@ -244,7 +244,7 @@
 	pellets = 3
 	variance = 14
 	fire_delay = 7
-	shotsleft = 9
+	max_shots = 9
 	reloadtime = 1 SECONDS
 	fire_sound = 'sound/abnormalities/redhood/fire.ogg'
 	attribute_requirements = list(
@@ -265,7 +265,7 @@
 	spread = 40
 	fire_sound = 'sound/weapons/ego/ecstasy.ogg'
 	autofire = 0.08 SECONDS
-	shotsleft = 40
+	max_shots = 40
 	reloadtime = 1.8 SECONDS
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 60,
@@ -282,7 +282,7 @@
 	projectile_path = /obj/projectile/ego_bullet/ego_praetorian
 	fire_sound = 'sound/weapons/gun/pistol/tp17.ogg'
 	autofire = 0.12 SECONDS
-	shotsleft = 12
+	max_shots = 12
 	reloadtime = 0.5 SECONDS
 	fire_sound_volume = 30
 	attribute_requirements = list(
@@ -300,7 +300,7 @@
 	damtype = BLACK_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_magicpistol
 	fire_delay = 7
-	shotsleft = 7
+	max_shots = 7
 	reloadtime = 1.2 SECONDS
 	fire_sound = 'sound/abnormalities/freischutz/shoot.ogg'
 	attribute_requirements = list(
@@ -341,7 +341,7 @@
 	projectile_path = /obj/projectile/ego_bullet/ego_laststop
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 5
-	shotsleft = 2
+	max_shots = 2
 	reloadtime = 10 SECONDS
 	fire_sound = 'sound/weapons/gun/shotgun/shot_auto.ogg'
 	attribute_requirements = list(
@@ -359,7 +359,7 @@
 	spread = 40
 	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
 	autofire = 0.07 SECONDS
-	shotsleft = 50
+	max_shots = 50
 	reloadtime = 2.1 SECONDS
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 80
@@ -390,7 +390,7 @@
 	projectile_path = /obj/projectile/beam/assonance
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 5
-	shotsleft = 17
+	max_shots = 17
 	reloadtime = 1.6 SECONDS
 	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
 	attribute_requirements = list(
@@ -432,7 +432,7 @@
 	projectile_path = /obj/projectile/ego_bullet/ego_warring
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 3
-	shotsleft = 1
+	max_shots = 1
 	reloadtime = 0.5 SECONDS
 	spread = 0
 	fire_sound = 'sound/weapons/bowfire.ogg'
@@ -482,12 +482,12 @@
 		to_chat(user,span_notice("You will now fire a bolt of lightning."))
 
 /obj/item/ego_weapon/ranged/warring/reload_ego(mob/user)
-	if(shotsleft == initial(shotsleft))
+	if(shotsleft == max_shots)
 		return
 	if(do_after(user, reloadtime, src)) //gotta reload
 		to_chat(user,span_notice("You draw the [src] with all your might."))
 		icon_state = "warring_drawn"
-		shotsleft = initial(shotsleft)
+		shotsleft = max_shots
 		projectile_path = initial(projectile_path)
 		fire_sound = initial(fire_sound)
 
@@ -502,7 +502,7 @@
 			return
 		charge_amount -= charge_cost
 		fire_sound = 'sound/abnormalities/thunderbird/tbird_beam.ogg'
-		shotsleft = initial(shotsleft)
+		shotsleft = max_shots
 		projectile_path = ammo_2
 		icon_state = "warring_firey"
 		playsound(src, 'sound/magic/lightningshock.ogg', 50, TRUE)
@@ -520,7 +520,7 @@
 	projectile_path = /obj/projectile/ego_bullet/ego_banquet
 	weapon_weight = WEAPON_MEDIUM
 	fire_delay = 13
-	shotsleft = 7
+	max_shots = 7
 	reloadtime = 1.6 SECONDS
 	fire_sound = 'sound/weapons/ego/cannon.ogg'
 	attribute_requirements = list(
@@ -577,7 +577,7 @@
 	pellets = 4
 	variance = 30
 	fire_delay = 8
-	shotsleft = 8
+	max_shots = 8
 	reloadtime = 1.4 SECONDS
 	fire_sound = 'sound/weapons/gun/shotgun/shot_auto.ogg'
 	attribute_requirements = list(
@@ -596,7 +596,7 @@
 	projectile_path = /obj/projectile/ego_bullet/ego_bride
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 5
-	shotsleft = 10
+	max_shots = 10
 	reloadtime = 1.4 SECONDS
 	fire_sound = 'sound/weapons/gun/rifle/leveraction.ogg'
 	attribute_requirements = list(
@@ -615,7 +615,7 @@
 	fire_sound = 'sound/abnormalities/orangetree/ding.ogg'
 	vary_fire_sound = TRUE
 	autofire = 0.2 SECONDS
-	shotsleft = 32
+	max_shots = 32
 	reloadtime = 2.1 SECONDS
 	fire_sound_volume = 20
 	attribute_requirements = list(
@@ -699,7 +699,7 @@
 	projectile_path = /obj/projectile/ego_bullet/ego_fellbullet
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 20
-	shotsleft = 1
+	max_shots = 1
 	reloadtime = 0.5 SECONDS
 	fire_sound = 'sound/abnormalities/fluchschutze/fell_bullet.ogg'
 	var/portaling = FALSE
@@ -773,7 +773,7 @@
 	to_chat(user,span_notice("You chamber a round into [src]."))
 	playsound(src, 'sound/abnormalities/fluchschutze/fell_aim.ogg', 50, TRUE)
 	if(do_after(user, reloadtime, src)) //gotta reload
-		shotsleft = initial(shotsleft)
+		shotsleft = max_shots
 	is_reloading = FALSE
 
 /obj/item/ego_weapon/ranged/fellbullet/proc/AdjustCircle(mob/living/user, atom/theportal, atom/target)
@@ -833,89 +833,41 @@
 	desc = "A bolt-action rifle fitted with a wider barrel. It fires cursed shells."
 	icon_state = "fell_scatter"
 	inhand_icon_state = "fell_scatter"
-	special = "Activate in your hand to load a magical slug. \
-	The slug will penetrate most targets. Shooting a human will deal half damage and produce a special effect. \
-	You can manually reload this weapon by pressing ALT + left mouse button."
-	force = 14
+	force = 22
 	damtype = RED_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_fellscatter
 	weapon_weight = WEAPON_HEAVY
 	pellets = 7
 	variance = 10
 	fire_delay = 15
-	shotsleft = 4
+	max_shots = 4
+	ammo_on_reload = 1
 	reloadtime = 0.5 SECONDS
 	fire_sound = 'sound/abnormalities/fluchschutze/fell_scatter.ogg'
-	var/special_ammo = FALSE
-	var/portal_cooldown
-	var/portal_cooldown_time = 15 SECONDS
-	var/ammo_2 = /obj/projectile/ego_bullet/special_fellbullet
-
+	reload_success_sound = 'sound/weapons/gun/shotgun/insert_shell.ogg'
+	alternate_reload_time = 2 SECONDS
+	alternate_fire_name = "Designate Target"
+	alternate_projectile_path = /obj/projectile/ego_bullet/special_fellbullet
+	alternate_info = "This weapon fires a magical slug. \
+	The slug will penetrate most targets. Shooting a human will deal half damage and produce a special effect."
+	alternate_fire_sound = 'sound/abnormalities/fluchschutze/fell_bullet.ogg'
+	alternate_pellets = 1
+	alternate_variance  = 0
+	alternate_toggle_sound = 'sound/abnormalities/fluchschutze/fell_aim.ogg'
+	alternate_toggle_sound_volume = 50
+	alternate_toggle_enabled_message = span_notice("You will now fire a magical slug.")
+	alternate_reload_type = RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_EMPTY_MAG
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 80
 							)
 
-/obj/item/ego_weapon/ranged/fellscatter/AltClick(mob/user)
-	..()
-	if(semicd)
-		return
-	return reload_ego(user)
+/obj/item/ego_weapon/ranged/fellscatter/EnableAltfire(mob/user, silent = TRUE)
+	. = ..()
+	max_shots = 1
 
-/obj/item/ego_weapon/ranged/fellscatter/afterattack(atom/target, mob/living/user, flag, params)
-	if(!CanUseEgo(user))
-		return
-	if(semicd)//stops firing speed anomalies
-		return
-	if(!can_shoot())
-		reload_ego(user)
-		return
-	..()
-	if(special_ammo)
-		ChangeAmmo(user, special_ammo = TRUE)
-		special_ammo = FALSE
-
-/obj/item/ego_weapon/ranged/fellscatter/reload_ego(mob/user)
-	if(shotsleft == initial(shotsleft))
-		return
-	is_reloading = TRUE
-	to_chat(user,"<span class='notice'>You start loading a bullet.</span>")
-	if(do_after(user, reloadtime, src)) //gotta reload
-		playsound(src, 'sound/weapons/gun/shotgun/insert_shell.ogg', 50, TRUE)
-		shotsleft +=1
-		reload_ego(user)
-	is_reloading = FALSE
-
-/obj/item/ego_weapon/ranged/fellscatter/attack_self(mob/user)
-	if(special_ammo)
-		to_chat(user,span_notice("You remove the slug from [src]."))
-		ChangeAmmo(special_ammo = TRUE)
-		special_ammo = FALSE
-		return
-	if(shotsleft > 1)
-		playsound(user, 'sound/weapons/gun/general/mag_bullet_remove.ogg', 50, TRUE)
-		to_chat(user,span_notice("You discard your shells."))
-		shotsleft = 0
-	ChangeAmmo(user, special_ammo = FALSE)
-	special_ammo = TRUE
-	to_chat(user,span_notice("You will now fire a magical slug."))
-
-/obj/item/ego_weapon/ranged/fellscatter/proc/ChangeAmmo(mob/living/user, special_ammo)
-	if(special_ammo)
-		fire_sound = initial(fire_sound)
-		shotsleft = 0
-		pellets = initial(pellets)
-		variance = initial(variance)
-		projectile_path = initial(projectile_path)
-	else
-		if(!do_after(user, 2 SECONDS, src))
-			return
-		fire_sound = 'sound/abnormalities/fluchschutze/fell_bullet.ogg'
-		pellets = 1
-		variance  = 0
-		shotsleft = 1
-		projectile_path = ammo_2
-		playsound(src, 'sound/abnormalities/fluchschutze/fell_aim.ogg', 50, TRUE)
-
+/obj/item/ego_weapon/ranged/fellscatter/DisableAltfire(mob/user, silent = TRUE)
+	. = ..()
+	max_shots = initial(max_shots)
 /obj/item/ego_weapon/ranged/sodashotty
 	name = "soda shotgun"
 	desc = "A gun used by Shrimp-Corp, apparently."
@@ -927,7 +879,7 @@
 	pellets = 3
 	variance = 12
 	pellets = 6
-	shotsleft = 12
+	max_shots = 12
 	reloadtime = 2 SECONDS
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 10
@@ -945,7 +897,7 @@
 	projectile_path = /obj/projectile/ego_bullet/soda_smg
 	weapon_weight = WEAPON_HEAVY
 	spread = 8
-	shotsleft = 60
+	max_shots = 60
 	reloadtime = 1.7 SECONDS
 	fire_sound = 'sound/weapons/gun/smg/shot.ogg'
 	autofire = 0.15 SECONDS
@@ -966,7 +918,7 @@
 							)
 	slowdown = 2
 	spread = 30
-	shotsleft = 800
+	max_shots = 800
 	reloadtime = 6 SECONDS
 	item_flags = SLOWS_WHILE_IN_HAND
 	fire_sound = 'sound/weapons/gun/smg/shot.ogg'
@@ -983,7 +935,7 @@
 	weapon_weight = WEAPON_HEAVY
 	burst_size = 3
 	fire_delay = 4
-	shotsleft = 51
+	max_shots = 51
 	reloadtime = 1.2 SECONDS
 	fire_sound = 'sound/weapons/gun/rifle/shot.ogg'
 	attribute_requirements = list(

@@ -10,7 +10,7 @@
 	attack_speed = 0.5
 	weapon_weight = WEAPON_LIGHT
 	projectile_path = /obj/projectile/ego_bullet/fivedamage
-	shotsleft = 13
+	max_shots = 13
 	reloadtime = 1 SECONDS
 	fire_delay = 5
 
@@ -27,7 +27,7 @@
 	weapon_weight = WEAPON_LIGHT
 	projectile_path = /obj/projectile/ego_bullet/fivedamage
 	spread = 30
-	shotsleft = 13
+	max_shots = 13
 	reloadtime = 1.5 SECONDS
 	autofire = 0.12 SECONDS
 
@@ -44,7 +44,7 @@
 	weapon_weight = WEAPON_HEAVY
 	projectile_path = /obj/projectile/ego_bullet/fivedamage
 	projectile_damage_multiplier = 6 //60 damage per bullet
-	shotsleft = 6
+	max_shots = 6
 	reloadtime = 3 SECONDS
 	fire_delay = 12
 
@@ -59,7 +59,7 @@
 	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
 	projectile_path = /obj/projectile/ego_bullet/fivedamage
 	spread = 30
-	shotsleft = 30
+	max_shots = 30
 	reloadtime = 2.7 SECONDS
 	autofire = 0.12 SECONDS
 
@@ -77,7 +77,7 @@
 	projectile_damage_multiplier = 0.5 //2.5 damage per bullet
 	fire_delay = 10
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
-	shotsleft = 7
+	max_shots = 7
 	reloadtime = 3.2 SECONDS
 	force = 5	//You have knockback
 	damtype = RED_DAMAGE

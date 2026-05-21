@@ -21,7 +21,7 @@
 	special = "This weapon has pinpoint accuracy when dual wielded."
 	projectile_path = /obj/projectile/ego_bullet/ego_beakmagnum
 	fire_delay = 10
-	shotsleft = 7
+	max_shots = 7
 	reloadtime = 2.1 SECONDS
 	fire_sound = 'sound/weapons/gun/revolver/shot_alt.ogg'
 	vary_fire_sound = FALSE
@@ -35,10 +35,11 @@
 	icon_state = "beak"
 	inhand_icon_state = "beak"
 	force = 10
+	special = "This weapon becomes stronger at the cost of more spread while the user is under half HP."
 	projectile_path = /obj/projectile/ego_bullet/ego_beak
 	weapon_weight = WEAPON_MEDIUM
 	spread = 10
-	shotsleft = 30
+	max_shots = 30
 	reloadtime = 1.3 SECONDS
 	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
 	autofire = 0.14 SECONDS
@@ -55,7 +56,7 @@
 	pellets = 5
 	variance = 20
 	fire_delay = 10
-	shotsleft = 8
+	max_shots = 8
 	reloadtime = 1.6 SECONDS
 	fire_sound = 'sound/weapons/gun/shotgun/shot_auto.ogg'
 
@@ -68,7 +69,7 @@
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_solitude
 	fire_delay = 10
-	shotsleft = 6
+	max_shots = 6
 	reloadtime = 0.5 SECONDS
 	ammo_on_reload = 1
 	fire_sound = 'sound/weapons/gun/revolver/shot_light.ogg'
@@ -86,7 +87,7 @@
 	projectile_path = /obj/projectile/ego_bullet/ego_shy
 	fire_sound = 'sound/effects/meatslap.ogg'
 	vary_fire_sound = FALSE
-	shotsleft = 20
+	max_shots = 20
 	reloadtime = 1.2 SECONDS
 	autofire = 0.2 SECONDS
 
@@ -113,7 +114,7 @@
 	projectile_path = /obj/projectile/ego_bullet/ego_page
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 5
-	shotsleft = 10
+	max_shots = 10
 	reloadtime = 1.4 SECONDS
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
 
@@ -190,7 +191,7 @@
 	variance = 25
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 12
-	shotsleft = 8
+	max_shots = 8
 	reloadtime = 1.4 SECONDS
 	fire_sound = 'sound/weapons/gun/shotgun/shot.ogg'
 
@@ -280,7 +281,7 @@
 	projectile_path = /obj/projectile/ego_bullet/ego_adjustment
 	weapon_weight = WEAPON_HEAVY
 	spread = 5
-	shotsleft = 30
+	max_shots = 30
 	autofire = 0.25 SECONDS
 	reloadtime = 2.1 SECONDS
 	fire_sound = 'sound/weapons/ego/star.ogg'

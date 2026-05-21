@@ -48,7 +48,7 @@
 	vary_fire_sound = FALSE
 	fire_sound_volume = 70
 	fire_delay = 12
-	shotsleft = 6
+	max_shots = 6
 	reloadtime = 0.6 SECONDS
 	ammo_on_reload = 1
 
@@ -106,7 +106,7 @@
 	projectile_path = /obj/projectile/ego_bullet/ego_nightshade
 	burst_size = 1
 	fire_delay = 5
-	shotsleft = 1
+	max_shots = 1
 	reloadtime = 1 SECONDS
 	fire_sound = 'sound/weapons/bowfire.ogg'
 	vary_fire_sound = FALSE
@@ -208,7 +208,7 @@ obj/item/ego_weapon/ranged/nightshade/Initialize()
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_oceanic
 	fire_delay = 5
-	shotsleft = 8
+	max_shots = 8
 	reloadtime = 1.4 SECONDS
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	vary_fire_sound = FALSE

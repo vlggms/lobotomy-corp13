@@ -101,7 +101,7 @@
 	force = 4
 	projectile_path = /obj/projectile/ego_bullet/ego_kcorp
 	fire_delay = 5
-	shotsleft = 12
+	max_shots = 12
 	reloadtime = 0.8 SECONDS
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	fire_sound_volume = 70
@@ -117,7 +117,7 @@
 	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
 	autofire = 0.08 SECONDS
 	fire_delay = 1
-	shotsleft = 40
+	max_shots = 40
 	reloadtime = 1.2 SECONDS
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
@@ -135,7 +135,7 @@
 	force = 8
 	projectile_path = /obj/projectile/ego_bullet/ego_knade
 	fire_delay = 7
-	shotsleft = 6
+	max_shots = 6
 	reloadtime = 1.8 SECONDS
 	fire_sound = 'sound/weapons/gun/general/grenade_launch.ogg'
 	fire_sound_volume = 70

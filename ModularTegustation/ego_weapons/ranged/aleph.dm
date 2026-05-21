@@ -18,7 +18,7 @@
 	spread = 5
 
 	autofire = 0.25 SECONDS
-	shotsleft = 333
+	max_shots = 333
 	reloadtime = 2.1 SECONDS
 
 	fire_sound = 'sound/weapons/ego/star.ogg'
@@ -192,7 +192,7 @@
 	zoomable = TRUE
 	zoom_amt = 10
 	zoom_out_amt = 13
-	shotsleft = 5
+	max_shots = 5
 	reloadtime = 2.1 SECONDS
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
@@ -279,7 +279,7 @@
 							)
 
 
-	shotsleft = 16	//Based off a henry .44
+	max_shots = 16	//Based off a henry .44
 	reloadtime = 0.5 SECONDS
 	ammo_on_reload = 1
 
@@ -295,7 +295,7 @@
 	fire_sound_volume = 30
 	fire_delay = 3	//FAN THE HAMMER
 
-	shotsleft = 6	//Based off a colt Single Action Navy
+	max_shots = 6	//Based off a colt Single Action Navy
 	reloadtime = 1 SECONDS
 
 

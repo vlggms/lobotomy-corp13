@@ -27,7 +27,7 @@
 			HE - 14 SDPS
 			WAW - 21 SDPS
 			ALEPH - 35 SDPS
-		Note -	Despite Melee weapon DPS appearing as 6/10/16/24/40 per rank, its 25% more due to Melee Click Cooldown being 0.8 seconds.
+		Note -	Despite Melee weapon DPS appearing as 6/10/16/24/40 per rank, its 25% higher due to Melee Click Cooldown being 0.8 seconds.
 				This means that Melee DPS is actually 7.5/12.5/20/30/50.
 		Gun damage is balanced around being ~70% of Melee DPS for their melee and their bullet's Sustained DPS but there are some exceptions.
 		Weight
@@ -39,7 +39,7 @@
 			Heavy - 1.2x DPS
 				These guns require an empty hand to be used. They have higher DPS due to needing any empty hand to use which could have a different weapon instead.
 		Gun Mechanics
-			Charged Weapons - 1.4x DPS
+			Charged Weapons - 1.3x DPS
 				Used mainly for cannon type weapons.
 				Requires to be charged up before shooting. It being charged up lasts for a few deciseconds.
 				Should have higher dps due to needing to stand still to charge it up.
@@ -48,7 +48,7 @@
 				Used for Crossbows
 				Allows the user to move while reloading at a slower pace.
 				This should overall be rare.
-			Multi Shot- 1.4x DPS
+			Multi Shot- 1.3x DPS
 				Used Mainly for Shotguns.
 				Fires multiple bullets at once in a spread.
 				Should have higher dps due to limited range, and friendly fire.
@@ -61,9 +61,10 @@
 				Should have higher dps due to needing to hit all of the bullets during a burst.
 			Alternate Firing Modes
 				An alternate mode that can be used for different mechanics compared to a guns standard mode
+				Dps should be probably be lower compared to regular guns
 			Rounds Reload
 				Allows for Guns to reload individual rounds instead of the clip.
-				If this is being used, the gun should reload slower due to being able to cancel mid reload and still regaining some bullets.
+				If this is being used, the gun should overall deal less damage due to being able to cancel mid reload and still regaining some bullets.
 			Range/Spread
 				Low range/high spread guns should have better DPS to compensate for hitting less often unless up close.
 			Added Abilities
@@ -104,6 +105,8 @@
 	//// Reload/Ammo mechanics
 	/// The amount of shots we hold.
 	var/shotsleft = 0
+	/// The total amount of shots we can hold
+	var/max_shots = 0
 	/// The ammo lost when we shoot
 	var/ammo_per_shot = 1
 	/// If set to true, the user can move during the reload at the cost of speed.
@@ -181,11 +184,42 @@
 	var/datum/action/toggle_scope_zoom/azoom
 	var/pb_knockback = 0
 
+	// Alternate Fire
+	// Set 'alternate_fire_name' to anything to enable this behaviour on your gun.
+	// Only the bare minimum stuff is handled in this alt-fire behaviour, if you want stuff like different recoil or spread for your altfire you'll have to override some procs.
+	// A gun with an alternate fire can toggle between two different magazines firing different ammo types with different stats. This toggle happens via alt-click.
+
+	// These vars are generally unfriendly to varediting. You have been warned (copious use of initial())
+
+	/// The name of the alternate fire type on this gun; for example "Underslung Grenade Launcher" or "High-Output Mode" or "Underslung Shotgun". If null, this alt-fire behaviour is disabled.
+	var/alternate_fire_name = null
+	var/alternate_selected = FALSE
+	var/alternate_shotsleft = 0
+	var/alternate_max_shots = 1
+	var/alternate_ammo_per_shot = 1
+	var/alternate_ammo_on_reload = null
+	//Information on the alt fire
+	var/alternate_info
+	/// The way reloading is handled for alternate firetypes. View __defines/combat.dm.
+	var/alternate_reload_type = RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_SHARED_RELOAD
+	var/alternate_reload_time = 0
+	var/alternate_projectile_path = /obj/projectile/ego_bullet/ego_knade
+	var/alternate_pellets = 1
+	var/alternate_variance = 0
+	var/alternate_fire_sound = 'sound/weapons/gun/general/grenade_launch.ogg'
+	var/alternate_fire_sound_volume = 50
+	var/alternate_toggle_sound = 'sound/machines/click.ogg'
+	var/alternate_toggle_sound_volume = 65
+	var/alternate_toggle_spam_protection_cd
+	var/alternate_toggle_enabled_message = span_notice("Alternate fire enabled.")
+	var/alternate_toggle_disabled_message = span_notice("Alternate fire disabled.")
+	var/alternate_toggle_instructions = "alt-clicking or middle-clicking"
+
 /obj/item/ego_weapon/ranged/pistol
 	attack_speed = 0.5
 	force = 2
 	fire_delay = 5
-	shotsleft = 12
+	max_shots = 12
 
 /// Low ammo, Long reloads, Slow fire rate, Extreme Damage
 /obj/item/ego_weapon/ranged/cannon
@@ -193,7 +227,7 @@
 	force = 9
 	fire_delay = 10
 	chargetime = 10
-	shotsleft = 3
+	max_shots = 3
 	recoil = 0.1
 	round_text = "You start loading a shell."
 	projectile_name = "shell"
@@ -204,7 +238,7 @@
 	fire_sound = 'sound/weapons/ego/cannon.ogg'
 
 /obj/item/ego_weapon/ranged/crossbow
-	shotsleft = 1
+	max_shots = 1
 	reload_text = "You start loading an arrow."
 	projectile_name = "arrow"
 	projectile_name_plural = "arrows"
@@ -228,6 +262,8 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 
 /obj/item/ego_weapon/ranged/Initialize()
 	. = ..()
+	shotsleft = max_shots
+	alternate_shotsleft = alternate_max_shots
 	if(!burst_delay)
 		burst_delay = fire_delay * 0.8
 	if(pin)
@@ -238,6 +274,10 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 		fire_delay = 0
 
 	update_projectile_examine()
+
+	// If your gun has an altfire and uses shared reloading, the altfire reload will be the same as the normal one.
+	if(alternate_fire_name && !alternate_reload_time)
+		alternate_reload_time = reloadtime
 
 /obj/item/ego_weapon/ranged/Destroy(mob/user)
 	if(user)
@@ -257,15 +297,92 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 		pin = null
 	return ..()
 
+/// By default, alt-click is reserved for toggling alt-fire on weapons that have an alt-fire. Feel free to override. This won't do anything on most guns.
+/obj/item/ego_weapon/ranged/MiddleClickAction(atom/target, mob/user)
+	. = ..()
+	if(.)
+		return
+	if(!alternate_fire_name)
+		return
+	if(is_reloading || charged || is_charging) // Don't want people to smuggle differing reload or charge timers
+		return
+	if(alternate_toggle_spam_protection_cd > world.time)
+		return
+
+	alternate_toggle_spam_protection_cd = world.time + 0.3 SECONDS
+
+	playsound(src, alternate_toggle_sound, alternate_toggle_sound_volume)
+	if(!alternate_selected)
+		EnableAltfire(user, silent = FALSE)
+	else
+		DisableAltfire(user, silent = FALSE)
+
+// These two procs are very simple so you can override them easily for more custom behaviour.
+/obj/item/ego_weapon/ranged/proc/EnableAltfire(mob/user, silent = TRUE)
+	alternate_selected = TRUE
+	reloadtime = alternate_reload_time
+	if(alternate_reload_type == RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_EMPTY_MAG)
+		to_chat(user, span_danger("You dump your magazine to prepare the other ammo type"))
+		shotsleft = 0
+	if(!silent)
+		to_chat(user, alternate_toggle_enabled_message)
+	update_projectile_examine()
+
+/obj/item/ego_weapon/ranged/proc/DisableAltfire(mob/user, silent = TRUE)
+	alternate_selected = FALSE
+	reloadtime = initial(reloadtime)
+	if(alternate_reload_type == RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_EMPTY_MAG)
+		to_chat(user, span_danger("You dump your magazine to prepare the other ammo type"))
+		shotsleft = 0
+	if(!silent)
+		to_chat(user, alternate_toggle_disabled_message)
+	update_projectile_examine()
+
 /obj/item/ego_weapon/ranged/examine(mob/user)
 	. = ..()
 	. += GunAttackInfo()
 	if(!reloadtime)
 		. += span_notice("This weapon has unlimited ammo.")
-	else if(shotsleft>= ammo_per_shot)
-		. += span_notice("Ammo Counter: [shotsleft]/[initial(shotsleft)].")
+	else if(shotsleft >= ammo_per_shot)
+		. += span_notice("Ammo Counter: [shotsleft]/[max_shots].")
 	else
-		. += span_danger("Ammo Counter: [shotsleft]/[initial(shotsleft)].")
+		. += span_danger("Ammo Counter: [shotsleft]/[max_shots].")
+
+	if(alternate_fire_name)
+		. += ""
+		. += span_notice("This weapon has an alternate fire mode: [alternate_fire_name]. Activate by [alternate_toggle_instructions].")
+		if(alternate_info)
+			. += span_notice("Alt Fire - [alternate_info]")
+		// Altfire currently active?
+		if(alternate_selected)
+			. += span_danger("[alternate_fire_name] is currently <b>active!</b>")
+		else
+
+			. += span_notice("[alternate_fire_name] is currently <b>disabled.</b>")
+		// Ammo count for altfire.
+		switch(alternate_reload_type)
+			if(RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_SHARED_RELOAD)
+				. += span_nicegreen("Reloading the magazine will reload the alternate ammo.")
+				if(alternate_shotsleft >= alternate_ammo_per_shot)
+					. += span_notice("[alternate_fire_name] Ammo Counter: [alternate_shotsleft]/[alternate_max_shots].")
+				else
+					. += span_danger("[alternate_fire_name] Ammo Counter: [alternate_shotsleft]/[alternate_max_shots].")
+
+			if(RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_INDIVIDUAL_RELOAD)
+				. += span_notice("This weapon requires both ammo types to be reloaded separately.")
+				if(alternate_shotsleft >= alternate_ammo_per_shot)
+					. += span_notice("[alternate_fire_name] Ammo Counter: [alternate_shotsleft]/[alternate_max_shots].")
+				else
+					. += span_danger("[alternate_fire_name] Ammo Counter: [alternate_shotsleft]/[alternate_max_shots].")
+
+
+			if(RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_SHARED_MAGAZINE)
+				. += span_notice("The alternate fire on this weapon uses the main ammo pool.")
+			if(RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_EMPTY_MAG)
+				. += span_danger("This weapon can only load one ammo type at a time. Reloading will dump the magazine.")
+
+		. += ""
+
 	if(passive_reload)
 		var/start = "This weapon passively reloads [projectile_name_plural] with a"
 		switch(passive_reload)
@@ -291,13 +408,16 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 				. += span_danger("This weapon has a slow reload.")
 			if(2.51 to INFINITY)
 				. += span_danger("This weapon has an extremely slow reload.")
+
 		if(mobile_reload)
 			. += span_notice("This weapon can be reloaded while moving at the cost of movespeed.")
+
 		if(ammo_on_reload)
 			if(ammo_on_reload > 1)
 				. += span_notice("This weapon reloads [ammo_on_reload] [projectile_name_plural] at a time.")
 			else
 				. += span_notice("This weapon reloads one [projectile_name] at a time.")
+
 	switch(weapon_weight)
 		if(WEAPON_HEAVY)
 			. += span_danger("This weapon requires both hands to fire.")
@@ -360,8 +480,9 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 		var/datum/damage_type_shuffler/shuffler = GLOB.damage_type_shuffler
 		var/new_damage_type = shuffler.mapping_offense[damage_type]
 		damage_type = new_damage_type
-	if(pellets > 1)	//for shotguns
-		return span_notice("Its bullets deal [damage] x [pellets] [damage_type] damage.[projectile_damage_multiplier != 1 ? " (+ [(projectile_damage_multiplier - 1) * 100]%)" : ""]")
+	var/correct_pellets = (alternate_selected) ? alternate_pellets : pellets
+	if(correct_pellets > 1)	//for shotguns
+		return span_notice("Its bullets deal [damage] x [correct_pellets] [damage_type] damage.[projectile_damage_multiplier != 1 ? " (+ [(projectile_damage_multiplier - 1) * 100]%)" : ""]")
 	return span_notice("Its bullets deal [damage] [damage_type] damage.[projectile_damage_multiplier != 1 ? " (+ [(projectile_damage_multiplier - 1) * 100]%)" : ""]")
 
 /// Updates the damage/type of projectiles inside of the gun
@@ -369,17 +490,20 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 	if(isnull(projectile_path))
 		message_admins("[src] has an invalid projectile path.")
 		return
-	var/obj/projectile/projectile = new projectile_path(src, src)
+	var/correct_projectile_path = alternate_selected ? alternate_projectile_path : projectile_path
+	var/obj/projectile/projectile = new correct_projectile_path(src, src)
 	last_projectile_damage = projectile.damage
 	last_projectile_type = projectile.damage_type
 	qdel(projectile)
 
 /obj/item/ego_weapon/ranged/attack_self(mob/user)
-	if(reloadtime && !is_reloading && !passive_reload)
+	if(passive_reload) // Passive reload doesn't care about reloading.
+		return ..()
+	if(reloadtime && !is_reloading)
 		if(ammo_on_reload)
 			to_chat(user,span_notice(reload_text))
 			playsound(src, reload_start_sound, 50, TRUE)
-			INVOKE_ASYNC(src, PROC_REF(rounds_reload), user)
+			INVOKE_ASYNC(src, PROC_REF(rounds_reload), user, alternate_selected)
 		else
 			INVOKE_ASYNC(src, PROC_REF(reload_ego), user)
 	return ..()
@@ -394,19 +518,36 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 		user.add_movespeed_modifier(/datum/movespeed_modifier/reloading)
 	if(do_after(user, reloadtime, src, flags, extra_checks=CALLBACK(src, PROC_REF(reload_check)))) //gotta reload
 		playsound(src, reload_success_sound, 50, TRUE)
-		shotsleft = initial(shotsleft)
 		OnReload(user)
+		//Alright, let's check if we're in the alternate mode, and reloading the second mag.
+		if(alternate_selected && (alternate_reload_type == RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_INDIVIDUAL_RELOAD))
+			alternate_shotsleft = alternate_max_shots
+			if(user.has_movespeed_modifier(/datum/movespeed_modifier/reloading))
+				user.remove_movespeed_modifier(/datum/movespeed_modifier/reloading)
+			is_reloading = FALSE
+			return	//Get the fuck outta here
+
+		//We're ALWAYS reloading the main mag here. If we got this far, it means we're using a gun that wants to load the main mag
+		shotsleft = max_shots
+
+		//If we reload both at once? Set the alt shots back too.
+		if(alternate_reload_type == RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_SHARED_RELOAD)
+			alternate_shotsleft = alternate_max_shots
+
 	if(user.has_movespeed_modifier(/datum/movespeed_modifier/reloading))
 		user.remove_movespeed_modifier(/datum/movespeed_modifier/reloading)
 	is_reloading = FALSE
 
-/obj/item/ego_weapon/ranged/proc/rounds_reload(mob/user)
-	if(shotsleft == initial(shotsleft))
+/obj/item/ego_weapon/ranged/proc/rounds_reload(mob/user, is_reloading_alt_mag = FALSE)
+	is_reloading = TRUE
+	//If it's only one mag type, you MUST load it.
+	if(alternate_reload_type == RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_EMPTY_MAG)
+		is_reloading_alt_mag = FALSE
+	if(((!is_reloading_alt_mag) && (shotsleft == max_shots)) || ((is_reloading_alt_mag) && (alternate_shotsleft == alternate_max_shots)))
 		if(user.has_movespeed_modifier(/datum/movespeed_modifier/reloading))
 			user.remove_movespeed_modifier(/datum/movespeed_modifier/reloading)
 		is_reloading = FALSE
 		return
-	is_reloading = TRUE
 	to_chat(user, span_notice(round_text))
 	var/flags = 0
 	if(mobile_reload)
@@ -414,7 +555,11 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 		user.add_movespeed_modifier(/datum/movespeed_modifier/reloading)
 	if(do_after(user, reloadtime, src, flags, extra_checks=CALLBACK(src, PROC_REF(reload_check)))) //gotta reload
 		playsound(src, reload_success_sound, 50, TRUE)
-		shotsleft = min(shotsleft + ammo_on_reload, initial(shotsleft))
+		if(is_reloading_alt_mag)
+			alternate_shotsleft = min(alternate_shotsleft + alternate_ammo_on_reload, alternate_max_shots)
+		else
+			shotsleft = min(shotsleft + ammo_on_reload, max_shots)
+		INVOKE_ASYNC(src, PROC_REF(rounds_reload), user, is_reloading_alt_mag)	//To save you from loading all your bullets
 		OnReload(user)
 		INVOKE_ASYNC(src, PROC_REF(rounds_reload), user)
 		return
@@ -429,10 +574,10 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 	deltimer(passive_reload_timer)
 	OnReload(user)
 	if(ammo_on_reload)
-		shotsleft = min(shotsleft + ammo_on_reload, initial(shotsleft))
+		shotsleft = min(shotsleft + ammo_on_reload, max_shots)
 	else
-		shotsleft = initial(shotsleft)
-	if(shotsleft < initial(shotsleft))
+		shotsleft = max_shots
+	if(shotsleft < max_shots)
 		passive_reload_timer = addtimer(CALLBACK(src, PROC_REF(PassiveReload), user), reloadtime, TIMER_STOPPABLE)
 
 /obj/item/ego_weapon/ranged/equipped(mob/living/user, slot)
@@ -464,23 +609,88 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 		if(passive_reload_timer)
 			deltimer(passive_reload_timer)
 		passive_reload_timer = addtimer(CALLBACK(src, PROC_REF(PassiveReload), user, TRUE), passive_reloadtime_delay, TIMER_STOPPABLE)
-	if(reloadtime && shotsleft)
+
+	if(!reloadtime) //You don't have ammo, no need to dump it
+		return
+
+	if(!alternate_selected && shotsleft)	//You're firing the main mag.
 		shotsleft = max(0, shotsleft - ammo_per_shot)
+
+	//Are we in alternate fire?
+	if(alternate_selected)
+
+		//What type?
+		switch(alternate_reload_type)
+
+			//If it's two mags, we check if there's ammo in the alt mag
+			if(RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_SHARED_RELOAD)
+				if(alternate_shotsleft && alternate_reload_time)
+					alternate_shotsleft = max(0, alternate_shotsleft - alternate_ammo_per_shot)
+
+			if(RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_INDIVIDUAL_RELOAD)
+				if(alternate_shotsleft && alternate_reload_time)
+					alternate_shotsleft = max(0, alternate_shotsleft - alternate_ammo_per_shot)
+
+			//If it's one mag, we lose a main bullet
+			if(RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_EMPTY_MAG)
+				if(shotsleft && alternate_reload_time)
+					shotsleft = max(0, shotsleft - ammo_per_shot)
+
+			if(RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_SHARED_MAGAZINE)
+				if(shotsleft && alternate_reload_time)
+					shotsleft = max(0, shotsleft - ammo_per_shot)
 
 //check if there's enough ammo to shoot one time
 //i.e if clicking would make it shoot
 /obj/item/ego_weapon/ranged/proc/can_shoot()
-	if(reloadtime && shotsleft < ammo_per_shot)
-		visible_message(span_notice(out_of_ammo))
+	if(is_reloading)
+		return FALSE
+
+	//Does the main mag not need ammo?
+	if(!reloadtime && !alternate_selected)
+		return TRUE
+
+	//Does the alt mag not need ammo?
+	if(!alternate_reload_time && alternate_selected)
+		return TRUE
+
+	//Are we firing regular bullets, it can reload and we have no shots left?
+	if(!alternate_selected && (reloadtime && shotsleft < ammo_per_shot))
 		shoot_with_empty_chamber()
 		return FALSE
 
-	if(is_reloading)
-		return FALSE
+	//Are we in alternate fire?
+	if(alternate_selected)
+
+		//What type?
+		switch(alternate_reload_type)
+
+			//If it's two mags, we check if there's ammo.
+			if(RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_SHARED_RELOAD)
+				if(alternate_shotsleft < alternate_ammo_per_shot)
+					shoot_with_empty_chamber()
+					return FALSE
+
+			if(RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_INDIVIDUAL_RELOAD)
+				if(alternate_shotsleft < alternate_ammo_per_shot)
+					shoot_with_empty_chamber()
+					return FALSE
+
+			//If it's one mag, we check the main mag.
+			if(RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_EMPTY_MAG)
+				if(shotsleft < ammo_per_shot)
+					shoot_with_empty_chamber()
+					return FALSE
+
+			if(RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_SHARED_MAGAZINE)
+				if(shotsleft < ammo_per_shot)
+					shoot_with_empty_chamber()
+					return FALSE
 
 	return TRUE
 
 /obj/item/ego_weapon/ranged/proc/shoot_with_empty_chamber(mob/living/user as mob|obj)
+	visible_message(span_notice(out_of_ammo))
 	to_chat(user, span_danger("*click*"))
 	playsound(src, dry_fire_sound, 30, TRUE)
 
@@ -492,7 +702,10 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 	if(recoil)
 		shake_camera(user, recoil + 1, recoil)
 
-	playsound(user, fire_sound, fire_sound_volume, vary_fire_sound)
+	var/sfx = alternate_selected ? alternate_fire_sound : fire_sound
+	var/sfx_volume = alternate_selected ? alternate_fire_sound_volume : fire_sound_volume
+
+	playsound(user, sfx, sfx_volume, vary_fire_sound)
 	if(!message)
 		return
 
@@ -564,17 +777,7 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 		if(semicd)//You still need to wait till it's off cooldown first
 			return
 		if(!charged)
-			is_charging = TRUE
-			playsound(user, charge_sound, charge_sound_volume, vary_fire_sound)
-			if(do_after(user, chargetime, src))
-				to_chat(user, span_nicegreen("You charge up [src]."))
-				is_charging = FALSE
-				charged = TRUE
-				OnCharged(user)
-				charge_timer = addtimer(CALLBACK(src, PROC_REF(Uncharge), user), 4, TIMER_STOPPABLE)
-				return
-			is_charging = FALSE
-			to_chat(user, span_warning("You need to wait before charging up [src]!"))
+			ChargeUp(user)
 			return
 		deltimer(charge_timer)
 		charged = FALSE
@@ -593,6 +796,19 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 				addtimer(CALLBACK(G, TYPE_PROC_REF(/obj/item/ego_weapon/ranged, process_fire), target, user, TRUE, params, null, bonus_spread), loop_counter)
 
 	return process_fire(target, user, TRUE, params, null, bonus_spread)
+
+/obj/item/ego_weapon/ranged/proc/ChargeUp(mob/living/user)
+	is_charging = TRUE
+	playsound(user, charge_sound, charge_sound_volume, vary_fire_sound)
+	if(do_after(user, chargetime, src))
+		to_chat(user, span_nicegreen("You charge up [src]."))
+		is_charging = FALSE
+		charged = TRUE
+		OnCharged(user)
+		charge_timer = addtimer(CALLBACK(src, PROC_REF(Uncharge), user), 4, TIMER_STOPPABLE)
+		return
+	is_charging = FALSE
+	to_chat(user, span_warning("You need to wait before charging up [src]!"))
 
 /obj/item/ego_weapon/ranged/can_trigger_gun(mob/living/user)
 	. = ..()

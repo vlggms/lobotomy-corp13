@@ -9,7 +9,7 @@
 	projectile_path = /obj/projectile/ego_bullet/ego_prank
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 5
-	shotsleft = 10
+	max_shots = 10
 	reloadtime = 1.4 SECONDS
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
 	attribute_requirements = list(
@@ -24,7 +24,7 @@
 	force = 6
 	projectile_path = /obj/projectile/ego_bullet/ego_gaze
 	fire_delay = 10
-	shotsleft = 8
+	max_shots = 8
 	reloadtime = 1.8 SECONDS
 	fire_sound = 'sound/weapons/gun/pistol/deagle.ogg'
 	vary_fire_sound = FALSE
@@ -39,12 +39,14 @@
 	desc = "A shimmering wand."
 	icon_state = "galaxy"
 	inhand_icon_state = "galaxy"
-	special = "Use in hand to turn on homing mode. This mode fires slower, but homes in on a random target within 15 metres.	\
-			WARNING: This feature is not accurate."
 	projectile_path = /obj/projectile/ego_bullet/ego_galaxy
 	force = 10
 	damtype = BLACK_DAMAGE
 	fire_delay = 15
+	max_shots = 20
+	passive_reload = TRUE
+	passive_reloadtime_delay = 8 SECONDS
+	reloadtime = 5
 	fire_sound = 'sound/magic/wand_teleport.ogg'
 	weapon_weight = WEAPON_MEDIUM
 	fire_sound_volume = 70
@@ -52,21 +54,27 @@
 							TEMPERANCE_ATTRIBUTE = 40
 							)
 	var/homing = FALSE
+	fire_sound = 'sound/magic/staff_change.ogg'
+	alternate_fire_name = "Glimmer"
+	alternate_info = "This weapon fires slower, but homes in on a random target within 15 metres.	\
+			WARNING: This feature is not accurate."
+	alternate_reload_type = RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_SHARED_MAGAZINE
+	alternate_projectile_path = /obj/projectile/ego_bullet/ego_galaxy/homing
+	alternate_fire_sound = 'sound/magic/charge.ogg'
+	alternate_fire_sound_volume = 70
+	alternate_toggle_sound = 'sound/magic/wand_teleport.ogg'
+	alternate_toggle_sound_volume = 65
+	alternate_toggle_enabled_message = span_notice("You channel your energy, enabling homing.")
+	alternate_toggle_disabled_message = span_notice("You release your energy, and turn off homing.")
 
-/obj/item/ego_weapon/ranged/galaxy/attack_self(mob/user)
-	..()
-	if(homing)
-		to_chat(user,span_warning("You release your energy, and turn off homing."))
-		fire_delay = 15
-		projectile_path = initial(projectile_path)
-		homing = FALSE
-		return
-	if(!homing)
-		to_chat(user,span_warning("You channel your energy, enabling homing."))
-		fire_delay = 20
-		projectile_path = /obj/projectile/ego_bullet/ego_galaxy/homing
-		homing = TRUE
-		return
+/obj/item/ego_weapon/ranged/galaxy/EnableAltfire(mob/user, silent = TRUE)
+	. = ..()
+	fire_delay = 18
+
+/obj/item/ego_weapon/ranged/galaxy/DisableAltfire(mob/user, silent = TRUE)
+	. = ..()
+	fire_delay = 15
+
 
 /obj/item/ego_weapon/ranged/unrequited
 	name = "unrequited love"
@@ -156,7 +164,7 @@
 	vary_fire_sound = FALSE
 	weapon_weight = WEAPON_HEAVY
 	fire_sound_volume = 70
-	shotsleft = 18
+	max_shots = 18
 	reloadtime = 1.6 SECONDS
 
 	autofire = 0.35 SECONDS
@@ -173,7 +181,7 @@
 	projectile_path = /obj/projectile/ego_bullet/ego_transmission
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 5
-	shotsleft = 10
+	max_shots = 10
 	reloadtime = 1.4 SECONDS
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
 	attribute_requirements = list(
@@ -190,7 +198,7 @@
 	projectile_path = /obj/projectile/ego_bullet/ego_song
 	fire_sound = 'sound/weapons/gun/pistol/shot_alt.ogg'
 	weapon_weight = WEAPON_MEDIUM
-	shotsleft = 32
+	max_shots = 32
 	reloadtime = 1.6 SECONDS
 	spread = 8
 	autofire = 0.15 SECONDS
@@ -209,7 +217,7 @@
 	variance = 20
 	projectile_path = /obj/projectile/ego_bullet/ego_songmini
 	fire_sound = 'sound/weapons/gun/revolver/shot_light.ogg'
-	shotsleft = 16
+	max_shots = 16
 	reloadtime = 2.1 SECONDS
 	spread = 8
 	autofire = 0.3 SECONDS
@@ -242,7 +250,7 @@
 	projectile_path = /obj/projectile/ego_bullet/ego_swindle
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 5
-	shotsleft = 12
+	max_shots = 12
 	reloadtime = 1.5 SECONDS
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	attribute_requirements = list(
@@ -299,7 +307,7 @@
 	projectile_path = /obj/projectile/ego_bullet/ego_syrinx
 	weapon_weight = WEAPON_MEDIUM
 	spread = 40
-	shotsleft = 40
+	max_shots = 40
 	reloadtime = 2 SECONDS
 	fire_sound = 'sound/weapons/ego/ecstasy.ogg'
 	autofire = 0.08 SECONDS
@@ -316,7 +324,7 @@
 	projectile_path = /obj/projectile/ego_bullet/ego_gaze
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 8
-	shotsleft = 6
+	max_shots = 6
 	reloadtime = 1.3 SECONDS
 	fire_sound = 'sound/weapons/gun/revolver/shot_alt.ogg'
 	vary_fire_sound = FALSE
@@ -353,7 +361,7 @@
 	projectile_path = /obj/projectile/ego_bullet/soda_rifle
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 6
-	shotsleft = 10
+	max_shots = 10
 	reloadtime = 1.4 SECONDS
 	fire_sound = 'sound/weapons/gun/rifle/shot.ogg'
 	attribute_requirements = list(

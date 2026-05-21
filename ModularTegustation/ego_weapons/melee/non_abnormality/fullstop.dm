@@ -9,7 +9,7 @@
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
 	special = "Use in hand to reload"
-	shotsleft = 10
+	max_shots = 10
 	reloadtime = 2 SECONDS
 
 //The actual weapons
@@ -20,7 +20,7 @@
 	inhand_icon_state = "fullstop"
 	force = 10
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
-	shotsleft = 30
+	max_shots = 30
 	autofire = 0.12 SECONDS
 	spread = 10
 	attribute_requirements = list(
@@ -37,7 +37,7 @@
 	inhand_icon_state = "fullstopsniper"
 	force = 6
 	attack_speed = 0.5
-	shotsleft = 17
+	max_shots = 17
 	fire_delay = 5
 	reloadtime = 1.3 SECONDS
 	attribute_requirements = list(
@@ -58,7 +58,7 @@
 	zoomable = TRUE
 	zoom_out_amt = 5
 	projectile_damage_multiplier = 4
-	shotsleft = 5
+	max_shots = 5
 	fire_delay = 30
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
@@ -77,7 +77,7 @@
 	weapon_weight = WEAPON_LIGHT
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
 	projectile_damage_multiplier = 4
-	shotsleft = 9
+	max_shots = 9
 	reloadtime = 1 SECONDS
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
