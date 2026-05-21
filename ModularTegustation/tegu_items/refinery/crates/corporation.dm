@@ -10,7 +10,6 @@
 		/obj/item/powered_gadget/slowingtrapmk1,
 		/obj/item/clerkbot_gadget,
 		/obj/item/powered_gadget/handheld_taser,
-		/obj/item/forcefield_projector,
 		/obj/item/reagent_containers/hypospray/emais,
 		/obj/item/clothing/glasses/meson,
 		/obj/item/powered_gadget/vitals_projector,
@@ -22,7 +21,6 @@
 	rareloot =	list(
 		/obj/item/powered_gadget/detector_gadget/ordeal,
 		/obj/item/managerbullet,
-		/obj/item/powered_gadget/teleporter,
 	)
 
 	//Injectors and rare extractors, quite desireable as they are quite expensive.
@@ -174,5 +172,4 @@
 	cosmeticloot = list(
 		/obj/item/clothing/head/ego_hat/wcorp,
 		/obj/item/clothing/under/suit/lobotomy/wcorp,
-		/obj/item/powered_gadget/teleporter,
 	)

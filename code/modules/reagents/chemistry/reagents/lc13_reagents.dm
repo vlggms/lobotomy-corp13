@@ -90,3 +90,24 @@
 	color = "#5c462d"
 	taste_description = "starvation"
 	can_synth = FALSE
+
+/datum/reagent/space_cleaner/lc13
+	name = "Cleaning Fluid"
+	description = "A liquid cleaner. Smells terrible, and looks awfully remniscent of the fluid in sweeper tanks."
+	color = "#c40d0d" // rgb: 165, 240, 238
+	taste_description = "bitterness"
+	reagent_weight = 0.4 //so it sprays further
+	clean_types = CLEAN_ALL
+	var/list/organic_clean_types = list(/obj/item/bodypart, /obj/item/organ, /obj/item/food/meat/slab)
+
+/datum/reagent/space_cleaner/lc13/expose_obj(obj/exposed_obj, reac_volume)
+	..()
+	if(is_type_in_list(exposed_obj, organic_clean_types))
+		if(istype(exposed_obj, /obj/item/organ/brain))
+			exposed_obj.visible_message(span_danger("[exposed_obj] resists the acid!"))
+			return
+		else if(istype(exposed_obj, /obj/item/bodypart/head))
+			exposed_obj.visible_message(span_danger("[exposed_obj] resists the acid!"))
+			return
+		exposed_obj.visible_message(span_danger("[exposed_obj] melts away!"))
+		qdel(exposed_obj)

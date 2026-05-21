@@ -32,7 +32,6 @@ GLOBAL_LIST_EMPTY(spawned_clerks)
 	job_abbreviation = "CLK"
 
 	job_attribute_limit = 0
-	var/list/clerk_belts = list(/obj/item/storage/belt/clerk/facility, /obj/item/storage/belt/clerk/agent)
 
 
 //Cannot Gain stats.
@@ -43,9 +42,8 @@ GLOBAL_LIST_EMPTY(spawned_clerks)
 
 	if(outfit_owner.ckey in GLOB.spawned_clerks)
 		return
-	var/item = pick(clerk_belts)
 	GLOB.spawned_clerks += outfit_owner.ckey
-	outfit_owner.equip_to_slot_or_del(new item(outfit_owner),ITEM_SLOT_HANDS, TRUE)
+	outfit_owner.equip_to_slot_or_del(new /obj/item/storage/belt/clerk(outfit_owner),ITEM_SLOT_HANDS, TRUE)
 
 /datum/outfit/job/assistant
 	name = "Clerk"
@@ -54,23 +52,3 @@ GLOBAL_LIST_EMPTY(spawned_clerks)
 	l_pocket = /obj/item/sensor_device
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/medical)
 	box = /obj/item/storage/box/survival/lobotomy
-
-/datum/outfit/job/assistant/post_equip(mob/living/carbon/human/outfit_owner, visualsOnly = FALSE)
-	..()
-	if(outfit_owner.ckey in GLOB.spawned_clerks)
-		return
-	var/item = pick(
-		/obj/item/forcefield_projector,
-		/obj/item/deepscanner,
-		/obj/item/powered_gadget/slowingtrapmk1,
-		/obj/item/safety_kit,
-		/obj/item/powered_gadget/detector_gadget/abnormality,
-		/obj/item/powered_gadget/detector_gadget/ordeal,
-		/obj/item/powered_gadget/enkephalin_injector,
-		/obj/item/clerkbot_gadget,
-		/obj/item/powered_gadget/handheld_taser,
-		/obj/item/powered_gadget/vitals_projector,
-		/obj/item/reagent_containers/hypospray/emais,
-	)
-	GLOB.spawned_clerks += outfit_owner.ckey
-	outfit_owner.equip_to_slot_or_del(new item(outfit_owner),ITEM_SLOT_HANDS, TRUE)
