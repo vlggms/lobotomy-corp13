@@ -353,7 +353,7 @@
 	name = "soda rifle"
 	desc = "A gun used by shrimp corp, apparently."
 	icon_state = "sodarifle"
-	inhand_icon_state = "sodalong"
+	inhand_icon_state = "sodarifle"
 	force = 10
 	projectile_path = /obj/projectile/ego_bullet/soda_rifle
 	weapon_weight = WEAPON_HEAVY

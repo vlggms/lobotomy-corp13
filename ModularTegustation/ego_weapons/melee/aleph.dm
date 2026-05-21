@@ -306,6 +306,10 @@
 	desc = "The monstrous mouth opens wide to devour the target, its hunger insatiable."
 	special = "This weapon instantly consumes targets below 5% health and attacks faster or slower depending on how \"hungry\" is it."	//To make it more unique, if it's too strong
 	icon_state = "smile"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
 	force = 35 //~70 at max nourishment.
 	attack_speed = 1
 	damtype = BLACK_DAMAGE
@@ -1159,7 +1163,18 @@
 
 /obj/item/ego_weapon/mockery/proc/Transform()
 	icon_state = "mockery_[form]"
+	if(form == "hammer")
+		lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+		righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+		inhand_x_dimension = 64
+		inhand_y_dimension = 64
+	else
+		lefthand_file = 'icons/mob/inhands/weapons/ego_lefthand.dmi'
+		righthand_file = 'icons/mob/inhands/weapons/ego_righthand.dmi'
+		inhand_x_dimension = 32
+		inhand_y_dimension = 32
 	update_icon_state()
+
 	if(current_holder)
 		to_chat(current_holder,span_notice("[src] suddenly transforms!"))
 		current_holder.update_inv_hands()
@@ -1180,7 +1195,7 @@
 	if(form == "bat")
 		knockback = KNOCKBACK_LIGHT
 	else
-		knockback = null
+		knockback = FALSE
 
 /obj/item/ego_weapon/shield/gasharpoon
 	name = "gasharpoon"

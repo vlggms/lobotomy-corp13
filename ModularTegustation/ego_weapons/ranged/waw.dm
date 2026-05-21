@@ -272,7 +272,7 @@
 	name = "praetorian"
 	desc = "And with her guard, she conquered all."
 	icon_state = "praetorian"
-	inhand_icon_state = "executive"
+	inhand_icon_state = "praetorian"
 	special = "This weapon fires IFF bullets."
 	force = 14
 	projectile_path = /obj/projectile/ego_bullet/ego_praetorian
@@ -401,6 +401,10 @@
 	desc = "A chunk of the naked nest inigrated with a launching mechanism."
 	icon_state = "exuviae"
 	inhand_icon_state = "exuviae"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
 	force = 16
 	attack_speed = 1.3
 	projectile_path = /obj/projectile/ego_bullet/ego_exuviae
@@ -920,7 +924,7 @@
 	name = "soda shotgun"
 	desc = "A gun used by Shrimp-Corp, apparently."
 	icon_state = "sodashotgun"
-	inhand_icon_state = "sodalong"
+	inhand_icon_state = "sodashotgun"
 	force = 18
 	attack_speed = 1.3
 	projectile_path = /obj/projectile/ego_bullet/soda_shotty
@@ -940,7 +944,7 @@
 	name = "soda submachinegun"
 	desc = "A gun used by Shrimp-Corp, apparently."
 	icon_state = "sodasmg"
-	inhand_icon_state = "soda"
+	inhand_icon_state = "sodasmg"
 	force = 14
 	projectile_path = /obj/projectile/ego_bullet/soda_smg
 	weapon_weight = WEAPON_HEAVY
