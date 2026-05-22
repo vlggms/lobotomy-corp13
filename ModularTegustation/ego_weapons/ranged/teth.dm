@@ -40,9 +40,25 @@
 	weapon_weight = WEAPON_MEDIUM
 	spread = 10
 	max_shots = 30
-	reloadtime = 1.3 SECONDS
+	reloadtime = 2 SECONDS
 	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
-	autofire = 0.14 SECONDS
+	autofire = 0.16 SECONDS
+	var/angry = FALSE
+
+/obj/item/ego_weapon/ranged/beak/before_firing(atom/target, mob/living/user)
+	if(user.health <= user.maxHealth/2)
+		angry = TRUE
+	else
+		angry = FALSE
+	if(angry)
+		spread = 40
+		projectile_path = /obj/projectile/ego_bullet/ego_beak/strong
+		color = "#FF0000"
+	else
+		spread = initial(spread)
+		projectile_path = initial(projectile_path)
+		color = "#FFFFFF"
+	return ..()
 
 /obj/item/ego_weapon/ranged/noise
 	name = "noise"
@@ -57,7 +73,8 @@
 	variance = 20
 	fire_delay = 10
 	max_shots = 8
-	reloadtime = 1.6 SECONDS
+	ammo_on_reload = 1
+	reloadtime = 0.6 SECONDS
 	fire_sound = 'sound/weapons/gun/shotgun/shot_auto.ogg'
 
 /obj/item/ego_weapon/ranged/pistol/solitude
@@ -82,7 +99,7 @@
 	When throbbing emotions surge up from time to time, it's best to simply cover the face."
 	icon_state = "shy"
 	inhand_icon_state = "shy"
-	force = 4
+	force = 3
 	damtype = BLACK_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_shy
 	fire_sound = 'sound/effects/meatslap.ogg'
@@ -96,7 +113,7 @@
 	desc = "And when the crying stops, dawn will break."
 	icon_state = "dream"
 	inhand_icon_state = "dream"
-	force = 8
+	force = 9
 	attack_speed = 1
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_dream
@@ -115,7 +132,7 @@
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 5
 	max_shots = 10
-	reloadtime = 1.4 SECONDS
+	reloadtime = 0.2 SECONDS
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
 
 /obj/item/ego_weapon/ranged/snapshot
@@ -129,6 +146,10 @@
 	projectile_path = /obj/projectile/beam/snapshot
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 10
+	max_shots = 12
+	ammo_on_reload = 1
+	passive_reload = 3 SECONDS
+	reloadtime = 0.5 SECONDS
 	fire_sound = 'sound/weapons/sonic_jackhammer.ogg'
 
 /obj/item/ego_weapon/ranged/wishing_cairn
@@ -163,7 +184,7 @@
 	icon_state = "aspiration"
 	inhand_icon_state = "aspiration"
 	special = "This weapon fires a hitscan beam at the cost of health. \n Upon hitting an ally, this weapon heals the target,"
-	force = 8
+	force = 7
 	attack_speed = 0.8
 	projectile_path = /obj/projectile/ego_bullet/ego_aspiration
 	weapon_weight = WEAPON_MEDIUM
@@ -173,7 +194,7 @@
 /obj/item/ego_weapon/ranged/aspiration/before_firing(atom/target,mob/user)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		H.adjustBruteLoss(3)
+		H.adjustBruteLoss(H.maxHealth * 0.05)
 	return ..()
 
 /obj/item/ego_weapon/ranged/patriot
@@ -192,7 +213,8 @@
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 12
 	max_shots = 8
-	reloadtime = 1.4 SECONDS
+	ammo_on_reload = 1
+	reloadtime = 0.8 SECONDS
 	fire_sound = 'sound/weapons/gun/shotgun/shot.ogg'
 
 /obj/item/ego_weapon/ranged/luckdraw
@@ -203,22 +225,28 @@
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
 	special = "This weapon's projectiles move slowly and pierce enemies."
-	force = 10
+	force = 3
+	attack_speed = 0.5
 	projectile_path = /obj/projectile/ego_bullet/ego_luckdraw
-	weapon_weight = WEAPON_HEAVY
-	autofire = 0.6 SECONDS
+	weapon_weight = WEAPON_MEDIUM
+	autofire = 0.4 SECONDS
+	max_shots = 52
+	ammo_on_reload = 1
+	passive_reload = 8 SECONDS
+	reloadtime = 0.1 SECONDS
 	fire_sound = 'sound/items/handling/paper_pickup.ogg' //Mostly just using this for a lack of a better "card-flicking" noise
 
 /obj/item/ego_weapon/ranged/pistol/tough
 	name = "tough pistol"
 	desc = "A glock reminiscent of a certain detective who fought evil for 25 years, losing hair as time went by."
-	special = "Use this weapon in your hand when wearing matching armor to turn others nearby bald."
+	special = "Press alt-click or middle-click with this weapon in your hand when wearing matching armor to turn others nearby bald."
 	icon_state = "bald"
 	inhand_icon_state = "bald"
-	force = 4
+	force = 3
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_tough
 	fire_delay = 5
+	reloadtime = 0.8 SECONDS
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 70
@@ -226,7 +254,7 @@
 	var/pulse_cooldown_time = 60 SECONDS
 	var/blast_delay = 3 SECONDS
 
-/obj/item/ego_weapon/ranged/pistol/tough/attack_self(mob/user)
+/obj/item/ego_weapon/ranged/pistol/tough/MiddleClickAction(mob/user)
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
@@ -269,21 +297,22 @@
 /obj/item/ego_weapon/ranged/pistol/tough/SpecialGearRequirements()
 	return "\n<span class='warning'>The user must have clean hairstyle.</span>"
 
-/obj/item/ego_weapon/ranged/adjustment
+/obj/item/ego_weapon/ranged/cannon/adjustment
 	name = "adjustment"
 	desc = "An arm cannon that is comfortable and easy to aim and fire with."
 	icon_state = "adjustment"
 	inhand_icon_state = "adjustment"
-	special = "This gun deals more damage to panicking targets."
-	force = 5
-	attack_speed = 1.3
+	special = "This gun deals heals some of the target's sanity on hit."
+	force = 15
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_adjustment
 	weapon_weight = WEAPON_HEAVY
-	spread = 5
-	max_shots = 30
-	autofire = 0.25 SECONDS
-	reloadtime = 2.1 SECONDS
-	fire_sound = 'sound/weapons/ego/star.ogg'
+	fire_delay = 5
+	chargetime = 8
+	recoil = 0
+	max_shots = 6
+	ammo_on_reload = null
+	reloadtime = 2.5 SECONDS
+	fire_sound = 'sound/abnormalities/thunderbird/tbird_beam.ogg'
 	vary_fire_sound = TRUE
 	fire_sound_volume = 25

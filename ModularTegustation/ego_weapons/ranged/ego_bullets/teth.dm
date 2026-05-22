@@ -1,21 +1,27 @@
 /obj/projectile/ego_bullet/ego_match
 	name = "match"
 	icon_state = "pulse0"
-	damage = 25 // Direct hit
+	damage = 35 // Direct hit
 	damage_type = RED_DAMAGE
-	var/aoe_damage = 10
+	var/aoe_damage = 15
 
 /obj/projectile/ego_bullet/ego_match/on_hit(atom/target, blocked = FALSE)
 	..()
 	for(var/mob/living/L in view(1, target))
 		new /obj/effect/temp_visual/fire/fast(get_turf(L))
-		L.apply_damage(aoe_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		if(L == target)
+			continue
+		L.apply_damage(aoe_damage * justice_multiplier, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 	return BULLET_ACT_HIT
 
 /obj/projectile/ego_bullet/ego_beak
 	name = "beak"
 	damage = 2
 	damage_type = RED_DAMAGE
+	smart_pass = TRUE
+
+/obj/projectile/ego_bullet/ego_beak/strong
+	damage = 4
 
 /obj/projectile/ego_bullet/ego_noise
 	name = "noise"
@@ -24,12 +30,12 @@
 
 /obj/projectile/ego_bullet/ego_solitude
 	name = "solitude"
-	damage = 12
+	damage = 10
 	damage_type = WHITE_DAMAGE
 
 /obj/projectile/ego_bullet/ego_beakmagnum
 	name = "beak"
-	damage = 12
+	damage = 9
 	damage_type = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_shy
@@ -56,7 +62,7 @@
 	name = "snapshot"
 	icon_state = "snapshot"
 	hitsound = null
-	damage = 6
+	damage = 15
 	damage_type = WHITE_DAMAGE
 
 	hitscan = TRUE
@@ -120,7 +126,7 @@
 	if(firer == target)
 		return BULLET_ACT_BLOCK
 	if(user.faction_check_mob(T)) // Our faction
-		T.adjustBruteLoss(-10)
+		T.adjustBruteLoss(T.maxHealth * 0.05)
 		return BULLET_ACT_BLOCK
 
 /obj/projectile/ego_bullet/ego_patriot
@@ -140,7 +146,7 @@
 
 /obj/projectile/ego_bullet/ego_tough
 	name = "9mm tough bullet"
-	damage = 5 // Being bald is the optimal gameplay choice!
+	damage = 4 // Being bald is the optimal gameplay choice!
 	damage_type = WHITE_DAMAGE
 
 
@@ -148,13 +154,36 @@
 	name = "magic beam"
 	icon_state = "antimagic"
 	damage_type = WHITE_DAMAGE
-	damage = 4
-	spread = 10
+	damage = 20
+	spread = 0
+	hitscan = TRUE
+	muzzle_type = /obj/effect/projectile/muzzle/laser/adjustment
+	tracer_type = /obj/effect/projectile/tracer/adjustment
+	impact_type = /obj/effect/projectile/impact/laser/adjustment
+
+/obj/effect/projectile/muzzle/laser/adjustment
+	name = "lightning flash"
+	icon_state = "muzzle_warring"
+	color = "#33EBFF"
+
+/obj/effect/projectile/tracer/adjustment
+	name = "lightning beam"
+	icon_state = "warring"
+	color = "#33EBFF"
+
+/obj/effect/projectile/impact/laser/adjustment
+	name = "lightning impact"
+	icon_state = "impact_warring"
+	color = "#33EBFF"
 
 /obj/projectile/ego_bullet/ego_adjustment/on_hit(atom/target, blocked = FALSE)
-	if(ishuman(target))
+	if(ishuman(target) && firer!=target)
 		var/mob/living/carbon/human/H = target
-		if(H.sanity_lost)
-			H.adjustSanityLoss((-damage * 0.5), FALSE) // deal fixed white damage to panicked employees, ignoring armor
-			H.OtherDamageEffect((-damage * 0.5), "sinking")
+		if(H.is_working)
+			qdel(src)
+			return BULLET_ACT_BLOCK
+		H.adjustSanityLoss(-damage * justice_multiplier * 0.5, FALSE) // deal fixed white damage to employees, ignoring armor
+		if(!H.sanity_lost)
+			qdel(src)
+			return BULLET_ACT_BLOCK
 	..()

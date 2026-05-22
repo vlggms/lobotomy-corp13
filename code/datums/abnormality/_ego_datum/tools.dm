@@ -62,7 +62,7 @@
 
 // Behavior Adjustment - Adjustment
 /datum/ego_datum/weapon/adjustment
-	item_path = /obj/item/ego_weapon/ranged/adjustment
+	item_path = /obj/item/ego_weapon/ranged/cannon/adjustment
 	cost = 20
 
 /datum/ego_datum/armor/adjustment

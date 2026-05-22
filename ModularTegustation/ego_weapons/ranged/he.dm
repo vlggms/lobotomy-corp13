@@ -44,8 +44,7 @@
 	damtype = BLACK_DAMAGE
 	fire_delay = 15
 	max_shots = 20
-	passive_reload = TRUE
-	passive_reloadtime_delay = 8 SECONDS
+	passive_reload = 8 SECONDS
 	reloadtime = 5
 	fire_sound = 'sound/magic/wand_teleport.ogg'
 	weapon_weight = WEAPON_MEDIUM

@@ -51,8 +51,7 @@
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 10
 	max_shots = 20
-	passive_reload = TRUE
-	passive_reloadtime_delay = 8 SECONDS
+	passive_reload = 8 SECONDS
 	reloadtime = 5
 	fire_sound = 'sound/abnormalities/hatredqueen/attack.ogg'
 
@@ -934,7 +933,8 @@
 	projectile_path = /obj/projectile/ego_bullet/soda_assault
 	weapon_weight = WEAPON_HEAVY
 	burst_size = 3
-	fire_delay = 4
+	burst_delay = 3
+	autofire = 0.4 SECONDS
 	max_shots = 51
 	reloadtime = 1.2 SECONDS
 	fire_sound = 'sound/weapons/gun/rifle/shot.ogg'

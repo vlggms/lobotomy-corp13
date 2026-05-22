@@ -58,7 +58,7 @@
 	var/pulse_healing = -0.5 //negative damage
 	var/pulse_enabled = FALSE
 
-/obj/item/ego_weapon/ranged/pistol/nostalgia/AltClick(mob/user)
+/obj/item/ego_weapon/ranged/pistol/nostalgia/MiddleClickAction(mob/user)
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
@@ -137,7 +137,7 @@ obj/item/ego_weapon/ranged/nightshade/Initialize()
 	force = 2
 	attack_speed = 0.5
 	projectile_path = /obj/projectile/ego_bullet/ego_bucket
-	fire_delay = 5
+	fire_delay = 6
 	chargetime = 5
 	fire_sound = 'sound/weapons/bowfire.ogg'
 	vary_fire_sound = TRUE

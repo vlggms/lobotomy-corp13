@@ -10,7 +10,7 @@
 		Note - A gun is able to be reloaded right after it fires a bullet.
 		Note - Sustained DPS is also different for charge up guns and passive reload guns
 		Charge up Formula: (d * a)/((f * (a-1))  + (c * a) + max(f, r))
-		Passive Reload Formula: (d * a)/((f * (a-1)) + max(f, (p + r))
+		Passive Reload Formula: (d * a)/((f * (a-1)) + max(f, (p + r)))
 		If for some reason a gun uses both: (d * a)/((f * (a-1))  + (c * a) + max(f, (p + r))
 		Legend:
 			d -	The total damage from one shot(ie every pellet from a shotgun or Matchstick's base bullet damage + aoe)
@@ -39,7 +39,7 @@
 			Heavy - 1.2x DPS
 				These guns require an empty hand to be used. They have higher DPS due to needing any empty hand to use which could have a different weapon instead.
 		Gun Mechanics
-			Charged Weapons - 1.4x DPS
+			Charged Weapons - 1.3x DPS
 				Used mainly for cannon type weapons.
 				Requires to be charged up before shooting. It being charged up lasts for a few deciseconds.
 				Should have higher dps due to needing to stand still to charge it up.
@@ -48,7 +48,7 @@
 				Used for Crossbows
 				Allows the user to move while reloading at a slower pace.
 				This should overall be rare.
-			Multi Shot- 1.4x DPS
+			Multi Shot- 1.3x DPS
 				Used Mainly for Shotguns.
 				Fires multiple bullets at once in a spread.
 				Should have higher dps due to limited range, and friendly fire.
@@ -118,10 +118,10 @@
 	/// How much ammo do we gain when we reload? If null, it'll reload the ammo amount
 	var/ammo_on_reload = null
 
-	/// If true the gun is passively reload its ammo based off the reload time
-	var/passive_reload = FALSE
+	/// If a number, the gun will passively reload its ammo based off the reload time after the time stated
+	var/passive_reload = null
 	var/passive_reload_timer = null
-	var/passive_reloadtime_delay = 5 SECONDS
+
 
 	/// Vars used for when you examine a gun
 	var/last_projectile_damage = 0
@@ -159,6 +159,7 @@
 	var/is_charging = FALSE
 	var/charged = FALSE
 	var/charge_timer
+	var/charge_hold_time = 4
 
 	var/recoil = 0						//boom boom shake the room
 	var/burst_size = 1					//how large a burst is
@@ -455,7 +456,7 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 		var/rpm = 600 / autofire
 		rpm = round(rpm,5)
 		. += span_nicegreen("This weapon is automatic.")
-		. += span_notice("This weapon fires at [rpm] [projectile_name_plural] per minute.")
+		. += span_notice("This weapon fires at [rpm*burst_size] [projectile_name_plural] per minute.")
 	if(burst_size > 1)
 		. += span_notice("This weapon fires in a burst of [burst_size].")
 	. += span_notice("Examine this weapon more for melee information.")
@@ -487,10 +488,10 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 
 /// Updates the damage/type of projectiles inside of the gun
 /obj/item/ego_weapon/ranged/proc/update_projectile_examine()
-	if(isnull(projectile_path))
+	var/correct_projectile_path = alternate_selected ? alternate_projectile_path : projectile_path
+	if(isnull(correct_projectile_path))
 		message_admins("[src] has an invalid projectile path.")
 		return
-	var/correct_projectile_path = alternate_selected ? alternate_projectile_path : projectile_path
 	var/obj/projectile/projectile = new correct_projectile_path(src, src)
 	last_projectile_damage = projectile.damage
 	last_projectile_type = projectile.damage_type
@@ -559,9 +560,8 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 			alternate_shotsleft = min(alternate_shotsleft + alternate_ammo_on_reload, alternate_max_shots)
 		else
 			shotsleft = min(shotsleft + ammo_on_reload, max_shots)
-		INVOKE_ASYNC(src, PROC_REF(rounds_reload), user, is_reloading_alt_mag)	//To save you from loading all your bullets
 		OnReload(user)
-		INVOKE_ASYNC(src, PROC_REF(rounds_reload), user)
+		INVOKE_ASYNC(src, PROC_REF(rounds_reload), user, is_reloading_alt_mag)	//To save you from loading all your bullets
 		return
 	if(user.has_movespeed_modifier(/datum/movespeed_modifier/reloading))
 		user.remove_movespeed_modifier(/datum/movespeed_modifier/reloading)
@@ -608,7 +608,7 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 	if(passive_reload)
 		if(passive_reload_timer)
 			deltimer(passive_reload_timer)
-		passive_reload_timer = addtimer(CALLBACK(src, PROC_REF(PassiveReload), user, TRUE), passive_reloadtime_delay, TIMER_STOPPABLE)
+		passive_reload_timer = addtimer(CALLBACK(src, PROC_REF(PassiveReload), user, TRUE), passive_reload, TIMER_STOPPABLE)
 
 	if(!reloadtime) //You don't have ammo, no need to dump it
 		return
@@ -643,7 +643,7 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 //check if there's enough ammo to shoot one time
 //i.e if clicking would make it shoot
 /obj/item/ego_weapon/ranged/proc/can_shoot()
-	if(is_reloading)
+	if(is_reloading || is_charging)
 		return FALSE
 
 	//Does the main mag not need ammo?
@@ -761,7 +761,6 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 			return
 
 	if(!can_shoot()) //Just because you can pull the trigger doesn't mean it can shoot.
-		shoot_with_empty_chamber(user)
 		return
 
 	if(check_botched(user))
@@ -805,7 +804,7 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 		is_charging = FALSE
 		charged = TRUE
 		OnCharged(user)
-		charge_timer = addtimer(CALLBACK(src, PROC_REF(Uncharge), user), 4, TIMER_STOPPABLE)
+		charge_timer = addtimer(CALLBACK(src, PROC_REF(Uncharge), user), charge_hold_time, TIMER_STOPPABLE)
 		return
 	is_charging = FALSE
 	to_chat(user, span_warning("You need to wait before charging up [src]!"))
