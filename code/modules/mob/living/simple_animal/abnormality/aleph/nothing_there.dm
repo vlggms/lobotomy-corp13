@@ -265,7 +265,7 @@
 	. = ..()
 	if(damagetype == RED_DAMAGE || damage < 10)
 		return
-	last_heal_time = world.time + 20 SECONDS // Heal delayed when taking damage; Doubled because it was a little too quick.
+	last_heal_time = world.time + 20 SECONDS
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/proc/disguise_as(mob/living/M)
 	if(!(status_flags & GODMODE)) // Already breaching
