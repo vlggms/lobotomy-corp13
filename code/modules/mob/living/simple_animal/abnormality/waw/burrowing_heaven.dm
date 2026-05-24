@@ -47,6 +47,8 @@
 	var/teleport_cooldown_time = 5 SECONDS
 	var/gaze_damage = 150
 	var/list/scream_sounds = list('sound/abnormalities/burrowingheaven/Heaven_Scream2.ogg','sound/abnormalities/burrowingheaven/Heaven_Scream3.ogg', 'sound/abnormalities/burrowingheaven/Heaven_Scream4.ogg')
+	var/seen = FALSE
+	var/workticks_unseen = 0//QLIP -1 for every 8 workticks
 
 /mob/living/simple_animal/hostile/abnormality/burrowing_heaven/Move()
 	return FALSE
@@ -60,18 +62,59 @@
 	if(teleport_cooldown <= world.time)
 		TryTeleport()
 
+/mob/living/simple_animal/hostile/abnormality/burrowing_heaven/CanAttack(atom/the_target)
+	return FALSE
+
+/mob/living/simple_animal/hostile/abnormality/burrowing_heaven/AttemptWork(mob/living/carbon/human/user, work_type)
+	seen = FALSE
+	if(!CheckViewers())//If the conditions are met, this will set "seen' to TRUE
+		datum_reference.qliphoth_change(-1)
+	. = ..()
+
+/mob/living/simple_animal/hostile/abnormality/burrowing_heaven/ChanceWorktickOverride(mob/living/carbon/human/user, work_chance, init_work_chance, work_type)
+	if(!seen)
+		to_chat(user, span_warning("Don't look away."))
+		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(user), pick(GLOB.alldirs))
+		return 0
+	return init_work_chance
+
+/mob/living/simple_animal/hostile/abnormality/burrowing_heaven/Worktick(mob/living/carbon/human/user)
+	. = ..()
+	if(!seen)
+		CheckViewers()
+		workticks_unseen += 1
+		if(workticks_unseen >= 8)
+			datum_reference.qliphoth_change(-1)
+			workticks_unseen = 0
+
 /mob/living/simple_animal/hostile/abnormality/burrowing_heaven/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
 	datum_reference.qliphoth_change(1)
 
 /mob/living/simple_animal/hostile/abnormality/burrowing_heaven/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
-	datum_reference.qliphoth_change(1)
+	datum_reference.qliphoth_change(2)
 
 /mob/living/simple_animal/hostile/abnormality/burrowing_heaven/BreachEffect(mob/living/carbon/human/user, breach_type)
 	icon_state = icon_living
 	sound_to_playing_players_on_level('sound/abnormalities/burrowingheaven/Heaven_Scream1.ogg', 45, zlevel = z)
 	. = ..()
+
+/mob/living/simple_animal/hostile/abnormality/burrowing_heaven/proc/CheckViewers()
+	var/seen_count = 0//we need two people observing BH for it to count here
+	for(var/mob/living/carbon/human/L in view(8, src))
+		if(L.stat != DEAD)
+			if(is_A_facing_B(L,src))
+				seen_count +=1
+	say("There are [seen_count] viewers")
+	if(seen_count >= 2)
+		seen = TRUE
+		return TRUE
+	for(var/mob/camera/ai_eye/remote/cam in view())
+		say("Camera detected!")
+		seen = TRUE
+		return TRUE
+	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/burrowing_heaven/proc/TryTeleport(turf/teleport_target)
 	if(teleport_cooldown > world.time)
