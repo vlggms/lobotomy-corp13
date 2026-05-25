@@ -5,19 +5,44 @@
 
 /obj/projectile/ego_bullet/ego_transmission
 	name = "transmission"
-	damage = 10
+	damage = 14
 	damage_type = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_gaze
 	name = "gaze"
-	damage = 22 //Slow as balls
+	icon_state = "gaze"
+	damage = 13 //Slow as balls
 	damage_type = RED_DAMAGE
+	projectile_piercing = PASSMOB
+	ricochets_max = 3
+	ricochet_chance = 100 // JUST FUCKING DO IT
+	ricochet_decay_chance = 1
+	ricochet_decay_damage = 1
+	ricochet_auto_aim_range = 4
+	ricochet_incidence_leeway = 0
+
+/obj/projectile/ego_bullet/ego_gaze/check_ricochet_flag(atom/A)
+	if(istype(A, /turf/closed))
+		return TRUE
+	if(istype(A, /obj/structure/window))
+		return TRUE
+	if(istype(A, /obj/machinery/door))
+		return TRUE
+
+	return FALSE
+
+/obj/projectile/ego_bullet/ego_gaze/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	if(damage < 1)
+		qdel(src)
+		return
+	damage *= 0.8
 
 //Homing weapon with no homing
 /obj/projectile/ego_bullet/ego_galaxy
 	name = "galaxy"
 	icon_state = "magicm"
-	damage = 14
+	damage = 28
 	damage_type = BLACK_DAMAGE
 	speed = 1.5
 
@@ -59,50 +84,21 @@
 	damage = 5
 	damage_type = WHITE_DAMAGE
 	speed = 1.3
-	projectile_piercing = PASSMOB
-	ricochets_max = 3
-	ricochet_chance = 100 // JUST FUCKING DO IT
-	ricochet_decay_chance = 1
-	ricochet_decay_damage = 1.5 // Does MORE per bounce
-	ricochet_auto_aim_range = 3
-	ricochet_incidence_leeway = 0
-
-/obj/projectile/ego_bullet/ego_harmony/check_ricochet_flag(atom/A)
-	if(istype(A, /turf/closed))
-		return TRUE
-	if(istype(A, /obj/structure/window))
-		return TRUE
-	if(istype(A, /obj/machinery/door))
-		return TRUE
-
-	return FALSE
-
-/obj/projectile/ego_bullet/ego_harmony/on_hit(atom/target, blocked = FALSE)
-	if(ishuman(target))
-		var/mob/living/carbon/human/H = target
-		if(H.sanity_lost)
-			damage *=4
-	. = ..()
-
-	if(ishuman(target))
-		var/mob/living/carbon/human/H = target
-		if(H.sanity_lost)
-			qdel(src)
 
 
 /obj/projectile/ego_bullet/ego_song
 	name = "song"
-	damage = 2
+	damage = 3
 	damage_type = WHITE_DAMAGE
 
 /obj/projectile/ego_bullet/ego_songmini
 	name = "song"
-	damage = 0.8 //4 pellets
+	damage = 1 //4 pellets
 	damage_type = WHITE_DAMAGE
 
 /obj/projectile/ego_bullet/ego_wedge
 	name = "screaming"
-	damage = 48
+	damage = 38
 	damage_type = WHITE_DAMAGE
 
 /obj/projectile/ego_bullet/regs

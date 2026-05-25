@@ -82,7 +82,7 @@
 	desc = "A classic blue revolver, that gives you feelings of loneliness."
 	icon_state = "solitude"
 	inhand_icon_state = "solitude"
-	force = 4
+	force = 3
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_solitude
 	fire_delay = 10
@@ -113,13 +113,18 @@
 	desc = "And when the crying stops, dawn will break."
 	icon_state = "dream"
 	inhand_icon_state = "dream"
-	force = 9
-	attack_speed = 1
+	force = 6
+	attack_speed = 0.7
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_dream
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = "dreamy_gun"
 	autofire = 0.25 SECONDS
+	max_shots = 16
+	ammo_on_reload = 1
+	ammo_on_melee = 1
+	passive_reload = 5 SECONDS
+	reloadtime = 1 SECONDS
 
 /obj/item/ego_weapon/ranged/page
 	name = "page"

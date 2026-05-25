@@ -4,13 +4,14 @@
 	icon_state = "prank"
 	worn_icon_state = "prank"
 	inhand_icon_state = "prank"
-	force = 10
+	force = 16
 	damtype = BLACK_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_prank
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 5
 	max_shots = 10
-	reloadtime = 1.4 SECONDS
+	ammo_on_reload = 1
+	reloadtime = 0.3 SECONDS
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 40
@@ -19,14 +20,15 @@
 /obj/item/ego_weapon/ranged/pistol/gaze
 	name = "gaze"
 	desc = "A magnum pistol featuring excellent burst firing potential."
+	special = "This weapon fires bouncing, piercing shots."
 	icon_state = "gaze"
 	inhand_icon_state = "gaze"
 	force = 6
 	projectile_path = /obj/projectile/ego_bullet/ego_gaze
-	fire_delay = 10
+	fire_delay = 20
 	max_shots = 8
 	reloadtime = 1.8 SECONDS
-	fire_sound = 'sound/weapons/gun/pistol/deagle.ogg'
+	fire_sound = 'sound/weapons/ego/harmony1.ogg'
 	vary_fire_sound = FALSE
 	weapon_weight = WEAPON_HEAVY
 	fire_sound_volume = 70
@@ -41,18 +43,19 @@
 	inhand_icon_state = "galaxy"
 	projectile_path = /obj/projectile/ego_bullet/ego_galaxy
 	force = 10
+	attack_speed = 0.8
 	damtype = BLACK_DAMAGE
-	fire_delay = 15
-	max_shots = 20
+	fire_delay = 10
+	max_shots = 30
 	passive_reload = 8 SECONDS
-	reloadtime = 5
+	reloadtime = 0.8 SECONDS
 	fire_sound = 'sound/magic/wand_teleport.ogg'
 	weapon_weight = WEAPON_MEDIUM
 	fire_sound_volume = 70
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 40
 							)
-	var/homing = FALSE
+
 	fire_sound = 'sound/magic/staff_change.ogg'
 	alternate_fire_name = "Glimmer"
 	alternate_info = "This weapon fires slower, but homes in on a random target within 15 metres.	\
@@ -68,11 +71,11 @@
 
 /obj/item/ego_weapon/ranged/galaxy/EnableAltfire(mob/user, silent = TRUE)
 	. = ..()
-	fire_delay = 18
+	fire_delay = 12
 
 /obj/item/ego_weapon/ranged/galaxy/DisableAltfire(mob/user, silent = TRUE)
 	. = ..()
-	fire_delay = 15
+	fire_delay = 10
 
 
 /obj/item/ego_weapon/ranged/unrequited
@@ -83,7 +86,7 @@
 	special = "This weapon will sometimes jam. \
 			Use this weapon in hand to unjam it. \
 			this weapon fires faster and in a bigger burst for 15 seconds after being unjammed."
-	force = 10
+	force = 16
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_unrequited
 	fire_delay = 10
@@ -149,15 +152,14 @@
 		jam_cooldown_time = rand(1, 5) MINUTES
 		jam_cooldown = jam_cooldown_time + world.time
 
-/obj/item/ego_weapon/ranged/harmony
+/obj/item/ego_weapon/ranged/cannon/harmony
 	name = "harmony"
 	desc = "A massive blocky launcher with some suspicious stains on it."
 	icon_state = "harmony"
 	inhand_icon_state = "harmony"
 	special = "This weapon fires bouncing, piercing shots. On hitting an insane person, deals 4x damage and stops bouncing."
-	force = 15
-	damtype = WHITE_DAMAGE
-	attack_speed = 1.8
+	force = 24
+	damtype = RED_DAMAGE // Its a massive chunk of metal
 	projectile_path = /obj/projectile/ego_bullet/ego_harmony
 	fire_sound = 'sound/weapons/ego/harmony1.ogg'
 	vary_fire_sound = FALSE
@@ -176,12 +178,13 @@
 	desc = "It's an old wooden longrifle."
 	icon_state = "transmission"
 	inhand_icon_state = "transmission"
-	force = 10
+	force = 16
 	projectile_path = /obj/projectile/ego_bullet/ego_transmission
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 5
+	fire_delay = 7
 	max_shots = 10
-	reloadtime = 1.4 SECONDS
+	ammo_on_reload = 1
+	reloadtime = 0.4 SECONDS
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
@@ -190,15 +193,16 @@
 /obj/item/ego_weapon/ranged/song
 	name = "song of the past"
 	desc = "Nothing beats the classics."
+	special = "Reloading this weapon while having an empty clip will heal the SP of everyone nearby."
 	icon_state = "song"
 	inhand_icon_state = "song"
-	force = 10
+	force = 16
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_song
 	fire_sound = 'sound/weapons/gun/pistol/shot_alt.ogg'
 	weapon_weight = WEAPON_MEDIUM
 	max_shots = 32
-	reloadtime = 1.6 SECONDS
+	reloadtime = 20 SECONDS
 	spread = 8
 	autofire = 0.15 SECONDS
 	attribute_requirements = list(
@@ -217,9 +221,9 @@
 	projectile_path = /obj/projectile/ego_bullet/ego_songmini
 	fire_sound = 'sound/weapons/gun/revolver/shot_light.ogg'
 	max_shots = 16
-	reloadtime = 2.1 SECONDS
+	reloadtime = 1 SECONDS
 	spread = 8
-	autofire = 0.3 SECONDS
+	autofire = 0.2 SECONDS
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40
 							)
@@ -229,7 +233,7 @@
 	desc = "Hair has grown on the crossbow as if to express that the woman’s dejection will never be forgotten."
 	icon_state = "screamingwedge"
 	inhand_icon_state = "screamingwedge"
-	force = 14
+	force = 16
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_wedge
 	attribute_requirements = list(
@@ -262,7 +266,7 @@
 	icon_state = "ringing"
 	inhand_icon_state = "ringing"
 	special = "This weapon can be used as a megaphone."
-	force = 10
+	force = 16
 	damtype = BLACK_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_ringing
 	weapon_weight = WEAPON_HEAVY

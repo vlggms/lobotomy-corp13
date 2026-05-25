@@ -46,7 +46,7 @@
 /obj/projectile/ego_bullet/ego_dream
 	name = "dream"
 	icon_state = "energy2"
-	damage = 3
+	damage = 6
 	speed = 1.5
 	damage_type = WHITE_DAMAGE
 

@@ -10,7 +10,7 @@
 		Note - A gun is able to be reloaded right after it fires a bullet.
 		Note - Sustained DPS is also different for charge up guns and passive reload guns
 		Charge up Formula: (d * a)/((f * (a-1))  + (c * a) + max(f, r))
-		Passive Reload Formula: (d * a)/((f * (a-1)) + max(f, (p + r)))
+		Passive Reload Formula: (d * a)/((f * (a-1)) + max(f, (p + r*(a-1))))
 		If for some reason a gun uses both: (d * a)/((f * (a-1))  + (c * a) + max(f, (p + r))
 		Legend:
 			d -	The total damage from one shot(ie every pellet from a shotgun or Matchstick's base bullet damage + aoe)
@@ -109,6 +109,8 @@
 	var/max_shots = 0
 	/// The ammo lost when we shoot
 	var/ammo_per_shot = 1
+	/// The ammo gained when you melee something
+	var/ammo_on_melee = null
 	/// If set to true, the user can move during the reload at the cost of speed.
 	var/mobile_reload = FALSE
 	/// How long it takes to reload this weapon, if blank it wont need to be reloaded
@@ -383,7 +385,11 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 				. += span_danger("This weapon can only load one ammo type at a time. Reloading will dump the magazine.")
 
 		. += ""
-
+	if(ammo_on_melee)
+		if(ammo_on_melee > 1)
+			. += span_notice("This weapon reloads [ammo_on_melee] [projectile_name_plural] when hitting something with its melee.")
+		else
+			. += span_notice("This weapon reloads one [projectile_name] when hitting something with its melee.")
 	if(passive_reload)
 		var/start = "This weapon passively reloads [projectile_name_plural] with a"
 		switch(passive_reload)
@@ -937,6 +943,17 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 		return FALSE
 	if(is_reloading)
 		is_reloading = FALSE
+	if(ammo_on_melee)
+		if(passive_reload)
+			if(passive_reload_timer)
+				deltimer(passive_reload_timer)
+			passive_reload_timer = addtimer(CALLBACK(src, PROC_REF(PassiveReload), user, TRUE), passive_reload, TIMER_STOPPABLE)
+		if(alternate_selected && (alternate_reload_type == RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_INDIVIDUAL_RELOAD))
+			alternate_shotsleft = min(alternate_shotsleft + ammo_on_melee, alternate_max_shots)
+			return
+		shotsleft = min(shotsleft + ammo_on_melee, max_shots)
+		if(alternate_reload_type == RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_SHARED_RELOAD)
+			alternate_shotsleft = min(alternate_shotsleft + ammo_on_melee, alternate_max_shots)
 	return ..()
 
 /obj/item/ego_weapon/ranged/proc/handle_suicide(mob/living/carbon/human/user, mob/living/carbon/human/target, params, bypass_timer)

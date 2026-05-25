@@ -138,7 +138,7 @@
 
 /datum/ego_datum/weapon/harmony
 	item_category = "Weapon (LMG)"
-	item_path = /obj/item/ego_weapon/ranged/harmony
+	item_path = /obj/item/ego_weapon/ranged/cannon/harmony
 	cost = 35
 
 /datum/ego_datum/weapon/rhythm
