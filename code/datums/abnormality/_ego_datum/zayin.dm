@@ -101,13 +101,13 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/letter_opener
 	cost = 12
 
-// Sunset Wayfarer - Eclipse of Scarlet Moths
-/datum/ego_datum/weapon/eclipse
-	item_path = /obj/item/ego_weapon/eclipse
+// Sunset Wayfarer -  Into the Sunset
+/datum/ego_datum/weapon/sunset
+	item_path = /obj/item/ego_weapon/sunset
 	cost = 12
 
-/datum/ego_datum/armor/eclipse
-	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/eclipse
+/datum/ego_datum/armor/sunset
+	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/sunset
 	cost = 12
 
 // Oracle of No Future

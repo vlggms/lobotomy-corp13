@@ -25,8 +25,8 @@
 	environment_smash = FALSE
 
 	ego_list = list(
-		/datum/ego_datum/weapon/eclipse,
-		/datum/ego_datum/armor/eclipse,
+		/datum/ego_datum/weapon/sunset,
+		/datum/ego_datum/armor/sunset,
 	)
 
 	gift_type =  /datum/ego_gifts/eclipse

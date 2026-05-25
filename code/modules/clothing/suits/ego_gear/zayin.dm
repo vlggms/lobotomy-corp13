@@ -94,8 +94,8 @@
 	icon_state = "letter_opener"
 	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
 
-/obj/item/clothing/suit/armor/ego_gear/zayin/eclipse
-	name = "eclipse of scarlet moths"
+/obj/item/clothing/suit/armor/ego_gear/zayin/sunset
+	name = "into the sunset"
 	desc = "A bright suit that brings you warmth."
 	icon_state = "eclipse"
 	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 10, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
