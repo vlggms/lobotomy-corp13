@@ -1386,10 +1386,16 @@
 	. = ..()
 	user.physiology.burn_mod *= 0.9
 
-
 /datum/ego_gifts/ardor_moth/Remove(mob/living/carbon/human/user)
 	user.physiology.burn_mod /= 0.9
 	return ..()
+
+/datum/ego_gifts/heaven
+	name = "Heaven"
+	icon_state = "heaven"
+	fortitude_bonus = 4
+	temperance_bonus = 2
+	slot = HAT
 
 /**
  * ALEPH EGO Gifts

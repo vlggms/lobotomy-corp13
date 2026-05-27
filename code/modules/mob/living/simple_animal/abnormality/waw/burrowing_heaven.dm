@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/abnormality/burrowing_heaven
 	name = "The Burrowing Heaven"
-	desc = "Don't look away. just keep your eyes on it. Contain it in your sight."
+	desc = "A leafless red tree consisting of bloody muscule tissue. Its many eyes stare directly at you."
 	icon = 'ModularTegustation/Teguicons/96x96.dmi'
 	icon_state = "burrowingheaven"
 	icon_living = "burrowingheaven_breached"
@@ -40,8 +40,14 @@
 		/datum/ego_datum/weapon/heaven,
 		/datum/ego_datum/armor/heaven,
 	)
-	//gift_type =  /datum/ego_gifts/heaven
+	gift_type =  /datum/ego_gifts/heaven
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	observation_prompt = "Don’t look away, just keep your eyes on it. Contain it in your sight."
+	observation_choices = list(
+		"Return the gaze" = list(TRUE, "Keep looking at it... Steadily... It’s alive, watching you in return, is it not?"),
+		"Ignore it" = list(FALSE, "If you can't see it, you can't reach it."),
+	)
 
 	var/teleport_cooldown
 	var/teleport_cooldown_time = 5 SECONDS
@@ -80,12 +86,12 @@
 
 /mob/living/simple_animal/hostile/abnormality/burrowing_heaven/Worktick(mob/living/carbon/human/user)
 	. = ..()
-	if(!seen)
-		CheckViewers()
+	if(!CheckViewers())
 		workticks_unseen += 1
 		if(workticks_unseen >= 8)
 			datum_reference.qliphoth_change(-1)
 			workticks_unseen = 0
+		seen = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/burrowing_heaven/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
@@ -102,16 +108,14 @@
 
 /mob/living/simple_animal/hostile/abnormality/burrowing_heaven/proc/CheckViewers()
 	var/seen_count = 0//we need two people observing BH for it to count here
-	for(var/mob/living/carbon/human/L in view(8, src))
+	for(var/mob/camera/ai_eye/remote/cam in viewers(8, src))//Checking for a camera is less computationally expensive and early returns, so we do this first.
+		seen = TRUE
+		return TRUE
+	for(var/mob/living/carbon/human/L in viewers(8, src))
 		if(L.stat != DEAD)
 			if(is_A_facing_B(L,src))
 				seen_count +=1
-	say("There are [seen_count] viewers")
 	if(seen_count >= 2)
-		seen = TRUE
-		return TRUE
-	for(var/mob/camera/ai_eye/remote/cam in view())
-		say("Camera detected!")
 		seen = TRUE
 		return TRUE
 	return FALSE
@@ -138,9 +142,10 @@
 			if(T.is_blocked_turf())
 				continue
 			possible_locations += T
-		if(!possible_locations)
+		if(!LAZYLEN(possible_locations))
 			return
 		teleport_target = pick(possible_locations)//we want to appear at the edge of our target's field of view.
+	flick("burrowingheaven_down", src)
 	//down animation
 	playsound(src, 'sound/abnormalities/burrowingheaven/Heaven_Atk3.ogg', 100, 1)
 	SLEEP_CHECK_DEATH(4)
@@ -148,7 +153,6 @@
 	playsound(src, 'sound/abnormalities/burrowingheaven/Heaven_Dead.ogg', 100)
 	density = FALSE
 	//up animation
-	playsound(src, 'sound/abnormalities/burrowingheaven/Heaven_Scream1.ogg', 45)
 	flick("burrowingheaven_up", src)
 	SLEEP_CHECK_DEATH(4)
 	EyeAttack()
@@ -161,7 +165,7 @@
 		new /obj/effect/temp_visual/heaven_roots(T)
 	SLEEP_CHECK_DEATH(12)
 	var/hit_target = FALSE//do we play the scream sound
-	for(var/mob/living/carbon/human/L in view(8, src))
+	for(var/mob/living/carbon/human/L in oview(8,src))
 		if(L.stat != DEAD)
 			if(!is_A_facing_B(L,src))
 				L.apply_damage(gaze_damage,BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
@@ -176,6 +180,7 @@
 	name = "lean, bloody wings"
 	icon_state = "heaven_roots"
 	duration = 2 SECONDS
+	layer = BELOW_OPEN_DOOR_LAYER//This is slightly below the table layer
 
 /obj/effect/temp_visual/heaven_roots/Initialize()
 	. = ..()
