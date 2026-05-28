@@ -86,7 +86,7 @@
 /obj/projectile/ego_bullet/ego_loyalty // not actually used at the moment
 	name = "loyalty"
 	icon_state = "loyalty"
-	damage = 2
+	damage = 3
 	speed = 0.2
 	damage_type = RED_DAMAGE
 	smart_pass = TRUE
@@ -101,7 +101,7 @@
 	speed = 0.8
 	projectile_piercing = PASSMOB
 	// No hitsound - we play a sound on detonation
-
+	smart_pass = TRUE
 	var/tile_radius = 3
 	/// Damage at epicenter (distance 0)
 	var/base_damage = 60
@@ -180,13 +180,13 @@
 
 /obj/projectile/ego_bullet/ego_soda_premium
 	name = "soda premium"
-	damage = 14
+	damage = 10
 	spread = 0
 	damage_type = PALE_DAMAGE	//hehe
 
 /obj/projectile/ego_bullet/ego_crimson
 	name = "crimson"
-	damage = 7
+	damage = 6
 	damage_type = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_ecstasy
@@ -205,22 +205,10 @@
 /obj/projectile/ego_bullet/ego_praetorian
 	name = "praetorian"
 	icon_state = "loyalty"
-	damage = 1.5
-	nodamage = TRUE	//Damage is calculated later
+	damage = 10
 	damage_type = RED_DAMAGE
-	projectile_piercing = PASSMOB
-	homing = TRUE
-	homing_turn_speed = 30		//Angle per tick.
+	smart_pass = TRUE
 	var/homing_range = 9
-
-/obj/projectile/ego_bullet/ego_praetorian/on_hit(atom/target, blocked = FALSE)
-	if(!ishuman(target))
-		nodamage = FALSE
-	else
-		return
-	..()
-	if(!ishuman(target))
-		qdel(src)
 
 /obj/projectile/ego_bullet/ego_praetorian/Initialize()
 	. = ..()
@@ -238,7 +226,12 @@
 		targetslist+=L
 	if(!LAZYLEN(targetslist))
 		return
-	homing_target = pick(targetslist)
+	var/mob/living/target = pick(targetslist)
+	if(target)
+		var/datum/point/PT = RETURN_PRECISE_POINT(target)
+		PT.x += clamp(homing_offset_x, 1, world.maxx)
+		PT.y += clamp(homing_offset_y, 1, world.maxy)
+		set_angle(angle_between_points(RETURN_PRECISE_POINT(src), PT))
 
 /obj/projectile/ego_bullet/ego_magicpistol
 	name = "magic pistol"
@@ -264,7 +257,7 @@
 /obj/projectile/ego_bullet/ego_aroma
 	name = "aroma"
 	icon_state = "arrow_aroma"
-	damage = 85
+	damage = 58
 	damage_type = WHITE_DAMAGE
 
 //Assonance, our one hitscan laser
@@ -391,7 +384,7 @@
 /obj/projectile/ego_bullet/ego_innocence
 	name = "innocence"
 	icon_state = "energy"
-	damage = 3 //Can dual wield, full auto
+	damage = 5 //Can dual wield, full auto
 	damage_type = WHITE_DAMAGE
 
 
@@ -399,7 +392,7 @@
 	name = "hypocrisy"
 	icon_state = "arrow_greyscale"
 	color = "#AAFF00"
-	damage = 70 //15 damage is transfered to the spawnable trap
+	damage = 54 //4 damage is transfered to the spawnable trap
 	damage_type = RED_DAMAGE
 
 

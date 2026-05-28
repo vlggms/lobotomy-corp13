@@ -63,7 +63,7 @@
 							)
 
 /obj/item/ego_weapon/ranged/hatred/GunAttackInfo(mob/user)
-	return span_notice("Its bullets deal [last_projectile_damage] randomly chosen damage.")
+	return span_notice("Its magic deal [last_projectile_damage] randomly chosen damage.")
 
 /obj/item/ego_weapon/ranged/hatred/attackby(obj/item/I, mob/living/user, params)
 	..()
@@ -145,7 +145,7 @@
 	SEND_SIGNAL(src, COMSIG_ITEM_AFTERATTACK, target, user, flag, params)
 	SEND_SIGNAL(user, COMSIG_MOB_ITEM_AFTERATTACK, target, user, flag, params)
 	//Is it stupid as hell that we're doing this? yes, But the guns were used together in lcorp and I wanted the same functionality here.
-	dual_wield_spread = 48
+	dual_wield_spread = 12
 	if(QDELETED(target))
 		return
 
@@ -251,7 +251,7 @@
 	SEND_SIGNAL(src, COMSIG_ITEM_AFTERATTACK, target, user, flag, params)
 	SEND_SIGNAL(user, COMSIG_MOB_ITEM_AFTERATTACK, target, user, flag, params)
 	//Is it stupid as hell that we're doing this? yes, But the guns were used together in lcorp and I wanted the same functionality here.
-	dual_wield_spread = 48
+	dual_wield_spread = 12
 	if(QDELETED(target))
 		return
 
@@ -388,7 +388,7 @@
 	icon_state = "soda_premium"
 	inhand_icon_state = "soda_premium"
 	special = "This weapon has pinpoint accuracy."
-	force = 7
+	force = 8
 	damtype = PALE_DAMAGE
 	burst_size = 1
 	fire_delay = 5
@@ -454,9 +454,9 @@
 	force = 9
 	projectile_path = /obj/projectile/ego_bullet/ego_praetorian
 	fire_sound = 'sound/weapons/gun/pistol/tp17.ogg'
-	autofire = 0.12 SECONDS
+	fire_delay = 5
 	max_shots = 12
-	reloadtime = 0.5 SECONDS
+	reloadtime = 1 SECONDS
 	fire_sound_volume = 30
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
@@ -568,7 +568,7 @@
 							PRUDENCE_ATTRIBUTE = 80
 	)
 
-/obj/item/ego_weapon/ranged/exuviae
+/obj/item/ego_weapon/ranged/cannon/exuviae
 	name = "exuviae"
 	desc = "A chunk of the naked nest inigrated with a launching mechanism."
 	icon_state = "exuviae"
@@ -579,10 +579,11 @@
 	inhand_y_dimension = 64
 	force = 34
 	projectile_path = /obj/projectile/ego_bullet/ego_exuviae
-	weapon_weight = WEAPON_HEAVY
 	special = "Upon hit the targets RED vulnerability is increased by 0.2."
 	damtype = RED_DAMAGE
-	fire_delay = 30 //5 less than the Rend Armor status effect
+	fire_delay = 15 //5 less than the Rend Armor status effect
+	max_shots = 6
+	reload_time = 0.3 SECONDS
 	fire_sound = 'sound/misc/moist_impact.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
@@ -677,7 +678,7 @@
 		icon_state = "warring_firey"
 		playsound(src, 'sound/magic/lightningshock.ogg', 50, TRUE)
 
-/obj/item/ego_weapon/ranged/banquet
+/obj/item/ego_weapon/ranged/cannon/banquet
 	name = "banquet"
 	desc = "Time for a feast! Enjoy the blood-red night imbued with madness to your heart’s content!"
 	icon_state = "banquet"
@@ -691,7 +692,7 @@
 	weapon_weight = WEAPON_MEDIUM
 	fire_delay = 13
 	max_shots = 7
-	reloadtime = 1.6 SECONDS
+	reloadtime = 0.25 SECONDS
 	fire_sound = 'sound/weapons/ego/cannon.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
@@ -699,17 +700,17 @@
 	)
 	var/bloodshot_ready = TRUE
 
-/obj/item/ego_weapon/ranged/banquet/Initialize()
+/obj/item/ego_weapon/ranged/cannon/banquet/Initialize()
 	. = ..()
 	AddComponent(/datum/component/bloodfeast, siphon = TRUE, range = 2, starting = 150, threshold = 1500, max_amount = 1500)
 
-/obj/item/ego_weapon/ranged/banquet/examine(mob/user)
+/obj/item/ego_weapon/ranged/cannon/banquet/examine(mob/user)
 	. = ..()
 	var/datum/component/bloodfeast/bloodfeast = GetComponent(/datum/component/bloodfeast)
 	if(bloodfeast) // dont want to succ blood while contained
 		. += "It has [bloodfeast.blood_amount] units of stored blood."
 
-/obj/item/ego_weapon/ranged/banquet/proc/AdjustThirst(blood_amount)
+/obj/item/ego_weapon/ranged/cannon/banquet/proc/AdjustThirst(blood_amount)
 	var/datum/component/bloodfeast/bloodfeast = GetComponent(/datum/component/bloodfeast)
 	bloodfeast.AdjustBlood(blood_amount)
 	if(bloodfeast.blood_amount >= 150)
@@ -717,7 +718,7 @@
 		return
 	bloodshot_ready = FALSE
 
-/obj/item/ego_weapon/ranged/banquet/attack(mob/living/target, mob/living/carbon/human/user)
+/obj/item/ego_weapon/ranged/cannon/banquet/attack(mob/living/target, mob/living/carbon/human/user)
 	if(!CanUseEgo(user))
 		return
 	if(!(target.status_flags & GODMODE) && target.stat != DEAD)
@@ -725,12 +726,12 @@
 		AdjustThirst(force * justicemod)
 	..()
 
-/obj/item/ego_weapon/ranged/banquet/can_shoot(mob/living/user)
+/obj/item/ego_weapon/ranged/cannon/banquet/can_shoot(mob/living/user)
 	if(bloodshot_ready)
 		return TRUE
 	..()
 
-/obj/item/ego_weapon/ranged/banquet/process_chamber(mob/living/user)
+/obj/item/ego_weapon/ranged/cannon/banquet/process_chamber(mob/living/user)
 	if(bloodshot_ready && !shotsleft)
 		AdjustThirst(-150)
 	..()
@@ -761,7 +762,7 @@
 			The arrowhead is dull and sprouts flowers of vivid color wherever it strikes."
 	icon_state = "wife"
 	inhand_icon_state = "wife"
-	force = 14
+	force = 24
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_bride
 	weapon_weight = WEAPON_HEAVY
