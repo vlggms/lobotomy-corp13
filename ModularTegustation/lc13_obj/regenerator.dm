@@ -20,7 +20,7 @@
 	var/sp_bonus = 0
 	var/progress = 0 // How close we are to healing everyone
 	var/critical_heal = FALSE // Whether it heals people who are in critical condition (sanity loss/health loss)
-	var/rapid = FALSE // Set to heal in small bursts
+	var/rapid = FALSE // Set to heal ever process tick instead of every 5
 	var/disabled = FALSE
 	var/short_duration = 2 MINUTES
 	var/long_duration = 4 MINUTES
@@ -152,7 +152,7 @@
 
 /obj/machinery/regenerator/proc/RapidHeal(mob/living/user)
 	if(user)
-		to_chat(user, span_notice("[src] is now calibrated to heal more often but restore dramatically less SP and HP."))
+		to_chat(user, span_notice("[src] is now calibrated to heal rapidly but restores dramatically less SP and HP."))
 	reset_timer = short_duration + world.time
 	ProduceIcon("#800000", "regenpuffs_heavy") //Maroon
 	ProduceIcon("#B90E0A", "regenspores_heavy") //Crimson
