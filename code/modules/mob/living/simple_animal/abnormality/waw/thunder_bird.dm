@@ -26,8 +26,8 @@
 	base_pixel_x = -16
 
 	//suppression info
-	maxHealth = 930
-	health = 930
+	maxHealth = 800
+	health = 800
 	move_to_delay = 4
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.7)
 

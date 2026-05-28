@@ -27,8 +27,8 @@
 	)
 	gift_type =  /datum/ego_gifts/loyalty
 	loot = list(/obj/item/clothing/suit/armor/ego_gear/aleph/praetorian) // Don't think it was dropping before, this should make it do so
-	health = 1800
-	maxHealth = 1800
+	health = 1400
+	maxHealth = 1400
 	damage_coeff = list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
 	melee_damage_lower = 12
 	melee_damage_upper = 16
