@@ -25,7 +25,7 @@
 		projectile.def_zone = user.zone_selected
 	projectile.suppressed = quiet
 
-	projectile.damage *= projectile_damage_multiplier
+	projectile.damage *= projectile_damage_multiplier * bonus_damage_multiplier
 	projectile.justice_multiplier = get_attack_multiplier(user)
 	if(temporary_damage_multiplier)
 		projectile.damage *= temporary_damage_multiplier

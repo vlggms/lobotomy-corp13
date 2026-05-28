@@ -5,14 +5,14 @@
 
 /obj/projectile/ego_bullet/ego_hornet
 	name = "hornet"
-	damage = 25
+	damage = 15
 	damage_type = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_hatred
 	name = "magic beam"
 	icon_state = "qoh1"
 	damage_type = BLACK_DAMAGE
-	damage = 25
+	damage = 30
 	spread = 10
 
 /obj/projectile/ego_bullet/ego_hatred/on_hit(atom/target, blocked = FALSE)
@@ -71,14 +71,14 @@
 /obj/projectile/ego_bullet/ego_solemnlament
 	name = "solemn lament"
 	icon_state = "whitefly"
-	damage = 17
+	damage = 7
 	speed = 0.35
 	damage_type = WHITE_DAMAGE
 
 /obj/projectile/ego_bullet/ego_solemnvow
 	name = "solemn vow"
 	icon_state = "blackfly"
-	damage =17
+	damage = 7
 	speed = 0.35
 	damage_type = BLACK_DAMAGE
 
@@ -89,21 +89,94 @@
 	damage = 2
 	speed = 0.2
 	damage_type = RED_DAMAGE
+	smart_pass = TRUE
 
-/obj/projectile/ego_bullet/ego_loyalty/iff
-	name = "loyalty IFF"
-	damage = 1.5
-	nodamage = TRUE	//Damage is calculated later
+/// Fired from the Loyalty rifle's UGL. Will go right through mobs and nondense stuff until it reaches the thing you clicked on or a wall.
+/obj/projectile/ego_bullet/loyalty_ugl
+	name = "loyal grenade"
+	icon_state = "bolter"
+	damage = 10
+	range = 16
+	nodamage = TRUE	// Damage is calculated later
+	speed = 0.8
 	projectile_piercing = PASSMOB
+	// No hitsound - we play a sound on detonation
 
-/obj/projectile/ego_bullet/ego_loyalty/iff/on_hit(atom/target, blocked = FALSE)
-	if(!ishuman(target))
+	var/tile_radius = 3
+	/// Damage at epicenter (distance 0)
+	var/base_damage = 60
+	/// Each tile away from the epicenter reduces damage by this much
+	var/falloff_per_dist = 40
+	var/list/hitlist = list()
+	/// We'll update the range the first time we move. We don't want to go any further than the distance between our firer and the original target.
+	var/updated_range = FALSE
+
+/obj/projectile/ego_bullet/loyalty_ugl/on_hit(atom/target, blocked = FALSE)
+	if(target == original || (target.density && !ismob(target)))
 		nodamage = FALSE
+		qdel(src)
 	else
 		return
 	..()
-	if(!ishuman(target))
+
+/obj/projectile/ego_bullet/loyalty_ugl/Moved(atom/OldLoc, Dir)
+	. = ..()
+	// Okay so, we don't want the grenade to go any further than the distance between the firer and our original target. We can't do this on Initialize because we won't have
+	// the original var by then. So we just do it once the first time we move.
+	if(!updated_range)
+		updated_range = TRUE
+		range = get_dist(firer, original)
+	if(isturf(original) && loc == original)
 		qdel(src)
+
+/// Whenever this thing finally meets its end, blow up.
+/obj/projectile/ego_bullet/loyalty_ugl/Destroy(force)
+	Detonate()
+	return ..()
+
+/// Explode, dealing damage and knocking back all nearby enemies. Ignore anything that has the firer's faction. Also gib dead things.
+/obj/projectile/ego_bullet/loyalty_ugl/proc/Detonate()
+	var/mob/living/nadeslinger = firer
+	if(!istype(nadeslinger))
+		return
+	var/turf/impact_turf = get_turf(src)
+
+	// Aesthetics
+	playsound(impact_turf, 'sound/abnormalities/armyinblack/black_explosion.ogg', 60, FALSE, 5, ignore_walls = TRUE)
+	var/atom/vfx = new /obj/effect/temp_visual/black_explosion(impact_turf)
+	vfx.transform *= 0.6
+	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(RadialShockwaveVisual), impact_turf, tile_radius, 2, /obj/effect/temp_visual/small_smoke/halfsecond)
+
+	// Shake the screen of the firer
+	var/dist_from_epicenter = get_dist(nadeslinger, impact_turf)
+	var/screenshake_intensity = clamp((3.5 - (dist_from_epicenter * 0.4)), 0.3, 3.5)
+	shake_camera(nadeslinger, 3, screenshake_intensity)
+
+	// Check every turf in our radius, hit mobs once at most. This can hit corpses.
+	var/list/affected_turfs = RANGE_TURFS(tile_radius, impact_turf)
+	for(var/turf/T in affected_turfs)
+		for(var/mob/living/M in T)
+			if(M in hitlist)
+				continue
+			if(nadeslinger.faction_check_mob(M))
+				continue
+
+			hitlist |= M
+
+			// Damage
+			var/final_damage = base_damage * (damage / initial(damage)) * justice_multiplier // This is unhinged as hell but the best way to get the Force Multiplier (EO upgrade, Faith & Promise) to affect the explosion.
+			var/distance_from_epicenter = clamp(get_dist(M, impact_turf), 0, 3)
+			final_damage -= (distance_from_epicenter * falloff_per_dist)
+			M.deal_damage(final_damage, damage_type)
+
+			// Knockback
+			var/throw_comparison = get_turf(M) == impact_turf ? null : impact_turf // If they're standing directly in the epicenter we need to take special measures
+			var/throw_dir = throw_comparison ? get_cardinal_dir(throw_comparison, M) : pick(GLOB.cardinals) // Take a random cardinal if they're directly on top of us
+			if(M)
+				M.safe_throw_at(target = get_ranged_target_turf(impact_turf, throw_dir, 4), range = 5, speed = 5, thrower = nadeslinger, spin = TRUE)
+				// Gib corpses
+				if(M.stat >= DEAD)
+					M.gib()
 
 /obj/projectile/ego_bullet/ego_soda_premium
 	name = "soda premium"
@@ -185,7 +258,7 @@
 //laststop
 /obj/projectile/ego_bullet/ego_laststop
 	name = "laststop"
-	damage = 75
+	damage = 90
 	damage_type = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_aroma

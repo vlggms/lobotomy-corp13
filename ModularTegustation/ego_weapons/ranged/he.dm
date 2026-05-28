@@ -25,7 +25,7 @@
 	inhand_icon_state = "gaze"
 	force = 6
 	projectile_path = /obj/projectile/ego_bullet/ego_gaze
-	fire_delay = 20
+	fire_delay = 15
 	max_shots = 8
 	reloadtime = 1.8 SECONDS
 	fire_sound = 'sound/weapons/ego/harmony1.ogg'
@@ -77,21 +77,21 @@
 	. = ..()
 	fire_delay = 10
 
-
+//The yandere weapon
 /obj/item/ego_weapon/ranged/unrequited
 	name = "unrequited love"
 	desc = "This weapon yearns for affection and will do anything to get your attention. Of course it will misunderstand your care for something else."
+	special = "This weapon becomes less effective if you possess any other EGO weapons."
 	icon_state = "unrequited"
 	inhand_icon_state = "unrequited"
-	special = "This weapon will sometimes jam. \
-			Use this weapon in hand to unjam it. \
-			this weapon fires faster and in a bigger burst for 15 seconds after being unjammed."
 	force = 16
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_unrequited
 	fire_delay = 10
 	burst_size = 3
 	burst_delay = 5
+	max_shots = 24
+	reloadtime = 1.8 SECONDS
 	fire_sound = 'sound/weapons/gun/l6/shot.ogg'
 	vary_fire_sound = FALSE
 	weapon_weight = WEAPON_HEAVY
@@ -99,79 +99,50 @@
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 40
 							)
-	var/jam_cooldown
-	var/jam_cooldown_time //this will actually be semi-randomized just so you can get the true surprise jam experience while red buddy is chasing you
-	var/jammed = FALSE
-	var/jam_noticed = FALSE
 
-/obj/item/ego_weapon/ranged/unrequited/Initialize()
-	. = ..()
-	jam_cooldown_time = rand(1, 5) MINUTES
-	jam_cooldown = jam_cooldown_time + world.time
-	START_PROCESSING(SSobj, src)
-
-/obj/item/ego_weapon/ranged/unrequited/process()
-	if(jammed)
-		return
-	if(jam_cooldown < world.time)
-		jammed = TRUE
-
-/obj/item/ego_weapon/ranged/unrequited/Destroy()
-	STOP_PROCESSING(SSobj, src)
+/obj/item/ego_weapon/ranged/unrequited/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, temporary_damage_multiplier = 1)
+	fire_delay = 10
+	var/list/search_area = user.contents.Copy()
+	for(var/obj/item/storage/spare_space in search_area)
+		search_area |= spare_space.contents
+	for(var/obj/item/ego_weapon/disloyal_weapon in search_area)
+		if(disloyal_weapon == src)
+			continue
+		// You are breaking my heart player-sama </3
+		new /obj/effect/temp_visual/mermaid_drowning(get_turf(user))
+		fire_delay = 13
+		break
 	return ..()
-
-/obj/item/ego_weapon/ranged/unrequited/proc/ResetDelay()
-	burst_size = 3
-
-/obj/item/ego_weapon/ranged/unrequited/SpecialEgoCheck(mob/living/carbon/human/H)
-	if(!jammed)
-		return TRUE
-
-	if(jam_noticed)
-		playsound(src, dry_fire_sound, 30, TRUE)
-	else
-		playsound(src, 'sound/weapons/gun/general/bolt_drop.ogg', 50, TRUE)
-		jam_noticed = TRUE
-
-	to_chat(H, span_notice("[src] is jammed!"))
-	return FALSE
-
-/obj/item/ego_weapon/ranged/unrequited/attack_self(mob/user)
-	to_chat(user,span_notice("You try to unjam [src]."))
-	playsound(src, 'sound/weapons/gun/general/slide_lock_1.ogg', 50, TRUE)
-	if(do_after(user, 3 SECONDS, src)) //it's a massive annoyance to unjam in the middle of a fight but the extra damage should make it more than worth it.
-		playsound(src, 'sound/weapons/gun/general/bolt_rack.ogg', 50, TRUE)
-		if(!jammed)
-			to_chat(user,span_notice("Turns out the weapon is working just fine."))
-			return
-		jammed = FALSE
-		jam_noticed = FALSE
-		burst_size = 5
-		addtimer(CALLBACK(src, PROC_REF(ResetDelay)), 15 SECONDS)
-		to_chat(user,span_notice("You succesfully unjammed [src]!"))
-		jam_cooldown_time = rand(1, 5) MINUTES
-		jam_cooldown = jam_cooldown_time + world.time
 
 /obj/item/ego_weapon/ranged/cannon/harmony
 	name = "harmony"
-	desc = "A massive blocky launcher with some suspicious stains on it."
+	desc = "It may look like a deteriorating machine at first glance, but the music it makes captures its audience more than any other instrument could."
 	icon_state = "harmony"
 	inhand_icon_state = "harmony"
-	special = "This weapon fires bouncing, piercing shots. On hitting an insane person, deals 4x damage and stops bouncing."
 	force = 24
 	damtype = RED_DAMAGE // Its a massive chunk of metal
 	projectile_path = /obj/projectile/ego_bullet/ego_harmony
-	fire_sound = 'sound/weapons/ego/harmony1.ogg'
-	vary_fire_sound = FALSE
-	weapon_weight = WEAPON_HEAVY
-	fire_sound_volume = 70
-	max_shots = 18
-	reloadtime = 1.6 SECONDS
-
-	autofire = 0.35 SECONDS
+	fire_delay = 15
+	chargetime = 7
+	max_shots = 5
+	reloadtime = 0.8 SECONDS
+	alternate_reload_time = 0.8 SECONDS
+	alternate_fire_name = "Grinding Noise"
+	alternate_reload_type = RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_SHARED_MAGAZINE
+	alternate_projectile_path = /obj/projectile/ego_bullet/ego_harmony/strong
+	alternate_info = "This weapon's shots will deal increased damage at a cost of health loss every time it fires."
+	alternate_fire_sound = 'sound/weapons/ego/cannon.ogg'
+	alternate_toggle_enabled_message = span_notice("You flip a switch, causing the weapon's sawblades to spin wildly.")
+	alternate_toggle_disabled_message = span_notice("You flip a switch, causing the weapon's sawblades to slow down.")
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
+
+/obj/item/ego_weapon/ranged/cannon/harmony/before_firing(atom/target, mob/living/user)
+	if(alternate_selected)
+		playsound(src, 'sound/abnormalities/singingmachine/chew.ogg', 50, TRUE)
+		to_chat(user, span_danger("[src] grinds a bit of your body as it fires!"))
+		user.adjustBruteLoss(user.maxHealth*0.05)
 
 /obj/item/ego_weapon/ranged/transmission
 	name = "broken transmission"
@@ -202,12 +173,24 @@
 	fire_sound = 'sound/weapons/gun/pistol/shot_alt.ogg'
 	weapon_weight = WEAPON_MEDIUM
 	max_shots = 32
-	reloadtime = 20 SECONDS
+	reloadtime = 2 SECONDS
 	spread = 8
 	autofire = 0.15 SECONDS
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40
 							)
+	var/currentshots = 0
+	var/sanity_gain = 10
+
+/obj/item/ego_weapon/ranged/song/reload_ego(mob/user)
+	currentshots = shotsleft
+	. = ..()
+
+/obj/item/ego_weapon/ranged/song/OnReload(mob/user)
+	if(currentshots == 0)
+		playsound(src, 'sound/abnormalities/siren/sirenhappy.ogg', 100, FALSE, 9)
+		for(var/mob/living/carbon/human/L in range(3, get_turf(user)))
+			L.adjustSanityLoss(-sanity_gain)
 
 /obj/item/ego_weapon/ranged/pistol/songmini
 	name = "greatest oldies"
@@ -251,10 +234,11 @@
 	special = "This weapon fires dice that deal varying amounts of damage."
 	force = 6
 	projectile_path = /obj/projectile/ego_bullet/ego_swindle
-	weapon_weight = WEAPON_HEAVY
+	weapon_weight = WEAPON_MEDIUM
 	fire_delay = 5
-	max_shots = 12
-	reloadtime = 1.5 SECONDS
+	max_shots = 8
+	ammo_on_reload = 1
+	reloadtime = 0.15 SECONDS
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
@@ -265,13 +249,15 @@
 	desc = "Voices from your past emanate from this gun. Now they can be put into use."
 	icon_state = "ringing"
 	inhand_icon_state = "ringing"
-	special = "This weapon can be used as a megaphone."
-	force = 16
+	special = "This weapon fires hitscan sound waves and can be used as a megaphone."
+	force = 12
+	attack_speed = 1
 	damtype = BLACK_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_ringing
-	weapon_weight = WEAPON_HEAVY
+	weapon_weight = WEAPON_MEDIUM
+	max_shots = 45
+	reloadtime = 3 SECONDS
 	autofire = 0.15 SECONDS
-	spread = 25
 	fire_sound = 'sound/weapons/gun/pistol/shot_alt.ogg'
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 40
@@ -304,19 +290,28 @@
 	desc = "What cry could be more powerful than one spurred by primal instinct?"
 	icon_state = "syrinx"
 	inhand_icon_state = "syrinx"
-	special = "This weapon fires slow bullets with limited range."
+	special = "This weapon fires hitscan sound waves."
 	force = 10
-	damtype = WHITE_DAMAGE
+	attack_speed = 0.7
+	damtype = RED_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_syrinx
 	weapon_weight = WEAPON_MEDIUM
-	spread = 40
+	spread = 0
 	max_shots = 40
-	reloadtime = 2 SECONDS
-	fire_sound = 'sound/weapons/ego/ecstasy.ogg'
-	autofire = 0.08 SECONDS
+	ammo_on_reload = 1
+	ammo_on_melee = 3
+	passive_reload = 4 SECONDS
+	reloadtime = 0.5 SECONDS
+	fire_sound = 'sound/weapons/ego/syrinx1.ogg'
+	autofire = 0.2 SECONDS
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40
 	)
+
+
+/obj/item/ego_weapon/ranged/syrinx/before_firing(atom/target, mob/living/user)
+	fire_sound = "sound/weapons/ego/syrinx[rand(1,3)].ogg"
+	return ..()
 
 /obj/item/ego_weapon/ranged/pistol/deathdealer
 	name = "death dealer"
@@ -360,7 +355,7 @@
 	desc = "A gun used by shrimp corp, apparently."
 	icon_state = "sodarifle"
 	inhand_icon_state = "sodarifle"
-	force = 10
+	force = 16
 	projectile_path = /obj/projectile/ego_bullet/soda_rifle
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 6

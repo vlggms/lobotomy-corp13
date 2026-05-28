@@ -43,7 +43,7 @@
 	attack_speed = 0.5
 	weapon_weight = WEAPON_HEAVY
 	projectile_path = /obj/projectile/ego_bullet/fivedamage
-	projectile_damage_multiplier = 6 //60 damage per bullet
+	bonus_damage_multiplier = 6 //60 damage per bullet
 	max_shots = 6
 	reloadtime = 3 SECONDS
 	fire_delay = 12
@@ -74,7 +74,7 @@
 	projectile_path = /obj/projectile/ego_bullet/fivedamage // total 20 damage
 	pellets = 8
 	variance = 16
-	projectile_damage_multiplier = 0.5 //2.5 damage per bullet
+	bonus_damage_multiplier = 0.5 //2.5 damage per bullet
 	fire_delay = 10
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
 	max_shots = 7

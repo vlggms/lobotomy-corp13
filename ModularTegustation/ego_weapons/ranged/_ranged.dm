@@ -94,7 +94,8 @@
 
 	/// Just 'slightly' snowflakey way to modify projectile damage for projectiles fired from this gun.
 	var/projectile_damage_multiplier = 1
-
+	/// A alt version of the var above that's meant to handle internal multipliers instead of from sources as EO, broken crown, or faith
+	var/bonus_damage_multiplier = 1
 	/// If the weapon allows dual-weilding/can be used in 1 hand/needs 2 hands
 	var/weapon_weight = WEAPON_LIGHT
 
@@ -648,7 +649,8 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 
 //check if there's enough ammo to shoot one time
 //i.e if clicking would make it shoot
-/obj/item/ego_weapon/ranged/proc/can_shoot()
+/obj/item/ego_weapon/ranged/proc/can_shoot(mob/living/user)
+	//Is the gun currently charging up or reloading?
 	if(is_reloading || is_charging)
 		return FALSE
 
@@ -662,7 +664,7 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 
 	//Are we firing regular bullets, it can reload and we have no shots left?
 	if(!alternate_selected && (reloadtime && shotsleft < ammo_per_shot))
-		shoot_with_empty_chamber()
+		shoot_with_empty_chamber(user)
 		return FALSE
 
 	//Are we in alternate fire?
@@ -674,29 +676,29 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 			//If it's two mags, we check if there's ammo.
 			if(RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_SHARED_RELOAD)
 				if(alternate_shotsleft < alternate_ammo_per_shot)
-					shoot_with_empty_chamber()
+					shoot_with_empty_chamber(user)
 					return FALSE
 
 			if(RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_INDIVIDUAL_RELOAD)
 				if(alternate_shotsleft < alternate_ammo_per_shot)
-					shoot_with_empty_chamber()
+					shoot_with_empty_chamber(user)
 					return FALSE
 
 			//If it's one mag, we check the main mag.
 			if(RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_EMPTY_MAG)
 				if(shotsleft < ammo_per_shot)
-					shoot_with_empty_chamber()
+					shoot_with_empty_chamber(user)
 					return FALSE
 
 			if(RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_SHARED_MAGAZINE)
 				if(shotsleft < ammo_per_shot)
-					shoot_with_empty_chamber()
+					shoot_with_empty_chamber(user)
 					return FALSE
 
 	return TRUE
 
 /obj/item/ego_weapon/ranged/proc/shoot_with_empty_chamber(mob/living/user as mob|obj)
-	visible_message(span_notice(out_of_ammo))
+	user.visible_message(span_notice(out_of_ammo))
 	to_chat(user, span_danger("*click*"))
 	playsound(src, dry_fire_sound, 30, TRUE)
 
@@ -736,6 +738,10 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 		return
 	if(firing_burst)
 		return
+
+	if(!can_shoot(user)) //Just because you can pull the trigger doesn't mean it can shoot.
+		return
+
 	if(flag) //It's adjacent, is the user, or is on the user's person
 		if(target in user.contents) //can't shoot stuff inside us.
 			return
@@ -766,9 +772,6 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 			handle_suicide(user, target, params)
 			return
 
-	if(!can_shoot()) //Just because you can pull the trigger doesn't mean it can shoot.
-		return
-
 	if(check_botched(user))
 		return
 
@@ -795,7 +798,7 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 		for(var/obj/item/ego_weapon/ranged/G in H.held_items)
 			if(G == src || G.weapon_weight >= WEAPON_MEDIUM)
 				continue
-			else if(G.can_trigger_gun(user) && G.can_shoot())
+			else if(G.can_trigger_gun(user) && G.can_shoot(user))
 				bonus_spread += dual_wield_spread
 				loop_counter++
 				addtimer(CALLBACK(G, TYPE_PROC_REF(/obj/item/ego_weapon/ranged, process_fire), target, user, TRUE, params, null, bonus_spread), loop_counter)

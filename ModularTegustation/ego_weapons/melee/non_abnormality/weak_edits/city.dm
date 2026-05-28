@@ -127,7 +127,7 @@
 //Thumb
 /obj/item/ego_weapon/ranged/city/thumb/city
 	force = 17
-	projectile_damage_multiplier = 1
+	bonus_damage_multiplier = 1
 	projectile_path = /obj/projectile/ego_bullet/citythumb // does 15 damage (odd, there's no force mod on this one)
 	attribute_requirements = list(
 		FORTITUDE_ATTRIBUTE = 60,
@@ -145,7 +145,7 @@
 //Capo
 /obj/item/ego_weapon/ranged/city/thumb/capo/city
 	force = 22
-	projectile_damage_multiplier = 1
+	bonus_damage_multiplier = 1
 	projectile_path = /obj/projectile/ego_bullet/citythumb/capo // does 22 damage (odd, there's no force mod on this one)
 	attribute_requirements = list(
 		FORTITUDE_ATTRIBUTE = 80,
@@ -160,7 +160,7 @@
 //Sottocapo
 /obj/item/ego_weapon/ranged/city/thumb/sottocapo/city
 	force = 5 //It's a pistol
-	projectile_damage_multiplier = 1
+	bonus_damage_multiplier = 1
 	projectile_path = /obj/projectile/ego_bullet/citythumb/sottocapo // total 80 AP damage
 	pellets = 8
 	variance = 16

@@ -11,7 +11,7 @@
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
 	special = "Attack an enemy with your bayonet to reload."
-	projectile_damage_multiplier = 3		//30 damage per bullet
+	bonus_damage_multiplier = 3		//30 damage per bullet
 	fire_delay = 7
 	max_shots = 5		//Based off the Mas 36, That's what my Girlfriend things it looks like. Holds 5 bullets.
 	reloadtime = 5 SECONDS
@@ -34,7 +34,7 @@
 	icon_state = "thumb_capo"
 	inhand_icon_state = "thumb_capo"
 	force = 25
-	projectile_damage_multiplier = 5		//50 damage per bullet
+	bonus_damage_multiplier = 5		//50 damage per bullet
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 80,

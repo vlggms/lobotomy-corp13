@@ -3,16 +3,16 @@
 	desc = "In here, you're with us. Forever."
 	icon_state = "correctional"
 	inhand_icon_state = "correctional"
-	force = 16
+	force = 24
 	damtype = BLACK_DAMAGE
-	attack_speed = 1.3
 	projectile_path = /obj/projectile/ego_bullet/ego_correctional
 	weapon_weight = WEAPON_HEAVY
 	pellets = 8
 	variance = 20
 	fire_delay = 7
 	max_shots = 12
-	reloadtime = 1.4 SECONDS
+	ammo_on_reload = 1
+	reloadtime = 0.6 SECONDS
 	fire_sound = 'sound/weapons/gun/shotgun/shot_auto.ogg'
 
 	attribute_requirements = list(
@@ -26,13 +26,14 @@
 	The projectiles relive the legacy of the kingdom as they travel toward the target."
 	icon_state = "hornet"
 	inhand_icon_state = "hornet"
-	force = 14
+	force = 24
 	projectile_path = /obj/projectile/ego_bullet/ego_hornet
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/weapons/gun/rifle/leveraction.ogg'
-	fire_delay = 2
+	fire_delay = 4
 	max_shots = 10
-	reloadtime = 1.4 SECONDS
+	ammo_on_reload = 1
+	reloadtime = 0.3 SECONDS
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80
 							)
@@ -45,14 +46,15 @@
 	icon_state = "hatred"
 	inhand_icon_state = "hatred"
 	special = "This weapon heals humans that it hits."
-	force = 16
+	force = 18
+	attack_speed = 1
 	damtype = BLACK_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_hatred
-	weapon_weight = WEAPON_HEAVY
+	weapon_weight = WEAPON_MEDIUM
 	fire_delay = 10
-	max_shots = 20
-	passive_reload = 8 SECONDS
-	reloadtime = 5
+	max_shots = 30
+	passive_reload = 6 SECONDS
+	reloadtime = 3
 	fire_sound = 'sound/abnormalities/hatredqueen/attack.ogg'
 
 	attribute_requirements = list(
@@ -83,76 +85,143 @@
 	inhand_icon_state = "magic_bullet"
 	special = "This weapon fires extremely slowly. \
 		This weapon pierces all targets. \
-		This weapon gets a firespeed bonus when wearing the matching armor."
-	force = 14
+		This weapon gets a 30% damage bonus when wearing the matching armor."
+	force = 24
 	damtype = BLACK_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_magicbullet
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 30	//Put on the armor, jackass.
+	fire_delay = 15	//Put on the armor, jackass.
 	max_shots = 7
-	reloadtime = 2.1 SECONDS
+	ammo_on_reload = 1
+	reloadtime = 0.3 SECONDS
 	fire_sound = 'sound/abnormalities/freischutz/shoot.ogg'
 
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 80
 							)
-	var/cached_multiplier
 
 /obj/item/ego_weapon/ranged/magicbullet/before_firing(atom/target, mob/user)
-	if(cached_multiplier)
-		projectile_damage_multiplier = cached_multiplier
-	fire_delay = initial(fire_delay)
+	bonus_damage_multiplier = 1
 	var/mob/living/carbon/human/myman = user
 	var/obj/item/clothing/suit/armor/ego_gear/he/magicbullet/Y = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	var/obj/item/clothing/suit/armor/ego_gear/realization/bigiron/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(istype(Y))
-		fire_delay = 8
+		bonus_damage_multiplier *= 1.3
 	if(istype(Z))
-		cached_multiplier = projectile_damage_multiplier
-		projectile_damage_multiplier *= 2.5
-		fire_delay = 8
+		bonus_damage_multiplier *= 3
 	..()
 
 
 //Funeral guns have two different names;
 //Solemn Lament is the white gun, Solemn Vow is the black gun.
 //Likewise, they emit butterflies of those respective colors.
+//When together they should be on par with a 2 handed waw gun.
 /obj/item/ego_weapon/ranged/pistol/solemnlament
 	name = "solemn lament"
 	desc = "A pistol which carries with it a lamentation for those that live. \
 	Can feathers gain their own wings?"
 	icon_state = "solemnlament"
 	inhand_icon_state = "solemnlament"
-	special = "Firing both solemn lament and solemn vow at the same time will increase damage by 1.5x"
-	force = 8
+	special = "While having either a second copy of this weapon or solemn vow will decrease shot spread and allow for both to reload at once.\nFiring both solemn lament and solemn vow at the same time will increase damage by 30%"
+	force = 9
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_solemnlament
 	fire_delay = 5
 	max_shots = 18
-	reloadtime = 0.7 SECONDS
+	reloadtime = 1.4 SECONDS
 	fire_sound = 'sound/abnormalities/funeral/spiritgunwhite.ogg'
 	fire_sound_volume = 30
-	attribute_requirements = list(PRUDENCE_ATTRIBUTE = 80)
-	var/cached_multiplier
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 60,
+							JUSTICE_ATTRIBUTE = 60
+							)
+
+/obj/item/ego_weapon/ranged/pistol/solemnlament/afterattack(atom/target, mob/living/user, flag, params)
+	dual_wield_spread = initial(dual_wield_spread)
+	if(!user.get_inactive_held_item())
+		return ..()
+	if(!(istype(user.get_inactive_held_item(), /obj/item/ego_weapon/ranged/pistol/solemnlament) || istype(user.get_inactive_held_item(), /obj/item/ego_weapon/ranged/pistol/solemnvow)))
+		return ..()
+	SEND_SIGNAL(src, COMSIG_ITEM_AFTERATTACK, target, user, flag, params)
+	SEND_SIGNAL(user, COMSIG_MOB_ITEM_AFTERATTACK, target, user, flag, params)
+	//Is it stupid as hell that we're doing this? yes, But the guns were used together in lcorp and I wanted the same functionality here.
+	dual_wield_spread = 48
+	if(QDELETED(target))
+		return
+
+	if(!can_shoot(user)) //Just because you can pull the trigger doesn't mean it can shoot.
+		return
+
+	if(flag) //It's adjacent, is the user, or is on the user's person
+		if(target in user.contents) //can't shoot stuff inside us.
+			return
+		if(!ismob(target)) //melee attack
+			return
+		if(target == user && user.zone_selected != BODY_ZONE_PRECISE_MOUTH) //so we can't shoot ourselves (unless mouth selected)
+			return
+		if(ismob(target) && user.a_intent == INTENT_GRAB)
+			if(user.GetComponent(/datum/component/gunpoint))
+				to_chat(user, span_warning("You are already holding someone up!"))
+				return
+			user.AddComponent(/datum/component/gunpoint, target, src)
+			return
+		if(iscarbon(target))
+			var/mob/living/carbon/C = target
+			for(var/i in C.all_wounds)
+				var/datum/wound/W = i
+				if(W.try_treating(src, user))
+					return // another coward cured!
+
+	if(istype(user))//Check if the user can use the gun, if the user isn't alive(turrets) assume it can.
+		var/mob/living/L = user
+		if(!can_trigger_gun(L))
+			return
+
+	if(flag)
+		if(user.zone_selected == BODY_ZONE_PRECISE_MOUTH)
+			handle_suicide(user, target, params)
+			return
+
+	if(check_botched(user))
+		return
+
+	//DUAL (or more!) WIELDING
+	var/bonus_spread = 0
+	var/loop_counter = 0
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		for(var/obj/item/ego_weapon/ranged/G in H.held_items)
+			if(G == src)
+				continue
+			else if(G.can_trigger_gun(user) && G.can_shoot(user))
+				bonus_spread += dual_wield_spread
+				loop_counter+=2.5
+				addtimer(CALLBACK(G, TYPE_PROC_REF(/obj/item/ego_weapon/ranged, process_fire), target, user, TRUE, params, null, bonus_spread), loop_counter)
+
+	return process_fire(target, user, TRUE, params, null, bonus_spread)
+
+/obj/item/ego_weapon/ranged/pistol/solemnlament/OnReload(mob/user)
+	var/mob/living/carbon/human/myman = user
+	for(var/obj/item/ego_weapon/ranged/pistol/solemnvow/Vow in myman.held_items)
+		to_chat(user,span_notice("You also reloaded the [Vow]."))
+		Vow.shotsleft = Vow.max_shots
+		break
+	for(var/obj/item/ego_weapon/ranged/pistol/solemnlament/Lament in myman.held_items)
+		if(Lament != src)
+			to_chat(user,span_notice("You also reloaded the other [Lament]."))
+			Lament.shotsleft = Lament.max_shots
+			break
 
 /obj/item/ego_weapon/ranged/pistol/solemnlament/before_firing(atom/target, mob/user)
-	if(cached_multiplier)
-		projectile_damage_multiplier = cached_multiplier
-	fire_delay = initial(fire_delay)
+	bonus_damage_multiplier = 1
+	dual_wield_spread = initial(dual_wield_spread)
 	var/mob/living/carbon/human/myman = user
+	for(var/obj/item/ego_weapon/ranged/pistol/solemnvow/Vow in myman.held_items)
+		bonus_damage_multiplier *= 1.3
+		break
 	var/obj/item/clothing/suit/armor/ego_gear/realization/eulogy/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(istype(Z))
-		cached_multiplier = projectile_damage_multiplier
-		projectile_damage_multiplier *= 1.25
-	return ..()
-
-/obj/item/ego_weapon/ranged/pistol/solemnlament/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, temporary_damage_multiplier = 1)
-	for(var/obj/item/ego_weapon/ranged/pistol/solemnvow/Vow in user.held_items)
-		projectile_damage_multiplier = 1.5
-		break
-	. = ..()
-	projectile_damage_multiplier = 1
-
+		bonus_damage_multiplier *= 2
 
 /obj/item/ego_weapon/ranged/pistol/solemnvow
 	name = "solemn vow"
@@ -160,35 +229,105 @@
 	Even with wings, no feather can leave this place."
 	icon_state = "solemnvow"
 	inhand_icon_state = "solemnvow"
-	special = "Firing both solemn lament and solemn vow at the same time will increase damage by 1.5x"
-	force = 8
+	special = "While having either a second copy of this weapon or solemn lament will cause both guns to act like one.\nFiring both solemn lament and solemn vow at the same time will increase damage by 30%"
+	force = 9
 	damtype = BLACK_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_solemnvow
 	fire_delay = 5
 	max_shots = 18
-	reloadtime = 0.7 SECONDS
+	reloadtime = 1.4 SECONDS
 	fire_sound = 'sound/abnormalities/funeral/spiritgunblack.ogg'
-	fire_sound_volume = 30
-	var/cached_multiplier
-	attribute_requirements = list(JUSTICE_ATTRIBUTE = 80)
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 60,
+							JUSTICE_ATTRIBUTE = 60
+							)
+
+/obj/item/ego_weapon/ranged/pistol/solemnvow/afterattack(atom/target, mob/living/user, flag, params)
+	dual_wield_spread = initial(dual_wield_spread)
+	if(!user.get_inactive_held_item())
+		return ..()
+	if(!(istype(user.get_inactive_held_item(), /obj/item/ego_weapon/ranged/pistol/solemnlament) || istype(user.get_inactive_held_item(), /obj/item/ego_weapon/ranged/pistol/solemnvow)))
+		return ..()
+	SEND_SIGNAL(src, COMSIG_ITEM_AFTERATTACK, target, user, flag, params)
+	SEND_SIGNAL(user, COMSIG_MOB_ITEM_AFTERATTACK, target, user, flag, params)
+	//Is it stupid as hell that we're doing this? yes, But the guns were used together in lcorp and I wanted the same functionality here.
+	dual_wield_spread = 48
+	if(QDELETED(target))
+		return
+
+	if(!can_shoot(user)) //Just because you can pull the trigger doesn't mean it can shoot.
+		return
+
+	if(flag) //It's adjacent, is the user, or is on the user's person
+		if(target in user.contents) //can't shoot stuff inside us.
+			return
+		if(!ismob(target)) //melee attack
+			return
+		if(target == user && user.zone_selected != BODY_ZONE_PRECISE_MOUTH) //so we can't shoot ourselves (unless mouth selected)
+			return
+		if(ismob(target) && user.a_intent == INTENT_GRAB)
+			if(user.GetComponent(/datum/component/gunpoint))
+				to_chat(user, span_warning("You are already holding someone up!"))
+				return
+			user.AddComponent(/datum/component/gunpoint, target, src)
+			return
+		if(iscarbon(target))
+			var/mob/living/carbon/C = target
+			for(var/i in C.all_wounds)
+				var/datum/wound/W = i
+				if(W.try_treating(src, user))
+					return // another coward cured!
+
+	if(istype(user))//Check if the user can use the gun, if the user isn't alive(turrets) assume it can.
+		var/mob/living/L = user
+		if(!can_trigger_gun(L))
+			return
+
+	if(flag)
+		if(user.zone_selected == BODY_ZONE_PRECISE_MOUTH)
+			handle_suicide(user, target, params)
+			return
+
+	if(check_botched(user))
+		return
+
+	//DUAL (or more!) WIELDING
+	var/bonus_spread = 0
+	var/loop_counter = 0
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		for(var/obj/item/ego_weapon/ranged/G in H.held_items)
+			if(G == src)
+				continue
+			else if(G.can_trigger_gun(user) && G.can_shoot(user))
+				bonus_spread += dual_wield_spread
+				loop_counter+=2.5
+				addtimer(CALLBACK(G, TYPE_PROC_REF(/obj/item/ego_weapon/ranged, process_fire), target, user, TRUE, params, null, bonus_spread), loop_counter)
+
+	return process_fire(target, user, TRUE, params, null, bonus_spread)
+
+/obj/item/ego_weapon/ranged/pistol/solemnvow/OnReload(mob/user)
+	var/mob/living/carbon/human/myman = user
+	for(var/obj/item/ego_weapon/ranged/pistol/solemnlament/Lament in myman.held_items)
+		to_chat(user,span_notice("You also reloaded the [Lament]."))
+		Lament.shotsleft = Lament.max_shots
+		break
+	for(var/obj/item/ego_weapon/ranged/pistol/solemnvow/Vow in myman.held_items)
+		if(Vow != src)
+			to_chat(user,span_notice("You also reloaded the other [Vow]."))
+			Vow.shotsleft = Vow.max_shots
+			break
 
 /obj/item/ego_weapon/ranged/pistol/solemnvow/before_firing(atom/target, mob/user)
-	if(cached_multiplier)
-		projectile_damage_multiplier = cached_multiplier
-	fire_delay = initial(fire_delay)
+	bonus_damage_multiplier = 1
+	dual_wield_spread = initial(dual_wield_spread)
 	var/mob/living/carbon/human/myman = user
+	for(var/obj/item/ego_weapon/ranged/pistol/solemnlament/Lament in myman.held_items)
+		bonus_damage_multiplier *= 1.3
+		break
 	var/obj/item/clothing/suit/armor/ego_gear/realization/eulogy/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(istype(Z))
-		cached_multiplier = projectile_damage_multiplier
-		projectile_damage_multiplier *= 1.25
-	return ..()
-
-/obj/item/ego_weapon/ranged/pistol/solemnvow/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, temporary_damage_multiplier = 1)
-	for(var/obj/item/ego_weapon/ranged/pistol/solemnlament/Lament in user.held_items)
-		projectile_damage_multiplier = 1.5
-		break
-	. = ..()
-	projectile_damage_multiplier = 1
+		bonus_damage_multiplier *= 2
 
 
 /obj/item/ego_weapon/ranged/loyalty
@@ -196,18 +335,52 @@
 	desc = "Courtesy of the 16th Ego rifleman's brigade."
 	icon_state = "loyalty"
 	inhand_icon_state = "loyalty"
-	force = 14
-	projectile_path = /obj/projectile/ego_bullet/ego_loyalty/iff
+	force = 24
+	projectile_path = /obj/projectile/ego_bullet/ego_loyalty
 	weapon_weight = WEAPON_HEAVY
 	spread = 26
 	max_shots = 95
 	reloadtime = 3.2 SECONDS
-	special = "This weapon has IFF capabilities."
+	special = "This weapon's ammunition has IFF capabilities."
 	fire_sound = 'sound/weapons/gun/smg/vp70.ogg'
 	autofire = 0.08 SECONDS
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80
 	)
+	alternate_fire_name = "Underslung Grenade Launcher"
+	alternate_info = "This rifle has an underslung grenade launcher. Grenades fired from this rifle also are 'impact' grenades that will attempt to detonate wherever you click and knock back enemies while dealing heavy AoE RED damage.\nAfter firing the UGL, you'll automatically swap to the primary fire mode."
+	alternate_shotsleft = 1
+	alternate_pellets = 1
+	alternate_reload_type = RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_SHARED_RELOAD
+	alternate_projectile_path = /obj/projectile/ego_bullet/loyalty_ugl
+	alternate_fire_sound = 'sound/weapons/gun/general/grenade_launch.ogg'
+	alternate_fire_sound_volume = 70
+	alternate_toggle_sound = 'sound/machines/click.ogg'
+	alternate_toggle_sound_volume = 65
+	alternate_toggle_enabled_message = span_notice("You ready your underslung grenade launcher.")
+	alternate_toggle_disabled_message = span_notice("You will no longer use your underslung grenade launcher.")
+	// Need to store this to modify the autofire after firing UGL
+	var/datum/component/automatic_fire/autofire_component
+	var/firing_ugl_extra_shot_delay_coeff = 8
+
+/obj/item/ego_weapon/ranged/loyalty/Initialize(mapload)
+	. = ..()
+	autofire_component = GetComponent(/datum/component/automatic_fire)
+
+/obj/item/ego_weapon/ranged/loyalty/process_chamber()
+	. = ..()
+	if(alternate_selected)
+		DisableAltfire(null, TRUE)
+
+/obj/item/ego_weapon/ranged/loyalty/EnableAltfire(mob/user, silent = TRUE)
+	. = ..()
+	spread = 0
+	autofire_component.autofire_shot_delay = (autofire * firing_ugl_extra_shot_delay_coeff)
+
+/obj/item/ego_weapon/ranged/loyalty/DisableAltfire(mob/user, silent = TRUE)
+	. = ..()
+	spread = initial(spread)
+	autofire_component.autofire_shot_delay = autofire
 
 /obj/item/ego_weapon/ranged/pistol/soda_premium
 	name = "soda premium"
@@ -237,7 +410,7 @@
 	desc = "With steel in one hand and gunpowder in the other, there's nothing to fear in this place."
 	icon_state = "crimsonscar"
 	inhand_icon_state = "crimsonscar"
-	force = 8
+	force = 9
 	projectile_path = /obj/projectile/ego_bullet/ego_crimson
 	weapon_weight = WEAPON_MEDIUM
 	pellets = 3
@@ -258,7 +431,8 @@
 	inhand_icon_state = "ecstasy"
 	special = "This weapon fires slow bullets with limited range."
 	force = 14
-	damtype = WHITE_DAMAGE
+	damtype = RED_DAMAGE
+	attack_speed = 0.7
 	projectile_path = /obj/projectile/ego_bullet/ego_ecstasy
 	weapon_weight = WEAPON_MEDIUM
 	spread = 40
@@ -277,7 +451,7 @@
 	icon_state = "praetorian"
 	inhand_icon_state = "praetorian"
 	special = "This weapon fires IFF bullets."
-	force = 14
+	force = 9
 	projectile_path = /obj/projectile/ego_bullet/ego_praetorian
 	fire_sound = 'sound/weapons/gun/pistol/tp17.ogg'
 	autofire = 0.12 SECONDS
@@ -295,7 +469,7 @@
 	icon_state = "magic_pistol"
 	inhand_icon_state = "magic_pistol"
 	special = "This weapon pierces most targets. This weapon fires and reloads faster with the matching armor"
-	force = 8
+	force = 9
 	damtype = BLACK_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_magicpistol
 	fire_delay = 7
@@ -305,11 +479,9 @@
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 80
 							)
-	var/cached_multiplier
 
 /obj/item/ego_weapon/ranged/pistol/magic_pistol/before_firing(atom/target, mob/user)
-	if(cached_multiplier)
-		projectile_damage_multiplier = cached_multiplier
+	bonus_damage_multiplier = 1
 	fire_delay = initial(fire_delay)
 	var/mob/living/carbon/human/myman = user
 	var/obj/item/clothing/suit/armor/ego_gear/he/magicbullet/Y = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
@@ -317,8 +489,7 @@
 	if(istype(Y))
 		fire_delay = 5
 	if(istype(Z))
-		cached_multiplier = projectile_damage_multiplier
-		projectile_damage_multiplier *= 2.5
+		bonus_damage_multiplier *= 2.5
 		fire_delay = 5
 	..()
 
@@ -336,12 +507,13 @@
 	desc = "There are no clocks to alert the arrival times."
 	icon_state = "laststop"
 	inhand_icon_state = "laststop"
-	force = 8
+	force = 12
+	attack_speed = 0.7
 	projectile_path = /obj/projectile/ego_bullet/ego_laststop
-	weapon_weight = WEAPON_HEAVY
-	fire_delay = 5
-	max_shots = 2
-	reloadtime = 10 SECONDS
+	fire_delay = 5 SECONDS
+	max_shots = 6
+	ammo_on_reload = 1
+	reloadtime = 1 SECONDS
 	fire_sound = 'sound/weapons/gun/shotgun/shot_auto.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80
@@ -352,7 +524,7 @@
 	desc = "Go ahead and rattle 'em boys."
 	icon_state = "intentions"
 	inhand_icon_state = "intentions"
-	force = 8
+	force = 24
 	projectile_path = /obj/projectile/ego_bullet/ego_intention
 	weapon_weight = WEAPON_MEDIUM
 	spread = 40
@@ -370,7 +542,7 @@
 			The arrowhead is dull and sprouts flowers of vivid color wherever it strikes."
 	icon_state = "aroma"
 	inhand_icon_state = "aroma"
-	force = 22
+	force = 24
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_aroma
 	attribute_requirements = list(
@@ -384,7 +556,7 @@
 	icon_state = "assonance"
 	inhand_icon_state = "assonance"
 	special = "This weapon fires a hitscan beam. \nUpon hitting an enemy, this weapon heals a nearby Discord weapon user."
-	force = 14
+	force = 24
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/beam/assonance
 	weapon_weight = WEAPON_HEAVY
@@ -405,8 +577,7 @@
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	force = 16
-	attack_speed = 1.3
+	force = 34
 	projectile_path = /obj/projectile/ego_bullet/ego_exuviae
 	weapon_weight = WEAPON_HEAVY
 	special = "Upon hit the targets RED vulnerability is increased by 0.2."
@@ -426,7 +597,7 @@
 	inhand_icon_state = "warring"
 	special = "This weapon can unleash a special attack when activated in your hand. \
 	You can manually reload this weapon by holding ALT + left mouse button."
-	force = 14
+	force = 24
 	damtype = BLACK_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_warring
 	weapon_weight = WEAPON_HEAVY
@@ -465,7 +636,7 @@
 		return
 	if(semicd)//stops firing speed anomalies
 		return
-	if(!can_shoot())
+	if(!can_shoot(user))
 		reload_ego(user)
 	..()
 	icon_state = "[initial(icon_state)]"
@@ -513,7 +684,7 @@
 	inhand_icon_state = "banquet"
 	special = "This weapon can use stored blood to fire without reloading. \
 		Blood can be collected by attacking using this as a melee weapon."
-	force = 18
+	force = 34
 	damtype = BLACK_DAMAGE
 	attack_speed = 1.8
 	projectile_path = /obj/projectile/ego_bullet/ego_banquet
@@ -554,7 +725,7 @@
 		AdjustThirst(force * justicemod)
 	..()
 
-/obj/item/ego_weapon/ranged/banquet/can_shoot()
+/obj/item/ego_weapon/ranged/banquet/can_shoot(mob/living/user)
 	if(bloodshot_ready)
 		return TRUE
 	..()
@@ -570,7 +741,7 @@
 	icon_state = "blind_gun"
 	special = "This weapon fires burning bullets. Watch out for friendly fire!"
 	projectile_path = /obj/projectile/ego_bullet/ego_blind_rage
-	force = 14
+	force = 24
 	damtype = BLACK_DAMAGE
 	weapon_weight = WEAPON_HEAVY
 	pellets = 4
@@ -608,7 +779,7 @@
 	desc = "If no one had come in to get me, I would have stayed in that room, not even realizing the passing time."
 	icon_state = "innocence_gun"
 	inhand_icon_state = "innocence_gun"
-	force = 8
+	force = 9
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_innocence
 	fire_sound = 'sound/abnormalities/orangetree/ding.ogg'
@@ -629,7 +800,7 @@
 	worn_icon_state = "hypocrisy"
 	special = "Use the middle mouse button click/alt click to place a trap that inflicts \
 		30 RED damage and alerts the user of the area it was triggered."
-	force = 22
+	force = 24
 	damtype = RED_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_hypocrisy
 	attribute_requirements = list(
@@ -693,7 +864,7 @@
 		Activate in your hand to create a portal, which can be fired into. \
 		Attempting to fire with an empty chamber will reload the weapon. \
 		You can manually reload this weapon by pressing ALT + left mouse button."
-	force = 14
+	force = 24
 	damtype = RED_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_fellbullet
 	weapon_weight = WEAPON_HEAVY
@@ -738,7 +909,7 @@
 		return
 	if(semicd)//stops firing speed anomalies
 		return
-	if(!can_shoot())
+	if(!can_shoot(user))
 		reload_ego(user, target)
 	..()
 	if(!myportal)//If myportal hasn't initialized yet, this prevents it from runtiming.
@@ -832,7 +1003,7 @@
 	desc = "A bolt-action rifle fitted with a wider barrel. It fires cursed shells."
 	icon_state = "fell_scatter"
 	inhand_icon_state = "fell_scatter"
-	force = 22
+	force = 24
 	damtype = RED_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_fellscatter
 	weapon_weight = WEAPON_HEAVY
@@ -855,6 +1026,7 @@
 	alternate_toggle_sound = 'sound/abnormalities/fluchschutze/fell_aim.ogg'
 	alternate_toggle_sound_volume = 50
 	alternate_toggle_enabled_message = span_notice("You will now fire a magical slug.")
+	alternate_toggle_disabled_message = null
 	alternate_reload_type = RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_EMPTY_MAG
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 80
@@ -867,13 +1039,13 @@
 /obj/item/ego_weapon/ranged/fellscatter/DisableAltfire(mob/user, silent = TRUE)
 	. = ..()
 	max_shots = initial(max_shots)
+
 /obj/item/ego_weapon/ranged/sodashotty
 	name = "soda shotgun"
 	desc = "A gun used by Shrimp-Corp, apparently."
 	icon_state = "sodashotgun"
 	inhand_icon_state = "sodashotgun"
-	force = 18
-	attack_speed = 1.3
+	force = 24
 	projectile_path = /obj/projectile/ego_bullet/soda_shotty
 	pellets = 3
 	variance = 12
@@ -892,7 +1064,7 @@
 	desc = "A gun used by Shrimp-Corp, apparently."
 	icon_state = "sodasmg"
 	inhand_icon_state = "sodasmg"
-	force = 14
+	force = 24
 	projectile_path = /obj/projectile/ego_bullet/soda_smg
 	weapon_weight = WEAPON_HEAVY
 	spread = 8
@@ -907,7 +1079,7 @@
 	desc = "A gun used by Shrimp-Corp, apparently."
 	icon_state = "sodaminigun"
 	inhand_icon_state = "sodaminigun"
-	force = 32
+	force = 34
 	attack_speed = 1.8
 	projectile_path = /obj/projectile/ego_bullet/soda_mini
 	weapon_weight = WEAPON_HEAVY
@@ -928,8 +1100,7 @@
 	desc = "A gun used by Shrimp-Corp, apparently."
 	icon_state = "sodaassault"
 	inhand_icon_state = "sodaassault"
-	force = 16
-	attack_speed = 1.2
+	force = 24
 	projectile_path = /obj/projectile/ego_bullet/soda_assault
 	weapon_weight = WEAPON_HEAVY
 	burst_size = 3
