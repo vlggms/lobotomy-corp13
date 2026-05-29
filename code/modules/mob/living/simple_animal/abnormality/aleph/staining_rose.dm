@@ -142,7 +142,7 @@
 		return
 	if(extra_damage_max)
 		new /obj/effect/temp_visual/petals(get_turf(user))
-		user.deal_damage(rand(extra_damage_min, extra_damage_max), PALE_DAMAGE)
+		user.deal_damage(rand(extra_damage_min,extra_damage_max), PALE_DAMAGE, source = src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_OTHER))
 
 // Additional effect on each individual work tick failure
 /mob/living/simple_animal/hostile/abnormality/staining_rose/WorktickFailure(mob/living/carbon/human/user)
@@ -415,7 +415,7 @@
 		if(4 to INFINITY)
 			damage_dealt = (owner.maxHealth * (0.50))
 			breachtime = TRUE
-	owner.apply_damage(damage_dealt, BRUTE)
+	owner.deal_damage(damage_dealt, BRUTE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_STATUS))
 	owner.manual_emote("[owner] coughs up petals!")
 	to_chat(owner, span_warning("You are being penalized by the Staining Rose for working on another abnormality!"))
 	owner.add_splatter_floor()
