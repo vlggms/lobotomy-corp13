@@ -506,7 +506,7 @@
 		if(RAK_CRIT_MODE)
 			to_chat(user, span_notice("You will now enable regenerators to heal those in critical conditions at the cost of overall performance."))
 		if(RAK_RAPID_MODE)
-			to_chat(user, span_notice("You will now cause regenerators to heal rapidly at the cost of dramatically less HP and SP."))
+			to_chat(user, span_notice("You will now cause regenerators to pulse quickly at low output."))
 
 
 /obj/item/safety_kit/proc/check_menu(mob/user)
