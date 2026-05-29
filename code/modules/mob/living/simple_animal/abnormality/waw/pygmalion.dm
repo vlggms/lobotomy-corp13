@@ -29,7 +29,7 @@
 	work_damage_upper = 6
 	work_damage_lower = 4
 	work_damage_type = WHITE_DAMAGE
-	chem_type = /datum/reagent/abnormality/sin/lust
+	chem_type = /datum/reagentdassda/abnormality/sin/lust
 
 	ego_list = list(
 		/datum/ego_datum/weapon/my_own_bride,
