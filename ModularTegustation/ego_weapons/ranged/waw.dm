@@ -522,19 +522,95 @@
 /obj/item/ego_weapon/ranged/intentions
 	name = "good intentions"
 	desc = "Go ahead and rattle 'em boys."
+	special = "This weapon will periodically become more powerful as the lights on its side brighten, its damage and fire rate increasing. \n\
+	The lights will brighten over time, and eventually dim. \n\
+	Of course, nobody can know the arrival time."
 	icon_state = "intentions"
 	inhand_icon_state = "intentions"
 	force = 24
 	projectile_path = /obj/projectile/ego_bullet/ego_intention
 	weapon_weight = WEAPON_MEDIUM
-	spread = 40
+	spread = 24
 	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
-	autofire = 0.07 SECONDS
+	autofire = 0.09 SECONDS
 	max_shots = 50
 	reloadtime = 2.1 SECONDS
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 80
 	)
+	/// Reference to our autofire component so we can modify the firerate.
+	var/datum/component/automatic_fire/autofire_component
+	/// Holds a timer until the next light change.
+	var/light_progress_timer
+	/// How long each light should last...
+	var/light_duration = 1 MINUTES
+	/// ...however, the duration of the light may be up to [this value] shorter or longer.
+	var/light_duration_variance = 20 SECONDS
+
+	var/current_light = 0
+
+	/// Associate current light to corresponding firerate, projectile damage multiplier and spread.
+	var/alist/lights_to_stats = alist(
+		0 = list("autofire" = 0.09 SECONDS, "multiplier" = 1, spread = 24),
+		1 = list("autofire" = 0.08 SECONDS, "multiplier" = 1.3, spread = 26),
+		2 = list("autofire" = 0.08 SECONDS, "multiplier" = 1.5, spread = 28),
+		3 = list("autofire" = 0.07 SECONDS, "multiplier" = 1.6, spread = 30),
+		4 = list("autofire" = 0.06 SECONDS, "multiplier" = 1.75, spread = 32),
+		)
+
+/obj/item/ego_weapon/ranged/intentions/Initialize(mapload)
+	. = ..()
+	autofire_component = GetComponent(/datum/component/automatic_fire)
+	LightProgress(0)
+
+/obj/item/ego_weapon/ranged/intentions/examine(mob/user)
+	. = ..()
+	. += span_warning("There are <b>[current_light] light(s)</b> burning on the side of the weapon.")
+
+/obj/item/ego_weapon/ranged/intentions/proc/LightProgress(lights)
+	if(!istype(autofire_component))
+		return
+	deltimer(light_progress_timer)
+	if(!LAZYLEN(lights_to_stats))
+		lights_to_stats = initial(lights_to_stats)
+
+	// Remove whatever projectile damage multiplier we currently have on the gun, that is related to lights and not any external source
+	bonus_damage_multiplier = 1
+
+	// This is our new light value
+	current_light = lights
+
+	// Apply the new projectile damage multiplier on top of whatever we might have from EO upgrades/Faith&Promise
+	bonus_damage_multiplier *= lights_to_stats[current_light]["multiplier"]
+
+	// Set the firerate & spread to whatever is appropiate now
+	autofire = lights_to_stats[current_light]["autofire"] // This shouldn't be needed but keeps things consistent
+	autofire_component.autofire_shot_delay = lights_to_stats[current_light]["autofire"]
+	spread = lights_to_stats[current_light]["spread"]
+
+	// Update object sprite
+	var/new_icon_state = initial(icon_state)
+	if(current_light > 0)
+		new_icon_state += "_[current_light]"
+	icon_state = new_icon_state
+	inhand_icon_state = new_icon_state
+
+	if(istype(src.loc, /mob/living/carbon/human)) // I know this is horrifying but I sadly don't know any procs that let us pull the holder of an item.
+		var/mob/living/carbon/human/holder = src.loc
+		holder.regenerate_icons()
+
+	// Play a SFX and alert people that this thing changed
+	if(current_light == 0)
+		playsound(src, 'sound/abnormalities/clock/end.ogg', 50, 0)
+		audible_message(span_notice("The lights on [src] fizzle out."))
+	else
+		playsound(src, 'sound/abnormalities/clock/turn_on.ogg', 50, 0)
+		audible_message(span_notice("A new light flickers on [src]."))
+
+	// Prepare the next light switch
+	var/next_lights = current_light == 4 ? (0) : (current_light + 1)
+	var/next_light_time = light_duration + (rand(-light_duration_variance, light_duration_variance))
+	light_progress_timer = addtimer(CALLBACK(src, PROC_REF(LightProgress), (next_lights)), next_light_time, TIMER_STOPPABLE)
 
 /obj/item/ego_weapon/ranged/crossbow/aroma
 	name = "faint aroma"
@@ -583,7 +659,7 @@
 	damtype = RED_DAMAGE
 	fire_delay = 15 //5 less than the Rend Armor status effect
 	max_shots = 6
-	reload_time = 0.3 SECONDS
+	reloadtime = 0.3 SECONDS
 	fire_sound = 'sound/misc/moist_impact.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,

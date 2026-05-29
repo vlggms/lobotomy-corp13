@@ -214,7 +214,7 @@
 
 // Naked Nest - Exuviae
 /datum/ego_datum/weapon/exuviae
-	item_path = /obj/item/ego_weapon/ranged/exuviae
+	item_path = /obj/item/ego_weapon/ranged/cannon/exuviae
 	cost = 50
 
 /datum/ego_datum/armor/exuviae
@@ -295,7 +295,7 @@
 
 /datum/ego_datum/weapon/banquet
 	item_category = "Weapon (Cannon)"
-	item_path = /obj/item/ego_weapon/ranged/banquet
+	item_path = /obj/item/ego_weapon/ranged/cannon/banquet
 	cost = 50
 
 // Sphinx - Pharaoh
