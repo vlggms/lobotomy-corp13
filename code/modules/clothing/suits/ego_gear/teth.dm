@@ -84,6 +84,7 @@
 	name = "screaming wedge"
 	desc = "One can assume that she is longing for someone."
 	icon_state = "wedge"
+	flags_inv = NONE
 	armor = list(RED_DAMAGE = -10, WHITE_DAMAGE = 30, BLACK_DAMAGE = 10, PALE_DAMAGE = -10)
 
 /obj/item/clothing/suit/armor/ego_gear/teth/blossoms
