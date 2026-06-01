@@ -25,10 +25,9 @@
 		projectile.def_zone = user.zone_selected
 	projectile.suppressed = quiet
 
-	projectile.damage *= projectile_damage_multiplier * bonus_damage_multiplier
-	projectile.justice_multiplier = get_attack_multiplier(user)
+	projectile.damage_multiplier = get_attack_multiplier(user) * force_multiplier * projectile_damage_multiplier
 	if(temporary_damage_multiplier)
-		projectile.damage *= temporary_damage_multiplier
+		projectile.damage_multiplier *= temporary_damage_multiplier
 
 	last_projectile_damage = projectile.damage
 	last_projectile_type = projectile.damage_type
@@ -48,7 +47,7 @@
 		casing.pellets = final_pellets
 		casing.variance = variance
 		casing.projectile_type = final_projectile_path
-		casing.justice_multiplier = projectile.justice_multiplier
+		casing.damage_multiplier = projectile.damage_multiplier
 		casing.BB = projectile
 		casing.AddComponent(/datum/component/pellet_cloud, final_projectile_path, final_pellets)
 		SEND_SIGNAL(casing, COMSIG_PELLET_CLOUD_INIT, target, user, fired_from, random_spread, spread, zone_override, params, distro)

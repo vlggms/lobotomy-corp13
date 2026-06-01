@@ -11,7 +11,7 @@
 		new /obj/effect/temp_visual/fire/fast(get_turf(L))
 		if(L == target)
 			continue
-		L.apply_damage(aoe_damage * justice_multiplier, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		L.apply_damage(aoe_damage * damage_multiplier, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 	return BULLET_ACT_HIT
 
 /obj/projectile/ego_bullet/ego_beak
@@ -182,7 +182,7 @@
 		if(H.is_working)
 			qdel(src)
 			return BULLET_ACT_BLOCK
-		H.adjustSanityLoss(-damage * justice_multiplier * 0.5, FALSE) // deal fixed white damage to employees, ignoring armor
+		H.adjustSanityLoss(-damage * damage_multiplier * 0.5, FALSE) // deal fixed white damage to employees, ignoring armor
 		if(!H.sanity_lost)
 			qdel(src)
 			return BULLET_ACT_BLOCK

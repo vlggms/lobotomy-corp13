@@ -51,6 +51,7 @@
 //Homing weapon (Galaxy)
 /obj/projectile/ego_bullet/ego_galaxy/homing
 	homing = TRUE
+	speed = 1.25
 	homing_turn_speed = 30		//Angle per tick.
 	var/homing_range = 9
 
@@ -60,18 +61,7 @@
 
 /obj/projectile/ego_bullet/ego_galaxy/homing/proc/fireback()
 	icon_state = "magich"
-	var/list/targetslist = list()
-	for(var/mob/living/L in range(homing_range, src))
-		if(ishuman(L) || isbot(L))
-			continue
-		if(L.stat == DEAD)
-			continue
-		if(L.status_flags & GODMODE)
-			continue
-		targetslist+=L
-	if(!LAZYLEN(targetslist))
-		return
-	homing_target = pick(targetslist)
+	set_homing_target(GetHomingTarget(homing_range))
 
 
 /obj/projectile/ego_bullet/ego_unrequited

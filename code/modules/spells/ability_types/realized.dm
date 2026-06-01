@@ -1129,15 +1129,6 @@
 			egoweapon.set_light(3, 6, "#D4FAF37")
 			egoweapon.color = "#FFD700"
 			linkeditem = egoweapon
-
-		else if(ispath(ego, /obj/item/ego_weapon/ranged))
-			var/obj/item/ego_weapon/ranged/egogun = new ego(get_turf(user))
-			egogun.force_multiplier = 1.20
-			egogun.projectile_damage_multiplier = 1.20
-			egogun.name = "shimmering [egogun.name]"
-			egogun.set_light(3, 6, "#D4FAF37")
-			egogun.color = "#FFD700"
-			linkeditem = egogun
 		ready = FALSE
 		return ..()
 

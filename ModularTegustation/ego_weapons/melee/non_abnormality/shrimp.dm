@@ -13,7 +13,7 @@
 	item_flags = SLOWS_WHILE_IN_HAND
 	fire_sound = 'sound/weapons/gun/smg/shot.ogg'
 	autofire = 0.01 SECONDS
-	bonus_damage_multiplier = 1.26
+	projectile_damage_multiplier = 1.26
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 120,
 							PRUDENCE_ATTRIBUTE = 120,

@@ -94,8 +94,7 @@
 
 	/// Just 'slightly' snowflakey way to modify projectile damage for projectiles fired from this gun.
 	var/projectile_damage_multiplier = 1
-	/// A alt version of the var above that's meant to handle internal multipliers instead of from sources as EO, broken crown, or faith
-	var/bonus_damage_multiplier = 1
+
 	/// If the weapon allows dual-weilding/can be used in 1 hand/needs 2 hands
 	var/weapon_weight = WEAPON_LIGHT
 
@@ -488,15 +487,15 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 	if(!last_projectile_damage || !last_projectile_type)
 		return span_userdanger("The bullet of this EGO gun has not properly initialized, report this to coders!")
 	var/damage_type = last_projectile_type
-	var/damage = round(last_projectile_damage, 0.1)
+	var/damage = round(last_projectile_damage * force_multiplier * projectile_damage_multiplier, 0.1)
 	if(GLOB.damage_type_shuffler?.is_enabled && IsColorDamageType(damage_type))
 		var/datum/damage_type_shuffler/shuffler = GLOB.damage_type_shuffler
 		var/new_damage_type = shuffler.mapping_offense[damage_type]
 		damage_type = new_damage_type
 	var/correct_pellets = (alternate_selected) ? alternate_pellets : pellets
 	if(correct_pellets > 1)	//for shotguns
-		return span_notice("Its bullets deal [damage] x [correct_pellets] [damage_type] damage.[projectile_damage_multiplier != 1 ? " (+ [(projectile_damage_multiplier - 1) * 100]%)" : ""]")
-	return span_notice("Its bullets deal [damage] [damage_type] damage.[projectile_damage_multiplier != 1 ? " (+ [(projectile_damage_multiplier - 1) * 100]%)" : ""]")
+		return span_notice("Its bullets deal [damage] x [correct_pellets] [damage_type] damage.[force_multiplier != 1 ? " (+ [(force_multiplier - 1) * 100]%)" : ""]")
+	return span_notice("Its bullets deal [damage] [damage_type] damage.[force_multiplier != 1 ? " (+ [(force_multiplier - 1) * 100]%)" : ""]")
 
 /// Updates the damage/type of projectiles inside of the gun
 /obj/item/ego_weapon/ranged/proc/update_projectile_examine()
@@ -514,7 +513,6 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 		return ..()
 	if(reloadtime && !is_reloading)
 		if(ammo_on_reload)
-			to_chat(user,span_notice(reload_text))
 			playsound(src, reload_start_sound, 50, TRUE)
 			INVOKE_ASYNC(src, PROC_REF(rounds_reload), user, alternate_selected)
 		else

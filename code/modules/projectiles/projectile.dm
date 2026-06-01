@@ -181,7 +181,7 @@
 	//Does this bullet ignore bulletproof?
 	var/ignore_bulletproof = FALSE			//Thumb literally cannot do anything against these goons.
 
-	var/justice_multiplier = 1
+	var/damage_multiplier = 1
 
 /obj/projectile/Initialize()
 	. = ..()

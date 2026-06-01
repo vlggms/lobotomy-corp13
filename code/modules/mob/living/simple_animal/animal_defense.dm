@@ -153,7 +153,7 @@
 		for(var/i in projectile_blockers)
 			Proj.impacted[i] = TRUE
 		Proj.impacted[src] = TRUE
-	apply_damage(Proj.damage * Proj.justice_multiplier, Proj.damage_type)
+	apply_damage(Proj.damage * Proj.damage_multiplier, Proj.damage_type)
 	Proj.on_hit(src, 0, piercing_hit)
 	return BULLET_ACT_HIT
 

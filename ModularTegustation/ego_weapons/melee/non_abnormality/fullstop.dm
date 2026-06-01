@@ -57,7 +57,7 @@
 	zoom_amt = 10 //Long range, enough to see in front of you, but no tiles behind you.
 	zoomable = TRUE
 	zoom_out_amt = 5
-	bonus_damage_multiplier = 4
+	projectile_damage_multiplier = 4
 	max_shots = 5
 	fire_delay = 30
 	attribute_requirements = list(
@@ -76,7 +76,7 @@
 	attack_speed = 0.5
 	weapon_weight = WEAPON_LIGHT
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
-	bonus_damage_multiplier = 4
+	projectile_damage_multiplier = 4
 	max_shots = 9
 	reloadtime = 1 SECONDS
 	attribute_requirements = list(

@@ -95,7 +95,7 @@
 /obj/projectile/ego_bullet/loyalty_ugl
 	name = "loyal grenade"
 	icon_state = "bolter"
-	damage = 10
+	damage = 60
 	range = 16
 	nodamage = TRUE	// Damage is calculated later
 	speed = 0.8
@@ -104,9 +104,8 @@
 	smart_pass = TRUE
 	var/tile_radius = 3
 	/// Damage at epicenter (distance 0)
-	var/base_damage = 60
 	/// Each tile away from the epicenter reduces damage by this much
-	var/falloff_per_dist = 40
+	var/falloff_per_dist = 20
 	var/list/hitlist = list()
 	/// We'll update the range the first time we move. We don't want to go any further than the distance between our firer and the original target.
 	var/updated_range = FALSE
@@ -164,9 +163,8 @@
 			hitlist |= M
 
 			// Damage
-			var/final_damage = base_damage * (damage / initial(damage)) * justice_multiplier // This is unhinged as hell but the best way to get the Force Multiplier (EO upgrade, Faith & Promise) to affect the explosion.
 			var/distance_from_epicenter = clamp(get_dist(M, impact_turf), 0, 3)
-			final_damage -= (distance_from_epicenter * falloff_per_dist)
+			var/final_damage = (damage - (distance_from_epicenter * falloff_per_dist)) * damage_multiplier
 			M.deal_damage(final_damage, damage_type)
 
 			// Knockback
@@ -215,18 +213,7 @@
 	addtimer(CALLBACK(src, PROC_REF(fireback)), 3)
 
 /obj/projectile/ego_bullet/ego_praetorian/proc/fireback()
-	var/list/targetslist = list()
-	for(var/mob/living/L in range(homing_range, src))
-		if(ishuman(L) || isbot(L))
-			continue
-		if(L.stat == DEAD)
-			continue
-		if(L.status_flags & GODMODE)
-			continue
-		targetslist+=L
-	if(!LAZYLEN(targetslist))
-		return
-	var/mob/living/target = pick(targetslist)
+	var/mob/living/target = GetHomingTarget(homing_range)
 	if(target)
 		var/datum/point/PT = RETURN_PRECISE_POINT(target)
 		PT.x += clamp(homing_offset_x, 1, world.maxx)

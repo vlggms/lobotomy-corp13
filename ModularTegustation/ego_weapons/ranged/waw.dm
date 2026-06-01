@@ -101,14 +101,14 @@
 							)
 
 /obj/item/ego_weapon/ranged/magicbullet/before_firing(atom/target, mob/user)
-	bonus_damage_multiplier = 1
+	projectile_damage_multiplier = 1
 	var/mob/living/carbon/human/myman = user
 	var/obj/item/clothing/suit/armor/ego_gear/he/magicbullet/Y = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	var/obj/item/clothing/suit/armor/ego_gear/realization/bigiron/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(istype(Y))
-		bonus_damage_multiplier *= 1.3
+		projectile_damage_multiplier *= 1.3
 	if(istype(Z))
-		bonus_damage_multiplier *= 3
+		projectile_damage_multiplier *= 3
 	..()
 
 
@@ -213,15 +213,15 @@
 			break
 
 /obj/item/ego_weapon/ranged/pistol/solemnlament/before_firing(atom/target, mob/user)
-	bonus_damage_multiplier = 1
+	projectile_damage_multiplier = 1
 	dual_wield_spread = initial(dual_wield_spread)
 	var/mob/living/carbon/human/myman = user
 	for(var/obj/item/ego_weapon/ranged/pistol/solemnvow/Vow in myman.held_items)
-		bonus_damage_multiplier *= 1.3
+		projectile_damage_multiplier *= 1.3
 		break
 	var/obj/item/clothing/suit/armor/ego_gear/realization/eulogy/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(istype(Z))
-		bonus_damage_multiplier *= 2
+		projectile_damage_multiplier *= 2
 
 /obj/item/ego_weapon/ranged/pistol/solemnvow
 	name = "solemn vow"
@@ -319,15 +319,15 @@
 			break
 
 /obj/item/ego_weapon/ranged/pistol/solemnvow/before_firing(atom/target, mob/user)
-	bonus_damage_multiplier = 1
+	projectile_damage_multiplier = 1
 	dual_wield_spread = initial(dual_wield_spread)
 	var/mob/living/carbon/human/myman = user
 	for(var/obj/item/ego_weapon/ranged/pistol/solemnlament/Lament in myman.held_items)
-		bonus_damage_multiplier *= 1.3
+		projectile_damage_multiplier *= 1.3
 		break
 	var/obj/item/clothing/suit/armor/ego_gear/realization/eulogy/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(istype(Z))
-		bonus_damage_multiplier *= 2
+		projectile_damage_multiplier *= 2
 
 
 /obj/item/ego_weapon/ranged/loyalty
@@ -481,7 +481,7 @@
 							)
 
 /obj/item/ego_weapon/ranged/pistol/magic_pistol/before_firing(atom/target, mob/user)
-	bonus_damage_multiplier = 1
+	projectile_damage_multiplier = 1
 	fire_delay = initial(fire_delay)
 	var/mob/living/carbon/human/myman = user
 	var/obj/item/clothing/suit/armor/ego_gear/he/magicbullet/Y = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
@@ -489,7 +489,7 @@
 	if(istype(Y))
 		fire_delay = 5
 	if(istype(Z))
-		bonus_damage_multiplier *= 2.5
+		projectile_damage_multiplier *= 2.5
 		fire_delay = 5
 	..()
 
@@ -522,7 +522,7 @@
 /obj/item/ego_weapon/ranged/intentions
 	name = "good intentions"
 	desc = "Go ahead and rattle 'em boys."
-	special = "This weapon will periodically become more powerful as the lights on its side brighten, its damage and fire rate increasing. \n\
+	special = "This weapon will periodically become more powerful as the lights on its side brighten, its spread, fire rate and eventually damage increasing. \n\
 	The lights will brighten over time, and eventually dim. \n\
 	Of course, nobody can know the arrival time."
 	icon_state = "intentions"
@@ -530,10 +530,10 @@
 	force = 24
 	projectile_path = /obj/projectile/ego_bullet/ego_intention
 	weapon_weight = WEAPON_MEDIUM
-	spread = 24
+	spread = 18
 	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
-	autofire = 0.09 SECONDS
-	max_shots = 50
+	autofire = 0.12 SECONDS
+	max_shots = 19
 	reloadtime = 2.1 SECONDS
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 80
@@ -551,11 +551,11 @@
 
 	/// Associate current light to corresponding firerate, projectile damage multiplier and spread.
 	var/alist/lights_to_stats = alist(
-		0 = list("autofire" = 0.09 SECONDS, "multiplier" = 1, spread = 24),
-		1 = list("autofire" = 0.08 SECONDS, "multiplier" = 1.3, spread = 26),
-		2 = list("autofire" = 0.08 SECONDS, "multiplier" = 1.5, spread = 28),
-		3 = list("autofire" = 0.07 SECONDS, "multiplier" = 1.6, spread = 30),
-		4 = list("autofire" = 0.06 SECONDS, "multiplier" = 1.75, spread = 32),
+		0 = list("autofire" = 0.12 SECONDS, "multiplier" = 1, spread = 18),
+		1 = list("autofire" = 0.11 SECONDS, "multiplier" = 1, spread = 20),
+		2 = list("autofire" = 0.10 SECONDS, "multiplier" = 1.1, spread = 24),
+		3 = list("autofire" = 0.09 SECONDS, "multiplier" = 1.3, spread = 32),
+		4 = list("autofire" = 0.08 SECONDS, "multiplier" = 1.6, spread = 42),
 		)
 
 /obj/item/ego_weapon/ranged/intentions/Initialize(mapload)
@@ -575,13 +575,13 @@
 		lights_to_stats = initial(lights_to_stats)
 
 	// Remove whatever projectile damage multiplier we currently have on the gun, that is related to lights and not any external source
-	bonus_damage_multiplier = 1
+	projectile_damage_multiplier = 1
 
 	// This is our new light value
 	current_light = lights
 
 	// Apply the new projectile damage multiplier on top of whatever we might have from EO upgrades/Faith&Promise
-	bonus_damage_multiplier *= lights_to_stats[current_light]["multiplier"]
+	projectile_damage_multiplier *= lights_to_stats[current_light]["multiplier"]
 
 	// Set the firerate & spread to whatever is appropiate now
 	autofire = lights_to_stats[current_light]["autofire"] // This shouldn't be needed but keeps things consistent
