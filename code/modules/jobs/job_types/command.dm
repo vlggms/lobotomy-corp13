@@ -121,13 +121,18 @@
 /datum/outfit/job/command/records
 	name = "Records Officer"
 	jobtype = /datum/job/command/records
+	l_pocket = /obj/item/records/haste
 	suit =  /obj/item/clothing/suit/armor/ego_gear/officer/records
 	accessory = /obj/item/clothing/accessory/armband/lobotomy/records
 	weapon = /obj/item/ego_weapon/shield/officer/records
 	backpack_contents = list(
 		/obj/item/announcementmaker/lcorp,
-		/obj/item/portacopier,
-		/obj/item/portablepredict,
+		/obj/item/info_printer/records,
+		/obj/item/records/abnodelay,
+		/obj/item/records/meltdown_extend,
+		/obj/item/records/information,
+		/obj/item/records_revive,
+
 	)
 
 
@@ -152,7 +157,6 @@
 		/obj/item/melee/classic_baton,
 		/obj/item/announcementmaker/lcorp,
 		/obj/item/powered_gadget/enkephalin_injector,
-		///obj/item/disc_researcher, // Turns out making a role that can only kill shit gets boring fast
 		/obj/item/reagent_containers/hypospray/emais/combat,
 		/obj/item/restraints/handcuffs,
 		/obj/item/restraints/legcuffs/bola,

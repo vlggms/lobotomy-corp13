@@ -11904,7 +11904,6 @@
 /turf/open/floor/carpet/cyan,
 /area/city/shop)
 "DE" = (
-/obj/structure/closet/secure_closet/record,
 /obj/machinery/light/cold/no_nightlight{
 	dir = 4;
 	brightness = 16

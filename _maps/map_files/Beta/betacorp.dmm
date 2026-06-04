@@ -2783,7 +2783,6 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/obj/structure/closet/secure_closet/record,
 /turf/open/floor/plasteel/dark,
 /area/department_main/records)
 "nV" = (

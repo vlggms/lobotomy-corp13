@@ -9170,7 +9170,6 @@
 /obj/effect/turf_decal/siding/white/corner{
 	dir = 4
 	},
-/obj/structure/closet/secure_closet/record,
 /turf/closed/mineral/random/facility/briah,
 /area/department_main/records)
 "HB" = (

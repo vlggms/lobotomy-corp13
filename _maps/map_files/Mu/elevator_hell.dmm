@@ -9753,7 +9753,6 @@
 /turf/closed/indestructible/rock,
 /area/facility_hallway)
 "Cy" = (
-/obj/structure/closet/secure_closet/record,
 /obj/effect/turf_decal/tile{
 	color = "BBBBBB";
 	dir = 1

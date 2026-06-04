@@ -1854,7 +1854,6 @@
 /area/department_main/records)
 "gw" = (
 /obj/effect/turf_decal/box/white,
-/obj/structure/closet/secure_closet/record,
 /turf/open/floor/facility/dark,
 /area/department_main/records)
 "gx" = (

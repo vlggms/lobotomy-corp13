@@ -10200,12 +10200,6 @@
 	},
 /area/facility_hallway/control)
 "CN" = (
-/obj/structure/closet/secure_closet/record{
-	anchored = 1;
-	breakout_time = 1;
-	density = 0;
-	pixel_y = 21
-	},
 /obj/item/toy/crayon/spraycan/infinite{
 	pixel_x = 8
 	},

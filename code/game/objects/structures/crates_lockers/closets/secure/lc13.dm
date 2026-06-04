@@ -1,19 +1,3 @@
-
-/obj/structure/closet/secure_closet/record
-	name = "\proper record officer's locker"
-	req_access = list(ACCESS_COMMAND)
-	icon_state = "records"
-
-/obj/structure/closet/secure_closet/record/PopulateContents()
-	..()
-//	new /obj/effect/spawner/bundle/combat_pages(src)
-
-	new /obj/item/records/timestop(src)
-	new /obj/item/records/information(src)
-	new /obj/item/records/abnodelay(src)
-	new /obj/item/records/meltdown_extend(src)
-	new /obj/item/records_revive(src)
-
 /obj/structure/closet/secure_closet/discipline
 	name = "\proper disciplinary officer's locker"
 	req_access = list(ACCESS_COMMAND)

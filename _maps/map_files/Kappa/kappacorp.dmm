@@ -8005,9 +8005,6 @@
 	pixel_x = -6;
 	pixel_y = 5
 	},
-/obj/structure/closet/secure_closet/record{
-	anchored = 1
-	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},

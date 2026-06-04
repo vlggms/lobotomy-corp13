@@ -43,7 +43,7 @@
 	Must be fed replacement paper once in a while."
 	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
 	icon_state = "gadget3"
-	var/paperstock = 1
+	var/paperstock = 6
 	w_class = WEIGHT_CLASS_SMALL
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
 
@@ -90,81 +90,6 @@
 	if(paper_copy.stamped)
 		copied_paper.stamped = paper_copy.stamped.Copy()
 	copied_paper.copy_overlays(paper_copy, TRUE)
-
-	/*
-	* Portable Prediction Device
-	* I feel strange about this device since its
-	* function is redundant. But that might
-	* be intentional if this is a level 1
-	* thing.
-	*/
-/obj/item/portablepredict
-	name = "portable prediction device"
-	desc = "A portable mini computer that can be used on \
-		a abnormality and a agent to see workrate chances.\
-		Needs to be recharged at a printer."
-	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
-	icon_state = "gadget3"
-	w_class = WEIGHT_CLASS_SMALL
-	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
-	var/mob/living/simple_animal/hostile/abnormality/target_abno
-	var/mob/living/carbon/human/target_agent
-	var/print_charges = 1
-
-/obj/item/portablepredict/afterattack(atom/target, mob/user, proximity_flag)
-	. = ..()
-	// Adjacent thing.
-	if(proximity_flag == 1)
-		var/mob/living/carbon/human/H = user
-		if(ishuman(H))
-			if(H?.mind?.assigned_role == "Records Officer")
-				if(isliving(target))
-					RegisterTarget(target, user)
-			else
-				to_chat(user, span_notice("[src] requires a Records Officer to activate."))
-
-/obj/item/portablepredict/attack_obj(obj/O, mob/living/user)
-	if(istype(O, /obj/machinery/photocopier))
-		if(print_charges < 3)
-			print_charges = 3
-			to_chat(user, span_notice("[src] whirrs and taps quietly like a typewriter."))
-			playsound(get_turf(src), 'sound/effects/servostep.ogg', 50, TRUE)
-			return
-	return ..()
-
-/obj/item/portablepredict/proc/RegisterTarget(mob/living/L, mob/living/carbon/human/user)
-	if(L.stat == DEAD)
-		return
-	if(print_charges <= 0)
-		to_chat(user, span_notice("[src] has run out of charges."))
-		return
-	if(ishuman(L))
-		target_agent = L
-	if(isabnormalitymob(L))
-		target_abno = L
-	if(target_agent && target_abno)
-		CalculateChance(target_abno.datum_reference, target_agent, user)
-		target_agent = null
-		target_abno = null
-	playsound(get_turf(src), 'sound/items/syringeproj.ogg', 50, TRUE)
-
-/obj/item/portablepredict/proc/CalculateChance(datum/abnormality/A, mob/living/carbon/human/target, mob/living/carbon/human/user)
-	if(QDELETED(A) || QDELETED(target))
-		return
-	to_chat(user, span_notice("[src] prints out a slip of paper."))
-	print_charges--
-
-	var/obj/item/paper/printed_paper = new(get_turf(src))
-	printed_paper.name = "Employee Workchance Calculations [A.name]+[target]"
-	printed_paper.info = "<tt><font color = #000000>\
-	[A.name]+[target]<br>\
-	Run_Employee_[pick("Previous_Reports","Work_Footage","Medical_History")]<br>\
-	Instinct:---[A.get_work_chance(ABNORMALITY_WORK_INSTINCT, target)]<br> \
-	Insight:----[A.get_work_chance(ABNORMALITY_WORK_INSIGHT, target)]<br> \
-	Attachment:-[A.get_work_chance(ABNORMALITY_WORK_ATTACHMENT, target)]<br> \
-	Repression:-[A.get_work_chance(ABNORMALITY_WORK_REPRESSION, target)]</font></tt>"
-	printed_paper.update_icon()
-	user.put_in_inactive_hand(printed_paper)
 
 	//Dosage Estimator
 /obj/item/dosage_est
@@ -683,7 +608,7 @@
 /// Info Page Printer (Does not print info sheets)
 
 /obj/item/info_printer
-	name = "Abnormality Information Display System"
+	name = "Abnormality Information Display"
 	desc = "" // Done later
 	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
 	icon_state = "aids"
@@ -693,7 +618,8 @@
 	var/total_use_time = GetTotalUseTime(user)
 	. = ..()
 	. += "Use on an Abnormality to display its information on screen after [total_use_time/10] seconds."
-	. += "A higher Prudence attribute will allow this tool to work faster."
+	if(use_time >= 10)
+		. += "A higher Prudence attribute will allow this tool to work faster."
 
 /obj/item/info_printer/pre_attack(atom/A, mob/living/user, params)
 	if(Scan(A, user))

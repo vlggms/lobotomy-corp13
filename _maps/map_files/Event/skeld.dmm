@@ -3191,7 +3191,6 @@
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/ancientstation/betacorridor)
 "nJ" = (
-/obj/structure/closet/secure_closet/record,
 /turf/open/floor/carpet/black,
 /area/department_main/records)
 "nL" = (
