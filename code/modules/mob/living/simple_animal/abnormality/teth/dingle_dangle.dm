@@ -49,7 +49,6 @@ GLOBAL_LIST_INIT(dingle_hallucination_list, list(
 			\"Let's dangle together, let your sorrows, your pain dangle, let's all dangle down...\" <br>It whispers into your mind. <br>\
 			Your comrades were never here, the life passes from your body painlessly. <br> None of this is real."),
 	)
-	var/breach_range = 10
 	var/list/delirious_people = list()
 	var/list/entangled_people = list()
 	//We want to make sure we don't cause someone to instantly panic after it "breaches"
