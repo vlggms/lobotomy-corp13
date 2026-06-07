@@ -49,6 +49,7 @@ GLOBAL_LIST_INIT(dingle_hallucination_list, list(
 			\"Let's dangle together, let your sorrows, your pain dangle, let's all dangle down...\" <br>It whispers into your mind. <br>\
 			Your comrades were never here, the life passes from your body painlessly. <br> None of this is real."),
 	)
+	var/breach_range = 10
 	var/list/delirious_people = list()
 	var/list/entangled_people = list()
 	//We want to make sure we don't cause someone to instantly panic after it "breaches"
@@ -67,18 +68,17 @@ GLOBAL_LIST_INIT(dingle_hallucination_list, list(
 
 /mob/living/simple_animal/hostile/abnormality/dingledangle/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_HUMAN_INSANE, PROC_REF(OnHumanInsane))
+	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, PROC_REF(OnAbnoBreach))
 
-/mob/living/simple_animal/hostile/abnormality/dingledangle/proc/OnHumanInsane(datum/source, mob/living/carbon/human/H, attribute)
+/mob/living/simple_animal/hostile/abnormality/dingledangle/proc/OnAbnoBreach(datum/source, mob/living/simple_animal/hostile/abnormality/abno)
 	SIGNAL_HANDLER
 	if(!IsContained())
-		return FALSE
-	if(!H.mind) // That wasn't a player at all...
-		return FALSE
-	if(H.z != z)
-		return FALSE
+		return
+	if(istype(abno, /mob/living/simple_animal/hostile/abnormality/punishing_bird))
+		return
+	if(istype(abno, /mob/living/simple_animal/hostile/abnormality/training_rabbit))
+		return
 	datum_reference.qliphoth_change(-1)
-	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/dingledangle/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
 	if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) >= 60 && work_type != ABNORMALITY_WORK_INSIGHT)
@@ -90,43 +90,40 @@ GLOBAL_LIST_INIT(dingle_hallucination_list, list(
 /mob/living/simple_animal/hostile/abnormality/dingledangle/ZeroQliphoth(mob/living/carbon/human/user)
 	datum_reference.qliphoth_change(3)
 	safe = TRUE
-	var/mob/living/carbon/human/marked = null
-	for(var/mob/living/carbon/human/H in GLOB.player_list)
-		if(z != H.z)
-			continue
-		if(H.stat == DEAD || H.sanity_lost)
-			continue
-		if(get_attribute_level(H, PRUDENCE_ATTRIBUTE) < 60)
-			continue
-		if(!H.mind)
-			continue
-		//If we don't have someone selected, we select the first guy that has the requirements
-		if(!marked)
-			marked = H
-			continue
-		var/H_dist = get_dist(src, H)
-		var/marked_dist = get_dist(src, H)
-		//First we make sure the guy we're checking isn't further away than the selected guy
-		if(marked_dist < H_dist)
-			continue
-		else if(marked_dist == H_dist)
-			//Then we see if the current guy we're checking has higher prudence
-			if(get_attribute_level(H, PRUDENCE_ATTRIBUTE) > get_attribute_level(marked, PRUDENCE_ATTRIBUTE))
-				marked = H
-			//If both of them are the same distance away from dingle and have the same amount of prudence, it should be random
-			else if(get_attribute_level(H, PRUDENCE_ATTRIBUTE) == get_attribute_level(marked, PRUDENCE_ATTRIBUTE))
-				if(prob(50))
-					marked = H
-			//Otherwise we don't changed the selected guy
-		else
-			//If the guy we're checking is closer to dingle than the guy already selected, they will be selected instead
-			marked = H
-	if(marked)
-		var/datum/status_effect/dangle/D = marked.has_status_effect(STATUS_EFFECT_DANGLE)
-		if(!D)
-			marked.apply_status_effect(STATUS_EFFECT_DANGLE)
-		else
-			D.duration = initial(D.duration) + world.time
+	var/list/targets = list()
+	var/turf/self_turf = src.loc
+	var/turf/inside = locate(self_turf.x+1, self_turf.y, self_turf.z)
+	var/turf/outside = locate(self_turf.x+3, self_turf.y-4, self_turf.z)
+	if(inside)
+		for(var/mob/living/carbon/human/H in range(inside, 2))
+			if(z != H.z)
+				continue
+			if(H.stat == DEAD || H.sanity_lost)
+				continue
+			if(get_attribute_level(H, PRUDENCE_ATTRIBUTE) < 60)
+				continue
+			if(!H.mind)
+				continue
+			if(H.has_status_effect(STATUS_EFFECT_DANGLE))
+				continue
+			targets += H
+	if(outside)
+		var/area/place = get_area(outside)
+		for(var/mob/living/carbon/human/H in place)
+			if(z != H.z)
+				continue
+			if(H.stat == DEAD || H.sanity_lost)
+				continue
+			if(get_attribute_level(H, PRUDENCE_ATTRIBUTE) < 60)
+				continue
+			if(!H.mind)
+				continue
+			if(H.has_status_effect(STATUS_EFFECT_DANGLE))
+				continue
+			targets += H
+	if(LAZYLEN(targets))
+		var/mob/living/target = pick(targets)
+		target.apply_status_effect(STATUS_EFFECT_DANGLE)
 
 /mob/living/simple_animal/hostile/abnormality/dingledangle/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
@@ -156,6 +153,7 @@ GLOBAL_LIST_INIT(dingle_hallucination_list, list(
 			return
 		for(var/mob/living/carbon/human/H in humans)
 			H.adjustSanityLoss(H.maxSanity)
+		safe = TRUE // Set safe again to really prevent something from going wrong
 		return
 	safe = FALSE
 
@@ -182,14 +180,14 @@ GLOBAL_LIST_INIT(dingle_hallucination_list, list(
 	desc = "A large amount of pink roots that are burrowing into someone!"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "dingle_roots_person"
-	max_integrity = 40
+	max_integrity = 20
 	buckle_lying = 90
 	density = FALSE
 	anchored = TRUE
 	can_buckle = TRUE
 	layer = ABOVE_MOB_LAYER
 	pixel_y = -6
-	var/damage = 8
+	var/damage = 15
 	var/damage_cooldown
 	var/damage_cooldown_time = 5 SECONDS
 
@@ -288,7 +286,7 @@ GLOBAL_LIST_INIT(dingle_hallucination_list, list(
 	if(!ishuman(owner))
 		return
 	//It should cause a hallucination eventually without spamming it.
-	if(tries >= 5 && (prob(4) || tries >= 20))
+	if(tries >= 5 && (prob(3) || tries >= 30))
 		tries = 0
 		var/halpick = pickweight(GLOB.dingle_hallucination_list)
 		new halpick(owner, FALSE)
