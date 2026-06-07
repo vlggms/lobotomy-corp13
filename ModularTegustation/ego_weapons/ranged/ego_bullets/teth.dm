@@ -182,7 +182,7 @@
 		if(H.is_working)
 			qdel(src)
 			return BULLET_ACT_BLOCK
-		H.adjustSanityLoss(-damage * damage_multiplier * 0.5, FALSE) // deal fixed white damage to employees, ignoring armor
+		H.adjustSanityLoss(-damage * damage_multiplier * 0.25, FALSE) // deal fixed white damage to employees, ignoring armor
 		if(!H.sanity_lost)
 			qdel(src)
 			return BULLET_ACT_BLOCK

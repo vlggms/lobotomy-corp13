@@ -63,7 +63,7 @@
 							)
 
 /obj/item/ego_weapon/ranged/hatred/GunAttackInfo(mob/user)
-	return span_notice("Its magic deal [last_projectile_damage] randomly chosen damage.")
+	return span_notice("Its magic deal [last_projectile_damage] randomly chosen damage.[force_multiplier != 1 ? " (+ [(force_multiplier - 1) * 100]%)" : ""]")
 
 /obj/item/ego_weapon/ranged/hatred/attackby(obj/item/I, mob/living/user, params)
 	..()
@@ -83,8 +83,7 @@
 	The weapon's bullets travel across the corridor, along the horizon."
 	icon_state = "magic_bullet"
 	inhand_icon_state = "magic_bullet"
-	special = "This weapon fires extremely slowly. \
-		This weapon pierces all targets. \
+	special = "This weapon pierces all targets. \
 		This weapon gets a 30% damage bonus when wearing the matching armor."
 	force = 24
 	damtype = BLACK_DAMAGE
@@ -122,7 +121,7 @@
 	Can feathers gain their own wings?"
 	icon_state = "solemnlament"
 	inhand_icon_state = "solemnlament"
-	special = "While having either a second copy of this weapon or solemn vow will decrease shot spread and allow for both to reload at once.\nFiring both solemn lament and solemn vow at the same time will increase damage by 30%"
+	special = "While having either a second copy of this weapon or solemn vow will decrease shot spread and allow for both to reload at once.\nFiring both solemn lament and solemn vow at the same time will increase their damage by 30%"
 	force = 9
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_solemnlament
@@ -229,7 +228,7 @@
 	Even with wings, no feather can leave this place."
 	icon_state = "solemnvow"
 	inhand_icon_state = "solemnvow"
-	special = "While having either a second copy of this weapon or solemn lament will cause both guns to act like one.\nFiring both solemn lament and solemn vow at the same time will increase damage by 30%"
+	special = "While having either a second copy of this weapon or solemn lament will cause both guns to act like one.\nFiring both solemn lament and solemn vow at the same time will increase their damage by 30%"
 	force = 9
 	damtype = BLACK_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_solemnvow
@@ -339,8 +338,8 @@
 	projectile_path = /obj/projectile/ego_bullet/ego_loyalty
 	weapon_weight = WEAPON_HEAVY
 	spread = 26
-	max_shots = 95
-	reloadtime = 3.2 SECONDS
+	max_shots = 75
+	reloadtime = 3 SECONDS
 	special = "This weapon's ammunition has IFF capabilities."
 	fire_sound = 'sound/weapons/gun/smg/vp70.ogg'
 	autofire = 0.08 SECONDS
@@ -348,7 +347,7 @@
 							FORTITUDE_ATTRIBUTE = 80
 	)
 	alternate_fire_name = "Underslung Grenade Launcher"
-	alternate_info = "This rifle has an underslung grenade launcher. Grenades fired from this rifle also are 'impact' grenades that will attempt to detonate wherever you click and knock back enemies while dealing heavy AoE RED damage.\nAfter firing the UGL, you'll automatically swap to the primary fire mode."
+	alternate_info = "This rifle has an underslung grenade launcher. Bee Grenades deal heavy AoE damage and a damage over time debuff.\nAfter firing the UGL, you'll automatically swap to the primary fire mode."
 	alternate_shotsleft = 1
 	alternate_pellets = 1
 	alternate_reload_type = RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_SHARED_RELOAD
@@ -361,7 +360,7 @@
 	alternate_toggle_disabled_message = span_notice("You will no longer use your underslung grenade launcher.")
 	// Need to store this to modify the autofire after firing UGL
 	var/datum/component/automatic_fire/autofire_component
-	var/firing_ugl_extra_shot_delay_coeff = 8
+	var/firing_ugl_extra_shot_delay_coeff = 10
 
 /obj/item/ego_weapon/ranged/loyalty/Initialize(mapload)
 	. = ..()
@@ -429,17 +428,20 @@
 	desc = "Tell the kid today's treat is going to be grape-flavored candy. It's his favorite."
 	icon_state = "ecstasy"
 	inhand_icon_state = "ecstasy"
-	special = "This weapon fires slow bullets with limited range."
-	force = 14
+	special = "This weapon fires slow bubbles with limited range."
+	force = 16
 	damtype = RED_DAMAGE
 	attack_speed = 0.7
 	projectile_path = /obj/projectile/ego_bullet/ego_ecstasy
 	weapon_weight = WEAPON_MEDIUM
-	spread = 40
-	fire_sound = 'sound/weapons/ego/ecstasy.ogg'
+	spread = 30
 	autofire = 0.08 SECONDS
+	fire_sound = 'sound/weapons/ego/ecstasy.ogg'
 	max_shots = 40
-	reloadtime = 1.8 SECONDS
+	ammo_on_reload = 1
+	ammo_on_melee = 3
+	passive_reload = 4 SECONDS
+	reloadtime = 0.3 SECONDS
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 60,
 							TEMPERANCE_ATTRIBUTE = 60
@@ -450,7 +452,7 @@
 	desc = "And with her guard, she conquered all."
 	icon_state = "praetorian"
 	inhand_icon_state = "praetorian"
-	special = "This weapon fires IFF bullets."
+	special = "This weapon fires IFF bullets that redirect towards the closest target."
 	force = 9
 	projectile_path = /obj/projectile/ego_bullet/ego_praetorian
 	fire_sound = 'sound/weapons/gun/pistol/tp17.ogg'
@@ -468,39 +470,27 @@
 	desc = "All the power of magic bullet, in a smaller package."
 	icon_state = "magic_pistol"
 	inhand_icon_state = "magic_pistol"
-	special = "This weapon pierces most targets. This weapon fires and reloads faster with the matching armor"
+	special = "This weapon pierces all targets but loses damage the more targets it hits."
 	force = 9
 	damtype = BLACK_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_magicpistol
 	fire_delay = 7
 	max_shots = 7
-	reloadtime = 1.2 SECONDS
+	reloadtime = 1.4 SECONDS
 	fire_sound = 'sound/abnormalities/freischutz/shoot.ogg'
 	attribute_requirements = list(
-							TEMPERANCE_ATTRIBUTE = 80
+							TEMPERANCE_ATTRIBUTE = 60,
+							JUSTICE_ATTRIBUTE = 60
 							)
 
-/obj/item/ego_weapon/ranged/pistol/magic_pistol/before_firing(atom/target, mob/user)
+/obj/item/ego_weapon/ranged/magicbullet/before_firing(atom/target, mob/user)
 	projectile_damage_multiplier = 1
-	fire_delay = initial(fire_delay)
 	var/mob/living/carbon/human/myman = user
-	var/obj/item/clothing/suit/armor/ego_gear/he/magicbullet/Y = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	var/obj/item/clothing/suit/armor/ego_gear/realization/bigiron/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
-	if(istype(Y))
-		fire_delay = 5
 	if(istype(Z))
-		projectile_damage_multiplier *= 2.5
-		fire_delay = 5
+		projectile_damage_multiplier *= 3
 	..()
 
-/obj/item/ego_weapon/ranged/pistol/magic_pistol/reload_ego(mob/user)
-	var/mob/living/carbon/human/myman = user
-	var/obj/item/clothing/suit/armor/ego_gear/he/magicbullet/Y = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
-	var/obj/item/clothing/suit/armor/ego_gear/realization/bigiron/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
-	reloadtime = initial(reloadtime)
-	if(istype(Y) || istype(Z))
-		reloadtime = 0.8 SECONDS
-	..()
 
 /obj/item/ego_weapon/ranged/pistol/laststop
 	name = "last stop"
@@ -533,7 +523,7 @@
 	spread = 18
 	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
 	autofire = 0.12 SECONDS
-	max_shots = 19
+	max_shots = 50
 	reloadtime = 2.1 SECONDS
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 80
@@ -548,14 +538,15 @@
 	var/light_duration_variance = 20 SECONDS
 
 	var/current_light = 0
-
+	/// This exists mainly to prevent buying the weapon from being a jumpscare
+	var/first_time = TRUE
 	/// Associate current light to corresponding firerate, projectile damage multiplier and spread.
 	var/alist/lights_to_stats = alist(
 		0 = list("autofire" = 0.12 SECONDS, "multiplier" = 1, spread = 18),
 		1 = list("autofire" = 0.11 SECONDS, "multiplier" = 1, spread = 20),
 		2 = list("autofire" = 0.10 SECONDS, "multiplier" = 1.1, spread = 24),
-		3 = list("autofire" = 0.09 SECONDS, "multiplier" = 1.3, spread = 32),
-		4 = list("autofire" = 0.08 SECONDS, "multiplier" = 1.6, spread = 42),
+		3 = list("autofire" = 0.09 SECONDS, "multiplier" = 1.3, spread = 30),
+		4 = list("autofire" = 0.08 SECONDS, "multiplier" = 1.6, spread = 38),
 		)
 
 /obj/item/ego_weapon/ranged/intentions/Initialize(mapload)
@@ -601,8 +592,11 @@
 
 	// Play a SFX and alert people that this thing changed
 	if(current_light == 0)
-		playsound(src, 'sound/abnormalities/clock/end.ogg', 50, 0)
-		audible_message(span_notice("The lights on [src] fizzle out."))
+		if(!first_time)
+			playsound(src, 'sound/abnormalities/clock/end.ogg', 50, 0)
+			audible_message(span_notice("The lights on [src] fizzle out."))
+		else
+			first_time = FALSE
 	else
 		playsound(src, 'sound/abnormalities/clock/turn_on.ogg', 50, 0)
 		audible_message(span_notice("A new light flickers on [src]."))
@@ -626,23 +620,45 @@
 	)
 
 /obj/item/ego_weapon/ranged/assonance
-	name = "assonance"
+	name = "accord"
 	desc = "However, the world is more than simply warmth and light. The sky exists, for so does the land; darkness exists, \
 				for so does light; life exists for so does death; hope exists for so does despair."
 	icon_state = "assonance"
 	inhand_icon_state = "assonance"
-	special = "This weapon fires a hitscan beam. \nUpon hitting an enemy, this weapon heals a nearby Discord weapon user."
+	special = "This weapon fires a hitscan light arrow. \nUpon hitting an enemy, this weapon heals a nearby Discord weapon user."
 	force = 24
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/beam/assonance
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 5
-	max_shots = 17
-	reloadtime = 1.6 SECONDS
+	chargetime = 10
+	spread = 0
 	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
+	charge_sound = 'sound/weapons/bowdraw.ogg'
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 80
 	)
+
+/obj/item/ego_weapon/ranged/assonance/OnDischarge(mob/living/user)
+	icon_state = "assonance"
+
+/obj/item/ego_weapon/ranged/assonance/ChargeUp(mob/living/user)
+	is_charging = TRUE
+	projectile_path = initial(projectile_path)
+	fire_sound = initial(fire_sound)
+	charge_hold_time = initial(charge_hold_time)
+	playsound(user, charge_sound, charge_sound_volume, vary_fire_sound)
+	if(do_after(user, chargetime, src))
+		icon_state = "assonance_drawn"
+		to_chat(user,span_notice("You draw [src] with all your might."))
+		is_charging = FALSE
+		charged = TRUE
+		OnCharged(user)
+		charge_timer = addtimer(CALLBACK(src, PROC_REF(Uncharge), user), charge_hold_time, TIMER_STOPPABLE)
+		return
+	is_charging = FALSE
+	to_chat(user, span_warning("You need to stand still to fully draw [src]!"))
+
 
 /obj/item/ego_weapon/ranged/cannon/exuviae
 	name = "exuviae"
@@ -653,11 +669,12 @@
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	force = 34
+	force = 36
 	projectile_path = /obj/projectile/ego_bullet/ego_exuviae
 	special = "Upon hit the targets RED vulnerability is increased by 0.2."
 	damtype = RED_DAMAGE
-	fire_delay = 15 //5 less than the Rend Armor status effect
+	chargetime = 10
+	fire_delay = 40 //5 less than the Rend Armor status effect
 	max_shots = 6
 	reloadtime = 0.3 SECONDS
 	fire_sound = 'sound/misc/moist_impact.ogg'
@@ -672,17 +689,15 @@
 	desc = "A shimmering bow adorned with carved wooden panels. It crackes with arcing electricity."
 	icon_state = "warring"
 	inhand_icon_state = "warring"
-	special = "This weapon can unleash a special attack when activated in your hand. \
-	You can manually reload this weapon by holding ALT + left mouse button."
 	force = 24
 	damtype = BLACK_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_warring
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 3
-	max_shots = 1
-	reloadtime = 0.5 SECONDS
+	fire_delay = 5
+	chargetime = 10
 	spread = 0
 	fire_sound = 'sound/weapons/bowfire.ogg'
+	charge_sound = 'sound/weapons/bowdraw.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 60
@@ -690,69 +705,42 @@
 	charge = TRUE
 	attack_charge_gain = FALSE
 	charge_cost = 3
-	charge_effect = "fire a bolt of lightning."
+	ability_type = ABILITY_UNIQUE
+	charge_effect = "fire a bolt of lightning that stuns and heals some sanity of humans on hit while being drawn for longer."
+	visible_activation = "You will now fire a bolt of lightning."
+	cancel_activation = "You will no longer fire a bolt of lightning."
+	failed_activation = "You try to electrify your arrows... but your weapon does not respond!"
 	var/ammo_2 = /obj/projectile/ego_bullet/ego_warring2
-	var/special_ammo
 
-/obj/item/ego_weapon/ranged/warring/shoot_with_empty_chamber(mob/living/user as mob|obj)
-	//do nothing
+/obj/item/ego_weapon/ranged/warring/OnDischarge(mob/living/user)
+	icon_state = "warring"
 
-/obj/item/ego_weapon/ranged/warring/examine(mob/user)//attack speed isn't used, so it needs to be overridden
-	. = ..()
-	. -= span_notice("This weapon fires fast.")//it doesn't
-	. += span_notice("This weapon fires arrows that must be drawn individually.")
-
-/obj/item/ego_weapon/ranged/warring/AltClick(mob/user)
-	..()
-	if(semicd)
-		return
-	return reload_ego(user)
-
-/obj/item/ego_weapon/ranged/warring/afterattack(atom/target, mob/living/user, flag, params)
-	if(!CanUseEgo(user))
-		return
-	if(semicd)//stops firing speed anomalies
-		return
-	if(!can_shoot(user))
-		reload_ego(user)
-	..()
-	icon_state = "[initial(icon_state)]"
-	special_ammo = FALSE
-
-/obj/item/ego_weapon/ranged/warring/attack_self(mob/user)
-	if(special_ammo)
-		ChangeAmmo(user, special_ammo = TRUE)
-		return
-	if(charge_amount >= charge_cost)
-		ChangeAmmo(user, special_ammo = FALSE)
-		special_ammo = TRUE
-		to_chat(user,span_notice("You will now fire a bolt of lightning."))
-
-/obj/item/ego_weapon/ranged/warring/reload_ego(mob/user)
-	if(shotsleft == max_shots)
-		return
-	if(do_after(user, reloadtime, src)) //gotta reload
-		to_chat(user,span_notice("You draw the [src] with all your might."))
+/obj/item/ego_weapon/ranged/warring/ChargeUp(mob/living/user)
+	is_charging = TRUE
+	projectile_path = initial(projectile_path)
+	fire_sound = initial(fire_sound)
+	charge_hold_time = initial(charge_hold_time)
+	playsound(user, charge_sound, charge_sound_volume, vary_fire_sound)
+	if(do_after(user, chargetime, src))
 		icon_state = "warring_drawn"
-		shotsleft = max_shots
-		projectile_path = initial(projectile_path)
-		fire_sound = initial(fire_sound)
+		to_chat(user,span_notice("You draw [src] with all your might."))
+		if(currently_charging)
+			if(charge_amount < charge_cost)
+				CancelCharge(user)
+			charge_hold_time = 20
+			charge_amount -= charge_cost
+			fire_sound = 'sound/abnormalities/thunderbird/tbird_beam.ogg'
+			projectile_path = ammo_2
+			icon_state = "warring_firey"
+			playsound(src, 'sound/magic/lightningshock.ogg', 50, TRUE)
+		is_charging = FALSE
+		charged = TRUE
+		OnCharged(user)
+		charge_timer = addtimer(CALLBACK(src, PROC_REF(Uncharge), user), charge_hold_time, TIMER_STOPPABLE)
+		return
+	is_charging = FALSE
+	to_chat(user, span_warning("You need to stand still to fully draw [src]!"))
 
-/obj/item/ego_weapon/ranged/warring/proc/ChangeAmmo(mob/living/user, special_ammo)
-	if(special_ammo)
-		charge_amount += charge_cost
-		fire_sound = initial(fire_sound)
-		projectile_path = initial(projectile_path)
-		icon_state = "warring_drawn"
-	else
-		if(!do_after(user, 1 SECONDS, src))
-			return
-		charge_amount -= charge_cost
-		fire_sound = 'sound/abnormalities/thunderbird/tbird_beam.ogg'
-		shotsleft = max_shots
-		projectile_path = ammo_2
-		icon_state = "warring_firey"
-		playsound(src, 'sound/magic/lightningshock.ogg', 50, TRUE)
 
 /obj/item/ego_weapon/ranged/cannon/banquet
 	name = "banquet"
@@ -761,12 +749,11 @@
 	inhand_icon_state = "banquet"
 	special = "This weapon can use stored blood to fire without reloading. \
 		Blood can be collected by attacking using this as a melee weapon."
-	force = 34
+	force = 36
 	damtype = BLACK_DAMAGE
 	attack_speed = 1.8
 	projectile_path = /obj/projectile/ego_bullet/ego_banquet
-	weapon_weight = WEAPON_MEDIUM
-	fire_delay = 13
+	fire_delay = 20
 	max_shots = 7
 	reloadtime = 0.25 SECONDS
 	fire_sound = 'sound/weapons/ego/cannon.ogg'
@@ -841,7 +828,7 @@
 	force = 24
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_bride
-	weapon_weight = WEAPON_HEAVY
+	weapon_weight = WEAPON_MEDIUM
 	fire_delay = 5
 	max_shots = 10
 	reloadtime = 1.4 SECONDS
@@ -876,7 +863,7 @@
 	inhand_icon_state = "hypocrisy"
 	worn_icon_state = "hypocrisy"
 	special = "Use the middle mouse button click/alt click to place a trap that inflicts \
-		30 RED damage and alerts the user of the area it was triggered."
+		red damage and alerts the user of the area it was triggered."
 	force = 24
 	damtype = RED_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_hypocrisy
@@ -897,6 +884,7 @@
 			return
 		playsound(get_turf(user), 'sound/creatures/venus_trap_hurt.ogg', 50, TRUE)
 		var/obj/structure/liars_trap/c = new(get_turf(user))
+		c.multiplier = get_attack_multiplier(user) * force_multiplier * projectile_damage_multiplier
 		c.creator = user
 		c.faction = user.faction.Copy()
 		trap_cooldown = world.time + (10 SECONDS)
@@ -914,6 +902,8 @@
 	max_integrity = 15
 	var/mob/living/carbon/human/creator
 	var/list/faction = list()
+	var/damage = 30
+	var/multiplier = 1
 
 /obj/structure/liars_trap/Initialize()
 	. = ..()
@@ -926,7 +916,7 @@
 		var/mob/living/L = AM
 		if(!faction_check(faction, L.faction))
 			playsound(get_turf(src), 'sound/machines/clockcult/steam_whoosh.ogg', 10, 1)
-			L.apply_damage(30, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = FALSE)
+			L.apply_damage(damage * multiplier, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = FALSE)
 			new /obj/effect/temp_visual/cloud_swirl(get_turf(L)) //placeholder
 			to_chat(creator, span_warning("You feel a itch towards [get_area(L)]."))
 			qdel(src)
@@ -936,20 +926,19 @@
 	desc = "A Lee-Einfeld bolt-action rifle that fires cursed bullets."
 	icon_state = "fell_bullet"
 	inhand_icon_state = "fell_bullet"
-	special = "This weapon fires extremely slowly. \
-		This weapon pierces all targets. \
-		Activate in your hand to create a portal, which can be fired into. \
-		Attempting to fire with an empty chamber will reload the weapon. \
-		You can manually reload this weapon by pressing ALT + left mouse button."
+	special = "This weapon pierces all targets. \
+		Use the middle mouse button click/alt click to create a portal, which can be fired into at for doubled damage the cost of a slower fire rate."
 	force = 24
 	damtype = RED_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_fellbullet
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 20
-	max_shots = 1
-	reloadtime = 0.5 SECONDS
+	fire_delay = 15
+	max_shots = 10
+	reloadtime = 2 SECONDS
 	fire_sound = 'sound/abnormalities/fluchschutze/fell_bullet.ogg'
+	reload_success_sound = 'sound/abnormalities/fluchschutze/fell_aim.ogg'
 	var/portaling = FALSE
+	var/shooting = FALSE
 	var/portal_cooldown
 	var/portal_cooldown_time = 15 SECONDS
 	var/obj/effect/portal/myportal
@@ -959,14 +948,10 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 
-/obj/item/ego_weapon/ranged/fellbullet/AltClick(mob/user)
-	..()
-	if(semicd)
-		return
-	return reload_ego(user)
-
 /obj/item/ego_weapon/ranged/fellbullet/afterattack(atom/target, mob/living/user, flag, params)
 	if(!CanUseEgo(user))
+		return
+	if(semicd)//stops firing speed anomalies
 		return
 	if(portaling)
 		portaling = FALSE
@@ -984,21 +969,25 @@
 		AdjustCircle(user, P1, target)
 		AdjustCircle(user, P2, target)
 		return
-	if(semicd)//stops firing speed anomalies
-		return
-	if(!can_shoot(user))
-		reload_ego(user, target)
-	..()
 	if(!myportal)//If myportal hasn't initialized yet, this prevents it from runtiming.
+		return ..()
+	if(myportal in user)//is it not qdeleted?
+		if(shooting)
+			return
+		AdjustCircle(user, myportal, target)
+		myportal.forceMove(get_turf(user))//move the portal to your turf, line 733 removes it later.
+		playsound(src, 'sound/abnormalities/fluchschutze/fell_portal.ogg', 50, FALSE)
+		shooting = TRUE
+		if(do_after(user, 3, src)) //gotta wait
+			. = ..()
+		if(myportal.loc && !is_reloading)//hide the portal
+			AdjustCircle(user, targetportal, target)
+			myportal.forceMove(user)
+		shooting = FALSE
 		return
-	if(myportal.loc && !is_reloading)//hide the portal
-		AdjustCircle(user, targetportal, target)
-		myportal.forceMove(user)
+	. = ..()
 
-/obj/item/ego_weapon/ranged/fellbullet/shoot_with_empty_chamber(mob/living/user as mob|obj)
-	//do nothing
-
-/obj/item/ego_weapon/ranged/fellbullet/attack_self(mob/user)
+/obj/item/ego_weapon/ranged/fellbullet/MiddleClickAction(atom/target, mob/user)
 	if(portaling)
 		portaling = FALSE
 		to_chat(user,span_notice("You will no longer create a circle."))
@@ -1008,20 +997,6 @@
 		return
 	portaling = TRUE
 	to_chat(user,span_notice("You will now create a magic circle at your target."))
-
-/obj/item/ego_weapon/ranged/fellbullet/reload_ego(mob/user, atom/target)
-	if(is_reloading)
-		return
-	if(myportal in user)//is it not qdeleted?
-		AdjustCircle(user, myportal, target)
-		myportal.forceMove(get_turf(user))//move the portal to your turf, line 733 removes it later.
-		playsound(src, 'sound/abnormalities/fluchschutze/fell_portal.ogg', 50, FALSE)
-	is_reloading = TRUE
-	to_chat(user,span_notice("You chamber a round into [src]."))
-	playsound(src, 'sound/abnormalities/fluchschutze/fell_aim.ogg', 50, TRUE)
-	if(do_after(user, reloadtime, src)) //gotta reload
-		shotsleft = max_shots
-	is_reloading = FALSE
 
 /obj/item/ego_weapon/ranged/fellbullet/proc/AdjustCircle(mob/living/user, atom/theportal, atom/target)
 	theportal.transform = initial(theportal.transform)
@@ -1054,9 +1029,9 @@
 	if(!istype(M, /obj/projectile/ego_bullet/ego_fellbullet))
 		return
 	var/obj/projectile/ego_bullet/ego_fellbullet/B = M
-	if(B.damage > 40)
+	if(B.damage > 38)
 		return
-	B.damage *= 2
+	B.damage *= 1.5
 	var/turf/real_target = get_link_target_turf()
 	for(var/obj/effect/portal/fellbullet/P in real_target)
 		playsound(P, 'sound/abnormalities/fluchschutze/fell_portal.ogg', 50, TRUE)
@@ -1085,7 +1060,7 @@
 	projectile_path = /obj/projectile/ego_bullet/ego_fellscatter
 	weapon_weight = WEAPON_HEAVY
 	pellets = 7
-	variance = 10
+	variance = 50
 	fire_delay = 15
 	max_shots = 4
 	ammo_on_reload = 1
@@ -1103,7 +1078,7 @@
 	alternate_toggle_sound = 'sound/abnormalities/fluchschutze/fell_aim.ogg'
 	alternate_toggle_sound_volume = 50
 	alternate_toggle_enabled_message = span_notice("You will now fire a magical slug.")
-	alternate_toggle_disabled_message = null
+	alternate_toggle_disabled_message = span_notice("You will now fire shotgun shells.")
 	alternate_reload_type = RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_EMPTY_MAG
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 80
@@ -1124,11 +1099,12 @@
 	inhand_icon_state = "sodashotgun"
 	force = 24
 	projectile_path = /obj/projectile/ego_bullet/soda_shotty
-	pellets = 3
-	variance = 12
+	pellets = 8
+	variance = 16
 	pellets = 6
 	max_shots = 12
-	reloadtime = 2 SECONDS
+	reloadtime = 0.3 SECONDS
+	ammo_on_reload = 1
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 10
 	fire_sound = 'sound/weapons/gun/shotgun/shot.ogg'
@@ -1145,7 +1121,7 @@
 	projectile_path = /obj/projectile/ego_bullet/soda_smg
 	weapon_weight = WEAPON_HEAVY
 	spread = 8
-	max_shots = 60
+	max_shots = 40
 	reloadtime = 1.7 SECONDS
 	fire_sound = 'sound/weapons/gun/smg/shot.ogg'
 	autofire = 0.15 SECONDS
@@ -1165,12 +1141,14 @@
 							FORTITUDE_ATTRIBUTE = 80,
 							)
 	slowdown = 2
-	spread = 30
+	spread = 24
 	max_shots = 800
 	reloadtime = 6 SECONDS
 	item_flags = SLOWS_WHILE_IN_HAND
 	fire_sound = 'sound/weapons/gun/smg/shot.ogg'
-	autofire = 0.04 SECONDS
+	burst_size = 4
+	burst_delay = 0.2 SECONDS
+	autofire = 0.25 SECONDS
 
 /obj/item/ego_weapon/ranged/sodaassault
 	name = "soda assault rifle"
@@ -1181,11 +1159,139 @@
 	projectile_path = /obj/projectile/ego_bullet/soda_assault
 	weapon_weight = WEAPON_HEAVY
 	burst_size = 3
-	burst_delay = 3
-	autofire = 0.4 SECONDS
+	burst_delay = 6
+	autofire = 0.8 SECONDS
 	max_shots = 51
-	reloadtime = 1.2 SECONDS
+	reloadtime = 1.5 SECONDS
 	fire_sound = 'sound/weapons/gun/rifle/shot.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							)
+
+/obj/item/ego_weapon/ranged/ebony_stem
+	name = "ebony stem"
+	desc = "An apple does not culminate when it ripens to bright red; \
+	only when the apple shrivels up and attracts lowly creatures."
+	special = "This weapon creates spikey roots in an area instead of shooting."
+	icon_state = "ebony_stem"
+	force = 18
+	attack_speed = 1
+	damtype = BLACK_DAMAGE
+	swingstyle = WEAPONSWING_THRUST
+	attack_verb_continuous = list("admonishes", "rectifies", "conquers")
+	attack_verb_simple = list("admonish", "rectify", "conquer")
+	hitsound = 'sound/weapons/ego/rapier2.ogg'
+	weapon_weight = WEAPON_MEDIUM
+	fire_delay = 12
+	max_shots = 12
+	passive_reload = 6 SECONDS
+	reloadtime = 3
+	chargetime = 5
+	charge_sound = 'sound/creatures/venus_trap_hurt.ogg'
+	projectile_name = "root"
+	projectile_name_plural = "roots"
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 60,
+							JUSTICE_ATTRIBUTE = 60
+							)
+	alternate_fire_name = "Barrage Roots"
+	alternate_info = "This weapon will cast a trailing line of weaker roots starting from the user."
+	alternate_reload_type = RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_SHARED_MAGAZINE
+	alternate_toggle_sound = 'sound/creatures/venus_trap_hurt.ogg'
+	alternate_toggle_sound_volume = 65
+	alternate_toggle_enabled_message = span_notice("You channel your energy, you will now cast Barrage Roots.")
+	alternate_toggle_disabled_message = span_notice("You release your energy, you will now cast Root Burst")
+	var/ranged_damage = 50
+
+/obj/item/ego_weapon/ranged/ebony_stem/GunAttackInfo()
+	var/damage_type = damtype
+	var/base_damage = ranged_damage
+	if(alternate_selected)
+		base_damage = 40
+	var/damage = round(base_damage * force_multiplier * projectile_damage_multiplier, 0.1)
+	if(GLOB.damage_type_shuffler?.is_enabled && IsColorDamageType(damage_type))
+		var/datum/damage_type_shuffler/shuffler = GLOB.damage_type_shuffler
+		var/new_damage_type = shuffler.mapping_offense[damage_type]
+		damage_type = new_damage_type
+	return span_notice("Its [projectile_name_plural] deal [damage] [damage_type] damage.[force_multiplier != 1 ? " (+ [(force_multiplier - 1) * 100]%)" : ""]")
+
+/obj/item/ego_weapon/ranged/ebony_stem/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, temporary_damage_multiplier = 1)
+	if(!CanUseEgo(user))
+		return
+
+	if(HAS_TRAIT(user, TRAIT_PACIFISM) && lethal) // If the user has the pacifist trait, then they won't be able to fire [src] if the [lethal] var is TRUE.
+		to_chat(user, span_warning("[src] is lethal! You don't want to risk harming anyone..."))
+		return
+
+	if(user)
+		SEND_SIGNAL(user, COMSIG_MOB_FIRED_GUN, src, target, params, zone_override)
+
+	SEND_SIGNAL(src, COMSIG_GUN_FIRED, user, target, params, zone_override)
+
+	add_fingerprint(user)
+
+	if(semicd)
+		return
+	if(!alternate_selected)
+		DoAOE(user, target)
+	else
+		var/obj/effect/rootline/R = new(get_step_towards(user, target), user)
+		R.damage *= force_multiplier * get_attack_multiplier(user)
+		R.rootBarrage(target)
+	process_chamber(user)
+	semicd = TRUE
+	addtimer(CALLBACK(src, PROC_REF(reset_semicd)), fire_delay)
+
+	if(user)
+		user.update_inv_hands()
+	SSblackbox.record_feedback("tally", "gun_fired", 1, type)
+
+	return TRUE
+
+/obj/item/ego_weapon/ranged/ebony_stem/proc/DoAOE(mob/living/user, mob/living/target)
+	var/turf/target_turf = get_turf(target)
+	var/damage_dealt = ranged_damage * force_multiplier * get_attack_multiplier(user)
+	playsound(target_turf, 'sound/abnormalities/ebonyqueen/attack.ogg', 50, TRUE)
+	for(var/turf/open/T in RANGE_TURFS(1, target_turf))
+		new /obj/effect/temp_visual/thornspike(T)
+		user.HurtInTurf(T, list(), damage_dealt, BLACK_DAMAGE, hurt_mechs = TRUE)
+
+
+/obj/effect/rootline
+	move_force = INFINITY
+	pull_force = INFINITY
+	generic_canpass = FALSE
+	movement_type = PHASING | FLYING
+	var/damage = 40
+	var/mob/living/spawner
+	var/barrage_range = 12
+	var/broken = 0
+	layer = POINT_LAYER
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
+/obj/effect/rootline/New(loc, ...)
+	. = ..()
+	if(args[2])
+		spawner = args[2]
+
+/obj/effect/rootline/proc/rootBarrage(atom/attack_target) //line attack
+	var/turf/target_turf = get_ranged_target_turf_direct(src, attack_target, barrage_range)
+	var/count = 0
+	for(var/turf/T in getline(get_turf(src), target_turf))
+		if(T.density)
+			broken = count
+			break
+		count = count + 1
+		addtimer(CALLBACK(src, PROC_REF(stabHit), T, count), (3 * (((count-1)*0.50)+1)) + 0.25 SECONDS)
+
+/obj/effect/rootline/proc/stabHit(turf/T, count)
+	if(QDELETED(src))
+		return
+	playsound(T, 'sound/abnormalities/ebonyqueen/attack.ogg', 50, TRUE)
+	new /obj/effect/temp_visual/thornspike(T)
+	for(var/mob/living/L in T)
+		if(spawner == L)
+			continue
+		L.deal_damage(damage, BLACK_DAMAGE)
+	if(count == barrage_range || count == broken)
+		qdel(src)

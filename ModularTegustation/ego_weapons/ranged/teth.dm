@@ -113,9 +113,9 @@
 	desc = "And when the crying stops, dawn will break."
 	icon_state = "dream"
 	inhand_icon_state = "dream"
-	force = 6
+	force = 7
 	attack_speed = 0.7
-	damtype = WHITE_DAMAGE
+	damtype = BLACK_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_dream
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = "dreamy_gun"

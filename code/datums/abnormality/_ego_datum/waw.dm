@@ -87,12 +87,12 @@
 /datum/ego_datum/weapon/solemnvow
 	item_category = "Weapon (Black Pistol)"
 	item_path = /obj/item/ego_weapon/ranged/pistol/solemnvow
-	cost = 50
+	cost = 35
 
 /datum/ego_datum/weapon/solemnlament
 	item_category = "Weapon (White Pistol)"
 	item_path = /obj/item/ego_weapon/ranged/pistol/solemnlament
-	cost = 50
+	cost = 35
 
 // General Bee - Loyalty & Praetorian
 /datum/ego_datum/weapon/loyalty
@@ -203,7 +203,7 @@
 	item_path = /obj/item/ego_weapon/ranged/crossbow/aroma
 	cost = 50
 
-// Yang - Assonance
+// Yang - Accord
 /datum/ego_datum/armor/assonance
 	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/assonance
 	cost = 50
@@ -233,7 +233,7 @@
 	cost = 50
 
 /datum/ego_datum/weapon/ebony_stem
-	item_path = /obj/item/ego_weapon/ebony_stem
+	item_path = /obj/item/ego_weapon/ranged/ebony_stem
 	cost = 50
 
 // White Lake - Torn Off Wings

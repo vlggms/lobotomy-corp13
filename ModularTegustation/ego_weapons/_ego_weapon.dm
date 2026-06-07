@@ -91,6 +91,8 @@
 	. = ..()
 	if(!is_ranged)
 		. += EgoAttackInfo(user)
+	else
+		. += GunAttackInfo()
 	if(special)
 		. += span_notice("[special]")
 	if(tool_behaviour == TOOL_MINING)
@@ -226,6 +228,9 @@
 	if(force_multiplier != 1)
 		return span_notice("It deals [round(damage * force_multiplier, 0.1)] [damage_type] damage. (+ [(force_multiplier - 1) * 100]%)")
 	return span_notice("It deals [damage] [damage_type] damage.")
+
+/obj/item/ego_weapon/proc/GunAttackInfo()
+	return
 
 /obj/item/ego_weapon/GetTarget(mob/user, list/potential_targets = list())
 	if(damtype != WHITE_DAMAGE)

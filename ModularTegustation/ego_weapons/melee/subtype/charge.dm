@@ -32,7 +32,7 @@
 	/// Message given to everyone around you upon a successfull charge activation, if set
 	var/visible_activation
 	/// The message given if you fail to activate charge
-	var/failed_activation = "you try to charge your special attack... but your weapon does not respond!"
+	var/failed_activation = "You try to charge your special attack... but your weapon does not respond!"
 
 /obj/item/ego_weapon/Initialize(mapload)
 	. = ..()
@@ -76,7 +76,10 @@
 /obj/item/ego_weapon/examine(mob/user)
 	. = ..()
 	if(charge)
-		. += span_notice("This weapon has charge mechanics[attack_charge_gain ? " and gains a charge upon every hit" : ""].")
+		if(is_ranged)
+			. += span_notice("This weapon has charge mechanics and gains a charge upon every hit with its regular projectile.")
+		else
+			. += span_notice("This weapon has charge mechanics[attack_charge_gain ? " and gains a charge upon every hit" : ""].")
 		. += span_notice("This weapon currently has [charge_amount] charge out of [charge_cap] maximum charge.")
 		. += span_notice("You can activate this weapons special ability with [charge_cost] charge by clicking on it.")
 		if(charge_effect)

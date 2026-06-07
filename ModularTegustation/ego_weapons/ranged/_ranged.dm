@@ -11,12 +11,13 @@
 		Note - Sustained DPS is also different for charge up guns and passive reload guns
 		Charge up Formula: (d * a)/((f * (a-1))  + (c * a) + max(f, r))
 		Passive Reload Formula: (d * a)/((f * (a-1)) + max(f, (p + r*(a-1))))
-		If for some reason a gun uses both: (d * a)/((f * (a-1))  + (c * a) + max(f, (p + r))
+		If for some reason a gun uses both: (d * a)/((f * (a-1))  + (c * a) + max(f, (p + r*(a-1))))
 		Legend:
 			d -	The total damage from one shot(ie every pellet from a shotgun or Matchstick's base bullet damage + aoe)
 			f -	The Gun's fire rate in seconds, if the reload speed is slower than the reload speed, Sustained DPS will just end up being damage/fire rate.
 			a -	The maximum amount of ammo in a gun's clip
 			r -	The total time it takes to reload the gun to full in seconds(for guns that reload individual bullets, r is (reload * ceil(ammo/ammo on reload)))
+				Also for passive reload its a-1
 			c -	The time it takes for a gun to charge up before firing in seconds
 			p -	The initial passive reload delay that happens after the gun fires in seconds
 		Note - This cover's 99% of cases but there's probably a gun or 2 that have their own formula.
@@ -140,8 +141,8 @@
 	// The message for loading a bullet.
 	var/round_text = "You start loading a bullet."
 	/// Used for a better desc stuff
-	var/projectile_name = "round"
-	var/projectile_name_plural = "rounds"
+	var/projectile_name = "bullet"
+	var/projectile_name_plural = "bullets"
 
 	/// Controls if pacifists can use the gun or not. Should be TRUE unless you are doing something funky
 	var/lethal = TRUE
@@ -161,7 +162,7 @@
 	var/is_charging = FALSE
 	var/charged = FALSE
 	var/charge_timer
-	var/charge_hold_time = 4
+	var/charge_hold_time = 10
 
 	var/recoil = 0						//boom boom shake the room
 	var/burst_size = 1					//how large a burst is
@@ -201,22 +202,23 @@
 	var/alternate_max_shots = 1
 	var/alternate_ammo_per_shot = 1
 	var/alternate_ammo_on_reload = null
-	//Information on the alt fire
-	var/alternate_info
-	/// The way reloading is handled for alternate firetypes. View __defines/combat.dm.
-	var/alternate_reload_type = RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_SHARED_RELOAD
-	var/alternate_reload_time = 0
-	var/alternate_projectile_path = /obj/projectile/ego_bullet/ego_knade
-	var/alternate_pellets = 1
-	var/alternate_variance = 0
-	var/alternate_fire_sound = 'sound/weapons/gun/general/grenade_launch.ogg'
-	var/alternate_fire_sound_volume = 50
 	var/alternate_toggle_sound = 'sound/machines/click.ogg'
 	var/alternate_toggle_sound_volume = 65
 	var/alternate_toggle_spam_protection_cd
 	var/alternate_toggle_enabled_message = span_notice("Alternate fire enabled.")
 	var/alternate_toggle_disabled_message = span_notice("Alternate fire disabled.")
 	var/alternate_toggle_instructions = "alt-clicking or middle-clicking"
+	/// The way reloading is handled for alternate firetypes. View __defines/combat.dm.
+	var/alternate_reload_type = RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_SHARED_RELOAD
+	//Information on the alt fire
+	var/alternate_info
+	//We switch the existing values to these values
+	var/alternate_reload_time = 0
+	var/alternate_projectile_path = /obj/projectile/ego_bullet/ego_knade
+	var/alternate_pellets = 1
+	var/alternate_variance = 0
+	var/alternate_fire_sound = 'sound/weapons/gun/general/grenade_launch.ogg'
+	var/alternate_fire_sound_volume = 50
 
 /obj/item/ego_weapon/ranged/pistol
 	attack_speed = 0.5
@@ -329,6 +331,11 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 /obj/item/ego_weapon/ranged/proc/EnableAltfire(mob/user, silent = TRUE)
 	alternate_selected = TRUE
 	reloadtime = alternate_reload_time
+	projectile_path = alternate_projectile_path
+	pellets = alternate_pellets
+	variance = alternate_variance
+	fire_sound = alternate_fire_sound
+	fire_sound_volume = alternate_fire_sound_volume
 	if(alternate_reload_type == RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_EMPTY_MAG)
 		to_chat(user, span_danger("You dump your magazine to prepare the other ammo type"))
 		shotsleft = 0
@@ -339,6 +346,11 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 /obj/item/ego_weapon/ranged/proc/DisableAltfire(mob/user, silent = TRUE)
 	alternate_selected = FALSE
 	reloadtime = initial(reloadtime)
+	projectile_path = initial(projectile_path)
+	pellets = initial(pellets)
+	variance = initial(variance)
+	fire_sound = initial(fire_sound)
+	fire_sound_volume = initial(fire_sound_volume)
 	if(alternate_reload_type == RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_EMPTY_MAG)
 		to_chat(user, span_danger("You dump your magazine to prepare the other ammo type"))
 		shotsleft = 0
@@ -348,142 +360,143 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 
 /obj/item/ego_weapon/ranged/examine(mob/user)
 	. = ..()
-	. += GunAttackInfo()
-	if(!reloadtime)
-		. += span_notice("This weapon has unlimited ammo.")
-	else if(shotsleft >= ammo_per_shot)
-		. += span_notice("Ammo Counter: [shotsleft]/[max_shots].")
+	if(is_ranged)
+		. += GunOtherInfo()
+		. += span_notice("Examine this weapon more for melee information.")
 	else
-		. += span_danger("Ammo Counter: [shotsleft]/[max_shots].")
+		. += span_notice("Examine this weapon more for ranged information.")
 
-	if(alternate_fire_name)
-		. += ""
-		. += span_notice("This weapon has an alternate fire mode: [alternate_fire_name]. Activate by [alternate_toggle_instructions].")
-		if(alternate_info)
-			. += span_notice("Alt Fire - [alternate_info]")
-		// Altfire currently active?
-		if(alternate_selected)
-			. += span_danger("[alternate_fire_name] is currently <b>active!</b>")
-		else
+/obj/item/ego_weapon/ranged/proc/GunOtherInfo()
+	var/list/text = list()
 
-			. += span_notice("[alternate_fire_name] is currently <b>disabled.</b>")
-		// Ammo count for altfire.
-		switch(alternate_reload_type)
-			if(RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_SHARED_RELOAD)
-				. += span_nicegreen("Reloading the magazine will reload the alternate ammo.")
-				if(alternate_shotsleft >= alternate_ammo_per_shot)
-					. += span_notice("[alternate_fire_name] Ammo Counter: [alternate_shotsleft]/[alternate_max_shots].")
-				else
-					. += span_danger("[alternate_fire_name] Ammo Counter: [alternate_shotsleft]/[alternate_max_shots].")
+	if(!autofire)
+		switch(fire_delay)
+			if(0 to 5)
+				text += span_nicegreen("This weapon fires fast.")
+			if(6 to 10)
+				text += span_notice("This weapon fires at a normal speed.")
+			if(11 to 15)
+				text += span_notice("This weapon fires slightly slower than usual.")
+			if(16 to 20)
+				text += span_danger("This weapon fires slowly.")
+			else
+				text += span_danger("This weapon fires extremely slowly.")
+	else
+		//Give it to 'em in true rounds per minute, accurate to the 5s
+		var/rpm = 600 / autofire
+		rpm = round(rpm,5)
+		text += span_nicegreen("This weapon is automatic.")
+		text += span_notice("This weapon fires at [rpm*burst_size] [projectile_name_plural] per minute.")
 
-			if(RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_INDIVIDUAL_RELOAD)
-				. += span_notice("This weapon requires both ammo types to be reloaded separately.")
-				if(alternate_shotsleft >= alternate_ammo_per_shot)
-					. += span_notice("[alternate_fire_name] Ammo Counter: [alternate_shotsleft]/[alternate_max_shots].")
-				else
-					. += span_danger("[alternate_fire_name] Ammo Counter: [alternate_shotsleft]/[alternate_max_shots].")
+	if(chargetime)
+		text += span_notice("This weapon needs to be charged up before firing.")
+		switch(chargetime)
+			if(0 to 5)
+				text += span_nicegreen("This weapon charges up very fast.")
+			if(6 to 10)
+				text += span_notice("This weapon charges up fast.")
+			if(11 to 15)
+				text += span_danger("This weapon charges up slowly.")
+			else
+				text += span_danger("This weapon charges up extremely slowly.")
 
+	if(burst_size > 1)
+		text += span_notice("This weapon fires in a burst of [burst_size].")
 
-			if(RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_SHARED_MAGAZINE)
-				. += span_notice("The alternate fire on this weapon uses the main ammo pool.")
-			if(RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_EMPTY_MAG)
-				. += span_danger("This weapon can only load one ammo type at a time. Reloading will dump the magazine.")
+	switch(weapon_weight)
+		if(WEAPON_HEAVY)
+			text += span_danger("This weapon requires both hands to fire.")
+		if(WEAPON_MEDIUM)
+			text += span_notice("This weapon can be fired with one hand.")
+		if(WEAPON_LIGHT)
+			text += span_nicegreen("This weapon can be dual wielded.")
 
-		. += ""
-	if(ammo_on_melee)
-		if(ammo_on_melee > 1)
-			. += span_notice("This weapon reloads [ammo_on_melee] [projectile_name_plural] when hitting something with its melee.")
-		else
-			. += span_notice("This weapon reloads one [projectile_name] when hitting something with its melee.")
+	if(!reloadtime)
+		text += span_notice("This weapon has unlimited ammo.")
+	else if(shotsleft >= ammo_per_shot)
+		text += span_notice("Ammo Counter: [shotsleft]/[max_shots].")
+	else
+		text += span_danger("Ammo Counter: [shotsleft]/[max_shots].")
+	if(ammo_per_shot > 1)
+		text += span_danger("Firing this weapon will consume [ammo_per_shot] [ammo_name_plural].")
 	if(passive_reload)
-		var/start = "This weapon passively reloads [projectile_name_plural] with a"
+		var/start = "This weapon passively reloads [ammo_name_plural] with a"
 		switch(passive_reload)
 			if(0 to 2.01 SECONDS)
-				. += span_nicegreen("[start] very short delay after firing.")
+				text += span_nicegreen("[start] very short delay after firing.")
 			if(2.01 SECONDS to 4.01 SECONDS)
-				. += span_notice("[start] short delay after firing.")
+				text += span_notice("[start] short delay after firing.")
 			if(4.01 SECONDS to 6.01 SECONDS)
-				. += span_notice("[start] delay after firing.")
+				text += span_notice("[start] delay after firing.")
 			if(6.01 SECONDS to 9.01 SECONDS)
-				. += span_danger("[start] long delay after firing.")
+				text += span_danger("[start] long delay after firing.")
 			if(9.01 to INFINITY)
-				. += span_danger("[start]n extremely long delay after firing.")
+				text += span_danger("[start]n extremely long delay after firing.")
+
 	if(reloadtime)
 		switch(reloadtime)
 			if(0 to 0.71 SECONDS)
-				. += span_nicegreen("This weapon has a very fast reload.")
+				text += span_nicegreen("This weapon has a very fast reload.")
 			if(0.71 SECONDS to 1.21 SECONDS)
-				. += span_notice("This weapon has a fast reload.")
+				text += span_notice("This weapon has a fast reload.")
 			if(1.21 SECONDS to 1.71 SECONDS)
-				. += span_notice("This weapon has a normal reload speed.")
+				text += span_notice("This weapon has a normal reload speed.")
 			if(1.71 SECONDS to 2.51 SECONDS)
-				. += span_danger("This weapon has a slow reload.")
+				text += span_danger("This weapon has a slow reload.")
 			if(2.51 to INFINITY)
-				. += span_danger("This weapon has an extremely slow reload.")
+				text += span_danger("This weapon has an extremely slow reload")
 
 		if(mobile_reload)
 			. += span_notice("This weapon can be reloaded while moving at the cost of movespeed.")
 
 		if(ammo_on_reload)
 			if(ammo_on_reload > 1)
-				. += span_notice("This weapon reloads [ammo_on_reload] [projectile_name_plural] at a time.")
+				text += span_notice("This weapon reloads [ammo_on_reload] [ammo_name_plural] at a time.")
 			else
-				. += span_notice("This weapon reloads one [projectile_name] at a time.")
+				text += span_notice("This weapon reloads one [ammo_name] at a time.")
+	if(ammo_on_melee)
+		if(ammo_on_melee > 1)
+			text += span_notice("This weapon reloads [ammo_on_melee] [ammo_name_plural] when hitting something with its melee.")
+		else
+			text += span_notice("This weapon reloads one [ammo_name] when hitting something with its melee.")
 
-	switch(weapon_weight)
-		if(WEAPON_HEAVY)
-			. += span_danger("This weapon requires both hands to fire.")
-		if(WEAPON_MEDIUM)
-			. += span_notice("This weapon can be fired with one hand.")
-		if(WEAPON_LIGHT)
-			. += span_nicegreen("This weapon can be dual wielded.")
+	if(alternate_fire_name)
+		text += ""
+		text += span_notice("This weapon has an alternate fire mode: [alternate_fire_name]. Activate by [alternate_toggle_instructions].")
+		if(alternate_info)
+			text += span_notice("Alt Fire - [alternate_info]")
+		// Altfire currently active?
+		if(alternate_selected)
+			text += span_danger("[alternate_fire_name] is currently <b>active!</b>")
+		else
+			text += span_notice("[alternate_fire_name] is currently <b>disabled.</b>")
 
-	if(chargetime)
-		. += span_notice("This weapon needs to be charged up before firing.")
-		switch(chargetime)
-			if(0 to 5)
-				. += span_nicegreen("This weapon charges up very fast.")
-			if(6 to 10)
-				. += span_notice("This weapon charges up fast.")
-			if(11 to 15)
-				. += span_danger("This weapon charges up slowly.")
-			else
-				. += span_danger("This weapon charges up extremely slowly.")
+		// Ammo count for altfire.
+		switch(alternate_reload_type)
+			if(RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_SHARED_RELOAD)
+				text += span_nicegreen("Reloading the magazine will reload the alternate ammo.")
+				if(alternate_shotsleft >= alternate_ammo_per_shot)
+					text += span_notice("[alternate_fire_name] Ammo Counter: [alternate_shotsleft]/[alternate_max_shots].")
+				else
+					text += span_danger("[alternate_fire_name] Ammo Counter: [alternate_shotsleft]/[alternate_max_shots].")
 
-	if(!autofire)
-		switch(fire_delay)
-			if(0 to 5)
-				. += span_nicegreen("This weapon fires fast.")
-			if(6 to 10)
-				. += span_notice("This weapon fires at a normal speed.")
-			if(11 to 15)
-				. += span_notice("This weapon fires slightly slower than usual.")
-			if(16 to 20)
-				. += span_danger("This weapon fires slowly.")
-			else
-				. += span_danger("This weapon fires extremely slowly.")
-	else
-		//Give it to 'em in true rounds per minute, accurate to the 5s
-		var/rpm = 600 / autofire
-		rpm = round(rpm,5)
-		. += span_nicegreen("This weapon is automatic.")
-		. += span_notice("This weapon fires at [rpm*burst_size] [projectile_name_plural] per minute.")
-	if(burst_size > 1)
-		. += span_notice("This weapon fires in a burst of [burst_size].")
-	. += span_notice("Examine this weapon more for melee information.")
+			if(RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_INDIVIDUAL_RELOAD)
+				text += span_notice("This weapon requires both ammo types to be reloaded separately.")
+				if(alternate_shotsleft >= alternate_ammo_per_shot)
+					text += span_notice("[alternate_fire_name] Ammo Counter: [alternate_shotsleft]/[alternate_max_shots].")
+				else
+					text += span_danger("[alternate_fire_name] Ammo Counter: [alternate_shotsleft]/[alternate_max_shots].")
 
-/obj/item/ego_weapon/ranged/EgoAttackInfo()
-	var/damage_type = damtype
-	var/damage = force
-	if(GLOB.damage_type_shuffler?.is_enabled && IsColorDamageType(damage_type))
-		var/datum/damage_type_shuffler/shuffler = GLOB.damage_type_shuffler
-		var/new_damage_type = shuffler.mapping_offense[damage_type]
-		damage_type = new_damage_type
-	if(force_multiplier != 1)
-		return span_notice("It deals [round(damage * force_multiplier, 0.1)] [damage_type] damage in melee. (+ [(force_multiplier - 1) * 100]%)")
-	return span_notice("It deals [damage] [damage_type] damage in melee.")
 
-/obj/item/ego_weapon/ranged/proc/GunAttackInfo()
+			if(RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_SHARED_MAGAZINE)
+				text += span_notice("The alternate fire on this weapon uses the main ammo pool.")
+			if(RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_EMPTY_MAG)
+				text += span_danger("This weapon can only load one ammo type at a time. Reloading will dump the magazine.")
+
+		text += ""
+	return text
+
+/obj/item/ego_weapon/ranged/GunAttackInfo()
 	if(!last_projectile_damage || !last_projectile_type)
 		return span_userdanger("The bullet of this EGO gun has not properly initialized, report this to coders!")
 	var/damage_type = last_projectile_type
@@ -492,18 +505,16 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 		var/datum/damage_type_shuffler/shuffler = GLOB.damage_type_shuffler
 		var/new_damage_type = shuffler.mapping_offense[damage_type]
 		damage_type = new_damage_type
-	var/correct_pellets = (alternate_selected) ? alternate_pellets : pellets
-	if(correct_pellets > 1)	//for shotguns
-		return span_notice("Its bullets deal [damage] x [correct_pellets] [damage_type] damage.[force_multiplier != 1 ? " (+ [(force_multiplier - 1) * 100]%)" : ""]")
-	return span_notice("Its bullets deal [damage] [damage_type] damage.[force_multiplier != 1 ? " (+ [(force_multiplier - 1) * 100]%)" : ""]")
+	if(pellets > 1)	//for shotguns
+		return span_notice("Its [projectile_name_plural] deal [damage] x [pellets] [damage_type] damage.[force_multiplier != 1 ? " (+ [(force_multiplier - 1) * 100]%)" : ""]")
+	return span_notice("Its [projectile_name_plural] deal [damage] [damage_type] damage.[force_multiplier != 1 ? " (+ [(force_multiplier - 1) * 100]%)" : ""]")
 
 /// Updates the damage/type of projectiles inside of the gun
 /obj/item/ego_weapon/ranged/proc/update_projectile_examine()
-	var/correct_projectile_path = alternate_selected ? alternate_projectile_path : projectile_path
-	if(isnull(correct_projectile_path))
+	if(isnull(projectile_path))
 		message_admins("[src] has an invalid projectile path.")
 		return
-	var/obj/projectile/projectile = new correct_projectile_path(src, src)
+	var/obj/projectile/projectile = new projectile_path(src, src)
 	last_projectile_damage = projectile.damage
 	last_projectile_type = projectile.damage_type
 	qdel(projectile)
@@ -713,10 +724,7 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 	if(recoil)
 		shake_camera(user, recoil + 1, recoil)
 
-	var/sfx = alternate_selected ? alternate_fire_sound : fire_sound
-	var/sfx_volume = alternate_selected ? alternate_fire_sound_volume : fire_sound_volume
-
-	playsound(user, sfx, sfx_volume, vary_fire_sound)
+	playsound(user, fire_sound, fire_sound_volume, vary_fire_sound)
 	if(!message)
 		return
 
@@ -1039,7 +1047,13 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 //Least important part: Melee attack info
 //Has to be coded differently as an examine_more.
 //Shoot me now - Kitsunemitsu/Kirie
+//Now it can display ranged stuff for more melee focused ranged weapons - Crabby
 /obj/item/ego_weapon/ranged/examine_more(mob/user)
+	if(!is_ranged)
+		var/list/msg = list()
+		msg += GunAttackInfo()
+		msg += GunOtherInfo()
+		return msg
 	var/list/msg = list(span_notice("This weapon deals [force] [damtype] damage in melee."))
 
 	if(reach>1)

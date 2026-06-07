@@ -20,15 +20,14 @@
 /obj/item/ego_weapon/ranged/pistol/gaze
 	name = "gaze"
 	desc = "A magnum pistol featuring excellent burst firing potential."
-	special = "This weapon fires bouncing, piercing shots."
 	icon_state = "gaze"
 	inhand_icon_state = "gaze"
 	force = 6
 	projectile_path = /obj/projectile/ego_bullet/ego_gaze
-	fire_delay = 15
-	max_shots = 8
-	reloadtime = 1.8 SECONDS
-	fire_sound = 'sound/weapons/ego/harmony1.ogg'
+	fire_delay = 4 //FAN THE HAMMER
+	shotsleft = 8
+	reloadtime = 2 SECONDS
+	fire_sound = 'sound/weapons/gun/pistol/deagle.ogg'
 	vary_fire_sound = FALSE
 	weapon_weight = WEAPON_HEAVY
 	fire_sound_volume = 70
@@ -39,6 +38,7 @@
 /obj/item/ego_weapon/ranged/galaxy
 	name = "galaxy"
 	desc = "A shimmering wand."
+	special = "This weapon's magic doesn't hit allies."
 	icon_state = "galaxy"
 	inhand_icon_state = "galaxy"
 	projectile_path = /obj/projectile/ego_bullet/ego_galaxy
