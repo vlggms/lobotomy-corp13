@@ -347,7 +347,7 @@
 							FORTITUDE_ATTRIBUTE = 80
 	)
 	alternate_fire_name = "Underslung Grenade Launcher"
-	alternate_info = "This rifle has an underslung grenade launcher. Bee Grenades deal heavy AoE damage and a damage over time debuff.\nAfter firing the UGL, you'll automatically swap to the primary fire mode."
+	alternate_info = "This rifle has an underslung grenade launcher. Bee grenades deal heavy AoE damage and knockback.\nAfter firing the UGL, you'll automatically swap to the primary fire mode."
 	alternate_shotsleft = 1
 	alternate_pellets = 1
 	alternate_reload_type = RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_SHARED_RELOAD
