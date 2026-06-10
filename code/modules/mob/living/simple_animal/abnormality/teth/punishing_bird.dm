@@ -50,7 +50,7 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/beak,
-		/datum/ego_datum/weapon/beakmagnum,
+		/datum/ego_datum/weapon/beaksmg,
 		/datum/ego_datum/armor/beak,
 	)
 	gift_type =  /datum/ego_gifts/beak

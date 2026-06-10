@@ -12,7 +12,7 @@
 	force = 15
 	projectile_path = /obj/projectile/ego_bullet/ego_match
 
-/obj/item/ego_weapon/ranged/pistol/beakmagnum
+/obj/item/ego_weapon/ranged/pistol/beak
 	name = "beak"
 	desc = "A heavy pistol that fires at a surprisingly fast rate, and is deadly accurate."
 	icon_state = "beakmagnum"
@@ -28,7 +28,7 @@
 	fire_sound_volume = 70
 	dual_wield_spread = 0
 
-/obj/item/ego_weapon/ranged/beak
+/obj/item/ego_weapon/ranged/beaksmg
 	name = "beak mk2"
 	desc = "As if to prove that size doesn't matter when it comes to force, \
 	the weapon has high firepower despite its small size."
@@ -45,7 +45,7 @@
 	autofire = 0.16 SECONDS
 	var/angry = FALSE
 
-/obj/item/ego_weapon/ranged/beak/before_firing(atom/target, mob/living/user)
+/obj/item/ego_weapon/ranged/beaksmg/before_firing(atom/target, mob/living/user)
 	if(user.health <= user.maxHealth/2)
 		angry = TRUE
 	else
@@ -114,10 +114,10 @@
 	icon_state = "dream"
 	inhand_icon_state = "dream"
 	force = 7
-	attack_speed = 0.7
+	attack_speed = 0.8
 	damtype = BLACK_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_dream
-	weapon_weight = WEAPON_HEAVY
+	weapon_weight = WEAPON_MEDIUM
 	fire_sound = "dreamy_gun"
 	autofire = 0.25 SECONDS
 	max_shots = 16
@@ -138,6 +138,7 @@
 	fire_delay = 5
 	max_shots = 10
 	reloadtime = 0.2 SECONDS
+	ammo_on_reload = 1
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
 
 /obj/item/ego_weapon/ranged/snapshot
