@@ -59,8 +59,7 @@
 
 	fire_sound = 'sound/magic/staff_change.ogg'
 	alternate_fire_name = "Glimmer"
-	alternate_info = "This weapon fires slower, but homes in on a random target within 15 metres.	\
-			WARNING: This feature is not accurate."
+	alternate_info = "This weapon fires slower, but fires a slower moving projectile that homes in on the nearest target within a small radius."
 	alternate_reload_type = RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_SHARED_MAGAZINE
 	alternate_projectile_path = /obj/projectile/ego_bullet/ego_galaxy/homing
 	alternate_fire_sound = 'sound/magic/charge.ogg'
