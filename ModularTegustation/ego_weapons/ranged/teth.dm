@@ -82,7 +82,7 @@
 	desc = "A classic blue revolver, that gives you feelings of loneliness."
 	icon_state = "solitude"
 	inhand_icon_state = "solitude"
-	force = 3
+	force = 4
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_solitude
 	fire_delay = 10
@@ -99,7 +99,7 @@
 	When throbbing emotions surge up from time to time, it's best to simply cover the face."
 	icon_state = "shy"
 	inhand_icon_state = "shy"
-	force = 3
+	force = 4
 	damtype = BLACK_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_shy
 	fire_sound = 'sound/effects/meatslap.ogg'
@@ -231,7 +231,7 @@
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
 	special = "This weapon's projectiles move slowly and pierce enemies."
-	force = 3
+	force = 4
 	attack_speed = 0.5
 	projectile_path = /obj/projectile/ego_bullet/ego_luckdraw
 	weapon_weight = WEAPON_MEDIUM
@@ -248,7 +248,7 @@
 	special = "Press alt-click or middle-click with this weapon in your hand when wearing matching armor to turn others nearby bald."
 	icon_state = "bald"
 	inhand_icon_state = "bald"
-	force = 3
+	force = 4
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_tough
 	fire_delay = 5
