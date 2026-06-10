@@ -695,18 +695,18 @@
 	. = ..()
 	animate(src, alpha = 255, time = 5)
 
-/obj/projectile/magic/aoe/pillar/Impact()
-	if(!fired)//work around to prevent the pillar storm pillars from deleting themselves if you touch them
-		return FALSE
-	return ..()
-
 /obj/projectile/magic/aoe/pillar/Moved(atom/OldLoc, Dir)
 	..()
 	for(var/turf/T in range(1, get_turf(src)))
 		new trail_type(T)
 
-/obj/projectile/magic/aoe/pillar/on_hit(atom/target, blocked = FALSE)
+/obj/projectile/magic/aoe/pillar/process_hit(turf/T, atom/target, atom/bumped, hit_something = FALSE)
+	if(QDELETED(src) || !T || !target)
+		return
 	damage = initial(damage) + stored_damage_falloff
+	return ..()
+
+/obj/projectile/magic/aoe/pillar/on_hit(atom/target, blocked = FALSE)
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		if(H.is_working)//Ehh they can tank a low damage pillar instead of eating shit

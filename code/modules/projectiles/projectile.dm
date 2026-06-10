@@ -360,6 +360,8 @@
  * Also, we select_target to find what to process_hit first.
  */
 /obj/projectile/proc/Impact(atom/A)
+	if(!fired)			// NEVER hit when we aren't fired
+		return
 	if(!trajectory)
 		qdel(src)
 		return FALSE

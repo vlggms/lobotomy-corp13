@@ -804,15 +804,20 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 	//DUAL (or more!) WIELDING
 	var/bonus_spread = 0
 	var/loop_counter = 0
-	if(ishuman(user) && user.a_intent == INTENT_HARM)
+	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		for(var/obj/item/ego_weapon/ranged/G in H.held_items)
-			if(G == src || G.weapon_weight >= WEAPON_MEDIUM)
+			if(G == src)
 				continue
-			else if(G.can_trigger_gun(user) && G.can_shoot(user))
-				bonus_spread += dual_wield_spread
-				loop_counter++
-				addtimer(CALLBACK(G, TYPE_PROC_REF(/obj/item/ego_weapon/ranged, process_fire), target, user, TRUE, params, null, bonus_spread), loop_counter)
+			//We want to make sure medium guns can't be dualwielded with light guns/semi dualwield 2 medium guns
+			if(weapon_weight >= WEAPON_MEDIUM || G.weapon_weight >= WEAPON_MEDIUM)
+				G.semicd = TRUE
+				addtimer(CALLBACK(G, PROC_REF(reset_semicd)), fire_delay)
+			else
+				if(user.a_intent == INTENT_HARM && G.can_trigger_gun(user) && G.can_shoot(user))
+					bonus_spread += dual_wield_spread
+					loop_counter++
+					addtimer(CALLBACK(G, TYPE_PROC_REF(/obj/item/ego_weapon/ranged, process_fire), target, user, TRUE, params, null, bonus_spread), loop_counter)
 
 	return process_fire(target, user, TRUE, params, null, bonus_spread)
 

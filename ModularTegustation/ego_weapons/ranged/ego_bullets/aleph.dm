@@ -154,6 +154,11 @@
 	damage = 70 // VERY high damage
 	damage_type = RED_DAMAGE
 
+/obj/projectile/ego_bullet/judge
+	name = "judge"
+	damage = 45
+	damage_type = WHITE_DAMAGE
+
 /obj/projectile/ego_bullet/ego_hookah
 	name = "havana"
 	icon_state = "smoke"
@@ -174,8 +179,6 @@
 		var/mob/living/simple_animal/A = target
 		if(LAZYLEN(A.projectile_blockers))
 			damage *= damage_decay**2//Decay more to prevent it from melting shit
-			for(var/mob/living/simple_animal/projectile_blocker_dummy/L in A.projectile_blockers)
-				addtimer(CALLBACK(src, PROC_REF(HitListRemove), L), iframes)
 	damage *= damage_decay
 	if(damage < 0.1)
 		qdel(src)
@@ -185,6 +188,11 @@
 	if(!target || QDELETED(target))
 		return
 	impacted[target] = FALSE
+	if(istype(target, /mob/living/simple_animal))
+		var/mob/living/simple_animal/A = target
+		if(LAZYLEN(A.projectile_blockers))
+			for(var/mob/living/simple_animal/projectile_blocker_dummy/L in A.projectile_blockers)
+				impacted[L] = FALSE
 
 /obj/projectile/ego_bullet/ego_executive
 	name = "executive"

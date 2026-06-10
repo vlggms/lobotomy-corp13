@@ -14,6 +14,7 @@
 			var/mob/living/L = target
 			var/mob/living/user = firer
 			if(user.faction_check_mob(L)) // Our faction
+				impacted[L] = TRUE
 				return
 	return ..()
 

@@ -286,7 +286,6 @@
 	desc = "With the waxing of the sun, humanity wanes."
 	icon_state = "arcadia"
 	inhand_icon_state = "arcadia"
-	special = "Use in hand to load bullets."
 	force = 40
 	projectile_path = /obj/projectile/ego_bullet/arcadia
 	weapon_weight = WEAPON_HEAVY
@@ -316,10 +315,12 @@
 	inhand_icon_state = "judge"
 	force = 40
 	damtype = WHITE_DAMAGE
+	projectile_path = /obj/projectile/ego_bullet/judge
 	weapon_weight = WEAPON_MEDIUM	//Cannot be dual wielded
-	recoil = 2
+	recoil = 1
 	fire_sound_volume = 30
 	fire_delay = 3	//FAN THE HAMMER
+	click_cooldown_override = 3
 
 	max_shots = 6	//Based off a colt Single Action Navy
 	reloadtime = 1 SECONDS
