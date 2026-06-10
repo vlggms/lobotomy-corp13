@@ -10,7 +10,7 @@
 
 /obj/projectile/ego_bullet/ego_gaze
 	name = "gaze"
-	damage = 8 //Slow as balls
+	damage = 9 //Slow as balls reload
 	damage_type = RED_DAMAGE
 
 //Homing weapon with no homing

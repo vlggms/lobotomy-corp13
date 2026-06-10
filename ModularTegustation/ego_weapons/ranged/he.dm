@@ -24,7 +24,8 @@
 	inhand_icon_state = "gaze"
 	force = 6
 	projectile_path = /obj/projectile/ego_bullet/ego_gaze
-	fire_delay = 4 //FAN THE HAMMER
+	fire_delay = 3 //FAN THE HAMMER
+	click_cooldown_override = 3
 	shotsleft = 8
 	reloadtime = 2 SECONDS
 	fire_sound = 'sound/weapons/gun/pistol/deagle.ogg'
