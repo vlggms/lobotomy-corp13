@@ -152,7 +152,7 @@ GLOBAL_LIST_INIT(dingle_hallucination_list, list(
 			return
 		for(var/mob/living/carbon/human/H in humans)
 			H.adjustSanityLoss(H.maxSanity)
-		safe = TRUE // Set safe again to really prevent something from going wrong
+		safe = TRUE // Set safe again to prevent something from going wrong.
 		return
 	safe = FALSE
 
@@ -263,7 +263,6 @@ GLOBAL_LIST_INIT(dingle_hallucination_list, list(
 	var/tries = 0
 	var/list/dingles = list()
 
-
 /datum/status_effect/dangle/on_apply()
 	. = ..()
 	if(!ishuman(owner))
@@ -309,8 +308,6 @@ GLOBAL_LIST_INIT(dingle_hallucination_list, list(
 		status_holder.ai_controller = /datum/ai_controller/insane/dingle_possess
 		status_holder.InitializeAIController()
 		owner.apply_status_effect(/datum/status_effect/panicked_type/dingle)
-	return ..()
-
 
 //***Custom Panic Definiton***
 /datum/status_effect/panicked_type/dingle
