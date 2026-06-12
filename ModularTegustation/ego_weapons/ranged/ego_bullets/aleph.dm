@@ -202,6 +202,7 @@
 
 /obj/projectile/ego_bullet/ego_executive/kill_shot
 	damage = 60
+	var/stat = null
 
 /obj/projectile/ego_bullet/ego_executive/kill_shot/process()
 	. = ..()
@@ -212,6 +213,12 @@
 			S.dir = pick(NORTH, SOUTH, EAST, WEST)
 			S.pixel_y = pixel_y + rand(-8,8)
 
+/obj/projectile/ego_bullet/ego_executive/kill_shot/process_hit(turf/T, atom/target, atom/bumped, hit_something = FALSE)
+	if(isliving(target))
+		var/mob/living/L = target
+		stat = L.stat
+	return ..()
+
 /obj/projectile/ego_bullet/ego_executive/kill_shot/on_hit(atom/target, blocked = FALSE)
 	. = ..()
 	var/mob/living/T = target
@@ -220,7 +227,7 @@
 	if(!isliving(firer))
 		return
 	var/mob/living/user = firer
-	if(T.stat == DEAD)
+	if(T.stat == DEAD && stat != DEAD)
 		var/obj/item/ego_weapon/ranged/pistol/executive/gun = fired_from
 		gun.AutoReload(user)
 	return

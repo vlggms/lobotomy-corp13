@@ -105,30 +105,6 @@
 	ammo_per_shot = 1
 	chargetime = 0
 
-/*/obj/item/ego_weapon/ranged/adoration/attack_self(mob/user)
-	. = ..()
-	switch(mode)
-		if(SHOT_MODE)
-			to_chat(user,"<span class='warning'>You focus, changing for a DOT blast</span>")
-			projectile_path = /obj/projectile/ego_bullet/adoration/dot
-			pellets = 1
-			variance = 0
-			mode = DOT_MODE
-			return
-		if(DOT_MODE)
-			to_chat(user,"<span class='warning'>You focus, changing for an AOE blast</span>")
-			projectile_path = /obj/projectile/ego_bullet/adoration/aoe
-			mode = AOE_MODE
-			return
-		if(AOE_MODE)
-			to_chat(user,"<span class='warning'>You focus, changing for a shotgun blast</span>")
-			projectile_path = /obj/projectile/ego_bullet/adoration
-			pellets = initial(pellets)
-			variance = initial(variance)
-			mode = SHOT_MODE
-			return
-*/
-
 /obj/item/ego_weapon/ranged/nihil
 	name = "nihil"
 	desc = "Having decided to trust its own intuition, the jester spake the names of everyone it had met on that path with each step it took."
@@ -329,6 +305,7 @@
 /obj/item/ego_weapon/ranged/havana
 	name = "havana"
 	desc = "Within it's simple design lies a lot of struggle"
+	special = "This weapon pierces all targets and hit the same target multiple times, but loses damage the more targets it hits."
 	icon_state = "havana"
 	inhand_icon_state = "havana"
 	force = 30

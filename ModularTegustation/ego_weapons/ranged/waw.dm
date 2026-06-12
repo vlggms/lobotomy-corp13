@@ -538,8 +538,6 @@
 	var/light_duration_variance = 20 SECONDS
 
 	var/current_light = 0
-	/// This exists mainly to prevent buying the weapon from being a jumpscare
-	var/first_time = TRUE
 	/// Associate current light to corresponding firerate, projectile damage multiplier and spread.
 	var/alist/lights_to_stats = alist(
 		0 = list("autofire" = 0.12 SECONDS, "multiplier" = 1, spread = 18),
@@ -552,7 +550,10 @@
 /obj/item/ego_weapon/ranged/intentions/Initialize(mapload)
 	. = ..()
 	autofire_component = GetComponent(/datum/component/automatic_fire)
-	LightProgress(0)
+	// Prepare the next light switch
+	var/next_lights = current_light == 4 ? (0) : (current_light + 1)
+	var/next_light_time = light_duration + (rand(-light_duration_variance, light_duration_variance))
+	light_progress_timer = addtimer(CALLBACK(src, PROC_REF(LightProgress), (next_lights)), next_light_time, TIMER_STOPPABLE)
 
 /obj/item/ego_weapon/ranged/intentions/examine(mob/user)
 	. = ..()
@@ -592,11 +593,8 @@
 
 	// Play a SFX and alert people that this thing changed
 	if(current_light == 0)
-		if(!first_time)
-			playsound(src, 'sound/abnormalities/clock/end.ogg', 50, 0)
-			audible_message(span_notice("The lights on [src] fizzle out."))
-		else
-			first_time = FALSE
+		playsound(src, 'sound/abnormalities/clock/end.ogg', 50, 0)
+		audible_message(span_notice("The lights on [src] fizzle out."))
 	else
 		playsound(src, 'sound/abnormalities/clock/turn_on.ogg', 50, 0)
 		audible_message(span_notice("A new light flickers on [src]."))

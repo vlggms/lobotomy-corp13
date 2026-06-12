@@ -8,7 +8,7 @@ GLOBAL_LIST_INIT(small_ego, list (
 	/obj/item/ego_weapon/warring,
 	/obj/item/ego_weapon/feather,
 	/obj/item/ego_weapon/ranged/intentions,
-	/obj/item/ego_weapon/ranged/beak,
+	/obj/item/ego_weapon/ranged/beaksmg,
 	/obj/item/ego_weapon/lance/skinprophet,
 	/obj/item/ego_weapon/ranged/arcadia/judge,
 
