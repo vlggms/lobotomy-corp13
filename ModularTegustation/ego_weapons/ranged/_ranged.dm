@@ -1,4 +1,3 @@
-#define DUALWIELD_PENALTY_EXTRA_MULTIPLIER 1.4
 /*
 	////////////////////////////////////////////////////
 	///A Brief Explanation of Guns and Their Jank DPS///
@@ -793,7 +792,7 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 		return
 	//Charge up Stuff
 	if(chargetime)
-		if(semicd)//You still need to wait till it's off cooldown first
+		if(semicd || is_charging)//You still need to wait till it's off cooldown first
 			return
 		if(!charged)
 			ChargeUp(user)
@@ -871,7 +870,7 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 			return FALSE
 
 	if(randomspread)
-		sprd = round((rand() - 0.5) * DUALWIELD_PENALTY_EXTRA_MULTIPLIER * (randomized_gun_spread + randomized_bonus_spread))
+		sprd = round((rand() - 0.5) * (randomized_gun_spread + randomized_bonus_spread))
 	else //Smart spread
 		sprd = round((((rand_spr/burst_size) * iteration) - (0.5 + (rand_spr * 0.25))) * (randomized_gun_spread + randomized_bonus_spread))
 
@@ -910,18 +909,18 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 	var/randomized_gun_spread = 0
 	var/rand_spr = rand()
 	if(spread)
-		randomized_gun_spread =	rand(0,spread)
+		randomized_gun_spread =	rand(floor(spread/2),spread)
 	if(HAS_TRAIT(user, TRAIT_POOR_AIM)) //nice shootin' tex
 		user.blind_eyes(1)
 		bonus_spread += 25
-	var/randomized_bonus_spread = rand(0, bonus_spread)
+	var/randomized_bonus_spread = rand(floor(bonus_spread/2), bonus_spread)
 
 	if(burst_size > 1)
 		firing_burst = TRUE
 		for(var/i = 1 to burst_size)
 			addtimer(CALLBACK(src, PROC_REF(process_burst), user, target, message, params, zone_override, sprd, randomized_gun_spread, randomized_bonus_spread, rand_spr, i), (burst_delay/burst_size) * (i - 1))
 	else
-		sprd = round((rand() - 0.5) * DUALWIELD_PENALTY_EXTRA_MULTIPLIER * (randomized_gun_spread + randomized_bonus_spread))
+		sprd = round((rand() - 0.5) * (randomized_gun_spread + randomized_bonus_spread))
 
 		before_firing(target,user)
 		fire_projectile(target, user, params, 0, FALSE, zone_override, sprd, src, temporary_damage_multiplier)
@@ -1046,8 +1045,6 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 	if(zoomable)
 		azoom = new()
 		azoom.gun = src
-
-#undef DUALWIELD_PENALTY_EXTRA_MULTIPLIER
 
 //Least important part: Melee attack info
 //Has to be coded differently as an examine_more.

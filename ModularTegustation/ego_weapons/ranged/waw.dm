@@ -89,7 +89,7 @@
 	damtype = BLACK_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_magicbullet
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 15	//Put on the armor, jackass.
+	fire_delay = 15
 	max_shots = 7
 	ammo_on_reload = 1
 	reloadtime = 0.3 SECONDS
@@ -785,7 +785,7 @@
 	if(!(target.status_flags & GODMODE) && target.stat != DEAD)
 		var/justicemod = get_attack_multiplier(user)
 		AdjustThirst(force * justicemod)
-	..()
+	. = ..()
 
 /obj/item/ego_weapon/ranged/cannon/banquet/can_shoot(mob/living/user)
 	if(bloodshot_ready)

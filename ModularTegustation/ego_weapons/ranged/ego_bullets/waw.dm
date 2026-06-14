@@ -83,7 +83,7 @@
 	damage_type = BLACK_DAMAGE
 
 //Smartgun
-/obj/projectile/ego_bullet/ego_loyalty // not actually used at the moment
+/obj/projectile/ego_bullet/ego_loyalty
 	name = "loyalty"
 	icon_state = "loyalty"
 	damage = 3
