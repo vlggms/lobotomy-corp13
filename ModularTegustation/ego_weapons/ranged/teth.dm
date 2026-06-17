@@ -149,7 +149,7 @@
 	special = "This weapon fires a hitscan beam."
 	force = 10
 	damtype = WHITE_DAMAGE
-	projectile_path = /obj/projectile/beam/snapshot
+	projectile_path = /obj/projectile/ego_bullet/snapshot
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 10
 	max_shots = 12

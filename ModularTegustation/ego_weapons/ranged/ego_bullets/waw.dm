@@ -310,6 +310,15 @@
 	muzzle_type = /obj/effect/projectile/muzzle/laser/warring
 	tracer_type = /obj/effect/projectile/tracer/warring
 	impact_type = /obj/effect/projectile/impact/laser/warring
+	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
+	hitsound = 'sound/weapons/sear.ogg'
+	hitsound_wall = 'sound/weapons/effects/searwall.ogg'
+	eyeblur = 0
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
+	light_system = MOVABLE_LIGHT
+	light_range = 1
+	light_power = 1
+	light_color = COLOR_SOFT_RED
 
 /obj/effect/projectile/muzzle/laser/warring
 	name = "lightning flash"

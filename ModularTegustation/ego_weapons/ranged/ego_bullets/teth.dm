@@ -58,7 +58,7 @@
 
 
 //Snapshot, hitscan laser
-/obj/projectile/beam/snapshot
+/obj/projectile/ego_bullet/snapshot
 	name = "snapshot"
 	icon_state = "snapshot"
 	hitsound = null
@@ -71,6 +71,15 @@
 	impact_type = /obj/effect/projectile/impact/laser/snapshot
 	wound_bonus = -100
 	bare_wound_bonus = -100
+	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
+	hitsound = 'sound/weapons/sear.ogg'
+	hitsound_wall = 'sound/weapons/effects/searwall.ogg'
+	eyeblur = 0
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
+	light_system = MOVABLE_LIGHT
+	light_range = 1
+	light_power = 1
+	light_color = COLOR_SOFT_RED
 
 /obj/effect/projectile/muzzle/laser/snapshot
 	name = "grey flash"
