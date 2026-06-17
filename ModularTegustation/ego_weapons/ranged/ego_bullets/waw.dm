@@ -104,9 +104,7 @@
 	var/tile_radius = 3
 	/// Damage at epicenter (distance 0)
 	/// Each tile away from the epicenter reduces damage by this much
-	var/falloff_per_dist = 30
-	var/list/hitlist = list()
-	/// We'll update the range the first time we move. We don't want to go any further than the distance between our firer and the original target.
+	var/falloff_per_dist = 15
 
 /// Whenever this thing finally meets its end, blow up.
 /obj/projectile/ego_bullet/loyalty_ugl/Destroy(force)
@@ -121,10 +119,9 @@
 	var/turf/impact_turf = get_turf(src)
 
 	// Aesthetics
-	playsound(impact_turf, 'sound/abnormalities/armyinblack/black_explosion.ogg', 60, FALSE, 5, ignore_walls = TRUE)
-	var/atom/vfx = new /obj/effect/temp_visual/black_explosion(impact_turf)
-	vfx.transform *= 0.6
+	new /obj/effect/explosion(impact_turf)
 	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(RadialShockwaveVisual), impact_turf, tile_radius, 2, /obj/effect/temp_visual/small_smoke/halfsecond)
+	playsound(impact_turf, 'sound/effects/explosion2.ogg', 50, 0, 6)
 
 	// Shake the screen of the firer
 	var/dist_from_epicenter = get_dist(nadeslinger, impact_turf)
@@ -135,12 +132,12 @@
 	var/list/affected_turfs = RANGE_TURFS(tile_radius, impact_turf)
 	for(var/turf/T in affected_turfs)
 		for(var/mob/living/M in T)
-			if(M in hitlist)
+			if(impacted[M])
 				continue
 			if(nadeslinger.faction_check_mob(M))
 				continue
 
-			hitlist |= M
+			impacted[M] = TRUE
 
 			// Damage
 			var/distance_from_epicenter = clamp(get_dist(M, impact_turf), 0, 3)
