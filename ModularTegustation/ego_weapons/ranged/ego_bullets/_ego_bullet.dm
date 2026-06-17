@@ -6,16 +6,22 @@
 	wound_bonus = -100
 	bare_wound_bonus = -100
 	speed = 0.4
-	var/smart_pass = FALSE
+	var/ff_multiplier= 0.5
+	var/old_mult = 0
 
 /obj/projectile/ego_bullet/process_hit(turf/T, atom/target, atom/bumped, hit_something = FALSE)
-	if(smart_pass)
-		if(isliving(target) && isliving(firer))
-			var/mob/living/L = target
-			var/mob/living/user = firer
-			if(user.faction_check_mob(L)) // Our faction
-				impacted[L] = TRUE
+	if(old_mult)
+		damage_multiplier = old_mult
+		old_mult = 0
+	if(ishuman(target) && ishuman(firer))
+		var/mob/living/carbon/human/H = target
+		var/mob/living/carbon/human/user = firer
+		if(!(user.sanity_lost || H.sanity_lost))
+			if(ff_multiplier == 0)
+				impacted[H] = TRUE
 				return
+			old_mult = damage_multiplier
+			damage_multiplier *= ff_multiplier
 	return ..()
 
 /obj/projectile/ego_bullet/proc/GetHomingTarget(target_range = 4)

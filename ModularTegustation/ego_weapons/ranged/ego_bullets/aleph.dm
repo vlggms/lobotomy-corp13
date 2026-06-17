@@ -4,7 +4,7 @@
 	damage = 35
 	damage_type = WHITE_DAMAGE
 	speed = 0.15
-	smart_pass = TRUE
+	ff_multiplier = 0
 	projectile_piercing = PASSMOB
 	hit_nondense_targets = TRUE
 
@@ -14,7 +14,7 @@
 	desc = "A glob of infectious slime. It's going for your heart."
 	damage = 26	//Fires 3
 	speed = 0.8
-	smart_pass = TRUE
+	ff_multiplier = 0
 	hit_nondense_targets = TRUE
 	damage_type = BLACK_DAMAGE
 	hitsound = "sound/effects/footstep/slime1.ogg"
@@ -142,7 +142,7 @@
 	damage_type = WHITE_DAMAGE
 	impact_effect_type = null
 	hitscan = TRUE
-	smart_pass = TRUE
+	ff_multiplier = 0
 	damage_falloff_tile = 4//the damage ramps up; 4 extra damage per tile. Maximum range is about 32 tiles, dealing 200 damage
 
 /obj/projectile/ego_bullet/pink/on_hit(atom/target, blocked = FALSE, pierce_hit)
@@ -168,7 +168,7 @@
 	range = 6
 	projectile_piercing = PASSMOB
 	hit_nondense_targets = TRUE
-	smart_pass = TRUE//It'll be too annoying to use with other people if I didn't do this
+	ff_multiplier = 0 //It'll be too annoying to use with other people if I didn't do this
 	var/damage_decay = 0.9
 	var/iframes = 1
 

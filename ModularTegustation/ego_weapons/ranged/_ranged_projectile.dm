@@ -44,7 +44,7 @@
 		casing.damage_multiplier = projectile.damage_multiplier
 		casing.BB = projectile
 		casing.AddComponent(/datum/component/pellet_cloud, projectile_path, pellets)
-		SEND_SIGNAL(casing, COMSIG_PELLET_CLOUD_INIT, target, user, fired_from, randomspread, spread, zone_override, params, distro)
+		SEND_SIGNAL(casing, COMSIG_PELLET_CLOUD_INIT, target, user, fired_from, randomspread, src.spread, zone_override, params, distro)
 		qdel(casing) // don't worry, the component protects the casing from deleting until its done doing its job
 
 	if(click_cooldown_override)

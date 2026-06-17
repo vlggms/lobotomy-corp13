@@ -213,10 +213,10 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/waw/assonance
-	name = "assonance"
+/obj/item/clothing/suit/armor/ego_gear/waw/accord
+	name = "accord"
 	desc = "What is good if there is no evil?"
-	icon_state = "assonance"
+	icon_state = "accord"
 	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 60, BLACK_DAMAGE = 20, PALE_DAMAGE = 30) // 140
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 80

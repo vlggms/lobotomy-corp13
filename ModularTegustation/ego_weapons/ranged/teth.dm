@@ -14,12 +14,13 @@
 
 /obj/item/ego_weapon/ranged/pistol/beak
 	name = "beak"
-	desc = "A heavy pistol that fires at a surprisingly fast rate, and is deadly accurate."
-	icon_state = "beakmagnum"
-	inhand_icon_state = "beakmagnum"
+	desc = "As if to prove that size doesn't matter when it comes to force, \
+	the weapon has high firepower despite its small size."
+	icon_state = "beak"
+	inhand_icon_state = "beak"
 	force = 4
 	special = "This weapon has pinpoint accuracy when dual wielded."
-	projectile_path = /obj/projectile/ego_bullet/ego_beakmagnum
+	projectile_path = /obj/projectile/ego_bullet/ego_beak
 	fire_delay = 10
 	max_shots = 7
 	reloadtime = 2.1 SECONDS
@@ -30,13 +31,12 @@
 
 /obj/item/ego_weapon/ranged/beaksmg
 	name = "beak mk2"
-	desc = "As if to prove that size doesn't matter when it comes to force, \
-	the weapon has high firepower despite its small size."
-	icon_state = "beak"
-	inhand_icon_state = "beak"
+	desc = "Unleash it on those standing in the way with no hesitation or forgiveness."
+	icon_state = "beaksmg"
+	inhand_icon_state = "beaksmg"
 	force = 10
-	special = "This weapon becomes stronger at the cost of more spread while the user is under half HP."
-	projectile_path = /obj/projectile/ego_bullet/ego_beak
+	special = "This weapon's bullet damage and spread dramatically increases while the user is under half HP."
+	projectile_path = /obj/projectile/ego_bullet/ego_bulletsmg
 	weapon_weight = WEAPON_MEDIUM
 	spread = 10
 	max_shots = 30
@@ -51,8 +51,8 @@
 	else
 		angry = FALSE
 	if(angry)
-		spread = 40
-		projectile_path = /obj/projectile/ego_bullet/ego_beak/strong
+		spread = 30
+		projectile_path = /obj/projectile/ego_bullet/ego_bulletsmg/strong
 		color = "#FF0000"
 	else
 		spread = initial(spread)

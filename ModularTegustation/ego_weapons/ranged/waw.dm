@@ -617,37 +617,41 @@
 							PRUDENCE_ATTRIBUTE = 80
 	)
 
-/obj/item/ego_weapon/ranged/assonance
+/obj/item/ego_weapon/ranged/accord
 	name = "accord"
 	desc = "However, the world is more than simply warmth and light. The sky exists, for so does the land; darkness exists, \
 				for so does light; life exists for so does death; hope exists for so does despair."
-	icon_state = "assonance"
-	inhand_icon_state = "assonance"
-	special = "This weapon fires a hitscan light arrow. \nUpon hitting an enemy, this weapon heals a nearby Discord weapon user."
+	icon_state = "accord"
+	inhand_icon_state = "accord"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
+	special = "Upon hitting an enemy, this weapon heals a nearby Discord weapon user."
 	force = 24
 	damtype = WHITE_DAMAGE
-	projectile_path = /obj/projectile/beam/assonance
+	projectile_path = /obj/projectile/ego_bullet/accord
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 5
 	chargetime = 10
 	spread = 0
-	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
+	fire_sound = 'sound/weapons/bowfire.ogg'
 	charge_sound = 'sound/weapons/bowdraw.ogg'
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 80
 	)
 
-/obj/item/ego_weapon/ranged/assonance/OnDischarge(mob/living/user)
-	icon_state = "assonance"
+/obj/item/ego_weapon/ranged/accord/OnDischarge(mob/living/user)
+	icon_state = "accord"
 
-/obj/item/ego_weapon/ranged/assonance/ChargeUp(mob/living/user)
+/obj/item/ego_weapon/ranged/accord/ChargeUp(mob/living/user)
 	is_charging = TRUE
 	projectile_path = initial(projectile_path)
 	fire_sound = initial(fire_sound)
 	charge_hold_time = initial(charge_hold_time)
 	playsound(user, charge_sound, charge_sound_volume, vary_fire_sound)
 	if(do_after(user, chargetime, src))
-		icon_state = "assonance_drawn"
+		icon_state = "accord_drawn"
 		to_chat(user,span_notice("You draw [src] with all your might."))
 		is_charging = FALSE
 		charged = TRUE
@@ -1027,9 +1031,10 @@
 	if(!istype(M, /obj/projectile/ego_bullet/ego_fellbullet))
 		return
 	var/obj/projectile/ego_bullet/ego_fellbullet/B = M
-	if(B.damage > 38)
+	if(B.damage > 36)
 		return
-	B.damage *= 1.5
+	B.damage *= 2
+	B.ff_multiplier *= 0.5
 	var/turf/real_target = get_link_target_turf()
 	for(var/obj/effect/portal/fellbullet/P in real_target)
 		playsound(P, 'sound/abnormalities/fluchschutze/fell_portal.ogg', 50, TRUE)
@@ -1093,12 +1098,14 @@
 /obj/item/ego_weapon/ranged/sodashotty
 	name = "soda shotgun"
 	desc = "A gun used by Shrimp-Corp, apparently."
+	special = "This weapon fires a fixed spread of bullets."
 	icon_state = "sodashotgun"
 	inhand_icon_state = "sodashotgun"
 	force = 24
 	projectile_path = /obj/projectile/ego_bullet/soda_shotty
 	pellets = 8
 	variance = 16
+	randomspread = FALSE
 	pellets = 6
 	max_shots = 12
 	reloadtime = 0.3 SECONDS
@@ -1117,7 +1124,7 @@
 	inhand_icon_state = "sodasmg"
 	force = 24
 	projectile_path = /obj/projectile/ego_bullet/soda_smg
-	weapon_weight = WEAPON_HEAVY
+	weapon_weight = WEAPON_MEDIUM
 	spread = 8
 	max_shots = 40
 	reloadtime = 1.7 SECONDS
@@ -1145,8 +1152,7 @@
 	item_flags = SLOWS_WHILE_IN_HAND
 	fire_sound = 'sound/weapons/gun/smg/shot.ogg'
 	burst_size = 4
-	burst_delay = 0.2 SECONDS
-	autofire = 0.25 SECONDS
+	autofire = 0.05 SECONDS
 
 /obj/item/ego_weapon/ranged/sodaassault
 	name = "soda assault rifle"

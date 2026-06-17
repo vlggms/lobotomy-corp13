@@ -1298,7 +1298,7 @@
 	name = "discord"
 	desc = "The existence of evil proves the existence of good, just as light proves the existence of darkness."
 	special = "This weapon attacks thrice in rapid succession when being wielded.\n \
-		Attacks with this weapon will heal a nearby ally using Assonance."
+		Attacks with this weapon will heal a nearby ally using Accord."
 	icon_state = "discord"
 	force = 19
 	wielded_force = 22
@@ -1341,8 +1341,8 @@
 	if(wielded)
 		heal_amount = 3
 	for(var/mob/living/carbon/human/Yang in view(7, user))
-		var/obj/item/ego_weapon/ranged/assonance/A = Yang.get_active_held_item()
-		if(istype(A, /obj/item/ego_weapon/ranged/assonance))
+		var/obj/item/ego_weapon/ranged/accord/A = Yang.get_active_held_item()
+		if(istype(A, /obj/item/ego_weapon/ranged/accord))
 			if(!A.CanUseEgo(Yang))
 				continue
 			Yang.adjustBruteLoss(-heal_amount)

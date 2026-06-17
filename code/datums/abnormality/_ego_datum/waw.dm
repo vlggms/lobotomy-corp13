@@ -204,12 +204,12 @@
 	cost = 50
 
 // Yang - Accord
-/datum/ego_datum/armor/assonance
-	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/assonance
+/datum/ego_datum/armor/accord
+	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/accord
 	cost = 50
 
-/datum/ego_datum/weapon/assonance
-	item_path = /obj/item/ego_weapon/ranged/assonance
+/datum/ego_datum/weapon/accord
+	item_path = /obj/item/ego_weapon/ranged/accord
 	cost = 50
 
 // Naked Nest - Exuviae

@@ -101,6 +101,11 @@
 							)
 
 /obj/item/ego_weapon/ranged/unrequited/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, temporary_damage_multiplier = 1)
+	if(!CanUseEgo(user))
+		return
+	if(semicd)
+		return
+	var/onlyweapon = TRUE
 	fire_delay = 10
 	var/list/search_area = user.contents.Copy()
 	for(var/obj/item/storage/spare_space in search_area)
@@ -109,9 +114,11 @@
 		if(disloyal_weapon == src)
 			continue
 		// You are breaking my heart player-sama </3
-		new /obj/effect/temp_visual/mermaid_drowning(get_turf(user))
+		onlyweapon = FALSE
 		fire_delay = 13
 		break
+	if(onlyweapon)
+		new /obj/effect/temp_visual/mermaid_drowning(get_turf(user))
 	return ..()
 
 /obj/item/ego_weapon/ranged/cannon/harmony
@@ -205,7 +212,6 @@
 	fire_sound = 'sound/weapons/gun/revolver/shot_light.ogg'
 	max_shots = 16
 	reloadtime = 1 SECONDS
-	spread = 8
 	autofire = 0.2 SECONDS
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40

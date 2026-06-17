@@ -196,6 +196,8 @@
 
 	/// The name of the alternate fire type on this gun; for example "Underslung Grenade Launcher" or "High-Output Mode" or "Underslung Shotgun". If null, this alt-fire behaviour is disabled.
 	var/alternate_fire_name = null
+	//Information on the alt fire
+	var/alternate_info
 	var/alternate_selected = FALSE
 	var/alternate_shotsleft = 0
 	var/alternate_max_shots = 1
@@ -206,11 +208,8 @@
 	var/alternate_toggle_spam_protection_cd
 	var/alternate_toggle_enabled_message = span_notice("Alternate fire enabled.")
 	var/alternate_toggle_disabled_message = span_notice("Alternate fire disabled.")
-	var/alternate_toggle_instructions = "alt-clicking or middle-clicking"
 	/// The way reloading is handled for alternate firetypes. View __defines/combat.dm.
 	var/alternate_reload_type = RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_SHARED_RELOAD
-	//Information on the alt fire
-	var/alternate_info
 	//We switch the existing values to these values
 	var/alternate_reload_time = 0
 	var/alternate_projectile_path = /obj/projectile/ego_bullet/ego_knade
@@ -306,7 +305,7 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 		pin = null
 	return ..()
 
-/// By default, alt-click is reserved for toggling alt-fire on weapons that have an alt-fire. Feel free to override. This won't do anything on most guns.
+/// By default, alt-click/middle click is mostly reserved for toggling alt-fire on weapons that have an alt-fire. Feel free to override. This won't do anything on most guns.
 /obj/item/ego_weapon/ranged/MiddleClickAction(atom/target, mob/user)
 	. = ..()
 	if(.)
@@ -461,7 +460,7 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 
 	if(alternate_fire_name)
 		text += ""
-		text += span_notice("This weapon has an alternate fire mode: [alternate_fire_name]. Activate by [alternate_toggle_instructions].")
+		text += span_notice("This weapon has an alternate fire mode: [alternate_fire_name]. Activate by alt-clicking or middle-clicking.")
 		if(alternate_info)
 			text += span_notice("Alt Fire - [alternate_info]")
 		// Altfire currently active?
@@ -746,8 +745,6 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 	. = ..()
 	if(QDELETED(target))
 		return
-	if(firing_burst)
-		return
 
 	if(!can_shoot(user)) //Just because you can pull the trigger doesn't mean it can shoot.
 		return
@@ -819,19 +816,6 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 					addtimer(CALLBACK(G, TYPE_PROC_REF(/obj/item/ego_weapon/ranged, process_fire), target, user, TRUE, params, null, bonus_spread), loop_counter)
 
 	return process_fire(target, user, TRUE, params, null, bonus_spread)
-
-/obj/item/ego_weapon/ranged/proc/ChargeUp(mob/living/user)
-	is_charging = TRUE
-	playsound(user, charge_sound, charge_sound_volume, vary_fire_sound)
-	if(do_after(user, chargetime, src))
-		to_chat(user, span_nicegreen("You charge up [src]."))
-		is_charging = FALSE
-		charged = TRUE
-		OnCharged(user)
-		charge_timer = addtimer(CALLBACK(src, PROC_REF(Uncharge), user), charge_hold_time, TIMER_STOPPABLE)
-		return
-	is_charging = FALSE
-	to_chat(user, span_warning("You need to wait before charging up [src]!"))
 
 /obj/item/ego_weapon/ranged/can_trigger_gun(mob/living/user)
 	. = ..()
@@ -909,16 +893,16 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 	var/randomized_gun_spread = 0
 	var/rand_spr = rand()
 	if(spread)
-		randomized_gun_spread =	rand(floor(spread/2),spread)
+		randomized_gun_spread = (0.5 + rand()/2) + spread
 	if(HAS_TRAIT(user, TRAIT_POOR_AIM)) //nice shootin' tex
 		user.blind_eyes(1)
 		bonus_spread += 25
-	var/randomized_bonus_spread = rand(floor(bonus_spread/2), bonus_spread)
+	var/randomized_bonus_spread = (0.5 + rand()/2) + bonus_spread
 
 	if(burst_size > 1)
 		firing_burst = TRUE
 		for(var/i = 1 to burst_size)
-			addtimer(CALLBACK(src, PROC_REF(process_burst), user, target, message, params, zone_override, sprd, randomized_gun_spread, randomized_bonus_spread, rand_spr, i), (burst_delay/burst_size) * (i - 1))
+			addtimer(CALLBACK(src, PROC_REF(process_burst), user, target, message, params, zone_override, sprd, randomized_gun_spread, randomized_bonus_spread, rand_spr, i), (burst_delay/burst_size) * i)
 	else
 		sprd = round((rand() - 0.5) * (randomized_gun_spread + randomized_bonus_spread))
 
@@ -942,6 +926,19 @@ obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 
 /obj/item/ego_weapon/ranged/proc/reset_semicd()
 	semicd = FALSE
+
+/obj/item/ego_weapon/ranged/proc/ChargeUp(mob/living/user)
+	is_charging = TRUE
+	playsound(user, charge_sound, charge_sound_volume, vary_fire_sound)
+	if(do_after(user, chargetime, src))
+		to_chat(user, span_nicegreen("You charge up [src]."))
+		is_charging = FALSE
+		charged = TRUE
+		OnCharged(user)
+		charge_timer = addtimer(CALLBACK(src, PROC_REF(Uncharge), user), charge_hold_time, TIMER_STOPPABLE)
+		return
+	is_charging = FALSE
+	to_chat(user, span_warning("You need to wait before charging up [src]!"))
 
 /obj/item/ego_weapon/ranged/proc/Uncharge(mob/living/user)
 	charged = FALSE

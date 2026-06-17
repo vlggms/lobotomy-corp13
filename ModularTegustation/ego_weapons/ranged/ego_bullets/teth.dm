@@ -6,21 +6,26 @@
 	var/aoe_damage = 15
 
 /obj/projectile/ego_bullet/ego_match/on_hit(atom/target, blocked = FALSE)
-	..()
+	. = ..()
+	var/mob/living/user = firer
 	for(var/mob/living/L in view(1, target))
 		new /obj/effect/temp_visual/fire/fast(get_turf(L))
-		if(L == target)
+		if(user.faction_check_mob(L) || L == target)
 			continue
 		L.apply_damage(aoe_damage * damage_multiplier, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 	return BULLET_ACT_HIT
 
 /obj/projectile/ego_bullet/ego_beak
 	name = "beak"
+	damage = 9
+	damage_type = RED_DAMAGE
+
+/obj/projectile/ego_bulletsmg/ego_bulletsmg
+	name = "beak"
 	damage = 2
 	damage_type = RED_DAMAGE
-	smart_pass = TRUE
 
-/obj/projectile/ego_bullet/ego_beak/strong
+/obj/projectile/ego_bullet/ego_bulletsmg/strong
 	damage = 4
 
 /obj/projectile/ego_bullet/ego_noise
@@ -32,11 +37,6 @@
 	name = "solitude"
 	damage = 10
 	damage_type = WHITE_DAMAGE
-
-/obj/projectile/ego_bullet/ego_beakmagnum
-	name = "beak"
-	damage = 9
-	damage_type = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_shy
 	name = "today's expression"

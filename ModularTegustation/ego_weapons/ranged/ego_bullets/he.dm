@@ -18,7 +18,7 @@
 	name = "galaxy"
 	icon_state = "magicm"
 	damage = 26
-	smart_pass = TRUE
+	ff_multiplier = 0
 	damage_type = BLACK_DAMAGE
 	speed = 1.5
 
@@ -66,6 +66,8 @@
 	name = "screaming"
 	damage = 38
 	damage_type = WHITE_DAMAGE
+	icon_state = "arrow_greyscale"
+	color = "#AAFF00"
 
 /obj/projectile/ego_bullet/regs
 	name = "sinewy claw"
