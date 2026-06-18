@@ -125,7 +125,7 @@
 		projectile_path = /obj/projectile/ego_bullet/ego_nightshade
 	return ..()
 
-obj/item/ego_weapon/ranged/nightshade/Initialize()
+/obj/item/ego_weapon/ranged/nightshade/Initialize()
 	. = ..()
 	shotsleft = 0//Starts unloaded
 
