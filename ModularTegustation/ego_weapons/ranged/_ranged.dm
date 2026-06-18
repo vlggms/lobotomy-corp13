@@ -252,17 +252,17 @@
 	fire_sound = 'sound/weapons/ego/crossbow.ogg'
 	weapon_weight = WEAPON_HEAVY
 
-obj/item/ego_weapon/ranged/crossbow/Initialize()
+/obj/item/ego_weapon/ranged/crossbow/Initialize()
 	. = ..()
 	AddElement(/datum/element/update_icon_updates_onmob)
 	shotsleft = 0//Starts unloaded
 
-obj/item/ego_weapon/ranged/crossbow/OnReload(mob/user)
+/obj/item/ego_weapon/ranged/crossbow/OnReload(mob/user)
 	icon_state = inhand_icon_state = "[initial(icon_state)]_loaded"
 	update_icon_state()
 	update_icon()
 
-obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
+/obj/item/ego_weapon/ranged/crossbow/process_chamber(mob/living/user)
 	icon_state = inhand_icon_state = "[initial(icon_state)]"
 	update_icon_state()
 	update_icon()
