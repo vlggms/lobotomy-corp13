@@ -61,7 +61,7 @@
 
 	//PLAYABLES ACTIONS
 	attack_action_types = list(/datum/action/cooldown/fragment_song)
-
+	can_spawn = FALSE
 /mob/living/simple_animal/hostile/abnormality/fragment/Login()
 	. = ..()
 	to_chat(src, "<h1>You are Fragment of the Universe, A Combat Role Abnormality.</h1><br>\

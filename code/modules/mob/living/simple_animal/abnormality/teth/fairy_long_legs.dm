@@ -69,7 +69,7 @@
 	var/work_count = 0
 	var/raining = FALSE
 	var/ignored = 0 //stores the agent's choice: 0 - disabled/1- refused cover
-
+	can_spawn = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/fairy_longlegs/death(gibbed)
 	icon = 'ModularTegustation/Teguicons/abno_cores/teth.dmi'

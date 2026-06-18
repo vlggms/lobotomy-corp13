@@ -40,7 +40,7 @@
 	max_boxes = 16
 	base_pixel_x = -8
 	pixel_x = -8
-
+	can_spawn = FALSE
 	ego_list = list(
 		/datum/ego_datum/weapon/warp,
 		/datum/ego_datum/weapon/warp/spear,

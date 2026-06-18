@@ -97,7 +97,7 @@
 		/datum/action/cooldown/wrath_smash,
 		/datum/action/cooldown/wrath_dash,
 	)
-
+	can_spawn = FALSE
 /datum/action/cooldown/wrath_smash
 	name = "Blind Rage"
 	icon_icon = 'icons/mob/actions/actions_abnormality.dmi'

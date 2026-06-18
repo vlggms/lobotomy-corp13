@@ -50,7 +50,7 @@
 	)
 	gift_type = /datum/ego_gifts/sunshower
 	gift_message = "The fox plucks an umbrella from its back and gives it to you, perhaphs as thanks?"
-
+	can_spawn = FALSE
 	observation_prompt = "An alleyway garbage dump. <br.\
 		Its atmosphere is stuffy and unpleasant thanks to the humidity from the rain. <br.\
 		A pile of old and torn umbrellas sits in a corner. <br.\

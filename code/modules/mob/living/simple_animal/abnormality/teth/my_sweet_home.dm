@@ -78,7 +78,7 @@
 		"Long Hair 2",
 		"Silky",
 	)
-
+	can_spawn = FALSE
 /mob/living/simple_animal/hostile/abnormality/my_sweet_home/ObservationResult(mob/living/carbon/human/user, success, reply)
 	. = ..()
 	var/static/gave_weapon = FALSE

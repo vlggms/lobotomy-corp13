@@ -168,7 +168,7 @@ It has now been over four months. Now we get her for real. -Coxswain
 		"You're dead!",
 		"Eat this!"
 	)
-
+	can_spawn = FALSE
 /datum/action/innate/abnormality_attack/find_target // AI-controlled Red technically doesn't use this one.
 	name = "Locate target"
 	icon_icon = 'ModularTegustation/Teguicons/teguicons.dmi'

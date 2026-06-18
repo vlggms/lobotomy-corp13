@@ -64,7 +64,7 @@
 	var/vine_cooldown
 	var/vine_cooldown_time = 45 SECONDS
 	var/can_act = TRUE
-
+	can_spawn = FALSE
 //*** Basic Simple mob procs***//
 /mob/living/simple_animal/hostile/abnormality/rose_sign/Move()
 	return FALSE

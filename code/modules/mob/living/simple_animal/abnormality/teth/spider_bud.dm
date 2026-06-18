@@ -35,7 +35,7 @@
 	var/summon_group_size = 2
 	var/summon_maximum = 0
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
-
+	can_spawn = FALSE
 	observation_prompt = "I am a spider. <br>I eat anything my web catches. <br>I am starving. <br>\
 		I haven't eaten anything for days. <br>There is a big prey hanging on my web. <br>\
 		My starvation could kill me if I don't eat something."

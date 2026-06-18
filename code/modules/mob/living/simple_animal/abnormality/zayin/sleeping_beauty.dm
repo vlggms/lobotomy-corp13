@@ -48,7 +48,7 @@
 
 	var/grab_cooldown
 	var/grab_cooldown_time = 20 SECONDS
-
+	can_spawn = FALSE
 //work code
 /mob/living/simple_animal/hostile/abnormality/sleeping/WorkChance(mob/living/carbon/human/user, chance)
 	if (istype(user.ego_gift_list[EYE], /datum/ego_gifts/doze))

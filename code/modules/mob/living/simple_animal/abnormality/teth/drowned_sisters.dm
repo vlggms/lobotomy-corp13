@@ -39,7 +39,7 @@
 	)
 
 	var/breaching = FALSE
-
+	can_spawn = FALSE
 //Work Mechanics
 //Deals scaling work damage based off your stats.
 /mob/living/simple_animal/hostile/abnormality/drownedsisters/AttemptWork(mob/living/carbon/human/user, work_type)

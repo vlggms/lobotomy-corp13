@@ -55,7 +55,7 @@
 
 	var/talk = FALSE
 	var/list/structures = list()
-
+	can_spawn = FALSE
 /mob/living/simple_animal/hostile/abnormality/highway_devotee/Move()
 	return FALSE
 

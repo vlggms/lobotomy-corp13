@@ -40,7 +40,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	max_boxes = 35
 	can_patrol = FALSE
 	set_score = 75
-
+	can_spawn = FALSE
 	light_system = MOVABLE_LIGHT
 	light_color = COLOR_VERY_SOFT_YELLOW
 	light_range = 7

@@ -54,7 +54,7 @@
 	)
 
 	var/dashready = TRUE
-
+	can_spawn = FALSE
 /mob/living/simple_animal/hostile/abnormality/clayman/WorktickFailure(mob/living/carbon/human/user)
 	var/dtype = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 	work_damage_type = pick(dtype)

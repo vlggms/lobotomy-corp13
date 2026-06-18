@@ -36,7 +36,7 @@
 	minimum_distance = 3
 	retreat_distance = 3
 	ranged_cooldown_time = 3 SECONDS
-
+	can_spawn = FALSE
 	observation_prompt = "What touched this place cannot be quantified or understood by human science. <br>It was just a color out of space. <br>\
 		It exists on the border of our waking minds, where darkness and light are one, and time and space do not intersect. <br>She has a message, from another place, another time."
 	observation_choices = list(

@@ -35,7 +35,7 @@
 	)
 	gift_type = /datum/ego_gifts/remorse
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
-
+	can_spawn = FALSE
 	observation_prompt = "..."
 	observation_choices = list(
 		"Accept your guilt" = list(TRUE, "The nails pierce your heart as the girl in the white dress hammers them home. <br>\

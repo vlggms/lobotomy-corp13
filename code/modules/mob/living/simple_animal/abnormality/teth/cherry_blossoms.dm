@@ -44,7 +44,7 @@
 	)
 
 	var/number_of_marks = 5
-
+	can_spawn = FALSE
 /mob/living/simple_animal/hostile/abnormality/cherry_blossoms/Move()
 	return FALSE
 

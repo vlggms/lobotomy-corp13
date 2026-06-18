@@ -76,7 +76,7 @@
 	var/can_act = TRUE
 	var/guntimer
 	var/updatetimer
-
+	can_spawn = FALSE
 //Gear Shift - Most mechanics are determined by round time
 /mob/living/simple_animal/hostile/abnormality/steam/proc/GearUpdate()
 	var/new_gear = gear

@@ -57,7 +57,7 @@
 	var/list/attachment = list("Poor Anidori, her attachment to that woman was too great. She could not see the jealousy harbored within her.")
 
 	var/list/repression = list("The things that they did to me, the things they did to her, all for the want of justice in the world.")
-
+	can_spawn = FALSE
 // Work Mechanics
 /mob/living/simple_animal/hostile/abnormality/falada/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()

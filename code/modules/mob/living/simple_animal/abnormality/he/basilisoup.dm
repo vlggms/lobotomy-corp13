@@ -36,7 +36,7 @@
 	work_damage_lower = 3
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/lust
-
+	can_spawn = FALSE
 	ego_list = list(
 		/datum/ego_datum/armor/lifestew,
 		/datum/ego_datum/weapon/lifestew_lance,

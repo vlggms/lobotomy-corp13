@@ -35,7 +35,7 @@
 	max_boxes = 18
 	death_message = "stops moving, with its torso rotating forwards."
 	death_sound = 'sound/abnormalities/scarecrow/death.ogg'
-
+	can_spawn = FALSE
 	ego_list = list(
 		/datum/ego_datum/weapon/harvest,
 		/datum/ego_datum/armor/harvest,

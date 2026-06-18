@@ -67,7 +67,7 @@
 	var/judgement_range = 12
 	var/judging = FALSE
 	var/omw_to_apoc = FALSE
-
+	can_spawn = FALSE
 /datum/action/innate/abnormality_attack/judgement
 	name = "Judgement"
 	icon_icon = 'icons/obj/wizard.dmi'

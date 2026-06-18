@@ -41,7 +41,7 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 		)
 	gift_type =  /datum/ego_gifts/roseate_desire
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
-
+	can_spawn = FALSE
 	observation_prompt = "Strips of pink ribbons float this way. <br>\
 		A voice travels between the fluttering ribbons. <br>\
 		\"What is your desire?\" <br>\"Put me on.\" <br>\

@@ -53,7 +53,7 @@
 
 	var/cooldown_time = 2
 	var/aoe_damage = 10
-
+	can_spawn = FALSE
 /mob/living/simple_animal/hostile/abnormality/dimensional_refraction/proc/Melter()
 	for(var/mob/living/L in livinginview(1, src))
 		if(faction_check_mob(L))

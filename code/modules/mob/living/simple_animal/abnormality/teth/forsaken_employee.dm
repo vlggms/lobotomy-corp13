@@ -20,7 +20,7 @@
 	)
 	work_damage_lower = 3
 	work_damage_type = BLACK_DAMAGE
-
+	can_spawn = FALSE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.3, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	melee_damage_lower = 1
 	melee_damage_upper = 3

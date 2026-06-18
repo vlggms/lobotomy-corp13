@@ -56,7 +56,7 @@
 		/mob/living/simple_animal/hostile/abnormality/we_can_change_anything = 1.5,
 		/mob/living/simple_animal/hostile/abnormality/cleaner = 1.5,
 	)
-
+	can_spawn = FALSE
 	observation_prompt = "Is fun to clean. I was..."
 	observation_choices = list(
 		"You are special" = list(TRUE, "There were many friends who looked like me. <br>I was special. <br>\

@@ -33,7 +33,7 @@
 	work_damage_lower = 6
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gloom
-
+	can_spawn = FALSE
 	ego_list = list(
 		/datum/ego_datum/weapon/mockery,
 		/datum/ego_datum/armor/mockery,

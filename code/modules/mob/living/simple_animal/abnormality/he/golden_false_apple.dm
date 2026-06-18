@@ -69,7 +69,7 @@
 	attack_action_types = list(/datum/action/cooldown/gapple_pulse)
 	var/datum/action/innate/abnormality_attack/maggot_spread/maggot_attack
 	var/datum/action/innate/abnormality_attack/maggot_spread2/maggot_attack2
-
+	can_spawn = FALSE
 	guaranteed_butcher_results = list(/obj/item/food/grown/apple/gold/abnormality = 1)
 	chem_type = /datum/reagent/abnormality/ambrosia
 	harvest_phrase = span_notice("You score %ABNO and it bleeds a golden syrup into %VESSEL.")

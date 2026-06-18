@@ -50,7 +50,7 @@
 	var/mutable_appearance/spore_icon
 	base_pixel_x = -16
 	pixel_x = -16
-
+	can_spawn = FALSE
 /mob/living/simple_animal/hostile/abnormality/little_prince/Move()
 	return FALSE
 

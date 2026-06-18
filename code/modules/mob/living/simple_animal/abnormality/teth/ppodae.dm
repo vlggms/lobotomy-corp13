@@ -67,7 +67,7 @@
 	var/cute_speed = 1
 	//Other Stuff
 	var/limb_heal = 0.02
-
+	can_spawn = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/ppodae/Login()
 	. = ..()

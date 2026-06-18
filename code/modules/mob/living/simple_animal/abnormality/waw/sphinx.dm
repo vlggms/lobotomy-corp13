@@ -81,7 +81,7 @@
 	var/quake_cooldown
 	var/quake_cooldown_time = 6 SECONDS
 	var/quake_damage = 20
-
+	can_spawn = FALSE
 //Playables buttons
 	attack_action_types = list(
 		/datum/action/cooldown/sphinx_gaze,

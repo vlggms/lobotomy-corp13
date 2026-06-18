@@ -91,7 +91,7 @@
 
 	//PLAYABLES ATTACKS
 	attack_action_types = list(/datum/action/cooldown/blackswan_umbrella)
-
+	can_spawn = FALSE
 /datum/action/cooldown/blackswan_umbrella
 	name = "Black Swan's Umbrella"
 	icon_icon = 'icons/mob/actions/actions_abnormality.dmi'

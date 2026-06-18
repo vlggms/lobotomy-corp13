@@ -32,7 +32,7 @@
 	max_boxes = 18
 	friendly_verb_continuous = "scorns"
 	friendly_verb_simple = "scorns"
-
+	can_spawn = FALSE
 	ego_list = list(
 		/datum/ego_datum/weapon/christmas,
 		/datum/ego_datum/armor/christmas,

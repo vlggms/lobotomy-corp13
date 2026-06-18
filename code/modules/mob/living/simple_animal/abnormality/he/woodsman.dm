@@ -35,7 +35,7 @@
 	move_to_delay = 4
 	base_pixel_x = -16
 	pixel_x = -16
-
+	can_spawn = FALSE
 	ego_list = list(
 		/datum/ego_datum/weapon/logging,
 		/datum/ego_datum/armor/logging,

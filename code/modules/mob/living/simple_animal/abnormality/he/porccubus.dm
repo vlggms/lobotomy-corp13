@@ -38,7 +38,7 @@
 	attack_sound = 'sound/abnormalities/porccubus/porccu_attack.ogg'
 	attack_verb_continuous = "stings"
 	attack_verb_simple = "stabs"
-
+	can_spawn = FALSE
 	faction = list("hostile", "porccubus") //so that he stops attacking overdosed people while still not attacking random abnormalities
 	ego_list = list(
 		/datum/ego_datum/weapon/pleasure,

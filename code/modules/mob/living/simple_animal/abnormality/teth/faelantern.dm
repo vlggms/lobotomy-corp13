@@ -67,7 +67,7 @@
 	var/lure_cooldown_time = 30 SECONDS
 	var/lure_damage = 5
 	var/lured_list = list()
-
+	can_spawn = FALSE
 /mob/living/simple_animal/hostile/abnormality/faelantern/AttackingTarget(atom/attacked_target)
 	if(!target)
 		GiveTarget(attacked_target)

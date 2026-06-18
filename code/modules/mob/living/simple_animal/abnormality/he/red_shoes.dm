@@ -39,7 +39,7 @@
 	)
 	gift_type =  /datum/ego_gifts/desire
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
-
+	can_spawn = FALSE
 	observation_prompt = "There is a pair of red shoes. <br>\
 		It could be sitting in front of me, or in my feet. I am......"
 	observation_choices = list( //TODO: Second line of dialogue, must be coded

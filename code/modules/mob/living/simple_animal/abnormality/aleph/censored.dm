@@ -40,7 +40,7 @@
 	work_damage_type = BLACK_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gluttony
 	max_boxes = 32
-
+	can_spawn = FALSE
 	ego_list = list(
 		/datum/ego_datum/weapon/censored,
 		/datum/ego_datum/armor/censored,

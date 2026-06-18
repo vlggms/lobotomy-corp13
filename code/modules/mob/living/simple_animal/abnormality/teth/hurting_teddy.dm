@@ -75,7 +75,7 @@
 	var/hug_damage = 4
 	var/crush_damage = 2
 	var/can_act = TRUE
-
+	can_spawn = FALSE
 //Work Mechanics
 
 /mob/living/simple_animal/hostile/abnormality/hurting_teddy/AttemptWork(mob/living/carbon/human/user, work_type)

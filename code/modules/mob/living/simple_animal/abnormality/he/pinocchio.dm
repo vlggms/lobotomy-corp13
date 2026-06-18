@@ -33,7 +33,7 @@
 	)
 	gift_type = /datum/ego_gifts/marionette
 	abnormality_origin = ABNORMALITY_ORIGIN_RUINA
-
+	can_spawn = FALSE
 	observation_prompt = "I've been watching people for as long as I've known them, it's not hard to imitate others. <br>\
 		Can I be a human if I mimic humans?"
 	observation_choices = list(

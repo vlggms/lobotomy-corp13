@@ -37,7 +37,7 @@
 	work_damage_lower = 3
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gloom
-
+	can_spawn = FALSE
 	ego_list = list(
 		/datum/ego_datum/weapon/aedd,
 		/datum/ego_datum/armor/aedd

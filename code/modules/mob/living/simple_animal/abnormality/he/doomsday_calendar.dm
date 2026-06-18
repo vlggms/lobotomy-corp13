@@ -74,7 +74,7 @@
 	var/doll_count_maximum = 2
 	var/list/spawned_dolls = list()
 	pet_bonus = "rumbles" //saves a few lines of code by allowing funpet() to be called by attack_hand()
-
+	can_spawn = FALSE
 //*** Simple Mob Procs ***//
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/Initialize()
 	. = ..()

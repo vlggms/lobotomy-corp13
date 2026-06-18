@@ -58,7 +58,7 @@
 		/obj/item/mailpaper/hatred,
 		/obj/item/mailpaper/trapped/flashbang,
 	)
-
+	can_spawn = FALSE
 /mob/living/simple_animal/hostile/abnormality/mailpile/AttackingTarget()
 	return FALSE
 

@@ -35,7 +35,7 @@
 	chem_type = /datum/reagent/abnormality/sin/lust
 	base_pixel_x = -12
 	pixel_x = -12
-
+	can_spawn = FALSE
 	ego_list = list(
 		/datum/ego_datum/weapon/red_sheet,
 		/datum/ego_datum/armor/red_sheet,

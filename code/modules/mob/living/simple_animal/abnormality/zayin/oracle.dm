@@ -79,7 +79,7 @@
 		"A woman with a dog head... she is smoking silently...",
 		"A person in a blue coat... they fold into a book...",
 		)
-
+	can_spawn = FALSE
 /mob/living/simple_animal/hostile/abnormality/oracle/Move()
 	return FALSE
 

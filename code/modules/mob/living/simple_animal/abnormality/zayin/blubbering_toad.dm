@@ -91,7 +91,7 @@
 	var/broken = FALSE
 	var/persistant = FALSE
 	var/angry = FALSE
-
+	can_spawn = FALSE
 //Work/Misc
 /mob/living/simple_animal/hostile/abnormality/blubbering_toad/PostSpawn()
 	..()

@@ -79,7 +79,7 @@
 	var/step = FALSE
 	var/finishing_small_damage = 5
 	var/finishing_big_damage = 40
-
+	can_spawn = FALSE
 /mob/living/simple_animal/hostile/abnormality/clown/Login()
 	. = ..()
 	to_chat(src, "<h1>You are Clown Smiling at Me, A Combat Role Abnormality.</h1><br>\

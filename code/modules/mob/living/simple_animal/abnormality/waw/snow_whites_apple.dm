@@ -86,7 +86,7 @@
 	var/obj/effect/proc_holder/spell/pointed/apple_barrier/barrier_spell
 	//All iterations share this list between eachother.
 	var/static/list/vine_list = list()
-
+	can_spawn = FALSE
 /mob/living/simple_animal/hostile/abnormality/snow_whites_apple/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
 	if(prob(50))

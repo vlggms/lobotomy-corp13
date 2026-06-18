@@ -92,7 +92,7 @@
 
 	//Unique variable im defining for this abnormality. This is the timer for their during work emotes.
 	var/work_emote_cooldown = 0
-
+	can_spawn = FALSE
 //When work type is bad the qliphoth counter lowers with no chance.
 /mob/living/simple_animal/hostile/abnormality/forsaken_murderer/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	/**

@@ -36,7 +36,7 @@
 		ABNORMALITY_WORK_REPRESSION = list(FALSE, "You narrowly dodge the card-guillotine coming for your neck, that was close, let's try something else."),
 	)
 	var/liked
-
+	can_spawn = FALSE
 /mob/living/simple_animal/hostile/abnormality/red_queen/Initialize(mapload)
 	. = ..()
 	//What does she like?

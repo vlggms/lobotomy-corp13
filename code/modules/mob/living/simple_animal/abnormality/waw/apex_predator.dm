@@ -77,7 +77,7 @@
 
 	var/recloak_time = 0
 	var/recloak_time_cooldown = 30 SECONDS
-
+	can_spawn = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/apex_predator/Move()
 	if(notransform)

@@ -65,7 +65,7 @@
 	var/dash_max = 50
 	var/dash_damage = 100
 	var/list/been_hit = list()
-
+	can_spawn = FALSE
 //Initialize
 /mob/living/simple_animal/hostile/abnormality/fire_bird/HandleStructures()
 	. = ..()

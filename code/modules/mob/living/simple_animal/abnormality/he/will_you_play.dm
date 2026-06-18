@@ -29,7 +29,7 @@
 	var/janken = 0			//0 for scissors, 1 for Rock, 2 for paper
 	var/player = 0			//0 for scissors, 1 for Rock, 2 for paper
 	var/last_worked	//You get less if you just worked her.
-
+	can_spawn = FALSE
 //Randomizes work rate
 /mob/living/simple_animal/hostile/abnormality/willyouplay/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(prob(70))

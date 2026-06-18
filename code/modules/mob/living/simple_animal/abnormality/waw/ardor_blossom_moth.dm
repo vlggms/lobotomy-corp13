@@ -89,7 +89,7 @@
 	var/melee_cooldown_time = 6 SECONDS
 	var/melee_width = 2
 	var/melee_length = 2
-
+	can_spawn = FALSE
 //Work Related Stuff
 /mob/living/simple_animal/hostile/abnormality/ardor_moth/PostSpawn()
 	. = ..()

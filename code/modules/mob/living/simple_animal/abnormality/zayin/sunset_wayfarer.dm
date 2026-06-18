@@ -54,7 +54,7 @@
 	light_range = 5
 	light_power = 7
 	var/healing = FALSE
-
+	can_spawn = FALSE
 /mob/living/simple_animal/hostile/abnormality/sunset_wayfarer/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
 	if(healing)

@@ -51,7 +51,7 @@
 	var/jump_cooldown = 0
 	var/jump_cooldown_time = 35 SECONDS
 	var/list/spawned_mobs = list()
-
+	can_spawn = FALSE
 //Work Procs
 // any work performed with level <4 Fort and Temperance lowers qliphoth
 /mob/living/simple_animal/hostile/abnormality/babayaga/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)

@@ -62,7 +62,7 @@
 			Lifeless things like that mutt and I don't deserve love but it'll wait for me all the same. <br>Does anyone wait for you?"),
 		"Release him" = list(FALSE, "Good choice, don't worry about the rest - I won't hurt them, pinky swear."),
 	)
-
+	can_spawn = FALSE
 	var/death_counter //He won't go off a timer, he'll go off deaths. Takes 8 for him.
 	var/slash_current = 4
 	var/slash_cooldown = 4

@@ -54,7 +54,7 @@
 	var/list/segments = list()
 	var/list/damaged = list()
 	var/already_breached
-
+	can_spawn = FALSE
 /mob/living/simple_animal/hostile/abnormality/cinderella/examine(mob/user)
 	. = ..()
 	var/freshness_state = "Rotten"

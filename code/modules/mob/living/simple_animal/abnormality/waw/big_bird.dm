@@ -87,7 +87,7 @@
 
 	//PLAYABLES ATTACKS
 	attack_action_types = list(/datum/action/cooldown/big_bird_hypnosis)
-
+	can_spawn = FALSE
 /datum/action/cooldown/big_bird_hypnosis
 	name = "Dazzle"
 	icon_icon = 'icons/mob/actions/actions_abnormality.dmi'

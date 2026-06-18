@@ -62,7 +62,7 @@
 		'sound/abnormalities/lighthammer/hammer_usable1.ogg',
 		'sound/abnormalities/lighthammer/hammer_usable2.ogg',
 	)
-
+	can_spawn = FALSE
 // Work Mechanic
 /mob/living/simple_animal/hostile/abnormality/hammer_light/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()

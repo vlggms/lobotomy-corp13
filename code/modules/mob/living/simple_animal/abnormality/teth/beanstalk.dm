@@ -38,7 +38,7 @@
 	)
 
 	var/climbing = FALSE
-
+	can_spawn = FALSE
 /mob/living/simple_animal/hostile/abnormality/beanstalk/Move()
 	return FALSE
 

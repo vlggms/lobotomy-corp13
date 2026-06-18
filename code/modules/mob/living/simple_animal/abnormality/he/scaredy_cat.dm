@@ -57,7 +57,7 @@
 		"A vial of \"liquid courage\"" = list(TRUE, "What are you even going to do when you lack the bravery to face anything head-on?"),
 		"Courage" = list(FALSE, "Drink this potion, it’ll give you courage. <br>You’ll be braver than anyone."),
 	)
-
+	can_spawn = FALSE
 	/// The list of abnormality scaredy cat will automatically join when they breach, add any "Oz" abno to this list if possible
 	var/list/prefered_abno_list = list(
 		/mob/living/simple_animal/hostile/abnormality/woodsman,

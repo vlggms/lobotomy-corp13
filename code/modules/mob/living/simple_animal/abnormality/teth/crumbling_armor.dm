@@ -44,7 +44,7 @@
 	var/meltdown_cooldown //no spamming the meltdown effect
 	var/meltdown_cooldown_time = 30 SECONDS
 	var/armor_dispensed
-
+	can_spawn = FALSE
 // Hacky code to make the final observation check for a gift type without actually having it as a gift type
 /mob/living/simple_animal/hostile/abnormality/crumbling_armor/FinalObservation(mob/living/carbon/human/user)
 	gift_type = /datum/ego_gifts/recklessCourage

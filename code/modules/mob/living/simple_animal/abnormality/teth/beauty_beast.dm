@@ -45,7 +45,7 @@
 	)
 
 	var/injured = FALSE
-
+	can_spawn = FALSE
 //it needs to use PostSpawn or we can't get the datum of beauty
 /mob/living/simple_animal/hostile/abnormality/beauty/PostSpawn()
 	. = ..()

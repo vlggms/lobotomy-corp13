@@ -55,7 +55,7 @@
 	var/halo_status = "onesin_halo_normal" //used for changing the halo overlays
 
 	var/wn_work = FALSE
-
+	can_spawn = FALSE
 //Overlay stuff
 /mob/living/simple_animal/hostile/abnormality/onesin/PostSpawn()
 	..()

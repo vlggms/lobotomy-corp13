@@ -64,7 +64,7 @@
 	var/swords = 0
 	var/nihil_present = FALSE
 	var/can_act = TRUE
-
+	can_spawn = FALSE
 /mob/living/simple_animal/hostile/abnormality/despair_knight/ZeroQliphoth(mob/living/carbon/human/user)
 	switch(swords)
 		if(0)

@@ -59,7 +59,7 @@
 	var/pulse_range = 11 //fairly large area - enough to breach several abnormalities
 	var/fog_damage = 4
 	var/ash_damage = 20
-
+	can_spawn = FALSE
 //work stuff
 /mob/living/simple_animal/hostile/abnormality/pale_horse/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()

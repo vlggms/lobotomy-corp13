@@ -32,7 +32,7 @@
 	melee_damage_type = WHITE_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1)
 	stat_attack = HARD_CRIT
-
+	can_spawn = FALSE
 	ego_list = list(
 		/datum/ego_datum/weapon/soulmate,
 		/datum/ego_datum/armor/soulmate,

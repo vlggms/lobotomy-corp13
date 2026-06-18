@@ -57,7 +57,7 @@ Defeating the murderer also surpresses the abnormality.
 	var/happy = FALSE
 	var/melting
 	var/preferred_work_type
-
+	can_spawn = FALSE
 //Init stuff
 /mob/living/simple_animal/hostile/abnormality/screenwriter/PostSpawn()
 	. = ..()

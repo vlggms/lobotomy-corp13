@@ -94,7 +94,7 @@
 	var/static/list/temp_effects = list()
 	//Reusable visuals for cleave attacks.
 	var/datum/reusable_visual_pool/RVP = new(200)
-
+	can_spawn = FALSE
 /mob/living/simple_animal/hostile/abnormality/snow_queen/Move()
 	if(!can_act)
 		return FALSE

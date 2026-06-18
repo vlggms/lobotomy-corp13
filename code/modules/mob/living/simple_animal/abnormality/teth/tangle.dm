@@ -33,7 +33,7 @@
 	)
 	gift_type =  /datum/ego_gifts/rapunzel
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
-
+	can_spawn = FALSE
 	observation_prompt = "Four thousand nine-hundred fifty-one... <br>\
 	Four thousand nine-hundred fifty-two... <br>\
 	The time between you and me... <br>\

@@ -35,7 +35,7 @@
 	work_damage_lower = 2
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/gluttony
-
+	can_spawn = FALSE
 	ego_list = list(
 		/datum/ego_datum/weapon/split,
 		/datum/ego_datum/armor/split,

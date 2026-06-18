@@ -67,7 +67,7 @@
 		"Drink the bottle" = list(FALSE, "However this bottle was not marked as poisonous and you ventured a taste, \
 			and found it horrid, the brine clung to your tongue. <br>Who'd mark such a horrible thing for drinking?"),
 	)
-
+	can_spawn = FALSE
 // Work Mechanics
 /mob/living/simple_animal/hostile/abnormality/bottle/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(!cake)

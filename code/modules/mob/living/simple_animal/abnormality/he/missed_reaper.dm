@@ -36,7 +36,7 @@
 	light_color = "FFFFFFF"
 	light_power = 5
 	light_range = 2
-
+	can_spawn = FALSE
 	observation_prompt = "She was so pale at the end, she looked more like a porcelain doll than the little girl I knew, \
 		laughing and smiling that bright colourful smile I loved so much. <br>I sat next to her bed, powerless to do anything."
 	observation_choices = list(

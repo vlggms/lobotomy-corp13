@@ -85,7 +85,7 @@
 		"I'll be havin' this!",
 		"Scram!",
 	)
-
+	can_spawn = FALSE
 //Action Buttons
 	attack_action_types = list(
 	/datum/action/innate/abnormality_attack/toggle/FairyJump,

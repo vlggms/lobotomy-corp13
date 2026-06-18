@@ -67,7 +67,7 @@
 	attack_action_types = list(
 		/datum/action/innate/abnormality_attack/toggle/monk_charge,
 	)
-
+	can_spawn = FALSE
 /datum/action/innate/abnormality_attack/toggle/monk_charge
 	name = "Toggle Triple Charge"
 	button_icon_state = "kog_charge" //placeholder, also recode toggle actions to not need this var

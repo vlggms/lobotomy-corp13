@@ -32,7 +32,7 @@
 	see_in_dark = 10
 	can_breach = TRUE
 	start_qliphoth = 2
-
+	can_spawn = FALSE
 	light_color = LIGHT_COLOR_FIRE
 	light_range = 2
 	light_power = 7

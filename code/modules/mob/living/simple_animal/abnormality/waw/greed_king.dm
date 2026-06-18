@@ -80,7 +80,7 @@
 		/datum/action/innate/abnormality_attack/kog_dash,
 		/datum/action/innate/abnormality_attack/kog_teleport,
 	)
-
+	can_spawn = FALSE
 /mob/living/simple_animal/hostile/abnormality/greed_king/Login()
 	. = ..()
 	to_chat(src, "<h1>You are King of Greed, A Tank Role Abnormality.</h1><br>\

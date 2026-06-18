@@ -93,7 +93,7 @@
 
 	//PLAYABLES ATTACKS
 	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/SiltcurrentDive)
-
+	can_spawn = FALSE
 // Player-Controlled code
 /datum/action/innate/abnormality_attack/toggle/SiltcurrentDive
 	name = "Toggle Blind Obsession"

@@ -68,7 +68,7 @@
 	// Work Variables
 	var/work_timer
 	var/time_to_lower = 2 MINUTES // Time to lower qliphoth
-
+	can_spawn = FALSE
 	// Breach variables
 	var/cooldown_time = 3 // Cooldown between grab attempts
 	var/list/grabbed_list = list()

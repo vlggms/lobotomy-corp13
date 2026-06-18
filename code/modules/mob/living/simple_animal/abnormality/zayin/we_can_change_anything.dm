@@ -65,7 +65,7 @@
 	var/ramping_speed = 20 // work speed for sacrifice work, gets subtracted from so we can have faster work ticks.
 	var/total_damage = 0 // stored so we can later convert it into PE
 	var/total_energy = 0 // after reaching 2000+, locks sacrifice out, if they try to
-
+	can_spawn = FALSE
 /mob/living/simple_animal/hostile/abnormality/we_can_change_anything/proc/StoreWorker(mob/living/L) //Stores the worker inside
 	if(!L)
 		return FALSE

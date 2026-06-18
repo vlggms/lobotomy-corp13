@@ -50,7 +50,7 @@
 	var/breached = FALSE
 	var/breached_monster
 	var/killspawn
-
+	can_spawn = FALSE
 /mob/living/simple_animal/hostile/abnormality/luna/Move()
 	return FALSE
 

@@ -66,7 +66,7 @@
 		"Accept their care" = list(TRUE, "The fairies sprinkle their powder around you and it collects upon your hands. <br>You feel special. <br>\
 			You retreat from the cell and the fairies' hungry gazes. <br>You've always known the true meaning of The Fairies' Care."),
 	)
-
+	can_spawn = FALSE
 /mob/living/simple_animal/hostile/abnormality/fairy_festival/proc/FairyHeal()
 	for(var/mob/living/carbon/human/P in protected_people)
 		if(heal_cooldown <= world.time)

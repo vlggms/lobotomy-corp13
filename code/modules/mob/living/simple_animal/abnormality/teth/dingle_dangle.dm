@@ -53,7 +53,7 @@ GLOBAL_LIST_INIT(dingle_hallucination_list, list(
 	var/list/entangled_people = list()
 	//We want to make sure we don't cause someone to instantly panic after it "breaches"
 	var/safe = FALSE
-
+	can_spawn = FALSE
 /mob/living/simple_animal/hostile/abnormality/dingledangle/PostSpawn()
 	. = ..()
 	for(var/turf/open/T in range(1, src)) // fill its cell with roots

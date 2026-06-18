@@ -36,7 +36,7 @@
 	pixel_x = -32
 	pixel_y = -8
 	layer = OPEN_DOOR_LAYER
-
+	can_spawn = FALSE
 	observation_prompt = "I was the weakest person in all the City, even the Rats looked down upon me. <br>\
 		'I would never amount to anything in life or in death', I thought until one day I recieved a curious offer, a pamphlet in my mail. <br>\
 		\"Have you become strong? Strong for your City? Become Strong! Strong for your City!\" The suspicious pamphlet had an address and I followed it, <br>\

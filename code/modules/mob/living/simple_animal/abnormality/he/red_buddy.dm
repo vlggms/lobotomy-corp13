@@ -39,7 +39,7 @@
 	can_breach = TRUE
 	threat_level = HE_LEVEL
 	start_qliphoth = 3
-
+	can_spawn = FALSE
 	ego_list = list(
 		/datum/ego_datum/weapon/totalitarianism,
 		/datum/ego_datum/armor/totalitarianism,

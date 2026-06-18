@@ -78,7 +78,7 @@
 	var/hp_check_cooldown = 0
 	var/howl_cooldown = 0
 	var/howl_cooldown_time = BIGWOLF_COOLDOWN_HOWL
-
+	can_spawn = FALSE
 //Obligatory ability buttons for the dreaded player.
 /datum/action/innate/abnormality_attack/toggle/wolf_dash_toggle
 	name = "Toggle Dash"

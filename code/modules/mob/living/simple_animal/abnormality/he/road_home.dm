@@ -36,7 +36,7 @@
 	)
 	gift_type = /datum/ego_gifts/homing_instinct
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
-
+	can_spawn = FALSE
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/scarecrow = 2,
 		/mob/living/simple_animal/hostile/abnormality/woodsman = 2,
