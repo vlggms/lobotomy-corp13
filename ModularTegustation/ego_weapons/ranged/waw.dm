@@ -999,6 +999,7 @@
 		return
 	portaling = TRUE
 	to_chat(user,span_notice("You will now create a magic circle at your target."))
+	return ..()
 
 /obj/item/ego_weapon/ranged/fellbullet/proc/AdjustCircle(mob/living/user, atom/theportal, atom/target)
 	theportal.transform = initial(theportal.transform)

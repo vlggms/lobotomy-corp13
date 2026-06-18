@@ -275,6 +275,7 @@
 	H.playsound_local(get_turf(H), 'sound/abnormalities/wrath_servant/hermit_magic.ogg', 25, 0)
 	BaldBlast(user)
 	pulse_cooldown = world.time + pulse_cooldown_time
+	return ..()
 
 /obj/item/ego_weapon/ranged/pistol/tough/proc/BaldBlast(mob/living/carbon/human/user ,list/baldtargets = list(), burst_chain)
 	for(var/mob/living/carbon/human/L in livinginview(5, user)) //not even the dead are safe.

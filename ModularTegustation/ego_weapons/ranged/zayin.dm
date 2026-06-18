@@ -75,6 +75,7 @@
 	else
 		pulse_enabled = FALSE
 		to_chat(H, "<span class='warning'>You must have the corrosponding armor equipped to use this ability!</span>")
+	return ..()
 
 /obj/item/ego_weapon/ranged/pistol/nostalgia/dropped(mob/user)
 	. = ..()
