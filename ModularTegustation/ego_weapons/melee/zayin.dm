@@ -331,7 +331,7 @@
 	return
 
 /obj/item/ego_weapon/sunset
-	name = "into the sunset,"
+	name = "into the sunset"
 	desc = "It's beautiful."
 	icon_state = "eclipse"
 	force = 6
