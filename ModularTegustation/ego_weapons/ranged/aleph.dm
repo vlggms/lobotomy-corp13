@@ -86,7 +86,7 @@
 	alternate_projectile_path = /obj/projectile/ego_bullet/adoration/super
 	alternate_info = "This weapon fires a large, slow moving glob of goo that costs twice as much ammo to fire and reqires the weapon to be charged up to fire. \
 	The glob of goo deals damage in an area while applying a DOT effect."
-	alternate_reload_type = RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_SHARED_MAGAZINE
+	alternate_reload_type = RELOADTYPE_SHARED_MAGAZINE
 	alternate_fire_sound = 'sound/effects/attackblob.ogg'
 	alternate_pellets = 1
 	alternate_variance  = 0

@@ -55,9 +55,6 @@
 	playsound(owner, 'sound/effects/wounds/sizzle2.ogg', 25, TRUE)
 	return ..()
 
-/datum/status_effect/gooped/on_remove()
-	return ..()
-
 /datum/status_effect/gooped/tick()
 	if(QDELETED(owner) || owner.stat == DEAD)
 		qdel(src)

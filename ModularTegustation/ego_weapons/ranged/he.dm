@@ -60,7 +60,7 @@
 	fire_sound = 'sound/magic/staff_change.ogg'
 	alternate_fire_name = "Glimmer"
 	alternate_info = "This weapon fires slower, but fires a slower moving projectile that homes in on the nearest target within a small radius."
-	alternate_reload_type = RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_SHARED_MAGAZINE
+	alternate_reload_type = RELOADTYPE_SHARED_MAGAZINE
 	alternate_projectile_path = /obj/projectile/ego_bullet/ego_galaxy/homing
 	alternate_fire_sound = 'sound/magic/charge.ogg'
 	alternate_fire_sound_volume = 70
@@ -135,7 +135,7 @@
 	reloadtime = 0.8 SECONDS
 	alternate_reload_time = 0.8 SECONDS
 	alternate_fire_name = "Grinding Noise"
-	alternate_reload_type = RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_SHARED_MAGAZINE
+	alternate_reload_type = RELOADTYPE_SHARED_MAGAZINE
 	alternate_projectile_path = /obj/projectile/ego_bullet/ego_harmony/strong
 	alternate_info = "This weapon's shots will deal increased damage at a cost of health loss every time it fires."
 	alternate_fire_sound = 'sound/weapons/ego/cannon.ogg'

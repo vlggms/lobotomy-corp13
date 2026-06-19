@@ -209,7 +209,7 @@
 	var/alternate_toggle_enabled_message = span_notice("Alternate fire enabled.")
 	var/alternate_toggle_disabled_message = span_notice("Alternate fire disabled.")
 	/// The way reloading is handled for alternate firetypes. View __defines/combat.dm.
-	var/alternate_reload_type = RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_SHARED_RELOAD
+	var/alternate_reload_type = RELOADTYPE_SHARED_RELOAD
 	//We switch the existing values to these values
 	var/alternate_reload_time = 0
 	var/alternate_projectile_path = /obj/projectile/ego_bullet/ego_knade
@@ -334,7 +334,7 @@
 	variance = alternate_variance
 	fire_sound = alternate_fire_sound
 	fire_sound_volume = alternate_fire_sound_volume
-	if(alternate_reload_type == RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_EMPTY_MAG)
+	if(alternate_reload_type == RELOADTYPE_EMPTY_MAG)
 		to_chat(user, span_danger("You dump your magazine to prepare the other ammo type"))
 		shotsleft = 0
 	if(!silent)
@@ -349,7 +349,7 @@
 	variance = initial(variance)
 	fire_sound = initial(fire_sound)
 	fire_sound_volume = initial(fire_sound_volume)
-	if(alternate_reload_type == RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_EMPTY_MAG)
+	if(alternate_reload_type == RELOADTYPE_EMPTY_MAG)
 		to_chat(user, span_danger("You dump your magazine to prepare the other ammo type"))
 		shotsleft = 0
 	if(!silent)
@@ -471,14 +471,14 @@
 
 		// Ammo count for altfire.
 		switch(alternate_reload_type)
-			if(RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_SHARED_RELOAD)
+			if(RELOADTYPE_SHARED_RELOAD)
 				text += span_nicegreen("Reloading the magazine will reload the alternate ammo.")
 				if(alternate_shotsleft >= alternate_ammo_per_shot)
 					text += span_notice("[alternate_fire_name] Ammo Counter: [alternate_shotsleft]/[alternate_max_shots].")
 				else
 					text += span_danger("[alternate_fire_name] Ammo Counter: [alternate_shotsleft]/[alternate_max_shots].")
 
-			if(RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_INDIVIDUAL_RELOAD)
+			if(RELOADTYPE_INDIVIDUAL_RELOAD)
 				text += span_notice("This weapon requires both ammo types to be reloaded separately.")
 				if(alternate_shotsleft >= alternate_ammo_per_shot)
 					text += span_notice("[alternate_fire_name] Ammo Counter: [alternate_shotsleft]/[alternate_max_shots].")
@@ -486,9 +486,9 @@
 					text += span_danger("[alternate_fire_name] Ammo Counter: [alternate_shotsleft]/[alternate_max_shots].")
 
 
-			if(RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_SHARED_MAGAZINE)
+			if(RELOADTYPE_SHARED_MAGAZINE)
 				text += span_notice("The alternate fire on this weapon uses the main ammo pool.")
-			if(RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_EMPTY_MAG)
+			if(RELOADTYPE_EMPTY_MAG)
 				text += span_danger("This weapon can only load one ammo type at a time. Reloading will dump the magazine.")
 
 		text += ""
@@ -540,7 +540,7 @@
 		playsound(src, reload_success_sound, 50, TRUE)
 		OnReload(user)
 		//Alright, let's check if we're in the alternate mode, and reloading the second mag.
-		if(alternate_selected && (alternate_reload_type == RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_INDIVIDUAL_RELOAD))
+		if(alternate_selected && (alternate_reload_type == RELOADTYPE_INDIVIDUAL_RELOAD))
 			alternate_shotsleft = alternate_max_shots
 			if(user.has_movespeed_modifier(/datum/movespeed_modifier/reloading))
 				user.remove_movespeed_modifier(/datum/movespeed_modifier/reloading)
@@ -551,7 +551,7 @@
 		shotsleft = max_shots
 
 		//If we reload both at once? Set the alt shots back too.
-		if(alternate_reload_type == RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_SHARED_RELOAD)
+		if(alternate_reload_type == RELOADTYPE_SHARED_RELOAD)
 			alternate_shotsleft = alternate_max_shots
 
 	if(user.has_movespeed_modifier(/datum/movespeed_modifier/reloading))
@@ -561,7 +561,7 @@
 /obj/item/ego_weapon/ranged/proc/rounds_reload(mob/user, is_reloading_alt_mag = FALSE)
 	is_reloading = TRUE
 	//If it's only one mag type, you MUST load it.
-	if(alternate_reload_type == RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_EMPTY_MAG)
+	if(alternate_reload_type == RELOADTYPE_EMPTY_MAG)
 		is_reloading_alt_mag = FALSE
 	if(((!is_reloading_alt_mag) && (shotsleft == max_shots)) || ((is_reloading_alt_mag) && (alternate_shotsleft == alternate_max_shots)))
 		if(user.has_movespeed_modifier(/datum/movespeed_modifier/reloading))
@@ -642,20 +642,20 @@
 		switch(alternate_reload_type)
 
 			//If it's two mags, we check if there's ammo in the alt mag
-			if(RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_SHARED_RELOAD)
+			if(RELOADTYPE_SHARED_RELOAD)
 				if(alternate_shotsleft && alternate_reload_time)
 					alternate_shotsleft = max(0, alternate_shotsleft - alternate_ammo_per_shot)
 
-			if(RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_INDIVIDUAL_RELOAD)
+			if(RELOADTYPE_INDIVIDUAL_RELOAD)
 				if(alternate_shotsleft && alternate_reload_time)
 					alternate_shotsleft = max(0, alternate_shotsleft - alternate_ammo_per_shot)
 
 			//If it's one mag, we lose a main bullet
-			if(RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_EMPTY_MAG)
+			if(RELOADTYPE_EMPTY_MAG)
 				if(shotsleft && alternate_reload_time)
 					shotsleft = max(0, shotsleft - ammo_per_shot)
 
-			if(RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_SHARED_MAGAZINE)
+			if(RELOADTYPE_SHARED_MAGAZINE)
 				if(shotsleft && alternate_reload_time)
 					shotsleft = max(0, shotsleft - ammo_per_shot)
 
@@ -686,23 +686,23 @@
 		switch(alternate_reload_type)
 
 			//If it's two mags, we check if there's ammo.
-			if(RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_SHARED_RELOAD)
+			if(RELOADTYPE_SHARED_RELOAD)
 				if(alternate_shotsleft < alternate_ammo_per_shot)
 					shoot_with_empty_chamber(user)
 					return FALSE
 
-			if(RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_INDIVIDUAL_RELOAD)
+			if(RELOADTYPE_INDIVIDUAL_RELOAD)
 				if(alternate_shotsleft < alternate_ammo_per_shot)
 					shoot_with_empty_chamber(user)
 					return FALSE
 
 			//If it's one mag, we check the main mag.
-			if(RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_EMPTY_MAG)
+			if(RELOADTYPE_EMPTY_MAG)
 				if(shotsleft < ammo_per_shot)
 					shoot_with_empty_chamber(user)
 					return FALSE
 
-			if(RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_SHARED_MAGAZINE)
+			if(RELOADTYPE_SHARED_MAGAZINE)
 				if(shotsleft < ammo_per_shot)
 					shoot_with_empty_chamber(user)
 					return FALSE
@@ -963,11 +963,11 @@
 			if(passive_reload_timer)
 				deltimer(passive_reload_timer)
 			passive_reload_timer = addtimer(CALLBACK(src, PROC_REF(PassiveReload), user, TRUE), passive_reload, TIMER_STOPPABLE)
-		if(alternate_selected && (alternate_reload_type == RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_INDIVIDUAL_RELOAD))
+		if(alternate_selected && (alternate_reload_type == RELOADTYPE_INDIVIDUAL_RELOAD))
 			alternate_shotsleft = min(alternate_shotsleft + ammo_on_melee, alternate_max_shots)
 			return
 		shotsleft = min(shotsleft + ammo_on_melee, max_shots)
-		if(alternate_reload_type == RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_SHARED_RELOAD)
+		if(alternate_reload_type == RELOADTYPE_SHARED_RELOAD)
 			alternate_shotsleft = min(alternate_shotsleft + ammo_on_melee, alternate_max_shots)
 	return ..()
 

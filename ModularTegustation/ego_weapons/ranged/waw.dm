@@ -350,7 +350,7 @@
 	alternate_info = "This rifle has an underslung grenade launcher. Bee grenades deal heavy AoE damage and knockback.\nAfter firing the UGL, you'll automatically swap to the primary fire mode."
 	alternate_shotsleft = 1
 	alternate_pellets = 1
-	alternate_reload_type = RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_SHARED_RELOAD
+	alternate_reload_type = RELOADTYPE_SHARED_RELOAD
 	alternate_projectile_path = /obj/projectile/ego_bullet/loyalty_ugl
 	alternate_fire_sound = 'sound/weapons/gun/general/grenade_launch.ogg'
 	alternate_fire_sound_volume = 70
@@ -1083,7 +1083,7 @@
 	alternate_toggle_sound_volume = 50
 	alternate_toggle_enabled_message = span_notice("You will now fire a magical slug.")
 	alternate_toggle_disabled_message = span_notice("You will now fire shotgun shells.")
-	alternate_reload_type = RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_EMPTY_MAG
+	alternate_reload_type = RELOADTYPE_EMPTY_MAG
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 80
 							)
@@ -1201,7 +1201,7 @@
 							)
 	alternate_fire_name = "Barrage Roots"
 	alternate_info = "This weapon will cast a trailing line of weaker roots starting from the user."
-	alternate_reload_type = RANGEDEGO_ALTERNATEFIRE_RELOADTYPE_SHARED_MAGAZINE
+	alternate_reload_type = RELOADTYPE_SHARED_MAGAZINE
 	alternate_toggle_sound = 'sound/creatures/venus_trap_hurt.ogg'
 	alternate_toggle_sound_volume = 65
 	alternate_toggle_enabled_message = span_notice("You channel your energy, you will now cast Barrage Roots.")
