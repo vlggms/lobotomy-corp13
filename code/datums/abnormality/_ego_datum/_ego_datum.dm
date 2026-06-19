@@ -247,7 +247,7 @@ GLOBAL_LIST_EMPTY(ego_datums)
 		if("mobile_reload" in information)
 			dat += "[information["mobile_reload"]]<br>"
 		if("passive_reload" in information)
-			dat += "This weapon reloads passively instead of automatically.<br>"
+			dat += "This weapon reloads passively instead of manually.<br>"
 			dat += "[information["passive_reload"]]<br>"
 		dat += "[information["reload_speed"]]<br>"
 		if("ammo" in information)

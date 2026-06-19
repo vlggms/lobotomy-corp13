@@ -92,20 +92,12 @@
 	var/multiplier_cap = 1.10
 	if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_1))
 		multiplier_cap = 1.20
-	if(is_ego_melee_weapon(A))
+	if(is_ego_weapon(A))
 		var/obj/item/ego_weapon/theweapon = A
 		if(theweapon.force_multiplier >= multiplier_cap)
 			to_chat(user, span_warning("You can't modify this any further!"))
 			return
 		target_item = theweapon
-		ToolPrepare(user)
-
-	else if(is_ego_weapon(A))
-		var/obj/item/ego_weapon/ranged/thegun = A
-		if(thegun.force_multiplier >= multiplier_cap)
-			to_chat(user, span_warning("You can't modify this any further!"))
-			return
-		target_item = thegun
 		ToolPrepare(user)
 
 	return FALSE
