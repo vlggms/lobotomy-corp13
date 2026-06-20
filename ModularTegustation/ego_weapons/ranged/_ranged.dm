@@ -561,7 +561,7 @@
 /obj/item/ego_weapon/ranged/proc/rounds_reload(mob/user, is_reloading_alt_mag = FALSE)
 	is_reloading = TRUE
 	//If it's only one mag type, you MUST load it.
-	if(alternate_reload_type == RELOADTYPE_EMPTY_MAG)
+	if(alternate_reload_type == RELOADTYPE_EMPTY_MAG || alternate_reload_type == RELOADTYPE_SHARED_MAGAZINE)
 		is_reloading_alt_mag = FALSE
 	if(((!is_reloading_alt_mag) && (shotsleft == max_shots)) || ((is_reloading_alt_mag) && (alternate_shotsleft == alternate_max_shots)))
 		if(user.has_movespeed_modifier(/datum/movespeed_modifier/reloading))

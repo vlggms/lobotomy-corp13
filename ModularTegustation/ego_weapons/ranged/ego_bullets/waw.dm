@@ -386,7 +386,7 @@
 /obj/projectile/ego_bullet/ego_fellbullet
 	name = "fell bullet"
 	icon_state = "fell_bullet"
-	damage = 38
+	damage = 36
 	speed = 0.1
 	damage_type = RED_DAMAGE
 	projectile_piercing = PASSMOB
