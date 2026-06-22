@@ -154,7 +154,7 @@
 	SEND_SIGNAL(src, COMSIG_ITEM_AFTERATTACK, target, user, flag, params)
 	SEND_SIGNAL(user, COMSIG_MOB_ITEM_AFTERATTACK, target, user, flag, params)
 	//Is it stupid as hell that we're doing this? yes, But the guns were used together in lcorp and I wanted the same functionality here.
-	dual_wield_spread = 12
+	dual_wield_spread = 0
 	if(QDELETED(target))
 		return
 
@@ -271,7 +271,7 @@
 	SEND_SIGNAL(src, COMSIG_ITEM_AFTERATTACK, target, user, flag, params)
 	SEND_SIGNAL(user, COMSIG_MOB_ITEM_AFTERATTACK, target, user, flag, params)
 	//Is it stupid as hell that we're doing this? yes, But the guns were used together in lcorp and I wanted the same functionality here.
-	dual_wield_spread = 12
+	dual_wield_spread = 0
 	if(QDELETED(target))
 		return
 
