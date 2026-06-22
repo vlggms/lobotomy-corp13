@@ -107,9 +107,19 @@
 	if(istype(Y))
 		projectile_damage_multiplier *= 1.3
 	if(istype(Z))
-		projectile_damage_multiplier *= 3
+		projectile_damage_multiplier *= 2
 	..()
 
+/obj/item/ego_weapon/ranged/magicbullet/melee_attack_chain(mob/user, atom/target, params)
+	if (!istype(user,/mob/living/carbon/human))
+		return
+	var/mob/living/carbon/human/myman = user
+	var/obj/item/clothing/suit/armor/ego_gear/realization/bigiron/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if (istype(Z))
+		force = 48
+	else
+		force = 24
+	. = ..()
 
 //Funeral guns have two different names;
 //Solemn Lament is the white gun, Solemn Vow is the black gun.
@@ -222,6 +232,17 @@
 	if(istype(Z))
 		projectile_damage_multiplier *= 2
 
+/obj/item/ego_weapon/ranged/solemnlament/melee_attack_chain(mob/user, atom/target, params)
+	if (!istype(user,/mob/living/carbon/human))
+		return
+	var/mob/living/carbon/human/myman = user
+	var/obj/item/clothing/suit/armor/ego_gear/realization/eulogy/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if (istype(Z))
+		force = 18
+	else
+		force = 9
+	. = ..()
+
 /obj/item/ego_weapon/ranged/pistol/solemnvow
 	name = "solemn vow"
 	desc = "A pistol which carries with it grief for those who have perished. \
@@ -328,6 +349,16 @@
 	if(istype(Z))
 		projectile_damage_multiplier *= 2
 
+/obj/item/ego_weapon/ranged/solemnvow/melee_attack_chain(mob/user, atom/target, params)
+	if (!istype(user,/mob/living/carbon/human))
+		return
+	var/mob/living/carbon/human/myman = user
+	var/obj/item/clothing/suit/armor/ego_gear/realization/eulogy/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if (istype(Z))
+		force = 18
+	else
+		force = 9
+	. = ..()
 
 /obj/item/ego_weapon/ranged/loyalty
 	name = "loyalty"
@@ -483,14 +514,24 @@
 							JUSTICE_ATTRIBUTE = 60
 							)
 
-/obj/item/ego_weapon/ranged/magicbullet/before_firing(atom/target, mob/user)
+/obj/item/ego_weapon/ranged/magic_pistol/before_firing(atom/target, mob/user)
 	projectile_damage_multiplier = 1
 	var/mob/living/carbon/human/myman = user
 	var/obj/item/clothing/suit/armor/ego_gear/realization/bigiron/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(istype(Z))
-		projectile_damage_multiplier *= 3
+		projectile_damage_multiplier *= 2
 	..()
 
+/obj/item/ego_weapon/ranged/magic_pistol/melee_attack_chain(mob/user, atom/target, params)
+	if (!istype(user,/mob/living/carbon/human))
+		return
+	var/mob/living/carbon/human/myman = user
+	var/obj/item/clothing/suit/armor/ego_gear/realization/bigiron/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if (istype(Z))
+		force = 18
+	else
+		force = 9
+	. = ..()
 
 /obj/item/ego_weapon/ranged/pistol/laststop
 	name = "last stop"
