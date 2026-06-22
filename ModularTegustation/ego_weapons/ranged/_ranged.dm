@@ -154,7 +154,7 @@
 	var/dry_fire_sound = 'sound/weapons/gun/general/dry_fire.ogg'
 	var/reload_start_sound = 'sound/weapons/gun/general/slide_lock_1.ogg'
 	var/reload_success_sound = 'sound/weapons/gun/general/bolt_rack.ogg'
-	var/charge_sound = 'sound/weapons/gun/general/slide_lock_1.ogg'
+	var/charge_sound = 'sound/weapons/gun/general/magazine_insert_full.ogg'
 	var/charge_sound_volume = 50
 
 	var/chargetime = null
