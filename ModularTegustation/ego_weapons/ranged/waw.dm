@@ -204,7 +204,7 @@
 				continue
 			else if(G.can_trigger_gun(user) && G.can_shoot(user))
 				bonus_spread += dual_wield_spread
-				loop_counter+=2.5
+				loop_counter++
 				addtimer(CALLBACK(G, TYPE_PROC_REF(/obj/item/ego_weapon/ranged, process_fire), target, user, TRUE, params, null, bonus_spread), loop_counter)
 
 	return process_fire(target, user, TRUE, params, null, bonus_spread)
@@ -321,7 +321,7 @@
 				continue
 			else if(G.can_trigger_gun(user) && G.can_shoot(user))
 				bonus_spread += dual_wield_spread
-				loop_counter+=2.5
+				loop_counter++
 				addtimer(CALLBACK(G, TYPE_PROC_REF(/obj/item/ego_weapon/ranged, process_fire), target, user, TRUE, params, null, bonus_spread), loop_counter)
 
 	return process_fire(target, user, TRUE, params, null, bonus_spread)
