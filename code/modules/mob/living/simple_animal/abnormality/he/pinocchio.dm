@@ -88,9 +88,6 @@
 
 //Work/Misc
 /mob/living/simple_animal/hostile/abnormality/pinocchio/AttemptWork(mob/living/carbon/human/user, work_type)
-	if(realboy)
-		to_chat(user, span_warning("The Abnormality has breached containment!"))
-		return FALSE
 	if(work_type == "Lying is Bad!")
 		if(lying)
 			playsound(src, 'sound/abnormalities/pinocchio/success.ogg', 40, 0, 1)

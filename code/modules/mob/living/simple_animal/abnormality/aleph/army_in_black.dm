@@ -62,14 +62,13 @@ GLOBAL_LIST_EMPTY(army)
 			Yours is rife with sin. <br>Ours are...\" <br>The soldier falls silent, as if in deep thought."),
 		"Salute him back" = list(FALSE, "The soldier in pink smiles. <br>\"Glad to have you on board Sir, with our help, there will be no more black hearts.\""),
 	)
+	can_affect_emergency = FALSE
 
 	//Unique variables
 	var/death_counter = 0
 	var/protection_duration = 120 SECONDS
 	var/protected_targets = list()
 	var/summoned_army = list()//hostile unit list
-	var/boom_radius = 20
-	var/boom_damage = 40
 	var/adds_max = 1
 
 /***Simple mob procs***/
@@ -107,9 +106,6 @@ GLOBAL_LIST_EMPTY(army)
 /***Work procs***/
 //protect work grants you a buff in exchange for reducing its counter
 /mob/living/simple_animal/hostile/abnormality/army/AttemptWork(mob/living/carbon/human/user, work_type)
-	if(LAZYLEN(protected_targets))
-		to_chat(user, span_warning("The Abnormality has breached containment!"))
-		return FALSE
 	..()
 	if(work_type == "Protection")
 		if(datum_reference?.qliphoth_meter > 1)
@@ -159,17 +155,20 @@ GLOBAL_LIST_EMPTY(army)
 
 //*--Combat Mechanics--*
 /mob/living/simple_animal/hostile/abnormality/army/BreachEffect(mob/living/carbon/human/user, breach_type)
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ABNORMALITY_BREACH, src)
 	if(breach_type == BREACH_MINING)
 		for(var/i in 1 to 3)
 			var/mob/living/simple_animal/hostile/aminion/army_enemy/E = new(get_turf(src))
 			RegisterSignal(E, COMSIG_PARENT_QDELETING, PROC_REF(ArmyDeath))
+			summoned_army += E//the actual army list
 	else
 		FearEffect()
 		Blackify()
 		SpawnAdds()//set its alpha to 0 and make it non-dense
 	for(var/mob/living/L in protected_targets)
 		L.remove_status_effect(STATUS_EFFECT_PROTECTION)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ABNORMALITY_BREACH, src)
+	if(istype(datum_reference))
+		deadchat_broadcast(" has breached containment.", "<b>[src.name]</b>", src, get_turf(src))
 	density = FALSE
 	alpha = 0
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
@@ -190,6 +189,7 @@ GLOBAL_LIST_EMPTY(army)
 	UnregisterSignal(E, COMSIG_PARENT_QDELETING)
 	summoned_army -= E
 	if(!LAZYLEN(summoned_army))
+		loc = E.loc
 		qdel(src)//suppress the abnormality
 		return
 
