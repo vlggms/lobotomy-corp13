@@ -230,7 +230,7 @@ GLOBAL_LIST_EMPTY(army)
 	del_on_death = FALSE
 	density = FALSE
 	is_flying_animal = TRUE
-	can_affect_emergency = FALSE
+	can_affect_emergency = TRUE
 	threat_level = ALEPH_LEVEL
 	var/shot_cooldown
 	var/shot_cooldown_time = 5 SECONDS
