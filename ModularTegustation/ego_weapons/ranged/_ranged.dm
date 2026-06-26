@@ -445,7 +445,7 @@
 				text += span_danger("This weapon has an extremely slow reload")
 
 		if(mobile_reload)
-			. += span_notice("This weapon can be reloaded while moving at the cost of movespeed.")
+			text += span_notice("This weapon can be reloaded while moving at the cost of movespeed.")
 
 		if(ammo_on_reload)
 			if(ammo_on_reload > 1)

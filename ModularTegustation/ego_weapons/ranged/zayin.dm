@@ -109,6 +109,7 @@
 	fire_delay = 5
 	max_shots = 1
 	reloadtime = 1 SECONDS
+	weapon_weight = WEAPON_MEDIUM
 	fire_sound = 'sound/weapons/bowfire.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 50
