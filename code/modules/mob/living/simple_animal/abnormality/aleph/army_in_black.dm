@@ -62,6 +62,7 @@ GLOBAL_LIST_EMPTY(army)
 			Yours is rife with sin. <br>Ours are...\" <br>The soldier falls silent, as if in deep thought."),
 		"Salute him back" = list(FALSE, "The soldier in pink smiles. <br>\"Glad to have you on board Sir, with our help, there will be no more black hearts.\""),
 	)
+	trigger_lights = FALSE
 	can_affect_emergency = FALSE
 
 	//Unique variables
@@ -69,14 +70,12 @@ GLOBAL_LIST_EMPTY(army)
 	var/protection_duration = 120 SECONDS
 	var/protected_targets = list()
 	var/summoned_army = list()//hostile unit list
-	var/adds_max = 1
 
 /***Simple mob procs***/
 //checks for deaths
 /mob/living/simple_animal/hostile/abnormality/army/Initialize()
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(OnMobDeath))
-	adds_max = clamp((LAZYLEN(GLOB.player_list)/ 2),2, 5)//between 2 and 5 mooks on breach, one for every 2 people.
 
 //stops the previous snippet from destroying the server
 /mob/living/simple_animal/hostile/abnormality/army/Destroy()
@@ -156,6 +155,7 @@ GLOBAL_LIST_EMPTY(army)
 //*--Combat Mechanics--*
 /mob/living/simple_animal/hostile/abnormality/army/BreachEffect(mob/living/carbon/human/user, breach_type)
 	if(breach_type == BREACH_MINING)
+		status_flags |= GODMODE
 		for(var/i in 1 to 3)
 			var/mob/living/simple_animal/hostile/aminion/army_enemy/E = new(get_turf(src))
 			RegisterSignal(E, COMSIG_PARENT_QDELETING, PROC_REF(ArmyDeath))
@@ -177,6 +177,7 @@ GLOBAL_LIST_EMPTY(army)
 
 /mob/living/simple_animal/hostile/abnormality/army/proc/SpawnAdds()
 	var/list/spawns = shuffle(GLOB.xeno_spawn)
+	var/adds_max = floor(clamp(AvailableAgentCount()/2,2, 4))//between 2 and 4 mooks on breach, one for every 2 people.
 	for(var/i = 1 to adds_max)//# of iterations is equal to adds_max
 		for(var/turf/T in spawns)//this picks the first few shuffled xeno spawns. Maybe change it to a different type of loop
 			var/mob/living/simple_animal/hostile/aminion/army_enemy/E = new(get_turf(T))
@@ -186,18 +187,17 @@ GLOBAL_LIST_EMPTY(army)
 			break
 
 /mob/living/simple_animal/hostile/abnormality/army/proc/ArmyDeath(mob/E)//return to containment when all armies are dead
+	var/turf/T = get_turf(E)
 	UnregisterSignal(E, COMSIG_PARENT_QDELETING)
 	summoned_army -= E
 	if(!LAZYLEN(summoned_army))
-		loc = E.loc
+		forceMove(T)
 		qdel(src)//suppress the abnormality
 		return
 
 //convert all protection buffs into hostile units
 /mob/living/simple_animal/hostile/abnormality/army/proc/Blackify()
 	for(var/mob/living/carbon/A in protected_targets)
-		var/datum/status_effect/protection/P = A.has_status_effect(/datum/status_effect/protection)
-		P.boom = FALSE
 		A.remove_status_effect(STATUS_EFFECT_PROTECTION)
 		var/mob/living/simple_animal/hostile/aminion/army_enemy/B = new(get_turf(A))
 		protected_targets -= A
@@ -230,7 +230,7 @@ GLOBAL_LIST_EMPTY(army)
 	del_on_death = FALSE
 	density = FALSE
 	is_flying_animal = TRUE
-	can_affect_emergency = TRUE
+	score_divider = 2
 	threat_level = ALEPH_LEVEL
 	var/shot_cooldown
 	var/shot_cooldown_time = 5 SECONDS
@@ -285,8 +285,8 @@ GLOBAL_LIST_EMPTY(army)
 			break
 
 /mob/living/simple_animal/hostile/aminion/army_enemy/death()
-	animate(src, alpha = 0, time = 10 SECONDS)
-	QDEL_IN(src, 10 SECONDS)
+	animate(src, alpha = 0, time = 5 SECONDS)
+	QDEL_IN(src, 5 SECONDS)
 	..()
 
 /mob/living/simple_animal/hostile/aminion/army_enemy/proc/SetSpeed()
@@ -357,8 +357,7 @@ GLOBAL_LIST_EMPTY(army)
 	status_type = STATUS_EFFECT_UNIQUE
 	duration = 2 MINUTES
 	alert_type = null
-	tick_interval = 30
-	var/boom = TRUE
+	tick_interval = 10 SECONDS
 	var/obj/army_bud
 
 /datum/status_effect/protection/on_creation(mob/living/new_owner, ...)
@@ -376,15 +375,10 @@ GLOBAL_LIST_EMPTY(army)
 	status_holder.physiology.pale_mod *= 0.8
 	status_holder.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects10x10.dmi', "pink", -MUTATIONS_LAYER))
 	status_holder.vis_contents += army_bud
+	RegisterSignal(status_holder, COMSIG_WORK_STARTED, PROC_REF(OnWorkStart))
 
 /datum/status_effect/protection/on_remove()
 	. = ..()
-	if(boom)
-		playsound(get_turf(owner), 'sound/abnormalities/armyinblack/pink_explosion.ogg', 125, 0, 8)
-		new /obj/effect/temp_visual/pink_explosion(get_turf(owner))
-		for(var/mob/living/carbon/human/affected_human in view(7, owner))
-			affected_human.adjustBruteLoss(-20)
-			affected_human.adjustSanityLoss(20)
 	if(!ishuman(owner))
 		return
 	var/mob/living/carbon/human/status_holder = owner
@@ -395,6 +389,7 @@ GLOBAL_LIST_EMPTY(army)
 	status_holder.cut_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects10x10.dmi', "pink", -MUTATIONS_LAYER))
 	status_holder.vis_contents -= army_bud
 	to_chat(status_holder, span_notice("The pink soldier assigned to you returns to its containment cell."))
+	UnregisterSignal(status_holder, COMSIG_WORK_STARTED)
 
 /datum/status_effect/protection/tick()
 	if(owner.health < 0)
@@ -402,9 +397,13 @@ GLOBAL_LIST_EMPTY(army)
 	for(var/turf/T in view(3, owner))
 		new /obj/effect/temp_visual/friend_hearts(get_turf(T))
 		for(var/mob/living/carbon/human/H in T.contents)
-			H.adjustBruteLoss(-6)
-			H.adjustSanityLoss(-6)
+			H.adjustBruteLoss(-12)
+			H.adjustSanityLoss(-12)
 	playsound(get_turf(owner), 'sound/abnormalities/armyinblack/pink_heal.ogg', 50, 0, 2)
+
+/datum/status_effect/protection/proc/OnWorkStart(datum/source, datum/abnormality/abno_reference, mob/living/carbon/human/user, work_type)
+	SIGNAL_HANDLER
+	user.remove_status_effect(src)
 
 /obj/effect/pink_beacon
 	name = "pink beacon"
