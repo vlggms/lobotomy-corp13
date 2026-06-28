@@ -16,6 +16,7 @@
 	burst_delay = 3
 	fire_delay = 15
 	max_shots = 60
+	ammo_on_reload = 1
 	reloadtime = 0.25 SECONDS
 	passive_reload = 10 SECONDS
 	fire_sound = 'sound/weapons/ego/star.ogg'
@@ -66,6 +67,7 @@
 	pellets = 3
 	variance = 20
 	max_shots = 30
+	ammo_on_reload = 1
 	passive_reload = 8 SECONDS
 	reloadtime = 5
 

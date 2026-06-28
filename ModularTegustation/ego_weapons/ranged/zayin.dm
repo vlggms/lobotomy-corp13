@@ -40,11 +40,12 @@
 /obj/item/ego_weapon/ranged/pistol/nostalgia
 	name = "nostalgia"
 	desc = "An old-looking pistol made of wood"
-	special = "Use this weapon in your hand when wearing matching armor to heal the SP of others nearby."
+	special = "Press alt-click or middle-click with this weapon in your hand when wearing matching armor to heal the SP of others nearby."
 	icon_state = "nostalgia"
 	inhand_icon_state = "nostalgia"
 	projectile_path = /obj/projectile/ego_bullet/ego_nostalgia
-	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
+	fire_sound = 'sound/weapons/gun/revolver/shot.ogg'
+	reload_success_sound = 'sound/weapons/gun/revolver/load_bullet.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 70
 	fire_delay = 12

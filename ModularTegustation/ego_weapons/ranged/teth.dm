@@ -76,6 +76,10 @@
 	ammo_on_reload = 1
 	reloadtime = 0.6 SECONDS
 	fire_sound = 'sound/weapons/gun/shotgun/shot_auto.ogg'
+	round_text = "You start loading a shell."
+	reload_success_sound = 'sound/weapons/gun/shotgun/insert_shell.ogg'
+	projectile_name = "shell"
+	projectile_name_plural = "shells"
 
 /obj/item/ego_weapon/ranged/pistol/solitude
 	name = "solitude"
@@ -90,6 +94,7 @@
 	reloadtime = 0.5 SECONDS
 	ammo_on_reload = 1
 	fire_sound = 'sound/weapons/gun/revolver/shot_light.ogg'
+	reload_success_sound = 'sound/weapons/gun/revolver/load_bullet.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 70
 
@@ -139,6 +144,7 @@
 	max_shots = 10
 	reloadtime = 0.2 SECONDS
 	ammo_on_reload = 1
+	reload_success_sound = 'sound/weapons/gun/shotgun/insert_shell.ogg'
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
 
 /obj/item/ego_weapon/ranged/snapshot
@@ -222,6 +228,10 @@
 	ammo_on_reload = 1
 	reloadtime = 0.8 SECONDS
 	fire_sound = 'sound/weapons/gun/shotgun/shot.ogg'
+	round_text = "You start loading a shell."
+	reload_success_sound = 'sound/weapons/gun/shotgun/insert_shell.ogg'
+	projectile_name = "shell"
+	projectile_name_plural = "shells"
 
 /obj/item/ego_weapon/ranged/luckdraw
 	name = "luck of the draw"

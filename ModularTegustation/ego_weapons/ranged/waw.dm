@@ -14,7 +14,10 @@
 	ammo_on_reload = 1
 	reloadtime = 0.6 SECONDS
 	fire_sound = 'sound/weapons/gun/shotgun/shot_auto.ogg'
-
+	round_text = "You start loading a shell."
+	reload_success_sound = 'sound/weapons/gun/shotgun/insert_shell.ogg'
+	projectile_name = "shell"
+	projectile_name_plural = "shells"
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 60
@@ -34,6 +37,7 @@
 	max_shots = 10
 	ammo_on_reload = 1
 	reloadtime = 0.3 SECONDS
+	reload_success_sound = 'sound/weapons/gun/shotgun/insert_shell.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80
 							)
@@ -546,6 +550,7 @@
 	ammo_on_reload = 1
 	reloadtime = 1 SECONDS
 	fire_sound = 'sound/weapons/gun/shotgun/shot_auto.ogg'
+	reload_success_sound = 'sound/weapons/gun/revolver/load_bullet.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80
 							)
@@ -1112,6 +1117,9 @@
 	reloadtime = 0.5 SECONDS
 	fire_sound = 'sound/abnormalities/fluchschutze/fell_scatter.ogg'
 	reload_success_sound = 'sound/weapons/gun/shotgun/insert_shell.ogg'
+	round_text = "You start loading a shell."
+	projectile_name = "shell"
+	projectile_name_plural = "shells"
 	alternate_reload_time = 2 SECONDS
 	alternate_fire_name = "Designate Target"
 	alternate_projectile_path = /obj/projectile/ego_bullet/special_fellbullet
@@ -1132,10 +1140,16 @@
 /obj/item/ego_weapon/ranged/fellscatter/EnableAltfire(mob/user, silent = TRUE)
 	. = ..()
 	max_shots = 1
+	round_text = "You start loading a slug."
+	projectile_name = "slug"
+	projectile_name_plural = "slugs"
 
 /obj/item/ego_weapon/ranged/fellscatter/DisableAltfire(mob/user, silent = TRUE)
 	. = ..()
 	max_shots = initial(max_shots)
+	round_text = initial(round_text)
+	projectile_name = initial(projectile_name)
+	projectile_name_plural = initial(projectile_name_plural)
 
 /obj/item/ego_weapon/ranged/sodashotty
 	name = "soda shotgun"
@@ -1155,6 +1169,10 @@
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 10
 	fire_sound = 'sound/weapons/gun/shotgun/shot.ogg'
+	round_text = "You start loading a shell."
+	reload_success_sound = 'sound/weapons/gun/shotgun/insert_shell.ogg'
+	projectile_name = "shell"
+	projectile_name_plural = "shells"
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							)
@@ -1172,7 +1190,9 @@
 	reloadtime = 1.7 SECONDS
 	fire_sound = 'sound/weapons/gun/smg/shot.ogg'
 	autofire = 0.15 SECONDS
-
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							)
 
 /obj/item/ego_weapon/ranged/sodaminigun
 	name = "soda minigun"

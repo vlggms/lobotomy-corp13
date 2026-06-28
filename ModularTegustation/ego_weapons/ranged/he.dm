@@ -13,6 +13,7 @@
 	ammo_on_reload = 1
 	reloadtime = 0.3 SECONDS
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
+	reload_success_sound = 'sound/weapons/gun/shotgun/insert_shell.ogg'
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 40
 							)
@@ -164,6 +165,7 @@
 	ammo_on_reload = 1
 	reloadtime = 0.4 SECONDS
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
+	reload_success_sound = 'sound/weapons/gun/shotgun/insert_shell.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
@@ -245,6 +247,7 @@
 	max_shots = 8
 	ammo_on_reload = 1
 	reloadtime = 0.15 SECONDS
+	reload_success_sound = 'sound/weapons/gun/revolver/load_bullet.ogg'
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
