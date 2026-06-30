@@ -6,19 +6,18 @@
 	icon_living = "crimson_clown"
 	icon_dead = "crimson_clown_dead"
 	faction = list("crimson_ordeal")
-	maxHealth = 35
-	health = 35
+	maxHealth = 80
+	health = 80
 	speed = 1
 	density = FALSE
 	search_objects = 3
 	wanted_objects = list(/obj/machinery/computer/abnormality)
-	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1.3, PALE_DAMAGE = 2)
+	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 1.3, PALE_DAMAGE = 2)
 	blood_volume = BLOOD_VOLUME_NORMAL
 
-	/// When it hits console 12 times - reduce qliphoth and teleport
-	var/console_attack_counter = 0
+	/// When it hits console 10 times - reduce qliphoth, PE, and teleport
+	var/panel_attack_counter = 0
 	var/teleporting = FALSE
-	var/next_escape_health_mod = 0.9
 
 /mob/living/simple_animal/hostile/ordeal/crimson_clown/Life()
 	. = ..()
@@ -29,37 +28,37 @@
 	return TRUE
 
 /mob/living/simple_animal/hostile/ordeal/crimson_clown/CanAttack(atom/the_target)
-	if(istype(the_target, /obj/machinery/computer/abnormality))
-		var/obj/machinery/computer/abnormality/CA = the_target
-		if(CA.meltdown || !CA.datum_reference || !CA.datum_reference.current || !CA.datum_reference.qliphoth_meter)
+	if(istype(the_target, /obj/machinery/containment_panel))
+		var/obj/machinery/containment_panel/CP = the_target
+		if(!CP.linked_console)
+			return FALSE
+		var/obj/machinery/computer/abnormality/CA = CP.linked_console
+		if(CA.meltdown || !CA.datum_reference || !CA.datum_reference.current || !CA.datum_reference.current.IsContained())
 			return FALSE
 		return TRUE
 	return FALSE
 
 /mob/living/simple_animal/hostile/ordeal/crimson_clown/AttackingTarget(atom/attacked_target)
-	if(istype(attacked_target, /obj/machinery/computer/abnormality))
-		var/obj/machinery/computer/abnormality/CA = attacked_target
-		if(console_attack_counter < 12)
-			console_attack_counter += 1
-			visible_message(span_warning("[src] hits [CA]'s buttons at random!"))
-			playsound(get_turf(CA), "sound/machines/terminal_button0[rand(1,8)].ogg", 50, 1)
+	if(istype(attacked_target, /obj/machinery/containment_panel))
+		var/obj/machinery/containment_panel/CP = attacked_target
+		var/dir_to_target = get_cardinal_dir(get_turf(src), get_turf(CP))
+		dir = dir_to_target
+		do_attack_animation(get_step(src, dir_to_target))
+		if(panel_attack_counter < 10)
+			panel_attack_counter += 1
+			visible_message(span_warning("[src] hits at [CP]!"))
+			playsound(get_turf(CP), "sound/machines/terminal_button0[rand(1,8)].ogg", 75, 1)
 			changeNext_move(CLICK_CD_MELEE * 2)
 		else
-			console_attack_counter = 0
-			visible_message(span_warning("[CA]'s screen produces an error!"))
-			playsound(get_turf(CA), 'sound/machines/terminal_error.ogg', 50, 1)
-			CA.datum_reference.qliphoth_change(-1, src)
+			panel_attack_counter = 0
+			visible_message(span_warning("[CP]'s screen produces an error!"))
+			playsound(get_turf(CP), 'sound/machines/terminal_error.ogg', 75, 1)
+			CP.linked_console.datum_reference.qliphoth_change(-1, src)
+			CP.linked_console.datum_reference.stored_boxes = floor(CP.linked_console.datum_reference.stored_boxes * 0.7) //My fucking boxes
 			LoseTarget()
 			TeleportAway()
 		return
 	return ..()
-
-/mob/living/simple_animal/hostile/ordeal/crimson_clown/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
-	. = ..()
-	if(!stat && health < maxHealth * next_escape_health_mod)
-		next_escape_health_mod -= 0.3
-		LoseTarget()
-		TeleportAway()
 
 /mob/living/simple_animal/hostile/ordeal/crimson_clown/death(gibbed)
 	animate(src, transform = matrix()*1.8, color = "#FF0000", time = 15)
@@ -72,25 +71,27 @@
 	if(stat)
 		return
 	teleporting = TRUE
-	var/list/potential_computers = list()
+	var/list/potential_panels = list()
 	for(var/obj/machinery/computer/abnormality/CA in GLOB.lobotomy_devices)
 		if(!CanTeleportTo(CA))
 			continue
-		potential_computers += CA
-	if(LAZYLEN(potential_computers))
-		var/obj/machinery/computer/abnormality/teleport_computer = pick(potential_computers)
-		var/turf/T = get_step(get_turf(teleport_computer), SOUTH)
+		if(!CA.linked_panel)
+			continue
+		potential_panels += CA.linked_panel
+	if(LAZYLEN(potential_panels))
+		var/obj/machinery/containment_panel/teleport_panel = pick(potential_panels)
+		var/turf/T = get_step(get_turf(teleport_panel), SOUTH)
 		var/matrix/init_transform = transform
 		animate(src, transform = transform*0.01, time = 5, easing = BACK_EASING)
 		SLEEP_CHECK_DEATH(5)
-		console_attack_counter = 0
+		panel_attack_counter = 0
 		forceMove(T)
-		target = teleport_computer
+		target = teleport_panel
 		animate(src, transform = init_transform, time = 5, easing = BACK_EASING)
 	teleporting = FALSE
 
 /mob/living/simple_animal/hostile/ordeal/crimson_clown/proc/CanTeleportTo(obj/machinery/computer/abnormality/CA)
-	if(!CA.can_meltdown || CA.meltdown || !CA.datum_reference || !CA.datum_reference.current || !CA.datum_reference.qliphoth_meter)
+	if(!CA.can_meltdown || CA.meltdown || !CA.datum_reference || !CA.datum_reference.current || !CA.datum_reference.current.IsContained())
 		return FALSE
 	return TRUE
 
@@ -98,7 +99,7 @@
 	if(QDELETED(src))
 		return
 	visible_message(span_danger("[src] suddenly explodes!"))
-	for(var/mob/living/L in view(5, src))
+	for(var/mob/living/L in view(2, src))
 		if(!faction_check_mob(L))
 			L.deal_damage(10, RED_DAMAGE, attack_type = (ATTACK_TYPE_SPECIAL))
 	gib()
