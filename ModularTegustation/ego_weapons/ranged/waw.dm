@@ -401,10 +401,10 @@
 	. = ..()
 	autofire_component = GetComponent(/datum/component/automatic_fire)
 
-/obj/item/ego_weapon/ranged/loyalty/process_chamber()
+/obj/item/ego_weapon/ranged/loyalty/process_chamber(mob/living/user)
 	. = ..()
 	if(alternate_selected)
-		DisableAltfire(null, TRUE)
+		DisableAltfire(user, TRUE)
 
 /obj/item/ego_weapon/ranged/loyalty/EnableAltfire(mob/user, silent = TRUE)
 	. = ..()
@@ -810,6 +810,25 @@
 							TEMPERANCE_ATTRIBUTE = 60
 	)
 	var/bloodshot_ready = TRUE
+
+//A slightly different version to show Bloodfeast
+/obj/item/ego_weapon/ranged/cannon/banquet/UpdateAmmoCounter(mob/living/user)
+	if(!reloadtime || !user || !user.client)
+		maptext = ""
+		return
+	var/list/search_area = user.contents.Copy()
+	for(var/obj/item/storage/spare_space in search_area)
+		search_area |= spare_space.contents
+	if(!(src in search_area))
+		maptext = ""
+		return
+	var/main_color = "white"
+	if(!shotsleft)
+		main_color = "red"
+	var/style = "font-family: 'Better VCR'; font-size: [text_size]px; -dm-text-outline: 1px black; color: [main_color];"
+	var/blood_style = "font-family: 'Better VCR'; font-size: [text_size]px; -dm-text-outline: 1px black; color: #880000;"
+	var/datum/component/bloodfeast/bloodfeast = GetComponent(/datum/component/bloodfeast)
+	maptext = MAPTEXT("<span style=\"[style]\">[shotsleft]/[max_shots]</span>\n<span style=\"[blood_style]\">B:[round((bloodfeast.blood_amount/bloodfeast.blood_cap) * 100)]%</span>")
 
 /obj/item/ego_weapon/ranged/cannon/banquet/Initialize()
 	. = ..()

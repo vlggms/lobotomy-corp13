@@ -1,76 +1,3 @@
-/*
-	////////////////////////////////////////////////////
-	///A Brief Explanation of Guns and Their Jank DPS///
-	////////////////////////////////////////////////////
-
-	Part A - Sustained DPS
-		Sustained DPS is the hypothetical maximum damage per second a gun can do while factoring in ammo and reload compared to regular DPS just being damage/fire rate
-		Formula: (d * a)/((f * (a-1)) + max(f, r))
-		Note - A gun is able to be reloaded right after it fires a bullet.
-		Note - Sustained DPS is also different for charge up guns and passive reload guns
-		Charge up Formula: (d * a)/((f * (a-1))  + (c * a) + max(f, r))
-		Passive Reload Formula: (d * a)/((f * (a-1)) + max(f, (p + r*(a-1))))
-		If for some reason a gun uses both: (d * a)/((f * (a-1))  + (c * a) + max(f, (p + r*(a-1))))
-		Legend:
-			d -	The total damage from one shot(ie every pellet from a shotgun or Matchstick's base bullet damage + aoe)
-			f -	The Gun's fire rate in seconds, if the reload speed is slower than the reload speed, Sustained DPS will just end up being damage/fire rate.
-			a -	The maximum amount of ammo in a gun's clip
-			r -	The total time it takes to reload the gun to full in seconds(for guns that reload individual bullets, r is (reload * ceil(ammo/ammo on reload)))
-				Also for passive reload its a-1
-			c -	The time it takes for a gun to charge up before firing in seconds
-			p -	The initial passive reload delay that happens after the gun fires in seconds
-		Note - This cover's 99% of cases but there's probably a gun or 2 that have their own formula.
-	Part B - Gun Balancing
-		A Gun's Sustained DPS should be around these values based off of its risk level:
-			ZAYIN - 5 SDPS
-			TETH - 9 SDPS
-			HE - 14 SDPS
-			WAW - 21 SDPS
-			ALEPH - 35 SDPS
-		Note -	Despite Melee weapon DPS appearing as 6/10/16/24/40 per rank, its 25% higher due to Melee Click Cooldown being 0.8 seconds.
-				This means that Melee DPS is actually 7.5/12.5/20/30/50.
-		Gun damage is balanced around being ~70% of Melee DPS for their melee and their bullet's Sustained DPS but there are some exceptions.
-		Weight
-			Light - 0.9x DPS
-				These guns can be used with one hand but can be dual wielded and can be placed in an arm belt.
-				Despite dual wielding allowing someone to shoot 2 guns at once,It isn't 2x dps mainly due to reload time being doubled and increased spread.
-			Medium - 1x DPS
-				These guns can be used with one hand but can't be dual wielded with. They're the baseline for guns overall.
-			Heavy - 1.2x DPS
-				These guns require an empty hand to be used. They have higher DPS due to needing any empty hand to use which could have a different weapon instead.
-		Gun Mechanics
-			Charged Weapons - 1.3x DPS
-				Used mainly for cannon type weapons.
-				Requires to be charged up before shooting. It being charged up lasts for a few deciseconds.
-				Should have higher dps due to needing to stand still to charge it up.
-				Note - This shouldn't be used for light weapons due to how dual wielding works!
-			Mobile Reload (mobile_reload)
-				Used for Crossbows
-				Allows the user to move while reloading at a slower pace.
-				This should overall be rare.
-			Multi Shot- 1.3x DPS
-				Used Mainly for Shotguns.
-				Fires multiple bullets at once in a spread.
-				Should have higher dps due to limited range, and friendly fire.
-			Passive Reload
-				Used by Magic Staves and Energy Guns
-				Automatically starts reloading after a long delay after firing.
-				Note - Passive Reload Weapons can't be reloaded manually!
-			Burst Fire - 1.2x DPS
-				Fires a burst of bullets one after another.
-				Should have higher dps due to needing to hit all of the bullets during a burst.
-			Alternate Firing Modes
-				An alternate mode that can be used for different mechanics compared to a guns standard mode
-				Dps should be probably be lower compared to regular guns
-			Rounds Reload
-				Allows for Guns to reload individual rounds instead of the clip.
-				If this is being used, the gun should overall deal less damage due to being able to cancel mid reload and still regaining some bullets.
-			Range/Spread
-				Low range/high spread guns should have better DPS to compensate for hitting less often unless up close.
-			Added Abilities
-				If you add any other abilities to a new gun then it should have higher or lower dps depending on if they're harmful or helpful.
-*/
-
 /obj/item/ego_weapon/ranged
 	name = "ego gun"
 	icon_state = "detective"
@@ -83,6 +10,13 @@
 	attack_verb_continuous = list("strikes", "hits", "bashes")
 	attack_verb_simple = list("strike", "hit", "bash")
 	is_ranged = TRUE
+	///Text Stuff
+	maptext = ""
+	maptext_x = 0
+	maptext_y = 0
+	maptext_width = 48
+	maptext_height = 48
+	var/text_size = 5 // larger values clip when the displayed text is larger than 2 digits.
 
 	var/obj/item/firing_pin/pin = /obj/item/firing_pin/magic //standard firing pin for most guns
 	var/fire_sound = 'sound/weapons/emitter.ogg' //What sound should play when this ammo is fired
@@ -211,7 +145,7 @@
 	/// The way reloading is handled for alternate firetypes. View __defines/combat.dm.
 	var/alternate_reload_type = RELOADTYPE_SHARED_RELOAD
 	//We switch the existing values to these values
-	var/alternate_reload_time = 0
+	var/alternate_reload_time
 	var/alternate_projectile_path = /obj/projectile/ego_bullet/ego_knade
 	var/alternate_pellets = 1
 	var/alternate_variance = 0
@@ -277,6 +211,7 @@
 	if(pin)
 		pin = new pin(src)
 	build_zooming()
+	UpdateAmmoCounter()
 	if(autofire)
 		AddComponent(/datum/component/automatic_fire, autofire)
 		fire_delay = 0
@@ -340,6 +275,7 @@
 	if(!silent)
 		to_chat(user, alternate_toggle_enabled_message)
 	update_projectile_examine()
+	UpdateAmmoCounter(user)
 
 /obj/item/ego_weapon/ranged/proc/DisableAltfire(mob/user, silent = TRUE)
 	alternate_selected = FALSE
@@ -355,6 +291,7 @@
 	if(!silent)
 		to_chat(user, alternate_toggle_disabled_message)
 	update_projectile_examine()
+	UpdateAmmoCounter(user)
 
 /obj/item/ego_weapon/ranged/examine(mob/user)
 	. = ..()
@@ -517,6 +454,33 @@
 	last_projectile_type = projectile.damage_type
 	qdel(projectile)
 
+/obj/item/ego_weapon/ranged/proc/UpdateAmmoCounter(mob/living/user)
+	if(!reloadtime || !user || !user.client)
+		maptext = ""
+		return
+	var/list/search_area = user.contents.Copy()
+	for(var/obj/item/storage/spare_space in search_area)
+		search_area |= spare_space.contents
+	if(!(src in search_area))
+		maptext = ""
+		return
+	var/main_color = "white"
+	if(alternate_selected)
+		main_color = "gray"
+	if(!shotsleft)
+		main_color = "red"
+	var/style = "font-family: 'Better VCR'; font-size: [text_size]px; -dm-text-outline: 1px black; color: [main_color];"
+	if(alternate_fire_name && (alternate_reload_type == RELOADTYPE_INDIVIDUAL_RELOAD || alternate_reload_type == RELOADTYPE_SHARED_RELOAD))
+		var/alt_color = "white"
+		if(!alternate_selected)
+			alt_color = "gray"
+		if(!alternate_shotsleft)
+			alt_color = "red"
+		var/style2 = "font-family: 'Better VCR'; font-size: [text_size]px; -dm-text-outline: 1px black; color: [alt_color];"
+		maptext = MAPTEXT("<span style=\"[style]\">[shotsleft]/[max_shots]</span>\n<span style=\"[style2]\">[alternate_shotsleft]/[alternate_max_shots]</span>")
+	else
+		maptext = MAPTEXT("<span style=\"[style]\">[shotsleft]/[max_shots]</span>")
+
 /obj/item/ego_weapon/ranged/attack_self(mob/user)
 	if(passive_reload) // Passive reload doesn't care about reloading.
 		return ..()
@@ -545,6 +509,7 @@
 			if(user.has_movespeed_modifier(/datum/movespeed_modifier/reloading))
 				user.remove_movespeed_modifier(/datum/movespeed_modifier/reloading)
 			is_reloading = FALSE
+			UpdateAmmoCounter(user)
 			return	//Get the fuck outta here
 
 		//We're ALWAYS reloading the main mag here. If we got this far, it means we're using a gun that wants to load the main mag
@@ -557,6 +522,7 @@
 	if(user.has_movespeed_modifier(/datum/movespeed_modifier/reloading))
 		user.remove_movespeed_modifier(/datum/movespeed_modifier/reloading)
 	is_reloading = FALSE
+	UpdateAmmoCounter(user)
 
 /obj/item/ego_weapon/ranged/proc/rounds_reload(mob/user, is_reloading_alt_mag = FALSE)
 	is_reloading = TRUE
@@ -579,6 +545,7 @@
 			alternate_shotsleft = min(alternate_shotsleft + alternate_ammo_on_reload, alternate_max_shots)
 		else
 			shotsleft = min(shotsleft + ammo_on_reload, max_shots)
+		UpdateAmmoCounter(user)
 		OnReload(user)
 		INVOKE_ASYNC(src, PROC_REF(rounds_reload), user, is_reloading_alt_mag)	//To save you from loading all your bullets
 		return
@@ -596,6 +563,7 @@
 		shotsleft = min(shotsleft + ammo_on_reload, max_shots)
 	else
 		shotsleft = max_shots
+	UpdateAmmoCounter(user)
 	if(shotsleft < max_shots)
 		passive_reload_timer = addtimer(CALLBACK(src, PROC_REF(PassiveReload), user), reloadtime, TIMER_STOPPABLE)
 
@@ -603,6 +571,7 @@
 	. = ..()
 	if(zoomed && user.get_active_held_item() != src)
 		zoom(user, user.dir, FALSE) //we can only stay zoomed in if it's in our hands	//yeah and we only unzoom if we're actually zoomed using the gun!!
+	UpdateAmmoCounter(user)
 
 /obj/item/ego_weapon/ranged/pickup(mob/user)
 	..()
@@ -621,6 +590,7 @@
 		azoom.Remove(user)
 	if(zoomed)
 		zoom(user, user.dir)
+	UpdateAmmoCounter()
 
 //called after the gun has successfully fired its chambered ammo.
 /obj/item/ego_weapon/ranged/proc/process_chamber(mob/living/user)
@@ -658,6 +628,7 @@
 			if(RELOADTYPE_SHARED_MAGAZINE)
 				if(shotsleft && alternate_reload_time)
 					shotsleft = max(0, shotsleft - ammo_per_shot)
+	UpdateAmmoCounter(user)
 
 //check if there's enough ammo to shoot one time
 //i.e if clicking would make it shoot
@@ -928,6 +899,8 @@
 	semicd = FALSE
 
 /obj/item/ego_weapon/ranged/proc/ChargeUp(mob/living/user)
+	if(!CanUseEgo(user))
+		return
 	is_charging = TRUE
 	playsound(user, charge_sound, charge_sound_volume, vary_fire_sound)
 	if(do_after(user, chargetime, src))
@@ -965,10 +938,12 @@
 			passive_reload_timer = addtimer(CALLBACK(src, PROC_REF(PassiveReload), user, TRUE), passive_reload, TIMER_STOPPABLE)
 		if(alternate_selected && (alternate_reload_type == RELOADTYPE_INDIVIDUAL_RELOAD))
 			alternate_shotsleft = min(alternate_shotsleft + ammo_on_melee, alternate_max_shots)
+			UpdateAmmoCounter(user)
 			return
 		shotsleft = min(shotsleft + ammo_on_melee, max_shots)
 		if(alternate_reload_type == RELOADTYPE_SHARED_RELOAD)
 			alternate_shotsleft = min(alternate_shotsleft + ammo_on_melee, alternate_max_shots)
+		UpdateAmmoCounter(user)
 	return ..()
 
 /obj/item/ego_weapon/ranged/proc/handle_suicide(mob/living/carbon/human/user, mob/living/carbon/human/target, params, bypass_timer)

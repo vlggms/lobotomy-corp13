@@ -287,6 +287,10 @@
 
 /obj/item/ego_weapon/ranged/ringing/proc/handle_speech(mob/living/carbon/user, list/speech_args)
 	if (user.get_active_held_item() == src)
+		if(!shotsleft)
+			user.visible_message(span_notice(out_of_ammo))
+			return
+		process_chamber(user)
 		if(spamcheck > world.time)
 			to_chat(user, span_warning("\The [src] needs to recharge!"))
 		else
@@ -312,6 +316,7 @@
 	passive_reload = 4 SECONDS
 	reloadtime = 0.5 SECONDS
 	fire_sound = 'sound/weapons/ego/syrinx1.ogg'
+	fire_sound_volume = 25
 	autofire = 0.2 SECONDS
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40
