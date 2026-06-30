@@ -6,20 +6,21 @@
 	icon_living = "crimson_noon"
 	icon_dead = "crimson_noon_dead"
 	faction = list("crimson_ordeal")
-	maxHealth = 350
-	health = 350
+	maxHealth = 550
+	health = 550
 	pixel_x = -8
 	base_pixel_x = -8
 	melee_damage_lower = 6
 	melee_damage_upper = 8
+	move_to_delay = 3.75
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
 	attack_sound = 'sound/effects/ordeals/crimson/noon_bite.ogg'
 	death_sound = 'sound/effects/ordeals/crimson/noon_dead.ogg'
-	damage_coeff = list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
 	blood_volume = BLOOD_VOLUME_NORMAL
 	ordeal_remove_ondeath = FALSE
-
+	can_patrol = TRUE
 	/// How many mobs we spawn on death
 	var/mob_spawn_amount = 3
 
