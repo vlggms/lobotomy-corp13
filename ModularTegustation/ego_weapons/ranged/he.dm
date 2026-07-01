@@ -150,6 +150,7 @@
 	if(alternate_selected)
 		playsound(src, 'sound/abnormalities/singingmachine/chew.ogg', 50, TRUE)
 		to_chat(user, span_danger("[src] grinds a bit of your body as it fires!"))
+		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(user), pick(GLOB.alldirs))
 		user.adjustBruteLoss(user.maxHealth*0.05)
 
 /obj/item/ego_weapon/ranged/transmission

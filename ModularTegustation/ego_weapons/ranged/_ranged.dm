@@ -466,15 +466,18 @@
 		return
 	var/main_color = "white"
 	if(alternate_selected)
-		main_color = "gray"
-	if(!shotsleft)
+		if(alternate_reload_type == RELOADTYPE_INDIVIDUAL_RELOAD || alternate_reload_type == RELOADTYPE_SHARED_RELOAD)
+			main_color = "gray"
+		else
+			main_color = "yellow"
+	if(shotsleft < ammo_per_shot)
 		main_color = "red"
 	var/style = "font-family: 'Better VCR'; font-size: [text_size]px; -dm-text-outline: 1px black; color: [main_color];"
 	if(alternate_fire_name && (alternate_reload_type == RELOADTYPE_INDIVIDUAL_RELOAD || alternate_reload_type == RELOADTYPE_SHARED_RELOAD))
 		var/alt_color = "white"
 		if(!alternate_selected)
 			alt_color = "gray"
-		if(!alternate_shotsleft)
+		if(alternate_shotsleft < alternate_ammo_per_shot)
 			alt_color = "red"
 		var/style2 = "font-family: 'Better VCR'; font-size: [text_size]px; -dm-text-outline: 1px black; color: [alt_color];"
 		maptext = MAPTEXT("<span style=\"[style]\">[shotsleft]/[max_shots]</span>\n<span style=\"[style2]\">[alternate_shotsleft]/[alternate_max_shots]</span>")
