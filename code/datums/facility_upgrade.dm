@@ -158,6 +158,8 @@
 
 /datum/facility_upgrade/bullet_count/Upgrade()
 	value = min(max_value, value + 2)
+	for(var/obj/machinery/computer/camera_advanced/manager/C in GLOB.lobotomy_devices)
+		C.ammo += 2
 	. = ..()
 
 /datum/facility_upgrade/bullet_heal_increase
@@ -183,6 +185,7 @@
 	value = 20
 	max_value = 100
 	requires_one_of = list(RED_BULLET, WHITE_BULLET, BLACK_BULLET, PALE_BULLET)
+	cost = 1
 	info = " - This upgrade inceases the Health of all <b>Shield Bullets</b> by 10 HP per upgrade."
 
 /datum/facility_upgrade/bullet_shield_increase/Upgrade()
@@ -207,7 +210,7 @@
 /datum/facility_upgrade/regnenerator_healing
 	name = UPGRADE_REGENERATOR_HEALING
 	category = "Facility"
-	cost = 2
+	cost = 1
 	value = 0
 	max_value = 6
 	var/value_increase = 1
@@ -230,8 +233,10 @@
 	info = " - This upgrade inceases the amount of <b>Works</b> needed for a Qliphoth Meltdown by 1 per upgrade.<br> - This upgrade additionally increases the time limit of <b>Post Midnight Core Suppressions</b> by 20 Minutes per upgrade."
 
 /datum/facility_upgrade/meltdown_increase/Upgrade()
+	SSlobotomy_corp.qliphoth_max += 1
 	value = min(max_value, value + 1)
 	. = ..()
+	cost += 1
 
 /datum/facility_upgrade/meltdown_increase/DisplayValue()
 	if (value > 1)
@@ -243,9 +248,9 @@
 	category = "Facility"
 	value = 0
 	max_value = 30
-	var/value_increase = 5
-	cost = 2
-	info = " - This upgrade inceases the amount of stats all Agents and Officers have by +5 per upgrade."
+	var/value_increase = 10
+	cost = 1
+	info = " - This upgrade inceases the amount of stats all Agents and Officers have by +5/10/15 per upgrade."
 
 /datum/facility_upgrade/agent_spawn_stats_bonus/DisplayValue()
 	return "+[value]"
@@ -257,6 +262,8 @@
 		H.adjust_all_attribute_levels(value_increase)
 		to_chat(H, span_notice("Facility upgrade increased your attributes by [value_increase] points!"))
 	. = ..()
+	value_increase += 5
+	cost += 3
 
 /datum/facility_upgrade/picking_abno_amount
 	name = UPGRADE_ABNO_QUEUE_COUNT
@@ -274,11 +281,14 @@
 	category = "Facility"
 	value = 0
 	max_value = 60
-	info = " - This upgrade inceases the duration of an Abnormality's <b>Meltsdown Timer</b> by 10 seconds per upgrade."
+	var/value_increase = 10
+	info = " - This upgrade inceases the duration of an Abnormality's <b>Meltsdown Timer</b> by +10/20+30 seconds per upgrade."
 
 /datum/facility_upgrade/abno_melt_time/Upgrade()
-	value = min(max_value, value + 10)
+	value = min(max_value, value + value_increase)
 	. = ..()
+	value_increase += 10
+	cost += 1
 
 /datum/facility_upgrade/abno_melt_time/DisplayValue()
 	return "[value] seconds"
