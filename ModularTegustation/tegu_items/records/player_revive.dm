@@ -79,4 +79,4 @@
 	H.grab_ghost()
 	AdjustNE(-40)
 	playsound(user, 'sound/creatures/lc13/clockhead/rewind.ogg', 50, FALSE)
-	user.apply_damage((user.health * 0.5), BRUTE)
+	user.deal_damage((user.health * 0.5), BRUTE, flags = (DAMAGE_FORCED | DAMAGE_UNTRACKABLE), attack_type = (ATTACK_TYPE_SPECIAL))
