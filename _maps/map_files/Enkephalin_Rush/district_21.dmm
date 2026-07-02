@@ -4237,7 +4237,6 @@
 /area/department_main/command)
 "Qf" = (
 /obj/effect/turf_decal/bot,
-/obj/machinery/hatchery,
 /turf/open/floor/facility/white,
 /area/city)
 "Qj" = (

@@ -1594,10 +1594,6 @@
 /obj/structure/fluff/divine/conduit,
 /turf/open/floor/plasteel/solarpanel,
 /area/facility_hallway/information)
-"lZ" = (
-/obj/machinery/hatchery,
-/turf/open/floor/carpet/green,
-/area/department_main/safety)
 "md" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 1
@@ -33261,7 +33257,7 @@ ZL
 ZL
 ZL
 sZ
-lZ
+gz
 gz
 QO
 oW

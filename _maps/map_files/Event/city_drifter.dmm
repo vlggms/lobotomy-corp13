@@ -4780,7 +4780,6 @@
 /obj/machinery/status_display{
 	pixel_y = -32
 	},
-/obj/machinery/hatchery,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "Bb" = (

@@ -1236,7 +1236,6 @@
 	dir = 1
 	},
 /obj/effect/shelter_forcefield,
-/obj/machinery/hatchery,
 /turf/open/floor/shelter,
 /area/shelter)
 "Sd" = (

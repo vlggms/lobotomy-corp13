@@ -328,11 +328,7 @@
 	return FALSE
 
 /mob/dead/new_player/proc/AttemptLateSpawn(rank)
-	var/error = IsNameUnavailable()
-	if(error)
-		alert(src, "You cannot join again under the same name. Please pick a different name.")
-		return FALSE
-	error = IsJobUnavailable(rank)
+	var/error = IsJobUnavailable(rank)
 	if(error != JOB_AVAILABLE)
 		alert(src, get_job_unavailable_error_message(error, rank))
 		return FALSE

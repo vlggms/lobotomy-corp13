@@ -3862,7 +3862,6 @@
 /obj/effect/turf_decal/siding/blue{
 	dir = 8
 	},
-/obj/machinery/hatchery,
 /turf/open/floor/facility/white,
 /area/city)
 "om" = (
