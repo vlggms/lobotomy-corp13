@@ -51,7 +51,7 @@
 
 /datum/job/command/after_spawn(mob/living/carbon/human/outfit_owner, mob/M, latejoin = FALSE)
 	outfit_owner.grant_language(/datum/language/bong, TRUE, FALSE, LANGUAGE_MIND) //So they can understand the bong-bong but not speak it
-	SSlobotomy_corp.active_officers += M
+	SSlobotomy_corp.active_officers += outfit_owner
 	return ..()
 
 /datum/job/command/RespawnStats()

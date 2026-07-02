@@ -585,3 +585,16 @@
 	)
 	abno_breach_damage_type = "Fire/Red"
 	abno_breach_damage_count = "Very High"
+
+// The Burrowing Heaven
+/obj/item/paper/fluff/info/waw/burrowing_heaven
+	abno_type = /mob/living/simple_animal/hostile/abnormality/burrowing_heaven
+	abno_code = "O-04-72"
+	abno_info = list(
+		"Work with The Burrowing Heaven must be done while the manager or two employees have the Abnormality in sight.",
+		"During the work process, when the Abnormality went out of view, the Qliphoth Counter lowered. When The Burrowing Heaven’s Containment Unit was still unmonitored after the phenomenon, the Counter continued to lower.",
+		"When the work result was Normal or Good, the Qliphoth Counter increased. It seems that it can be increased up to three levels at a time, depending on the work result.",
+		"<WARNING> Do not stop looking at the Abnormality while its suppression is in progress.",
+	)
+	abno_breach_damage_type = "Black"
+	abno_breach_damage_count = "Very High"
