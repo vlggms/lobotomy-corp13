@@ -1162,6 +1162,7 @@
 	round_text = "You start loading a slug."
 	projectile_name = "slug"
 	projectile_name_plural = "slugs"
+	UpdateAmmoCounter(user)
 
 /obj/item/ego_weapon/ranged/fellscatter/DisableAltfire(mob/user, silent = TRUE)
 	. = ..()
@@ -1169,6 +1170,7 @@
 	round_text = initial(round_text)
 	projectile_name = initial(projectile_name)
 	projectile_name_plural = initial(projectile_name_plural)
+	UpdateAmmoCounter(user)
 
 /obj/item/ego_weapon/ranged/sodashotty
 	name = "soda shotgun"
