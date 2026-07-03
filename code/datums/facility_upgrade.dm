@@ -248,7 +248,7 @@
 	category = "Facility"
 	value = 0
 	max_value = 30
-	var/value_increase = 10
+	var/value_increase = 5
 	cost = 1
 	info = " - This upgrade inceases the amount of stats all Agents and Officers have by +5/10/15 per upgrade."
 
