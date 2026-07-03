@@ -65,7 +65,8 @@
 	weapon_weight = WEAPON_MEDIUM
 	fire_delay = 10
 	pellets = 3
-	variance = 20
+	variance = 15
+	randomspread = FALSE
 	max_shots = 30
 	ammo_on_reload = 1
 	passive_reload = 8 SECONDS
@@ -99,11 +100,13 @@
 
 /obj/item/ego_weapon/ranged/adoration/EnableAltfire(mob/user, silent = TRUE)
 	. = ..()
+	variance = 0
 	ammo_per_shot = 2
 	chargetime = 5
 
 /obj/item/ego_weapon/ranged/adoration/DisableAltfire(mob/user, silent = TRUE)
 	. = ..()
+	variance = initial(variance)
 	ammo_per_shot = 1
 	chargetime = 0
 

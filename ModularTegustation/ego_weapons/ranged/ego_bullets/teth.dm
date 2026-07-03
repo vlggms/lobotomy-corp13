@@ -32,6 +32,7 @@
 	name = "noise"
 	damage = 4
 	damage_type = WHITE_DAMAGE
+	spread = 5
 
 /obj/projectile/ego_bullet/ego_solitude
 	name = "solitude"
@@ -142,6 +143,7 @@
 	name = "patriot"
 	damage = 6
 	damage_type = RED_DAMAGE
+	spread = 10
 
 /obj/projectile/ego_bullet/ego_luckdraw
 	name = "luck of the draw"

@@ -70,7 +70,8 @@
 	projectile_path = /obj/projectile/ego_bullet/ego_noise
 	weapon_weight = WEAPON_HEAVY
 	pellets = 5
-	variance = 20
+	variance = 15
+	randomspread = FALSE
 	fire_delay = 10
 	max_shots = 8
 	ammo_on_reload = 1
@@ -221,7 +222,7 @@
 	force = 10
 	projectile_path = /obj/projectile/ego_bullet/ego_patriot
 	pellets = 4
-	variance = 25
+	variance = 15
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 12
 	max_shots = 8

@@ -8,7 +8,8 @@
 	projectile_path = /obj/projectile/ego_bullet/ego_correctional
 	weapon_weight = WEAPON_HEAVY
 	pellets = 8
-	variance = 20
+	variance = 15
+	randomspread = FALSE
 	fire_delay = 7
 	max_shots = 12
 	ammo_on_reload = 1
@@ -448,7 +449,8 @@
 	projectile_path = /obj/projectile/ego_bullet/ego_crimson
 	weapon_weight = WEAPON_MEDIUM
 	pellets = 3
-	variance = 14
+	variance = 9
+	randomspread = FALSE
 	fire_delay = 7
 	max_shots = 9
 	reloadtime = 1 SECONDS
@@ -876,7 +878,8 @@
 	damtype = BLACK_DAMAGE
 	weapon_weight = WEAPON_HEAVY
 	pellets = 4
-	variance = 30
+	variance = 20
+	randomspread = FALSE
 	fire_delay = 8
 	max_shots = 8
 	reloadtime = 1.4 SECONDS
@@ -1129,7 +1132,8 @@
 	projectile_path = /obj/projectile/ego_bullet/ego_fellscatter
 	weapon_weight = WEAPON_HEAVY
 	pellets = 7
-	variance = 50
+	variance = 30
+	randomspread = FALSE
 	fire_delay = 15
 	max_shots = 4
 	ammo_on_reload = 1
@@ -1162,6 +1166,7 @@
 	round_text = "You start loading a slug."
 	projectile_name = "slug"
 	projectile_name_plural = "slugs"
+	variance = 0
 	UpdateAmmoCounter(user)
 
 /obj/item/ego_weapon/ranged/fellscatter/DisableAltfire(mob/user, silent = TRUE)
@@ -1170,6 +1175,7 @@
 	round_text = initial(round_text)
 	projectile_name = initial(projectile_name)
 	projectile_name_plural = initial(projectile_name_plural)
+	variance = initial(variance)
 	UpdateAmmoCounter(user)
 
 /obj/item/ego_weapon/ranged/sodashotty

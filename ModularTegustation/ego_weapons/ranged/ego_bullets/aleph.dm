@@ -14,7 +14,7 @@
 	desc = "A glob of infectious slime. It's going for your heart."
 	damage = 26	//Fires 3
 	speed = 0.8
-	ff_multiplier = 0
+	spread = 5
 	hit_nondense_targets = TRUE
 	damage_type = BLACK_DAMAGE
 	hitsound = "sound/effects/footstep/slime1.ogg"
@@ -23,6 +23,7 @@
 	damage = 100
 	speed = 1.3
 	var/aoe = 40
+	spread = 0
 
 /obj/projectile/ego_bullet/adoration/super/on_hit(target)
 	. = ..()

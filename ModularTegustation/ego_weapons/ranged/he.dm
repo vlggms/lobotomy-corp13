@@ -210,7 +210,8 @@
 	force = 6
 	damtype = WHITE_DAMAGE
 	pellets = 4
-	variance = 20
+	variance = 15
+	randomspread = FALSE
 	projectile_path = /obj/projectile/ego_bullet/ego_songmini
 	fire_sound = 'sound/weapons/gun/revolver/shot_light.ogg'
 	max_shots = 16
