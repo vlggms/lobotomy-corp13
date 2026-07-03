@@ -1,0 +1,22 @@
+/obj/item/ego_weapon/shield/officer/records
+	name = "officer sabre"
+	desc = "An old sabre that also functions as a walking cane. Used by the Records Officer "
+	special = "This weapon gives the user a speed boost while held in hand."
+	force = 2
+	attack_speed = 0.5
+	damtype = WHITE_DAMAGE
+	attack_verb_continuous = list("stabs", "attacks", "slashes")
+	attack_verb_simple = list("stab", "attack", "slash")
+	hitsound = 'sound/weapons/ego/rapier1.ogg'
+	level_to_force = list(2, 4, 6, 9, 14)//Meant to be overall bad for dps since its both a parry weapon and a speed boost
+	initial_reductions = list(20,10,10,0)
+	projectile_block_duration = 0.75 SECONDS
+	block_duration = 1.25 SECONDS
+	block_cooldown = 3 SECONDS
+	block_message = "You attempt to parry the attack!"
+	hit_message = "parries the attack!"
+	block_cooldown_message = "You rearm your blade."
+	slowdown = -0.3//its a walking cane
+	item_flags = SLOWS_WHILE_IN_HAND
+	allowed_roles = list("Records Officer")
+	extra_text = "This weapon can only be wielded by the Records Officer. This weapon also increases in power the more ordeals are defeated."

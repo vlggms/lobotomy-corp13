@@ -104,7 +104,7 @@
 /datum/job/command/records
 	title = "Records Officer"
 	outfit = /datum/outfit/job/command/records
-	exp_requirements = 600
+	exp_requirements = 360
 	job_important = "\
 		You are the Records Officer. Your job is to manage Records. \
 		You have filing cabinets in the back of your office filled with information about Abnormalities; \
@@ -151,9 +151,8 @@
 	accessory = /obj/item/clothing/accessory/armband/lobotomy/discipline
 	weapon = /obj/item/ego_weapon/officer/discipline
 	backpack_contents = list(
-		/obj/item/melee/classic_baton,
-		/obj/item/powered_gadget/enkephalin_injector,
+		/obj/item/ego_weapon/officer/discipline_baton,
 		/obj/item/reagent_containers/hypospray/emais/combat,
-		/obj/item/restraints/handcuffs,
-		/obj/item/restraints/legcuffs/bola,
+		/obj/item/ego_weapon/ranged/bolalauncher,
+		/obj/item/ego_weapon/officer/butcher,
 	)
