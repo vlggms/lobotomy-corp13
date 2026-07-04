@@ -1048,7 +1048,7 @@
 		myportal.forceMove(get_turf(user))//move the portal to your turf, line 733 removes it later.
 		playsound(src, 'sound/abnormalities/fluchschutze/fell_portal.ogg', 50, FALSE)
 		shooting = TRUE
-		if(do_after(user, 3, src)) //gotta wait
+		if(do_after(user, 5, src)) //gotta wait
 			. = ..()
 		if(myportal.loc && !is_reloading)//hide the portal
 			AdjustCircle(user, targetportal, target)
