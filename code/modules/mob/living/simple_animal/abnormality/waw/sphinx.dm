@@ -269,7 +269,7 @@
 	var/turf/origin = get_turf(src)
 	playsound(origin, 'sound/magic/arbiter/knock.ogg', 25, 0, 5)
 	SLEEP_CHECK_DEATH(9)
-	playsound(get_turf(src), 'sound/effects/ordeals/brown/rock_attack.ogg', 50, 0, 8)
+	playsound(get_turf(src), 'sound/effects/ordeals/burgundy/rock_attack.ogg', 50, 0, 8)
 	for(var/turf/T in view(2, src))
 		new /obj/effect/temp_visual/smash_effect(T)
 		for(var/mob/living/victim in HurtInTurf(T, list(), quake_damage, WHITE_DAMAGE, null, TRUE, FALSE, TRUE, FALSE, TRUE, TRUE))
@@ -475,7 +475,7 @@
 		return
 	if(QDELETED(caster) || caster?.stat == DEAD || !caster)
 		return
-	playsound(target_turf, 'sound/effects/ordeals/brown/rock_attack.ogg', 50, 0, 8)
+	playsound(target_turf, 'sound/effects/ordeals/burgundy/rock_attack.ogg', 50, 0, 8)
 	new /obj/effect/temp_visual/rockattack(target_turf)
 	for(var/turf/T in view(1, src))
 		new /obj/effect/temp_visual/smash_effect(T)

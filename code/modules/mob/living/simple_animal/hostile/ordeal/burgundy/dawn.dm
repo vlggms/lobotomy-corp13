@@ -6,7 +6,7 @@
 	icon_state = "slothsin"
 	icon_living = "slothsin"
 	icon_dead = "slothsin_dead"
-	faction = list("brown_ordeal")
+	faction = list("burgundy_ordeal")
 	maxHealth = 50
 	health = 50
 	melee_damage_type = BLACK_DAMAGE
@@ -14,8 +14,8 @@
 	melee_damage_upper = 4
 	attack_verb_continuous = "bashes"
 	attack_verb_simple = "bashes"
-	attack_sound = 'sound/effects/ordeals/brown/rock_attack.ogg'
-	death_sound = 'sound/effects/ordeals/brown/rock_dead.ogg'
+	attack_sound = 'sound/effects/ordeals/burgundy/rock_attack.ogg'
+	death_sound = 'sound/effects/ordeals/burgundy/rock_dead.ogg'
 	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.5)
 	butcher_results = list(/obj/item/food/meat/slab/sinnew = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sinnew = 1)
@@ -67,7 +67,7 @@
 		can_act = FALSE
 		var/list/dash_line = getline(src, target)
 		animate(src, pixel_y = (base_pixel_y + jump_pixels), time = 2)
-		playsound(src, 'sound/effects/ordeals/brown/rock_kill.ogg', 50, FALSE, 4)
+		playsound(src, 'sound/effects/ordeals/burgundy/rock_kill.ogg', 50, FALSE, 4)
 		for(var/turf/line_turf in dash_line) //checks if there's a valid path between the turf and the target
 			if(line_turf.is_blocked_turf(exclude_mobs = TRUE))
 				break
@@ -102,7 +102,7 @@
 	icon_state = "gluttonysin"
 	icon_living = "gluttonysin"
 	icon_dead = "gluttonysin_dead"
-	faction = list("brown_ordeal")
+	faction = list("burgundy_ordeal")
 	maxHealth = 25
 	health = 25
 	melee_damage_type = BLACK_DAMAGE
@@ -111,7 +111,7 @@
 	melee_damage_upper = 2
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
-	attack_sound = 'sound/effects/ordeals/brown/flower_attack.ogg'
+	attack_sound = 'sound/effects/ordeals/burgundy/flower_attack.ogg'
 	death_sound = 'sound/effects/limbus_death.ogg'
 	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.5)
 	butcher_results = list(/obj/item/food/meat/slab/sinnew = 1)
@@ -139,7 +139,7 @@
 		span_danger("[src] devours [L]!"),
 		span_userdanger("You feast on [L], restoring your health!"))
 	adjustBruteLoss(-(maxHealth/2))
-	playsound(get_turf(L), 'sound/effects/ordeals/brown/flower_kill.ogg', 50, 4)
+	playsound(get_turf(L), 'sound/effects/ordeals/burgundy/flower_kill.ogg', 50, 4)
 	if(!iscarbon(L))
 		L.gib()
 		return
@@ -163,7 +163,7 @@
 	icon_state = "gloomsin"
 	icon_living = "gloomsin"
 	icon_dead = "gloomsin_dead"
-	faction = list("brown_ordeal")
+	faction = list("burgundy_ordeal")
 	maxHealth = 35
 	health = 35
 	melee_damage_type = BLACK_DAMAGE
@@ -171,8 +171,8 @@
 	melee_damage_upper = 8
 	attack_verb_continuous = "bashes"
 	attack_verb_simple = "bashes"
-	attack_sound = 'sound/effects/ordeals/brown/flea_attack.ogg'
-	death_sound = 'sound/effects/ordeals/brown/flea_dead.ogg'
+	attack_sound = 'sound/effects/ordeals/burgundy/flea_attack.ogg'
+	death_sound = 'sound/effects/ordeals/burgundy/flea_dead.ogg'
 	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.5)
 	butcher_results = list(/obj/item/food/meat/slab/sinnew = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sinnew = 1)
@@ -181,7 +181,7 @@
 	ranged_cooldown_time = 5 SECONDS // Fires a laser dealing 10 white damage
 	minimum_distance = 2 // Don't move all the way to melee
 	projectiletype = /obj/projectile/beam/water_jet
-	projectilesound = 'sound/effects/ordeals/brown/flea_attack.ogg'
+	projectilesound = 'sound/effects/ordeals/burgundy/flea_attack.ogg'
 	var/can_act = TRUE
 	var/sinking_damage = 5
 
@@ -242,7 +242,7 @@
 	icon_state = "pridesin"
 	icon_living = "pridesin"
 	icon_dead = "pridesin_dead"
-	faction = list("brown_ordeal")
+	faction = list("burgundy_ordeal")
 	maxHealth = 20
 	health = 20
 	melee_damage_type = BLACK_DAMAGE
@@ -252,7 +252,7 @@
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
 	attack_sound = 'sound/weapons/ego/sword1.ogg'
-	death_sound = 'sound/effects/ordeals/brown/dead_generic.ogg'
+	death_sound = 'sound/effects/ordeals/burgundy/dead_generic.ogg'
 	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.5)
 	butcher_results = list(/obj/item/food/meat/slab/sinnew = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sinnew = 1)
@@ -307,7 +307,7 @@
 	SpinAnimation(3, 10)
 	dash_num = (get_dist(src, target) + extra_dash_distance)
 	addtimer(CALLBACK(src, PROC_REF(Charge), dir_to_target, 0), 2 SECONDS)
-	playsound(src, 'sound/effects/ordeals/brown/pridespin.ogg', 125, FALSE)
+	playsound(src, 'sound/effects/ordeals/burgundy/pridespin.ogg', 125, FALSE)
 	if(charging_icon)
 		icon_state = charging_icon
 
@@ -369,7 +369,7 @@
 	icon_dead = "lustsin_dead"
 	pixel_x = -16
 	base_pixel_x = -16
-	faction = list("brown_ordeal")
+	faction = list("burgundy_ordeal")
 	maxHealth = 80
 	health = 80
 	speed = 3
@@ -379,7 +379,7 @@
 	melee_damage_upper = 5
 	attack_verb_continuous = "bashes"
 	attack_verb_simple = "bashes"
-	attack_sound = 'sound/effects/ordeals/brown/cromer_slam.ogg'
+	attack_sound = 'sound/effects/ordeals/burgundy/cromer_slam.ogg'
 	death_sound = 'sound/effects/limbus_death.ogg'
 	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.5)
 	butcher_results = list(/obj/item/food/meat/slab/sinnew = 1)
@@ -475,7 +475,7 @@
 	icon_dead = "wrathsin_dead"
 	pixel_x = -8
 	base_pixel_x = -8
-	faction = list("brown_ordeal")
+	faction = list("burgundy_ordeal")
 	maxHealth = 30
 	health = 30
 	melee_damage_type = BLACK_DAMAGE
@@ -484,8 +484,8 @@
 	melee_reach = 3 // Will try to attack from this distance
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
-	attack_sound = 'sound/effects/ordeals/brown/tentacle_attack.ogg'
-	death_sound = 'sound/effects/ordeals/brown/dead_generic.ogg'
+	attack_sound = 'sound/effects/ordeals/burgundy/tentacle_attack.ogg'
+	death_sound = 'sound/effects/ordeals/burgundy/dead_generic.ogg'
 	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.5)
 	butcher_results = list(/obj/item/food/meat/slab/sinnew = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sinnew = 1)
@@ -546,7 +546,7 @@
 	revving_charge = TRUE
 	charge_ready = FALSE
 	walk(src, 0)
-	playsound(src, 'sound/effects/ordeals/brown/tentacle_before_explode.ogg', 150, 1)
+	playsound(src, 'sound/effects/ordeals/burgundy/tentacle_before_explode.ogg', 150, 1)
 	SLEEP_CHECK_DEATH(delay)
 	if(!revving_charge) //to end charges prematurely
 		return
@@ -580,7 +580,7 @@
 				L.deal_damage(charge_damage, melee_damage_type)
 				if(L.health < 0)
 					L.gib()
-					playsound(src, 'sound/effects/ordeals/brown/tentacle_explode.ogg', 75, 1)
+					playsound(src, 'sound/effects/ordeals/burgundy/tentacle_explode.ogg', 75, 1)
 				else
 					playsound(src, attack_sound, 125, 1)
 				EndCharge(TRUE)

@@ -91,8 +91,8 @@
 	grab_victim.deal_damage(melee_damage_upper, RED_DAMAGE)
 	grab_victim.deal_damage(rupture_damage, BRUTE)
 	grab_victim.Immobilize(10)
-	playsound(get_turf(src), 'sound/effects/ordeals/brown/flower_attack.ogg', 50, 0, 7)
-	playsound(get_turf(src), 'sound/effects/ordeals/brown/flower_kill.ogg', 50, 0, 7)
+	playsound(get_turf(src), 'sound/effects/ordeals/burgundy/flower_attack.ogg', 50, 0, 7)
+	playsound(get_turf(src), 'sound/effects/ordeals/burgundy/flower_kill.ogg', 50, 0, 7)
 	switch(count)
 		if(0 to 3)
 			playsound(get_turf(src), 'sound/effects/wounds/crack1.ogg', 200, 0, 7)
@@ -264,4 +264,4 @@
 			var/mob/living/carbon/human/H = L
 			H.apply_lc_burn(floor(burn_stacks * 0.5))
 		L.apply_damage(charge_damage * 0.4, melee_damage_type, null, L.run_armor_check(null, melee_damage_type), spread_damage = TRUE)
-		playsound(L, 'sound/effects/ordeals/brown/cromer_slam.ogg', 75, 1)
+		playsound(L, 'sound/effects/ordeals/burgundy/cromer_slam.ogg', 75, 1)

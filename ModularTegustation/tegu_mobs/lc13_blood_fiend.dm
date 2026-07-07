@@ -409,7 +409,7 @@
 	melee_damage_upper = 3
 	rapid_melee = 3
 	melee_damage_type = RED_DAMAGE
-	attack_sound = 'sound/effects/ordeals/brown/flea_attack.ogg'
+	attack_sound = 'sound/effects/ordeals/burgundy/flea_attack.ogg'
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
 	move_to_delay = 2.5

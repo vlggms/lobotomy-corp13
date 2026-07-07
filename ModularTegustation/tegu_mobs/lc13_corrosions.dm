@@ -189,7 +189,7 @@
 	melee_damage_type = BLACK_DAMAGE
 	attack_verb_continuous = "bashes"
 	attack_verb_simple = "bash"
-	attack_sound = 'sound/effects/ordeals/brown/cromer_slam.ogg'
+	attack_sound = 'sound/effects/ordeals/burgundy/cromer_slam.ogg'
 	death_sound = 'sound/effects/limbus_death.ogg'
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0, PALE_DAMAGE = 1.5)
 	butcher_results = list(/obj/item/food/meat/slab/human = 1, /obj/item/food/meat/slab/human/mutant/lizard = 1)
@@ -491,7 +491,7 @@
 		new /obj/effect/temp_visual/kinetic_blast(LT)
 		L.apply_damage(dash_damage,RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 		been_hit += L
-		playsound(L, 'sound/effects/ordeals/brown/cromer_stab.ogg', 75, 1)
+		playsound(L, 'sound/effects/ordeals/burgundy/cromer_stab.ogg', 75, 1)
 		if(!ishuman(L))
 			continue
 		var/mob/living/carbon/human/H = L

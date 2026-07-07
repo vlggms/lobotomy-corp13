@@ -11,7 +11,7 @@
 	icon_state = "envysin"
 	icon_living = "envysin"
 	icon_dead = "envysin_dead"
-	faction = list("brown_ordeal")
+	faction = list("burgundy_ordeal")
 	maxHealth = 35
 	health = 35
 	melee_damage_type = RED_DAMAGE
@@ -36,7 +36,7 @@
 		return
 	if(!client)
 		message = stars(message, 100)
-		playsound(src, "sound/effects/ordeals/brown/envy[pick(1,2,3)].ogg", 75, FALSE, 4)
+		playsound(src, "sound/effects/ordeals/burgundy/envy[pick(1,2,3)].ogg", 75, FALSE, 4)
 	. = ..()
 
 /mob/living/simple_animal/hostile/ordeal/sin_envy/check_emote(message, forced)
