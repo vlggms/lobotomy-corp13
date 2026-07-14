@@ -949,6 +949,26 @@
 		UpdateAmmoCounter(user)
 	return ..()
 
+//We redo this proc to hide the maptext since it looks bad with the attack animation
+/obj/item/ego_weapon/ranged/melee_attack_chain(mob/user, atom/target, params)
+	var/stored_text = maptext
+	maptext = ""
+	if(tool_behaviour && target.tool_act(user, src, tool_behaviour))
+		maptext = stored_text
+		return TRUE
+	if(pre_attack(target, user, params))
+		maptext = stored_text
+		return TRUE
+	if(Sweep(target, user, params))
+		maptext = stored_text
+		return TRUE
+	if(QDELETED(src) || QDELETED(target))
+		attack_qdeleted(target, user, TRUE, params)
+		maptext = stored_text
+		return TRUE
+	maptext = stored_text
+	return afterattack(target, user, TRUE, params)
+
 /obj/item/ego_weapon/ranged/proc/handle_suicide(mob/living/carbon/human/user, mob/living/carbon/human/target, params, bypass_timer)
 	if(!ishuman(user) || !ishuman(target))
 		return
