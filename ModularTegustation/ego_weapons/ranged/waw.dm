@@ -830,7 +830,7 @@
 	var/style = "font-family: 'Better VCR'; font-size: [text_size]px; -dm-text-outline: 1px black; color: [main_color];"
 	var/blood_style = "font-family: 'Better VCR'; font-size: [text_size]px; -dm-text-outline: 1px black; color: #880000;"
 	var/datum/component/bloodfeast/bloodfeast = GetComponent(/datum/component/bloodfeast)
-	maptext = MAPTEXT("<span style=\"[style]\">[shotsleft]/[max_shots]</span>\n<span style=\"[blood_style]\">B:[round((bloodfeast.blood_amount/bloodfeast.blood_cap) * 100)]%</span>")
+	maptext = MAPTEXT("<span style=\"[style]\">[shotsleft]/[max_shots]</span>\n<span style=\"[blood_style]\">B:[floor((bloodfeast.blood_amount/bloodfeast.blood_cap) * 100)]%</span>")
 
 /obj/item/ego_weapon/ranged/cannon/banquet/Initialize()
 	. = ..()
@@ -851,12 +851,13 @@
 	bloodshot_ready = FALSE
 
 /obj/item/ego_weapon/ranged/cannon/banquet/attack(mob/living/target, mob/living/carbon/human/user)
-	if(!CanUseEgo(user))
+	. = ..()
+	if(!.)
 		return
 	if(!(target.status_flags & GODMODE) && target.stat != DEAD)
 		var/justicemod = get_attack_multiplier(user)
 		AdjustThirst(force * justicemod)
-	. = ..()
+		UpdateAmmoCounter(user)
 
 /obj/item/ego_weapon/ranged/cannon/banquet/can_shoot(mob/living/user)
 	if(bloodshot_ready)
