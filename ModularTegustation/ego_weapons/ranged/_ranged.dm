@@ -929,12 +929,17 @@
 /obj/item/ego_weapon/ranged/proc/OnDischarge(mob/living/user)
 	return
 
-/obj/item/ego_weapon/ranged/attack(mob/M as mob, mob/user)
+/obj/item/ego_weapon/ranged/attack(mob/living/target, mob/living/user)
 	if(is_charging)
 		return FALSE
 	if(is_reloading)
 		is_reloading = FALSE
+	. = ..()
+	if(!.)
+		return
 	if(ammo_on_melee)
+		if((target.stat == DEAD) || target.status_flags & GODMODE) // lets not give them ammo for beating up contained abnormalities
+			return
 		if(passive_reload)
 			if(passive_reload_timer)
 				deltimer(passive_reload_timer)
@@ -947,26 +952,24 @@
 		if(alternate_reload_type == RELOADTYPE_SHARED_RELOAD)
 			alternate_shotsleft = min(alternate_shotsleft + ammo_on_melee, alternate_max_shots)
 		UpdateAmmoCounter(user)
-	return ..()
 
 //We redo this proc to hide the maptext since it looks bad with the attack animation
 /obj/item/ego_weapon/ranged/melee_attack_chain(mob/user, atom/target, params)
-	var/stored_text = maptext
 	maptext = ""
 	if(tool_behaviour && target.tool_act(user, src, tool_behaviour))
-		maptext = stored_text
+		UpdateAmmoCounter(user)
 		return TRUE
 	if(pre_attack(target, user, params))
-		maptext = stored_text
+		UpdateAmmoCounter(user)
 		return TRUE
 	if(Sweep(target, user, params))
-		maptext = stored_text
+		UpdateAmmoCounter(user)
 		return TRUE
 	if(QDELETED(src) || QDELETED(target))
 		attack_qdeleted(target, user, TRUE, params)
-		maptext = stored_text
+		UpdateAmmoCounter(user)
 		return TRUE
-	maptext = stored_text
+	UpdateAmmoCounter(user)
 	return afterattack(target, user, TRUE, params)
 
 /obj/item/ego_weapon/ranged/proc/handle_suicide(mob/living/carbon/human/user, mob/living/carbon/human/target, params, bypass_timer)
