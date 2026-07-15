@@ -22,10 +22,6 @@
 	fire_sound = 'sound/weapons/ego/star.ogg'
 	vary_fire_sound = TRUE
 	fire_sound_volume = 25
-	ammo_name = "orb"
-	ammo_name_plural = "orbs"
-	projectile_name = "orb"
-	projectile_name_plural = "orbs"
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 100,
@@ -74,10 +70,6 @@
 
 	fire_sound = 'sound/effects/attackblob.ogg'
 	fire_sound_volume = 50
-	projectile_name = "slime shot"
-	projectile_name_plural = "slime shots"
-	ammo_name = "slime"
-	ammo_name_plural = "slime"
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,

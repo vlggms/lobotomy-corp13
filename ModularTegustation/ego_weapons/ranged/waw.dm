@@ -17,8 +17,6 @@
 	fire_sound = 'sound/weapons/gun/shotgun/shot_auto.ogg'
 	round_text = "You start loading a shell."
 	reload_success_sound = 'sound/weapons/gun/shotgun/insert_shell.ogg'
-	projectile_name = "shell"
-	projectile_name_plural = "shells"
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 60
@@ -1142,8 +1140,6 @@
 	fire_sound = 'sound/abnormalities/fluchschutze/fell_scatter.ogg'
 	reload_success_sound = 'sound/weapons/gun/shotgun/insert_shell.ogg'
 	round_text = "You start loading a shell."
-	projectile_name = "shell"
-	projectile_name_plural = "shells"
 	alternate_reload_time = 2 SECONDS
 	alternate_fire_name = "Designate Target"
 	alternate_projectile_path = /obj/projectile/ego_bullet/special_fellbullet
@@ -1165,8 +1161,6 @@
 	. = ..()
 	max_shots = 1
 	round_text = "You start loading a slug."
-	projectile_name = "slug"
-	projectile_name_plural = "slugs"
 	variance = 0
 	UpdateAmmoCounter(user)
 
@@ -1174,8 +1168,6 @@
 	. = ..()
 	max_shots = initial(max_shots)
 	round_text = initial(round_text)
-	projectile_name = initial(projectile_name)
-	projectile_name_plural = initial(projectile_name_plural)
 	variance = initial(variance)
 	UpdateAmmoCounter(user)
 
@@ -1199,8 +1191,6 @@
 	fire_sound = 'sound/weapons/gun/shotgun/shot.ogg'
 	round_text = "You start loading a shell."
 	reload_success_sound = 'sound/weapons/gun/shotgun/insert_shell.ogg'
-	projectile_name = "shell"
-	projectile_name_plural = "shells"
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							)
@@ -1282,8 +1272,6 @@
 	reloadtime = 0.2 SECONDS
 	chargetime = 5
 	charge_sound = 'sound/creatures/venus_trap_hurt.ogg'
-	projectile_name = "root"
-	projectile_name_plural = "roots"
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 60
@@ -1307,7 +1295,7 @@
 		var/datum/damage_type_shuffler/shuffler = GLOB.damage_type_shuffler
 		var/new_damage_type = shuffler.mapping_offense[damage_type]
 		damage_type = new_damage_type
-	return span_notice("Its [projectile_name_plural] deal [damage] [damage_type] damage.[force_multiplier != 1 ? " (+ [(force_multiplier - 1) * 100]%)" : ""]")
+	return span_notice("Its roots deal [damage] [damage_type] damage.[force_multiplier != 1 ? " (+ [(force_multiplier - 1) * 100]%)" : ""]")
 
 /obj/item/ego_weapon/ranged/ebony_stem/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, temporary_damage_multiplier = 1)
 	if(!CanUseEgo(user))

@@ -63,19 +63,12 @@
 	var/last_projectile_damage = 0
 	var/last_projectile_type = RED_DAMAGE
 
-	/// What the ammo it has is called
-	var/ammo_name = "ammo"
-	var/ammo_name_plural = "ammo"
-
 	/// The message for reloading
 	var/reload_text = "You start loading a new magazine."
 	/// The message for running out of ammo
 	var/out_of_ammo = "The gun is out of ammo."
 	// The message for loading a bullet.
 	var/round_text = "You start loading a bullet."
-	/// Used for a better desc stuff
-	var/projectile_name = "bullet"
-	var/projectile_name_plural = "bullets"
 
 	/// Controls if pacifists can use the gun or not. Should be TRUE unless you are doing something funky
 	var/lethal = TRUE
@@ -167,8 +160,6 @@
 	max_shots = 3
 	recoil = 0.1
 	round_text = "You start loading a shell."
-	projectile_name = "shell"
-	projectile_name_plural = "shells"
 	ammo_on_reload = 1
 	reloadtime = 1.25 SECONDS
 	weapon_weight = WEAPON_HEAVY
@@ -177,8 +168,6 @@
 /obj/item/ego_weapon/ranged/crossbow
 	max_shots = 1
 	reload_text = "You start loading an arrow."
-	projectile_name = "arrow"
-	projectile_name_plural = "arrows"
 	mobile_reload = TRUE
 	fire_delay = 5
 	reloadtime = 2.5 SECONDS
@@ -321,7 +310,7 @@
 		var/rpm = 600 / autofire
 		rpm = round(rpm,5)
 		text += span_nicegreen("This weapon is automatic.")
-		text += span_notice("This weapon fires at [rpm*burst_size] [projectile_name_plural] per minute.")
+		text += span_notice("This weapon fires at [rpm*burst_size] rounds per minute.")
 
 	if(chargetime)
 		text += span_notice("This weapon needs to be charged up before firing.")
@@ -353,9 +342,9 @@
 	else
 		text += span_danger("Ammo Counter: [shotsleft]/[max_shots].")
 	if(ammo_per_shot > 1)
-		text += span_danger("Firing this weapon will consume [ammo_per_shot] [ammo_name_plural].")
+		text += span_danger("Firing this weapon will consume [ammo_per_shot] ammo.")
 	if(passive_reload)
-		var/start = "This weapon passively reloads [ammo_name_plural] with a"
+		var/start = "This weapon passively reloads ammo with a"
 		switch(passive_reload)
 			if(0 to 2.01 SECONDS)
 				text += span_nicegreen("[start] very short delay after firing.")
@@ -386,14 +375,14 @@
 
 		if(ammo_on_reload)
 			if(ammo_on_reload > 1)
-				text += span_notice("This weapon reloads [ammo_on_reload] [ammo_name_plural] at a time.")
+				text += span_notice("This weapon reloads [ammo_on_reload] rounds at a time.")
 			else
-				text += span_notice("This weapon reloads one [ammo_name] at a time.")
+				text += span_notice("This weapon reloads one round at a time.")
 	if(ammo_on_melee)
 		if(ammo_on_melee > 1)
-			text += span_notice("This weapon reloads [ammo_on_melee] [ammo_name_plural] when hitting something with its melee.")
+			text += span_notice("This weapon reloads [ammo_on_melee] rounds when hitting something with its melee.")
 		else
-			text += span_notice("This weapon reloads one [ammo_name] when hitting something with its melee.")
+			text += span_notice("This weapon reloads one round when hitting something with its melee.")
 
 	if(alternate_fire_name)
 		text += ""
@@ -441,8 +430,8 @@
 		var/new_damage_type = shuffler.mapping_offense[damage_type]
 		damage_type = new_damage_type
 	if(pellets > 1)	//for shotguns
-		return span_notice("Its [projectile_name_plural] deal [damage] x [pellets] [damage_type] damage.[force_multiplier != 1 ? " (+ [(force_multiplier - 1) * 100]%)" : ""]")
-	return span_notice("Its [projectile_name_plural] deal [damage] [damage_type] damage.[force_multiplier != 1 ? " (+ [(force_multiplier - 1) * 100]%)" : ""]")
+		return span_notice("Its bullets deal [damage] x [pellets] [damage_type] damage.[force_multiplier != 1 ? " (+ [(force_multiplier - 1) * 100]%)" : ""]")
+	return span_notice("Its bullets deal [damage] [damage_type] damage.[force_multiplier != 1 ? " (+ [(force_multiplier - 1) * 100]%)" : ""]")
 
 /// Updates the damage/type of projectiles inside of the gun
 /obj/item/ego_weapon/ranged/proc/update_projectile_examine()

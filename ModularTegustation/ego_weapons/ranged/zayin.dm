@@ -115,8 +115,6 @@
 	vary_fire_sound = FALSE
 	fire_sound_volume = 50
 	reload_text = "You start loading a dart."
-	projectile_name = "dart"
-	projectile_name_plural = "darts"
 	mobile_reload = TRUE
 
 /obj/item/ego_weapon/ranged/nightshade/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, temporary_damage_multiplier = 1)

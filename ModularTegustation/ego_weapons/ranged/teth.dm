@@ -79,8 +79,6 @@
 	fire_sound = 'sound/weapons/gun/shotgun/shot_auto.ogg'
 	round_text = "You start loading a shell."
 	reload_success_sound = 'sound/weapons/gun/shotgun/insert_shell.ogg'
-	projectile_name = "shell"
-	projectile_name_plural = "shells"
 
 /obj/item/ego_weapon/ranged/pistol/solitude
 	name = "solitude"
@@ -230,8 +228,6 @@
 	fire_sound = 'sound/weapons/gun/shotgun/shot.ogg'
 	round_text = "You start loading a shell."
 	reload_success_sound = 'sound/weapons/gun/shotgun/insert_shell.ogg'
-	projectile_name = "shell"
-	projectile_name_plural = "shells"
 
 /obj/item/ego_weapon/ranged/luckdraw
 	name = "luck of the draw"
