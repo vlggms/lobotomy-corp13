@@ -17,8 +17,8 @@
 	fire_delay = 15
 	max_shots = 60
 	ammo_on_reload = 1
-	reloadtime = 0.25 SECONDS
-	passive_reload = 10 SECONDS
+	reloadtime = 0.1 SECONDS
+	passive_reload = 3 SECONDS
 	fire_sound = 'sound/weapons/ego/star.ogg'
 	vary_fire_sound = TRUE
 	fire_sound_volume = 25
@@ -63,14 +63,14 @@
 
 	projectile_path = /obj/projectile/ego_bullet/adoration
 	weapon_weight = WEAPON_MEDIUM
-	fire_delay = 10
+	fire_delay = 15
 	pellets = 3
 	variance = 15
 	randomspread = FALSE
-	max_shots = 30
+	max_shots = 16
 	ammo_on_reload = 1
-	passive_reload = 8 SECONDS
-	reloadtime = 5
+	passive_reload = 3 SECONDS
+	reloadtime = 0.3 SECONDS
 
 	fire_sound = 'sound/effects/attackblob.ogg'
 	fire_sound_volume = 50
@@ -96,7 +96,7 @@
 	alternate_toggle_sound = 'sound/effects/attackblob.ogg'
 	alternate_toggle_sound_volume = 50
 	alternate_toggle_enabled_message = span_notice("You focus, changing for a charge up shot.")
-	alternate_toggle_disabled_message = span_notice(">You focus, changing for a spread shot.")
+	alternate_toggle_disabled_message = span_notice("You focus, changing for a spread shot.")
 
 /obj/item/ego_weapon/ranged/adoration/EnableAltfire(mob/user, silent = TRUE)
 	. = ..()

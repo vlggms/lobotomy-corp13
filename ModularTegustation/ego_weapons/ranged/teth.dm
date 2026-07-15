@@ -128,9 +128,8 @@
 	autofire = 0.25 SECONDS
 	max_shots = 16
 	ammo_on_reload = 1
-	ammo_on_melee = 1
-	passive_reload = 5 SECONDS
-	reloadtime = 1 SECONDS
+	passive_reload = 1.5 SECONDS
+	reloadtime = 0.2 SECONDS
 
 /obj/item/ego_weapon/ranged/page
 	name = "page"
@@ -161,8 +160,8 @@
 	fire_delay = 10
 	max_shots = 12
 	ammo_on_reload = 1
-	passive_reload = 3 SECONDS
-	reloadtime = 0.5 SECONDS
+	passive_reload = 1.5 SECONDS
+	reloadtime = 0.25 SECONDS
 	fire_sound = 'sound/weapons/sonic_jackhammer.ogg'
 
 /obj/item/ego_weapon/ranged/wishing_cairn
@@ -246,11 +245,11 @@
 	attack_speed = 0.5
 	projectile_path = /obj/projectile/ego_bullet/ego_luckdraw
 	weapon_weight = WEAPON_MEDIUM
-	autofire = 0.4 SECONDS
+	autofire = 0.35 SECONDS
 	max_shots = 52
 	ammo_on_reload = 1
-	passive_reload = 8 SECONDS
-	reloadtime = 0.1 SECONDS
+	passive_reload = 3 SECONDS
+	reloadtime = 0.05 SECONDS
 	fire_sound = 'sound/items/handling/paper_pickup.ogg' //Mostly just using this for a lack of a better "card-flicking" noise
 
 /obj/item/ego_weapon/ranged/pistol/tough

@@ -48,9 +48,9 @@
 	attack_speed = 0.8
 	damtype = BLACK_DAMAGE
 	fire_delay = 10
-	max_shots = 30
-	passive_reload = 8 SECONDS
-	reloadtime = 0.8 SECONDS
+	max_shots = 10
+	passive_reload = 2 SECONDS
+	reloadtime = 0.3 SECONDS
 	fire_sound = 'sound/magic/wand_teleport.ogg'
 	weapon_weight = WEAPON_MEDIUM
 	fire_sound_volume = 70
@@ -314,9 +314,9 @@
 	spread = 0
 	max_shots = 40
 	ammo_on_reload = 1
-	ammo_on_melee = 3
-	passive_reload = 4 SECONDS
-	reloadtime = 0.5 SECONDS
+	ammo_on_melee = 4
+	passive_reload = 2 SECONDS
+	reloadtime = 0.45 SECONDS
 	fire_sound = 'sound/weapons/ego/syrinx1.ogg'
 	fire_sound_volume = 25
 	autofire = 0.2 SECONDS

@@ -47,7 +47,7 @@
 /obj/projectile/ego_bullet/ego_dream
 	name = "dream"
 	icon_state = "energy2"
-	damage = 6
+	damage = 4
 	speed = 1.5
 	damage_type = WHITE_DAMAGE
 
@@ -63,7 +63,7 @@
 	name = "snapshot"
 	icon_state = "snapshot"
 	hitsound = null
-	damage = 15
+	damage = 12
 	damage_type = WHITE_DAMAGE
 
 	hitscan = TRUE
@@ -148,7 +148,7 @@
 /obj/projectile/ego_bullet/ego_luckdraw
 	name = "luck of the draw"
 	icon_state = "drawcard"
-	damage = 6
+	damage = 5
 	damage_type = WHITE_DAMAGE
 	projectile_piercing = PASSMOB
 	speed = 0.45

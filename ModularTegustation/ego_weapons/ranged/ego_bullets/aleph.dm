@@ -1,7 +1,7 @@
 /obj/projectile/ego_bullet/star
 	name = "star"
 	icon_state = "star"
-	damage = 35
+	damage = 27
 	damage_type = WHITE_DAMAGE
 	speed = 0.15
 	ff_multiplier = 0
@@ -12,7 +12,7 @@
 	name = "slime projectile"
 	icon_state = "slime"
 	desc = "A glob of infectious slime. It's going for your heart."
-	damage = 26	//Fires 3
+	damage = 27	//Fires 3
 	speed = 0.8
 	spread = 5
 	hit_nondense_targets = TRUE
@@ -20,9 +20,9 @@
 	hitsound = "sound/effects/footstep/slime1.ogg"
 
 /obj/projectile/ego_bullet/adoration/super
-	damage = 100
+	damage = 120
 	speed = 1.3
-	var/aoe = 40
+	var/aoe = 60
 	spread = 0
 
 /obj/projectile/ego_bullet/adoration/super/on_hit(target)

@@ -170,7 +170,7 @@
 	name = "ecstasy"
 	icon_state = "ecstasy"
 	damage_type = WHITE_DAMAGE
-	damage = 8
+	damage = 5
 	speed = 1.3
 	range = 6
 

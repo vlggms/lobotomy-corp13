@@ -17,7 +17,7 @@
 /obj/projectile/ego_bullet/ego_galaxy
 	name = "galaxy"
 	icon_state = "magicm"
-	damage = 26
+	damage = 18
 	ff_multiplier = 0
 	damage_type = BLACK_DAMAGE
 	speed = 1.5

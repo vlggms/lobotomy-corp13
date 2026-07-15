@@ -57,9 +57,9 @@
 	projectile_path = /obj/projectile/ego_bullet/ego_hatred
 	weapon_weight = WEAPON_MEDIUM
 	fire_delay = 10
-	max_shots = 30
-	passive_reload = 6 SECONDS
-	reloadtime = 3
+	max_shots = 15
+	passive_reload = 2 SECONDS
+	reloadtime = 0.2 SECONDS
 	fire_sound = 'sound/abnormalities/hatredqueen/attack.ogg'
 
 	attribute_requirements = list(
@@ -476,9 +476,9 @@
 	fire_sound = 'sound/weapons/ego/ecstasy.ogg'
 	max_shots = 40
 	ammo_on_reload = 1
-	ammo_on_melee = 3
-	passive_reload = 4 SECONDS
-	reloadtime = 0.3 SECONDS
+	ammo_on_melee = 4
+	passive_reload = 1.6 SECONDS
+	reloadtime = 0.16 SECONDS
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 60,
 							TEMPERANCE_ATTRIBUTE = 60
@@ -1278,8 +1278,8 @@
 	weapon_weight = WEAPON_MEDIUM
 	fire_delay = 12
 	max_shots = 12
-	passive_reload = 6 SECONDS
-	reloadtime = 3
+	passive_reload = 2.5 SECONDS
+	reloadtime = 0.2 SECONDS
 	chargetime = 5
 	charge_sound = 'sound/creatures/venus_trap_hurt.ogg'
 	projectile_name = "root"
