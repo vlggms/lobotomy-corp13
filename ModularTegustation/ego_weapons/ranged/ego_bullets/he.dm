@@ -48,6 +48,7 @@
 	icon_state = "pulse0"
 	damage = 50
 	damage_type = WHITE_DAMAGE
+	hitscan = TRUE
 
 /obj/projectile/ego_bullet/ego_harmony/strong
 	damage = 75

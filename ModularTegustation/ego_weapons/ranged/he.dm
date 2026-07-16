@@ -129,6 +129,7 @@
 /obj/item/ego_weapon/ranged/cannon/harmony
 	name = "harmony"
 	desc = "It may look like a deteriorating machine at first glance, but the music it makes captures its audience more than any other instrument could."
+	special = "This weapon fires a hitscan music blast."
 	icon_state = "harmony"
 	inhand_icon_state = "harmony"
 	force = 24

@@ -13,7 +13,7 @@
 	weapon_weight = WEAPON_MEDIUM
 	spread = 0
 	burst_size = 3
-	burst_delay = 3
+	burst_delay = 1.5
 	fire_delay = 15
 	max_shots = 60
 	ammo_on_reload = 1
