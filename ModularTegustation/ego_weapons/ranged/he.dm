@@ -50,7 +50,10 @@
 	fire_delay = 10
 	max_shots = 10
 	passive_reload = 2 SECONDS
+	ammo_on_reload = 1
 	reloadtime = 0.3 SECONDS
+	reload_start_sound = 'sound/magic/charge.ogg'
+	reload_text = "The weapon starts to recharge its mana."
 	fire_sound = 'sound/magic/wand_teleport.ogg'
 	weapon_weight = WEAPON_MEDIUM
 	fire_sound_volume = 70
@@ -59,6 +62,7 @@
 							)
 
 	fire_sound = 'sound/magic/staff_change.ogg'
+
 	alternate_fire_name = "Glimmer"
 	alternate_info = "This weapon fires slower, but fires a slower moving projectile that homes in on the nearest target within a small radius."
 	alternate_reload_type = RELOADTYPE_SHARED_MAGAZINE
@@ -314,10 +318,12 @@
 	spread = 0
 	max_shots = 40
 	ammo_on_reload = 1
-	ammo_on_melee = 4
+	ammo_on_melee = 3
 	passive_reload = 2 SECONDS
 	reloadtime = 0.45 SECONDS
 	fire_sound = 'sound/weapons/ego/syrinx1.ogg'
+	reload_start_sound = 'sound/weapons/bite.ogg'
+	reload_text = "The weapon wails, readying to cry once more."
 	fire_sound_volume = 25
 	autofire = 0.2 SECONDS
 	attribute_requirements = list(

@@ -19,6 +19,9 @@
 	ammo_on_reload = 1
 	reloadtime = 0.1 SECONDS
 	passive_reload = 3 SECONDS
+	reload_start_sound = 'sound/weapons/pulse.ogg'
+	reload_text = "The weapon starts to recharge."
+
 	fire_sound = 'sound/weapons/ego/star.ogg'
 	vary_fire_sound = TRUE
 	fire_sound_volume = 25
@@ -67,6 +70,8 @@
 	ammo_on_reload = 1
 	passive_reload = 3 SECONDS
 	reloadtime = 0.3 SECONDS
+	reload_start_sound = 'sound/abnormalities/meltinglove/ranged_hit.ogg'
+	reload_text = "The slime within the weapon starts to regenerate."
 
 	fire_sound = 'sound/effects/attackblob.ogg'
 	fire_sound_volume = 50
@@ -82,7 +87,7 @@
 	alternate_info = "This weapon fires a large, slow moving glob of goo that costs twice as much ammo to fire and reqires the weapon to be charged up to fire. \
 	The glob of goo deals damage in an area while applying a DOT effect."
 	alternate_reload_type = RELOADTYPE_SHARED_MAGAZINE
-	alternate_fire_sound = 'sound/effects/attackblob.ogg'
+	alternate_fire_sound = 'sound/abnormalities/meltinglove/ranged.ogg'
 	alternate_pellets = 1
 	alternate_variance  = 0
 	alternate_toggle_sound = 'sound/effects/attackblob.ogg'

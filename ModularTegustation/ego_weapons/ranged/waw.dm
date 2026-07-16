@@ -56,8 +56,11 @@
 	weapon_weight = WEAPON_MEDIUM
 	fire_delay = 10
 	max_shots = 15
+	ammo_on_reload = 1
 	passive_reload = 2 SECONDS
 	reloadtime = 0.2 SECONDS
+	reload_start_sound = 'sound/abnormalities/hatredqueen/gun.ogg'
+	reload_text = "The weapon starts to recharge its mana."
 	fire_sound = 'sound/abnormalities/hatredqueen/attack.ogg'
 
 	attribute_requirements = list(
@@ -477,6 +480,8 @@
 	ammo_on_melee = 4
 	passive_reload = 1.6 SECONDS
 	reloadtime = 0.16 SECONDS
+	reload_start_sound = 'sound/effects/bubbles.ogg'
+	reload_text = "The weapon starts to froth from its maw."
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 60,
 							TEMPERANCE_ATTRIBUTE = 60
@@ -1268,10 +1273,13 @@
 	weapon_weight = WEAPON_MEDIUM
 	fire_delay = 12
 	max_shots = 12
+	ammo_on_reload = 1
 	passive_reload = 2.5 SECONDS
 	reloadtime = 0.2 SECONDS
 	chargetime = 5
 	charge_sound = 'sound/creatures/venus_trap_hurt.ogg'
+	reload_start_sound = 'sound/creatures/venus_trap_hit.ogg'
+	reload_text = "The weapon starts to recharge its mana."
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 60

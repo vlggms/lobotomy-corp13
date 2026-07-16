@@ -125,6 +125,8 @@
 	fire_sound = "dreamy_gun"
 	autofire = 0.25 SECONDS
 	max_shots = 16
+	reload_start_sound = 'sound/creatures/goose1.ogg' //I have no idea what to use for this
+	reload_text = "The weapon is regaining energy to shoot."
 	ammo_on_reload = 1
 	passive_reload = 1.5 SECONDS
 	reloadtime = 0.2 SECONDS
@@ -161,6 +163,8 @@
 	passive_reload = 1.5 SECONDS
 	reloadtime = 0.25 SECONDS
 	fire_sound = 'sound/weapons/sonic_jackhammer.ogg'
+	reload_start_sound = 'sound/items/polaroid2.ogg'
+	reload_text = "The weapon starts to recharge."
 
 /obj/item/ego_weapon/ranged/wishing_cairn
 	name = "wishing cairn"
@@ -247,6 +251,8 @@
 	passive_reload = 3 SECONDS
 	reloadtime = 0.05 SECONDS
 	fire_sound = 'sound/items/handling/paper_pickup.ogg' //Mostly just using this for a lack of a better "card-flicking" noise
+	reload_start_sound = 'sound/items/cardshuffle.ogg'
+	reload_text = "The weapon's deck starts to shuffle new cards into itself."
 
 /obj/item/ego_weapon/ranged/pistol/tough
 	name = "tough pistol"

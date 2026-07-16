@@ -57,7 +57,8 @@
 	/// If a number, the gun will passively reload its ammo based off the reload time after the time stated
 	var/passive_reload = null
 	var/passive_reload_timer = null
-
+	/// If passive reloading should display a message or not
+	var/show_passive_message = FALSE
 
 	/// Vars used for when you examine a gun
 	var/last_projectile_damage = 0
@@ -66,7 +67,7 @@
 	/// The message for reloading
 	var/reload_text = "You start loading a new magazine."
 	/// The message for running out of ammo
-	var/out_of_ammo = "The gun is out of ammo."
+	var/out_of_ammo = "The weapon is out of ammo."
 	// The message for loading a bullet.
 	var/round_text = "You start loading a bullet."
 
@@ -548,7 +549,17 @@
 //Used for some weapons to do things
 /obj/item/ego_weapon/ranged/proc/OnReload(mob/user)
 
-/obj/item/ego_weapon/ranged/proc/PassiveReload(mob/user, showmessage = FALSE)
+/obj/item/ego_weapon/ranged/proc/PassiveReload(mob/user)
+	if(show_passive_message)
+		show_passive_message = FALSE
+		//Really stupid, will replace it with current_holder in a future pr
+		var/list/search_area = user.contents.Copy()
+		for(var/obj/item/storage/spare_space in search_area)
+			search_area |= spare_space.contents
+		if(src in search_area)
+			to_chat(user,span_notice(reload_text))
+			user.playsound_local(get_turf(user), reload_start_sound, 50, TRUE)
+
 	deltimer(passive_reload_timer)
 	OnReload(user)
 	if(ammo_on_reload)
@@ -558,6 +569,20 @@
 	UpdateAmmoCounter(user)
 	if(shotsleft < max_shots)
 		passive_reload_timer = addtimer(CALLBACK(src, PROC_REF(PassiveReload), user), reloadtime, TIMER_STOPPABLE)
+	else
+		passive_reload_timer = null
+
+//This proc essentially buffers the time it takes before a gun passively reloads up to its initial passive_reload value
+//Overall this mechanic only comes into play with high fire rate guns/guns with long max delays, otherwise it nearly resets the passive delay
+/obj/item/ego_weapon/ranged/proc/BufferPassiveTimer(amount, mob/user)
+	//Lets not try to run into runtime errors
+	if(!passive_reload_timer)
+		return
+	//We combine amount with the time left of the reload timer capped to the initial passive_reload
+	var/current_time = min(passive_reload, timeleft(passive_reload_timer) + amount)
+	//Lets replace the old timer with a new one
+	deltimer(passive_reload_timer)
+	passive_reload_timer = addtimer(CALLBACK(src, PROC_REF(PassiveReload), user), current_time, TIMER_STOPPABLE)
 
 /obj/item/ego_weapon/ranged/equipped(mob/living/user, slot)
 	. = ..()
@@ -587,9 +612,14 @@
 //called after the gun has successfully fired its chambered ammo.
 /obj/item/ego_weapon/ranged/proc/process_chamber(mob/living/user)
 	if(passive_reload)
-		if(passive_reload_timer)
-			deltimer(passive_reload_timer)
-		passive_reload_timer = addtimer(CALLBACK(src, PROC_REF(PassiveReload), user, TRUE), passive_reload, TIMER_STOPPABLE)
+		show_passive_message = TRUE
+		if(!passive_reload_timer) //If there's no timer then create one
+			passive_reload_timer = addtimer(CALLBACK(src, PROC_REF(PassiveReload), user), passive_reload, TIMER_STOPPABLE)
+		else
+			if(autofire)
+				BufferPassiveTimer(autofire * 1.5, user)
+			else
+				BufferPassiveTimer(fire_delay * 1.5, user)
 
 	if(!reloadtime) //You don't have ammo, no need to dump it
 		return
@@ -865,7 +895,7 @@
 	if(burst_size > 1)
 		firing_burst = TRUE
 		for(var/i = 1 to burst_size)
-			addtimer(CALLBACK(src, PROC_REF(process_burst), user, target, message, params, zone_override, sprd, randomized_gun_spread, randomized_bonus_spread, rand_spr, i), (burst_delay/burst_size) * i)
+			addtimer(CALLBACK(src, PROC_REF(process_burst), user, target, message, params, zone_override, sprd, randomized_gun_spread, randomized_bonus_spread, rand_spr, i), (burst_delay/(burst_size - 1)) * i-1)
 	else
 		sprd = round((rand() - 0.5) * (randomized_gun_spread + randomized_bonus_spread))
 
@@ -894,9 +924,13 @@
 	if(!CanUseEgo(user))
 		return
 	is_charging = TRUE
+	if(passive_reload)
+		BufferPassiveTimer(chargetime, user) // We don't really want the weapon to reload while its charging up
 	playsound(user, charge_sound, charge_sound_volume, vary_fire_sound)
 	if(do_after(user, chargetime, src))
 		to_chat(user, span_nicegreen("You charge up [src]."))
+		if(passive_reload)
+			BufferPassiveTimer(charge_hold_time, user) // Ditto but with holding a charge
 		is_charging = FALSE
 		charged = TRUE
 		OnCharged(user)
@@ -929,10 +963,9 @@
 	if(ammo_on_melee)
 		if((target.stat == DEAD) || target.status_flags & GODMODE) // lets not give them ammo for beating up contained abnormalities
 			return
-		if(passive_reload)
-			if(passive_reload_timer)
-				deltimer(passive_reload_timer)
-			passive_reload_timer = addtimer(CALLBACK(src, PROC_REF(PassiveReload), user, TRUE), passive_reload, TIMER_STOPPABLE)
+		if(passive_reload_timer)
+			var/attack_time = attack_speed * 10
+			BufferPassiveTimer(attack_time, user)
 		if(alternate_selected && (alternate_reload_type == RELOADTYPE_INDIVIDUAL_RELOAD))
 			alternate_shotsleft = min(alternate_shotsleft + ammo_on_melee, alternate_max_shots)
 			UpdateAmmoCounter(user)
