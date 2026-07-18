@@ -1265,6 +1265,7 @@
 	icon_state = "ebony_stem"
 	force = 18
 	attack_speed = 1
+	projectile_path = /obj/projectile/ego_bullet // We need something to avoid runtimes
 	damtype = BLACK_DAMAGE
 	swingstyle = WEAPONSWING_THRUST
 	attack_verb_continuous = list("admonishes", "rectifies", "conquers")
@@ -1285,7 +1286,7 @@
 							JUSTICE_ATTRIBUTE = 60
 							)
 	alternate_fire_name = "Barrage Roots"
-	alternate_info = "This weapon will cast a trailing line of weaker roots starting from the user."
+	alternate_info = "This weapon will cast a trailing line of weaker roots starting from the user. Hitting the same target mutliple times deals less damage to it "
 	alternate_reload_type = RELOADTYPE_SHARED_MAGAZINE
 	alternate_toggle_sound = 'sound/creatures/venus_trap_hurt.ogg'
 	alternate_toggle_sound_volume = 65
@@ -1325,7 +1326,7 @@
 	if(!alternate_selected)
 		DoAOE(user, target)
 	else
-		var/obj/effect/rootline/R = new(get_step_towards(user, target), user)
+		var/obj/effect/rootline/R = new(get_step_towards(user, target), user.faction)
 		R.damage *= force_multiplier * get_attack_multiplier(user)
 		R.rootBarrage(target)
 	process_chamber(user)
@@ -1344,7 +1345,7 @@
 	playsound(target_turf, 'sound/abnormalities/ebonyqueen/attack.ogg', 50, TRUE)
 	for(var/turf/open/T in RANGE_TURFS(1, target_turf))
 		new /obj/effect/temp_visual/thornspike(T)
-		user.HurtInTurf(T, list(), damage_dealt, BLACK_DAMAGE, hurt_mechs = TRUE)
+		user.HurtInTurf(T, list(), damage_dealt, BLACK_DAMAGE, hurt_mechs = TRUE, check_faction = TRUE)
 
 
 /obj/effect/rootline
@@ -1353,16 +1354,22 @@
 	generic_canpass = FALSE
 	movement_type = PHASING | FLYING
 	var/damage = 40
-	var/mob/living/spawner
+	var/list/faction = list()
 	var/barrage_range = 12
 	var/broken = 0
+	var/hit_list = list()
 	layer = POINT_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/effect/rootline/New(loc, ...)
 	. = ..()
 	if(args[2])
-		spawner = args[2]
+		faction = args[2]
+
+/obj/effect/rootline/Destroy()
+	. = ..()
+	QDEL_NULL(hit_list)
+	QDEL_NULL(hit_list)
 
 /obj/effect/rootline/proc/rootBarrage(atom/attack_target) //line attack
 	var/turf/target_turf = get_ranged_target_turf_direct(src, attack_target, barrage_range)
@@ -1380,8 +1387,13 @@
 	playsound(T, 'sound/abnormalities/ebonyqueen/attack.ogg', 50, TRUE)
 	new /obj/effect/temp_visual/thornspike(T)
 	for(var/mob/living/L in T)
-		if(spawner == L)
+		if(faction_check(faction, L.faction, FALSE))
 			continue
-		L.deal_damage(damage, BLACK_DAMAGE)
+		if(!(L in hit_list))
+			hit_list[L] = 1
+		else
+			hit_list[L] = min(4, hit_list[L] + 0.5) // 66% damage then 50% ect to 25%
+		var/damage_done = damage/hit_list[L]
+		L.deal_damage(damage_done, BLACK_DAMAGE)
 	if(count == barrage_range || count == broken)
 		qdel(src)
