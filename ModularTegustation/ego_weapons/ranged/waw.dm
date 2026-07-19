@@ -238,7 +238,7 @@
 	if(istype(Z))
 		projectile_damage_multiplier *= 2
 
-/obj/item/ego_weapon/ranged/solemnlament/pistol/melee_attack_chain(mob/user, atom/target, params)
+/obj/item/ego_weapon/ranged/pistol/solemnlament/pistol/melee_attack_chain(mob/user, atom/target, params)
 	if (!istype(user,/mob/living/carbon/human))
 		return
 	var/mob/living/carbon/human/myman = user
@@ -821,6 +821,7 @@
 	if(!reloadtime || !user || !user.client)
 		maptext = ""
 		return
+	var/datum/component/bloodfeast/bloodfeast = GetComponent(/datum/component/bloodfeast)
 	var/list/search_area = user.contents.Copy()
 	for(var/obj/item/storage/spare_space in search_area)
 		search_area |= spare_space.contents
@@ -828,11 +829,17 @@
 		maptext = ""
 		return
 	var/main_color = "white"
+	if(charged)
+		main_color = "blue"
 	if(!shotsleft)
 		main_color = "red"
 	var/style = "font-family: 'Better VCR'; font-size: [text_size]px; -dm-text-outline: 1px black; color: [main_color];"
-	var/blood_style = "font-family: 'Better VCR'; font-size: [text_size]px; -dm-text-outline: 1px black; color: #880000;"
-	var/datum/component/bloodfeast/bloodfeast = GetComponent(/datum/component/bloodfeast)
+	var/blood_color = "#880000"
+	if(!shotsleft && charged)
+		blood_color = "red"
+	if(bloodfeast.blood_amount < 150)
+		blood_color = "gray"
+	var/blood_style = "font-family: 'Better VCR'; font-size: [text_size]px; -dm-text-outline: 1px black; color: [blood_color];"
 	maptext = MAPTEXT("<span style=\"[style]\">[shotsleft]/[max_shots]</span>\n<span style=\"[blood_style]\">B:[floor((bloodfeast.blood_amount/bloodfeast.blood_cap) * 100)]%</span>")
 
 /obj/item/ego_weapon/ranged/cannon/banquet/Initialize()

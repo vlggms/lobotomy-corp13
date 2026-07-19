@@ -460,11 +460,15 @@
 			main_color = "gray"
 		else
 			main_color = "yellow"
+	if(main_color != "gray" && charged)
+		main_color = "blue"
 	if(shotsleft < ammo_per_shot)
 		main_color = "red"
 	var/style = "font-family: 'Better VCR'; font-size: [text_size]px; -dm-text-outline: 1px black; color: [main_color];"
 	if(alternate_fire_name && (alternate_reload_type == RELOADTYPE_INDIVIDUAL_RELOAD || alternate_reload_type == RELOADTYPE_SHARED_RELOAD))
 		var/alt_color = "white"
+		if(charged)
+			alt_color = "blue"
 		if(!alternate_selected)
 			alt_color = "gray"
 		if(alternate_shotsleft < alternate_ammo_per_shot)
@@ -933,6 +937,7 @@
 			BufferPassiveTimer(charge_hold_time, user) // Ditto but with holding a charge
 		is_charging = FALSE
 		charged = TRUE
+		UpdateAmmoCounter(user)
 		OnCharged(user)
 		charge_timer = addtimer(CALLBACK(src, PROC_REF(Uncharge), user), charge_hold_time, TIMER_STOPPABLE)
 		return
@@ -941,6 +946,7 @@
 
 /obj/item/ego_weapon/ranged/proc/Uncharge(mob/living/user)
 	charged = FALSE
+	UpdateAmmoCounter(user)
 	OnDischarge(user)
 	if(user)
 		to_chat(user, span_warning("The [src] loses its charge!"))
