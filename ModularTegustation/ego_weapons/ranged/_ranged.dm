@@ -895,7 +895,7 @@
 	if(burst_size > 1)
 		firing_burst = TRUE
 		for(var/i = 1 to burst_size)
-			addtimer(CALLBACK(src, PROC_REF(process_burst), user, target, message, params, zone_override, sprd, randomized_gun_spread, randomized_bonus_spread, rand_spr, i), (burst_delay/(burst_size - 1)) * i-1)
+			addtimer(CALLBACK(src, PROC_REF(process_burst), user, target, message, params, zone_override, sprd, randomized_gun_spread, randomized_bonus_spread, rand_spr, i), (burst_delay/(burst_size - 1)) * (i-1))
 	else
 		sprd = round((rand() - 0.5) * (randomized_gun_spread + randomized_bonus_spread))
 

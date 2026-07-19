@@ -238,7 +238,7 @@
 	if(istype(Z))
 		projectile_damage_multiplier *= 2
 
-/obj/item/ego_weapon/ranged/solemnlament/melee_attack_chain(mob/user, atom/target, params)
+/obj/item/ego_weapon/ranged/solemnlament/pistol/melee_attack_chain(mob/user, atom/target, params)
 	if (!istype(user,/mob/living/carbon/human))
 		return
 	var/mob/living/carbon/human/myman = user
@@ -355,7 +355,7 @@
 	if(istype(Z))
 		projectile_damage_multiplier *= 2
 
-/obj/item/ego_weapon/ranged/solemnvow/melee_attack_chain(mob/user, atom/target, params)
+/obj/item/ego_weapon/ranged/pistol/solemnvow/melee_attack_chain(mob/user, atom/target, params)
 	if (!istype(user,/mob/living/carbon/human))
 		return
 	var/mob/living/carbon/human/myman = user
@@ -466,7 +466,7 @@
 	desc = "Tell the kid today's treat is going to be grape-flavored candy. It's his favorite."
 	icon_state = "ecstasy"
 	inhand_icon_state = "ecstasy"
-	special = "This weapon fires slow bubbles with limited range."
+	special = "This weapon fires short ranged bubbles that pierces through targets but loses damage the more targets it hits."
 	force = 16
 	damtype = RED_DAMAGE
 	attack_speed = 0.7
@@ -523,7 +523,7 @@
 							JUSTICE_ATTRIBUTE = 60
 							)
 
-/obj/item/ego_weapon/ranged/magic_pistol/before_firing(atom/target, mob/user)
+/obj/item/ego_weapon/ranged/pistol/magic_pistol/before_firing(atom/target, mob/user)
 	projectile_damage_multiplier = 1
 	var/mob/living/carbon/human/myman = user
 	var/obj/item/clothing/suit/armor/ego_gear/realization/bigiron/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
@@ -531,7 +531,7 @@
 		projectile_damage_multiplier *= 2
 	..()
 
-/obj/item/ego_weapon/ranged/magic_pistol/melee_attack_chain(mob/user, atom/target, params)
+/obj/item/ego_weapon/ranged/pistol/magic_pistol/melee_attack_chain(mob/user, atom/target, params)
 	if (!istype(user,/mob/living/carbon/human))
 		return
 	var/mob/living/carbon/human/myman = user
@@ -1336,6 +1336,12 @@
 	if(user)
 		user.update_inv_hands()
 	SSblackbox.record_feedback("tally", "gun_fired", 1, type)
+
+	if(click_cooldown_override)
+		user.changeNext_move(click_cooldown_override)
+	else
+		user.changeNext_move(CLICK_CD_RANGE)
+	user.newtonian_move(get_dir(target, user))
 
 	return TRUE
 

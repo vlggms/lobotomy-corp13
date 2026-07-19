@@ -15,7 +15,6 @@
 	damage = 27	//Fires 3
 	speed = 0.8
 	spread = 5
-	hit_nondense_targets = TRUE
 	damage_type = BLACK_DAMAGE
 	hitsound = "sound/effects/footstep/slime1.ogg"
 
@@ -172,25 +171,10 @@
 
 /obj/projectile/ego_bullet/ego_hookah/on_hit(atom/target, blocked = FALSE)
 	. = ..()
-	addtimer(CALLBACK(src, PROC_REF(HitListRemove), target), iframes)
-	if(istype(target, /mob/living/simple_animal))
-		var/mob/living/simple_animal/A = target
-		if(LAZYLEN(A.projectile_blockers))
-			damage *= damage_decay**2//Decay more to prevent it from melting shit
 	damage *= damage_decay
 	if(damage < 0.1)
 		qdel(src)
 		return
-
-/obj/projectile/ego_bullet/ego_hookah/proc/HitListRemove(mob/living/target)
-	if(!target || QDELETED(target))
-		return
-	impacted[target] = FALSE
-	if(istype(target, /mob/living/simple_animal))
-		var/mob/living/simple_animal/A = target
-		if(LAZYLEN(A.projectile_blockers))
-			for(var/mob/living/simple_animal/projectile_blocker_dummy/L in A.projectile_blockers)
-				impacted[L] = FALSE
 
 /obj/projectile/ego_bullet/ego_executive
 	name = "executive"

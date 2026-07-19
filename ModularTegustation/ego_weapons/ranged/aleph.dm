@@ -307,7 +307,7 @@
 /obj/item/ego_weapon/ranged/havana
 	name = "havana"
 	desc = "Within it's simple design lies a lot of struggle"
-	special = "This weapon pierces all targets and hit the same target multiple times, but loses damage the more targets it hits."
+	special = "This weapon fires short ranged flames that pierces through targets but loses damage the more targets it hits."
 	icon_state = "havana"
 	inhand_icon_state = "havana"
 	force = 30

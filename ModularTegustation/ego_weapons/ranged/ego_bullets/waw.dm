@@ -173,11 +173,20 @@
 	damage = 5
 	speed = 1.3
 	range = 6
+	projectile_piercing = PASSMOB
+	hit_nondense_targets = TRUE
+	var/damage_decay = 0.85
 
 /obj/projectile/ego_bullet/ego_ecstasy/Initialize()
 	. = ..()
 	color = pick(COLOR_RED, COLOR_YELLOW, COLOR_LIME, COLOR_CYAN, COLOR_MAGENTA, COLOR_ORANGE)
 
+/obj/projectile/ego_bullet/ego_ecstasy/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	damage *= damage_decay
+	if(damage < 0.1)
+		qdel(src)
+		return
 
 //Smartpistol
 /obj/projectile/ego_bullet/ego_praetorian
