@@ -265,7 +265,7 @@
 	if(!silent)
 		to_chat(user, alternate_toggle_enabled_message)
 	update_projectile_examine()
-	UpdateAmmoCounter(user)
+	UpdateAmmoCounter()
 
 /obj/item/ego_weapon/ranged/proc/DisableAltfire(mob/user, silent = TRUE)
 	alternate_selected = FALSE
@@ -281,7 +281,7 @@
 	if(!silent)
 		to_chat(user, alternate_toggle_disabled_message)
 	update_projectile_examine()
-	UpdateAmmoCounter(user)
+	UpdateAmmoCounter()
 
 /obj/item/ego_weapon/ranged/examine(mob/user)
 	. = ..()
@@ -444,14 +444,8 @@
 	last_projectile_type = projectile.damage_type
 	qdel(projectile)
 
-/obj/item/ego_weapon/ranged/proc/UpdateAmmoCounter(mob/living/user)
-	if(!reloadtime || !user || !user.client)
-		maptext = ""
-		return
-	var/list/search_area = user.contents.Copy()
-	for(var/obj/item/storage/spare_space in search_area)
-		search_area |= spare_space.contents
-	if(!(src in search_area))
+/obj/item/ego_weapon/ranged/proc/UpdateAmmoCounter()
+	if(!(item_flags & IN_INVENTORY))
 		maptext = ""
 		return
 	var/main_color = "white"
@@ -506,7 +500,7 @@
 			if(user.has_movespeed_modifier(/datum/movespeed_modifier/reloading))
 				user.remove_movespeed_modifier(/datum/movespeed_modifier/reloading)
 			is_reloading = FALSE
-			UpdateAmmoCounter(user)
+			UpdateAmmoCounter()
 			return	//Get the fuck outta here
 
 		//We're ALWAYS reloading the main mag here. If we got this far, it means we're using a gun that wants to load the main mag
@@ -519,7 +513,7 @@
 	if(user.has_movespeed_modifier(/datum/movespeed_modifier/reloading))
 		user.remove_movespeed_modifier(/datum/movespeed_modifier/reloading)
 	is_reloading = FALSE
-	UpdateAmmoCounter(user)
+	UpdateAmmoCounter()
 
 /obj/item/ego_weapon/ranged/proc/rounds_reload(mob/user, is_reloading_alt_mag = FALSE)
 	is_reloading = TRUE
@@ -542,7 +536,7 @@
 			alternate_shotsleft = min(alternate_shotsleft + alternate_ammo_on_reload, alternate_max_shots)
 		else
 			shotsleft = min(shotsleft + ammo_on_reload, max_shots)
-		UpdateAmmoCounter(user)
+		UpdateAmmoCounter()
 		OnReload(user)
 		INVOKE_ASYNC(src, PROC_REF(rounds_reload), user, is_reloading_alt_mag)	//To save you from loading all your bullets
 		return
@@ -556,13 +550,7 @@
 /obj/item/ego_weapon/ranged/proc/PassiveReload(mob/user)
 	if(show_passive_message)
 		show_passive_message = FALSE
-		//Really stupid, will replace it with current_holder in a future pr
-		var/list/search_area = user.contents.Copy()
-		for(var/obj/item/storage/spare_space in search_area)
-			search_area |= spare_space.contents
-		if(src in search_area)
-			to_chat(user,span_notice(reload_text))
-			user.playsound_local(get_turf(user), reload_start_sound, 50, TRUE)
+		playsound(src, reload_start_sound, 50, TRUE)
 
 	deltimer(passive_reload_timer)
 	OnReload(user)
@@ -570,7 +558,7 @@
 		shotsleft = min(shotsleft + ammo_on_reload, max_shots)
 	else
 		shotsleft = max_shots
-	UpdateAmmoCounter(user)
+	UpdateAmmoCounter()
 	if(shotsleft < max_shots)
 		passive_reload_timer = addtimer(CALLBACK(src, PROC_REF(PassiveReload), user), reloadtime, TIMER_STOPPABLE)
 	else
@@ -592,7 +580,13 @@
 	. = ..()
 	if(zoomed && user.get_active_held_item() != src)
 		zoom(user, user.dir, FALSE) //we can only stay zoomed in if it's in our hands	//yeah and we only unzoom if we're actually zoomed using the gun!!
-	UpdateAmmoCounter(user)
+	UpdateAmmoCounter()
+	//We should update the timer incase a new user picks it up. Might cause some jank with time stalling though.
+	if(passive_reload_timer)
+		var/current_time = timeleft(passive_reload_timer)
+		deltimer(passive_reload_timer)
+		//Restart the timer but with the new user
+		passive_reload_timer = addtimer(CALLBACK(src, PROC_REF(PassiveReload), user), current_time, TIMER_STOPPABLE)
 
 /obj/item/ego_weapon/ranged/pickup(mob/user)
 	..()
@@ -612,6 +606,44 @@
 	if(zoomed)
 		zoom(user, user.dir)
 	UpdateAmmoCounter()
+
+//A slightly different version of the original proc to hide map text
+/obj/item/ego_weapon/ranged/do_pickup_animation(atom/target)
+	set waitfor = FALSE
+	if(!istype(loc, /turf))
+		return
+	maptext = ""
+
+	var/image/I = image(icon = src, loc = loc, layer = layer + 0.1)
+	I.plane = GAME_PLANE
+	I.transform *= 0.75
+	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+
+	UpdateAmmoCounter()
+
+	var/turf/T = get_turf(src)
+	var/direction
+	var/to_x = target.base_pixel_x
+	var/to_y = target.base_pixel_y
+
+	if(!QDELETED(T) && !QDELETED(target))
+		direction = get_dir(T, target)
+	if(direction & NORTH)
+		to_y += 32
+	else if(direction & SOUTH)
+		to_y -= 32
+	if(direction & EAST)
+		to_x += 32
+	else if(direction & WEST)
+		to_x -= 32
+	if(!direction)
+		to_y += 16
+	flick_overlay(I, GLOB.clients, 6)
+	var/matrix/M = new
+	M.Turn(pick(-30, 30))
+	animate(I, alpha = 175, pixel_x = to_x, pixel_y = to_y, time = 3, transform = M, easing = CUBIC_EASING)
+	sleep(1)
+	animate(I, alpha = 0, transform = matrix(), time = 1)
 
 //called after the gun has successfully fired its chambered ammo.
 /obj/item/ego_weapon/ranged/proc/process_chamber(mob/living/user)
@@ -654,7 +686,7 @@
 			if(RELOADTYPE_SHARED_MAGAZINE)
 				if(shotsleft && alternate_reload_time)
 					shotsleft = max(0, shotsleft - ammo_per_shot)
-	UpdateAmmoCounter(user)
+	UpdateAmmoCounter()
 
 //check if there's enough ammo to shoot one time
 //i.e if clicking would make it shoot
@@ -937,7 +969,7 @@
 			BufferPassiveTimer(charge_hold_time, user) // Ditto but with holding a charge
 		is_charging = FALSE
 		charged = TRUE
-		UpdateAmmoCounter(user)
+		UpdateAmmoCounter()
 		OnCharged(user)
 		charge_timer = addtimer(CALLBACK(src, PROC_REF(Uncharge), user), charge_hold_time, TIMER_STOPPABLE)
 		return
@@ -946,7 +978,7 @@
 
 /obj/item/ego_weapon/ranged/proc/Uncharge(mob/living/user)
 	charged = FALSE
-	UpdateAmmoCounter(user)
+	UpdateAmmoCounter()
 	OnDischarge(user)
 	if(user)
 		to_chat(user, span_warning("The [src] loses its charge!"))
@@ -974,28 +1006,28 @@
 			BufferPassiveTimer(attack_time, user)
 		if(alternate_selected && (alternate_reload_type == RELOADTYPE_INDIVIDUAL_RELOAD))
 			alternate_shotsleft = min(alternate_shotsleft + ammo_on_melee, alternate_max_shots)
-			UpdateAmmoCounter(user)
+			UpdateAmmoCounter()
 			return
 		shotsleft = min(shotsleft + ammo_on_melee, max_shots)
 		if(alternate_reload_type == RELOADTYPE_SHARED_RELOAD)
 			alternate_shotsleft = min(alternate_shotsleft + ammo_on_melee, alternate_max_shots)
-		UpdateAmmoCounter(user)
+		UpdateAmmoCounter()
 
 //We redo this proc to hide the maptext since it looks bad with the attack animation
 /obj/item/ego_weapon/ranged/melee_attack_chain(mob/user, atom/target, params)
 	maptext = ""
 	if(tool_behaviour && target.tool_act(user, src, tool_behaviour))
-		UpdateAmmoCounter(user)
+		UpdateAmmoCounter()
 		return TRUE
 	if(pre_attack(target, user, params))
-		UpdateAmmoCounter(user)
+		UpdateAmmoCounter()
 		return TRUE
 	if(Sweep(target, user, params))
-		UpdateAmmoCounter(user)
+		UpdateAmmoCounter()
 		return TRUE
 	if(QDELETED(src) || QDELETED(target))
 		attack_qdeleted(target, user, TRUE, params)
-		UpdateAmmoCounter(user)
+		UpdateAmmoCounter()
 		return TRUE
 	UpdateAmmoCounter(user)
 	return afterattack(target, user, TRUE, params)

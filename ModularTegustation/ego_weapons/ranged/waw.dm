@@ -238,7 +238,7 @@
 	if(istype(Z))
 		projectile_damage_multiplier *= 2
 
-/obj/item/ego_weapon/ranged/pistol/solemnlament/pistol/melee_attack_chain(mob/user, atom/target, params)
+/obj/item/ego_weapon/ranged/pistol/solemnlament/melee_attack_chain(mob/user, atom/target, params)
 	if (!istype(user,/mob/living/carbon/human))
 		return
 	var/mob/living/carbon/human/myman = user
@@ -817,17 +817,11 @@
 	var/bloodshot_ready = TRUE
 
 //A slightly different version to show Bloodfeast
-/obj/item/ego_weapon/ranged/cannon/banquet/UpdateAmmoCounter(mob/living/user)
-	if(!reloadtime || !user || !user.client)
+/obj/item/ego_weapon/ranged/cannon/banquet/UpdateAmmoCounter()
+	if(!(item_flags & IN_INVENTORY))
 		maptext = ""
 		return
 	var/datum/component/bloodfeast/bloodfeast = GetComponent(/datum/component/bloodfeast)
-	var/list/search_area = user.contents.Copy()
-	for(var/obj/item/storage/spare_space in search_area)
-		search_area |= spare_space.contents
-	if(!(src in search_area))
-		maptext = ""
-		return
 	var/main_color = "white"
 	if(charged)
 		main_color = "blue"
@@ -867,7 +861,7 @@
 	if(!(target.status_flags & GODMODE) && target.stat != DEAD)
 		var/justicemod = get_attack_multiplier(user)
 		AdjustThirst(force * justicemod)
-		UpdateAmmoCounter(user)
+		UpdateAmmoCounter()
 
 /obj/item/ego_weapon/ranged/cannon/banquet/can_shoot(mob/living/user)
 	if(bloodshot_ready)
@@ -1174,14 +1168,14 @@
 	max_shots = 1
 	round_text = "You start loading a slug."
 	variance = 0
-	UpdateAmmoCounter(user)
+	UpdateAmmoCounter()
 
 /obj/item/ego_weapon/ranged/fellscatter/DisableAltfire(mob/user, silent = TRUE)
 	. = ..()
 	max_shots = initial(max_shots)
 	round_text = initial(round_text)
 	variance = initial(variance)
-	UpdateAmmoCounter(user)
+	UpdateAmmoCounter()
 
 /obj/item/ego_weapon/ranged/sodashotty
 	name = "soda shotgun"
