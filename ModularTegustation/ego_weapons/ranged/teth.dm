@@ -223,6 +223,7 @@
 	force = 10
 	projectile_path = /obj/projectile/ego_bullet/ego_patriot
 	pellets = 4
+	randomspread = FALSE
 	variance = 15
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 12
