@@ -187,7 +187,7 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 	RegisterSignal(user, COMSIG_MOB_CTRLSHIFTCLICKON, PROC_REF(OnCtrlShiftClick))
 
 /obj/machinery/computer/camera_advanced/manager/attackby(obj/item/O, mob/user, params)
-	if(istype(O, /obj/item/managerbullet) && ammo <= GetFacilityUpgradeValue(UPGRADE_BULLET_COUNT))
+	if(istype(O, /obj/item/managerbullet) && ammo <= floor(GetFacilityUpgradeValue(UPGRADE_BULLET_COUNT) * SSlobotomy_corp.bullet_multiplier))
 		ammo++
 		to_chat(user, span_notice("You load [O] in to the [src]. It now has [ammo] bullets stored."))
 		playsound(get_turf(src), 'sound/weapons/kenetic_reload.ogg', 10, 0, 3)
@@ -422,7 +422,7 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 
 /obj/machinery/computer/camera_advanced/manager/proc/RechargeMeltdown()
 	playsound(get_turf(src), 'sound/weapons/kenetic_reload.ogg', 10, 0, 3)
-	ammo = max(ammo * SSlobotomy_corp.bullet_multiplier, GetFacilityUpgradeValue(UPGRADE_BULLET_COUNT))
+	ammo = floor(GetFacilityUpgradeValue(UPGRADE_BULLET_COUNT) * SSlobotomy_corp.bullet_multiplier)
 
 //Employee Tracking Code: Butchered AI Tracking
 
