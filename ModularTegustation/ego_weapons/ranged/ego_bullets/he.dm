@@ -57,12 +57,12 @@
 	name = "song"
 	damage = 3
 	damage_type = WHITE_DAMAGE
-	spread = 5
 
 /obj/projectile/ego_bullet/ego_songmini
 	name = "song"
 	damage = 1 //4 pellets
 	damage_type = WHITE_DAMAGE
+	spread = 5
 
 /obj/projectile/ego_bullet/ego_wedge
 	name = "screaming"
