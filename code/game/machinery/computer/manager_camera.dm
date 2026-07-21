@@ -225,15 +225,13 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 	else
 		var/turf/T = get_turf(clicked_atom)
 		var/success = FALSE
-		var/list/targets = (/mob/living in view(1, T))
-		if(LAZYLEN(targets))
-			for(var/mob/living/L in targets)
-				if(ishuman(L))
-					if(ClickedEmployee(source, L))
-						success = TRUE
-				if(ishostile(L))
-					if(ClickedAbno(source, L))
-						success = TRUE
+		for(var/mob/living/L in view(1, T))
+			if(ishuman(L))
+				if(ClickedEmployee(source, L))
+					success = TRUE
+			if(ishostile(L))
+				if(ClickedAbno(source, L))
+					success = TRUE
 		if(success)
 			bullet_buffer = world.time + bullet_buffer_time
 			ammo -= bullet_cost[bullet_type]
@@ -284,7 +282,6 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 						H.remove_status_effect(/datum/status_effect/qliphothshred)
 					H.apply_status_effect(/datum/status_effect/qliphothshred)
 			else
-				to_chat(owner, span_warning("WELFARE SAFETY SYSTEM ERROR: HUMAN SHARES CORPORATE FACTION."))
 				return FALSE
 		if(MANAGER_KILL_BULLET)
 			if(Execute(owner, H))
