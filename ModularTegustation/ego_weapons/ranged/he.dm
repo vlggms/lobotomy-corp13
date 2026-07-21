@@ -297,10 +297,10 @@
 		if(!shotsleft)
 			user.visible_message(span_notice(out_of_ammo))
 			return
-		process_chamber(user)
 		if(spamcheck > world.time)
 			to_chat(user, span_warning("\The [src] needs to recharge!"))
 		else
+			process_chamber(user)
 			playsound(loc, 'sound/items/megaphone.ogg', 100, FALSE, TRUE)
 			spamcheck = world.time + 50
 			speech_args[SPEECH_SPANS] |= voicespan
