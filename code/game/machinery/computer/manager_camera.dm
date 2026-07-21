@@ -121,9 +121,8 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 	/* Locked actions */
 	// Unlocked by completing records core suppression
 	var/datum/action/innate/swap_cells/swap
-	var/last_used_bullet
-	var/last_used_bullet_time
-	var/mob/living/last_target
+	var/bullet_buffer
+	var/bullet_buffer_time = 0.3 SECONDS // Just to prevent accidental multiclicking
 
 /obj/machinery/computer/camera_advanced/manager/Initialize(mapload)
 	. = ..()
@@ -203,8 +202,9 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 /obj/machinery/computer/camera_advanced/manager/proc/OnHotkeyClick(datum/source, atom/clicked_atom) //system control for hotkeys
 	SIGNAL_HANDLER
 
-	// No target :(
-	if(!isliving(clicked_atom))
+
+	// Fired too quickly :(
+	if(bullet_buffer > world.time)
 		return
 
 	// No bullets :(
@@ -213,18 +213,40 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 		to_chat(source, span_warning("AMMO RESERVE EMPTY."))
 		return
 
-	if(ishuman(clicked_atom) && ClickedEmployee(source, clicked_atom))
-		ammo -= bullet_cost[bullet_type]
-		to_chat(source, span_warning("<b>[ammo]</b> bullets remaining."))
+	if(bullet_type == MANAGER_KILL_BULLET)
+		if(ishuman(clicked_atom) && ClickedEmployee(source, clicked_atom))
+			bullet_buffer = world.time + bullet_buffer_time
+			ammo -= bullet_cost[bullet_type]
+			to_chat(source, span_warning("<b>[ammo]</b> bullets remaining."))
+			return
+		playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
+		to_chat(source, span_warning("NO VALID TARGET."))
 		return
-	if(ishostile(clicked_atom) && ClickedAbno(source, clicked_atom))
-		ammo -= bullet_cost[bullet_type]
-		to_chat(source, span_warning("<b>[ammo]</b> bullets remaining."))
+	else
+		var/turf/T = get_turf(clicked_atom)
+		var/success = FALSE
+		var/list/targets = (/mob/living in view(1, T))
+		if(LAZYLEN(targets))
+			for(var/mob/living/L in targets)
+				if(ishuman(L))
+					if(ClickedEmployee(source, L))
+						success = TRUE
+				if(ishostile(L))
+					if(ClickedAbno(source, L))
+						success = TRUE
+		if(success)
+			bullet_buffer = world.time + bullet_buffer_time
+			ammo -= bullet_cost[bullet_type]
+			to_chat(source, span_warning("<b>[ammo]</b> bullets remaining."))
+			playsound(get_turf(src), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
+			playsound(T, 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
+			return
+		playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
+		to_chat(source, span_warning("NO VALID TARGET."))
 		return
 
 /obj/machinery/computer/camera_advanced/manager/proc/ClickedEmployee(mob/living/owner, mob/living/carbon/human/H) //contains carbon copy code of fire action
-	if(!istype(H))
-		to_chat(owner, span_warning("NO VALID TARGET."))
+	if(!ishuman(H))
 		return FALSE
 
 	var/healing_mult = 1
@@ -232,29 +254,14 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 		healing_mult = 0.5
 
 	switch(bullet_type)
-		if(MANAGER_RED_BULLET, MANAGER_WHITE_BULLET, MANAGER_BLACK_BULLET, MANAGER_PALE_BULLET, MANAGER_QUAD_BULLET, MANAGER_YELLOW_BULLET)
-			if(bullet_type == last_used_bullet && last_target == H && last_used_bullet_time > world.time && H.has_status_effect(bullet_types_to_status[bullet_type]))
-				return FALSE
 		if(MANAGER_HP_BULLET)
-			if(H.health >= H.maxHealth)
-				playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
-				to_chat(owner, span_warning("ERROR: TARGET'S BODY DOESN'T NEED HEALING."))
-				return FALSE
 			H.adjustBruteLoss(-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL)*healing_mult)
 		if(MANAGER_SP_BULLET)
 			if(H.sanity_lost)
-				playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
-				to_chat(owner, span_warning("ERROR: TARGET'S MIND IS TOO UNSTABLE."))
-				return FALSE
-			if(H.sanityhealth >= H.maxSanity)
-				playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
-				to_chat(owner, span_warning("ERROR: TARGET'S MIND DOESN'T NEED HEALING."))
 				return FALSE
 			H.adjustSanityLoss(-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL)*healing_mult)
 		if(MANAGER_RED_BULLET, MANAGER_WHITE_BULLET, MANAGER_BLACK_BULLET, MANAGER_PALE_BULLET, MANAGER_QUAD_BULLET)
 			if(H.is_working)
-				playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
-				to_chat(owner, span_warning("ERROR: TARGET IS WORKING."))
 				return FALSE
 			if (H.has_status_effect(bullet_types_to_status[bullet_type]))
 				H.remove_status_effect(bullet_types_to_status[bullet_type])
@@ -264,12 +271,6 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 			H.apply_shield(bullet_types_to_status[bullet_type], shield_health = shield_hp)
 		if(MANAGER_DUAL_BULLET)
 			if(H.sanity_lost)
-				playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
-				to_chat(owner, span_warning("ERROR: TARGET'S MIND IS TOO UNSTABLE."))
-				return FALSE
-			if((H.health >= H.maxHealth) && (H.sanityhealth >= H.maxSanity))
-				playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
-				to_chat(owner, span_warning("ERROR: TARGET'S BODY DOESN'T NEED HEALING."))
 				return FALSE
 			H.adjustBruteLoss(-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL)*healing_mult)
 			H.adjustSanityLoss(-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL)*healing_mult)
@@ -283,7 +284,7 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 						H.remove_status_effect(/datum/status_effect/qliphothshred)
 					H.apply_status_effect(/datum/status_effect/qliphothshred)
 			else
-				to_chat(owner, span_warning("WELFARE SAFETY SYSTEM ERROR: TARGET SHARES CORPORATE FACTION."))
+				to_chat(owner, span_warning("WELFARE SAFETY SYSTEM ERROR: HUMAN SHARES CORPORATE FACTION."))
 				return FALSE
 		if(MANAGER_KILL_BULLET)
 			if(Execute(owner, H))
@@ -292,11 +293,6 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 		else
 			to_chat(owner, span_warning("ERROR: BULLET INITIALIZATION FAILURE."))
 			return FALSE
-	last_used_bullet = bullet_type
-	last_used_bullet_time = world.time + 3 SECONDS
-	last_target = H
-	playsound(get_turf(src), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
-	playsound(get_turf(H), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
 	return TRUE
 
 /obj/machinery/computer/camera_advanced/manager/proc/Execute(mob/living/owner, mob/living/carbon/human/H)
@@ -330,25 +326,16 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 
 /obj/machinery/computer/camera_advanced/manager/proc/ClickedAbno(mob/living/owner, mob/living/simple_animal/hostile/H)
 	if(!istype(H))
-		to_chat(owner, span_warning("NO VALID TARGET."))
 		return FALSE
 
 	if(bullet_type == MANAGER_YELLOW_BULLET)
-		if(bullet_type == last_used_bullet && last_target == H && last_used_bullet_time > world.time && H.has_status_effect(bullet_types_to_status[bullet_type]))
-			return FALSE
 		if (H.has_status_effect(/datum/status_effect/qliphothoverload))
 			H.remove_status_effect(/datum/status_effect/qliphothoverload)
 		H.apply_status_effect(/datum/status_effect/qliphothoverload)
 		if (GetFacilityUpgradeValue(UPGRADE_YELLOW_BULLET))
 			H.apply_status_effect(/datum/status_effect/qliphothshred)
-		playsound(get_turf(src), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
-		playsound(get_turf(H), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
-		last_used_bullet = bullet_type
-		last_used_bullet_time = world.time + 3 SECONDS
-		last_target = H
 		return TRUE
 
-	to_chat(owner, span_warning("ERROR: BULLET INITIALIZATION FAILURE."))
 	return FALSE
 
 /obj/machinery/computer/camera_advanced/manager/proc/ManagerExaminate(mob/living/user, atom/clicked_atom)
