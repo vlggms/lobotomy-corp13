@@ -51,7 +51,7 @@
 	var/damage_amount = 5
 
 /datum/status_effect/gooped/on_apply()
-	owner.apply_damage(damage_amount, BLACK_DAMAGE, null, owner.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+	owner.deal_damage(damage_amount, BLACK_DAMAGE, attack_type = (ATTACK_TYPE_STATUS))
 	playsound(owner, 'sound/effects/wounds/sizzle2.ogg', 25, TRUE)
 	return ..()
 
@@ -60,7 +60,7 @@
 		qdel(src)
 		return
 
-	owner.apply_damage(damage_amount, BLACK_DAMAGE, null, owner.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+	owner.deal_damage(damage_amount, BLACK_DAMAGE, attack_type = (ATTACK_TYPE_STATUS))
 	playsound(owner, 'sound/effects/wounds/sizzle2.ogg', 25, TRUE)
 
 
