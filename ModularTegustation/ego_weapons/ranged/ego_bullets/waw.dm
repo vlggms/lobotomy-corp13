@@ -2,17 +2,18 @@
 	name = "correctional"
 	damage = 5
 	damage_type = BLACK_DAMAGE
+	spread = 5
 
 /obj/projectile/ego_bullet/ego_hornet
 	name = "hornet"
-	damage = 25
+	damage = 15
 	damage_type = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_hatred
 	name = "magic beam"
 	icon_state = "qoh1"
 	damage_type = BLACK_DAMAGE
-	damage = 25
+	damage = 30
 	spread = 10
 
 /obj/projectile/ego_bullet/ego_hatred/on_hit(atom/target, blocked = FALSE)
@@ -71,109 +72,159 @@
 /obj/projectile/ego_bullet/ego_solemnlament
 	name = "solemn lament"
 	icon_state = "whitefly"
-	damage = 17
+	damage = 7
 	speed = 0.35
 	damage_type = WHITE_DAMAGE
 
 /obj/projectile/ego_bullet/ego_solemnvow
 	name = "solemn vow"
 	icon_state = "blackfly"
-	damage =17
+	damage = 7
 	speed = 0.35
 	damage_type = BLACK_DAMAGE
 
 //Smartgun
-/obj/projectile/ego_bullet/ego_loyalty // not actually used at the moment
+/obj/projectile/ego_bullet/ego_loyalty
 	name = "loyalty"
 	icon_state = "loyalty"
-	damage = 2
+	damage = 3
 	speed = 0.2
 	damage_type = RED_DAMAGE
+	ff_multiplier = 0
 
-/obj/projectile/ego_bullet/ego_loyalty/iff
-	name = "loyalty IFF"
-	damage = 1.5
-	nodamage = TRUE	//Damage is calculated later
-	projectile_piercing = PASSMOB
+/// Fired from the Loyalty rifle's UGL.
+/obj/projectile/ego_bullet/loyalty_ugl
+	name = "loyal grenade"
+	icon_state = "bolter"
+	damage = 80
+	range = 16
+	nodamage = TRUE	// Damage is calculated later
+	speed = 0.8
+	// No hitsound - we play a sound on detonation
+	ff_multiplier = 0
+	var/tile_radius = 3
+	/// Damage at epicenter (distance 0)
+	/// Each tile away from the epicenter reduces damage by this much
+	var/falloff_per_dist = 15
 
-/obj/projectile/ego_bullet/ego_loyalty/iff/on_hit(atom/target, blocked = FALSE)
-	if(!ishuman(target))
-		nodamage = FALSE
-	else
+/// Whenever this thing finally meets its end, blow up.
+/obj/projectile/ego_bullet/loyalty_ugl/Destroy(force)
+	Detonate()
+	return ..()
+
+/// Explode, dealing damage and knocking back all nearby enemies. Ignore anything that has the firer's faction. Also gib dead things.
+/obj/projectile/ego_bullet/loyalty_ugl/proc/Detonate()
+	var/mob/living/nadeslinger = firer
+	if(!istype(nadeslinger))
 		return
-	..()
-	if(!ishuman(target))
-		qdel(src)
+	var/turf/impact_turf = get_turf(src)
+
+	// Aesthetics
+	new /obj/effect/explosion(impact_turf)
+	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(RadialShockwaveVisual), impact_turf, tile_radius, 2, /obj/effect/temp_visual/small_smoke/halfsecond)
+	playsound(impact_turf, 'sound/effects/explosion2.ogg', 50, 0, 6)
+
+	// Shake the screen of the firer
+	var/dist_from_epicenter = get_dist(nadeslinger, impact_turf)
+	var/screenshake_intensity = clamp((3.5 - (dist_from_epicenter * 0.4)), 0.3, 3.5)
+	shake_camera(nadeslinger, 3, screenshake_intensity)
+
+	// Check every turf in our radius, hit mobs once at most. This can hit corpses.
+	var/list/affected_turfs = RANGE_TURFS(tile_radius, impact_turf)
+	for(var/turf/T in affected_turfs)
+		for(var/mob/living/M in T)
+			if(impacted[M])
+				continue
+			if(nadeslinger.faction_check_mob(M))
+				continue
+
+			impacted[M] = TRUE
+
+			// Damage
+			var/distance_from_epicenter = clamp(get_dist(M, impact_turf), 0, 3)
+			var/final_damage = (damage - (distance_from_epicenter * falloff_per_dist)) * damage_multiplier
+			M.deal_damage(final_damage, damage_type)
+
+			// Knockback
+			var/throw_comparison = get_turf(M) == impact_turf ? null : impact_turf // If they're standing directly in the epicenter we need to take special measures
+			var/throw_dir = throw_comparison ? get_cardinal_dir(throw_comparison, M) : pick(GLOB.cardinals) // Take a random cardinal if they're directly on top of us
+			if(M)
+				M.safe_throw_at(target = get_ranged_target_turf(impact_turf, throw_dir, 4), range = 5, speed = 5, thrower = nadeslinger, spin = TRUE)
+				// Gib corpses
+				if(M.stat >= DEAD)
+					M.gib()
 
 /obj/projectile/ego_bullet/ego_soda_premium
 	name = "soda premium"
-	damage = 14
+	damage = 10
 	spread = 0
 	damage_type = PALE_DAMAGE	//hehe
 
 /obj/projectile/ego_bullet/ego_crimson
 	name = "crimson"
-	damage = 7
+	damage = 6
 	damage_type = RED_DAMAGE
+	spread = 5
 
 /obj/projectile/ego_bullet/ego_ecstasy
 	name = "ecstasy"
 	icon_state = "ecstasy"
 	damage_type = WHITE_DAMAGE
-	damage = 4
+	damage = 5
 	speed = 1.3
 	range = 6
+	projectile_piercing = PASSMOB
+	hit_nondense_targets = TRUE
+	var/damage_decay = 0.85
 
 /obj/projectile/ego_bullet/ego_ecstasy/Initialize()
 	. = ..()
 	color = pick(COLOR_RED, COLOR_YELLOW, COLOR_LIME, COLOR_CYAN, COLOR_MAGENTA, COLOR_ORANGE)
 
+/obj/projectile/ego_bullet/ego_ecstasy/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	damage *= damage_decay
+	if(damage < 0.1)
+		qdel(src)
+		return
+
 //Smartpistol
 /obj/projectile/ego_bullet/ego_praetorian
 	name = "praetorian"
 	icon_state = "loyalty"
-	damage = 1.5
-	nodamage = TRUE	//Damage is calculated later
+	damage = 10
 	damage_type = RED_DAMAGE
-	projectile_piercing = PASSMOB
-	homing = TRUE
-	homing_turn_speed = 30		//Angle per tick.
+	ff_multiplier = 0
 	var/homing_range = 9
-
-/obj/projectile/ego_bullet/ego_praetorian/on_hit(atom/target, blocked = FALSE)
-	if(!ishuman(target))
-		nodamage = FALSE
-	else
-		return
-	..()
-	if(!ishuman(target))
-		qdel(src)
 
 /obj/projectile/ego_bullet/ego_praetorian/Initialize()
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(fireback)), 3)
 
 /obj/projectile/ego_bullet/ego_praetorian/proc/fireback()
-	var/list/targetslist = list()
-	for(var/mob/living/L in range(homing_range, src))
-		if(ishuman(L) || isbot(L))
-			continue
-		if(L.stat == DEAD)
-			continue
-		if(L.status_flags & GODMODE)
-			continue
-		targetslist+=L
-	if(!LAZYLEN(targetslist))
-		return
-	homing_target = pick(targetslist)
+	var/mob/living/target = GetHomingTarget(homing_range)
+	if(target)
+		var/datum/point/PT = RETURN_PRECISE_POINT(target)
+		PT.x += clamp(homing_offset_x, 1, world.maxx)
+		PT.y += clamp(homing_offset_y, 1, world.maxy)
+		set_angle(angle_between_points(RETURN_PRECISE_POINT(src), PT))
 
 /obj/projectile/ego_bullet/ego_magicpistol
 	name = "magic pistol"
 	icon_state = "magic_bullet"
-	damage = 20
+	damage = 15
 	speed = 0.1
 	damage_type = BLACK_DAMAGE
 	projectile_piercing = PASSMOB
+	hit_nondense_targets = TRUE
+	var/damage_decay = 0.85
+
+/obj/projectile/ego_bullet/ego_magicpistol/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	damage *= damage_decay
+	if(damage < 1)
+		qdel(src)
+		return
 
 //tommygun
 /obj/projectile/ego_bullet/ego_intention
@@ -185,30 +236,23 @@
 //laststop
 /obj/projectile/ego_bullet/ego_laststop
 	name = "laststop"
-	damage = 75
+	damage = 90
 	damage_type = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_aroma
 	name = "aroma"
 	icon_state = "arrow_aroma"
-	damage = 70
+	damage = 58
 	damage_type = WHITE_DAMAGE
 
-//Assonance, our one hitscan laser
-/obj/projectile/beam/assonance
-	name = "assonance"
-	icon_state = "omnilaser"
-	hitsound = null
-	damage = 25
+/obj/projectile/ego_bullet/accord
+	name = "accord"
+	icon_state = "arrow_greyscale"
+	damage = 48
 	damage_type = WHITE_DAMAGE
-	hitscan = TRUE
-	muzzle_type = /obj/effect/projectile/muzzle/laser/white
-	tracer_type = /obj/effect/projectile/tracer/laser/white
-	impact_type = /obj/effect/projectile/impact/laser/white
-	wound_bonus = -100
-	bare_wound_bonus = -100
+	speed = 0.2
 
-/obj/projectile/beam/assonance/on_hit(atom/target, blocked, pierce_hit)
+/obj/projectile/ego_bullet/accord/on_hit(atom/target, blocked, pierce_hit)
 	. = ..()
 	if(pierce_hit)
 		return
@@ -233,7 +277,7 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "nakednest_serpent"
 	desc = "A sterile naked nest serpent"
-	damage = 60
+	damage = 160
 	damage_type = RED_DAMAGE
 	hitsound = "sound/effects/wounds/pierce1.ogg"
 
@@ -249,7 +293,7 @@
 /obj/projectile/ego_bullet/ego_warring
 	name = "feather of valor"
 	icon_state = "arrow"
-	damage = 37
+	damage = 42
 	damage_type = BLACK_DAMAGE
 
 /obj/projectile/ego_bullet/ego_warring/on_hit(atom/target, blocked = FALSE)
@@ -268,12 +312,21 @@
 	name = "feather of valor"
 	icon_state = "lava"
 	hitsound = null
-	damage = 62
+	damage = 63
 	damage_type = BLACK_DAMAGE
 	hitscan = TRUE
 	muzzle_type = /obj/effect/projectile/muzzle/laser/warring
 	tracer_type = /obj/effect/projectile/tracer/warring
 	impact_type = /obj/effect/projectile/impact/laser/warring
+	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
+	hitsound = 'sound/weapons/sear.ogg'
+	hitsound_wall = 'sound/weapons/effects/searwall.ogg'
+	eyeblur = 0
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
+	light_system = MOVABLE_LIGHT
+	light_range = 1
+	light_power = 1
+	light_color = COLOR_SOFT_RED
 
 /obj/effect/projectile/muzzle/laser/warring
 	name = "lightning flash"
@@ -298,15 +351,16 @@
 /obj/projectile/ego_bullet/ego_banquet
 	name = "banquet"
 	icon_state = "pulse0"
-	damage = 60
+	damage = 80
 	damage_type = BLACK_DAMAGE
 
 
 /obj/projectile/ego_bullet/ego_blind_rage
 	name = "blind rage"
 	icon_state = "blind_rage"
-	damage = 7
+	damage = 9
 	damage_type = BLACK_DAMAGE
+	spread = 10
 
 /obj/projectile/ego_bullet/ego_blind_rage/on_hit(atom/target, blocked, pierce_hit)
 	. = ..()
@@ -318,7 +372,7 @@
 /obj/projectile/ego_bullet/ego_innocence
 	name = "innocence"
 	icon_state = "energy"
-	damage = 3 //Can dual wield, full auto
+	damage = 5 //Can dual wield, full auto
 	damage_type = WHITE_DAMAGE
 
 
@@ -326,14 +380,14 @@
 	name = "hypocrisy"
 	icon_state = "arrow_greyscale"
 	color = "#AAFF00"
-	damage = 45 //20 damage is transfered to the spawnable trap
+	damage = 54 //4 damage is transfered to the spawnable trap
 	damage_type = RED_DAMAGE
 
 
 /obj/projectile/ego_bullet/ego_bride
 	name = "bride"
 	icon_state = "gaussphase"
-	damage = 27
+	damage = 23
 	damage_type = WHITE_DAMAGE
 
 /obj/projectile/ego_bullet/ego_supershotgun
@@ -344,7 +398,7 @@
 /obj/projectile/ego_bullet/ego_fellbullet
 	name = "fell bullet"
 	icon_state = "fell_bullet"
-	damage = 20
+	damage = 36
 	speed = 0.1
 	damage_type = RED_DAMAGE
 	projectile_piercing = PASSMOB
@@ -353,21 +407,20 @@
 
 /obj/projectile/ego_bullet/ego_fellscatter
 	name = "fell pellet"
-	damage = 5//7 pellets
+	damage = 8//7 pellets
 	damage_type = RED_DAMAGE
-	spread = 50
+	spread = 20
 
 /obj/projectile/ego_bullet/ego_fellscatter/greater
 	name = "fell pellet"
 	icon_state = "fell_pellet"
-	damage = 10//generated by friendly fire effect
+	damage = 16//generated by friendly fire effect
 	damage_type = RED_DAMAGE
-	spread = 50
 
 /obj/projectile/ego_bullet/special_fellbullet
 	name = "fell bullet"
 	icon_state = "fell_bullet"
-	damage = 40
+	damage = 36
 	speed = 0.1
 	damage_type = RED_DAMAGE
 	projectile_piercing = PASSMOB
@@ -381,7 +434,6 @@
 		if(H.stat == DEAD)
 			return FALSE
 		INVOKE_ASYNC(src, PROC_REF(MagicBulletEffect), angle)
-		damage /= 2
 
 /obj/projectile/ego_bullet/special_fellbullet/prehit_pierce(atom/A)
 	. = ..()
@@ -391,6 +443,7 @@
 
 /obj/projectile/ego_bullet/special_fellbullet/proc/MagicBulletEffect(angle, atom/direct_target)
 	var/obj/effect/fellcircle/circle = new(get_turf(src))
+	circle.damage_mult = damage_multiplier
 	circle.AdjustCircle(Angle, firer)//visual dir thingy
 	circle.FireBullets(Angle, damage)
 
@@ -404,6 +457,7 @@
 	var/angle = 0
 	var/damage = 40
 	var/damage_mult = 1
+	var/distro = 30
 
 /obj/effect/fellcircle/Initialize()
 	QDEL_IN(src, 10 SECONDS)
@@ -411,8 +465,6 @@
 
 /obj/effect/fellcircle/proc/FireBullets(angle, damage)
 	playsound(src, 'sound/abnormalities/fluchschutze/fell_portal.ogg', 50, FALSE)
-	if(damage > 40)//the damage of the slug that produced this effect
-		damage_mult = (damage/40)//convert this into a decimal we can multiply the bullet's damage with
 	sleep(1 SECONDS)
 	animate(src, alpha = 0, time = 4 SECONDS)
 	for(var/i = 0, i < shotsleft, i++)
@@ -420,8 +472,9 @@
 		playsound(src, 'sound/abnormalities/fluchschutze/fell_scatter2.ogg', 25, TRUE)
 		for(var/ii = 0, ii < pellets, ii++)
 			var/obj/projectile/ego_bullet/ego_fellscatter/greater/bullet = new(get_turf(src))
-			bullet.damage *= damage_mult
-			bullet.fire(angle)
+			bullet.damage_multiplier = damage_mult
+			var/true_angle = angle + round(((ii+1) / pellets - 0.5) * distro) + (round(1 - 0.5) * distro)
+			bullet.fire(true_angle)
 	QDEL_IN(src, 1 SECONDS)
 
 /obj/effect/fellcircle/proc/AdjustCircle(angle, atom/movable/firer)
@@ -444,20 +497,20 @@
 
 /obj/projectile/ego_bullet/soda_shotty
 	name = "9mm soda bullet"
-	damage = 7
+	damage = 5
 	damage_type = RED_DAMAGE
 
 /obj/projectile/ego_bullet/soda_assault
 	name = "9mm soda bullet"
-	damage = 20
+	damage = 7
 	damage_type = RED_DAMAGE
 
 /obj/projectile/ego_bullet/soda_mini
 	name = "9mm soda bullet"
-	damage = 3
+	damage = 2
 	damage_type = RED_DAMAGE
 
 /obj/projectile/ego_bullet/soda_smg
 	name = "9mm soda bullet"
-	damage = 8
+	damage = 4
 	damage_type = RED_DAMAGE

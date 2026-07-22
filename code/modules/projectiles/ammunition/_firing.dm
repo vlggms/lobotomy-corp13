@@ -35,6 +35,7 @@
 	else
 		BB.def_zone = user.zone_selected
 	BB.suppressed = quiet
+	BB.damage_multiplier = damage_multiplier
 
 	if(isgun(fired_from))
 		var/obj/item/gun/G = fired_from

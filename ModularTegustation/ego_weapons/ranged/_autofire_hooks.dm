@@ -1,8 +1,7 @@
 /obj/item/ego_weapon/ranged/proc/on_autofire_start(mob/living/shooter)
 	if(semicd || shooter.stat || !can_trigger_gun(shooter))
 		return FALSE
-	if(!can_shoot())
-		shoot_with_empty_chamber(shooter)
+	if(!can_shoot(shooter))
 		return FALSE
 	var/obj/item/bodypart/other_hand = shooter.has_hand_for_held_index(shooter.get_inactive_hand_index())
 	if(weapon_weight == WEAPON_HEAVY && (shooter.get_inactive_held_item() || !other_hand))
@@ -19,8 +18,7 @@
 	SIGNAL_HANDLER
 	if(semicd || shooter.stat)
 		return NONE
-	if(!can_shoot())
-		shoot_with_empty_chamber(shooter)
+	if(!can_shoot(shooter))
 		return NONE
 	INVOKE_ASYNC(src, PROC_REF(do_autofire_shot), source, target, shooter, params)
 	return COMPONENT_AUTOFIRE_SHOT_SUCCESS //All is well, we can continue shooting.

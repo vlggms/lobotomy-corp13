@@ -757,7 +757,7 @@
 				new /obj/effect/nightmares_vis/curse_clock(target_turf)
 
 /obj/item/ego_weapon/ranged/nightmares/attack_self(mob/user)
-	shotsleft = initial(shotsleft)
+	shotsleft = max_shots
 	if(cursing)
 		cursing = FALSE
 		to_chat(user,span_notice("You will no longer attack your cursor."))

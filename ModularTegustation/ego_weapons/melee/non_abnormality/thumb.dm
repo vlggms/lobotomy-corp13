@@ -13,7 +13,7 @@
 	special = "Attack an enemy with your bayonet to reload."
 	projectile_damage_multiplier = 3		//30 damage per bullet
 	fire_delay = 7
-	shotsleft = 5		//Based off the Mas 36, That's what my Girlfriend things it looks like. Holds 5 bullets.
+	max_shots = 5		//Based off the Mas 36, That's what my Girlfriend things it looks like. Holds 5 bullets.
 	reloadtime = 5 SECONDS
 	attribute_requirements = list(
 		FORTITUDE_ATTRIBUTE = 80,
@@ -24,7 +24,7 @@
 
 /obj/item/ego_weapon/ranged/city/thumb/attack(mob/living/target, mob/living/carbon/human/user)
 	..()
-	if(shotsleft < initial(shotsleft))
+	if(shotsleft < max_shots)
 		shotsleft += 1
 
 //Capo

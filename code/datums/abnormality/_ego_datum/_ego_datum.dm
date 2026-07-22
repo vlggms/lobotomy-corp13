@@ -75,10 +75,34 @@ GLOBAL_LIST_EMPTY(ego_datums)
 				information["fire_rate"] = "Slow"
 			else
 				information["fire_rate"] = "Extremely slow"
+		if(G.chargetime)
+			switch(G.chargetime)
+				if(0 to 5)
+					information["charge_time"] = "Fast"
+				if(6 to 10)
+					information["charge_time"] = "Normal"
+				if(11 to 15)
+					information["charge_time"] = "Somewhat slow"
+				if(16 to 20)
+					information["charge_time"] = "Slow"
+				else
+					information["charge_time"] = "Extremely slow"
+		if(G.alternate_fire_name)
+			information["alt_fire"] += "This weapon has analternate fire mode: [G.alternate_fire_name]."
+			if(G.alternate_info)
+				information["alt_info"] += "Alt Fire - [G.alternate_info]"
 		if(!G.reloadtime)
 			information["reload_speed"] += "This weapon has unlimited ammo."
 		else
-			information["ammo"] += G.shotsleft
+			information["ammo"] += G.max_shots
+			if(G.ammo_on_reload)
+				information["ammo_gain"] += G.ammo_on_reload
+			else
+				information["ammo_gain"] += "All"
+			if(G.ammo_on_melee)
+				information["melee_ammo"] += G.ammo_on_melee
+			if(G.mobile_reload)
+				information["mobile_reload"] += "This weapon can be reloaded while moving at the cost of movespeed."
 			switch(G.reloadtime)
 				if(0 to 0.71 SECONDS)
 					information["reload_speed"] += "Reload speed: Very fast."
@@ -90,7 +114,18 @@ GLOBAL_LIST_EMPTY(ego_datums)
 					information["reload_speed"] += "Reload speed: Slow."
 				if(2.51 to INFINITY)
 					information["reload_speed"] += "Reload speed: Extremely slow."
-
+			if(G.passive_reload)
+				switch(G.passive_reload)
+					if(0 to 2.01 SECONDS)
+						information["passive_reload"] += "Passive reload delay: Very fast."
+					if(2.01 SECONDS to 4.01 SECONDS)
+						information["passive_reload"] += "Passive reload delay: Fast."
+					if(4.01 SECONDS to 6.01 SECONDS)
+						information["passive_reload"] += "Passive reload delay: Average."
+					if(6.01 SECONDS to 9.01 SECONDS)
+						information["passive_reload"] += "Passive reload delay: Slow."
+					if(9.01 to INFINITY)
+						information["passive_reload"] += "Passive reload delay: Extremely slow."
 		switch(G.weapon_weight)
 			if(WEAPON_HEAVY)
 				information["weapon_weight"] += "This weapon requires both hands to fire."
@@ -202,9 +237,25 @@ GLOBAL_LIST_EMPTY(ego_datums)
 		dat += "Fire rate: [information["fire_rate"]]<br>"
 		if("auto_fire" in information)
 			dat += "[information["auto_fire"]].<br>"
+		if("charge_time" in information)
+			dat += "Charge time: [information["charge_time"]]<br>"
+		if("alt_fire" in information)
+			dat += "[information["alt_fire"]]<br>"
+		if("alt_info" in information)
+			dat += "[information["alt_info"]]<br>"
+		dat += "<br>"
+		if("mobile_reload" in information)
+			dat += "[information["mobile_reload"]]<br>"
+		if("passive_reload" in information)
+			dat += "This weapon reloads passively instead of manually.<br>"
+			dat += "[information["passive_reload"]]<br>"
 		dat += "[information["reload_speed"]]<br>"
 		if("ammo" in information)
 			dat += "Ammo: [information["ammo"]].<br>"
+		if("ammo_gain" in information)
+			dat += "Ammo on reload: [information["ammo_gain"]].<br>"
+		if("melee_ammo" in information)
+			dat += "Ammo on melee: [information["melee_ammo"]].<br>"
 		dat += "[information["weapon_weight"]]<br>"
 		dat += "<br>"
 		dat += "[information["attack_info"]]<br>"

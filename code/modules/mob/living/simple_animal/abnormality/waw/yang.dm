@@ -38,10 +38,10 @@
 	neutral_boxes = 9
 
 	ego_list = list(
-		/datum/ego_datum/weapon/assonance,
-		/datum/ego_datum/armor/assonance,
+		/datum/ego_datum/weapon/accord,
+		/datum/ego_datum/armor/accord,
 	)
-	gift_type = /datum/ego_gifts/assonance
+	gift_type = /datum/ego_gifts/accord
 	abnormality_origin = ABNORMALITY_ORIGIN_ALTERED
 
 	grouped_abnos = list(

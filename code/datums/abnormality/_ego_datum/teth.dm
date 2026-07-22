@@ -9,14 +9,15 @@
 
 // Punishing bird - Beak & Beak MK2
 /datum/ego_datum/weapon/beak
-	item_category = "Weapon (SMG)"
-	item_path = /obj/item/ego_weapon/ranged/beak
+	item_category = "Weapon (Pistol)"
+	item_path = /obj/item/ego_weapon/ranged/pistol/beak
 	cost = 20
 
-/datum/ego_datum/weapon/beakmagnum
-	item_category = "Weapon (Pistol)"
-	item_path = /obj/item/ego_weapon/ranged/pistol/beakmagnum
+/datum/ego_datum/weapon/beaksmg
+	item_category = "Weapon (SMG)"
+	item_path = /obj/item/ego_weapon/ranged/beaksmg
 	cost = 20
+
 
 /datum/ego_datum/armor/beak
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/beak
@@ -24,8 +25,8 @@
 
 // Scorched girl - Fourth match flame
 /datum/ego_datum/weapon/match
-	item_path = /obj/item/ego_weapon/ranged/match
-	cost = 25
+	item_path = /obj/item/ego_weapon/ranged/cannon/match
+	cost = 20
 
 /datum/ego_datum/armor/match
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/match

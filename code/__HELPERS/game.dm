@@ -642,3 +642,19 @@
 				continue
 
 			C.energy_fail(rand(duration_min,duration_max))
+
+// I don't really know where else to put this, but I found myself using it in a bunch of different weapons, so... This is a helper proc that creates a 'radial shockwave'.
+// (that is, a bunch of effects in an expanding o-range that never affects the same tile twice)
+// Remember to call this asynchronously, as it sleeps!
+/proc/RadialShockwaveVisual(turf/origin, radius, delay = 2, visual_type = /obj/effect/temp_visual/small_smoke/halfsecond)
+	var/list/already_rendered = list()
+	// There may be a less expensive way to do this. I'm open to ideas.
+	for(var/i in 1 to radius)
+		var/list/turfs_to_spawn_visual_at = list()
+		for(var/turf/T in orange(i, origin))
+			turfs_to_spawn_visual_at |= T
+		turfs_to_spawn_visual_at -= already_rendered
+		for(var/turf/T2 in turfs_to_spawn_visual_at)
+			new visual_type(T2)
+			already_rendered |= T2
+		sleep(delay)

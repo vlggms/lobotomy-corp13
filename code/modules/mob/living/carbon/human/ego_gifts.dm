@@ -1041,8 +1041,8 @@
 		return
 	owner.adjustBruteLoss(-damage*0.1)
 
-/datum/ego_gifts/assonance
-	name = "Assonance"
+/datum/ego_gifts/accord
+	name = "Accord"
 	icon_state = "assonance"
 	prudence_bonus = 2
 	temperance_bonus = 2

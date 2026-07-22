@@ -1,30 +1,30 @@
-#define SHOT_MODE 0
-#define DOT_MODE 1
-#define AOE_MODE 2
-
 /obj/item/ego_weapon/ranged/star
 	name = "sound of a star"
 	desc = "The star shines brighter as our despair gathers. The weapon's small, evocative sphere fires a warm ray."
 	icon_state = "star"
 	inhand_icon_state = "star"
-	special = "This gun scales with remaining SP."
+	special = "This weapon does an additional number of follow-up shots based on the wielder's SP.\nThis weapon also has IFF capabilities and pierces all hostile targets."
 
-	force = 15
+	force = 18
 	damtype = WHITE_DAMAGE
 	attack_speed = 0.5
 
 	projectile_path = /obj/projectile/ego_bullet/star
-	weapon_weight = WEAPON_HEAVY
-	spread = 5
-
-	autofire = 0.25 SECONDS
-	shotsleft = 333
-	reloadtime = 2.1 SECONDS
+	weapon_weight = WEAPON_MEDIUM
+	spread = 0
+	burst_size = 3
+	burst_delay = 1.5
+	fire_delay = 15
+	max_shots = 60
+	ammo_on_reload = 1
+	reloadtime = 0.1 SECONDS
+	passive_reload = 3 SECONDS
+	reload_start_sound = 'sound/weapons/pulse.ogg'
+	reload_text = "The weapon starts to recharge."
 
 	fire_sound = 'sound/weapons/ego/star.ogg'
 	vary_fire_sound = TRUE
 	fire_sound_volume = 25
-
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 100,
@@ -32,12 +32,14 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 
-/obj/item/ego_weapon/ranged/star/fire_projectile(atom/target, mob/living/user, params, distro, quiet, zone_override, spread, atom/fired_from, temporary_damage_multiplier)
-	if(!ishuman(user))
-		return ..()
-
-	var/mob/living/carbon/human/H = user
-	temporary_damage_multiplier = 1 + (H.sanityhealth / H.maxSanity * 0.5) // Maximum SP will add 50% to the damage
+/obj/item/ego_weapon/ranged/star/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, temporary_damage_multiplier = 1)
+	if(!CanUseEgo(user))
+		return
+	burst_size = 1
+	if(user.sanityhealth >= (user.maxSanity * 0.3))
+		burst_size = 2
+	if(user.sanityhealth >= (user.maxSanity * 0.6))
+		burst_size = 3
 	return ..()
 
 /obj/item/ego_weapon/ranged/star/suicide_act(mob/living/carbon/user)
@@ -54,54 +56,56 @@
 	It’s the byproduct of some horrid experiment in a certain laboratory that eventually failed."
 	icon_state = "adoration"
 	inhand_icon_state = "adoration"
-	special = "Use in hand to swap between AOE, DOT and shotgun modes."
 
-	force = 28
+	force = 40
 	damtype = BLACK_DAMAGE
 
 	projectile_path = /obj/projectile/ego_bullet/adoration
-	weapon_weight = WEAPON_HEAVY
-	fire_delay = 10
+	weapon_weight = WEAPON_MEDIUM
+	fire_delay = 15
 	pellets = 3
-	variance = 20
+	variance = 15
+	randomspread = FALSE
+	max_shots = 16
+	ammo_on_reload = 1
+	passive_reload = 3 SECONDS
+	reloadtime = 0.3 SECONDS
+	reload_start_sound = 'sound/abnormalities/meltinglove/ranged_hit.ogg'
+	reload_text = "The slime within the weapon starts to regenerate."
 
 	fire_sound = 'sound/effects/attackblob.ogg'
 	fire_sound_volume = 50
-
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,
 							TEMPERANCE_ATTRIBUTE = 100,
 							JUSTICE_ATTRIBUTE = 80
 							)
-	var/mode = 0
+	alternate_reload_time = 5
+	alternate_fire_name = "Infectious Love"
+	alternate_projectile_path = /obj/projectile/ego_bullet/adoration/super
+	alternate_info = "This weapon fires a large, slow moving glob of goo that costs twice as much ammo to fire and reqires the weapon to be charged up to fire. \
+	The glob of goo deals damage in an area while applying a DOT effect."
+	alternate_reload_type = RELOADTYPE_SHARED_MAGAZINE
+	alternate_fire_sound = 'sound/abnormalities/meltinglove/ranged.ogg'
+	alternate_pellets = 1
+	alternate_variance  = 0
+	alternate_toggle_sound = 'sound/effects/attackblob.ogg'
+	alternate_toggle_sound_volume = 50
+	alternate_toggle_enabled_message = span_notice("You focus, changing for a charge up shot.")
+	alternate_toggle_disabled_message = span_notice("You focus, changing for a spread shot.")
 
-/obj/item/ego_weapon/ranged/adoration/attack_self(mob/user)
+/obj/item/ego_weapon/ranged/adoration/EnableAltfire(mob/user, silent = TRUE)
 	. = ..()
-	switch(mode)
-		if(SHOT_MODE)
-			to_chat(user,"<span class='warning'>You focus, changing for a DOT blast</span>")
-			projectile_path = /obj/projectile/ego_bullet/adoration/dot
-			pellets = 1
-			variance = 0
-			mode = DOT_MODE
-			return
-		if(DOT_MODE)
-			to_chat(user,"<span class='warning'>You focus, changing for an AOE blast</span>")
-			projectile_path = /obj/projectile/ego_bullet/adoration/aoe
-			mode = AOE_MODE
-			return
-		if(AOE_MODE)
-			to_chat(user,"<span class='warning'>You focus, changing for a shotgun blast</span>")
-			projectile_path = /obj/projectile/ego_bullet/adoration
-			pellets = initial(pellets)
-			variance = initial(variance)
-			mode = SHOT_MODE
-			return
+	variance = 0
+	ammo_per_shot = 2
+	chargetime = 5
 
-#undef SHOT_MODE
-#undef DOT_MODE
-#undef AOE_MODE
+/obj/item/ego_weapon/ranged/adoration/DisableAltfire(mob/user, silent = TRUE)
+	. = ..()
+	variance = initial(variance)
+	ammo_per_shot = 1
+	chargetime = 0
 
 /obj/item/ego_weapon/ranged/nihil
 	name = "nihil"
@@ -182,17 +186,17 @@
 			Can guns really bring peace and love?"
 	icon_state = "pink"
 	inhand_icon_state = "pink"
-	special = "This weapon has a scope, and fires projectiles with zero travel time. Damage dealt is increased when hitting targets further away. Middle mouse button click/alt click to zoom in that direction."
-	force = 28
+	special = "This weapon has a scope, and fires projectiles with zero travel time and IFF detection. Damage dealt is increased when hitting targets further away. Middle mouse button click/alt click to zoom in that direction."
+	force = 40
 	damtype = WHITE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/pink
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/abnormalities/armyinblack/pink.ogg'
-	fire_delay = 9
+	fire_delay = 20
 	zoomable = TRUE
 	zoom_amt = 10
 	zoom_out_amt = 13
-	shotsleft = 5
+	max_shots = 5
 	reloadtime = 2.1 SECONDS
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
@@ -260,8 +264,7 @@
 	desc = "With the waxing of the sun, humanity wanes."
 	icon_state = "arcadia"
 	inhand_icon_state = "arcadia"
-	special = "Use in hand to load bullets."
-	force = 28
+	force = 40
 	projectile_path = /obj/projectile/ego_bullet/arcadia
 	weapon_weight = WEAPON_HEAVY
 	spread = 5
@@ -279,46 +282,40 @@
 							)
 
 
-	shotsleft = 16	//Based off a henry .44
+	max_shots = 16	//Based off a henry .44
 	reloadtime = 0.5 SECONDS
-
-/obj/item/ego_weapon/ranged/arcadia/reload_ego(mob/user)
-	if(shotsleft == initial(shotsleft))
-		return
-	is_reloading = TRUE
-	to_chat(user,"<span class='notice'>You start loading a bullet.</span>")
-	if(do_after(user, reloadtime, src)) //gotta reload
-		playsound(src, 'sound/weapons/gun/general/slide_lock_1.ogg', 50, TRUE)
-		shotsleft +=1
-	is_reloading = FALSE
+	ammo_on_reload = 1
 
 /obj/item/ego_weapon/ranged/arcadia/judge
 	name = "Judge"
 	desc = "You will be judged; as I have."
 	icon_state = "judge"
 	inhand_icon_state = "judge"
-	force = 28
+	force = 40
 	damtype = WHITE_DAMAGE
+	projectile_path = /obj/projectile/ego_bullet/judge
 	weapon_weight = WEAPON_MEDIUM	//Cannot be dual wielded
-	recoil = 2
+	recoil = 1
 	fire_sound_volume = 30
 	fire_delay = 3	//FAN THE HAMMER
+	click_cooldown_override = 3
 
-	shotsleft = 6	//Based off a colt Single Action Navy
+	max_shots = 6	//Based off a colt Single Action Navy
 	reloadtime = 1 SECONDS
 
 
 /obj/item/ego_weapon/ranged/havana
 	name = "havana"
 	desc = "Within it's simple design lies a lot of struggle"
+	special = "This weapon fires short ranged flames that pierces through targets but loses damage the more targets it hits."
 	icon_state = "havana"
 	inhand_icon_state = "havana"
-	force = 20
+	force = 30
 	damtype = PALE_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_hookah
 	weapon_weight = WEAPON_HEAVY
 	spread = 20
-	fire_sound = 'sound/effects/smoke.ogg'
+	fire_sound = 'sound/effects/burn.ogg'
 	autofire = 0.04 SECONDS
 	fire_sound_volume = 5
 	attribute_requirements = list(
@@ -327,7 +324,8 @@
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 100
 	)
-	shotsleft = 200
+	reloadtime = 3 SECONDS
+	max_shots = 150
 
 //Just a funny gold soda pistol. It was originally meant to just be a golden meme weapon, now it is the only pale gun, lol
 /obj/item/ego_weapon/ranged/pistol/executive
@@ -340,7 +338,7 @@
 	damtype = PALE_DAMAGE
 	burst_size = 1
 	fire_delay = 5
-	shotsleft = 12
+	max_shots = 12
 	reloadtime = 1.2 SECONDS
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	vary_fire_sound = FALSE
@@ -357,18 +355,18 @@
 	)
 
 /obj/item/ego_weapon/ranged/pistol/executive/proc/AutoReload(mob/user)
-	if(shotsleft == initial(shotsleft))
+	if(shotsleft == max_shots)
 		return
 	playsound(src, 'sound/weapons/ego/executive_reload.ogg', 70, FALSE)
-	shotsleft = initial(shotsleft)
+	shotsleft = max_shots
 	to_chat(user, span_nicegreen("A new magazine materialized within [src]!"))
 	// Might as well reload the other gun
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		for(var/obj/item/ego_weapon/ranged/pistol/executive/G in H.held_items)
-			if(G == src || G.shotsleft == initial(G.shotsleft))
+			if(G == src || G.shotsleft == G.max_shots)
 				continue
-			G.shotsleft = initial(G.shotsleft)
+			G.shotsleft = G.max_shots
 			playsound(G, 'sound/weapons/ego/executive_reload.ogg', 70, FALSE)
 			to_chat(user, span_nicegreen("A new magazine materialized within the other [G]!"))
 
@@ -377,6 +375,7 @@
 		projectile_path = /obj/projectile/ego_bullet/ego_executive/kill_shot
 		fire_sound = 'sound/weapons/ego/executive_shot.ogg'
 	. = ..()
-	projectile_path = initial(projectile_path)
-	fire_sound = initial(fire_sound)
-	update_projectile_examine()
+	if(!shotsleft)
+		projectile_path = initial(projectile_path)
+		fire_sound = initial(fire_sound)
+		update_projectile_examine()

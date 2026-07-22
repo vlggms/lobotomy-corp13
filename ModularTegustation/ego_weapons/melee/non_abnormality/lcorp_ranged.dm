@@ -110,7 +110,7 @@
 	attack_speed = 0.5
 	force = 3
 	fire_delay = 5
-	shotsleft = 12
+	max_shots = 12
 	reloadtime = 2.1 SECONDS
 	fire_sound = 'sound/weapons/gun/revolver/shot_alt.ogg'
 	vary_fire_sound = FALSE
@@ -132,7 +132,7 @@
 	force = 3
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	vary_fire_sound = FALSE
-	shotsleft = 30
+	max_shots = 30
 	reloadtime = 1.2 SECONDS
 	autofire = 0.2 SECONDS
 
@@ -159,7 +159,7 @@
 	projectile_path = /obj/projectile/ego_bullet/ego_clerk
 	burst_size = 1
 	fire_delay = 3
-	shotsleft = 10
+	max_shots = 10
 	reloadtime = 0.5 SECONDS
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	vary_fire_sound = FALSE

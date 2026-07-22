@@ -10,11 +10,12 @@
 
 /obj/projectile/ego_bullet/ego_nostalgia
 	name = "nostalgia"
-	damage = 8
+	damage = 7
 	damage_type = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_nightshade
 	name = "nightshade dart"
+	icon_state = "nightshade"
 	damage = 6
 	damage_type = BLACK_DAMAGE
 
@@ -32,11 +33,11 @@
 				if(H.is_working)
 					H.visible_message("<span class='warning'>[src] embeds itself in [H]... but nothing happens!</span>")
 					qdel(src)
-				H.adjustSanityLoss(-damage*0.15)
-				H.adjustBruteLoss(-damage*0.15)
+				H.adjustSanityLoss(-damage*0.25)
+				H.adjustBruteLoss(-damage*0.25)
 				return BULLET_ACT_BLOCK
 			else
-				victim.adjustBruteLoss(-damage*0.3)
+				victim.adjustBruteLoss(-damage*0.5)
 			victim.visible_message("<span class='warning'>[src] embeds itself in [victim]!</span>")
 			qdel(src)
 			return BULLET_ACT_BLOCK
@@ -50,6 +51,6 @@
 
 /obj/projectile/ego_bullet/ego_oceanic
 	name = "oceanic"
-	damage = 6		//Worse than tough lol
+	damage = 3		//Worse than tough lol
 	damage_type = WHITE_DAMAGE
 

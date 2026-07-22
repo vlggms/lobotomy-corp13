@@ -94,8 +94,3 @@
 /obj/projectile/ego_bullet/ego_feather/fire()
 	playsound(loc, "sound/abnormalities/seasons/summer_change.ogg", 5, TRUE, -1)
 	. = ..()
-
-/obj/projectile/ego_bullet/ego_feather/Impact()
-	if(!fired)
-		return FALSE
-	return ..()

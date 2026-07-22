@@ -450,46 +450,6 @@
 		return
 	M.move_resist *= num
 
-/obj/item/ego_weapon/ebony_stem
-	name = "ebony stem"
-	desc = "An apple does not culminate when it ripens to bright red; \
-	only when the apple shrivels up and attracts lowly creatures."
-	special = "This weapon has a ranged attack."
-	icon_state = "ebony_stem"
-	force = 24
-	damtype = BLACK_DAMAGE
-	swingstyle = WEAPONSWING_THRUST
-	attack_verb_continuous = list("admonishes", "rectifies", "conquers")
-	attack_verb_simple = list("admonish", "rectify", "conquer")
-	hitsound = 'sound/weapons/ego/rapier2.ogg'
-	attribute_requirements = list(
-							PRUDENCE_ATTRIBUTE = 60,
-							JUSTICE_ATTRIBUTE = 60
-							)
-	var/ranged_cooldown
-	var/ranged_cooldown_time = 1.2 SECONDS
-	var/ranged_damage = 20
-
-/obj/item/ego_weapon/ebony_stem/afterattack(atom/A, mob/living/user, proximity_flag, params)
-	if(ranged_cooldown > world.time)
-		to_chat(user, "<span class='warning'>Your ranged attack is still recharging!")
-		return
-	if(!CanUseEgo(user))
-		return
-	var/turf/target_turf = get_turf(A)
-	if(!istype(target_turf))
-		return
-	if((get_dist(user, target_turf) < 2) || !(target_turf in view(10, user)))
-		return
-	..()
-	ranged_cooldown = world.time + ranged_cooldown_time
-	if(do_after(user, 5))
-		var/damage_dealt = (ranged_damage * force_multiplier)
-		playsound(target_turf, 'sound/abnormalities/ebonyqueen/attack.ogg', 50, TRUE)
-		for(var/turf/open/T in RANGE_TURFS(1, target_turf))
-			new /obj/effect/temp_visual/thornspike(T)
-			user.HurtInTurf(T, list(), damage_dealt, BLACK_DAMAGE, hurt_mechs = TRUE)
-
 /obj/item/ego_weapon/wings // Is this overcomplicated? Yes. But I'm finally happy with what I want to make of this weapon.
 	name = "torn off wings"
 	desc = "He stopped, gave a deep sigh, quickly tore from his shoulders the ribbon Marie had tied around him, \
@@ -1338,7 +1298,7 @@
 	name = "discord"
 	desc = "The existence of evil proves the existence of good, just as light proves the existence of darkness."
 	special = "This weapon attacks thrice in rapid succession when being wielded.\n \
-		Attacks with this weapon will heal a nearby ally using Assonance."
+		Attacks with this weapon will heal a nearby ally using Accord."
 	icon_state = "discord"
 	force = 19
 	wielded_force = 22
@@ -1381,8 +1341,8 @@
 	if(wielded)
 		heal_amount = 3
 	for(var/mob/living/carbon/human/Yang in view(7, user))
-		var/obj/item/ego_weapon/ranged/assonance/A = Yang.get_active_held_item()
-		if(istype(A, /obj/item/ego_weapon/ranged/assonance))
+		var/obj/item/ego_weapon/ranged/accord/A = Yang.get_active_held_item()
+		if(istype(A, /obj/item/ego_weapon/ranged/accord))
 			if(!A.CanUseEgo(Yang))
 				continue
 			Yang.adjustBruteLoss(-heal_amount)

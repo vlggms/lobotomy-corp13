@@ -87,12 +87,12 @@
 /datum/ego_datum/weapon/solemnvow
 	item_category = "Weapon (Black Pistol)"
 	item_path = /obj/item/ego_weapon/ranged/pistol/solemnvow
-	cost = 50
+	cost = 35
 
 /datum/ego_datum/weapon/solemnlament
 	item_category = "Weapon (White Pistol)"
 	item_path = /obj/item/ego_weapon/ranged/pistol/solemnlament
-	cost = 50
+	cost = 35
 
 // General Bee - Loyalty & Praetorian
 /datum/ego_datum/weapon/loyalty
@@ -200,21 +200,21 @@
 	cost = 50
 
 /datum/ego_datum/weapon/aroma
-	item_path = /obj/item/ego_weapon/ranged/aroma
+	item_path = /obj/item/ego_weapon/ranged/crossbow/aroma
 	cost = 50
 
-// Yang - Assonance
-/datum/ego_datum/armor/assonance
-	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/assonance
+// Yang - Accord
+/datum/ego_datum/armor/accord
+	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/accord
 	cost = 50
 
-/datum/ego_datum/weapon/assonance
-	item_path = /obj/item/ego_weapon/ranged/assonance
+/datum/ego_datum/weapon/accord
+	item_path = /obj/item/ego_weapon/ranged/accord
 	cost = 50
 
 // Naked Nest - Exuviae
 /datum/ego_datum/weapon/exuviae
-	item_path = /obj/item/ego_weapon/ranged/exuviae
+	item_path = /obj/item/ego_weapon/ranged/cannon/exuviae
 	cost = 50
 
 /datum/ego_datum/armor/exuviae
@@ -233,7 +233,7 @@
 	cost = 50
 
 /datum/ego_datum/weapon/ebony_stem
-	item_path = /obj/item/ego_weapon/ebony_stem
+	item_path = /obj/item/ego_weapon/ranged/ebony_stem
 	cost = 50
 
 // White Lake - Torn Off Wings
@@ -295,7 +295,7 @@
 
 /datum/ego_datum/weapon/banquet
 	item_category = "Weapon (Cannon)"
-	item_path = /obj/item/ego_weapon/ranged/banquet
+	item_path = /obj/item/ego_weapon/ranged/cannon/banquet
 	cost = 50
 
 // Sphinx - Pharaoh
@@ -428,7 +428,7 @@
 	cost = 50
 
 /datum/ego_datum/weapon/hypocrisy
-	item_path = /obj/item/ego_weapon/ranged/hypocrisy
+	item_path = /obj/item/ego_weapon/ranged/crossbow/hypocrisy
 	cost = 50
 
 // Pygmalion - My own Bride

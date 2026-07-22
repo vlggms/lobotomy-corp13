@@ -92,20 +92,12 @@
 	var/multiplier_cap = 1.10
 	if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_1))
 		multiplier_cap = 1.20
-	if(is_ego_melee_weapon(A))
+	if(is_ego_weapon(A))
 		var/obj/item/ego_weapon/theweapon = A
 		if(theweapon.force_multiplier >= multiplier_cap)
 			to_chat(user, span_warning("You can't modify this any further!"))
 			return
 		target_item = theweapon
-		ToolPrepare(user)
-
-	else if(is_ego_weapon(A))
-		var/obj/item/ego_weapon/ranged/thegun = A
-		if(thegun.projectile_damage_multiplier >= multiplier_cap)
-			to_chat(user, span_warning("You can't modify this any further!"))
-			return
-		target_item = thegun
 		ToolPrepare(user)
 
 	return FALSE
@@ -147,17 +139,9 @@
 	var/multiplier_cap = 1.10
 	if (GetFacilityUpgradeValue(UPGRADE_EXTRACTION_1))
 		multiplier_cap = 1.20
-	if(is_ego_melee_weapon(target_item))
+	if(is_ego_weapon(target_item))
 		var/obj/item/ego_weapon/weapon = target_item
 		weapon.force_multiplier = min(round(weapon.force_multiplier + 0.05, 0.01), multiplier_cap) // Add 5% to the force multiplier
-
-	else if(is_ego_weapon(target_item))
-		var/obj/item/ego_weapon/ranged/gun = target_item
-		var/old_multiplier = gun.force_multiplier
-		gun.force_multiplier = min(round(gun.force_multiplier + 0.05, 0.01), multiplier_cap)
-		var/difference = gun.force_multiplier - old_multiplier
-		if(difference > 0)
-			gun.projectile_damage_multiplier *= (1 + difference) // Sure we COULD just set it equal to force_multiplier but that would break some guns
 
 	to_chat(user, span_warning("You successfully improve [target_item]!"))
 	target_item = null

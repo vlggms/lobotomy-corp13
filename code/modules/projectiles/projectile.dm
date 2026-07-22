@@ -181,6 +181,8 @@
 	//Does this bullet ignore bulletproof?
 	var/ignore_bulletproof = FALSE			//Thumb literally cannot do anything against these goons.
 
+	var/damage_multiplier = 1
+
 /obj/projectile/Initialize()
 	. = ..()
 	decayedRange = range
@@ -358,6 +360,8 @@
  * Also, we select_target to find what to process_hit first.
  */
 /obj/projectile/proc/Impact(atom/A)
+	if(!fired)			// NEVER hit when we aren't fired
+		return
 	if(!trajectory)
 		qdel(src)
 		return FALSE

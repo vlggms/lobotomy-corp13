@@ -5,25 +5,27 @@
 
 /obj/projectile/ego_bullet/ego_transmission
 	name = "transmission"
-	damage = 10
+	damage = 14
 	damage_type = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_gaze
 	name = "gaze"
-	damage = 22 //Slow as balls
+	damage = 9 //Slow as balls reload
 	damage_type = RED_DAMAGE
 
 //Homing weapon with no homing
 /obj/projectile/ego_bullet/ego_galaxy
 	name = "galaxy"
 	icon_state = "magicm"
-	damage = 14
+	damage = 18
+	ff_multiplier = 0
 	damage_type = BLACK_DAMAGE
 	speed = 1.5
 
 //Homing weapon (Galaxy)
 /obj/projectile/ego_bullet/ego_galaxy/homing
 	homing = TRUE
+	speed = 1.25
 	homing_turn_speed = 30		//Angle per tick.
 	var/homing_range = 9
 
@@ -33,77 +35,41 @@
 
 /obj/projectile/ego_bullet/ego_galaxy/homing/proc/fireback()
 	icon_state = "magich"
-	var/list/targetslist = list()
-	for(var/mob/living/L in range(homing_range, src))
-		if(ishuman(L) || isbot(L))
-			continue
-		if(L.stat == DEAD)
-			continue
-		if(L.status_flags & GODMODE)
-			continue
-		targetslist+=L
-	if(!LAZYLEN(targetslist))
-		return
-	homing_target = pick(targetslist)
+	set_homing_target(GetHomingTarget(homing_range))
 
 
 /obj/projectile/ego_bullet/ego_unrequited
 	name = "unrequited"
-	damage = 6
+	damage = 7
 	damage_type = WHITE_DAMAGE
 
 /obj/projectile/ego_bullet/ego_harmony
 	name = "harmony"
-	icon_state = "harmony"
-	nondirectional_sprite = TRUE
-	damage = 5
+	icon_state = "pulse0"
+	damage = 50
 	damage_type = WHITE_DAMAGE
-	speed = 1.3
-	projectile_piercing = PASSMOB
-	ricochets_max = 3
-	ricochet_chance = 100 // JUST FUCKING DO IT
-	ricochet_decay_chance = 1
-	ricochet_decay_damage = 1.5 // Does MORE per bounce
-	ricochet_auto_aim_range = 3
-	ricochet_incidence_leeway = 0
+	hitscan = TRUE
 
-/obj/projectile/ego_bullet/ego_harmony/check_ricochet_flag(atom/A)
-	if(istype(A, /turf/closed))
-		return TRUE
-	if(istype(A, /obj/structure/window))
-		return TRUE
-	if(istype(A, /obj/machinery/door))
-		return TRUE
-
-	return FALSE
-
-/obj/projectile/ego_bullet/ego_harmony/on_hit(atom/target, blocked = FALSE)
-	if(ishuman(target))
-		var/mob/living/carbon/human/H = target
-		if(H.sanity_lost)
-			damage *=4
-	. = ..()
-
-	if(ishuman(target))
-		var/mob/living/carbon/human/H = target
-		if(H.sanity_lost)
-			qdel(src)
-
+/obj/projectile/ego_bullet/ego_harmony/strong
+	damage = 75
 
 /obj/projectile/ego_bullet/ego_song
 	name = "song"
-	damage = 2
+	damage = 3
 	damage_type = WHITE_DAMAGE
 
 /obj/projectile/ego_bullet/ego_songmini
 	name = "song"
-	damage = 0.8 //4 pellets
+	damage = 1 //4 pellets
 	damage_type = WHITE_DAMAGE
+	spread = 5
 
 /obj/projectile/ego_bullet/ego_wedge
 	name = "screaming"
-	damage = 10
+	damage = 38
 	damage_type = WHITE_DAMAGE
+	icon_state = "arrow_greyscale"
+	color = "#AAFF00"
 
 /obj/projectile/ego_bullet/regs
 	name = "sinewy claw"
@@ -135,27 +101,51 @@
 /obj/projectile/ego_bullet/ego_swindle
 	name = "swindle"
 	icon_state = "d6"
-	damage = 1
+	damage = 14
 	damage_type = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_swindle/Initialize()
 	. = ..()
-	damage = rand(3, 15)
+	damage = rand(4, 24)
 
 /obj/projectile/ego_bullet/ego_ringing
 	name = "ringing"
 	icon_state = "energy2"
 	damage = 3
 	damage_type = BLACK_DAMAGE
+	hitscan = TRUE
+
+/obj/projectile/ego_bullet/ego_ringing/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	var/splatter_dir = 0
+	var/hitx = target.pixel_x + rand(-8, 8)
+	var/hity = target.pixel_y + rand(-8, 8)
+	if(isliving(target))
+		splatter_dir = angle2dir(Angle)
+		hitx = target.pixel_x + (sin(Angle) * 16)
+		hity = target.pixel_y + (cos(Angle) * 16)
+
+	new/obj/effect/temp_visual/dir_setting/longbloodsplatter/purple(get_turf(target), splatter_dir, hitx, hity)
 
 /obj/projectile/ego_bullet/ego_syrinx
 	name = "syrinx"
 	icon_state = "ecstasy"
 	damage_type = WHITE_DAMAGE
 	color = COLOR_GREEN
-	damage = 3
-	speed = 1.3
-	range = 6
+	damage = 8
+	hitscan = TRUE
+
+/obj/projectile/ego_bullet/ego_syrinx/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	var/splatter_dir = 0
+	var/hitx = target.pixel_x + rand(-8, 8)
+	var/hity = target.pixel_y + rand(-8, 8)
+	if(isliving(target))
+		splatter_dir = angle2dir(Angle)
+		hitx = target.pixel_x + (sin(Angle) * 16)
+		hity = target.pixel_y + (cos(Angle) * 16)
+
+	new/obj/effect/temp_visual/dir_setting/longbloodsplatter(get_turf(target), splatter_dir, hitx, hity)
 
 /obj/projectile/ego_bullet/ego_squeak
 	name = "squeak"
@@ -163,5 +153,5 @@
 	damage_type = RED_DAMAGE
 
 /obj/projectile/ego_bullet/soda_rifle
-	damage = 12
+	damage = 11
 	speed = 0.25

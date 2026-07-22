@@ -15,5 +15,5 @@
 		var/mob/living/carbon/human/H = owner
 		playsound(H, 'sound/weapons/gun/general/bolt_rack.ogg', 50, TRUE)
 		for(var/obj/item/ego_weapon/ranged/Gun in H.contents)
-			Gun.shotsleft = initial(Gun.shotsleft)
+			Gun.shotsleft = Gun.max_shots
 	StartCooldown()

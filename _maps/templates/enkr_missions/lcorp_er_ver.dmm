@@ -2595,8 +2595,8 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/rack,
-/obj/item/ego_weapon/ranged/pistol/nightshade,
-/obj/item/ego_weapon/ranged/pistol/nightshade,
+/obj/item/ego_weapon/ranged/nightshade,
+/obj/item/ego_weapon/ranged/nightshade,
 /turf/open/floor/facility/halls,
 /area/awaymission/enkr)
 "qJ" = (

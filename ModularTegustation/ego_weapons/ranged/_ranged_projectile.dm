@@ -1,7 +1,6 @@
 /obj/item/ego_weapon/ranged
 	var/pellets = 1 //Pellets for spreadshot
 	var/variance = 0 //Variance for inaccuracy fundamental to the casing
-	var/random_spread = 0 //random_spread for automatics
 	var/click_cooldown_override = 0 //Override this to make your gun have a faster fire rate, in tenths of a second. 4 is the default gun cooldown.
 	var/firing_effect_type = null //the visual effect appearing when the ammo is fired.
 
@@ -20,17 +19,16 @@
 		projectile.def_zone = user.zone_selected
 	projectile.suppressed = quiet
 
-	projectile.damage *= projectile_damage_multiplier
-
+	projectile.damage_multiplier = get_attack_multiplier(user) * force_multiplier * projectile_damage_multiplier
 	if(temporary_damage_multiplier)
-		projectile.damage *= temporary_damage_multiplier
+		projectile.damage_multiplier *= temporary_damage_multiplier
 
 	last_projectile_damage = projectile.damage
 	last_projectile_type = projectile.damage_type
 
-	if(pellets == 1)
+	if(pellets  == 1)
 		if(distro) //We have to spread a pixel-precision bullet. throw_proj was called before so angles should exist by now...
-			if(random_spread)
+			if(randomspread)
 				spread = round((rand() - 0.5) * distro)
 			else //Smart spread
 				spread = round(1 - 0.5) * distro
@@ -43,9 +41,10 @@
 		casing.pellets = pellets
 		casing.variance = variance
 		casing.projectile_type = projectile_path
+		casing.damage_multiplier = projectile.damage_multiplier
 		casing.BB = projectile
 		casing.AddComponent(/datum/component/pellet_cloud, projectile_path, pellets)
-		SEND_SIGNAL(casing, COMSIG_PELLET_CLOUD_INIT, target, user, fired_from, random_spread, spread, zone_override, params, distro)
+		SEND_SIGNAL(casing, COMSIG_PELLET_CLOUD_INIT, target, user, fired_from, randomspread, src.spread, zone_override, params, distro)
 		qdel(casing) // don't worry, the component protects the casing from deleting until its done doing its job
 
 	if(click_cooldown_override)

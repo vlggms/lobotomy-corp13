@@ -138,7 +138,7 @@
 
 /datum/ego_datum/weapon/harmony
 	item_category = "Weapon (LMG)"
-	item_path = /obj/item/ego_weapon/ranged/harmony
+	item_path = /obj/item/ego_weapon/ranged/cannon/harmony
 	cost = 35
 
 /datum/ego_datum/weapon/rhythm
@@ -252,7 +252,7 @@
 
 //Lady facing the Wall - Wedge
 /datum/ego_datum/weapon/wedge
-	item_path = /obj/item/ego_weapon/ranged/wedge
+	item_path = /obj/item/ego_weapon/ranged/crossbow/wedge
 	cost = 35
 
 //You Must Become Strong - Get Strong
