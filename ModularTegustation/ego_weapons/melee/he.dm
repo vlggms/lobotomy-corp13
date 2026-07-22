@@ -1198,7 +1198,7 @@
 		playsound(src, 'sound/abnormalities/wayward_passenger/attack2.ogg', 50, TRUE)
 		new /obj/effect/temp_visual/dimshredder_in(get_turf(src))
 		new /obj/effect/temp_visual/dimshredder_out(T)
-		user.HurtInTurf(T, list(), hit_damage, RED_DAMAGE, check_faction = TRUE)
+		user.HurtInTurf(T, list(), hit_damage, RED_DAMAGE, check_faction = TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 		sleep(0.1 SECONDS)
 	charge_amount = 0
 
