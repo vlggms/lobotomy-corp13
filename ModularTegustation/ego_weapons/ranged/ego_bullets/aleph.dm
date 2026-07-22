@@ -37,7 +37,7 @@
 	for(var/mob/living/L in view(2, target))
 		if(user.faction_check_mob(L) || L == target)//player faction
 			continue
-		L.deal(aoe * damage_multiplier, BLACK_DAMAGE, firer, attack_type = (ATTACK_TYPE_RANGED | ATTACK_TYPE_SPECIAL))
+		L.deal_damage(aoe * damage_multiplier, BLACK_DAMAGE, firer, attack_type = (ATTACK_TYPE_RANGED | ATTACK_TYPE_SPECIAL))
 		L.apply_status_effect(/datum/status_effect/gooped)
 		L.visible_message(span_warning("[target] is hit by [src], they seem to wither away"))
 
