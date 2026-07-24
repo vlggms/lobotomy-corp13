@@ -478,14 +478,15 @@ No Ability	260
 
 	for(var/turf/T in view(3, user))
 		new /obj/effect/temp_visual/revenant(T)
+
 	for(var/mob/living/L in view(3, user))
-			if(user.faction_check_mob(L, FALSE))
-				continue
-			if(L.stat == DEAD)
-				continue
-			var/atom/throw_target = get_edge_target_turf(L, get_dir(L, get_step_away(L, get_turf(src))))
-			L.throw_at(throw_target, 1, 1)
-			L.deal_damage(20, WHITE_DAMAGE, user, attack_type = (ATTACK_TYPE_SPECIAL| ATTACK_TYPE_COUNTER))
+		if(user.faction_check_mob(L, FALSE))
+			continue
+		if(L.stat == DEAD)
+			continue
+		var/atom/throw_target = get_edge_target_turf(L, get_dir(L, get_step_away(L, get_turf(src))))
+		L.throw_at(throw_target, 1, 1)
+		L.deal_damage(20, WHITE_DAMAGE, user, attack_type = (ATTACK_TYPE_SPECIAL| ATTACK_TYPE_COUNTER))
 
 
 /* Effloresced (Personal) E.G.O */
