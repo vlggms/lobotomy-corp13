@@ -454,33 +454,31 @@ No Ability	260
 	icon_state = "fallencolors"
 	realized_ability = /obj/effect/proc_holder/ability/aimed/blackhole
 	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 80, BLACK_DAMAGE = 80, PALE_DAMAGE = 60)		//Defensive
-	var/canSUCC = TRUE
+	var/push_cooldown
+	var/push_cooldown_time = 2 SECONDS
 
 /obj/item/clothing/suit/armor/ego_gear/realization/fallencolors/equipped(mob/user, slot, initial = FALSE)
 	. = ..()
 	if(slot == ITEM_SLOT_OCLOTHING)
-		RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(OnDamaged))
+		RegisterSignal(user, COMSIG_MOB_AFTER_APPLY_DAMGE, PROC_REF(OnDamaged))
 
 /obj/item/clothing/suit/armor/ego_gear/realization/fallencolors/dropped(mob/user)
-	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMGE)
+	UnregisterSignal(user, COMSIG_MOB_AFTER_APPLY_DAMGE)
 	return ..()
 
-/obj/item/clothing/suit/armor/ego_gear/realization/fallencolors/proc/Reset()
-	canSUCC = TRUE
-
 /obj/item/clothing/suit/armor/ego_gear/realization/fallencolors/proc/OnDamaged(mob/living/carbon/human/user, damage_amount, damage_type, def_zone, attacker, damage_flags, attack_type)
-	//goonchem_vortex(get_turf(src), 1, 3)
-	if(!canSUCC)
+	if(push_cooldown > world.time)
 		return
 	if(user.is_working)
 		return
 	if(damage_amount <= 0 || !isliving(attacker) || user == attacker || (attack_type & (ATTACK_TYPE_COUNTER | ATTACK_TYPE_ENVIRONMENT | ATTACK_TYPE_STATUS)))
 		return
-	canSUCC = FALSE
-	addtimer(CALLBACK(src, PROC_REF(Reset)), 2 SECONDS)
+
+	push_cooldown = world.time + push_cooldown_time
+
 	for(var/turf/T in view(3, user))
 		new /obj/effect/temp_visual/revenant(T)
-		for(var/mob/living/L in T)
+	for(var/mob/living/L in view(3, user))
 			if(user.faction_check_mob(L, FALSE))
 				continue
 			if(L.stat == DEAD)

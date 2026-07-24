@@ -295,7 +295,7 @@
 	if(to_bite_some)
 		attacked_target = to_bite_some
 	if(!(attacked_target in hit_turfs[1]) && !(attacked_target in hit_turfs[2]) && !(attacked_target in hit_turfs[3]) && !(attacked_target in get_turf(src)))
-		target = null
+		LoseTarget(FALSE)
 
 		var/mob/to_bite = PickBiteVictim(potential_targets, T, TRUE)
 

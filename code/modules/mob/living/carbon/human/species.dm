@@ -1681,7 +1681,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			final_damage = piercing ? damage_amount : damage_amount * hit_percent * palemod * H.physiology.pale_mod
 			H.adjustPaleLoss(final_damage, forced = piercing)
 
-	SEND_SIGNAL(H, COMSIG_MOB_AFTER_APPLY_DAMGE, final_damage, damage_type, def_zone, wound_bonus, bare_wound_bonus, sharpness, source, flags, attack_type)
+	SEND_SIGNAL(H, COMSIG_MOB_AFTER_APPLY_DAMGE, final_damage, damage_type, def_zone, source, flags, attack_type)
 
 	if(flags & DAMAGE_UNTRACKABLE)
 		source = null

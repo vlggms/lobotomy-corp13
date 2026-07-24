@@ -915,7 +915,7 @@
 	var/projectile_number = (length(target_list) + 3)
 	for(var/i = 1 to projectile_number)
 		if(LAZYLEN(target_list))
-			target = pick(target_list)
+			FindTarget(target_list, TRUE)
 		if(!target)
 			return
 		var/turf/T = get_step(get_turf(src), pick(1,2,4,5,6,8,9,10))

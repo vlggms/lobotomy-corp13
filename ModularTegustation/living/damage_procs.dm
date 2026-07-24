@@ -31,7 +31,7 @@ sharpness - Irrelevant in most cases.
 
 	// We will now send a signal that gives listeners the opportunity to cancel the damage being dealt. For some reason, in the original apply_damage, this happens before a "final damage" calculation, so I have chosen to preserve that behaviour.
 	// Some examples of the listeners that may return COMPONENT_MOB_DENY_DAMAGE are manager shields, the Welfare Core reward, or Sweeper Persistence.
-	var/signal_return = SEND_SIGNAL(src, COMSIG_MOB_APPLY_DAMGE, damage_amount, damage_type, def_zone)
+	var/signal_return = SEND_SIGNAL(src, COMSIG_MOB_APPLY_DAMGE, damage_amount, damage_type, def_zone, source, flags, attack_type)
 	if(signal_return & COMPONENT_MOB_DENY_DAMAGE)
 		return FALSE
 
@@ -76,6 +76,8 @@ sharpness - Irrelevant in most cases.
 
 	if(alive && !(status_flags & GODMODE))
 		PostDamageReaction(final_damage, damage_type, flags & DAMAGE_UNTRACKABLE ? null : source, attack_type, source, flags, attack_type)
+
+	SEND_SIGNAL(src, COMSIG_MOB_AFTER_APPLY_DAMGE, final_damage, damage_type, def_zone, source, flags, attack_type)
 
 	return final_damage
 
