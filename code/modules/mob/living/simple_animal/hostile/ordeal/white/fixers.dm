@@ -320,6 +320,7 @@
 
 /// Reflects damage when reflection is active and we're given a living source. There is no need to return FALSE to prevent the damage here, because we already are using the DenyDamage() signal handler for that.
 /mob/living/simple_animal/hostile/ordeal/white_fixer/PreDamageReaction(damage_amount, damage_type, source, attack_type)
+	. = ..()
 	if(damage_reflection && isliving(source) && !(attack_type & ATTACK_TYPE_STATUS)) // However, we will have mercy on people who applied long status effects like Adoration DoT
 		ReflectDamage(source, damage_type, damage_amount)
 
