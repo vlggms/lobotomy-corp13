@@ -1424,6 +1424,7 @@
 /datum/ego_gifts/stem
 	name = "Green Stem"
 	icon_state = "green_stem"
+	desc = "Provides immunity to the corresponding abnormality's vines."
 	prudence_bonus = 6 // originally a SP bonus
 	slot = BROOCH
 
