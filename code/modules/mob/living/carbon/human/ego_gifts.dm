@@ -401,8 +401,36 @@
 /datum/ego_gifts/noise
 	name = "Noise"
 	icon_state = "noise"
+	desc = "-10 Prudence and +10 Justice when the armor from the same Abnormality is equipped."
 	justice_bonus = 2
 	slot = BROOCH
+	var/buffed = FALSE
+	var/stat_buffs = 10
+
+/datum/ego_gifts/noise/Initialize(mob/living/carbon/human/user)
+	. = ..()
+	var/obj/item/clothing/suit/armor/ego_gear/teth/noise/T = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(istype(T))
+		add_buffs(user)
+
+/datum/ego_gifts/noise/Remove(mob/living/carbon/human/user)
+	if(buffed)
+		remove_buffs(user)
+	return ..()
+
+/datum/ego_gifts/noise/proc/add_buffs(mob/living/carbon/human/user)
+	if(buffed)
+		return
+	buffed = TRUE
+	user.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -stat_buffs)
+	user.adjust_attribute_buff(JUSTICE_ATTRIBUTE, stat_buffs)
+
+/datum/ego_gifts/noise/proc/remove_buffs(mob/living/carbon/human/user)
+	if(!buffed)
+		return
+	buffed = FALSE
+	user.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, stat_buffs)
+	user.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -stat_buffs)
 
 /datum/ego_gifts/page
 	name = "Page"
@@ -632,6 +660,34 @@
 	icon_state = "desire"
 	fortitude_bonus = 4
 	slot = MOUTH_2
+	desc = "-10 Temperance and +10 Justice when the armor from the same Abnormality is equipped."
+	var/buffed = FALSE
+	var/stat_buffs = 10
+
+/datum/ego_gifts/desire/Initialize(mob/living/carbon/human/user)
+	. = ..()
+	var/obj/item/clothing/suit/armor/ego_gear/he/sanguine/T = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(istype(T))
+		add_buffs(user)
+
+/datum/ego_gifts/desire/Remove(mob/living/carbon/human/user)
+	if(buffed)
+		remove_buffs(user)
+	return ..()
+
+/datum/ego_gifts/desire/proc/add_buffs(mob/living/carbon/human/user)
+	if(buffed)
+		return
+	buffed = TRUE
+	user.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -stat_buffs)
+	user.adjust_attribute_buff(JUSTICE_ATTRIBUTE, stat_buffs)
+
+/datum/ego_gifts/desire/proc/remove_buffs(mob/living/carbon/human/user)
+	if(!buffed)
+		return
+	buffed = FALSE
+	user.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, stat_buffs)
+	user.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -stat_buffs)
 
 /datum/ego_gifts/faelantern
 	name = "Midwinter Nightmare"
@@ -673,10 +729,32 @@
 /datum/ego_gifts/galaxy
 	name = "Galaxy"
 	icon_state = "galaxy"
-	fortitude_bonus = 1
-	prudence_bonus = 1
 	temperance_bonus = 3
+	desc = "Heals a small amount of HP and SP at short intervals"
 	slot = NECKWEAR
+	//heals only about 0.36 hp per second
+	var/heal_amount = -1.8
+	var/heal_time = 5 SECONDS
+	var/heal_timer = null
+
+/datum/ego_gifts/galaxy/Initialize(mob/living/carbon/human/user)
+	. = ..()
+	heal_timer = addtimer(CALLBACK(src, PROC_REF(heal), user), heal_time, TIMER_STOPPABLE)
+
+/datum/ego_gifts/galaxy/Remove(mob/living/carbon/human/user)
+	heal_timer = null
+	deltimer(heal_timer)
+	return ..()
+
+/datum/ego_gifts/galaxy/proc/heal(mob/living/carbon/human/user)
+	if(QDELETED(user))
+		deltimer(heal_timer)
+		heal_timer = null
+		return
+	user.adjustBruteLoss(heal_amount)
+	user.adjustSanityLoss(heal_amount)
+	deltimer(heal_timer)
+	heal_timer = addtimer(CALLBACK(src, PROC_REF(heal), user), heal_time, TIMER_STOPPABLE)
 
 /datum/ego_gifts/gaze
 	name = "Gaze"
@@ -733,9 +811,27 @@
 /datum/ego_gifts/harmony
 	name = "Harmony"
 	icon_state = "harmony"
+	desc = "Restores 10% of WHITE damage taken as sanity. This effect ignores armor." //Singing machine is already a good abno here plus we have a lot of white 8 armor.
 	fortitude_bonus = 8
-	prudence_bonus = -4
+	prudence_bonus = -6
 	slot = CHEEK
+
+/datum/ego_gifts/harmony/Initialize(mob/living/carbon/human/user)
+	. = ..()
+	RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(AttemptHeal))
+
+/datum/ego_gifts/harmony/Remove(mob/living/carbon/human/user)
+	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(AttemptHeal))
+	return ..()
+
+/datum/ego_gifts/harmony/proc/AttemptHeal(datum/source, damage, damagetype, def_zone)
+	if(!owner && damagetype != WHITE_DAMAGE)
+		return
+	if(!damage)
+		return
+	if(damage < 0)
+		return
+	owner.adjustSanityLoss(-damage*0.1)
 
 /datum/ego_gifts/harvest
 	name = "Harvest"
@@ -793,6 +889,7 @@
 /datum/ego_gifts/magicbullet
 	name = "Magic Bullet"
 	icon_state = "magicbullet"
+	desc = "Increases the melee damage of the corresponding weapons by 20%."
 	fortitude_bonus = -5
 	prudence_bonus = -5
 	justice_bonus = 10
@@ -1124,10 +1221,30 @@
 /datum/ego_gifts/discord
 	name = "Discord"
 	icon_state = "discord"
+	desc = "Provides an 8% chance to nullify damage taken."
 	fortitude_bonus = -10
 	prudence_bonus = -10
 	justice_bonus = 20
 	slot = HELMET
+
+/datum/ego_gifts/discord/Initialize(mob/living/carbon/human/user)
+	. = ..()
+	RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(DeflectDamage))
+
+/datum/ego_gifts/discord/Remove(mob/living/carbon/human/user)
+	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(DeflectDamage))
+	return ..()
+
+/datum/ego_gifts/discord/proc/DeflectDamage(datum/source, damage, damagetype, def_zone)
+	if(source)
+		return
+	if(!damage)
+		return
+	if(damage < 0)
+		return
+	if(prob(8)) // 8% Chance
+		to_chat(owner, span_notice("[src] nullifies the damage!"))
+		return COMPONENT_MOB_DENY_DAMAGE
 
 /datum/ego_gifts/ebony_stem
 	name = "Ebony Stem"
@@ -1404,6 +1521,7 @@
 /datum/ego_gifts/adoration
 	name = "Adoration"
 	icon_state = "adoration"
+	desc = "Increases the threshold of the corresponding armor's ability to 40%."
 	fortitude_bonus = 5
 	prudence_bonus = 10
 	temperance_bonus = -5
@@ -1447,16 +1565,20 @@
 /datum/ego_gifts/dacapo
 	name = "Da Capo"
 	icon_state = "dacapo"
-	desc = "Provides the user with 20% resistance to WHITE damage."// man it really needed something
-	temperance_bonus = 4
+	desc = "Increases the white defense of the corresponding armor to 0x."
+	temperance_bonus = 6
 	slot = EYE
 
 /datum/ego_gifts/dacapo/Initialize(mob/living/carbon/human/user) // grants resistance
 	. = ..()
-	user.physiology.white_mod *= 0.8
+	var/obj/item/clothing/suit/armor/ego_gear/aleph/da_capo/T = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(istype(T))
+		T.BuffWhite()
 
 /datum/ego_gifts/dacapo/Remove(mob/living/carbon/human/user)
-	user.physiology.white_mod /= 0.8
+	var/obj/item/clothing/suit/armor/ego_gear/aleph/da_capo/T = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(istype(T))
+		T.DebuffWhite()
 	return ..()
 
 /datum/ego_gifts/distortion
@@ -1479,8 +1601,17 @@
 /datum/ego_gifts/mimicry
 	name = "Mimicry"
 	icon_state = "mimicry"
+	desc = "Provides the user with 5% increase to all healing sources."
 	fortitude_bonus = 10
 	slot = CHEEK
+
+/datum/ego_gifts/mimicry/Initialize(mob/living/carbon/human/user) // As a boost, undoes the debuff it applies to you
+	. = ..()
+	user.physiology.healing_mod *= 1.05
+
+/datum/ego_gifts/mimicry/Remove(mob/living/carbon/human/user) // Niceness can be taken away, I suppose
+	user.physiology.healing_mod /= 1.05
+	return ..()
 
 /datum/ego_gifts/mockery
 	name = "Mockery"
@@ -1508,7 +1639,9 @@
 /datum/ego_gifts/pink
 	name = "Pink"
 	icon_state = "pink"
-	justice_bonus = 10
+	desc = "Increases the damage of the corresponding weapon by 10%."
+	prudence_bonus = 5
+	justice_bonus = 5
 	slot = HELMET
 
 /datum/ego_gifts/spring

@@ -57,12 +57,11 @@
 /obj/item/clothing/suit/armor/ego_gear/he/magicbullet
 	name = "magic bullet"
 	desc = "The Devil ultimately wished for despair. For despair wears down the mind and drains one's will to go forward. When one feels there's nothing left to go for, their soul falls down to Hell, the Devil's domain."
+	special = "While worn, this armor increases the ranged damage of magic bullet by 30%."
 	icon_state = "magic_bullet"
-	// Magic Bullet has WAW-tier requirements and goes with a WAW-tier gun, but is not quite WAW-tier itself. Still, valuable if you're a well-rounded agent doing well-rounded work. - NB
-	// I kept it well-rounded, and lowered the requirements, It's now LIKE a waw with it's good, well-rounded defenses, but it was generally lowered. - Kitsunemitsu/Kirie
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 20) // 80
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 30, PALE_DAMAGE = -30) // 60, buffs the weapon
 	attribute_requirements = list(
-							JUSTICE_ATTRIBUTE = 40
+							JUSTICE_ATTRIBUTE = 60
 							)
 
 /obj/item/clothing/suit/armor/ego_gear/he/christmas
@@ -131,6 +130,23 @@
 							FORTITUDE_ATTRIBUTE = 40
 							)
 
+/obj/item/clothing/suit/armor/ego_gear/he/sanguine/equipped(mob/user, slot, initial = FALSE)
+	. = ..()
+	if(slot == ITEM_SLOT_OCLOTHING)
+		if(ishuman(user))
+			var/mob/living/carbon/human/L = user
+			if(istype(L.ego_gift_list["Mouth Slot 2"], /datum/ego_gifts/desire))
+				var/datum/ego_gifts/desire/N = L.ego_gift_list["Mouth Slot 2"]
+				N.add_buffs(user)
+
+/obj/item/clothing/suit/armor/ego_gear/he/sanguine/dropped(mob/user)
+	if(ishuman(user))
+		var/mob/living/carbon/human/L = user
+		if(istype(L.ego_gift_list["Mouth Slot 2"], /datum/ego_gifts/desire))
+			var/datum/ego_gifts/desire/N = L.ego_gift_list["Mouth Slot 2"]
+			N.remove_buffs(user)
+	return ..()
+
 /obj/item/clothing/suit/armor/ego_gear/he/solemnlament
 	name = "solemn lament"
 	desc = "The undertaker's outfit belongs to those who pay tribute to the dead.\
@@ -172,9 +188,10 @@
 
 /obj/item/clothing/suit/armor/ego_gear/he/galaxy
 	name = "galaxy"
-	desc = "The pebble dropped into your hand sparkles, sways, tickles, and eventually becomes the universe. "
+	desc = "The pebble dropped into your hand sparkles, sways, tickles, and eventually becomes the universe."
+	special = "While worn, this armor increases the amount of healing from the token of friendship by 25%."
 	icon_state = "galaxy"
-	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 20, BLACK_DAMAGE = 40, PALE_DAMAGE = 10)
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 10, PALE_DAMAGE = -10) // 60, has an effect with its abno
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40)
 
@@ -198,8 +215,55 @@
 	name = "gaze"
 	desc = "As long as this is equipped, ambush won't be a concern."
 	icon_state = "gaze"
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 30, BLACK_DAMAGE = 20, PALE_DAMAGE = 0)
+	special = "When there's a nearby camera or another human, this armor will provide better defenses and grant +10 justice."
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 30, BLACK_DAMAGE = 20, PALE_DAMAGE = -10) // 60 / 90 , becomes stronger if there's someone else nearby
 	attribute_requirements = list(FORTITUDE_ATTRIBUTE = 40)
+	var/buff_timer
+	var/buffed = FALSE
+
+/obj/item/clothing/suit/armor/ego_gear/he/gaze/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if(slot == ITEM_SLOT_OCLOTHING)
+		buff_timer = addtimer(CALLBACK(src, PROC_REF(CheckViewers), user), 5 SECONDS, TIMER_STOPPABLE)
+
+/obj/item/clothing/suit/armor/ego_gear/he/gaze/dropped(mob/user)
+	. = ..()
+	deltimer(buff_timer)
+	buff_timer = null
+	if(buffed)
+		Debuff(user)
+
+/obj/item/clothing/suit/armor/ego_gear/he/gaze/proc/CheckViewers(mob/living/carbon/human/user)
+	deltimer(buff_timer)
+	buff_timer = addtimer(CALLBACK(src, PROC_REF(CheckViewers), user), 5 SECONDS, TIMER_STOPPABLE)
+	for(var/mob/camera/ai_eye/remote/cam in viewers(6, user))
+		Buff(user)
+		return
+	for(var/mob/living/carbon/human/L in viewers(6, user))
+		if(L == user)
+			continue
+		if(L.stat != DEAD)
+			Buff(user)
+			return
+	Debuff(user)
+
+/obj/item/clothing/suit/armor/ego_gear/he/gaze/proc/Buff(mob/living/carbon/human/user)
+	if(buffed)
+		return
+	to_chat(user, span_nicegreen("Now seen, you and your armor becomes stronger!"))
+	buffed = TRUE
+	armor = armor.modifyRating(red = 10, white = 10, black = 10)
+	if(istype(user))
+		user.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 10)
+
+/obj/item/clothing/suit/armor/ego_gear/he/gaze/proc/Debuff(mob/living/carbon/human/user)
+	if(!buffed)
+		return
+	to_chat(user, span_warning("No longer seen, you and your armor becomes weaker!"))
+	buffed = FALSE
+	armor = armor.modifyRating(red = -10, white = -10, black = -10)
+	if(istype(user))
+		user.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -10)
 
 /obj/item/clothing/suit/armor/ego_gear/he/transmission
 	name = "broken transmission"

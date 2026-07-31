@@ -128,6 +128,8 @@ No Ability	260
 	name = "death stare"
 	desc = "Last words are for fools who haven’t said enough."
 	icon_state = "death"
+	special = "This armor provides a small speed bonus while worn."
+	slowdown = -0.1
 	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 40, BLACK_DAMAGE = 70, PALE_DAMAGE = 50)		//Melee with slow
 	realized_ability = /obj/effect/proc_holder/ability/aimed/gleaming_eyes
 
@@ -190,6 +192,7 @@ No Ability	260
 /obj/item/clothing/suit/armor/ego_gear/realization/bigiron
 	name = "big iron"
 	desc = "A hefty silk coat with a blue smock."
+	special = "While worn, this armor doubles the damage of Magic Bullet and Magic Pistol."
 	icon_state = "big_iron"
 	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 70, BLACK_DAMAGE = 70, PALE_DAMAGE = 30)		//Ranged
 
@@ -203,7 +206,8 @@ No Ability	260
 	name = "our galaxy"
 	desc = "Walk this night sky with me. The galaxy dotted with numerous hopes. We'll count the stars and never be alone."
 	icon_state = "ourgalaxy"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 60, BLACK_DAMAGE = 80, PALE_DAMAGE = 50)		//Healing
+	special = "While worn, this armor increases the amount of healing from the token of friendship by 25%."
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 60, BLACK_DAMAGE = 80, PALE_DAMAGE = 40)		//Healing
 	realized_ability = /obj/effect/proc_holder/ability/galaxy_gift
 
 /obj/item/clothing/suit/armor/ego_gear/realization/forever
@@ -304,7 +308,9 @@ No Ability	260
 	name = "crimson lust"
 	desc = "They are always watching you."
 	icon_state = "crimson"
-	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 60)		//No Ability
+	special = "This armor provides a large speed bonus while worn."
+	slowdown = -0.25
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 40)		//Speed
 
 /obj/item/clothing/suit/armor/ego_gear/realization/eyes
 	name = "eyes of god"
@@ -423,7 +429,35 @@ No Ability	260
 	name = "al coda"
 	desc = "Harmonizes well."
 	icon_state = "coda"
-	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 80, BLACK_DAMAGE = 70, PALE_DAMAGE = 40)		//No Ability
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 80, BLACK_DAMAGE = 60, PALE_DAMAGE = 50)		//250 / 270 with gift. I'm giving this pale 5 since red/black 7 + white 10 would be fucked up
+	var/buffed = FALSE
+
+/obj/item/clothing/suit/armor/ego_gear/realization/alcoda/equipped(mob/user, slot, initial = FALSE)
+	. = ..()
+	if(buffed)
+		return
+	if(slot == ITEM_SLOT_OCLOTHING)
+		if(ishuman(user))
+			var/mob/living/carbon/human/L = user
+			if(istype(L.ego_gift_list["Eye Slot"], /datum/ego_gifts/dacapo))
+				BuffWhite()
+
+/obj/item/clothing/suit/armor/ego_gear/realization/alcoda/dropped(mob/user)
+	if(buffed)
+		DebuffWhite()
+	return ..()
+
+/obj/item/clothing/suit/armor/ego_gear/realization/alcoda/proc/BuffWhite()
+	if(buffed)
+		return
+	buffed = TRUE
+	armor = armor.modifyRating(white = 20) // White 10
+
+/obj/item/clothing/suit/armor/ego_gear/realization/alcoda/proc/DebuffWhite()
+	if(!buffed)
+		return
+	buffed = FALSE
+	armor = armor.modifyRating(white = -20) // White 8
 
 /obj/item/clothing/suit/armor/ego_gear/realization/head
 	name = "head of god"

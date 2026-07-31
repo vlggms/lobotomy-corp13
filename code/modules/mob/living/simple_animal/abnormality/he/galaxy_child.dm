@@ -77,8 +77,12 @@
 	var/delta_time = (world.time - last_healing_time) / 10
 	last_healing_time = world.time
 	for(var/mob/living/carbon/human/friend as anything in galaxy_friends)
-		friend.adjustBruteLoss(-(healing_per_second * delta_time))
-		friend.adjustSanityLoss(-(healing_per_second * delta_time))
+		var/healing = healing_per_second
+		var/obj/item/clothing/suit/armor/ego_gear/Z = friend.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+		if (istype(Z, /obj/item/clothing/suit/armor/ego_gear/he/galaxy) || istype(Z, /obj/item/clothing/suit/armor/ego_gear/realization/ourgalaxy))
+			healing *= 1.25
+		friend.adjustBruteLoss(-(healing * delta_time))
+		friend.adjustSanityLoss(-(healing * delta_time))
 
 /mob/living/simple_animal/hostile/abnormality/galaxy_child/WorkChance(mob/living/carbon/human/user, chance)
 	return chance * work_chance_modifier

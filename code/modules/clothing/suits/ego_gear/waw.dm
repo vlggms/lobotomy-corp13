@@ -137,7 +137,9 @@
 	name = "crimson scar"
 	desc = "It seems only darkness awaits those who find the value of their lives in nothing but destruction."
 	icon_state = "crimson_scar"
-	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 40, BLACK_DAMAGE = 30, PALE_DAMAGE = 10)
+	special = "This armor provides a small speed boost while worn."
+	slowdown = -0.1
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 40, BLACK_DAMAGE = 40, PALE_DAMAGE = 10) // 130, gives a speed boost
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80
 							)
@@ -392,10 +394,37 @@
 	name = "hypocrisy armor"
 	desc = "All things natural are bound to turn to dust someday. Thus, this evergreen robe must be kept far apart from mother nature."
 	icon_state = "hypocrisy"
-	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 40, BLACK_DAMAGE = 0, PALE_DAMAGE = 30) // 140
+	special = "This armor provides a passive sanity healing aura while worn."
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 60, BLACK_DAMAGE = 10, PALE_DAMAGE = 20) // 130, heals sanity in an area
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 80
 							)
+	var/heal_timer
+	var/heal_amount = -2.5
+	var/heal_time = 2.5 SECONDS
+
+/obj/item/clothing/suit/armor/ego_gear/waw/hypocrisy/equipped(mob/user, slot, initial = FALSE)
+	. = ..()
+	if(slot == ITEM_SLOT_OCLOTHING)
+		heal_timer = addtimer(CALLBACK(src, PROC_REF(heal), user), heal_time, TIMER_STOPPABLE)
+
+/obj/item/clothing/suit/armor/ego_gear/waw/hypocrisy/dropped(mob/user)
+	deltimer(heal_timer)
+	heal_timer = null
+	return ..()
+
+/obj/item/clothing/suit/armor/ego_gear/waw/hypocrisy/proc/heal(mob/living/carbon/human/user)
+	if(QDELETED(user))
+		deltimer(heal_timer)
+		heal_timer = null
+		return
+	if(user.stat != DEAD)
+		for(var/mob/living/carbon/human/H in view(user, 4))
+			if(H.stat == DEAD || H.is_working)
+				continue
+			H.adjustSanityLoss(heal_amount)
+	deltimer(heal_timer)
+	heal_timer = addtimer(CALLBACK(src, PROC_REF(heal), user), heal_time, TIMER_STOPPABLE)
 
 /obj/item/clothing/suit/armor/ego_gear/waw/my_own_bride
 	name = "My own Bride"

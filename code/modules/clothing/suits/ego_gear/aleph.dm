@@ -36,26 +36,81 @@
 	desc = "At the heart of the armor is a shard that emits an arcane gleam. \
 	The gentle glow feels somehow more brilliant than a flashing light."
 	icon_state = "star"
-	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 70, BLACK_DAMAGE = 60, PALE_DAMAGE = 40) // 240
+	special = "This armor provides a passive sanity healing aura while worn."
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 50) // 230, heals sanity in an area
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 100,
 							TEMPERANCE_ATTRIBUTE = 100,
 							JUSTICE_ATTRIBUTE = 80
 							)
+	var/heal_timer
+	var/heal_amount = -2.5
+	var/heal_time = 2 SECONDS
+
+/obj/item/clothing/suit/armor/ego_gear/aleph/star/equipped(mob/user, slot, initial = FALSE)
+	. = ..()
+	if(slot == ITEM_SLOT_OCLOTHING)
+		heal_timer = addtimer(CALLBACK(src, PROC_REF(heal), user), heal_time, TIMER_STOPPABLE)
+
+/obj/item/clothing/suit/armor/ego_gear/aleph/star/dropped(mob/user)
+	deltimer(heal_timer)
+	heal_timer = null
+	return ..()
+
+/obj/item/clothing/suit/armor/ego_gear/aleph/star/proc/heal(mob/living/carbon/human/user)
+	if(QDELETED(user))
+		deltimer(heal_timer)
+		heal_timer = null
+		return
+	if(user.stat != DEAD)
+		for(var/mob/living/carbon/human/H in view(user, 4))
+			if(H.stat == DEAD || H.is_working)
+				continue
+			H.adjustSanityLoss(heal_amount)
+	deltimer(heal_timer)
+	heal_timer = addtimer(CALLBACK(src, PROC_REF(heal), user), heal_time, TIMER_STOPPABLE)
 
 /obj/item/clothing/suit/armor/ego_gear/aleph/da_capo
 	name = "da capo"
 	desc = "A splendid tailcoat perfect for a symphony. \
 	Superb leadership is required to create a perfect ensemble."
 	icon_state = "da_capo"
-	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 80, BLACK_DAMAGE = 60, PALE_DAMAGE = 40) // 240
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 80, BLACK_DAMAGE = 60, PALE_DAMAGE = 30) // 230 / 250 with gift
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 100,
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
 							)
+	var/buffed = FALSE
+
+/obj/item/clothing/suit/armor/ego_gear/aleph/da_capo/equipped(mob/user, slot, initial = FALSE)
+	. = ..()
+	if(buffed)
+		return
+	if(slot == ITEM_SLOT_OCLOTHING)
+		if(ishuman(user))
+			var/mob/living/carbon/human/L = user
+			if(istype(L.ego_gift_list["Eye Slot"], /datum/ego_gifts/dacapo))
+				BuffWhite()
+
+/obj/item/clothing/suit/armor/ego_gear/aleph/da_capo/dropped(mob/user)
+	if(buffed)
+		DebuffWhite()
+	return ..()
+
+/obj/item/clothing/suit/armor/ego_gear/aleph/da_capo/proc/BuffWhite()
+	if(buffed)
+		return
+	buffed = TRUE
+	armor = armor.modifyRating(white = 20) // White 10
+
+/obj/item/clothing/suit/armor/ego_gear/aleph/da_capo/proc/DebuffWhite()
+	if(!buffed)
+		return
+	buffed = FALSE
+	armor = armor.modifyRating(white = -20) // White 8
 
 /obj/item/clothing/suit/armor/ego_gear/aleph/mimicry
 	name = "mimicry"
@@ -73,14 +128,70 @@
 	name = "adoration"
 	desc = "It is not as unpleasant to wear as it is to look at. \
 	In fact, it seems to give you an illusion of comfort and bravery."
+	special = "When the wearer takes 10+ RED damage and is under 20% HP, this armor will create a 100 HP RED shield for 3 seconds at the cost of lowering the wearer's speed for the same amount of time.\nThis ability has a 12 second cooldown before it can activate again."
 	icon_state = "adoration"
-	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 50, BLACK_DAMAGE = 70, PALE_DAMAGE = 50) // 240
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 40, BLACK_DAMAGE = 70, PALE_DAMAGE = 50) // 230, can create a shield for the user
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 80,
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
 							)
+	var/shield_cooldown
+	var/shield_cooldown_time = 12 SECONDS
+	var/shield_time = 3 SECONDS
+	var/shield_hp = 100
+
+/obj/item/clothing/suit/armor/ego_gear/aleph/adoration/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if(!user)
+		return
+	RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(AttemptShield))
+
+/obj/item/clothing/suit/armor/ego_gear/aleph/adoration/dropped(mob/user)
+	. = ..()
+	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(AttemptShield))
+
+/obj/item/clothing/suit/armor/ego_gear/aleph/adoration/proc/AttemptShield(datum/source, damage, damagetype, def_zone)
+	if(!source && damagetype != RED_DAMAGE)
+		return
+	if(!damage)
+		return
+	if(damage < 0)
+		return
+	if(shield_cooldown >= world.time)
+		return
+	var/mob/living/carbon/human/H = source
+	if(H.is_working)
+		return
+	var/health_threshold = 0.2
+	if(istype(H.ego_gift_list["Helmet Slot"], /datum/ego_gifts/adoration))
+		health_threshold = 0.4
+	if(H.health > health_threshold * H.maxHealth)
+		return
+
+	//We need to calculate how much will that damage actually deal to us
+	var/hit_percent = (100-H.physiology.damage_resistance)/100
+	var/armor_block = (100-H.run_armor_check(null, damagetype))/100
+	var/damage_amount = damage * hit_percent * H.physiology.red_mod * armor_block
+
+	if(damage_amount >= 10)
+		H.visible_message(span_notice("A slimey shield forms around [H]!"), \
+			span_notice("Your [src] forms a slimey shield to protect you!"))
+		shield_cooldown = world.time + shield_cooldown_time
+		H.add_movespeed_modifier(/datum/movespeed_modifier/adoration)
+		addtimer(CALLBACK(H, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/adoration), shield_time, TIMER_UNIQUE | TIMER_OVERRIDE)
+		if(H.has_status_effect(/datum/status_effect/interventionshield))
+			H.remove_status_effect(/datum/status_effect/interventionshield)
+		H.apply_shield(/datum/status_effect/interventionshield, shield_hp, shield_time)
+		//We return if the shield blocks the damage or not.
+		var/datum/status_effect/interventionshield/RED = H.has_status_effect(/datum/status_effect/interventionshield)
+		if(RED)
+			return RED.OnApplyDamage(source, damage, damagetype, def_zone)
+
+/datum/movespeed_modifier/adoration
+	multiplicative_slowdown = 1
+	variable = FALSE
 
 /obj/item/clothing/suit/armor/ego_gear/aleph/smile
 	name = "smile"
@@ -250,6 +361,7 @@
 	name = "Seasons Greetings"
 	desc = "This is a placeholder."
 	icon_state = "spring"
+	special = "This E.G.O. is able transform to match the current season. \nThis effect can be disabled at the cost of the armor being weaker if it doesn't match the current season."
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 60, FIRE = 60) // Placeholder values, changed later.
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
@@ -290,13 +402,14 @@
 /obj/item/clothing/suit/armor/ego_gear/aleph/seasons/proc/Transform()
 	current_season = SSlobotomy_events.current_season
 	if(!transforming) //No need to do all of the icon updates and stuff if we aren't changing
-		desc = season_list[current_season][2]  + " \n This E.G.O. will not transform to match the seasons."
+		desc = season_list[current_season][2]
 	else
 		icon_state = "[current_season]"
 		update_icon_state()
 		to_chat(current_holder, span_notice("[src] suddenly transforms!"))
 		name = season_list[current_season][1]
-		desc = season_list[current_season][2]  + " \n This E.G.O. will transform to match the seasons."
+		desc = season_list[current_season][2]
+
 		stored_season = current_season
 		if(current_holder) //Notify the user we've changed
 			current_holder.update_inv_wear_suit()
@@ -364,7 +477,6 @@
 	if(!T.transforming)
 		to_chat(user, span_warning("[src] will now transform to match the seasons."))
 		T.transforming = TRUE
-		T.desc = T.season_list[T.current_season][2]  + " \n This E.G.O. will transform to match the seasons."
 		return ..()
 	return ..()
 
@@ -396,7 +508,8 @@
 	name = "Pink"
 	desc = "A pink military uniform. Its pockets allow the wearer to carry various types of ammunition. It soothes the wearer; they say pink provides psychological comfort to many people."
 	icon_state = "pink"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 70, BLACK_DAMAGE = 70, PALE_DAMAGE = 50) // 240
+	special = "While worn, this armor increases the damage of the corresponding weapon by 10%."
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 70, BLACK_DAMAGE = 60, PALE_DAMAGE = 50) // 230, buffs the main weapon damage
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,

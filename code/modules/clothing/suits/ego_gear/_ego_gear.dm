@@ -13,6 +13,7 @@
 	drag_slowdown = 1
 	var/equip_slowdown = 6 SECONDS
 
+	var/special
 	var/obj/item/clothing/head/ego_hat/hat = null // Hat type, see clothing/head/_ego_head.dm
 	var/obj/item/clothing/neck/ego_neck/neck = null // Neckwear, see clothing/neck/_neck.dm
 	var/list/attribute_requirements = list()
@@ -98,6 +99,8 @@
 
 /obj/item/clothing/suit/armor/ego_gear/examine(mob/user)
 	. = ..()
+	if(special)
+		. += span_notice("[special]")
 	if(LAZYLEN(attribute_requirements))
 		if(!ishuman(user))	//You get a notice if you are a ghost or otherwise
 			. += span_notice("It has <a href='byond://?src=[REF(src)];list_attributes=1'>certain requirements</a> for the wearer.")
