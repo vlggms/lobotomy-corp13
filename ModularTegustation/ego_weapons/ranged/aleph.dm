@@ -372,7 +372,9 @@
 			playsound(G, 'sound/weapons/ego/executive_reload.ogg', 70, FALSE)
 			to_chat(user, span_nicegreen("A new magazine materialized within the other [G]!"))
 
-/obj/item/ego_weapon/ranged/pistol/executive/afterattack(atom/target, mob/user)
+/obj/item/ego_weapon/ranged/pistol/executive/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, temporary_damage_multiplier = 1)
+	if(!CanUseEgo(user))
+		return
 	if(shotsleft == 1)
 		projectile_path = /obj/projectile/ego_bullet/ego_executive/kill_shot
 		fire_sound = 'sound/weapons/ego/executive_shot.ogg'
