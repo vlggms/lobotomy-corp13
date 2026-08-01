@@ -445,6 +445,8 @@
 	qdel(projectile)
 
 /obj/item/ego_weapon/ranged/proc/UpdateAmmoCounter()
+	if(!reloadtime) //You don't have ammo, no need for the counter
+		return
 	if(!(item_flags & IN_INVENTORY))
 		maptext = ""
 		return
