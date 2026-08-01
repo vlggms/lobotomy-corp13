@@ -359,6 +359,7 @@
 		return
 	playsound(src, 'sound/weapons/ego/executive_reload.ogg', 70, FALSE)
 	shotsleft = max_shots
+	UpdateAmmoCounter()
 	to_chat(user, span_nicegreen("A new magazine materialized within [src]!"))
 	// Might as well reload the other gun
 	if(ishuman(user))
@@ -367,6 +368,7 @@
 			if(G == src || G.shotsleft == G.max_shots)
 				continue
 			G.shotsleft = G.max_shots
+			G.UpdateAmmoCounter()
 			playsound(G, 'sound/weapons/ego/executive_reload.ogg', 70, FALSE)
 			to_chat(user, span_nicegreen("A new magazine materialized within the other [G]!"))
 
