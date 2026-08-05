@@ -58,8 +58,7 @@
 	var/can_act = TRUE
 	var/initial_charge_damage = 400
 	var/growing_charge_damage = 0
-
-	var/nihil_present = FALSE
+	var/special_breach = FALSE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/goldrush,
@@ -111,7 +110,7 @@
 	. = ..()
 	if(!.) // Dead
 		return FALSE
-	if(nihil_present)
+	if(special_breach)
 		return
 	if(!(status_flags & GODMODE))
 		if(!(!can_act || client))
@@ -123,7 +122,7 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/greed_king/Move()
-	if(!client && !nihil_present)
+	if(!client)
 		return FALSE
 	if(!can_act)
 		return FALSE
@@ -131,6 +130,8 @@
 
 /mob/living/simple_animal/hostile/abnormality/greed_king/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
+	if(special_breach)
+		return TRUE
 	icon = 'ModularTegustation/Teguicons/64x48.dmi'
 	//Center it on a hallway
 	offsets_pixel_x = list("south" = -16, "north" = -16, "west" = -16, "east" = -16)
@@ -143,9 +144,7 @@
 /mob/living/simple_animal/hostile/abnormality/greed_king/proc/startTeleport()
 	if(IsCombatMap())
 		return
-	if(nihil_present)
-		return
-	if(!can_act || teleport_cooldown > world.time || (status_flags & GODMODE))
+	if(!can_act || teleport_cooldown > world.time || (status_flags & GODMODE) || AIStatus == AI_OFF)
 		return
 	teleport_cooldown = world.time + 4.9 SECONDS
 	//set can_act, animate and call the proc that actually teleports.
@@ -156,6 +155,8 @@
 /mob/living/simple_animal/hostile/abnormality/greed_king/proc/endTeleport()
 	var/turf/T = pick(GLOB.xeno_spawn)
 	animate(src, alpha = 255, time = 5)
+	if(special_breach)
+		return
 	forceMove(T)
 	can_act = TRUE
 	if(!client)
@@ -179,7 +180,7 @@
 
 
 /mob/living/simple_animal/hostile/abnormality/greed_king/OpenFire() // This exists so players can manually charge during playable abnormalities.
-	if(!can_act || (!client && !nihil_present))
+	if(!can_act || (!client))
 		return
 	switch(chosen_attack)
 		if(1)
@@ -221,37 +222,25 @@
 	//Hiteffect stuff
 
 	for(var/turf/U in range(1, T))
-		var/list/new_hits = HurtInTurf(U, been_hit, 0, RED_DAMAGE, hurt_mechs = TRUE, flags = (DAMAGE_UNTRACKABLE)) - been_hit
+		var/list/new_hits = (HurtInTurf(U, been_hit, 0, RED_DAMAGE, hurt_mechs = TRUE, flags = DAMAGE_UNTRACKABLE) - been_hit)
 		been_hit += new_hits
 		for(var/mob/living/L in new_hits)
-			if(!nihil_present)
-				L.visible_message(span_boldwarning("[src] crunches [L]!"), span_userdanger("[src] rends you with its teeth!"))
-				playsound(L, attack_sound, 75, 1)
-				new /obj/effect/temp_visual/kinetic_blast(get_turf(L))
-				if(ishuman(L))
-					L.deal_damage(charge_damage, RED_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
-				else
-					L.adjustRedLoss(100)
-				if(L.stat >= HARD_CRIT)
-					L.gib()
-				playsound(L, 'sound/abnormalities/kog/GreedHit1.ogg', 20, 1)
-				playsound(L, 'sound/abnormalities/kog/GreedHit2.ogg', 50, 1)
-				for(var/obj/vehicle/V in new_hits)
-					V.take_damage(100, RED_DAMAGE, attack_sound)
-					V.visible_message(span_boldwarning("[src] crunches [V]!"))
-					playsound(V, 'sound/abnormalities/kog/GreedHit1.ogg', 40, 1)
-					playsound(V, 'sound/abnormalities/kog/GreedHit2.ogg', 30, 1)
-				continue
-
-			if(!ishuman(L))
-				L.visible_message(span_boldwarning("[src] smashes [L]!"), span_userdanger("[src] smashes you with her massive fist!"))
-				playsound(L, attack_sound, 75, 1)
-				new /obj/effect/temp_visual/kinetic_blast(get_turf(L))
+			L.visible_message(span_boldwarning("[src] crunches [L]!"), span_userdanger("[src] rends you with its teeth!"))
+			playsound(L, attack_sound, 75, 1)
+			new /obj/effect/temp_visual/kinetic_blast(get_turf(L))
+			if(ishuman(L))
+				L.deal_damage(charge_damage, RED_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
+			else
 				L.adjustRedLoss(100)
-				if(L.stat >= HARD_CRIT)
-					L.gib()
-				playsound(L, 'sound/abnormalities/kog/GreedHit1.ogg', 20, 1)
-				playsound(L, 'sound/abnormalities/kog/GreedHit2.ogg', 50, 1)
+			if(L.stat >= HARD_CRIT)
+				L.gib()
+			playsound(L, 'sound/abnormalities/kog/GreedHit1.ogg', 20, 1)
+			playsound(L, 'sound/abnormalities/kog/GreedHit2.ogg', 50, 1)
+			for(var/obj/vehicle/V in new_hits)
+				V.take_damage(100, RED_DAMAGE, attack_sound)
+				V.visible_message(span_boldwarning("[src] crunches [V]!"))
+				playsound(V, 'sound/abnormalities/kog/GreedHit1.ogg', 40, 1)
+				playsound(V, 'sound/abnormalities/kog/GreedHit2.ogg', 30, 1)
 
 	playsound(src,'sound/effects/bamf.ogg', 70, TRUE, 20)
 	for(var/turf/open/R in range(1, src))
@@ -278,28 +267,15 @@
 		datum_reference.qliphoth_change(-1)
 	return
 
-//Nihil Event Code - TODO: Add attacks TODO: Add a way to teleport to nihil
 /mob/living/simple_animal/hostile/abnormality/greed_king/proc/EventStart()
 	set waitfor = FALSE
-	NihilModeEnable()
+	EventIcons()
 	ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))
-	SLEEP_CHECK_DEATH(6 SECONDS)
-	say("So, you've finally shown yourself.")
-	SLEEP_CHECK_DEATH(6 SECONDS)
-	say("With the Jester gone, the world can finally be free of sadness.")
-	SLEEP_CHECK_DEATH(6 SECONDS)
-	say("We'll defeat you once and for all.")
-	SLEEP_CHECK_DEATH(6 SECONDS)
-	say("For happiness!")
-	ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5))
+	special_breach = TRUE
+	SLEEP_CHECK_DEATH(24 SECONDS)
+	petrify()
 
-/mob/living/simple_animal/hostile/abnormality/greed_king/proc/NihilModeEnable()
-	NihilIconUpdate()
-	nihil_present = TRUE
-	fear_level = ZAYIN_LEVEL
-	faction = list("neutral")
-
-/mob/living/simple_animal/hostile/abnormality/greed_king/proc/NihilIconUpdate()
+/mob/living/simple_animal/hostile/abnormality/greed_king/proc/EventIcons()
 	name = "Magical Girl of Happiness"
 	desc = "A real magical girl!"
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
@@ -308,6 +284,9 @@
 	base_pixel_x = -8
 	pixel_y = 0
 	base_pixel_y = 0
+	special_breach = TRUE
+	fear_level = 0
+	faction = list("neutral")
 
 /mob/living/simple_animal/hostile/abnormality/greed_king/Found(atom/A)
 	if(istype(A, /mob/living/simple_animal/hostile/abnormality/nihil)) // 1st Priority
@@ -317,7 +296,6 @@
 /mob/living/simple_animal/hostile/abnormality/greed_king/petrify(statue_timer)
 	if(!isturf(loc))
 		MoveStatue()
-	AIStatus = AI_OFF
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "kog_statue"
 	pixel_x = -16
@@ -349,24 +327,3 @@
 	new /obj/effect/temp_visual/guardian/phase(get_turf(src))
 	new /obj/effect/temp_visual/guardian/phase/out(teleport_target)
 	forceMove(teleport_target)
-
-/mob/living/simple_animal/hostile/abnormality/greed_king/death(gibbed)
-	if(!nihil_present)
-		return ..()
-	adjustBruteLoss(-999999)
-	visible_message(span_boldwarning("Oh no, [src] has been defeated!"))
-	INVOKE_ASYNC(src, PROC_REF(petrify), 500000)
-	return FALSE
-
-/mob/living/simple_animal/hostile/abnormality/greed_king/gib()
-	if(nihil_present)
-		death()
-		return FALSE
-	return ..()
-
-//TODO: Make this do something
-/obj/structure/blissfragment
-	name = "brilliant bliss"
-	desc = "It looks like a large gemstone. Break it for a special buff."
-	icon = 'ModularTegustation/Teguicons/32x32.dmi'
-	icon_state = "bliss"

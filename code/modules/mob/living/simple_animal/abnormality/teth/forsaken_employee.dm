@@ -92,6 +92,14 @@
 	random_icon_states = list("acid_greyscale")
 	color = "#20f8ac"
 	duration = 30 SECONDS
+	safe_types = list(
+	/mob/living/simple_animal/hostile/abnormality/forsaken_employee,
+	)
+	human_safe = FALSE
+	applied_status = null
+	damage_dealt = 1
+	damage_delay = 10
+	damage_type = WHITE_DAMAGE
 
 /obj/effect/decal/cleanable/wrath_acid/enkephalin/Crossed(atom/movable/AM)
 	if(!ishuman(AM))

@@ -390,7 +390,7 @@
 
 // Object effect
 /obj/effect/temp_visual/shock_shield
-	name = "shock_sheild"
+	name = "shock shield"
 	desc = "A shimmering forcefield protecting the shock centipede."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shield"

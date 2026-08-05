@@ -416,11 +416,11 @@
 	T.visible_message(span_warning("Acid sprays from the letter!"))
 	for(var/i = 1 to 8)
 		var/angle = rand(0, 360)
-		var/obj/effect/decal/cleanable/wrath_acid/bad/AB = new(get_turf(src))
+		var/obj/effect/gibspawner/generic/silent/wrath_acid/enkephalin/AB = new(get_turf(src)) // We use the weakest form of acid in the game here to not annihilate our agents.
 		MoveAcidAngle(AB, angle)
 	return ..()
 
-/obj/item/mailpaper/trapped/acid/proc/MoveAcidAngle(obj/effect/decal/cleanable/wrath_acid/bad/bad_acid, angle)
+/obj/item/mailpaper/trapped/acid/proc/MoveAcidAngle(obj/effect/decal/cleanable/wrath_acid/enkephalin/bad_acid, angle)
 	set waitfor = FALSE
 	var/turf/target_turf = get_turf_in_angle(angle, get_turf(src), pick(1, 2, 4))
 	while(step_towards(bad_acid, target_turf, 0))

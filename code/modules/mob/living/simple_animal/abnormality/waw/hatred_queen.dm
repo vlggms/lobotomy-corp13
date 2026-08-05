@@ -100,13 +100,12 @@
 	var/hp_teleport_counter = 3
 	var/explode_damage = 26
 	var/breach_max_death = 0
-	//Nihil Related
-	var/nihil_present = FALSE
 
 
 	var/hysteric_ability = 0
 	var/hatred_cooldown
 	var/hatred_cooldown_time = 15 SECONDS
+	var/special_breach = FALSE
 
 
 	//PLAYABLES ATTACKS
@@ -156,12 +155,6 @@
 		QS.fade_out()
 	spawned_effects.Cut()
 	QDEL_NULL(current_beam)
-	if(nihil_present)
-		adjustBruteLoss(-999999)
-		visible_message(span_boldwarning("Oh no, [src] has been defeated!"))
-		INVOKE_ASYNC(src, PROC_REF(petrify), 500000)
-		beamloop.stop()
-		return FALSE
 	QDEL_NULL(beamloop)
 	icon = initial(icon)
 	base_pixel_x = initial(base_pixel_x)
@@ -174,12 +167,22 @@
 	addtimer(CALLBACK(S, TYPE_PROC_REF(/obj/effect/qoh_sygil, fade_out)), 5 SECONDS)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
 	if(friendly)
-		src.say("I swore I would protect everyone to the end…")
+		src.say("I swore I would protect everyone to the end...")
 	if(wand)
 		qdel(wand)
 	..()
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
+
+/mob/living/simple_animal/hostile/abnormality/hatred_queen/Destroy() // Insurance for if we get qdeleted
+	for(var/obj/effect/qoh_sygil/QS in spawned_effects)
+		QS.fade_out()
+	spawned_effects.Cut()
+	QDEL_NULL(current_beam)
+	QDEL_NULL(beamloop)
+	if(wand)
+		qdel(wand)
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/Move()
 	if(!can_act)
@@ -278,7 +281,7 @@
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/emergency_check()
-	if(!IsContained() && friendly && (GLOB.emergency_level == TRUMPET_0) && !nihil_present)
+	if(!IsContained() && friendly && (GLOB.emergency_level == TRUMPET_0))
 		death()
 	//if CONTAINED and shits going down
 	if(IsContained() && (datum_reference?.qliphoth_meter == 2) && (GLOB.emergency_level >= TRUMPET_2) && (datum_reference?.emergency_breach))
@@ -489,6 +492,8 @@
 		icon_state = "hatred"
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/TryTeleport(forced = FALSE)
+	if(special_breach)
+		return
 	if(!forced)
 		if(teleport_cooldown > world.time)
 			return FALSE
@@ -589,7 +594,9 @@
 	chance_modifier = 1
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/GoHysteric(retries = 0)
-	if(!friendly || !breach_max_death || nihil_present)
+	if(!friendly || !breach_max_death)
+		return
+	if(special_breach)
 		return
 	if(!can_act)
 		if(retries < 50)
@@ -648,6 +655,8 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/BreachEffect(mob/living/carbon/human/user, breach_type)
+	if(special_breach)
+		return TRUE
 	if(breach_type == BREACH_MINING)
 		friendly = FALSE
 	death_counter = 0
@@ -663,13 +672,11 @@
 			if((saving_humans.stat != DEAD) && saving_humans.z == z)
 				breach_max_death++
 		breach_max_death = max(breach_max_death/2, 1) //make it 1 if it's somehow zero
-		if(!nihil_present)
-			addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, say), "In the name of Love and Justice~ Here comes Magical Girl!"))
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, say), "In the name of Love and Justice~ Here comes Magical Girl!"))
 		return ..()
 	HostileTransform(TRUE)
 	return ..()
 
-//Nihil Event Code - Fights like the friendly version
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/EventStart()
 	set waitfor = FALSE
 	for(var/obj/effect/qoh_sygil/QS in spawned_effects)
@@ -677,42 +684,26 @@
 	spawned_effects.Cut()
 	QDEL_NULL(current_beam)
 	beamloop.stop()
-	NihilModeEnable()
+	EventIcons()
+	special_breach = TRUE
 	ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))
-	SLEEP_CHECK_DEATH(6 SECONDS)
-	say("This... Oh, no! This is one of the major arcana!")
-	SLEEP_CHECK_DEATH(6 SECONDS)
-	say("Don't worry, I will protect everyone!")
-	SLEEP_CHECK_DEATH(6 SECONDS)
-	say("Here comes magical girl!")
-	SLEEP_CHECK_DEATH(6 SECONDS)
-	say("In the name of Love and Justice~!")
-	ChangeResistances(list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 1.5))
+	SLEEP_CHECK_DEATH(24 SECONDS)
+	petrify()
 
-/mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/NihilModeEnable()
-	NihilIconUpdate()
-	friendly = TRUE
-	nihil_present = TRUE
-	fear_level = ZAYIN_LEVEL
-	faction = list("neutral")
-
-/mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/NihilIconUpdate()
+/mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/EventIcons()
 	name = "Magical Girl of Love"
 	desc = "A real magical girl!"
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "hatred"
 	pixel_x = 0
 	base_pixel_x = 0
-
-/mob/living/simple_animal/hostile/abnormality/hatred_queen/Found(atom/A)
-	if(istype(A, /mob/living/simple_animal/hostile/abnormality/nihil)) // 1st Priority
-		return TRUE
-	return ..()
+	friendly = TRUE
+	fear_level = 0
+	faction = list("neutral")
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/petrify(statue_timer)
 	if(!isturf(loc))
 		MoveStatue()
-	AIStatus = AI_OFF
 	icon = 'ModularTegustation/Teguicons/96x64.dmi'
 	icon_state = "hatred"
 	pixel_x = -24
@@ -728,6 +719,8 @@
 	var/newcolor = list(rgb(77,77,77), rgb(150,150,150), rgb(28,28,28), rgb(0,0,0))
 	S.add_atom_colour(newcolor, FIXED_COLOUR_PRIORITY)
 	stat = DEAD
+	if(wand)
+		QDEL_NULL(wand)
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/MoveStatue()
@@ -746,9 +739,6 @@
 	forceMove(teleport_target)
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/gib()
-	if(nihil_present)
-		death()
-		return FALSE
 	if(!wand)
 		return ..()
 	qdel(wand)

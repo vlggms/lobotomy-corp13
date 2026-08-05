@@ -62,8 +62,8 @@
 	var/teleport_cooldown
 	var/teleport_cooldown_time = 20 SECONDS
 	var/swords = 0
-	var/nihil_present = FALSE
 	var/can_act = TRUE
+	var/special_breach = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/despair_knight/ZeroQliphoth(mob/living/carbon/human/user)
 	switch(swords)
@@ -102,10 +102,7 @@
 			continue
 		var/obj/effect/projectile_delayed/projectile_handler = new(T) // We use a projectile handler here because fire() is called after a delay
 		var/obj/projectile/despair_rapier/P
-		if(nihil_present)
-			P = new /obj/projectile/despair_rapier/justice(projectile_handler)
-		else
-			P = new(projectile_handler)
+		P = new(projectile_handler)
 		projectile_handler.projectile = P
 		P.starting = T
 		P.firer = src
@@ -143,9 +140,6 @@
 	blessed_human.physiology.pale_mod /= 2
 	blessed_human.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, 50)
 	blessed_human = null
-	if(nihil_present) //We die during a nihil suppression if our champion dies
-		death()
-		return TRUE
 	BreachEffect()
 	return TRUE
 
@@ -154,6 +148,8 @@
 		return FALSE
 	if(teleport_cooldown > world.time)
 		return FALSE
+	if(special_breach)
+		return
 	if(target) // Actively fighting
 		return FALSE
 	teleport_cooldown = world.time + teleport_cooldown_time
@@ -178,6 +174,8 @@
 	new /obj/effect/temp_visual/guardian/phase(get_turf(src))
 	SLEEP_CHECK_DEATH(5) // TODO: Add some cool effects here
 	animate(src, alpha = 255, time = 5)
+	if(special_breach)
+		return
 	new /obj/effect/temp_visual/guardian/phase/out(teleport_target)
 	forceMove(teleport_target)
 
@@ -199,6 +197,8 @@
 
 /mob/living/simple_animal/hostile/abnormality/despair_knight/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
+	if(special_breach)
+		return TRUE
 	icon_living = "despair_breach"
 	icon_state = icon_living
 	addtimer(CALLBACK(src, PROC_REF(TryTeleport)), 5)
@@ -209,34 +209,23 @@
 		return FALSE
 	return ..()
 
-//Nihil Event code - TODO: Add friendly summons TODO: Add a way to teleport to nihil
 /mob/living/simple_animal/hostile/abnormality/despair_knight/proc/EventStart()
 	set waitfor = FALSE
-	NihilModeEnable()
+	EventIcons()
 	ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))
-	SLEEP_CHECK_DEATH(6 SECONDS)
-	say("At last, a worthy foe.")
-	SLEEP_CHECK_DEATH(6 SECONDS)
-	say("All of my work won't be in vain.")
-	SLEEP_CHECK_DEATH(6 SECONDS)
-	say("You'll answer for your crimes!")
-	SLEEP_CHECK_DEATH(6 SECONDS)
-	say("To protect our people!")
-	ChangeResistances(list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 1.0, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.5))
+	special_breach = TRUE
+	SLEEP_CHECK_DEATH(24 SECONDS)
+	petrify()
 
-/mob/living/simple_animal/hostile/abnormality/despair_knight/proc/NihilModeEnable()
-	NihilIconUpdate()
-	nihil_present = TRUE
-	fear_level = ZAYIN_LEVEL
-	faction = list("neutral")
-
-/mob/living/simple_animal/hostile/abnormality/despair_knight/proc/NihilIconUpdate()
+/mob/living/simple_animal/hostile/abnormality/despair_knight/proc/EventIcons()
 	name = "Magical Girl of Justice"
 	desc = "A real magical girl!"
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
 	icon_state = "despair_friendly"
 	pixel_x = -8
 	base_pixel_x = -8
+	fear_level = 0
+	faction = list("neutral")
 
 /mob/living/simple_animal/hostile/abnormality/despair_knight/Found(atom/A)
 	if(istype(A, /mob/living/simple_animal/hostile/abnormality/nihil)) // 1st Priority
@@ -246,7 +235,6 @@
 /mob/living/simple_animal/hostile/abnormality/despair_knight/petrify(statue_timer)
 	if(!isturf(loc))
 		MoveStatue()
-	AIStatus = AI_OFF
 	icon_state = "despair_breach"
 	var/obj/structure/statue/petrified/magicalgirl/S = new(loc, src, statue_timer)
 	S.name = "Ossified Despair"
@@ -275,18 +263,3 @@
 	new /obj/effect/temp_visual/guardian/phase(get_turf(src))
 	new /obj/effect/temp_visual/guardian/phase/out(teleport_target)
 	forceMove(teleport_target)
-
-/mob/living/simple_animal/hostile/abnormality/despair_knight/death(gibbed)
-	if(!nihil_present)
-		return ..()
-	adjustBruteLoss(-999999)
-	visible_message(span_boldwarning("Oh no, [src] has been defeated!"))
-	INVOKE_ASYNC(src, PROC_REF(petrify), 500000)
-	return FALSE
-
-/mob/living/simple_animal/hostile/abnormality/despair_knight/gib()
-	if(nihil_present)
-		death()
-		return FALSE
-	return ..()
-
