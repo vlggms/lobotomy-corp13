@@ -9,8 +9,8 @@
 	portrait = "nihil"
 	pixel_x = -16
 	base_pixel_x = -16
-	maxHealth = 10000
-	health = 10000
+	maxHealth = 2500
+	health = 2500
 	move_to_delay = 4
 	threat_level = ALEPH_LEVEL
 	work_chances = list(
@@ -20,8 +20,8 @@
 		ABNORMALITY_WORK_REPRESSION = list(0, 0, 30, 35, 45),
 	)
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.5) //change on phase
-	melee_damage_lower = 20
-	melee_damage_upper = 30
+	melee_damage_lower = 12
+	melee_damage_upper = 16
 	melee_damage_type = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
 	work_damage_upper = 10
@@ -48,19 +48,24 @@
 	)
 
 	var/can_act = TRUE
+	var/breaching = FALSE // needs a special handler for its partial breach
 	//Teleports
 	var/icon_inverted
 	var/teleport_cooldown
 	var/teleport_cooldown_time = 60 SECONDS
 	var/explode_damage = 80
 	//Phases
-	var/current_phase
+	var/current_phase = "NIHIL"
+	var/phase_health
+	var/damage_taken = 0 // Increments up until phase_health to change phase
+	var/list/all_phases = list()
 	var/death_ready = TRUE
-	var/event_enabled
+	var/event_started = FALSE
 	//Attacks
 	var/nuke_cooldown
 	var/nuke_cooldown_time = 5 MINUTES //Once per phase goes off every 5 minutes otherwise
-	var/nuke_damage = 300
+	var/nuke_max_damage = 300
+	var/nuke_min_damage = 15
 	var/busy_attacking = FALSE //Prevents can_act from being set to true while performing a forced action
 
 	ego_list = list(
@@ -81,21 +86,13 @@
 		/mob/living/simple_animal/hostile/abnormality/despair_knight,
 		/mob/living/simple_animal/hostile/abnormality/greed_king
 	)
-	var/list/quotes = list(
-		"Everybody's agony becomes one.",
-		"I slowly traced the road back. It's the road you would've taken.",
-		"Where is the right path? Where do I go?",
-		"Where is the bright dog when I need it to lead me?",
-		"Leading the way through foolishness, there's not a thing to guide me.",
-		"All I can do is trust my own intuition.",
-		"I look just like them, and they look just like me when they're together.",
-		"I become more fearless as they become more vacant.",
-		"My mind is a void; my thoughts are empty.",
-		"In the end, all returns to nihil.",
-	)
 
-	// Prevents spawning in normal game modes
-	can_spawn = FALSE
+//TODO: Make this do something - make this survive the gold road attack
+/obj/structure/blissfragment
+	name = "brilliant bliss"
+	desc = "It looks like a large gemstone. Break it for a special buff."
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "bliss"
 
 //Work Code
 /mob/living/simple_animal/hostile/abnormality/nihil/FailureEffect(mob/living/carbon/human/user, work_type, pe)
@@ -106,13 +103,6 @@
 /mob/living/simple_animal/hostile/abnormality/nihil/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
 	datum_reference.qliphoth_change(1)
-
-/mob/living/simple_animal/hostile/abnormality/nihil/AttemptWork(mob/living/carbon/human/user, work_type)
-	work_damage_type = WHITE_DAMAGE
-	switch(work_type)
-		if(ABNORMALITY_WORK_REPRESSION)
-			work_damage_type = BLACK_DAMAGE
-	return ..()
 
 //Qliphoth
 /mob/living/simple_animal/hostile/abnormality/nihil/PostSpawn()
@@ -131,7 +121,7 @@
 				return
 		datum_reference.qliphoth_change(-2)
 
-/mob/living/simple_animal/hostile/abnormality/nihil/proc/OnGirlGoneWild() //TODO: This will lower qliphoth when friendly magical girls turn hostile
+/mob/living/simple_animal/hostile/abnormality/nihil/proc/OnGirlGoneWild() //TODO: This will lower qliphoth when friendly magical girls turn hostile!
 	datum_reference.qliphoth_change(-2)
 
 //Attacks
@@ -143,22 +133,18 @@
 	playsound(src, 'sound/abnormalities/wrath_servant/hermit_magic.ogg', 60, FALSE, 10)
 	for(var/turf/T in range(1, src)) //First hit is just an AOE around nihil
 		new /obj/effect/temp_visual/eldritch_smoke(T)
-		for(var/mob/living/L in HurtInTurf(T, list(), damage_dealt, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
-			if(GirlCheck(L)) //EXTRA magical girl damage to kill them faster
-				L.deal_damage((2 * damage_dealt), BRUTE)
+		HurtInTurf(T, list(), damage_dealt, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
 	SLEEP_CHECK_DEATH(8)
 	playsound(src, 'sound/abnormalities/wrath_servant/hermit_attack_hard.ogg', 25, FALSE, 15, falloff_distance = 5)
 	new /obj/effect/temp_visual/voidout(myturf)
 	for(var/turf/T in range(1, myturf)) //Second hit is avoidable but deals 3x damage
-		for(var/mob/living/L in HurtInTurf(T, list(), (3 * damage_dealt), BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
+		for(var/mob/living/L in HurtInTurf(T, list(), (4 * damage_dealt), BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
 			L.apply_void(3)
-			if(GirlCheck(L)) //EXTRA magical girl damage to kill them faster
-				L.deal_damage((3 * damage_dealt), BRUTE)
 
 /mob/living/simple_animal/hostile/abnormality/nihil/proc/NukeAttack(forced) //Phase-change attack with a long cooldown
 	if(nuke_cooldown > world.time && !forced)
 		return FALSE
-	if(!can_act && !forced)
+	if(!can_act || !forced || busy_attacking)
 		addtimer(CALLBACK(src, PROC_REF(NukeAttack)), 10)
 		return FALSE
 	can_act = FALSE
@@ -180,6 +166,8 @@
 	playsound(src, 'sound/effects/phasein.ogg', 100, FALSE, 40, falloff_distance = 10)
 	var/matrix/init_transform = transform
 	animate(src, transform = transform*1.5, time = 3, easing = BACK_EASING|EASE_OUT)
+	var/obj/effect/temp_visual/explosion/mybomb = new(get_turf(src))
+	mybomb.color = COLOR_HALF_TRANSPARENT_BLACK
 	for(var/mob/living/L in livinginrange(25, src))
 		if(L.z != z)
 			continue
@@ -187,11 +175,9 @@
 			continue
 		var/dist = get_dist(src, L)
 		var/damage_mod = (dist > 7 ? 5 : 20 )
-		L.deal_damage(clamp((damage_mod * (25 - dist)), 15, nuke_damage), BLACK_DAMAGE) //Between 500 and 15 damage, scaling down heavily past a distance of 7 tiles
+		L.deal_damage(clamp((damage_mod * (25 - dist)), nuke_min_damage, nuke_max_damage), BLACK_DAMAGE) //Between 500 and 15 damage, scaling down heavily past a distance of 7 tiles
 		flash_color(L, flash_color = COLOR_ALMOST_BLACK, flash_time = 70)
 		L.apply_void(damage_mod / 5) //inflict a void debuff
-		if(GirlCheck(L)) //This should kill them most of the time if they are too close
-			L.deal_damage((100 * damage_mod), BRUTE)
 	SLEEP_CHECK_DEATH(3)
 	animate(src, transform = init_transform, time = 5)
 	addtimer(CALLBACK(src, PROC_REF(NukeAttack)), 5 MINUTES)
@@ -365,35 +351,29 @@
 	. = ..()
 	if(IsContained()) // Contained
 		return
-	if(!event_enabled)
-		return
 	if(.)
 		if(!can_act) //Cannot currently teleport or change phase
 			return
-		switch(current_phase)
-			if("NIHIL")
-				if(maxHealth*0.8 > health)
-					ChangePhase("GREED")
-					return
-			if("GREED")
-				if(maxHealth*0.6 > health)
-					ChangePhase("HATE")
-					return
-			if("HATE")
-				if(maxHealth*0.4 > health)
-					ChangePhase("DESPAIR")
-					return
-			if("DESPAIR")
-				if(maxHealth*0.2 > health)
-					ChangePhase("WRATH")
-					return
-			if("WRATH")
-				if(maxHealth*0.05 > health)
-					StartEnding()
-					return
+		if(!event_started) // no phases in event - test this code!
+			return
 		if(teleport_cooldown <= world.time)
 			INVOKE_ASYNC(src, PROC_REF(TryTeleport))
+
+/mob/living/simple_animal/hostile/abnormality/nihil/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
+	. = ..()
+	if(death_ready)
 		return
+	if(amount > 0)
+		damage_taken += amount
+	if(!phase_health)
+		return
+	if(damage_taken >= phase_health)
+		to_chat(world, "Changing phase from adjustHealth. Damage_taken = [damage_taken], phase_health = [phase_health], current_phase = [current_phase]")
+		damage_taken -= phase_health
+		if(!all_phases.len)
+			StartEnding()
+			return
+		ChangePhase()
 
 /mob/living/simple_animal/hostile/abnormality/nihil/AttackingTarget(atom/attacked_target)
 	if(!can_act)
@@ -413,31 +393,29 @@
 	return ..()
 
 //Stages/Boss mechanics
-/mob/living/simple_animal/hostile/abnormality/nihil/proc/GirlCheck(mob/living/themob) //I was temped to call this something cursed, but I won't.
+/mob/living/simple_animal/hostile/abnormality/nihil/proc/GirlCheck(mob/living/themob)
 	if(themob.type in girl_types)
 		return TRUE
 	return FALSE
 
-/mob/living/simple_animal/hostile/abnormality/nihil/proc/ChangePhase(phase)
-	//TODO: more stuff
-	current_phase = phase
+/mob/living/simple_animal/hostile/abnormality/nihil/proc/ChangePhase()
+	if(!event_started) // no phases in event - test this code!
+		return
+	var/new_phase = pick(all_phases)
+	all_phases -= new_phase
+	to_chat(world, "Changing phase. current_phase = [current_phase], new_phase = [new_phase]")
+	current_phase = new_phase
 	NukeAttack(TRUE)
 
 /mob/living/simple_animal/hostile/abnormality/nihil/proc/StartEnding()
-	//TODO: more stuff
-	current_phase = null
+	//TODO: Eventually maybe make a ending cutscene? For now just end it.
 	death_ready = TRUE
-	can_act = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/nihil/death(gibbed)
 	if(!death_ready)
 		return
 	UnregisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH)
-	if(!event_enabled) //admin spawned
-		return ..()
 	var/girlpower = 0
-	for(var/obj/structure/statue/petrified/magicalgirl/StoneStatue in world) //Break any statues that are still up
-		StoneStatue.Destroy()
 	for(var/mob/living/simple_animal/hostile/abnormality/A in GLOB.abnormality_mob_list) //Delete the girls and spawn the loots
 		if(!is_type_in_list(A, SSlobotomy_events.JN_breached))
 			continue
@@ -450,10 +428,10 @@
 			new /obj/item/nihil/spade(giftturf)
 		if(istype(A, /mob/living/simple_animal/hostile/abnormality/greed_king))
 			new /obj/item/nihil/diamond(giftturf)
-		var/mob/living/simple_animal/hostile/abnormality/greed_king/girltarget = A //It shouldn't really matter which one is instanced here
-		girltarget.nihil_present = FALSE //So they really die... maybe change this to a cutscene proc instead in the future
-		girltarget.death()
 		girlpower += 1
+
+	for(var/obj/structure/statue/petrified/magicalgirl/StoneStatue in world) //Break any statues that are still up
+		StoneStatue.Destroy()
 
 	if(girlpower >= 4) //Bonus doubled reward if all 4 of the girls were present
 		for(var/path in subtypesof(/obj/item/nihil))
@@ -464,43 +442,38 @@
 
 //Breach
 /mob/living/simple_animal/hostile/abnormality/nihil/ZeroQliphoth(mob/living/carbon/human/user)
+	if(breaching) // We're already breaching, just havent left the cell yet.
+		return
+	breaching = TRUE
 	var/counter = 0
 	for(var/mob/living/simple_animal/hostile/abnormality/A in GLOB.abnormality_mob_list)
 		if(!GirlCheck(A))
 			continue
 		counter += 1
 	if(counter < 2)
-		Debuff(0, FALSE)
+		BreachEffect() // Not enough girls for the event, normal breach.
 	else
-		Debuff(0, TRUE)
+		event_started = TRUE
+		Debuff(0)
 
-/mob/living/simple_animal/hostile/abnormality/nihil/proc/Debuff(attack_count,event_start)
-	if(attack_count > 13)
-		datum_reference.qliphoth_change(3)
-		return
+/mob/living/simple_animal/hostile/abnormality/nihil/proc/Debuff(attack_count)
 	if(!attack_count)
 		sound_to_playing_players_on_level("sound/abnormalities/nihil/attack.ogg", 30, zlevel = z)
 	for(var/mob/living/carbon/human/L in GLOB.player_list)
 		if(faction_check_mob(L, FALSE) || L.stat >= HARD_CRIT || L.sanity_lost || z != L.z) // Dead or in hard crit, insane, or on a different Z level.
 			continue
 		L.apply_void(1)
-		if(attack_count < 8 && attack_count) //having an index at 0 will break it
-			to_chat(L, span_warning("[quotes[attack_count]]"))
-		else
-			to_chat(L, span_warning("[quotes[10]]"))
-	if(attack_count == 10)
-		if(event_start)
-			BreachEffect()
-			return
-		else
-			SSlobotomy_corp.InitiateMeltdown((SSlobotomy_corp.all_abnormality_datums.len), TRUE)
+	if(attack_count == 1) // CURRENTLY TESTING - Change back to 10!
+		BreachEffect()
+		return
 	SLEEP_CHECK_DEATH(4 SECONDS)
 	attack_count += 1
-	Debuff(attack_count, event_start)
+	Debuff(attack_count)
 
 /mob/living/simple_animal/hostile/abnormality/nihil/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
-	event_enabled = TRUE //We're not admin spawned
+	if(!event_started)
+		return ..()
 	death_ready = FALSE
 	can_act = FALSE
 	var/list/potential_spawns
@@ -517,6 +490,8 @@
 		var/turf/T = pick(GLOB.department_centers)
 		portal = new(T)
 	AIStatus = AI_OFF
+	environment_smash = ENVIRONMENT_SMASH_NONE // This along with AI_OFF is needed to keep mobs tame while inside the contents of a structure.
+	portal.owner = src
 	forceMove(portal)
 
 // Portal/Event code
@@ -545,6 +520,7 @@
 		/obj/effect/magical_girl_portal/club
 	)
 	var/list/active_portals = list()
+	var/mob/living/simple_animal/hostile/abnormality/nihil/owner = null
 
 /mob/living/simple_animal/hostile/aminion/nihil_portal/CanAttack(atom/the_target)
 	return FALSE
@@ -586,17 +562,48 @@
 
 /mob/living/simple_animal/hostile/aminion/nihil_portal/proc/StartEvent()
 	DeletePortals()
+	var/list/phase_list = list()
+	var/total_phases = 0
+	var/newphase = null
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 5 SECONDS, "Life, Dreams, Hope, where do they come from? And where will they go?", 25))
 	for(var/mob/living/simple_animal/hostile/abnormality/nihil/jester in contents)
+		jester.nuke_cooldown = world.time + jester.nuke_cooldown_time
 		jester.forceMove(get_turf(src))
 		jester.AIStatus = AI_ON
+		jester.environment_smash = ENVIRONMENT_SMASH_STRUCTURES
 		jester.teleport_cooldown = world.time + 30 SECONDS //So they don't teleport right away
 		jester.can_act = TRUE
-		addtimer(CALLBACK(jester, TYPE_PROC_REF(/mob/living/simple_animal/hostile/abnormality/nihil, ChangePhase), "NIHIL"), 5 SECONDS)
-	for(var/mob/living/simple_animal/hostile/abnormality/A in GLOB.abnormality_mob_list) //enable their AI again
+	for(var/mob/living/simple_animal/hostile/abnormality/A in GLOB.abnormality_mob_list) // Count phases for nihil
 		if(!is_type_in_list(A, SSlobotomy_events.JN_breached))
 			continue
-		A.toggle_ai(AI_ON)
+		if(istype(A, /mob/living/simple_animal/hostile/abnormality/wrath_servant))
+			newphase = "WRATH"
+		if(istype(A, /mob/living/simple_animal/hostile/abnormality/hatred_queen))
+			newphase = "HATE"
+		if(istype(A, /mob/living/simple_animal/hostile/abnormality/despair_knight))
+			newphase = "DESPAIR"
+		if(istype(A, /mob/living/simple_animal/hostile/abnormality/greed_king))
+			newphase = "GREED"
+		phase_list += newphase
+		total_phases += 1
+	if(owner)
+		owner.all_phases += phase_list
+		switch(total_phases)
+			if(2)
+				owner.maxHealth = 5000
+			if(3)
+				owner.maxHealth = 7500
+			if(4)
+				owner.maxHealth = 10000
+			else
+				log_game("FailSafe: Nihil loaded with an incorrect number of phases. Using base behavior as a failsafe.")
+				to_chat(GLOB.admins, span_boldannounce("ERROR: The Jester of Nihil has an invalid number of phases (Should be 2-4). Phases numbered at [total_phases]."))
+		owner.adjustHealth(-maxHealth)
+		var/phase_mult = (1 / total_phases)
+		to_chat(world, "phase_mult = [phase_mult]")
+		owner.phase_health = (owner.maxHealth * phase_mult)
+		to_chat(world, "phase_health = [owner.phase_health]")
+		owner.ChangePhase()
 	qdel(src)
 
 /mob/living/simple_animal/hostile/aminion/nihil_portal/death(gibbed)
@@ -632,17 +639,19 @@
 		target_turf = get_turf(summonpoint)
 		landing_turf = get_step_towards(src, summonpoint)
 
-	for(var/mob/living/simple_animal/hostile/abnormality/A in GLOB.abnormality_mob_list) //breach the girls
-		if(!istype(A, magical_girl))
+	for(var/datum/abnormality/B in SSlobotomy_corp.all_abnormality_datums)
+		if(!ispath(B.abno_path, magical_girl))
 			continue
-		var/mob/living/simple_animal/hostile/abnormality/greed_king/girltarget = A //It shouldn't really matter which one is instanced here
-		if(girltarget.IsContained())
-			girltarget.NihilModeEnable() //Run this first to make sure they don't teleport or something
-			girltarget.BreachEffect()
+		if(B.current)
+			qdel(B.current) // Make sure its gone
+		B.RespawnAbno()
+		var/mob/living/simple_animal/hostile/abnormality/greed_king/girltarget = B.current
+		girltarget.EventStart()
+		girltarget.BreachEffect()
 		girltarget.toggle_ai(AI_OFF)
+		girltarget.environment_smash = ENVIRONMENT_SMASH_NONE
 		girltarget.forceMove(landing_turf)
 		girltarget.face_atom(target_turf)
-		girltarget.EventStart()
 		playsound(girltarget, 'sound/abnormalities/hatredqueen/attack.ogg', 60, TRUE, 10)
 
 /obj/effect/magical_girl_portal/heart
@@ -690,26 +699,27 @@
 	to_chat(owner, span_warning("The whole world feels dark and empty..."))
 	if(owner.client)
 		owner.add_client_colour(/datum/client_colour/monochrome)
+	owner.apply_damage(stacks, PALE_DAMAGE)
 
 /datum/status_effect/stacking/void/add_stacks(stacks_added)
 	. = ..()
 	if(!ishuman(owner))
 		return
 	var/mob/living/carbon/human/status_holder = owner
-	status_holder.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, -10 * stacks_added)
-	status_holder.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, -10 * stacks_added)
-	status_holder.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, -10 * stacks_added)
-	status_holder.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -10 * stacks_added)
+	status_holder.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, -5 * stacks_added)
+	status_holder.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, -5 * stacks_added)
+	status_holder.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, -5 * stacks_added)
+	status_holder.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -5 * stacks_added)
 
 /datum/status_effect/stacking/void/on_remove()
 	. = ..()
 	if(!ishuman(owner))
 		return
 	var/mob/living/carbon/human/status_holder = owner
-	status_holder.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, 10 * stacks)
-	status_holder.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, 10 * stacks)
-	status_holder.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, 10 * stacks)
-	status_holder.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, 10 * stacks)
+	status_holder.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, 5 * stacks)
+	status_holder.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, 5 * stacks)
+	status_holder.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, 5 * stacks)
+	status_holder.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, 5 * stacks)
 	to_chat(owner, span_nicegreen("You feel normal again."))
 	if(owner.client)
 		owner.remove_client_colour(/datum/client_colour/monochrome)
@@ -749,7 +759,8 @@
 /obj/structure/statue/petrified/magicalgirl
 	name = "magical girl statue"
 	desc = "A petrified magical girl."
-	max_integrity = 50
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	density = FALSE // So they dont get in the way of stuff.
 	var/list/girl_types = list(
 		/mob/living/simple_animal/hostile/abnormality/wrath_servant,
 		/mob/living/simple_animal/hostile/abnormality/hatred_queen,
@@ -757,35 +768,9 @@
 		/mob/living/simple_animal/hostile/abnormality/greed_king
 	)
 
-/obj/structure/statue/petrified/magicalgirl/deconstruct(disassembled = TRUE) //You HAVE to use force to smash it
-	qdel(src)
-
 /obj/structure/statue/petrified/magicalgirl/Destroy()
-	if(istype(src.loc, /mob/living/simple_animal/hostile/statue))
-		var/mob/living/simple_animal/hostile/statue/S = src.loc
-		forceMove(S.loc)
-		if(S.mind)
-			if(petrified_mob)
-				S.mind.transfer_to(petrified_mob)
-				to_chat(petrified_mob, span_notice("You slowly come back to your senses. You are in control of yourself again!"))
-		qdel(S)
-
-	for(var/obj/O in src)
-		O.forceMove(loc)
-
 	if(petrified_mob)
-		petrified_mob.status_flags &= ~GODMODE
-		petrified_mob.forceMove(loc)
-		REMOVE_TRAIT(petrified_mob, TRAIT_MUTE, STATUE_MUTE)
-		REMOVE_TRAIT(petrified_mob, TRAIT_NOBLEED, MAGIC_TRAIT)
-		petrified_mob.faction -= "mimic"
-		if(is_type_in_list(petrified_mob, girl_types))
-			var/mob/living/simple_animal/hostile/abnormality/greed_king/magicalgirl = petrified_mob //It shouldn't really matter which one is instanced here
-			magicalgirl.NihilIconUpdate()
-			magicalgirl.AIStatus = AI_ON
-			magicalgirl.stat = CONSCIOUS
-			magicalgirl.can_act = TRUE
-		petrified_mob = null
+		QDEL_NULL(petrified_mob)
 	return ..()
 
 //Mob Proc

@@ -104,6 +104,8 @@ SUBSYSTEM_DEF(lobotomy_events)
 		if(abno_ref.abno_path in JN_types)
 			if(!abno_ref.current)
 				abno_ref.RespawnAbno()
+			if(abno_ref.current in JN_breached) // prevents duplicates
+				continue
 			JN_breached += abno_ref.current
 
 /**
@@ -126,7 +128,7 @@ SUBSYSTEM_DEF(lobotomy_events)
 					prune_list += a
 			YY_breached -= prune_list
 			return TRUE
-		if(NIHIL) //We prune regarldess - Nihil is dead or despawned
+		if(NIHIL)
 			for(var/mob/living/simple_animal/hostile/abnormality/a in JN_breached)
 				if(QDELETED(a) || !istype(a))
 					prune_list += a

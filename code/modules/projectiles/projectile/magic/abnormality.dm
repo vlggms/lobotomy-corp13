@@ -403,23 +403,16 @@
 	desc = "A casing."
 	projectile_type = /obj/projectile/ego_bullet/abno_nihil
 	pellets = 4
-	variance = 16
+	variance = 40
 
 /obj/projectile/ego_bullet/abno_nihil
 	name = "dark energy"
 	icon_state = "nihil"
 	desc = "Just looking at it seems to suck the life out of you..."
-	damage = 7 //Fires 4
-	damage_type = WHITE_DAMAGE //deals both white and red
+	damage = 5 //Fires 4
+	damage_type = WHITE_DAMAGE
 	projectile_piercing = PASSMOB
 	hitsound = 'sound/abnormalities/nihil/filter.ogg'
-
-/obj/projectile/ego_bullet/abno_nihil/on_hit(atom/target, blocked = FALSE, pierce_hit)
-	. = ..()
-	if(!isliving(target))
-		return
-	var/mob/living/L = target
-	L.apply_void(1)
 
 /obj/projectile/lifestew_spit
 	name = "soup projectile"
