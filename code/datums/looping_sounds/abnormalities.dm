@@ -159,3 +159,7 @@
 	mid_length = 0.4 SECONDS
 	volume = 35
 	extra_range = 128
+
+/datum/looping_sound/qoh_beam/nihil
+	mid_sounds = 'sound/abnormalities/nihil/hatred_beam_loop.ogg'
+	end_sound = 'sound/abnormalities/nihil/hatred_beam_end.ogg'
