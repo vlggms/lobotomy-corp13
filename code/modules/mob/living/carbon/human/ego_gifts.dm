@@ -1522,7 +1522,7 @@
 /datum/ego_gifts/adoration
 	name = "Adoration"
 	icon_state = "adoration"
-	desc = "Increases the threshold of the corresponding armor's ability to 40%."
+	desc = "Increases the threshold of the corresponding armor's ability to 20%."
 	fortitude_bonus = 5
 	prudence_bonus = 10
 	temperance_bonus = -5

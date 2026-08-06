@@ -128,7 +128,7 @@
 	name = "adoration"
 	desc = "It is not as unpleasant to wear as it is to look at. \
 	In fact, it seems to give you an illusion of comfort and bravery."
-	special = "When the wearer takes 10+ RED damage and is under 20% HP, this armor will create a 100 HP RED shield for 3 seconds at the cost of lowering the wearer's speed for the same amount of time.\nThis ability has a 12 second cooldown before it can activate again."
+	special = "When the wearer takes 10+ RED damage and is under 10% HP, this armor will create a 100 HP RED shield for 3 seconds at the cost of lowering the wearer's speed for the same amount of time.\nThis ability has a 12 second cooldown before it can activate again."
 	icon_state = "adoration"
 	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 40, BLACK_DAMAGE = 70, PALE_DAMAGE = 50) // 230, can create a shield for the user
 	attribute_requirements = list(
@@ -164,9 +164,9 @@
 	var/mob/living/carbon/human/H = source
 	if(H.is_working)
 		return
-	var/health_threshold = 0.2
+	var/health_threshold = 0.1
 	if(istype(H.ego_gift_list["Helmet Slot"], /datum/ego_gifts/adoration))
-		health_threshold = 0.4
+		health_threshold = 0.2
 	if(H.health > health_threshold * H.maxHealth)
 		return
 
@@ -285,6 +285,7 @@
 	name = "nihil"
 	desc = "The jester retraced the steps of a path everybody would’ve taken. The jester always found itself at the end of that road. \
 	There was no way to know if they had gathered to become the jester, or if the jester had come to resemble them."
+	special = "This armor can become stronger by consuming 4 special items."
 	icon_state = "nihil"
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 70, BLACK_DAMAGE = 70, PALE_DAMAGE = 40) // 240 - 300, 15 per upgrade; caps out at 70,80,80,70
 	attribute_requirements = list(

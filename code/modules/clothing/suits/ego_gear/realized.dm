@@ -171,6 +171,7 @@ No Ability	260
 /obj/item/clothing/suit/armor/ego_gear/realization/stupor
 	name = "stupor"
 	desc = "Drink! Drink yourselves into a stupor! Foul tasting louts like you won't satisfy me until you're all as pickled as me, hah!" //Descriptions made by Anonmare
+	special = "The wearer is able to tolerate alcohol more and drinking it provides a healing effect that. The latter effect gets stronger the more intoxicated they are."
 	icon_state = "stupor" //Art by TemperanceTempy
 	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 30, BLACK_DAMAGE = 60, PALE_DAMAGE = 70)		//Defensive
 	hat = /obj/item/clothing/head/ego_hat/stupor
@@ -199,6 +200,7 @@ No Ability	260
 /obj/item/clothing/suit/armor/ego_gear/realization/eulogy
 	name = "solemn eulogy"
 	desc = "Death is not extinguishing the light, it is putting out the lamp as dawn has come."
+	special = "While worn, this armor doubles the damage of Solemn Lament and Solemn Vow."
 	icon_state = "eulogy"
 	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 80, BLACK_DAMAGE = 80, PALE_DAMAGE = 50)
 
@@ -290,8 +292,8 @@ No Ability	260
 
 /obj/item/clothing/suit/armor/ego_gear/realization/woundedcourage
 	name = "wounded courage"
-	desc = "'Tis better to have loved and lost than never to have loved at all.\
-	Grants you the ability to use a Blind Rage in both hands and attack with both at the same time."
+	desc = "'Tis better to have loved and lost than never to have loved at all."
+	special = "The wearer can dual wield 2 Blind Rages."
 	icon_state = "woundedcourage"
 	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 20, BLACK_DAMAGE = 80, PALE_DAMAGE = 60)//vile stat spread		//Melee
 	flags_inv = HIDEJUMPSUIT | HIDEGLOVES | HIDESHOES
@@ -315,13 +317,10 @@ No Ability	260
 /obj/item/clothing/suit/armor/ego_gear/realization/eyes
 	name = "eyes of god"
 	desc = "And the eyes of god spoke: You will be saved."
+	special = "The wearer can sense it whenever an abnormality breaches."
 	icon_state = "eyes"
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 40, BLACK_DAMAGE = 80, PALE_DAMAGE = 60)		//Support
 	realized_ability = /obj/effect/proc_holder/ability/lamp
-
-/obj/item/clothing/suit/armor/ego_gear/realization/eyes/examine(mob/user)
-	. = ..()
-	. += "<span class='notice'>The wearer can sense it whenever an abnormality breaches.</span>"
 
 /obj/item/clothing/suit/armor/ego_gear/realization/eyes/equipped(mob/user, slot, initial = FALSE)
 	. = ..()
@@ -395,6 +394,7 @@ No Ability	260
 /obj/item/clothing/suit/armor/ego_gear/realization/nest
 	name = "living nest"
 	desc = "Grow eternally, let our nest reach the horizon!"
+	special = "The wearer passively spawns worms that infest enemies, increasing red damage taken."
 	icon_state = "nest"
 	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 40)		//Support
 	realized_ability = /obj/effect/proc_holder/ability/nest
@@ -485,9 +485,10 @@ No Ability	260
 /obj/item/clothing/suit/armor/ego_gear/realization/fallencolors
 	name = "fallen color"
 	desc = "Where does one go after falling into a black hole?"
+	special = "Causes a WHITE damage repulsion AOE when the wearer takes damage."
 	icon_state = "fallencolors"
 	realized_ability = /obj/effect/proc_holder/ability/aimed/blackhole
-	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 80, BLACK_DAMAGE = 80, PALE_DAMAGE = 60)		//Defensive
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 80, BLACK_DAMAGE = 80, PALE_DAMAGE = 50)		//Defensive
 	var/push_cooldown
 	var/push_cooldown_time = 2 SECONDS
 
