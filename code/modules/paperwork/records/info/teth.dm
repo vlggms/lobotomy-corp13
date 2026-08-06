@@ -57,7 +57,7 @@
 		"When the work result was Bad, the Qliphoth Counter lowered.",
 		"The Qliphoth Counter decreased every time an Abnormality escaped. However, it did not respond similarly to the escape of O-02-56.",
 		"When any work type apart from Insight was finished by an employee with Prudence Level 3 or higher, they suddenly fell into a delirious panic.",
-		"When the Qliphoth Counter reached 0, an employee with Prudence Level 3 or higher near Dinge-Dangle's containment unit ureported a sense of confusion as well as increased mental strain.",
+		"When the Qliphoth Counter reached 0, an employee with Prudence Level 3 or higher near Dinge-Dangle's containment unit reported a sense of confusion as well as increased mental strain.",
 		"When a delirious employee entered Dingle-Dangle's containment unit, they panicked",
 		"When an employee afflicted with delirium was panicking, they attempted to enter Dinge-Dangle's Containment Unit, thinking it was breaching.",
 		"When a delirious employee approached Dingle-Dangle, they were then slowly consumed by it."

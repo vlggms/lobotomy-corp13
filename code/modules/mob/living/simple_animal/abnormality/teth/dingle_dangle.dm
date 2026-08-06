@@ -249,7 +249,7 @@ GLOBAL_LIST_INIT(dingle_hallucination_list, list(
 
 /atom/movable/screen/alert/status_effect/dangle
 	name = "Delirious"
-	desc = "Your weakened mental state is causing you to see and hear things!"
+	desc = "Your weakened mental state is causing you to see, hear things, and take extra WHITE damage!"
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "delirious"
 
