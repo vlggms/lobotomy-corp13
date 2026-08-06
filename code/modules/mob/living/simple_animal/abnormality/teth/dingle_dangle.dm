@@ -88,7 +88,7 @@ GLOBAL_LIST_INIT(dingle_hallucination_list, list(
 	datum_reference.qliphoth_change(3)
 	safe = TRUE
 	var/list/targets = list()
-	var/turf/self_turf = src.loc
+	var/turf/self_turf = get_turf(src)
 	var/turf/inside = locate(self_turf.x+1, self_turf.y, self_turf.z)
 	var/turf/outside = locate(self_turf.x+3, self_turf.y-4, self_turf.z)
 	if(inside)
