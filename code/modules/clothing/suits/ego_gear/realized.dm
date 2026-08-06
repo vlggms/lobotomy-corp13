@@ -394,7 +394,7 @@ No Ability	260
 /obj/item/clothing/suit/armor/ego_gear/realization/nest
 	name = "living nest"
 	desc = "Grow eternally, let our nest reach the horizon!"
-	special = "The wearer passively spawns worms that infest enemies, increasing red damage taken."
+	special = "The wearer passively spawns worms that can infest enemies, weakening their RED resistance."
 	icon_state = "nest"
 	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 40)		//Support
 	realized_ability = /obj/effect/proc_holder/ability/nest
