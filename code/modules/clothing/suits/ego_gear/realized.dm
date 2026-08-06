@@ -171,7 +171,7 @@ No Ability	260
 /obj/item/clothing/suit/armor/ego_gear/realization/stupor
 	name = "stupor"
 	desc = "Drink! Drink yourselves into a stupor! Foul tasting louts like you won't satisfy me until you're all as pickled as me, hah!" //Descriptions made by Anonmare
-	special = "The wearer is able to tolerate alcohol more and drinking it provides a healing effect that. The latter effect gets stronger the more intoxicated they are."
+	special = "The wearer is able to tolerate alcohol more and drinking it provides a healing effect. The latter effect gets stronger the more intoxicated they are."
 	icon_state = "stupor" //Art by TemperanceTempy
 	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 30, BLACK_DAMAGE = 60, PALE_DAMAGE = 70)		//Defensive
 	hat = /obj/item/clothing/head/ego_hat/stupor
