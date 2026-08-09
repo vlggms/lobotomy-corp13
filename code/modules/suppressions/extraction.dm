@@ -186,6 +186,10 @@
 	return OpenFire(attacked_target)
 
 /mob/living/simple_animal/hostile/megafauna/arbiter/OpenFire(target)
+	if(QDELETED(target))
+		return
+	if(stat == DEAD)
+		return
 	if(charging)
 		return
 	if(client)
@@ -213,8 +217,6 @@
 // Fairy
 /mob/living/simple_animal/hostile/megafauna/arbiter/proc/FairyFire(atom/target)
 	if(charging)
-		return
-	if(QDELETED(target))
 		return
 	if(fairy_cooldown > world.time)
 		return
@@ -270,8 +272,6 @@
 // Key
 /mob/living/simple_animal/hostile/megafauna/arbiter/proc/KeyFire(atom/target)
 	if(charging)
-		return
-	if(QDELETED(target))
 		return
 	if(key_cooldown > world.time)
 		return
