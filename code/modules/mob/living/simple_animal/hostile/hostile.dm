@@ -258,22 +258,22 @@ GLOBAL_LIST_EMPTY(marked_players)
 			TryAttack()
 			if(QDELETED(src) || stat != CONSCIOUS)
 				return FALSE
-		if(ranged)
-			/*
-			* ranged cooldown has to be a minimum of 1 second because the npcpool
-			* only procs once per 2 seconds and this cooldown cannot cause it to
-			* proc twice between 2 seconds.
-			*/
-			var/stupidly_complicated_cooldown_calc = world.time - ranged_cooldown
-			if(stupidly_complicated_cooldown_calc > -SSnpcpool.wait)
-				//Our cooldown is less than the next check.
-				if(stupidly_complicated_cooldown_calc < 0)
-					// Try to call this before our next check in 2 SECONDS
-					addtimer(CALLBACK(src, PROC_REF(TakeAim), target), clamp(abs(stupidly_complicated_cooldown_calc) + rand(-1,5), 1, 1.99 SECONDS), TIMER_STOPPABLE)
-				else
-					// Just shootem now.
-					TakeAim(target)
 		if(!QDELETED(target))
+			if(ranged)
+				/*
+				* ranged cooldown has to be a minimum of 1 second because the npcpool
+				* only procs once per 2 seconds and this cooldown cannot cause it to
+				* proc twice between 2 seconds.
+				*/
+				var/stupidly_complicated_cooldown_calc = world.time - ranged_cooldown
+				if(stupidly_complicated_cooldown_calc > -SSnpcpool.wait)
+					//Our cooldown is less than the next check.
+					if(stupidly_complicated_cooldown_calc < 0)
+						// Try to call this before our next check in 2 SECONDS
+						addtimer(CALLBACK(src, PROC_REF(TakeAim), target), clamp(abs(stupidly_complicated_cooldown_calc) + rand(-1,5), 1, 1.99 SECONDS), TIMER_STOPPABLE)
+					else
+						// Just shootem now.
+						TakeAim(target)
 			if(!targets_from.Adjacent(target))
 				DestroyPathToTarget()
 		if(!MoveToTarget(possible_targets))     //if we lose our target
