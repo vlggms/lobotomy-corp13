@@ -73,7 +73,8 @@
 	if(stat != DEAD)
 		DamageEffect(amount, TOX)
 	if(amount < 0)
-		amount = min(0, amount * physiology.healing_mod)
+		if(physiology)
+			amount = min(0, amount * physiology.healing_mod)
 	. = ..()
 
 /mob/living/carbon/human/adjustFireLoss(amount, updating_health = TRUE, forced = FALSE, required_status)
@@ -87,8 +88,9 @@
 	. = ..()
 
 /mob/living/carbon/human/heal_overall_damage(brute = 0, burn = 0, stamina = 0, required_status, updating_health = TRUE)
-	brute  *= physiology.healing_mod
-	burn *= physiology.healing_mod
+	if(physiology)
+		brute  *= physiology.healing_mod
+		burn *= physiology.healing_mod
 	. = ..()
 
 /mob/living/carbon/human/proc/adjustSanityLoss(amount, forced = FALSE)
@@ -100,7 +102,8 @@
 		playsound(loc, 'sound/effects/sanity_damage.ogg', min(amount, 50), TRUE, -1)
 	else if(amount < 0)
 		HealingEffect("sanity")
-		amount = min(0, amount * physiology.healing_mod)
+		if(physiology)
+			amount = min(0, amount * physiology.healing_mod)
 	sanityloss = clamp(sanityloss + amount, 0, maxSanity)
 	if(HAS_TRAIT(src, TRAIT_SANITYIMMUNE))
 		sanityloss = 0
