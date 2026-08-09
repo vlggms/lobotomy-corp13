@@ -76,6 +76,7 @@
 	var/datum/looping_sound/arbiter_pillar_storm/stormloop
 	/// List of pillars that are about to get fired
 	var/list/storm_pillars = list()
+	/// The current Pillar
 	/// If TRUE - will stop repeating the ring effect around arbiter
 	var/stop_storm_effect = FALSE
 	// Ability variables
@@ -213,6 +214,8 @@
 /mob/living/simple_animal/hostile/megafauna/arbiter/proc/FairyFire(atom/target)
 	if(charging)
 		return
+	if(QDELETED(target))
+		return
 	if(fairy_cooldown > world.time)
 		return
 	fairy_cooldown = world.time + fairy_cooldown_time
@@ -267,6 +270,8 @@
 // Key
 /mob/living/simple_animal/hostile/megafauna/arbiter/proc/KeyFire(atom/target)
 	if(charging)
+		return
+	if(QDELETED(target))
 		return
 	if(key_cooldown > world.time)
 		return
