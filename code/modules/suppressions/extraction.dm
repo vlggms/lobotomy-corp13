@@ -186,9 +186,11 @@
 	return OpenFire(attacked_target)
 
 /mob/living/simple_animal/hostile/megafauna/arbiter/OpenFire(atom/target)
-	if(QDELETED(target))
+	if(QDELETED(src))
 		return
 	if(stat == DEAD)
+		return
+	if(QDELETED(target))
 		return
 	if(charging)
 		return
