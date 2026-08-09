@@ -138,7 +138,8 @@
 /mob/living/simple_animal/hostile/abnormality/censored/OpenFire()
 	if(!can_act)
 		return
-
+	to_chat(world, "bouta blow")
+	SLEEP_CHECK_DEATH(50)
 	if(client)
 		switch(chosen_attack)
 			if(1)
