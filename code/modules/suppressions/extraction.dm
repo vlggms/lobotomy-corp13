@@ -76,6 +76,8 @@
 	var/datum/looping_sound/arbiter_pillar_storm/stormloop
 	/// List of pillars that are about to get fired
 	var/list/storm_pillars = list()
+	/// The current Pillar
+	var/obj/pillar = null
 	/// If TRUE - will stop repeating the ring effect around arbiter
 	var/stop_storm_effect = FALSE
 	// Ability variables
@@ -124,6 +126,7 @@
 
 /mob/living/simple_animal/hostile/megafauna/arbiter/Destroy()
 	StopPillarStorm()
+	QDEL_NULL(pillar)
 	QDEL_NULL(stormloop)
 	return ..()
 
@@ -213,6 +216,8 @@
 /mob/living/simple_animal/hostile/megafauna/arbiter/proc/FairyFire(atom/target)
 	if(charging)
 		return
+	if(QDELETED(target))
+		return
 	if(fairy_cooldown > world.time)
 		return
 	fairy_cooldown = world.time + fairy_cooldown_time
@@ -268,6 +273,8 @@
 /mob/living/simple_animal/hostile/megafauna/arbiter/proc/KeyFire(atom/target)
 	if(charging)
 		return
+	if(QDELETED(target))
+		return
 	if(key_cooldown > world.time)
 		return
 	key_cooldown = world.time + key_cooldown_time
@@ -303,6 +310,7 @@
 	playsound(get_turf(src), 'sound/magic/arbiter/pillar_start.ogg', 75, FALSE, 12)
 
 	var/obj/projectile/P = new projectile_type(start_loc)
+	pillar = P
 	P.starting = start_loc
 	P.firer = src
 	P.fired_from = src
@@ -313,7 +321,7 @@
 	addtimer(CALLBACK (P, TYPE_PROC_REF(/obj/projectile, fire)), 0.8 SECONDS)
 
 	SLEEP_CHECK_DEATH(0.8 SECONDS)
-
+	pillar = null
 	icon_state = "arbiter_fairy"
 
 	SLEEP_CHECK_DEATH(1 SECONDS)
