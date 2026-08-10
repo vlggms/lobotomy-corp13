@@ -298,12 +298,12 @@
 		to_chat(user, "<span class ='userdanger'>You hit yourself over the head!</span>")
 
 		user.Paralyze(knockdown_time_carbon * force)
-		user.deal_damage(stamina_damage, STAMINA, flags = (DAMAGE_FORCED | DAMAGE_NO_SPREAD), def_zone = BODY_ZONE_HEAD)
+		user.deal_damage(stamina_damage, STAMINA, flags = (DAMAGE_NO_SPREAD), def_zone = BODY_ZONE_HEAD)
 
 		additional_effects_carbon(user) // user is the target here
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
-			H.deal_damage(2*force, BRUTE, flags = (DAMAGE_FORCED | DAMAGE_NO_SPREAD), def_zone = BODY_ZONE_HEAD)
+			H.deal_damage(2*force, BRUTE, flags = (DAMAGE_NO_SPREAD), def_zone = BODY_ZONE_HEAD)
 		else
 			user.take_bodypart_damage(2*force)
 		return

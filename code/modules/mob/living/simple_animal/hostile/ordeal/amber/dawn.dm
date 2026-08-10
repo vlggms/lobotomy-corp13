@@ -354,7 +354,7 @@
 	var/bug_spawned = feeding_stage + 2 //Should go 3,4,5 bugs then explode, for a total of 12 bugs per body over 4.5 minutes.
 	feeding_duration = world.time + (feeding_interval)
 	feeding_stage++
-	H.deal_damage(feeding_stage * 3, RED_DAMAGE, flags = (DAMAGE_FORCED))
+	H.deal_damage(feeding_stage * 3, RED_DAMAGE)
 	visible_message(span_danger("[feeding_stage] bugs eat their way out of [H]'s body!"))
 	playsound(get_turf(src), 'sound/effects/ordeals/amber/dawn_dig_out.ogg', 25, 1)
 	if(H.stat != DEAD)

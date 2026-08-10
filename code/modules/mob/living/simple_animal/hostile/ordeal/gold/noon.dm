@@ -321,7 +321,7 @@
 				SLEEP_CHECK_DEATH(3)
 				TH.attack_animal(src)
 				for(var/mob/living/carbon/human/H in view(7, get_turf(src)))
-					H.deal_damage(7, WHITE_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL))
+					H.deal_damage(7, WHITE_DAMAGE, src, attack_type = (ATTACK_TYPE_SPECIAL))
 			if(!targets_from.Adjacent(TH) || QDELETED(TH) || TH.health > 0)
 				finishing = FALSE
 				return

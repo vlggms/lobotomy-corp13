@@ -199,7 +199,7 @@
 		user.Paralyze(60)
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
-			H.deal_damage(2*force, BRUTE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_OTHER), def_zone = BODY_ZONE_HEAD)
+			H.deal_damage(2*force, BRUTE, attack_type = (ATTACK_TYPE_OTHER), def_zone = BODY_ZONE_HEAD)
 		else
 			user.take_bodypart_damage(2*force)
 		return

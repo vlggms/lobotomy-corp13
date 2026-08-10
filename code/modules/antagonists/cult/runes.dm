@@ -153,7 +153,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 			if(invocation)
 				L.say(invocation, language = /datum/language/common, ignore_spam = TRUE, forced = "cult invocation")
 			if(invoke_damage)
-				L.deal_damage(invoke_damage, BRUTE, flags = (DAMAGE_FORCED))
+				L.deal_damage(invoke_damage, BRUTE)
 				to_chat(L, "<span class='cult italic'>[src] saps your strength!</span>")
 		else if(istype(M, /obj/item/toy/plush/narplush))
 			var/obj/item/toy/plush/narplush/P = M
@@ -633,7 +633,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 	barrier.Toggle()
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
-		C.deal_damage(2, BRUTE, flags = (DAMAGE_FORCED), def_zone = pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
+		C.deal_damage(2, BRUTE, def_zone = pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
 
 //Rite of Joined Souls: Summons a single cultist.
 /obj/effect/rune/summon
@@ -819,7 +819,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 		while(!QDELETED(src) && !QDELETED(user) && !QDELETED(new_human) && (user in T))
 			if(user.stat != CONSCIOUS || HAS_TRAIT(new_human, TRAIT_CRITICAL_CONDITION))
 				break
-			user.deal_damage(0.1, BRUTE, flags = (DAMAGE_FORCED))
+			user.deal_damage(0.1, BRUTE)
 			sleep(1)
 
 		qdel(N)

@@ -32,7 +32,7 @@
 	else //They messed up
 		to_chat(user, span_userdanger("HA! You won't get rid of me that easily!"))
 		playsound(get_turf(user), 'sound/abnormalities/someonesportrait/panic.ogg', 40, FALSE, -5)
-		user.deal_damage(999, WHITE_DAMAGE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL | ATTACK_TYPE_ENVIRONMENT))//DIE!
+		user.deal_damage(999, WHITE_DAMAGE, attack_type = (ATTACK_TYPE_SPECIAL | ATTACK_TYPE_ENVIRONMENT))//DIE!
 		return
 
 // Status Effects

@@ -89,7 +89,7 @@
 	for(var/mob/living/L in range(15, target_c))
 		if(faction_check_mob(L))
 			continue
-		L.deal_damage(10, WHITE_DAMAGE, flags = (DAMAGE_FORCED))
+		L.deal_damage(10, WHITE_DAMAGE)
 	for(var/obj/machinery/computer/abnormality/A in urange(15, target_c))
 		if(A.can_meltdown && !A.meltdown && A.datum_reference && A.datum_reference.current && A.datum_reference.qliphoth_meter)
 			A.datum_reference.qliphoth_change(pick(-999))

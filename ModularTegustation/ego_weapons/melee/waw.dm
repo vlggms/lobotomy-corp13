@@ -432,7 +432,7 @@
 				if(user.faction_check_mob(C) && !vine_damage_bonus)
 					continue
 				new /obj/effect/temp_visual/vinespike(get_turf(C))
-				C.deal_damage(vine_damage + vine_damage_bonus, BLACK_DAMAGE, user, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL))
+				C.deal_damage(vine_damage + vine_damage_bonus, BLACK_DAMAGE, user, attack_type = (ATTACK_TYPE_SPECIAL))
 				affected_mobs += 1
 			playsound(loc, 'sound/creatures/venus_trap_hurt.ogg', min(75, affected_mobs * 15), TRUE, round( affected_mobs * 0.5))
 		AlterMoveResist(user, 0.4)
@@ -1806,17 +1806,17 @@
 	force = 28
 	switch(chosen_style)
 		if("red")
-			user.deal_damage(30, RED_DAMAGE, flags = (DAMAGE_FORCED))
+			user.deal_damage(30, RED_DAMAGE)
 			damtype = RED_DAMAGE
 			to_chat(user, span_notice("Your bones are painfully sculpted to fit a muscular claw."))
 			hitsound = 'sound/weapons/bladeslice.ogg'
 		if("white")
-			user.deal_damage(30, WHITE_DAMAGE, flags = (DAMAGE_FORCED))
+			user.deal_damage(30, WHITE_DAMAGE)
 			damtype = WHITE_DAMAGE
 			to_chat(user, span_notice("Your angst is plastered onto your arm."))
 			hitsound = 'sound/effects/hit_kick.ogg'
 		if("black")
-			user.deal_damage(30, BLACK_DAMAGE, flags = (DAMAGE_FORCED))
+			user.deal_damage(30, BLACK_DAMAGE)
 			damtype = BLACK_DAMAGE
 			to_chat(user, span_notice("Bristles are painfully ejected from your arm, filled with hate."))
 			hitsound = 'sound/weapons/ego/spear1.ogg'

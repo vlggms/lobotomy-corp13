@@ -37,7 +37,7 @@
 	for(var/mob/living/L in view(2, src))
 		if(!faction_check_mob(L))
 			new /obj/effect/temp_visual/revenant(get_turf(L))
-			L.deal_damage(3, BLACK_DAMAGE, src, flags = (DAMAGE_FORCED))
+			L.deal_damage(3, BLACK_DAMAGE, src)
 
 /mob/living/simple_animal/hostile/ordeal/violet_monolith/death(gibbed)
 	density = FALSE

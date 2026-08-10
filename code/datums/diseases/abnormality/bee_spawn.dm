@@ -22,7 +22,7 @@
 		return
 
 	var/mob/living/carbon/human/H = affected_mob
-	H.deal_damage(round(stage/2), RED_DAMAGE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_STATUS))
+	H.deal_damage(round(stage/2), RED_DAMAGE, attack_type = (ATTACK_TYPE_STATUS))
 
 	if(H.health <= 0)
 		var/turf/T = get_turf(H)

@@ -115,7 +115,7 @@
 /mob/living/simple_animal/hostile/abnormality/schadenfreude/Worktick(mob/living/carbon/human/user)
 	. = ..()
 	if(total_players == 1)
-		user.deal_damage(1, RED_DAMAGE, flags = (DAMAGE_FORCED))
+		user.deal_damage(1, RED_DAMAGE)
 
 /mob/living/simple_animal/hostile/abnormality/schadenfreude/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()

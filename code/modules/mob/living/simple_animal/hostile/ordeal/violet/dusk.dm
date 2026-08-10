@@ -92,7 +92,7 @@
 	icon_state = "violet_dusk"
 	playsound(get_turf(src), 'sound/effects/ordeals/violet/midnight_white_attack.ogg', 50, FALSE, 32)
 	for(var/turf/T in range(4, src))
-		HurtInTurf(T, list(), 30, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL))
+		HurtInTurf(T, list(), 30, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, attack_type = (ATTACK_TYPE_SPECIAL))
 		new /obj/effect/temp_visual/revenant(T)
 	SSlobotomy_corp.InitiateMeltdown(round(SSlobotomy_corp.qliphoth_meltdown_amount/3)+1, TRUE)
 	if(teleport_arms)

@@ -50,7 +50,7 @@
 			H.add_splatter_floor(get_turf(src), TRUE)
 		var/thesound = pick(pickable_sounds)
 		playsound(get_turf(H), thesound, 50, 0, 5)
-	H.deal_damage(damage_to_deal, PALE_DAMAGE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_STATUS))
+	H.deal_damage(damage_to_deal, PALE_DAMAGE, attack_type = (ATTACK_TYPE_STATUS))
 
 
 	if((stage >= max_stages) && prob(H.health * 0.3))

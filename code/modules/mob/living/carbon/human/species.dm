@@ -1628,7 +1628,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 	var/final_damage = damage_amount
 
-	var/piercing = flags & DAMAGE_PIERCING
+	var/piercing = flags & DAMAGE_FORCED
 
 	switch(damage_type)
 		if(BRUTE, MELEE, BULLET, BOMB, ACID)
@@ -1896,7 +1896,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			humi.emote("scream")
 
 		// Apply the damage to all body parts
-		humi.deal_damage(burn_damage, FIRE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_ENVIRONMENT))
+		humi.deal_damage(burn_damage, FIRE, attack_type = (ATTACK_TYPE_ENVIRONMENT))
 
 	// Apply some burn / brute damage to the body (Dependent if the person is hulk or not)
 	var/is_hulk = HAS_TRAIT(humi, TRAIT_HULK)
@@ -1908,11 +1908,11 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		var/damage_mod = coldmod * humi.physiology.cold_mod * (is_hulk ? HULK_COLD_DAMAGE_MOD : 1)
 		switch(humi.coretemperature)
 			if(-INFINITY to 119)
-				humi.deal_damage(COLD_DAMAGE_LEVEL_3 * damage_mod, damage_type, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_ENVIRONMENT))
+				humi.deal_damage(COLD_DAMAGE_LEVEL_3 * damage_mod, damage_type, attack_type = (ATTACK_TYPE_ENVIRONMENT))
 			if(120 to 200)
-				humi.deal_damage(COLD_DAMAGE_LEVEL_2 * damage_mod, damage_type, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_ENVIRONMENT))
+				humi.deal_damage(COLD_DAMAGE_LEVEL_2 * damage_mod, damage_type, attack_type = (ATTACK_TYPE_ENVIRONMENT))
 			else
-				humi.deal_damage(COLD_DAMAGE_LEVEL_1 * damage_mod, damage_type, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_ENVIRONMENT))
+				humi.deal_damage(COLD_DAMAGE_LEVEL_1 * damage_mod, damage_type, attack_type = (ATTACK_TYPE_ENVIRONMENT))
 
 
 /**
@@ -1955,7 +1955,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	if(humi.bodytemperature > BODYTEMP_HEAT_WOUND_LIMIT + 2800)
 		burn_damage = HEAT_DAMAGE_LEVEL_3
 
-	humi.deal_damage(burn_damage, FIRE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_ENVIRONMENT), def_zone = bodypart)
+	humi.deal_damage(burn_damage, FIRE, attack_type = (ATTACK_TYPE_ENVIRONMENT), def_zone = bodypart)
 
 /// Handle the air pressure of the environment
 /datum/species/proc/handle_environment_pressure(datum/gas_mixture/environment, mob/living/carbon/human/H)
@@ -2075,7 +2075,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			H.adjust_bodytemperature(BODYTEMP_HEATING_MAX + (H.fire_stacks * 12))
 */
 		if(thermal_protection <= FIRE_SUIT_MAX_TEMP_PROTECT || no_protection)
-			H.deal_damage(2, FIRE, flags = (DAMAGE_FORCED))
+			H.deal_damage(2, FIRE)
 
 /datum/species/proc/CanIgniteMob(mob/living/carbon/human/H)
 	if(HAS_TRAIT(H, TRAIT_NOFIRE))

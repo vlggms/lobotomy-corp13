@@ -48,7 +48,7 @@
 			to_chat(A, span_danger("You [atk_verb] [D]!"))
 			playsound(get_turf(D), 'sound/weapons/punch1.ogg', 40, TRUE, -1)
 			D.deal_damage(rand(5,10), A.get_attack_type(), source = A, attack_type = (ATTACK_TYPE_MELEE), def_zone = BODY_ZONE_HEAD)
-			A.deal_damage(rand(5,10), A.get_attack_type(), flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_OTHER), def_zone = BODY_ZONE_HEAD)
+			A.deal_damage(rand(5,10), A.get_attack_type(), attack_type = (ATTACK_TYPE_OTHER), def_zone = BODY_ZONE_HEAD)
 			if (iscarbon(D))
 				var/mob/living/carbon/defender = D
 				if(!istype(defender.head,/obj/item/clothing/head/helmet/) && !istype(defender.head,/obj/item/clothing/head/hardhat))

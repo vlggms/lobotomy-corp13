@@ -63,7 +63,7 @@
 		span_hear("You hear a dull thud!"))
 	log_combat(owner, owner, "bopped", src.name, "(self)")
 	owner.do_attack_animation(owner)
-	owner.deal_damage(100, STAMINA, flags = (DAMAGE_FORCED))
+	owner.deal_damage(100, STAMINA)
 	owner.Knockdown(10)
 	qdel(src)
 

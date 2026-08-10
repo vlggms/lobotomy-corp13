@@ -303,4 +303,4 @@
 		min_next_adrenaline = world.time + rand(10, 20)
 		to_chat(joyful, "<span class='userdanger'>This pain... Brings us such joy...</span>")
 		joyful.heal_overall_damage(regen_amount*regen_mult, regen_amount*regen_mult, regen_amount*regen_mult, BODYPART_ORGANIC)
-		joyful.deal_damage(regen_amount, WHITE_DAMAGE, flags = (DAMAGE_FORCED))
+		joyful.deal_damage(regen_amount, WHITE_DAMAGE)

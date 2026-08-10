@@ -58,14 +58,14 @@
 		throw_alert("alien_fire", /atom/movable/screen/alert/alien_fire)
 		switch(bodytemperature)
 			if(360 to 400)
-				deal_damage(HEAT_DAMAGE_LEVEL_1, FIRE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_ENVIRONMENT))
+				deal_damage(HEAT_DAMAGE_LEVEL_1, FIRE, attack_type = (ATTACK_TYPE_ENVIRONMENT))
 			if(400 to 460)
-				deal_damage(HEAT_DAMAGE_LEVEL_2, FIRE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_ENVIRONMENT))
+				deal_damage(HEAT_DAMAGE_LEVEL_2, FIRE, attack_type = (ATTACK_TYPE_ENVIRONMENT))
 			if(460 to INFINITY)
 				if(on_fire)
-					deal_damage(HEAT_DAMAGE_LEVEL_3, FIRE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_ENVIRONMENT))
+					deal_damage(HEAT_DAMAGE_LEVEL_3, FIRE, attack_type = (ATTACK_TYPE_ENVIRONMENT))
 				else
-					deal_damage(HEAT_DAMAGE_LEVEL_2, FIRE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_ENVIRONMENT))
+					deal_damage(HEAT_DAMAGE_LEVEL_2, FIRE, attack_type = (ATTACK_TYPE_ENVIRONMENT))
 	else
 		clear_alert("alien_fire")
 

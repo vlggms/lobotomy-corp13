@@ -831,7 +831,7 @@
 		for(var/mob/living/L in T)
 			if(faction_check_mob(L))
 				continue
-			L.deal_damage(bomb_damage, BLACK_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_RANGED))
+			L.deal_damage(bomb_damage, BLACK_DAMAGE, src, attack_type = (ATTACK_TYPE_RANGED))
 			if(ishuman(L))
 				Finisher(L)
 			L.apply_dark_flame(8)
@@ -1463,7 +1463,7 @@
 		for(var/mob/living/L in T)
 			if(faction_check_mob(L))
 				continue
-			L.deal_damage(bomb_damage, BLACK_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL))
+			L.deal_damage(bomb_damage, BLACK_DAMAGE, src, attack_type = (ATTACK_TYPE_SPECIAL))
 			L.apply_dark_flame(10)
 
 /mob/living/simple_animal/hostile/aminion/willowisp/death()

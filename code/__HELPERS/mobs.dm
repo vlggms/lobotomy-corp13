@@ -660,7 +660,7 @@ GLOBAL_LIST_EMPTY(species_list)
  * * hurt_structure (optional) If this damage applies to structures as well.
  * * break_not_destroy (optional) If this is TRUE, then the damage will not DESTROY structures, only break them.
  * * attack_direction (optional) Is the direction of the attack relative to the mecha that gets hit by this attack, for directional armor.
- * * flags (optional) Bitflags from code\__DEFINES\damage.dm. For example, flags = (DAMAGE_FORCED | DAMAGE_PIERCING) will prevent the damage from being cancelled by a PreDamageReaction() and will ignore godmode and armour/damagecoeff effects on damage.
+ * * flags (optional) Bitflags from code\__DEFINES\damage.dm. For example, flags = (DAMAGE_WHITE_HEALABLE | DAMAGE_FORCED) will cause the damage to heal panicking humans and will ignore godmode and armour/damagecoeff effects on damage.
  * * attack_type (optional) Bitflags from code\__DEFINES\damage.dm. For example, attack_type = (ATTACK_TYPE_MELEE) will mark the attack as a melee attack, or (ATTACK_TYPE_RANGED | ATTACK_TYPE_SPECIAL) as both ranged and special.
  *
  * returns:

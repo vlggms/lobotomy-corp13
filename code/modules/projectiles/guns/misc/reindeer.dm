@@ -160,7 +160,7 @@
 	return
 
 /obj/item/gun/mindwhip/proc/on_beam_tick(mob/living/target)
-	target.deal_damage(beam_damage, damtype, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_RANGED | ATTACK_TYPE_SPECIAL))
+	target.deal_damage(beam_damage, damtype, attack_type = (ATTACK_TYPE_RANGED | ATTACK_TYPE_SPECIAL))
 	for(var/mob/living/carbon/human/L in range(5, get_turf(src)))
 		L.adjustSanityLoss(-1)	//Sanity healing for those around, but heals less than the healbeam
 		new /obj/effect/temp_visual/heal(get_turf(L), "#80F5FF")

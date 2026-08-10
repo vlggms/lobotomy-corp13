@@ -602,7 +602,7 @@ GLOBAL_LIST_EMPTY(apostles)
 			for(var/mob/living/L in AT)
 				if(faction_check_mob(L))
 					continue
-				L.deal_damage(staff_damage, WHITE_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL))
+				L.deal_damage(staff_damage, WHITE_DAMAGE, src, attack_type = (ATTACK_TYPE_SPECIAL))
 				if(ishuman(L))
 					var/mob/living/carbon/human/H = L
 					if(H.sanity_lost)

@@ -74,7 +74,7 @@
 	for(var/mob/living/L in view(2, src))
 		if(!faction_check_mob(L))
 			new /obj/effect/temp_visual/revenant(get_turf(L))
-			L.deal_damage(2, BLACK_DAMAGE, src, flags = (DAMAGE_FORCED))
+			L.deal_damage(2, BLACK_DAMAGE, src)
 	return TRUE
 
 /mob/living/simple_animal/hostile/ordeal/violet_fruit/proc/ReleaseDeathGas()
@@ -91,7 +91,7 @@
 	for(var/mob/living/L in livinginrange(15, target_c))
 		if(faction_check_mob(L))
 			continue
-		L.deal_damage(12, WHITE_DAMAGE, flags = (DAMAGE_FORCED))
+		L.deal_damage(12, WHITE_DAMAGE)
 	for(var/obj/machinery/computer/abnormality/A in urange(15, target_c))
 		if(A.can_meltdown && !A.meltdown && A.datum_reference && A.datum_reference.current && A.datum_reference.qliphoth_meter)
 			A.datum_reference.qliphoth_change(pick(-999))

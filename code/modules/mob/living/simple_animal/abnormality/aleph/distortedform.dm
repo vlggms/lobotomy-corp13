@@ -564,7 +564,7 @@
 				continue
 			if(L.stat == DEAD)
 				continue
-			L.deal_damage(5, WHITE_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL))
+			L.deal_damage(5, WHITE_DAMAGE, src, attack_type = (ATTACK_TYPE_SPECIAL))
 		SLEEP_CHECK_DEATH(3)
 	if(!particle_screech)
 		return
@@ -981,7 +981,7 @@
 			continue
 		if(!ishuman(L))
 			playsound(get_turf(L), 'sound/abnormalities/crumbling/attack.ogg', 50, FALSE)
-			L.deal_damage(50, PALE_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL))
+			L.deal_damage(50, PALE_DAMAGE, src, attack_type = (ATTACK_TYPE_SPECIAL))
 			new /obj/effect/temp_visual/slice(get_turf(L))
 		else
 			var/mob/living/carbon/human/H = L

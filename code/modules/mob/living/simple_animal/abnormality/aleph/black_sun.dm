@@ -188,7 +188,7 @@
 			continue
 		if(faction_check_mob(L))
 			continue
-		L.deal_damage(3, WHITE_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_ENVIRONMENT | ATTACK_TYPE_SPECIAL))
+		L.deal_damage(3, WHITE_DAMAGE, src, attack_type = (ATTACK_TYPE_ENVIRONMENT | ATTACK_TYPE_SPECIAL))
 		new /obj/effect/temp_visual/bluespace_fissure(get_turf(L))
 
 	if(prob(10))

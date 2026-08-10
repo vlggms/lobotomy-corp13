@@ -207,7 +207,7 @@
 			L.deal_damage(dash_damage * 0.1, FIRE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 			new /obj/effect/temp_visual/cleave(get_turf(L))
 			if(L.sanity_lost) // TODO: TEMPORARY AS HELL
-				L.deal_damage(999, FIRE, src, flags = (DAMAGE_FORCED))
+				L.deal_damage(999, FIRE, src)
 			if(!(L in been_hit))
 				been_hit += L
 

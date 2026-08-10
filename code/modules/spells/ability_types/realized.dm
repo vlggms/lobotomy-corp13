@@ -88,7 +88,7 @@
 			continue
 		if(L.stat == DEAD)
 			continue
-		L.deal_damage(damage_amount, WHITE_DAMAGE, user, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL))
+		L.deal_damage(damage_amount, WHITE_DAMAGE, user, attack_type = (ATTACK_TYPE_SPECIAL))
 		new /obj/effect/temp_visual/revenant(get_turf(L))
 		if(ishostile(L))
 			var/mob/living/simple_animal/hostile/H = L
@@ -1020,7 +1020,7 @@
 /datum/status_effect/galaxy_gift/proc/Pop()
 	var/damage_mult = LAZYLEN(gifted)
 	for(var/mob/living/carbon/human/H in gifted)
-		H.deal_damage(base_dmg_amt*damage_mult, BLACK_DAMAGE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL))
+		H.deal_damage(base_dmg_amt*damage_mult, BLACK_DAMAGE, attack_type = (ATTACK_TYPE_SPECIAL))
 		H.remove_status_effect(/datum/status_effect/galaxy_gift)
 		new /obj/effect/temp_visual/pebblecrack(get_turf(H))
 		playsound(get_turf(H), "shatter", 50, TRUE)
@@ -1235,7 +1235,7 @@
 	var/mob/living/carbon/human/H = owner
 	var/list/damtypes = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 	var/damage = pick(damtypes)
-	H.deal_damage(4, damage, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_STATUS))
+	H.deal_damage(4, damage, attack_type = (ATTACK_TYPE_STATUS))
 
 /datum/status_effect/flesh1/on_remove()
 	. = ..()

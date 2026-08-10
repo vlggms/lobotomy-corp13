@@ -169,7 +169,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/Worktick(mob/living/carbon/human/user)
 	if(bonusRed) // If you have bonus red damage to apply...
-		user.deal_damage(bonusRed, RED_DAMAGE, flags = (DAMAGE_FORCED))
+		user.deal_damage(bonusRed, RED_DAMAGE)
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/OnQliphothChange(mob/living/carbon/human/user)//woodsman icon change
@@ -277,7 +277,7 @@
 	for(var/mob/living/L in livinginview(10, src))
 		if(faction_check_mob(L))
 			continue
-		L.deal_damage(pulse_damage, RED_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL))
+		L.deal_damage(pulse_damage, RED_DAMAGE, src, attack_type = (ATTACK_TYPE_SPECIAL))
 
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/proc/EnableFire()
 	if(current_phase_num <= 1)

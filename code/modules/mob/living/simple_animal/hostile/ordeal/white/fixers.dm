@@ -87,7 +87,7 @@
 			if(faction_check_mob(L))
 				continue
 			new /obj/effect/temp_visual/revenant(get_turf(L))
-			L.deal_damage(pulse_damage, BLACK_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL))
+			L.deal_damage(pulse_damage, BLACK_DAMAGE, src, attack_type = (ATTACK_TYPE_SPECIAL))
 		SLEEP_CHECK_DEATH(5.6) // In total we wait for 2.8 seconds
 	playsound(src, 'sound/effects/ordeals/white/black_ability_end.ogg', 100, FALSE, 30)
 	for(var/obj/machinery/computer/abnormality/A in urange(current_pulse_range, src))
@@ -248,7 +248,7 @@
 		affected_turfs += TT
 		var/obj/effect/reusable_visual/RV = RVP.NewSmoke(TT, 5 SECONDS)
 		RV.name = "mental smoke"
-		been_hit = HurtInTurf(TT, been_hit, beam_direct_damage, WHITE_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_RANGED | ATTACK_TYPE_SPECIAL))
+		been_hit = HurtInTurf(TT, been_hit, beam_direct_damage, WHITE_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, attack_type = (ATTACK_TYPE_RANGED | ATTACK_TYPE_SPECIAL))
 
 	for(var/turf/TT in affected_turfs) // Remaining damage effect
 		BeamTurfEffect(TT, beam_overtime_damage)
@@ -256,7 +256,7 @@
 /mob/living/simple_animal/hostile/ordeal/white_fixer/proc/BeamTurfEffect(turf/T, damage = 10)
 	set waitfor = FALSE
 	for(var/i = 1 to 5)
-		HurtInTurf(T, list(), damage, WHITE_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_RANGED | ATTACK_TYPE_SPECIAL))
+		HurtInTurf(T, list(), damage, WHITE_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, attack_type = (ATTACK_TYPE_RANGED | ATTACK_TYPE_SPECIAL))
 		sleep(5)
 
 /mob/living/simple_animal/hostile/ordeal/white_fixer/proc/CircleBeam()

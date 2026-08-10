@@ -563,9 +563,9 @@
 			grab_victim.gib()
 		ReleaseGrab()
 		return
-	grab_victim.deal_damage(strangle_damage, BLACK_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
+	grab_victim.deal_damage(strangle_damage, BLACK_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 	if(oberon_mode)
-		grab_victim.deal_damage(strangle_damage_oberon, WHITE_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
+		grab_victim.deal_damage(strangle_damage_oberon, WHITE_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 	grab_victim.Immobilize(10)
 	playsound(get_turf(src), 'sound/abnormalities/nothingthere/hello_bam.ogg', 50, 0, 7)
 	playsound(get_turf(src), 'sound/abnormalities/nobodyis/strangle.ogg', 100, 0, 7)
@@ -579,10 +579,10 @@
 		if(4) //Apply double damage
 			playsound(get_turf(src), 'sound/effects/wounds/crackandbleed.ogg', 200, 0, 7)
 			to_chat(grab_victim, span_userdanger("It hurts so much!"))
-			grab_victim.deal_damage(strangle_damage, BLACK_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
+			grab_victim.deal_damage(strangle_damage, BLACK_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 		else //Apply ramping damage
 			playsound(get_turf(src), 'sound/effects/wounds/crackandbleed.ogg', 200, 0, 7)
-			grab_victim.deal_damage((strangle_damage * (count - 3)), BLACK_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
+			grab_victim.deal_damage((strangle_damage * (count - 3)), BLACK_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 	count += 1
 	if(grab_victim.sanity_lost) //This should prevent weird things like panics running away halfway through
 		grab_victim.Stun(10) //Immobilize does not stop AI controllers from moving, for some reason.

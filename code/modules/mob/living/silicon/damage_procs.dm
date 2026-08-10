@@ -12,7 +12,7 @@
 	if(!(damage_type in list(BRUTE, RED_DAMAGE, BLACK_DAMAGE, FIRE))) // Silicons will only take these damage types
 		return FALSE
 
-	if((!(flags & DAMAGE_FORCED)) && (!PreDamageReaction(damage_amount, damage_type, source, attack_type))) // If our forced argument isn't TRUE, then we expect to receive a TRUE from PreDamageReaction to continue the proc.
+	if(!PreDamageReaction(damage_amount, damage_type, source, attack_type)) // If our forced argument isn't TRUE, then we expect to receive a TRUE from PreDamageReaction to continue the proc.
 		return FALSE
 
 	// We will now send a signal that gives listeners the opportunity to cancel the damage being dealt. For some reason, in the original apply_damage, this happens before a "final damage" calculation, so I have chosen to preserve that behaviour.
@@ -25,7 +25,7 @@
 	if((isnull(blocked)) && (damage_type != BRUTE))
 		blocked = run_armor_check(null, damage_type)
 	var/hit_percent = (100-blocked)/100
-	var/bypass_resistance = flags & DAMAGE_PIERCING
+	var/bypass_resistance = flags & DAMAGE_FORCED
 
 	if(hit_percent <= 0 && !(bypass_resistance))
 		return FALSE

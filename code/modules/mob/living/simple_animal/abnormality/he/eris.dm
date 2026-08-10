@@ -145,7 +145,7 @@
 
 	//Lose sanity
 	for(var/mob/living/carbon/human/H in view(10, get_turf(src)))
-		H.deal_damage(girlboss_level*10, WHITE_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL))
+		H.deal_damage(girlboss_level*10, WHITE_DAMAGE, src, attack_type = (ATTACK_TYPE_SPECIAL))
 
 	SLEEP_CHECK_DEATH(10)
 	manual_emote("wipes her mouth with a hankerchief")

@@ -468,7 +468,7 @@
 /mob/living/proc/CanBeAttacked()
 	return TRUE
 
-/// Called by the deal_damage() wrapper when it doesn't receive DAMAGE_FORCED in its "flags" argument. Return TRUE to receive the damage, return FALSE to prevent damage from being taken.
+/// Called by the deal_damage() wrapper.. Return TRUE to receive the damage, return FALSE to prevent damage from being taken.
 // "Forced" damage will not call this, and thus you won't be able to stop it from happening with this proc. Look into COMPONENT_MOB_DENY_DAMAGE.
 // Consider that 'source' argument might be null and handle accordingly. This is often the case for status effects and mobs that qdel themselves after dealing their damage. I didn't want to handle it for all possible implementations, that would be restrictive.
 // The "attack_type" argument is a bitfield, and it is also optional. You can check here if you specifically don't want to react/want to react to certain attack types, or modify behaviour according to the type. Just remember that it may be null, and that you may have several attack types as well.

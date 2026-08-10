@@ -199,7 +199,7 @@
 /mob/living/simple_animal/hostile/aminion/umbrella/death(gibbed)
 	visible_message(span_notice("[src] falls to the ground as the umbrella closes in on itself!"))
 	if(friend)
-		friend.deal_damage(50, BLACK_DAMAGE, flags = (DAMAGE_FORCED | DAMAGE_UNTRACKABLE), attack_type = (ATTACK_TYPE_SPECIAL))
+		friend.deal_damage(50, BLACK_DAMAGE, flags = (DAMAGE_UNTRACKABLE), attack_type = (ATTACK_TYPE_SPECIAL))
 		friend.move_to_delay = clamp(move_to_delay + 1, 3, 7) //Slowdown
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)

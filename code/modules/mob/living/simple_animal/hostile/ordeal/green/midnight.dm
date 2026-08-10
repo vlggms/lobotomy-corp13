@@ -233,7 +233,7 @@
 				if(faction_check_mob(L))
 					continue
 				already_hit += L
-				L.deal_damage(laser_damage, BLACK_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL))
+				L.deal_damage(laser_damage, BLACK_DAMAGE, src, attack_type = (ATTACK_TYPE_SPECIAL))
 		SLEEP_CHECK_DEATH(0.25 SECONDS)
 	StopLaser()
 

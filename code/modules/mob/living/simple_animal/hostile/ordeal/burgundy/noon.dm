@@ -88,8 +88,8 @@
 		ReleaseGrab()
 		return
 	do_attack_animation(get_step(src, dir), no_effect = TRUE)
-	grab_victim.deal_damage(melee_damage_upper, RED_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
-	grab_victim.deal_damage(rupture_damage, BRUTE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
+	grab_victim.deal_damage(melee_damage_upper, RED_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
+	grab_victim.deal_damage(rupture_damage, BRUTE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 	grab_victim.Immobilize(10)
 	playsound(get_turf(src), 'sound/effects/ordeals/burgundy/flower_attack.ogg', 50, 0, 7)
 	playsound(get_turf(src), 'sound/effects/ordeals/burgundy/flower_kill.ogg', 50, 0, 7)
@@ -100,10 +100,10 @@
 		if(4)	//Apply double damage
 			playsound(get_turf(src), 'sound/effects/wounds/crackandbleed.ogg', 200, 0, 7)
 			to_chat(grab_victim, span_userdanger("It hurts so much!"))
-			grab_victim.deal_damage(rupture_damage, BRUTE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
+			grab_victim.deal_damage(rupture_damage, BRUTE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 		else	//Apply ramping damage
 			playsound(get_turf(src), 'sound/effects/wounds/crackandbleed.ogg', 200, 0, 7)
-			grab_victim.deal_damage((rupture_damage * (3 - count)), BRUTE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
+			grab_victim.deal_damage((rupture_damage * (3 - count)), BRUTE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 	count += 1
 	if(grab_victim.sanity_lost) //This should prevent weird things like panics running away halfway through
 		grab_victim.Stun(10) //Immobilize does not stop AI controllers from moving, for some reason.

@@ -236,7 +236,7 @@
 	. = ..()
 	if(user.health > (user.maxHealth*0.8))
 		datum_reference.qliphoth_change(1)
-		user.deal_damage(10, BLACK_DAMAGE, flags = (DAMAGE_FORCED))
+		user.deal_damage(10, BLACK_DAMAGE)
 		playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, TRUE)
 		say(pick(thunder_bird_lines))
 		user.electrocute_act(1, src, flags = SHOCK_NOSTUN)

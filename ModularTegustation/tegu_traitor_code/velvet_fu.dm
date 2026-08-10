@@ -105,7 +105,7 @@
 		owner.visible_message(span_danger("[owner] suddenly twists and turns, what a strange stance!"), "<b>You twist and turn, your twisted stance is done!</b>")
 		owner.mind.martial_art.streak = "twisted_stance"
 		H.adjustStaminaLoss(-40)
-		H.deal_damage(18, BRUTE, flags = (DAMAGE_FORCED), def_zone = BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
+		H.deal_damage(18, BRUTE, def_zone = BODY_ZONE_CHEST, wound_bonus = CANT_WOUND)
 
 /datum/martial_art/velvetfu/proc/twisted_stance(mob/living/carbon/user)
 	return // Empty return because we only want the button trigger
@@ -134,7 +134,7 @@
 	D.visible_message(span_danger("[A] headbutted [D]!"), \
 					span_userdanger("You're headbutted by [A]!"), span_hear("You hear a sickening sound of flesh hitting flesh!"), COMBAT_MESSAGE_RANGE, A)
 	to_chat(A, span_danger("You swiftly headbutt [D]!"))
-	A.deal_damage(15, BRUTE, flags = (DAMAGE_FORCED), def_zone = BODY_ZONE_HEAD, wound_bonus = CANT_WOUND)
+	A.deal_damage(15, BRUTE, def_zone = BODY_ZONE_HEAD, wound_bonus = CANT_WOUND)
 	A.adjustStaminaLoss(60)
 	if(prob(80))
 		if(!D.stat)

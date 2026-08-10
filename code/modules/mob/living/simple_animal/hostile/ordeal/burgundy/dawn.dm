@@ -128,7 +128,7 @@
 			if(L.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(L, TRAIT_NODEATH))
 				devour(L)
 				return
-			L.deal_damage(rupture_damage, BRUTE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_MELEE))
+			L.deal_damage(rupture_damage, BRUTE, src, attack_type = (ATTACK_TYPE_MELEE))
 		else
 			devour(L)
 

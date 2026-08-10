@@ -175,7 +175,7 @@
 /mob/living/simple_animal/hostile/abnormality/rose_sign/WorktickFailure(mob/living/carbon/human/user)
 	if(LAZYLEN(work_damages))//are there any children under work damages? Apply all of the damages!
 		for(var/damtype in work_damages)
-			user.deal_damage(work_damages[damtype], damtype, flags = (DAMAGE_FORCED))
+			user.deal_damage(work_damages[damtype], damtype)
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/rose_sign/proc/WorkSpeech(list/lines, list/speech_styles)
@@ -331,7 +331,7 @@
 	alpha = 1
 	for(var/mob/living/carbon/human/H in view(3, src))//big, big AOE
 		grabbed = TRUE
-		H.deal_damage(boom_damage, BLACK_DAMAGE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL))
+		H.deal_damage(boom_damage, BLACK_DAMAGE, attack_type = (ATTACK_TYPE_SPECIAL))
 		if(H.buckled)//Otherwise it would rip people off their crucifixes. Not too exploitable
 			continue
 		H.forceMove(get_turf(src))//pulls them all to the target

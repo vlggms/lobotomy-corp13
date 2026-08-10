@@ -15,7 +15,7 @@
 /datum/reagent/toxin/lc13_toxin/expose_mob(mob/living/exposed_mob, methods=VAPOR, reac_volume,  touch_protection=0)
 	. = ..()
 	reac_volume = round(reac_volume,0.1)
-	exposed_mob.deal_damage(min(round(0.4 * reac_volume, 0.1), damage*2), damtype, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_STATUS))
+	exposed_mob.deal_damage(min(round(0.4 * reac_volume, 0.1), damage*2), damtype, attack_type = (ATTACK_TYPE_STATUS))
 
 /datum/reagent/toxin/lc13_toxin/weak
 	name = "Diluted Red Toxin"

@@ -145,7 +145,6 @@
 
 /// While reflecting, all damage on us will be prevented. This is basically just keeping the original behaviour of STNWC: it used to set its coeffs to 0 while deflecting.
 /// On top of that, we will counterattack against certain kinds of attacks.
-// Mind, any damage that uses the DAMAGE_FORCED flag will punch through this.
 /mob/living/simple_animal/hostile/abnormality/so_that_no_cry/PreDamageReaction(damage_amount, damage_type, source, attack_type)
 	. = ..()
 	if(!damage_reflection || !isliving(source)) // Only execute the rest of the code if we're reflecting damage and we were provided with a source for it

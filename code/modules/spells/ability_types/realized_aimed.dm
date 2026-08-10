@@ -411,7 +411,7 @@
 			continue
 		if(L.stat == DEAD)
 			continue
-		L.deal_damage(ishuman(L) ? damage_amount*0.5 : damage_amount, RED_DAMAGE, flags = (DAMAGE_FORCED))
+		L.deal_damage(ishuman(L) ? damage_amount*0.5 : damage_amount, RED_DAMAGE)
 		if(ishostile(L))
 			var/mob/living/simple_animal/hostile/H = L
 			H.TemporarySpeedChange(damage_slowdown, 3 SECONDS) // Slow down

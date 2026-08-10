@@ -100,11 +100,11 @@
 		if(A in exceptions)
 			continue
 		new /obj/effect/temp_visual/sparks/quantum(A)
-		A.deal_damage(damage_dealt, BRUTE, source = src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL | ATTACK_TYPE_ENVIRONMENT))
+		A.deal_damage(damage_dealt, BRUTE, source = src, attack_type = (ATTACK_TYPE_SPECIAL | ATTACK_TYPE_ENVIRONMENT))
 
 	for(var/mob/living/L in GLOB.ordeal_list)
 		new /obj/effect/temp_visual/sparks/quantum(L)
-		L.deal_damage(damage_dealt, BRUTE, source = src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL | ATTACK_TYPE_ENVIRONMENT))
+		L.deal_damage(damage_dealt, BRUTE, source = src, attack_type = (ATTACK_TYPE_SPECIAL | ATTACK_TYPE_ENVIRONMENT))
 
 	for(var/mob/living/L in GLOB.abnormality_minion_list)
 		if(L in exceptions)

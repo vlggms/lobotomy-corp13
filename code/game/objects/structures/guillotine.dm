@@ -151,7 +151,7 @@
 					addtimer(CALLBACK(C, TYPE_PROC_REF(/mob, emote), "clap"), delay_offset * 0.3)
 					delay_offset++
 		else
-			H.deal_damage(15 * blade_sharpness, BRUTE, flags = (DAMAGE_FORCED), def_zone = head)
+			H.deal_damage(15 * blade_sharpness, BRUTE, def_zone = head)
 			log_combat(user, H, "dropped the blade on", src, " non-fatally")
 			H.emote("scream")
 

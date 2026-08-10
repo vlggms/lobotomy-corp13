@@ -22,7 +22,7 @@
 	if(do_after(H, 12, src))
 		to_chat(H,"<span class='warning'>You cover yourself in flames!</span>")
 		H.playsound_local(get_turf(H), 'sound/effects/burn.ogg', 100, 0)
-		H.deal_damage(5, RED_DAMAGE, flags = (DAMAGE_FORCED))
+		H.deal_damage(5, RED_DAMAGE)
 		H.adjust_fire_stacks(1)
 		H.IgniteMob()
 

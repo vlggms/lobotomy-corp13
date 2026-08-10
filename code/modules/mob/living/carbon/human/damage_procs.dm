@@ -4,7 +4,7 @@
 		var/datum/damage_type_shuffler/shuffler = GLOB.damage_type_shuffler
 		damage_type = shuffler.mapping_offense[damage_type]
 
-	if(!(flags & DAMAGE_FORCED) && (!PreDamageReaction(damage_amount, damage_type, source))) // If our forced argument isn't TRUE, then we expect to receive a TRUE from PreDamageReaction to continue the proc
+	if(!PreDamageReaction(damage_amount, damage_type, source)) // If our forced argument isn't TRUE, then we expect to receive a TRUE from PreDamageReaction to continue the proc
 		return FALSE
 
 	. = dna.species.apply_damage(src, damage_amount, damage_type, source, flags, attack_type, blocked, def_zone, wound_bonus, bare_wound_bonus, sharpness)

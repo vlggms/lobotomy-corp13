@@ -203,7 +203,7 @@
 		for(var/mob/living/H in T)
 			if(faction_check_mob(H))
 				continue
-			H.deal_damage(poison_damage, BLACK_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_ENVIRONMENT | ATTACK_TYPE_SPECIAL))
+			H.deal_damage(poison_damage, BLACK_DAMAGE, src, attack_type = (ATTACK_TYPE_ENVIRONMENT | ATTACK_TYPE_SPECIAL))
 			H.apply_venom(2)
 
 /mob/living/simple_animal/hostile/ordeal/snake_corrosion/PostDamageReaction(damage_amount, damage_type, source, attack_type)

@@ -384,7 +384,7 @@
 /datum/status_effect/display/parasite_tree_curse/proc/TransformOverride(mob/living/carbon/human/H)
 	if(H && H.has_status_effect(/datum/status_effect/display/melting_love_blessing))
 		to_chat(H, span_warning("You feel the pink slime dissolve your flesh before it becomes wood."))
-		H.deal_damage(270, BLACK_DAMAGE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL))
+		H.deal_damage(270, BLACK_DAMAGE, attack_type = (ATTACK_TYPE_SPECIAL))
 		H.remove_status_effect(/datum/status_effect/display/melting_love_blessing)
 		if(!H || H.stat == DEAD)
 			return TRUE

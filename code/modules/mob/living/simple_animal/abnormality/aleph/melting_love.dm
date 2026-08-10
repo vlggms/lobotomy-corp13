@@ -218,7 +218,7 @@
 /mob/living/simple_animal/hostile/abnormality/melting_love/proc/DissolveGifted(mob/living/carbon/C)
 	to_chat(C, span_userdanger("You feel like you are about to burst!"))
 	C.emote("scream")
-	C.deal_damage(270, BLACK_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_STATUS))
+	C.deal_damage(270, BLACK_DAMAGE, src, attack_type = (ATTACK_TYPE_STATUS))
 	C.remove_status_effect(STATUS_EFFECT_MELTYLOVE)
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/proc/UnregisterGiftedSignals(mob/living/carbon/human/user)
@@ -315,7 +315,7 @@
 
 /mob/living/simple_animal/hostile/aminion/slime/proc/decay()
 	to_chat(src, span_userdanger("You feel yourself falling apart..."))
-	src.deal_damage(decay_damage, BLACK_DAMAGE, flags = (DAMAGE_FORCED))
+	src.deal_damage(decay_damage, BLACK_DAMAGE)
 	if (stat != DEAD)
 		addtimer(CALLBACK(src, PROC_REF(decay)), decay_timer SECONDS, TIMER_STOPPABLE)
 

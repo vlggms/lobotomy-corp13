@@ -170,7 +170,7 @@
 				continue
 			if(istype(L, /mob/living/simple_animal/hostile/aminion/azure_hermit) || istype(L, /mob/living/simple_animal/hostile/aminion/azure_stave))
 				continue
-			L.deal_damage(30, WHITE_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL))
+			L.deal_damage(30, WHITE_DAMAGE, src, attack_type = (ATTACK_TYPE_SPECIAL))
 			var/obj/effect/temp_visual/eldritch_smoke/ES = new(get_turf(L))
 			ES.color = COLOR_GREEN
 			to_chat(L, span_warning("The Azure hermit's magic being channeled through [src] racks your mind!"))

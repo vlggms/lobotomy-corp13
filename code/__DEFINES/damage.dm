@@ -1,14 +1,12 @@
 // Ahead are a bunch of bitflags that can be sent in the "flags" argument for deal_damage() to customize the behaviour of damage.
-/// Set this bitflag to prevent deal_damage from calling PreDamageReaction.
-#define DAMAGE_FORCED (1 << 0)
 /// Set this bitflag to make the source of the damage untrackable (thus, mobs do not aggro onto the target from it, and PostDamageReaction will not have a source when it runs)
-#define DAMAGE_UNTRACKABLE (1 << 1)
+#define DAMAGE_UNTRACKABLE (1 << 0)
 /// Set this bitflag to prevent damage from being spread across the body. Irrelevant for anything but carbons.
-#define DAMAGE_NO_SPREAD (1 << 2)
+#define DAMAGE_NO_SPREAD (1 << 1)
 /// Set this bitflag to allow WHITE/BLACK damage to resane.
-#define DAMAGE_WHITE_HEALABLE (1 << 3)
+#define DAMAGE_WHITE_HEALABLE (1 << 2)
 /// Set this bitflag to ignore the armour check and godmode (yes, for some reason you can ignore godmode. do not blame this on me)
-#define DAMAGE_PIERCING (1 << 4)
+#define DAMAGE_FORCED (1 << 3)
 
 /*
 These flags are for the "attack_type" argument in deal_damage, so you can discern and act upon the difference between damage incoming from a melee hit or from a bullet and so on.

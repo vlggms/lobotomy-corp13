@@ -255,7 +255,7 @@
 	forceMove(T)
 
 	for(var/turf/U in range(1, T))
-		var/list/new_hits = HurtInTurf(U, been_hit, 0, BLACK_DAMAGE, hurt_mechs = TRUE, flags = (DAMAGE_FORCED | DAMAGE_UNTRACKABLE)) - been_hit
+		var/list/new_hits = HurtInTurf(U, been_hit, 0, BLACK_DAMAGE, hurt_mechs = TRUE, flags = (DAMAGE_UNTRACKABLE)) - been_hit
 		been_hit += new_hits
 		for(var/mob/living/L in new_hits)
 			var/atom/throw_target = get_edge_target_turf(L, get_dir(L, get_step_away(L, get_turf(src))))

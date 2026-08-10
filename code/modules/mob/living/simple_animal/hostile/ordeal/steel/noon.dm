@@ -101,7 +101,7 @@
 		ArialSupport()
 	else
 		visible_message(span_notice("[src] crashes to the ground."))
-		deal_damage(30, RED_DAMAGE, flags = (DAMAGE_FORCED))
+		deal_damage(30, RED_DAMAGE)
 	//return to the ground
 	density = TRUE
 	layer = initial(layer)

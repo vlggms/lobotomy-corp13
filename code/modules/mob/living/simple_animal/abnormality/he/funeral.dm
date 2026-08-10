@@ -241,7 +241,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/funeral/proc/SwarmTurfLinger(turf/T)
 	for(var/i = 1 to 40) //40 times
-		for(var/mob/living/carbon/human/H in HurtInTurf(T, list(), swarm_damage, WHITE_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_SPECIAL)))
+		for(var/mob/living/carbon/human/H in HurtInTurf(T, list(), swarm_damage, WHITE_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, attack_type = (ATTACK_TYPE_SPECIAL)))
 			if(H.stat == DEAD)
 				continue
 			if(H.sanity_lost)

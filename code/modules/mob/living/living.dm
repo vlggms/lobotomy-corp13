@@ -1176,7 +1176,7 @@
 	var/blocked = getarmor(null, RAD)
 
 	if(amount > RAD_BURN_THRESHOLD)
-		deal_damage(RAD_BURN_CURVE(amount), FIRE, flags = (DAMAGE_FORCED), blocked = blocked)
+		deal_damage(RAD_BURN_CURVE(amount), FIRE, blocked = blocked)
 
 	apply_effect((amount*RAD_MOB_COEFFICIENT)/max(1, (radiation**2)*RAD_OVERDOSE_REDUCTION), EFFECT_IRRADIATE, blocked)
 

@@ -166,7 +166,7 @@
 			continue
 		if(faction_check_mob(L))
 			continue
-		L.deal_damage(pulse_damage, WHITE_DAMAGE, src, flags = (DAMAGE_FORCED))//apply karma here
+		L.deal_damage(pulse_damage, WHITE_DAMAGE, src)//apply karma here
 		ApplyKarma(L, 5)
 		extended_flash_color(L, flash_color = "#FDAE8B", flash_time = 1,maintain_time = 115)
 		if(!ishuman(L))

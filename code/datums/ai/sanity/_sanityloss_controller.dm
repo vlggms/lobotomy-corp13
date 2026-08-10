@@ -825,7 +825,7 @@
 		for(var/mob/living/carbon/human/H in view(7, human_pawn))
 			if(HAS_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE))
 				continue
-			H.deal_damage(sanity_damage, WHITE_DAMAGE, human_pawn, flags = (DAMAGE_FORCED))
+			H.deal_damage(sanity_damage, WHITE_DAMAGE, human_pawn)
 
 /datum/ai_controller/insane/wander
 	lines_type = /datum/ai_behavior/say_line/insanity_lines/insanity_wander

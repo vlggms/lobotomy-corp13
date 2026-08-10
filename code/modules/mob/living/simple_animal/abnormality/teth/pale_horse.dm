@@ -70,7 +70,7 @@
 	if(user.health < (user.maxHealth * 0.5))
 		return
 	else
-		user.deal_damage(rand(work_damage_lower, work_damage_upper), PALE_DAMAGE, flags = (DAMAGE_FORCED))
+		user.deal_damage(rand(work_damage_lower, work_damage_upper), PALE_DAMAGE)
 
 /mob/living/simple_animal/hostile/abnormality/pale_horse/Initialize()
 	. = ..()
@@ -127,7 +127,7 @@
 		for(var/mob/living/H in T)
 			if(faction_check_mob(H))
 				continue
-			H.deal_damage(fog_damage, PALE_DAMAGE, src, flags = (DAMAGE_FORCED), attack_type = (ATTACK_TYPE_ENVIRONMENT))
+			H.deal_damage(fog_damage, PALE_DAMAGE, src, attack_type = (ATTACK_TYPE_ENVIRONMENT))
 
 
 /mob/living/simple_animal/hostile/abnormality/pale_horse/Moved() //more damaging fog when moving
