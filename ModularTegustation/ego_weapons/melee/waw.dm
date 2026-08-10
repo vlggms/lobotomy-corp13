@@ -323,7 +323,7 @@
 			if(special_checks_faction && user.faction_check_mob(L))
 				continue
 			to_chat(L, span_userdanger("You are hit by [src]!"))
-			L.deal_damage(dealing_damage, RED_DAMAGE, user, attack_type = (ATTACK_TYPE_THROWING))
+			L.deal_damage(dealing_damage, RED_DAMAGE, user, attack_type = (ATTACK_TYPE_RANGED))
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
 			dealing_damage = max(dealing_damage * 0.9, special_damage * 0.3)
 
@@ -1747,7 +1747,7 @@
 		aoe*=justicemod
 		if(L == user || ishuman(L))
 			continue
-		L.deal_damage(aoe, BLACK_DAMAGE, user, attack_type = (ATTACK_TYPE_THROWING | ATTACK_TYPE_SPECIAL))
+		L.deal_damage(aoe, BLACK_DAMAGE, user, attack_type = (ATTACK_TYPE_RANGED | ATTACK_TYPE_SPECIAL))
 		new /obj/effect/temp_visual/tbirdlightning(get_turf(L))
 	icon_state = initial(icon_state)
 	hitsound = initial(hitsound)
@@ -2030,7 +2030,7 @@
 				smonk.color = COLOR_TEAL
 				if(!ismob(thrownby))
 					continue
-				thrownby.HurtInTurf(T, list(thrownby), damage, RED_DAMAGE, attack_type = (ATTACK_TYPE_THROWING))
+				thrownby.HurtInTurf(T, list(thrownby), damage, RED_DAMAGE, attack_type = (ATTACK_TYPE_RANGED | ATTACK_TYPE_SPECIAL))
 			PowerReset(thrownby)
 
 /datum/movespeed_modifier/anchor

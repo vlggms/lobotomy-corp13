@@ -94,7 +94,7 @@
 		if(ishuman(thrown_item.thrownby))
 			var/mob/living/carbon/human/H = thrown_item.thrownby
 			justice_mod = get_attack_multiplier(H)
-		deal_damage(thrown_item.throwforce * justice_mod, thrown_item.damtype, source = thrown_item.thrownby, flags = (DAMAGE_WHITE_HEALABLE), attack_type = (ATTACK_TYPE_THROWING), def_zone = zone, wound_bonus = (nosell_hit * CANT_WOUND))
+		deal_damage(thrown_item.throwforce * justice_mod, thrown_item.damtype, source = thrown_item.thrownby, flags = (DAMAGE_WHITE_HEALABLE), attack_type = (ATTACK_TYPE_RANGED), def_zone = zone, wound_bonus = (nosell_hit * CANT_WOUND))
 		if(QDELETED(src)) //Damage can delete the mob.
 			return
 		return ..()
