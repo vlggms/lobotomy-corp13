@@ -119,7 +119,7 @@
 		return
 	if((ishuman(hit_atom)))
 		var/mob/living/carbon/M = hit_atom
-		M.deal_damage(10, STAMINA, source = throwingdatum.thrower, attack_type = (ATTACK_TYPE_THROWING))
+		M.deal_damage(10, STAMINA, source = throwingdatum.thrower, attack_type = (ATTACK_TYPE_RANGED))
 		if(prob(75))
 			M.Paralyze(60)
 			visible_message(span_danger("[M] barely manages to contain the power of the [src]!"))
@@ -130,7 +130,7 @@
 		playsound(src, 'sound/abnormalities/crying_children/sorrow_shot.ogg', 45, FALSE, 5)
 		for(var/mob/living/L in view(1, src))
 			var/aoe = 50
-			L.deal_damage(aoe, RED_DAMAGE, throwingdatum.thrower, attack_type = (ATTACK_TYPE_THROWING))
+			L.deal_damage(aoe, RED_DAMAGE, throwingdatum.thrower, attack_type = (ATTACK_TYPE_RANGED))
 			new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(L))
 	activated = FALSE
 
