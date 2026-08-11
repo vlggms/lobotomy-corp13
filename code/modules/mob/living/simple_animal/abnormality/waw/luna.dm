@@ -198,7 +198,7 @@
 /mob/living/simple_animal/hostile/aminion/luna/proc/AOE()
 	for(var/turf/T in view(aoerange, src))
 		new /obj/effect/temp_visual/revenant(T)
-		HurtInTurf(T, list(), aoedamage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
+		HurtInTurf(T, list(), aoedamage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, attack_type = (ATTACK_TYPE_SPECIAL))
 	aoeactive = FALSE
 
 /mob/living/simple_animal/hostile/aminion/luna/proc/Reset()

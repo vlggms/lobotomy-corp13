@@ -162,9 +162,9 @@
 			continue
 		var/dist = get_dist(src, L)
 		if(ishuman(L)) //Different damage formulae for humans vs mobs
-			L.deal_damage(clamp((5 * (2 ** (8 - dist))), 5, 100), RED_DAMAGE)
+			L.deal_damage(clamp((5 * (2 ** (8 - dist))), 5, 100), RED_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 		else
-			L.deal_damage(200 - ((dist > 2 ? dist : 0 )* 25), RED_DAMAGE) //0-600 damage scaling on distance, we don't want it oneshotting mobs
+			L.deal_damage(200 - ((dist > 2 ? dist : 0 )* 25), RED_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL)) //0-600 damage scaling on distance, we don't want it oneshotting mobs
 		if(L.health < 0)
 			L.gib()
 	SLEEP_CHECK_DEATH(5)

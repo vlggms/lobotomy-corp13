@@ -525,7 +525,7 @@
 		var/list/been_hit = list()
 		for(var/turf/T in area_of_effect)
 			new /obj/effect/temp_visual/smash_effect(T)
-			been_hit = HurtInTurf(T, been_hit, i > 6 ? flurry_big : flurry_small, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
+			been_hit = HurtInTurf(T, been_hit, i > 6 ? flurry_big : flurry_small, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 		if (i > 6)
 			playsound(get_turf(src), 'sound/abnormalities/woodsman/woodsman_strong.ogg', 100, 0, 8) // BAM
 		else

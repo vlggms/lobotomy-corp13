@@ -57,7 +57,7 @@
 	if(ishuman(A))
 		var/mob/living/carbon/human/H = A
 		H.Paralyze(100)
-		H.apply_damage(1, RED_DAMAGE)
+		H.deal_damage(1, BRUTE, attack_type = (ATTACK_TYPE_MELEE))
 		if(!crash_all)
 			H.throw_at(throw_target, 4, 3)
 			visible_message("<span class='danger'>[src] crashes into [H]!</span>")

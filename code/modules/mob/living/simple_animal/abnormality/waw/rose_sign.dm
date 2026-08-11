@@ -331,7 +331,7 @@
 	alpha = 1
 	for(var/mob/living/carbon/human/H in view(3, src))//big, big AOE
 		grabbed = TRUE
-		H.deal_damage(boom_damage, BLACK_DAMAGE)
+		H.deal_damage(boom_damage, BLACK_DAMAGE, attack_type = (ATTACK_TYPE_SPECIAL))
 		if(H.buckled)//Otherwise it would rip people off their crucifixes. Not too exploitable
 			continue
 		H.forceMove(get_turf(src))//pulls them all to the target
@@ -363,7 +363,7 @@
 	for(var/turf/T in view(0, target_turf))
 		new /obj/effect/temp_visual/thornspike(T)
 		for(var/mob/living/L in T)
-			L.deal_damage(root_damage, damtype)
+			L.deal_damage(root_damage, damtype, attack_type = (ATTACK_TYPE_SPECIAL))
 			if(L.stat == DEAD)
 				if(L.has_status_effect(/datum/status_effect/stacking/crownthorns))//Stops a second crucifix from appearing
 					L.remove_status_effect(STATUS_EFFECT_THORNS)

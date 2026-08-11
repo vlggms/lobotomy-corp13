@@ -354,7 +354,7 @@
 		defender.ApplyLock(L)
 		if(ishuman(L))
 			var/mob/living/carbon/human/H = L
-			H.apply_damage(10, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			H.deal_damage(10, BLACK_DAMAGE, attack_type = (ATTACK_TYPE_ENVIRONMENT))
 			to_chat(H, span_warning("You get shocked by the electic fields"))
 
 /datum/status_effect/locked
@@ -550,7 +550,7 @@
 
 	if (potential_target && target && potential_target != target)
 		remove_beam()
-		target = potential_target
+		FindTarget(list(potential_target), TRUE)
 		if(ai_controller)
 			ai_controller.current_movement_target = target
 
@@ -677,6 +677,6 @@
 
 	if (potential_target && target && potential_target != target)
 		remove_beam()
-		target = potential_target
+		FindTarget(list(potential_target), TRUE)
 		if(ai_controller)
 			ai_controller.current_movement_target = target

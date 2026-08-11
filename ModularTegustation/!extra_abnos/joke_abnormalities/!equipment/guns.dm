@@ -95,5 +95,5 @@
 	..()
 	for(var/mob/living/L in view(1, target))
 		new /obj/effect/temp_visual/fire/fast(get_turf(L))
-		L.apply_damage(20, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		L.deal_damage(20, RED_DAMAGE, firer, attack_type = (ATTACK_TYPE_RANGED))
 	return BULLET_ACT_HIT

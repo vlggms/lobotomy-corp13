@@ -130,7 +130,7 @@
 			to_chat(L, span_userdanger("[src] rolls past you!"))
 			var/turf/LT = get_turf(L)
 			new /obj/effect/temp_visual/kinetic_blast(LT)
-			L.apply_damage(20, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+			L.deal_damage(20, RED_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 			if(!(L in been_hit))
 				been_hit += L
 	addtimer(CALLBACK(src, PROC_REF(do_roll), move_dir, (times_ran + 1)), 1.5)

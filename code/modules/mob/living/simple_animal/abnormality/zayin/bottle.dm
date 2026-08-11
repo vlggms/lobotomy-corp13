@@ -246,7 +246,7 @@
 				continue
 			if(faction_check_mob(L, FALSE))
 				continue
-			L.deal_damage(speak_damage, BLACK_DAMAGE)
+			L.deal_damage(speak_damage, BLACK_DAMAGE, src, attack_type = (ATTACK_TYPE_SPECIAL))
 		adjustBruteLoss(-speak_damage) // It falls further into desperation
 		if(speak_damage < 40)
 			speak_damage += 4

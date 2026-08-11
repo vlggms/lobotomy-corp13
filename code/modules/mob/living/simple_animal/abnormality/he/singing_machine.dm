@@ -70,9 +70,9 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 		for(var/mob/living/carbon/human/H in livinginrange(playRange, src))
 			if(faction_check_mob(H))
 				continue
-			H.deal_damage(rand(playStatus * noiseFactor, playStatus * noiseFactor * 2), WHITE_DAMAGE)
+			H.deal_damage(rand(playStatus * noiseFactor, playStatus * noiseFactor * 2), WHITE_DAMAGE, attack_type = (ATTACK_TYPE_SPECIAL))
 			if(H in musicalAddicts)
-				H.deal_damage(rand(playStatus * noiseFactor, playStatus * noiseFactor * 2), WHITE_DAMAGE)
+				H.deal_damage(rand(playStatus * noiseFactor, playStatus * noiseFactor * 2), WHITE_DAMAGE, attack_type = (ATTACK_TYPE_SPECIAL))
 				to_chat(H, span_warning("You can hear it again... it needs more..."))
 			else
 				to_chat(H, span_warning("That terrible grinding noise..."))

@@ -242,7 +242,7 @@
 			var/damage_done = rand(dash_damage_lower, dash_damage_upper)
 			if(!ishuman(L))
 				damage_done *= 2
-			L.deal_damage(damage_done, melee_damage_type)
+			L.deal_damage(damage_done, melee_damage_type, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 			if(IsCombatMap())
 				L.apply_lc_bleed(5)
 			if(L.stat >= HARD_CRIT)

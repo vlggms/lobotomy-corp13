@@ -168,7 +168,7 @@
 	for(var/mob/living/carbon/human/L in oview(8,src))
 		if(L.stat != DEAD)
 			if(!is_A_facing_B(L,src))
-				L.apply_damage(gaze_damage,BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+				L.deal_damage(gaze_damage,BLACK_DAMAGE, src, attack_type = (ATTACK_TYPE_SPECIAL))
 				hit_target = TRUE
 	if(hit_target)
 		var/chosen_sound = pick(scream_sounds)

@@ -19,4 +19,4 @@
 
 /obj/item/ego_weapon/template/chargeblade/ChargeAttack(mob/living/target, mob/living/user)
 	. = ..()
-	target.deal_damage(force, damtype)
+	target.deal_damage(force, damtype, user, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))

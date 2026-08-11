@@ -141,7 +141,7 @@
 	. = ..()
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
-		H.apply_damage(1, WHITE_DAMAGE, null, H.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		H.deal_damage(1, WHITE_DAMAGE, attack_type = (ATTACK_TYPE_ENVIRONMENT), blocked = H.run_armor_check(null, RED_DAMAGE))
 		if(prob(10))
 			H.Immobilize(5)
 			to_chat(H, span_warning("You get caught in the hair!"))

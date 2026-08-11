@@ -52,7 +52,7 @@
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/Move()
 	return FALSE
 
-/mob/living/simple_animal/hostile/ordeal/violet_midnight/apply_damage(damage, damagetype, def_zone, blocked, forced, spread_damage, wound_bonus, bare_wound_bonus, sharpness, white_healable)
+/mob/living/simple_animal/hostile/ordeal/violet_midnight/PostDamageReaction(damage_amount, damage_type, source, attack_type)
 	. = ..()
 	if(health < retaliation_health)
 		retaliation_health -= maxHealth * 0.2
@@ -173,7 +173,7 @@
 				if(!CanAttack(L))
 					continue
 				been_hit += L
-				L.apply_damage(attack_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+				L.deal_damage(attack_damage, RED_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 		SLEEP_CHECK_DEATH(0.1)
 
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/white
@@ -264,7 +264,7 @@
 				if(!CanAttack(L))
 					continue
 				been_hit += L
-				L.apply_damage(attack_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))
+				L.deal_damage(attack_damage, WHITE_DAMAGE, src, attack_type = (ATTACK_TYPE_SPECIAL))
 
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/black
 	icon_state = "violet_midnightb"
@@ -343,7 +343,7 @@
 				if(!CanAttack(L))
 					continue
 				been_hit += L
-				L.apply_damage(attack_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+				L.deal_damage(attack_damage, BLACK_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 		SLEEP_CHECK_DEATH(0.05)
 
 /obj/effect/black_portal
@@ -435,7 +435,7 @@
 		for(var/mob/living/L in T)
 			if(!CanAttack(L))
 				continue
-			L.apply_damage(pulse_damage, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE))
+			L.deal_damage(pulse_damage, PALE_DAMAGE, src, attack_type = (ATTACK_TYPE_SPECIAL))
 			has_targets = TRUE
 	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(get_turf(eye), eye)
 	animate(D, alpha = 0, transform = matrix()*1.25, time = 4)

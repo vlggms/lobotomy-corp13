@@ -103,7 +103,7 @@
 /mob/living/simple_animal/hostile/abnormality/caterpillar/WorktickSuccess(mob/living/carbon/human/user)
 	playsound(datum_reference.console, 'sound/machines/synth_yes.ogg', 25, FALSE, -4)
 	if(user.sanityhealth > (user.maxSanity * 0.2))
-		user.deal_damage(rand(work_success_damage_lower, work_success_damage_upper), WHITE_DAMAGE)
+		user.deal_damage(rand(work_success_damage_lower, work_success_damage_upper), WHITE_DAMAGE, source = src, attack_type = (ATTACK_TYPE_OTHER))
 
 /mob/living/simple_animal/hostile/abnormality/caterpillar/proc/UpdateEclosion()
 	if(eclosion_counter < 5)
@@ -297,7 +297,7 @@
 	C.smoke_delay++
 	if(prob(damage_chance))
 		addtimer(CALLBACK(C, TYPE_PROC_REF(/mob/living, remove_smoke_delay)), 10)
-		C.deal_damage(damage_done, PALE_DAMAGE)
+		C.deal_damage(damage_done, PALE_DAMAGE, attack_type = (ATTACK_TYPE_ENVIRONMENT))
 		if(prob(40))
 			to_chat(C, span_danger("IT BURNS!"))
 			C.emote("scream")

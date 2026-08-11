@@ -102,4 +102,4 @@
 
 /datum/weather/mhz/weather_act(mob/living/carbon/human/L)
 	if(ishuman(L))
-		L.deal_damage(2, WHITE_DAMAGE)
+		L.deal_damage(2, WHITE_DAMAGE, attack_type = (ATTACK_TYPE_ENVIRONMENT))

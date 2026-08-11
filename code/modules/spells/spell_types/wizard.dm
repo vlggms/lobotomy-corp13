@@ -339,7 +339,7 @@
 	for(var/mob/living/L in thrown_atoms)
 		if(user.faction_check_mob(L))
 			continue
-		L.apply_damage(repulse_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		L.deal_damage(repulse_damage, BLACK_DAMAGE, source = user, attack_type = (ATTACK_TYPE_SPECIAL))
 
 /obj/effect/proc_holder/spell/targeted/sacred_flame
 	name = "Sacred Flame"

@@ -99,20 +99,18 @@
 	CreateRoad()
 
 
-/mob/living/simple_animal/hostile/abnormality/road_home/attackby(obj/item/W, mob/user, params)
+/mob/living/simple_animal/hostile/abnormality/road_home/PostDamageReaction(damage_amount, damage_type, source, attack_type)
 	. = ..()
-	CounterAttack(user)
-
-/mob/living/simple_animal/hostile/abnormality/road_home/bullet_act(obj/projectile/P)
-	. = ..()
-	CounterAttack(P.firer)
+	if((. <= 0 )|| (!isliving(source)) || (attack_type & (ATTACK_TYPE_COUNTER | ATTACK_TYPE_ENVIRONMENT | ATTACK_TYPE_STATUS)))
+		return
+	CounterAttack(source)
 
 /mob/living/simple_animal/hostile/abnormality/road_home/proc/CounterAttack(mob/living/attacker)
 	var/retaliation = 4
 	var/turf/user_turf = get_turf(attacker)
 	for(var/obj/effect/golden_road/GR in user_turf.contents)
 		retaliation = 2
-	attacker.deal_damage(retaliation, BLACK_DAMAGE)
+	attacker.deal_damage(retaliation, BLACK_DAMAGE, src, attack_type = (ATTACK_TYPE_COUNTER))
 	to_chat(attacker, span_userdanger("[src] counter attacks!"))
 	if(attacker.has_status_effect(/datum/status_effect/stay_home) || !ishuman(attacker) || stat == DEAD)
 		return
@@ -329,7 +327,7 @@
 
 	playsound(get_turf(src), 'sound/abnormalities/roadhome/House_HouseBoom.ogg', 100, FALSE, 8)
 	for(var/mob/living/L in orgin.contents)//Listen, if you're still standing in the one turf this thing is falling from, you deserve to die.
-		L.deal_damage(200, RED_DAMAGE)
+		L.deal_damage(200, RED_DAMAGE, source = road_home_mob, attack_type = (ATTACK_TYPE_SPECIAL))
 		if(L.health < 0)
 			L.gib()
 
@@ -339,7 +337,7 @@
 	for(var/mob/living/L in view(6, src))
 		if(!road_home_mob.faction_check_mob(L))
 			var/distance_decrease = get_dist(src, L) * 15
-			L.deal_damage((120 - distance_decrease), WHITE_DAMAGE) //white damage so they can join the road home..
+			L.deal_damage((120 - distance_decrease), WHITE_DAMAGE, source = road_home_mob, attack_type = (ATTACK_TYPE_SPECIAL)) //white damage so they can join the road home..
 			if(!ishuman(L))
 				continue
 			var/mob/living/carbon/human/H = L

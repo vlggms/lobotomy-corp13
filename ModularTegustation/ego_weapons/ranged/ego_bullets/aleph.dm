@@ -37,7 +37,7 @@
 	for(var/mob/living/L in view(2, target))
 		if(user.faction_check_mob(L) || L == target)//player faction
 			continue
-		L.apply_damage(aoe * damage_multiplier, BLACK_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		L.deal_damage(aoe * damage_multiplier, BLACK_DAMAGE, firer, attack_type = (ATTACK_TYPE_RANGED | ATTACK_TYPE_SPECIAL))
 		L.apply_status_effect(/datum/status_effect/gooped)
 		L.visible_message(span_warning("[target] is hit by [src], they seem to wither away"))
 
@@ -51,7 +51,7 @@
 	var/damage_amount = 5
 
 /datum/status_effect/gooped/on_apply()
-	owner.apply_damage(damage_amount, BLACK_DAMAGE, null, owner.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+	owner.deal_damage(damage_amount, BLACK_DAMAGE, attack_type = (ATTACK_TYPE_STATUS))
 	playsound(owner, 'sound/effects/wounds/sizzle2.ogg', 25, TRUE)
 	return ..()
 
@@ -60,7 +60,7 @@
 		qdel(src)
 		return
 
-	owner.apply_damage(damage_amount, BLACK_DAMAGE, null, owner.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+	owner.deal_damage(damage_amount, BLACK_DAMAGE, attack_type = (ATTACK_TYPE_STATUS))
 	playsound(owner, 'sound/effects/wounds/sizzle2.ogg', 25, TRUE)
 
 

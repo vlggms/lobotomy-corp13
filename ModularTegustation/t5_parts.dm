@@ -192,12 +192,12 @@
 	playsound(loc, 'sound/effects/splat.ogg', 50, TRUE)
 
 	var/damage = rand(7,9) //Choose a number between 7 and 9, then use that number for the damage calculations applied to the head, chest, legs and arms.
-	H.apply_damage(0.5*damage, BRUTE, BODY_ZONE_HEAD, H.run_armor_check(BODY_ZONE_HEAD, "melee"))
-	H.apply_damage(0.5*damage, BRUTE, BODY_ZONE_CHEST, H.run_armor_check(BODY_ZONE_CHEST, "melee"))
-	H.apply_damage(0.25*damage, BRUTE, BODY_ZONE_L_LEG, H.run_armor_check(BODY_ZONE_L_LEG, "melee"))
-	H.apply_damage(0.25*damage, BRUTE, BODY_ZONE_R_LEG, H.run_armor_check(BODY_ZONE_R_LEG, "melee"))
-	H.apply_damage(0.25*damage, BRUTE, BODY_ZONE_L_ARM, H.run_armor_check(BODY_ZONE_L_ARM, "melee"))
-	H.apply_damage(0.25*damage, BRUTE, BODY_ZONE_R_ARM, H.run_armor_check(BODY_ZONE_R_ARM, "melee")) //in total, this will be 42-54 damage (before the application of melee armor)
+	H.deal_damage(0.5*damage, BRUTE, def_zone = BODY_ZONE_HEAD, blocked = H.run_armor_check(BODY_ZONE_HEAD, "melee"))
+	H.deal_damage(0.5*damage, BRUTE, def_zone = BODY_ZONE_CHEST, blocked = H.run_armor_check(BODY_ZONE_CHEST, "melee"))
+	H.deal_damage(0.25*damage, BRUTE, def_zone = BODY_ZONE_L_LEG, blocked = H.run_armor_check(BODY_ZONE_L_LEG, "melee"))
+	H.deal_damage(0.25*damage, BRUTE, def_zone = BODY_ZONE_R_LEG, blocked = H.run_armor_check(BODY_ZONE_R_LEG, "melee"))
+	H.deal_damage(0.25*damage, BRUTE, def_zone = BODY_ZONE_L_ARM, blocked = H.run_armor_check(BODY_ZONE_L_ARM, "melee"))
+	H.deal_damage(0.25*damage, BRUTE, def_zone = BODY_ZONE_R_ARM, blocked = H.run_armor_check(BODY_ZONE_R_ARM, "melee")) //in total, this will be 42-54 damage (before the application of melee armor)
 	H.Knockdown(40)
 
 	var/turf/T = get_turf(src)

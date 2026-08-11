@@ -202,7 +202,7 @@
 			sound_cooldown = 0
 			playsound(src, 'sound/abnormalities/change/change_ding.ogg', 50)
 		for(var/mob/living/carbon/human/victim in get_turf(src))
-			victim.deal_damage(grind_damage, RED_DAMAGE)
+			victim.deal_damage(grind_damage, RED_DAMAGE, src)
 			if(victim.health <= 0)
 				victim.gib()
 		stoplag(1)

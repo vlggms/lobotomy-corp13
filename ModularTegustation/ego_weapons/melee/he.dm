@@ -22,7 +22,7 @@
 	var/justicemod = get_attack_multiplier(user)
 	var/damage_dealt = force * justicemod * force_multiplier
 	var/list/been_hit = QDELETED(target) ? list() : list(target)
-	user.HurtInTurf(T, been_hit, damage_dealt, RED_DAMAGE, hurt_mechs = TRUE, hurt_structure = TRUE)
+	user.HurtInTurf(T, been_hit, damage_dealt, RED_DAMAGE, hurt_mechs = TRUE, hurt_structure = TRUE, attack_type = (ATTACK_TYPE_MELEE))
 
 /obj/item/ego_weapon/grinder/get_clamped_volume()
 	return 40
@@ -74,7 +74,7 @@
 			aoe*=justicemod
 			if(L == user || ishuman(L))
 				continue
-			L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(aoe, BLACK_DAMAGE, user, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 
 
 /obj/item/ego_weapon/fury
@@ -367,7 +367,7 @@
 			new /obj/effect/temp_visual/smash_effect(T)
 			var/smash_damage = (i > 2 ? 22 : 6)*get_attack_multiplier(user)
 			smash_damage*=force_multiplier
-			been_hit = user.HurtInTurf(T, been_hit, smash_damage, RED_DAMAGE)
+			been_hit = user.HurtInTurf(T, been_hit, smash_damage, RED_DAMAGE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 		if (i > 2)
 			playsound(get_turf(src), 'sound/abnormalities/woodsman/woodsman_strong.ogg', 75, 0, 5) // BAM
 		else
@@ -864,7 +864,7 @@
 			aoe*=force_multiplier
 			if(L == user || ishuman(L))
 				continue
-			L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(aoe, BLACK_DAMAGE, user, attack_type = (ATTACK_TYPE_MELEE))
 			new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(L))
 		icon_state = "impending_day_extended"
 		sacrifice = TRUE
@@ -953,7 +953,7 @@
 		aoe*=force_multiplier
 		if(L == user || ishuman(L))
 			continue
-		L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		L.deal_damage(aoe, BLACK_DAMAGE, user, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 		var/obj/effect/temp_visual/small_smoke/halfsecond/FX =  new(get_turf(L))
 		FX.color = "#b52e19"
 
@@ -1198,7 +1198,7 @@
 		playsound(src, 'sound/abnormalities/wayward_passenger/attack2.ogg', 50, TRUE)
 		new /obj/effect/temp_visual/dimshredder_in(get_turf(src))
 		new /obj/effect/temp_visual/dimshredder_out(T)
-		user.HurtInTurf(T, list(), hit_damage, RED_DAMAGE, check_faction = TRUE)
+		user.HurtInTurf(T, list(), hit_damage, RED_DAMAGE, check_faction = TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 		sleep(0.1 SECONDS)
 	charge_amount = 0
 
@@ -1275,7 +1275,7 @@
 			continue
 		playsound(T, 'sound/weapons/fixer/generic/blade3.ogg', 30, TRUE, 3)
 		new /obj/effect/temp_visual/smash_effect(T)
-		been_hit = user.HurtInTurf(T, been_hit, punishment_damage, PALE_DAMAGE, check_faction = TRUE)
+		been_hit = user.HurtInTurf(T, been_hit, punishment_damage, PALE_DAMAGE, check_faction = TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 
 /obj/item/ego_weapon/destiny
 	name = "destiny"
@@ -1437,7 +1437,7 @@
 
 /obj/item/ego_weapon/aedd/proc/power_attack(mob/living/target, mob/living/user)
 	var/justicemod = get_attack_multiplier(user)
-	target.apply_damage((force * justicemod), BLACK_DAMAGE, null, target.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+	target.deal_damage((force * justicemod), BLACK_DAMAGE, user, attack_type = (ATTACK_TYPE_MELEE))
 	playsound(src, 'sound/abnormalities/thunderbird/tbird_charge.ogg', 50, TRUE)
 	var/turf/T = get_turf(target)
 	new /obj/effect/temp_visual/justitia_effect(T)
@@ -1508,7 +1508,7 @@
 	for(var/turf/T in view(1, target))
 		var/obj/effect/temp_visual/small_smoke/halfsecond/FX =  new(T)
 		FX.color = "#622F22"
-		user.HurtInTurf(T, list(), 16, BLACK_DAMAGE, check_faction = TRUE)
+		user.HurtInTurf(T, list(), 16, BLACK_DAMAGE, check_faction = TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 	return
 
 
@@ -1706,7 +1706,7 @@
 		qdel(src)
 		return
 
-	owner.apply_damage(damage_amount, RED_DAMAGE, null, owner.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+	owner.deal_damage(damage_amount, RED_DAMAGE, attack_type = (ATTACK_TYPE_STATUS))
 	playsound(owner, 'sound/abnormalities/mountain/bite.ogg', 40, TRUE) //yes im reusing a sound bite me
 	new /obj/effect/temp_visual/beakbite(get_turf(owner))
 
@@ -2010,7 +2010,7 @@
 				aoe*=force_multiplier
 				if(L == user || ishuman(L))
 					continue
-				been_hit = user.HurtInTurf(T2, been_hit, aoe, RED_DAMAGE, hurt_mechs = TRUE, hurt_structure = TRUE)
+				been_hit = user.HurtInTurf(T2, been_hit, aoe, RED_DAMAGE, hurt_mechs = TRUE, hurt_structure = TRUE, attack_type = (ATTACK_TYPE_MELEE))
 				var/atom/throw_target = get_edge_target_turf(L, get_dir(L, get_step_towards(L, get_turf(user))))
 				if(!L.anchored)
 					L.throw_at(throw_target, 1, get_dist(user, L) - 1, user)
@@ -2154,7 +2154,7 @@
 					var/mob/living/carbon/human/H = L
 					if(!H.sanity_lost)
 						continue
-				L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+				L.deal_damage(aoe, BLACK_DAMAGE, user, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 				L.visible_message(span_danger("[user] sears [L] with the [src]!"))
 		return
 	addtimer(CALLBACK(src, PROC_REF(Leap), user, dir, leap_range), 0.1)

@@ -54,7 +54,7 @@
 			var/mob/living/simple_animal/hostile/H = target
 			H.attack_threshold_check(force, damtype)
 		else
-			L.apply_damage(force, damtype, null, L.run_armor_check(null, damtype), spread_damage = TRUE)
+			L.deal_damage(force, damtype, source = chassis, attack_type = (ATTACK_TYPE_MELEE))
 		if(prob(50))
 			L.add_splatter_floor(get_turf(L))
 		chassis.do_attack_animation(L)

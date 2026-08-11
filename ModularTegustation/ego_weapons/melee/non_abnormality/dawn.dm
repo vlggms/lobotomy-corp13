@@ -34,7 +34,7 @@
 		for(var/turf/T in view(aoe_range, target))
 			if(prob(30))
 				new /obj/effect/temp_visual/fire/fast(T)
-			user.HurtInTurf(T, list(), force*0.2, damtype, hurt_mechs = TRUE)
+			user.HurtInTurf(T, list(), force*0.2, damtype, hurt_mechs = TRUE, attack_type = (ATTACK_TYPE_SPECIAL))
 	aoe_target = target
 
 //Philip's Sword

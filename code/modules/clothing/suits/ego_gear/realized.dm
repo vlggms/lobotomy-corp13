@@ -454,38 +454,39 @@ No Ability	260
 	icon_state = "fallencolors"
 	realized_ability = /obj/effect/proc_holder/ability/aimed/blackhole
 	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 80, BLACK_DAMAGE = 80, PALE_DAMAGE = 60)		//Defensive
-	var/canSUCC = TRUE
+	var/push_cooldown
+	var/push_cooldown_time = 2 SECONDS
 
 /obj/item/clothing/suit/armor/ego_gear/realization/fallencolors/equipped(mob/user, slot, initial = FALSE)
 	. = ..()
 	if(slot == ITEM_SLOT_OCLOTHING)
-		RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(OnDamaged))
+		RegisterSignal(user, COMSIG_MOB_AFTER_APPLY_DAMGE, PROC_REF(OnDamaged))
 
 /obj/item/clothing/suit/armor/ego_gear/realization/fallencolors/dropped(mob/user)
-	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMGE)
+	UnregisterSignal(user, COMSIG_MOB_AFTER_APPLY_DAMGE)
 	return ..()
 
-/obj/item/clothing/suit/armor/ego_gear/realization/fallencolors/proc/Reset()
-	canSUCC = TRUE
-
-/obj/item/clothing/suit/armor/ego_gear/realization/fallencolors/proc/OnDamaged(mob/living/carbon/human/user)
-	//goonchem_vortex(get_turf(src), 1, 3)
-	if(!canSUCC)
+/obj/item/clothing/suit/armor/ego_gear/realization/fallencolors/proc/OnDamaged(mob/living/carbon/human/user, damage_amount, damage_type, def_zone, attacker, damage_flags, attack_type)
+	if(push_cooldown > world.time)
 		return
 	if(user.is_working)
 		return
-	canSUCC = FALSE
-	addtimer(CALLBACK(src, PROC_REF(Reset)), 2 SECONDS)
+	if(damage_amount <= 0 || !isliving(attacker) || user == attacker || (attack_type & (ATTACK_TYPE_COUNTER | ATTACK_TYPE_ENVIRONMENT | ATTACK_TYPE_STATUS)))
+		return
+
+	push_cooldown = world.time + push_cooldown_time
+
 	for(var/turf/T in view(3, user))
 		new /obj/effect/temp_visual/revenant(T)
-		for(var/mob/living/L in T)
-			if(user.faction_check_mob(L, FALSE))
-				continue
-			if(L.stat == DEAD)
-				continue
-			var/atom/throw_target = get_edge_target_turf(L, get_dir(L, get_step_away(L, get_turf(src))))
-			L.throw_at(throw_target, 1, 1)
-			L.apply_damage(5, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+
+	for(var/mob/living/L in view(3, user))
+		if(user.faction_check_mob(L, FALSE))
+			continue
+		if(L.stat == DEAD)
+			continue
+		var/atom/throw_target = get_edge_target_turf(L, get_dir(L, get_step_away(L, get_turf(src))))
+		L.throw_at(throw_target, 1, 1)
+		L.deal_damage(5, WHITE_DAMAGE, user, attack_type = (ATTACK_TYPE_SPECIAL| ATTACK_TYPE_COUNTER))
 
 
 /* Effloresced (Personal) E.G.O */

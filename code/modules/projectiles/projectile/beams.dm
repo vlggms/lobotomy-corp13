@@ -369,7 +369,7 @@
 	if(fairy)
 		if(ishuman(target))
 			var/mob/living/carbon/human/M = target
-			M.apply_damage(8, WHITE_DAMAGE, null, M.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			M.deal_damage(8, WHITE_DAMAGE, firer, attack_type = (ATTACK_TYPE_RANGED))
 			if(M.sanity_lost)
 				fairy.Convert(M)
 

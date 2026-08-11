@@ -142,13 +142,13 @@
 		return
 	if(extra_damage_max)
 		new /obj/effect/temp_visual/petals(get_turf(user))
-		user.deal_damage(rand(extra_damage_min, extra_damage_max), PALE_DAMAGE)
+		user.deal_damage(rand(extra_damage_min,extra_damage_max), PALE_DAMAGE, source = src, attack_type = (ATTACK_TYPE_OTHER))
 
 // Additional effect on each individual work tick failure
 /mob/living/simple_animal/hostile/abnormality/staining_rose/WorktickFailure(mob/living/carbon/human/user)
 	if(!silent_work)
 		playsound(datum_reference.console, 'sound/machines/synth_no.ogg', 25, FALSE, -4)
-	user.deal_damage(rand(work_damage_lower,work_damage_upper), work_damage_type)
+	user.deal_damage(rand(work_damage_lower,work_damage_upper), work_damage_type, source = src, attack_type = (ATTACK_TYPE_OTHER))
 	WorkDamageEffect()
 	if(user != chosen)
 		return
@@ -225,7 +225,7 @@
 		else
 			for(var/turf/T in view(1, target_turf))
 				new /obj/effect/temp_visual/petals(T) // We still need some sort of visual that something happened
-		chosen.deal_damage(damagetodo, PALE_DAMAGE)
+		chosen.deal_damage(damagetodo, PALE_DAMAGE, source = src, attack_type = (ATTACK_TYPE_OTHER))
 	if(chosen.is_working && working) // finish our work for free
 		silent_work = TRUE
 		free_work_override = TRUE
@@ -305,7 +305,7 @@
 					new /obj/effect/temp_visual/petals/disease(T)
 				var/thesound = pick(pickable_sounds)
 				playsound(get_turf(Y), thesound, 30, FALSE)
-				Y.deal_damage(25, PALE_DAMAGE)
+				Y.deal_damage(25, PALE_DAMAGE, source = src, attack_type = (ATTACK_TYPE_OTHER))
 			worse_breach = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/staining_rose/proc/Reset()
@@ -415,7 +415,7 @@
 		if(4 to INFINITY)
 			damage_dealt = (owner.maxHealth * (0.50))
 			breachtime = TRUE
-	owner.apply_damage(damage_dealt, BRUTE)
+	owner.deal_damage(damage_dealt, BRUTE, source = src, attack_type = (ATTACK_TYPE_OTHER))
 	owner.manual_emote("[owner] coughs up petals!")
 	to_chat(owner, span_warning("You are being penalized by the Staining Rose for working on another abnormality!"))
 	owner.add_splatter_floor()

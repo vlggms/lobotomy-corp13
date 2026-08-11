@@ -24,7 +24,7 @@
 		return
 	if(target.stat != DEAD)
 		living = TRUE
-	target.apply_damage(force*0.2, PALE_DAMAGE, null, target.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+	target.deal_damage(force*0.2, PALE_DAMAGE, user, attack_type = (ATTACK_TYPE_MELEE))
 	..()
 
 	if(target.stat == DEAD && living)
