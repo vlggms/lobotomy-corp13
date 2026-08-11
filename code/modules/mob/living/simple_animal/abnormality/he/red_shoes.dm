@@ -65,6 +65,13 @@
 		"You all need to see how lovely my shoes are!",
 		"They're much prettier with blood on them.",
 	)
+	var/list/finisher_lines = list(
+		"I told you, I won’t give them away.",
+		"They’re much prettier with blood on them.",
+		"Are you already asleep?",
+	)
+	var/finishing = FALSE
+	var/list/murdered_list = list()
 	var/datum/looping_sound/redshoes_ambience/soundloop
 	var/numbermarked = 0//default amount of people that get possessed
 	var/steppy = 0
@@ -77,15 +84,38 @@
 		return
 	if(!possessee)
 		return
+	if(finishing)
+		return
 	if(!prob(say_chance))
 		return
 	var/line = pick(possessee_lines)
 	say(line)
 
+/mob/living/simple_animal/hostile/abnormality/red_shoes/CanAttack(atom/the_target)
+	if(finishing)
+		return FALSE
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/red_shoes/Move()
+	if(finishing)
+		return FALSE
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/red_shoes/Goto(target, delay, minimum_distance)
+	if(finishing)
+		return FALSE
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/red_shoes/DestroySurroundings()
+	if(finishing)
+		return FALSE
+	return ..()
+
 /mob/living/simple_animal/hostile/abnormality/red_shoes/death()
 	if(possessee)
 		death_message = FALSE
 		del_on_death = TRUE
+		murdered_list = null
 	density = FALSE
 	for(var/obj/O in src)
 		O.forceMove(loc)
@@ -95,11 +125,19 @@
 		possessee.forceMove(loc)
 		possessee = null
 		H.adjustBruteLoss(500)//the host dies
+		H.say(pick(death_lines))
+		REMOVE_TRAIT(H, TRAIT_NOBREATH, type)
+		REMOVE_TRAIT(H, TRAIT_INCAPACITATED, type)
+		REMOVE_TRAIT(H, TRAIT_IMMOBILIZED, type)
+		REMOVE_TRAIT(H, TRAIT_HANDS_BLOCKED, type)
+		var/obj/item/bodypart/l_foot = H.get_bodypart(BODY_ZONE_L_LEG)//Feet are defined as BODY_ZONE_PRECISE_L_FOOT. Does the dismember proc not affect them?
+		var/obj/item/bodypart/r_foot = H.get_bodypart(BODY_ZONE_R_LEG)
+		if(!HAS_TRAIT(H, TRAIT_NODISMEMBER))
+			playsound(src, 'sound/abnormalities/redshoes/RedShoes_Kill.ogg', 100, 1)
+			l_foot?.dismember()
+			r_foot?.dismember()
 	for(var/mob/living/carbon/human/H in GLOB.mob_living_list)//stops possessing people, prevents runtimes. Panicked players are ghosted so use mob_living_list
 		UnPossess(H)
-	say(pick(death_lines))
-	alpha = 255
-	QDEL_IN(src, 10 SECONDS)
 	QDEL_NULL(soundloop)
 	return ..()
 
@@ -189,8 +227,12 @@
 		appearance = user.appearance
 		gender = user.gender
 		desc = "[user.name] appears to be grinning from ear to ear. Does [p_they()] normally wear shoes like those?"
-		maxHealth += (user.maxHealth * 4.5)
+		maxHealth = (user.maxHealth * 4.5)
 		revive(full_heal = TRUE, admin_revive = FALSE)
+		ADD_TRAIT(user, TRAIT_NOBREATH, type)
+		ADD_TRAIT(user, TRAIT_INCAPACITATED, type)
+		ADD_TRAIT(user, TRAIT_IMMOBILIZED, type)
+		ADD_TRAIT(user, TRAIT_HANDS_BLOCKED, type)
 		add_overlay(mutable_appearance('icons/mob/clothing/feet.dmi', "red_shoes", -ABOVE_MOB_LAYER))
 		add_overlay(mutable_appearance('icons/mob/inhands/weapons/ego_righthand.dmi', "sanguine", -ABOVE_MOB_LAYER))
 		cut_overlay(mutable_appearance('icons/effects/32x64.dmi', "panicked", -ABOVE_MOB_LAYER))
@@ -234,6 +276,29 @@
 		ChopFeet(H)
 
 /mob/living/simple_animal/hostile/abnormality/red_shoes/proc/ChopFeet(mob/living/carbon/human/H)
+	if(possessee)
+		if(H in murdered_list)
+			return
+		finishing = TRUE
+		H.Stun(4 SECONDS)
+		var/line = pick(finisher_lines)
+		SLEEP_CHECK_DEATH(3)
+		say(line)
+		attack_sound = 'sound/abnormalities/redshoes/RedShoes_Kill.ogg'
+		for(var/i = 1 to 6)
+			if(!targets_from.Adjacent(H) || QDELETED(H) || H.health > 0) // They can still be saved if you move them away
+				finishing = FALSE
+				attack_sound = initial(attack_sound)
+				return
+			SLEEP_CHECK_DEATH(2)
+			H.attack_animal(src)
+			if(i % 2 == 0)
+				adjustBruteLoss(-maxHealth * 0.4) //4% per hit
+			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(H), pick(GLOB.alldirs))
+		murdered_list += H
+		attack_sound = initial(attack_sound)
+		finishing = FALSE
+		return
 	var/obj/item/bodypart/l_foot = H.get_bodypart(BODY_ZONE_L_LEG)//Feet are defined as BODY_ZONE_PRECISE_L_FOOT. Does the dismember proc not affect them?
 	var/obj/item/bodypart/r_foot = H.get_bodypart(BODY_ZONE_R_LEG)
 	if(HAS_TRAIT(H, TRAIT_NODISMEMBER))
@@ -297,10 +362,10 @@
 
 /datum/ai_behavior/say_line/insanity_red_possess
 	lines = list(
-		"Where is everyone?",
-		"Guys, look at me! I've got such nice shoes on!",
-		"You all need to see how lovely my shoes are!",
-		"They're much prettier with blood on them.",
+		"",
+		"",
+		"",
+		"",
 	)
 
 /datum/ai_controller/insane/red_possess/SelectBehaviors(delta_time)//Selects red shoes as the target
@@ -370,6 +435,7 @@
 	if(succeeded)
 		living_pawn.dropItemToGround(held)
 		target.Assimilate(living_pawn)//breaches red shoes with target as the argument for user
+		QDEL_NULL(living_pawn.ai_controller)
 	controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = null
 
 //Simple mob
