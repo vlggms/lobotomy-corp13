@@ -100,11 +100,13 @@
 		if(T.density)
 			i -= 1
 			continue
+		var/obj/effect/projectile_delayed/projectile_handler = new(T) // We use a projectile handler here because fire() is called after a delay
 		var/obj/projectile/despair_rapier/P
 		if(nihil_present)
-			P = new /obj/projectile/despair_rapier/justice(T)
+			P = new /obj/projectile/despair_rapier/justice(projectile_handler)
 		else
-			P = new(T)
+			P = new(projectile_handler)
+		projectile_handler.projectile = P
 		P.starting = T
 		P.firer = src
 		P.fired_from = T
@@ -112,7 +114,7 @@
 		P.xo = target.x - T.x
 		P.original = target
 		P.preparePixelProjectile(target, T)
-		addtimer(CALLBACK (P, TYPE_PROC_REF(/obj/projectile, fire)), 3)
+		projectile_handler.StartFiring(3)
 	SLEEP_CHECK_DEATH(3)
 	playsound(get_turf(src), 'sound/abnormalities/despairknight/attack.ogg', 50, 0, 4)
 	return

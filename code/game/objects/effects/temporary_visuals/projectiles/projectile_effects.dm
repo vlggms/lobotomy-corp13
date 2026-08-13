@@ -58,3 +58,24 @@
 	. = ..()
 	set_light(range, intensity, color)
 	owner = owner_key
+
+/obj/effect/projectile_delayed // Visual object that doubles as a handler for delayed projectiles
+	var/obj/projectile/projectile
+
+/obj/effect/projectile_delayed/proc/StartFiring(timetofire)
+	if(projectile && timetofire)
+		icon = projectile.icon
+		icon_state = projectile.icon_state
+		dir = projectile.dir
+		update_icon()
+		addtimer(CALLBACK(src, PROC_REF(Fire)), timetofire)
+	else
+		qdel(src)
+
+/obj/effect/projectile_delayed/proc/Fire()
+	if(projectile)
+		try // We use try/catch here so that this object gets deleted no matter what runtime occurs.
+			projectile.fire()
+		catch(var/exception/e)
+			log_runtime("runtime error: [e.name]\n[e.desc]")
+	qdel(src)

@@ -259,11 +259,16 @@
 	var/newdamage = (force * 1.2)
 	newdamage *= justicemod
 	newdamage *= force_multiplier
+	listclearnulls(candidates)
 	for(var/i = 1 to 3 * length(candidates))
 		var/atom/PT
 		PT = pick(candidates)
+		if(!PT || QDELETED(PT))
+			continue
 		var/turf/T = get_step(get_turf(PT), pick(GLOB.alldirs))
-		var/obj/projectile/ego_twilight/P = new(T)
+		var/obj/effect/projectile_delayed/projectile_handler = new(T) // We use a projectile handler here because fire() is called after a delay
+		var/obj/projectile/ego_twilight/P = new(projectile_handler)
+		projectile_handler.projectile = P
 		P.damage = newdamage
 		P.starting = T
 		P.firer = user
@@ -273,7 +278,7 @@
 		P.original = PT
 		P.preparePixelProjectile(PT, T)
 		P.set_homing_target(PT)
-		addtimer(CALLBACK (P, TYPE_PROC_REF(/obj/projectile, fire)), 0.5 SECONDS)
+		projectile_handler.StartFiring(5)
 	playsound(user, 'sound/abnormalities/apocalypse/fire.ogg', 50, FALSE, 12)
 
 /obj/projectile/ego_twilight

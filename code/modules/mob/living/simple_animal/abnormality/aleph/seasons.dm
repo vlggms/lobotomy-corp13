@@ -913,17 +913,19 @@
 			continue
 		target_list += L
 	var/projectile_number = (length(target_list) + 3)
+	listclearnulls(target_list)
 	for(var/i = 1 to projectile_number)
 		if(LAZYLEN(target_list))
 			FindTarget(target_list, TRUE)
-		if(!target)
-			return
+		if(!target || QDELETED(target))
+			continue
 		var/turf/T = get_step(get_turf(src), pick(1,2,4,5,6,8,9,10))
 		if(T.density)
 			i -= 1
 			continue
-		var/obj/projectile/season_projectile/winter/weak/P
-		P = new(T)
+		var/obj/effect/projectile_delayed/projectile_handler = new(T)
+		var/obj/projectile/season_projectile/winter/weak/P = new(projectile_handler)
+		projectile_handler.projectile = P
 		P.starting = T
 		P.firer = src
 		P.fired_from = T
@@ -931,7 +933,7 @@
 		P.xo = target.x - T.x
 		P.original = target
 		P.preparePixelProjectile(target, T)
-		addtimer(CALLBACK (P, TYPE_PROC_REF(/obj/projectile, fire)), i + 6)
+		projectile_handler.StartFiring(i + 6)
 	playsound(get_turf(src), 'sound/abnormalities/seasons/winter_change.ogg', 15, 0, 2)
 	SLEEP_CHECK_DEATH(7)
 	playsound(get_turf(src), 'sound/abnormalities/seasons/winter_attack.ogg', 50, 0, 4)

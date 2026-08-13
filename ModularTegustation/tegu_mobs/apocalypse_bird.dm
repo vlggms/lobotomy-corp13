@@ -390,8 +390,12 @@
 		var/atom/PT = src // Shoot it somewhere, idk
 		if(LAZYLEN(candidates))
 			PT = pick(candidates)
+		if(!PT || QDELETED(PT))
+			continue
 		var/turf/T = get_step(get_turf(src), pick(GLOB.alldirs))
-		var/obj/projectile/apocalypse/P = new(T)
+		var/obj/effect/projectile_delayed/projectile_handler = new(T) // We use a projectile handler here because fire() is called after a delay
+		var/obj/projectile/apocalypse/P = new(projectile_handler)
+		projectile_handler.projectile = P
 		P.starting = T
 		P.firer = src
 		P.fired_from = T
@@ -399,7 +403,7 @@
 		P.xo = PT.x - T.x
 		P.original = PT
 		P.preparePixelProjectile(PT, T)
-		addtimer(CALLBACK (P, TYPE_PROC_REF(/obj/projectile, fire)), 6.5 SECONDS)
+		projectile_handler.StartFiring(6.5 SECONDS)
 
 	SLEEP_CHECK_DEATH(6.5 SECONDS)
 	playsound(src, 'sound/abnormalities/apocalypse/fire.ogg', 75, FALSE, 12)
