@@ -1329,10 +1329,10 @@
 /obj/item/ego_weapon/rhythm/attack_self(mob/living/carbon/human/user)
 	if(do_after(user, 10, src))	//Just a second to heal people around you, but it also harms you
 		playsound(src, 'sound/abnormalities/singingmachine/music.ogg', 100, FALSE, 9)
+		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(user), pick(GLOB.alldirs))
+		user.adjustBruteLoss(user.maxHealth*0.15)
 		for(var/mob/living/carbon/human/L in range(3, get_turf(user)))
-			user.adjustBruteLoss(user.maxHealth*0.15)
 			L.adjustSanityLoss(-20)
-			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
 
 /obj/item/ego_weapon/rhythm/get_clamped_volume()
 	return 40

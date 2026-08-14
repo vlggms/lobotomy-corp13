@@ -500,19 +500,28 @@
 	to_chat(user, span_notice("[src] will now deal [force] [damtype] damage."))
 	playsound(src, 'sound/items/screwdriver2.ogg', 50, TRUE)
 
-/obj/item/ego_weapon/censored
+/obj/item/ego_weapon/shield/censored
 	name = "CENSORED"
 	desc = "(CENSORED) has the ability to (CENSORED), but this is a horrendous sight for those watching. \
 			Looking at the E.G.O for more than 3 seconds will make you sick."
-	special = "Using it in hand will activate its special ability. To perform this attack - click on a distant target."
+	special = "This weapon has a small windup before blocking, and performs a counterattack upon a successful block."
 	icon_state = "censored"
 	worn_icon_state = "censored"
-	force = 35	//there's a focus on the ranged attack here.
+	force = 22	//there's a focus on the parry attack here.
+	attack_speed = 0.7
 	damtype = BLACK_DAMAGE
 	swingstyle = WEAPONSWING_THRUST
-	attack_verb_continuous = list("attacks")
-	attack_verb_simple = list("attack")
+	attack_verb_continuous = list("(CENSORED)")
+	attack_verb_simple = list("(CENSORED)")
 	hitsound = 'sound/weapons/ego/censored1.ogg'
+	reductions = list(60, 60, 70, 50) // 240
+	projectile_block_duration = 2 SECONDS
+	block_duration = 3 SECONDS
+	block_cooldown = 2.5 SECONDS
+	block_sound = 'sound/weapons/ego/censored1.ogg'
+	block_message = "Your weapon attempts to (CENSORED) the attack!"
+	projectile_block_message = "You (CENSORED) the projectile!"
+	block_cooldown_message = "You rearm your E.G.O."
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -520,45 +529,53 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 
-	var/special_attack = FALSE
-	var/special_damage = 120
-	var/special_cooldown
-	var/special_cooldown_time = 10 SECONDS
+	var/special_damage = 30
 	var/special_checks_faction = TRUE
+	var/reflect_cooldown
+	var/reflect_cooldown_time = 1 //need to prevent simultaneous hits; beam overlapping is very bad.
 
-/obj/item/ego_weapon/censored/attack_self(mob/living/user)
-	if(!CanUseEgo(user))
-		return
-	if(special_cooldown > world.time)
-		return
-	special_attack = !special_attack
-	if(special_attack)
-		to_chat(user, span_notice("You prepare special attack."))
-	else
-		to_chat(user, span_notice("You decide to not use special attack."))
+/obj/item/ego_weapon/shield/censored/Initialize()
+	. = ..()
+	aggro_on_block *= 2
 
-/obj/item/ego_weapon/censored/afterattack(atom/A, mob/living/user, proximity_flag, params)
-	if(!CanUseEgo(user))
-		return
-	if(special_cooldown > world.time)
-		return
-	if(!special_attack)
-		return
-	special_attack = FALSE
-	var/turf/target_turf = get_ranged_target_turf_direct(user, A, 4)
-	var/list/turfs_to_hit = getline(user, target_turf)
-	for(var/turf/T in turfs_to_hit)
-		if(T.density)
-			break
-		new /obj/effect/temp_visual/cult/sparks(T)
+/obj/item/ego_weapon/shield/censored/afterattack(atom/A, mob/living/user, proximity_flag, params)
+	if (!ishuman(user))
+		return FALSE
+
+	if (block == 0)
+		var/mob/living/carbon/human/shield_user = user
+		if(!CanUseEgo(shield_user))
+			return FALSE
+		if(shield_user.physiology.armor.bomb) //"We have NOTHING that should be modifying this, so I'm using it as an existant parry checker." - Ancientcoders
+			to_chat(shield_user,span_warning("You're still off-balance!"))
+			return FALSE
+		for(var/obj/machinery/computer/abnormality/AC in range(1, shield_user))
+			if(AC.datum_reference.working) // No blocking during work.
+				to_chat(shield_user,span_notice("You cannot defend yourself from responsibility!"))
+				return FALSE
 	playsound(user, 'sound/weapons/ego/censored2.ogg', 75)
-	special_cooldown = world.time + special_cooldown_time
-	if(!do_after(user, 7, src))
+	return ..()
+
+/obj/item/ego_weapon/shield/censored/AnnounceBlock(mob/living/carbon/human/source, damage, damagetype, def_zone, mob/attacker, damage_flags, attack_type)
+	. = ..()
+	if(damage <= 0 || source == attacker || !isliving(attacker) || (attack_type & (ATTACK_TYPE_COUNTER | ATTACK_TYPE_ENVIRONMENT | ATTACK_TYPE_STATUS)))
 		return
-	playsound(user, 'sound/weapons/ego/censored3.ogg', 75)
+	if(!(attacker in livinginview(4, source)))
+		return
+	INVOKE_ASYNC(src, PROC_REF(Reflect), source, attacker)
+
+/obj/item/ego_weapon/shield/censored/proc/Reflect(mob/living/carbon/human/user, mob/living/attacker)
+	if(!block)
+		return
+	if(reflect_cooldown > world.time)
+		return
+	reflect_cooldown = world.time + reflect_cooldown_time
+
+	var/list/turfs_to_hit = getline(user, attacker)
 	var/turf/MT = get_turf(user)
-	MT.Beam(target_turf, "censored", time=5)
-	var/modified_damage = (special_damage * force_multiplier)
+	playsound(user, 'sound/weapons/ego/censored3.ogg', 75)
+	MT.Beam(get_turf(attacker), "censored", time=5)
+	var/modified_damage = (special_damage * force_multiplier * get_attack_multiplier(user))
 	for(var/turf/T in turfs_to_hit)
 		if(T.density)
 			break
@@ -570,10 +587,12 @@
 						continue
 				else
 					continue
-			L.deal_damage(modified_damage, BLACK_DAMAGE, user, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
-			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
+			L.deal_damage(modified_damage, BLACK_DAMAGE, user, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_COUNTER))
+	attacker.visible_message(span_danger("[user]'s [src] (CENSORED) at [attacker]!"), \
+					span_userdanger("[user]'S [src] (CENSORED) at you!!"), vision_distance = COMBAT_MESSAGE_RANGE, ignored_mobs = user)
+	to_chat(user, span_danger("Your [src] (CENSORED) at [attacker]!"))
 
-/obj/item/ego_weapon/censored/get_clamped_volume()
+/obj/item/ego_weapon/shield/censored/get_clamped_volume()
 	return 30
 
 /obj/item/ego_weapon/soulmate
