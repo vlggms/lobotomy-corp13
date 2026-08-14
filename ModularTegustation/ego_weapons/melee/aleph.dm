@@ -504,7 +504,7 @@
 	name = "CENSORED"
 	desc = "(CENSORED) has the ability to (CENSORED), but this is a horrendous sight for those watching. \
 			Looking at the E.G.O for more than 3 seconds will make you sick."
-	special = "This weapon has a small windup before blocking, and performs a counterattack upon a successful block."
+	special = "This weapon performs a counterattack upon a successful block."
 	icon_state = "censored"
 	worn_icon_state = "censored"
 	force = 22	//there's a focus on the parry attack here.
@@ -529,16 +529,16 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 
-	var/special_damage = 30
+	var/special_damage = 60
 	var/special_checks_faction = TRUE
 	var/reflect_cooldown
-	var/reflect_cooldown_time = 1 //need to prevent simultaneous hits; beam overlapping is very bad.
+	var/reflect_cooldown_time = 5 //beam spam is very bad.
 
 /obj/item/ego_weapon/shield/censored/Initialize()
 	. = ..()
 	aggro_on_block *= 2
 
-/obj/item/ego_weapon/shield/censored/afterattack(atom/A, mob/living/user, proximity_flag, params)
+/obj/item/ego_weapon/shield/censored/attack_self(mob/user)
 	if (!ishuman(user))
 		return FALSE
 
@@ -1084,7 +1084,7 @@
 	Will you remember me as that name, as someone whom you cared for?"
 	special = "Use this weapon in hand to swap between forms. The sword heals some sanity on hit, the whip has higher reach, the hammer deals damage in an area, and the bat knocks back enemies."
 	icon_state = "mockery_whip"
-	force = 17
+	force = 18
 	attack_speed = 0.5
 	reach = 3
 	damtype = BLACK_DAMAGE

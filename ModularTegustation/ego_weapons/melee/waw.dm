@@ -990,7 +990,7 @@
 	if(!siphoning)
 		return
 	var/datum/component/bloodfeast/bloodfeast = GetComponent(/datum/component/bloodfeast)
-	AdjustThirst(-10)
+	AdjustThirst(-30)
 	if(bloodfeast.blood_amount < 1)
 		siphoning = FALSE
 		filters = null
