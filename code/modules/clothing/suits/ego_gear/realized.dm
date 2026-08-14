@@ -486,6 +486,7 @@ No Ability	260
 	name = "fallen color"
 	desc = "Where does one go after falling into a black hole?"
 	icon_state = "fallencolors"
+	special = "Causes a WHITE damage repulsion AOE when the wearer takes damage."
 	realized_ability = /obj/effect/proc_holder/ability/aimed/blackhole
 	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 80, BLACK_DAMAGE = 80, PALE_DAMAGE = 50)		//Defensive
 	var/push_cooldown
