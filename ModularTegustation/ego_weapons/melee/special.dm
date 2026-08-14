@@ -478,10 +478,8 @@
 				L.deal_damage(aoe * force_multiplier, BLACK_DAMAGE, user, attack_type = (ATTACK_TYPE_MELEE))
 				new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(L))
 				if(!ishuman(L))
-					if(!L.has_status_effect(/datum/status_effect/display/rend/black))
-						L.apply_status_effect(/datum/status_effect/display/rend/black)
-					if(!L.has_status_effect(/datum/status_effect/display/rend))
-						L.apply_status_effect(/datum/status_effect/display/rend)
+					L.apply_status_effect(/datum/status_effect/display/rend/black)
+					L.apply_status_effect(/datum/status_effect/display/rend)
 
 /obj/item/ego_weapon/oberon/melee_attack_chain(mob/user, atom/target, params)
 	..()

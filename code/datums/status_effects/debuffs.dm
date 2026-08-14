@@ -1054,9 +1054,9 @@
 
 /datum/status_effect/display/rend//find a better file to put these in
 	id = "rend_red"
-	status_type = STATUS_EFFECT_UNIQUE
+	status_type = STATUS_EFFECT_REFRESH
 	display_name = "red"
-	duration = 60 //6 seconds
+	duration = 50 //5 seconds
 	alert_type = null
 	var/modifier_path = /datum/dc_change/rend/red
 
