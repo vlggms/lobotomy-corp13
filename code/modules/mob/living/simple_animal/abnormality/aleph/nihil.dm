@@ -290,14 +290,15 @@
 			for(var/i = 1 to 10)
 				if(LAZYLEN(target_list))
 					FindTarget(list(pick(target_list)), TRUE)
-				if(!target)
+				if(!target || QDELETED(target))
 					return
 				var/turf/T = get_step(get_turf(src), pick(1,2,4,5,6,8,9,10))
 				if(T.density)
 					i -= 1
 					continue
-				var/obj/projectile/despair_rapier/P
-				P = new(T)
+				var/obj/effect/projectile_delayed/projectile_handler = new(T)
+				var/obj/projectile/despair_rapier/P = new(projectile_handler)
+				projectile_handler.projectile = P
 				P.starting = T
 				P.firer = src
 				P.fired_from = T
@@ -305,7 +306,7 @@
 				P.xo = target.x - T.x
 				P.original = target
 				P.preparePixelProjectile(target, T)
-				addtimer(CALLBACK (P, TYPE_PROC_REF(/obj/projectile, fire)), 30)
+				projectile_handler.StartFiring(30)
 				var/list/hit_line = getline(T, get_turf(target)) //targetting line
 				for(var/turf/TF in hit_line)
 					if(TF.density)

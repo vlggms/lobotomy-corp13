@@ -334,8 +334,9 @@
 /mob/living/simple_animal/hostile/abnormality/snow_queen/proc/ProjectSplinter(mob/living/L, turf/T, projectile_telegraph_delay = 3)
 	if(!L || !T)
 		return
-	var/obj/projectile/frost_splinter/P
-	P = new(T)
+	var/obj/effect/projectile_delayed/projectile_handler = new(T) // We use a projectile handler here because fire() is called after a delay
+	var/obj/projectile/frost_splinter/P = new (projectile_handler)
+	projectile_handler.projectile = P
 	P.starting = T
 	P.firer = src
 	P.fired_from = T
@@ -343,7 +344,7 @@
 	P.xo = L.x - T.x
 	P.original = L
 	P.preparePixelProjectile(L, T)
-	addtimer(CALLBACK (P, TYPE_PROC_REF(/obj/projectile, fire)), projectile_telegraph_delay)
+	projectile_handler.StartFiring(projectile_telegraph_delay)
 
 		/*--------\
 		|WORK KISS|

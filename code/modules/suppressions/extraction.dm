@@ -302,7 +302,9 @@
 
 	playsound(get_turf(src), 'sound/magic/arbiter/pillar_start.ogg', 75, FALSE, 12)
 
-	var/obj/projectile/P = new projectile_type(start_loc)
+	var/obj/effect/projectile_delayed/projectile_handler = new(start_loc) // We use a projectile handler here because fire() is called after a delay
+	var/obj/projectile/P = new projectile_type(projectile_handler)
+	projectile_handler.projectile = P
 	P.starting = start_loc
 	P.firer = src
 	P.fired_from = src
@@ -310,7 +312,7 @@
 	P.xo = target_loc.x - start_loc.x
 	P.original = target
 	P.preparePixelProjectile(target_loc, src)
-	addtimer(CALLBACK (P, TYPE_PROC_REF(/obj/projectile, fire)), 0.8 SECONDS)
+	projectile_handler.StartFiring(0.8 SECONDS)
 
 	SLEEP_CHECK_DEATH(0.8 SECONDS)
 
