@@ -143,7 +143,7 @@
 				continue
 			if (L == src)
 				continue
-			L.apply_damage(smash_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(smash_damage, RED_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 			L.visible_message(span_danger("\The [src] [attack_verb_continuous_alt] [L]!"), \
 					span_userdanger("\The [src] [attack_verb_continuous_alt] you!"), null, COMBAT_MESSAGE_RANGE, src)
 			to_chat(src, span_danger("You [attack_verb_simple_alt] [L]!"))

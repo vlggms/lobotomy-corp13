@@ -276,7 +276,8 @@
 					continue
 				if (L == src)
 					continue
-				L.apply_damage(trample_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+						if(!faction_check_mob(L))
+				L.trample_damage(10, RED_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 				L.visible_message(span_userdanger("\The [src] tramples [L]!"), \
 						span_userdanger("\The [src] tramples you!"), null, COMBAT_MESSAGE_RANGE, src)
 				to_chat(src, span_danger("You trample [L]!"))
@@ -311,7 +312,7 @@
 	visible_message(span_danger("[src] suddenly explodes!"))
 	for(var/mob/living/L in view(3, src))
 		if(!faction_check_mob(L))
-			L.apply_damage(30, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+			L.deal_damage(10, RED_DAMAGE, attack_type = (ATTACK_TYPE_SPECIAL))
 	for(var/turf/L in view(2, src))
 		if(prob(20) && !(L.density) && safe)
 			new /obj/item/food/meat/slab/crimson (get_turf(L))
