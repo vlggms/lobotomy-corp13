@@ -5,8 +5,8 @@
 	icon_state = "crimson_midnight"
 	icon_dead = "crimson_midnight"
 	faction = list("crimson_ordeal")
-	maxHealth = 2700
-	health = 2700
+	maxHealth = 2400
+	health = 2400
 	pixel_x = -16
 	base_pixel_x = -16
 	melee_damage_lower = 12
@@ -64,14 +64,15 @@
 				ordeal_reference.ordeal_mobs += nb
 		return
 
-	if(length(spawned_mobs) >= 6)
+	if(length(spawned_mobs) >= 4)
 		return
-	if(length(weaker_spawned_mobs) >= 15)
+	if(length(weaker_spawned_mobs) >= 12)
 		return
 	if((spawn_time > world.time))
 		return
 	spawn_time = world.time + spawn_time_cooldown
 	visible_message(span_danger("\The [src] opens wide and another clown appears from inside!"))
+	adjustBruteLoss(-50)
 	playsound(get_turf(src), 'sound/effects/ordeals/crimson/midnight_spawn.ogg', 75, FALSE)
 	var/turf/T = get_step(get_turf(src), pick(0, EAST))
 	var/mob/living/simple_animal/hostile/ordeal/crimson_midnight/nb = new(T)
@@ -213,18 +214,18 @@
 // Clown
 /mob/living/simple_animal/hostile/ordeal/crimson_midnight //oh god why
 	name = "pinnacle of thew"
-	desc = "A gargantuan clown with gigantic muscles."
+	desc = "A massive clown with gigantic muscles."
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "crimson_midnight"
 	icon_living = "crimson_midnight"
 	icon_dead = "crimson_midnight"
 	faction = list("crimson_ordeal")
-	maxHealth = 850
-	health = 850
+	maxHealth = 750
+	health = 750
 	pixel_x = -16
 	base_pixel_x = -16
-	melee_damage_lower = 15
-	melee_damage_upper = 18
+	melee_damage_lower = 10
+	melee_damage_upper = 12
 	move_to_delay = 4
 	attack_verb_continuous = "punches"
 	attack_verb_simple = "punch"
@@ -233,9 +234,10 @@
 	blood_volume = BLOOD_VOLUME_NORMAL
 	ordeal_remove_ondeath = FALSE
 	can_patrol = TRUE
+	ranged = TRUE
 	var/mob/living/simple_animal/hostile/ordeal/crimson_tent/tent
 	/// How many mobs we spawn if we exist for too long
-	var/mob_spawn_amount = 5
+	var/mob_spawn_amount = 4
 
 	var/can_be_gibbed = TRUE
 	var/exploding = FALSE
@@ -243,8 +245,8 @@
 	var/trample_cooldown
 	var/trample_cooldown_time = 10 SECONDS
 	var/trample_duration
-	var/trample_time = 5 SECONDS
-	var/trample_damage = 8
+	var/trample_time = 6 SECONDS
+	var/trample_damage = 10
 
 /mob/living/simple_animal/hostile/ordeal/crimson_midnight/OpenFire(atom/A)
 	if(get_dist(src, target) >= 3 && trample_cooldown <= world.time && !is_trampling)
@@ -263,6 +265,14 @@
 		trample_cooldown = world.time + trample_cooldown_time
 		ChangeMoveToDelay(4)
 
+//The creature can walk over entities that are the same type or while its trampling.
+/mob/living/simple_animal/hostile/ordeal/crimson_midnight/CanPassThrough(atom/blocker, turf/target, blocker_opinion)
+	if(isliving(blocker))
+		var/mob/living/M = blocker
+		if(is_trampling || (patrol_path.len && faction_check_mob(L)))
+			return TRUE
+	return ..()
+
 /mob/living/simple_animal/hostile/ordeal/crimson_midnight/Moved()
 	. = ..()
 	if(!.)
@@ -276,8 +286,11 @@
 					continue
 				if (L == src)
 					continue
-						if(!faction_check_mob(L))
-				L.trample_damage(10, RED_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
+				if(L == target) // Ends the trample since we reached our guy already
+					is_trampling = FALSE
+					trample_cooldown = world.time + trample_cooldown_time
+					ChangeMoveToDelay(4)
+				L.deal_damage(trample_damage, RED_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 				L.visible_message(span_userdanger("\The [src] tramples [L]!"), \
 						span_userdanger("\The [src] tramples you!"), null, COMBAT_MESSAGE_RANGE, src)
 				to_chat(src, span_danger("You trample [L]!"))
@@ -289,20 +302,20 @@
 		DeathExplosion(TRUE, TRUE)
 	else
 		can_be_gibbed = FALSE
-		animate(src, transform = matrix()*1.4, color = "#FF0000", time = 15, flags=ANIMATION_PARALLEL | ANIMATION_RELATIVE)
-		addtimer(CALLBACK(src, PROC_REF(DeathExplosion), FALSE, TRUE), 15)
+		animate(src, transform = matrix()*1.4, color = "#FF0000", time = 25, flags=ANIMATION_PARALLEL | ANIMATION_RELATIVE)
+		addtimer(CALLBACK(src, PROC_REF(DeathExplosion), FALSE, TRUE), 25)
 	..()
 
-/mob/living/simple_animal/hostile/ordeal/crimson_noon/gib()
+/mob/living/simple_animal/hostile/ordeal/crimson_midnight/gib()
 	if(!can_be_gibbed)
 		return
 	return ..()
 
-/mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_midnight/Initialize()
+/mob/living/simple_animal/hostile/ordeal/crimson_midnight/Initialize()
 	. = ..()
 	AddComponent(/datum/component/knockback, 3, FALSE, TRUE) //1 is distance thrown, False is if it can throw anchored objects, True if doesnt apply damage or stun when hits a wall.
-	animate(src, transform = matrix()*1.2, color = "#FF0000", time = 45 SECONDS)
-	addtimer(CALLBACK(src, PROC_REF(DeathExplosion)), 45 SECONDS)
+	animate(src, transform = matrix()*1.2, color = "#FF0000", time = 60 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(DeathExplosion)), 60 SECONDS)
 
 /mob/living/simple_animal/hostile/ordeal/crimson_midnight/proc/DeathExplosion(gibbed = FALSE, safe = FALSE)
 	if(QDELETED(src))
@@ -312,7 +325,7 @@
 	visible_message(span_danger("[src] suddenly explodes!"))
 	for(var/mob/living/L in view(3, src))
 		if(!faction_check_mob(L))
-			L.deal_damage(10, RED_DAMAGE, attack_type = (ATTACK_TYPE_SPECIAL))
+			L.deal_damage(25, RED_DAMAGE, attack_type = (ATTACK_TYPE_SPECIAL))
 	for(var/turf/L in view(2, src))
 		if(prob(20) && !(L.density) && safe)
 			new /obj/item/food/meat/slab/crimson (get_turf(L))

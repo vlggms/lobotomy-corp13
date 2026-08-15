@@ -10,8 +10,9 @@
 	health = 550
 	pixel_x = -8
 	base_pixel_x = -8
-	melee_damage_lower = 6
-	melee_damage_upper = 8
+	melee_damage_lower = 5
+	melee_damage_upper = 9
+	melee_reach = 2 //It had quite long range in LC
 	move_to_delay = 3.75
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
@@ -38,6 +39,13 @@
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/gib()
 	if(!can_be_gibbed)
 		return
+	return ..()
+
+/mob/living/simple_animal/hostile/ordeal/crimson_noon/CanPassThrough(atom/blocker, turf/target, blocker_opinion)
+	if(isliving(blocker))
+		var/mob/living/M = blocker
+		if((patrol_path.len && faction_check_mob(L)))
+			return TRUE
 	return ..()
 
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/proc/DeathExplosion(gibbed = FALSE)
