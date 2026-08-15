@@ -48,7 +48,7 @@
 			panel_attack_counter += 1
 			visible_message(span_warning("[src] hits at [CP]!"))
 			playsound(get_turf(CP), "sound/machines/terminal_button0[rand(1,8)].ogg", 75, 1)
-			changeNext_move(CLICK_CD_MELEE * 2)
+			changeNext_move(2 SECONDS)
 		else
 			panel_attack_counter = 0
 			visible_message(span_warning("[CP]'s screen produces an error!"))

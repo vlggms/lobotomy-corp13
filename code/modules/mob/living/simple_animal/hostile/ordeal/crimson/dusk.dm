@@ -37,7 +37,7 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_dusk/AttackingTarget(atom/attacked_target)
-	if(!charging)
+	if(charging)
 		return
 	if(prob(20))
 		return Smash(attacked_target)
@@ -46,6 +46,7 @@
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_dusk/proc/Smash(target)
 	if (get_dist(src, target) > 3)
 		return
+	charging = TRUE
 	var/dir_to_target = get_cardinal_dir(get_turf(src), get_turf(target))
 	var/turf/source_turf = get_turf(src)
 	var/turf/area_of_effect = list()
@@ -148,7 +149,7 @@
 					span_userdanger("\The [src] [attack_verb_continuous_alt] you!"), null, COMBAT_MESSAGE_RANGE, src)
 			to_chat(src, span_danger("You [attack_verb_simple_alt] [L]!"))
 	SLEEP_CHECK_DEATH(0.5 SECONDS)
-	charging = TRUE
+	charging = FALSE
 
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_dusk/Move()
 	if(charging)
@@ -181,6 +182,8 @@
 		gib()
 
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_dusk/OpenFire()
+	if(charging)
+		return
 	if(client)
 		clown_roll(target)
 		return
