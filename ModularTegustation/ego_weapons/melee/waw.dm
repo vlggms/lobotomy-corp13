@@ -1348,7 +1348,7 @@
 	name = "innocence"
 	desc = "But why is it about ‘innocence’? After countless assumptions and careful research, we learned that it could be defined as \[REDACTED\]."
 	icon_state = "innocence"
-	force = 68
+	force = 60
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("shoves", "bashes")
 	attack_verb_simple = list("shove", "bash")
