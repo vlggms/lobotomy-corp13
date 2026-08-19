@@ -532,7 +532,7 @@
 	desc = "I'll grind your bones to make my bread!"
 	special = "This weapon deals atrocious damage."
 	icon_state = "giant"
-	force = 44
+	force = 40
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("shoves", "bashes")
 	attack_verb_simple = list("shove", "bash")
@@ -696,7 +696,7 @@
 	desc = "Together, we are in rot."
 	special = "This weapon restores health on a successful parry."
 	icon_state = "legerdemain"
-	force = 28
+	force = 26
 	attack_speed = 1.8
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("bashes", "hammers", "smacks")
@@ -1342,7 +1342,7 @@
 	desc = "As if everything else were hollow and pointless, the wailing numbs even the brain, making it impossible to think."
 	special = "This weapon deals atrocious damage."
 	icon_state = "trachea"
-	force = 44
+	force = 40
 	attack_speed = 3
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("shoves", "bashes")

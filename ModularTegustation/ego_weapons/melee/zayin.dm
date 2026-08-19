@@ -406,6 +406,7 @@
 	special = "Upon deflecting a attack, glimpse the location of all nearby mobs for 1 seconds."
 	icon_state = "dead_dream"
 	damtype = WHITE_DAMAGE
+	reductions = list(30, 20, 10, 0)
 	var/glimpse_cooldown = 0
 	var/glimpse_cooldown_delay = 3 SECONDS
 
