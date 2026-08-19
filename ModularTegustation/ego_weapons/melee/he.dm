@@ -135,7 +135,7 @@
 	name = "life for a daredevil"
 	desc = "An ancient sword surrounded in death, yet it's having it in your grasp that makes you feel the most alive."
 	icon_state = "daredevil"
-	force = 8
+	force = 6
 	attack_speed = 0.5
 	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = PALE_DAMAGE
@@ -595,7 +595,7 @@
 	name = "man eater"
 	desc = "If friends were flowers, I'd pick you!"
 	icon_state = "maneater"
-	force = 12
+	force = 14
 	attack_speed = 1
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("cuts", "smacks", "bashes")
@@ -696,7 +696,7 @@
 	desc = "Together, we are in rot."
 	special = "This weapon restores health on a successful parry."
 	icon_state = "legerdemain"
-	force = 36
+	force = 28
 	attack_speed = 1.8
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("bashes", "hammers", "smacks")

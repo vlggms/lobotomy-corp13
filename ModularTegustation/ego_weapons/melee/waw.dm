@@ -1022,7 +1022,7 @@
 	desc = "Look on my Works, ye Mighty, and despair!"
 	special = "This weapon can remove petrification."
 	icon_state = "pharaoh"
-	force = 12
+	force = 11
 	attack_speed = 0.5
 	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = WHITE_DAMAGE
@@ -1153,11 +1153,9 @@
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
 	force = 20
-	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = WHITE_DAMAGE
-	attack_verb_continuous = list("slices", "cuts")
-	attack_verb_simple = list("slice", "cut")
-	hitsound = 'sound/weapons/blade1.ogg'
+	attack_verb_continuous = list("slams", "strikes", "smashes")
+	attack_verb_simple = list("slam", "strike", "smash")
 	attribute_requirements = list(FORTITUDE_ATTRIBUTE = 80)
 
 /obj/item/ego_weapon/diffraction/attack(mob/living/target, mob/living/user)
