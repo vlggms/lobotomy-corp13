@@ -44,7 +44,7 @@
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/CanPassThrough(atom/blocker, turf/target, blocker_opinion)
 	if(isliving(blocker))
 		var/mob/living/M = blocker
-		if((patrol_path.len && faction_check_mob(L)))
+		if((patrol_path.len && faction_check_mob(M)))
 			return TRUE
 	return ..()
 
