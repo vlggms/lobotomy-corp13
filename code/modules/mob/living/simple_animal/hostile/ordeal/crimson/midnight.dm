@@ -66,7 +66,7 @@
 
 	if(length(spawned_mobs) >= 4)
 		return
-	if(length(weaker_spawned_mobs) >= 12)
+	if(length(weaker_spawned_mobs) >= 8)
 		return
 	if((spawn_time > world.time))
 		return
@@ -84,7 +84,7 @@
 
 /mob/living/simple_animal/hostile/ordeal/crimson_tent/death(gibbed)
 	playsound(get_turf(src), 'sound/effects/ordeals/crimson/midnight_dead.ogg', 30, 0)
-	animate(src, transform = matrix()*1.8, color = "#FF0000", time = 2.8 SECONDS)
+	animate(src, transform = matrix()*1.8, color = "#FF0000", easing = SINE_EASING  | EASE_IN, time = 2.8 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(DeathExplosion), ordeal_reference), 2.8 SECONDS)
 	..()
 
@@ -286,26 +286,32 @@
 					continue
 				if (L == src)
 					continue
-				if(L == target) // Ends the trample since we reached our guy already
-					TryAttack(L)
-					is_trampling = FALSE
-					trample_cooldown = world.time + trample_cooldown_time
-					ChangeMoveToDelay(4)
 				playsound(src, 'sound/effects/ordeals/crimson/dusk_move.ogg', 50, 1)
 				L.deal_damage(trample_damage, RED_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 				L.visible_message(span_userdanger("\The [src] tramples [L]!"), \
 						span_userdanger("\The [src] tramples you!"), null, COMBAT_MESSAGE_RANGE, src)
 				to_chat(src, span_danger("You trample [L]!"))
+				if(L == target) // Ends the trample since we reached our target
+					TryAttack(L)
+					is_trampling = FALSE
+					trample_cooldown = world.time + trample_cooldown_time
+					ChangeMoveToDelay(4)
 
 /mob/living/simple_animal/hostile/ordeal/crimson_midnight/death(gibbed)
+	if(exploding) // We dont want it to go boom with clowns if it trying to go boom already
+		return
 	exploding = TRUE
 	is_trampling = FALSE
+	mob_spawn_amount = clamp(ceil(5 * health/maxHealth) - 1, 0, 4)
 	if(gibbed)
 		DeathExplosion(TRUE, TRUE)
 	else
 		can_be_gibbed = FALSE
-		animate(src, transform = matrix()*1.4, color = "#FF0000", time = 25, flags=ANIMATION_PARALLEL | ANIMATION_RELATIVE)
-		addtimer(CALLBACK(src, PROC_REF(DeathExplosion), FALSE, TRUE), 25)
+		// Some bullshit to make it turn red before it explodes since animate can't handle 2 color changes in parallel by itself
+		animate(src, transform = matrix()*1.4, color = "#FF0000", time = 20, easing = SINE_EASING  | EASE_IN, flags = ANIMATION_RELATIVE | ANIMATION_PARALLEL)
+		filters += filter(type = "color", color = "FFFFFF")
+		animate(filters[filters.len], color = "#FF0000", time = 20, easing = SINE_EASING  | EASE_IN, flags = ANIMATION_PARALLEL)
+		addtimer(CALLBACK(src, PROC_REF(DeathExplosion), FALSE), 20)
 	..()
 
 /mob/living/simple_animal/hostile/ordeal/crimson_midnight/gib()
@@ -316,20 +322,19 @@
 /mob/living/simple_animal/hostile/ordeal/crimson_midnight/Initialize()
 	. = ..()
 	AddComponent(/datum/component/knockback, 3, FALSE, TRUE) //1 is distance thrown, False is if it can throw anchored objects, True if doesnt apply damage or stun when hits a wall.
-	animate(src, transform = matrix()*1.2, color = "#FF0000", time = 60 SECONDS)
-	addtimer(CALLBACK(src, PROC_REF(DeathExplosion)), 60 SECONDS)
+	animate(src, color = "#FF0000", time = 60 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(death), FALSE), 60 SECONDS)
 
-/mob/living/simple_animal/hostile/ordeal/crimson_midnight/proc/DeathExplosion(gibbed = FALSE, safe = FALSE)
+/mob/living/simple_animal/hostile/ordeal/crimson_midnight/proc/DeathExplosion(gibbed = FALSE)
 	if(QDELETED(src))
 		return
-	if(!safe && exploding) // We dont want it to go boom with clowns if it trying to go boom already
-		return
+	playsound(get_turf(src), 'sound/effects/ordeals/crimson/dusk_dead.ogg', 50, 1)
 	visible_message(span_danger("[src] suddenly explodes!"))
 	for(var/mob/living/L in view(3, src))
 		if(!faction_check_mob(L))
 			L.deal_damage(25, RED_DAMAGE, attack_type = (ATTACK_TYPE_SPECIAL))
 	for(var/turf/L in view(2, src))
-		if(prob(20) && !(L.density) && safe)
+		if(prob(20) && !(L.density) )
 			new /obj/item/food/meat/slab/crimson (get_turf(L))
 		var/obj/effect/decal/cleanable/blood/B = new /obj/effect/decal/cleanable/blood(get_turf(L))
 		B.bloodiness = 100
@@ -340,7 +345,7 @@
 			continue
 		if(!TF.is_blocked_turf(TRUE))
 			valid_directions += d
-	if(!safe)
+	if(mob_spawn_amount > 0)
 		for(var/i = 1 to mob_spawn_amount)
 			var/turf/T = get_step(get_turf(src), pick(valid_directions))
 			var/mob/living/simple_animal/hostile/ordeal/crimson_clown/nc = new(T)
