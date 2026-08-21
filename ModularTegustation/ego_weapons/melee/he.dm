@@ -619,8 +619,8 @@
 	desc = "Death, where is thy sting?"
 	special = "This weapon attacks faster when hitting targets below 50% health"
 	icon_state = "revelation"
-	force = 22
-	attack_speed = 1.5
+	force = 19
+	attack_speed = 1.3
 	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = PALE_DAMAGE
 	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
@@ -636,7 +636,7 @@
 	if(target.health <= (target.maxHealth * 0.5))
 		attack_speed = 1
 	else
-		attack_speed = 1.5
+		attack_speed = 1.3
 	..()
 
 /obj/item/ego_weapon/inheritance
