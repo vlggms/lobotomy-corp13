@@ -269,7 +269,7 @@
 /mob/living/simple_animal/hostile/ordeal/crimson_midnight/CanPassThrough(atom/blocker, turf/target, blocker_opinion)
 	if(isliving(blocker))
 		var/mob/living/M = blocker
-		if(is_trampling || (patrol_path.len && faction_check_mob(L)))
+		if(is_trampling || (patrol_path.len && faction_check_mob(M)))
 			return TRUE
 	return ..()
 
@@ -287,9 +287,11 @@
 				if (L == src)
 					continue
 				if(L == target) // Ends the trample since we reached our guy already
+					TryAttack(L)
 					is_trampling = FALSE
 					trample_cooldown = world.time + trample_cooldown_time
 					ChangeMoveToDelay(4)
+				playsound(src, 'sound/effects/ordeals/crimson/dusk_move.ogg', 50, 1)
 				L.deal_damage(trample_damage, RED_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 				L.visible_message(span_userdanger("\The [src] tramples [L]!"), \
 						span_userdanger("\The [src] tramples you!"), null, COMBAT_MESSAGE_RANGE, src)

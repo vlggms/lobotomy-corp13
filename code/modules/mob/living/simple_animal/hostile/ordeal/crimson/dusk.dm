@@ -12,6 +12,7 @@
 	base_pixel_x = -16
 	melee_damage_lower = 12
 	melee_damage_upper = 14
+	melee_reach = 1
 	move_to_delay = 5
 	ranged = TRUE
 	attack_verb_continuous = "slashes"
