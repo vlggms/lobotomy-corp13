@@ -220,8 +220,8 @@
 	icon_living = "crimson_midnight"
 	icon_dead = "crimson_midnight"
 	faction = list("crimson_ordeal")
-	maxHealth = 750
-	health = 750
+	maxHealth = 650
+	health = 650
 	pixel_x = -16
 	base_pixel_x = -16
 	melee_damage_lower = 10
