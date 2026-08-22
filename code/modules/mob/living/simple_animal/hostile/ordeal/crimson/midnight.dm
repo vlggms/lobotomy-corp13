@@ -5,8 +5,8 @@
 	icon_state = "crimson_midnight"
 	icon_dead = "crimson_midnight"
 	faction = list("crimson_ordeal")
-	maxHealth = 2400
-	health = 2400
+	maxHealth = 3000
+	health = 3000
 	pixel_x = -16
 	base_pixel_x = -16
 	melee_damage_lower = 12
@@ -14,7 +14,7 @@
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
 	attack_sound = 'sound/effects/ordeals/amber/dusk_attack.ogg'
-	damage_coeff = list(RED_DAMAGE = 0.2, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 1.2)
+	damage_coeff = list(RED_DAMAGE = 0.2, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 1)
 	butcher_results = list(/obj/item/food/meat/slab/crimson = 3)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/crimson = 2)
 
@@ -72,7 +72,7 @@
 		return
 	spawn_time = world.time + spawn_time_cooldown
 	visible_message(span_danger("\The [src] opens wide and another clown appears from inside!"))
-	adjustBruteLoss(-50)
+	adjustBruteLoss(-100)
 	playsound(get_turf(src), 'sound/effects/ordeals/crimson/midnight_spawn.ogg', 75, FALSE)
 	var/turf/T = get_step(get_turf(src), pick(0, EAST))
 	var/mob/living/simple_animal/hostile/ordeal/crimson_midnight/nb = new(T)
@@ -220,12 +220,12 @@
 	icon_living = "crimson_midnight"
 	icon_dead = "crimson_midnight"
 	faction = list("crimson_ordeal")
-	maxHealth = 650
-	health = 650
+	maxHealth = 750
+	health = 750
 	pixel_x = -16
 	base_pixel_x = -16
 	melee_damage_lower = 10
-	melee_damage_upper = 12
+	melee_damage_upper = 14
 	move_to_delay = 4
 	attack_verb_continuous = "punches"
 	attack_verb_simple = "punch"
