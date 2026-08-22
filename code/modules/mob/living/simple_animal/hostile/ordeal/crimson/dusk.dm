@@ -129,8 +129,8 @@
 					continue
 				area_of_effect |= T
 	if (!LAZYLEN(area_of_effect))
+		charging = FALSE
 		return
-	charging = FALSE
 	dir = dir_to_target
 	playsound(get_turf(src), 'sound/effects/ordeals/crimson/ball.ogg', 75, 0, 5)
 	for(var/turf/T in area_of_effect)
