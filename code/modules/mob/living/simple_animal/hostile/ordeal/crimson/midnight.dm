@@ -5,8 +5,8 @@
 	icon_state = "crimson_midnight"
 	icon_dead = "crimson_midnight"
 	faction = list("crimson_ordeal")
-	maxHealth = 3200
-	health = 3200
+	maxHealth = 3000
+	health = 3000
 	pixel_x = -16
 	base_pixel_x = -16
 	melee_damage_lower = 12
@@ -14,13 +14,13 @@
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
 	attack_sound = 'sound/effects/ordeals/amber/dusk_attack.ogg'
-	damage_coeff = list(RED_DAMAGE = 0.2, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 1)
+	damage_coeff = list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 1)
 	butcher_results = list(/obj/item/food/meat/slab/crimson = 3)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/crimson = 2)
 
 	var/initial_spawn = FALSE
 	var/spawn_time
-	var/spawn_time_cooldown = 20 SECONDS
+	var/spawn_time_cooldown = 16 SECONDS
 	var/list/spawned_mobs = list()
 	var/list/weaker_spawned_mobs = list()
 	var/can_act = TRUE
@@ -64,9 +64,9 @@
 				ordeal_reference.ordeal_mobs += nb
 		return
 
-	if(length(spawned_mobs) >= 4)
+	if(length(spawned_mobs) >= 6)
 		return
-	if(length(weaker_spawned_mobs) >= 12)
+	if(length(weaker_spawned_mobs) >= 15)
 		return
 	if((spawn_time > world.time))
 		return
@@ -220,8 +220,8 @@
 	icon_living = "crimson_midnight"
 	icon_dead = "crimson_midnight"
 	faction = list("crimson_ordeal")
-	maxHealth = 850
-	health = 850
+	maxHealth = 750
+	health = 750
 	pixel_x = -16
 	base_pixel_x = -16
 	melee_damage_lower = 10
@@ -237,7 +237,7 @@
 	ranged = TRUE
 	var/mob/living/simple_animal/hostile/ordeal/crimson_tent/tent
 	/// How many mobs we spawn if we exist for too long
-	var/mob_spawn_amount = 4
+	var/mob_spawn_amount = 5
 
 	var/can_be_gibbed = TRUE
 	var/exploding = FALSE
@@ -302,7 +302,7 @@
 		return
 	exploding = TRUE
 	is_trampling = FALSE
-	mob_spawn_amount = clamp(ceil(5 * health/maxHealth) - 1, 0, 4)
+	mob_spawn_amount = clamp(ceil(6 * health/maxHealth) - 1, 0, 5)
 	if(gibbed)
 		DeathExplosion(TRUE, TRUE)
 	else
