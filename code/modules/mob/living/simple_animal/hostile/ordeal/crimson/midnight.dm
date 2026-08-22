@@ -66,7 +66,7 @@
 
 	if(length(spawned_mobs) >= 6)
 		return
-	if(length(weaker_spawned_mobs) >= 15)
+	if(length(weaker_spawned_mobs) >= 12)
 		return
 	if((spawn_time > world.time))
 		return
@@ -302,7 +302,7 @@
 		return
 	exploding = TRUE
 	is_trampling = FALSE
-	mob_spawn_amount = clamp(ceil(6 * health/maxHealth) - 1, 0, 5)
+	mob_spawn_amount = clamp(ceil(5 * health/maxHealth) - 1, 0, 4)
 	if(gibbed)
 		DeathExplosion(TRUE, TRUE)
 	else
