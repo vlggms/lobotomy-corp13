@@ -5,8 +5,8 @@
 	icon_state = "crimson_midnight"
 	icon_dead = "crimson_midnight"
 	faction = list("crimson_ordeal")
-	maxHealth = 3000
-	health = 3000
+	maxHealth = 3200
+	health = 3200
 	pixel_x = -16
 	base_pixel_x = -16
 	melee_damage_lower = 12
@@ -72,7 +72,7 @@
 		return
 	spawn_time = world.time + spawn_time_cooldown
 	visible_message(span_danger("\The [src] opens wide and another clown appears from inside!"))
-	adjustBruteLoss(-100)
+	adjustBruteLoss(-80)
 	playsound(get_turf(src), 'sound/effects/ordeals/crimson/midnight_spawn.ogg', 75, FALSE)
 	var/turf/T = get_step(get_turf(src), pick(0, EAST))
 	var/mob/living/simple_animal/hostile/ordeal/crimson_midnight/nb = new(T)
@@ -220,8 +220,8 @@
 	icon_living = "crimson_midnight"
 	icon_dead = "crimson_midnight"
 	faction = list("crimson_ordeal")
-	maxHealth = 750
-	health = 750
+	maxHealth = 850
+	health = 850
 	pixel_x = -16
 	base_pixel_x = -16
 	melee_damage_lower = 10
