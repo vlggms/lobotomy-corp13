@@ -337,7 +337,7 @@
 	inhand_x_dimension = 96
 	inhand_y_dimension = 96
 	force = 13
-	attack_speed = 0.8
+	attack_speed = 0.7
 	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = PALE_DAMAGE
 	attack_verb_continuous = list("cuts", "attacks", "slashes")
