@@ -336,7 +336,7 @@
 	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
 	inhand_x_dimension = 96
 	inhand_y_dimension = 96
-	force = 14
+	force = 13
 	attack_speed = 0.7
 	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = PALE_DAMAGE
@@ -354,7 +354,7 @@
 		return
 	if(!(M.status_flags & GODMODE) && M.stat != DEAD)
 		attack_count++
-	if(attack_count > 13)
+	if(attack_count >= 13)
 		attack_count = 0
 		force = get_modified_attribute_level(user, JUSTICE_ATTRIBUTE)
 		new /obj/effect/temp_visual/thirteen(get_turf(M))
