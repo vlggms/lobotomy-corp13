@@ -66,7 +66,7 @@
 
 	if(length(spawned_mobs) >= 4)
 		return
-	if(length(weaker_spawned_mobs) >= 8)
+	if(length(weaker_spawned_mobs) >= 12)
 		return
 	if((spawn_time > world.time))
 		return
