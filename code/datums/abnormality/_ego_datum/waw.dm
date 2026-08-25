@@ -159,7 +159,7 @@
 
 /datum/ego_datum/weapon/thirteen
 	item_path = /obj/item/ego_weapon/thirteen
-	cost = 50
+	cost = 65
 
 // Dreaming Current - Ecstacy
 /datum/ego_datum/armor/ecstasy
