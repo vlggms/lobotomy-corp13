@@ -39,7 +39,7 @@
 			user.changeNext_move(CLICK_CD_MELEE * 0.3)
 		if(6)
 			hitsound = 'sound/weapons/ego/justitia4.ogg'
-			combo = 0
+			combo = -1
 			user.changeNext_move(CLICK_CD_MELEE * 1.2)
 			var/turf/T = get_turf(M)
 			new /obj/effect/temp_visual/justitia_effect(T)
