@@ -47,8 +47,8 @@
 /obj/item/clothing/suit/armor/ego_gear/teth/eyes
 	name = "red eyes"
 	desc = "Spiders have strong maternal instincts. They will defend their offspring at all costs."
-	special = "This armor provides a small speed boost while worn."
-	slowdown = -0.1
+	special = "This armor provides a 10% speed boost while worn."
+	speedboost = 1.1
 	icon_state = "eyes"
 	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = -20, BLACK_DAMAGE = 20, PALE_DAMAGE = -10) // 10, has a speed boost
 

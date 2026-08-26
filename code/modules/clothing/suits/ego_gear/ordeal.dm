@@ -45,7 +45,7 @@
 	neck = /obj/item/clothing/neck/ego_neck/painful_purpose
 	icon_state = "painful_purpose"
 	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 60, BLACK_DAMAGE = 50, PALE_DAMAGE = 70) // 260
-	slowdown = 0.3
+	speedboost = 0.85
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 100,

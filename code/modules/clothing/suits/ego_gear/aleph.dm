@@ -190,7 +190,8 @@
 			return RED.OnApplyDamage(source, damage, damagetype, def_zone)
 
 /datum/movespeed_modifier/adoration
-	multiplicative_slowdown = 1
+	multiplicative_slowdown = 2
+	flags = IS_ACTUALLY_MULTIPLICATIVE
 	variable = FALSE
 
 /obj/item/clothing/suit/armor/ego_gear/aleph/smile

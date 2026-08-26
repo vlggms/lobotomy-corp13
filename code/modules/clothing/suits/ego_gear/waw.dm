@@ -137,8 +137,8 @@
 	name = "crimson scar"
 	desc = "It seems only darkness awaits those who find the value of their lives in nothing but destruction."
 	icon_state = "crimson_scar"
-	special = "This armor provides a small speed boost while worn."
-	slowdown = -0.1
+	special = "This armor provides a 10% speed boost while worn."
+	speedboost  = 1.1
 	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 40, BLACK_DAMAGE = 40, PALE_DAMAGE = 10) // 130, gives a speed boost
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80

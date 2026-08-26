@@ -128,8 +128,8 @@ No Ability	260
 	name = "death stare"
 	desc = "Last words are for fools who haven’t said enough."
 	icon_state = "death"
-	special = "This armor provides a small speed bonus while worn."
-	slowdown = -0.1
+	special = "This armor provides a 15% speed bonus while worn."
+	speedboost = 1.15
 	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 40, BLACK_DAMAGE = 70, PALE_DAMAGE = 50)		//Melee with slow
 	realized_ability = /obj/effect/proc_holder/ability/aimed/gleaming_eyes
 
@@ -310,8 +310,8 @@ No Ability	260
 	name = "crimson lust"
 	desc = "They are always watching you."
 	icon_state = "crimson"
-	special = "This armor provides a large speed bonus while worn."
-	slowdown = -0.25
+	special = "This armor provides a 25% speed bonus while worn."
+	speedboost = 1.25
 	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 40)		//Speed
 
 /obj/item/clothing/suit/armor/ego_gear/realization/eyes
