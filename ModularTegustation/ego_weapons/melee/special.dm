@@ -293,7 +293,7 @@
 /obj/item/ego_weapon/shield/distortion
 	name = "distortion"
 	desc = "The fragile human mind is fated to twist and distort."
-	special = "This weapon requires two hands to use and always blocks ranged attacks. The first time blocking a non ranged attack results in 1 of 14 random effects."
+	special = "This weapon requires two hands to use and always blocks ranged attacks. When blocking, the first attack successfully blocked results in 1 of 14 random effects. This does not apply to damage that is fully blocked."
 	icon_state = "distortion"
 	force = 20 //Twilight but lower in terms of damage
 	attack_speed = 2

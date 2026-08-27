@@ -589,7 +589,7 @@
 					continue
 			L.deal_damage(modified_damage, BLACK_DAMAGE, user, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_COUNTER))
 	attacker.visible_message(span_danger("[user]'s [src] (CENSORED) at [attacker]!"), \
-					span_userdanger("[user]'S [src] (CENSORED) at you!!"), vision_distance = COMBAT_MESSAGE_RANGE, ignored_mobs = user)
+					span_userdanger("[user]'S [src] (CENSORED) at you!"), vision_distance = COMBAT_MESSAGE_RANGE, ignored_mobs = user)
 	to_chat(user, span_danger("Your [src] (CENSORED) at [attacker]!"))
 
 /obj/item/ego_weapon/shield/censored/get_clamped_volume()
