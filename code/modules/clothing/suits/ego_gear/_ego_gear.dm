@@ -52,7 +52,7 @@
 	. = ..()
 	if(slot == ITEM_SLOT_OCLOTHING)
 		if(speedboost)
-			var/speed = 1/speedboost //We get the inverse to make our lives easier if we want to doulble speed or half it
+			var/speed = 1/speedboost //We get the inverse to make our lives easier if we want increase it by 15%
 			user.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/ego_armor_speed, multiplicative_slowdown = speed)
 		return
 	if(hat)

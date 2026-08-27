@@ -128,8 +128,8 @@ No Ability	260
 	name = "death stare"
 	desc = "Last words are for fools who haven’t said enough."
 	icon_state = "death"
-	special = "This armor provides a 15% speed bonus while worn."
-	speedboost = 1.15
+	special = "This armor provides a 10% speed bonus while worn."
+	speedboost = 1.1
 	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 40, BLACK_DAMAGE = 70, PALE_DAMAGE = 50)		//Melee with slow
 	realized_ability = /obj/effect/proc_holder/ability/aimed/gleaming_eyes
 
