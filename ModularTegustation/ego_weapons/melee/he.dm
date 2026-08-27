@@ -135,7 +135,7 @@
 	name = "life for a daredevil"
 	desc = "An ancient sword surrounded in death, yet it's having it in your grasp that makes you feel the most alive."
 	icon_state = "daredevil"
-	force = 8
+	force = 6
 	attack_speed = 0.5
 	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = PALE_DAMAGE
@@ -532,7 +532,7 @@
 	desc = "I'll grind your bones to make my bread!"
 	special = "This weapon deals atrocious damage."
 	icon_state = "giant"
-	force = 44
+	force = 40
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("shoves", "bashes")
 	attack_verb_simple = list("shove", "bash")
@@ -595,7 +595,7 @@
 	name = "man eater"
 	desc = "If friends were flowers, I'd pick you!"
 	icon_state = "maneater"
-	force = 12
+	force = 14
 	attack_speed = 1
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("cuts", "smacks", "bashes")
@@ -619,8 +619,8 @@
 	desc = "Death, where is thy sting?"
 	special = "This weapon attacks faster when hitting targets below 50% health"
 	icon_state = "revelation"
-	force = 22
-	attack_speed = 1.5
+	force = 19
+	attack_speed = 1.3
 	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = PALE_DAMAGE
 	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
@@ -636,7 +636,7 @@
 	if(target.health <= (target.maxHealth * 0.5))
 		attack_speed = 1
 	else
-		attack_speed = 1.5
+		attack_speed = 1.3
 	..()
 
 /obj/item/ego_weapon/inheritance
@@ -696,7 +696,7 @@
 	desc = "Together, we are in rot."
 	special = "This weapon restores health on a successful parry."
 	icon_state = "legerdemain"
-	force = 36
+	force = 26
 	attack_speed = 1.8
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("bashes", "hammers", "smacks")
@@ -1329,10 +1329,10 @@
 /obj/item/ego_weapon/rhythm/attack_self(mob/living/carbon/human/user)
 	if(do_after(user, 10, src))	//Just a second to heal people around you, but it also harms you
 		playsound(src, 'sound/abnormalities/singingmachine/music.ogg', 100, FALSE, 9)
+		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(user), pick(GLOB.alldirs))
+		user.adjustBruteLoss(user.maxHealth*0.15)
 		for(var/mob/living/carbon/human/L in range(3, get_turf(user)))
-			user.adjustBruteLoss(user.maxHealth*0.15)
 			L.adjustSanityLoss(-20)
-			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
 
 /obj/item/ego_weapon/rhythm/get_clamped_volume()
 	return 40
@@ -1342,7 +1342,7 @@
 	desc = "As if everything else were hollow and pointless, the wailing numbs even the brain, making it impossible to think."
 	special = "This weapon deals atrocious damage."
 	icon_state = "trachea"
-	force = 44
+	force = 40
 	attack_speed = 3
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("shoves", "bashes")

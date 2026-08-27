@@ -18,12 +18,12 @@
 	ALEPH         |        150        |        60        |         60            |
 
 	Hybrid Shields are weapons that can parry and typically have a 1 second duration and a projectile block duration matching their attack_speed.
-	Regular Shields have very slow (3) attack speed and slow (speed 2) force. So for a teth, 3 speed and 40 force.
+	Regular Shields have very slow (3) attack speed and high(2.5) force. So for a zayin, 3 speed and 15 force.
 
 */
 /obj/item/ego_weapon/shield
 	attack_speed = 3
-	force = 40
+	force = 15
 	swingstyle = FALSE
 	var/attacking = FALSE
 	var/block = FALSE

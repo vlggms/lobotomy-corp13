@@ -248,7 +248,7 @@
 	name = "hearth"
 	desc = "Home sweet home. Warmth and safety aplenty."
 	icon_state = "hearth"
-	force = 10
+	force = 9
 	attack_speed = 1
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
@@ -433,7 +433,7 @@
 	icon_state = "capote"
 	worn_icon = 'icons/obj/clothing/belt_overlays.dmi'
 	worn_icon_state = "capote"
-	force = 10
+	force = 9
 	attack_speed = 1
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")

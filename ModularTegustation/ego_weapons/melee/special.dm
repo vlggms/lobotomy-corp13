@@ -298,10 +298,10 @@
 /obj/item/ego_weapon/shield/distortion
 	name = "distortion"
 	desc = "The fragile human mind is fated to twist and distort."
-	special = "This weapon requires two hands to use and always blocks ranged attacks."
+	special = "This weapon requires two hands to use and always blocks ranged attacks. When blocking, the first attack successfully blocked results in 1 of 14 random effects. This does not apply to damage that is fully blocked."
 	icon_state = "distortion"
 	force = 20 //Twilight but lower in terms of damage
-	attack_speed = 1.8
+	attack_speed = 2
 	damtype = RED_DAMAGE
 	knockback = KNOCKBACK_MEDIUM
 	attack_verb_continuous = list("pulverizes", "bashes", "slams", "blockades")
@@ -320,6 +320,8 @@
 							)
 
 	attacking = TRUE //ALWAYS blocking ranged attacks
+	var/chaos = TRUE
+
 
 /obj/item/ego_weapon/shield/distortion/Initialize()
 	. = ..()
@@ -343,16 +345,104 @@
 		to_chat(user, span_notice("You cannot use [src] with only one hand!"))
 		return FALSE
 
-/obj/item/ego_weapon/shield/distortion/AnnounceBlock(mob/living/carbon/human/source, damage, damagetype, def_zone)
+/obj/item/ego_weapon/shield/distortion/AnnounceBlock(mob/living/carbon/human/source, damage, damagetype, def_zone, mob/attacker, damage_flags, attack_type)
 	if(src != source.get_active_held_item() || !CanUseEgo(source))
 		DisableBlock(source)
 		return
 	..()
+	if(damage <= 0 || source == attacker || !isliving(attacker) || (attack_type & (ATTACK_TYPE_COUNTER | ATTACK_TYPE_ENVIRONMENT | ATTACK_TYPE_STATUS)))
+		return
+	if(!(attacker in livinginview(8, source)))
+		return
+	if(!chaos)
+		return
+	chaos = FALSE
+	var/roll = rand(1,34)
+	INVOKE_ASYNC(src, PROC_REF(ChaosShield), source, attacker, roll)
+	if(roll == 13 || roll == 14)//Done here to nullify the damage taken
+		to_chat(source,span_nicegreen("Your [src] fully nullified the attack!"))
+		source.HealingEffect("no_dam")
+		return COMPONENT_MOB_DENY_DAMAGE
+
+
+/obj/item/ego_weapon/shield/distortion/proc/ChaosShield(mob/living/carbon/human/user, mob/living/attacker, roll)
+	playsound(get_turf(user), 'sound/weapons/black_silence/snap.ogg', 50)
+	switch(roll)
+		if(1, 2)
+			user.adjustBruteLoss(-8)
+		if(3, 4)
+			user.adjustSanityLoss(-8)
+		if(5, 6)
+			user.adjustBruteLoss(-5)
+			user.adjustSanityLoss(-5)
+		if(7, 8)
+			user.apply_shield(/datum/status_effect/interventionshield, shield_health = 50, shield_duration = 15 SECONDS)
+		if(9, 10)
+			user.apply_shield(/datum/status_effect/interventionshield/white, shield_health = 50, shield_duration = 15 SECONDS)
+		if(11, 12)
+			user.apply_shield(/datum/status_effect/interventionshield/black, shield_health = 50, shield_duration = 15 SECONDS)
+		if(15, 16)
+			user.apply_shield(/datum/status_effect/interventionshield/pale, shield_health = 50, shield_duration = 15 SECONDS)
+		if(17, 18)
+			var/turf/proj_turf = user.loc
+			if(!isturf(proj_turf))
+				return
+			var/obj/projectile/ego_bullet/swan/S = new /obj/projectile/ego_bullet/swan(proj_turf)
+			S.fired_from = src //for signal check
+			playsound(user, 'sound/weapons/resonator_blast.ogg', 30, TRUE)
+			S.firer = user
+			S.preparePixelProjectile(attacker, user)
+			S.fire()
+			S.damage *= force_multiplier * 2 * get_attack_multiplier(user)
+		if(19, 20)
+			user.visible_message(span_danger("[user]'s [src] screaches!"), \
+					span_userdanger("Your [src] screaches!"), vision_distance = COMBAT_MESSAGE_RANGE, ignored_mobs = user)
+			playsound(user, "sound/abnormalities/distortedform/screech4.ogg", 75, FALSE, 8)
+			new /obj/effect/temp_visual/fragment_song(get_turf(src))
+			for(var/mob/living/L in ohearers(8, src))
+				if(L.z != z || (L.status_flags & GODMODE))
+					continue
+				if(user.faction_check_mob(L, FALSE))
+					continue
+				if(L.stat == DEAD)
+					continue
+				L.deal_damage(30 * get_attack_multiplier(user), WHITE_DAMAGE, user, attack_type = (ATTACK_TYPE_SPECIAL))
+		if(21, 22)
+			user.visible_message(span_danger("[user]'s [src] explodes!"), \
+						span_userdanger("Your [src] explodes!"), ignored_mobs = user)
+			for(var/mob/living/L in view(1, user))
+				if(user.faction_check_mob(L))
+					continue
+				L.deal_damage(45 * get_attack_multiplier(user), RED_DAMAGE, user, attack_type = (ATTACK_TYPE_SPECIAL))
+			new /obj/effect/explosion(get_turf(user))
+		if(23)
+			to_chat(user,span_nicegreen("Your [src] creates some soothing music."))
+			playsound(user, 'sound/abnormalities/siren/sirenhappy.ogg', 100, FALSE, 10)
+			for(var/mob/living/carbon/human/H in orange(10, src))
+				if(user.faction_check_mob(H, FALSE))
+					if(H != user)
+						to_chat(H,span_nicegreen("You hear some soothing music."))
+					H.adjustSanityLoss(-12)
+		if(24)
+			playsound(get_turf(attacker), 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, FALSE, -3)
+			for(var/mob/living/L in get_turf(attacker))
+				if(user.faction_check_mob(L, FALSE))
+					continue
+				if(L.stat == DEAD)
+					continue
+				L.deal_damage(150 * get_attack_multiplier(user), PALE_DAMAGE, attack_type = (ATTACK_TYPE_SPECIAL))
+			new /obj/effect/temp_visual/beam_in(get_turf(src))
+		if(25)
+			for(var/mob/living/carbon/human/L in livinginview(8, user))
+				if((!ishuman(L)) || L.stat == DEAD)
+					continue
+				L.apply_shield(/datum/status_effect/interventionshield/perfect, shield_health = 100, shield_duration = 15 SECONDS)
 
 /obj/item/ego_weapon/shield/distortion/DisableBlock(mob/living/carbon/human/user)
 	if(!block)
 		return
 	..()
+	chaos = TRUE
 
 /obj/item/ego_weapon/shield/distortion/get_clamped_volume()
 	return 40
