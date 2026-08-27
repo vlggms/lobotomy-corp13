@@ -401,36 +401,8 @@
 /datum/ego_gifts/noise
 	name = "Noise"
 	icon_state = "noise"
-	desc = "-10 Prudence and +10 Justice when the armor from the same Abnormality is equipped."
 	justice_bonus = 2
 	slot = BROOCH
-	var/buffed = FALSE
-	var/stat_buffs = 10
-
-/datum/ego_gifts/noise/Initialize(mob/living/carbon/human/user)
-	. = ..()
-	var/obj/item/clothing/suit/armor/ego_gear/teth/noise/T = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
-	if(istype(T))
-		add_buffs(user)
-
-/datum/ego_gifts/noise/Remove(mob/living/carbon/human/user)
-	if(buffed)
-		remove_buffs(user)
-	return ..()
-
-/datum/ego_gifts/noise/proc/add_buffs(mob/living/carbon/human/user)
-	if(buffed)
-		return
-	buffed = TRUE
-	user.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -stat_buffs)
-	user.adjust_attribute_buff(JUSTICE_ATTRIBUTE, stat_buffs)
-
-/datum/ego_gifts/noise/proc/remove_buffs(mob/living/carbon/human/user)
-	if(!buffed)
-		return
-	buffed = FALSE
-	user.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, stat_buffs)
-	user.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -stat_buffs)
 
 /datum/ego_gifts/page
 	name = "Page"
@@ -660,34 +632,6 @@
 	icon_state = "desire"
 	fortitude_bonus = 4
 	slot = MOUTH_2
-	desc = "-10 Temperance and +10 Justice when the armor from the same Abnormality is equipped."
-	var/buffed = FALSE
-	var/stat_buffs = 10
-
-/datum/ego_gifts/desire/Initialize(mob/living/carbon/human/user)
-	. = ..()
-	var/obj/item/clothing/suit/armor/ego_gear/he/sanguine/T = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
-	if(istype(T))
-		add_buffs(user)
-
-/datum/ego_gifts/desire/Remove(mob/living/carbon/human/user)
-	if(buffed)
-		remove_buffs(user)
-	return ..()
-
-/datum/ego_gifts/desire/proc/add_buffs(mob/living/carbon/human/user)
-	if(buffed)
-		return
-	buffed = TRUE
-	user.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -stat_buffs)
-	user.adjust_attribute_buff(JUSTICE_ATTRIBUTE, stat_buffs)
-
-/datum/ego_gifts/desire/proc/remove_buffs(mob/living/carbon/human/user)
-	if(!buffed)
-		return
-	buffed = FALSE
-	user.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, stat_buffs)
-	user.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -stat_buffs)
 
 /datum/ego_gifts/faelantern
 	name = "Midwinter Nightmare"
@@ -811,27 +755,18 @@
 /datum/ego_gifts/harmony
 	name = "Harmony"
 	icon_state = "harmony"
-	desc = "Restores 10% of WHITE damage taken as sanity. This effect ignores armor." //Singing machine is already a good abno here plus we have a lot of white 8 armor.
+	desc = "Provides the user with 10% resistance to white damage."
 	fortitude_bonus = 8
 	prudence_bonus = -6
 	slot = CHEEK
 
-/datum/ego_gifts/harmony/Initialize(mob/living/carbon/human/user)
+/datum/ego_gifts/harmony/Initialize(mob/living/carbon/human/user) // grants resistance
 	. = ..()
-	RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(AttemptHeal))
+	user.physiology.white_mod *= 0.9
 
 /datum/ego_gifts/harmony/Remove(mob/living/carbon/human/user)
-	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(AttemptHeal))
+	user.physiology.white_mod /= 0.9
 	return ..()
-
-/datum/ego_gifts/harmony/proc/AttemptHeal(datum/source, damage, damagetype, def_zone)
-	if(!owner && damagetype != WHITE_DAMAGE)
-		return
-	if(!damage)
-		return
-	if(damage < 0)
-		return
-	owner.adjustSanityLoss(-damage*0.1)
 
 /datum/ego_gifts/harvest
 	name = "Harvest"
@@ -1522,11 +1457,42 @@
 /datum/ego_gifts/adoration
 	name = "Adoration"
 	icon_state = "adoration"
-	desc = "Increases the threshold of the corresponding armor's ability to 20%."
+	desc = "While wearing the corresponding armor, taking red damage while under 20% HP will prevent it from going through. This ability has a 6 second cooldown when activated."
 	fortitude_bonus = 5
 	prudence_bonus = 10
 	temperance_bonus = -5
 	slot = HELMET
+	var/shield_cooldown
+	var/shield_cooldown_time = 6 SECONDS
+
+/datum/ego_gifts/adoration/Initialize(mob/living/carbon/human/user)
+	. = ..()
+	RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(AttemptShield))
+
+/datum/ego_gifts/adoration/Remove(mob/living/carbon/human/user)
+	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(AttemptShield))
+	return ..()
+
+/datum/ego_gifts/adoration/proc/AttemptShield(datum/source, damage, damagetype, def_zone)
+	if(!source && damagetype != RED_DAMAGE)
+		return
+	if(!damage)
+		return
+	var/obj/item/clothing/suit/armor/ego_gear/aleph/adoration/T = owner.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(!istype(T))
+		return
+	if(damage < 0)
+		return
+	if(shield_cooldown >= world.time)
+		return
+	if(owner.is_working)
+		return
+	var/health_threshold = 0.2
+	if(owner.health > health_threshold * owner.maxHealth)
+		return
+	to_chat(owner, span_notice("Slime forms around youself to protect you!"))
+	shield_cooldown = shield_cooldown_time + world.time
+	return COMPONENT_MOB_DENY_DAMAGE
 
 /datum/ego_gifts/amogus
 	name = "Imposter"
@@ -1566,21 +1532,32 @@
 /datum/ego_gifts/dacapo
 	name = "Da Capo"
 	icon_state = "dacapo"
-	desc = "Increases the white defense of the corresponding armor to 0x."
+	desc = "While wearing the corresponding armor, taking 10 or less white damage will heal twice the amount that it did."
 	temperance_bonus = 6
 	slot = EYE
 
-/datum/ego_gifts/dacapo/Initialize(mob/living/carbon/human/user) // grants resistance
+/datum/ego_gifts/dacapo/Initialize(mob/living/carbon/human/user)
 	. = ..()
-	var/obj/item/clothing/suit/armor/ego_gear/aleph/da_capo/T = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
-	if(istype(T))
-		T.BuffWhite()
+	RegisterSignal(user, COMSIG_MOB_AFTER_APPLY_DAMGE, PROC_REF(AttemptHeal))
 
 /datum/ego_gifts/dacapo/Remove(mob/living/carbon/human/user)
-	var/obj/item/clothing/suit/armor/ego_gear/aleph/da_capo/T = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
-	if(istype(T))
-		T.DebuffWhite()
+	UnregisterSignal(user, COMSIG_MOB_AFTER_APPLY_DAMGE, PROC_REF(AttemptHeal))
 	return ..()
+
+/datum/ego_gifts/dacapo/proc/AttemptHeal(datum/source, damage, damagetype, def_zone)
+	if(!owner && damagetype != WHITE_DAMAGE)
+		return
+	var/obj/item/clothing/suit/armor/ego_gear/aleph/da_capo/T = owner.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	var/obj/item/clothing/suit/armor/ego_gear/realization/alcoda/U = owner.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(!(istype(T) || istype(U)))
+		return
+	if(!damage)
+		return
+	if(damage < 0)
+		return
+	if(damage > 10) //If its more than 10 damage we don't heal from it
+		return
+	owner.adjustSanityLoss(-damage * 2)
 
 /datum/ego_gifts/distortion
 	name = "Distortion"

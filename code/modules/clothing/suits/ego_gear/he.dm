@@ -130,23 +130,6 @@
 							FORTITUDE_ATTRIBUTE = 40
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/he/sanguine/equipped(mob/user, slot, initial = FALSE)
-	. = ..()
-	if(slot == ITEM_SLOT_OCLOTHING)
-		if(ishuman(user))
-			var/mob/living/carbon/human/L = user
-			if(istype(L.ego_gift_list["Mouth Slot 2"], /datum/ego_gifts/desire))
-				var/datum/ego_gifts/desire/N = L.ego_gift_list["Mouth Slot 2"]
-				N.add_buffs(user)
-
-/obj/item/clothing/suit/armor/ego_gear/he/sanguine/dropped(mob/user)
-	if(ishuman(user))
-		var/mob/living/carbon/human/L = user
-		if(istype(L.ego_gift_list["Mouth Slot 2"], /datum/ego_gifts/desire))
-			var/datum/ego_gifts/desire/N = L.ego_gift_list["Mouth Slot 2"]
-			N.remove_buffs(user)
-	return ..()
-
 /obj/item/clothing/suit/armor/ego_gear/he/solemnlament
 	name = "solemn lament"
 	desc = "The undertaker's outfit belongs to those who pay tribute to the dead.\

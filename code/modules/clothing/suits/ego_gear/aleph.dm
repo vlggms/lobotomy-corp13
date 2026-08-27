@@ -76,7 +76,7 @@
 	desc = "A splendid tailcoat perfect for a symphony. \
 	Superb leadership is required to create a perfect ensemble."
 	icon_state = "da_capo"
-	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 80, BLACK_DAMAGE = 60, PALE_DAMAGE = 30) // 230 / 250 with gift
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 80, BLACK_DAMAGE = 60, PALE_DAMAGE = 30) // 230 / absorbs low amounts of white damage with the gift
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 100,
@@ -128,7 +128,6 @@
 	name = "adoration"
 	desc = "It is not as unpleasant to wear as it is to look at. \
 	In fact, it seems to give you an illusion of comfort and bravery."
-	special = "When the wearer takes 10+ RED damage and is under 10% HP, this armor will create a 100 HP RED shield for 3 seconds at the cost of lowering the wearer's speed for the same amount of time.\nThis ability has a 12 second cooldown before it can activate again."
 	icon_state = "adoration"
 	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 40, BLACK_DAMAGE = 70, PALE_DAMAGE = 50) // 230, can create a shield for the user
 	attribute_requirements = list(
@@ -137,62 +136,6 @@
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
 							)
-	var/shield_cooldown
-	var/shield_cooldown_time = 12 SECONDS
-	var/shield_time = 3 SECONDS
-	var/shield_hp = 100
-
-/obj/item/clothing/suit/armor/ego_gear/aleph/adoration/equipped(mob/living/carbon/human/user, slot)
-	. = ..()
-	if(!user)
-		return
-	RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(AttemptShield))
-
-/obj/item/clothing/suit/armor/ego_gear/aleph/adoration/dropped(mob/user)
-	. = ..()
-	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(AttemptShield))
-
-/obj/item/clothing/suit/armor/ego_gear/aleph/adoration/proc/AttemptShield(datum/source, damage, damagetype, def_zone)
-	if(!source && damagetype != RED_DAMAGE)
-		return
-	if(!damage)
-		return
-	if(damage < 0)
-		return
-	if(shield_cooldown >= world.time)
-		return
-	var/mob/living/carbon/human/H = source
-	if(H.is_working)
-		return
-	var/health_threshold = 0.1
-	if(istype(H.ego_gift_list["Helmet Slot"], /datum/ego_gifts/adoration))
-		health_threshold = 0.2
-	if(H.health > health_threshold * H.maxHealth)
-		return
-
-	//We need to calculate how much will that damage actually deal to us
-	var/hit_percent = (100-H.physiology.damage_resistance)/100
-	var/armor_block = (100-H.run_armor_check(null, damagetype))/100
-	var/damage_amount = damage * hit_percent * H.physiology.red_mod * armor_block
-
-	if(damage_amount >= 10)
-		H.visible_message(span_notice("A slimey shield forms around [H]!"), \
-			span_notice("Your [src] forms a slimey shield to protect you!"))
-		shield_cooldown = world.time + shield_cooldown_time
-		H.add_movespeed_modifier(/datum/movespeed_modifier/adoration)
-		addtimer(CALLBACK(H, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/adoration), shield_time, TIMER_UNIQUE | TIMER_OVERRIDE)
-		if(H.has_status_effect(/datum/status_effect/interventionshield))
-			H.remove_status_effect(/datum/status_effect/interventionshield)
-		H.apply_shield(/datum/status_effect/interventionshield, shield_hp, shield_time)
-		//We return if the shield blocks the damage or not.
-		var/datum/status_effect/interventionshield/RED = H.has_status_effect(/datum/status_effect/interventionshield)
-		if(RED)
-			return RED.OnApplyDamage(source, damage, damagetype, def_zone)
-
-/datum/movespeed_modifier/adoration
-	multiplicative_slowdown = 2
-	flags = IS_ACTUALLY_MULTIPLICATIVE
-	variable = FALSE
 
 /obj/item/clothing/suit/armor/ego_gear/aleph/smile
 	name = "smile"

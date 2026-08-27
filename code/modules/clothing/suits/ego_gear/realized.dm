@@ -128,8 +128,8 @@ No Ability	260
 	name = "death stare"
 	desc = "Last words are for fools who haven’t said enough."
 	icon_state = "death"
-	special = "This armor provides a 10% speed bonus while worn."
-	speedboost = 1.1
+	special = "This armor provides a 5% speed bonus while worn."
+	speedboost = 1.05
 	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 40, BLACK_DAMAGE = 70, PALE_DAMAGE = 50)		//Melee with slow
 	realized_ability = /obj/effect/proc_holder/ability/aimed/gleaming_eyes
 
@@ -310,8 +310,8 @@ No Ability	260
 	name = "crimson lust"
 	desc = "They are always watching you."
 	icon_state = "crimson"
-	special = "This armor provides a 25% speed bonus while worn."
-	speedboost = 1.25
+	special = "This armor provides a 15% speed bonus while worn."
+	speedboost = 1.15
 	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 40)		//Speed
 
 /obj/item/clothing/suit/armor/ego_gear/realization/eyes
@@ -429,35 +429,7 @@ No Ability	260
 	name = "al coda"
 	desc = "Harmonizes well."
 	icon_state = "coda"
-	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 80, BLACK_DAMAGE = 60, PALE_DAMAGE = 50)		//250 / 270 with gift. I'm giving this pale 5 since red/black 7 + white 10 would be fucked up
-	var/buffed = FALSE
-
-/obj/item/clothing/suit/armor/ego_gear/realization/alcoda/equipped(mob/user, slot, initial = FALSE)
-	. = ..()
-	if(buffed)
-		return
-	if(slot == ITEM_SLOT_OCLOTHING)
-		if(ishuman(user))
-			var/mob/living/carbon/human/L = user
-			if(istype(L.ego_gift_list["Eye Slot"], /datum/ego_gifts/dacapo))
-				BuffWhite()
-
-/obj/item/clothing/suit/armor/ego_gear/realization/alcoda/dropped(mob/user)
-	if(buffed)
-		DebuffWhite()
-	return ..()
-
-/obj/item/clothing/suit/armor/ego_gear/realization/alcoda/proc/BuffWhite()
-	if(buffed)
-		return
-	buffed = TRUE
-	armor = armor.modifyRating(white = 20) // White 10
-
-/obj/item/clothing/suit/armor/ego_gear/realization/alcoda/proc/DebuffWhite()
-	if(!buffed)
-		return
-	buffed = FALSE
-	armor = armor.modifyRating(white = -20) // White 8
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 80, BLACK_DAMAGE = 60, PALE_DAMAGE = 50)		//250
 
 /obj/item/clothing/suit/armor/ego_gear/realization/head
 	name = "head of god"

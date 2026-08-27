@@ -47,8 +47,8 @@
 /obj/item/clothing/suit/armor/ego_gear/teth/eyes
 	name = "red eyes"
 	desc = "Spiders have strong maternal instincts. They will defend their offspring at all costs."
-	special = "This armor provides a 10% speed boost while worn."
-	speedboost = 1.1
+	special = "This armor provides a 5% speed boost while worn."
+	speedboost = 1.05
 	icon_state = "eyes"
 	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = -20, BLACK_DAMAGE = 20, PALE_DAMAGE = -10) // 10, has a speed boost
 
@@ -63,23 +63,6 @@
 	desc = "This is a recording of the day we must never forget."
 	icon_state = "noise"
 	armor = list(RED_DAMAGE = -20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 0) // 20
-
-/obj/item/clothing/suit/armor/ego_gear/teth/noise/equipped(mob/user, slot, initial = FALSE)
-	. = ..()
-	if(slot == ITEM_SLOT_OCLOTHING)
-		if(ishuman(user))
-			var/mob/living/carbon/human/L = user
-			if(istype(L.ego_gift_list["Brooch Slot"], /datum/ego_gifts/noise))
-				var/datum/ego_gifts/noise/N = L.ego_gift_list["Brooch Slot"]
-				N.add_buffs(user)
-
-/obj/item/clothing/suit/armor/ego_gear/teth/noise/dropped(mob/user)
-	if(ishuman(user))
-		var/mob/living/carbon/human/L = user
-		if(istype(L.ego_gift_list["Brooch Slot"], /datum/ego_gifts/noise))
-			var/datum/ego_gifts/noise/N = L.ego_gift_list["Brooch Slot"]
-			N.remove_buffs(user)
-	return ..()
 
 /obj/item/clothing/suit/armor/ego_gear/teth/sorrow
 	name = "sorrow"
