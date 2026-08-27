@@ -50,6 +50,11 @@
 		"Pretend you didn't get the order" = list(FALSE, "You pretend you didn't get the order and make to leave, your PDA flashes again, you've been assigned to \"Nothing There\" and this time, you're being escorted."),
 	)
 
+	work_start_lines = list("%PERSON knows that if %ABNO sheds a tear, they are sure to die.")
+	early_work_lines = list("%PERSON feels like their grave had been walked upon.", "%ABNO brushes away %PERSON's tears.")
+	middle_work_lines = list("And I looked, and behold a pale horse: and the name that sat upon him was ￭￭￭￭￭, and Hell followed with them.")
+	work_end_lines = list("%ABNO sheds a tear for %PERSON.")
+
 	//teleport
 	var/can_act = TRUE
 	var/teleport_cooldown
@@ -67,6 +72,7 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/pale_horse/Worktick(mob/living/carbon/human/user)
+	..()
 	if(user.health < (user.maxHealth * 0.5))
 		return
 	else

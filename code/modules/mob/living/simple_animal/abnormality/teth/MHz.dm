@@ -49,6 +49,11 @@
 		"Forget" = list(FALSE, "But you can't forget. Not until you've atoned."),
 	)
 
+	work_start_lines = list("%PERSON feels the ominous pressure of the Containment Unit.")
+	early_work_lines = list("%PERSON can sense the twinge of sadness and rage that looms over the entire Containment Unit.")
+	middle_work_lines = list("%PERSON can smell a fishy stench coming from somewhere.")
+	work_end_lines = list("%PERSON mistakenly thought there were sounds of people wailing from afar.")
+
 	var/reset_time = 4 MINUTES //Qliphoth resets after this time. To prevent bugs
 
 /mob/living/simple_animal/hostile/abnormality/mhz/WorkChance(mob/living/carbon/human/user, chance)

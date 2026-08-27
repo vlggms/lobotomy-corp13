@@ -53,6 +53,12 @@
 		Numerous hooks, claws, and sickles bite into you all at once. <br>\ Now you will know why you fear the night."),
 	)
 
+	work_start_lines = list("Natureless creatures roam the night, you should find shelter.", "%ABNO's cell is perpetually gloomy.")
+	early_work_lines = list("Despite %ABNO's large lantern holding a lit flame - it emits no light, nor warmth.", "%PERSON declines %ABNO's offer of guiding them home.",
+	"When Night falls in the Backstreets...")
+	late_work_lines = list("Humanity has always feared the dark, the denizens of the City know exactly what the night holds.",
+	"I pray the beings of the night return to their dens soon...", "%ABNO reminds %PERSON to be home before 3:13 A.M.")
+
 	// Speech Lines
 	speak_chance = 4
 	var/speak_normal = list(

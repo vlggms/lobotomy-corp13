@@ -58,6 +58,10 @@
 		"Courage" = list(FALSE, "Drink this potion, it’ll give you courage. <br>You’ll be braver than anyone."),
 	)
 
+	work_start_lines = list("%ABNO cowers at %PERSON's approach.", "%ABNO is seeking the friends it walked the yellow brick road together with.")
+	middle_work_lines = list("The vial of \"liquid courage\" worked. Nothing ever scared %ABNO, until it realized it was all alone.")
+	work_end_lines = list("%ABNO fears everything it believes is stronger than it, never realising that it is stronger than anyone else.")
+
 	/// The list of abnormality scaredy cat will automatically join when they breach, add any "Oz" abno to this list if possible
 	var/list/prefered_abno_list = list(
 		/mob/living/simple_animal/hostile/abnormality/woodsman,

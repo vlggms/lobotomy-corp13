@@ -51,6 +51,10 @@
 		"The road home" = list(FALSE, "Wear this pair of shoes and be on your way. To the hometown you miss so much."),
 	)
 
+	work_start_lines = list("Due to the actions of a wicked person, %ABNO had the way back home snatched away from her.")
+	early_work_lines = list("No matter how many times she walks the road, the home she yearns for cannot be reached.")
+	late_work_lines = list("%ABNO is seeking people like her to once again walk the yellow brick road with.")
+
 	///Stuff related to the house and its path
 	var/obj/road_house/house
 	var/list/house_path

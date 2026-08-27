@@ -65,6 +65,13 @@
 			In the end, I am never able to find a way out of the forest."),
 	)
 
+	// TODO - modular work lines
+	work_start_lines = list("When humanity still huddled in caves, %ABNO appeared.")
+	middle_work_lines = list("%PERSON is surrounded by nature, even in this dark and isolated place.", "The natural world reclaims the cold steel and plastic at %ABNO's touch.",
+	"%PERSON hears birds singing, which should be impossible this deep underground.")
+	late_work_lines = list("%ABNO has no name. That is the name that humans gave it in ancient times.", "In their time of need, the old ones called for %ABNO.")
+	work_end_lines = list("When humanity has gone and passed, %ABNO will remain.", "The poetry of the earth is never dead.")
+
 	//Var Lists
 	var/list/season_stats = list(
 		"spring" = list(/datum/weather/thunderstorm, WHITE_DAMAGE, "Spring God", "Spring Deity, \"Caprice\" Panz","A bashful spirit cloaked in flower pedals.","A mischievous deity."),

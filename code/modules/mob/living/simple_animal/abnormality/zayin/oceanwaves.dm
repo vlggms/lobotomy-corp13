@@ -51,6 +51,11 @@
 			They should be okay to drink."),
 	)
 
+	work_start_lines = list("Where does %ABNO get its power? No power connects to it from what %PERSON can see.")
+	middle_work_lines = list("%PERSON can hear the crashing sound of waves from everywhere they don't look.")
+	late_work_lines = list("The cans from %ABNO are covered in pictograms and shapes devoid of any meaning %PERSON can fathom.")
+	work_end_lines = list("The drinks %ABNO produce are, well, cheery at least.")
+
 	var/list/goodsoders = list(
 		/obj/item/reagent_containers/food/drinks/soda_cans/oceanwave/unlabeled,
 		/obj/item/reagent_containers/food/drinks/soda_cans/oceanwave/cola,

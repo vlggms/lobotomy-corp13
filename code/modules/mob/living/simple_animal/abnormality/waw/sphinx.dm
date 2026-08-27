@@ -69,6 +69,10 @@
 			Soon after, my heart is taken away too. <br>And then there is nothing left."),
 	)
 
+	work_start_lines = list("Rumor has it that %ABNO tells riddles, but it has made no attempt to communicate so far.")
+	middle_work_lines = list("%ABNO's eye remains closed so long as it stays in its cell.")
+	work_end_lines = list("%PERSON's head hurts, suddenly. Just being around %ABNO causes significant mental strain.")
+
 	//work-related
 	var/list/workloot = list(
 		/obj/item/golden_needle,

@@ -46,6 +46,11 @@
 		"I am not him" = list(FALSE, "Ah... <br>A mere human, human, human. <br>Cease your fear, I shall rid you of your pains. <br>Be reborn as a flower."),
 		"Stay silent" = list(FALSE, "Ah... <br>A mere human, human, human. <br>Cease your fear, I shall rid you of your pains. <br>Be reborn as a flower."),
 	)
+
+	work_start_lines = list("%ABNO is searching for its \"husband\", Oberon.")
+	middle_work_lines = list("%ABNO never tires of declaring its hatred for its nemesis.", "%ABNO declares its hatred of \"Oberon\", the thief of its child.")
+	work_end_lines = list("%PERSON is surrounded by %ABNO's fairies.", "Fairies carry flowers to and from %ABNO.")
+
 	patrol_cooldown_time = 5 SECONDS
 	var/fairy_spawn_number = 3
 	var/fairy_spawn_time = 5 SECONDS
@@ -270,7 +275,7 @@
 /mob/living/simple_animal/hostile/abnormality/titania/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(user.sanityhealth != user.maxSanity)
 		agent_notfullsp = TRUE
-	return TRUE
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/titania/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()

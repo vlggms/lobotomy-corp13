@@ -65,6 +65,10 @@ GLOBAL_LIST_EMPTY(army)
 	trigger_lights = FALSE
 	can_affect_emergency = FALSE
 
+	work_start_lines = list("%ABNO tells %PERSON all about love.")
+	middle_work_lines = list("%ABNO's goal is to make sure goodhearted people are safe.")
+	work_end_lines = list("%PERSON feels hope from seeing %ABNO's friendly color.")
+
 	//Unique variables
 	var/death_counter = 0
 	var/protection_duration = 120 SECONDS

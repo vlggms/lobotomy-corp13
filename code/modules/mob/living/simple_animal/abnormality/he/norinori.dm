@@ -65,6 +65,11 @@
 			You are too close to get away."),
 	)
 
+	work_start_lines = list("There are many things in this world we don't understand, %ABNO is one of those things.",
+	"%ABNO looks soft, but...", "It may look like a fox or a cat, depending on the observer.")
+	middle_work_lines = list("If %PERSON is a temperate person, there is nothing to fear from %ABNO.",
+	"%ABNO sounds oddly mechanical.", "Abnormalities cannot be your friend, especially the ones that say they are.")
+
 //breach related
 	var/can_act = TRUE
 	var/transformed = FALSE

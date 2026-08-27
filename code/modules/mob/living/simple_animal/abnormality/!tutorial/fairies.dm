@@ -28,6 +28,10 @@
 	start_qliphoth = 2
 	can_spawn = FALSE // Normally doesn't appear
 
+	// Tutorial abnormality - doesn't really need a final observation.
+	work_start_lines = list("The %ABNO is just a small gaggle of fairies, not enough to be called something as grand as a \"festival\".")
+	middle_work_lines = list("Entry-level employees do not need to know the true meaning of \"The Fairies' Care\".")
+
 /mob/living/simple_animal/hostile/abnormality/fairy_swarm/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
 	GiveTarget(user)

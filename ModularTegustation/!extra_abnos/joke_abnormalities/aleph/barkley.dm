@@ -31,6 +31,9 @@
 	)
 	abnormality_origin = ABNORMALITY_ORIGIN_JOKE
 
+	// Lacks a final obs
+	work_start_lines = list("%ABNO is enveloped in B-Ball energy.")
+
 	var/explosion_amt = 3
 
 /mob/living/simple_animal/hostile/abnormality/barkley/NeutralEffect(mob/living/carbon/human/user, work_type, pe)

@@ -41,6 +41,12 @@
 			\"Sooner than you'd like, later than you prepare for. <br>It comes for everyone Sir.\" <br>I hear the sound of a distant horn."),
 	)
 
+	work_start_lines = list("The booking clerk who remains dauntingly quiet sells tickets for a train with no final destination.","There are no clocks to alert the arrival times, instead, there are some blinking lights.")
+	early_work_lines = list("The first and second lights illuminate; your mind clears.")
+	middle_work_lines = list(" The third light illuminates; your mind clears and your wounds close.")
+	late_work_lines = list("The fourth light illuminates; the condition of every employee in every department improves when you hear the train’s horn off in the distance.")
+	work_end_lines = list("When the time comes, the train will chug down the tracks and sound its mighty horn. There is no doubt that it will plunge through the endless tunnel while boarding the employees who have not taken a step back from the tracks.")
+
 	var/meltdown_tick = 60 SECONDS
 	var/meltdown_timer
 	var/lightscount = 0

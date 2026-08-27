@@ -50,6 +50,10 @@
 			They hold you down and force you to drink the soda, and you fall asleep... <br>... <br>Somewhere in the distance, you hear seagulls."),
 	)
 
+	work_start_lines = list("It's about time you got here, don't you think it's rude to keep a Wing Represenative waiting?")
+	middle_work_lines = list("%PERSON questions the existence of a Shrimp Corp, to %ABNO's annoyance.", "There is no, and never was, a Wing known as Shrimp Corp in the City.")
+	work_end_lines = list("Do let your Manager know I'm still waiting for our meeting.", "%PERSON couldn't be more relieved to get away from %ABNO.")
+
 	var/liked
 	var/happy = TRUE
 	var/happy_works = 0
@@ -131,7 +135,7 @@
 	else
 		happy_works = 0
 		happy = FALSE
-	return TRUE
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/shrimp_exec/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	liked = pick(ABNORMALITY_WORK_INSTINCT, ABNORMALITY_WORK_INSIGHT, ABNORMALITY_WORK_ATTACHMENT)

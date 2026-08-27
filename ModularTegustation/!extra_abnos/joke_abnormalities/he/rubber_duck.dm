@@ -35,10 +35,22 @@
 	gift_type =  /datum/ego_gifts/squeak
 
 	abnormality_origin = ABNORMALITY_ORIGIN_JOKE
+
 	var/list/looking_players = list()
 	var/list/ignore_abno_list = list(
 		/mob/living/simple_animal/hostile/abnormality/training_rabbit,
 	)
+
+	observation_prompt = "The %ABNO lies still. Is it finally in your grasp?"
+
+	observation_choices = list(
+		"Leave it alone" = list(FALSE, "You leave the ducky alone.<br>\
+		It lies still, as if mocking you."),
+		"Reach for it" = list(TRUE, "At last, you lay claim to the rubber ducky."),
+	)
+
+	work_start_lines = list("The interdimensional rubber duck waits in its cell. Or does it?")
+
 
 /mob/living/simple_animal/hostile/abnormality/rubber_duck/Move()
 	return FALSE

@@ -54,6 +54,13 @@
 			Now everything will be just fine."),
 	)
 
+	work_start_lines = list("After the popularity of the \"All-Around Helper\" skyrocketed, \"We Can Change Anything\" was released as the second installment of XX Inc's home robot series.")
+	early_work_lines = list("As to be expected of all of XX Inc's products, it sports a variety of functions.")
+	middle_work_lines = list("Is your child a troublemaker who cries all the time? We can change that!", "Don't like how you look? Are you too fat? Too skinny? We can change that!",
+	"Is your house suffering from an outage because you don’t have the money to pay for the power bill? We can change that!")
+	late_work_lines = list("It's quite simple. Just open up the machine, step inside, and press the button to make it shut. Now everything will be just fine.")
+	work_end_lines = list("The machine will produce energy after an employee enters it.", "Seeing as once inside, nobody ever comes out, it must be rather comfortable.")
+
 	var/grinding = FALSE
 	var/grind_duration = 5 SECONDS
 	var/grind_damage = 0.4 // Dealt 100 times
@@ -89,7 +96,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/we_can_change_anything/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(work_type != "Enter machine")
-		return TRUE
+		return ..()
 	if(total_energy >= 2000) // Cant just spam the work
 		say("[total_energy] PE Boxes accumulated, processing energy, please stay on standby!")
 		return FALSE
@@ -98,9 +105,10 @@
 	StoreWorker(user) //Yoink.
 	datum_reference.max_boxes = 100 //much longer than a normal work.
 	sacrifice = TRUE
-	return TRUE
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/we_can_change_anything/Worktick(mob/living/carbon/human/user)
+	..()
 	if(!sacrifice)
 		user.deal_damage(1, RED_DAMAGE) // say goodbye to your kneecaps chucklenuts!
 	else

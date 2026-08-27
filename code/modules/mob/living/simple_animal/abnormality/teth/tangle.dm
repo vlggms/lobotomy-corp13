@@ -51,6 +51,10 @@
 			Four thousand nine-hundred ninety-nine..."),
 	)
 
+	work_start_lines = list("%PERSON grabs a cute looking pink brush and begins to comb %ABNO's golden locks of hair.")
+	middle_work_lines = list("Four thousand eight hundred ninety-nine... Four thousand eight hundred ninety-nine", "Let the hair down. So I can escape from this hell.")
+	late_work_lines = list("Four thousand nine hundred fifty-two. Four thousand nine hundred fifty two...", "The hair, let it down. Let the hair down.")
+
 	var/chosen
 	var/instinct_count
 	var/list/hair_list = list()

@@ -45,6 +45,9 @@
 		"Enter the machine" = list(TRUE, "I did as instructed and entered; now I have become strong, strong for my City. <br>I love the City I live in."),
 	)
 
+	work_start_lines = list("A mysterious worn-out machine, like a plastic toy model of a factory")
+	middle_work_lines = list("Those who underwent an operation inside the machine have found become strong. \"Do you love your city?\".")
+
 	var/penalize = FALSE
 	var/work_count = 0
 	var/question = FALSE
@@ -111,7 +114,7 @@
 		return FALSE
 	if(!(work_type in list("YES", "NO")) && !question && ..())
 		icon_state = "you_strong_work"
-		return TRUE
+		return ..()
 	if((work_type in list("YES", "NO")) && !question)
 		to_chat(user, span_notice("You have not been prompted."))
 		return FALSE

@@ -55,6 +55,9 @@
 		"Cut his bindings" = list(FALSE, "I cut the man free and he thanks me profusely before he speeds down the stairs. <br>He won't make it. <br>I close my eyes and accept the end."),
 	)
 
+	work_start_lines = list("%PERSON hesitantly enters the Containment Unit with a sense of foreboding.", "The stone mask of the %ABNO brings about unease in %PERSON.")
+	middle_work_lines = list("The purpose of %ABNO is to bring about the apocalypse.")
+
 	var/player_count
 	var/other_works_maximum
 	var/other_works = 0

@@ -39,6 +39,10 @@
 		"Stay" = list(FALSE, "\"Will you stay here with me?\" <br>\"If you won't, I don't need you.\""),
 	)
 
+	work_start_lines = list("That night, when stars showered down from the sky, a child walked.", "%ABNO knows all there is to know about %PERSON.")
+	middle_work_lines = list("The longing becomes a tear, and cascades down like a shooting star.", "The remnants of longing blossom on the sorrowing heart.")
+	work_end_lines = list("%ABNO makes %PERSON pinky swear and promise to come back again tomorrow.", "%ABNO starts sobbing, he can’t handle the fact that %PERSON needs to leave now.", "%PERSON can’t take another step after seeing how tearful %ABNO’s face is.")
+
 	/// List of people who are our friends
 	var/list/galaxy_friends = list()
 	/// Used to calculate delta time for accurate healing no matter the lag

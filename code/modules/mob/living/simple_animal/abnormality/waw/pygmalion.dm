@@ -46,6 +46,11 @@
 		"Pygmalion" = list(TRUE, "Perhaps they sculpted each other."),
 	)
 
+	work_start_lines = list("As the sculptor carves away stone, so does the sculpture carve away doubt.")
+	early_work_lines = list("I tried to love something without a human heart.", "%PERSON admires the detail on %ABNO.")
+	late_work_lines = list("I without a heart, tried to love a human.", "Galatea, shall be her name.")
+	work_end_lines = list("Perhaps they sculpted each other.")
+
 	var/last_worker = null
 	var/teleport_cooldown
 	var/teleport_cooldown_time = 20 SECONDS

@@ -48,6 +48,10 @@
 			(Your flesh turns grey, no one will need such a horrid looking carriage.)"),
 	)
 
+	work_start_lines = list("%PERSON's nose twitches at the scent of decay emanating from %ABNO.", "%ABNO is remembering the happiest night of its life.")
+	early_work_lines = list("%ABNO has served its purpose and no one has need of it anymore.", "No one will need such a horrid looking carriage.")
+	work_end_lines = list("Let's go back to that wonderous, magical night....")
+
 	var/freshness = 0
 	//Breach stuff
 	var/maxSegments = 1

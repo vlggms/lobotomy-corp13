@@ -62,6 +62,26 @@
 	animate(src, alpha = 100, time = 30)
 	addtimer(CALLBACK(src, PROC_REF(StartAnimation)),30)
 
+// Abnormality work flavor text handler. Uses snowflake vars to handle spacing and such.
+/obj/effect/overlay/workflavortext
+	name = "overlay"
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	alpha = 0
+	maptext_height = 64
+	maptext_width = 256
+	layer = UNDER_HUD_LAYER
+	plane = HUD_PLANE - 1
+	pixel_y = 128
+	pixel_x = -32
+
+/obj/effect/overlay/workflavortext/Initialize()
+	. = ..()
+	animate(src, alpha = 255, time = 10)
+
+/obj/effect/overlay/workflavortext/proc/FadeOut()
+	animate(src, alpha = 0, time = 10)
+	QDEL_IN(src, 12)
+
 //Kikimora Graffiti
 /obj/effect/decal/cleanable/crayon/cognito
 	name = "graffiti"

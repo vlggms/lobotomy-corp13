@@ -84,6 +84,10 @@
 			You are swept in the tide. <br>Your flesh is riddled with wounds as they slowly devour you."),
 	)
 
+	work_start_lines = list("%ABNO's Containment Unit stinks of rot.", "%ABNO looks as immaculate as ever, but a hint of muck fills the air.")
+	middle_work_lines = list("%PERSON thinks for a moment that %ABNO might actually be hollow on the inside, but they dismiss the thought.",
+	"%PERSON thinks that if they were able to take %ABNO home, they would never have to work again.")
+
 	var/is_maggot = FALSE
 	var/can_act = TRUE
 	var/victim_name

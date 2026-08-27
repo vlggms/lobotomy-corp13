@@ -49,6 +49,11 @@
 		"Plug your ears" = list(FALSE, "You are not prepared yet. The song stopped when you plugged the ears."),
 	)
 
+	work_start_lines = list("The moment we enter %ABNO’s universe, then we will finally understand the secrets of the universe.",
+	"%ABNO and other employees who went crazy look like they are calling for something with their song.")
+	middle_work_lines = list("%ABNO once told us, \"There are no coincidences in the universe.\"", "Employees shudder in fear when %ABNO tries to laugh.")
+	work_end_lines = list("Whatever their original purpose is, those tentacles inflict severe damage to human brain.", "%ABNO’s tentacles blur the line between human and alien dimension.")
+
 	var/song_cooldown
 	var/song_cooldown_time = 10 SECONDS
 	var/song_damage = 3 // Dealt 8 times

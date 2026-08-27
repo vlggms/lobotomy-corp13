@@ -51,6 +51,21 @@
 			The shoes' crimson color is getting deeper."),
 	)
 
+	work_start_lines = list("%ABNO are placed on a stuffed cushion, as if on display.",
+	"If you happen to see something resembling teeth on the interior of %ABNO, it has to simply be a trick of the eyes.",
+	"Anyone whose gaze falls upon %ABNO will feel an irresistible urge to put them on.", "The girl begged in tears. \"Mister, please cut off my feet...\"")
+	early_work_lines = list("Leaving %ABNO on the worn cushion, %PERSON begins their work.",
+	"As if someone recently took them off, %ABNO are lying on the ground.", "Moving past %ABNO, which are neatly aligned, %PERSON continues with their work.")
+	middle_work_lines = list("%ABNO's red enameled leather glistens in the light.",
+	"The ankle straps on %ABNO still appear elegant even though they're worn out.",
+	"As if representing a long history, the heels of %ABNO are worn out.",
+	"The flawless condition the leather of %ABNO is in seems out of place.")
+	late_work_lines = list("%PERSON sneaks a few glances towards %ABNO while they're working.",
+	"%PERSON just keeps looking over at %ABNO.", "Having difficulty concentrating, %PERSON stops working and turns around to gaze at %ABNO.",
+	"Trying to resist viewing %ABNO again, %PERSON looks in the opposite direction, trying to resume the job at hand.")
+	work_end_lines = list("%ABNO are clearly not a living organism, but they emit a dismal aura.",
+	"%ABNO may not be a breathing creature, but its distinct atmosphere reminds those near it of a bloodied past.", "The sanguine color of %ABNO looks oddly familiar.", "%ABNO lies still.")
+
 	var/mutable_appearance/breach_icon
 	var/mob/living/possessee
 	var/list/death_lines = list(

@@ -68,6 +68,9 @@
 			and found it horrid, the brine clung to your tongue. <br>Who'd mark such a horrible thing for drinking?"),
 	)
 
+	work_start_lines = list("\"Any type of work is okay - so long as you do not eat the cake on top\", so says the handbook.")
+	work_end_lines = list("Abandon reason, that's how you survive in this Wonderland.")
+
 // Work Mechanics
 /mob/living/simple_animal/hostile/abnormality/bottle/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(!cake)
@@ -76,7 +79,7 @@
 	if(work_type != "Dining" && work_type != "Drink")
 		if(datum_reference.console.meltdown)
 			cake_regen = TRUE
-		return TRUE
+		return ..()
 	if(work_type == "Drink")
 		//it's just work speed
 		var/consume_speed = 2 SECONDS / (1 + ((get_attribute_level(user, TEMPERANCE_ATTRIBUTE) + datum_reference.understanding) / 100))
@@ -91,7 +94,7 @@
 		datum_reference.working = FALSE
 		return null
 
-	return TRUE
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/bottle/update_icon_state()
 	if(cake == 3)

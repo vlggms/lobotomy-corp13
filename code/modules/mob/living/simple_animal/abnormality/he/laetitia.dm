@@ -43,6 +43,13 @@
 			You look lonely too, I hope my present will make you laugh as well!"),
 	)
 
+	work_start_lines = list("%ABNO, who is a very shy girl, may just give %PERSON a personally prepared surprise present in secret.",
+	"%ABNO comes from a place far far away and enjoys jolly laughter.")
+	early_work_lines = list("%ABNO really likes having friends.", "She really hopes that %PERSON will be happy with her heartfelt gift.")
+	late_work_lines = list("Imagining the great surprise the gift will bring to %PERSON's face, %ABNO looks at them happily.",
+	"It would be wonderful if people accept this small but precious gift.")
+	work_end_lines = list("%ABNO's \"friend\" is asleep inside her present, waiting for the receiver.", "%PERSON has no idea what is inside the gift shaped like a cute lil' heart.")
+
 	attack_action_types = list(/datum/action/cooldown/laetitia_gift, /datum/action/cooldown/laetitia_summon)
 	var/breaching = FALSE
 	var/summon_cooldown

@@ -64,6 +64,11 @@
 			\"Are you any better than an animal? <br>Get out of my sight.\""),
 	)
 
+	work_start_lines = list("%PERSON feels compelled to salute %ABNO.")
+	early_work_lines = list("%ABNO complains about how weak and soft people are these days.", "%ABNO complains about how people were tougher back in \"his days.\"")
+	middle_work_lines = list("%ABNO hums a patriotic tune as it cleans its shotgun.")
+	work_end_lines = list("%PERSON wonders how the %ABNO is able to afford so many bullets.")
+
 	var/ammo = 6
 	var/max_ammo = 6
 	var/reload_time = 2 SECONDS

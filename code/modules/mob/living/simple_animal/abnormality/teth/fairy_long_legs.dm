@@ -65,6 +65,10 @@
 			You walk away, and bandage the bleeding wound."),
 	)
 
+	work_start_lines = list("Come on, get under this umbrella.")
+	late_work_lines = list("What do you say, it's so cozy under this umbrella, isn't it?", "An ambush predator only strikes when its prey's back is turned.", "%ABNO conceals its blooad-soaked limb behind its back.")
+	work_end_lines = list("%PERSON has known plenty of crooks in the City, %ABNO is as crooked as they come.")
+
 	var/finishing = FALSE //cant move/attack when it's TRUE
 	var/work_count = 0
 	var/raining = FALSE
@@ -106,7 +110,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/fairy_longlegs/AttemptWork(mob/living/carbon/human/user, work_type)
 	if((work_type != "Take cover")&& !raining)
-		return TRUE
+		return ..()
 	if((work_type == "Take cover") && !raining) //dumbass
 		to_chat(user, span_notice("There's no reason, the skies are clear."))
 		return FALSE
@@ -122,7 +126,7 @@
 		work_count = 0
 		ignored = TRUE
 		raining = FALSE
-		return TRUE
+		return ..()
 
 
 /mob/living/simple_animal/hostile/abnormality/fairy_longlegs/FailureEffect(mob/living/carbon/human/user, work_type, pe)

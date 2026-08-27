@@ -54,6 +54,10 @@
 			The creature notices you, and prepares an attack. <br>It is impossible to evade, and you are torn to shreds."),
 	)
 
+	work_start_lines = list("%ABNO has the appearance of a fish with its head cut off.", "%ABNO exhibits motion in spite of its lack of a head.")
+	middle_work_lines = list("The cut surface is clean; it appears to have been done with a single-sided edge, such as a knife or a scythe.")
+	work_end_lines = list("%ABNO has an inflated sack around the chest. %PERSON sees something eerily similar to a human nervous system in the sack.")
+
 	var/can_act = TRUE
 	var/jump_cooldown = 0
 	var/jump_cooldown_time = 8 SECONDS

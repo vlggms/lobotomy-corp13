@@ -47,6 +47,10 @@
 			The memory becomes more and more vivid as if its happening now... <br>when you finally break free you cannot recall what you fought so hard for."),
 	)
 
+	work_start_lines = list("%PERSON is surprised with a camera flash from %ABNO.", "Flash photography is not usually permitted by the company.")
+	middle_work_lines = list("%PERSON almost looks inside %ABNO, but hesitates at the last moment.")
+	work_end_lines = list("%ABNO will preserve this moemnt in history, forever and ever.")
+
 	var/minions = 0
 
 /mob/living/simple_animal/hostile/abnormality/better_memories/Login()

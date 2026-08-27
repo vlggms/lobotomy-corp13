@@ -56,6 +56,10 @@
 			Flowers are my friends and I shall pluck them all."),
 	)
 
+	work_start_lines = list("%ABNO looks like something out of a children's cartoon.", "%ABNO lures the weak with its harmless, fluffy appearance.")
+	middle_work_lines = list("Let's sing together! - Line from the REDACTED Saturday morning cartoon.", "%ABNO is the perfect companion for small children - keep it away from them at all costs.")
+	work_end_lines = list("%PERSON decides not to purchase a stuffed animal after working on %ABNO.", "%PERSON hopes that %ABNO doesn't decide to bare its fangs today.")
+
 	var/bullet_threshold = 10
 //breach related
 	var/teleport_cooldown

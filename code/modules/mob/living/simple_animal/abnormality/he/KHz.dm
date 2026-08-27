@@ -51,6 +51,12 @@
 			If there is anyone really out there, they are going to have to fend for themselves."),
 	)
 
+	work_start_lines = list("") // Doesn't currently spawn, will do these later.
+	early_work_lines = list("")
+	middle_work_lines = list("")
+	late_work_lines = list("")
+	work_end_lines = list("")
+
 	var/input
 	var/bitposition = 4	//You write in bits. You need to successfully write a string of 5 to sucessfully work
 	var/bitcalculator = 0
@@ -70,7 +76,7 @@
 	else if(work_type == "Input Zero" || work_type == "Input Zero" && !isopen)
 		to_chat(user, span_notice("You have not recieved an input."))
 		return FALSE
-	return TRUE
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/khz/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	if(!isopen)	//Can't input the first time

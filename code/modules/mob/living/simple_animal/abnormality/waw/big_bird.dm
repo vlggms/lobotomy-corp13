@@ -74,6 +74,20 @@
 		"Don't pet it" = list(FALSE, "The bird could get angry and bite you. <br>You ran out of the room in fear."),
 	)
 
+	work_start_lines = list("%ABNO’s most notable features are its numerous eyes that cover its whole body, and the bright lamp it carries.",
+	"In fact, we don’t know the reason behind why %ABNO was killing people.",
+	"%ABNO being unable to fly like most birds is a huge benefit. If it could, half of our staff would be headless by now.",
+	"An idea struck %ABNO’s mind: \"If I kill the creatures first, then no one would be killed by the beast!\" It was then that the forest found peace.")
+	early_work_lines = list("The ghastly sound of fluttering eyes and a flickering, burning lamp fills the Containment Unit.",
+	"The eyes and lamp of %ABNO light up the dark chamber like stars.", "Scores of %ABNO’s eyes suddenly direct themselves towards %PERSON.",
+	"Facing towards %ABNO, %PERSON shrinks away and shudders nervously.")
+	middle_work_lines = list("Behind %PERSON, the rumbling sound of a hairy black bird can be heard.", "The sporadic squeals of a bird can be heard.", "%ABNO cries behind %PERSON, acting as if it feels anxious.", "%ABNO circles and roams around %PERSON, crying.")
+	late_work_lines = list("%PERSON turns their head away to avoid eye contact, and is met with a burning lamp.",
+	"A dazzlingly bright lamp is held in front of %PERSON, who turned away to avoid looking towards %ABNO.","%PERSON sees %ABNO holding its illuminating lamp.",
+	"It was a very good decision for %PERSON to face away from %ABNO.")
+	work_end_lines = list("%ABNO is walking towards %PERSON", "%ABNO is audibly grinding its teeth",
+	"%ABNO approaches %PERSON while making threatening noises.", "%ABNO's eyes are turning crimson.")
+
 	var/bite_cooldown
 	var/bite_cooldown_time = 5 SECONDS
 	var/can_act = TRUE

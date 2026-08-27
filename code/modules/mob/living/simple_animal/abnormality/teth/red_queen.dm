@@ -37,6 +37,10 @@
 	)
 	var/liked
 
+	work_start_lines = list("%PERSON steels themselves before %ABNO - its whims remain as inscrutable as ever.")
+	middle_work_lines = list("It's everyone else's fault for not understanding me.", "Can you do division? Divide a load by a knife - what's the answer to that?")
+	late_work_lines = list("%PERSON tries to make a guess at %ABNO's wants and narrowly dodges a guillotine aimed at their neck.")
+
 /mob/living/simple_animal/hostile/abnormality/red_queen/Initialize(mapload)
 	. = ..()
 	//What does she like?

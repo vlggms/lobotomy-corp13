@@ -49,6 +49,9 @@
 		"Ignore it" = list(FALSE, "If you can't see it, you can't reach it."),
 	)
 
+	work_start_lines = list("%ABNO lives inside the target's eyes.")
+	middle_work_lines = list("%ABNO grows thorns aimed for heaven inside %PERSON's vision.")
+
 	var/teleport_cooldown
 	var/teleport_cooldown_time = 5 SECONDS
 	var/gaze_damage = 150

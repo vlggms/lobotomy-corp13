@@ -62,6 +62,9 @@
 			But at the last minute, you are pulled away by another agent to safety."),
 	)
 
+	work_start_lines = list("A melancholic feeling bubbles in %PERSON at the sight of %ABNO - when was the last time they've been home?")
+	middle_work_lines = list("Poor %PERSON has to work in this slaughterhouse of a company. This is so sad... %PERSON.", "Because I'm a home. A happy little home for %PERSON. You're always safe in your home, right?")
+
 	var/ranged_damage = 10
 	var/damage_dealt = 0
 	var/list/attach_once = list()

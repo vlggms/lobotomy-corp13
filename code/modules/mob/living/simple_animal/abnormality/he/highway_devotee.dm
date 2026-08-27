@@ -53,6 +53,9 @@
 			As you take the byway, you endured the piercing glare on your back for a good while."),
 	)
 
+	work_start_lines = list("At the crossroads, %ABNO makes a decision.")
+	middle_work_lines = list("The god of traffic will not forgive those who do not heed the advice of the %ABNO.")
+
 	var/talk = FALSE
 	var/list/structures = list()
 

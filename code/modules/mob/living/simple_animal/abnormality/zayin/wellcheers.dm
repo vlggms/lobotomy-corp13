@@ -65,6 +65,12 @@
 			You drink the soda, and fall asleep... <br>... <br>Somewhere in the distance, you hear seagulls.")
 	)
 
+	work_start_lines = list("The vending machine overwhelms %PERSON with its shiny neon lighting.", "Upbeat music can be heard, emitted from the inside of the vending machine.")
+	early_work_lines = list("Shrimp are delicious no matter how you cook them. Boil 'em, fry 'em, whatever!", "You're really missing out on life if you've never tried shrimp.")
+	late_work_lines = list("There's a rumor floating about that people have been abducted onto a fishing boat after drinking an open can of grape-flavored soda.",
+	"Rumor says that you might get one of your organs removed after drinking an open can of grape-flavored soda.",
+	"If someone ever offers you an already opened can of grape-flavored soda, you most definitely should not drink it.")
+
 //Not only is it funny, I want it to have the shit it does on Legacy
 /mob/living/simple_animal/hostile/abnormality/wellcheers/Initialize()
 	. = ..()

@@ -58,6 +58,11 @@
 			As you gather yourself to continue on the journey, you realize that several branches had grown in the premises, trapping you in."),
 	)
 
+	work_start_lines = list("Saying no words, a fairy waves at %PERSON, inviting them to come over and take a break.")
+	middle_work_lines = list("%PERSON finds themselves momentarily entranced by the teal glow.", "When walking through the woods, watch your step.")
+	late_work_lines = list("At the Duke's Oak they were to meet...", "The dream began in midsummer, but it curdled into a nightmare come midwinter.")
+	work_end_lines = list("There's no such thing as a free gift.")
+
 	var/can_act = FALSE
 	var/break_threshold = 150
 	var/broken = FALSE

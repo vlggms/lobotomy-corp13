@@ -35,6 +35,11 @@
 		"Tear out the wishes" = list(FALSE, "You tear out their wishes one by one. The book's page count remains the same. Did your wish come true?"),
 	)
 
+	work_start_lines = list("Rumour has it that if %ABNO is finally filled, it will grant one wish.")
+	middle_work_lines = list("The wishes of those who have also written in this book fill every page.",
+	"No matter how many times %ABNO is written in, there is always one more page to be filled...")
+	work_end_lines = list("Did your wish come true?")
+
 	var/wordcount = 0
 	var/list/oddities = list() //List gets populated with friendly animals
 	var/list/nasties = list( //Todo: Eventually make a list of custom threats possibly

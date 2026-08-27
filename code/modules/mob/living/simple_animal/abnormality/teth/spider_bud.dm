@@ -47,6 +47,18 @@
 			My body reacted faster than my thoughts. <br>... <br>I am a spider. <br>I eat anything my web catches."),
 	)
 
+	work_start_lines = list("'%ABNO desires to stockpile food for the coming winter. Her children are always hungry.",
+	"The Containment Unit is one giant spiderweb. As soon as an employee enters it, the spider's eyes are fixed on its prey.")
+	early_work_lines = list("Just as %PERSON realizes that the wires on the ceiling are longer than usual, one of them starts moving.",
+	"When %PERSON notices that the floor shouldn't be black, a large shadow begins to move.")
+	middle_work_lines = list("'%ABNO's numerous eyes track %PERSON's every movement.",
+	"'%ABNO is likely able to hear, touch, smell, as well as see. And most importantly, taste.",
+	"Spiders have strong maternal instincts. They will defend their offspring at all costs.")
+	late_work_lines = list("Working inside the unit, %PERSON never looks up at the ceiling. Making eye contact with it will ruin their day.",
+	"At times, a few spiderlings may fall from the ceiling, but everything'll be fine if you just ignore them.")
+	work_end_lines = list("%PERSON makes sure to not forget to gently give themself a patdown before leaving, as to make sure no spiderlings are still clung to any piece of their clothing.",
+	"%PERSON managed to leave the containment without squashing any of the little ones.")
+
 	/// Filled with ckeys of people who broke our cocoons, they need to pay if they dare mess with us
 	var/list/metagame_list = list()
 

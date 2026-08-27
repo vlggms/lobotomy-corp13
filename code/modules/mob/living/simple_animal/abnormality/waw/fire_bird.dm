@@ -56,6 +56,10 @@
 		"Fire an arrow" = list(FALSE, "You fire an arrow at what you percieve to be the source of the light and miss entirely. <br>You return empty-handed like so many hunters before you."),
 	)
 
+	work_start_lines = list("A legend of %ABNO says that once upon a time, those who came across its feather were granted with both blessing and ordeal.")
+	middle_work_lines = list("At times, %ABNO heals wounded employees.")
+	work_end_lines = list("%ABNO may become happy if the employees act as though they are hunting for it.")
+
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 1 SECONDS
 	var/pulse_damage = 2

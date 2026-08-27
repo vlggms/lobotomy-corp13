@@ -65,6 +65,11 @@
 			Even children know not to play with fire."),
 	)
 
+	work_start_lines = list("Small, crimson particles of flame surround %ABNO like an aura.")
+	early_work_lines = list("The flaming wings die out one moment, only to roar vigorously in the next.")
+	middle_work_lines = list("%PERSON is thinking about a campfire while looking at %ABNO.", "%PERSON remembers getting burned playing with fire.")
+	work_end_lines = list("Countless flowers in the shape of a butterfly flutter and form a field of stars.")
+
 	light_color = COLOR_ORANGE
 	light_range = 3
 	light_power = 4

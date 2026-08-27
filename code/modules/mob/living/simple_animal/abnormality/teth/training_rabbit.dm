@@ -50,6 +50,12 @@
 		"Nothing" = list(FALSE, "Your imagination must be going haywire due to the stress. <br>There's no way such an out-of-place thing could be there!"),
 	)
 
+	work_start_lines = list("%ABNO is a training dummy who sincerely believes he’s an employee of our facility.")
+	early_work_lines = list("It seems %ABNO likes people.")
+	middle_work_lines = list("%ABNO circles around and around %PERSON, however %PERSON is completely absorbed in their work.")
+	late_work_lines = list("%ABNO is thinking about the center of the Earth.")
+	work_end_lines = list("%ABNO is very sad that %PERSON has to leave so soon. It seems that he wants to follow them.")
+
 /mob/living/simple_animal/hostile/abnormality/training_rabbit/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
 	GiveTarget(user)

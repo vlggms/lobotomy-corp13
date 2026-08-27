@@ -65,6 +65,12 @@
 			@$*@)$ ? <br> @#$!!@#* ! <br> @*()!%&$(^!!!!@&(@)"),
 	)
 
+	work_start_lines = list("") // This doesn't spawn currently, so we'll add work quotes later.
+	early_work_lines = list("")
+	middle_work_lines = list("")
+	late_work_lines = list("")
+	work_end_lines = list("")
+
 	var/list/speak_list = list(
 		"!@)(!@&)&*%(%@!@#*(#)*(%&!@#$",
 		"@$*@)$?",
@@ -119,7 +125,7 @@
 /mob/living/simple_animal/hostile/abnormality/skin_prophet/AttemptWork(mob/living/carbon/human/user, work_type)
 	..()
 	HandleCandles()
-	return TRUE
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/skin_prophet/WorkChance(mob/living/carbon/human/user, chance, work_type)//set the new work chances
 	. = chance // Set default Return to chance

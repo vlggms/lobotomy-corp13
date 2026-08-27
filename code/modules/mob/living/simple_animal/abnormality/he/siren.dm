@@ -43,6 +43,12 @@
 			\"...Who were you again?\""),
 	)
 
+	work_start_lines = list("%ABNO sings the song of the past.")
+	middle_work_lines = list("Why isn't it the same song?", "%PERSON has heard the song that %ABNO sings before, but can't seem to place it...",
+	"When the song ends, %PERSON will forget they ever heard it.")
+	late_work_lines = list("The more you try to recollect a memory, the more warped and distorted it becomes.",
+	"Music can dredge memories from the past, it only stands to reason it can submerge them too.")
+
 //meltdown effects
 	var/meltdown_cooldown_time = 144 SECONDS
 	var/meltdown_cooldown

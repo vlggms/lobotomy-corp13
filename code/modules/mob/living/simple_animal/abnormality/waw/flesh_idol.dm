@@ -38,6 +38,11 @@
 		"Keep praying" = list(FALSE, "If God truly loves us, he'll show us a sign."),
 	)
 
+	work_start_lines = list("In the past, some people sought answers through religion.", "A meshing of flesh and scrap metal.")
+	early_work_lines = list("When %PERSON offered up a prayer, the flesh began to move, as if receiving the oration.", "It is speculated to be a religious artifact, found in the flooded district.")
+	late_work_lines = list("%PERSON will suffer various ordeals in a manner like being put through a trial.")
+	work_end_lines = list("Meanwhile, all those around them will recover their ails and woes just as if they were being blessed with redemption.")
+
 	var/counter_interval = 5 MINUTES
 	var/next_counter_gain //What was the next time you gain Qlip?
 	var/reset_time = 1 MINUTES
@@ -83,6 +88,7 @@
 	work_damage_type = damage
 	user.deal_damage(damage_amount, damage) // take 5 random damage each time
 	WorkDamageEffect()
+	..()
 
 //Prevents red work damage effecs from appearing
 /mob/living/simple_animal/hostile/abnormality/flesh_idol/WorktickFailure(mob/living/carbon/human/user)

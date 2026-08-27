@@ -49,6 +49,9 @@
 		"Ignore it" = list(FALSE, "You know better than to fall for the tricks of an abnormality. <br>You walk out of the cell, never knowing what was in that letter."),
 	)
 
+	work_start_lines = list("%ABNO is from a bygone time.")
+	middle_work_lines = list("Has %PERSON ever had their mail lost? Only %ABNO can know.", "It's tragic when our words fail to reach the intended recipient.")
+
 	var/cooldown
 	var/cooldown_time = 10 SECONDS
 	var/spawned_effects = list()

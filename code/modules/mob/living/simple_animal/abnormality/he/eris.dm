@@ -58,6 +58,12 @@
 			Hours later, Eris dines with another stranger. <br>My head is resting on that very same plate."),
 	)
 
+	work_start_lines = list("") // Doesn't currently spawn, will do these later.
+	early_work_lines = list("")
+	middle_work_lines = list("")
+	late_work_lines = list("")
+	work_end_lines = list("")
+
 	var/girlboss_level = 0
 
 /mob/living/simple_animal/hostile/abnormality/eris/Login()

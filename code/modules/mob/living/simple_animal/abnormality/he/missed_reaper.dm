@@ -44,6 +44,13 @@
 			It didn't mean anything. <br>In the corner of the room, I saw the reaper bow his head in apology."),
 	)
 
+	work_start_lines = list("%ABNO reaches out her hand but %PERSON knows they mustn't return a meaningless gesture like that.")
+	early_work_lines = list("The darkness in %ABNO's cell is oppressive.", "Nobody bothers replacing the lights in %ABNO's cell anymore.", "She was so pale at the end...")
+	middle_work_lines = list("%PERSON recalls someone they could not be there for's passing.", "%ABNO looks too young to have time to live.")
+	late_work_lines = list("%PERSON could swear they saw the shadow twitch towards them.", "I held her hand, but it didn't mean anything...")
+	work_end_lines = list("In truth, the reaper and the girl are both one and the same.", "Everyone gets a lifetime, no more - no less.",
+	"%ABNO waves goodbye at %PERSON, the shadow behind her bows its head slightly.")
+
 	var/meltdown_cooldown //no spamming the meltdown effect
 	var/meltdown_cooldown_time = 15 SECONDS
 

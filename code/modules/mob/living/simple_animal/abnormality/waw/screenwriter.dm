@@ -52,6 +52,13 @@ Defeating the murderer also surpresses the abnormality.
 		"Shoot someone else" = list(TRUE, "Whether you shoot or not, the play ends with tragedy."),
 	)
 
+	work_start_lines = list("There is a book made of antique parchments.", "It is quite thick, but the book’s every single page is blank.",
+	"There is a book which seems like the cover is going to be torn if handled thoughtlessly.")
+	early_work_lines = list("Despite its old appearance, there are no dust on it as if it’s managed constantly.", "It seems it aged at least several decades, but it didn’t mold a bit.")
+	middle_work_lines = list("%PERSON is a person who often reads, but %PERSON feels that this is not the kind of book that should be read.",
+	"%PERSON doesn’t read books that often, but a strange urge compelled %PERSON to turn the pages.")
+	work_end_lines = list("%PERSON wondered if there was some hidden meaning to the scenario described by %ABNO.")
+
 	pet_bonus = "shuffles" //saves a few lines of code by allowing funpet() to be called by attack_hand()
 	var/mob/living/simple_animal/hostile/aminion/actor/A
 	var/happy = FALSE

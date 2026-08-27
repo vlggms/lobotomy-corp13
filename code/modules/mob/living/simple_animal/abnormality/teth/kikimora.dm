@@ -43,6 +43,12 @@
 		"Kikimora?" = list(TRUE, "Kikimora."),
 	)
 
+	work_start_lines = list("") // Unimplemeneted
+	early_work_lines = list("")
+	middle_work_lines = list("")
+	late_work_lines = list("")
+	work_end_lines = list("")
+
 /mob/living/simple_animal/hostile/abnormality/kikimora/ZeroQliphoth(mob/living/carbon/human/user)
 	. = ..()
 	if(GLOB.department_centers.len)

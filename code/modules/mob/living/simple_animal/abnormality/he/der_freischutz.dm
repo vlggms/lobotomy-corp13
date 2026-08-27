@@ -47,6 +47,10 @@
 		"Don't pay" = list(FALSE, "The man scowls. <br>\"Don't waste my time with such shaky conviction.\""),
 	)
 
+	work_start_lines = list("%ABNO does not remember anything positive, such as the sparks of love or the joy of doing a good deed. He only reacts to dying things.")
+	middle_work_lines = list("Long ago, %ABNO's heart was pierced by the magic bullet, which always hits its mark.")
+	work_end_lines = list("As with all pacts made with the Devil, %ABNO's request will not end peacefully.")
+
 	var/can_act = TRUE
 	var/bullet_cooldown
 	var/bullet_cooldown_time = 7 SECONDS

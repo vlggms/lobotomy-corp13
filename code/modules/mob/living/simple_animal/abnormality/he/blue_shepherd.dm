@@ -63,6 +63,13 @@
 		"Release him" = list(FALSE, "Good choice, don't worry about the rest - I won't hurt them, pinky swear."),
 	)
 
+	work_start_lines = list("%ABNO is a trusty grazier and a guardian of the people. At least, that is what he wants people to think.",
+	"%ABNO is capable at suppressing Abnormalities, but has a worrying tendency to cry wolf to escape.")
+	early_work_lines = list("%ABNO will spend the entire day spreading lies if left to his own devices.",
+	"%ABNO is always asking about a certain a certain sheepdog.")
+	middle_work_lines = list("Just engaging in conversation with %ABNO can lead to mental corruption.", "If %PERSON glimpses under %ABNO's hood, scars of past battles can be found.")
+	late_work_lines = list("Few Abnormalities are as outwardly crooked as %ABNO.", "In reality, %ABNO is leading the lambs to slaughter.")
+
 	var/death_counter //He won't go off a timer, he'll go off deaths. Takes 8 for him.
 	var/slash_current = 4
 	var/slash_cooldown = 4

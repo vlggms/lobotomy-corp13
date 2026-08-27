@@ -47,6 +47,11 @@
 		"Please, eat my dreams" = list(FALSE, "It's alright, dreams are harmless but unnecessary things. <br>So, just close your eyes and show me your most delectable dream..."),
 	)
 
+	work_start_lines = list("%ABNO is always asleep in the Containment Unit.")
+	early_work_lines = list("%ABNO's dream is sublime, showing everything.")
+	middle_work_lines = list("%ABNO grants sweet dreams to all; but in reality, this sweetness is unreachable and chips away at the hope of the dreamer.")
+	work_end_lines = list("\"I always wanted to sleep. I just want to have a happy dream.\"")
+
 	var/punched = FALSE
 	var/pulse_damage = 15
 	var/ability_cooldown

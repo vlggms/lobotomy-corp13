@@ -44,6 +44,11 @@
 			The ballerina turns away from you and continues her dance, ignoring you."),
 	)
 
+	work_start_lines = list("%ABNO dances a lone ballet to a tempo only she can hear.", "%ABNO is ignoring %PERSON.", "%ABNO spares %PERSON a glance and nothing more.")
+	early_work_lines = list("%ABNO seems dissastisfied by everything %PERSON does.", "%ABNO asks when another employee is coming by name, they seem happier talking about them.")
+	middle_work_lines = list("Fortitude is an impossible and foolhardy virtue, you don't need such a thing.", "%ABNO throws a disdainful look at %PERSON's hands, in spite of them being spotlessly clean.")
+	late_work_lines = list("%ABNO is exactly where she wants to be.")
+
 /mob/living/simple_animal/hostile/abnormality/whitelake/WorkChance(mob/living/carbon/human/user, chance)
 	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 60)
 		var/newchance = chance - 10 //You suck, die. I hate you

@@ -27,6 +27,10 @@
 	var/pulse_cooldown_time = 3 SECONDS
 	var/pulse_damage = 6
 
+	// Tutorial abnormality - doesn't really need a final observation.
+	work_start_lines = list("%ABNO is perfectly level on every face.")
+	middle_work_lines = list("You could say that %ABNO is a perfectly generic object.")
+
 /mob/living/simple_animal/hostile/abnormality/cube/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
 	GiveTarget(user)

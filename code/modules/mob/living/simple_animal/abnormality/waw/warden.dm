@@ -54,22 +54,22 @@
 			But, they seem despondent. <br>One looks at me says simply; \"In here, you're with us. Forever.\""),
 	)
 
+	work_start_lines = list("%ABNO's many eyes track %PERSON, but they are given no special attention by its panopticon.")
+	early_work_lines = list("There's an irony to be had, in this Containment Unit %ABNO is just a mere prisoner.")
+	middle_work_lines = list("Perhaps %PERSON is as much a prisoner of this place as the Abnormalities they keep.", "Or are the inmates merely running the asylum?")
+	late_work_lines = list("In here, you're with us. Forever.")
+
 	var/finishing = FALSE
-
 	var/captured_souls = 0
-
 	var/resistance_decrease = 0.2
-
 	var/base_red_resistance = 0.7
 	var/base_white_resistance = 1.2
 	var/base_black_resistance = 0.4
 	var/base_pale_resistance = 1.5
-
 	var/new_red_resistance = 0.7
 	var/new_white_resistance = 1.2
 	var/new_black_resistance = 0.4
 	var/new_pale_resistance = 1.5
-
 	var/damage_down = 2
 
 /mob/living/simple_animal/hostile/abnormality/warden/Login()

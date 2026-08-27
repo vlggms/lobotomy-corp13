@@ -71,6 +71,10 @@
 			I am a monster. <br>"),
 	)
 
+	work_start_lines = list("The true form of %ABNO is incomprehensible.", "%PERSON could never recognize %ABNO as a fellow human, but nonetheless feels an unfamiliar kinship with it.")
+	middle_work_lines = list("%ABNO reflects the deep, repressed desires of humanity.", "%PERSON hears a ringing in the distance, but chooses to ignore it.")
+	work_end_lines = list("%ABNO seemingly pops in out of existance, startling %PERSON.", "%PERSON is getting motion sickness from looking at %ABNO for too long.")
+
 //Work vars
 	var/transform_timer
 	var/list/transform_blacklist = list(

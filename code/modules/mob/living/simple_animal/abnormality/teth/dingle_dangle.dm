@@ -49,6 +49,10 @@ GLOBAL_LIST_INIT(dingle_hallucination_list, list(
 			\"Let's dangle together, let your sorrows, your pain dangle, let's all dangle down...\" <br>It whispers into your mind. <br>\
 			Your comrades were never here, the life passes from your body painlessly. <br> None of this is real."),
 	)
+
+	work_start_lines = list("The ribbons dangle down from %ABNO splendidly whilst the employees previously ensnared dingle like macabre fruits.")
+	late_work_lines = list("Let's all dangle down.", "A prudent mind is a terrible thing indeed.", "Did you really think a strong mentality could keep you safe from every Abnormality?")
+
 	var/list/delirious_people = list()
 	var/list/entangled_people = list()
 	//We want to make sure we don't cause someone to instantly panic after it "breaches"
