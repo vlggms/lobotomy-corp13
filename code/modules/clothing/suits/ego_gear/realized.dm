@@ -211,7 +211,6 @@ No Ability	260
 	special = "This armor provides passive healing while worn."
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 60, BLACK_DAMAGE = 80, PALE_DAMAGE = 40)		//Healing
 	realized_ability = /obj/effect/proc_holder/ability/galaxy_gift
-
 	var/heal_timer
 	var/heal_amount = -5
 	var/heal_time = 5 SECONDS

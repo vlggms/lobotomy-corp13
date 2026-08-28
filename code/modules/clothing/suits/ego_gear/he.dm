@@ -177,7 +177,6 @@
 	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 0, PALE_DAMAGE = 0) // 60, has healing
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40)
-
 	var/heal_timer
 	var/heal_amount = -4
 	var/heal_time = 5 SECONDS
@@ -248,10 +247,10 @@
 /obj/item/clothing/suit/armor/ego_gear/he/gaze/proc/CheckViewers(mob/living/carbon/human/user)
 	deltimer(buff_timer)
 	buff_timer = addtimer(CALLBACK(src, PROC_REF(CheckViewers), user), 5 SECONDS, TIMER_STOPPABLE)
-	for(var/mob/camera/ai_eye/remote/cam in viewers(4, user))
+	for(var/mob/camera/ai_eye/remote/cam in viewers(5, user))
 		Buff(user)
 		return
-	for(var/mob/living/carbon/human/L in viewers(4, user))
+	for(var/mob/living/carbon/human/L in viewers(5, user))
 		if(L == user)
 			continue
 		if(L.stat != DEAD)
@@ -264,6 +263,7 @@
 		return
 	icon_state = "gaze"
 	update_icon_state()
+	user.update_inv_wear_suit()
 	to_chat(user, span_nicegreen("Now seen, you and your armor becomes stronger!"))
 	buffed = TRUE
 	armor = armor.modifyRating(red = 10, white = 10, black = 10)
@@ -275,6 +275,7 @@
 		return
 	icon_state = "gaze_closed"
 	update_icon_state()
+	user.update_inv_wear_suit()
 	to_chat(user, span_warning("No longer seen, you and your armor becomes weaker!"))
 	buffed = FALSE
 	armor = armor.modifyRating(red = -10, white = -10, black = -10)
