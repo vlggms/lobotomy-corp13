@@ -1532,7 +1532,7 @@
 /datum/ego_gifts/dacapo
 	name = "Da Capo"
 	icon_state = "dacapo"
-	desc = "While wearing the corresponding armor, taking 10 or less white damage will heal twice the amount that it did."
+	desc = "While wearing the corresponding armor, taking 5 or less white damage will heal twice the amount that it did."
 	temperance_bonus = 6
 	slot = EYE
 
@@ -1555,7 +1555,7 @@
 		return
 	if(damage < 0)
 		return
-	if(damage > 10) //If its more than 10 damage we don't heal from it
+	if(damage > 5) //If its more than 5 damage we don't heal from it
 		return
 	owner.adjustSanityLoss(-damage * 2)
 
