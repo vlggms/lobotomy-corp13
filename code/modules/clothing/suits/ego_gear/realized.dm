@@ -208,9 +208,34 @@ No Ability	260
 	name = "our galaxy"
 	desc = "Walk this night sky with me. The galaxy dotted with numerous hopes. We'll count the stars and never be alone."
 	icon_state = "ourgalaxy"
-	special = "While worn, this armor increases the amount of healing from the token of friendship by 25%."
+	special = "This armor provides passive healing while worn."
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 60, BLACK_DAMAGE = 80, PALE_DAMAGE = 40)		//Healing
 	realized_ability = /obj/effect/proc_holder/ability/galaxy_gift
+
+	var/heal_timer
+	var/heal_amount = -5
+	var/heal_time = 5 SECONDS
+
+/obj/item/clothing/suit/armor/ego_gear/realization/ourgalaxy/equipped(mob/user, slot, initial = FALSE)
+	. = ..()
+	if(slot == ITEM_SLOT_OCLOTHING)
+		heal_timer = addtimer(CALLBACK(src, PROC_REF(heal), user), heal_time, TIMER_STOPPABLE)
+
+/obj/item/clothing/suit/armor/ego_gear/realization/ourgalaxy/dropped(mob/user)
+	deltimer(heal_timer)
+	heal_timer = null
+	return ..()
+
+/obj/item/clothing/suit/armor/ego_gear/realization/ourgalaxy/proc/heal(mob/living/carbon/human/user)
+	if(QDELETED(user))
+		deltimer(heal_timer)
+		heal_timer = null
+		return
+	if(user.stat != DEAD)
+		user.adjustBruteLoss(heal_amount)
+		user.adjustSanityLoss(heal_amount)
+	deltimer(heal_timer)
+	heal_timer = addtimer(CALLBACK(src, PROC_REF(heal), user), heal_time, TIMER_STOPPABLE)
 
 /obj/item/clothing/suit/armor/ego_gear/realization/forever
 	name = "together forever"

@@ -674,31 +674,17 @@
 	name = "Galaxy"
 	icon_state = "galaxy"
 	temperance_bonus = 3
-	desc = "Heals a small amount of HP and SP at short intervals"
+	desc = "Provides the user with 10% increase to all healing sources."
 	slot = NECKWEAR
-	//heals only about 0.36 hp per second
-	var/heal_amount = -1.8
-	var/heal_time = 5 SECONDS
-	var/heal_timer = null
 
 /datum/ego_gifts/galaxy/Initialize(mob/living/carbon/human/user)
 	. = ..()
-	heal_timer = addtimer(CALLBACK(src, PROC_REF(heal), user), heal_time, TIMER_STOPPABLE)
+	user.physiology.healing_mod *= 1.1
 
 /datum/ego_gifts/galaxy/Remove(mob/living/carbon/human/user)
-	heal_timer = null
-	deltimer(heal_timer)
+	user.physiology.healing_mod /= 1.1
 	return ..()
 
-/datum/ego_gifts/galaxy/proc/heal(mob/living/carbon/human/user)
-	if(QDELETED(user))
-		deltimer(heal_timer)
-		heal_timer = null
-		return
-	user.adjustBruteLoss(heal_amount)
-	user.adjustSanityLoss(heal_amount)
-	deltimer(heal_timer)
-	heal_timer = addtimer(CALLBACK(src, PROC_REF(heal), user), heal_time, TIMER_STOPPABLE)
 
 /datum/ego_gifts/gaze
 	name = "Gaze"
@@ -1457,13 +1443,13 @@
 /datum/ego_gifts/adoration
 	name = "Adoration"
 	icon_state = "adoration"
-	desc = "While wearing the corresponding armor, taking red damage while under 20% HP will prevent it from going through. This ability has a 6 second cooldown when activated."
+	desc = "While wearing the corresponding armor, taking red damage while under 20% HP will prevent it from going through. This ability has a 10 second cooldown when activated."
 	fortitude_bonus = 5
 	prudence_bonus = 10
 	temperance_bonus = -5
 	slot = HELMET
 	var/shield_cooldown
-	var/shield_cooldown_time = 6 SECONDS
+	var/shield_cooldown_time = 10 SECONDS
 
 /datum/ego_gifts/adoration/Initialize(mob/living/carbon/human/user)
 	. = ..()

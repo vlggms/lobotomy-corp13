@@ -172,11 +172,36 @@
 /obj/item/clothing/suit/armor/ego_gear/he/galaxy
 	name = "galaxy"
 	desc = "The pebble dropped into your hand sparkles, sways, tickles, and eventually becomes the universe."
-	special = "While worn, this armor increases the amount of healing from the token of friendship by 25%."
+	special = "This armor provides passive healing while worn."
 	icon_state = "galaxy"
-	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 10, PALE_DAMAGE = -10) // 60, has an effect with its abno
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 0, PALE_DAMAGE = 0) // 60, has healing
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40)
+
+	var/heal_timer
+	var/heal_amount = -4
+	var/heal_time = 5 SECONDS
+
+/obj/item/clothing/suit/armor/ego_gear/he/galaxy/equipped(mob/user, slot, initial = FALSE)
+	. = ..()
+	if(slot == ITEM_SLOT_OCLOTHING)
+		heal_timer = addtimer(CALLBACK(src, PROC_REF(heal), user), heal_time, TIMER_STOPPABLE)
+
+/obj/item/clothing/suit/armor/ego_gear/he/galaxy/dropped(mob/user)
+	deltimer(heal_timer)
+	heal_timer = null
+	return ..()
+
+/obj/item/clothing/suit/armor/ego_gear/he/galaxy/proc/heal(mob/living/carbon/human/user)
+	if(QDELETED(user))
+		deltimer(heal_timer)
+		heal_timer = null
+		return
+	if(user.stat != DEAD)
+		user.adjustBruteLoss(heal_amount)
+		user.adjustSanityLoss(heal_amount)
+	deltimer(heal_timer)
+	heal_timer = addtimer(CALLBACK(src, PROC_REF(heal), user), heal_time, TIMER_STOPPABLE)
 
 /obj/item/clothing/suit/armor/ego_gear/he/unrequited
 	name = "unrequited love"
@@ -197,12 +222,16 @@
 /obj/item/clothing/suit/armor/ego_gear/he/gaze
 	name = "gaze"
 	desc = "As long as this is equipped, ambush won't be a concern."
-	icon_state = "gaze"
-	special = "When there's a nearby camera or another human, this armor will provide better defenses and grant +10 justice."
+	icon_state = "gaze_closed"
+	special = "When there's a nearby camera or another human, this armor will provide better defenses and grant +20 justice."
 	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 30, BLACK_DAMAGE = 20, PALE_DAMAGE = -10) // 60 / 90 , becomes stronger if there's someone else nearby
 	attribute_requirements = list(FORTITUDE_ATTRIBUTE = 40)
 	var/buff_timer
 	var/buffed = FALSE
+
+/obj/item/clothing/suit/armor/ego_gear/he/gaze/Initialize()
+	. = ..()
+	AddElement(/datum/element/update_icon_updates_onmob)
 
 /obj/item/clothing/suit/armor/ego_gear/he/gaze/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
@@ -219,10 +248,10 @@
 /obj/item/clothing/suit/armor/ego_gear/he/gaze/proc/CheckViewers(mob/living/carbon/human/user)
 	deltimer(buff_timer)
 	buff_timer = addtimer(CALLBACK(src, PROC_REF(CheckViewers), user), 5 SECONDS, TIMER_STOPPABLE)
-	for(var/mob/camera/ai_eye/remote/cam in viewers(6, user))
+	for(var/mob/camera/ai_eye/remote/cam in viewers(4, user))
 		Buff(user)
 		return
-	for(var/mob/living/carbon/human/L in viewers(6, user))
+	for(var/mob/living/carbon/human/L in viewers(4, user))
 		if(L == user)
 			continue
 		if(L.stat != DEAD)
@@ -233,20 +262,24 @@
 /obj/item/clothing/suit/armor/ego_gear/he/gaze/proc/Buff(mob/living/carbon/human/user)
 	if(buffed)
 		return
+	icon_state = "gaze"
+	update_icon_state()
 	to_chat(user, span_nicegreen("Now seen, you and your armor becomes stronger!"))
 	buffed = TRUE
 	armor = armor.modifyRating(red = 10, white = 10, black = 10)
 	if(istype(user))
-		user.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 10)
+		user.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 20)
 
 /obj/item/clothing/suit/armor/ego_gear/he/gaze/proc/Debuff(mob/living/carbon/human/user)
 	if(!buffed)
 		return
+	icon_state = "gaze_closed"
+	update_icon_state()
 	to_chat(user, span_warning("No longer seen, you and your armor becomes weaker!"))
 	buffed = FALSE
 	armor = armor.modifyRating(red = -10, white = -10, black = -10)
 	if(istype(user))
-		user.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -10)
+		user.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -20)
 
 /obj/item/clothing/suit/armor/ego_gear/he/transmission
 	name = "broken transmission"
