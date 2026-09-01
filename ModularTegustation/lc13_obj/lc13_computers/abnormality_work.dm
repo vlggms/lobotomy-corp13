@@ -243,11 +243,13 @@
 	// Initial chance and speed values before work started, in case they get overriden by abnormality
 	var/init_work_chance = work_chance
 	var/init_work_speed = work_speed
+
+	var/obj/workbar/wobar = new(get_turf(src), user, work_time, work_type)
 	while(total_boxes < work_time)
 		if(!CheckStatus(user))
 			break
 		work_speed = datum_reference.current.SpeedWorktickOverride(user, work_speed, init_work_speed, work_type)
-		if(do_after(user, work_speed, src, IGNORE_HELD_ITEM))
+		if(do_after(user, work_speed, src, IGNORE_HELD_ITEM, progress = FALSE))
 			if(!CheckStatus(user))
 				break
 			for(var/shield_type in typesof(/datum/status_effect/interventionshield))
@@ -260,6 +262,8 @@
 				datum_reference.current.WorktickFailure(user)
 			total_boxes++
 			datum_reference.current.Worktick(user, total_boxes)
+			if(!QDELETED(wobar))
+				wobar.update(total_boxes)
 		else
 			if(!CheckStatus(user)) // No punishment if the thing is already breached or any other issue is prevelant.
 				break
@@ -270,6 +274,8 @@
 			success_boxes = 0
 			canceled = TRUE
 			break
+	if(!QDELETED(wobar))
+		wobar.end_progress()
 	REMOVE_TRAIT(user, TRAIT_STUNIMMUNE, src)
 	REMOVE_TRAIT(user, TRAIT_PUSHIMMUNE, src)
 	user.density = TRUE
