@@ -42,7 +42,6 @@
 		/datum/ego_datum/armor/skinprophet,
 	)
 	gift_type = /datum/ego_gifts/visions
-	can_spawn = FALSE // Normally doesn't appear
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 	chem_type = /datum/reagent/abnormality/sin/wrath
 
@@ -65,11 +64,10 @@
 			@$*@)$ ? <br> @#$!!@#* ! <br> @*()!%&$(^!!!!@&(@)"),
 	)
 
-	work_start_lines = list("") // This doesn't spawn currently, so we'll add work quotes later.
-	early_work_lines = list("")
-	middle_work_lines = list("")
-	late_work_lines = list("")
-	work_end_lines = list("")
+	work_start_lines = list("The sound of quill on paper scratching fills the air as %ABNO's hands write away.", "%ABNO's focus remains on the tome infront of it as %PERSON enters the Containment Unit.")
+	early_work_lines = list("Nothing can distract %ABNO from its task, the prophecies must be recorded.", "@$*@)$ ?", "The people walking in darkness have seen a great light.", "Death, destruction, devastation - portents of doom await us all.")
+	late_work_lines = list("@#$!!@#* !", "An ineffable terror would fill %PERSON's heart if they knew what the prophecies foretold.", "Even if the lights were to fail and the candles were to be snuffed out, %ABNO would not be distracted from its self-appointed task.")
+	work_end_lines = list("For those living in the land of deep darkness, a light has dawned.")
 
 	var/list/speak_list = list(
 		"!@)(!@&)&*%(%@!@#*(#)*(%&!@#$",

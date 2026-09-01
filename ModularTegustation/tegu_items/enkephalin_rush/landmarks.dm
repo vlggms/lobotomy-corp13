@@ -9,6 +9,7 @@ GLOBAL_LIST_INIT(assiyah, list(//HE's and TETHs
 	/mob/living/simple_animal/hostile/abnormality/funeral,
 	/mob/living/simple_animal/hostile/abnormality/kqe,
 	/mob/living/simple_animal/hostile/abnormality/snow_queen,
+	/mob/living/simple_animal/hostile/abnormality/der_fluschutze,
 ))
 
 GLOBAL_LIST_INIT(briah, list(//WAW
