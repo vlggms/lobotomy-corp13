@@ -121,12 +121,6 @@
 				ramping_speed -= 0.5
 		user.deal_damage(4, RED_DAMAGE) // say goodbye to a bit more than your kneecaps... (total damage is 400 RED).
 		total_damage += 4
-	WorkDamageEffect()
-
-//Prevents red work damage effecs from appearing
-/mob/living/simple_animal/hostile/abnormality/we_can_change_anything/WorktickFailure(mob/living/carbon/human/user)
-	playsound(datum_reference.console, 'sound/machines/synth_no.ogg', 25, FALSE, -4)
-	return
 
 /mob/living/simple_animal/hostile/abnormality/we_can_change_anything/SpeedWorktickOverride(mob/living/carbon/human/user, work_speed, init_work_speed, work_type)
 	if(!sacrifice)
