@@ -54,7 +54,7 @@
 	QDEL_IN(src, WORKBAR_ANIMATION_TIME)
 
 ///A global proc to return the work icon of a work type. Just incase we want to use this in the future for something else
-proc/get_work_type(work_type)
+/proc/get_work_type(work_type)
 	switch(work_type)
 		if(ABNORMALITY_WORK_INSTINCT)
 			return "instinct_work"
