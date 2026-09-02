@@ -31,7 +31,8 @@
 
 	work = image('icons/effects/worktypes.dmi', src, get_work_type(work_type), HUD_LAYER)
 	work.plane = ABOVE_HUD_PLANE
-	work.pixel_x = 48
+	work.pixel_x = 16
+	work.pixel_y = 10
 	add_overlay(work)
 
 	user = User

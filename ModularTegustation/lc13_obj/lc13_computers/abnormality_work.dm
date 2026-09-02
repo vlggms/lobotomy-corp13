@@ -246,7 +246,7 @@
 	var/init_work_chance = work_chance
 	var/init_work_speed = work_speed
 
-	var/obj/workbar/wobar = new(get_turf(src), user, work_time, work_type)
+	var/obj/workbar/wobar = new(get_turf(user), user, work_time, work_type)
 	while(total_boxes < work_time)
 		if(!CheckStatus(user))
 			break
