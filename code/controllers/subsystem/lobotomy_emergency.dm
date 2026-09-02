@@ -248,6 +248,42 @@ SUBSYSTEM_DEF(lobotomy_emergency)
 				playsound(D, 'sound/machines/boltsup.ogg', 50, TRUE)
 	SSblackbox.record_feedback("tally", "security_level_changes", 1, get_emergency_level())
 	RefreshTrumpetLevelEffects()
+	UpdateMusic(current_score)
+
+/datum/controller/subsystem/lobotomy_emergency/proc/UpdateMusic(level, forced = FALSE, mob/my_mob)
+	var/sound/warning_sound = new()
+	var/current_sound = "Neutral04.ogg"
+	switch(level)
+		if(TRUMPET_0)
+			switch(SSlobotomy_corp.next_ordeal_level)
+				if(2)
+					current_sound = "Neutral01.ogg"
+				if(3)
+					current_sound = "Neutral02.ogg"
+				if(4)
+					current_sound = "Neutral03.ogg"
+		if(10 to 49)
+			current_sound = "LC_First_Warning.ogg"
+		if(50 to 79)
+			current_sound = "LC_Second_Warning.ogg"
+		if(TRUMPET_3 to 100)
+			current_sound = "LC_Third_Warning.ogg"
+
+	warning_sound.file = file("[global.config.directory]/soundtrack/[current_sound]")
+
+	var/vol = 25
+	if(!my_mob)
+		for(var/mob/M in GLOB.player_list)
+			if(isnewplayer(M))
+				continue
+			if(M.client.prefs.toggles & SOUND_BGM)
+				vol *= M.client.admin_music_volume
+				SEND_SOUND(M, sound(warning_sound.file, 1, 0, 1024, vol))
+	else
+		if(my_mob.client.prefs.toggles & SOUND_BGM)
+			vol *= my_mob.client.admin_music_volume
+			SEND_SOUND(my_mob, sound(warning_sound.file, 1, 0, 1024, vol))
+
 
 /proc/get_emergency_level()
 	switch(GLOB.emergency_level)

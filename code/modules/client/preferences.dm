@@ -1897,6 +1897,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("radio_static")
 					toggles ^= SOUND_RADIO_STATIC
 
+				if("background_music")
+					toggles ^= SOUND_BGM
+
 				if("pull_requests")
 					chat_toggles ^= CHAT_PULLR
 
