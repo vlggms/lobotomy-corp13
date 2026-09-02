@@ -6,6 +6,7 @@
 	desc = "A man covered in... ties?"
 	icon = 'ModularTegustation/Teguicons/48x96.dmi'
 	icon_state = "work"
+	icon_dead = "work_dead"
 	maxHealth = 300
 	health = 300
 	pixel_x = -16
@@ -25,6 +26,7 @@
 	ranged_cooldown_time = 4 SECONDS
 	projectiletype = /obj/projectile/tie
 	projectilesound = 'sound/weapons/whip.ogg'
+	del_on_death = FALSE
 
 //Variables important for distortions
 	//The EGO worn by the egoist
