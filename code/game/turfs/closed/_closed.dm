@@ -102,8 +102,8 @@
 	icon_state = "facility-0"
 	base_icon_state = "facility"
 	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_WALLS)
-	canSmoothWith = list(SMOOTH_GROUP_WALLS, SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_AIRLOCK)
+	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_WALLS)
+	canSmoothWith = list(SMOOTH_GROUP_WALLS)
 
 
 //////This is absurd that i have to carry over wall code to a indestructable wall duplicate.
@@ -177,9 +177,6 @@
 
 	to_chat(user, "<span class='notice'>The poster falls down!</span>")
 	D.roll_and_drop(get_turf(user))
-
-/turf/closed/indestructible/reinforced/old
-	icon = 'icons/turf/walls/facility_old.dmi'
 
 /turf/closed/indestructible/reinforced/ucorp
 	icon = 'icons/turf/walls/ucorp.dmi'
@@ -262,7 +259,7 @@
 	opacity = FALSE
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FULLTILE)
-	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE, SMOOTH_GROUP_WALLS, SMOOTH_GROUP_AIRLOCK)
+	canSmoothWith = list(SMOOTH_GROUP_WINDOW_FULLTILE)
 
 /turf/closed/indestructible/fakeglass/Initialize()
 	. = ..()
