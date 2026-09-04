@@ -2086,7 +2086,7 @@
 /turf/open/floor/plating/rust,
 /area/department_main/welfare)
 "us" = (
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/information)
 "ut" = (
 /obj/machinery/light/broken{
