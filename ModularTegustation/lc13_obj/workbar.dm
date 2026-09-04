@@ -7,6 +7,7 @@
 	plane = ABOVE_HUD_PLANE
 	appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 	pixel_x = -16
+	mouse_opacity  = MOUSE_OPACITY_TRANSPARENT
 	base_pixel_x = -16
 	///The work icon visual element.
 	var/image/work

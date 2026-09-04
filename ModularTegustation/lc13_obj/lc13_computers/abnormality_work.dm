@@ -62,7 +62,7 @@
 	if(datum_reference.overload_chance[user.ckey])
 		. += span_warning("Current Personal Qliphoth Overload: [datum_reference.overload_chance[user.ckey]]%.")
 	if(!isnull(datum_reference.stored_boxes))
-		. += span_info("Current PE Box Amount: [datum_reference.stored_boxes].")
+		. += span_info("Current PE Box Amount: <span style='color: #23FBAC'>[datum_reference.stored_boxes]</span>.")
 	if(meltdown)
 		var/melt_text = ""
 		switch(meltdown)
