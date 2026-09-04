@@ -39,12 +39,13 @@
 
 /obj/item/clothing/suit/armor/ego_gear/ordeal/painful_purpose
 	name = "Painful purpose"
-	desc = "A heavy armor made as solace of the end of all. Wearing it is cumbersome but offers superior protection."
+	desc = "A heavy armor made as solace of the end of all"
+	special = "Wearing it is cumbersome but offers superior protection."
 	hat = /obj/item/clothing/head/ego_hat/helmet/painful_purpose
 	neck = /obj/item/clothing/neck/ego_neck/painful_purpose
 	icon_state = "painful_purpose"
 	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 60, BLACK_DAMAGE = 50, PALE_DAMAGE = 70) // 260
-	slowdown = 0.3
+	speedboost = 0.85
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 100,
@@ -78,6 +79,7 @@
 /obj/item/clothing/suit/armor/ego_gear/ordeal/god_delusion//240 total can shift between 4 different armor modes once
 	name = "Delusionist's end"
 	desc = "A runic armor with a colorless crystal in its center."
+	special = "This armor has a one time use ability to change its resistances."
 	icon_state = "delusion_none"
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 60) // 240
 	attribute_requirements = list(
@@ -94,11 +96,6 @@
 		"black" = "A runic armor with an eerie black glow.",
 		"pale" = "A runic armor with an eerie pale glow."
 		)
-
-/obj/item/clothing/suit/armor/ego_gear/ordeal/god_delusion/examine(mob/user)
-	. = ..()
-	if (!current_damage)
-		. += span_notice("This armor has a one time use ability to change its resistances.")
 
 /obj/item/clothing/suit/armor/ego_gear/ordeal/god_delusion/Initialize()
 	. = ..()
@@ -124,6 +121,7 @@
 		current_holder.update_inv_wear_suit()
 		to_chat(current_holder, span_notice("[src] suddenly shifts color!"))
 	desc = damage_list[current_damage]
+	special = null
 	switch(current_damage)
 		if("red")
 			src.armor = getArmor(red = 80, white = 60, black = 40, pale = 60)

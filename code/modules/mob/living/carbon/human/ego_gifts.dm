@@ -673,10 +673,18 @@
 /datum/ego_gifts/galaxy
 	name = "Galaxy"
 	icon_state = "galaxy"
-	fortitude_bonus = 1
-	prudence_bonus = 1
 	temperance_bonus = 3
+	desc = "Provides the user with 10% increase to all healing sources."
 	slot = NECKWEAR
+
+/datum/ego_gifts/galaxy/Initialize(mob/living/carbon/human/user)
+	. = ..()
+	user.physiology.healing_mod *= 1.1
+
+/datum/ego_gifts/galaxy/Remove(mob/living/carbon/human/user)
+	user.physiology.healing_mod /= 1.1
+	return ..()
+
 
 /datum/ego_gifts/gaze
 	name = "Gaze"
@@ -733,9 +741,18 @@
 /datum/ego_gifts/harmony
 	name = "Harmony"
 	icon_state = "harmony"
+	desc = "Provides the user with 10% resistance to white damage."
 	fortitude_bonus = 8
-	prudence_bonus = -4
+	prudence_bonus = -6
 	slot = CHEEK
+
+/datum/ego_gifts/harmony/Initialize(mob/living/carbon/human/user) // grants resistance
+	. = ..()
+	user.physiology.white_mod *= 0.9
+
+/datum/ego_gifts/harmony/Remove(mob/living/carbon/human/user)
+	user.physiology.white_mod /= 0.9
+	return ..()
 
 /datum/ego_gifts/harvest
 	name = "Harvest"
@@ -793,6 +810,7 @@
 /datum/ego_gifts/magicbullet
 	name = "Magic Bullet"
 	icon_state = "magicbullet"
+	desc = "Increases the melee damage of the corresponding weapons by 20%."
 	fortitude_bonus = -5
 	prudence_bonus = -5
 	justice_bonus = 10
@@ -1124,10 +1142,30 @@
 /datum/ego_gifts/discord
 	name = "Discord"
 	icon_state = "discord"
+	desc = "Provides an 8% chance to nullify damage taken."
 	fortitude_bonus = -10
 	prudence_bonus = -10
 	justice_bonus = 20
 	slot = HELMET
+
+/datum/ego_gifts/discord/Initialize(mob/living/carbon/human/user)
+	. = ..()
+	RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(DeflectDamage))
+
+/datum/ego_gifts/discord/Remove(mob/living/carbon/human/user)
+	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(DeflectDamage))
+	return ..()
+
+/datum/ego_gifts/discord/proc/DeflectDamage(datum/source, damage, damagetype, def_zone)
+	if(source)
+		return
+	if(!damage)
+		return
+	if(damage < 0)
+		return
+	if(prob(8)) // 8% Chance
+		to_chat(owner, span_notice("[src] nullifies the damage!"))
+		return COMPONENT_MOB_DENY_DAMAGE
 
 /datum/ego_gifts/ebony_stem
 	name = "Ebony Stem"
@@ -1307,6 +1345,7 @@
 /datum/ego_gifts/stem
 	name = "Green Stem"
 	icon_state = "green_stem"
+	desc = "Provides immunity to the corresponding abnormality's vines."
 	prudence_bonus = 6 // originally a SP bonus
 	slot = BROOCH
 
@@ -1404,10 +1443,42 @@
 /datum/ego_gifts/adoration
 	name = "Adoration"
 	icon_state = "adoration"
+	desc = "While wearing the corresponding armor, taking red damage while under 20% HP will prevent it from going through. This ability has a 10 second cooldown when activated."
 	fortitude_bonus = 5
 	prudence_bonus = 10
 	temperance_bonus = -5
 	slot = HELMET
+	var/shield_cooldown
+	var/shield_cooldown_time = 10 SECONDS
+
+/datum/ego_gifts/adoration/Initialize(mob/living/carbon/human/user)
+	. = ..()
+	RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(AttemptShield))
+
+/datum/ego_gifts/adoration/Remove(mob/living/carbon/human/user)
+	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(AttemptShield))
+	return ..()
+
+/datum/ego_gifts/adoration/proc/AttemptShield(datum/source, damage, damagetype, def_zone)
+	if(!source && damagetype != RED_DAMAGE)
+		return
+	if(!damage)
+		return
+	var/obj/item/clothing/suit/armor/ego_gear/aleph/adoration/T = owner.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(!istype(T))
+		return
+	if(damage < 0)
+		return
+	if(shield_cooldown >= world.time)
+		return
+	if(owner.is_working)
+		return
+	var/health_threshold = 0.2
+	if(owner.health > health_threshold * owner.maxHealth)
+		return
+	to_chat(owner, span_notice("Slime forms around youself to protect you!"))
+	shield_cooldown = shield_cooldown_time + world.time
+	return COMPONENT_MOB_DENY_DAMAGE
 
 /datum/ego_gifts/amogus
 	name = "Imposter"
@@ -1447,17 +1518,32 @@
 /datum/ego_gifts/dacapo
 	name = "Da Capo"
 	icon_state = "dacapo"
-	desc = "Provides the user with 20% resistance to WHITE damage."// man it really needed something
-	temperance_bonus = 4
+	desc = "While wearing the corresponding armor, taking 5 or less white damage will heal twice the amount that it did."
+	temperance_bonus = 6
 	slot = EYE
 
-/datum/ego_gifts/dacapo/Initialize(mob/living/carbon/human/user) // grants resistance
+/datum/ego_gifts/dacapo/Initialize(mob/living/carbon/human/user)
 	. = ..()
-	user.physiology.white_mod *= 0.8
+	RegisterSignal(user, COMSIG_MOB_AFTER_APPLY_DAMGE, PROC_REF(AttemptHeal))
 
 /datum/ego_gifts/dacapo/Remove(mob/living/carbon/human/user)
-	user.physiology.white_mod /= 0.8
+	UnregisterSignal(user, COMSIG_MOB_AFTER_APPLY_DAMGE, PROC_REF(AttemptHeal))
 	return ..()
+
+/datum/ego_gifts/dacapo/proc/AttemptHeal(datum/source, damage, damagetype, def_zone)
+	if(!owner && damagetype != WHITE_DAMAGE)
+		return
+	var/obj/item/clothing/suit/armor/ego_gear/aleph/da_capo/T = owner.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	var/obj/item/clothing/suit/armor/ego_gear/realization/alcoda/U = owner.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(!(istype(T) || istype(U)))
+		return
+	if(!damage)
+		return
+	if(damage < 0)
+		return
+	if(damage > 5) //If its more than 5 damage we don't heal from it
+		return
+	owner.adjustSanityLoss(-damage * 2)
 
 /datum/ego_gifts/distortion
 	name = "Distortion"
@@ -1479,8 +1565,17 @@
 /datum/ego_gifts/mimicry
 	name = "Mimicry"
 	icon_state = "mimicry"
+	desc = "Provides the user with 5% increase to all healing sources."
 	fortitude_bonus = 10
 	slot = CHEEK
+
+/datum/ego_gifts/mimicry/Initialize(mob/living/carbon/human/user) // As a boost, undoes the debuff it applies to you
+	. = ..()
+	user.physiology.healing_mod *= 1.05
+
+/datum/ego_gifts/mimicry/Remove(mob/living/carbon/human/user) // Niceness can be taken away, I suppose
+	user.physiology.healing_mod /= 1.05
+	return ..()
 
 /datum/ego_gifts/mockery
 	name = "Mockery"
@@ -1508,7 +1603,9 @@
 /datum/ego_gifts/pink
 	name = "Pink"
 	icon_state = "pink"
-	justice_bonus = 10
+	desc = "Increases the damage of the corresponding weapon by 10%."
+	prudence_bonus = 5
+	justice_bonus = 5
 	slot = HELMET
 
 /datum/ego_gifts/spring

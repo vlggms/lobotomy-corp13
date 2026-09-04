@@ -206,6 +206,32 @@
 							)
 	var/mob/current_holder
 
+/obj/item/ego_weapon/ranged/pink/before_firing(atom/target, mob/user)
+	projectile_damage_multiplier = 1
+	var/mob/living/carbon/human/myman = user
+	var/obj/item/clothing/suit/armor/ego_gear/aleph/pink/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	var/mult = 1
+	if (istype(Z))
+		mult += 0.1
+	if(istype(myman.ego_gift_list[HELMET], /datum/ego_gifts/pink))
+		mult += 0.1
+	projectile_damage_multiplier *= mult
+	..()
+
+/obj/item/ego_weapon/ranged/pink/melee_attack_chain(mob/user, atom/target, params)
+	if (!istype(user,/mob/living/carbon/human))
+		return
+	force = 40
+	var/mob/living/carbon/human/myman = user
+	var/obj/item/clothing/suit/armor/ego_gear/aleph/pink/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	var/mult = 1
+	if (istype(Z))
+		mult += 0.1
+	if(istype(myman.ego_gift_list[HELMET], /datum/ego_gifts/pink))
+		mult += 0.1
+	force *= mult
+	. = ..()
+
 /obj/item/ego_weapon/ranged/pink/MiddleClickAction(atom/target, mob/living/user)
 	. = ..()
 	if(.)
