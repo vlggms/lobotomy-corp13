@@ -120,7 +120,7 @@
 /area/department_main/command)
 "aA" = (
 /obj/structure/disposalpipe/segment,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "aC" = (
 /mob/living/simple_animal/hostile/humanoid/rat/zippy,
@@ -160,7 +160,7 @@
 /area/facility_hallway/discipline)
 "aI" = (
 /obj/machinery/smartfridge/extraction_storage/ego_armor,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/extraction)
 "aJ" = (
 /obj/effect/turf_decal/siding/yellow,
@@ -182,7 +182,7 @@
 /area/city/backstreets_room)
 "aO" = (
 /obj/structure/sign/departments/command,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/information)
 "aP" = (
 /obj/structure/sign/departments/restroom{
@@ -247,7 +247,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 5
 	},
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/command)
 "bb" = (
 /obj/machinery/light/broken{
@@ -277,7 +277,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/command)
 "bf" = (
 /obj/effect/turf_decal/bot,
@@ -581,7 +581,7 @@
 /turf/open/floor/facility/white,
 /area/city)
 "ce" = (
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/command)
 "cf" = (
 /obj/effect/turf_decal/plaque{
@@ -592,7 +592,7 @@
 /turf/open/floor/plating,
 /area/department_main/command)
 "cg" = (
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/extraction)
 "ch" = (
 /obj/effect/decal/cleanable/dirt,
@@ -664,7 +664,7 @@
 /turf/open/floor/plating,
 /area/facility_hallway/discipline)
 "cu" = (
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/safety)
 "cv" = (
 /obj/structure/sign/departments/info{
@@ -698,11 +698,11 @@
 /area/city/shop)
 "cA" = (
 /obj/machinery/containment_hotspot,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/safety)
 "cC" = (
 /obj/structure/sign/poster/contraband/space_cube,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/safety)
 "cD" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1088,7 +1088,7 @@
 /area/department_main/command)
 "dZ" = (
 /obj/structure/sign/poster/contraband/lusty_xenomorph,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/extraction)
 "ea" = (
 /obj/effect/turf_decal/siding/yellow{
@@ -1610,7 +1610,7 @@
 /area/city/backstreets_alley)
 "fQ" = (
 /obj/machinery/containment_hotspot,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/discipline)
 "fS" = (
 /obj/structure/rack,
@@ -1739,7 +1739,7 @@
 /area/facility_hallway/training)
 "gt" = (
 /obj/machinery/smartfridge/extraction_storage/ego_weapon,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/extraction)
 "gu" = (
 /obj/effect/turf_decal/siding/green{
@@ -1892,7 +1892,7 @@
 /area/department_main/command)
 "hb" = (
 /obj/structure/sign/poster/contraband/space_up,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/safety)
 "hc" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1962,7 +1962,7 @@
 /turf/open/floor/facility/white,
 /area/city)
 "ho" = (
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/safety)
 "hr" = (
 /obj/structure/ore_box,
@@ -2195,15 +2195,15 @@
 /area/department_main/discipline)
 "id" = (
 /obj/machinery/newscaster,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/discipline)
 "ie" = (
 /obj/structure/sign/poster/lobotomycorp/gobald,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/welfare)
 "ih" = (
 /obj/structure/sign/departments/discipline,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/discipline)
 "ii" = (
 /obj/effect/turf_decal/siding/green{
@@ -2497,7 +2497,7 @@
 /area/facility_hallway/welfare)
 "jo" = (
 /obj/structure/sign/poster/ripped,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/discipline)
 "jp" = (
 /obj/effect/decal/cleanable/dirt,
@@ -2784,7 +2784,7 @@
 /area/facility_hallway/command)
 "kp" = (
 /obj/structure/sign/poster/lobotomycorp/cleancorpses,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/discipline)
 "kq" = (
 /obj/structure/disposalpipe/segment,
@@ -3067,7 +3067,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 10
 	},
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/control)
 "ln" = (
 /obj/effect/decal/cleanable/dirt,
@@ -3081,7 +3081,7 @@
 /area/city/shop)
 "lp" = (
 /obj/structure/sign/departments/l_corp,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/control)
 "lq" = (
 /obj/structure/table/wood,
@@ -3169,7 +3169,7 @@
 /area/city/backstreets_alley)
 "lG" = (
 /obj/structure/sign/poster/official/cleanliness,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "lH" = (
 /obj/structure/toilet{
@@ -3224,11 +3224,11 @@
 /turf/open/floor/plasteel/dark,
 /area/city/shop)
 "lP" = (
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/training)
 "lQ" = (
 /obj/structure/sign/poster/lobotomycorp/random,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/command)
 "lR" = (
 /obj/machinery/light/broken{
@@ -3243,7 +3243,7 @@
 	name = "Briah Lockdown button";
 	pixel_y = -25
 	},
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/welfare)
 "lU" = (
 /obj/effect/turf_decal/siding/brown{
@@ -3493,13 +3493,13 @@
 /area/facility_hallway/control)
 "mN" = (
 /obj/structure/sign/poster/lobotomycorp/rabbit_team,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/discipline)
 "mO" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/training)
 "mP" = (
 /obj/structure/plaque{
@@ -3601,7 +3601,7 @@
 /area/city)
 "nn" = (
 /obj/structure/sign/departments/safety,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/safety)
 "no" = (
 /obj/effect/turf_decal/bot,
@@ -3636,7 +3636,7 @@
 /turf/open/floor/plating,
 /area/facility_hallway/training)
 "nt" = (
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/discipline)
 "nw" = (
 /obj/machinery/light/broken,
@@ -3930,7 +3930,7 @@
 	id = "trainingfurnace";
 	pixel_x = 31
 	},
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "oy" = (
 /obj/effect/turf_decal/siding/red{
@@ -4051,7 +4051,7 @@
 /area/city/house)
 "oQ" = (
 /obj/structure/sign/poster/ripped,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/discipline)
 "oR" = (
 /obj/effect/turf_decal/siding/brown{
@@ -4499,7 +4499,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/command)
 "qm" = (
 /obj/machinery/computer/arcade/battle,
@@ -4609,7 +4609,7 @@
 "qJ" = (
 /obj/structure/sign/departments/welfare,
 /obj/structure/disposalpipe/segment,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/welfare)
 "qK" = (
 /obj/effect/turf_decal/siding/red{
@@ -4710,7 +4710,7 @@
 /turf/open/floor/plasteel,
 /area/city)
 "rg" = (
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/control)
 "rj" = (
 /obj/effect/turf_decal/siding/red{
@@ -4907,7 +4907,7 @@
 /area/department_main/safety)
 "rX" = (
 /obj/structure/sign/poster/lobotomycorp/bearbeer,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/extraction)
 "rY" = (
 /obj/effect/turf_decal/tile/brown,
@@ -5060,7 +5060,7 @@
 /area/facility_hallway/command)
 "sB" = (
 /obj/structure/disposalpipe/segment,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/discipline)
 "sC" = (
 /obj/structure/sign/poster/official/cleanliness,
@@ -5082,7 +5082,7 @@
 /area/city/shop)
 "sG" = (
 /obj/structure/disposalpipe/segment,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/training)
 "sH" = (
 /obj/effect/turf_decal/siding/yellow{
@@ -5184,7 +5184,7 @@
 /area/facility_hallway/control)
 "sZ" = (
 /obj/structure/sign/warning/nosmoking/circle,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/safety)
 "ta" = (
 /obj/structure/disposalpipe/segment,
@@ -5253,7 +5253,7 @@
 /area/facility_hallway/welfare)
 "to" = (
 /obj/structure/sign/poster/ripped,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "tp" = (
 /obj/broken_regenerator,
@@ -5522,7 +5522,7 @@
 /area/facility_hallway/control)
 "uk" = (
 /obj/structure/disposalpipe/segment,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/command)
 "ul" = (
 /obj/structure/disposalpipe/segment,
@@ -5571,7 +5571,7 @@
 /area/facility_hallway/welfare)
 "uu" = (
 /obj/structure/sign/poster/lobotomycorp/cleancorpses,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/extraction)
 "uv" = (
 /obj/effect/turf_decal/siding/yellow{
@@ -5714,7 +5714,7 @@
 /area/facility_hallway/welfare)
 "uU" = (
 /obj/structure/sign/poster/lobotomycorp/attributes,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/command)
 "uV" = (
 /obj/effect/mapping_helpers/records_spawner/second,
@@ -5774,7 +5774,7 @@
 /area/facility_hallway/command)
 "vb" = (
 /obj/structure/sign/departments/safety,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/safety)
 "vc" = (
 /turf/closed/indestructible/rock,
@@ -5898,7 +5898,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 5
 	},
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/training)
 "vx" = (
 /obj/structure/disposalpipe/junction/yjunction{
@@ -6161,7 +6161,7 @@
 /area/facility_hallway/control)
 "ws" = (
 /obj/structure/sign/poster/contraband/revolver,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/information)
 "wt" = (
 /obj/effect/turf_decal/plaque{
@@ -6203,7 +6203,7 @@
 /turf/open/floor/plating/rust,
 /area/department_main/extraction)
 "wD" = (
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/information)
 "wE" = (
 /obj/effect/turf_decal/siding/yellow,
@@ -6222,7 +6222,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/information)
 "wH" = (
 /obj/item/toy/plush/malkuth,
@@ -6231,7 +6231,7 @@
 "wI" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sign/poster/ripped,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/command)
 "wJ" = (
 /obj/machinery/light/small{
@@ -6364,7 +6364,7 @@
 /area/facility_hallway/information)
 "xf" = (
 /obj/structure/sign/departments/training,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/training)
 "xg" = (
 /obj/structure/disposalpipe/segment,
@@ -6524,7 +6524,7 @@
 /area/department_main/command)
 "xI" = (
 /obj/structure/sign/departments/welfare,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/welfare)
 "xJ" = (
 /obj/structure/disposalpipe/segment{
@@ -6557,7 +6557,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/control)
 "xR" = (
 /obj/machinery/camera/autoname,
@@ -6734,7 +6734,7 @@
 /area/department_main/control)
 "yv" = (
 /obj/structure/sign/departments/l_corp,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/information)
 "yy" = (
 /obj/machinery/computer/libraryconsole{
@@ -6779,7 +6779,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/control)
 "yG" = (
 /turf/open/floor/carpet/royalblue,
@@ -6806,7 +6806,7 @@
 /area/facility_hallway/control)
 "yS" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/command)
 "yT" = (
 /obj/effect/decal/cleanable/dirt,
@@ -6927,7 +6927,7 @@
 /turf/open/floor/plasteel/white,
 /area/city/shop)
 "zm" = (
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/welfare)
 "zn" = (
 /obj/effect/turf_decal/siding/yellow{
@@ -7128,7 +7128,7 @@
 /turf/open/floor/carpet/donk,
 /area/city/backstreets_alley)
 "zW" = (
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/training)
 "zX" = (
 /obj/effect/decal/cleanable/dirt,
@@ -7376,7 +7376,7 @@
 /area/department_main/safety)
 "AP" = (
 /obj/machinery/containment_hotspot,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/training)
 "AR" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -7586,7 +7586,7 @@
 /area/city/shop)
 "BC" = (
 /obj/machinery/newscaster,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/control)
 "BD" = (
 /obj/structure/table/wood/fancy/green,
@@ -7613,7 +7613,7 @@
 /area/department_main/command)
 "BG" = (
 /obj/structure/sign/departments/training,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/training)
 "BH" = (
 /obj/effect/landmark/start{
@@ -7724,7 +7724,7 @@
 /area/facility_hallway/control)
 "Cg" = (
 /obj/structure/sign/poster/contraband/syndicate_recruitment,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/extraction)
 "Ch" = (
 /obj/structure/closet/cabinet,
@@ -7816,7 +7816,7 @@
 "Cx" = (
 /obj/structure/sign/poster/ripped,
 /obj/structure/disposalpipe/segment,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/welfare)
 "Cy" = (
 /obj/structure/fluff/bus/passable,
@@ -7843,7 +7843,7 @@
 /area/facility_hallway/control)
 "CB" = (
 /obj/structure/sign/poster/lobotomycorp/hhpp,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/control)
 "CC" = (
 /obj/machinery/door/airlock/highsecurity{
@@ -7962,7 +7962,7 @@
 /area/city)
 "CZ" = (
 /obj/machinery/status_display,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/training)
 "Da" = (
 /obj/effect/decal/cleanable/dirt,
@@ -7971,7 +7971,7 @@
 /area/city/backstreets_room)
 "Dc" = (
 /obj/structure/sign/poster/ripped,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/welfare)
 "De" = (
 /obj/machinery/door/airlock/highsecurity{
@@ -8124,7 +8124,7 @@
 /area/department_main/records)
 "DC" = (
 /obj/structure/sign/poster/official/help_others,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/safety)
 "DD" = (
 /obj/effect/decal/cleanable/dirt,
@@ -8536,7 +8536,7 @@
 	name = "Assiyah Lockdown button";
 	pixel_y = -25
 	},
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/safety)
 "Fb" = (
 /obj/item/kirbyplants/photosynthetic,
@@ -8681,7 +8681,7 @@
 /area/department_main/welfare)
 "FI" = (
 /obj/machinery/containment_hotspot,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/command)
 "FJ" = (
 /obj/effect/decal/cleanable/dirt,
@@ -8705,7 +8705,7 @@
 /area/department_main/command)
 "FM" = (
 /obj/machinery/newscaster,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/command)
 "FN" = (
 /obj/machinery/camera/autoname,
@@ -8802,7 +8802,7 @@
 /area/department_main/command)
 "Gk" = (
 /obj/machinery/containment_hotspot,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/welfare)
 "Gl" = (
 /obj/effect/turf_decal/bot,
@@ -9009,7 +9009,7 @@
 /area/city/shop)
 "GW" = (
 /obj/structure/sign/departments/discipline,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/discipline)
 "GX" = (
 /obj/effect/decal/cleanable/dirt,
@@ -9395,7 +9395,7 @@
 /obj/structure/sign/poster/official/do_not_question{
 	pixel_x = 32
 	},
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/records)
 "Is" = (
 /obj/effect/turf_decal/siding/yellow,
@@ -9409,7 +9409,7 @@
 /area/city)
 "Iu" = (
 /obj/structure/sign/departments/welfare,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/welfare)
 "Iw" = (
 /obj/effect/turf_decal/siding/yellow{
@@ -9691,7 +9691,7 @@
 /turf/open/floor/carpet/red,
 /area/facility_hallway/control)
 "Jz" = (
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/manager)
 "JB" = (
 /obj/structure/railing{
@@ -9893,7 +9893,7 @@
 	id = "spawners";
 	name = "central command lockdown"
 	},
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/information)
 "Kj" = (
 /obj/effect/turf_decal/siding/blue{
@@ -10268,7 +10268,7 @@
 /area/facility_hallway/control)
 "Ly" = (
 /obj/structure/disposalpipe/segment,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/discipline)
 "LB" = (
 /obj/effect/turf_decal/siding/green,
@@ -10365,7 +10365,7 @@
 /turf/open/floor/plating/rust,
 /area/facility_hallway/safety)
 "LL" = (
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/welfare)
 "LM" = (
 /obj/effect/spawner/lootdrop/maintenance,
@@ -10442,7 +10442,7 @@
 /turf/closed/mineral/random/facility,
 /area/department_main/safety)
 "LX" = (
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/information)
 "LY" = (
 /obj/effect/turf_decal/siding/yellow{
@@ -10452,7 +10452,7 @@
 /area/department_main/command)
 "LZ" = (
 /obj/structure/sign/departments/control,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/control)
 "Ma" = (
 /obj/machinery/door/poddoor/ert{
@@ -10597,7 +10597,7 @@
 /turf/closed/mineral/random/facility/briah,
 /area/facility_hallway/command)
 "MB" = (
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "MC" = (
 /obj/effect/turf_decal/siding/yellow,
@@ -10665,7 +10665,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/control)
 "MP" = (
 /obj/structure/toilet{
@@ -10739,7 +10739,7 @@
 /area/facility_hallway/control)
 "Ne" = (
 /obj/structure/sign/poster/lobotomycorp/bearbeer,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/training)
 "Nf" = (
 /turf/open/floor/plating/rust,
@@ -10945,13 +10945,13 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/control)
 "NS" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/discipline)
 "NT" = (
 /obj/effect/landmark/delayed/xeno_spawn,
@@ -11037,7 +11037,7 @@
 /area/facility_hallway/training)
 "Oj" = (
 /obj/structure/sign/departments/command,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/command)
 "Ok" = (
 /mob/living/simple_animal/hostile/humanoid/rat/zippy{
@@ -11128,7 +11128,7 @@
 /area/facility_hallway/command)
 "Ox" = (
 /obj/structure/sign/poster/ripped,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/command)
 "Oy" = (
 /obj/structure/rack,
@@ -11210,7 +11210,7 @@
 /area/department_main/information)
 "OP" = (
 /obj/structure/sign/poster/ripped,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/welfare)
 "OQ" = (
 /obj/machinery/camera/autoname{
@@ -11315,7 +11315,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 5
 	},
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "Pk" = (
 /obj/effect/turf_decal/siding/blue{
@@ -11483,7 +11483,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 10
 	},
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/command)
 "PP" = (
 /obj/effect/turf_decal/bot,
@@ -11501,7 +11501,7 @@
 /area/facility_hallway/command)
 "PR" = (
 /obj/structure/sign/poster/lobotomycorp/clerk_lives_matter,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/welfare)
 "PS" = (
 /obj/effect/turf_decal/siding/wood{
@@ -11601,7 +11601,7 @@
 /area/facility_hallway/control)
 "Qj" = (
 /obj/structure/sign/button_counter/directional/north,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/records)
 "Qk" = (
 /obj/item/clothing/head/helmet/skull{
@@ -11672,7 +11672,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/control)
 "QB" = (
 /obj/structure/chair/office{
@@ -11700,7 +11700,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/welfare)
 "QF" = (
 /obj/effect/decal/cleanable/dirt,
@@ -11751,7 +11751,7 @@
 /turf/open/floor/wood,
 /area/department_main/manager)
 "QT" = (
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/records)
 "QU" = (
 /obj/effect/turf_decal/plaque{
@@ -11894,7 +11894,7 @@
 /area/city/backstreets_room)
 "Rs" = (
 /obj/structure/disposalpipe/segment,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/command)
 "Rt" = (
 /obj/structure/flora/ausbushes/ppflowers,
@@ -11911,7 +11911,7 @@
 /area/city)
 "Rx" = (
 /obj/structure/sign/departments/info,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/command)
 "Ry" = (
 /obj/effect/turf_decal/siding/red/corner{
@@ -12091,7 +12091,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/control)
 "Sd" = (
 /obj/effect/turf_decal/siding/blue/corner{
@@ -12109,7 +12109,7 @@
 /turf/open/floor/plasteel/white,
 /area/city)
 "Se" = (
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/discipline)
 "Sf" = (
 /obj/effect/turf_decal/siding/yellow{
@@ -12161,7 +12161,7 @@
 /area/department_main/extraction)
 "Sq" = (
 /obj/machinery/newscaster,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/welfare)
 "St" = (
 /obj/structure/railing{
@@ -12184,7 +12184,7 @@
 /area/city)
 "Sv" = (
 /obj/structure/sign/departments/info,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/control)
 "Sw" = (
 /obj/effect/decal/cleanable/dirt,
@@ -12295,7 +12295,7 @@
 /turf/closed/mineral/random/facility/atzliuth,
 /area/facility_hallway/discipline)
 "SQ" = (
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/control)
 "SR" = (
 /obj/structure/closet/secure_closet/freezer/meat{
@@ -12495,7 +12495,7 @@
 /area/department_main/training)
 "TA" = (
 /obj/structure/disposalpipe/segment,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/control)
 "TC" = (
 /obj/effect/turf_decal/siding/red,
@@ -12790,7 +12790,7 @@
 /area/city)
 "Uz" = (
 /obj/structure/curtain/bounty,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/command)
 "UA" = (
 /obj/structure/disposalpipe/segment{
@@ -12826,7 +12826,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "UH" = (
 /obj/structure/disposalpipe/segment{
@@ -12904,13 +12904,13 @@
 /area/department_main/command)
 "UV" = (
 /obj/structure/sign/departments/control,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/control)
 "UW" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "UX" = (
 /obj/effect/turf_decal/tile/brown{
@@ -12929,7 +12929,7 @@
 /turf/open/floor/carpet/red,
 /area/department_main/discipline)
 "UZ" = (
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/command)
 "Vb" = (
 /obj/machinery/iv_drip,
@@ -13019,7 +13019,7 @@
 /obj/structure/disposalpipe/junction/flip{
 	dir = 2
 	},
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/welfare)
 "Vx" = (
 /obj/effect/turf_decal/siding/yellow{
@@ -13236,7 +13236,7 @@
 /area/city/backstreets_room)
 "Wi" = (
 /obj/structure/disposalpipe/segment,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/welfare)
 "Wj" = (
 /obj/effect/decal/cleanable/dirt,
@@ -13537,7 +13537,7 @@
 	name = "Briah Lockdown button";
 	pixel_y = -25
 	},
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/discipline)
 "Xr" = (
 /obj/effect/decal/cleanable/dirt,
@@ -13706,7 +13706,7 @@
 "XV" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sign/departments/training,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/facility_hallway/training)
 "XW" = (
 /obj/structure/filingcabinet{
@@ -14043,7 +14043,7 @@
 /area/department_main/command)
 "Za" = (
 /obj/structure/sign/departments/command,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/command)
 "Zb" = (
 /obj/effect/turf_decal/siding/yellow{
@@ -14219,7 +14219,7 @@
 /area/department_main/manager)
 "ZG" = (
 /obj/structure/sign/poster/contraband/missing_gloves,
-/turf/closed/indestructible/reinforced/old,
+/turf/closed/indestructible/reinforced,
 /area/department_main/extraction)
 "ZH" = (
 /obj/effect/turf_decal/siding/red{
