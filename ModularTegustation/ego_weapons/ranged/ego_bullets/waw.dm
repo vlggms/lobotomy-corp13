@@ -513,3 +513,21 @@
 	name = "9mm soda bullet"
 	damage = 4
 	damage_type = RED_DAMAGE
+
+/obj/projectile/ego_bullet/maggotgun
+	name = "unsightly glob"
+	icon_state = "mountain"
+	damage = 5
+	damage_type = BLACK_DAMAGE
+
+/obj/projectile/ego_bullet/maggotgun/on_hit(atom/target, blocked, pierce_hit)
+	. = ..()
+	if(!isliving(target))
+		return
+	var/mob/living/L = target
+	var/datum/status_effect/stacking/maggots/G = L.has_status_effect(/datum/status_effect/stacking/maggots)
+	if(!G)
+		L.apply_status_effect(/datum/status_effect/stacking/maggots)
+	else
+		G.add_stacks(1)
+		G.refresh()

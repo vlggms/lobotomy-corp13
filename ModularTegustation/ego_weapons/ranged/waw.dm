@@ -1410,3 +1410,29 @@
 		L.deal_damage(damage_done, BLACK_DAMAGE, source = caster, attack_type = (ATTACK_TYPE_RANGED | ATTACK_TYPE_SPECIAL))
 	if(count == barrage_range || count == broken)
 		qdel(src)
+
+/obj/item/ego_weapon/ranged/maggotgun//dropped by an empowered false apple
+	name = "legerdemain MK II"
+	desc = "Maggots writhe around the barrel of this disgusting shotgun. For some reason, holding it makes you feel guilty."
+	icon_state = "false_apple"
+	inhand_icon_state = "false_apple"
+	force = 24
+	damtype = BLACK_DAMAGE
+	projectile_path = /obj/projectile/ego_bullet/maggotgun
+	ammo_on_melee = 2
+	pellets = 5
+	variance = 32
+	randomspread = FALSE
+	recoil = 1
+	max_shots = 2
+	reloadtime = 0.3 SECONDS
+	ammo_on_reload = 2
+	weapon_weight = WEAPON_HEAVY
+	fire_delay = 10
+	fire_sound = 'sound/weapons/gun/shotgun/shot.ogg'
+	round_text = "You load two shells."
+	reload_start_sound = 'sound/weapons/gun/shotgun/insert_shell.ogg'
+	reload_success_sound = 'sound/weapons/gun/shotgun/insert_shell.ogg'
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 80,
+							)
