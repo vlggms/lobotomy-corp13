@@ -109,7 +109,7 @@
 			Teleport()
 		return
 	if(work_type == ABNORMALITY_WORK_INSTINCT)
-		if(user == last_worker)
+		if(user.tag == last_worker)
 			if(prob(instinct_count * 10))
 				datum_reference.qliphoth_change(-1)
 				var/obj/structure/strangling_hair/N = new(get_turf(user))
@@ -117,7 +117,7 @@
 			instinct_count++
 			return
 		instinct_count = 0
-		last_worker = user
+		last_worker = user.tag
 
 //Meltdown Stuff
 /mob/living/simple_animal/hostile/abnormality/tangle/MeltdownEnd()
@@ -132,16 +132,11 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/tangle/BreachEffect()
-	..()
-	new /obj/structure/spreading/tangle_hair (src)
+	. = ..()
+	var/obj/structure/spreading/tangle_hair/hair = new(src)
+	hair.RegisterMob(src)
 
 /mob/living/simple_animal/hostile/abnormality/tangle/proc/Teleport()
-
-/mob/living/simple_animal/hostile/abnormality/tangle/death()
-	for(var/V in hair_list)
-		qdel(V)
-		hair_list-=V
-	..()
 
 /mob/living/simple_animal/hostile/abnormality/tangle/PostDamageReaction(damage_amount, damage_type, source, attack_type)
 	. = ..()
@@ -191,28 +186,25 @@
 	plane = FLOOR_PLANE
 	max_integrity = 10
 	base_icon_state = "tanglehair"
-	var/safe = FALSE
+	var/rapid_growth_charges = 4
 	var/mob/living/simple_animal/hostile/abnormality/tangle/connected_abno
 	var/damage_check_time = 2 SECONDS
 	var/damaging = FALSE
 
+/obj/structure/spreading/tangle_hair/Destroy()
+	UnregisterMob()
+	return ..()
+
 /obj/structure/spreading/tangle_hair/Initialize()
 	. = ..()
-
-	//Stolen from Snow White's. Thanks Para!
-	if(!connected_abno)
-		connected_abno = locate(/mob/living/simple_animal/hostile/abnormality/tangle) in GLOB.abnormality_mob_list
-	if(connected_abno)
-		connected_abno.hair_list += src
-	expand()
-
+	addtimer(CALLBACK(src, PROC_REF(expand)), 5 SECONDS)
 
 /obj/structure/spreading/tangle_hair/expand()
-	addtimer(CALLBACK(src, PROC_REF(expand)), 5 SECONDS)
-//	if(connected_abno.hair_list.len>=150)
-// 		return
-	if(!safe)
-		return ..()
+	//It gets really fast for a few moments before slowing down
+	var/spread_offset = (5 SECONDS) + rand(1,10) - ((1 SECONDS) * rapid_growth_charges)
+	rapid_growth_charges--
+	addtimer(CALLBACK(src, PROC_REF(expand)), spread_offset)
+	return ..()
 
 /obj/structure/spreading/tangle_hair/Crossed(atom/movable/AM)
 	. = ..()
@@ -243,6 +235,33 @@
 		to_chat(H, span_warning("You get caught in the hair!"))
 	else
 		H.deal_damage(1, WHITE_DAMAGE, attack_type = (ATTACK_TYPE_ENVIRONMENT))
+
+/obj/structure/spreading/tangle_hair/PlaceStructure(turf/T)
+	. = ..()
+	if(!. || !istype(. , type))
+		return
+	var/obj/structure/spreading/tangle_hair/A = .
+	if(connected_abno)
+		A.RegisterMob(connected_abno)
+
+/obj/structure/spreading/tangle_hair/play_attack_sound(damage_amount, damage_type = BRUTE)
+	playsound(loc, 'sound/creatures/venus_trap_hit.ogg', 60, TRUE)
+
+//Signal Stuff
+/obj/structure/spreading/tangle_hair/proc/RegisterMob(mob/living/L)
+	if(!L)
+		return
+	if(!istype(L, /mob/living/simple_animal/hostile/abnormality/tangle))
+		return
+	connected_abno = L
+	RegisterSignal(connected_abno, list(COMSIG_PARENT_QDELETING), PROC_REF(UnregisterMob))
+
+/obj/structure/spreading/tangle_hair/proc/UnregisterMob()
+	if(!connected_abno)
+		return
+	UnregisterSignal(connected_abno, list(COMSIG_PARENT_QDELETING))
+	connected_abno = null
+	SelfDestruct()
 
 //The strangling hair.
 /obj/structure/strangling_hair
