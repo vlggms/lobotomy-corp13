@@ -69,42 +69,20 @@
 /mob/living/simple_animal/hostile/abnormality/tangle/CanAttack(atom/the_target)
 	return FALSE
 
+/mob/living/simple_animal/hostile/abnormality/tangle/Initialize()
+	. = ..()
+	var/obj/structure/spreading/tangle_hair/hair = new(src)
+	hair.RegisterMob(src)
+	hair.safe = TRUE
 
-/mob/living/simple_animal/hostile/abnormality/tangle/Life()
-	if(IsContained)
-		var/list/turfs = list()
-	var/turf/self_turf = src.loc
-	var/turf/inside = locate(self_turf.x+1, self_turf.y, self_turf.z)
-	if(inside)
-		for(var/turf/T in range(inside, 2))
-			if(!T || isclosedturf(T))
-				continue
-			if(locate(/obj/structure/window) in T.contents)
-				continue
-			if(locate(/obj/structure/table) in T.contents)
-				continue
-			if(locate(/obj/structure/railing) in T.contents)
-				continue
-			turfs += T
+/mob/living/simple_animal/hostile/abnormality/tangle/Destroy()
+	hair_list.Cut()
 	return ..()
-
-//Work Mechanics
-/mob/living/simple_animal/hostile/abnormality/tangle/WorkChance(mob/living/carbon/human/user, chance, work_type)
-	if(user.gender == MALE)
-		if(work_type == ABNORMALITY_WORK_ATTACHMENT)
-			return chance + 20
-	else if (user.gender == FEMALE)
-		if(work_type == ABNORMALITY_WORK_INSIGHT)
-			return chance + 20
-	else
-		if(work_type == ABNORMALITY_WORK_INSIGHT || work_type == ABNORMALITY_WORK_ATTACHMENT)
-			return chance + 10
-	return chance
 
 /mob/living/simple_animal/hostile/abnormality/tangle/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	. = ..()
 	if(get_attribute_level(user, JUSTICE_ATTRIBUTE) < 40)
-		if(prob(20))
+		if(prob(30))
 			datum_reference.qliphoth_change(-2)
 			Teleport()
 		return
@@ -133,10 +111,25 @@
 
 /mob/living/simple_animal/hostile/abnormality/tangle/BreachEffect()
 	. = ..()
-	var/obj/structure/spreading/tangle_hair/hair = new(src)
-	hair.RegisterMob(src)
+	for(var/obj/structure/spreading/tangle_hair/H in hair_list)
+		H.safe = FALSE
+		H.can_expand = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/tangle/proc/Teleport()
+	//Keeping the hair while moving tangle would look strange
+	for(var/obj/structure/spreading/tangle_hair/H in hair_list)
+		qdel(H)
+	hair_list.Cut()
+
+	var/obj/structure/spreading/tangle_hair/hair = new(src)
+	hair.RegisterMob(src)
+	var/list/teleport_potential = list()
+	for(var/turf/T in GLOB.xeno_spawn)
+		teleport_potential += T
+	if(!LAZYLEN(teleport_potential))
+		return FALSE
+	var/turf/teleport_target = pick(teleport_potential)
+	forceMove(teleport_target)
 
 /mob/living/simple_animal/hostile/abnormality/tangle/PostDamageReaction(damage_amount, damage_type, source, attack_type)
 	. = ..()
@@ -190,6 +183,7 @@
 	var/mob/living/simple_animal/hostile/abnormality/tangle/connected_abno
 	var/damage_check_time = 2 SECONDS
 	var/damaging = FALSE
+	var/safe = FALSE
 
 /obj/structure/spreading/tangle_hair/Destroy()
 	UnregisterMob()
@@ -208,7 +202,7 @@
 
 /obj/structure/spreading/tangle_hair/Crossed(atom/movable/AM)
 	. = ..()
-	if(!can_expand || !ishuman(AM))
+	if(safe || !ishuman(AM))
 		return
 	if(!damaging)
 		damaging = TRUE
@@ -237,10 +231,15 @@
 		H.deal_damage(1, WHITE_DAMAGE, attack_type = (ATTACK_TYPE_ENVIRONMENT))
 
 /obj/structure/spreading/tangle_hair/PlaceStructure(turf/T)
+	if(safe && connected_abno)
+		if(T.y > connected_abno.y + 1)
+			can_expand = FALSE
+			return
 	. = ..()
 	if(!. || !istype(. , type))
 		return
 	var/obj/structure/spreading/tangle_hair/A = .
+	A.safe = safe
 	if(connected_abno)
 		A.RegisterMob(connected_abno)
 

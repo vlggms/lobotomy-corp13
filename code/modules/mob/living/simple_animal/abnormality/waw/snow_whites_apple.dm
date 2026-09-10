@@ -260,15 +260,6 @@
 /mob/living/simple_animal/hostile/abnormality/snow_whites_apple/proc/VineSpike()
 	playsound(get_turf(src), projectilesound, 30)
 	for(var/obj/structure/spreading/apple_vine/W in view(vision_range, src))
-		var/list/did_we_hit = HurtInTurf(get_turf(W), list(), 30, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, attack_type = (ATTACK_TYPE_ENVIRONMENT))
-		if(did_we_hit.len)
-			W.VineAttack(pick(did_we_hit))
-
-	ranged_cooldown = world.time + ranged_cooldown_time
-
-/mob/living/simple_animal/hostile/abnormality/snow_whites_apple/proc/VineSpike()
-	playsound(get_turf(src), projectilesound, 30)
-	for(var/obj/structure/spreading/apple_vine/W in view(vision_range, src))
 		var/list/did_we_hit = HurtInTurf(get_turf(W), list(), 10, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, attack_type = (ATTACK_TYPE_ENVIRONMENT))
 		if(did_we_hit.len)
 			W.VineAttack(pick(did_we_hit))
@@ -433,7 +424,8 @@
 		))
 
 /obj/structure/spreading/apple_vine/Destroy()
-	UnregisterMob()
+
+()
 	return ..()
 
 /* Only allows the user to pass if the proc returns TRUE.

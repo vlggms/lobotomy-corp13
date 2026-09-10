@@ -647,8 +647,7 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 		VineEffect(AM)
 
 /obj/structure/spreading/pink_ribbon/Destroy()
-	if(connected_abno)
-		connected_abno.ribbon_list -= src
+	UnregisterMob()
 	return ..()
 
 /obj/structure/spreading/pink_ribbon/proc/VineEffect(mob/living/L)
