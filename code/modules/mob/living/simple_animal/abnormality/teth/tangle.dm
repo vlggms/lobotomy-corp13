@@ -12,7 +12,7 @@
 	melee_damage_lower = 0		//Doesn't attack
 	melee_damage_upper = 0
 	rapid_melee = 2
-	melee_damage_type = WHITE_DAMAGE
+	melee_damage_type = RED_DAMAGE
 	stat_attack = HARD_CRIT
 	faction = list("hostile")
 	can_breach = TRUE
@@ -63,7 +63,6 @@
 
 	///When she takes 200 damage, she'll trap people with her hair
 	var/damage_taken = 0
-	var/list/hair_list = list()
 
 /mob/living/simple_animal/hostile/abnormality/tangle/Move()
 	return FALSE
@@ -76,10 +75,6 @@
 	var/obj/structure/spreading/tangle_hair/hair = new(src)
 	hair.RegisterMob(src)
 	hair.safe = TRUE
-
-/mob/living/simple_animal/hostile/abnormality/tangle/Destroy()
-	hair_list.Cut()
-	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/tangle/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	. = ..()
@@ -117,7 +112,7 @@
 	pixel_y = 0
 	base_pixel_y = 0
 	update_icon_state()
-	for(var/obj/structure/spreading/tangle_hair/H in view(6, src))
+	for(var/obj/structure/spreading/tangle_hair/H in view(3, src))
 		H.safe = FALSE
 		H.can_expand = TRUE
 		H.rapid_growth_charges = 4
@@ -128,7 +123,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/tangle/proc/Teleport()
 	//Keeping the hair while moving tangle would look strange
-	for(var/obj/structure/spreading/tangle_hair/H in view(6, src))
+	for(var/obj/structure/spreading/tangle_hair/H in view(3, src))
 		qdel(H)
 
 	var/obj/structure/spreading/tangle_hair/hair = new(src)
@@ -167,6 +162,7 @@
 		hair.expand(TRUE)
 		hair.safe = IsContained()
 	var/obj/structure/strangling_hair/N = new(T)
+	N.RegisterMob(src)
 	N.buckle_mob(user)
 
 /mob/living/simple_animal/hostile/abnormality/tangle/update_icon_state()
@@ -214,28 +210,20 @@
 	. = ..()
 	if(safe || !ishuman(AM))
 		return
-	if(!damaging)
-		damaging = TRUE
-		Check()
+	Check(AM)
 
-/obj/structure/spreading/tangle_hair/proc/Check()
-	var/dealt_damage = FALSE
-	for(var/mob/living/carbon/human/H in get_turf(src))
-		if(!H)
-			continue
-		if(H.stat != DEAD)
-			DoDamage(H)
-			dealt_damage = TRUE
-	if(!dealt_damage)
-		damaging = FALSE
+/obj/structure/spreading/tangle_hair/proc/Check(mob/living/carbon/human/H)
+	if(!H || !locate(H) in get_turf(src))
 		return
-	addtimer(CALLBACK(src, PROC_REF(Check)), damage_check_time)
+	if(H.stat != DEAD)
+		DoDamage(H)
+		addtimer(CALLBACK(src, PROC_REF(Check), H), damage_check_time)
 
 //The Damage Proc
 /obj/structure/spreading/tangle_hair/proc/DoDamage(mob/living/carbon/human/H)
-	if(prob(20))
+	if(prob(10))
 		H.deal_damage(2, RED_DAMAGE, attack_type = (ATTACK_TYPE_ENVIRONMENT))
-		H.Immobilize(3)
+		H.Immobilize(5)
 		to_chat(H, span_warning("You get caught in the hair!"))
 
 /obj/structure/spreading/tangle_hair/PlaceStructure(turf/T)
@@ -252,7 +240,7 @@
 		A.RegisterMob(connected_abno)
 
 /obj/structure/spreading/tangle_hair/play_attack_sound(damage_amount, damage_type = BRUTE)
-	playsound(loc, 'sound/creatures/venus_trap_hit.ogg', 60, TRUE)
+	playsound(loc, 'sound/creatures/venus_trap_hurt.ogg', 60, TRUE)
 
 //Signal Stuff
 /obj/structure/spreading/tangle_hair/proc/RegisterMob(mob/living/L)
@@ -268,6 +256,7 @@
 		return
 	UnregisterSignal(connected_abno, list(COMSIG_PARENT_QDELETING))
 	connected_abno = null
+	safe = TRUE
 	SelfDestruct()
 
 //The strangling hair.
@@ -276,20 +265,24 @@
 	desc = "A mass of blond hair that constricts someone."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "tanglehair2"
-	max_integrity = 30
+	max_integrity = 40
 	density = FALSE
 	anchored = TRUE
 	can_buckle = TRUE
 	layer = ABOVE_MOB_LAYER
-	var/damage = 2
+	var/damage = 4
 	var/damage_cooldown
-	var/damage_cooldown_time = 4 SECONDS
+	var/damage_cooldown_time = 2 SECONDS
+	var/mob/living/simple_animal/hostile/abnormality/tangle/connected_abno
 
 /obj/structure/strangling_hair/New()
 	..()
 	START_PROCESSING(SSobj, src)
 
-/obj/structure/swarming_roots/user_buckle_mob(mob/living/M, mob/user, check_loc = TRUE)
+/obj/structure/strangling_hair/play_attack_sound(damage_amount, damage_type = BRUTE)
+	playsound(loc, 'sound/creatures/venus_trap_hurt.ogg', 60, TRUE)
+
+/obj/structure/strangling_hair/user_buckle_mob(mob/living/M, mob/user, check_loc = TRUE)
 	return
 
 /obj/structure/strangling_hair/buckle_mob(mob/living/M, force, check_loc, buckle_mob_flags)
@@ -312,6 +305,10 @@
 					continue
 				H.deal_damage(damage, RED_DAMAGE, attack_type = (ATTACK_TYPE_ENVIRONMENT))
 				dealt_damage = TRUE
+				if(H.health <= 0)
+					H.gib()
+					qdel(src)
+					return
 			if(dealt_damage)
 				playsound(loc, 'sound/effects/wounds/crack1.ogg', 60, TRUE)
 			return
@@ -330,4 +327,23 @@
 	if(has_buckled_mobs())
 		for(var/mob/living/L in buckled_mobs)
 			release_mob(L)
+	if(connected_abno)
+		UnregisterSignal(connected_abno, list(COMSIG_PARENT_QDELETING))
+		connected_abno = null
 	return ..()
+
+//Signal Stuff
+/obj/structure/strangling_hair/proc/RegisterMob(mob/living/L)
+	if(!L)
+		return
+	if(!istype(L, /mob/living/simple_animal/hostile/abnormality/tangle))
+		return
+	connected_abno = L
+	RegisterSignal(connected_abno, list(COMSIG_PARENT_QDELETING), PROC_REF(UnregisterMob))
+
+/obj/structure/strangling_hair/proc/UnregisterMob()
+	if(!connected_abno)
+		return
+	UnregisterSignal(connected_abno, list(COMSIG_PARENT_QDELETING))
+	connected_abno = null
+	qdel(src)

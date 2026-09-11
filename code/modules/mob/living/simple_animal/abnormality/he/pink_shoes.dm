@@ -1,6 +1,5 @@
 #define STATUS_EFFECT_URGE /datum/status_effect/stacking/urge
 #define STATUS_EFFECT_PINKSHOES /datum/status_effect/display/pinkshoes
-GLOBAL_LIST_EMPTY(ribbon_list)
 /mob/living/simple_animal/hostile/abnormality/pink_shoes
 	name = "Pink Shoes"
 	desc = "A pair of girly pink shoes."
@@ -66,7 +65,6 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 	var/mutable_appearance/breach_icon
 	var/mob/living/possessee
 	var/list/dense_ribbon_list = list()
-	var/list/ribbon_list = list()
 	var/mob/living/simple_animal/hostile/aminion/grown_strong/special_possessee
 
 //*** Simple Mob Procs ***//
@@ -104,7 +102,6 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 
 /mob/living/simple_animal/hostile/abnormality/pink_shoes/Destroy()
 	CutDenseRibbons()
-	ribbon_list.Cut()
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/pink_shoes/Initialize()
@@ -702,13 +699,11 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 		return
 	connected_abno = L
 	RegisterSignal(connected_abno, list(COMSIG_PARENT_QDELETING), PROC_REF(UnregisterMob))
-	connected_abno.ribbon_list += src
 
 /obj/structure/spreading/pink_ribbon/proc/UnregisterMob()
 	if(!connected_abno)
 		return
 	UnregisterSignal(connected_abno, list(COMSIG_PARENT_QDELETING))
-	connected_abno.ribbon_list -= src
 	connected_abno = null
 	SelfDestruct()
 
