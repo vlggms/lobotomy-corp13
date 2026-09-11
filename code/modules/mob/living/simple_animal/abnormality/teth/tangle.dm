@@ -158,7 +158,7 @@
 		return
 	var/turf/T = get_turf(user)
 	to_chat(user, span_danger("[src] entangles you with its hair!"))
-	if(!locate(/obj/structure/spreading/tangle_hair in T))
+	if(!locate(/obj/structure/spreading/tangle_hair) in T)
 		var/obj/structure/spreading/tangle_hair/hair = new(src)
 		hair.RegisterMob(src)
 		hair.expand(TRUE)
