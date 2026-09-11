@@ -419,7 +419,7 @@
 		"When an employee with Justice Level 1 completed the work, they would let F-01-191 escape containment with a low probability.",
 		"It is advised to let a different employee preform Instinct Work on the abnormality after completing Instinct Work.",
 		"When consecutive Instinct Works was done by the same employee, the Qliphoth Counter lowered and F-01-191 atempted to strangle them.",
-		"The same outcome would occurer when the work result was Bad.",
+		"When the work result was Bad, the Qliphoth Counter lowered and F-01-191 atempted to strangle the employee.",
 		"When F-01-191 escaped from its containment, it began to spread hair throughout the facility.",)
 	abno_breach_damage_count = "Low"
 

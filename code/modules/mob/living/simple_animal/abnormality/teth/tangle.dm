@@ -154,6 +154,8 @@
 		Entangle(H)
 
 /mob/living/simple_animal/hostile/abnormality/tangle/proc/Entangle(mob/living/carbon/human/user)
+	if(user.buckled)
+		return
 	var/turf/T = get_turf(user)
 	to_chat(user, span_danger("[src] entangles you with its hair!"))
 	if(!locate(/obj/structure/spreading/tangle_hair in T))
