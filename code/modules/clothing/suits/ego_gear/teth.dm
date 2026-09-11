@@ -280,8 +280,10 @@
 	name = "desert wind"
 	desc = "Dirty rag armor, better than nothing."
 	icon_state = "desert"
+	special = "This armor provides a 5% speed boost while worn."
+	speedboost = 1.05
 	flags_inv = NONE
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 0, BLACK_DAMAGE = -20, PALE_DAMAGE = -20, FIRE = 30) // 20
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = -10, BLACK_DAMAGE = -20, PALE_DAMAGE = -20, FIRE = 30) // 20
 
 /obj/item/clothing/suit/armor/ego_gear/teth/white_gossypium
 	name = "White Gossypium"
