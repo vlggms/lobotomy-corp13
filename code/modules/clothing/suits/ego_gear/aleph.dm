@@ -306,7 +306,7 @@
 	name = "Seasons Greetings"
 	desc = "This is a placeholder."
 	icon_state = "spring"
-	special = "This E.G.O. is able transform to match the current season. \nThis effect can be disabled at the cost of the armor being weaker if it doesn't match the current season."
+	special = "This E.G.O. is able transform to match the current season. \nThis effect can be disabled."
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 60, FIRE = 60) // Placeholder values, changed later.
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
