@@ -79,7 +79,7 @@
 			R.expand()
 	if(locate(/obj/structure/spreading/pink_ribbon) in get_turf(src))
 		return
-	var/obj/structure/spreading/pink_ribbon/ribbon = new(src)
+	var/obj/structure/spreading/pink_ribbon/ribbon = new(get_turf(src))
 	ribbon.RegisterMob(src)
 
 /mob/living/simple_animal/hostile/abnormality/pink_shoes/death()
@@ -123,7 +123,7 @@
 	if(!isturf(loc) || isspaceturf(loc))
 		return
 	if(!locate(/obj/structure/spreading/pink_ribbon) in get_turf(src))
-		var/obj/structure/spreading/pink_ribbon/ribbon = new(src)
+		var/obj/structure/spreading/pink_ribbon/ribbon = new(loc)
 		ribbon.RegisterMob(src)
 	..()
 
@@ -212,7 +212,7 @@
 				continue
 			if(locate(/obj/structure/dense_ribbon) in T3)
 				continue
-			var/obj/structure/spreading/pink_ribbon/ribbon = new(src)
+			var/obj/structure/spreading/pink_ribbon/ribbon = new(get_turf(T3))
 			ribbon.RegisterMob(src)
 	light_range = 2
 	update_light()
