@@ -421,6 +421,7 @@
 		"When consecutive Instinct Works was done by the same employee, the Qliphoth Counter lowered and F-01-191 atempted to strangle them.",
 		"The same outcome would occurer when the work result was Bad.",
 		"When F-01-191 escaped from its containment, it began to spread hair throughout the facility.",)
+	abno_breach_damage_count = "Low"
 
 //Generic Brand Modelling Clay
 /obj/item/paper/fluff/info/teth/clayman
