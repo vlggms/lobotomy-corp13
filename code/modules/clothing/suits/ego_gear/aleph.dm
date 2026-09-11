@@ -359,48 +359,15 @@
 		if(current_holder) //Notify the user we've changed
 			current_holder.update_inv_wear_suit()
 			playsound(current_holder, "sound/abnormalities/seasons/[current_season]_change.ogg", 50, FALSE)
-	var/weakened = FALSE
-	var/warning_message
 	switch(stored_season) //Hopefully someday someone finds a more efficient way to change armor values
 		if("spring")
 			src.armor = getArmor(red = 60, white = 80, black = 40, pale = 60, fire = 30)	//240
-			if(stored_season != current_season) //Our drip is out of season
-				src.armor = getArmor(red = 50, white = 80, black = 40, pale = 50, fire = 30)	//220
-				weakened = TRUE
-				if(current_season == "fall")
-					src.armor = getArmor(red = 50, white = 70, black = 30, pale = 50, fire = 30)	//200
-					warning_message = "Fall has come, the leaves on your armor wither and die."
 		if("summer")
-			src.armor = getArmor(red = 80, white = 40, black = 60, pale = 60, fire = 70)
-			if(stored_season != current_season) //Our drip is out of season
-				src.armor = getArmor(red = 80, white = 40, black = 50, pale = 50, fire = 70)
-				weakened = TRUE
-				if(current_season == "winter")
-					src.armor = getArmor(red = 70, white = 30, black = 50, pale = 50, fire = 70)
-					warning_message = "Winter is here. Your armor reacts, becoming stiff and brittle."
+			src.armor = getArmor(red = 80, white = 60, black = 60, pale = 40, fire = 70)
 		if("fall")
-			src.armor = getArmor(red = 40, white = 60, black = 80, pale = 60, fire = 70)
-			if(stored_season != current_season) //Our drip is out of season
-				src.armor = getArmor(red = 40, white = 50, black = 80, pale = 50, fire = 70)
-				weakened = TRUE
-				if(current_season == "spring")
-					src.armor = getArmor(red = 30, white = 50, black = 70, pale = 50, fire = 70)
-					warning_message = "The arrival of spring weakens your armor further."
+			src.armor = getArmor(red = 60, white = 40, black = 80, pale = 60, fire = 70)
 		if("winter")
 			src.armor = getArmor(red = 40, white = 60, black = 60, pale = 80, fire = 10)
-			if(stored_season != current_season) //Our drip is out of season
-				src.armor = getArmor(red = 40, white = 50, black = 50, pale = 80, fire = 10)
-				weakened = TRUE
-				if(current_season == "summer")
-					src.armor = getArmor(red = 30, white = 50, black = 50, pale = 70, fire = 0)
-					warning_message = "The summer heat is melting your armor."
-
-	if(current_holder && (weakened == TRUE))
-		playsound(current_holder, "sound/abnormalities/seasons/[current_season]_change.ogg", 50, FALSE)
-		if(!warning_message)
-			to_chat(current_holder, span_notice("[src] has been weakened by the turn of a new season."))
-			return
-		to_chat(current_holder, span_notice("[warning_message]"))
 
 /obj/effect/proc_holder/ability/seasons_toggle
 	name = "Transformation"
