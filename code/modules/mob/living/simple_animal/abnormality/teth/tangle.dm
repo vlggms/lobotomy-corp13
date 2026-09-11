@@ -185,6 +185,8 @@
 	icon_state = "tanglehair"
 	anchored = TRUE
 	density = FALSE
+	layer = TURF_LAYER
+	plane = FLOOR_PLANE
 	max_integrity = 10
 	base_icon_state = "tanglehair"
 	var/rapid_growth_charges = 4
