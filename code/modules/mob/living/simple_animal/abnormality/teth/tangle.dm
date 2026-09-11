@@ -6,6 +6,8 @@
 	portrait = "tangle"
 	maxHealth = 400
 	health = 400
+	pixel_y = -8
+	base_pixel_y = -8
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 2)
 	melee_damage_lower = 0		//Doesn't attack
 	melee_damage_upper = 0
@@ -18,12 +20,12 @@
 	start_qliphoth = 2
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 70,
-		ABNORMALITY_WORK_INSIGHT = 35,
-		ABNORMALITY_WORK_ATTACHMENT = 45,
-		ABNORMALITY_WORK_REPRESSION = 20,
+		ABNORMALITY_WORK_INSIGHT = 30,
+		ABNORMALITY_WORK_ATTACHMENT = 35,
+		ABNORMALITY_WORK_REPRESSION = -50,
 	)
 	work_damage_upper = 3
-	work_damage_lower = 2
+	work_damage_lower = 1
 	work_damage_type = WHITE_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/sloth
 	ego_list = list(
@@ -88,10 +90,11 @@
 		return
 	if(work_type == ABNORMALITY_WORK_INSTINCT)
 		if(user.tag == last_worker)
-			if(prob(instinct_count * 10))
+			if(prob(instinct_count * 15))
+				update_icon_state()
 				datum_reference.qliphoth_change(-1)
-				var/obj/structure/strangling_hair/N = new(get_turf(user))
-				N.buckle_mob(user)
+				Entangle(user)
+				update_icon_state()
 			instinct_count++
 			return
 		instinct_count = 0
@@ -105,21 +108,28 @@
 /mob/living/simple_animal/hostile/abnormality/tangle/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
 	datum_reference.qliphoth_change(-1)
-	var/obj/structure/strangling_hair/N = new(get_turf(user))
-	N.buckle_mob(user)
+	Entangle(user)
+	update_icon_state()
 	return
 
 /mob/living/simple_animal/hostile/abnormality/tangle/BreachEffect()
 	. = ..()
-	for(var/obj/structure/spreading/tangle_hair/H in hair_list)
+	pixel_y = 0
+	base_pixel_y = 0
+	update_icon_state()
+	for(var/obj/structure/spreading/tangle_hair/H in view(6, src))
 		H.safe = FALSE
 		H.can_expand = TRUE
+		H.rapid_growth_charges = 4
+	for(var/obj/structure/spreading/tangle_hair/H in src)
+		H.safe = FALSE
+		H.can_expand = TRUE
+		H.rapid_growth_charges = 4
 
 /mob/living/simple_animal/hostile/abnormality/tangle/proc/Teleport()
 	//Keeping the hair while moving tangle would look strange
-	for(var/obj/structure/spreading/tangle_hair/H in hair_list)
+	for(var/obj/structure/spreading/tangle_hair/H in view(6, src))
 		qdel(H)
-	hair_list.Cut()
 
 	var/obj/structure/spreading/tangle_hair/hair = new(src)
 	hair.RegisterMob(src)
@@ -152,8 +162,10 @@
 	var/turf/T = get_turf(user)
 	to_chat(user, span_danger("[src] entangles you with its hair!"))
 	if(!locate(/obj/structure/spreading/tangle_hair in T))
-		var/obj/structure/spreading/tangle_hair/Hair = new(T)
-		Hair.expand(TRUE)
+		var/obj/structure/spreading/tangle_hair/hair = new(src)
+		hair.RegisterMob(src)
+		hair.expand(TRUE)
+		hair.safe = IsContained()
 	var/obj/structure/strangling_hair/N = new(T)
 	N.buckle_mob(user)
 
@@ -175,13 +187,11 @@
 	icon_state = "tanglehair"
 	anchored = TRUE
 	density = FALSE
-	layer = TURF_LAYER
-	plane = FLOOR_PLANE
 	max_integrity = 10
 	base_icon_state = "tanglehair"
 	var/rapid_growth_charges = 4
 	var/mob/living/simple_animal/hostile/abnormality/tangle/connected_abno
-	var/damage_check_time = 2 SECONDS
+	var/damage_check_time = 1 SECONDS
 	var/damaging = FALSE
 	var/safe = FALSE
 
@@ -223,16 +233,14 @@
 
 //The Damage Proc
 /obj/structure/spreading/tangle_hair/proc/DoDamage(mob/living/carbon/human/H)
-	if(prob(10))
-		H.deal_damage(2, WHITE_DAMAGE, attack_type = (ATTACK_TYPE_ENVIRONMENT))
-		H.Immobilize(5)
+	if(prob(20))
+		H.deal_damage(2, RED_DAMAGE, attack_type = (ATTACK_TYPE_ENVIRONMENT))
+		H.Immobilize(3)
 		to_chat(H, span_warning("You get caught in the hair!"))
-	else
-		H.deal_damage(1, WHITE_DAMAGE, attack_type = (ATTACK_TYPE_ENVIRONMENT))
 
 /obj/structure/spreading/tangle_hair/PlaceStructure(turf/T)
 	if(safe && connected_abno)
-		if(T.y > connected_abno.y + 1)
+		if(T.y < connected_abno.y - 1)
 			can_expand = FALSE
 			return
 	. = ..()
@@ -265,18 +273,17 @@
 //The strangling hair.
 /obj/structure/strangling_hair
 	name = "blonde hair"
-	desc = "A mass of hair that constricts someone."
+	desc = "A mass of blond hair that constricts someone."
 	icon = 'icons/effects/effects.dmi'
-	icon_state = "dingle_roots_person"
-	max_integrity = 35
+	icon_state = "tanglehair2"
+	max_integrity = 30
 	density = FALSE
 	anchored = TRUE
 	can_buckle = TRUE
 	layer = ABOVE_MOB_LAYER
-	pixel_y = -6
 	var/damage = 2
 	var/damage_cooldown
-	var/damage_cooldown_time = 3 SECONDS
+	var/damage_cooldown_time = 4 SECONDS
 
 /obj/structure/strangling_hair/New()
 	..()
@@ -288,20 +295,16 @@
 /obj/structure/strangling_hair/buckle_mob(mob/living/M, force, check_loc, buckle_mob_flags)
 	if(M.buckled)
 		return
-	ADD_TRAIT(M, TRAIT_INCAPACITATED, type)
 	ADD_TRAIT(M, TRAIT_IMMOBILIZED, type)
 	return ..()
 
-/obj/structure/strangling_hair/sleeping/post_buckle_mob(mob/living/M)
-	..()
-	animate(M, pixel_y = -6, time = 3)
-
-/obj/structure/swarming_roots/user_unbuckle_mob(mob/living/buckled_mob, mob/living/carbon/human/user)
+/obj/structure/strangling_hair/user_unbuckle_mob(mob/living/buckled_mob, mob/living/carbon/human/user)
 	return
 
 /obj/structure/strangling_hair/process(delta_time)
 	if(damage_cooldown < world.time)
 		damage_cooldown = world.time + damage_cooldown_time
+
 		if(has_buckled_mobs())
 			var/dealt_damage = FALSE
 			for(var/mob/living/carbon/human/H in buckled_mobs)
@@ -310,12 +313,15 @@
 				H.deal_damage(damage, RED_DAMAGE, attack_type = (ATTACK_TYPE_ENVIRONMENT))
 				dealt_damage = TRUE
 			if(dealt_damage)
-				playsound(loc, 'sound/creatures/venus_trap_hurt.ogg', 60, TRUE)
+				playsound(loc, 'sound/effects/wounds/crack1.ogg', 60, TRUE)
+			return
+		qdel(src)
 
 /obj/structure/strangling_hair/proc/release_mob(mob/living/M)
 	M.pixel_x = M.base_pixel_x
 	unbuckle_mob(M,force=1)
-	src.visible_message(text("<span class='danger'>[M] is free from [src]!</span>"))
+	src.visible_message(text("<span class='danger'>[M] is free from [src]!</span>"), ignored_mobs = M)
+	to_chat(M, span_danger("You're free from [src]!"))
 	REMOVE_TRAIT(M, TRAIT_IMMOBILIZED, type)
 	M.update_icon()
 

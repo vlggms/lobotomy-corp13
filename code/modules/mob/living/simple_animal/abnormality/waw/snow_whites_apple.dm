@@ -424,8 +424,7 @@
 		))
 
 /obj/structure/spreading/apple_vine/Destroy()
-
-()
+	UnregisterMob()
 	return ..()
 
 /* Only allows the user to pass if the proc returns TRUE.
