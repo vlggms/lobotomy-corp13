@@ -20,7 +20,7 @@
 
 	var/initial_spawn = FALSE
 	var/spawn_time
-	var/spawn_time_cooldown = 16 SECONDS
+	var/spawn_time_cooldown = 18 SECONDS
 	var/list/spawned_mobs = list()
 	var/list/weaker_spawned_mobs = list()
 	var/can_act = TRUE
@@ -84,7 +84,7 @@
 
 /mob/living/simple_animal/hostile/ordeal/crimson_tent/death(gibbed)
 	playsound(get_turf(src), 'sound/effects/ordeals/crimson/midnight_dead.ogg', 30, 0)
-	animate(src, transform = matrix()*1.8, color = "#FF0000", easing = SINE_EASING  | EASE_IN, time = 2.8 SECONDS)
+	animate(src, transform = matrix()*1.8, pixel_y = 22 * 1.8, color = "#FF0000", easing = SINE_EASING  | EASE_IN, time = 2.8 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(DeathExplosion), ordeal_reference), 2.8 SECONDS)
 	..()
 
@@ -220,8 +220,8 @@
 	icon_living = "crimson_midnight"
 	icon_dead = "crimson_midnight"
 	faction = list("crimson_ordeal")
-	maxHealth = 750
-	health = 750
+	maxHealth = 650
+	health = 650
 	pixel_x = -16
 	base_pixel_x = -16
 	melee_damage_lower = 10
