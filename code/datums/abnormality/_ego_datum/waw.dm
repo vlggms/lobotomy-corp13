@@ -575,3 +575,8 @@
 /datum/ego_datum/weapon/ardor_star
 	item_path = /obj/item/ego_weapon/ardor_star
 	cost = 50
+
+//False Apple - Legerdemain MK II
+/datum/ego_datum/weapon/maggotgun//Cannot be extracted
+	item_path = /obj/item/ego_weapon/ranged/maggotgun
+	cost = 50
