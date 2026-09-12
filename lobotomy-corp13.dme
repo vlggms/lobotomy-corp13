@@ -4137,6 +4137,7 @@
 #include "ModularTegustation\hiding\closet.dm"
 #include "ModularTegustation\hiding\turf.dm"
 #include "ModularTegustation\lc13_obj\regenerator.dm"
+#include "ModularTegustation\lc13_obj\workbar.dm"
 #include "ModularTegustation\lc13_obj\_adventure_console\adventure_layout.dm"
 #include "ModularTegustation\lc13_obj\_adventure_console\console.dm"
 #include "ModularTegustation\lc13_obj\_adventure_console\adventure_events\_event.dm"

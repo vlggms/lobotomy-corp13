@@ -99,6 +99,9 @@
 		if("sanity")
 			effect_name = "sanity"
 			text_color = "#8EFDFF"
+		if("pe")
+			effect_name = "pe_box"
+			text_color = "#23FBAC"
 	if(!effect_name)
 		return null
 	effect_name += "[rand(1,2)]"
