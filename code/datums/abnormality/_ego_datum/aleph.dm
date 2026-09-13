@@ -118,7 +118,7 @@
 
 /datum/ego_datum/weapon/seasons
 	item_path = /obj/item/ego_weapon/seasons
-	cost = 100 // Costs more due to being all 4 damage types
+	cost = 120 // Costs more due to being all 4 damage types
 
 // Distorted Form - Distortion
 /datum/ego_datum/armor/distortion
