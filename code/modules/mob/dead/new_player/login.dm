@@ -28,6 +28,9 @@
 
 	client.playtitlemusic()
 
+	for(var/S in GLOB.music_list)//This should slightly slow down the login process so that audio files will remain in the cache. This will hopefully reduce lag caused by the emergency music system.
+		src << load_resource(S, -1)
+
 	// Check if user should be added to interview queue
 	if (!client.holder && CONFIG_GET(flag/panic_bunker) && CONFIG_GET(flag/panic_bunker_interview) && !(client.ckey in GLOB.interviews.approved_ckeys))
 		var/required_living_minutes = CONFIG_GET(number/panic_bunker_living)
