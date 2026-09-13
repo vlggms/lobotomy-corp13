@@ -76,6 +76,8 @@
 	var/datum/looping_sound/arbiter_pillar_storm/stormloop
 	/// List of pillars that are about to get fired
 	var/list/storm_pillars = list()
+	/// The current Pillar
+	var/obj/pillar = null
 	/// If TRUE - will stop repeating the ring effect around arbiter
 	var/stop_storm_effect = FALSE
 	// Ability variables
@@ -124,6 +126,7 @@
 
 /mob/living/simple_animal/hostile/megafauna/arbiter/Destroy()
 	StopPillarStorm()
+	QDEL_NULL(pillar)
 	QDEL_NULL(stormloop)
 	return ..()
 
@@ -184,7 +187,13 @@
 /mob/living/simple_animal/hostile/megafauna/arbiter/AttackingTarget(atom/attacked_target)
 	return OpenFire(attacked_target)
 
-/mob/living/simple_animal/hostile/megafauna/arbiter/OpenFire(target)
+/mob/living/simple_animal/hostile/megafauna/arbiter/OpenFire(atom/target)
+	if(QDELETED(src))
+		return
+	if(stat == DEAD)
+		return
+	if(QDELETED(target))
+		return
 	if(charging)
 		return
 	if(client)
@@ -305,6 +314,7 @@
 	var/obj/effect/projectile_delayed/projectile_handler = new(start_loc) // We use a projectile handler here because fire() is called after a delay
 	var/obj/projectile/P = new projectile_type(projectile_handler)
 	projectile_handler.projectile = P
+	pillar = P
 	P.starting = start_loc
 	P.firer = src
 	P.fired_from = src
@@ -315,7 +325,7 @@
 	projectile_handler.StartFiring(0.8 SECONDS)
 
 	SLEEP_CHECK_DEATH(0.8 SECONDS)
-
+	pillar = null
 	icon_state = "arbiter_fairy"
 
 	SLEEP_CHECK_DEATH(1 SECONDS)
