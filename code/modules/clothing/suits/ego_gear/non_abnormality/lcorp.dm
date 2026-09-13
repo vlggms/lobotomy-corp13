@@ -129,6 +129,9 @@ Scales through out the round currently but should probably get their stats boost
 
 /obj/item/clothing/suit/armor/arbiter
 	name = "arbiter's armored coat"
+	icon = 'icons/obj/clothing/ego_gear/lcorp.dmi'
+	worn_icon = 'icons/mob/clothing/ego_gear/lcorp.dmi'
+	icon_state = "extraction"
 	desc = "A coat made out of quality cloth, providing immense protection against most damage sources. It is quite heavy."
 	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 90, BLACK_DAMAGE = 90, PALE_DAMAGE = 90)
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS|HEAD

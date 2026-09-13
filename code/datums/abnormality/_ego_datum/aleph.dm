@@ -114,11 +114,11 @@
 // God of the Seasons - Season's Greetings
 /datum/ego_datum/armor/seasons
 	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/seasons
-	cost = 100
+	cost = 120 // Costs more due to being all 4 damage types
 
 /datum/ego_datum/weapon/seasons
 	item_path = /obj/item/ego_weapon/seasons
-	cost = 100
+	cost = 120 // Costs more due to being all 4 damage types
 
 // Distorted Form - Distortion
 /datum/ego_datum/armor/distortion

@@ -14,6 +14,8 @@
 	var/black_mod = 1
 	var/pale_mod = 1
 
+	var/healing_mod = 1		// % of negative damage taken from all sources
+
 	var/pressure_mod = 1	// % of brute damage taken from low or high pressure (stacks with brute_mod)
 	var/heat_mod = 1    	// % of burn damage taken from heat (stacks with burn_mod)
 	var/cold_mod = 1    	// % of burn damage taken from cold (stacks with burn_mod)

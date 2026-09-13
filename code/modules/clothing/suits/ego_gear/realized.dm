@@ -128,6 +128,8 @@ No Ability	260
 	name = "death stare"
 	desc = "Last words are for fools who haven’t said enough."
 	icon_state = "death"
+	special = "This armor provides a 5% speed bonus while worn."
+	speedboost = 1.05
 	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 40, BLACK_DAMAGE = 70, PALE_DAMAGE = 50)		//Melee with slow
 	realized_ability = /obj/effect/proc_holder/ability/aimed/gleaming_eyes
 
@@ -169,6 +171,7 @@ No Ability	260
 /obj/item/clothing/suit/armor/ego_gear/realization/stupor
 	name = "stupor"
 	desc = "Drink! Drink yourselves into a stupor! Foul tasting louts like you won't satisfy me until you're all as pickled as me, hah!" //Descriptions made by Anonmare
+	special = "The wearer is able to tolerate alcohol more and drinking it provides a healing effect. The latter effect gets stronger the more intoxicated they are."
 	icon_state = "stupor" //Art by TemperanceTempy
 	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 30, BLACK_DAMAGE = 60, PALE_DAMAGE = 70)		//Defensive
 	hat = /obj/item/clothing/head/ego_hat/stupor
@@ -190,12 +193,14 @@ No Ability	260
 /obj/item/clothing/suit/armor/ego_gear/realization/bigiron
 	name = "big iron"
 	desc = "A hefty silk coat with a blue smock."
+	special = "While worn, this armor doubles the damage of Magic Bullet and Magic Pistol."
 	icon_state = "big_iron"
 	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 70, BLACK_DAMAGE = 70, PALE_DAMAGE = 30)		//Ranged
 
 /obj/item/clothing/suit/armor/ego_gear/realization/eulogy
 	name = "solemn eulogy"
 	desc = "Death is not extinguishing the light, it is putting out the lamp as dawn has come."
+	special = "While worn, this armor doubles the damage of Solemn Lament and Solemn Vow."
 	icon_state = "eulogy"
 	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 80, BLACK_DAMAGE = 80, PALE_DAMAGE = 50)
 
@@ -203,8 +208,33 @@ No Ability	260
 	name = "our galaxy"
 	desc = "Walk this night sky with me. The galaxy dotted with numerous hopes. We'll count the stars and never be alone."
 	icon_state = "ourgalaxy"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 60, BLACK_DAMAGE = 80, PALE_DAMAGE = 50)		//Healing
+	special = "This armor provides passive healing while worn."
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 60, BLACK_DAMAGE = 80, PALE_DAMAGE = 40)		//Healing
 	realized_ability = /obj/effect/proc_holder/ability/galaxy_gift
+	var/heal_timer
+	var/heal_amount = -5
+	var/heal_time = 5 SECONDS
+
+/obj/item/clothing/suit/armor/ego_gear/realization/ourgalaxy/equipped(mob/user, slot, initial = FALSE)
+	. = ..()
+	if(slot == ITEM_SLOT_OCLOTHING)
+		heal_timer = addtimer(CALLBACK(src, PROC_REF(heal), user), heal_time, TIMER_STOPPABLE)
+
+/obj/item/clothing/suit/armor/ego_gear/realization/ourgalaxy/dropped(mob/user)
+	deltimer(heal_timer)
+	heal_timer = null
+	return ..()
+
+/obj/item/clothing/suit/armor/ego_gear/realization/ourgalaxy/proc/heal(mob/living/carbon/human/user)
+	if(QDELETED(user))
+		deltimer(heal_timer)
+		heal_timer = null
+		return
+	if(user.stat != DEAD)
+		user.adjustBruteLoss(heal_amount)
+		user.adjustSanityLoss(heal_amount)
+	deltimer(heal_timer)
+	heal_timer = addtimer(CALLBACK(src, PROC_REF(heal), user), heal_time, TIMER_STOPPABLE)
 
 /obj/item/clothing/suit/armor/ego_gear/realization/forever
 	name = "together forever"
@@ -286,8 +316,8 @@ No Ability	260
 
 /obj/item/clothing/suit/armor/ego_gear/realization/woundedcourage
 	name = "wounded courage"
-	desc = "'Tis better to have loved and lost than never to have loved at all.\
-	Grants you the ability to use a Blind Rage in both hands and attack with both at the same time."
+	desc = "'Tis better to have loved and lost than never to have loved at all."
+	special = "The wearer can dual wield 2 Blind Rages."
 	icon_state = "woundedcourage"
 	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 20, BLACK_DAMAGE = 80, PALE_DAMAGE = 60)//vile stat spread		//Melee
 	flags_inv = HIDEJUMPSUIT | HIDEGLOVES | HIDESHOES
@@ -304,18 +334,17 @@ No Ability	260
 	name = "crimson lust"
 	desc = "They are always watching you."
 	icon_state = "crimson"
-	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 60)		//No Ability
+	special = "This armor provides a 15% speed bonus while worn."
+	speedboost = 1.15
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 40)		//Speed
 
 /obj/item/clothing/suit/armor/ego_gear/realization/eyes
 	name = "eyes of god"
 	desc = "And the eyes of god spoke: You will be saved."
+	special = "The wearer can sense it whenever an abnormality breaches."
 	icon_state = "eyes"
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 40, BLACK_DAMAGE = 80, PALE_DAMAGE = 60)		//Support
 	realized_ability = /obj/effect/proc_holder/ability/lamp
-
-/obj/item/clothing/suit/armor/ego_gear/realization/eyes/examine(mob/user)
-	. = ..()
-	. += "<span class='notice'>The wearer can sense it whenever an abnormality breaches.</span>"
 
 /obj/item/clothing/suit/armor/ego_gear/realization/eyes/equipped(mob/user, slot, initial = FALSE)
 	. = ..()
@@ -389,6 +418,7 @@ No Ability	260
 /obj/item/clothing/suit/armor/ego_gear/realization/nest
 	name = "living nest"
 	desc = "Grow eternally, let our nest reach the horizon!"
+	special = "The wearer passively spawns worms that can infest enemies, weakening their RED resistance."
 	icon_state = "nest"
 	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 40)		//Support
 	realized_ability = /obj/effect/proc_holder/ability/nest
@@ -423,7 +453,7 @@ No Ability	260
 	name = "al coda"
 	desc = "Harmonizes well."
 	icon_state = "coda"
-	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 80, BLACK_DAMAGE = 70, PALE_DAMAGE = 40)		//No Ability
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 80, BLACK_DAMAGE = 60, PALE_DAMAGE = 50)		//250
 
 /obj/item/clothing/suit/armor/ego_gear/realization/head
 	name = "head of god"
@@ -452,8 +482,9 @@ No Ability	260
 	name = "fallen color"
 	desc = "Where does one go after falling into a black hole?"
 	icon_state = "fallencolors"
+	special = "Causes a WHITE damage repulsion AOE when the wearer takes damage."
 	realized_ability = /obj/effect/proc_holder/ability/aimed/blackhole
-	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 80, BLACK_DAMAGE = 80, PALE_DAMAGE = 60)		//Defensive
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 80, BLACK_DAMAGE = 80, PALE_DAMAGE = 50)		//Defensive
 	var/push_cooldown
 	var/push_cooldown_time = 2 SECONDS
 
@@ -486,7 +517,7 @@ No Ability	260
 			continue
 		var/atom/throw_target = get_edge_target_turf(L, get_dir(L, get_step_away(L, get_turf(src))))
 		L.throw_at(throw_target, 1, 1)
-		L.deal_damage(5, WHITE_DAMAGE, user, attack_type = (ATTACK_TYPE_SPECIAL| ATTACK_TYPE_COUNTER))
+		L.deal_damage(20, WHITE_DAMAGE, user, attack_type = (ATTACK_TYPE_SPECIAL| ATTACK_TYPE_COUNTER))
 
 
 /* Effloresced (Personal) E.G.O */

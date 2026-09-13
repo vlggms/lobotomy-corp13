@@ -89,8 +89,7 @@
 	The weapon's bullets travel across the corridor, along the horizon."
 	icon_state = "magic_bullet"
 	inhand_icon_state = "magic_bullet"
-	special = "This weapon pierces all targets. \
-		This weapon gets a 30% damage bonus when wearing the matching armor."
+	special = "This weapon pierces all targets."
 	force = 24
 	damtype = BLACK_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/ego_magicbullet
@@ -125,6 +124,8 @@
 		force = 48
 	else
 		force = 24
+	if(istype(myman.ego_gift_list[MOUTH_2], /datum/ego_gifts/magicbullet))
+		force *= 1.2
 	. = ..()
 
 //Funeral guns have two different names;
@@ -544,6 +545,8 @@
 		force = 18
 	else
 		force = 9
+	if(istype(myman.ego_gift_list[MOUTH_2], /datum/ego_gifts/magicbullet))
+		force *= 1.2
 	. = ..()
 
 /obj/item/ego_weapon/ranged/pistol/laststop
