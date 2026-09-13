@@ -8,10 +8,10 @@
 	announce_sound = 'sound/effects/ordeals/violet_start.ogg'
 	end_sound = 'sound/effects/ordeals/violet_end.ogg'
 	spawn_places = 4
-	spawn_amount = 2
+	spawn_amount = 1
 	spawn_type = /mob/living/simple_animal/hostile/ordeal/violet_fruit
-	place_player_multiplicator = 0.05
-	spawn_player_multiplicator = 0.025
+	place_player_multiplicator = 0.15
+	spawn_player_multiplicator = 0.02
 	level = 1
 	reward_percent = 0.1
 	color = "#B642F5"
