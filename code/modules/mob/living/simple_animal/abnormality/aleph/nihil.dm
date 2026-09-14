@@ -301,17 +301,7 @@
 				if(T.density)
 					i -= 1
 					continue
-				var/obj/effect/projectile_delayed/projectile_handler = new(T)
-				var/obj/projectile/despair_rapier/P = new(projectile_handler)
-				projectile_handler.projectile = P
-				P.starting = T
-				P.firer = src
-				P.fired_from = T
-				P.yo = target.y - T.y
-				P.xo = target.x - T.x
-				P.original = target
-				P.preparePixelProjectile(target, T)
-				projectile_handler.StartFiring(30)
+				new /obj/effect/projectile_delayed(T, target, src, /obj/projectile/despair_rapier, 30)
 				var/list/hit_line = getline(T, get_turf(target)) //targetting line
 				for(var/turf/TF in hit_line)
 					if(TF.density)

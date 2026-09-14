@@ -299,25 +299,10 @@
 		new effect_type(T)
 
 	SLEEP_CHECK_DEATH(0.5 SECONDS)
-
 	playsound(get_turf(src), 'sound/magic/arbiter/pillar_start.ogg', 75, FALSE, 12)
-
-	var/obj/effect/projectile_delayed/projectile_handler = new(start_loc) // We use a projectile handler here because fire() is called after a delay
-	var/obj/projectile/P = new projectile_type(projectile_handler)
-	projectile_handler.projectile = P
-	P.starting = start_loc
-	P.firer = src
-	P.fired_from = src
-	P.yo = target_loc.y - start_loc.y
-	P.xo = target_loc.x - start_loc.x
-	P.original = target
-	P.preparePixelProjectile(target_loc, src)
-	projectile_handler.StartFiring(0.8 SECONDS)
-
+	new /obj/effect/projectile_delayed(start_loc, target, src, projectile_type, 0.8 SECONDS)
 	SLEEP_CHECK_DEATH(0.8 SECONDS)
-
 	icon_state = "arbiter_fairy"
-
 	SLEEP_CHECK_DEATH(1 SECONDS)
 	charging = FALSE
 	icon_state = icon_living
