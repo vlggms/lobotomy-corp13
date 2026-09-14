@@ -930,17 +930,8 @@
 		if(T.density)
 			i -= 1
 			continue
-		var/obj/effect/projectile_delayed/projectile_handler = new(T)
-		var/obj/projectile/season_projectile/winter/weak/P = new(projectile_handler)
-		projectile_handler.projectile = P
-		P.starting = T
-		P.firer = src
-		P.fired_from = T
-		P.yo = target.y - T.y
-		P.xo = target.x - T.x
-		P.original = target
-		P.preparePixelProjectile(target, T)
-		projectile_handler.StartFiring(i + 6)
+		new /obj/effect/projectile_delayed(T, target, src, /obj/projectile/season_projectile/winter/weak, i + 6)
+
 	playsound(get_turf(src), 'sound/abnormalities/seasons/winter_change.ogg', 15, 0, 2)
 	SLEEP_CHECK_DEATH(7)
 	playsound(get_turf(src), 'sound/abnormalities/seasons/winter_attack.ogg', 50, 0, 4)
