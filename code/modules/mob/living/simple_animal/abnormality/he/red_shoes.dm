@@ -86,7 +86,6 @@
 		"Are you already asleep?",
 	)
 	var/finishing = FALSE
-	var/list/murdered_list = list()
 	var/datum/looping_sound/redshoes_ambience/soundloop
 	var/numbermarked = 0//default amount of people that get possessed
 	var/steppy = 0
@@ -130,7 +129,6 @@
 	if(possessee)
 		death_message = FALSE
 		del_on_death = TRUE
-		murdered_list = null
 	density = FALSE
 	for(var/obj/O in src)
 		O.forceMove(loc)
@@ -139,12 +137,13 @@
 		possessee.status_flags &= ~GODMODE
 		possessee.forceMove(loc)
 		possessee = null
-		H.adjustBruteLoss(500)//the host dies
-		H.say(pick(death_lines))
 		REMOVE_TRAIT(H, TRAIT_NOBREATH, type)
 		REMOVE_TRAIT(H, TRAIT_INCAPACITATED, type)
 		REMOVE_TRAIT(H, TRAIT_IMMOBILIZED, type)
 		REMOVE_TRAIT(H, TRAIT_HANDS_BLOCKED, type)
+		H.status_flags &= ~GODMODE
+		H.say(pick(death_lines))
+		H.adjustBruteLoss(500)//the host dies
 		var/obj/item/bodypart/l_foot = H.get_bodypart(BODY_ZONE_L_LEG)//Feet are defined as BODY_ZONE_PRECISE_L_FOOT. Does the dismember proc not affect them?
 		var/obj/item/bodypart/r_foot = H.get_bodypart(BODY_ZONE_R_LEG)
 		if(!HAS_TRAIT(H, TRAIT_NODISMEMBER))
@@ -222,32 +221,58 @@
 	datum_reference.qliphoth_change(2)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/red_shoes/proc/Assimilate(mob/living/carbon/user)
+/mob/living/simple_animal/hostile/abnormality/red_shoes/proc/Assimilate(mob/living/carbon/human/user)
 	if(!(status_flags & GODMODE))
 		return
 	if(possessee)
 		return
+	if(!istype(user))
+		return
 	possessee = user
-	var/mob/living/carbon/human/H = user
-	if(ishuman(H) && (H.sanity_lost))
-		var/obj/item/clothing/suit/armor/ego_gear/EQ = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)//copies all resistances from worn E.G.O
+	if(user.sanity_lost)
+		var/obj/item/clothing/suit/armor/ego_gear/EQ = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)//copies all resistances from worn E.G.O
 		if(EQ)
 			var/list/temp = EQ.armor.getList()
 			for(var/damtype in temp)
 				temp[damtype] = 1 - (temp[damtype] / 100)
 			ChangeResistances(temp)
-		user.forceMove(src)
-		playsound(src, 'sound/abnormalities/redshoes/RedShoes_Activate.ogg', 50, 1)
-		name = user.name
-		appearance = user.appearance
-		gender = user.gender
-		desc = "[user.name] appears to be grinning from ear to ear. Does [p_they()] normally wear shoes like those?"
-		maxHealth = (user.maxHealth * 4.5)
-		revive(full_heal = TRUE, admin_revive = FALSE)
+
+		var/obj/item/held = user.get_active_held_item()
+		var/obj/item/other_held = user.get_inactive_held_item()
+
+		user.dropItemToGround(held)
+		user.dropItemToGround(other_held)
+
+		//Shouldn't this be its own proc?
+		//But we really, REALLY don't want the agent to die while assimulated
+		for(var/datum/disease/D in user.diseases)
+			qdel(D)
+		var/parasite_slot = user.getorganslot(ORGAN_SLOT_PARASITE_EGG)
+		if(parasite_slot)
+			qdel(parasite_slot)
+		user.status_flags |= GODMODE
+		var/datum/status_effect/panicked_type/P =  user.has_status_effect(/datum/status_effect/panicked_type)
+		var/panic_icon
+		if(P)
+			panic_icon = P.icon
+		user.remove_status_effect(/datum/status_effect/panicked_type)
+		user.updateappearance()
+		user.regenerate_icons()
 		ADD_TRAIT(user, TRAIT_NOBREATH, type)
 		ADD_TRAIT(user, TRAIT_INCAPACITATED, type)
 		ADD_TRAIT(user, TRAIT_IMMOBILIZED, type)
 		ADD_TRAIT(user, TRAIT_HANDS_BLOCKED, type)
+		user.forceMove(src)
+
+		playsound(src, 'sound/abnormalities/redshoes/RedShoes_Activate.ogg', 50, 1)
+		name = user.name
+		appearance = user.appearance
+		//cut_overlay(mutable_appearance('icons/effects/effects.dmi', panic_icon, -ABOVE_MOB_LAYER))
+		gender = user.gender
+		desc = "[user.name] appears to be grinning from ear to ear. Does [p_they()] normally wear shoes like those?"
+		maxHealth = (user.maxHealth * 4.5)
+		revive(full_heal = TRUE, admin_revive = FALSE)
+
 		add_overlay(mutable_appearance('icons/mob/clothing/feet.dmi', "red_shoes", -ABOVE_MOB_LAYER))
 		add_overlay(mutable_appearance('icons/mob/inhands/weapons/ego_righthand.dmi', "sanguine", -ABOVE_MOB_LAYER))
 		cut_overlay(mutable_appearance('icons/effects/32x64.dmi', "panicked", -ABOVE_MOB_LAYER))
@@ -292,8 +317,6 @@
 
 /mob/living/simple_animal/hostile/abnormality/red_shoes/proc/ChopFeet(mob/living/carbon/human/H)
 	if(possessee)
-		if(H in murdered_list)
-			return
 		finishing = TRUE
 		H.Stun(4 SECONDS)
 		var/line = pick(finisher_lines)
@@ -310,10 +333,10 @@
 			if(i % 2 == 0)
 				adjustBruteLoss(-maxHealth * 0.4) //4% per hit
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(H), pick(GLOB.alldirs))
-		murdered_list += H
 		attack_sound = initial(attack_sound)
 		finishing = FALSE
 		return
+
 	var/obj/item/bodypart/l_foot = H.get_bodypart(BODY_ZONE_L_LEG)//Feet are defined as BODY_ZONE_PRECISE_L_FOOT. Does the dismember proc not affect them?
 	var/obj/item/bodypart/r_foot = H.get_bodypart(BODY_ZONE_R_LEG)
 	if(HAS_TRAIT(H, TRAIT_NODISMEMBER))
@@ -445,10 +468,8 @@
 /datum/ai_behavior/desire_move/finish_action(datum/ai_controller/controller, succeeded)//When the panicked reach Red Shoes
 	. = ..()
 	var/mob/living/carbon/human/living_pawn = controller.pawn
-	var/obj/item/held = living_pawn.get_active_held_item()
 	var/mob/living/simple_animal/hostile/abnormality/red_shoes/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
 	if(succeeded)
-		living_pawn.dropItemToGround(held)
 		target.Assimilate(living_pawn)//breaches red shoes with target as the argument for user
 		QDEL_NULL(living_pawn.ai_controller)
 	controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = null
