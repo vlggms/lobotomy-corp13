@@ -320,7 +320,7 @@
 		ChopFeet(H)
 
 /mob/living/simple_animal/hostile/abnormality/red_shoes/proc/ChopFeet(mob/living/carbon/human/H)
-	if(possessee)
+	if(possessee || H.health > 0)
 		if(H.stat == DEAD)
 			return
 		finishing = TRUE
