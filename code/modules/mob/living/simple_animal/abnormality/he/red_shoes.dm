@@ -66,6 +66,9 @@
 	work_end_lines = list("%ABNO are clearly not a living organism, but they emit a dismal aura.",
 	"%ABNO may not be a breathing creature, but its distinct atmosphere reminds those near it of a bloodied past.", "The sanguine color of %ABNO looks oddly familiar.", "%ABNO lies still.")
 
+	//For solo breach
+	var/mob/living/simple_animal/hostile/aminion/red_shoe
+
 	var/mutable_appearance/breach_icon
 	var/mob/living/possessee
 	var/list/death_lines = list(
