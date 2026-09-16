@@ -6,19 +6,25 @@
 	icon_living = "crimson_dusk"
 	icon_dead = "crimson_dusk_dead"
 	faction = list("crimson_ordeal")
-	maxHealth = 800
-	health = 800
+	maxHealth = 850
+	health = 850
 	pixel_x = -16
 	base_pixel_x = -16
 	melee_damage_lower = 12
 	melee_damage_upper = 14
+	melee_reach = 1
 	move_to_delay = 5
 	ranged = TRUE
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
+	var/attack_verb_continuous_alt = "smashes"
+	var/attack_verb_simple_alt = "smash"
 	attack_sound = 'sound/effects/ordeals/crimson/dusk_attack.ogg'
-	damage_coeff = list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
-	mob_spawn_amount = 2
+	damage_coeff = list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.5)
+	mob_spawn_amount = 1
+	var/smash_damage = 35
+	var/smash_width = 1
+	var/smash_length = 3
 
 	var/roll_num = 36
 	var/roll_cooldown
@@ -30,6 +36,121 @@
 	if(charging)
 		return FALSE
 	return ..()
+
+/mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_dusk/AttackingTarget(atom/attacked_target)
+	if(charging)
+		return
+	if(prob(20))
+		return Smash(attacked_target)
+	return ..()
+
+/mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_dusk/proc/Smash(target)
+	if (get_dist(src, target) > 3)
+		return
+	charging = TRUE
+	var/dir_to_target = get_cardinal_dir(get_turf(src), get_turf(target))
+	var/turf/source_turf = get_turf(src)
+	var/turf/area_of_effect = list()
+	var/turf/middle_line = list()
+	switch(dir_to_target)
+		if(EAST)
+			middle_line = getline(get_step_towards(source_turf, target), get_ranged_target_turf(source_turf, EAST, smash_length))
+			for(var/turf/T in middle_line)
+				if(T.density)
+					break
+				for(var/turf/Y in getline(T, get_ranged_target_turf(T, NORTH, smash_width)))
+					if (Y.density)
+						break
+					if (Y in area_of_effect)
+						continue
+					area_of_effect += Y
+				for(var/turf/U in getline(T, get_ranged_target_turf(T, SOUTH, smash_width)))
+					if (U.density)
+						break
+					if (U in area_of_effect)
+						continue
+					area_of_effect += U
+		if(WEST)
+			middle_line = getline(get_step_towards(source_turf, target), get_ranged_target_turf(source_turf, WEST, smash_length))
+			for(var/turf/T in middle_line)
+				if(T.density)
+					break
+				for(var/turf/Y in getline(T, get_ranged_target_turf(T, NORTH, smash_width)))
+					if (Y.density)
+						break
+					if (Y in area_of_effect)
+						continue
+					area_of_effect += Y
+				for(var/turf/U in getline(T, get_ranged_target_turf(T, SOUTH, smash_width)))
+					if (U.density)
+						break
+					if (U in area_of_effect)
+						continue
+					area_of_effect += U
+		if(SOUTH)
+			middle_line = getline(get_step_towards(source_turf, target), get_ranged_target_turf(source_turf, SOUTH, smash_length))
+			for(var/turf/T in middle_line)
+				if(T.density)
+					break
+				for(var/turf/Y in getline(T, get_ranged_target_turf(T, EAST, smash_width)))
+					if (Y.density)
+						break
+					if (Y in area_of_effect)
+						continue
+					area_of_effect += Y
+				for(var/turf/U in getline(T, get_ranged_target_turf(T, WEST, smash_width)))
+					if (U.density)
+						break
+					if (U in area_of_effect)
+						continue
+					area_of_effect += U
+		if(NORTH)
+			middle_line = getline(get_step_towards(source_turf, target), get_ranged_target_turf(source_turf, NORTH, smash_length))
+			for(var/turf/T in middle_line)
+				if(T.density)
+					break
+				for(var/turf/Y in getline(T, get_ranged_target_turf(T, EAST, smash_width)))
+					if (Y.density)
+						break
+					if (Y in area_of_effect)
+						continue
+					area_of_effect += Y
+				for(var/turf/U in getline(T, get_ranged_target_turf(T, WEST, smash_width)))
+					if (U.density)
+						break
+					if (U in area_of_effect)
+						continue
+					area_of_effect += U
+		else
+			for(var/turf/T in view(1, src))
+				if (T.density)
+					break
+				if (T in area_of_effect)
+					continue
+				area_of_effect |= T
+	if (!LAZYLEN(area_of_effect))
+		charging = FALSE
+		return
+	dir = dir_to_target
+	playsound(get_turf(src), 'sound/effects/ordeals/crimson/ball.ogg', 75, 0, 5)
+	for(var/turf/T in area_of_effect)
+		new /obj/effect/temp_visual/cult/sparks(T)
+	SLEEP_CHECK_DEATH(1.2 SECONDS)
+	playsound(get_turf(src), 'sound/effects/ordeals/crimson/dusk_attack_alt.ogg', 75, 0, 5)
+	do_attack_animation(get_step(src, dir_to_target))
+	for(var/turf/T in area_of_effect)
+		new /obj/effect/temp_visual/smash_effect(T)
+		for(var/mob/living/L in T)
+			if(faction_check_mob(L))
+				continue
+			if (L == src)
+				continue
+			L.deal_damage(smash_damage, RED_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
+			L.visible_message(span_danger("\The [src] [attack_verb_continuous_alt] [L]!"), \
+					span_userdanger("\The [src] [attack_verb_continuous_alt] you!"), null, COMBAT_MESSAGE_RANGE, src)
+			to_chat(src, span_danger("You [attack_verb_simple_alt] [L]!"))
+	SLEEP_CHECK_DEATH(0.5 SECONDS)
+	charging = FALSE
 
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_dusk/Move()
 	if(charging)
@@ -62,6 +183,8 @@
 		gib()
 
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_dusk/OpenFire()
+	if(charging)
+		return
 	if(client)
 		clown_roll(target)
 		return
