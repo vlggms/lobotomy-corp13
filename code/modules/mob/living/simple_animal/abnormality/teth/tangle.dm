@@ -85,7 +85,7 @@
 		return
 	if(work_type == ABNORMALITY_WORK_INSTINCT)
 		if(user.tag == last_worker)
-			if(prob(instinct_count * 15))
+			if(prob(instinct_count * 10))
 				update_icon_state()
 				datum_reference.qliphoth_change(-1)
 				Entangle(user)
