@@ -237,7 +237,7 @@
 	ranged = TRUE
 	var/mob/living/simple_animal/hostile/ordeal/crimson_tent/tent
 	/// How many mobs we spawn if we exist for too long
-	var/mob_spawn_amount = 5
+	var/mob_spawn_amount = 4
 
 	var/can_be_gibbed = TRUE
 	var/exploding = FALSE
@@ -292,10 +292,17 @@
 						span_userdanger("\The [src] tramples you!"), null, COMBAT_MESSAGE_RANGE, src)
 				to_chat(src, span_danger("You trample [L]!"))
 				if(L == target) // Ends the trample since we reached our target
+					AddComponent(/datum/component/knockback, 3, FALSE, TRUE) //1 is distance thrown, False is if it can throw anchored objects, True if doesnt apply damage or stun when hits a wall.
 					TryAttack(L)
 					is_trampling = FALSE
 					trample_cooldown = world.time + trample_cooldown_time
 					ChangeMoveToDelay(4)
+
+/mob/living/simple_animal/hostile/ordeal/crimson_midnight/AttackingTarget(atom/attacked_target)
+	. = ..()
+	var/datum/component/knockback/knockback = GetComponent(/datum/component/knockback)
+	if(knockback)
+		knockback.RemoveComponent()
 
 /mob/living/simple_animal/hostile/ordeal/crimson_midnight/death(gibbed)
 	if(exploding) // We dont want it to go boom with clowns if it trying to go boom already
@@ -321,7 +328,6 @@
 
 /mob/living/simple_animal/hostile/ordeal/crimson_midnight/Initialize()
 	. = ..()
-	AddComponent(/datum/component/knockback, 3, FALSE, TRUE) //1 is distance thrown, False is if it can throw anchored objects, True if doesnt apply damage or stun when hits a wall.
 	animate(src, color = "#FF0000", time = 60 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(death), FALSE), 60 SECONDS)
 
