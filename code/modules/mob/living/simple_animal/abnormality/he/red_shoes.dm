@@ -313,11 +313,13 @@
 	if(!ishuman(attacked_target))
 		return
 	var/mob/living/carbon/human/H = attacked_target
-	if(istype(H) && (H.stat >= SOFT_CRIT || H.health < 0))
+	if(istype(H) && (H.stat >= SOFT_CRIT || H.health < 0)
 		ChopFeet(H)
 
 /mob/living/simple_animal/hostile/abnormality/red_shoes/proc/ChopFeet(mob/living/carbon/human/H)
 	if(possessee)
+		if(H.stat == DEAD)
+			return
 		finishing = TRUE
 		H.Stun(4 SECONDS)
 		var/line = pick(finisher_lines)
@@ -332,7 +334,7 @@
 			SLEEP_CHECK_DEATH(2)
 			H.attack_animal(src)
 			if(i % 2 == 0)
-				adjustBruteLoss(-maxHealth * 0.4) //4% per hit
+				adjustBruteLoss(-maxHealth * 0.04) //4% per hit
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(H), pick(GLOB.alldirs))
 		attack_sound = initial(attack_sound)
 		finishing = FALSE
