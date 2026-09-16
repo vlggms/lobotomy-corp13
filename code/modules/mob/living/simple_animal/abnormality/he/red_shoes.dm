@@ -25,7 +25,7 @@
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/wrath
 	max_boxes = 16
-	del_on_death = FALSE
+	del_on_death = TRUE
 	death_message = "crumples into a pile of bones."
 	attack_sound = 'sound/abnormalities/redshoes/RedShoes_Attack.ogg'
 	melee_damage_lower = 3
@@ -200,7 +200,7 @@
 	if(possessee)//If the first check fails
 		return
 	SLEEP_CHECK_DEATH(30)
-	if(LAZYLEN(GLOB.player_list) < 3)//solo breach if there aren't many players
+	if(LAZYLEN(AllLivingAgents(TRUE)) < 3)//solo breach if there aren't many agents
 		BreachEffect()
 		return
 	numbermarked = (1 + round(LAZYLEN(GLOB.player_list) / 6))
@@ -237,27 +237,22 @@
 				temp[damtype] = 1 - (temp[damtype] / 100)
 			ChangeResistances(temp)
 
+		//Shouldn't this be its own proc?
 		var/obj/item/held = user.get_active_held_item()
 		var/obj/item/other_held = user.get_inactive_held_item()
 
 		user.dropItemToGround(held)
 		user.dropItemToGround(other_held)
-
-		//Shouldn't this be its own proc?
-		//But we really, REALLY don't want the agent to die while assimulated
+		//We really, REALLY don't want the agent to die while assimulated
 		for(var/datum/disease/D in user.diseases)
 			qdel(D)
 		var/parasite_slot = user.getorganslot(ORGAN_SLOT_PARASITE_EGG)
 		if(parasite_slot)
 			qdel(parasite_slot)
 		user.status_flags |= GODMODE
-		var/datum/status_effect/panicked_type/P =  user.has_status_effect(/datum/status_effect/panicked_type)
-		var/panic_icon
-		if(P)
-			panic_icon = P.icon
 		user.remove_status_effect(/datum/status_effect/panicked_type)
-		user.updateappearance()
-		user.regenerate_icons()
+		//For some god forsaken reason, appearance doesn't give a shit if an overlay was removed unless there's a delay. UNLESS this is use. Thank you BYOND
+		COMPILE_OVERLAYS(user)
 		ADD_TRAIT(user, TRAIT_NOBREATH, type)
 		ADD_TRAIT(user, TRAIT_INCAPACITATED, type)
 		ADD_TRAIT(user, TRAIT_IMMOBILIZED, type)
@@ -267,7 +262,6 @@
 		playsound(src, 'sound/abnormalities/redshoes/RedShoes_Activate.ogg', 50, 1)
 		name = user.name
 		appearance = user.appearance
-		//cut_overlay(mutable_appearance('icons/effects/effects.dmi', panic_icon, -ABOVE_MOB_LAYER))
 		gender = user.gender
 		desc = "[user.name] appears to be grinning from ear to ear. Does [p_they()] normally wear shoes like those?"
 		maxHealth = (user.maxHealth * 4.5)
@@ -298,9 +292,16 @@
 		icon_living = "redshoes_breach"
 		ChangeResistances(list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.5))
 		sleep(10)
-		new /mob/living/simple_animal/hostile/aminion/red_shoe(get_turf(src))
+		var/mob/living/simple_animal/hostile/aminion/red_shoe/SHOE = new(get_turf(src))
+		second_foot = SHOE
 	datum_reference.qliphoth_change(-2)
 
+/mob/living/simple_animal/hostile/abnormality/red_shoes/CreateAbnoCore()//The simple mob created will leave a core behind when regular conditions are fulfilled ie. when this proc is called
+	if(!second_foot || QDELETED(second_foot))
+		return ..()
+	second_foot.core_enabled = TRUE
+	second_foot = null
+	return
 /mob/living/simple_animal/hostile/abnormality/red_shoes/Found(atom/A)//The solo breach generally sticks together
 	if(istype(A, /mob/living/simple_animal/hostile/aminion/red_shoe))
 		var/mob/living/simple_animal/hostile/aminion/red_shoe/S = A
@@ -399,12 +400,7 @@
 	lines_type = /datum/ai_behavior/say_line/insanity_red_possess
 
 /datum/ai_behavior/say_line/insanity_red_possess
-	lines = list(
-		"",
-		"",
-		"",
-		"",
-	)
+	lines = null
 
 /datum/ai_controller/insane/red_possess/SelectBehaviors(delta_time)//Selects red shoes as the target
 	if(blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] != null)
@@ -470,8 +466,8 @@
 	var/mob/living/carbon/human/living_pawn = controller.pawn
 	var/mob/living/simple_animal/hostile/abnormality/red_shoes/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
 	if(succeeded)
-		target.Assimilate(living_pawn)//breaches red shoes with target as the argument for user
 		QDEL_NULL(living_pawn.ai_controller)
+		target.Assimilate(living_pawn)//breaches red shoes with target as the argument for user
 	controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = null
 
 //Simple mob
@@ -497,6 +493,7 @@
 	threat_level = HE_LEVEL
 	score_divider = 2
 	var/steppy = 0
+	var/core_enabled = FALSE
 
 /mob/living/simple_animal/hostile/aminion/red_shoe/AttackingTarget(atom/attacked_target)
 	. = ..()
@@ -517,6 +514,23 @@
 	l_foot?.dismember()
 	r_foot?.dismember()
 
+/mob/living/simple_animal/hostile/aminion/red_shoe/Destroy()
+	if(core_enabled)
+		CreateAbnoCore()
+	..()
+
+/mob/living/simple_animal/hostile/aminion/red_shoe/proc/CreateAbnoCore()//this is at the carbon level
+	var/obj/structure/abno_core/C = new(get_turf(src))
+	C.name = "Red Shoes Core"
+	C.desc = "The core of Red Shoes"
+	C.icon_state = ""//core icon goes here
+	C.contained_abno = /mob/living/simple_animal/hostile/abnormality/red_shoes//release()ing or extract()ing this core will spawn the abnormality, making it a valid core.
+	C.threat_level = 3
+	C.icon = 'ModularTegustation/Teguicons/abno_cores/he.dmi'
+	C.ego_list = list(
+		/datum/ego_datum/weapon/sanguine,
+		/datum/ego_datum/armor/sanguine,
+	)
 
 //*** Pedestal ***//
 /obj/structure/redshoes_cushion
