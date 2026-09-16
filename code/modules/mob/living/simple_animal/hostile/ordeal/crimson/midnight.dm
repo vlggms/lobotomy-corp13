@@ -292,17 +292,35 @@
 						span_userdanger("\The [src] tramples you!"), null, COMBAT_MESSAGE_RANGE, src)
 				to_chat(src, span_danger("You trample [L]!"))
 				if(L == target) // Ends the trample since we reached our target
-					AddComponent(/datum/component/knockback, 3, FALSE, TRUE) //1 is distance thrown, False is if it can throw anchored objects, True if doesnt apply damage or stun when hits a wall.
 					TryAttack(L)
 					is_trampling = FALSE
 					trample_cooldown = world.time + trample_cooldown_time
 					ChangeMoveToDelay(4)
 
-/mob/living/simple_animal/hostile/ordeal/crimson_midnight/AttackingTarget(atom/attacked_target)
+/mob/living/simple_animal/hostile/ordeal/crimson_midnight/AttackingTarget(mob/attacked_target)
+	var/tackle = FALSE
+	if(is_trampling && attacked_target == target)//We pack the pain!
+		tackle = TRUE
+		attack_verb_continuous = "tackles"
+		attack_verb_simple = "tackle"
+		melee_damage_upper *= 1.5
+		melee_damage_lower *= 1.5
 	. = ..()
-	var/datum/component/knockback/knockback = GetComponent(/datum/component/knockback)
-	if(knockback)
-		knockback.RemoveComponent()
+	if(tackle)
+		attack_verb_continuous = initial(attack_verb_continuous)
+		attack_verb_simple = initial(attack_verb_simple)
+		melee_damage_upper = initial(melee_damage_upper)
+		melee_damage_lower = initial(melee_damage_lower)
+	if(!. || istype(attacked_target))
+		return
+	if(is_trampling && attacked_target == target)//And throw em too!
+		var/throw_dir = get_dir(src, attacked_target)
+		if(!ismovable(attacked_target) || throw_dir == null)
+			return
+		if(attacked_target.anchored)
+			return
+		var/atom/throw_target = get_edge_target_turf(attacked_target, throw_dir)
+		attacked_target.safe_throw_at(throw_target, 5, 1, src, gentle = TRUE)
 
 /mob/living/simple_animal/hostile/ordeal/crimson_midnight/death(gibbed)
 	if(exploding) // We dont want it to go boom with clowns if it trying to go boom already
