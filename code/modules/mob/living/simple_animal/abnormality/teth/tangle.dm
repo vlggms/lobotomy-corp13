@@ -159,7 +159,7 @@
 	var/turf/T = get_turf(user)
 	to_chat(user, span_danger("[src] entangles you with its hair!"))
 	if(!locate(/obj/structure/spreading/tangle_hair) in T)
-		var/obj/structure/spreading/tangle_hair/hair = new(src)
+		var/obj/structure/spreading/tangle_hair/hair = new(T)
 		hair.RegisterMob(src)
 		hair.expand(TRUE)
 		hair.safe = IsContained()
@@ -274,6 +274,7 @@
 	anchored = TRUE
 	can_buckle = TRUE
 	layer = ABOVE_MOB_LAYER
+	var/breaking_free = FALSE
 	var/damage = 4
 	var/damage_cooldown
 	var/damage_cooldown_time = 2 SECONDS
@@ -296,6 +297,13 @@
 	return ..()
 
 /obj/structure/strangling_hair/user_unbuckle_mob(mob/living/buckled_mob, mob/living/carbon/human/user)
+	if(user == buckled_mob && !breaking_free)
+		breaking_free = TRUE
+		to_chat(user, span_warning("You attempt to break from the hair!"))
+		if(do_after(user, 10 SECONDS, target = user))
+			qdel(src)
+			return
+		breaking_free = FALSE
 	return
 
 /obj/structure/strangling_hair/process(delta_time)
