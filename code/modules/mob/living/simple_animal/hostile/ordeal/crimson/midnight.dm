@@ -311,7 +311,7 @@
 		attack_verb_simple = initial(attack_verb_simple)
 		melee_damage_upper = initial(melee_damage_upper)
 		melee_damage_lower = initial(melee_damage_lower)
-	if(!. || istype(attacked_target))
+	if(!. || !istype(attacked_target))
 		return
 	if(is_trampling && attacked_target == target)//And throw em too!
 		var/throw_dir = get_dir(src, attacked_target)
