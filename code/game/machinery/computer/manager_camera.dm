@@ -507,6 +507,25 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 	UpdateButtonIcon()
 	playsound(get_turf(target), 'sound/weapons/kenetic_reload.ogg', 15, TRUE)
 
+/datum/action/innate/cyclemanagerbullet/proc/Quick_Swap(bullet_type)
+	var/obj/machinery/computer/camera_advanced/manager/console = target
+	if(!bullet_type)
+		return
+	// Don't swap until we have the upgrade unlocked.
+	if(!GetFacilityUpgradeValue(console.bullet_types[bullet_type]["name"]))
+		return FALSE
+	if(console.bullet_type == bullet_type)
+		return FALSE
+	if(QDELETED(src) || QDELETED(target) || QDELETED(owner))
+		return FALSE
+	to_chat(owner, span_notice("[console.bullet_types[bullet_type]["name"]] bullet selected."))
+	name = "[console.bullet_types[bullet_type]["name"]] bullet"
+	desc = console.bullet_types[bullet_type]["desc"]
+	button_icon_state = console.bullet_types[bullet_type]["icon_state"]
+	console.bullet_type = bullet_type
+	UpdateButtonIcon()
+	playsound(get_turf(target), 'sound/weapons/kenetic_reload.ogg', 15, TRUE)
+
 /datum/action/innate/firemanagerbullet
 	name = "Fire Initialized Bullet"
 	desc = "Hotkey = Ctrl + Click"
