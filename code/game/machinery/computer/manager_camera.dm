@@ -204,7 +204,7 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 
 
 	// Fired too quickly :(
-	if(bullet_buffer > world.time)
+	if(bullet_buffer >= world.time)
 		return
 
 	// No bullets :(
