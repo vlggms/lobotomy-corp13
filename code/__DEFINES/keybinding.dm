@@ -95,6 +95,10 @@
 
 
 //Manager
+#define COMSIG_KB_MANAGER_CAMERA "manager_camera"
+#define COMSIG_KB_MANAGER_FOLLOW "manager_follow"
+#define COMSIG_KB_MANAGER_CYCLE "manager_cycle"
+
 #define COMSIG_KB_MANAGER_HEALING "manager_healing_switch"
 #define COMSIG_KB_MANAGER_SANITY "manager_sanity_switch"
 #define COMSIG_KB_MANAGER_DUAL "manager_dual_switch"

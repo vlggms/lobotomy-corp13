@@ -258,6 +258,11 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 			if(H.sanity_lost)
 				return FALSE
 			H.adjustSanityLoss(-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL)*healing_mult)
+		if(MANAGER_DUAL_BULLET)
+			if(H.sanity_lost)
+				return FALSE
+			H.adjustBruteLoss(-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL)*healing_mult)
+			H.adjustSanityLoss(-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL)*healing_mult)
 		if(MANAGER_RED_BULLET, MANAGER_WHITE_BULLET, MANAGER_BLACK_BULLET, MANAGER_PALE_BULLET, MANAGER_QUAD_BULLET)
 			if(H.is_working)
 				return FALSE
@@ -267,11 +272,6 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 			if(bullet_type == MANAGER_QUAD_BULLET)
 				shield_hp *= 2
 			H.apply_shield(bullet_types_to_status[bullet_type], shield_health = shield_hp)
-		if(MANAGER_DUAL_BULLET)
-			if(H.sanity_lost)
-				return FALSE
-			H.adjustBruteLoss(-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL)*healing_mult)
-			H.adjustSanityLoss(-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL)*healing_mult)
 		if(MANAGER_YELLOW_BULLET)
 			if(!owner.faction_check_mob(H))
 				if (H.has_status_effect(/datum/status_effect/qliphothoverload))
@@ -419,7 +419,7 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 
 /obj/machinery/computer/camera_advanced/manager/proc/RechargeMeltdown()
 	playsound(get_turf(src), 'sound/weapons/kenetic_reload.ogg', 10, 0, 3)
-	ammo = floor(GetFacilityUpgradeValue(UPGRADE_BULLET_COUNT) * SSlobotomy_corp.bullet_multiplier)
+	ammo = max(ammo, floor(GetFacilityUpgradeValue(UPGRADE_BULLET_COUNT) * SSlobotomy_corp.bullet_multiplier))
 
 //Employee Tracking Code: Butchered AI Tracking
 
