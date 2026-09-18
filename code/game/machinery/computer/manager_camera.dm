@@ -275,15 +275,11 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 			var/shield_hp = GetFacilityUpgradeValue(UPGRADE_BULLET_SHIELD_HEALTH)
 			if(bullet_type == MANAGER_QUAD_BULLET)
 				shield_hp *= 2
-			H.apply_shield(bullet_types_to_status[bullet_type], shield_health = shield_hp)
+			H.apply_status_effect(bullet_types_to_status[bullet_type], shield_hp)
 		if(MANAGER_YELLOW_BULLET)
 			if(!owner.faction_check_mob(H))
-				if (H.has_status_effect(/datum/status_effect/qliphothoverload))
-					H.remove_status_effect(/datum/status_effect/qliphothoverload)
 				H.apply_status_effect(/datum/status_effect/qliphothoverload)
-				if (GetFacilityUpgradeValue(UPGRADE_YELLOW_BULLET))
-					if (H.has_status_effect(/datum/status_effect/qliphothshred))
-						H.remove_status_effect(/datum/status_effect/qliphothshred)
+				if(GetFacilityUpgradeValue(UPGRADE_YELLOW_BULLET))
 					H.apply_status_effect(/datum/status_effect/qliphothshred)
 			else
 				return FALSE
@@ -330,10 +326,8 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 		return FALSE
 
 	if(bullet_type == MANAGER_YELLOW_BULLET)
-		if (H.has_status_effect(/datum/status_effect/qliphothoverload))
-			H.remove_status_effect(/datum/status_effect/qliphothoverload)
 		H.apply_status_effect(/datum/status_effect/qliphothoverload)
-		if (GetFacilityUpgradeValue(UPGRADE_YELLOW_BULLET))
+		if(GetFacilityUpgradeValue(UPGRADE_YELLOW_BULLET))
 			H.apply_status_effect(/datum/status_effect/qliphothshred)
 		return TRUE
 

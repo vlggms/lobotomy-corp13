@@ -239,7 +239,7 @@
 	for(var/mob/living/carbon/human/L in range(7, user))
 		if(!ishuman(L))
 			continue
-		L.apply_shield(/datum/status_effect/interventionshield/wcorp, shield_duration = shield_time)
+		L.apply_status_effect(/datum/status_effect/interventionshield/wcorp, time = shield_time)
 		new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(L))
 
 //Type C Spear
