@@ -102,6 +102,9 @@
 		if("pe")
 			effect_name = "pe_box"
 			text_color = "#23FBAC"
+		if("void")
+			effect_name = pick("void", "void_alt")
+			text_color = "#EEEEEE"
 	if(!effect_name)
 		return null
 	effect_name += "[rand(1,2)]"
