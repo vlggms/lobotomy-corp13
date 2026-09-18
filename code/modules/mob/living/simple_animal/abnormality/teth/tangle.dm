@@ -300,7 +300,7 @@
 	if(user == buckled_mob && !breaking_free)
 		breaking_free = TRUE
 		to_chat(user, span_warning("You attempt to break from the hair!"))
-		if(do_after(user, 10 SECONDS, target = user))
+		if(do_after(user, 5 SECONDS, target = user))
 			qdel(src)
 			return
 		breaking_free = FALSE
