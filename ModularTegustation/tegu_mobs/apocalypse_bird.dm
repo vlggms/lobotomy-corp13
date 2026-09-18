@@ -393,17 +393,8 @@
 		if(!PT || QDELETED(PT))
 			continue
 		var/turf/T = get_step(get_turf(src), pick(GLOB.alldirs))
-		var/obj/effect/projectile_delayed/projectile_handler = new(T) // We use a projectile handler here because fire() is called after a delay
-		var/obj/projectile/apocalypse/P = new(projectile_handler)
-		projectile_handler.projectile = P
-		P.starting = T
-		P.firer = src
-		P.fired_from = T
-		P.yo = PT.y - T.y
-		P.xo = PT.x - T.x
-		P.original = PT
-		P.preparePixelProjectile(PT, T)
-		projectile_handler.StartFiring(6.5 SECONDS)
+		new /obj/effect/projectile_delayed(T, PT, src, /obj/projectile/ego_twilight, 6.5 SECONDS)
+
 
 	SLEEP_CHECK_DEATH(6.5 SECONDS)
 	playsound(src, 'sound/abnormalities/apocalypse/fire.ogg', 75, FALSE, 12)

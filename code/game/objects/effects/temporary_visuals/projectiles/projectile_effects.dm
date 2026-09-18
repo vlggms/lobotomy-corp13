@@ -60,22 +60,53 @@
 	owner = owner_key
 
 /obj/effect/projectile_delayed // Visual object that doubles as a handler for delayed projectiles
-	var/obj/projectile/projectile
+	var/obj/projectile/projectile_path
+	var/turf/target_turf
+	var/atom/target
+	var/atom/firer // Passing the firer is important to prevent self-damaging projectiles.
+
+/obj/effect/projectile_delayed/New(loc, the_target, firer_ref, proj_path, timetofire)
+	..()
+	target = the_target
+	firer = firer_ref
+	projectile_path = proj_path
+	StartFiring(timetofire)
 
 /obj/effect/projectile_delayed/proc/StartFiring(timetofire)
-	if(projectile && timetofire)
-		icon = projectile.icon
-		icon_state = projectile.icon_state
-		dir = projectile.dir
+	if(!ispath(projectile_path,  /obj/projectile))
+		qdel(src)
+		return
+	if(timetofire && target)
+		icon = projectile_path.icon
+		icon_state = projectile_path.icon_state
+		if(!projectile_path.nondirectional_sprite)
+			var/Angle = Get_Angle(src, target)
+			var/matrix/matrix = new
+			matrix.Turn(Angle)
+			transform = matrix
 		update_icon()
+		target_turf = get_turf(target)
 		addtimer(CALLBACK(src, PROC_REF(Fire)), timetofire)
 	else
 		qdel(src)
 
 /obj/effect/projectile_delayed/proc/Fire()
-	if(projectile)
-		try // We use try/catch here so that this object gets deleted no matter what runtime occurs.
-			projectile.fire()
-		catch(var/exception/e)
-			log_runtime("runtime error: [e.name]\n[e.desc]")
+	if(!target || QDELETED(target))
+		target = target_turf
+		if(!target) //fallback if the turf somehow got deleted
+			qdel(src)
+			return
+	var/turf/T = get_turf(src)
+	var/obj/projectile/projectile = new projectile_path(T)
+	projectile.starting = T
+	if(firer && !QDELETED(firer))
+		projectile.firer = firer
+	else
+		projectile.firer = src
+	projectile.fired_from = T
+	projectile.yo = target.y - T.y
+	projectile.xo = target.x - T.x
+	projectile.original = target
+	projectile.preparePixelProjectile(target, T)
+	projectile.fire()
 	qdel(src)
