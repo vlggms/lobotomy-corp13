@@ -231,6 +231,7 @@
 	charge_cost = 16
 	charge_effect = "grant shields to nearby allies on hit."
 	successfull_activation = "You release your charge, projecting shields upon your allies!"
+	var/shield_health = 50
 	var/shield_time = 15 SECONDS
 
 /obj/item/ego_weapon/city/wcorp/shield/ChargeAttack(mob/living/target, mob/living/user)
@@ -239,7 +240,7 @@
 	for(var/mob/living/carbon/human/L in range(7, user))
 		if(!ishuman(L))
 			continue
-		L.apply_status_effect(/datum/status_effect/interventionshield/wcorp, time = shield_time)
+		L.apply_status_effect(/datum/status_effect/interventionshield/wcorp, shield_health, shield_time)
 		new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(L))
 
 //Type C Spear
