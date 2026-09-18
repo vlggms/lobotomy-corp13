@@ -27,7 +27,7 @@
 			/turf/open/openspace))
 
 /obj/structure/spreading/proc/expand(bypasscooldown = FALSE)
-	if(!can_expand)
+	if(!can_expand || QDELETED(src))
 		return
 
 	if(!bypasscooldown)
@@ -56,9 +56,21 @@
 		if(is_type_in_typecache(T, blacklisted_turfs))
 			continue
 
-		new type(T)
+		PlaceStructure(T, src)
 		break
 	return TRUE
+
+//We have a few abnormalities that spawn these and destroy them upon their death.
+/obj/structure/spreading/proc/PlaceStructure(turf/T)
+	if(!can_expand)
+		return
+	return new type(T)
+
+/obj/structure/spreading/proc/SelfDestruct()
+	can_expand = FALSE
+	var/del_time = rand(4,10)
+	animate(src, alpha = 0, time = del_time SECONDS)
+	QDEL_IN(src, del_time SECONDS)
 
 //Cosmetic Structures
 /obj/structure/cavein_floor

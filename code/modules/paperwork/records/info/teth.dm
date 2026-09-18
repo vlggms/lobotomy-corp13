@@ -416,8 +416,12 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/tangle
 	abno_code = "F-01-191"
 	abno_info = list(
-		"Tangle had a bad reaction when working on a random EMPLOYEE, and their Qliphoth Counter lowered.",
-		"Working large amounts of instinct works on tangle ended in it's Qliphoth Counter being lowered.",)
+		"When an employee with Justice Level 1 completed the work, they would let F-01-191 escape containment with a low probability.",
+		"It is advised to let a different employee preform Instinct Work on the abnormality after completing Instinct Work.",
+		"When consecutive Instinct Works was done by the same employee, the Qliphoth Counter lowered and F-01-191 atempted to strangle them.",
+		"When the work result was Bad, the Qliphoth Counter lowered and F-01-191 atempted to strangle the employee.",
+		"When F-01-191 escaped from its containment, it began to spread hair throughout the facility.",)
+	abno_breach_damage_count = "Low"
 
 //Generic Brand Modelling Clay
 /obj/item/paper/fluff/info/teth/clayman

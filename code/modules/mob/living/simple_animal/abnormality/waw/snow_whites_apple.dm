@@ -98,7 +98,7 @@
 	//Spell automatically given to the abnormality.
 	var/obj/effect/proc_holder/spell/pointed/apple_barrier/barrier_spell
 	//All iterations share this list between eachother.
-	var/static/list/vine_list = list()
+	var/list/vine_list = list()
 
 /mob/living/simple_animal/hostile/abnormality/snow_whites_apple/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
@@ -136,20 +136,15 @@
 /mob/living/simple_animal/hostile/abnormality/snow_whites_apple/Move()
 	if(!togglemovement)
 		return FALSE
-	..()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/snow_whites_apple/death(gibbed)
 	density = FALSE
 	animate(src, alpha = 0, time = 5 SECONDS)
 	QDEL_IN(src, 5 SECONDS)
-	..()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/snow_whites_apple/Destroy()
-	for(var/obj/structure/spreading/apple_vine/vine in vine_list)
-		vine.can_expand = FALSE
-		var/del_time = rand(4,10) //all the vines dissapear at different interval so it looks more organic.
-		animate(vine, alpha = 0, time = del_time SECONDS)
-		QDEL_IN(vine, del_time SECONDS)
 	vine_list.Cut()
 	return ..()
 
@@ -253,14 +248,14 @@
 	for(var/turf/T in GLOB.xeno_spawn)
 		. += T
 
-	return
 
 /mob/living/simple_animal/hostile/abnormality/snow_whites_apple/proc/SpreadPlants()
 	if(!isturf(loc) || isspaceturf(loc))
 		return
 	if(locate(/obj/structure/spreading/apple_vine) in get_turf(src))
 		return
-	new /obj/structure/spreading/apple_vine(loc)
+	var/obj/structure/spreading/apple_vine/A = new(loc)
+	A.RegisterMob(src)
 
 /mob/living/simple_animal/hostile/abnormality/snow_whites_apple/proc/VineSpike()
 	playsound(get_turf(src), projectilesound, 30)
@@ -396,19 +391,13 @@
 	//Redundant and Ineffecient abnormality teamwork var.
 	var/allow_abnopass = FALSE
 	//Connected Abnormality.
-	var/static/mob/living/simple_animal/hostile/abnormality/snow_whites_apple/connected_abno
+	var/mob/living/simple_animal/hostile/abnormality/snow_whites_apple/princess
 	//strictly for crossed proc
-	var/list/static/ignore_typecache
-	var/list/static/atom_remove_condition
+	var/static/list/ignore_typecache
+	var/static/list/atom_remove_condition
 
 /obj/structure/spreading/apple_vine/Initialize()
 	. = ..()
-
-	//This is to register a abnormality if we dont have one
-	if(!connected_abno)
-		connected_abno = locate(/mob/living/simple_animal/hostile/abnormality/snow_whites_apple) in GLOB.abnormality_mob_list
-	if(connected_abno)
-		connected_abno.vine_list += src
 
 	if(!atom_remove_condition)
 		atom_remove_condition = typecacheof(list(
@@ -435,8 +424,7 @@
 		))
 
 /obj/structure/spreading/apple_vine/Destroy()
-	if(connected_abno)
-		connected_abno.vine_list -= src
+	UnregisterMob()
 	return ..()
 
 /* Only allows the user to pass if the proc returns TRUE.
@@ -458,11 +446,39 @@
 	if(isliving(mover))
 		if(isliving(mover.pulledby))
 			return TRUE
+		if(!can_expand)
+			return .
 		return VineEffect(mover)
 	return TRUE
 
 /obj/structure/spreading/apple_vine/play_attack_sound(damage_amount, damage_type = BRUTE)
 	playsound(loc, 'sound/creatures/venus_trap_hurt.ogg', 60, TRUE)
+
+/obj/structure/spreading/apple_vine/PlaceStructure(turf/T)
+	. = ..()
+	if(!. || !istype(. , type))
+		return
+	var/obj/structure/spreading/apple_vine/A = .
+	if(princess)
+		A.RegisterMob(princess)
+
+//Signal Stuff
+/obj/structure/spreading/apple_vine/proc/RegisterMob(mob/living/L)
+	if(!L)
+		return
+	if(!istype(L, /mob/living/simple_animal/hostile/abnormality/snow_whites_apple))
+		return
+	princess = L
+	RegisterSignal(princess, list(COMSIG_PARENT_QDELETING), PROC_REF(UnregisterMob))
+	princess.vine_list += src
+
+/obj/structure/spreading/apple_vine/proc/UnregisterMob()
+	if(!princess)
+		return
+	UnregisterSignal(princess, list(COMSIG_PARENT_QDELETING))
+	princess.vine_list -= src
+	princess = null
+	SelfDestruct()
 
 /obj/structure/spreading/apple_vine/proc/VineEffect(mob/living/L)
 	// They just flew over the vines. :/
