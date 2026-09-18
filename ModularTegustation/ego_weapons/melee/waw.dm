@@ -880,7 +880,7 @@
 	if(LAZYLEN(been_hit))
 		playsound(src, 'sound/magic/staff_healing.ogg', 200, FALSE, 9)
 		for(var/mob/living/carbon/human/L in range(8, get_turf(user)))
-			L.apply_shield(/datum/status_effect/interventionshield/black, shield_health = shield_hp, shield_duration = shield_time)
+			L.apply_status_effect(/datum/status_effect/interventionshield/black, shield_hp, shield_time)
 
 
 /obj/item/ego_weapon/heaven

@@ -376,13 +376,13 @@
 			user.adjustBruteLoss(-5)
 			user.adjustSanityLoss(-5)
 		if(7, 8)
-			user.apply_shield(/datum/status_effect/interventionshield, shield_health = 50, shield_duration = 15 SECONDS)
+			user.apply_status_effect(/datum/status_effect/interventionshield, 50, 15 SECONDS)
 		if(9, 10)
-			user.apply_shield(/datum/status_effect/interventionshield/white, shield_health = 50, shield_duration = 15 SECONDS)
+			user.apply_status_effect(/datum/status_effect/interventionshield/white, 50, 15 SECONDS)
 		if(11, 12)
-			user.apply_shield(/datum/status_effect/interventionshield/black, shield_health = 50, shield_duration = 15 SECONDS)
+			user.apply_status_effect(/datum/status_effect/interventionshield/black, 50, 15 SECONDS)
 		if(15, 16)
-			user.apply_shield(/datum/status_effect/interventionshield/pale, shield_health = 50, shield_duration = 15 SECONDS)
+			user.apply_status_effect(/datum/status_effect/interventionshield/pale, 50, 15 SECONDS)
 		if(17, 18)
 			var/turf/proj_turf = user.loc
 			if(!isturf(proj_turf))
@@ -436,7 +436,7 @@
 			for(var/mob/living/carbon/human/L in livinginview(8, user))
 				if((!ishuman(L)) || L.stat == DEAD)
 					continue
-				L.apply_shield(/datum/status_effect/interventionshield/perfect, shield_health = 100, shield_duration = 15 SECONDS)
+				L.apply_status_effect(/datum/status_effect/interventionshield/perfect, 100, 15 SECONDS)
 
 /obj/item/ego_weapon/shield/distortion/DisableBlock(mob/living/carbon/human/user)
 	if(!block)
