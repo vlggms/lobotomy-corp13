@@ -136,7 +136,7 @@
 	if(firer == target)
 		return BULLET_ACT_BLOCK
 	if(user.faction_check_mob(T)) // Our faction
-		T.adjustBruteLoss(T.maxHealth * 0.05)
+		T.adjustBruteLoss(-T.maxHealth * 0.05)
 		return BULLET_ACT_BLOCK
 
 /obj/projectile/ego_bullet/ego_patriot
