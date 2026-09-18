@@ -76,6 +76,7 @@
 	var/datum/looping_sound/arbiter_pillar_storm/stormloop
 	/// List of pillars that are about to get fired
 	var/list/storm_pillars = list()
+	/// The current Pillar
 	/// If TRUE - will stop repeating the ring effect around arbiter
 	var/stop_storm_effect = FALSE
 	// Ability variables
@@ -184,7 +185,13 @@
 /mob/living/simple_animal/hostile/megafauna/arbiter/AttackingTarget(atom/attacked_target)
 	return OpenFire(attacked_target)
 
-/mob/living/simple_animal/hostile/megafauna/arbiter/OpenFire(target)
+/mob/living/simple_animal/hostile/megafauna/arbiter/OpenFire(atom/target)
+	if(QDELETED(src))
+		return
+	if(stat == DEAD)
+		return
+	if(QDELETED(target))
+		return
 	if(charging)
 		return
 	if(client)
