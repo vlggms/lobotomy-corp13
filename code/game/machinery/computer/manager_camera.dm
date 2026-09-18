@@ -253,21 +253,25 @@ GLOBAL_VAR_INIT(execution_enabled, FALSE)
 
 	switch(bullet_type)
 		if(MANAGER_HP_BULLET)
+			if(H.health >= H.maxHealth)
+				return FALSE
 			H.adjustBruteLoss(-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL)*healing_mult)
 		if(MANAGER_SP_BULLET)
 			if(H.sanity_lost)
 				return FALSE
+			if(H.sanityhealth >= H.maxSanity)
+				return FALSE
 			H.adjustSanityLoss(-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL)*healing_mult)
 		if(MANAGER_DUAL_BULLET)
 			if(H.sanity_lost)
+				return FALSE
+			if((H.health >= H.maxHealth) && (H.sanityhealth >= H.maxSanity))
 				return FALSE
 			H.adjustBruteLoss(-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL)*healing_mult)
 			H.adjustSanityLoss(-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL)*healing_mult)
 		if(MANAGER_RED_BULLET, MANAGER_WHITE_BULLET, MANAGER_BLACK_BULLET, MANAGER_PALE_BULLET, MANAGER_QUAD_BULLET)
 			if(H.is_working)
 				return FALSE
-			if (H.has_status_effect(bullet_types_to_status[bullet_type]))
-				H.remove_status_effect(bullet_types_to_status[bullet_type])
 			var/shield_hp = GetFacilityUpgradeValue(UPGRADE_BULLET_SHIELD_HEALTH)
 			if(bullet_type == MANAGER_QUAD_BULLET)
 				shield_hp *= 2
