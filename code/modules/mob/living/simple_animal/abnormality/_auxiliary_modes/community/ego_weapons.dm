@@ -41,7 +41,7 @@
 	for(var/mob/living/carbon/human/L in livinginview(8, user))
 		if((!ishuman(L)) || L.stat == DEAD)
 			continue
-		L.apply_shield(/datum/status_effect/interventionshield/perfect, shield_health = shield_hp, shield_duration = shield_time)
+		L.apply_status_effect(/datum/status_effect/interventionshield/perfect, shield_hp, shield_time)
 
 /obj/item/ego_weapon/support/dragon_staff/proc/AdjustCircle(mob/living/carbon/human/user)
 	playsound(user, 'sound/abnormalities/hatredqueen/attack.ogg', 100)
