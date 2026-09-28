@@ -933,6 +933,10 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					S = GLOB.moth_wings_list[H.dna.features["moth_wings"]]
 				if("moth_antennae")
 					S = GLOB.moth_antennae_list[H.dna.features["moth_antennae"]]
+				if("sweeper_tanks")
+					S = GLOB.sweeper_tanks_list[H.dna.features["sweeper_tanks"]]
+				if("strong_back")
+					S = GLOB.strong_back_list[H.dna.features["strong_back"]]
 				if("caps")
 					S = GLOB.caps_list[H.dna.features["caps"]]
 				if("tail_monkey")

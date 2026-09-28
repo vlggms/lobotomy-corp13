@@ -1597,3 +1597,6 @@
 
 /mob/living/carbon/human/species/sweeper
 	race = /datum/species/sweeper
+
+/mob/living/carbon/human/species/pumpkinhead
+	race = /datum/species/pumpkinhead

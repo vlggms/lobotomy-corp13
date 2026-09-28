@@ -4,7 +4,7 @@
 	limbs_id = "human"
 
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,HAS_FLESH,HAS_BONE)
-	mutant_bodyparts = list("wings" = "Spring")
+	mutant_bodyparts = list("strong_back" = "Plain")
 	inherent_traits = list(TRAIT_ADVANCEDTOOLUSER, TRAIT_GENELESS)
 	use_skintones = TRUE
 	changesource_flags = MIRROR_BADMIN | WABBAJACK
@@ -18,7 +18,7 @@
 	. = ..()
 	INVOKE_ASYNC(src, PROC_REF(replace_body))
 
-/mob/living/carbon/human/species/grown_strong/proc/replace_body()//Fix this shit into a list or make it pref-compatible
+/mob/living/carbon/human/species/grown_strong/proc/replace_body()//Fix this shit - needs to be selected in prefs & randomized like mutant body parts
 	var/obj/item/bodypart/r_arm = get_bodypart(BODY_ZONE_R_ARM)
 	if(prob(90))
 		r_arm.change_bodypart(/obj/item/bodypart/r_arm/grown_strong)
@@ -46,11 +46,7 @@
 	leg1.change_bodypart(/obj/item/bodypart/l_leg/grown_strong)
 	leg2.change_bodypart(/obj/item/bodypart/r_leg/grown_strong)
 
-	var/spring = icon('icons/mob/mutant_bodyparts.dmi', "spring_strong_ADJ")
-	if(prob(50))
-		spring = icon('icons/mob/mutant_bodyparts.dmi', "nail_strong_ADJ")
-	add_overlay(spring)
-	update_body_parts()//YMBS legs occasionally fail to render. This should fix that!
+	update_body_parts()
 
 /mob/living/carbon/human/species/grown_strong/attack_ghost(mob/dead/observer/ghost)
 	if(key)
@@ -77,7 +73,7 @@
 	species_id = "strong"
 	original_owner = "Timmy"//Setting this to a non-null value allows it to retain its original icon
 
-/obj/item/bodypart/chest/grown_strong//override this to shift a head 2 pixels up
+/obj/item/bodypart/chest/grown_strong
 	name = "grown strong torso"
 	desc = "a fleshy limb encased in plastic"
 	icon = 'icons/mob/human_parts_greyscale.dmi'
