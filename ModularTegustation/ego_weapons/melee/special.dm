@@ -884,6 +884,12 @@
 	hitsound = 'sound/weapons/fixer/generic/fist2.ogg'
 	icon_state = "greed"
 	force = 35
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 120,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)
 	var/charge_damage = 120
 	var/charge_wind_up = 2 SECONDS
 	var/can_charge = TRUE
@@ -992,7 +998,7 @@
 	The swords will eventually point at those she could not protect."
 	special = "This weapon has a combo system."
 	icon_state = "despair_nihil"
-	force = 20
+	force = 17
 	attack_speed = 1
 	modified_attack_speed = 0.4
 	damtype = WHITE_DAMAGE
@@ -1000,9 +1006,9 @@
 	attack_verb_continuous = list("stabs", "attacks", "slashes")
 	attack_verb_simple = list("stab", "attack", "slash")
 	hitsound = 'sound/weapons/ego/rapier1.ogg'
-	reductions = list(90, 90, 90, 50)
-	projectile_block_duration = 1 SECONDS
-	block_duration = 1 SECONDS
+	reductions = list(50, 50, 50, 60) //210 - 300
+	projectile_block_duration = 1.5 SECONDS
+	block_duration = 1.5 SECONDS
 	block_cooldown = 3 SECONDS
 	block_message = "You attempt to parry the attack!"
 	hit_message = "parries the attack!"
@@ -1011,7 +1017,7 @@
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,
 							TEMPERANCE_ATTRIBUTE = 80,
-							JUSTICE_ATTRIBUTE = 100
+							JUSTICE_ATTRIBUTE = 120
 							)
 	var/combo = 0
 	var/combo_time
@@ -1036,6 +1042,20 @@
 	combo += 1
 	force = initial(force)
 
+/obj/item/ego_weapon/shield/despair_nihil/attack_self(mob/user)
+	if(!CanUseEgo(user))
+		return
+	block_duration = initial(block_duration)
+	block_cooldown = initial(block_cooldown)
+	var/friend_count = 0
+	for(var/mob/living/carbon/human/friend in oview(user, 10))
+		if(friend_count > 3)
+			continue
+		if(friend.ckey && friend.stat != DEAD && friend != user)
+			block_duration += 1 SECONDS
+			friend_count++
+	..()
+
 /obj/item/ego_weapon/blind_rage/nihil
 	name = "senseless wrath"
 	desc = "The Servant of Wrath valued justice and balance more than anyone, but she began sharing knowledge with the \
@@ -1045,8 +1065,8 @@
 	attack_speed = 1.2
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
-							PRUDENCE_ATTRIBUTE = 80,
-							TEMPERANCE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 120,
+							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
 							)
 	aoe_damage = 30
@@ -1102,6 +1122,7 @@
 							)
 
 	charge = TRUE
+	ability_type = ABILITY_UNIQUE
 	charge_effect = "Fires a laser"
 	charge_cost = 4
 	charge_cap = 20
@@ -1124,10 +1145,13 @@
 		return
 
 	if(!proximity_flag && gun_cooldown <= world.time)
-		currently_charging = FALSE
 		var/turf/proj_turf = user.loc
 		if(!isturf(proj_turf))
 			return
+
+		currently_charging = FALSE
+		charge_amount -= charge_cost
+
 		icon_state = "home_glow"
 		update_icon_state()
 		if(icon_timer)
