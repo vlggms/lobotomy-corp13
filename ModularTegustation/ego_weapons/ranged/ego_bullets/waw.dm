@@ -29,12 +29,12 @@
 				return BULLET_ACT_BLOCK
 			switch(damage_type)
 				if(WHITE_DAMAGE)
-					H.adjustSanityLoss(-10)
-				if(BLACK_DAMAGE)
-					H.adjustBruteLoss(-5)
 					H.adjustSanityLoss(-5)
+				if(BLACK_DAMAGE)
+					H.adjustBruteLoss(-2.5)
+					H.adjustSanityLoss(-2.5)
 				else // Red or pale
-					H.adjustBruteLoss(-10)
+					H.adjustBruteLoss(-5)
 			H.visible_message("<span class='warning'>[src] vanishes on contact with [H]!</span>")
 			qdel(src)
 			return BULLET_ACT_BLOCK
@@ -295,16 +295,17 @@
 	damage = 42
 	damage_type = BLACK_DAMAGE
 
-/obj/projectile/ego_bullet/ego_warring/on_hit(atom/target, blocked = FALSE)
-	. = ..()
+/obj/projectile/ego_bullet/ego_warring/process_hit(turf/T, atom/target, atom/bumped, hit_something = FALSE)
 	var/obj/item/ego_weapon/ranged/warring/bow = fired_from
-	var/mob/living/L = target
 	if(!isliving(target))
-		return
-	if((L.stat == DEAD) || L.status_flags & GODMODE)//if the target is dead or godmode
-		return FALSE
-	bow.HandleCharge(1, target)
-	return
+		return ..()
+	var/mob/living/L = target
+	var/old_stat = L.stat
+	. = ..()
+	if(.) // Hit passed and damage applied
+		if((old_stat == DEAD) || L.status_flags & GODMODE)//if the target was already dead or godmode
+			return
+		bow.HandleCharge(1)
 
 //feather of valor cont'd
 /obj/projectile/ego_bullet/ego_warring2

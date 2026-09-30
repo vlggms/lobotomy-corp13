@@ -47,13 +47,17 @@
 
 /obj/item/ego_weapon/shield/Initialize()
 	. = ..()
+	calculate_resistances_list()
+	aggro_on_block = force * 3
+
+//This code updates the list with the current reduction values incase they change
+/obj/item/ego_weapon/shield/proc/calculate_resistances_list()
 	if(LAZYLEN(resistances_list)) //armor tags code
 		resistances_list.Cut()
 	resistances_list += list("RED" = reductions[1])
 	resistances_list += list("WHITE" = reductions[2])
 	resistances_list += list("BLACK" = reductions[3])
 	resistances_list += list("PALE" = reductions[4])
-	aggro_on_block = force * 3
 
 //Allows the user to deflect projectiles for however long recovery time is set to on a hit
 /obj/item/ego_weapon/shield/melee_attack_chain(mob/user, atom/target, params)
@@ -86,24 +90,29 @@
 			if(AC.datum_reference.working) // No blocking during work.
 				to_chat(shield_user,span_notice("You cannot defend yourself from responsibility!"))
 				return FALSE
-		block = TRUE
-		block_success = FALSE
-		shield_user.physiology.armor = shield_user.physiology.armor.modifyRating(bomb = 1) //bomb defense must be over 0
-		shield_user.physiology.red_mod *= max(0.001, (1 - ((reductions[1]) / 100)))
-		shield_user.physiology.white_mod *= max(0.001, (1 - ((reductions[2]) / 100)))
-		shield_user.physiology.black_mod *= max(0.001, (1 - ((reductions[3]) / 100)))
-		shield_user.physiology.pale_mod *= max(0.001, (1 - ((reductions[4]) / 100)))
-		RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(AnnounceBlock))
-		for(var/mob/living/simple_animal/hostile/H in hearers(3, user))
-			if(H.stat != CONSCIOUS || H.AIStatus == AI_OFF || H.client)
-				continue
-			H.RegisterAggroValue(user, aggro_on_block, AGGRO_DAMAGE)
-		if(QDELING(src))
-			DisableBlock(shield_user)
-		else
-			parry_timer = addtimer(CALLBACK(src, PROC_REF(DisableBlock), shield_user), block_duration, TIMER_STOPPABLE)
-		to_chat(user, span_userdanger("[block_message]"))
-		return TRUE
+		return EnableBlock(user)
+
+//Starts the block
+/obj/item/ego_weapon/shield/proc/EnableBlock(mob/living/carbon/human/user)
+	block = TRUE
+	block_success = FALSE
+	shield_user.physiology.armor = shield_user.physiology.armor.modifyRating(bomb = 1) //bomb defense must be over 0
+	shield_user.physiology.red_mod *= max(0.001, (1 - ((reductions[1]) / 100)))
+	shield_user.physiology.white_mod *= max(0.001, (1 - ((reductions[2]) / 100)))
+	shield_user.physiology.black_mod *= max(0.001, (1 - ((reductions[3]) / 100)))
+	shield_user.physiology.pale_mod *= max(0.001, (1 - ((reductions[4]) / 100)))
+	RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(AnnounceBlock))
+	for(var/mob/living/simple_animal/hostile/H in hearers(3, user))
+		if(H.stat != CONSCIOUS || H.AIStatus == AI_OFF || H.client)
+			continue
+		H.RegisterAggroValue(user, aggro_on_block, AGGRO_DAMAGE)
+	if(QDELING(src))
+		DisableBlock(shield_user)
+		return FALSE
+	else
+		parry_timer = addtimer(CALLBACK(src, PROC_REF(DisableBlock), shield_user), block_duration, TIMER_STOPPABLE)
+	to_chat(user, span_userdanger("[block_message]"))
+	return TRUE
 
 //Ends the block, causes you to take more damage for as long as debuff_duration if you did not block any damage
 /obj/item/ego_weapon/shield/proc/DisableBlock(mob/living/carbon/human/user)

@@ -33,7 +33,7 @@
 	charged = TRUE
 	qdel(I)
 
-/obj/item/ego_weapon/city/rosespanner/HandleCharge(added_charge, mob/target)
+/obj/item/ego_weapon/city/rosespanner/HandleCharge(added_charge)
 	. = ..()
 	if(!.)
 		return FALSE

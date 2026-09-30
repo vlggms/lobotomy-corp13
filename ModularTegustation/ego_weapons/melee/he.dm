@@ -165,31 +165,33 @@
 	if (isnull(myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)))
 		force = 10
 		attack_speed = 0.33
-		projectile_block_duration = 0.33 SECONDS
-		block_duration = 1 SECONDS
 	else
 		var/obj/item/clothing/suit/armor/ego_gear/realization/fear/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 		if (istype(Z))
 			force = 20
-			block_duration = 1.5 SECONDS
 		else
 			force = 8
-			block_duration = 1 SECONDS
 		attack_speed = 0.5
-		projectile_block_duration = 0.5 SECONDS
 	..()
 
-/obj/item/ego_weapon/shield/daredevil/attack_self(mob/user)
-	if (block == 0)
-		var/mob/living/carbon/human/cooler_user = user
-		naked_parry = isnull(cooler_user.get_item_by_slot(ITEM_SLOT_OCLOTHING))
-		var/obj/item/clothing/suit/armor/ego_gear/realization/fear/Z = cooler_user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
-		realized_parry = istype(Z)
-		if (realized_parry || naked_parry)
-			reductions = list(95, 95, 95, 100) // Must be wearing 0 armor
-		else
-			reductions = list(40, 20, 20, 0)
-	..()
+/obj/item/ego_weapon/shield/daredevil/EnableBlock(mob/living/carbon/human/user)
+	var/mob/living/carbon/human/cooler_user = user
+	naked_parry = isnull(cooler_user.get_item_by_slot(ITEM_SLOT_OCLOTHING))
+	var/obj/item/clothing/suit/armor/ego_gear/realization/fear/Z = cooler_user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	realized_parry = istype(Z)
+	if (naked_parry)
+		reductions = list(95, 95, 95, 100) // Must be wearing 0 armor
+		block_duration = 1 SECONDS
+		projectile_block_duration = 0.33 SECONDS
+	else if (realized_parry)
+		reductions = list(60, 50, 50, 80) //240
+		block_duration = 1.5 SECONDS
+		projectile_block_duration = 0.5 SECONDS
+	else
+		reductions = list(40, 20, 20, 0)
+		block_duration = 1 SECONDS
+		projectile_block_duration = 0.5 SECONDS
+	. = ..()
 
 /obj/item/ego_weapon/shield/daredevil/DisableBlock(mob/living/carbon/human/user)
 	if (naked_parry)
@@ -431,9 +433,9 @@
 							FORTITUDE_ATTRIBUTE = 40
 							)
 
-/obj/item/ego_weapon/shield/bravery/attack_self(mob/user)
-	if(!CanUseEgo(user))
-		return
+/obj/item/ego_weapon/shield/bravery/EnableBlock(mob/living/carbon/human/user)
+	block_duration = initial(block_duration)
+	block_cooldown = initial(block_cooldown)
 	var/friend_count = 0
 	for(var/mob/living/carbon/human/friend in oview(user, 10))
 		if(friend_count > 4)
@@ -451,9 +453,7 @@
 		icon_state = "bravery"
 		playsound(src, 'sound/abnormalities/scaredycat/catgrunt.ogg', 50, FALSE, 4)
 	user.update_icon_state()
-	..()
-	block_duration = initial(block_duration)
-	block_cooldown = initial(block_cooldown)
+	. = ..()
 
 /obj/item/ego_weapon/pleasure
 	name = "pleasure"
@@ -998,6 +998,7 @@
 							)
 
 	charge = TRUE
+	ability_type = ABILITY_UNIQUE
 	charge_effect = "Pull a target from a distance."
 	charge_cost = 2
 	charge_cap = 21 // you dont understand, they NEED that one extra point of cap
@@ -1017,10 +1018,12 @@
 		return
 
 	if(!proximity_flag && gun_cooldown <= world.time)
-		currently_charging = FALSE
 		var/turf/proj_turf = user.loc
 		if(!isturf(proj_turf))
 			return
+
+		currently_charging = FALSE
+		charge_amount -= charge_cost
 
 		var/obj/projectile/ego_bullet/regs/G = new /obj/projectile/ego_bullet/regs(proj_turf)
 		G.fired_from = src //for signal check
@@ -1047,7 +1050,6 @@
 /obj/item/ego_weapon/dimension_shredder
 	name = "dimension shredder"
 	desc = "The path is intent on thwarting all attempts to memorize it."
-	special = "This weapon builds charge every 10 steps you've taken."
 	icon_state = "warp"
 	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
@@ -1065,6 +1067,7 @@
 							)
 
 	charge = TRUE
+	custom_charge_gain = "This weapon has charge mechanics and gains a charge upon every 10 steps you've taken."
 	attack_charge_gain = FALSE // we have a unique way of getting charge
 	charge_cost = 10
 	var/accumulated_charge = 0
@@ -1115,6 +1118,7 @@
 		return
 
 	if(!proximity_flag)
+		charge_amount -= charge_cost
 		currently_charging = FALSE
 		to_chat(user, span_notice("You release your charge, opening a rift!"))
 		var/turf/proj_turf = user.loc
@@ -1159,7 +1163,7 @@
 	name = "dimension shredder MK II"
 	desc = "They should've died after bleeding so much. You usually don't quarantine a corpse...."
 	icon_state = "warp2"
-	force = 20
+	force = 16
 	reach = 2
 	stuntime = 5	//Longer reach, gives you a short stun.
 	attack_verb_continuous = list("stabs", "slashes", "attacks")
@@ -1170,7 +1174,7 @@
 							)
 
 	charge = TRUE
-	charge_cost = 0
+	charge_cost = 2
 	charge_effect = "Dump all charge into a distant strike. Performs an additional attack for every 2 charge spent."
 	ability_type = ABILITY_UNIQUE
 	successfull_activation = "You will now cleave your target through a rift!"
@@ -1193,14 +1197,15 @@
 	var/mob/living/carbon/human/H = user
 	var/justice_mod = 1 + (get_modified_attribute_level(H, JUSTICE_ATTRIBUTE)/100)
 	var/hit_damage = ((force * justice_mod)/2)
-	for(charge_amount, charge_amount >= 0, charge_amount -= 2)
+	var/attack_count = floor(charge_amount/2)
+	charge_amount = 0
+	for(var/i = 1 to attack_count)
 		var/turf/T = get_turf(target)
 		playsound(src, 'sound/abnormalities/wayward_passenger/attack2.ogg', 50, TRUE)
 		new /obj/effect/temp_visual/dimshredder_in(get_turf(src))
 		new /obj/effect/temp_visual/dimshredder_out(T)
 		user.HurtInTurf(T, list(), hit_damage, RED_DAMAGE, check_faction = TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 		sleep(0.1 SECONDS)
-	charge_amount = 0
 
 /obj/item/ego_weapon/marionette
 	name = "marionette"
@@ -2128,6 +2133,7 @@
 	Leap(user, dir_to_target, leap_range)
 	playsound(src, 'sound/abnormalities/alleywaywatchdog/telepole_2.ogg', 100, 1)
 	currently_charging = FALSE
+	charge_amount -= charge_cost
 
 /obj/item/ego_weapon/telepole/proc/Leap(mob/living/user, dir = SOUTH, leap_range)//doesn't work
 	user.forceMove(get_step(get_turf(user), dir))

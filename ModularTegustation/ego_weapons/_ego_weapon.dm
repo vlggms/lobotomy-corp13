@@ -36,10 +36,6 @@
 		return FALSE
 	. = ..()
 
-	if(charge && attack_charge_gain)
-		HandleCharge(1, target)
-		if(user.a_intent != INTENT_HARM) // Spear/whip/lance thrust visuals
-			get_thrust_turfs(target, user)
 	if(stuntime)
 		if((reach >= 2 && !user.Adjacent(target)) ||  reach < 2) // Reach weapon stuff
 			user.Immobilize(stuntime)

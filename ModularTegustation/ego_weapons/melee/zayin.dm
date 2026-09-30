@@ -410,7 +410,7 @@
 	var/glimpse_cooldown = 0
 	var/glimpse_cooldown_delay = 3 SECONDS
 
-/obj/item/ego_weapon/shield/dead_dream/attack_self(mob/user)
+/obj/item/ego_weapon/shield/dead_dream/EnableBlock(mob/living/carbon/human/user)
 	. = ..()
 	if(glimpse_cooldown < world.time)
 		Glimpse()

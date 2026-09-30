@@ -90,6 +90,7 @@
 	successfull_activation = "You scan your surroundings."
 
 /obj/item/ego_weapon/security_ego/ChargeAttack(mob/living/target, mob/living/user)
+	charge_amount -= charge_cost
 	playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 	Scan(user)
 
