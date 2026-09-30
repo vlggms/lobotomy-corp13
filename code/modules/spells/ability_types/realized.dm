@@ -61,6 +61,49 @@
 	action_icon_state = "gasharpoon"
 	target_type = /obj/item/ego_weapon/shield/gasharpoon
 
+
+/* E.G.O realization*/
+/obj/effect/proc_holder/ability/ego_realization
+	name = "E.G.O realization"
+	desc = "Empower an E.G.O into a weapon comptaible with your suit. Can only be used once."
+	action_icon = 'icons/obj/ego_weapons.dmi'
+	action_icon_state = ""
+	base_icon_state = "template"
+	var/target_type = /obj/item/ego_weapon/mimicry
+	var/weapon_type = /obj/item/ego_weapon/mimicry
+
+/obj/effect/proc_holder/ability/ego_realization/Perform(atom/target, user)
+	..()
+	target = FindItems(user)//take the return value of the FindItems() proc here
+	if(!target)
+		to_chat(user, span_notice("There are no compatible E.G.O weapons nearby."))
+		return
+	if(istype(target, weapon_type))
+		new target_type(get_turf(target))
+		qdel(target)
+		DeleteAbility(user)//Deletes the ability and removes it from the ego suit
+		return
+	to_chat(user, span_notice("Target isn't the right weapon."))
+
+/obj/effect/proc_holder/ability/ego_realization/proc/FindItems(user)
+	for(var/obj/item/ego_weapon/i in view(2, user))
+		if(istype(i, weapon_type))
+			return i
+
+/obj/effect/proc_holder/ability/ego_realization/proc/DeleteAbility(mob/living/carbon/human/user)
+	var/obj/item/clothing/suit/armor/ego_gear/realization/mysuit = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(!istype(mysuit))
+		return
+	mysuit.realized_ability = null//sets it to a null value
+	qdel(src)
+
+/obj/effect/proc_holder/ability/ego_realization/lovejustice
+	desc = "Empower an ''In the Name of Love and Hate'' into a weapon comptaible with your suit. Can only be used once."
+	base_icon_state = "lovejustice"
+	action_icon_state = "lovejustice"
+	weapon_type = /obj/item/ego_weapon/ranged/hatred
+	target_type = /obj/item/ego_weapon/ranged/lovejustice
+
 /* Fragment of the Universe - One with the Universe */
 /obj/effect/proc_holder/ability/universe_song
 	name = "Song of the Universe"

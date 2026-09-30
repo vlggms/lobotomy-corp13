@@ -88,6 +88,19 @@
 	combo += 1
 	force = initial(force)
 
+/obj/item/ego_weapon/despair/melee_attack_chain(mob/user, atom/target, params)
+	if (!istype(user,/mob/living/carbon/human))
+		return
+	var/mob/living/carbon/human/myman = user
+	var/obj/item/clothing/suit/armor/ego_gear/realization/quenchedblood/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if (istype(Z))
+		force = 14
+		damtype = PALE_DAMAGE
+	else
+		force = 10
+		damtype = WHITE_DAMAGE
+	..()
+
 /obj/item/ego_weapon/despair/attackby(obj/item/I, mob/living/user, params)
 	..()
 	if(!istype(I, /obj/item/nihil/spade))
@@ -1049,7 +1062,7 @@
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	force = 32
+	force = 24
 	attack_speed = 1.2
 	special = "This weapon possesses a devastating Red AND Black damage AoE. Be careful!"
 	damtype = RED_DAMAGE
@@ -1077,18 +1090,16 @@
 	attacks++
 	attacks %= 3
 	switch(attacks)
-		if(0)
-			hitsound = 'sound/abnormalities/wrath_servant/big_smash1.ogg'
 		if(1)
-			hitsound = 'sound/abnormalities/wrath_servant/big_smash2.ogg'
+			hitsound = 'sound/abnormalities/wrath_servant/big_smash1.ogg'
 		if(2)
+			hitsound = 'sound/abnormalities/wrath_servant/big_smash2.ogg'
+		if(0)
 			hitsound = 'sound/abnormalities/wrath_servant/big_smash3.ogg'
 	var/damage = aoe_damage * get_attack_multiplier(user)
 	damage *= force_multiplier
 	if(attacks == 0)
 		damage *= 3
-	if(user.sanity_lost)
-		damage *= 1.2
 	for(var/turf/open/T in RANGE_TURFS(aoe_range, target_turf))
 		var/obj/effect/temp_visual/small_smoke/halfsecond/smonk = new(T)
 		smonk.color = COLOR_GREEN
@@ -1097,11 +1108,6 @@
 		user.HurtInTurf(T, list(), damage, aoe_damage_type, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 		if(prob(5))
 			new /obj/effect/gibspawner/generic/silent/wrath_acid(T) // The non-damaging one
-	var/mob/living/carbon/human/myman = user
-	var/obj/item/ego_weapon/blind_rage/Y = myman.get_inactive_held_item()
-	var/obj/item/clothing/suit/armor/ego_gear/realization/woundedcourage/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
-	if(istype(Y) && Y != src && istype(Z) && !QDELETED(M)) //dual wielding and wearing Wounded Courage? if so...
-		Y.melee_attack_chain(user, M)
 
 /obj/item/ego_weapon/blind_rage/attackby(obj/item/I, mob/living/user, params)
 	..()

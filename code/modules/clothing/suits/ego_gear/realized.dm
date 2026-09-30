@@ -11,14 +11,19 @@
 							)
 	/// Type of realized ability, if any
 	var/obj/effect/proc_holder/ability/realized_ability = null
+	/// Type of ego assimilation/realization ability, if any
+	var/obj/effect/proc_holder/ability/ego_ability = null
 
 /obj/item/clothing/suit/armor/ego_gear/realization/Initialize()
 	. = ..()
-	if(isnull(realized_ability))
-		return
-	var/obj/effect/proc_holder/ability/AS = new realized_ability
-	var/datum/action/spell_action/ability/item/A = AS.action
-	A.SetItem(src)
+	if(realized_ability)
+		var/obj/effect/proc_holder/ability/AS = new realized_ability
+		var/datum/action/spell_action/ability/item/A = AS.action
+		A.SetItem(src)
+	if(ego_ability)
+		var/obj/effect/proc_holder/ability/AS = new ego_ability
+		var/datum/action/spell_action/ability/item/A = AS.action
+		A.SetItem(src)
 
 /*Armor totals:
 Ability 	240
@@ -313,13 +318,14 @@ No Ability	260
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 40, BLACK_DAMAGE = 80, PALE_DAMAGE = 60)		//Healing
 	flags_inv = HIDEGLOVES
 	realized_ability = /obj/effect/proc_holder/ability/aimed/arcana_slave
+	ego_ability = /obj/effect/proc_holder/ability/ego_realization/lovejustice
 
 /obj/item/clothing/suit/armor/ego_gear/realization/woundedcourage
 	name = "wounded courage"
 	desc = "'Tis better to have loved and lost than never to have loved at all."
 	special = "The wearer can dual wield 2 Blind Rages."
 	icon_state = "woundedcourage"
-	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 20, BLACK_DAMAGE = 80, PALE_DAMAGE = 60)//vile stat spread		//Melee
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 40, BLACK_DAMAGE = 70, PALE_DAMAGE = 60)		//Melee
 	flags_inv = HIDEJUMPSUIT | HIDEGLOVES | HIDESHOES
 	realized_ability = /obj/effect/proc_holder/ability/justice_and_balance
 	hat = /obj/item/clothing/head/ego_hat/woundedcourage_hat

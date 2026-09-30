@@ -153,10 +153,11 @@
 /obj/effect/proc_holder/ability/aimed/arcana_slave
 	name = "Arcana Slave"
 	desc = "An ability that allows you to fire off a large laser after channelling for a while. \
+		The laser will heal you and your allies hit by it while damaging a foe. \
 		Alt-Click to toggle speech. Crtl-Click to set your own speech."
 	action_icon_state = "arcana0"
 	base_icon_state = "arcana"
-	cooldown_time = 1 MINUTES
+	cooldown_time = 75 SECONDS
 	base_action = /datum/action/spell_action/ability/item/ego_arcana_slave
 
 	var/list/spawned_effects = list()
@@ -185,6 +186,7 @@
 /obj/effect/proc_holder/ability/aimed/arcana_slave/proc/Cast(turf/target, mob/user)
 	if(!ishuman(user))
 		return
+	ADD_TRAIT(user, TRAIT_IMMOBILIZED, type)
 	var/mob/living/carbon/human/H = user
 	var/turf/my_turf = get_turf(H)
 	H.face_atom(target)
@@ -226,58 +228,66 @@
 	beamloop.start(user)
 	beamloop.max_loops = 0
 	var/beam_stage = 1
-	var/beam_damage = 8
+	var/beam_damage = 10
 	var/justice = get_attack_multiplier(H)
 	beam_damage *= justice
 	if(speak)
 		addtimer(CALLBACK(H, TYPE_PROC_REF(/atom/movable, say), "ARCANA SLAVE!"))
 	for(var/o = 1 to 50) // Half duration but gets Justice Mod
 		var/list/already_hit = list()
-		if(accumulated_beam_damage >= 225 && beam_stage < 2)
+		if(accumulated_beam_damage >= 125 && beam_stage < 2)
 			beam_stage = 2
 			beam_damage *= 1.5
 			var/matrix/M = matrix()
 			M.Scale(4, 1)
 			current_beam.visuals.transform = M
 			current_beam.visuals.color = COLOR_YELLOW
+		var/heal_amount = 0
+		var/list/guys = list()
 		for(var/turf/TF in hit_line)
 			for(var/mob/living/L in range(beam_stage-1, TF))
 				if(L.status_flags & GODMODE)
 					continue
 				if(L == user) //stop hitting yourself
 					continue
-				if(L in already_hit)
+				if(L in already_hit || L in guys)
 					continue
 				if(L.stat == DEAD)
 					continue
-				already_hit += L
 				if(H.faction_check_mob(L))
-					if(L.stat < DEAD) // Small bit of healing to all our living allies.
-						L.adjustBruteLoss(-1*justice)
-						if(L.stat > CONSCIOUS) // But more effective on softcrit/hardcrit allies.
-							L.adjustBruteLoss(-1*justice)
-					if(ishuman(L))
-						var/mob/living/carbon/human/LH = L
-						if(LH.sanity_lost)
-							LH.adjustSanityLoss(-6*justice) // Pretty fast resaning, but this only applies to insanes
+					guys += L
 					continue
-				L.deal_damage(beam_damage, BLACK_DAMAGE, user, attack_type = (ATTACK_TYPE_RANGED | ATTACK_TYPE_SPECIAL))
-				accumulated_beam_damage += beam_damage
-		if(!Channel(H, 8))
+				already_hit += L
+				var/adjusted_beam_damage = beam_damage
+				if(L.has_status_effect(/datum/status_effect/display/villan_mark))
+					adjusted_beam_damage *= 1.3
+				var/damage_done = L.deal_damage(adjusted_beam_damage, BLACK_DAMAGE, user, attack_type = (ATTACK_TYPE_RANGED | ATTACK_TYPE_SPECIAL))
+				accumulated_beam_damage += damage_done
+				heal_amount += damage_done/4
+		if(heal_amount > 0)
+			for(var/mob/living/L in guys)
+				L.adjustBruteLoss(-1*heal_amount)
+				if(ishuman(L))
+					var/mob/living/carbon/human/LH = L
+					LH.adjustSanityLoss(-1*heal_amount)
+			H.adjustBruteLoss(-0.5*heal_amount)
+			H.adjustSanityLoss(-0.5*heal_amount)
+		if(!Channel(H, 4, FALSE))
 			break
 	CleanUp(user)
 
-/obj/effect/proc_holder/ability/aimed/arcana_slave/proc/Channel(mob/user, duration = 0)
+/obj/effect/proc_holder/ability/aimed/arcana_slave/proc/Channel(mob/living/user, duration = 0, popup = TRUE)
 	if(!duration)
 		return FALSE
 	if(!user)
 		return FALSE
-	if(!do_after(user, duration))
+	if(!do_after(user, duration, progress = popup))
 		to_chat(user, "<span class='notice'>You stop channelling the spell!</span>")
 		return FALSE
 	return TRUE
 
-/obj/effect/proc_holder/ability/aimed/arcana_slave/proc/CleanUp(mob/user)
+/obj/effect/proc_holder/ability/aimed/arcana_slave/proc/CleanUp(mob/living/user)
+	REMOVE_TRAIT(user, TRAIT_IMMOBILIZED, type)
 	QDEL_NULL(current_beam)
 	for(var/obj/effect/FX in spawned_effects)
 		if(istype(FX, /obj/effect/qoh_sygil))
@@ -298,6 +308,14 @@
 	button.name = name
 	button.actiontooltipstyle = buttontooltipstyle
 	button.desc = desc
+
+/datum/action/spell_action/ability/item/ego_arcana_slave/proc/AdjustCooldown(amount)
+	if(target && istype(target, /obj/effect/proc_holder/ability/aimed/arcana_slave))
+		to_chat(world, "Works2")
+		var/obj/effect/proc_holder/ability/aimed/arcana_slave/AS = target
+		AS.cooldown += amount
+		AS.update_icon()
+	UpdateButtonIcon()
 
 /atom/movable/screen/movable/action_button/ego_arcana_slave
 
