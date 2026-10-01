@@ -515,7 +515,7 @@
 	attack_verb_simple = list("(CENSORED)")
 	hitsound = 'sound/weapons/ego/censored1.ogg'
 	reductions = list(60, 60, 70, 50) // 240
-	projectile_block_duration = 2 SECONDS
+	projectile_block_duration = 0.7 SECONDS
 	block_duration = 3 SECONDS
 	block_cooldown = 2.5 SECONDS
 	block_sound = 'sound/weapons/ego/censored1.ogg'

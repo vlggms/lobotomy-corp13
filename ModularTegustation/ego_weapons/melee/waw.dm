@@ -756,7 +756,7 @@
 	attack_verb_simple = list("bash", "whap", "beat", "prod", "poke")
 	hitsound = 'sound/weapons/fixer/generic/spear1.ogg'
 	reductions = list(40, 30, 50, 30) // 150
-	projectile_block_duration = 1 SECONDS
+	projectile_block_duration = 0.5 SECONDS
 	block_duration = 3 SECONDS // Exempt from normal reduction due to block restriction.
 	block_cooldown = 3 SECONDS
 	block_sound = 'sound/weapons/ego/clash1.ogg'

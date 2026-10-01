@@ -64,6 +64,8 @@
 	..()
 	if (!istype(user,/mob/living/carbon/human))
 		return
+	if(!projectile_block_duration)
+		return
 	attacking = TRUE
 	if(QDELING(src))
 		DropStance()
@@ -173,8 +175,10 @@
 /obj/item/ego_weapon/shield/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(attack_type == PROJECTILE_ATTACK && attacking)
 		final_block_chance = 100
+		SEND_SIGNAL(src, COMSIG_ITEM_HIT_REACT, args)
+		owner.HealingEffect("no_dam")
 		owner.visible_message(span_nicegreen("[owner.real_name] deflects the projectile!"), span_userdanger("[projectile_block_message]"))
-		return ..()
+		return 1
 	return ..()
 
 /obj/item/ego_weapon/shield/Destroy()
@@ -198,5 +202,3 @@
 		for(var/dam_type in resistances_list)
 			var/armor_value = 1 - round(resistances_list[dam_type], 10) / 100
 			. += "[dam_type]: [armor_value]"
-
-

@@ -697,14 +697,14 @@
 	desc = "Together, we are in rot."
 	special = "This weapon restores health on a successful parry."
 	icon_state = "legerdemain"
-	force = 26
+	force = 27
 	attack_speed = 1.8
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("bashes", "hammers", "smacks")
 	attack_verb_simple = list("bash", "hammer", "smack")
 	hitsound = 'sound/abnormalities/goldenapple/Legerdemain.ogg'
 	reductions = list(30, 20, 30, 0) // 80
-	projectile_block_duration = 1 SECONDS
+	projectile_block_duration = 1.8 SECONDS
 	block_duration = 1 SECONDS
 	block_cooldown = 3 SECONDS
 	block_sound = 'sound/abnormalities/goldenapple/Gold_Attack2.ogg'
@@ -716,25 +716,15 @@
 							PRUDENCE_ATTRIBUTE = 40
 							)
 
-/obj/item/ego_weapon/shield/legerdemain/EnableBlock(mob/living/carbon/human/user)
-	if(..())
-		RegisterSignal(user, COMSIG_ATOM_ATTACK_HAND, PROC_REF(NoParry), override = TRUE)//creates runtimes without overrides, double check if something's fucked
-		RegisterSignal(user, COMSIG_PARENT_ATTACKBY, PROC_REF(NoParry), override = TRUE)//728 and 729 must be able to unregister the signal of 730
-		return TRUE
-	else
-		return FALSE
-
-/obj/item/ego_weapon/shield/legerdemain/proc/NoParry(mob/living/carbon/human/user, obj/item/L)//Disables AnnounceBlock when attacked by an item or a human
-	SIGNAL_HANDLER
-	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMGE)//y'all can't behave
-
-/obj/item/ego_weapon/shield/legerdemain/AnnounceBlock(mob/living/carbon/human/source, damage, damagetype, def_zone)
+/obj/item/ego_weapon/shield/legerdemain/AnnounceBlock(mob/living/carbon/human/source, damage, damagetype, def_zone, attacker, damage_flags, attack_type)
+	if(damage <= 0 || !isliving(attacker) || source == attacker || (attack_type & (ATTACK_TYPE_ENVIRONMENT | ATTACK_TYPE_STATUS)))
+		return ..()
 	if (damagetype == PALE_DAMAGE)
 		to_chat(source,span_nicegreen("Your [src] withers at the touch of death!"))
 		return ..()
 	to_chat(source,span_nicegreen("You are healed by [src]."))
-	source.adjustBruteLoss(-10)
-	source.adjustSanityLoss(-5)
+	source.adjustBruteLoss(-6)
+	source.adjustSanityLoss(-3)
 	..()
 
 /obj/item/ego_weapon/get_strong
