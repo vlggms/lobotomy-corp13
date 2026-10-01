@@ -85,7 +85,7 @@
 	if(!CanUseEgo(shield_user))
 		return FALSE
 	if(shield_user.physiology.armor.bomb) //"We have NOTHING that should be modifying this, so I'm using it as an existant parry checker." - Ancientcoders
-		to_chat(shield_user,span_warning("You're already shielding!"))
+		to_chat(shield_user,span_warning("You're already blocking with a weapon!"))
 		return FALSE
 	if(block)
 		to_chat(shield_user,span_warning("You cannot use this again so soon!"))
