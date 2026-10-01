@@ -96,21 +96,21 @@
 /obj/item/ego_weapon/shield/proc/EnableBlock(mob/living/carbon/human/user)
 	block = TRUE
 	block_success = FALSE
-	shield_user.physiology.armor = shield_user.physiology.armor.modifyRating(bomb = 1) //bomb defense must be over 0
-	shield_user.physiology.red_mod *= max(0.001, (1 - ((reductions[1]) / 100)))
-	shield_user.physiology.white_mod *= max(0.001, (1 - ((reductions[2]) / 100)))
-	shield_user.physiology.black_mod *= max(0.001, (1 - ((reductions[3]) / 100)))
-	shield_user.physiology.pale_mod *= max(0.001, (1 - ((reductions[4]) / 100)))
+	user.physiology.armor = user.physiology.armor.modifyRating(bomb = 1) //bomb defense must be over 0
+	user.physiology.red_mod *= max(0.001, (1 - ((reductions[1]) / 100)))
+	user.physiology.white_mod *= max(0.001, (1 - ((reductions[2]) / 100)))
+	user.physiology.black_mod *= max(0.001, (1 - ((reductions[3]) / 100)))
+	user.physiology.pale_mod *= max(0.001, (1 - ((reductions[4]) / 100)))
 	RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(AnnounceBlock))
 	for(var/mob/living/simple_animal/hostile/H in hearers(3, user))
 		if(H.stat != CONSCIOUS || H.AIStatus == AI_OFF || H.client)
 			continue
 		H.RegisterAggroValue(user, aggro_on_block, AGGRO_DAMAGE)
 	if(QDELING(src))
-		DisableBlock(shield_user)
+		DisableBlock(user)
 		return FALSE
 	else
-		parry_timer = addtimer(CALLBACK(src, PROC_REF(DisableBlock), shield_user), block_duration, TIMER_STOPPABLE)
+		parry_timer = addtimer(CALLBACK(src, PROC_REF(DisableBlock), user), block_duration, TIMER_STOPPABLE)
 	to_chat(user, span_userdanger("[block_message]"))
 	return TRUE
 

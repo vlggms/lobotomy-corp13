@@ -191,6 +191,7 @@
 		reductions = list(40, 20, 20, 0)
 		block_duration = 1 SECONDS
 		projectile_block_duration = 0.5 SECONDS
+	calculate_resistances_list()
 	. = ..()
 
 /obj/item/ego_weapon/shield/daredevil/DisableBlock(mob/living/carbon/human/user)
@@ -715,14 +716,13 @@
 							PRUDENCE_ATTRIBUTE = 40
 							)
 
-/obj/item/ego_weapon/shield/legerdemain/attack_self(mob/user)//FIXME: Find a better way to use this override!
-	if(block == 0) //Extra check because shields returns nothing on 1
-		if(..())
-			RegisterSignal(user, COMSIG_ATOM_ATTACK_HAND, PROC_REF(NoParry), override = TRUE)//creates runtimes without overrides, double check if something's fucked
-			RegisterSignal(user, COMSIG_PARENT_ATTACKBY, PROC_REF(NoParry), override = TRUE)//728 and 729 must be able to unregister the signal of 730
-			return TRUE
-		else
-			return FALSE
+/obj/item/ego_weapon/shield/legerdemain/EnableBlock(mob/living/carbon/human/user)
+	if(..())
+		RegisterSignal(user, COMSIG_ATOM_ATTACK_HAND, PROC_REF(NoParry), override = TRUE)//creates runtimes without overrides, double check if something's fucked
+		RegisterSignal(user, COMSIG_PARENT_ATTACKBY, PROC_REF(NoParry), override = TRUE)//728 and 729 must be able to unregister the signal of 730
+		return TRUE
+	else
+		return FALSE
 
 /obj/item/ego_weapon/shield/legerdemain/proc/NoParry(mob/living/carbon/human/user, obj/item/L)//Disables AnnounceBlock when attacked by an item or a human
 	SIGNAL_HANDLER
