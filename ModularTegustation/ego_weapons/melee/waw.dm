@@ -766,17 +766,12 @@
 							PRUDENCE_ATTRIBUTE = 80
 							)
 	var/close_cooldown
-	var/close_cooldown_time = 6 SECONDS
 	var/reflect_cooldown
 	var/reflect_cooldown_time = 1 //need to prevent simultaneous hits; bullets overlapping is very bad.
 
 /obj/item/ego_weapon/shield/swan/EnableBlock(mob/living/carbon/human/user)
-	if(close_cooldown > world.time) //prevents shield usage with no DPS loss
-		to_chat(user,span_warning("You cannot use this again so soon!"))
-		return FALSE
 	if(do_after(user, 4, src))
 		icon_state = "swan"
-		close_cooldown = world.time + close_cooldown_time
 		. = ..()
 	user.update_inv_hands()
 

@@ -165,7 +165,9 @@
 	if (isnull(myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)))
 		force = 10
 		attack_speed = 0.33
+		projectile_block_duration = 0.33 SECONDS
 	else
+		projectile_block_duration = 0.5 SECONDS
 		var/obj/item/clothing/suit/armor/ego_gear/realization/fear/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 		if (istype(Z))
 			force = 20
@@ -181,39 +183,21 @@
 	realized_parry = istype(Z)
 	if (naked_parry)
 		reductions = list(95, 95, 95, 100) // Must be wearing 0 armor
+		hit_message = "is untouchable!"
 		block_duration = 1 SECONDS
-		projectile_block_duration = 0.33 SECONDS
+		debuff_duration = 2 SECONDS
 	else if (realized_parry)
 		reductions = list(60, 50, 50, 80) //240
+		hit_message = "is untouchable!"
 		block_duration = 1.5 SECONDS
-		projectile_block_duration = 0.5 SECONDS
-	else
-		reductions = list(40, 20, 20, 0)
-		block_duration = 1 SECONDS
-		projectile_block_duration = 0.5 SECONDS
-	calculate_resistances_list()
-	. = ..()
-
-/obj/item/ego_weapon/shield/daredevil/DisableBlock(mob/living/carbon/human/user)
-	if (naked_parry)
-		block_cooldown = 2 SECONDS
-	else
-		block_cooldown = 3 SECONDS
-	..()
-
-/obj/item/ego_weapon/shield/daredevil/BlockCooldown(mob/living/carbon/human/user)
-	if (realized_parry)
-		force = 20
-	else
-		force = 8
-	..()
-
-/obj/item/ego_weapon/shield/daredevil/BlockFail(mob/living/carbon/human/user)
-	if (naked_parry || realized_parry)
 		debuff_duration = 2 SECONDS
 	else
+		reductions = list(40, 20, 20, 0)
+		hit_message = initial(hit_message)
+		block_duration = 1 SECONDS
 		debuff_duration = 3 SECONDS
-	..()
+	calculate_resistances_list()
+	. = ..()
 
 /obj/item/ego_weapon/shield/daredevil/AnnounceBlock(mob/living/carbon/human/source, damage, damagetype, def_zone)
 	if(damagetype == PALE_DAMAGE && can_hype)
@@ -223,12 +207,7 @@
 			to_chat(source, span_warning("To attempt parry the aspect of death is to hide from inevitability. To hide is to fear. Show me that you do not fear death."))
 		can_hype = FALSE // It's over.
 		addtimer(CALLBACK(src, PROC_REF(hype_returns)), 120) // Less intrusive than the big Colossus font, still on cooldown due to being quite the long message.
-	else if(naked_parry)
-		hit_message = "is untouchable!"
-		force = 12 // bonus damage for like, 2 seconds.
-	else if(realized_parry)
-		force = 25 // bonus damage for like, 2 seconds.
-		hit_message = "is untouchable!"
+	else if(realized_parry).
 		..()
 		if(can_hype)
 			to_chat(source, span_colossus("A GOD DOES NOT FEAR DEATH!")) // The font is LARGE, that's why it is on a cooldown.

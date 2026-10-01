@@ -81,18 +81,19 @@
 	if (!ishuman(user))
 		return FALSE
 
-	if (block == 0)
-		var/mob/living/carbon/human/shield_user = user
-		if(!CanUseEgo(shield_user))
-			return FALSE
-		if(shield_user.physiology.armor.bomb) //"We have NOTHING that should be modifying this, so I'm using it as an existant parry checker." - Ancientcoders
-			to_chat(shield_user,span_warning("You're still off-balance!"))
-			return FALSE
-		for(var/obj/machinery/computer/abnormality/AC in range(1, shield_user))
-			if(AC.datum_reference.working) // No blocking during work.
-				to_chat(shield_user,span_notice("You cannot defend yourself from responsibility!"))
-				return FALSE
-		return EnableBlock(user)
+	var/mob/living/carbon/human/shield_user = user
+	if(!CanUseEgo(shield_user))
+		return FALSE
+	if(shield_user.physiology.armor.bomb) //"We have NOTHING that should be modifying this, so I'm using it as an existant parry checker." - Ancientcoders
+		to_chat(shield_user,span_warning("You're already shielding!"))
+		return FALSE
+	if(block)
+		to_chat(shield_user,span_warning("You cannot use this again so soon!"))
+		return FALSE
+	if(shield_user.is_working) // No blocking during work.
+		to_chat(shield_user,span_notice("You cannot defend yourself from responsibility!"))
+		return FALSE
+	return EnableBlock(shield_user)
 
 //Starts the block
 /obj/item/ego_weapon/shield/proc/EnableBlock(mob/living/carbon/human/user)
@@ -130,7 +131,7 @@
 		BlockCooldown(user)
 	else
 		parry_timer = addtimer(CALLBACK(src, PROC_REF(BlockCooldown), user), block_cooldown, TIMER_STOPPABLE)
-	if (!block_success)
+	if (!block_success && debuff_duration && !user.is_working) //I don't want to be too cruel if they try to shield before work
 		BlockFail(user)
 
 //Allows the user to block again when called
@@ -138,6 +139,7 @@
 	block = FALSE
 	if(user.is_holding(src))
 		to_chat(user,span_nicegreen("[block_cooldown_message]"))
+	deltimer(parry_timer)
 
 /obj/item/ego_weapon/shield/proc/BlockFail(mob/living/carbon/human/user)
 	to_chat(user,span_warning("Your stance is widened."))
@@ -163,7 +165,7 @@
 	if(!ishuman(source))
 		return FALSE
 	var/mob/living/carbon/human/H = source
-	if(!H.is_holding(src))
+	if(!H.is_holding(src) || H.is_working)
 		DisableBlock(H)
 		return
 	block_success = TRUE
