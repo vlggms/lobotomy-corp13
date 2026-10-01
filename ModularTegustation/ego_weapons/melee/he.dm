@@ -207,7 +207,7 @@
 			to_chat(source, span_warning("To attempt parry the aspect of death is to hide from inevitability. To hide is to fear. Show me that you do not fear death."))
 		can_hype = FALSE // It's over.
 		addtimer(CALLBACK(src, PROC_REF(hype_returns)), 120) // Less intrusive than the big Colossus font, still on cooldown due to being quite the long message.
-	else if(realized_parry).
+	else if(realized_parry)
 		..()
 		if(can_hype)
 			to_chat(source, span_colossus("A GOD DOES NOT FEAR DEATH!")) // The font is LARGE, that's why it is on a cooldown.
