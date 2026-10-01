@@ -1163,7 +1163,8 @@
 	name = "dimension shredder MK II"
 	desc = "They should've died after bleeding so much. You usually don't quarantine a corpse...."
 	icon_state = "warp2"
-	force = 16
+	force = 20
+	attack_speed = 1.3
 	reach = 2
 	stuntime = 5	//Longer reach, gives you a short stun.
 	attack_verb_continuous = list("stabs", "slashes", "attacks")
@@ -1195,8 +1196,8 @@
 	if(!isliving(target))
 		return
 	var/mob/living/carbon/human/H = user
-	var/justice_mod = 1 + (get_modified_attribute_level(H, JUSTICE_ATTRIBUTE)/100)
-	var/hit_damage = ((force * justice_mod)/2)
+	var/justice_mod = get_attack_multiplier(user)
+	var/hit_damage = ((force * justice_mod * force_multiplier)/2)
 	var/attack_count = floor(charge_amount/2)
 	charge_amount = 0
 	for(var/i = 1 to attack_count)
