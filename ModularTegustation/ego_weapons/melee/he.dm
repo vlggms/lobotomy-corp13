@@ -1196,7 +1196,7 @@
 	if(!isliving(target))
 		return
 	var/mob/living/carbon/human/H = user
-	var/justice_mod = get_attack_multiplier(user)
+	var/justice_mod = get_attack_multiplier(H)
 	var/hit_damage = ((force * justice_mod * force_multiplier)/2)
 	var/attack_count = floor(charge_amount/2)
 	charge_amount = 0
