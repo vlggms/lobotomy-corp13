@@ -884,12 +884,6 @@
 	hitsound = 'sound/weapons/fixer/generic/fist2.ogg'
 	icon_state = "greed"
 	force = 35
-	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 120,
-							PRUDENCE_ATTRIBUTE = 80,
-							TEMPERANCE_ATTRIBUTE = 80,
-							JUSTICE_ATTRIBUTE = 80
-							)
 	var/charge_damage = 120
 	var/charge_wind_up = 2 SECONDS
 	var/can_charge = TRUE
@@ -996,10 +990,9 @@
 	name = "meaningless despair"
 	desc = "When Justice turns its back once more, several dozen blades will rove without a purpose. \
 	The swords will eventually point at those she could not protect."
-	special = "This weapon has a combo system. \
-	While wearing the respective suit, the parry becomes stronger the more humans wearing the other armors there are and is able to redirect damage half the damage they take to the user."
+	special = "This weapon has a combo system."
 	icon_state = "despair_nihil"
-	force = 17
+	force = 20
 	attack_speed = 1
 	modified_attack_speed = 0.4
 	damtype = WHITE_DAMAGE
@@ -1007,9 +1000,9 @@
 	attack_verb_continuous = list("stabs", "attacks", "slashes")
 	attack_verb_simple = list("stab", "attack", "slash")
 	hitsound = 'sound/weapons/ego/rapier1.ogg'
-	reductions = list(50, 50, 50, 60) //210 - 300
+	reductions = list(90, 90, 90, 50)
 	projectile_block_duration = 1 SECONDS
-	block_duration = 1.5 SECONDS
+	block_duration = 1 SECONDS
 	block_cooldown = 3 SECONDS
 	block_message = "You attempt to parry the attack!"
 	hit_message = "parries the attack!"
@@ -1018,33 +1011,11 @@
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,
 							TEMPERANCE_ATTRIBUTE = 80,
-							JUSTICE_ATTRIBUTE = 120
+							JUSTICE_ATTRIBUTE = 100
 							)
 	var/combo = 0
 	var/combo_time
 	var/combo_wait = 10
-	var/mob/living/current_holder
-	var/list/protection_list = list()
-	var/list/current_beams = list()
-
-/obj/item/ego_weapon/shield/despair_nihil/equipped(mob/user, slot)
-	. = ..()
-	if(!user)
-		return
-	current_holder = user
-
-/obj/item/ego_weapon/shield/despair_nihil/dropped(mob/user)
-	. = ..()
-	current_holder = null
-
-/obj/item/ego_weapon/shield/despair_nihil/Initialize()
-	. = ..()
-	START_PROCESSING(SSobj, src)
-
-/obj/item/ego_weapon/shield/despair_nihil/Destroy(mob/user)
-	STOP_PROCESSING(SSobj, src)
-	CleanUpProtection(user)
-	return ..()
 
 //This is like an anime character attacking like 4 times with the 4th one as a finisher attack.
 /obj/item/ego_weapon/shield/despair_nihil/attack(mob/living/M, mob/living/user)
@@ -1065,112 +1036,7 @@
 	combo += 1
 	force = initial(force)
 
-/obj/item/ego_weapon/shield/despair_nihil/EnableBlock(mob/living/carbon/human/user)
-	block_duration = initial(block_duration)
-	block_cooldown = initial(block_cooldown)
-	reductions = initial(block_cooldown)
-	if(LAZYLEN(protection_list) || LAZYLEN(current_beams))
-		CleanUpProtection(user)
-	var/friend_count = 0
-	var/armor_boost = 50
-	for(var/mob/living/carbon/human/friend in oview(user, 10))
-		if(friend == user)
-			continue
-		//if(friend.ckey && friend.stat != DEAD && friend != user)
-		block_duration += 1 SECONDS
-		Protect(user, friend)
-		friend_count++
-		if(friend_count > 3)
-			continue
-		armor_boost += 10
-	reductions = list(armor_boost, armor_boost, armor_boost, 60)
-	if(friend_count > 0)
-		user.playsound_local(get_turf(user), 'sound/abnormalities/despairknight/gift.ogg', 50, 0)
-	calculate_resistances_list()
-	. = ..()
-
-/obj/item/ego_weapon/shield/despair_nihil/DisableBlock(mob/living/carbon/human/user)
-	. = ..()
-	CleanUpProtection(user)
-
-/obj/item/ego_weapon/shield/despair_nihil/proc/Protect(mob/living/carbon/human/user, mob/living/carbon/human/H)
-	if(QDELETED(user) || QDELETED(H))
-		return
-	H.playsound_local(get_turf(H), 'sound/abnormalities/despairknight/gift.ogg', 50, 0)
-	H.physiology.red_mod *= 0.5
-	H.physiology.white_mod *= 0.5
-	H.physiology.black_mod *= 0.5
-	H.physiology.pale_mod *= 0.5
-	RegisterSignal(H, COMSIG_MOB_APPLY_DAMGE, PROC_REF(SplitDamage))
-	RegisterSignal(H, COMSIG_LIVING_DEATH, PROC_REF(OnProtectedDeath))
-	RegisterSignal(H, COMSIG_PARENT_QDELETING, PROC_REF(OnProtectedDeath))
-	protection_list += H
-	var/datum/beam/new_beam = user.Beam(H, icon_state="medbeam", time=INFINITY, maxdistance=INFINITY, beam_type=/obj/effect/ebeam/medical)
-	var/newcolor = list(rgb(77,77,77), rgb(100,100,100), rgb(28,28,28), rgb(0,0,0))
-	new_beam.visuals.add_atom_colour(newcolor, FIXED_COLOUR_PRIORITY)
-	current_beams += new_beam
-
-/obj/item/ego_weapon/shield/despair_nihil/proc/CleanUpProtection(mob/living/carbon/human/user)
-	for(var/datum/beam/B in current_beams)
-		current_beams -= B
-		qdel(B)
-	for(var/mob/living/carbon/human/H in protection_list)
-		if(QDELETED(H))
-			continue
-		RemoveFromList(H)
-	current_beams.Cut()
-	protection_list.Cut()
-
-/obj/item/ego_weapon/shield/despair_nihil/proc/RemoveFromList(mob/living/carbon/human/H)
-	if(!H)
-		return
-	protection_list -= H
-	H.physiology.red_mod /= 0.5
-	H.physiology.white_mod /= 0.5
-	H.physiology.black_mod /= 0.5
-	H.physiology.pale_mod /= 0.5
-	UnregisterSignal(H, COMSIG_MOB_APPLY_DAMGE, PROC_REF(SplitDamage))
-	UnregisterSignal(H, COMSIG_LIVING_DEATH, PROC_REF(OnProtectedDeath))
-	UnregisterSignal(H, COMSIG_PARENT_QDELETING, PROC_REF(OnProtectedDeath))
-
-/obj/item/ego_weapon/shield/despair_nihil/proc/OnProtectedDeath(mob/living/carbon/human/H)
-	if(!H)
-		return
-	if(!H in protection_list)
-		return
-
-	for(var/datum/beam/B in current_beams)
-		if(B.target == H)
-			current_beams -= B
-			qdel(B)
-	RemoveFromList(H)
-
-/obj/item/ego_weapon/shield/despair_nihil/proc/SplitDamage(mob/living/carbon/human/source, damage, damagetype, def_zone, mob/attacker, damage_flags, attack_type)
-	if(!current_holder)
-		return
-	if(damage <= 0)
-		return
-	if(!(damagetype in list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)))
-		return
-	var/damage_done = damage
-	switch(damagetype)
-		if(RED_DAMAGE)
-			damage_done *= source.physiology.red_mod
-		if(WHITE_DAMAGE)
-			damage_done *= source.physiology.white_mod
-		if(BLACK_DAMAGE)
-			damage_done *= source.physiology.black_mod
-		if(PALE_DAMAGE)
-			damage_done *= source.physiology.pale_mod
-	//Since COMSIG_MOB_APPLY_DAMGE doesn't carry over the block var, there will be some jank with Puss in Boot's finisher but ehh who cares
-	current_holder.deal_damage(damage_done, damagetype, attacker, damage_flags, attack_type, def_zone = def_zone)
-
-/datum/status_effect/despair_shield
-	id = "despair_shield"
-	duration = 3000 SECONDS
-	alert_type = null
-
-/obj/item/ego_weapon/nihil_nihil
+/obj/item/ego_weapon/blind_rage/nihil
 	name = "senseless wrath"
 	desc = "The Servant of Wrath valued justice and balance more than anyone, but she began sharing knowledge with the \
 	Hermit - an enemy of her realm, becoming friends with her in secret."
@@ -1179,12 +1045,17 @@
 	attack_speed = 1.2
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
-							PRUDENCE_ATTRIBUTE = 120,
-							TEMPERANCE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 100,
 							JUSTICE_ATTRIBUTE = 80
 							)
-	var/aoe_damage = 30
-	var/aoe_range = 3
+	aoe_damage = 30
+	aoe_range = 3
+
+/obj/item/ego_weapon/blind_rage/nihil/attackby(obj/item/I, mob/living/user, params)
+	if(istype(I, /obj/item/nihil))
+		return
+	..()
 
 //Tutorial
 /obj/item/ego_weapon/tutorial
@@ -1231,7 +1102,6 @@
 							)
 
 	charge = TRUE
-	ability_type = ABILITY_UNIQUE
 	charge_effect = "Fires a laser"
 	charge_cost = 4
 	charge_cap = 20
@@ -1254,13 +1124,10 @@
 		return
 
 	if(!proximity_flag && gun_cooldown <= world.time)
+		currently_charging = FALSE
 		var/turf/proj_turf = user.loc
 		if(!isturf(proj_turf))
 			return
-
-		currently_charging = FALSE
-		charge_amount -= charge_cost
-
 		icon_state = "home_glow"
 		update_icon_state()
 		if(icon_timer)

@@ -1,1505 +1,641 @@
-/* E.G.O assimilation */
-/obj/effect/proc_holder/ability/ego_assimilation
-	name = "E.G.O assimilation"
-	desc = "Convert an ALEPH E.G.O into a weapon comptaible with your suit. Can only be used once."
-	action_icon = 'icons/obj/ego_weapons.dmi'
-	action_icon_state = ""
-	base_icon_state = "template"
-	var/target_type = /obj/item/ego_weapon/mimicry
-	var/obj/structure/toolabnormality/wishwell/linked_structure
+/* All Around Helper - Grinder */
+/obj/effect/proc_holder/ability/aimed/helper_dash
+	name = "Blade dash"
+	desc = "An ability that allows its user to dash six tiles forward in any direction."
+	action_icon_state = "helper_dash0"
+	base_icon_state = "helper_dash"
+	cooldown_time = 10 SECONDS
 
-/obj/effect/proc_holder/ability/ego_assimilation/Perform(atom/target, user)
-	..()
-	target = FindItems(user)//take the return value of the FindItems() proc here
-	if(!target)
-		to_chat(user, span_notice("There are no E.G.O weapons nearby."))
-		return
-	if(!istype(target, /obj/item/ego_weapon))
-		to_chat(user, span_notice("That is not an E.G.O weapon."))
-		return
-	if(!linked_structure)//Refer to wishing well for a list of all ALEPH E.G.O
-		linked_structure = GLOB.wishwell
-		if(!linked_structure)
-			to_chat(user, span_notice("This ability is currently unavailable."))
-			return
-	if(target.type in linked_structure.alephitem)//"alephitem" is a list
-		new target_type(get_turf(target))
-		qdel(target)
-		DeleteAbility(user)//Deletes the ability and removes it from the ego suit
-		return
-	to_chat(user, span_notice("Target's risk level is too low."))
+	var/dash_damage = 150
+	var/dash_range = 6
+	var/dash_ignore_walls = FALSE
 
-/obj/effect/proc_holder/ability/ego_assimilation/proc/FindItems(user)
-	var/list/stufflist = list()
-	var/obj/item/ego_weapon/chosen_ego
-	for(var/obj/item/ego_weapon/i in view(2, user))
-		stufflist += i
-	chosen_ego = input(user, "Which E.G.O will you assimilate?") as null|anything in stufflist
-	if(!chosen_ego)
-		return
-	return chosen_ego
+/obj/effect/proc_holder/ability/aimed/helper_dash/Perform(target, mob/user)
+	var/turf/target_turf = get_turf(user)
+	var/list/line_turfs = list(target_turf)
+	var/list/mobs_to_hit = list()
+	var/stop_charge = FALSE
+	for(var/turf/T in getline(user, get_ranged_target_turf_direct(user, target, dash_range)))
+		if(!dash_ignore_walls && T.density)
+			break
+		if(!dash_ignore_walls)
+			for(var/obj/structure/window/W in T.contents)
+				stop_charge = TRUE
+				break
+			for(var/obj/machinery/door/MD in T.contents)
+				if(!MD.CanAStarPass(null))
+					stop_charge = TRUE
+					break
+				if(MD.density)
+					INVOKE_ASYNC(MD, TYPE_PROC_REF(/obj/machinery/door, open), 2)
+		if(stop_charge)
+			break
+		target_turf = T
+		line_turfs += T
+		for(var/mob/living/L in view(1, T))
+			mobs_to_hit |= L
+	user.SpinAnimation(2, 1)
+	user.forceMove(target_turf)
+	// "Movement" effect
+	for(var/i = 1 to line_turfs.len)
+		var/turf/T = line_turfs[i]
+		if(!istype(T))
+			continue
+		var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(T, user)
+		var/matrix/M = matrix(D.transform)
+		M.Turn(45 * i)
+		D.transform = M
+		D.alpha = min(150 + i*15, 255)
+		animate(D, alpha = 0, time = 2 + i*2)
+		playsound(D, "sound/abnormalities/helper/move0[pick(1,2,3)].ogg", rand(10, 30), 1, 3)
+	// Damage
+	for(var/mob/living/L in mobs_to_hit)
+		if(user.faction_check_mob(L))
+			continue
+		if(L.status_flags & GODMODE)
+			continue
+		visible_message("<span class='boldwarning'>[user] runs through [L]!</span>")
+		playsound(L, 'sound/abnormalities/helper/attack.ogg', 25, 1)
+		new /obj/effect/temp_visual/kinetic_blast(get_turf(L))
+		L.deal_damage(dash_damage, RED_DAMAGE, user, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
+		if(L.health <= 0)
+			L.gib()
+	return .. ()
 
-/obj/effect/proc_holder/ability/ego_assimilation/proc/DeleteAbility(mob/living/carbon/human/user)
-	var/obj/item/clothing/suit/armor/ego_gear/realization/mysuit = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
-	if(!istype(mysuit))
-		return
-	mysuit.realized_ability = null//sets it to a null value
-	qdel(src)
-
-/obj/effect/proc_holder/ability/ego_assimilation/farmwatch
-	base_icon_state = "farmwatch"
-	action_icon_state = "farmwatch"
-	target_type = /obj/item/ego_weapon/farmwatch
-
-/obj/effect/proc_holder/ability/ego_assimilation/spicebush
-	base_icon_state = "spicebush"
-	action_icon_state = "spicebush"
-	target_type = /obj/item/ego_weapon/spicebush
-
-/obj/effect/proc_holder/ability/ego_assimilation/gasharpoon
-	base_icon_state = "gasharpoon"
-	action_icon_state = "gasharpoon"
-	target_type = /obj/item/ego_weapon/shield/gasharpoon
-
-
-/* E.G.O realization*/
-/obj/effect/proc_holder/ability/ego_realization
-	name = "E.G.O realization"
-	desc = "Empower an E.G.O into a weapon comptaible with your suit. Can only be used once."
-	action_icon = 'icons/obj/ego_weapons.dmi'
-	action_icon_state = ""
-	base_icon_state = "template"
-	var/target_type = /obj/item/ego_weapon/mimicry
-	var/weapon_type = /obj/item/ego_weapon/mimicry
-
-/obj/effect/proc_holder/ability/ego_realization/Perform(atom/target, user)
-	..()
-	target = FindItems(user)//take the return value of the FindItems() proc here
-	if(!target)
-		to_chat(user, span_notice("There are no compatible E.G.O weapons nearby."))
-		return
-	if(istype(target, weapon_type))
-		new target_type(get_turf(target))
-		qdel(target)
-		DeleteAbility(user)//Deletes the ability and removes it from the ego suit
-		return
-	to_chat(user, span_notice("Target isn't the right weapon."))
-
-/obj/effect/proc_holder/ability/ego_realization/proc/FindItems(user)
-	for(var/obj/item/ego_weapon/i in view(2, user))
-		if(istype(i, weapon_type))
-			return i
-
-/obj/effect/proc_holder/ability/ego_realization/proc/DeleteAbility(mob/living/carbon/human/user)
-	var/obj/item/clothing/suit/armor/ego_gear/realization/mysuit = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
-	if(!istype(mysuit))
-		return
-	mysuit.realized_ability = null//sets it to a null value
-	qdel(src)
-
-/obj/effect/proc_holder/ability/ego_realization/lovejustice
-	desc = "Empower an ''In the Name of Love and Hate'' into a weapon comptaible with your suit. Can only be used once."
-	base_icon_state = "lovejustice"
-	action_icon_state = "lovejustice"
-	weapon_type = /obj/item/ego_weapon/ranged/hatred
-	target_type = /obj/item/ego_weapon/ranged/lovejustice
-
-/* Fragment of the Universe - One with the Universe */
-/obj/effect/proc_holder/ability/universe_song
-	name = "Song of the Universe"
-	desc = "An ability that allows its user to damage and slow down the enemies around them."
-	action_icon_state = "universe_song0"
-	base_icon_state = "universe_song"
+/* One Sin and Hundreds of Good Deeds - Confessional */
+/obj/effect/proc_holder/ability/aimed/cross_spawn
+	name = "Cross summon"
+	desc = "An ability that allows its user to summon a holy cross to damage the enemies and heal the mind of their allies."
+	action_icon_state = "cross_spawn0"
+	base_icon_state = "cross_spawn"
 	cooldown_time = 20 SECONDS
 
-	var/damage_amount = 25 // Amount of white damage dealt to enemies per "pulse".
-	var/damage_slowdown = 0.7 // Slowdown per pulse
-	var/damage_count = 5 // How many times the damage and slowdown is applied
+	var/damage_amount = 100 // Amount of white damage dealt to enemies in the epicenter. Allies heal that amount of sanity instead.
 	var/damage_range = 6
 
-/obj/effect/proc_holder/ability/universe_song/Perform(target, mob/user)
-	playsound(get_turf(user), 'sound/abnormalities/fragment/sing.ogg', 50, 0, 4)
-	Pulse(user)
-	for(var/i = 1 to damage_count - 1)
-		addtimer(CALLBACK(src, PROC_REF(Pulse), user), i*3)
+/obj/effect/proc_holder/ability/aimed/cross_spawn/Perform(target, mob/user)
+	if(get_dist(user, target) > 10)
+		return
+	var/turf/target_turf = get_turf(target)
+	new /obj/effect/temp_visual/cross/fall(target_turf)
+	addtimer(CALLBACK(src, PROC_REF(SplashEffect), target_turf, user), 5.5)
 	return ..()
 
-/obj/effect/proc_holder/ability/universe_song/proc/Pulse(mob/user)
-	new /obj/effect/temp_visual/fragment_song(get_turf(user))
-	for(var/mob/living/L in view(damage_range, user))
-		if(user.faction_check_mob(L, FALSE))
+/obj/effect/proc_holder/ability/aimed/cross_spawn/proc/SplashEffect(turf/T, mob/user)
+	visible_message("<span class='warning'>A giant cross falls down on the ground!</span>")
+	playsound(T, 'sound/effects/impact_thunder.ogg', 50, FALSE)
+	playsound(T, 'sound/effects/impact_thunder_far.ogg', 25, FALSE, 7)
+	var/obj/effect/temp_visual/cross/C = new(T)
+	animate(C, alpha = 0, transform = matrix()*2, time = 10)
+	for(var/turf/open/TF in view(damage_range, T))
+		new /obj/effect/temp_visual/small_smoke/halfsecond(TF)
+	for(var/mob/living/L in view(damage_range, T))
+		if(user.faction_check_mob(L))
+			if(ishuman(L))
+				var/mob/living/carbon/human/H = L
+				H.adjustSanityLoss(-damage_amount)
 			continue
-		if(L.stat == DEAD)
-			continue
-		L.deal_damage(damage_amount, WHITE_DAMAGE, user, attack_type = (ATTACK_TYPE_SPECIAL))
+		var/distance_decrease = get_dist(T, L) * 10
+		L.deal_damage((damage_amount - distance_decrease), WHITE_DAMAGE, user, attack_type = (ATTACK_TYPE_SPECIAL))
 		new /obj/effect/temp_visual/revenant(get_turf(L))
-		if(ishostile(L))
-			var/mob/living/simple_animal/hostile/H = L
-			H.TemporarySpeedChange(damage_slowdown, 5 SECONDS) // Slow down
 
-/mob/living/simple_animal/hostile/aminion/shrimp/soldier/friendly/capitalism_shrimp
-	name = "wellcheers corp liquidation officer"
-
-/mob/living/simple_animal/hostile/aminion/shrimp/soldier/friendly/capitalism_shrimp/Initialize()
-	.=..()
-	QDEL_IN(src, (90 SECONDS))
-
-/obj/effect/proc_holder/ability/shrimp
-	name = "Backup Shrimp"
-	desc = "Spawns 6 wellcheers corp liquidation officers for a period of time."
-	action_icon_state = "shrimp0"
-	base_icon_state = "shrimp"
-	cooldown_time = 90 SECONDS
-
-
-
-/obj/effect/proc_holder/ability/shrimp/Perform(target, mob/user)
-	for(var/i = 1 to 6)
-		new /mob/living/simple_animal/hostile/aminion/shrimp/soldier/friendly/capitalism_shrimp(get_turf(user))
-	return ..()
-
-/* Big Bird - Eyes of God */
-/obj/effect/proc_holder/ability/lamp
-	name = "Lamp of Salvation"
-	desc = "An ability that slows and weakens all enemies around the user."
-	action_icon_state = "lamp0"
-	base_icon_state = "lamp"
-	cooldown_time = 30 SECONDS
-
-	var/debuff_range = 8
-	var/debuff_slowdown = 0.5 // Slowdown per use(funfact this was meant to be an 80% slow but I accidentally made it 20%)
-
-/obj/effect/proc_holder/ability/lamp/Perform(target, mob/user)
-	cooldown = world.time + (2 SECONDS)
-	if(!do_after(user, 1.5 SECONDS))
-		to_chat(user, span_warning("You must stand still to see!"))
-		return
-	playsound(get_turf(user), 'sound/abnormalities/bigbird/hypnosis.ogg', 75, 0, 2)
-	for(var/mob/living/L in view(debuff_range, user))
-		if(user.faction_check_mob(L, FALSE))
-			continue
-		if(L.stat == DEAD)
-			continue
-		new /obj/effect/temp_visual/revenant(get_turf(L))
-		if(ishostile(L))
-			var/mob/living/simple_animal/hostile/H = L
-			H.apply_status_effect(/datum/status_effect/salvation)
-			H.TemporarySpeedChange(1 + debuff_slowdown , 15 SECONDS, TRUE) // Slow down_status_effect(/datum/status_effect/salvation)
-	return ..()
-
-/datum/status_effect/salvation
-	id = "salvation"
-	status_type = STATUS_EFFECT_UNIQUE
-	duration = 15 SECONDS
-	alert_type = /atom/movable/screen/alert/status_effect/salvation
-
-/datum/status_effect/salvation/on_apply()
-	. = ..()
-	if(!isanimal(owner))
-		return
-	var/mob/living/simple_animal/M = owner
-	M.AddModifier(/datum/dc_change/salvation)
-
-/datum/status_effect/salvation/on_remove()
-	. = ..()
-	if(!isanimal(owner))
-		return
-	var/mob/living/simple_animal/M = owner
-	M.RemoveModifier(/datum/dc_change/salvation)
-
-/atom/movable/screen/alert/status_effect/salvation
-	name = "Salvation"
-	desc = "You will be saved... Also makes you to be more vulnerable to all attacks."
-	icon = 'icons/mob/actions/actions_ability.dmi'
-	icon_state = "salvation"
-
-/* Nothing There - Shell */
-/obj/effect/proc_holder/ability/goodbye
-	name = "Goodbye"
-	desc = "An ability that does massive damage in an area and heals you."
-	action_icon_state = "goodbye0"
-	base_icon_state = "goodbye"
-	cooldown_time = 30 SECONDS
-
-	var/damage_amount = 150 // Amount of good bye damage
-
-/obj/effect/proc_holder/ability/goodbye/Perform(target, mob/user)
-	var/mob/living/carbon/human/H = user
-	cooldown = world.time + (1.5 SECONDS)
-	playsound(get_turf(user), 'sound/abnormalities/nothingthere/goodbye_cast.ogg', 75, 0, 5)
-	if(!do_after(user, 1 SECONDS))
-		to_chat(user, span_warning("You must stand still to do the nothing there classic!"))
-		return
-	for(var/turf/T in view(2, user))
-		new /obj/effect/temp_visual/nt_goodbye(T)
-		for(var/mob/living/L in T)
-			if(user.faction_check_mob(L, FALSE))
-				continue
-			if(L.stat == DEAD)
-				continue
-			H.adjustBruteLoss(-10)
-			L.deal_damage(damage_amount, RED_DAMAGE, user, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
-			if(L.health < 0)
-				L.gib()
-	playsound(get_turf(user), 'sound/abnormalities/nothingthere/goodbye_attack.ogg', 75, 0, 7)
-	return ..()
-/* Mosb - Laughter */
-/obj/effect/proc_holder/ability/screach
-	name = "Screach"
-	desc = "An ability that damages all enemies around the user and increases their weakness to black damage."
-	action_icon_state = "screach0"
-	base_icon_state = "screach"
+/* Knight of Despair - Quenched with Blood */
+/obj/effect/proc_holder/ability/aimed/despair_swords
+	name = "Blades Whetted with Tears"
+	desc = "An ability that summons 2 swords to attack and slow nearby enemies. \
+		Each sword deals 50 Pale damage plus an addition 5% of the target's max HP as Pale"
+	action_icon_state = "despair0"
+	base_icon_state = "despair"
 	cooldown_time = 20 SECONDS
 
-	var/damage_amount = 100 // Amount of black damage dealt to enemies. Humans receive half of it.
-	var/damage_range = 7
+	var/swords = 2
 
-/obj/effect/proc_holder/ability/screach/Perform(target, mob/user)
-	cooldown = world.time + (2 SECONDS)
-	playsound(get_turf(user), 'sound/abnormalities/mountain/bite.ogg', 50, 0)
-	if(!do_after(user, 1.5 SECONDS))
-		to_chat(user, span_warning("You must stand still to screach!"))
-		return
-	var/mob/living/carbon/human/H = user
-	playsound(get_turf(user), 'sound/abnormalities/mountain/scream.ogg', 75, 0, 2)
-	visible_message(span_danger("[H] screams wildly!"))
-	new /obj/effect/temp_visual/voidout(get_turf(H))
-	for(var/mob/living/L in view(damage_range, user))
-		if(user.faction_check_mob(L, FALSE))
-			continue
-		if(L.stat == DEAD)
-			continue
-		L.deal_damage(ishuman(L) ? damage_amount*0.5 : damage_amount, BLACK_DAMAGE, user, attack_type = (ATTACK_TYPE_SPECIAL))
-		L.apply_status_effect(/datum/status_effect/mosb_black_debuff)
+/obj/effect/proc_holder/ability/aimed/despair_swords/Perform(target, mob/user)
+	var/turf/target_turf = get_turf(target)
+	var/list/OT = get_adjacent_open_turfs(user)
+	for(var/i = 1 to swords)
+		if(OT.len <= 0)
+			OT = get_adjacent_open_turfs(user)
+		var/turf/T = pick(OT)
+		OT -= T
+		var/obj/projectile/despair_rapier/ego/RP = new(T)
+		RP.starting = T
+		RP.firer = user
+		RP.fired_from = T
+		RP.yo = target_turf.y - T.y
+		RP.xo = target_turf.x - T.x
+		RP.original = target_turf
+		RP.preparePixelProjectile(target_turf, T)
+		addtimer(CALLBACK (RP, TYPE_PROC_REF(/obj/projectile, fire)), 3)
+	sleep(3)
+	playsound(target_turf, 'sound/abnormalities/despairknight/attack.ogg', 50, 0, 4)
 	return ..()
 
-/datum/status_effect/mosb_black_debuff
-	id = "mosb_black_debuff"
-	status_type = STATUS_EFFECT_UNIQUE
-	duration = 15 SECONDS
-	alert_type = /atom/movable/screen/alert/status_effect/mosb_black_debuff
+/obj/projectile/despair_rapier/ego
+	name = "Sword that Pierces Despair"
+	desc = "A magic rapier, enchanted by a knight protecting the weak."
+	nodamage = TRUE
+	damage = 0
+	projectile_piercing = PASSMOB
 
-/datum/status_effect/mosb_black_debuff/on_apply()
-	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.physiology.black_mod *= 1.5
+/obj/projectile/despair_rapier/ego/on_hit(atom/target, blocked = FALSE)
+	if(ishuman(target))
 		return
-	var/mob/living/simple_animal/M = owner
-	M.AddModifier(/datum/dc_change/mosb_black)
+	nodamage = FALSE
+	if(ishostile(target))
+		var/mob/living/simple_animal/hostile/H = target
+		H.TemporarySpeedChange(1, 10 SECONDS)
+		H.deal_damage(50 + (0.05 * H.maxHealth), PALE_DAMAGE, firer, attack_type = (ATTACK_TYPE_RANGED))
+	..()
+	qdel(src)
 
-/datum/status_effect/mosb_black_debuff/on_remove()
-	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.physiology.black_mod /= 1.5
-		return
-	var/mob/living/simple_animal/M = owner
-	M.RemoveModifier(/datum/dc_change/mosb_black)
-
-/atom/movable/screen/alert/status_effect/mosb_black_debuff
-	name = "Dread"
-	desc = "Your fear is causing you to be more vulnerable to BLACK attacks."
-	icon = 'icons/mob/actions/actions_ability.dmi'
-	icon_state = "screach"
-
-/* Judgement Bird - Head of God */
-/obj/effect/proc_holder/ability/judgement
-	name = "Soul Judgement"
-	desc = "An ability that damages all enemies around the user and increases their weakness to pale damage."
-	action_icon_state = "judgement0"
-	base_icon_state = "judgement"
-	cooldown_time = 20 SECONDS
-
-	var/damage_amount = 75 // Amount of pale damage dealt to enemies. Humans receive half of it.
-	var/damage_range = 9
-
-/obj/effect/proc_holder/ability/judgement/Perform(target, mob/user)
-	cooldown = world.time + (2 SECONDS)
-	playsound(get_turf(user), 'sound/abnormalities/judgementbird/pre_ability.ogg', 50, 0)
-	var/obj/effect/temp_visual/judgement/still/J = new (get_turf(user))
-	animate(J, pixel_y = 24, time = 1.5 SECONDS)
-	if(!do_after(user, 1.5 SECONDS))
-		to_chat(user, span_warning("You must stand still to perform judgement!"))
-		return
-	playsound(get_turf(user), 'sound/abnormalities/judgementbird/ability.ogg', 75, 0, 2)
-	for(var/mob/living/L in view(damage_range, user))
-		if(user.faction_check_mob(L, FALSE))
-			continue
-		if(L.stat == DEAD)
-			continue
-		new /obj/effect/temp_visual/judgement(get_turf(L))
-		L.deal_damage(ishuman(L) ? damage_amount*0.5 : damage_amount, PALE_DAMAGE, user, attack_type = (ATTACK_TYPE_SPECIAL))
-		L.apply_status_effect(/datum/status_effect/judgement_pale_debuff)
-	return ..()
-
-/datum/status_effect/judgement_pale_debuff
-	id = "judgement_pale_debuff"
-	status_type = STATUS_EFFECT_UNIQUE
-	duration = 15 SECONDS
-	alert_type = /atom/movable/screen/alert/status_effect/judgement_pale_debuff
-
-/datum/status_effect/judgement_pale_debuff/on_apply()
-	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.physiology.pale_mod /= 1.5
-		return
-	var/mob/living/simple_animal/M = owner
-	M.AddModifier(/datum/dc_change/godhead)
-
-/datum/status_effect/judgement_pale_debuff/on_remove()
-	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.physiology.pale_mod *= 1.5
-		return
-	var/mob/living/simple_animal/M = owner
-	M.RemoveModifier(/datum/dc_change/godhead)
-
-/atom/movable/screen/alert/status_effect/judgement_pale_debuff
-	name = "Soul Drain"
-	desc = "Your sinful actions have made your soul more vulnerable to PALE attacks."
-	icon = 'icons/mob/actions/actions_ability.dmi'
-	icon_state = "judgement"
-
-/obj/effect/proc_holder/ability/fire_explosion
-	name = "Match flame"
-	desc = "An ability that deals high amount of RED damage to EVERYONE around the user after short delay."
-	action_icon_state = "fire0"
-	base_icon_state = "fire"
-	cooldown_time = 30 SECONDS
-	var/explosion_damage = 500 // Humans receive half of it.
-	var/explosion_range = 6
-
-/obj/effect/proc_holder/ability/fire_explosion/Perform(target, mob/user)
-	cooldown = world.time + (5 SECONDS)
-	playsound(get_turf(user), 'sound/abnormalities/scorchedgirl/pre_ability.ogg', 50, 0, 2)
-	if(!do_after(user, 1.5 SECONDS))
-		to_chat(user, span_warning("You must stand still to ignite the explosion!"))
-		return
-	playsound(get_turf(user), 'sound/abnormalities/scorchedgirl/ability.ogg', 60, 0, 4)
-	var/obj/effect/temp_visual/human_fire/F = new(get_turf(user))
-	F.alpha = 0
-	F.dir = user.dir
-	animate(F, alpha = 255, time = (2 SECONDS))
-	if(!do_after(user, 2.5 SECONDS))
-		to_chat(user, span_warning("You must stand still to finish the ability!"))
-		animate(F, alpha = 0, time = 5)
-		return
-	animate(F, alpha = 0, time = 5)
-	INVOKE_ASYNC(src, PROC_REF(FireExplosion), get_turf(user))
-	return ..()
-
-/obj/effect/proc_holder/ability/fire_explosion/proc/FireExplosion(turf/T)
-	playsound(T, 'sound/abnormalities/scorchedgirl/explosion.ogg', 125, 0, 8)
-	for(var/i = 1 to explosion_range)
-		for(var/turf/open/TT in spiral_range_turfs(i, T) - spiral_range_turfs(i-1, T))
-			new /obj/effect/temp_visual/fire(TT)
-			for(var/mob/living/L in TT)
-				if(L.stat == DEAD)
-					continue
-				playsound(get_turf(L), 'sound/effects/wounds/sizzle2.ogg', 25, TRUE)
-				L.deal_damage(ishuman(L) ? explosion_damage*0.5 : explosion_damage, RED_DAMAGE, attack_type = (ATTACK_TYPE_SPECIAL))
-		sleep(1)
-
-/* King of Greed - Gold Experience */
-/obj/effect/proc_holder/ability/road_of_gold
-	name = "The Road of Gold"
-	desc = "An ability that teleports you to the nearest non-visible threat.If you use a Gold Rush weapon, you can significantly weaken the enemy for a few seconds."
-	action_icon_state = "gold0"
-	base_icon_state = "gold"
-	cooldown_time = 30 SECONDS
-
-	var/list/spawned_effects = list()
-	var/using_goldrush
-
-/obj/effect/proc_holder/ability/road_of_gold/Perform(mob/living/simple_animal/hostile/target, mob/user)
-	if(!istype(user))
-		return ..()
-	cooldown = world.time + (2 SECONDS)
-	target = null
-	var/dist = 100
-	for(var/mob/living/simple_animal/hostile/H in GLOB.alive_mob_list)
-		if(H.z != user.z)
-			continue
-		if(H.stat == DEAD)
-			continue
-		if(H.status_flags & GODMODE)
-			continue
-		if(user.faction_check_mob(H, FALSE))
-			continue
-		if(H in view(7, user))
-			continue
-		var/t_dist = get_dist(user, H)
-		if(t_dist >= dist)
-			continue
-		dist = t_dist
-		target = H
-	if(!target)
-		to_chat(user, span_notice("You can't find anything else nearby!"))
-		return ..()
-	Circle(null, null, user)
-	var/pre_circle_dir = user.dir
-	to_chat(user, span_warning("You begin along the Road of Gold to your target!"))
-	if(!do_after(user, 15, src))
-		to_chat(user, span_warning("You abandon your path!"))
-		CleanUp()
-		return ..()
-	animate(user, alpha = 0, time = 5)
-	step_towards(user, get_step(user, pre_circle_dir))
-	new /obj/effect/temp_visual/guardian/phase(get_turf(src))
-	var/turf/open/target_turf = get_step_towards(target, user)
-	if(!istype(target_turf))
-		target_turf = pick(get_adjacent_open_turfs(target))
-	if(!target_turf)
-		to_chat(user, span_warning("No road leads to that target!?"))
-		CleanUp()
-		return ..()
-	var/obj/effect/qoh_sygil/kog/KS = Circle(target_turf, get_step(target_turf, pick(GLOB.cardinals)), null)
-	sleep(5)
-	user.dir = get_dir(user, target)
-	animate(user, alpha = 255, time = 5)
-	new /obj/effect/temp_visual/guardian/phase/out(get_turf(KS))
-	user.forceMove(get_turf(KS))
-	CleanUp()
-	sleep(2.5)
-	step_towards(user, get_step_towards(KS, target))
-	if(get_dist(user, target) <= 1)
-		var/obj/item/held = user.get_active_held_item()
-		if(held)
-			held.attack(target, user)
-			if(held == /obj/item/ego_weapon/goldrush/nihil || held == /obj/item/ego_weapon/goldrush)
-				target.apply_status_effect(/datum/status_effect/GoldStaggered)
-	return ..()
-
-/obj/effect/proc_holder/ability/road_of_gold/proc/CleanUp()
-	for(var/obj/effect/FX in spawned_effects)
-		if(istype(FX, /obj/effect/qoh_sygil/kog))
-			var/obj/effect/qoh_sygil/kog/KS = FX
-			KS.fade_out()
-			continue
-		FX.Destroy()
-	listclearnulls(spawned_effects)
-
-/obj/effect/proc_holder/ability/road_of_gold/proc/Circle(turf/first_target, turf/second_target, mob/user = null)
-	var/obj/effect/qoh_sygil/kog/KS
-	if(user)
-		KS = new(get_turf(user))
-	else
-		KS = new(first_target)
-	spawned_effects += KS
-	var/matrix/M = matrix(KS.transform)
-	M.Translate(0, 32)
-	var/rot_angle
-	var/my_dir
-	if(user)
-		my_dir = user.dir
-		rot_angle = Get_Angle(user, get_step(user, my_dir))
-	else
-		my_dir = get_dir(first_target, second_target)
-		rot_angle = Get_Angle(first_target, get_step_towards(first_target, second_target))
-	M.Turn(rot_angle)
-	switch(my_dir)
-		if(EAST)
-			M.Scale(0.5, 1)
-			KS.layer += 0.1
-		if(WEST)
-			M.Scale(0.5, 1)
-			KS.layer += 0.1
-		if(NORTH)
-			M.Scale(1, 0.5)
-			KS.layer += 0.1
-		if(SOUTH)
-			M.Scale(1, 0.5)
-			KS.layer -= 0.1
-	KS.transform = M
-	return KS
-
-/datum/status_effect/GoldStaggered
-	status_type = STATUS_EFFECT_UNIQUE
-	duration = 10 SECONDS
-
-/datum/status_effect/GoldStaggered/on_apply()
-	. = ..()
-	var/mob/living/simple_animal/M = owner
-	M.AddModifier(/datum/dc_change/gold_staggered)
-
-/datum/status_effect/GoldStaggered/on_remove()
-	. = ..()
-	var/mob/living/simple_animal/M = owner
-	M.RemoveModifier(/datum/dc_change/gold_staggered)
-
-
-/* Servant of Wrath - Wounded Courage */
-/obj/effect/proc_holder/ability/justice_and_balance
-	name = "For the Justice and Balance of this Land"
-	desc = "An ability with 3 charges. Each use smashes all enemies in the area around you and buffs you, the third charge is amplified. \
-		Each hit grants you a temporary bonus to justice, hitting the same target increases this bonus."
-	action_icon_state = "justicebalance0"
-	base_icon_state = "justicebalance"
+/* Queen of Hatred - Love and Justice */
+/obj/effect/proc_holder/ability/aimed/arcana_slave
+	name = "Arcana Slave"
+	desc = "An ability that allows you to fire off a large laser after channelling for a while. \
+		Alt-Click to toggle speech. Crtl-Click to set your own speech."
+	action_icon_state = "arcana0"
+	base_icon_state = "arcana"
 	cooldown_time = 1 MINUTES
+	base_action = /datum/action/spell_action/ability/item/ego_arcana_slave
 
-	var/max_charges = 3
-	var/charges = 3
 	var/list/spawned_effects = list()
-	var/list/SFX = list(
-		'sound/abnormalities/wrath_servant/big_smash3.ogg',
-		'sound/abnormalities/wrath_servant/big_smash2.ogg',
-		'sound/abnormalities/wrath_servant/big_smash1.ogg'
-		)
-	var/damage = 20
-	var/list/targets_hit = list()
+	var/speak = FALSE
+	var/list/default_speech = list("Heed me, thou that are more azure than justice and more crimson than love…","In the name of those buried in destiny…","I shall make this oath to the light.","Mark the hateful beings who stand before us…","Let your strength merge with mine…", "so that we may deliver the power of love to all…")
+	var/list/custom_speech = list()
+	var/datum/looping_sound/qoh_beam/beamloop
+	var/datum/beam/current_beam = null
 
-/obj/effect/proc_holder/ability/justice_and_balance/Perform(target, user)
-	INVOKE_ASYNC(src, PROC_REF(Smash), user, charges)
-	charges--
-	if(charges < 1)
-		charges = max_charges
-		targets_hit = list()
-		return ..()
+/obj/effect/proc_holder/ability/aimed/arcana_slave/Initialize(mob/living/owner)
+	. = ..()
+	beamloop = new
+	beamloop.volume = 40
+	custom_speech = list()
+	speak = FALSE
 
-/obj/effect/proc_holder/ability/justice_and_balance/proc/Smash(mob/user, on_use_charges)
-	playsound(user, SFX[on_use_charges], 25*(4-on_use_charges))
-	var/temp_dam = damage
-	temp_dam *= get_attack_multiplier(user)
-	if(on_use_charges <= 1)
-		temp_dam *= 1.5
-	for(var/turf/open/T in range(3, user))
-		if(T.z != user.z)
-			continue
-		new /obj/effect/temp_visual/small_smoke/halfsecond/green(T)
-		for(var/mob/living/L in T)
-			if(L.status_flags & GODMODE)
-				continue
-			if(L == user)
-				continue
-			if(L.stat == DEAD)
-				continue
-			if(user.faction_check_mob(L))
-				continue
-			if(L in targets_hit)
-				targets_hit[L] += 1
-			else
-				targets_hit[L] = 1
-			L.deal_damage(temp_dam, BLACK_DAMAGE, user, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
+/obj/effect/proc_holder/ability/aimed/arcana_slave/Destroy()
+	. = ..()
+	QDEL_NULL(beamloop)
+
+/obj/effect/proc_holder/ability/aimed/arcana_slave/Perform(target, user)
+	var/turf/t_turf = get_turf(target)
+	INVOKE_ASYNC(src, PROC_REF(Cast), t_turf, user)
+	return ..()
+
+/obj/effect/proc_holder/ability/aimed/arcana_slave/proc/Cast(turf/target, mob/user)
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
-	var/datum/status_effect/stacking/justice_and_balance/JAB = H.has_status_effect(/datum/status_effect/stacking/justice_and_balance)
-	if(!JAB)
-		JAB = H.apply_status_effect(/datum/status_effect/stacking/justice_and_balance)
-		if(!JAB)
+	var/turf/my_turf = get_turf(H)
+	H.face_atom(target)
+	for(var/i = 1 to 3)
+		var/obj/effect/qoh_sygil/S = new(my_turf)
+		spawned_effects += S
+		playsound(H, "sound/abnormalities/hatredqueen/beam[clamp(i, 1, 2)].ogg", 50, FALSE, 4*i)
+		var/matrix/M = matrix(S.transform)
+		M.Translate(0, i*16)
+		var/rot_angle = Get_Angle(my_turf, target)
+		M.Turn(rot_angle)
+		S.icon_state = "qoh[i]"
+		switch(H.dir)
+			if(EAST)
+				M.Scale(0.5, 1)
+				S.layer += i*0.1
+			if(WEST)
+				M.Scale(0.5, 1)
+				S.layer += i*0.1
+			if(SOUTH)
+				S.layer += i*0.1
+			if(NORTH)
+				S.layer -= i*0.1
+		S.transform = M
+		if(speak)
+			if(custom_speech.len <= 0)
+				addtimer(CALLBACK(H, TYPE_PROC_REF(/atom/movable, say), default_speech[i*2 - 1]))
+				addtimer(CALLBACK(H, TYPE_PROC_REF(/atom/movable, say), default_speech[i*2]), 10)
+			else
+				addtimer(CALLBACK(H, TYPE_PROC_REF(/atom/movable, say), custom_speech[i*2 - 1]))
+				addtimer(CALLBACK(H, TYPE_PROC_REF(/atom/movable, say), custom_speech[i*2]), 10)
+		if(!Channel(H, 10))
+			CleanUp(user)
 			return
-	for(var/hit in targets_hit)
-		JAB.add_stacks(targets_hit[hit])
-
-/datum/status_effect/stacking/justice_and_balance
-	id = "EGO_JAB"
-	status_type = STATUS_EFFECT_UNIQUE
-	stacks = 0
-	tick_interval = 10
-	alert_type = /atom/movable/screen/alert/status_effect/justice_and_balance
-	var/next_tick = 0
-
-/atom/movable/screen/alert/status_effect/justice_and_balance
-	name = "Justice and Balance"
-	desc = "The power to preserve balance is in your hands. \
-		Your Justice is increased by "
-	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "JAB"
-
-/datum/status_effect/stacking/justice_and_balance/process()
-	if(!owner)
-		qdel(src)
-		return
-	if(next_tick < world.time)
-		tick()
-		next_tick = world.time + tick_interval
-	if(duration != -1 && duration < world.time)
-		qdel(src)
-
-/datum/status_effect/stacking/justice_and_balance/add_stacks(stacks_added)
-	if(!ishuman(owner))
-		return
-	if(stacks <= 0 && stacks_added < 0)
-		qdel(src)
-		return
-	var/mob/living/carbon/human/H = owner
-	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, stacks_added)
-	stacks += stacks_added
-	linked_alert.desc = initial(linked_alert.desc)+"[stacks]!"
-	tick_interval = max(10 - (stacks/10), 0.1)
-
-/datum/status_effect/stacking/justice_and_balance/can_have_status()
-	if(!ishuman(owner))
-		return FALSE
-	var/mob/living/carbon/human/H = owner
-	if(H.stat == DEAD)
-		return FALSE
-	var/obj/item/clothing/suit/armor/ego_gear/realization/woundedcourage/WC = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
-	if(!istype(WC))
-		return FALSE
-	return TRUE
-
-/obj/effect/proc_holder/ability/punishment
-	name = "Punishment"
-	desc = "Causes massive damage in a small area only when you take a blow."
-	action_icon_state = "bird0"
-	base_icon_state = "bird"
-	cooldown_time = 25 SECONDS
-
-/obj/effect/proc_holder/ability/punishment/Perform(target, mob/user)
-	var/mob/living/carbon/human/H = user
-	H.apply_status_effect(/datum/status_effect/punishment)
-	return ..()
-
-/datum/status_effect/punishment
-	id = "EGO_P2"
-	status_type = STATUS_EFFECT_UNIQUE
-	alert_type = /atom/movable/screen/alert/status_effect/punishment
-	duration = 5 SECONDS
-
-/atom/movable/screen/alert/status_effect/punishment
-	name = "Ready to punish"
-	desc = "You're ready to punish."
-	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "punishment"
-
-/datum/status_effect/punishment/on_apply()
-	. = ..()
-	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMGE, PROC_REF(Rage))
-
-/datum/status_effect/punishment/proc/Rage(mob/us, damage_amount, damage_type, def_zone, mob/attacker, damage_flags, attack_type)
-	SIGNAL_HANDLER
-	var/mob/living/carbon/human/H = owner
-	if(attacker == us)
-		return
-	H.apply_status_effect(/datum/status_effect/pbird)
-	H.remove_status_effect(/datum/status_effect/punishment)
-	to_chat(H, span_userdanger("You strike back at the wrong doer!"))
-	playsound(H, 'sound/abnormalities/apocalypse/beak.ogg', 100, FALSE, 12)
-	for(var/turf/T in view(2, H))
-		new /obj/effect/temp_visual/beakbite(T)
-		for(var/mob/living/L in T)
-			if(H.faction_check_mob(L, FALSE))
-				continue
-			if(L.stat == DEAD)
-				continue
-			L.deal_damage(250, RED_DAMAGE, H, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL | ATTACK_TYPE_COUNTER))
-			if(L.health < 0)
-				L.gib()
-
-/datum/status_effect/pbird
-	id = "EGO_PBIRD"
-	status_type = STATUS_EFFECT_UNIQUE
-	alert_type = /atom/movable/screen/alert/status_effect/pbird
-	duration = 20 SECONDS
-
-/atom/movable/screen/alert/status_effect/pbird
-	name = "Punishment"
-	desc = "Their wrong doing brings you rage. \
-		Your Justice is increased by 10."
-	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "punishment"
-
-/datum/status_effect/pbird/on_apply()
-	. = ..()
-	var/mob/living/carbon/human/H = owner
-	owner.color = COLOR_RED
-	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 10)
-
-/datum/status_effect/pbird/on_remove()
-	. = ..()
-	var/mob/living/carbon/human/H = owner
-	owner.color = null
-	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -10)
-
-/obj/effect/proc_holder/ability/petal_blizzard
-	name = "Petal Blizzard"
-	desc = "Creates a big area of healing at the cost of double damage taken for a short period of time."
-	action_icon_state = "petalblizzard0"
-	base_icon_state = "petalblizzard"
-	cooldown_time = 30 SECONDS
-	var/healing_amount = 40 // Amount of healing to plater per "pulse".
-	var/healing_range = 8
-
-/obj/effect/proc_holder/ability/petal_blizzard/Perform(target, mob/user)
-	var/mob/living/carbon/human/H = user
-	to_chat(H, span_userdanger("You feel frailer!"))
-	H.apply_status_effect(/datum/status_effect/bloomdebuff)
-	playsound(get_turf(user), 'sound/weapons/fixer/generic/sword3.ogg', 75, 0, 7)
-	for(var/turf/T in view(healing_range, user))
-		pick(new /obj/effect/temp_visual/cherry_aura(T), new /obj/effect/temp_visual/cherry_aura2(T), new /obj/effect/temp_visual/cherry_aura3(T))
-		for(var/mob/living/carbon/human/L in T)
-			if(!user.faction_check_mob(L, FALSE))
-				continue
-			if(L.status_flags & GODMODE)
-				continue
-			if(L.stat == DEAD)
-				continue
-			if(L.is_working) //no work heal :(
-				continue
-			L.adjustBruteLoss(-healing_amount)
-			L.adjustSanityLoss(-healing_amount)
-	return ..()
-
-/datum/status_effect/bloomdebuff
-	id = "bloomdebuff"
-	status_type = STATUS_EFFECT_UNIQUE
-	duration = 15 SECONDS		//Lasts 30 seconds
-	alert_type = /atom/movable/screen/alert/status_effect/bloomdebuff
-
-/atom/movable/screen/alert/status_effect/bloomdebuff
-	name = "Blooming Sakura"
-	desc = "You Take 1.5x Damage."
-	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "marked_for_death"
-
-/datum/status_effect/bloomdebuff/on_apply()
-	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		L.physiology.red_mod *= 1.5
-		L.physiology.white_mod *= 1.5
-		L.physiology.black_mod *= 1.5
-		L.physiology.pale_mod *= 1.5
-
-/datum/status_effect/bloomdebuff/tick()
-	var/mob/living/carbon/human/Y = owner
-	if(Y.sanity_lost)
-		Y.death()
-	if(owner.stat == DEAD)
-		for(var/mob/living/carbon/human/H in GLOB.player_list)
-			if(H.stat != DEAD)
-				H.adjustBruteLoss(-100) // It heals everyone to full
-				H.adjustSanityLoss(-100) // It heals everyone to full
-		qdel(src)
-
-/datum/status_effect/bloomdebuff/on_remove()
-	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		to_chat(L, span_userdanger("You feel normal!"))
-		L.physiology.red_mod /= 1.5
-		L.physiology.white_mod /= 1.5
-		L.physiology.black_mod /= 1.5
-		L.physiology.pale_mod /= 1.5
-
-/mob/living/simple_animal/hostile/farmwatch_plant//TODO: give it an effect with the corresponding suit.
-	name = "Tree of Desires"
-	desc = "The growing results of your research."
-	health = 60
-	maxHealth = 60
-	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
-	icon_state = "farmwatch_tree"
-	icon_living = "farmwatch_tree"
-	icon_dead = "farmwatch_tree"
-	faction = list("neutral")
-	del_on_death = FALSE
-	area_index = MOB_SIMPLEANIMAL_INDEX // Don't trip regenerator threat mode
-
-/mob/living/simple_animal/hostile/farmwatch_plant/Move()
-	return FALSE
-
-/mob/living/simple_animal/hostile/farmwatch_plant/CanAttack(atom/the_target)
-	return FALSE
-
-/mob/living/simple_animal/hostile/farmwatch_plant/Initialize()
-	. = ..()
-	QDEL_IN(src, 15 SECONDS)
-
-/mob/living/simple_animal/hostile/farmwatch_plant/death()
-	density = FALSE
-	animate(src, alpha = 0, time = 1)
-	QDEL_IN(src, 1)
-	..()
-
-/mob/living/simple_animal/hostile/spicebush_plant
-	name = "Soon-to-bloom flower"
-	desc = "The reason you bloomed, sowing seeds of nostalgia, was to set your heart upon our new beginning."
-	health = 1
-	maxHealth = 1
-	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
-	icon_state = "spicebush_tree"
-	icon_living = "spicebush_tree"
-	icon_dead = "spicebush_tree"
-	faction = list("neutral")
-	del_on_death = FALSE
-	var/pulse_cooldown
-	var/pulse_cooldown_time = 1.8 SECONDS
-	var/pulse_damage = -2
-	area_index = MOB_SIMPLEANIMAL_INDEX // Don't trip regenerator threat mode
-
-/mob/living/simple_animal/hostile/spicebush_plant/Move()
-	return FALSE
-
-/mob/living/simple_animal/hostile/spicebush_plant/CanAttack(atom/the_target)
-	return FALSE
-
-/mob/living/simple_animal/hostile/spicebush_plant/Initialize()
-	. = ..()
-	QDEL_IN(src, 20 SECONDS)
-
-/mob/living/simple_animal/hostile/spicebush_plant/Life()
-	. = ..()
-	if(!.) // Dead
-		return FALSE
-	if((pulse_cooldown < world.time) && !(status_flags & GODMODE))
-		HealPulse()
-
-/mob/living/simple_animal/hostile/spicebush_plant/death()
-	density = FALSE
-	playsound(src, 'sound/weapons/ego/farmwatch_tree.ogg', 100, 1)
-	animate(src, alpha = 0, time = 1 SECONDS)
-	QDEL_IN(src, 1 SECONDS)
-	..()
-
-/mob/living/simple_animal/hostile/spicebush_plant/proc/HealPulse()
-	pulse_cooldown = world.time + pulse_cooldown_time
-	//playsound(src, 'sound/abnormalities/rudolta/throw.ogg', 50, FALSE, 4)//TODO: proper SFX goes here
-	for(var/mob/living/carbon/human/L in range(8, src))//livinginview(8, src))
-		if(L.stat == DEAD || L.is_working)
-			continue
-		L.adjustBruteLoss(-2)
-		L.adjustSanityLoss(-2)
-
-/obj/effect/proc_holder/ability/overheat
-	name = "Overheat"
-	desc = "Burn yourself away in exchange for power."
-	action_icon_state = "overheat0"
-	base_icon_state = "overheat"
-	cooldown_time = 5 MINUTES
-
-/obj/effect/proc_holder/ability/overheat/Perform(target, mob/user)
-	var/mob/living/carbon/human/H = user
-	to_chat(H, span_userdanger("Ashes to ashes!"))
-	H.apply_status_effect(/datum/status_effect/overheat)
-	return ..()
-
-/datum/status_effect/overheat
-	id = "overheat"
-	status_type = STATUS_EFFECT_UNIQUE
-	duration = 15 SECONDS
-	alert_type = /atom/movable/screen/alert/status_effect/overheat
-
-/atom/movable/screen/alert/status_effect/overheat
-	name = "Overheating"
-	desc = "You have full burn stacks in exchange for justice."
-	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "mortis"
-
-/datum/status_effect/overheat/on_apply()
-	. = ..()
-	var/mob/living/carbon/human/H = owner
-	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 40)
-	H.apply_lc_burn(50)
-	var/datum/status_effect/stacking/lc_burn/B = H.has_status_effect(/datum/status_effect/stacking/lc_burn)
-	B.safety = FALSE
-
-/datum/status_effect/overheat/on_remove()
-	. = ..()
-	var/mob/living/carbon/human/H = owner
-	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -40)
-	H.remove_status_effect(STATUS_EFFECT_LCBURN)
-
-/* Yang - Duality */
-/obj/effect/proc_holder/ability/tranquility
-	name = "Tranquility"
-	desc = "An ability that does massive white damage in an area and heals people's health and sanity. \
-	Healing someone that's wearing harmony of duality will grant them huge buffs to their defenses and stats."
-	action_icon_state = "yangform0"
-	base_icon_state = "yangform"
-	cooldown_time = 60 SECONDS
-
-	var/damage_amount = 200 // Amount of explosion damage
-	var/explosion_range = 15
-
-/obj/effect/proc_holder/ability/tranquility/Perform(target, mob/living/carbon/human/user)
-	cooldown = world.time + (1.5 SECONDS)
-	if(!do_after(user, 1 SECONDS))
-		to_chat(user, span_warning("You must stand still to explode!"))
-		return
-	new /obj/effect/temp_visual/explosion/fast(get_turf(user))
-	var/turf/orgin = get_turf(user)
-	var/list/all_turfs = RANGE_TURFS(explosion_range, orgin)
-	var/list/been_hit = list()
-	. = ..()
-	for(var/i = 0 to explosion_range)
-		for(var/turf/T in all_turfs)
-			if(get_dist(user, T) > i)
-				continue
-			new /obj/effect/temp_visual/dir_setting/speedbike_trail(T)
-			var/list/new_hits = user.HurtInTurf(damage_amount, list(), WHITE_DAMAGE, attack_type = (ATTACK_TYPE_SPECIAL))  - been_hit
-			been_hit += new_hits
-			for(var/mob/living/carbon/human/L in T)
-				if(!user.faction_check_mob(L, FALSE))
+	var/turf/TT = get_ranged_target_turf_direct(my_turf, target, 60)
+	current_beam = my_turf.Beam(TT, "qoh")
+	var/accumulated_beam_damage = 0
+	var/list/hit_line = getline(my_turf, TT)
+	beamloop.start(user)
+	beamloop.max_loops = 0
+	var/beam_stage = 1
+	var/beam_damage = 8
+	var/justice = get_attack_multiplier(H)
+	beam_damage *= justice
+	if(speak)
+		addtimer(CALLBACK(H, TYPE_PROC_REF(/atom/movable, say), "ARCANA SLAVE!"))
+	for(var/o = 1 to 50) // Half duration but gets Justice Mod
+		var/list/already_hit = list()
+		if(accumulated_beam_damage >= 225 && beam_stage < 2)
+			beam_stage = 2
+			beam_damage *= 1.5
+			var/matrix/M = matrix()
+			M.Scale(4, 1)
+			current_beam.visuals.transform = M
+			current_beam.visuals.color = COLOR_YELLOW
+		for(var/turf/TF in hit_line)
+			for(var/mob/living/L in range(beam_stage-1, TF))
+				if(L.status_flags & GODMODE)
+					continue
+				if(L == user) //stop hitting yourself
+					continue
+				if(L in already_hit)
 					continue
 				if(L.stat == DEAD)
 					continue
-				if(L.is_working) //no work heal :(
+				already_hit += L
+				if(H.faction_check_mob(L))
+					if(L.stat < DEAD) // Small bit of healing to all our living allies.
+						L.adjustBruteLoss(-1*justice)
+						if(L.stat > CONSCIOUS) // But more effective on softcrit/hardcrit allies.
+							L.adjustBruteLoss(-1*justice)
+					if(ishuman(L))
+						var/mob/living/carbon/human/LH = L
+						if(LH.sanity_lost)
+							LH.adjustSanityLoss(-6*justice) // Pretty fast resaning, but this only applies to insanes
 					continue
-				if(L in been_hit)
-					continue
-				been_hit += L
-				L.adjustBruteLoss(-70)
-				L.adjustSanityLoss(-70)
-				if(istype(L.get_item_by_slot(ITEM_SLOT_OCLOTHING), /obj/item/clothing/suit/armor/ego_gear/realization/duality_yin))
-					L.apply_status_effect(/datum/status_effect/duality_yang)
-			all_turfs -= T
-		sleep(1)
+				L.deal_damage(beam_damage, BLACK_DAMAGE, user, attack_type = (ATTACK_TYPE_RANGED | ATTACK_TYPE_SPECIAL))
+				accumulated_beam_damage += beam_damage
+		if(!Channel(H, 8))
+			break
+	CleanUp(user)
 
-/datum/status_effect/duality_yang
-	id = "EGO_YANG"
+/obj/effect/proc_holder/ability/aimed/arcana_slave/proc/Channel(mob/user, duration = 0)
+	if(!duration)
+		return FALSE
+	if(!user)
+		return FALSE
+	if(!do_after(user, duration))
+		to_chat(user, "<span class='notice'>You stop channelling the spell!</span>")
+		return FALSE
+	return TRUE
+
+/obj/effect/proc_holder/ability/aimed/arcana_slave/proc/CleanUp(mob/user)
+	QDEL_NULL(current_beam)
+	for(var/obj/effect/FX in spawned_effects)
+		if(istype(FX, /obj/effect/qoh_sygil))
+			var/obj/effect/qoh_sygil/QS = FX
+			QS.fade_out()
+			continue
+		FX.Destroy()
+	beamloop.stop(user)
+	listclearnulls(spawned_effects)
+
+/datum/action/spell_action/ability/item/ego_arcana_slave
+
+/datum/action/spell_action/ability/item/ego_arcana_slave/New(Target)
+	. = ..()
+	button.Destroy()
+	button = new /atom/movable/screen/movable/action_button/ego_arcana_slave
+	button.linked_action = src
+	button.name = name
+	button.actiontooltipstyle = buttontooltipstyle
+	button.desc = desc
+
+/atom/movable/screen/movable/action_button/ego_arcana_slave
+
+/atom/movable/screen/movable/action_button/ego_arcana_slave/Click(location, control, params)
+	if(!istype(linked_action, /datum/action/spell_action/ability/item/ego_arcana_slave))
+		return ..()
+	var/datum/action/spell_action/ability/item/ego_arcana_slave/act = linked_action
+	if(!istype(act.target, /obj/effect/proc_holder/ability/aimed/arcana_slave))
+		return ..()
+	var/obj/effect/proc_holder/ability/aimed/arcana_slave/AS = act.target
+	var/list/modifiers = params2list(params)
+	if(LAZYACCESS(modifiers, ALT_CLICK))
+		AS.speak = !AS.speak
+		if(AS.speak)
+			to_chat(act.owner, "<span class='notice'>You will now recite the chant up cast.</span>")
+		else
+			to_chat(act.owner, "<span class='notice'>You will no longer recite the chant.</span>")
+		return
+	if(LAZYACCESS(modifiers, CTRL_CLICK))
+		switch(tgui_alert(act.owner, "Would you like to change your custom speech?", "Custom Speech", list("Yes", "No", "Reset")))
+			if("Yes")
+				AS.custom_speech = list()
+				for(var/i = 1 to 6)
+					var/words = input(act.owner, "What is your [i]\th speech line?", "Custom Speech [i]/6") as null|text
+					if(!words)
+						words = ""
+					AS.custom_speech += words
+			if("Reset")
+				AS.custom_speech = AS.default_speech.Copy()
+		return
+	return ..()
+
+/* Spider Bud - Death Stare */
+/obj/effect/proc_holder/ability/aimed/gleaming_eyes
+	name = "Gleaming Eyes"
+	desc = "An ability that allows its user to do a jump attack that causes a slowing aoe when landing."
+	action_icon_state = "cocoon0"
+	base_icon_state = "cocoon"
+	cooldown_time = 20 SECONDS
+	var/damage_amount = 80 // Amount of red damage dealt to enemies in the epicenter.
+	var/damage_range = 2
+	var/damage_slowdown = 0.5
+
+/obj/effect/proc_holder/ability/aimed/gleaming_eyes/Perform(target, mob/user)
+	if(get_dist(user, target) > 10 || !(target in view(9, user)))
+		return
+	playsound(user, 'sound/abnormalities/spider_bud/jump.ogg', 50, FALSE, -1)
+	var/turf/target_turf = get_turf(target)
+	//new /mob/living/simple_animal/cocoonability(target_turf) FUCK YOU NO COCOON!!!!!!!!!!!
+	animate(user, alpha = 1,pixel_x = 0, pixel_z = 16, time = 0.1 SECONDS)
+	user.pixel_z = 16
+	sleep(0.5 SECONDS)
+	for(var/i in 2 to get_dist(user, target_turf))
+		step_towards(user,target_turf)
+	animate(user, alpha = 255,pixel_x = 0, pixel_z = -16, time = 0.1 SECONDS)
+	user.pixel_z = 0
+	sleep(0.1 SECONDS)
+	JumpAttack(target_turf,user)
+	return ..()
+
+/obj/effect/proc_holder/ability/aimed/gleaming_eyes/proc/JumpAttack(target, mob/user)
+	playsound(user, 'sound/abnormalities/spider_bud/land.ogg', 50, FALSE, -1)
+	for(var/mob/living/L in view(1, user))
+		if(user.faction_check_mob(L, FALSE))
+			continue
+		if(L.stat == DEAD)
+			continue
+		var/obj/item/held = user.get_active_held_item()
+		if(held)
+			held.attack(L, user)
+	for(var/turf/T in view(damage_range, user))
+		new /obj/effect/temp_visual/smash_effect/red(T)
+	for(var/mob/living/L in view(damage_range, user))
+		if(user.faction_check_mob(L, FALSE))
+			continue
+		if(L.stat == DEAD)
+			continue
+		L.deal_damage(ishuman(L) ? damage_amount*0.5 : damage_amount, RED_DAMAGE, user, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
+		if(ishostile(L))
+			var/mob/living/simple_animal/hostile/H = L
+			H.TemporarySpeedChange(1 + damage_slowdown, 10 SECONDS, TRUE) // Slow down
+
+/mob/living/simple_animal/cocoonability
+	name = "Cocoon"
+	desc = "A cocoon...."
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "cocoon_large2"
+	icon_living = "cocoon_large2"
+	faction = list("neutral")
+	health = 250	//They're here to help
+	maxHealth = 250
+	speed = 0
+	turns_per_move = 10000000000000
+	generic_canpass = FALSE
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+	var/damage_amount = 8 // Amount of red damage dealt to enemies in the epicenter.
+	var/damage_range = 2
+	var/damage_slowdown = 0.5
+
+/mob/living/simple_animal/cocoonability/Initialize()
+	. = ..()
+	QDEL_IN(src, (30 SECONDS))
+	for(var/i = 1 to 10)
+		addtimer(CALLBACK(src, PROC_REF(SplashEffect)), i * 3 SECONDS)
+
+/mob/living/simple_animal/cocoonability/proc/SplashEffect()
+	for(var/turf/T in view(damage_range, src))
+		new /obj/effect/temp_visual/smash_effect(T)
+	for(var/mob/living/L in view(damage_range, src))
+		if(src.faction_check_mob(L, FALSE))
+			continue
+		if(L.stat == DEAD)
+			continue
+		L.deal_damage(ishuman(L) ? damage_amount*0.5 : damage_amount, RED_DAMAGE)
+		if(ishostile(L))
+			var/mob/living/simple_animal/hostile/H = L
+			H.TemporarySpeedChange(damage_slowdown, 3 SECONDS) // Slow down
+
+/* Lady out of Space - Fallen Colors */
+/obj/effect/proc_holder/ability/aimed/blackhole
+	name = "blackhole"
+	desc = "An ability that allows its user to summon a black hole to drag everyone who is hostile near it."
+	action_icon_state = "blackhole0"
+	base_icon_state = "blackhole"
+	cooldown_time = 30 SECONDS
+
+/obj/effect/proc_holder/ability/aimed/blackhole/Perform(target, mob/user)
+	if(get_dist(user, target) > 10 || !(target in view(9, user)))
+		return
+	var/turf/target_turf = get_turf(target)
+	new /obj/projectile/black_hole_realized(target_turf)
+	return ..()
+
+/obj/projectile/black_hole_realized
+	name = "black hole"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "blackhole"
+	desc = "A mini black hole."
+	nodamage = TRUE
+	hitsound = "sound/effects/footstep/slime1.ogg"
+	speed = 0
+	damage = 30
+	damage_type = BLACK_DAMAGE
+
+	projectile_piercing = PASSMOB
+	hit_nondense_targets = TRUE
+	var/damage_amount = 100 // Amount of black damage dealt to enemies in the epicenter.
+	var/damage_range = 3
+
+/obj/projectile/black_hole_realized/Initialize()
+	. = ..()
+	QDEL_IN(src, (20 SECONDS))
+	for(var/i = 1 to 10)
+		addtimer(CALLBACK(src, PROC_REF(SplashEffect)), i * 2 SECONDS)
+
+/obj/projectile/black_hole_realized/proc/SplashEffect()
+	playsound(src, 'sound/effects/footstep/slime1.ogg', 100, FALSE, 12)
+
+	for(var/turf/T in view(damage_range, src))
+		new /obj/effect/temp_visual/revenant(T)
+	for(var/mob/living/L in view(damage_range, src))
+		if(ishostile(L))
+			var/distance_decrease = get_dist(src, L) * 20
+			L.deal_damage(ishuman(L) ? (damage_amount - distance_decrease)*0.5 : (damage_amount - distance_decrease), BLACK_DAMAGE, firer, attack_type = (ATTACK_TYPE_SPECIAL))
+			var/atom/throw_target = get_edge_target_turf(L, get_dir(L, get_step_towards(L, get_turf(src))))
+			L.throw_at(throw_target, 1, 2)
+
+/* Harmony of Duality - Anarchy */
+/obj/effect/proc_holder/ability/aimed/yin_laser
+	name = "Anarchy"
+	desc = "An ability that summons a devastating laser. \
+		If another player gets hit by the laser they get +20 justice for a period of time. \
+		If the person that gets hit is wearing duality of harmony, they will get huge buffs to their defenses and stats."
+	action_icon_state = "yinform0"
+	base_icon_state = "yinform"
+	cooldown_time = 60 SECONDS
+	var/laser_range = 20
+
+/obj/effect/proc_holder/ability/aimed/yin_laser/Perform(target, user)
+	var/turf/t_turf = get_turf(target)
+	INVOKE_ASYNC(src, PROC_REF(Cast), t_turf, user)
+	return ..()
+
+/obj/effect/proc_holder/ability/aimed/yin_laser/proc/Cast(turf/target, mob/living/carbon/human/user)
+	user.face_atom(target)
+	var/turf/my_turf = get_turf(user)
+	var/turf/target_turf = get_ranged_target_turf_direct(user, target, laser_range)
+	var/list/to_hit = getline(user, target_turf)
+	var/datum/beam/beam  = my_turf.Beam(target_turf, "volt_ray")
+	for(var/turf/open/OT in to_hit)
+		if(!istype(OT) || OT.density)
+			break
+		beam.target = OT
+		beam.redrawing()
+		sleep(1)
+		new /obj/effect/temp_visual/revenant/cracks/yinfriend(OT)
+	qdel(beam)
+
+/obj/effect/temp_visual/revenant/cracks/yinfriend
+	icon_state = "yincracks"
+	duration = 9
+	var/damage = 100  // Amount of black damage dealt to enemies from the laser.
+	var/list/faction = list("neutral")
+
+/obj/effect/temp_visual/revenant/cracks/yinfriend/Destroy()
+	for(var/turf/T in range(1, src))
+		if(T.z != z)
+			continue
+		for(var/mob/living/L in T)
+			if(faction_check(L.faction, src.faction))
+				continue
+			L.deal_damage(damage, BLACK_DAMAGE, attack_type = (ATTACK_TYPE_SPECIAL))
+		for(var/mob/living/carbon/human/L in T)
+			if(!faction_check(L.faction, src.faction))
+				continue
+			L.apply_status_effect(/datum/status_effect/yinboost)
+			if(istype(L.get_item_by_slot(ITEM_SLOT_OCLOTHING), /obj/item/clothing/suit/armor/ego_gear/realization/duality_yang))
+				L.apply_status_effect(/datum/status_effect/duality_yin)
+		new /obj/effect/temp_visual/small_smoke/yin_smoke/long(T)
+	return ..()
+
+/datum/status_effect/yinboost
+	id = "EGO_YIN"
 	status_type = STATUS_EFFECT_UNIQUE
-	alert_type = /atom/movable/screen/alert/status_effect/duality_yang
+	alert_type = /atom/movable/screen/alert/status_effect/yinboost
 	duration = 90 SECONDS
 
-/atom/movable/screen/alert/status_effect/duality_yang
-	name = "Duality of harmony"
-	desc = "Decreases white and pale damage taken by 25%. \
+/atom/movable/screen/alert/status_effect/yinboost
+	name = "Yin Boost"
+	desc = "Anarchy reigns supreme. \
+		Your Justice is increased by 20."
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "yinbuff"
+
+/datum/status_effect/yinboost/on_apply()
+	. = ..()
+	var/mob/living/carbon/human/H = owner
+	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 20)
+
+/datum/status_effect/yinboost/on_remove()
+	. = ..()
+	var/mob/living/carbon/human/H = owner
+	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -20)
+
+/datum/status_effect/duality_yin
+	id = "EGO_YIN2"
+	status_type = STATUS_EFFECT_UNIQUE
+	alert_type = /atom/movable/screen/alert/status_effect/duality_yin
+	duration = 90 SECONDS
+
+/atom/movable/screen/alert/status_effect/duality_yin
+	name = "Harmony of duality"
+	desc = "Decreases red and black damage taken by 25%. \
 		All your stats are increased by 10."
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "duality"
 
-/datum/status_effect/duality_yang/on_apply()
+/datum/status_effect/duality_yin/on_apply()
 	. = ..()
 	var/mob/living/carbon/human/H = owner
-	H.physiology.white_mod *= 0.75
-	H.physiology.pale_mod *= 0.75
+	H.physiology.red_mod *= 0.75
+	H.physiology.black_mod *= 0.75
 	H.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 10)
 	H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 10)
 	H.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 10)
 	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 10)
 
-/datum/status_effect/duality_yang/on_remove()
+/datum/status_effect/duality_yin/on_remove()
 	. = ..()
 	var/mob/living/carbon/human/H = owner
-	H.physiology.white_mod /= 0.75
-	H.physiology.pale_mod /= 0.75
+	H.physiology.red_mod /= 0.75
+	H.physiology.black_mod /= 0.75
 	H.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -10)
 	H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -10)
 	H.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -10)
 	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -10)
 
-/*Child of the Galaxy - Our Galaxy */
-/obj/effect/proc_holder/ability/galaxy_gift
-	name = "An Eternal Farewell"
-	desc = "Gives people around you a tiny pebble which will heal SP and HP for a short time."
-	action_icon_state = "galaxy0"
-	base_icon_state = "galaxy"
-	cooldown_time = 60 SECONDS
-	var/range = 6
+/* The Road Home - Forever Home */
+/obj/effect/proc_holder/ability/aimed/house_spawn
+	name = "You... Wicked Wizard!"
+	desc = "Summon a home that WILL be reached on your enemies dealing BLACK damage and buffing your allies defenses."
+	action_icon_state = "home_spawn0"
+	base_icon_state = "home_spawn"
+	cooldown_time = 20 SECONDS
+	var/damage_amount = 300
+	var/damage_range = 10
 
-/obj/effect/proc_holder/ability/galaxy_gift/Perform(target, mob/living/carbon/human/user)
+/obj/effect/proc_holder/ability/aimed/house_spawn/Perform(target, mob/living/carbon/human/user)
 	if(!istype(user))
 		return
-	var/list/existing_gifted = list()
-	for(var/mob/living/carbon/human/H in GLOB.player_list)
-		if(H.has_status_effect(/datum/status_effect/galaxy_gift))
-			existing_gifted += H
-	playsound(get_turf(user), 'sound/abnormalities/despairknight/gift.ogg', 50, 0, 2) //placeholder, uses KoD blessing noise at the moment
-	for(var/turf/T in view(range, user))
-		new /obj/effect/temp_visual/galaxy_aura(T)
-		for(var/mob/living/carbon/human/H in T)
-			if(!user.faction_check_mob(H, FALSE))
-				continue
-			if(H.stat == DEAD)
-				continue
-			if(H.is_working)
-				continue
-			var/datum/status_effect/galaxy_gift/new_gift = H.apply_status_effect(/datum/status_effect/galaxy_gift)
-			new_gift.caster = user
-			if(H == user)
-				new_gift.watch_death = TRUE
-			existing_gifted |= H
-	for(var/mob/living/carbon/human/H in existing_gifted)
-		var/datum/status_effect/galaxy_gift/gift = H.has_status_effect(/datum/status_effect/galaxy_gift)
-		if(!gift)
-			continue
-		gift.gifted = existing_gifted
+	if(get_dist(user, target) > 10)
+		return
+	var/turf/target_turf = get_turf(target)
+	var/obj/effect/temp_visual/house/F = new(target_turf)
+	animate(F, pixel_z = 0, alpha = 255, time = 1 SECONDS)
+	playsound(user, 'sound/abnormalities/roadhome/House_MakeRoad.ogg', 50, FALSE, 8)
+	addtimer(CALLBACK(src, PROC_REF(HouseSlam), target_turf, user), 1 SECONDS)
 	return ..()
 
-/datum/status_effect/galaxy_gift
-	id = "galaxygift"
+/obj/effect/proc_holder/ability/aimed/house_spawn/proc/HouseSlam(turf/T, mob/user)
+	visible_message("<span class='warning'>A giant House falls down on the ground!</span>")
+	playsound(T, 'sound/abnormalities/roadhome/House_HouseBoom.ogg', 75, FALSE, 10, falloff_exponent = 0.75) //LOUD
+	for(var/turf/open/TF in view(damage_range, T))
+		new /obj/effect/temp_visual/small_smoke/halfsecond(TF)
+	for(var/mob/living/L in view(damage_range, T))
+		if(user.faction_check_mob(L))
+			if(ishuman(L))
+				var/mob/living/carbon/human/H = L
+				H.apply_status_effect(/datum/status_effect/home_buff)
+			continue
+		var/distance_decrease = get_dist(T, L) * 10
+		L.deal_damage((damage_amount - distance_decrease), BLACK_DAMAGE, user, attack_type = (ATTACK_TYPE_SPECIAL))
+		new /obj/effect/temp_visual/revenant(get_turf(L))
+
+/datum/status_effect/home_buff
+	id = "homebuff"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 30 SECONDS
-	alert_type = /atom/movable/screen/alert/status_effect/galaxy_gift
-	var/base_heal_amt = 0.5
-	var/base_dmg_amt = 25
-	var/watch_death = FALSE
-	var/list/gifted
-	var/mob/living/carbon/human/caster
+	duration = 10 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/home_buff
 
-/atom/movable/screen/alert/status_effect/galaxy_gift
-	name = "Parting Gift"
-	desc = "You recover SP and HP over time temporarliy."
+/atom/movable/screen/alert/status_effect/home_buff
+	name = "A Road Walked Together"
+	desc = "The sight of a home so familiar encourages you to hang on!"
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "friendship"
+	icon_state = "home"
 
-/datum/status_effect/galaxy_gift/tick()
-	. = ..()
-	if(!ishuman(owner))
-		qdel(src)
-		return
-	var/mob/living/carbon/human/Y = owner
-	listclearnulls(gifted)
-	for(var/mob/living/carbon/human/H in gifted)
-		if(H == Y)
-			continue
-		if(H == caster)
-			continue
-		if(H.stat == DEAD || QDELETED(H))
-			gifted -= H
-			if(H) // If there's even anything left to remove
-				H.remove_status_effect(/datum/status_effect/galaxy_gift)
-	if(caster.stat == DEAD || QDELETED(Y))
-		return watch_death ? Pop() : FALSE
-	var/heal_mult = LAZYLEN(gifted)
-	heal_mult = max(3, heal_mult)
-	Y.adjustBruteLoss(-(base_heal_amt*heal_mult))
-	Y.adjustSanityLoss(-(base_heal_amt*heal_mult))
-
-/datum/status_effect/galaxy_gift/proc/Pop()
-	var/damage_mult = LAZYLEN(gifted)
-	for(var/mob/living/carbon/human/H in gifted)
-		H.deal_damage(base_dmg_amt*damage_mult, BLACK_DAMAGE, attack_type = (ATTACK_TYPE_SPECIAL))
-		H.remove_status_effect(/datum/status_effect/galaxy_gift)
-		new /obj/effect/temp_visual/pebblecrack(get_turf(H))
-		playsound(get_turf(H), "shatter", 50, TRUE)
-		to_chat(H, span_userdanger("Your pebble violently shatters!"))
-		caster = null
-	return
-
-/* Sleeping Beauty - Comatose */
-/obj/effect/proc_holder/ability/comatose
-	name = "Comatose"
-	desc = "Fall asleep to gain 99% resistance to all normal damage."
-	action_icon_state = "comatose0"
-	base_icon_state = "comatose"
-	cooldown_time = 30 SECONDS
-
-/obj/effect/proc_holder/ability/comatose/Perform(target, mob/living/carbon/human/user)
-	if(istype(user.get_item_by_slot(ITEM_SLOT_OCLOTHING), /obj/item/clothing/suit/armor/ego_gear/realization/comatose))
-		user.Stun(15 SECONDS)
-		user.Knockdown(1)
-		user.playsound_local(get_turf(user), "sound/abnormalities/happyteddy/teddy_lullaby.ogg", 25, 0)
-		user.apply_status_effect(/datum/status_effect/dreaming)
-		return ..()
-
-/datum/status_effect/dreaming
-	id = "EGO_SLEEPING"
-	status_type = STATUS_EFFECT_UNIQUE
-	alert_type = /atom/movable/screen/alert/status_effect/dreaming
-	duration = 15 SECONDS
-
-/atom/movable/screen/alert/status_effect/dreaming
-	name = "Dreams of comfort"
-	desc = "Decreases damage taken from conventional damage types by 99%"
-	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "comatose"
-
-/datum/status_effect/dreaming/on_apply()
+/datum/status_effect/home_buff/on_apply()
 	. = ..()
 	var/mob/living/carbon/human/H = owner
-	H.physiology.red_mod /= 100
-	H.physiology.white_mod /= 100
-	H.physiology.black_mod /= 100
-	H.physiology.pale_mod /= 100
+	H.physiology.red_mod *= 0.75
+	H.physiology.white_mod *= 0.75
+	H.physiology.black_mod *= 0.75
+	H.physiology.pale_mod *= 0.75
 
-/datum/status_effect/dreaming/on_remove()
+/datum/status_effect/home_buff/on_remove()
 	. = ..()
 	var/mob/living/carbon/human/H = owner
-	H.physiology.red_mod *= 100
-	H.physiology.white_mod *= 100
-	H.physiology.black_mod *= 100
-	H.physiology.pale_mod *= 100
-
-/* Wishing Well - Broken Crown */
-/obj/effect/proc_holder/ability/brokencrown
-	name = "Broken Crown"
-	desc = "Extract a random empowered E.G.O. weapon once, return it to the armor to try for a different weapon. The item will automatically be returned if the armor is taken off."
-	action_icon_state = "brokencrown0"
-	base_icon_state = "brokencrown"
-	cooldown_time = 5 MINUTES
-	var/obj/structure/toolabnormality/wishwell/linked_structure
-	var/list/ego_list = list()
-	var/obj/item/ego_weapon/chosenEGO
-	var/obj/item/linkeditem = null
-	var/ready = TRUE
-
-/obj/effect/proc_holder/ability/brokencrown/proc/Absorb(obj/item/I, mob/living/user)
-	if(!ego_list || ready)
-		to_chat(user, span_notice("You need to use this ability before you can recharge it!"))
-		return FALSE
-	if(!is_type_in_list(I, ego_list))
-		return FALSE
-	if(is_ego_weapon(I))
-		if(I.force_multiplier < 1.2)
-			to_chat(user, span_notice("You must use a weapon with a damage multiplier of 20% or higher!"))
-			return FALSE
-		Reload(I, user)
-		return TRUE
-	return FALSE
-
-/obj/effect/proc_holder/ability/brokencrown/proc/Reload(obj/item/I, mob/living/user)
-	to_chat(user, span_nicegreen("The ability has been recharged."))
-	ready = TRUE
-	qdel(I)
-
-/obj/effect/proc_holder/ability/brokencrown/Perform(target, mob/living/carbon/human/user)
-	if(!ready)
-		to_chat(user, span_notice("This ability has been spent and needs to be recharged."))
-		return
-	if(istype(user.get_item_by_slot(ITEM_SLOT_OCLOTHING), /obj/item/clothing/suit/armor/ego_gear/realization/brokencrown))
-		user.playsound_local(get_turf(user), "sound/abnormalities/bloodbath/Bloodbath_EyeOn.ogg", 25, 0)
-		if(!linked_structure)
-			linked_structure = locate(/obj/structure/toolabnormality/wishwell) in world.contents
-			if(!linked_structure) //Somehow you got this ego on a non-facility map
-				ego_list += /obj/item/ego_weapon/mimicry
-				ego_list += /obj/item/ego_weapon/smile
-				ego_list += /obj/item/ego_weapon/da_capo
-				linked_structure = TRUE
-		if(!LAZYLEN(ego_list))
-			for(var/egoitem in linked_structure.alephitem)
-				if(ispath(egoitem, /obj/item/ego_weapon))
-					ego_list += egoitem
-					continue
-		chosenEGO = pick(ego_list)
-		var/obj/item/ego = chosenEGO //Not sure if there is a better way to do this
-		if(ispath(ego, /obj/item/ego_weapon))
-			var/obj/item/ego_weapon/egoweapon = new ego(get_turf(user))
-			egoweapon.force_multiplier = 1.20
-			egoweapon.name = "shimmering [egoweapon.name]"
-			egoweapon.set_light(3, 6, "#D4FAF37")
-			egoweapon.color = "#FFD700"
-			linkeditem = egoweapon
-		ready = FALSE
-		return ..()
-
-/obj/effect/proc_holder/ability/brokencrown/proc/Reabsorb()
-	if(linkeditem && !ready)
-		linkeditem.visible_message(span_userdanger("<font color='#CECA2B'>[linkeditem] glows brightly for a moment then... fades away without a trace.</font>"))
-		qdel(linkeditem)
-		ready = TRUE
-	return
-
-/* Opened Can of Wellcheers - Wellcheers */
-/obj/effect/proc_holder/ability/wellcheers
-	name = "Wellcheers Crew"
-	desc = "Call up 3 of your finest crewmates for a period of time."
-	action_icon_state = "shrimp0"
-	base_icon_state = "shrimp"
-	cooldown_time = 90 SECONDS
-
-/obj/effect/proc_holder/ability/wellcheers/Perform(target, mob/user)
-	for(var/i = 1 to 3)
-		new /mob/living/simple_animal/hostile/aminion/shrimp/friendly(get_turf(user))
-	return ..()
-
-/mob/living/simple_animal/hostile/aminion/shrimp/friendly //HUGE buff shrimp
-	name = "wellcheers boat fisherman"
-	health = 400
-	maxHealth = 400
-	desc = "Are those fists?"
-	melee_damage_lower = 25
-	melee_damage_upper = 30
-	icon_state = "wellcheers_ripped"
-	icon_living = "wellcheers_ripped"
-	faction = list("neutral", "shrimp")
-	threat_level = WAW_LEVEL
-	can_affect_emergency = FALSE
-	trigger_lights = FALSE
-	fear_level = 0
-	area_index = MOB_SIMPLEANIMAL_INDEX // Don't trip regenerator threat mode
-
-/mob/living/simple_animal/hostile/aminion/shrimp/friendly/Initialize()
-	.=..()
-	AddComponent(/datum/component/knockback, 1, FALSE, TRUE)
-	QDEL_IN(src, (90 SECONDS))
-
-/mob/living/simple_animal/hostile/aminion/shrimp/friendly/AttackingTarget(atom/attacked_target)
-	. = ..()
-	if(.)
-		var/mob/living/L = attacked_target
-		if(L.health < 0 || L.stat == DEAD)
-			L.gib() //Punch them so hard they explode
-
-/* Flesh Idol - Repentance */
-/obj/effect/proc_holder/ability/prayer
-	name = "Prayer"
-	desc = "An ability that does causes you to start praying which removes your ability to move, lowers justice by 80 and causes you to take damage during it. \
-	When you finish praying everyone gets a 20 justice increase and gets healed."
-	action_icon_state = "flesh0"
-	base_icon_state = "flesh"
-	cooldown_time = 180 SECONDS
-
-/obj/effect/proc_holder/ability/prayer/Perform(target, mob/living/carbon/human/user)
-	user.apply_status_effect(/datum/status_effect/flesh1)
-	cooldown = world.time + (15 SECONDS)
-	to_chat(user, span_userdanger("You start praying..."))
-	if(!do_after(user, 15 SECONDS))
-		user.remove_status_effect(/datum/status_effect/flesh1)
-		return
-	for(var/mob/living/carbon/human/H in GLOB.player_list)
-		if(!user.faction_check_mob(H, FALSE))
-			continue
-		if(H.stat == DEAD)
-			continue
-		if(H.z != user.z)
-			continue
-		playsound(H, 'sound/abnormalities/onesin/bless.ogg', 100, FALSE, 12)
-		to_chat(H, span_nicegreen("[user]'s prayer was heard!"))
-		H.adjustBruteLoss(-70)
-		H.adjustSanityLoss(-70)
-		H.apply_status_effect(/datum/status_effect/flesh2)
-	return ..()
-
-/datum/status_effect/flesh1
-	id = "FLESH1"
-	status_type = STATUS_EFFECT_UNIQUE
-	alert_type = /atom/movable/screen/alert/status_effect/flesh1
-	duration = 15 SECONDS
-	tick_interval = 3 SECONDS
-
-/atom/movable/screen/alert/status_effect/flesh1
-	name = "A prayer to god"
-	desc = "You take random damage while praying."
-	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "flesh"
-
-/datum/status_effect/flesh1/on_apply()
-	. = ..()
-	var/mob/living/carbon/human/H = owner
-	ADD_TRAIT(H, TRAIT_IMMOBILIZED, type)
-
-/datum/status_effect/flesh1/tick()
-	. = ..()
-	var/mob/living/carbon/human/H = owner
-	var/list/damtypes = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
-	var/damage = pick(damtypes)
-	H.deal_damage(4, damage, attack_type = (ATTACK_TYPE_STATUS))
-
-/datum/status_effect/flesh1/on_remove()
-	. = ..()
-	var/mob/living/carbon/human/H = owner
-	REMOVE_TRAIT(H, TRAIT_IMMOBILIZED, type)
-
-/datum/status_effect/flesh2
-	id = "FLESH2"
-	status_type = STATUS_EFFECT_UNIQUE
-	alert_type = /atom/movable/screen/alert/status_effect/flesh2
-	duration = 60 SECONDS
-
-/atom/movable/screen/alert/status_effect/flesh2
-	name = "An answer from god"
-	desc = "Increases justice by 20."
-	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "flesh"
-
-/datum/status_effect/flesh2/on_apply()
-	. = ..()
-	var/mob/living/carbon/human/H = owner
-	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 20)
-
-/datum/status_effect/flesh2/on_remove()
-	. = ..()
-	var/mob/living/carbon/human/H = owner
-	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -20)
-
-/obj/effect/proc_holder/ability/nest
-	name = "Worm spawn"
-	desc = "Spawns 7 worms that will seak out abormalities to infest in making them weaker to red damage."
-	action_icon_state = "worm0"
-	base_icon_state = "worm"
-	cooldown_time = 30 SECONDS
-
-/obj/effect/proc_holder/ability/nest/Perform(target, mob/user)
-	for(var/i = 1 to 7)
-		playsound(get_turf(user), 'sound/misc/moist_impact.ogg', 30, 1)
-		var/landing
-		landing = locate(user.x + pick(-2,-1,0,1,2), user.y + pick(-2,-1,0,1,2), user.z)
-		var/mob/living/simple_animal/hostile/naked_nest_serpent_friend/W = new(get_turf(user))
-		W.origin_nest = user
-		W.throw_at(landing, 0.5, 2, spin = FALSE)
-	return ..()
-
-/datum/status_effect/stacking/infestation
-	id = "EGO_NEST"
-	status_type = STATUS_EFFECT_UNIQUE
-	stacks = 1
-	stack_decay = 0 //Without this the stacks were decaying after 1 sec
-	duration = 15 SECONDS //Lasts for 4 minutes
-	alert_type = /atom/movable/screen/alert/status_effect/justice_and_balance
-	max_stacks = 20
-	consumed_on_threshold = FALSE
-	var/red = 0
-
-/atom/movable/screen/alert/status_effect/infestation
-	name = "Infestation"
-	desc = "Your weakness to red damage is increased by "
-	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "infest"
-
-/datum/status_effect/stacking/infestation/on_apply()
-	. = ..()
-	var/mob/living/simple_animal/M = owner
-	M.AddModifier(/datum/dc_change/infested)
-
-/datum/status_effect/stacking/infestation/on_remove()
-	. = ..()
-	var/mob/living/simple_animal/M = owner
-	M.RemoveModifier(/datum/dc_change/infested)
-
-/datum/status_effect/stacking/infestation/add_stacks(stacks_added)
-	. = ..()
-	if(!isanimal(owner))
-		return
-	var/mob/living/simple_animal/M = owner
-	var/datum/dc_change/infested/mod = M.HasDamageMod(/datum/dc_change/infested)
-	mod.potency = 1+(stacks/20)
-	M.UpdateResistances()
-	linked_alert.desc = initial(linked_alert.desc)+"[stacks*5]%!"
-
-/mob/living/simple_animal/hostile/naked_nest_serpent_friend
-	name = "friendly naked serpent"
-	desc = "A sickly looking green-colored worm but looks friendly."
-	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
-	icon_state = "nakednest_serpent"
-	icon_living = "nakednest_serpent"
-	a_intent = "harm"
-	melee_damage_lower = 1
-	melee_damage_upper = 1
-	maxHealth = 500
-	health = 500 //STOMP THEM STOMP THEM NOW.
-	move_to_delay = 3
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
-	stat_attack = HARD_CRIT
-	density = FALSE //they are worms.
-	robust_searching = 1
-	obj_damage = 0
-	environment_smash = ENVIRONMENT_SMASH_NONE
-	mob_size = MOB_SIZE_SMALL
-	pass_flags = PASSTABLE | PASSMOB
-	layer = ABOVE_NORMAL_TURF_LAYER
-	mouse_opacity = MOUSE_OPACITY_OPAQUE //Clicking anywhere on the turf is good enough
-	del_on_death = 1
-	vision_range = 18 //two screens away
-	faction = list("neutral")
-	var/mob/living/carbon/human/origin_nest
-	area_index = MOB_SIMPLEANIMAL_INDEX // Don't trip regenerator threat mode
-
-/mob/living/simple_animal/hostile/naked_nest_serpent_friend/Initialize()
-	.=..()
-	AddComponent(/datum/component/swarming)
-	QDEL_IN(src, (20 SECONDS))
-
-/mob/living/simple_animal/hostile/naked_nest_serpent_friend/AttackingTarget(atom/attacked_target)
-	var/mob/living/L = attacked_target
-	var/datum/status_effect/stacking/infestation/INF = L.has_status_effect(/datum/status_effect/stacking/infestation)
-	if(!INF)
-		INF = L.apply_status_effect(/datum/status_effect/stacking/infestation)
-		if(!INF)
-			return
-	INF.add_stacks(1)
-	qdel(src)
-	. = ..()
-
-/mob/living/simple_animal/hostile/naked_nest_serpent_friend/LoseAggro() //its best to return home
-	..()
-	if(origin_nest)
-		for(var/mob/living/carbon/human/H in oview(vision_range, src))
-			if(origin_nest == H.tag)
-				Goto(H, 5, 0)
-				return
-/mob/living/simple_animal/hostile/naked_nest_serpent_friend/Life()
-	..()
-	if(origin_nest)
-		for(var/mob/living/carbon/human/H in oview(vision_range, src))
-			if(origin_nest == H.tag)
-				Goto(H, 5, 0)
-				return
-
-/* Wayward Passenger - Dimension Ripper */
-/obj/effect/proc_holder/ability/rip_space
-	name = "Rip Space"
-	desc = "Travel at light speed between portals to attack your enemies."
-	action_icon_state = "ripper0"
-	base_icon_state = "ripper"
-	cooldown_time = 1 MINUTES
-
-/obj/effect/proc_holder/ability/rip_space/Perform(target, mob/living/user)
-	var/list/targets = list()
-	for(var/mob/living/L in view(8, user))
-		if(L.stat == DEAD)
-			continue
-		if(L.status_flags & GODMODE)
-			continue
-		if(user.faction_check_mob(L, FALSE))
-			continue
-		targets += L
-	if(!(LAZYLEN(targets)))
-		to_chat(user, span_warning("There are no enemies nearby!"))
-		return
-
-	cooldown = world.time + (7 SECONDS)
-	var/turf/origin = get_turf(user)
-	var/dash_count = min(targets.len*3, 30) //Max 10 targets (7 Seconds)
-	user.density = FALSE
-	ADD_TRAIT(user, TRAIT_IMMOBILIZED, type)
-	var/obj/effect/portal/warp/P = new(origin)
-	playsound(user, 'sound/abnormalities/wayward_passenger/ripspace_begin.ogg', 100, 0)
-	sleep(1 SECONDS)
-	qdel(P)
-	user.alpha = 0
-
-	for(var/i = 1 to dash_count)
-		var/mob/living/L = pick(targets)
-		dash_attack(L, user)
-		if(L.stat == DEAD)
-			targets -= L
-		if(!LAZYLEN(targets) || user.stat == DEAD)
-			break
-
-	user.alpha = 255
-	new /obj/effect/temp_visual/rip_space(origin)
-	user.forceMove(origin)
-	user.density = TRUE
-	REMOVE_TRAIT(user, TRAIT_IMMOBILIZED, type)
-	playsound(user, 'sound/abnormalities/wayward_passenger/ripspace_end.ogg', 100, 0)
-	return ..()
-
-/obj/effect/proc_holder/ability/rip_space/proc/dash_attack(mob/living/target, mob/living/user)
-	var/list/potential_TP = list()
-	for(var/turf/T in range(3, target))
-		if(T in range(2, target))
-			continue
-		potential_TP += T
-	var/turf/start_point = pick(potential_TP)
-	var/turf/end_point = get_step(get_turf(target), get_dir(start_point, target))
-	end_point = get_step(end_point, get_dir(start_point, target))
-	var/obj/effect/temp_visual/rip_space/X = new(start_point)
-	var/obj/effect/temp_visual/rip_space/Y = new(end_point)
-
-	var/obj/projectile/ripper_dash_effect/DE = new(start_point)
-	DE.preparePixelProjectile(Y, X)
-	DE.name = user.name
-	DE.fire()
-	user.orbit(DE, 0, 0, 0, 0, 0)
-
-	sleep(1)
-	target.deal_damage(50, RED_DAMAGE, user, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
-	new /obj/effect/temp_visual/rip_space_slash(get_turf(target))
-	new /obj/effect/temp_visual/ripped_space(get_turf(target))
-	playsound(user, 'sound/abnormalities/wayward_passenger/ripspace_hit.ogg', 75, 0)
-	sleep(1)
-	qdel(DE)
-
-/obj/projectile/ripper_dash_effect
-	speed = 0.32
-	icon = 'ModularTegustation/Teguicons/32x32.dmi'
-	icon_state = "ripper_dash"
-	projectile_piercing = ALL
-
-/obj/projectile/ripper_dash_effect/on_hit(atom/target, blocked = FALSE)
-	return
+	H.physiology.red_mod /= 0.75
+	H.physiology.white_mod /= 0.75
+	H.physiology.black_mod /= 0.75
+	H.physiology.pale_mod /= 0.75
