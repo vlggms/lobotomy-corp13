@@ -106,7 +106,6 @@
 	desc = "If I am on the side of good, then someone has to be on the side of evil. Without someone to play the villain, I can’t exist."
 	icon_state = "hate"
 	inhand_icon_state = "hate"
-	fire_delay = 1
 	autofire = 0.5 SECONDS
 	special = "This weapon heals humans that it hits."
 	force = 35
@@ -120,22 +119,59 @@
 							TEMPERANCE_ATTRIBUTE = 120,
 							JUSTICE_ATTRIBUTE = 80
 							)
-	var/can_blast = TRUE
-	var/blasting = FALSE
+	alternate_fire_name = "Arcane beats"
+	alternate_info = "This weapon will charge up for a short range, black AOE attack."
+	alternate_reload_type = RELOADTYPE_SHARED_MAGAZINE
+	alternate_toggle_sound = 'sound/creatures/venus_trap_hurt.ogg'
+	alternate_toggle_sound_volume = 65
+	alternate_toggle_enabled_message = span_notice("You channel your energy, you will now cast Barrage Roots.")
+	alternate_toggle_disabled_message = span_notice("You release your energy, you will now cast Root Burst")
 	var/blast_damage = 150
 
 /obj/item/ego_weapon/ranged/hatred_nihil/proc/Recharge(mob/user)
 	can_blast = TRUE
 	to_chat(user,"<span class='nicegreen'>Arcana beats is ready to fire again.</span>")
 
-/obj/item/ego_weapon/ranged/hatred_nihil/attack_self(mob/user)
+
+/obj/item/ego_weapon/ranged/hatred_nihil/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, temporary_damage_multiplier = 1)
+	if(!alternate_selected)
+		return ..()
 	if(!CanUseEgo(user))
 		return
-	if(!can_blast)
-		to_chat(user,"<span class='warning'>You attacked too recently.</span>")
+
+	if(HAS_TRAIT(user, TRAIT_PACIFISM) && lethal) // If the user has the pacifist trait, then they won't be able to fire [src] if the [lethal] var is TRUE.
+		to_chat(user, span_warning("[src] is lethal! You don't want to risk harming anyone..."))
 		return
-	can_blast = FALSE
-	var/obj/effect/qoh_sygil/S = new(get_turf(src))
+
+	if(user)
+		SEND_SIGNAL(user, COMSIG_MOB_FIRED_GUN, src, target, params, zone_override)
+
+	SEND_SIGNAL(src, COMSIG_GUN_FIRED, user, target, params, zone_override)
+
+	add_fingerprint(user)
+
+	if(semicd)
+		return
+	//Code here
+	process_chamber(user)
+	semicd = TRUE
+	addtimer(CALLBACK(src, PROC_REF(reset_semicd)), fire_delay)
+
+	if(user)
+		user.update_inv_hands()
+	SSblackbox.record_feedback("tally", "gun_fired", 1, type)
+
+	if(click_cooldown_override)
+		user.changeNext_move(click_cooldown_override)
+	else
+		user.changeNext_move(CLICK_CD_RANGE)
+	user.newtonian_move(get_dir(target, user))
+
+	return TRUE
+
+/obj/item/ego_weapon/ranged/hatred_nihil/OnCharged(mob/living/user)
+/obj/item/ego_weapon/ranged/hatred_nihil/proc/ArcaneBeats(mob/user)
+	/*var/obj/effect/qoh_sygil/S = new(get_turf(src))
 	S.icon_state = "qoh1"
 	switch(user.dir)
 		if(EAST)
@@ -156,25 +192,23 @@
 		if(NORTH)
 			S.pixel_y += 16
 			S.layer -= 0.1
-	addtimer(CALLBACK(S, TYPE_PROC_REF(/obj/effect/qoh_sygil, fade_out)), 3 SECONDS)
-	if(do_after(user, 15, src))
-		var/aoe = blast_damage
-		var/justicemod = get_attack_multiplier(user)
-		var/firsthit = TRUE //One target takes full damage
-		var/turf/stepturf = (get_step(get_step(user, user.dir), user.dir))
-		playsound(src, 'sound/abnormalities/hatredqueen/gun.ogg', 65, FALSE, 4)
-		aoe*=justicemod
-		for(var/turf/T in range(2, stepturf))
-			new /obj/effect/temp_visual/revenant(T)
-		for(var/mob/living/L in range(2, stepturf)) //knocks enemies away from you
-			if(L == user || ishuman(L))
-				continue
-			L.deal_damage(aoe, BLACK_DAMAGE, user, attack_type = (ATTACK_TYPE_SPECIAL))
-			if(firsthit)
-				aoe = (aoe / 2)
-				firsthit = FALSE
-			var/throw_target = get_edge_target_turf(L, get_dir(L, get_step_away(L, src)))
-			if(!L.anchored)
-				var/whack_speed = (prob(60) ? 1 : 4)
-				L.throw_at(throw_target, rand(1, 2), whack_speed, user)
-	addtimer(CALLBACK(src, PROC_REF(Recharge), user), 15 SECONDS)
+	addtimer(CALLBACK(S, TYPE_PROC_REF(/obj/effect/qoh_sygil, fade_out)), 3 SECONDS)*/
+	var/aoe = blast_damage
+	var/justicemod = get_attack_multiplier(user)
+	var/firsthit = TRUE //One target takes full damage
+	var/turf/stepturf = (get_step(get_step(user, user.dir), user.dir))
+	playsound(src, 'sound/abnormalities/hatredqueen/gun.ogg', 65, FALSE, 4)
+	aoe*=justicemod
+	for(var/turf/T in range(2, stepturf))
+		new /obj/effect/temp_visual/revenant(T)
+	for(var/mob/living/L in range(2, stepturf)) //knocks enemies away from you
+		if(L == user || ishuman(L))
+			continue
+		L.deal_damage(aoe, BLACK_DAMAGE, user, attack_type = (ATTACK_TYPE_SPECIAL))
+		if(firsthit)
+			aoe = (aoe / 2)
+			firsthit = FALSE
+		var/throw_target = get_edge_target_turf(L, get_dir(L, get_step_away(L, src)))
+		if(!L.anchored)
+			var/whack_speed = (prob(60) ? 1 : 4)
+			L.throw_at(throw_target, rand(1, 2), whack_speed, user)
