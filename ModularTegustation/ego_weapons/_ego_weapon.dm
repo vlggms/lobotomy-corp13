@@ -35,15 +35,13 @@
 	if(!CanUseEgo(user))
 		return FALSE
 	. = ..()
-
+	if(reach >= 2 && user.a_intent != INTENT_HARM && !user.Adjacent(target)) // Spear/whip/lance thrust visuals
+		get_thrust_turfs(target, user)
 	if(stuntime)
 		if((reach >= 2 && !user.Adjacent(target)) ||  reach < 2) // Reach weapon stuff
 			user.Immobilize(stuntime)
 			//Visual stuff to give you better feedback
 			user.HealingEffect("stun")
-			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
-			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
-			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
 
 	if(target.anchored || !knockback || QDELETED(target)) // lets not throw machines around
 		return TRUE
