@@ -1113,7 +1113,7 @@
 	..()
 	if(!istype(I, /obj/item/nihil/club))
 		return
-	new /obj/item/ego_weapon/blind_rage/nihil(get_turf(src))
+	new /obj/item/ego_weapon/wrath_nihil(get_turf(src))
 	to_chat(user,span_warning("The [I] seems to drain all of the light away as it is absorbed into [src]!"))
 	playsound(user, 'sound/abnormalities/nihil/filter.ogg', 15, FALSE, -3)
 	qdel(I)
