@@ -83,7 +83,7 @@
 		if(custom_charge_gain)
 			. += span_notice(custom_charge_gain)
 		else
-			. += span_notice("This weapon has charge mechanics[attack_charge_gain ? " and gains a charge upon every hit" : ""].")
+			. += span_notice("This weapon gains a charge upon every hit.")
 		. += span_notice("This weapon currently has [charge_amount] charge out of [charge_cap] maximum charge.")
 		. += span_notice("You can activate this weapons special ability with [charge_cost] charge by clicking on it.")
 		if(charge_effect)

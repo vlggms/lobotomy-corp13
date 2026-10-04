@@ -1036,7 +1036,7 @@
 							)
 
 	charge = TRUE
-	custom_charge_gain = "This weapon has charge mechanics and gains a charge upon every 10 steps you've taken."
+	custom_charge_gain = "This weapon gains a charge upon every 10 steps you've taken."
 	attack_charge_gain = FALSE // we have a unique way of getting charge
 	charge_cost = 10
 	var/accumulated_charge = 0
