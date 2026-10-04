@@ -767,7 +767,7 @@
 	prudence_bonus = -1
 	temperance_bonus = 3
 	justice_bonus = 5
-	slot = HAND_2
+	slot = HELMET
 
 /datum/ego_gifts/impending_day
 	name = "Impending Day"

@@ -145,7 +145,7 @@
 	var/special_slam_attack = null
 	var/unique_special_attack = null
 	var/attack_orientation = 1 // Used to flip certain attacks in a consistant pattern
-	var/list/zombies = list()
+	var/list/minion_list = list()
 	var/list/plants = list()
 	// Turf Tracker
 	var/list/spawned_turfs = list()
@@ -363,8 +363,8 @@
 	EndWeather()
 	for(var/obj/effect/season_turf/newturf in spawned_turfs)
 		newturf.DoDelete()
-	for(var/mob/living/simple_animal/hostile/aminion/flora_zombie/thezombie in zombies)
-		thezombie.gib()
+	for(var/mob/living/simple_animal/hostile/aminion/theminion in minion_list)
+		theminion.gib()
 	for(var/obj/structure/thorn_bomb/thebomb in plants)
 		thebomb.Wilt()
 	return ..()
@@ -503,7 +503,7 @@
 			C.desc = "What appears to be [H.real_name], only mangled by vines and decayed..."
 			C.gender = H.gender
 			C.faction = src.faction
-			zombies += C
+			minion_list += C
 			H.gib()
 		return TRUE
 	if(H.stat >= HARD_CRIT || H.health < 0)
@@ -599,7 +599,8 @@
 		L.deal_damage(melee_damage_upper * 2, melee_damage_type, src, attack_type = (ATTACK_TYPE_MELEE))
 		been_hit = TRUE
 	if(been_hit)
-		new /mob/living/simple_animal/hostile/aminion/flytrap(T)
+		var/mob/living/simple_animal/hostile/aminion/flytrap/F = new(T)
+		minion_list += F
 
 /mob/living/simple_animal/hostile/abnormality/seasons/proc/SpringSlam()
 	slam_cooldown = world.time + slam_cooldown_time
@@ -1167,7 +1168,7 @@
 	anchored = TRUE
 	var/list/season_list = list(
 		"spring" = list("porccubus poppy", "A bed of toxic flowers."),
-		"summer" = list("volcanic rock","Some incredibly hot igneus rock."),
+		"summer" = list("volcanic rock","Some incredibly hot igneous rock."),
 		"fall" = list("swampy grass","A thick marsh, deep enough that you need to wear boots."),
 		"winter" = list("snow","A patch of snow."),
 	)
@@ -1226,6 +1227,10 @@
 				desc = "A patch of slippery ice."
 				return
 			icon_state = "snow[rand(0,6)]"
+	if(!area_affected) // Start damaging/stunning valid mob on our turf if we spawn under them.
+		return
+	for(var/mob/living/carbon/human/H in get_turf(src))
+		BumpEffect(H)
 
 /obj/effect/season_turf/Crossed(atom/movable/AM)
 	. = ..()
@@ -1593,7 +1598,7 @@
 			return FALSE
 		var/mob/living/simple_animal/hostile/aminion/flora_zombie/C = new(get_turf(src))
 		if(master)
-			master.zombies += C
+			master.minion_list += C
 			C.master = master
 		C.name = "[H.real_name]"//applies the target's name and adds the name to its description
 		C.icon_state = "flora_zombie"

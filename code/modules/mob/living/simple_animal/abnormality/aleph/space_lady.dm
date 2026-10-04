@@ -26,6 +26,7 @@
 	work_damage_type = list(WHITE_DAMAGE, BLACK_DAMAGE)
 	chem_type = /datum/reagent/abnormality/sin/gluttony	//Literally a black hole (and a white hole I guess)
 
+	can_spawn = FALSE // Pending projectile fix
 	ego_list = list(
 		/datum/ego_datum/weapon/space,
 		/datum/ego_datum/armor/space,
