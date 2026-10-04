@@ -10,20 +10,21 @@
 							JUSTICE_ATTRIBUTE = 100
 							)
 	/// Type of realized ability, if any
-	var/obj/effect/proc_holder/ability/realized_ability = null
-	/// Type of ego assimilation/realization ability, if any
-	var/obj/effect/proc_holder/ability/ego_ability = null
+	var/realized_ability = null
 
 /obj/item/clothing/suit/armor/ego_gear/realization/Initialize()
 	. = ..()
 	if(realized_ability)
-		var/obj/effect/proc_holder/ability/AS = new realized_ability
-		var/datum/action/spell_action/ability/item/A = AS.action
-		A.SetItem(src)
-	if(ego_ability)
-		var/obj/effect/proc_holder/ability/AS = new ego_ability
-		var/datum/action/spell_action/ability/item/A = AS.action
-		A.SetItem(src)
+		if(istype(realized_ability, /obj/effect/proc_holder/ability))
+			var/obj/effect/proc_holder/ability/AS = new realized_ability
+			var/datum/action/spell_action/ability/item/A = AS.action
+			A.SetItem(src)
+			return
+		if(islist(realized_ability))
+			for(var/obj/effect/proc_holder/ability/AS in realized_ability)
+				new AS
+				var/datum/action/spell_action/ability/item/A = AS.action
+				A.SetItem(src)
 
 /*Armor totals:
 Ability 	240
@@ -317,8 +318,7 @@ No Ability	260
 	icon_state = "lovejustice"
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 40, BLACK_DAMAGE = 80, PALE_DAMAGE = 60)		//Healing
 	flags_inv = HIDEGLOVES
-	realized_ability = /obj/effect/proc_holder/ability/aimed/arcana_slave
-	ego_ability = /obj/effect/proc_holder/ability/ego_realization/lovejustice
+	realized_ability = list(/obj/effect/proc_holder/ability/aimed/arcana_slave, /obj/effect/proc_holder/ability/ego_realization/lovejustice)
 
 /obj/item/clothing/suit/armor/ego_gear/realization/woundedcourage
 	name = "wounded courage"

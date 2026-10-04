@@ -52,46 +52,50 @@
 /obj/item/clothing/suit/armor/ego_gear/despair_nihil
 	name = "meaningless despair"
 	desc = "As with sorrow, perhaps sharing the burden will blunt the edge."
+	special = "Wearing this armor impowers the respective weapon's parry, increasing its effectiveness the more humans are nearby while redirecting half the damage they take to the wearer."
 	icon_state = "despair_nihil"
 	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 70, BLACK_DAMAGE = 60, PALE_DAMAGE = 80) // 260
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,
 							TEMPERANCE_ATTRIBUTE = 80,
-							JUSTICE_ATTRIBUTE = 100
+							JUSTICE_ATTRIBUTE = 120
 							)
 
 /obj/item/clothing/suit/armor/ego_gear/hatred_nihil
 	name = "pointless hate"
 	desc = "She vowed to love everything in the world, but all that was left was a collapsing heart."
+	special = "Wearing this armor impowers the respective weapon, causing damage taken by the wearer to repleshish its ammo and temporarily increase its damage."
 	icon_state = "hate"
 	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 50, BLACK_DAMAGE = 80, PALE_DAMAGE = 60) // 260
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
-							PRUDENCE_ATTRIBUTE = 100,
-							TEMPERANCE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 120,
 							JUSTICE_ATTRIBUTE = 80
 							)
 
 /obj/item/clothing/suit/armor/ego_gear/blind_rage_nihil
 	name = "shameless wrath"
 	desc = "The Servant was betrayed after abandoning her principles and ingenuously trusting someone with her whole heart."
+	special = "Wearing this armor impowers the respective weapon's aoe, causing it to no damage allies and inflict an armor weakening debuff."
 	icon_state = "wrath"
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 80, BLACK_DAMAGE = 70, PALE_DAMAGE = 50) // 260
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
-							PRUDENCE_ATTRIBUTE = 80,
-							TEMPERANCE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 120,
+							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
 							)
 
 /obj/item/clothing/suit/armor/ego_gear/goldrush_nihil
 	name = "worthless greed"
 	desc = "Now, only visceral greed remains."
+	special = "Wearing this armor impowers the respective weapon, granting a temporary damage boost and a small amount of HP if the weapon lands a kill."
 	icon_state = "greed"
 	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 60, BLACK_DAMAGE = 50, PALE_DAMAGE = 70) // 260
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 100,
+							FORTITUDE_ATTRIBUTE = 120,
 							PRUDENCE_ATTRIBUTE = 80,
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80

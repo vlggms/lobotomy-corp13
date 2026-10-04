@@ -876,27 +876,72 @@
 		to_chat(user,span_notice("The mechanism on [src] dies down!"))
 
 //Nihil Event rewards
-/obj/item/ego_weapon/goldrush/nihil
+/obj/item/ego_weapon/greed_nihil
 	name = "worthless greed"
 	desc = "The magical girl, who was no longer a magical girl, ate many things. \
 	Authority, money, fame, and many other forms of pleasure. She ended up eating away anything in her sight."
 	special = "This weapon has a combo system and can charge up a powerful charge attack."
 	hitsound = 'sound/weapons/fixer/generic/fist2.ogg'
 	icon_state = "greed"
-	force = 35
+	hitsound = 'sound/weapons/fixer/generic/gen2.ogg'
+	force = 30
+	modified_attack_speed = 0.3
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 120,
 							PRUDENCE_ATTRIBUTE = 80,
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
-							)
-	var/charge_damage = 120
-	var/charge_wind_up = 2 SECONDS
+
+						)
+	var/combo = 0
+	var/combo_time
+	var/combo_wait = 10
+
+	var/charging = FALSE
+	var/charge_damage = 250
+	var/charge_wind_up = 0.5 SECONDS
 	var/can_charge = TRUE
 	var/prepair_charge = FALSE
-	var/charge_cooldown_time = 7 SECONDS
+	var/charge_cooldown_time = 5.5 SECONDS
 
-/obj/item/ego_weapon/goldrush/nihil/attack_self(mob/user) //spin attack with knockback
+//This is like an anime character attacking like 6 times with the 6th one as a finisher attack.
+/obj/item/ego_weapon/greed_nihil/attack(mob/living/M, mob/living/user)
+	if(!CanUseEgo(user) || charging)
+		return
+	if(world.time > combo_time)
+		combo = 0
+	combo_time = world.time + combo_wait
+	if(combo >= 6)
+		M.visible_message(span_danger("[user] rears up and slams into [M]!"), \
+						span_userdanger("[user] punches you with everything you got!!"), vision_distance = COMBAT_MESSAGE_RANGE, ignored_mobs = user)
+		to_chat(user, span_danger("You throw your entire body into this punch!"))
+		combo = 0
+		user.changeNext_move(CLICK_CD_MELEE * 3)
+		playsound(src, 'sound/weapons/fixer/generic/finisher2.ogg', 50, FALSE, 9)
+		to_chat(user,span_warning("You are offbalance, you take a moment to reset your stance."))
+		force *= 5
+		knockback = KNOCKBACK_HEAVY
+	else if(combo < 6 && combo >= 3)
+		for(var/i = 1 to combo)
+			sleep(2)
+			if(M in view(reach,user))
+				combo_time = world.time + combo_wait
+				user.changeNext_move(CLICK_CD_MELEE * 0.4)
+				playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+				user.do_attack_animation(M)
+				M.attacked_by(src, user)
+				log_combat(user, M, pick(attack_verb_continuous), src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
+	else if(combo == 2)
+		user.changeNext_move(CLICK_CD_MELEE * 0.4)
+	else
+		user.changeNext_move(CLICK_CD_MELEE * 0.6)
+	..()
+	knockback = null
+	combo += 1
+
+	force = initial(force)
+
+/obj/item/ego_weapon/greed_nihil/attack_self(mob/user) //spin attack with knockback
 	if(!CanUseEgo(user) || charging)
 		return
 	if(!can_charge)
@@ -909,7 +954,7 @@
 		to_chat(user,span_notice("You decide to not preform a dash."))
 	. = ..()
 
-/obj/item/ego_weapon/goldrush/nihil/afterattack(atom/A, mob/living/user, proximity_flag, params)
+/obj/item/ego_weapon/greed_nihil/afterattack(atom/A, mob/living/user, proximity_flag, params)
 	if(!CanUseEgo(user) || !prepair_charge || charging)
 		return
 	var/turf/target_turf = get_turf(A)
@@ -971,24 +1016,20 @@
 			for(var/turf/open/R in range(1, T))
 				new /obj/effect/temp_visual/small_smoke/halfsecond(R)
 			playsound(src,'sound/effects/bamf.ogg', 70, TRUE, 20)
-			user.Immobilize(0.6)
-			sleep(0.6)
+			user.Immobilize(0.3)
+			sleep(0.3)
 		REMOVE_TRAIT(src, TRAIT_NODROP, STICKY_NODROP)
 		addtimer(CALLBACK(src, PROC_REF(charge_reset)), charge_cooldown_time)
 		charging = FALSE
 	else
 		charge_reset_forced()
 
-/obj/item/ego_weapon/goldrush/goldrush/attackby(obj/item/I, mob/living/user, params)
-	if(istype(I, /obj/item/nihil))
-		return
-	..()
-
-/obj/item/ego_weapon/goldrush/nihil/proc/charge_reset_forced()
+/obj/item/ego_weapon/greed_nihil/proc/charge_reset_forced()
 	REMOVE_TRAIT(src, TRAIT_NODROP, STICKY_NODROP)
 	charge_reset()
 
-/obj/item/ego_weapon/goldrush/nihil/proc/charge_reset()
+
+/obj/item/ego_weapon/greed_nihil/proc/charge_reset()
 	can_charge = TRUE
 	charging = FALSE
 
@@ -996,8 +1037,7 @@
 	name = "meaningless despair"
 	desc = "When Justice turns its back once more, several dozen blades will rove without a purpose. \
 	The swords will eventually point at those she could not protect."
-	special = "This weapon has a combo system. \
-	While wearing the respective suit, the parry becomes stronger the more humans wearing the other armors there are and is able to redirect damage half the damage they take to the user."
+	special = "This weapon has a combo system."
 	icon_state = "despair_nihil"
 	force = 17
 	attack_speed = 1
@@ -1008,9 +1048,10 @@
 	attack_verb_simple = list("stab", "attack", "slash")
 	hitsound = 'sound/weapons/ego/rapier1.ogg'
 	reductions = list(50, 50, 50, 60) //210 - 300
-	projectile_block_duration = 1 SECONDS
+	projectile_block_duration = 0.4 SECONDS
 	block_duration = 1.5 SECONDS
 	block_cooldown = 3 SECONDS
+	debuff_duration = 0
 	block_message = "You attempt to parry the attack!"
 	hit_message = "parries the attack!"
 	block_cooldown_message = "You rearm your blade."
@@ -1055,12 +1096,14 @@
 	combo_time = world.time + combo_wait
 	if(combo==4)
 		combo = 0
+		projectile_block_duration = 2 SECONDS
 		user.changeNext_move(CLICK_CD_MELEE * 2)
 		force *= 5	// Should actually keep up with normal damage.
 		playsound(src, 'sound/weapons/fixer/generic/sword5.ogg', 50, FALSE, 9)
 		to_chat(user,span_warning("You are offbalance, you take a moment to reset your stance."))
 	else
 		user.changeNext_move(CLICK_CD_MELEE * 0.4)
+		projectile_block_duration = 0.4 SECONDS
 	..()
 	combo += 1
 	force = initial(force)
@@ -1081,7 +1124,7 @@
 		Protect(user, friend)
 		friend_count++
 		if(friend_count > 3)
-			continue
+			break
 		armor_boost += 10
 	reductions = list(armor_boost, armor_boost, armor_boost, 60)
 	if(friend_count > 0)
@@ -1106,7 +1149,7 @@
 	RegisterSignal(H, COMSIG_PARENT_QDELETING, PROC_REF(OnProtectedDeath))
 	protection_list += H
 	var/datum/beam/new_beam = user.Beam(H, icon_state="medbeam", time=INFINITY, maxdistance=INFINITY, beam_type=/obj/effect/ebeam/medical)
-	var/newcolor = list(rgb(77,77,77), rgb(100,100,100), rgb(28,28,28), rgb(0,0,0))
+	var/newcolor = list(0.299,0.299,0.299, 0.587,0.587,0.587, 0.114,0.114,0.114, 0,0,0)
 	new_beam.visuals.add_atom_colour(newcolor, FIXED_COLOUR_PRIORITY)
 	current_beams += new_beam
 
@@ -1170,7 +1213,7 @@
 	duration = 3000 SECONDS
 	alert_type = null
 
-/obj/item/ego_weapon/nihil_nihil
+/obj/item/ego_weapon/wrath_nihil
 	name = "senseless wrath"
 	desc = "The Servant of Wrath valued justice and balance more than anyone, but she began sharing knowledge with the \
 	Hermit - an enemy of her realm, becoming friends with her in secret."
