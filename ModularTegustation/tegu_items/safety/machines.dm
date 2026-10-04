@@ -160,6 +160,7 @@
 	preserved_data["real_name"] = H.real_name
 	preserved_data["species"] = H.dna.species.type
 	preserved_data["gender"] = H.gender
+	preserved_data["body"] = H.body_type
 	var/datum/dna/D = new /datum/dna
 	H.dna.copy_dna(D)
 	preserved_data["dna"] = D
@@ -190,6 +191,7 @@
 	// Set up the new body with stored data
 	new_body.real_name = stored_data["real_name"]
 	new_body.gender = stored_data["gender"]
+	new_body.body_type = stored_data["body"]
 	var/job = stored_data["assigned_role"] // allows for preservation of ID cards.
 	if(job)
 		new_body.job = job

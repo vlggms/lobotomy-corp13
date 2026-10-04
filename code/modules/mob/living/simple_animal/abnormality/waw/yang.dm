@@ -74,7 +74,7 @@
 	)
 
 	work_start_lines = list("Please ensure these two pendants are contained in seperate rooms.")
-	middle_work_lines = list("%ABNO bring order to the world, yet also erases such order.")
+	middle_work_lines = list("%ABNO brings order to the world, yet also erases such order.")
 	work_end_lines = list("The world will be overturned the day the black carp and white carp meet.")
 
 	var/explosion_damage = 100

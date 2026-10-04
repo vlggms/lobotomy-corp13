@@ -29,6 +29,7 @@
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/sloth
 
+	can_spawn = FALSE // Pending rework
 	ego_list = list(
 		/datum/ego_datum/weapon/uturn,
 		/datum/ego_datum/armor/uturn,
