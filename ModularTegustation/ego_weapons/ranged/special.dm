@@ -26,92 +26,19 @@
 		H.adjust_fire_stacks(1)
 		H.IgniteMob()
 
-//Realized version
-/obj/item/ego_weapon/ranged/lovejustice
-	name = "love and justice"
-	desc = "Idk"
-	icon_state = "lovejustice"
-	inhand_icon_state = "lovejustice"
-	special = "This weapon heals humans in a small area on hit. Successfully healing a human slightly lowers Arcana Slave's cooldown."
-	force = 32
-	attack_speed = 1
-	damtype = BLACK_DAMAGE
-	projectile_path = /obj/projectile/ego_bullet/ego_lovejustice
-	weapon_weight = WEAPON_MEDIUM
-	fire_delay = 15
-	max_shots = 10
-	ammo_on_reload = 1
-	passive_reload = 2.5 SECONDS
-	reloadtime = 0.2 SECONDS
-	reload_start_sound = 'sound/abnormalities/hatredqueen/gun.ogg'
-	reload_text = "The weapon starts to recharge its mana."
-	fire_sound = 'sound/abnormalities/hatredqueen/attack.ogg'
-
-	charge = TRUE
-	charge_cost = 10
-	ability_type = ABILITY_UNIQUE
-	custom_charge_gain = "This weapon has charge mechanics and gains a charge upon healing a human with its projectile."
-	charge_effect = "Clicking on a target grants them a Mark of Villainy. The mark increases the damage the target takes from this weapon and Arcana Slave."
-	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 80,
-							PRUDENCE_ATTRIBUTE = 80,
-							TEMPERANCE_ATTRIBUTE = 100,
-							JUSTICE_ATTRIBUTE = 100
-							)
-	var/mark_cooldown
-	var/mark_cooldown_time = 5 SECONDS
-
-/obj/item/ego_weapon/ranged/lovejustice/GunAttackInfo(mob/user)
-	return span_notice("Its magic deal [last_projectile_damage] randomly chosen damage.[force_multiplier != 1 ? " (+ [(force_multiplier - 1) * 100]%)" : ""]")
-
-/obj/item/ego_weapon/ranged/lovejustice/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
-	if(!CanUseEgo(user))
-		return
-
-	if(!currently_charging)
-		return ..()
-	if(mark_cooldown <= world.time)
-		currently_charging = FALSE
-		if(isliving(target))
-			var/mob/living/L = target
-			if(user.faction_check_mob(L))
-				to_chat(user,span_warning("[src] is on your side!"))
-				return
-			charge_amount -= charge_cost
-			L.apply_status_effect(/datum/status_effect/display/villan_mark)
-			mark_cooldown = world.time + mark_cooldown_time
-			playsound(src, 'sound/abnormalities/hatredqueen/casting.ogg', 65, FALSE, 4)
-			to_chat(user,span_nicegreen("You mark [L] as a villan!"))
-		return
-	to_chat(user,span_warning("You marked someone too recently."))
-
-/obj/item/ego_weapon/ranged/lovejustice/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, temporary_damage_multiplier = 1)
-	if(!CanUseEgo(user))
-		return
-	. = ..()
-	if(!.)
-		return
-	user.do_attack_animation(target, no_effect = TRUE)
-
-
-/datum/status_effect/display/villan_mark
-	id = "villan_mark"
-	status_type = STATUS_EFFECT_REFRESH
-	display_name = "villan"
-	duration = 300 //30 seconds
-
 //Nihil Upgrade
 /obj/item/ego_weapon/ranged/hatred_nihil
 	name = "pointless hate"
 	desc = "If I am on the side of good, then someone has to be on the side of evil. Without someone to play the villain, I can’t exist."
 	icon_state = "hate"
 	inhand_icon_state = "hate"
-	autofire = 0.5 SECONDS
-	special = "This weapon heals humans that it hits."
+	fire_delay = 7
+	special = "This weapon's projectile has IFF and heals the user and humans near the user on hit."
 	force = 35
+	attack_speed = 1
 	damtype = BLACK_DAMAGE
-	weapon_weight = WEAPON_HEAVY
-	projectile_path = /obj/projectile/ego_bullet/ego_hatred
+	weapon_weight = WEAPON_MEDIUM
+	projectile_path = /obj/projectile/ego_bullet/hatred_nihil
 	fire_sound = 'sound/abnormalities/hatredqueen/attack.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
@@ -119,23 +46,90 @@
 							TEMPERANCE_ATTRIBUTE = 120,
 							JUSTICE_ATTRIBUTE = 80
 							)
-	alternate_fire_name = "Arcane beats"
-	alternate_info = "This weapon will charge up for a short range, black AOE attack."
+	max_shots = 25
+	ammo_on_reload = 1
+	passive_reload = 3 SECONDS
+	reloadtime = 0.2 SECONDS
+	reload_start_sound = 'sound/abnormalities/hatredqueen/gun.ogg'
+	reload_text = "The weapon starts to recharge its mana."
+
+	alternate_fire_name = "Arcane Beats"
+	alternate_info = "This weapon will charge up for a short ranged, black AOE attack that knocks away enemies hit."
 	alternate_reload_type = RELOADTYPE_SHARED_MAGAZINE
-	alternate_toggle_sound = 'sound/creatures/venus_trap_hurt.ogg'
+	alternate_toggle_sound = 'sound/abnormalities/hatredqueen/casting.ogg'
 	alternate_toggle_sound_volume = 65
-	alternate_toggle_enabled_message = span_notice("You channel your energy, you will now cast Barrage Roots.")
-	alternate_toggle_disabled_message = span_notice("You release your energy, you will now cast Root Burst")
-	var/blast_damage = 150
+	alternate_toggle_enabled_message = span_notice("You will now cast Arcana Beats.")
+	alternate_toggle_disabled_message = span_notice("You will no longer cast Arcana Beats.")
+	var/obj/effect/qoh_sygil/sygil
+	var/blast_damage = 230
 
-/obj/item/ego_weapon/ranged/hatred_nihil/proc/Recharge(mob/user)
-	can_blast = TRUE
-	to_chat(user,"<span class='nicegreen'>Arcana beats is ready to fire again.</span>")
+	//Take Damage to gain damage. More damage you take the longer it lasts and the stronger the effect
+	var/damage_timer = null
+	var/damage_cap = 1.4
+	var/time_per_hit = 0.5 SECONDS
+	var/damage_per_hit = 0.004
+	var/damage_decay_amount = 0.04
 
+	var/max_mult_time = 10 SECONDS
+	var/min_mult_time = 0.1 SECONDS
+	var/current_time = 0
+
+/obj/item/ego_weapon/ranged/hatred_nihil/GunAttackInfo()
+	var/damage_type = damtype
+	var/base_damage = blast_damage
+	if(!alternate_selected)
+		return ..()
+	var/damage = round(base_damage * force_multiplier * projectile_damage_multiplier, 0.1)
+	if(GLOB.damage_type_shuffler?.is_enabled && IsColorDamageType(damage_type))
+		var/datum/damage_type_shuffler/shuffler = GLOB.damage_type_shuffler
+		var/new_damage_type = shuffler.mapping_offense[damage_type]
+		damage_type = new_damage_type
+	return span_notice("Arcane Beats deal [damage] [damage_type] damage.[force_multiplier != 1 ? " (+ [(force_multiplier - 1) * 100]%)" : ""]")
+
+
+/obj/item/ego_weapon/ranged/hatred_nihil/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if(!user)
+		return
+	RegisterSignal(user, COMSIG_MOB_AFTER_APPLY_DAMGE, PROC_REF(PostDamage))
+
+/obj/item/ego_weapon/ranged/hatred_nihil/Destroy(mob/user)
+	UnregisterSignal(user, COMSIG_MOB_AFTER_APPLY_DAMGE)
+	RemoveSygil(user)
+	deltimer(damage_timer)
+	return ..()
+
+/obj/item/ego_weapon/ranged/hatred_nihil/dropped(mob/user)
+	. = ..()
+	UnregisterSignal(user, COMSIG_MOB_AFTER_APPLY_DAMGE)
+	RemoveSygil(user)
+
+/obj/item/ego_weapon/ranged/hatred_nihil/EnableAltfire(mob/user, silent = TRUE)
+	. = ..()
+	fire_delay = 25
+	passive_reload = 6 SECONDS
+	ammo_per_shot = 5
+	chargetime = 15
+
+/obj/item/ego_weapon/ranged/hatred_nihil/DisableAltfire(mob/user, silent = TRUE)
+	. = ..()
+	fire_delay = 7
+	passive_reload = 3 SECONDS
+	ammo_per_shot = 1
+	chargetime = 0
+
+
+/obj/item/ego_weapon/ranged/hatred_nihil/attack(mob/living/target, mob/living/carbon/human/user)
+	force = initial(force) * projectile_damage_multiplier
+	. = ..()
 
 /obj/item/ego_weapon/ranged/hatred_nihil/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, temporary_damage_multiplier = 1)
 	if(!alternate_selected)
-		return ..()
+		. = ..()
+		if(!.)
+			return
+		user.do_attack_animation(target, no_effect = TRUE)
+		return
 	if(!CanUseEgo(user))
 		return
 
@@ -153,6 +147,7 @@
 	if(semicd)
 		return
 	//Code here
+	ArcanaBeats(user)
 	process_chamber(user)
 	semicd = TRUE
 	addtimer(CALLBACK(src, PROC_REF(reset_semicd)), fire_delay)
@@ -169,36 +164,81 @@
 
 	return TRUE
 
+/obj/item/ego_weapon/ranged/hatred_nihil/ChargeUp(mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	is_charging = TRUE
+	if(passive_reload)
+		BufferPassiveTimer(chargetime, user) // We don't really want the weapon to reload while its charging up
+	SpawnSygil(user)
+	playsound(user, charge_sound, charge_sound_volume, vary_fire_sound)
+	if(do_after(user, chargetime, src))
+		to_chat(user, span_nicegreen("You cast Arcana Beats."))
+		is_charging = FALSE
+		RemoveSygil(user)
+		process_fire(user, user)
+		return
+	RemoveSygil(user)
+	is_charging = FALSE
+	to_chat(user, span_warning("You need to wait before casting with Arcana Beats!"))
+
 /obj/item/ego_weapon/ranged/hatred_nihil/OnCharged(mob/living/user)
-/obj/item/ego_weapon/ranged/hatred_nihil/proc/ArcaneBeats(mob/user)
-	/*var/obj/effect/qoh_sygil/S = new(get_turf(src))
+	process_fire(user, user)
+
+/obj/item/ego_weapon/ranged/hatred_nihil/proc/SpawnSygil(mob/user)
+	if(sygil)
+		return
+	var/obj/effect/qoh_sygil/S = new(get_turf(src))
 	S.icon_state = "qoh1"
+	sygil = S
+	RegisterSignal(user, COMSIG_ATOM_DIR_CHANGE, PROC_REF(AjdustSygil))
+	AjdustSygil(user)
+
+/obj/item/ego_weapon/ranged/hatred_nihil/proc/AjdustSygil(mob/user)
+	if(!sygil)
+		return
 	switch(user.dir)
 		if(EAST)
-			S.pixel_x += 16
+			sygil.pixel_x = 0
+			sygil.pixel_y = -16
 			var/matrix/new_matrix = matrix()
 			new_matrix.Scale(0.5, 1)
-			S.transform = new_matrix
-			S.layer = (src.layer + 0.1)
+			sygil.transform = new_matrix
+			sygil.layer = (user.layer + 0.1)
 		if(WEST)
-			S.pixel_x += -16
+			sygil.pixel_x = -32
+			sygil.pixel_y = -16
 			var/matrix/new_matrix = matrix()
 			new_matrix.Scale(0.5, 1)
-			S.transform = new_matrix
-			S.layer = (src.layer + 0.1)
+			sygil.transform = new_matrix
+			sygil.layer = (user.layer + 0.1)
 		if(SOUTH)
-			S.pixel_y += -16
-			S.layer = (src.layer + 0.1)
+			sygil.pixel_x = -16
+			sygil.pixel_y = -32
+			var/matrix/new_matrix = matrix()
+			sygil.transform = new_matrix
+			sygil.layer = (user.layer + 0.1)
 		if(NORTH)
-			S.pixel_y += 16
-			S.layer -= 0.1
-	addtimer(CALLBACK(S, TYPE_PROC_REF(/obj/effect/qoh_sygil, fade_out)), 3 SECONDS)*/
+			sygil.pixel_x = -16
+			sygil.pixel_y = 0
+			var/matrix/new_matrix = matrix()
+			sygil.transform = new_matrix
+			sygil.layer = (user.layer - 0.1)
+
+/obj/item/ego_weapon/ranged/hatred_nihil/proc/RemoveSygil(mob/user)
+	if(!sygil)
+		return
+	UnregisterSignal(user, COMSIG_ATOM_DIR_CHANGE, PROC_REF(AjdustSygil))
+	sygil.fade_out()
+	sygil = null
+
+/obj/item/ego_weapon/ranged/hatred_nihil/proc/ArcanaBeats(mob/user)
 	var/aoe = blast_damage
 	var/justicemod = get_attack_multiplier(user)
 	var/firsthit = TRUE //One target takes full damage
 	var/turf/stepturf = (get_step(get_step(user, user.dir), user.dir))
 	playsound(src, 'sound/abnormalities/hatredqueen/gun.ogg', 65, FALSE, 4)
-	aoe*=justicemod
+	aoe*=justicemod*force_multiplier*projectile_damage_multiplier
 	for(var/turf/T in range(2, stepturf))
 		new /obj/effect/temp_visual/revenant(T)
 	for(var/mob/living/L in range(2, stepturf)) //knocks enemies away from you
@@ -212,3 +252,44 @@
 		if(!L.anchored)
 			var/whack_speed = (prob(60) ? 1 : 4)
 			L.throw_at(throw_target, rand(1, 2), whack_speed, user)
+
+/obj/item/ego_weapon/ranged/hatred_nihil/proc/HealingAura(mob/user, amt)
+	if(!user)
+		return
+	for(var/mob/living/carbon/human/H in view(1, user))
+		if(!user.faction_check_mob(H) || H.is_working)
+			continue
+		if((H.stat == DEAD) || H.status_flags & GODMODE)//if the target was already dead or godmode. We don't want someone to farm charge off of a dead body
+			continue
+		H.adjustBruteLoss(-amt)
+		H.adjustSanityLoss(-amt)
+
+/obj/item/ego_weapon/ranged/hatred_nihil/proc/PostDamage(mob/living/carbon/human/user, damage_amount, damage_type, def_zone, attacker, damage_flags, attack_type)
+	if(user.is_working)
+		return
+	if(damage_amount <= 0 || !isliving(attacker) || user == attacker || (attack_type & (ATTACK_TYPE_COUNTER | ATTACK_TYPE_ENVIRONMENT | ATTACK_TYPE_STATUS)))
+		return
+	new /obj/effect/temp_visual/revenant(get_turf(user))
+	shotsleft = min(shotsleft + ceil(damage_amount/4), max_shots)
+	UpdateAmmoCounter()
+	var/damage_increase = damage_per_hit * damage_amount
+	projectile_damage_multiplier = min(projectile_damage_multiplier + damage_increase, damage_cap)
+
+	var/time_amount = time_per_hit * damage_amount
+	if(damage_timer)
+		time_amount += timeleft(damage_timer)
+	time_amount = min(time_amount, max_mult_time)
+	current_time = time_amount
+
+	deltimer(damage_timer)
+	damage_timer = addtimer(CALLBACK(src, PROC_REF(DecayDamage)), current_time, TIMER_STOPPABLE)
+
+/obj/item/ego_weapon/ranged/hatred_nihil/proc/DecayDamage()
+	if(!damage_timer)
+		return
+	projectile_damage_multiplier = max(projectile_damage_multiplier - damage_decay_amount, 1)
+	deltimer(damage_timer)
+	if(projectile_damage_multiplier <= 1)
+		return
+	current_time = max(min_mult_time, current_time/2)
+	damage_timer = addtimer(CALLBACK(src, PROC_REF(DecayDamage)), current_time, TIMER_STOPPABLE)

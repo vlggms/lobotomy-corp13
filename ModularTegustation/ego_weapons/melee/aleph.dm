@@ -249,14 +249,13 @@
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
 							)
-	var/charging = FALSE
 	var/combo = 0
 	var/combo_time
 	var/combo_wait = 10
 
 //This is like an anime character attacking like 6 times with the 6th one as a finisher attack.
 /obj/item/ego_weapon/goldrush/attack(mob/living/M, mob/living/user)
-	if(!CanUseEgo(user) || charging)
+	if(!CanUseEgo(user))
 		return
 	if(world.time > combo_time)
 		combo = 0
@@ -295,7 +294,7 @@
 	..()
 	if(!istype(I, /obj/item/nihil/diamond))
 		return
-	new /obj/item/ego_weapon/goldrush/nihil(get_turf(src))
+	new /obj/item/ego_weapon/greed_nihil(get_turf(src))
 	to_chat(user,span_warning("The [I] seems to drain all of the light away as it is absorbed into [src]!"))
 	playsound(user, 'sound/abnormalities/nihil/filter.ogg', 15, FALSE, -3)
 	qdel(I)
