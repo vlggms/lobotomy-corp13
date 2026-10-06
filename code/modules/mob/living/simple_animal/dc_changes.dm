@@ -79,3 +79,8 @@
 /datum/dc_change/qliphothshred
 	potency = 1.2
 	damage_type = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
+
+/// 1.2x modifiers, used by Senseless Wrath
+/datum/dc_change/nihil_erosion
+	potency = 1.2
+	damage_type = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)

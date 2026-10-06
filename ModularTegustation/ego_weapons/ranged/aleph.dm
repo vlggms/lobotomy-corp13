@@ -434,8 +434,8 @@
 	charge = TRUE
 	charge_cost = 10
 	ability_type = ABILITY_UNIQUE
-	custom_charge_gain = "This weapon has charge mechanics and gains a charge upon healing a human with its projectile."
-	charge_effect = "Clicking on a target grants them a Mark of Villainy. The mark increases the damage the target takes from this weapon and Arcana Slave."
+	custom_charge_gain = "This weapon gains a charge upon healing a human with its projectile."
+	charge_effect = "Clicking on a target grants them a 'Mark of Villainy'. The mark increases the damage the target takes from this weapon and Arcana Slave."
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -488,3 +488,4 @@
 	status_type = STATUS_EFFECT_REFRESH
 	display_name = "villan"
 	duration = 300 //30 seconds
+	alert_type = null
