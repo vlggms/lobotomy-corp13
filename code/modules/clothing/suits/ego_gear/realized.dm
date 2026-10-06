@@ -9,22 +9,25 @@
 							TEMPERANCE_ATTRIBUTE = 100,
 							JUSTICE_ATTRIBUTE = 100
 							)
-	/// Type of realized ability, if any
+	/// Type of realized ability(s), if any
 	var/realized_ability = null
 
 /obj/item/clothing/suit/armor/ego_gear/realization/Initialize()
 	. = ..()
 	if(realized_ability)
-		if(istype(realized_ability, /obj/effect/proc_holder/ability))
-			var/obj/effect/proc_holder/ability/AS = new realized_ability
-			var/datum/action/spell_action/ability/item/A = AS.action
-			A.SetItem(src)
-			return
 		if(islist(realized_ability))
-			for(var/obj/effect/proc_holder/ability/AS in realized_ability)
-				new AS
-				var/datum/action/spell_action/ability/item/A = AS.action
-				A.SetItem(src)
+			for(var/A as anything in realized_ability)
+				var/obj/effect/proc_holder/ability/AS = new A
+				if(!istype(AS))
+					continue
+				var/datum/action/spell_action/ability/item/AB = AS.action
+				AB.SetItem(src)
+			return
+		var/obj/effect/proc_holder/ability/AS = new realized_ability
+		if(!istype(AS))
+			return
+		var/datum/action/spell_action/ability/item/A = AS.action
+		A.SetItem(src)
 
 /*Armor totals:
 Ability 	240
@@ -325,9 +328,9 @@ No Ability	260
 	desc = "'Tis better to have loved and lost than never to have loved at all."
 	special = "The wearer can dual wield 2 Blind Rages."
 	icon_state = "woundedcourage"
-	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 40, BLACK_DAMAGE = 70, PALE_DAMAGE = 60)		//Melee
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 40, BLACK_DAMAGE = 70, PALE_DAMAGE = 60)		//Melee / Damage
 	flags_inv = HIDEJUMPSUIT | HIDEGLOVES | HIDESHOES
-	realized_ability = /obj/effect/proc_holder/ability/justice_and_balance
+	realized_ability = list(/obj/effect/proc_holder/ability/enrage, /obj/effect/proc_holder/ability/ego_realization/woundedcourage)
 	hat = /obj/item/clothing/head/ego_hat/woundedcourage_hat
 
 /obj/item/clothing/head/ego_hat/woundedcourage_hat
