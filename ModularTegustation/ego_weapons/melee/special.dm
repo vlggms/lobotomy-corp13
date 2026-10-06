@@ -880,12 +880,14 @@
 	name = "worthless greed"
 	desc = "The magical girl, who was no longer a magical girl, ate many things. \
 	Authority, money, fame, and many other forms of pleasure. She ended up eating away anything in her sight."
-	special = "This weapon has a combo system and can charge up a powerful charge attack."
+	special = "This weapon has a combo system and can charge up a powerful charge attack. Also gibs on kill."
 	hitsound = 'sound/weapons/fixer/generic/fist2.ogg'
 	icon_state = "greed"
-	hitsound = 'sound/weapons/fixer/generic/gen2.ogg'
 	force = 30
 	modified_attack_speed = 0.3
+	attack_verb_continuous = list("punch", "punt")
+	attack_verb_simple = list("punches", "punts")
+	hitsound = 'sound/weapons/fixer/generic/gen2.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 120,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -898,16 +900,19 @@
 	var/combo_wait = 10
 
 	var/charging = FALSE
-	var/charge_damage = 250
+	var/charge_damage = 160
 	var/charge_wind_up = 0.5 SECONDS
 	var/can_charge = TRUE
 	var/prepair_charge = FALSE
-	var/charge_cooldown_time = 5.5 SECONDS
+	var/charge_cooldown_time = 4.5 SECONDS
 
 //This is like an anime character attacking like 6 times with the 6th one as a finisher attack.
 /obj/item/ego_weapon/greed_nihil/attack(mob/living/M, mob/living/user)
 	if(!CanUseEgo(user) || charging)
 		return
+	var/old_stat = M.stat
+	if(user.has_status_effect(/datum/status_effect/display/worthless_greed))
+		force *= 1.2
 	if(world.time > combo_time)
 		combo = 0
 	combo_time = world.time + combo_wait
@@ -921,9 +926,20 @@
 		to_chat(user,span_warning("You are offbalance, you take a moment to reset your stance."))
 		force *= 5
 		knockback = KNOCKBACK_HEAVY
-	else if(combo < 6 && combo >= 3)
-		for(var/i = 1 to combo)
-			sleep(2)
+	else if(combo == 1 || combo == 2)
+		user.changeNext_move(CLICK_CD_MELEE * 0.4)
+	else
+		user.changeNext_move(CLICK_CD_MELEE * 0.6)
+	..()
+	if((M.stat == DEAD && old_stat != DEAD) && !(M.status_flags & GODMODE))
+		M.gib()
+		Greed_Check(user)
+	var/next_move_modifier = user.next_move_modifier
+	if(combo >= 3)
+		for(var/i = 1 to combo-1)
+			if(QDELETED(M))
+				break
+			sleep(2*next_move_modifier)
 			if(M in view(reach,user))
 				combo_time = world.time + combo_wait
 				user.changeNext_move(CLICK_CD_MELEE * 0.4)
@@ -931,14 +947,11 @@
 				user.do_attack_animation(M)
 				M.attacked_by(src, user)
 				log_combat(user, M, pick(attack_verb_continuous), src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
-	else if(combo == 2)
-		user.changeNext_move(CLICK_CD_MELEE * 0.4)
-	else
-		user.changeNext_move(CLICK_CD_MELEE * 0.6)
-	..()
+				if((M.stat == DEAD && old_stat != DEAD) && !(M.status_flags & GODMODE))
+					M.gib()
+					Greed_Check(user)
 	knockback = null
 	combo += 1
-
 	force = initial(force)
 
 /obj/item/ego_weapon/greed_nihil/attack_self(mob/user) //spin attack with knockback
@@ -976,6 +989,7 @@
 		var/list/turf_list = getline(user, end_turf)
 		for(var/turf/T in turf_list)
 			var/dir = get_dir(get_turf(src), T)
+			user.setDir(dir)
 			var/stop_charge = FALSE
 			if(T.density)
 				break
@@ -998,12 +1012,16 @@
 			var/justicemod = get_attack_multiplier(user)
 			aoe *= justicemod
 			aoe *= force_multiplier
+			if(user.has_status_effect(/datum/status_effect/display/worthless_greed))
+				aoe *= 1.2
 			for(var/mob/living/L in range(1, user))
 				if(L == user)
 					continue
-				if(ishuman(L))
+				if(user.faction_check_mob(L))
 					continue
 				if(L in been_hit)
+					continue
+				if(L.stat == DEAD)
 					continue
 				been_hit += L
 				L.deal_damage(aoe, RED_DAMAGE, user, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
@@ -1013,9 +1031,13 @@
 				L.visible_message(span_danger("[user] tackles [L]!"))
 				playsound(T, 'sound/abnormalities/kog/GreedHit1.ogg', 40, 1)
 				playsound(T, 'sound/abnormalities/kog/GreedHit2.ogg', 30, 1)
+				if((L.stat == DEAD) && !(L.status_flags & GODMODE))
+					L.gib()
+					Greed_Check(user)
 			for(var/turf/open/R in range(1, T))
 				new /obj/effect/temp_visual/small_smoke/halfsecond(R)
 			playsound(src,'sound/effects/bamf.ogg', 70, TRUE, 20)
+			user.setDir(dir)
 			user.Immobilize(0.3)
 			sleep(0.3)
 		REMOVE_TRAIT(src, TRAIT_NODROP, STICKY_NODROP)
@@ -1028,10 +1050,23 @@
 	REMOVE_TRAIT(src, TRAIT_NODROP, STICKY_NODROP)
 	charge_reset()
 
-
 /obj/item/ego_weapon/greed_nihil/proc/charge_reset()
 	can_charge = TRUE
 	charging = FALSE
+
+/obj/item/ego_weapon/greed_nihil/proc/Greed_Check(mob/living/carbon/human/user)
+	if(!user.has_status_effect(/datum/status_effect/display/worthless_greed))
+		to_chat(user,span_notice("Greed starts to seep into your heart."))
+		new /obj/effect/particle_effect/sparks(get_turf(user))
+	user.adjustBruteLoss(-8)
+	user.apply_status_effect(/datum/status_effect/display/worthless_greed)
+
+/datum/status_effect/display/worthless_greed
+	id = "worthless_greed"
+	status_type = STATUS_EFFECT_REFRESH
+	display_name = "greed"
+	duration = 150 //15 seconds
+	alert_type = null
 
 /obj/item/ego_weapon/shield/despair_nihil
 	name = "meaningless despair"
@@ -1149,7 +1184,7 @@
 	RegisterSignal(H, COMSIG_PARENT_QDELETING, PROC_REF(OnProtectedDeath))
 	protection_list += H
 	var/datum/beam/new_beam = user.Beam(H, icon_state="medbeam", time=INFINITY, maxdistance=INFINITY, beam_type=/obj/effect/ebeam/medical)
-	var/newcolor = list(0.299,0.299,0.299, 0.587,0.587,0.587, 0.114,0.114,0.114, 0,0,0)
+	var/newcolor = list(0.1,0.1,0.1, 0.3,0.3,0.3, 0.05,0.05,0.05, 0,0,0)
 	new_beam.visuals.add_atom_colour(newcolor, FIXED_COLOUR_PRIORITY)
 	current_beams += new_beam
 
@@ -1208,26 +1243,148 @@
 	//Since COMSIG_MOB_APPLY_DAMGE doesn't carry over the block var, there will be some jank with Puss in Boot's finisher but ehh who cares
 	current_holder.deal_damage(damage_done, damagetype, attacker, damage_flags, attack_type, def_zone = def_zone)
 
-/datum/status_effect/despair_shield
-	id = "despair_shield"
-	duration = 3000 SECONDS
-	alert_type = null
-
 /obj/item/ego_weapon/wrath_nihil
 	name = "senseless wrath"
 	desc = "The Servant of Wrath valued justice and balance more than anyone, but she began sharing knowledge with the \
 	Hermit - an enemy of her realm, becoming friends with her in secret."
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
 	icon_state = "wrath"
-	force = 50
+	force = 30
 	attack_speed = 1.2
+	special = "This weapon possesses a devastating Red AND Black damage AoE that causes a crippling speed lowering Black DOT debuff. Be careful!"
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 120,
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
 							)
-	var/aoe_damage = 30
-	var/aoe_range = 3
+	var/aoe_damage = 15
+	var/aoe_damage_type = BLACK_DAMAGE
+	var/aoe_range = 2
+	var/combo = 1
+	var/combo_wait = 12
+	var/combo_time
+
+/obj/item/ego_weapon/wrath_nihil/get_clamped_volume()
+	return 30
+
+/obj/item/ego_weapon/wrath_nihil/attack(mob/living/M, mob/living/carbon/human/user)
+	var/turf/target_turf = get_turf(M)
+	if(combo_time < world.time)
+		combo = 1
+	combo_time = world.time + combo_wait
+	switch(combo)
+		if(1)
+			hitsound = 'sound/abnormalities/wrath_servant/big_smash1.ogg'
+		if(2)
+			hitsound = 'sound/abnormalities/wrath_servant/big_smash2.ogg'
+		if(3)
+			hitsound = 'sound/abnormalities/wrath_servant/big_smash3.ogg'
+	var/damage = aoe_damage * get_attack_multiplier(user)
+	damage *= force_multiplier
+	if(combo >= 3)
+		combo = 1
+		damage *= 1.5
+		force *= 1.5
+	. = ..()
+	force = initial(force)
+	if(!.)
+		return FALSE
+	combo ++
+	var/armor_check = TRUE
+	for(var/turf/open/T in RANGE_TURFS(aoe_range, target_turf))
+		var/obj/effect/temp_visual/small_smoke/halfsecond/smonk = new(T)
+		smonk.color = COLOR_BLACK
+		var/list/been_hit = QDELETED(M) ? list() : list(M)
+		user.HurtInTurf(T, been_hit, damage, damtype, hurt_mechs = TRUE, check_faction = armor_check, hurt_structure = TRUE, break_not_destroy = TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
+		for(var/mob/living/L in user.HurtInTurf(T, list(), damage, aoe_damage_type, check_faction = armor_check, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL)))
+			if(L.stat == DEAD)
+				continue
+			if(QDELETED(L))
+				continue
+			var/datum/status_effect/display/nihil_erosion/NE = L.has_status_effect(/datum/status_effect/display/nihil_erosion)
+			if(NE)
+				NE.empowered = armor_check
+			L.apply_status_effect(/datum/status_effect/display/nihil_erosion, armor_check)
+	aoe_range = 2
+
+/datum/status_effect/display/nihil_erosion
+	id = "nihil_erosion"
+	status_type = STATUS_EFFECT_REFRESH
+	duration = 5 SECONDS
+	tick_interval = 5 //Two tick every second
+	on_remove_on_mob_delete = TRUE
+	display_name = "wrath"
+	alert_type = null
+	var/damage_amount = 10
+	var/already_empowered = FALSE
+	var/empowered = FALSE
+
+/datum/status_effect/display/nihil_erosion/on_creation(mob/living/new_owner, buff_empowered)
+	empowered = buff_empowered
+	return ..()
+
+/datum/status_effect/display/nihil_erosion/on_apply()
+	owner.add_movespeed_modifier(/datum/movespeed_modifier/nihil_erosion)
+	playsound(owner, 'sound/effects/wounds/sizzle2.ogg', 25, TRUE)
+	if(empowered && !already_empowered)
+		already_empowered = TRUE
+		if(ishuman(owner))
+			var/mob/living/carbon/human/H = owner
+			H.physiology.red_mod *= 1.2
+			H.physiology.white_mod *= 1.2
+			H.physiology.black_mod *= 1.2
+			H.physiology.pale_mod *= 1.2
+			return ..()
+		var/mob/living/simple_animal/M = owner
+		M.AddModifier(/datum/dc_change/nihil_erosion)
+	return ..()
+
+/datum/status_effect/display/nihil_erosion/refresh()
+	. = ..()
+	if(empowered && !already_empowered)
+		already_empowered = TRUE
+		if(ishuman(owner))
+			var/mob/living/carbon/human/H = owner
+			H.physiology.red_mod *= 1.2
+			H.physiology.white_mod *= 1.2
+			H.physiology.black_mod *= 1.2
+			H.physiology.pale_mod *= 1.2
+			return
+		var/mob/living/simple_animal/M = owner
+		M.AddModifier(/datum/dc_change/nihil_erosion)
+
+/datum/status_effect/display/nihil_erosion/on_remove()
+	owner.remove_movespeed_modifier(/datum/movespeed_modifier/nihil_erosion)
+	if(already_empowered)
+		if(ishuman(owner))
+			var/mob/living/carbon/human/H = owner
+			H.physiology.red_mod /= 1.2
+			H.physiology.white_mod /= 1.2
+			H.physiology.black_mod /= 1.2
+			H.physiology.pale_mod /= 1.2
+			return ..()
+		var/mob/living/simple_animal/M = owner
+		M.RemoveModifier(/datum/dc_change/nihil_erosion)
+	return ..()
+
+/datum/status_effect/display/nihil_erosion/tick()
+	if(QDELETED(owner) || owner.stat == DEAD)
+		qdel(src)
+		return
+	var/damage = damage_amount
+	if(ishuman(owner))
+		damage /= 2
+	owner.deal_damage(damage_amount, BLACK_DAMAGE, attack_type = (ATTACK_TYPE_STATUS))
+	playsound(owner, 'sound/effects/wounds/sizzle2.ogg', 25, TRUE)
+
+/datum/movespeed_modifier/nihil_erosion
+	variable = TRUE
+	multiplicative_slowdown = 1.5
+	flags = IS_ACTUALLY_MULTIPLICATIVE
 
 //Tutorial
 /obj/item/ego_weapon/tutorial

@@ -75,10 +75,10 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/blind_rage_nihil
-	name = "shameless wrath"
+/obj/item/clothing/suit/armor/ego_gear/wrath_nihil
+	name = "senseless wrath"
 	desc = "The Servant was betrayed after abandoning her principles and ingenuously trusting someone with her whole heart."
-	special = "Wearing this armor impowers the respective weapon's aoe, causing it to no damage allies and inflict an armor weakening debuff."
+	special = "Wearing this armor impowers the respective weapon's AOE, causing it to no damage allies and inflict an armor weakening debuff."
 	icon_state = "wrath"
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 80, BLACK_DAMAGE = 70, PALE_DAMAGE = 50) // 260
 	attribute_requirements = list(
@@ -88,7 +88,7 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/goldrush_nihil
+/obj/item/clothing/suit/armor/ego_gear/greed_nihil
 	name = "worthless greed"
 	desc = "Now, only visceral greed remains."
 	special = "Wearing this armor impowers the respective weapon, granting a temporary damage boost and a small amount of HP if the weapon lands a kill."

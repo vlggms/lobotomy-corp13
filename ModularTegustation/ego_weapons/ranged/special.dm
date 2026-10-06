@@ -33,7 +33,7 @@
 	icon_state = "hate"
 	inhand_icon_state = "hate"
 	fire_delay = 7
-	special = "This weapon's projectile has IFF and heals the user and humans near the user on hit."
+	special = "This weapon's projectiles has IFF and heals the user and humans near the user on hit."
 	force = 35
 	attack_speed = 1
 	damtype = BLACK_DAMAGE

@@ -98,11 +98,19 @@
 	qdel(src)
 
 /obj/effect/proc_holder/ability/ego_realization/lovejustice
-	desc = "Empower an ''In the Name of Love and Hate'' into a weapon comptaible with your suit. Can only be used once."
+	desc = "Empower an 'In the Name of Love and Hat' into a weapon comptaible with your suit. Can only be used once."
 	base_icon_state = "lovejustice"
 	action_icon_state = "lovejustice"
 	weapon_type = /obj/item/ego_weapon/ranged/hatred
 	target_type = /obj/item/ego_weapon/ranged/lovejustice
+
+/obj/effect/proc_holder/ability/ego_realization/woundedcourage
+	desc = "Empower an 'Blind Rage' into a weapon comptaible with your suit. Can only be used once."
+	base_icon_state = "woundedcourage"
+	action_icon_state = "woundedcourage"
+	weapon_type = /obj/item/ego_weapon/blind_rage
+	target_type = /obj/item/ego_weapon/woundedcourage
+
 
 /* Fragment of the Universe - One with the Universe */
 /obj/effect/proc_holder/ability/universe_song

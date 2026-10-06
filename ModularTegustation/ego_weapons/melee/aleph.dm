@@ -239,10 +239,12 @@
 	desc = "The weapon of someone who can swing their weight around like a truck"
 	special = "This weapon has a combo system."
 	icon_state = "gold_rush"
-	hitsound = 'sound/weapons/fixer/generic/gen2.ogg'
 	force = 25
 	modified_attack_speed = 0.3
 	damtype = RED_DAMAGE
+	attack_verb_continuous = list("punch", "punt")
+	attack_verb_simple = list("punches", "punts")
+	hitsound = 'sound/weapons/fixer/generic/gen2.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -270,9 +272,17 @@
 		to_chat(user,span_warning("You are offbalance, you take a moment to reset your stance."))
 		force *= 5
 		knockback = KNOCKBACK_HEAVY
-	else if(combo < 6 && combo >= 3)
-		for(var/i = 1 to combo)
-			sleep(2)
+	else if(combo == 1 || combo == 2)
+		user.changeNext_move(CLICK_CD_MELEE * 0.4)
+	else
+		user.changeNext_move(CLICK_CD_MELEE * 0.6)
+	..()
+	var/next_move_modifier = user.next_move_modifier
+	if(combo >= 3)
+		for(var/i = 1 to combo-1)
+			if(QDELETED(M))
+				break
+			sleep(2*next_move_modifier)
 			if(M in view(reach,user))
 				combo_time = world.time + combo_wait
 				user.changeNext_move(CLICK_CD_MELEE * 0.4)
@@ -280,14 +290,8 @@
 				user.do_attack_animation(M)
 				M.attacked_by(src, user)
 				log_combat(user, M, pick(attack_verb_continuous), src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
-	else if(combo == 2)
-		user.changeNext_move(CLICK_CD_MELEE * 0.4)
-	else
-		user.changeNext_move(CLICK_CD_MELEE * 0.6)
-	..()
 	knockback = null
 	combo += 1
-
 	force = initial(force)
 
 /obj/item/ego_weapon/goldrush/attackby(obj/item/I, mob/living/user, params)
@@ -1489,3 +1493,100 @@
 		A.attackby(src,user)
 	playsound(src, 'sound/abnormalities/clownsmiling/jumpscare.ogg', 50, FALSE, 9)
 	to_chat(user, "<span class='warning'>You dash to [A]!")
+
+/obj/item/ego_weapon/woundedcourage
+	name = "wounded courage"
+	desc = "We... We were true friends... Right?"
+	icon_state = "woundedcourage"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
+	force = 22
+	modified_attack_speed = 1.2
+	special = "This weapon requires 2 hands to wield and has a 2 hit combo that deals Red AND Black damage in a small area.\nThis weapon can also reform a triple slam attack."
+	damtype = RED_DAMAGE
+	attack_verb_continuous = list("smashes", "crushes", "flattens")
+	attack_verb_simple = list("smash", "crush", "flatten")
+	hitsound = 'sound/abnormalities/wrath_servant/big_smash1.ogg'
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 60,
+							JUSTICE_ATTRIBUTE = 80
+							)
+
+	var/aoe_damage = 11
+	var/aoe_damage_type = BLACK_DAMAGE
+	var/aoe_range = 1
+	var/combo = 1
+	var/combo_wait = 10
+	var/combo_time
+
+	var/smash_damage = 50
+	var/smash_cooldown_time = 20 SECONDS
+	var/is_smashing = FALSE
+
+/obj/item/ego_weapon/woundedcourage/get_clamped_volume()
+	return 30
+
+/obj/item/ego_weapon/woundedcourage/attack(mob/living/M, mob/living/carbon/human/user)
+	if(is_smashing)
+		return
+	var/turf/target_turf = get_turf(M)
+	if(combo_time < world.time)
+		combo = 1
+	combo_time = world.time + combo_wait
+	var/damage = aoe_damage * get_attack_multiplier(user)
+	damage *= force_multiplier
+	if(combo == 2)
+		combo = 1
+		hitsound = 'sound/abnormalities/wrath_servant/small_smash2.ogg'
+		user.changeNext_move(CLICK_CD_MELEE * 1.8)
+	else
+		hitsound = 'sound/abnormalities/wrath_servant/small_smash1.ogg'
+		user.changeNext_move(CLICK_CD_MELEE * 0.6)
+		combo = 2
+	. = ..()
+	force = initial(force)
+	if(!.)
+		return FALSE
+	for(var/turf/open/T in RANGE_TURFS(aoe_range, target_turf))
+		var/obj/effect/temp_visual/small_smoke/halfsecond/smonk = new(T)
+		smonk.color = COLOR_GREEN
+		var/list/been_hit = QDELETED(M) ? list() : list(M)
+		user.HurtInTurf(T, been_hit, damage, damtype, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
+		user.HurtInTurf(T, list(), damage, aoe_damage_type, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
+		if(prob(5))
+			new /obj/effect/gibspawner/generic/silent/wrath_acid(T) // The non-damaging one
+
+/obj/item/ego_weapon/woundedcourage/attack_self(mob/user)
+	. = ..()
+	if(!CanUseEgo(user))
+		return
+	Smash(user)
+
+/obj/item/ego_weapon/woundedcourage/proc/Smash(mob/living/carbon/human/user)
+	if(is_smashing)
+		return
+	is_smashing = TRUE
+	var/list/turf/hit_turfs = list()
+	playsound(src, 'sound/abnormalities/wrath_servant/enrage.ogg', 75, FALSE, 20, falloff_distance = 10)
+	if(!do_after(user, 15, src))
+		is_smashing = FALSE
+		return
+	var/damage = smash_damage * get_attack_multiplier(user)
+	damage *= force_multiplier
+	for(var/x = 1 to 3)
+		if(x == 3)
+			damage *= 2
+		var/list/been_hit = list()
+		playsound(src, "sound/abnormalities/wrath_servant/big_smash[x].ogg", 75, FALSE, 20, falloff_distance = 10) // heard from a distance
+		for(var/i = 1 to 5)
+			hit_turfs = (view(i, src) - range(i-1, user))
+			for(var/turf/T in hit_turfs)
+				been_hit = user.HurtInTurf(T, been_hit, damage, damtype, null, TRUE, FALSE, TRUE, FALSE, TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
+				new /obj/effect/temp_visual/kinetic_blast(T)
+				if(prob(3))
+					new /obj/effect/gibspawner/generic/silent/wrath_acid(T)
+			user.Immobilize(2)
+			sleep(1)
+	is_smashing = FALSE
