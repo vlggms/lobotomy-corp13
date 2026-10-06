@@ -30,11 +30,24 @@ sharpness - Irrelevant in most cases.
 		if(!PreDamageReaction(damage_amount, damage_type, source, attack_type)) // If our forced argument isn't TRUE, then we expect to receive a TRUE from PreDamageReaction to continue the proc.
 			return FALSE
 
-	// We will now send a signal that gives listeners the opportunity to cancel the damage being dealt. For some reason, in the original apply_damage, this happens before a "final damage" calculation, so I have chosen to preserve that behaviour.
-	// Some examples of the listeners that may return COMPONENT_MOB_DENY_DAMAGE are manager shields, the Welfare Core reward, or Sweeper Persistence.
-	var/signal_return = SEND_SIGNAL(src, COMSIG_MOB_APPLY_DAMGE, damage_amount, damage_type, def_zone, source, flags, attack_type)
-	if(signal_return & COMPONENT_MOB_DENY_DAMAGE)
-		return FALSE
+		// We will now send a signal that gives listeners the opportunity to cancel the damage being dealt. For some reason, in the original apply_damage, this happens before a "final damage" calculation, so I have chosen to preserve that behaviour.
+		// Some examples of the listeners that may return COMPONENT_MOB_DENY_DAMAGE are manager shields, the Welfare Core reward, or Sweeper Persistence.
+		var/signal_return = SEND_SIGNAL(src, COMSIG_MOB_APPLY_DAMGE, damage_amount, damage_type, def_zone, source, flags, attack_type)
+		if(signal_return & COMPONENT_MOB_DENY_DAMAGE)
+			return FALSE
+
+		if(source && isliving(source) && !(attack_type & (ATTACK_TYPE_ENVIRONMENT)))
+			var/mob/living/L = source
+			damage_amount *= L.damage_mult
+			switch(damage_type)
+				if(RED_DAMAGE, FIRE)
+					damage_amount *= L.red_damage_mult
+				if(WHITE_DAMAGE)
+					damage_amount *= L.white_damage_mult
+				if(BLACK_DAMAGE)
+					damage_amount *= L.black_damage_mult
+				if(PALE_DAMAGE)
+					damage_amount *= L.pale_damage_mult
 
 	// Automatically run an armour check for the provided damage type if we weren't already provided with a blocked value, and if we aren't taking BRUTE damage.
 	if((isnull(blocked)) && (damage_type != BRUTE))

@@ -1608,6 +1608,19 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	if(signal_return & COMPONENT_MOB_DENY_DAMAGE)
 		return FALSE
 
+	if(source && isliving(source) && !(attack_type & (ATTACK_TYPE_ENVIRONMENT)))
+		var/mob/living/L = source
+		damage_amount *= L.damage_mult
+		switch(damage_type)
+			if(RED_DAMAGE, FIRE)
+				damage_amount *= L.red_damage_mult
+			if(WHITE_DAMAGE)
+				damage_amount *= L.white_damage_mult
+			if(BLACK_DAMAGE)
+				damage_amount *= L.black_damage_mult
+			if(PALE_DAMAGE)
+				damage_amount *= L.pale_damage_mult
+
 	var/hit_percent = (100-(blocked+armor))/100
 	hit_percent = (hit_percent * (100-H.physiology.damage_resistance))/100
 
