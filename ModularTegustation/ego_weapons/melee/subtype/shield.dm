@@ -180,7 +180,7 @@
 		SEND_SIGNAL(src, COMSIG_ITEM_HIT_REACT, args)
 		owner.HealingEffect("no_dam")
 		owner.visible_message(span_nicegreen("[owner.real_name] deflects the projectile!"), span_userdanger("[projectile_block_message]"))
-		return 1
+		return TRUE
 	return ..()
 
 /obj/item/ego_weapon/shield/Destroy()
