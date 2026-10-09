@@ -326,11 +326,11 @@ No Ability	260
 /obj/item/clothing/suit/armor/ego_gear/realization/woundedcourage
 	name = "wounded courage"
 	desc = "'Tis better to have loved and lost than never to have loved at all."
-	special = "The wearer can dual wield 2 Blind Rages."
+	special = "This armor grants a temporary bonus to justice when hitting an enemy with the respective weapon's slam attack. Hitting the same target increases this bonus."
 	icon_state = "woundedcourage"
 	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 40, BLACK_DAMAGE = 70, PALE_DAMAGE = 60)		//Melee / Damage
 	flags_inv = HIDEJUMPSUIT | HIDEGLOVES | HIDESHOES
-	realized_ability = list(/obj/effect/proc_holder/ability/enrage, /obj/effect/proc_holder/ability/ego_realization/woundedcourage)
+	realized_ability = list(/obj/effect/proc_holder/ability/wrath, /obj/effect/proc_holder/ability/ego_realization/woundedcourage)
 	hat = /obj/item/clothing/head/ego_hat/woundedcourage_hat
 
 /obj/item/clothing/head/ego_hat/woundedcourage_hat

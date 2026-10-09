@@ -102,15 +102,16 @@
 /* Knight of Despair - Quenched with Blood */
 /obj/effect/proc_holder/ability/aimed/despair_swords
 	name = "Blades Whetted with Tears"
-	desc = "An ability that summons 2 swords to attack and slow nearby enemies. \
-		Each sword deals 50 Pale damage plus an addition 5% of the target's max HP as Pale"
+	desc = "An ability that summons 3 swords to attack and slow nearby enemies. \
+		Each sword deals 50 Pale damage"
 	action_icon_state = "despair0"
 	base_icon_state = "despair"
 	cooldown_time = 20 SECONDS
 
-	var/swords = 2
+	var/swords = 3
 
 /obj/effect/proc_holder/ability/aimed/despair_swords/Perform(target, mob/user)
+	. = ..()
 	var/turf/target_turf = get_turf(target)
 	var/list/OT = get_adjacent_open_turfs(user)
 	for(var/i = 1 to swords)
@@ -118,36 +119,34 @@
 			OT = get_adjacent_open_turfs(user)
 		var/turf/T = pick(OT)
 		OT -= T
-		var/obj/projectile/despair_rapier/ego/RP = new(T)
-		RP.starting = T
-		RP.firer = user
-		RP.fired_from = T
-		RP.yo = target_turf.y - T.y
-		RP.xo = target_turf.x - T.x
-		RP.original = target_turf
-		RP.preparePixelProjectile(target_turf, T)
-		addtimer(CALLBACK (RP, TYPE_PROC_REF(/obj/projectile, fire)), 3)
+		var/P = /obj/projectile/ego_bullet/despair_rapier
+		new /obj/effect/projectile_delayed(T, target_turf, user, P, 3)
 	sleep(3)
 	playsound(target_turf, 'sound/abnormalities/despairknight/attack.ogg', 50, 0, 4)
-	return ..()
 
-/obj/projectile/despair_rapier/ego
+/obj/projectile/ego_bullet/despair_rapier
 	name = "Sword that Pierces Despair"
 	desc = "A magic rapier, enchanted by a knight protecting the weak."
-	nodamage = TRUE
-	damage = 0
-	projectile_piercing = PASSMOB
+	icon_state = "despair"
+	damage_type = PALE_DAMAGE
+	damage = 50
+	hitsound_wall = ""
+	impact_effect_type = null
+	ff_multiplier= 0
 
-/obj/projectile/despair_rapier/ego/on_hit(atom/target, blocked = FALSE)
-	if(ishuman(target))
-		return
-	nodamage = FALSE
+/obj/projectile/ego_bullet/despair_rapier/Initialize()
+	. = ..()
+	hitsound = "sound/weapons/ego/rapier[pick(1,2)].ogg"
+	animate(src, alpha = 255, time = 3)
+
+
+/obj/projectile/ego_bullet/despair_rapier/ego/on_hit(atom/target, blocked = FALSE)
 	if(ishostile(target))
 		var/mob/living/simple_animal/hostile/H = target
-		H.TemporarySpeedChange(1, 10 SECONDS)
-		H.deal_damage(50 + (0.05 * H.maxHealth), PALE_DAMAGE, firer, attack_type = (ATTACK_TYPE_RANGED))
+		var/mob/living/user = firer
+		if(!user.faction_check_mob(H))
+			H.TemporarySpeedChange(2, 10 SECONDS, TRUE)
 	..()
-	qdel(src)
 
 /* Queen of Hatred - Love and Justice */
 /obj/effect/proc_holder/ability/aimed/arcana_slave
@@ -311,7 +310,6 @@
 
 /datum/action/spell_action/ability/item/ego_arcana_slave/proc/AdjustCooldown(amount)
 	if(target && istype(target, /obj/effect/proc_holder/ability/aimed/arcana_slave))
-		to_chat(world, "Works2")
 		var/obj/effect/proc_holder/ability/aimed/arcana_slave/AS = target
 		AS.cooldown += amount
 		AS.update_icon()
