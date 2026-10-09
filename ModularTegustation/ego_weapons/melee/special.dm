@@ -880,14 +880,14 @@
 	name = "worthless greed"
 	desc = "The magical girl, who was no longer a magical girl, ate many things. \
 	Authority, money, fame, and many other forms of pleasure. She ended up eating away anything in her sight."
-	special = "This weapon has a combo system and can charge up a powerful charge attack. Also gibs on kill."
+	special = "This weapon deals its damage after a short windup or can charge up a powerful charge attack. Also gibs on kill."
 	hitsound = 'sound/weapons/fixer/generic/fist2.ogg'
 	icon_state = "greed"
-	force = 30
-	modified_attack_speed = 0.3
-	attack_verb_continuous = list("punch", "punt")
-	attack_verb_simple = list("punches", "punts")
-	hitsound = 'sound/weapons/fixer/generic/gen2.ogg'
+	force = 50
+	modified_attack_speed = 0.7
+	attack_verb_continuous = null
+	attack_verb_simple = null
+	hitsound = 'sound/abnormalities/kog/GreedHit2.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 120,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -895,64 +895,33 @@
 							JUSTICE_ATTRIBUTE = 80
 
 						)
-	var/combo = 0
-	var/combo_time
-	var/combo_wait = 10
 
 	var/charging = FALSE
-	var/charge_damage = 160
+	var/charge_damage = 150
 	var/charge_wind_up = 0.5 SECONDS
 	var/can_charge = TRUE
 	var/prepair_charge = FALSE
 	var/charge_cooldown_time = 4.5 SECONDS
 
-//This is like an anime character attacking like 6 times with the 6th one as a finisher attack.
-/obj/item/ego_weapon/greed_nihil/attack(mob/living/M, mob/living/user)
+/obj/item/ego_weapon/greed_nihil/attack(mob/living/target, mob/living/user)
 	if(!CanUseEgo(user) || charging)
 		return
-	var/old_stat = M.stat
-	if(user.has_status_effect(/datum/status_effect/display/worthless_greed))
-		force *= 1.2
-	if(world.time > combo_time)
-		combo = 0
-	combo_time = world.time + combo_wait
-	if(combo >= 6)
-		M.visible_message(span_danger("[user] rears up and slams into [M]!"), \
+	if(do_after(user, 4, target))
+		if(user.has_status_effect(/datum/status_effect/display/worthless_greed))
+			force *= 1.2
+		var/old_stat = target.stat
+		target.visible_message(span_danger("[user] rears up and slams into [target]!"), \
 						span_userdanger("[user] punches you with everything you got!!"), vision_distance = COMBAT_MESSAGE_RANGE, ignored_mobs = user)
 		to_chat(user, span_danger("You throw your entire body into this punch!"))
-		combo = 0
-		user.changeNext_move(CLICK_CD_MELEE * 3)
-		playsound(src, 'sound/weapons/fixer/generic/finisher2.ogg', 50, FALSE, 9)
-		to_chat(user,span_warning("You are offbalance, you take a moment to reset your stance."))
-		force *= 5
-		knockback = KNOCKBACK_HEAVY
-	else if(combo == 1 || combo == 2)
-		user.changeNext_move(CLICK_CD_MELEE * 0.4)
+		user.changeNext_move(CLICK_CD_MELEE * 0.2)
+		..()
+		force = initial(force)
+		if((target.stat == DEAD && old_stat != DEAD) && !(target.status_flags & GODMODE))
+			target.gib()
+			Greed_Check(user)
 	else
-		user.changeNext_move(CLICK_CD_MELEE * 0.6)
-	..()
-	if((M.stat == DEAD && old_stat != DEAD) && !(M.status_flags & GODMODE))
-		M.gib()
-		Greed_Check(user)
-	var/next_move_modifier = user.next_move_modifier
-	if(combo >= 3)
-		for(var/i = 1 to combo-1)
-			if(QDELETED(M))
-				break
-			sleep(2*next_move_modifier)
-			if(M in view(reach,user))
-				combo_time = world.time + combo_wait
-				user.changeNext_move(CLICK_CD_MELEE * 0.4)
-				playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
-				user.do_attack_animation(M)
-				M.attacked_by(src, user)
-				log_combat(user, M, pick(attack_verb_continuous), src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
-				if((M.stat == DEAD && old_stat != DEAD) && !(M.status_flags & GODMODE))
-					M.gib()
-					Greed_Check(user)
-	knockback = null
-	combo += 1
-	force = initial(force)
+		to_chat(user, "<span class='spider'><b>Your attack was interrupted!</b></span>")
+		return
 
 /obj/item/ego_weapon/greed_nihil/attack_self(mob/user) //spin attack with knockback
 	if(!CanUseEgo(user) || charging)
@@ -966,6 +935,7 @@
 	else
 		to_chat(user,span_notice("You decide to not preform a dash."))
 	. = ..()
+	force = initial(force)
 
 /obj/item/ego_weapon/greed_nihil/afterattack(atom/A, mob/living/user, proximity_flag, params)
 	if(!CanUseEgo(user) || !prepair_charge || charging)

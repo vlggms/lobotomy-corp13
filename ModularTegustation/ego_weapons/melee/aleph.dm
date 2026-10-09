@@ -242,8 +242,8 @@
 	force = 25
 	modified_attack_speed = 0.3
 	damtype = RED_DAMAGE
-	attack_verb_continuous = list("punch", "punt")
-	attack_verb_simple = list("punches", "punts")
+	attack_verb_continuous = list("punchse", "punts")
+	attack_verb_simple = list("punch", "punt")
 	hitsound = 'sound/weapons/fixer/generic/gen2.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
@@ -251,17 +251,21 @@
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
 							)
+	var/forced_finisher = FALSE
 	var/combo = 0
 	var/combo_time
 	var/combo_wait = 10
 
-//This is like an anime character attacking like 6 times with the 6th one as a finisher attack.
-/obj/item/ego_weapon/goldrush/attack(mob/living/M, mob/living/user)
+//This is like an anime character attacking like 7 times with the 7th one as a finisher attack.
+/obj/item/ego_weapon/goldrush/attack(mob/living/M, mob/living/carbon/human/user)
 	if(!CanUseEgo(user))
 		return
 	if(world.time > combo_time)
 		combo = 0
 	combo_time = world.time + combo_wait
+	if(forced_finisher)
+		combo = 6
+		forced_finisher = FALSE
 	if(combo >= 6)
 		M.visible_message(span_danger("[user] rears up and slams into [M]!"), \
 						span_userdanger("[user] punches you with everything you got!!"), vision_distance = COMBAT_MESSAGE_RANGE, ignored_mobs = user)
@@ -281,6 +285,8 @@
 	if(combo >= 3)
 		for(var/i = 1 to combo-1)
 			if(QDELETED(M))
+				break
+			if(QDELETED(user) || user.get_active_held_item() != src)
 				break
 			sleep(2*next_move_modifier)
 			if(M in view(reach,user))
@@ -1494,6 +1500,59 @@
 	playsound(src, 'sound/abnormalities/clownsmiling/jumpscare.ogg', 50, FALSE, 9)
 	to_chat(user, "<span class='warning'>You dash to [A]!")
 
+/obj/item/ego_weapon/quenchedblood
+	name = "quenched with blood"
+	desc = "The edge of this sword sharpened with tears and quenched with blood is always precise."
+	special = "This weapon has a combo system, the finisher does 2.5% of the target's Max Health as additional damage up to 50 additional damage. To turn off this combo system, use in hand."
+	icon_state = "quenchedblood"
+	force = 14
+	modified_attack_speed = 0.4
+	damtype = PALE_DAMAGE
+	swingstyle = WEAPONSWING_THRUST
+	attack_verb_continuous = list("stabs", "attacks", "slashes")
+	attack_verb_simple = list("stab", "attack", "slash")
+	hitsound = 'sound/weapons/ego/rapier1.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 100,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 100
+							)
+	var/combo = 1
+	var/combo_time
+	var/combo_wait = 10
+	var/combo_on = TRUE
+
+/obj/item/ego_weapon/quenchedblood/attack_self(mob/user)
+	..()
+	if(combo_on)
+		to_chat(user,span_warning("You swap your grip, and will no longer perform a finisher."))
+		combo_on = FALSE
+		return
+	if(!combo_on)
+		to_chat(user,span_warning("You swap your grip, and will now perform a finisher."))
+		combo_on =TRUE
+		return
+
+//This is like an anime character attacking like 4 times with the 4th one as a finisher attack.
+/obj/item/ego_weapon/quenchedblood/attack(mob/living/M, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	if(world.time > combo_time || !combo_on)	//or you can turn if off I guess
+		combo = 1
+	combo_time = world.time + combo_wait
+	if(combo==4)
+		combo = 1
+		user.changeNext_move(CLICK_CD_MELEE * 2)
+		force += ((force * 2) + min(50, M.maxHealth * 0.025)) //Up to 50 more pale damage to targets with 2k hp and higher
+		playsound(src, 'sound/weapons/fwoosh.ogg', 300, FALSE, 9)
+		to_chat(user,span_warning("You are offbalance, you take a moment to reset your stance."))
+	else
+		user.changeNext_move(CLICK_CD_MELEE * 0.4)
+	..()
+	combo += 1
+	force = initial(force)
+
 /obj/item/ego_weapon/woundedcourage
 	name = "wounded courage"
 	desc = "We... We were true friends... Right?"
@@ -1502,28 +1561,36 @@
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	force = 22
+	force = 36
 	modified_attack_speed = 1.2
-	special = "This weapon requires 2 hands to wield and has a 2 hit combo that deals Red AND Black damage in a small area.\nThis weapon can also reform a triple slam attack."
+	special = "This weapon requires 2 hands to wield and has a 2 hit combo that deals Red AND Black damage in a small area.\nThis weapon can also preform a triple smash attack."
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("smashes", "crushes", "flattens")
 	attack_verb_simple = list("smash", "crush", "flatten")
 	hitsound = 'sound/abnormalities/wrath_servant/big_smash1.ogg'
 	attribute_requirements = list(
-							TEMPERANCE_ATTRIBUTE = 60,
-							JUSTICE_ATTRIBUTE = 80
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 100
 							)
 
-	var/aoe_damage = 11
+	var/aoe_damage = 24
 	var/aoe_damage_type = BLACK_DAMAGE
-	var/aoe_range = 1
 	var/combo = 1
 	var/combo_wait = 10
 	var/combo_time
 
 	var/smash_damage = 50
-	var/smash_cooldown_time = 20 SECONDS
+	var/smash_cooldown
+	var/smash_cooldown_time = 10 SECONDS
 	var/is_smashing = FALSE
+
+/obj/item/ego_weapon/woundedcourage/CanUseEgo(mob/living/user)
+	. = ..()
+	if(user.get_inactive_held_item())
+		to_chat(user, span_notice("You cannot use [src] with only one hand!"))
+		return FALSE
 
 /obj/item/ego_weapon/woundedcourage/get_clamped_volume()
 	return 30
@@ -1537,18 +1604,22 @@
 	combo_time = world.time + combo_wait
 	var/damage = aoe_damage * get_attack_multiplier(user)
 	damage *= force_multiplier
-	if(combo == 2)
-		combo = 1
-		hitsound = 'sound/abnormalities/wrath_servant/small_smash2.ogg'
-		user.changeNext_move(CLICK_CD_MELEE * 1.8)
-	else
+	if(combo == 1)
 		hitsound = 'sound/abnormalities/wrath_servant/small_smash1.ogg'
 		user.changeNext_move(CLICK_CD_MELEE * 0.6)
 		combo = 2
+	else
+		combo = 1
+		hitsound = 'sound/abnormalities/wrath_servant/small_smash2.ogg'
+		user.changeNext_move(CLICK_CD_MELEE * 1.8)
 	. = ..()
 	force = initial(force)
 	if(!.)
 		return FALSE
+	var/aoe_range = 1
+	if(user.has_status_effect(/datum/status_effect/wrath))
+		aoe_range = 2
+
 	for(var/turf/open/T in RANGE_TURFS(aoe_range, target_turf))
 		var/obj/effect/temp_visual/small_smoke/halfsecond/smonk = new(T)
 		smonk.color = COLOR_GREEN
@@ -1562,31 +1633,117 @@
 	. = ..()
 	if(!CanUseEgo(user))
 		return
+	if(is_smashing)
+		return
+	if(smash_cooldown > world.time)
+		to_chat(user,span_warning("You attacked too recently."))
+		return
 	Smash(user)
 
 /obj/item/ego_weapon/woundedcourage/proc/Smash(mob/living/carbon/human/user)
-	if(is_smashing)
-		return
 	is_smashing = TRUE
 	var/list/turf/hit_turfs = list()
-	playsound(src, 'sound/abnormalities/wrath_servant/enrage.ogg', 75, FALSE, 20, falloff_distance = 10)
+	for(var/turf/T in range(2, src))
+		new /obj/effect/temp_visual/cult/sparks(T)
 	if(!do_after(user, 15, src))
 		is_smashing = FALSE
 		return
+	smash_cooldown = world.time + smash_cooldown_time
 	var/damage = smash_damage * get_attack_multiplier(user)
 	damage *= force_multiplier
+	var/list/targets_hit = list()
 	for(var/x = 1 to 3)
 		if(x == 3)
 			damage *= 2
 		var/list/been_hit = list()
 		playsound(src, "sound/abnormalities/wrath_servant/big_smash[x].ogg", 75, FALSE, 20, falloff_distance = 10) // heard from a distance
 		for(var/i = 1 to 5)
+			if(QDELETED(user) || (user.get_active_held_item() != src && user.get_inactive_held_item() != src))
+				is_smashing = FALSE
+				return
 			hit_turfs = (view(i, src) - range(i-1, user))
 			for(var/turf/T in hit_turfs)
-				been_hit = user.HurtInTurf(T, been_hit, damage, damtype, null, TRUE, FALSE, TRUE, FALSE, TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
+
+				//The dealing damage part
+				for(var/mob/living/L in T)
+					var/actual_dam = damage
+					if(L.status_flags & GODMODE)
+						continue
+					if(L == user)
+						continue
+					if(L.stat == DEAD || (L in been_hit))
+						continue
+					if(user.faction_check_mob(L))
+						actual_dam *= 0.5
+					if(L in targets_hit)
+						targets_hit[L] += 1
+					else
+						targets_hit[L] = 1
+					var/was_dead = (L.stat == DEAD)
+					been_hit += L
+					L.deal_damage(damage, damtype, user, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
+					if(user.has_status_effect(/datum/status_effect/wrath))
+						if(!was_dead && L.stat == DEAD)
+							user.adjustSanityLoss(-5)
+
 				new /obj/effect/temp_visual/kinetic_blast(T)
 				if(prob(3))
 					new /obj/effect/gibspawner/generic/silent/wrath_acid(T)
+
+			var/datum/status_effect/stacking/justice_and_balance/JAB = user.has_status_effect(/datum/status_effect/stacking/justice_and_balance)
+			if(!JAB)
+				JAB = user.apply_status_effect(/datum/status_effect/stacking/justice_and_balance)
+			if(JAB)
+				for(var/hit in targets_hit)
+					JAB.add_stacks(targets_hit[hit])
 			user.Immobilize(2)
 			sleep(1)
 	is_smashing = FALSE
+
+/datum/status_effect/stacking/justice_and_balance
+	id = "EGO_JAB"
+	status_type = STATUS_EFFECT_UNIQUE
+	stacks = 0
+	tick_interval = 10
+	alert_type = /atom/movable/screen/alert/status_effect/justice_and_balance
+	var/next_tick = 0
+
+/atom/movable/screen/alert/status_effect/justice_and_balance
+	name = "Justice and Balance"
+	desc = "The power to preserve balance is in your hands. \
+		Your Justice is increased by "
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "JAB"
+
+/datum/status_effect/stacking/justice_and_balance/process()
+	if(!owner)
+		qdel(src)
+		return
+	if(next_tick < world.time)
+		tick()
+		next_tick = world.time + tick_interval
+	if(duration != -1 && duration < world.time)
+		qdel(src)
+
+/datum/status_effect/stacking/justice_and_balance/add_stacks(stacks_added)
+	if(!ishuman(owner))
+		return
+	if(stacks <= 0 && stacks_added < 0)
+		qdel(src)
+		return
+	var/mob/living/carbon/human/H = owner
+	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, stacks_added)
+	stacks += stacks_added
+	linked_alert.desc = initial(linked_alert.desc)+"[stacks]!"
+	tick_interval = max(10 - (stacks/10), 0.1)
+
+/datum/status_effect/stacking/justice_and_balance/can_have_status()
+	if(!ishuman(owner))
+		return FALSE
+	var/mob/living/carbon/human/H = owner
+	if(H.stat == DEAD)
+		return FALSE
+	var/obj/item/clothing/suit/armor/ego_gear/realization/woundedcourage/WC = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(!istype(WC))
+		return FALSE
+	return TRUE

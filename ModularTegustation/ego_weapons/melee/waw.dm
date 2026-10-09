@@ -40,8 +40,7 @@
 	name = "sword sharpened with tears"
 	desc = "A sword suitable for swift thrusts. \
 	Even someone unskilled in dueling can rapidly puncture an enemy using this E.G.O with remarkable agility."
-	special = "This weapon has a combo system. To turn off this combo system, use in hand. \
-			This weapon has a fast attack speed"
+	special = "This weapon has a combo system. To turn off this combo system, use in hand."
 	icon_state = "despair"
 	force = 10
 	modified_attack_speed = 0.4
@@ -53,7 +52,7 @@
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 80
 							)
-	var/combo = 0
+	var/combo = 1
 	var/combo_time
 	var/combo_wait = 10
 	var/combo_on = TRUE
@@ -74,10 +73,10 @@
 	if(!CanUseEgo(user))
 		return
 	if(world.time > combo_time || !combo_on)	//or you can turn if off I guess
-		combo = 0
+		combo = 1
 	combo_time = world.time + combo_wait
 	if(combo==4)
-		combo = 0
+		combo = 1
 		user.changeNext_move(CLICK_CD_MELEE * 2)
 		force *= 5	// Should actually keep up with normal damage.
 		playsound(src, 'sound/weapons/fwoosh.ogg', 300, FALSE, 9)
@@ -87,19 +86,6 @@
 	..()
 	combo += 1
 	force = initial(force)
-
-/obj/item/ego_weapon/despair/melee_attack_chain(mob/user, atom/target, params)
-	if (!istype(user,/mob/living/carbon/human))
-		return
-	var/mob/living/carbon/human/myman = user
-	var/obj/item/clothing/suit/armor/ego_gear/realization/quenchedblood/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
-	if (istype(Z))
-		force = 14
-		damtype = PALE_DAMAGE
-	else
-		force = 10
-		damtype = WHITE_DAMAGE
-	..()
 
 /obj/item/ego_weapon/despair/attackby(obj/item/I, mob/living/user, params)
 	..()
