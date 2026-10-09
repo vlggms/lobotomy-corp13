@@ -907,8 +907,6 @@
 	if(!CanUseEgo(user) || charging)
 		return
 	if(do_after(user, 4, target))
-		if(user.has_status_effect(/datum/status_effect/display/worthless_greed))
-			force *= 1.2
 		var/old_stat = target.stat
 		target.visible_message(span_danger("[user] rears up and slams into [target]!"), \
 						span_userdanger("[user] punches you with everything you got!!"), vision_distance = COMBAT_MESSAGE_RANGE, ignored_mobs = user)
@@ -982,8 +980,6 @@
 			var/justicemod = get_attack_multiplier(user)
 			aoe *= justicemod
 			aoe *= force_multiplier
-			if(user.has_status_effect(/datum/status_effect/display/worthless_greed))
-				aoe *= 1.2
 			for(var/mob/living/L in range(1, user))
 				if(L == user)
 					continue
@@ -1025,6 +1021,9 @@
 	charging = FALSE
 
 /obj/item/ego_weapon/greed_nihil/proc/Greed_Check(mob/living/carbon/human/user)
+	var/obj/item/clothing/suit/armor/ego_gear/greed_nihil/Z = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(!istype(Z))
+		return
 	if(!user.has_status_effect(/datum/status_effect/display/worthless_greed))
 		to_chat(user,span_notice("Greed starts to seep into your heart."))
 		new /obj/effect/particle_effect/sparks(get_turf(user))
@@ -1038,13 +1037,21 @@
 	duration = 150 //15 seconds
 	alert_type = null
 
+/datum/status_effect/display/worthless_greed/on_apply()
+	. = ..()
+	owner.damage_mult *= 1.2
+
+datum/status_effect/display/worthless_greed/on_remove()
+	. = ..()
+	owner.damage_mult /= 1.2
+
 /obj/item/ego_weapon/shield/despair_nihil
 	name = "meaningless despair"
 	desc = "When Justice turns its back once more, several dozen blades will rove without a purpose. \
 	The swords will eventually point at those she could not protect."
 	special = "This weapon has a combo system."
 	icon_state = "despair_nihil"
-	force = 17
+	force = 18
 	attack_speed = 1
 	modified_attack_speed = 0.4
 	damtype = WHITE_DAMAGE
@@ -1119,6 +1126,9 @@
 	reductions = initial(block_cooldown)
 	if(LAZYLEN(protection_list) || LAZYLEN(current_beams))
 		CleanUpProtection(user)
+	var/obj/item/clothing/suit/armor/ego_gear/despair_nihil/Z = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(!istype(Z))
+		return ..()
 	var/friend_count = 0
 	var/armor_boost = 50
 	for(var/mob/living/carbon/human/friend in oview(user, 10))
@@ -1264,7 +1274,10 @@
 	if(!.)
 		return FALSE
 	combo ++
-	var/armor_check = TRUE
+	var/armor_check = FALSE
+	var/obj/item/clothing/suit/armor/ego_gear/wrath_nihil/Z = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(istype(Z))
+		armor_check = TRUE
 	for(var/turf/open/T in RANGE_TURFS(aoe_range, target_turf))
 		var/obj/effect/temp_visual/small_smoke/halfsecond/smonk = new(T)
 		smonk.color = COLOR_BLACK

@@ -91,7 +91,7 @@
 /obj/item/clothing/suit/armor/ego_gear/greed_nihil
 	name = "worthless greed"
 	desc = "Now, only visceral greed remains."
-	special = "Wearing this armor impowers the respective weapon, granting a temporary damage boost and a small amount of HP if the weapon lands a kill."
+	special = "Wearing this armor impowers the respective weapon, scoring a killing blow with the weapon grants a temporary damage boost and a small amount of HP."
 	icon_state = "greed"
 	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 60, BLACK_DAMAGE = 50, PALE_DAMAGE = 70) // 260
 	attribute_requirements = list(

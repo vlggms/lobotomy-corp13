@@ -287,8 +287,8 @@
 
 	switch(current_suit)
 		if("hearts")
-			armor = armor.modifyRating(white = 10, pale = 5)
-			to_chat(user, span_nicegreen("[src] has gained extra resistance to WHITE and PALE damage!"))
+			armor = armor.modifyRating(black = 10, pale = 5)
+			to_chat(user, span_nicegreen("[src] has gained extra resistance to BLACK and PALE damage!"))
 
 		if("spades")
 			armor = armor.modifyRating(pale = 15)
@@ -296,11 +296,11 @@
 
 		if("diamonds")
 			armor = armor.modifyRating(red = 10, pale = 5, fire = 5)
-			to_chat(user, span_nicegreen("[src] has gained extra resistance to RED damage!"))
+			to_chat(user, span_nicegreen("[src] has gained extra resistance to RED and PALE damage!"))
 
 		if("clubs")
-			armor = armor.modifyRating(black = 10, pale = 5)
-			to_chat(user, span_nicegreen("[src] has gained extra resistance to BLACK and PALE damage!"))
+			armor = armor.modifyRating(white = 10, pale = 5)
+			to_chat(user, span_nicegreen("[src] has gained extra resistance to WHITE and PALE damage!"))
 
 /obj/item/clothing/suit/armor/ego_gear/aleph/seasons
 	name = "Seasons Greetings"
