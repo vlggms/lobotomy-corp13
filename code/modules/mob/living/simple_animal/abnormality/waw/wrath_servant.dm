@@ -1,4 +1,3 @@
-#define STATUS_EFFECT_ACIDIC_GOO  /datum/status_effect/wrath_burning
 #define SERVANT_SMASH_COOLDOWN (30 SECONDS)
 #define SERVANT_DASH_COOLDOWN (15 SECONDS)
 /mob/living/simple_animal/hostile/abnormality/wrath_servant
@@ -84,6 +83,7 @@
 	var/friendly = TRUE
 	var/list/friend_ship = list()
 	var/instability = 0
+	var/special_breach = FALSE
 
 	COOLDOWN_DECLARE(dash)
 	var/dash_cooldown = 15 SECONDS
@@ -99,7 +99,6 @@
 	var/stunned = FALSE
 	var/ending = FALSE
 	var/hunted_target
-	var/nihil_present = FALSE
 
 	//PLAYABLES ACTIONS
 	attack_action_types = list(
@@ -354,10 +353,10 @@
 	. = TRUE
 	if(!(status_flags & GODMODE))
 		return FALSE
+	if(special_breach)
+		return TRUE
 	if(!datum_reference)
 		friendly = FALSE
-	if(nihil_present) //nihil is here and we must fight them!
-		return ..()
 	if(friendly)
 		instability += 10
 		icon_state = icon_living
@@ -585,11 +584,8 @@
 	swap_area_index(MOB_ABNORMALITY_INDEX)
 	if(!datum_reference)
 		return ..()
-	if(nihil_present)
-		adjustBruteLoss(-999999)
-		visible_message(span_boldwarning("Oh no, [src] has been defeated!"))
-		INVOKE_ASYNC(src, PROC_REF(petrify), 500000)
-		return FALSE
+	if(special_breach)
+		return ..()
 	if(ending)
 		return FALSE
 	INVOKE_ASYNC(src, PROC_REF(Downed))
@@ -601,76 +597,6 @@
 	death()
 	return FALSE
 
-//Nihil Event Code
-/mob/living/simple_animal/hostile/abnormality/wrath_servant/proc/EventStart()
-	set waitfor = FALSE
-	NihilModeEnable()
-	ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))
-	SLEEP_CHECK_DEATH(6 SECONDS)
-	say("This is really bad...")
-	SLEEP_CHECK_DEATH(6 SECONDS)
-	say("With this, we can restore balance to the world...")
-	SLEEP_CHECK_DEATH(6 SECONDS)
-	say("We can't lose this time!")
-	SLEEP_CHECK_DEATH(6 SECONDS)
-	say("For the Justice and Balance of this Land!")
-	ChangeResistances(list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1.5))
-
-/mob/living/simple_animal/hostile/abnormality/wrath_servant/proc/NihilModeEnable()
-	NihilIconUpdate()
-	nihil_present = TRUE
-	friendly = TRUE
-	fear_level = ZAYIN_LEVEL
-	faction = list("neutral")
-	for(var/mob/living/simple_animal/hostile/aminion/azure_hermit/badguy in world)
-		badguy.gib(TRUE)
-
-/mob/living/simple_animal/hostile/abnormality/wrath_servant/proc/NihilIconUpdate()
-	name = "Magical Girl of Courage"
-	desc = "A real magical girl!"
-	icon = 'ModularTegustation/Teguicons/32x32.dmi'
-	icon_state = "wrath"
-	pixel_x = 0
-	base_pixel_x = 0
-	pixel_y = 0
-	base_pixel_y = 0
-
-/mob/living/simple_animal/hostile/abnormality/wrath_servant/petrify(statue_timer)
-	if(!isturf(loc))
-		MoveStatue()
-	AIStatus = AI_OFF
-	src.icon = 'ModularTegustation/Teguicons/96x64.dmi'
-	icon_state = "wrath"
-	pixel_x = -32
-	base_pixel_x = -32
-	var/obj/structure/statue/petrified/magicalgirl/S = new(loc, src, statue_timer)
-	S.name = "Lapidified Wrath"
-	ADD_TRAIT(src, TRAIT_NOBLEED, MAGIC_TRAIT)
-	SLEEP_CHECK_DEATH(1)
-	S.icon = src.icon
-	S.icon_state = src.icon_state
-	S.pixel_x = -32
-	S.base_pixel_x = -32
-	var/newcolor = list(rgb(77,77,77), rgb(150,150,150), rgb(28,28,28), rgb(0,0,0))
-	S.add_atom_colour(newcolor, FIXED_COLOUR_PRIORITY)
-	stat = DEAD
-	return TRUE
-
-/mob/living/simple_animal/hostile/abnormality/wrath_servant/proc/MoveStatue()
-	var/list/teleport_potential = list()
-	if(!LAZYLEN(GLOB.department_centers))
-		for(var/mob/living/L in GLOB.mob_living_list)
-			if(L.stat == DEAD || L.z != z || L.status_flags & GODMODE)
-				continue
-			teleport_potential += get_turf(L)
-	if(!LAZYLEN(teleport_potential))
-		var/turf/P = pick(GLOB.department_centers)
-		teleport_potential += P
-	var/turf/teleport_target = pick(teleport_potential)
-	new /obj/effect/temp_visual/guardian/phase(get_turf(src))
-	new /obj/effect/temp_visual/guardian/phase/out(teleport_target)
-	forceMove(teleport_target)
-
 //Rival's code
 /mob/living/simple_animal/hostile/aminion/azure_hermit
 	name = "Hermit of the Azure Forest"
@@ -679,38 +605,30 @@
 	icon_state = "hermit"
 	icon_living = "hermit"
 	icon_dead = "hermit_dead"
-
 	speak_emote = list("crones")
 	faction = list("hostile", "azure")
 	can_patrol = TRUE
-
 	maxHealth = 700
 	health = 700
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.2)
-
 	alpha = 0
-
 	a_intent = INTENT_HARM
 	move_resist = MOVE_FORCE_STRONG
 	move_to_delay = 5
 	mob_size = MOB_SIZE_HUGE
-
 	ranged = TRUE
 	ranged_cooldown = 15 SECONDS
-
 	melee_damage_lower = 7
 	melee_damage_upper = 8
 	rapid_melee = 2
 	melee_damage_type = WHITE_DAMAGE
 	attack_sound = 'sound/abnormalities/wrath_servant/hermit_attack.ogg'
-
 	threat_level = WAW_LEVEL
 	can_affect_emergency = FALSE///The 2 together would equalan aleph breach
 	COOLDOWN_DECLARE(conjure)
 	var/conjure_cooldown = 90 SECONDS
 	var/max_conjured = 12
 	var/list/staves = list()
-
 	var/can_act = TRUE
 
 /mob/living/simple_animal/hostile/aminion/azure_hermit/Initialize()
@@ -793,7 +711,6 @@
 	if(status_flags & GODMODE)
 		return
 	..()
-	return
 
 /mob/living/simple_animal/hostile/aminion/azure_hermit/proc/Conjure()
 	for(var/mob/living/simple_animal/hostile/staff in staves)
@@ -811,7 +728,6 @@
 		var/mob/living/simple_animal/hostile/aminion/azure_stave/AS = new(pick(valid_turfs))
 		staves += AS
 	COOLDOWN_START(src, conjure, conjure_cooldown)
-	return
 
 /mob/living/simple_animal/hostile/aminion/azure_hermit/proc/Befuddle()
 	if(!can_act || (status_flags & GODMODE))
@@ -828,7 +744,6 @@
 			continue
 		L.deal_damage(15, WHITE_DAMAGE, src, attack_type = (ATTACK_TYPE_SPECIAL))
 	can_act = TRUE
-	return
 
 /mob/living/simple_animal/hostile/aminion/azure_hermit/proc/Downed()
 	say("Fufu~ If you're so insistent, I'll have a bit of a rest.")
@@ -859,7 +774,6 @@
 		qdel(L)
 	animate(src, alpha = 0, time = (15 SECONDS))
 	QDEL_IN(src, 15 SECONDS)
-	return
 
 /mob/living/simple_animal/hostile/aminion/azure_stave
 	name = "Hermit's Staff"
@@ -870,36 +784,40 @@
 	maxHealth = 120
 	health = 120
 	death_message = "crumples to dust."
-
 	a_intent = INTENT_HARM
 	move_resist = MOVE_FORCE_STRONG
 	can_patrol = TRUE // The dudes roam! That sucks!
-
 	faction = list("hostile", "azure")
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
-
 	move_to_delay = 4
-
 	melee_damage_lower = 3
 	melee_damage_upper = 4
 	melee_damage_type = RED_DAMAGE
 	rapid_melee = 2
 	stat_attack = HARD_CRIT
-
 	threat_level = TETH_LEVEL
 	score_divider = 4
-
 	del_on_death = TRUE
 
-/obj/effect/decal/cleanable/wrath_acid/
+/obj/effect/decal/cleanable/wrath_acid
 	name = "Not-so Acidic Goo"
 	desc = "Ah, that kinda stings..."
 	icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
 	icon_state = "wrath_acid"
 	random_icon_states = list("wrath_acid")
 	mergeable_decal = FALSE
-	var/duration = 2 MINUTES
+	var/duration = 10 SECONDS // This is just cosmetic and shouldn't linger too long.
 	var/delling = FALSE
+	var/list/safe_types = list(
+	/mob/living/simple_animal/hostile/abnormality/wrath_servant,
+	/mob/living/simple_animal/hostile/aminion/azure_stave, //Don't want to kill them immediately after converting them.
+	)
+	var/human_safe = TRUE
+	var/applied_status = /datum/status_effect/wrath_burning
+	var/damaging = FALSE
+	var/damage_dealt = 2
+	var/damage_type = BLACK_DAMAGE
+	var/damage_delay = 4 // deciseconds
 
 /obj/effect/decal/cleanable/wrath_acid/Initialize(mapload, list/datum/disease/diseases)
 	. = ..()
@@ -937,24 +855,45 @@
 /obj/effect/decal/cleanable/wrath_acid/Crossed(atom/movable/AM)
 	. = ..()
 	if(ishuman(AM))
-		return FALSE
+		if(human_safe)
+			return FALSE
 	if(!isliving(AM))
 		return FALSE
-	if(istype(AM, /mob/living/simple_animal/hostile/abnormality/wrath_servant))
-		return
+	for(var/type in safe_types)
+		if(istype(AM, type))
+			return
 	var/mob/living/L = AM
-	L.apply_status_effect(STATUS_EFFECT_ACIDIC_GOO)
+	BumpEffect(L)
 
-/obj/effect/decal/cleanable/wrath_acid/bad/
+/obj/effect/decal/cleanable/wrath_acid/proc/BumpEffect(mob/living/L)
+	if(applied_status)
+		L.apply_status_effect(applied_status)
+	if(damaging)
+		return
+	damaging = TRUE
+	addtimer(CALLBACK(src, PROC_REF(DoDamage)), 4)
+
+/obj/effect/decal/cleanable/wrath_acid/proc/DoDamage()
+	var/dealt_damage = FALSE
+	for(var/mob/living/L in get_turf(src))
+		if(ishuman(L) && human_safe)
+			continue
+		for(var/type in safe_types)
+			if(istype(L, type))
+				return
+		dealt_damage = TRUE
+		L.deal_damage(damage_dealt, damage_type, attack_type = (ATTACK_TYPE_ENVIRONMENT))
+	if(!dealt_damage)
+		damaging = FALSE
+		return
+	addtimer(CALLBACK(src, PROC_REF(DoDamage)), 4)
+
+/obj/effect/decal/cleanable/wrath_acid/bad
 	name = "Acidic Goo"
 	desc = "It seems to burn whatever it touches, best to stay away!"
-
-/obj/effect/decal/cleanable/wrath_acid/bad/Crossed(atom/movable/AM)
-	. = ..()
-	if(!isliving(AM))
-		return
-	var/mob/living/L = AM
-	L.apply_status_effect(STATUS_EFFECT_ACIDIC_GOO)
+	human_safe = FALSE
+	damage_dealt = 3
+	duration = 2 MINUTES
 
 /obj/effect/gibspawner/generic/silent/wrath_acid
 	gibtypes = list(/obj/effect/decal/cleanable/wrath_acid)
@@ -975,6 +914,8 @@
 	alert_type = /atom/movable/screen/alert/status_effect/wrath_burning
 	duration = 4 SECONDS // Hits 8 times
 	tick_interval = 0.5 SECONDS
+	var/converts = TRUE
+	var/damage_dealt = 1
 
 /atom/movable/screen/alert/status_effect/wrath_burning
 	name = "Acidic Goo"
@@ -987,7 +928,9 @@
 	if(!isliving(owner))
 		return
 	var/mob/living/status_holder = owner
-	status_holder.deal_damage(1, BLACK_DAMAGE, attack_type = (ATTACK_TYPE_STATUS))
+	status_holder.deal_damage(damage_dealt, BLACK_DAMAGE, attack_type = (ATTACK_TYPE_STATUS))
+	if(!converts)
+		return
 	if(!ishuman(status_holder))
 		return
 	if((status_holder.sanityhealth <= 0) || (status_holder.health <= 0))
@@ -995,6 +938,43 @@
 		status_holder.gib(FALSE, TRUE, TRUE)
 		new /mob/living/simple_animal/hostile/aminion/azure_stave(spawner_turf)
 
-#undef STATUS_EFFECT_ACIDIC_GOO
+// Jester of nihil event code
+/mob/living/simple_animal/hostile/abnormality/wrath_servant/proc/EventStart()
+	set waitfor = FALSE
+	AIStatus = AI_OFF
+	EventIcons()
+	ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))
+	special_breach = TRUE
+	SLEEP_CHECK_DEATH(24 SECONDS)
+	icon = 'ModularTegustation/Teguicons/96x64.dmi'
+	icon_state = "wrath"
+	pixel_x = -32
+	base_pixel_x = -32
+	name = "Lapidified Wrath"
+	ADD_TRAIT(src, TRAIT_NOBLEED, MAGIC_TRAIT)
+	SLEEP_CHECK_DEATH(1)
+	var/newcolor = list(rgb(77,77,77), rgb(150,150,150), rgb(28,28,28), rgb(0,0,0))
+	add_atom_colour(newcolor, FIXED_COLOUR_PRIORITY)
+	status_flags |= GODMODE
+	REMOVE_TRAIT(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT)
+	environment_smash = ENVIRONMENT_SMASH_NONE
+	dir = SOUTH
+	update_icon()
+
+/mob/living/simple_animal/hostile/abnormality/wrath_servant/proc/EventIcons()
+	name = "Magical Girl of Courage"
+	desc = "A real magical girl!"
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "wrath"
+	pixel_x = 0
+	base_pixel_x = 0
+	pixel_y = 0
+	base_pixel_y = 0
+	friendly = TRUE
+	fear_level = 0
+	faction = list("neutral")
+	for(var/mob/living/simple_animal/hostile/aminion/azure_hermit/badguy in world)
+		badguy.gib(TRUE)
+
 #undef SERVANT_SMASH_COOLDOWN
 #undef SERVANT_DASH_COOLDOWN
