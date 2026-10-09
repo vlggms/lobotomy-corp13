@@ -766,6 +766,7 @@
 	attack_charge_gain = FALSE
 	charge_cost = 3
 	ability_type = ABILITY_UNIQUE
+	custom_charge_gain = "This weapon gains a charge upon every hit with its regular projectile."
 	charge_effect = "fire a bolt of lightning that stuns and heals some sanity of humans on hit while being drawn for longer."
 	visible_activation = "You will now fire a bolt of lightning."
 	cancel_activation = "You will no longer fire a bolt of lightning."

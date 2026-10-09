@@ -90,6 +90,7 @@
 	successfull_activation = "You scan your surroundings."
 
 /obj/item/ego_weapon/security_ego/ChargeAttack(mob/living/target, mob/living/user)
+	charge_amount -= charge_cost
 	playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 	Scan(user)
 
@@ -279,6 +280,7 @@
 		block_cooldown_message = "You rearm your blade."
 		burn_self = 2
 		burn_enemy = 2
+	calculate_resistances_list()
 
 /obj/item/ego_weapon/shield/waxen/proc/Check_Burn(mob/living/user)
 	var/datum/status_effect/stacking/lc_burn/B = user.has_status_effect(/datum/status_effect/stacking/lc_burn)

@@ -166,51 +166,38 @@
 		force = 10
 		attack_speed = 0.33
 		projectile_block_duration = 0.33 SECONDS
-		block_duration = 1 SECONDS
 	else
+		projectile_block_duration = 0.5 SECONDS
 		var/obj/item/clothing/suit/armor/ego_gear/realization/fear/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 		if (istype(Z))
 			force = 20
-			block_duration = 1.5 SECONDS
 		else
 			force = 8
-			block_duration = 1 SECONDS
 		attack_speed = 0.5
-		projectile_block_duration = 0.5 SECONDS
 	..()
 
-/obj/item/ego_weapon/shield/daredevil/attack_self(mob/user)
-	if (block == 0)
-		var/mob/living/carbon/human/cooler_user = user
-		naked_parry = isnull(cooler_user.get_item_by_slot(ITEM_SLOT_OCLOTHING))
-		var/obj/item/clothing/suit/armor/ego_gear/realization/fear/Z = cooler_user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
-		realized_parry = istype(Z)
-		if (realized_parry || naked_parry)
-			reductions = list(95, 95, 95, 100) // Must be wearing 0 armor
-		else
-			reductions = list(40, 20, 20, 0)
-	..()
-
-/obj/item/ego_weapon/shield/daredevil/DisableBlock(mob/living/carbon/human/user)
+/obj/item/ego_weapon/shield/daredevil/EnableBlock(mob/living/carbon/human/user)
+	var/mob/living/carbon/human/cooler_user = user
+	naked_parry = isnull(cooler_user.get_item_by_slot(ITEM_SLOT_OCLOTHING))
+	var/obj/item/clothing/suit/armor/ego_gear/realization/fear/Z = cooler_user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	realized_parry = istype(Z)
 	if (naked_parry)
-		block_cooldown = 2 SECONDS
-	else
-		block_cooldown = 3 SECONDS
-	..()
-
-/obj/item/ego_weapon/shield/daredevil/BlockCooldown(mob/living/carbon/human/user)
-	if (realized_parry)
-		force = 20
-	else
-		force = 8
-	..()
-
-/obj/item/ego_weapon/shield/daredevil/BlockFail(mob/living/carbon/human/user)
-	if (naked_parry || realized_parry)
+		reductions = list(95, 95, 95, 100) // Must be wearing 0 armor
+		hit_message = "is untouchable!"
+		block_duration = 1 SECONDS
+		debuff_duration = 2 SECONDS
+	else if (realized_parry)
+		reductions = list(60, 50, 50, 80) //240
+		hit_message = "is untouchable!"
+		block_duration = 1.5 SECONDS
 		debuff_duration = 2 SECONDS
 	else
+		reductions = list(40, 20, 20, 0)
+		hit_message = initial(hit_message)
+		block_duration = 1 SECONDS
 		debuff_duration = 3 SECONDS
-	..()
+	calculate_resistances_list()
+	. = ..()
 
 /obj/item/ego_weapon/shield/daredevil/AnnounceBlock(mob/living/carbon/human/source, damage, damagetype, def_zone)
 	if(damagetype == PALE_DAMAGE && can_hype)
@@ -220,12 +207,7 @@
 			to_chat(source, span_warning("To attempt parry the aspect of death is to hide from inevitability. To hide is to fear. Show me that you do not fear death."))
 		can_hype = FALSE // It's over.
 		addtimer(CALLBACK(src, PROC_REF(hype_returns)), 120) // Less intrusive than the big Colossus font, still on cooldown due to being quite the long message.
-	else if(naked_parry)
-		hit_message = "is untouchable!"
-		force = 12 // bonus damage for like, 2 seconds.
 	else if(realized_parry)
-		force = 25 // bonus damage for like, 2 seconds.
-		hit_message = "is untouchable!"
 		..()
 		if(can_hype)
 			to_chat(source, span_colossus("A GOD DOES NOT FEAR DEATH!")) // The font is LARGE, that's why it is on a cooldown.
@@ -431,9 +413,9 @@
 							FORTITUDE_ATTRIBUTE = 40
 							)
 
-/obj/item/ego_weapon/shield/bravery/attack_self(mob/user)
-	if(!CanUseEgo(user))
-		return
+/obj/item/ego_weapon/shield/bravery/EnableBlock(mob/living/carbon/human/user)
+	block_duration = initial(block_duration)
+	block_cooldown = initial(block_cooldown)
 	var/friend_count = 0
 	for(var/mob/living/carbon/human/friend in oview(user, 10))
 		if(friend_count > 4)
@@ -451,9 +433,7 @@
 		icon_state = "bravery"
 		playsound(src, 'sound/abnormalities/scaredycat/catgrunt.ogg', 50, FALSE, 4)
 	user.update_icon_state()
-	..()
-	block_duration = initial(block_duration)
-	block_cooldown = initial(block_cooldown)
+	. = ..()
 
 /obj/item/ego_weapon/pleasure
 	name = "pleasure"
@@ -696,14 +676,14 @@
 	desc = "Together, we are in rot."
 	special = "This weapon restores health on a successful parry."
 	icon_state = "legerdemain"
-	force = 26
+	force = 27
 	attack_speed = 1.8
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("bashes", "hammers", "smacks")
 	attack_verb_simple = list("bash", "hammer", "smack")
 	hitsound = 'sound/abnormalities/goldenapple/Legerdemain.ogg'
 	reductions = list(30, 20, 30, 0) // 80
-	projectile_block_duration = 1 SECONDS
+	projectile_block_duration = 1.8 SECONDS
 	block_duration = 1 SECONDS
 	block_cooldown = 3 SECONDS
 	block_sound = 'sound/abnormalities/goldenapple/Gold_Attack2.ogg'
@@ -715,26 +695,15 @@
 							PRUDENCE_ATTRIBUTE = 40
 							)
 
-/obj/item/ego_weapon/shield/legerdemain/attack_self(mob/user)//FIXME: Find a better way to use this override!
-	if(block == 0) //Extra check because shields returns nothing on 1
-		if(..())
-			RegisterSignal(user, COMSIG_ATOM_ATTACK_HAND, PROC_REF(NoParry), override = TRUE)//creates runtimes without overrides, double check if something's fucked
-			RegisterSignal(user, COMSIG_PARENT_ATTACKBY, PROC_REF(NoParry), override = TRUE)//728 and 729 must be able to unregister the signal of 730
-			return TRUE
-		else
-			return FALSE
-
-/obj/item/ego_weapon/shield/legerdemain/proc/NoParry(mob/living/carbon/human/user, obj/item/L)//Disables AnnounceBlock when attacked by an item or a human
-	SIGNAL_HANDLER
-	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMGE)//y'all can't behave
-
-/obj/item/ego_weapon/shield/legerdemain/AnnounceBlock(mob/living/carbon/human/source, damage, damagetype, def_zone)
+/obj/item/ego_weapon/shield/legerdemain/AnnounceBlock(mob/living/carbon/human/source, damage, damagetype, def_zone, attacker, damage_flags, attack_type)
+	if(damage <= 0 || !isliving(attacker) || source == attacker || (attack_type & (ATTACK_TYPE_ENVIRONMENT | ATTACK_TYPE_STATUS)))
+		return ..()
 	if (damagetype == PALE_DAMAGE)
 		to_chat(source,span_nicegreen("Your [src] withers at the touch of death!"))
 		return ..()
 	to_chat(source,span_nicegreen("You are healed by [src]."))
-	source.adjustBruteLoss(-10)
-	source.adjustSanityLoss(-5)
+	source.adjustBruteLoss(-6)
+	source.adjustSanityLoss(-3)
 	..()
 
 /obj/item/ego_weapon/get_strong
@@ -998,6 +967,7 @@
 							)
 
 	charge = TRUE
+	ability_type = ABILITY_UNIQUE
 	charge_effect = "Pull a target from a distance."
 	charge_cost = 2
 	charge_cap = 21 // you dont understand, they NEED that one extra point of cap
@@ -1017,10 +987,12 @@
 		return
 
 	if(!proximity_flag && gun_cooldown <= world.time)
-		currently_charging = FALSE
 		var/turf/proj_turf = user.loc
 		if(!isturf(proj_turf))
 			return
+
+		currently_charging = FALSE
+		charge_amount -= charge_cost
 
 		var/obj/projectile/ego_bullet/regs/G = new /obj/projectile/ego_bullet/regs(proj_turf)
 		G.fired_from = src //for signal check
@@ -1047,7 +1019,6 @@
 /obj/item/ego_weapon/dimension_shredder
 	name = "dimension shredder"
 	desc = "The path is intent on thwarting all attempts to memorize it."
-	special = "This weapon builds charge every 10 steps you've taken."
 	icon_state = "warp"
 	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
@@ -1065,6 +1036,7 @@
 							)
 
 	charge = TRUE
+	custom_charge_gain = "This weapon gains a charge upon every 10 steps you've taken."
 	attack_charge_gain = FALSE // we have a unique way of getting charge
 	charge_cost = 10
 	var/accumulated_charge = 0
@@ -1115,6 +1087,7 @@
 		return
 
 	if(!proximity_flag)
+		charge_amount -= charge_cost
 		currently_charging = FALSE
 		to_chat(user, span_notice("You release your charge, opening a rift!"))
 		var/turf/proj_turf = user.loc
@@ -1160,6 +1133,7 @@
 	desc = "They should've died after bleeding so much. You usually don't quarantine a corpse...."
 	icon_state = "warp2"
 	force = 20
+	attack_speed = 1.3
 	reach = 2
 	stuntime = 5	//Longer reach, gives you a short stun.
 	attack_verb_continuous = list("stabs", "slashes", "attacks")
@@ -1170,7 +1144,7 @@
 							)
 
 	charge = TRUE
-	charge_cost = 0
+	charge_cost = 2
 	charge_effect = "Dump all charge into a distant strike. Performs an additional attack for every 2 charge spent."
 	ability_type = ABILITY_UNIQUE
 	successfull_activation = "You will now cleave your target through a rift!"
@@ -1191,16 +1165,17 @@
 	if(!isliving(target))
 		return
 	var/mob/living/carbon/human/H = user
-	var/justice_mod = 1 + (get_modified_attribute_level(H, JUSTICE_ATTRIBUTE)/100)
-	var/hit_damage = ((force * justice_mod)/2)
-	for(charge_amount, charge_amount >= 0, charge_amount -= 2)
+	var/justice_mod = get_attack_multiplier(H)
+	var/hit_damage = ((force * justice_mod * force_multiplier)/2)
+	var/attack_count = floor(charge_amount/2)
+	charge_amount = 0
+	for(var/i = 1 to attack_count)
 		var/turf/T = get_turf(target)
 		playsound(src, 'sound/abnormalities/wayward_passenger/attack2.ogg', 50, TRUE)
 		new /obj/effect/temp_visual/dimshredder_in(get_turf(src))
 		new /obj/effect/temp_visual/dimshredder_out(T)
 		user.HurtInTurf(T, list(), hit_damage, RED_DAMAGE, check_faction = TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 		sleep(0.1 SECONDS)
-	charge_amount = 0
 
 /obj/item/ego_weapon/marionette
 	name = "marionette"
@@ -2128,6 +2103,7 @@
 	Leap(user, dir_to_target, leap_range)
 	playsound(src, 'sound/abnormalities/alleywaywatchdog/telepole_2.ogg', 100, 1)
 	currently_charging = FALSE
+	charge_amount -= charge_cost
 
 /obj/item/ego_weapon/telepole/proc/Leap(mob/living/user, dir = SOUTH, leap_range)//doesn't work
 	user.forceMove(get_step(get_turf(user), dir))

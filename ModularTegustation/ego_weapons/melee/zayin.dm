@@ -407,20 +407,16 @@
 	icon_state = "dead_dream"
 	damtype = WHITE_DAMAGE
 	reductions = list(30, 20, 10, 0)
-	var/glimpse_cooldown = 0
-	var/glimpse_cooldown_delay = 3 SECONDS
 
-/obj/item/ego_weapon/shield/dead_dream/attack_self(mob/user)
+/obj/item/ego_weapon/shield/dead_dream/EnableBlock(mob/living/carbon/human/user)
 	. = ..()
-	if(glimpse_cooldown < world.time)
-		Glimpse()
+	Glimpse()
 
 //Experimental Feature, Most likely too costly for its own good.
 /obj/item/ego_weapon/shield/dead_dream/proc/Glimpse()
 	for(var/mob/living/carbon/human/H in view(6, get_turf(src)))
 		H.apply_status_effect(/datum/status_effect/display/glimpse_thermal)
 		to_chat(H, span_info("You glimpse into her dream."))
-	glimpse_cooldown = world.time + glimpse_cooldown_delay
 
 /obj/item/ego_weapon/prohibited
 	name = "PROHIBITED!!!"

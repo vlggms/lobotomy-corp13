@@ -515,7 +515,7 @@
 	attack_verb_simple = list("(CENSORED)")
 	hitsound = 'sound/weapons/ego/censored1.ogg'
 	reductions = list(60, 60, 70, 50) // 240
-	projectile_block_duration = 2 SECONDS
+	projectile_block_duration = 0.7 SECONDS
 	block_duration = 3 SECONDS
 	block_cooldown = 2.5 SECONDS
 	block_sound = 'sound/weapons/ego/censored1.ogg'
@@ -538,21 +538,7 @@
 	. = ..()
 	aggro_on_block *= 2
 
-/obj/item/ego_weapon/shield/censored/attack_self(mob/user)
-	if (!ishuman(user))
-		return FALSE
-
-	if (block == 0)
-		var/mob/living/carbon/human/shield_user = user
-		if(!CanUseEgo(shield_user))
-			return FALSE
-		if(shield_user.physiology.armor.bomb) //"We have NOTHING that should be modifying this, so I'm using it as an existant parry checker." - Ancientcoders
-			to_chat(shield_user,span_warning("You're still off-balance!"))
-			return FALSE
-		for(var/obj/machinery/computer/abnormality/AC in range(1, shield_user))
-			if(AC.datum_reference.working) // No blocking during work.
-				to_chat(shield_user,span_notice("You cannot defend yourself from responsibility!"))
-				return FALSE
+/obj/item/ego_weapon/shield/censored/EnableBlock(mob/living/carbon/human/user)
 	playsound(user, 'sound/weapons/ego/censored2.ogg', 75)
 	return ..()
 

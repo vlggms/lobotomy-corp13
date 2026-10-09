@@ -756,7 +756,7 @@
 	attack_verb_simple = list("bash", "whap", "beat", "prod", "poke")
 	hitsound = 'sound/weapons/fixer/generic/spear1.ogg'
 	reductions = list(40, 30, 50, 30) // 150
-	projectile_block_duration = 1 SECONDS
+	projectile_block_duration = 0.5 SECONDS
 	block_duration = 3 SECONDS // Exempt from normal reduction due to block restriction.
 	block_cooldown = 3 SECONDS
 	block_sound = 'sound/weapons/ego/clash1.ogg'
@@ -766,18 +766,13 @@
 							PRUDENCE_ATTRIBUTE = 80
 							)
 	var/close_cooldown
-	var/close_cooldown_time = 6 SECONDS
 	var/reflect_cooldown
 	var/reflect_cooldown_time = 1 //need to prevent simultaneous hits; bullets overlapping is very bad.
 
-/obj/item/ego_weapon/shield/swan/attack_self(mob/user)
-	if(close_cooldown > world.time) //prevents shield usage with no DPS loss
-		to_chat(user,span_warning("You cannot use this again so soon!"))
-		return
+/obj/item/ego_weapon/shield/swan/EnableBlock(mob/living/carbon/human/user)
 	if(do_after(user, 4, src))
 		icon_state = "swan"
-		close_cooldown = world.time + close_cooldown_time
-		..()
+		. = ..()
 	user.update_inv_hands()
 
 /obj/item/ego_weapon/shield/swan/DisableBlock(mob/living/carbon/human/user)

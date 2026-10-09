@@ -296,7 +296,7 @@
 	attack_verb_simple = list("pulverize", "bash", "slam", "blockade")
 	hitsound = 'sound/abnormalities/distortedform/slam.ogg'
 	reductions = list(60, 60, 60, 60)
-	projectile_block_duration = 3 SECONDS
+	projectile_block_duration = 0 SECONDS
 	block_duration = 4.5 SECONDS
 	block_cooldown = 2.5 SECONDS
 	block_sound = 'sound/weapons/ego/heavy_guard.ogg'
@@ -437,8 +437,8 @@
 
 /obj/item/ego_weapon/shield/distortion/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(!CanUseEgo(owner)) //No blocking with one hand
-		return
-	..()
+		return 0
+	return ..()
 
 /obj/item/ego_weapon/shield/distortion/DropStance() //ALWAYS blocking ranged attacks, NEVER drop your stance!
 	return

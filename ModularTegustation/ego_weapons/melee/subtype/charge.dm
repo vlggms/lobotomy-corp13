@@ -25,6 +25,8 @@
 	/// What does this weapon do when using its special ability? Shows up on examine.
 	var/charge_effect
 
+	/// Does this weapon have a custom way of getting charge?
+	var/custom_charge_gain
 	/// The message given if you successfully activate charge
 	var/successfull_activation = "Your weapon starts resonating with power, now its the time to strike!"
 	/// The message given upon cancelling your ability on an ATTACK type charge weapon
@@ -46,17 +48,14 @@
 
 	if(currently_charging && allow_ability_cancel)
 		CancelCharge(user)
-
+		return
 	if(charge_amount >= charge_cost)
-		charge_amount -= charge_cost
 		to_chat(user, span_notice(successfull_activation))
 		switch(ability_type)
 			if(ABILITY_ON_ATTACK, ABILITY_UNIQUE)
 				currently_charging = TRUE
-
 			if(ABILITY_ON_ACTIVATION)
 				ChargeAttack(user = user)
-
 		if(visible_activation) // oh shit oh fuck
 			visible_message(span_danger(visible_activation))
 
@@ -66,30 +65,31 @@
 	return ..()
 
 /obj/item/ego_weapon/attack(mob/living/target, mob/living/user)
+	var/grant_charge = (target.stat != DEAD) || !(target.status_flags & GODMODE) // lets not give them charge for beating up contained abnormalities
 	. = ..()
 	if(!.)
 		return FALSE
 
-	if(currently_charging && ability_type == ABILITY_ON_ATTACK)
-		ChargeAttack(target, user)
+	if(charge)
+		if(currently_charging && ability_type == ABILITY_ON_ATTACK)
+			ChargeAttack(target, user)
+			return
+		if(grant_charge && attack_charge_gain)
+			HandleCharge(1)
 
 /obj/item/ego_weapon/examine(mob/user)
 	. = ..()
 	if(charge)
-		if(is_ranged)
-			. += span_notice("This weapon has charge mechanics and gains a charge upon every hit with its regular projectile.")
+		if(custom_charge_gain)
+			. += span_notice(custom_charge_gain)
 		else
-			. += span_notice("This weapon has charge mechanics[attack_charge_gain ? " and gains a charge upon every hit" : ""].")
+			. += span_notice("This weapon gains a charge upon every hit.")
 		. += span_notice("This weapon currently has [charge_amount] charge out of [charge_cap] maximum charge.")
 		. += span_notice("You can activate this weapons special ability with [charge_cost] charge by clicking on it.")
 		if(charge_effect)
 			. += span_notice("ability: [charge_effect]")
 
-/obj/item/ego_weapon/proc/HandleCharge(added_charge, mob/target)
-	if(target)
-		if((target.stat == DEAD) || target.status_flags & GODMODE) // lets not give them charge for beating up contained abnormalities
-			return FALSE
-
+/obj/item/ego_weapon/proc/HandleCharge(added_charge)
 	if(charge_amount < 0) // ???
 		charge_amount = initial(charge_amount)
 		CRASH("[src] has somehow aquired a negative charge amount, automatically reset it to the initial charge amount")
@@ -98,18 +98,15 @@
 		charge_amount += added_charge
 		HealingEffect("charge")
 
-/// Lets people refund their charge if the allow_ability_cancel var is set to TRUE
+/// Lets people cancel their charge if the allow_ability_cancel var is set to TRUE
 /obj/item/ego_weapon/proc/CancelCharge(mob/user)
 	to_chat(user, span_notice(cancel_activation))
 	currently_charging = FALSE
-	if((charge_cost + charge_amount) <= charge_cap) // lets only refund them to their maximum
-		charge_amount += charge_cost
-	else
-		charge_amount = charge_cap
 
 /// An effect that triggers if you use the charge ability and the ability_type is ABILITY_ON_ACTIVATION
 /// Default is to just play a sound effect and such
 /obj/item/ego_weapon/proc/ChargeAttack(mob/living/target, mob/living/user)
+	charge_amount -= charge_cost
 	sleep(0.2 SECONDS)
 	playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, TRUE)
 	if(ability_type == ABILITY_ON_ATTACK)

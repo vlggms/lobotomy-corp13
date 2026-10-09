@@ -10,7 +10,7 @@
 	hitsound = 'sound/weapons/ego/rapier1.ogg'
 	level_to_force = list(2, 4, 6, 9, 14)//Meant to be overall bad for dps since its both a parry weapon and a speed boost
 	initial_reductions = list(20,10,10,0)
-	projectile_block_duration = 0.75 SECONDS
+	projectile_block_duration = 0.5 SECONDS
 	block_duration = 1.25 SECONDS
 	block_cooldown = 3 SECONDS
 	block_message = "You attempt to parry the attack!"

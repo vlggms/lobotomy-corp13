@@ -47,18 +47,24 @@
 
 /obj/item/ego_weapon/shield/Initialize()
 	. = ..()
+	calculate_resistances_list()
+	aggro_on_block = force * 3
+
+//This code updates the list with the current reduction values incase they change
+/obj/item/ego_weapon/shield/proc/calculate_resistances_list()
 	if(LAZYLEN(resistances_list)) //armor tags code
 		resistances_list.Cut()
 	resistances_list += list("RED" = reductions[1])
 	resistances_list += list("WHITE" = reductions[2])
 	resistances_list += list("BLACK" = reductions[3])
 	resistances_list += list("PALE" = reductions[4])
-	aggro_on_block = force * 3
 
 //Allows the user to deflect projectiles for however long recovery time is set to on a hit
 /obj/item/ego_weapon/shield/melee_attack_chain(mob/user, atom/target, params)
 	..()
 	if (!istype(user,/mob/living/carbon/human))
+		return
+	if(!projectile_block_duration)
 		return
 	attacking = TRUE
 	if(QDELING(src))
@@ -75,35 +81,41 @@
 	if (!ishuman(user))
 		return FALSE
 
-	if (block == 0)
-		var/mob/living/carbon/human/shield_user = user
-		if(!CanUseEgo(shield_user))
-			return FALSE
-		if(shield_user.physiology.armor.bomb) //"We have NOTHING that should be modifying this, so I'm using it as an existant parry checker." - Ancientcoders
-			to_chat(shield_user,span_warning("You're still off-balance!"))
-			return FALSE
-		for(var/obj/machinery/computer/abnormality/AC in range(1, shield_user))
-			if(AC.datum_reference.working) // No blocking during work.
-				to_chat(shield_user,span_notice("You cannot defend yourself from responsibility!"))
-				return FALSE
-		block = TRUE
-		block_success = FALSE
-		shield_user.physiology.armor = shield_user.physiology.armor.modifyRating(bomb = 1) //bomb defense must be over 0
-		shield_user.physiology.red_mod *= max(0.001, (1 - ((reductions[1]) / 100)))
-		shield_user.physiology.white_mod *= max(0.001, (1 - ((reductions[2]) / 100)))
-		shield_user.physiology.black_mod *= max(0.001, (1 - ((reductions[3]) / 100)))
-		shield_user.physiology.pale_mod *= max(0.001, (1 - ((reductions[4]) / 100)))
-		RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(AnnounceBlock))
-		for(var/mob/living/simple_animal/hostile/H in hearers(3, user))
-			if(H.stat != CONSCIOUS || H.AIStatus == AI_OFF || H.client)
-				continue
-			H.RegisterAggroValue(user, aggro_on_block, AGGRO_DAMAGE)
-		if(QDELING(src))
-			DisableBlock(shield_user)
-		else
-			parry_timer = addtimer(CALLBACK(src, PROC_REF(DisableBlock), shield_user), block_duration, TIMER_STOPPABLE)
-		to_chat(user, span_userdanger("[block_message]"))
-		return TRUE
+	var/mob/living/carbon/human/shield_user = user
+	if(!CanUseEgo(shield_user))
+		return FALSE
+	if(shield_user.physiology.armor.bomb) //"We have NOTHING that should be modifying this, so I'm using it as an existant parry checker." - Ancientcoders
+		to_chat(shield_user,span_warning("You're already blocking with a weapon!"))
+		return FALSE
+	if(block)
+		to_chat(shield_user,span_warning("You cannot use this again so soon!"))
+		return FALSE
+	if(shield_user.is_working) // No blocking during work.
+		to_chat(shield_user,span_notice("You cannot defend yourself from responsibility!"))
+		return FALSE
+	return EnableBlock(shield_user)
+
+//Starts the block
+/obj/item/ego_weapon/shield/proc/EnableBlock(mob/living/carbon/human/user)
+	block = TRUE
+	block_success = FALSE
+	user.physiology.armor = user.physiology.armor.modifyRating(bomb = 1) //bomb defense must be over 0
+	user.physiology.red_mod *= max(0.001, (1 - ((reductions[1]) / 100)))
+	user.physiology.white_mod *= max(0.001, (1 - ((reductions[2]) / 100)))
+	user.physiology.black_mod *= max(0.001, (1 - ((reductions[3]) / 100)))
+	user.physiology.pale_mod *= max(0.001, (1 - ((reductions[4]) / 100)))
+	RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(AnnounceBlock))
+	for(var/mob/living/simple_animal/hostile/H in hearers(3, user))
+		if(H.stat != CONSCIOUS || H.AIStatus == AI_OFF || H.client)
+			continue
+		H.RegisterAggroValue(user, aggro_on_block, AGGRO_DAMAGE)
+	if(QDELING(src))
+		DisableBlock(user)
+		return FALSE
+	else
+		parry_timer = addtimer(CALLBACK(src, PROC_REF(DisableBlock), user), block_duration, TIMER_STOPPABLE)
+	to_chat(user, span_userdanger("[block_message]"))
+	return TRUE
 
 //Ends the block, causes you to take more damage for as long as debuff_duration if you did not block any damage
 /obj/item/ego_weapon/shield/proc/DisableBlock(mob/living/carbon/human/user)
@@ -119,7 +131,7 @@
 		BlockCooldown(user)
 	else
 		parry_timer = addtimer(CALLBACK(src, PROC_REF(BlockCooldown), user), block_cooldown, TIMER_STOPPABLE)
-	if (!block_success)
+	if (!block_success && debuff_duration && !user.is_working) //I don't want to be too cruel if they try to shield before work
 		BlockFail(user)
 
 //Allows the user to block again when called
@@ -127,6 +139,7 @@
 	block = FALSE
 	if(user.is_holding(src))
 		to_chat(user,span_nicegreen("[block_cooldown_message]"))
+	deltimer(parry_timer)
 
 /obj/item/ego_weapon/shield/proc/BlockFail(mob/living/carbon/human/user)
 	to_chat(user,span_warning("Your stance is widened."))
@@ -152,7 +165,7 @@
 	if(!ishuman(source))
 		return FALSE
 	var/mob/living/carbon/human/H = source
-	if(!H.is_holding(src))
+	if(!H.is_holding(src) || H.is_working)
 		DisableBlock(H)
 		return
 	block_success = TRUE
@@ -164,8 +177,10 @@
 /obj/item/ego_weapon/shield/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(attack_type == PROJECTILE_ATTACK && attacking)
 		final_block_chance = 100
+		SEND_SIGNAL(src, COMSIG_ITEM_HIT_REACT, args)
+		owner.HealingEffect("no_dam")
 		owner.visible_message(span_nicegreen("[owner.real_name] deflects the projectile!"), span_userdanger("[projectile_block_message]"))
-		return ..()
+		return TRUE
 	return ..()
 
 /obj/item/ego_weapon/shield/Destroy()
@@ -189,5 +204,3 @@
 		for(var/dam_type in resistances_list)
 			var/armor_value = 1 - round(resistances_list[dam_type], 10) / 100
 			. += "[dam_type]: [armor_value]"
-
-

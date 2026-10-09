@@ -163,6 +163,7 @@
 							)
 
 	charge = TRUE
+	ability_type = ABILITY_UNIQUE
 	charge_cost = 10
 	charge_cap = 10
 	charge_effect = "Can be used to perform an indiscriminate heavy red damage jump attack."
@@ -202,6 +203,7 @@
 	if(do_after(user, 5, src))
 		var/turf/target = get_turf(A)
 		currently_charging = FALSE
+		charge_amount -= charge_cost
 		playsound(src, 'sound/effects/ordeals/violet/midnight_portal_off.ogg', 50, FALSE, -1)
 		animate(user, alpha = 1,pixel_x = 0, pixel_z = 16, time = 0.1 SECONDS)
 		user.pixel_z = 16

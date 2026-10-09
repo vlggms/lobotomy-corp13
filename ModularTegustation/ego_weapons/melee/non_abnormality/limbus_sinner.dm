@@ -93,9 +93,6 @@
 	hit_message = "parries the attack!"
 	block_cooldown_message = "You rearm your blade."
 
-/obj/item/ego_weapon/shield/sangria/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	return 0 //Prevents ranged  parry
-
 /obj/item/ego_weapon/mini/soleil
 	name = "soleil"
 	desc = "Today I killed my mother, or maybe it was yesterday?"
