@@ -527,6 +527,9 @@
 	ability_type = ABILITY_UNIQUE
 	custom_charge_gain = "This weapon gains a charge upon healing a human with its projectile."
 	charge_effect = "Clicking on a target grants them a 'Mark of Villainy'. The mark increases the damage the target takes from this weapon and Arcana Slave."
+	successfull_activation = "You will now mark an enemy!"
+	cancel_activation = "You will no longer mark an enemy."
+	failed_activation = "You don't have enough charge to cast a mark."
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -546,7 +549,6 @@
 	if(!currently_charging)
 		return ..()
 	if(mark_cooldown <= world.time)
-		currently_charging = FALSE
 		if(isliving(target))
 			var/mob/living/L = target
 			if(user.faction_check_mob(L))
@@ -555,6 +557,7 @@
 			if(L.stat == DEAD)
 				to_chat(user,span_warning("[src] is dead!"))
 				return
+			currently_charging = FALSE
 			charge_amount -= charge_cost
 			L.apply_status_effect(/datum/status_effect/display/villan_mark)
 			mark_cooldown = world.time + mark_cooldown_time

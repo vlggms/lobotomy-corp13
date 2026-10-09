@@ -1501,8 +1501,8 @@
 	to_chat(user, "<span class='warning'>You dash to [A]!")
 
 /obj/item/ego_weapon/quenchedblood
-	name = "quenched with blood"
-	desc = "The edge of this sword sharpened with tears and quenched with blood is always precise."
+	name = "sword quenched with blood"
+	desc = "The edge of this sword sharpened with tears and despair is always precise."
 	special = "This weapon has a combo system, the finisher does 2.5% of the target's Max Health as additional damage up to 50 additional damage. To turn off this combo system, use in hand."
 	icon_state = "quenchedblood"
 	force = 14
@@ -1563,7 +1563,7 @@
 	inhand_y_dimension = 64
 	force = 36
 	modified_attack_speed = 1.2
-	special = "This weapon requires 2 hands to wield and has a 2 hit combo that deals Red AND Black damage in a small area.\nThis weapon can also preform a triple smash attack."
+	special = "This weapon requires 2 hands to wield and has a 2 hit combo that deals Red AND Black damage in a small area.\nUse this weapon in your hand to preform a triple smash attack."
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("smashes", "crushes", "flattens")
 	attack_verb_simple = list("smash", "crush", "flatten")
@@ -1581,7 +1581,7 @@
 	var/combo_wait = 10
 	var/combo_time
 
-	var/smash_damage = 50
+	var/smash_damage = 80
 	var/smash_cooldown
 	var/smash_cooldown_time = 10 SECONDS
 	var/is_smashing = FALSE
@@ -1643,7 +1643,7 @@
 /obj/item/ego_weapon/woundedcourage/proc/Smash(mob/living/carbon/human/user)
 	is_smashing = TRUE
 	var/list/turf/hit_turfs = list()
-	for(var/turf/T in range(2, src))
+	for(var/turf/T in range(2, user))
 		new /obj/effect/temp_visual/cult/sparks(T)
 	if(!do_after(user, 15, src))
 		is_smashing = FALSE
@@ -1661,7 +1661,7 @@
 			if(QDELETED(user) || (user.get_active_held_item() != src && user.get_inactive_held_item() != src))
 				is_smashing = FALSE
 				return
-			hit_turfs = (view(i, src) - range(i-1, user))
+			hit_turfs = (view(i, user) - range(i-1, user))
 			for(var/turf/T in hit_turfs)
 
 				//The dealing damage part
@@ -1674,76 +1674,19 @@
 					if(L.stat == DEAD || (L in been_hit))
 						continue
 					if(user.faction_check_mob(L))
-						actual_dam *= 0.5
+						actual_dam *= 0.35
 					if(L in targets_hit)
 						targets_hit[L] += 1
 					else
 						targets_hit[L] = 1
-					var/was_dead = (L.stat == DEAD)
 					been_hit += L
-					L.deal_damage(damage, damtype, user, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
-					if(user.has_status_effect(/datum/status_effect/wrath))
-						if(!was_dead && L.stat == DEAD)
-							user.adjustSanityLoss(-5)
+					L.deal_damage(actual_dam, damtype, user, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
+					if(user.has_status_effect(/datum/status_effect/wrath) && L.stat == DEAD)
+						user.adjustSanityLoss(-10)
 
 				new /obj/effect/temp_visual/kinetic_blast(T)
 				if(prob(3))
 					new /obj/effect/gibspawner/generic/silent/wrath_acid(T)
-
-			var/datum/status_effect/stacking/justice_and_balance/JAB = user.has_status_effect(/datum/status_effect/stacking/justice_and_balance)
-			if(!JAB)
-				JAB = user.apply_status_effect(/datum/status_effect/stacking/justice_and_balance)
-			if(JAB)
-				for(var/hit in targets_hit)
-					JAB.add_stacks(targets_hit[hit])
 			user.Immobilize(2)
 			sleep(1)
 	is_smashing = FALSE
-
-/datum/status_effect/stacking/justice_and_balance
-	id = "EGO_JAB"
-	status_type = STATUS_EFFECT_UNIQUE
-	stacks = 0
-	tick_interval = 10
-	alert_type = /atom/movable/screen/alert/status_effect/justice_and_balance
-	var/next_tick = 0
-
-/atom/movable/screen/alert/status_effect/justice_and_balance
-	name = "Justice and Balance"
-	desc = "The power to preserve balance is in your hands. \
-		Your Justice is increased by "
-	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "JAB"
-
-/datum/status_effect/stacking/justice_and_balance/process()
-	if(!owner)
-		qdel(src)
-		return
-	if(next_tick < world.time)
-		tick()
-		next_tick = world.time + tick_interval
-	if(duration != -1 && duration < world.time)
-		qdel(src)
-
-/datum/status_effect/stacking/justice_and_balance/add_stacks(stacks_added)
-	if(!ishuman(owner))
-		return
-	if(stacks <= 0 && stacks_added < 0)
-		qdel(src)
-		return
-	var/mob/living/carbon/human/H = owner
-	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, stacks_added)
-	stacks += stacks_added
-	linked_alert.desc = initial(linked_alert.desc)+"[stacks]!"
-	tick_interval = max(10 - (stacks/10), 0.1)
-
-/datum/status_effect/stacking/justice_and_balance/can_have_status()
-	if(!ishuman(owner))
-		return FALSE
-	var/mob/living/carbon/human/H = owner
-	if(H.stat == DEAD)
-		return FALSE
-	var/obj/item/clothing/suit/armor/ego_gear/realization/woundedcourage/WC = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
-	if(!istype(WC))
-		return FALSE
-	return TRUE

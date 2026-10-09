@@ -140,13 +140,30 @@
 	animate(src, alpha = 255, time = 3)
 
 
-/obj/projectile/ego_bullet/despair_rapier/ego/on_hit(atom/target, blocked = FALSE)
-	if(ishostile(target))
-		var/mob/living/simple_animal/hostile/H = target
-		var/mob/living/user = firer
-		if(!user.faction_check_mob(H))
-			H.TemporarySpeedChange(2, 10 SECONDS, TRUE)
+/obj/projectile/ego_bullet/despair_rapier/on_hit(atom/target, blocked = FALSE)
+	if(isliving(target))
+		var/mob/living/L = target
+		L.apply_status_effect(/datum/status_effect/despair_slow)
 	..()
+
+/datum/status_effect/despair_slow
+	id = "despair_slow"
+	status_type = STATUS_EFFECT_REFRESH
+	duration = 100 //10 seconds
+	alert_type = null
+
+/datum/status_effect/despair_slow/on_apply()
+	. = ..()
+	owner.add_movespeed_modifier(/datum/movespeed_modifier/despair_slow)
+
+/datum/status_effect/despair_slow/on_remove()
+	. = ..()
+	owner.remove_movespeed_modifier(/datum/movespeed_modifier/despair_slow)
+
+/datum/movespeed_modifier/despair_slow
+	variable = TRUE
+	multiplicative_slowdown = 2
+	flags = IS_ACTUALLY_MULTIPLICATIVE
 
 /* Queen of Hatred - Love and Justice */
 /obj/effect/proc_holder/ability/aimed/arcana_slave
@@ -234,7 +251,7 @@
 		addtimer(CALLBACK(H, TYPE_PROC_REF(/atom/movable, say), "ARCANA SLAVE!"))
 	for(var/o = 1 to 50) // Half duration but gets Justice Mod
 		var/list/already_hit = list()
-		if(accumulated_beam_damage >= 125 && beam_stage < 2)
+		if(accumulated_beam_damage >= 150 && beam_stage < 2)
 			beam_stage = 2
 			beam_damage *= 1.5
 			var/matrix/M = matrix()
