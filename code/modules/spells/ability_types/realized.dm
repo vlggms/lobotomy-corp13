@@ -72,23 +72,23 @@
 	var/target_type = /obj/item/ego_weapon/mimicry
 	var/weapon_type = /obj/item/ego_weapon/mimicry
 
-/obj/effect/proc_holder/ability/ego_realization/Perform(atom/target, user)
+/obj/effect/proc_holder/ability/ego_realization/Perform(atom/target, mob/living/carbon/human/user)
 	..()
-	target = FindItems(user)//take the return value of the FindItems() proc here
+	target = user.get_active_held_item()
 	if(!target)
-		to_chat(user, span_notice("There are no compatible E.G.O weapons nearby."))
+		to_chat(user, span_notice("You aren't holding an item."))
 		return
 	if(istype(target, weapon_type))
-		new target_type(get_turf(target))
+		var/obj/item/old = target
+		var/obj/item/new_item = new target_type(get_turf(target))
+		to_chat(user, span_nicegreen("[old] transforms into [new_item]!"))
+		new_item.force_multiplier = old.force_multiplier
 		qdel(target)
+		user.put_in_hands(new_item)
+		playsound(get_turf(user), 'sound/magic/clockwork/ratvar_attack.ogg', 50, TRUE)
 		DeleteAbility(user)//Deletes the ability and removes it from the ego suit
 		return
 	to_chat(user, span_notice("Target isn't the right weapon."))
-
-/obj/effect/proc_holder/ability/ego_realization/proc/FindItems(user)
-	for(var/obj/item/ego_weapon/i in view(2, user))
-		if(istype(i, weapon_type))
-			return i
 
 /obj/effect/proc_holder/ability/ego_realization/proc/DeleteAbility(mob/living/carbon/human/user)
 	var/obj/item/clothing/suit/armor/ego_gear/realization/mysuit = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
@@ -98,7 +98,7 @@
 	qdel(src)
 
 /obj/effect/proc_holder/ability/ego_realization/lovejustice
-	desc = "Empower an 'In the Name of Love and Hat' into a weapon comptaible with your suit. Can only be used once."
+	desc = "Empower an 'In The Name Of Love And Hate' into a weapon comptaible with your suit. Can only be used once."
 	base_icon_state = "lovejustice"
 	action_icon_state = "lovejustice"
 	weapon_type = /obj/item/ego_weapon/ranged/hatred
@@ -111,6 +111,12 @@
 	weapon_type = /obj/item/ego_weapon/blind_rage
 	target_type = /obj/item/ego_weapon/woundedcourage
 
+/obj/effect/proc_holder/ability/ego_realization/quenchedblood
+	desc = "Empower an 'Sword Sharpened With Tears' into a weapon comptaible with your suit. Can only be used once."
+	base_icon_state = "quenchedblood"
+	action_icon_state = "quenchedblood"
+	weapon_type = /obj/item/ego_weapon/despair
+	target_type = /obj/item/ego_weapon/quenchedblood
 
 /* Fragment of the Universe - One with the Universe */
 /obj/effect/proc_holder/ability/universe_song
@@ -743,7 +749,8 @@
 /* Servant of Wrath - Wounded Courage */
 /obj/effect/proc_holder/ability/wrath
 	name = "Uncontrolled Wrath"
-	desc = "Remove 40% of your sanity to increase all damage you deal by 30% for 20 seconds. While under the effects of the buff, Wounded Courage has increased range and restores a small bit of sanity on kill."
+	desc = "Remove 40% of your sanity to increase all damage you deal by 30% for 20 seconds. \
+	While under the effects of the buff, Wounded Courage has increased range with its main attack and restores a small bit of sanity on kill with its slam attack."
 	action_icon_state = "justicebalance0"
 	base_icon_state = "justicebalance"
 	cooldown_time = 30 SECONDS
@@ -770,9 +777,10 @@
 	duration = 20 SECONDS
 
 /atom/movable/screen/alert/status_effect/wrath
-	name = "uncontrolled wrath"
-	desc = "30% increased damage."
+	name = "Incontrolled Wrath"
+	desc = "You deal 30% more damage."
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "JAB"
 
 /datum/status_effect/wrath/on_apply()
 	. = ..()
@@ -1470,7 +1478,7 @@ datum/status_effect/wrath/on_remove()
 	stacks = 1
 	stack_decay = 0 //Without this the stacks were decaying after 1 sec
 	duration = 15 SECONDS //Lasts for 4 minutes
-	alert_type = /atom/movable/screen/alert/status_effect/justice_and_balance
+	alert_type = /atom/movable/screen/alert/status_effect/infestation
 	max_stacks = 20
 	consumed_on_threshold = FALSE
 	var/red = 0

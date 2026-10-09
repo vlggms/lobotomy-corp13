@@ -1132,15 +1132,13 @@ datum/status_effect/display/worthless_greed/on_remove()
 	var/friend_count = 0
 	var/armor_boost = 50
 	for(var/mob/living/carbon/human/friend in oview(user, 10))
-		if(friend == user)
-			continue
-		//if(friend.ckey && friend.stat != DEAD && friend != user)
-		block_duration += 1 SECONDS
-		Protect(user, friend)
-		friend_count++
-		if(friend_count > 3)
-			break
-		armor_boost += 10
+		if(friend.ckey && friend.stat != DEAD && friend != user)
+			block_duration += 1 SECONDS
+			Protect(user, friend)
+			friend_count++
+			if(friend_count > 3)
+				break
+			armor_boost += 10
 	reductions = list(armor_boost, armor_boost, armor_boost, 60)
 	if(friend_count > 0)
 		user.playsound_local(get_turf(user), 'sound/abnormalities/despairknight/gift.ogg', 50, 0)
