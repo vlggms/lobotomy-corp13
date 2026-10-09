@@ -265,6 +265,9 @@
 		H.adjustSanityLoss(-amt)
 
 /obj/item/ego_weapon/ranged/hatred_nihil/proc/PostDamage(mob/living/carbon/human/user, damage_amount, damage_type, def_zone, attacker, damage_flags, attack_type)
+	var/obj/item/clothing/suit/armor/ego_gear/hatred_nihil/Z = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(istype(Z))
+		return
 	if(user.is_working)
 		return
 	if(damage_amount <= 0 || !isliving(attacker) || user == attacker || (attack_type & (ATTACK_TYPE_COUNTER | ATTACK_TYPE_ENVIRONMENT | ATTACK_TYPE_STATUS)))

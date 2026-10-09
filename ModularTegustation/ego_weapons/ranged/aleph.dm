@@ -110,28 +110,50 @@
 /obj/item/ego_weapon/ranged/nihil
 	name = "nihil"
 	desc = "Having decided to trust its own intuition, the jester spake the names of everyone it had met on that path with each step it took."
+	special = "This weapon does damage in an area after a delay and can become stronger by consuming 4 special items."
 	icon_state = "nihil"
 	inhand_icon_state = "nihil"
-	force = 28
+	force = 15
+	attack_speed = 0.5
 	damtype = BLACK_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/nihil
 	weapon_weight = WEAPON_HEAVY
-	pellets = 4
-	variance = 20
 	fire_sound = 'sound/weapons/fixer/generic/energy1.ogg'
 	fire_sound_volume = 50
-	fire_delay = 10
+	max_shots = 4
+	fire_delay = 30
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,
 							TEMPERANCE_ATTRIBUTE = 100,
 							JUSTICE_ATTRIBUTE = 80
 							)
+	passive_reload = 5 SECONDS
+	reloadtime = 1 SECONDS
+	ammo_on_reload = 1
+	reload_start_sound = 'sound/abnormalities/nihil/filter.ogg'
+	reload_text = "The weapon starts to recharge its mana."
+	var/aoe_range = 1
+	var/ranged_damage = 180
+	var/ranged_damage_increase = 55
+
+	var/list/ranged_damage_type = list(WHITE_DAMAGE)
 	var/wrath
 	var/despair
 	var/greed
 	var/hate
+	var/debuff_stacks = 1
 	var/list/powers = list("hatred", "despair", "greed", "wrath")
+
+/obj/item/ego_weapon/ranged/nihil/GunAttackInfo()
+	var/damage_type = damtype
+	var/base_damage = ranged_damage
+	var/damage = round(base_damage * force_multiplier * projectile_damage_multiplier, 0.1)
+	if(GLOB.damage_type_shuffler?.is_enabled && IsColorDamageType(damage_type))
+		var/datum/damage_type_shuffler/shuffler = GLOB.damage_type_shuffler
+		var/new_damage_type = shuffler.mapping_offense[damage_type]
+		damage_type = new_damage_type
+	return span_notice("Its magic deal [damage] [damage_type] damage.[force_multiplier != 1 ? " (+ [(force_multiplier - 1) * 100]%)" : ""]")
 
 /obj/item/ego_weapon/ranged/nihil/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
@@ -167,18 +189,87 @@
 
 	switch(current_suit)
 		if("hearts")
-			to_chat(user,"<span class='nicegreen'>The ace of [current_suit] has removed friendly fire from [src]!</span>")
+			to_chat(user,"<span class='nicegreen'>The ace of [current_suit] granted [src] the capability of dealing black damage and no longer hitting allies!</span>")
+			ranged_damage_type += BLACK_DAMAGE
 
 		if("spades")
-			to_chat(user,"<span class='nicegreen'>The ace of [current_suit] granted [src] the capability of dealing pale damage!</span>")
+			to_chat(user,"<span class='nicegreen'>The ace of [current_suit] granted [src] the capability of dealing pale damage and has extra range!</span>")
+			ranged_damage_type += PALE_DAMAGE
+			aoe_range += 1
 
 		if("diamonds")
 			to_chat(user,"<span class='nicegreen'>The ace of [current_suit] granted [src] the capability of dealing red damage!</span>")
+			ranged_damage_type += RED_DAMAGE
+			// and weakening defense
+		//if("clubs")
+			//to_chat(user,"<span class='nicegreen'>The ace of [current_suit] granted [src] the capability of dealing extra damage and slowing targets!</span>")
 
-		if("clubs")
-			to_chat(user,"<span class='nicegreen'>The ace of [current_suit] granted [src] the capability of dealing black damage!</span>")
+	ranged_damage += ranged_damage_increase
 	to_chat(user,"<span class='nicegreen'>The ace of [current_suit] fades away as it makes [src] become even more powerful!</span>")
 	return
+
+/obj/item/ego_weapon/ranged/nihil/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, temporary_damage_multiplier = 1)
+	if(!CanUseEgo(user))
+		return
+
+	if(HAS_TRAIT(user, TRAIT_PACIFISM) && lethal) // If the user has the pacifist trait, then they won't be able to fire [src] if the [lethal] var is TRUE.
+		to_chat(user, span_warning("[src] is lethal! You don't want to risk harming anyone..."))
+		return
+
+	if(user)
+		SEND_SIGNAL(user, COMSIG_MOB_FIRED_GUN, src, target, params, zone_override)
+
+	SEND_SIGNAL(src, COMSIG_GUN_FIRED, user, target, params, zone_override)
+
+	add_fingerprint(user)
+
+	if(semicd)
+		return
+	DoAOE(user, target)
+	process_chamber(user)
+	semicd = TRUE
+	addtimer(CALLBACK(src, PROC_REF(reset_semicd)), fire_delay)
+
+	if(user)
+		user.update_inv_hands()
+	SSblackbox.record_feedback("tally", "gun_fired", 1, type)
+
+	if(click_cooldown_override)
+		user.changeNext_move(click_cooldown_override)
+	else
+		user.changeNext_move(CLICK_CD_RANGE)
+	user.newtonian_move(get_dir(target, user))
+
+	return TRUE
+
+/obj/item/ego_weapon/ranged/nihil/proc/DoAOE(mob/living/user, mob/living/target)
+	set waitfor = FALSE
+	var/turf/target_turf = get_turf(target)
+	var/damage_dealt = ranged_damage * force_multiplier * get_attack_multiplier(user)
+	playsound(target_turf, 'sound/abnormalities/nihil/attack.ogg', 50, TRUE)
+	new /obj/effect/temp_visual/guardian/phase(target_turf)
+	sleep(4)
+	new /obj/effect/temp_visual/guardian/phase/out(target_turf)
+	sleep(11)
+	var/obj/effect/temp_visual/VO = new /obj/effect/temp_visual/voidout(target_turf)
+	var/matrix/new_matrix = matrix()
+	new_matrix.Scale(0.25 + (0.75 * aoe_range))
+	VO.transform = new_matrix
+	for(var/mob/living/L in range(aoe_range, target_turf))
+		var/mult = 1
+		if(L == user)
+			to_chat(world, "Caught here1")
+			continue
+		if(user.faction_check_mob(L))
+			to_chat(world, "Caught here3")
+			if(powers[1] == "hearts")
+				continue
+			mult = 0.5
+		if(L.stat == DEAD)
+			to_chat(world, "Caught here2")
+			continue
+		L.deal_split_damage(damage_dealt * mult, ranged_damage_type, user, attack_type = (ATTACK_TYPE_RANGED), flags = (DAMAGE_WHITE_HEALABLE))
+		new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(L))
 
 /obj/item/ego_weapon/ranged/pink
 	name = "pink"
@@ -460,6 +551,9 @@
 			var/mob/living/L = target
 			if(user.faction_check_mob(L))
 				to_chat(user,span_warning("[src] is on your side!"))
+				return
+			if(L.stat == DEAD)
+				to_chat(user,span_warning("[src] is dead!"))
 				return
 			charge_amount -= charge_cost
 			L.apply_status_effect(/datum/status_effect/display/villan_mark)
