@@ -266,7 +266,7 @@
 					continue
 				if(L == user) //stop hitting yourself
 					continue
-				if(L in already_hit || L in guys)
+				if((L in already_hit) || (L in guys))
 					continue
 				if(L.stat == DEAD)
 					continue
