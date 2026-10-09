@@ -40,8 +40,7 @@
 	name = "sword sharpened with tears"
 	desc = "A sword suitable for swift thrusts. \
 	Even someone unskilled in dueling can rapidly puncture an enemy using this E.G.O with remarkable agility."
-	special = "This weapon has a combo system. To turn off this combo system, use in hand. \
-			This weapon has a fast attack speed"
+	special = "This weapon has a combo system. To turn off this combo system, use in hand."
 	icon_state = "despair"
 	force = 10
 	modified_attack_speed = 0.4
@@ -53,7 +52,7 @@
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 80
 							)
-	var/combo = 0
+	var/combo = 1
 	var/combo_time
 	var/combo_wait = 10
 	var/combo_on = TRUE
@@ -74,10 +73,10 @@
 	if(!CanUseEgo(user))
 		return
 	if(world.time > combo_time || !combo_on)	//or you can turn if off I guess
-		combo = 0
+		combo = 1
 	combo_time = world.time + combo_wait
 	if(combo==4)
-		combo = 0
+		combo = 1
 		user.changeNext_move(CLICK_CD_MELEE * 2)
 		force *= 5	// Should actually keep up with normal damage.
 		playsound(src, 'sound/weapons/fwoosh.ogg', 300, FALSE, 9)
@@ -1049,7 +1048,7 @@
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	force = 32
+	force = 22
 	attack_speed = 1.2
 	special = "This weapon possesses a devastating Red AND Black damage AoE. Be careful!"
 	damtype = RED_DAMAGE
@@ -1061,53 +1060,53 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 
-	var/aoe_damage = 7
+	var/aoe_damage = 11
 	var/aoe_damage_type = BLACK_DAMAGE
 	var/aoe_range = 2
-	var/attacks = 0
+	var/combo = 1
+	var/combo_wait = 12
+	var/combo_time
 
 /obj/item/ego_weapon/blind_rage/get_clamped_volume()
 	return 30
 
 /obj/item/ego_weapon/blind_rage/attack(mob/living/M, mob/living/carbon/human/user)
 	var/turf/target_turf = get_turf(M)
-	. = ..()
-	if(!.)
-		return FALSE
-	attacks++
-	attacks %= 3
-	switch(attacks)
-		if(0)
-			hitsound = 'sound/abnormalities/wrath_servant/big_smash1.ogg'
+	if(combo_time < world.time)
+		combo = 1
+	combo_time = world.time + combo_wait
+	switch(combo)
 		if(1)
-			hitsound = 'sound/abnormalities/wrath_servant/big_smash2.ogg'
+			hitsound = 'sound/abnormalities/wrath_servant/big_smash1.ogg'
 		if(2)
+			hitsound = 'sound/abnormalities/wrath_servant/big_smash2.ogg'
+		if(3)
 			hitsound = 'sound/abnormalities/wrath_servant/big_smash3.ogg'
 	var/damage = aoe_damage * get_attack_multiplier(user)
 	damage *= force_multiplier
-	if(attacks == 0)
-		damage *= 3
-	if(user.sanity_lost)
-		damage *= 1.2
+	if(combo >= 3)
+		combo = 1
+		damage *= 1.5
+		force *= 1.5
+	. = ..()
+	force = initial(force)
+	if(!.)
+		return FALSE
+	combo ++
 	for(var/turf/open/T in RANGE_TURFS(aoe_range, target_turf))
 		var/obj/effect/temp_visual/small_smoke/halfsecond/smonk = new(T)
 		smonk.color = COLOR_GREEN
 		var/list/been_hit = QDELETED(M) ? list() : list(M)
 		user.HurtInTurf(T, been_hit, damage, damtype, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 		user.HurtInTurf(T, list(), damage, aoe_damage_type, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
-		if(prob(5))
+		if(prob(3 + ((combo-1) * 2)))
 			new /obj/effect/gibspawner/generic/silent/wrath_acid(T) // The non-damaging one
-	var/mob/living/carbon/human/myman = user
-	var/obj/item/ego_weapon/blind_rage/Y = myman.get_inactive_held_item()
-	var/obj/item/clothing/suit/armor/ego_gear/realization/woundedcourage/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
-	if(istype(Y) && Y != src && istype(Z) && !QDELETED(M)) //dual wielding and wearing Wounded Courage? if so...
-		Y.melee_attack_chain(user, M)
 
 /obj/item/ego_weapon/blind_rage/attackby(obj/item/I, mob/living/user, params)
 	..()
 	if(!istype(I, /obj/item/nihil/club))
 		return
-	new /obj/item/ego_weapon/blind_rage/nihil(get_turf(src))
+	new /obj/item/ego_weapon/wrath_nihil(get_turf(src))
 	to_chat(user,span_warning("The [I] seems to drain all of the light away as it is absorbed into [src]!"))
 	playsound(user, 'sound/abnormalities/nihil/filter.ogg', 15, FALSE, -3)
 	qdel(I)

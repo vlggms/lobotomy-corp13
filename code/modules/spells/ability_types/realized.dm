@@ -61,6 +61,63 @@
 	action_icon_state = "gasharpoon"
 	target_type = /obj/item/ego_weapon/shield/gasharpoon
 
+
+/* E.G.O realization*/
+/obj/effect/proc_holder/ability/ego_realization
+	name = "E.G.O realization"
+	desc = "Empower an E.G.O into a weapon comptaible with your suit. Can only be used once."
+	action_icon = 'icons/obj/ego_weapons.dmi'
+	action_icon_state = ""
+	base_icon_state = "template"
+	var/target_type = /obj/item/ego_weapon/mimicry
+	var/weapon_type = /obj/item/ego_weapon/mimicry
+
+/obj/effect/proc_holder/ability/ego_realization/Perform(atom/target, mob/living/carbon/human/user)
+	..()
+	target = user.get_active_held_item()
+	if(!target)
+		to_chat(user, span_notice("You aren't holding an item."))
+		return
+	if(istype(target, weapon_type))
+		var/obj/item/old = target
+		var/obj/item/new_item = new target_type(get_turf(target))
+		to_chat(user, span_nicegreen("[old] transforms into [new_item]!"))
+		new_item.force_multiplier = old.force_multiplier
+		qdel(target)
+		user.put_in_hands(new_item)
+		playsound(get_turf(user), 'sound/magic/clockwork/ratvar_attack.ogg', 50, TRUE)
+		DeleteAbility(user)//Deletes the ability and removes it from the ego suit
+		return
+	to_chat(user, span_notice("Target isn't the right weapon."))
+
+/obj/effect/proc_holder/ability/ego_realization/proc/DeleteAbility(mob/living/carbon/human/user)
+	var/obj/item/clothing/suit/armor/ego_gear/realization/mysuit = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(!istype(mysuit))
+		return
+	mysuit.realized_ability = null//sets it to a null value
+	qdel(src)
+
+/obj/effect/proc_holder/ability/ego_realization/lovejustice
+	desc = "Empower an 'In The Name Of Love And Hate' into a weapon comptaible with your suit. Can only be used once."
+	base_icon_state = "lovejustice"
+	action_icon_state = "lovejustice"
+	weapon_type = /obj/item/ego_weapon/ranged/hatred
+	target_type = /obj/item/ego_weapon/ranged/lovejustice
+
+/obj/effect/proc_holder/ability/ego_realization/woundedcourage
+	desc = "Empower an 'Blind Rage' into a weapon comptaible with your suit. Can only be used once."
+	base_icon_state = "woundedcourage"
+	action_icon_state = "woundedcourage"
+	weapon_type = /obj/item/ego_weapon/blind_rage
+	target_type = /obj/item/ego_weapon/woundedcourage
+
+/obj/effect/proc_holder/ability/ego_realization/quenchedblood
+	desc = "Empower an 'Sword Sharpened With Tears' into a weapon comptaible with your suit. Can only be used once."
+	base_icon_state = "quenchedblood"
+	action_icon_state = "quenchedblood"
+	weapon_type = /obj/item/ego_weapon/despair
+	target_type = /obj/item/ego_weapon/quenchedblood
+
 /* Fragment of the Universe - One with the Universe */
 /obj/effect/proc_holder/ability/universe_song
 	name = "Song of the Universe"
@@ -362,20 +419,139 @@
 
 /* King of Greed - Gold Experience */
 /obj/effect/proc_holder/ability/road_of_gold
-	name = "The Road of Gold"
-	desc = "An ability that teleports you to the nearest non-visible threat.If you use a Gold Rush weapon, you can significantly weaken the enemy for a few seconds."
+	name = "The Road of Gold (Mass-Individual)"
+	desc = "An ability that teleports you to every nearby threat to attack with 50% increased damage. \
+	If you use a Gold Rush weapon, you can significantly weaken the enemy for a few seconds. \
+	Alt-Click to toggle Search Mode."
 	action_icon_state = "gold0"
 	base_icon_state = "gold"
-	cooldown_time = 30 SECONDS
+	cooldown_time = 40 SECONDS
+	base_action = /datum/action/spell_action/ability/item/road_of_gold
 
 	var/list/spawned_effects = list()
-	var/using_goldrush
+	var/mass_mode = TRUE
+	var/preforming = FALSE
 
-/obj/effect/proc_holder/ability/road_of_gold/Perform(mob/living/simple_animal/hostile/target, mob/user)
+/obj/effect/proc_holder/ability/road_of_gold/Perform(mob/living/simple_animal/hostile/target, mob/living/user)
 	if(!istype(user))
 		return ..()
+	if(mass_mode)
+		MassIndividual(user)
+		return
+	Search(user)
+
+/obj/effect/proc_holder/ability/road_of_gold/Destroy()
+	CleanUp()
+	return ..()
+
+/obj/effect/proc_holder/ability/road_of_gold/proc/Cooldown()
+	cooldown = world.time + cooldown_time
+	if(cooldown_time > 0)
+		remove_ranged_ability()
+	update_icon()
+
+/obj/effect/proc_holder/ability/road_of_gold/proc/IsUserDead(mob/living/user)
+	if(QDELETED(user) || !user)
+		return TRUE
+	if(user.stat > CONSCIOUS)
+		user.damage_mult /= 1.5
+		return TRUE
+	return FALSE
+
+/obj/effect/proc_holder/ability/road_of_gold/proc/MassIndividual(mob/living/user)
+	var/list/targets = list()
+	for(var/mob/living/simple_animal/hostile/H in view(7, user))
+		if(H.stat == DEAD)
+			continue
+		if(H.status_flags & GODMODE)
+			continue
+		if(user.faction_check_mob(H, FALSE))
+			continue
+		targets += H
+	if(!LAZYLEN(targets))
+		to_chat(user, span_notice("You can't find anything nearby!"))
+		return
+	preforming = TRUE
 	cooldown = world.time + (2 SECONDS)
-	target = null
+	Circle(null, null, user)
+	var/pre_circle_dir = user.dir
+	to_chat(user, span_warning("You begin along the Road of Gold to your targets!"))
+	if(!do_after(user, 15, src))
+		to_chat(user, span_warning("You abandon your path!"))
+		CleanUp()
+		return
+	Cooldown()
+	ADD_TRAIT(user, TRAIT_IMMOBILIZED, type)
+	step_towards(user, get_step(user, pre_circle_dir))
+	new /obj/effect/temp_visual/guardian/phase(get_turf(user))
+	user.damage_mult *= 1.5
+
+	for(var/mob/living/simple_animal/hostile/H in targets)
+		if(H.stat == DEAD)
+			targets -= H
+			continue
+		if(H.status_flags & GODMODE)
+			targets -= H
+			continue
+		if(user.faction_check_mob(H, FALSE))
+			targets -= H
+			continue
+		if(!(H in range(12, user)))
+			continue
+		var/turf/T = pick(get_adjacent_open_turfs(H))
+		if(!T)
+			continue
+		if(IsUserDead(user))
+			return
+		var/obj/effect/qoh_sygil/kog/KS = Circle(get_turf(H), T, null)
+		sleep(3)
+		if(IsUserDead(user))
+			CleanUp()
+			return
+		new /obj/effect/temp_visual/guardian/phase/out(get_turf(KS))
+		user.loc = get_turf(KS)
+		user.forceMove(get_turf(KS))
+		var/direct = get_dir(user, H)
+		user.dir = direct
+		sleep(2)
+		if(IsUserDead(user))
+			CleanUp()
+			return
+		if(get_dist(user, H) <= 2)
+			var/obj/item/held = user.get_active_held_item()
+			if(held)
+				if(istype(held, /obj/item/ego_weapon/goldrush))
+					var/obj/item/ego_weapon/goldrush/G = held
+					G.forced_finisher = TRUE
+					G.attack(H, user)
+					H.apply_status_effect(/datum/status_effect/GoldStaggered)
+				else
+					held.attack(H, user)
+			else
+				playsound(H.loc, 'sound/weapons/punch1.ogg', 25, TRUE, -1)
+				user.do_attack_animation(H, ATTACK_EFFECT_PUNCH)
+				H.deal_damage(25, RED_DAMAGE, user, attack_type = (ATTACK_TYPE_MELEE))
+			//Lets not get stuck in walls shall we?
+			var/turf/TT = get_step(H, direct)
+			if(TT.density)
+				TT = get_turf(H)
+			for(var/obj/structure/window/W in TT.contents)
+				TT = get_turf(H)
+				break
+			for(var/obj/machinery/door/MD in TT.contents)
+				if(!MD.CanAStarPass(null))
+					TT = get_turf(H)
+					break
+				if(MD.density)
+					INVOKE_ASYNC(MD, TYPE_PROC_REF(/obj/machinery/door, open), 2)
+			user.forceMove(TT)
+		sleep(2)
+	user.damage_mult /= 1.5
+	CleanUp()
+	REMOVE_TRAIT(user, TRAIT_IMMOBILIZED, type)
+
+/obj/effect/proc_holder/ability/road_of_gold/proc/Search(mob/living/user)
+	var/mob/living/target = null
 	var/dist = 100
 	for(var/mob/living/simple_animal/hostile/H in GLOB.alive_mob_list)
 		if(H.z != user.z)
@@ -395,40 +571,72 @@
 		target = H
 	if(!target)
 		to_chat(user, span_notice("You can't find anything else nearby!"))
-		return ..()
+		return
+	preforming = TRUE
+	cooldown = world.time + (2 SECONDS)
 	Circle(null, null, user)
 	var/pre_circle_dir = user.dir
-	to_chat(user, span_warning("You begin along the Road of Gold to your target!"))
+	to_chat(user, span_warning("You begin along the Road of Gold to your targets!"))
 	if(!do_after(user, 15, src))
 		to_chat(user, span_warning("You abandon your path!"))
 		CleanUp()
-		return ..()
-	animate(user, alpha = 0, time = 5)
-	step_towards(user, get_step(user, pre_circle_dir))
-	new /obj/effect/temp_visual/guardian/phase(get_turf(src))
-	var/turf/open/target_turf = get_step_towards(target, user)
-	if(!istype(target_turf))
-		target_turf = pick(get_adjacent_open_turfs(target))
-	if(!target_turf)
-		to_chat(user, span_warning("No road leads to that target!?"))
+		return
+	var/turf/T = pick(get_adjacent_open_turfs(target))
+	if(!T)
+		to_chat(user, span_warning("You can't find a good pathway to your target!"))
+		cooldown = world.time + (2 SECONDS)
 		CleanUp()
-		return ..()
-	var/obj/effect/qoh_sygil/kog/KS = Circle(target_turf, get_step(target_turf, pick(GLOB.cardinals)), null)
-	sleep(5)
-	user.dir = get_dir(user, target)
-	animate(user, alpha = 255, time = 5)
+		return
+	Cooldown()
+	ADD_TRAIT(user, TRAIT_IMMOBILIZED, type)
+	step_towards(user, get_step(user, pre_circle_dir))
+	new /obj/effect/temp_visual/guardian/phase(get_turf(user))
+	user.damage_mult *= 1.5
+	var/obj/effect/qoh_sygil/kog/KS = Circle(get_turf(target), T, null)
+	sleep(3)
+	if(IsUserDead(user))
+		CleanUp()
+		return
 	new /obj/effect/temp_visual/guardian/phase/out(get_turf(KS))
+	user.loc = get_turf(KS)
 	user.forceMove(get_turf(KS))
-	CleanUp()
-	sleep(2.5)
-	step_towards(user, get_step_towards(KS, target))
-	if(get_dist(user, target) <= 1)
+	var/direct = get_dir(user, target)
+	user.dir = direct
+	sleep(2)
+	if(IsUserDead(user))
+		CleanUp()
+		return
+	if(get_dist(user, target) <= 2)
 		var/obj/item/held = user.get_active_held_item()
 		if(held)
-			held.attack(target, user)
-			if(held == /obj/item/ego_weapon/goldrush/nihil || held == /obj/item/ego_weapon/goldrush)
+			if(istype(held, /obj/item/ego_weapon/goldrush))
+				var/obj/item/ego_weapon/goldrush/G = held
+				G.forced_finisher = TRUE
+				G.attack(target, user)
 				target.apply_status_effect(/datum/status_effect/GoldStaggered)
-	return ..()
+			else
+				held.attack(target, user)
+		else
+			playsound(target.loc, 'sound/weapons/punch1.ogg', 25, TRUE, -1)
+			user.do_attack_animation(target, ATTACK_EFFECT_PUNCH)
+			target.deal_damage(25, RED_DAMAGE, user, attack_type = (ATTACK_TYPE_MELEE))
+		var/turf/TT = get_step(target, direct)
+		if(TT.density)
+			TT = get_turf(target)
+		for(var/obj/structure/window/W in TT.contents)
+			TT = get_turf(target)
+			break
+		for(var/obj/machinery/door/MD in TT.contents)
+			if(!MD.CanAStarPass(null))
+				TT = get_turf(target)
+				break
+			if(MD.density)
+				INVOKE_ASYNC(MD, TYPE_PROC_REF(/obj/machinery/door, open), 2)
+		user.forceMove(TT)
+	sleep(2)
+	user.damage_mult /= 1.5
+	CleanUp()
+	REMOVE_TRAIT(user, TRAIT_IMMOBILIZED, type)
 
 /obj/effect/proc_holder/ability/road_of_gold/proc/CleanUp()
 	for(var/obj/effect/FX in spawned_effects)
@@ -438,24 +646,26 @@
 			continue
 		FX.Destroy()
 	listclearnulls(spawned_effects)
+	preforming = FALSE
 
 /obj/effect/proc_holder/ability/road_of_gold/proc/Circle(turf/first_target, turf/second_target, mob/user = null)
 	var/obj/effect/qoh_sygil/kog/KS
 	if(user)
 		KS = new(get_turf(user))
 	else
-		KS = new(first_target)
+		KS = new(second_target)
 	spawned_effects += KS
 	var/matrix/M = matrix(KS.transform)
-	M.Translate(0, 32)
 	var/rot_angle
 	var/my_dir
 	if(user)
+		M.Translate(0, 64)
 		my_dir = user.dir
 		rot_angle = Get_Angle(user, get_step(user, my_dir))
 	else
-		my_dir = get_dir(first_target, second_target)
-		rot_angle = Get_Angle(first_target, get_step_towards(first_target, second_target))
+		M.Translate(0, -32)
+		my_dir = get_dir(second_target, first_target)
+		rot_angle = Get_Angle(second_target, get_step_towards(second_target, first_target))
 	M.Turn(rot_angle)
 	switch(my_dir)
 		if(EAST)
@@ -473,6 +683,53 @@
 	KS.transform = M
 	return KS
 
+/datum/action/spell_action/ability/item/road_of_gold
+
+/datum/action/spell_action/ability/item/road_of_gold/New(Target)
+	. = ..()
+	button.Destroy()
+	button = new /atom/movable/screen/movable/action_button/road_of_gold
+	button.linked_action = src
+	button.name = name
+	button.actiontooltipstyle = buttontooltipstyle
+	button.desc = desc
+
+/datum/action/spell_action/ability/item/road_of_gold/proc/AdjustCooldown(amount)
+	if(target && istype(target, /obj/effect/proc_holder/ability/road_of_gold))
+		var/obj/effect/proc_holder/ability/road_of_gold/AS = target
+		AS.cooldown += amount
+		AS.update_icon()
+	UpdateButtonIcon()
+
+/atom/movable/screen/movable/action_button/road_of_gold
+
+/atom/movable/screen/movable/action_button/road_of_gold/Click(location, control, params)
+	if(!istype(linked_action, /datum/action/spell_action/ability/item/road_of_gold))
+		return ..()
+	var/datum/action/spell_action/ability/item/road_of_gold/act = linked_action
+	if(!istype(act.target, /obj/effect/proc_holder/ability/road_of_gold))
+		return ..()
+	var/obj/effect/proc_holder/ability/road_of_gold/AS = act.target
+	var/list/modifiers = params2list(params)
+	if(LAZYACCESS(modifiers, ALT_CLICK))
+		if(AS.preforming)
+			return ..()
+		if(AS.mass_mode)
+			to_chat(act.owner, "<span class='notice'>You will now teleport to a faraway target with a faster cooldown.</span>")
+			AS.cooldown_time = 20 SECONDS
+			name = "The Road of Gold (Search)"
+			desc = "An ability that teleports you to the nearest non-visible threat to attack with 50% increased damage. \
+	If you use a Gold Rush weapon, you can significantly weaken the enemy for a few seconds. \
+	Alt-Click to toggle Mass-Individual Mode."
+			AS.mass_mode = FALSE
+		else
+			to_chat(act.owner, "<span class='notice'>You will now teleport to nearby targets with a slower cooldown.</span>")
+			AS.cooldown_time = initial(AS.cooldown_time)
+			name = AS.name
+			desc = AS.desc
+			AS.mass_mode = TRUE
+		return
+	return ..()
 /datum/status_effect/GoldStaggered
 	status_type = STATUS_EFFECT_UNIQUE
 	duration = 10 SECONDS
@@ -487,117 +744,51 @@
 	var/mob/living/simple_animal/M = owner
 	M.RemoveModifier(/datum/dc_change/gold_staggered)
 
+/atom/movable/screen/movable/action_button/ego_road_of_gold
 
 /* Servant of Wrath - Wounded Courage */
-/obj/effect/proc_holder/ability/justice_and_balance
-	name = "For the Justice and Balance of this Land"
-	desc = "An ability with 3 charges. Each use smashes all enemies in the area around you and buffs you, the third charge is amplified. \
-		Each hit grants you a temporary bonus to justice, hitting the same target increases this bonus."
+/obj/effect/proc_holder/ability/wrath
+	name = "Uncontrolled Wrath"
+	desc = "Remove 40% of your sanity to increase all damage you deal by 30% for 20 seconds. \
+	While under the effects of the buff, Wounded Courage has increased range with its main attack and restores a small bit of sanity on kill with its slam attack."
 	action_icon_state = "justicebalance0"
 	base_icon_state = "justicebalance"
-	cooldown_time = 1 MINUTES
+	cooldown_time = 30 SECONDS
 
-	var/max_charges = 3
-	var/charges = 3
-	var/list/spawned_effects = list()
-	var/list/SFX = list(
-		'sound/abnormalities/wrath_servant/big_smash3.ogg',
-		'sound/abnormalities/wrath_servant/big_smash2.ogg',
-		'sound/abnormalities/wrath_servant/big_smash1.ogg'
-		)
-	var/damage = 20
-	var/list/targets_hit = list()
+/obj/effect/proc_holder/ability/wrath/can_cast(mob/user = usr)
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(H.sanityhealth <= H.maxSanity * 0.4)
+			return FALSE
+	return ..()
 
-/obj/effect/proc_holder/ability/justice_and_balance/Perform(target, user)
-	INVOKE_ASYNC(src, PROC_REF(Smash), user, charges)
-	charges--
-	if(charges < 1)
-		charges = max_charges
-		targets_hit = list()
-		return ..()
-
-/obj/effect/proc_holder/ability/justice_and_balance/proc/Smash(mob/user, on_use_charges)
-	playsound(user, SFX[on_use_charges], 25*(4-on_use_charges))
-	var/temp_dam = damage
-	temp_dam *= get_attack_multiplier(user)
-	if(on_use_charges <= 1)
-		temp_dam *= 1.5
-	for(var/turf/open/T in range(3, user))
-		if(T.z != user.z)
-			continue
-		new /obj/effect/temp_visual/small_smoke/halfsecond/green(T)
-		for(var/mob/living/L in T)
-			if(L.status_flags & GODMODE)
-				continue
-			if(L == user)
-				continue
-			if(L.stat == DEAD)
-				continue
-			if(user.faction_check_mob(L))
-				continue
-			if(L in targets_hit)
-				targets_hit[L] += 1
-			else
-				targets_hit[L] = 1
-			L.deal_damage(temp_dam, BLACK_DAMAGE, user, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
-	if(!ishuman(user))
-		return
+/obj/effect/proc_holder/ability/wrath/Perform(target, mob/user)
 	var/mob/living/carbon/human/H = user
-	var/datum/status_effect/stacking/justice_and_balance/JAB = H.has_status_effect(/datum/status_effect/stacking/justice_and_balance)
-	if(!JAB)
-		JAB = H.apply_status_effect(/datum/status_effect/stacking/justice_and_balance)
-		if(!JAB)
-			return
-	for(var/hit in targets_hit)
-		JAB.add_stacks(targets_hit[hit])
+	H.adjustSanityLoss(H.maxSanity * 0.4)
+	user.playsound_local(user, 'sound/abnormalities/wrath_servant/enrage.ogg', 75, FALSE, 20, falloff_distance = 10)
+	to_chat(H, span_danger("Your mind goes into a frenzy!"))
+	H.apply_status_effect(/datum/status_effect/wrath)
+	return ..()
 
-/datum/status_effect/stacking/justice_and_balance
-	id = "EGO_JAB"
+/datum/status_effect/wrath
+	id = "EGO_SW"
 	status_type = STATUS_EFFECT_UNIQUE
-	stacks = 0
-	tick_interval = 10
-	alert_type = /atom/movable/screen/alert/status_effect/justice_and_balance
-	var/next_tick = 0
+	alert_type = /atom/movable/screen/alert/status_effect/wrath
+	duration = 20 SECONDS
 
-/atom/movable/screen/alert/status_effect/justice_and_balance
-	name = "Justice and Balance"
-	desc = "The power to preserve balance is in your hands. \
-		Your Justice is increased by "
+/atom/movable/screen/alert/status_effect/wrath
+	name = "Incontrolled Wrath"
+	desc = "You deal 30% more damage."
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "JAB"
 
-/datum/status_effect/stacking/justice_and_balance/process()
-	if(!owner)
-		qdel(src)
-		return
-	if(next_tick < world.time)
-		tick()
-		next_tick = world.time + tick_interval
-	if(duration != -1 && duration < world.time)
-		qdel(src)
+/datum/status_effect/wrath/on_apply()
+	. = ..()
+	owner.damage_mult *= 1.3
 
-/datum/status_effect/stacking/justice_and_balance/add_stacks(stacks_added)
-	if(!ishuman(owner))
-		return
-	if(stacks <= 0 && stacks_added < 0)
-		qdel(src)
-		return
-	var/mob/living/carbon/human/H = owner
-	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, stacks_added)
-	stacks += stacks_added
-	linked_alert.desc = initial(linked_alert.desc)+"[stacks]!"
-	tick_interval = max(10 - (stacks/10), 0.1)
-
-/datum/status_effect/stacking/justice_and_balance/can_have_status()
-	if(!ishuman(owner))
-		return FALSE
-	var/mob/living/carbon/human/H = owner
-	if(H.stat == DEAD)
-		return FALSE
-	var/obj/item/clothing/suit/armor/ego_gear/realization/woundedcourage/WC = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
-	if(!istype(WC))
-		return FALSE
-	return TRUE
+datum/status_effect/wrath/on_remove()
+	. = ..()
+	owner.damage_mult /= 1.3
 
 /obj/effect/proc_holder/ability/punishment
 	name = "Punishment"
@@ -1287,7 +1478,7 @@
 	stacks = 1
 	stack_decay = 0 //Without this the stacks were decaying after 1 sec
 	duration = 15 SECONDS //Lasts for 4 minutes
-	alert_type = /atom/movable/screen/alert/status_effect/justice_and_balance
+	alert_type = /atom/movable/screen/alert/status_effect/infestation
 	max_stacks = 20
 	consumed_on_threshold = FALSE
 	var/red = 0
