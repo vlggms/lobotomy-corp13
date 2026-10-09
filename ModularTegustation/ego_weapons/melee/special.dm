@@ -1192,7 +1192,7 @@ datum/status_effect/display/worthless_greed/on_remove()
 /obj/item/ego_weapon/shield/despair_nihil/proc/OnProtectedDeath(mob/living/carbon/human/H)
 	if(!H)
 		return
-	if(!H in protection_list)
+	if(!(H in protection_list))
 		return
 
 	for(var/datum/beam/B in current_beams)
