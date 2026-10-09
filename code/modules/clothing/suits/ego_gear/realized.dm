@@ -313,7 +313,7 @@ No Ability	260
 	icon_state = "quenchedblood"
 	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 60, BLACK_DAMAGE = 50, PALE_DAMAGE = 80)		//Ranged
 	flags_inv = HIDEJUMPSUIT|HIDESHOES|HIDEGLOVES
-	realized_ability = /obj/effect/proc_holder/ability/aimed/despair_swords
+	realized_ability = list(/obj/effect/proc_holder/ability/aimed/despair_swords, /obj/effect/proc_holder/ability/ego_realization/quenchedblood)
 
 /obj/item/clothing/suit/armor/ego_gear/realization/lovejustice
 	name = "love and justice"
@@ -326,7 +326,6 @@ No Ability	260
 /obj/item/clothing/suit/armor/ego_gear/realization/woundedcourage
 	name = "wounded courage"
 	desc = "'Tis better to have loved and lost than never to have loved at all."
-	special = "This armor grants a temporary bonus to justice when hitting an enemy with the respective weapon's slam attack. Hitting the same target increases this bonus."
 	icon_state = "woundedcourage"
 	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 40, BLACK_DAMAGE = 70, PALE_DAMAGE = 60)		//Melee / Damage
 	flags_inv = HIDEJUMPSUIT | HIDEGLOVES | HIDESHOES
