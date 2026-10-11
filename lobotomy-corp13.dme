@@ -4464,6 +4464,7 @@
 #include "ModularTegustation\tegu_mobs\lc13_resurgence_tapes.dm"
 #include "ModularTegustation\tegu_mobs\necromancer.dm"
 #include "ModularTegustation\tegu_mobs\necromancer_mobs.dm"
+#include "ModularTegustation\tegu_mobs\nihil_event.dm"
 #include "ModularTegustation\tegu_mobs\syndicatespaceman.dm"
 #include "ModularTegustation\tegu_mobs\tegu.dm"
 #include "ModularTegustation\tegu_ruins\lavaland_ruins.dm"
