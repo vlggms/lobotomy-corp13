@@ -110,7 +110,8 @@
 /obj/item/ego_weapon/ranged/nihil
 	name = "nihil"
 	desc = "Having decided to trust its own intuition, the jester spake the names of everyone it had met on that path with each step it took."
-	special = "This weapon does damage in an area after a delay and can become stronger by consuming 4 special items."
+	special = "This weapon does damage in an area after a delay that inflicts a stacking damage down debuff. \n\
+	This weapon can become stronger by consuming upto 4 special items."
 	icon_state = "nihil"
 	inhand_icon_state = "nihil"
 	force = 15
@@ -128,22 +129,25 @@
 							TEMPERANCE_ATTRIBUTE = 100,
 							JUSTICE_ATTRIBUTE = 80
 							)
-	passive_reload = 5 SECONDS
-	reloadtime = 1 SECONDS
+	passive_reload = 4.5 SECONDS
+	reloadtime = 0.5 SECONDS
 	ammo_on_reload = 1
 	reload_start_sound = 'sound/abnormalities/nihil/filter.ogg'
 	reload_text = "The weapon starts to recharge its mana."
-	var/aoe_range = 1
-	var/ranged_damage = 180
-	var/ranged_damage_increase = 55
+	var/aoe_range = 2
+	var/ranged_damage = 145
+	var/ranged_damage_increase = 45
 
-	var/list/ranged_damage_type = list(WHITE_DAMAGE)
+	var/list/ranged_damage_type = list(BLACK_DAMAGE)
 	var/wrath
 	var/despair
 	var/greed
 	var/hate
 	var/debuff_stacks = 1
 	var/list/powers = list("hatred", "despair", "greed", "wrath")
+
+/obj/item/ego_weapon/ranged/nihil/examine(mob/user)
+	. = ..()
 
 /obj/item/ego_weapon/ranged/nihil/GunAttackInfo()
 	var/damage_type = damtype
@@ -189,8 +193,7 @@
 
 	switch(current_suit)
 		if("hearts")
-			to_chat(user,"<span class='nicegreen'>The ace of [current_suit] granted [src] the capability of dealing black damage and no longer hitting allies!</span>")
-			ranged_damage_type += BLACK_DAMAGE
+			to_chat(user,"<span class='nicegreen'>The ace of [current_suit] granted [src] the capability to no longer hitting allies!</span>")
 
 		if("spades")
 			to_chat(user,"<span class='nicegreen'>The ace of [current_suit] granted [src] the capability of dealing pale damage and has extra range!</span>")
@@ -201,9 +204,10 @@
 			to_chat(user,"<span class='nicegreen'>The ace of [current_suit] granted [src] the capability of dealing red damage!</span>")
 			ranged_damage_type += RED_DAMAGE
 			// and weakening defense
-		//if("clubs")
-			//to_chat(user,"<span class='nicegreen'>The ace of [current_suit] granted [src] the capability of dealing extra damage and slowing targets!</span>")
-
+		if("clubs")
+			to_chat(user,"<span class='nicegreen'>The ace of [current_suit] granted [src] the capability of dealing white damage!</span>")
+			ranged_damage_type += WHITE_DAMAGE
+			//and slowing targets
 	ranged_damage += ranged_damage_increase
 	to_chat(user,"<span class='nicegreen'>The ace of [current_suit] fades away as it makes [src] become even more powerful!</span>")
 	return
@@ -246,11 +250,11 @@
 	set waitfor = FALSE
 	var/turf/target_turf = get_turf(target)
 	var/damage_dealt = ranged_damage * force_multiplier * get_attack_multiplier(user)
-	playsound(target_turf, 'sound/abnormalities/nihil/attack.ogg', 50, TRUE)
+	playsound(target_turf, 'sound/abnormalities/nihil/attack.ogg', 30, FALSE, frequency = 1.5)
 	new /obj/effect/temp_visual/guardian/phase(target_turf)
 	sleep(4)
 	new /obj/effect/temp_visual/guardian/phase/out(target_turf)
-	sleep(11)
+	sleep(6)
 	var/obj/effect/temp_visual/VO = new /obj/effect/temp_visual/voidout(target_turf)
 	var/matrix/new_matrix = matrix()
 	new_matrix.Scale(0.25 + (0.75 * aoe_range))
@@ -258,18 +262,69 @@
 	for(var/mob/living/L in range(aoe_range, target_turf))
 		var/mult = 1
 		if(L == user)
-			to_chat(world, "Caught here1")
 			continue
 		if(user.faction_check_mob(L))
-			to_chat(world, "Caught here3")
 			if(powers[1] == "hearts")
 				continue
 			mult = 0.5
 		if(L.stat == DEAD)
-			to_chat(world, "Caught here2")
 			continue
-		L.deal_split_damage(damage_dealt * mult, ranged_damage_type, user, attack_type = (ATTACK_TYPE_RANGED), flags = (DAMAGE_WHITE_HEALABLE))
-		new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(L))
+		L.deal_damage(damage_dealt * mult, ranged_damage_type, user, attack_type = (ATTACK_TYPE_RANGED), flags = (DAMAGE_WHITE_HEALABLE))
+		new /obj/effect/temp_visual/eldritch_smoke(get_turf(L))
+		if(user.faction_check_mob(L))
+			continue
+		var/datum/status_effect/stacking/fake_void/V = L.has_status_effect(/datum/status_effect/stacking/fake_void)
+		if(!V)
+			var/datum/status_effect/stacking/fake_void/VV = L.apply_status_effect(/datum/status_effect/stacking/fake_void)
+			if(VV)
+				VV.add_stacks(debuff_stacks)
+		else
+			var/stack_cap = (debuff_stacks * 5) + 3
+			if(V.stacks < stack_cap)
+				V.add_stacks(debuff_stacks)
+
+//A fake version of Void Status
+//Decrease damage
+/datum/status_effect/stacking/fake_void
+	id = "stacking_fake_void"
+	status_type = STATUS_EFFECT_REFRESH
+	duration = -1
+	stacks = 0
+	stack_decay = 1
+	max_stacks = 25 // Caps out at around 33% less damage
+	tick_interval = 0.5 SECONDS
+	on_remove_on_mob_delete = TRUE
+	alert_type = /atom/movable/screen/alert/status_effect/void
+	consumed_on_threshold = FALSE
+	var/damage_mod = 1
+
+/datum/status_effect/stacking/fake_void/on_apply()
+	. = ..()
+	if(!owner)
+		return
+	//Basically it scales inversely so that way lower amount of stacks can still decrease meaningful amounts of damage without high stacks gutting damage to non existance.
+	damage_mod = 1 - ((stacks**0.8) / 40)
+	owner.damage_mult *= damage_mod
+
+/datum/status_effect/stacking/fake_void/add_stacks(stacks_added)//update your weaknesses
+	. = ..()
+	if(!owner)
+		return
+	if(stacks_added > 0)
+		var/stack_power = stacks-stacks_added
+		//A very fucked up formula thats meant to prevent the debuff from being too easy to stack with the non fully powered up weapon
+		var/decay_time = 10 * (70 * (stacks_added ** 1.35)) / (0.9 * (stack_power ** 1.52))
+		decay_time = clamp(decay_time, 12 SECONDS, 0.5 SECONDS)
+		tick_interval = world.time + decay_time
+	owner.damage_mult /= damage_mod
+	damage_mod =  1 - ((stacks**0.8) / 40)
+	owner.damage_mult *= damage_mod
+
+/datum/status_effect/stacking/fake_void/on_remove()
+	. = ..()
+	if(!owner)
+		return
+	owner.damage_mult /= damage_mod
 
 /obj/item/ego_weapon/ranged/pink
 	name = "pink"

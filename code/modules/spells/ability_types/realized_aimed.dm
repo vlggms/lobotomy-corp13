@@ -102,16 +102,22 @@
 /* Knight of Despair - Quenched with Blood */
 /obj/effect/proc_holder/ability/aimed/despair_swords
 	name = "Blades Whetted with Tears"
-	desc = "An ability that summons 3 swords to attack and slow nearby enemies. \
-		Each sword deals 50 Pale damage"
+	desc = "An ability with 2 charges. Each use summons a piercing sword that flies out and inflicts a slowing debuff on hit. \
+		Each sword deals 70 Pale damage and can pierce up to 3 enemies."
 	action_icon_state = "despair0"
 	base_icon_state = "despair"
 	cooldown_time = 20 SECONDS
 
-	var/swords = 3
+	var/swords = 1
+	var/max_charges = 2
+	var/charges = 2
 
 /obj/effect/proc_holder/ability/aimed/despair_swords/Perform(target, mob/user)
-	. = ..()
+	set waitfor = FALSE
+	charges--
+	if(charges < 1)
+		charges = max_charges
+		. = ..()
 	var/turf/target_turf = get_turf(target)
 	var/list/OT = get_adjacent_open_turfs(user)
 	for(var/i = 1 to swords)
@@ -129,10 +135,13 @@
 	desc = "A magic rapier, enchanted by a knight protecting the weak."
 	icon_state = "despair"
 	damage_type = PALE_DAMAGE
-	damage = 50
+	damage = 75
 	hitsound_wall = ""
 	impact_effect_type = null
 	ff_multiplier= 0
+	projectile_piercing = PASSMOB
+	hit_nondense_targets = TRUE
+	var/pierce = 3
 
 /obj/projectile/ego_bullet/despair_rapier/Initialize()
 	. = ..()
@@ -144,12 +153,16 @@
 	if(isliving(target))
 		var/mob/living/L = target
 		L.apply_status_effect(/datum/status_effect/despair_slow)
-	..()
+	. = ..()
+	damage *= 0.7 // Loses 30% of its current damage on hit
+	pierce--
+	if(pierce < 1)
+		qdel(src)
 
 /datum/status_effect/despair_slow
 	id = "despair_slow"
 	status_type = STATUS_EFFECT_REFRESH
-	duration = 100 //10 seconds
+	duration = 8 SECONDS
 	alert_type = null
 
 /datum/status_effect/despair_slow/on_apply()
