@@ -303,10 +303,12 @@
 		if(!V)
 			var/datum/status_effect/stacking/fake_void/VV = L.apply_status_effect(/datum/status_effect/stacking/fake_void)
 			if(VV)
+				L.OtherDamageEffect(debuff_stacks, "void")
 				VV.add_stacks(debuff_stacks)
 		else
 			var/stack_cap = (debuff_stacks * 5) + 3
 			if(V.stacks < stack_cap)
+				L.OtherDamageEffect(debuff_stacks, "void")
 				V.add_stacks(debuff_stacks)
 
 //A fake version of Void Status
