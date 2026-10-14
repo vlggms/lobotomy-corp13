@@ -20,9 +20,7 @@
 	bodytemp_cold_damage_limit = MINIMUM_TEMPERATURE_TO_MOVE // take damage below minimum movement temp
 
 /datum/species/zombie/check_roundstart_eligible()
-	if(SSevents.holidays && SSevents.holidays[HALLOWEEN])
-		return TRUE
-	return ..()
+	return FALSE
 
 /datum/species/zombie/infectious
 	name = "Infectious Zombie"

@@ -79,7 +79,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/skin_tone = "caucasian1"		//Skin color
 	var/eye_color = "000"				//Eye color
 	var/datum/species/pref_species = new /datum/species/human()	//Mutant race
-	var/list/features = list("mcolor" = "FFF", "ethcolor" = "9c3030", "tail_lizard" = "Smooth", "tail_human" = "None", "snout" = "Round", "horns" = "None", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs", "moth_wings" = "Plain", "moth_antennae" = "Plain", "moth_markings" = "None")
+	var/list/features = list("mcolor" = "FFF", "ethcolor" = "9c3030", "tail_lizard" = "Smooth", "tail_human" = "None", "snout" = "Round", "horns" = "None", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs", "moth_wings" = "Plain", "moth_antennae" = "Plain", "moth_markings" = "None", "sweeper_tanks" = "Plain", "strong_back" = "Plain",)
 	var/list/randomise = list(RANDOM_UNDERWEAR = TRUE, RANDOM_UNDERWEAR_COLOR = TRUE, RANDOM_UNDERSHIRT = TRUE, RANDOM_SOCKS = TRUE, RANDOM_BACKPACK = TRUE, RANDOM_HAIRSTYLE = TRUE, RANDOM_HAIR_COLOR = TRUE, RANDOM_FACIAL_HAIRSTYLE = TRUE, RANDOM_FACIAL_HAIR_COLOR = TRUE, RANDOM_SKIN_TONE = TRUE, RANDOM_EYE_COLOR = TRUE)
 
 	var/list/alt_titles_preferences = list() // Tegu
@@ -550,6 +550,32 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<h3>Moth markings</h3>"
 
 				dat += "<a href='byond://?_src_=prefs;preference=moth_markings;task=input'>[features["moth_markings"]]</a><BR>"
+
+				mutant_category++
+				if(mutant_category >= MAX_MUTANT_ROWS)
+					dat += "</td>"
+					mutant_category = 0
+
+			if(pref_species.mutant_bodyparts["sweeper_tanks"])
+				if(!mutant_category)
+					dat += APPEARANCE_CATEGORY_COLUMN
+
+				dat += "<h3>Sweeper tanks</h3>"
+
+				dat += "<a href='byond://?_src_=prefs;preference=sweeper_tanks;task=input'>[features["sweeper_tanks"]]</a><BR>"
+
+				mutant_category++
+				if(mutant_category >= MAX_MUTANT_ROWS)
+					dat += "</td>"
+					mutant_category = 0
+
+			if(pref_species.mutant_bodyparts["strong_back"])
+				if(!mutant_category)
+					dat += APPEARANCE_CATEGORY_COLUMN
+
+				dat += "<h3>Back accessories</h3>"
+
+				dat += "<a href='byond://?_src_=prefs;preference=strong_back;task=input'>[features["strong_back"]]</a><BR>"
 
 				mutant_category++
 				if(mutant_category >= MAX_MUTANT_ROWS)
@@ -1575,6 +1601,18 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					new_moth_markings = input(user, "Choose your character's markings:", "Character Preference") as null|anything in GLOB.moth_markings_list
 					if(new_moth_markings)
 						features["moth_markings"] = new_moth_markings
+
+				if("sweeper_tanks")
+					var/new_sweeper_tanks
+					new_sweeper_tanks = input(user, "Choose your character's tank:", "Character Preference") as null|anything in GLOB.sweeper_tanks_list
+					if(new_sweeper_tanks)
+						features["sweeper_tanks"] = new_sweeper_tanks
+
+				if("strong_back")
+					var/new_strong_back
+					new_strong_back = input(user, "Choose your character's back accessory:", "Character Preference") as null|anything in GLOB.strong_back_list
+					if(new_strong_back)
+						features["strong_back"] = new_strong_back
 
 				if("s_tone")
 					var/new_s_tone = input(user, "Choose your character's skin-tone:", "Character Preference")  as null|anything in GLOB.skin_tones

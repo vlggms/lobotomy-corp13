@@ -1591,3 +1591,12 @@
 
 /mob/living/carbon/human/species/shrimp //for the funnies only
 	race = /datum/species/shrimp
+
+/mob/living/carbon/human/species/grown_strong
+	race = /datum/species/grown_strong
+
+/mob/living/carbon/human/species/sweeper
+	race = /datum/species/sweeper
+
+/mob/living/carbon/human/species/pumpkinhead
+	race = /datum/species/pumpkinhead

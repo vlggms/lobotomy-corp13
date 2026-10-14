@@ -2030,3 +2030,22 @@
 /datum/sprite_accessory/moth_markings/witchwing
 	name = "Witch Wing"
 	icon_state = "witchwing"
+
+/datum/sprite_accessory/sweeper_tanks
+	icon = 'icons/mob/mutant_bodyparts.dmi'
+
+/datum/sprite_accessory/sweeper_tanks/plain
+	name = "Plain"
+	icon_state = "plain"
+
+/datum/sprite_accessory/strong_back
+	name = "None"
+	icon = 'icons/mob/mutant_bodyparts.dmi'
+
+/datum/sprite_accessory/strong_back/plain
+	name = "Spring"
+	icon_state = "spring"
+
+/datum/sprite_accessory/strong_back/nails
+	name = "Nails"
+	icon_state = "nails"
