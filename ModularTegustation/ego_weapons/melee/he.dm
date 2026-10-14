@@ -676,6 +676,10 @@
 	desc = "Together, we are in rot."
 	special = "This weapon restores health on a successful parry."
 	icon_state = "legerdemain"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
 	force = 27
 	attack_speed = 1.8
 	damtype = RED_DAMAGE
