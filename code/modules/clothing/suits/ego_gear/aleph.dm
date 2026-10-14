@@ -229,7 +229,7 @@
 	name = "nihil"
 	desc = "The jester retraced the steps of a path everybody would’ve taken. The jester always found itself at the end of that road. \
 	There was no way to know if they had gathered to become the jester, or if the jester had come to resemble them."
-	special = "This armor can become stronger by consuming 4 special items."
+	special = "This armor can become stronger by consuming upto 4 special items."
 	icon_state = "nihil"
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 70, BLACK_DAMAGE = 70, PALE_DAMAGE = 40) // 240 - 300, 15 per upgrade; caps out at 70,80,80,70
 	attribute_requirements = list(

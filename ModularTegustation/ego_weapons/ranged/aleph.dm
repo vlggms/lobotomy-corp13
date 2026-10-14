@@ -110,7 +110,7 @@
 /obj/item/ego_weapon/ranged/nihil
 	name = "nihil"
 	desc = "Having decided to trust its own intuition, the jester spake the names of everyone it had met on that path with each step it took."
-	special = "This weapon does damage in an area after a delay that inflicts a stacking damage down debuff. \n\
+	special = "This weapon does damage in an area after a delay that inflicts a stacking damage down debuff. <br>\
 	This weapon can become stronger by consuming upto 4 special items."
 	icon_state = "nihil"
 	inhand_icon_state = "nihil"
@@ -122,42 +122,54 @@
 	fire_sound = 'sound/weapons/fixer/generic/energy1.ogg'
 	fire_sound_volume = 50
 	max_shots = 4
-	fire_delay = 30
+	fire_delay = 20
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,
 							TEMPERANCE_ATTRIBUTE = 100,
 							JUSTICE_ATTRIBUTE = 80
 							)
-	passive_reload = 4.5 SECONDS
+	passive_reload = 4.4 SECONDS
 	reloadtime = 0.5 SECONDS
 	ammo_on_reload = 1
 	reload_start_sound = 'sound/abnormalities/nihil/filter.ogg'
 	reload_text = "The weapon starts to recharge its mana."
 	var/aoe_range = 2
-	var/ranged_damage = 145
-	var/ranged_damage_increase = 45
+	var/ranged_damage = 120
+	var/ranged_damage_increase = 30
 
 	var/list/ranged_damage_type = list(BLACK_DAMAGE)
-	var/wrath
-	var/despair
-	var/greed
-	var/hate
 	var/debuff_stacks = 1
 	var/list/powers = list("hatred", "despair", "greed", "wrath")
 
 /obj/item/ego_weapon/ranged/nihil/examine(mob/user)
+	special = initial(special)
+	if(powers[1] == "hearts")
+		special += "<br>Hearts grant friendly fire immunity to its ranged attack."
+	if(powers[2] == "spades")
+		special += "<br>Spades grant increased area to its ranged attack."
+	if(powers[3] == "diamonds")
+		special += "<br>Diamonds grant a defense crippling debuff to its ranged attack."
+	if(powers[4] == "clubs")
+		special += "<br>Clubs grant a slowing debuff to its ranged attack."
 	. = ..()
 
 /obj/item/ego_weapon/ranged/nihil/GunAttackInfo()
-	var/damage_type = damtype
 	var/base_damage = ranged_damage
 	var/damage = round(base_damage * force_multiplier * projectile_damage_multiplier, 0.1)
-	if(GLOB.damage_type_shuffler?.is_enabled && IsColorDamageType(damage_type))
-		var/datum/damage_type_shuffler/shuffler = GLOB.damage_type_shuffler
-		var/new_damage_type = shuffler.mapping_offense[damage_type]
-		damage_type = new_damage_type
-	return span_notice("Its magic deal [damage] [damage_type] damage.[force_multiplier != 1 ? " (+ [(force_multiplier - 1) * 100]%)" : ""]")
+	var/damage_string = ""
+	if(LAZYLEN(ranged_damage_type))
+		switch(ranged_damage_type.len)
+			if(1)
+				damage_string = "[ranged_damage_type[1]] damage"
+			if(2)
+				damage_string = "[ranged_damage_type[1]] and [ranged_damage_type[2]] damage combined"
+			if(3)
+				damage_string = "[ranged_damage_type[1]], [ranged_damage_type[2]] and [ranged_damage_type[3]] damage combined"
+			else
+				damage_string = "[ranged_damage_type[1]], [ranged_damage_type[2]], [ranged_damage_type[3]] and [ranged_damage_type[4]] damage combined"
+
+	return span_notice("Its magic deals [damage] [damage_string].[force_multiplier != 1 ? " (+ [(force_multiplier - 1) * 100]%)" : ""]")
 
 /obj/item/ego_weapon/ranged/nihil/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
@@ -193,27 +205,37 @@
 
 	switch(current_suit)
 		if("hearts")
-			to_chat(user,"<span class='nicegreen'>The ace of [current_suit] granted [src] the capability to no longer hitting allies!</span>")
+			to_chat(user,"<span class='nicegreen'>The ace of [current_suit] granted [src] the capability of no longer hitting allies!</span>")
 
 		if("spades")
 			to_chat(user,"<span class='nicegreen'>The ace of [current_suit] granted [src] the capability of dealing pale damage and has extra range!</span>")
-			ranged_damage_type += PALE_DAMAGE
 			aoe_range += 1
 
 		if("diamonds")
-			to_chat(user,"<span class='nicegreen'>The ace of [current_suit] granted [src] the capability of dealing red damage!</span>")
-			ranged_damage_type += RED_DAMAGE
-			// and weakening defense
+			to_chat(user,"<span class='nicegreen'>The ace of [current_suit] granted [src] the capability of dealing red damage and weakening defense!</span>")
 		if("clubs")
-			to_chat(user,"<span class='nicegreen'>The ace of [current_suit] granted [src] the capability of dealing white damage!</span>")
-			ranged_damage_type += WHITE_DAMAGE
-			//and slowing targets
+			to_chat(user,"<span class='nicegreen'>The ace of [current_suit] granted [src] the capability of dealing white damage and slowing targets!</span>")
+	BuildDamageList()
 	ranged_damage += ranged_damage_increase
 	to_chat(user,"<span class='nicegreen'>The ace of [current_suit] fades away as it makes [src] become even more powerful!</span>")
 	return
 
+/obj/item/ego_weapon/ranged/nihil/proc/BuildDamageList()
+	ranged_damage_type = list()
+	if(powers[3] == "diamonds")
+		ranged_damage_type += RED_DAMAGE
+	if(powers[4] == "clubs")
+		ranged_damage_type += WHITE_DAMAGE
+	ranged_damage_type += BLACK_DAMAGE
+	if(powers[2] == "spades")
+		ranged_damage_type += PALE_DAMAGE
+
 /obj/item/ego_weapon/ranged/nihil/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, temporary_damage_multiplier = 1)
 	if(!CanUseEgo(user))
+		return
+
+	//Shooting through walls wouldn't be a good idea
+	if(!(target in view(10, user)))
 		return
 
 	if(HAS_TRAIT(user, TRAIT_PACIFISM) && lethal) // If the user has the pacifist trait, then they won't be able to fire [src] if the [lethal] var is TRUE.
@@ -250,11 +272,11 @@
 	set waitfor = FALSE
 	var/turf/target_turf = get_turf(target)
 	var/damage_dealt = ranged_damage * force_multiplier * get_attack_multiplier(user)
-	playsound(target_turf, 'sound/abnormalities/nihil/attack.ogg', 30, FALSE, frequency = 1.5)
+	playsound(target_turf, 'sound/abnormalities/nihil/attack.ogg', 35, FALSE)
 	new /obj/effect/temp_visual/guardian/phase(target_turf)
 	sleep(4)
 	new /obj/effect/temp_visual/guardian/phase/out(target_turf)
-	sleep(6)
+	sleep(4)
 	var/obj/effect/temp_visual/VO = new /obj/effect/temp_visual/voidout(target_turf)
 	var/matrix/new_matrix = matrix()
 	new_matrix.Scale(0.25 + (0.75 * aoe_range))
@@ -269,10 +291,14 @@
 			mult = 0.5
 		if(L.stat == DEAD)
 			continue
-		L.deal_damage(damage_dealt * mult, ranged_damage_type, user, attack_type = (ATTACK_TYPE_RANGED), flags = (DAMAGE_WHITE_HEALABLE))
+		L.deal_split_damage(damage_dealt * mult, ranged_damage_type, user, attack_type = (ATTACK_TYPE_RANGED), flags = (DAMAGE_WHITE_HEALABLE))
 		new /obj/effect/temp_visual/eldritch_smoke(get_turf(L))
 		if(user.faction_check_mob(L))
 			continue
+		if(powers[3] == "diamonds")
+			L.apply_status_effect(/datum/status_effect/display/nihil_disarm)
+		if(powers[4] == "clubs")
+			L.apply_status_effect(/datum/status_effect/display/nihil_bind)
 		var/datum/status_effect/stacking/fake_void/V = L.has_status_effect(/datum/status_effect/stacking/fake_void)
 		if(!V)
 			var/datum/status_effect/stacking/fake_void/VV = L.apply_status_effect(/datum/status_effect/stacking/fake_void)
@@ -325,6 +351,63 @@
 	if(!owner)
 		return
 	owner.damage_mult /= damage_mod
+
+/datum/status_effect/display/nihil_disarm
+	id = "nihil_disarm"
+	status_type = STATUS_EFFECT_REFRESH
+	duration = 5 SECONDS
+	on_remove_on_mob_delete = TRUE
+	display_name = "nihil_disarm"
+	alert_type = null
+
+/datum/status_effect/display/nihil_erosion/on_creation(mob/living/new_owner, buff_empowered)
+	empowered = buff_empowered
+	return ..()
+
+/datum/status_effect/display/nihil_disarm/on_apply()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.physiology.red_mod *= 1.2
+		H.physiology.white_mod *= 1.2
+		H.physiology.black_mod *= 1.2
+		H.physiology.pale_mod *= 1.2
+		return ..()
+	var/mob/living/simple_animal/M = owner
+	M.AddModifier(/datum/dc_change/nihil_erosion)
+	return ..()
+
+/datum/status_effect/display/nihil_disarm/on_remove()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.physiology.red_mod /= 1.2
+		H.physiology.white_mod /= 1.2
+		H.physiology.black_mod /= 1.2
+		H.physiology.pale_mod /= 1.2
+		return ..()
+	var/mob/living/simple_animal/M = owner
+	M.RemoveModifier(/datum/dc_change/nihil_erosion)
+	return ..()
+
+/datum/status_effect/display/nihil_bind
+	id = "nihil_bind"
+	status_type = STATUS_EFFECT_REFRESH
+	duration = 5 SECONDS
+	on_remove_on_mob_delete = TRUE
+	display_name = "nihil_bind"
+	alert_type = null
+
+/datum/status_effect/display/nihil_bind/on_apply()
+	owner.add_movespeed_modifier(/datum/movespeed_modifier/nihil_bind)
+	return ..()
+
+/datum/status_effect/display/nihil_bind/on_remove()
+	owner.remove_movespeed_modifier(/datum/movespeed_modifier/nihil_bind)
+	return ..()
+
+/datum/movespeed_modifier/nihil_bind
+	variable = TRUE
+	multiplicative_slowdown = 1.6
+	flags = IS_ACTUALLY_MULTIPLICATIVE
 
 /obj/item/ego_weapon/ranged/pink
 	name = "pink"
@@ -579,6 +662,7 @@
 
 	charge = TRUE
 	charge_cost = 10
+	attack_charge_gain = FALSE // we have a unique way of getting charge
 	ability_type = ABILITY_UNIQUE
 	custom_charge_gain = "This weapon gains a charge upon healing a human with its projectile."
 	charge_effect = "Clicking on a target grants them a 'Mark of Villainy'. The mark increases the damage the target takes from this weapon and Arcana Slave."
