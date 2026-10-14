@@ -118,6 +118,8 @@
 	if(charges < 1)
 		charges = max_charges
 		. = ..()
+	else
+		remove_ranged_ability()
 	var/turf/target_turf = get_turf(target)
 	var/list/OT = get_adjacent_open_turfs(user)
 	for(var/i = 1 to swords)
@@ -135,7 +137,7 @@
 	desc = "A magic rapier, enchanted by a knight protecting the weak."
 	icon_state = "despair"
 	damage_type = PALE_DAMAGE
-	damage = 75
+	damage = 70
 	hitsound_wall = ""
 	impact_effect_type = null
 	ff_multiplier= 0
