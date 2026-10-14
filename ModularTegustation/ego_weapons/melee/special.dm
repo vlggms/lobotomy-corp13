@@ -1051,7 +1051,7 @@ datum/status_effect/display/worthless_greed/on_remove()
 	The swords will eventually point at those she could not protect."
 	special = "This weapon has a combo system."
 	icon_state = "despair_nihil"
-	force = 18
+	force = 16
 	attack_speed = 1
 	modified_attack_speed = 0.4
 	damtype = WHITE_DAMAGE
@@ -1062,7 +1062,7 @@ datum/status_effect/display/worthless_greed/on_remove()
 	reductions = list(50, 50, 50, 60) //210 - 300
 	projectile_block_duration = 0.4 SECONDS
 	block_duration = 1.5 SECONDS
-	block_cooldown = 3 SECONDS
+	block_cooldown = 2 SECONDS
 	debuff_duration = 0
 	block_message = "You attempt to parry the attack!"
 	hit_message = "parries the attack!"
@@ -1073,7 +1073,7 @@ datum/status_effect/display/worthless_greed/on_remove()
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 120
 							)
-	var/combo = 0
+	var/combo = 1
 	var/combo_time
 	var/combo_wait = 10
 	var/mob/living/current_holder
@@ -1104,10 +1104,10 @@ datum/status_effect/display/worthless_greed/on_remove()
 	if(!CanUseEgo(user))
 		return
 	if(world.time > combo_time)
-		combo = 0
+		combo = 1
 	combo_time = world.time + combo_wait
 	if(combo==4)
-		combo = 0
+		combo = 1
 		projectile_block_duration = 2 SECONDS
 		user.changeNext_move(CLICK_CD_MELEE * 2)
 		force *= 5	// Should actually keep up with normal damage.
@@ -1122,23 +1122,27 @@ datum/status_effect/display/worthless_greed/on_remove()
 
 /obj/item/ego_weapon/shield/despair_nihil/EnableBlock(mob/living/carbon/human/user)
 	block_duration = initial(block_duration)
-	block_cooldown = initial(block_cooldown)
-	reductions = initial(block_cooldown)
+	reductions = initial(reductions)
+	var/obj/item/clothing/suit/armor/ego_gear/despair_nihil/Z = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(!istype(Z) || user.has_status_effect(/datum/status_effect/despair_nihil))
+		calculate_resistances_list()
+		return ..()
 	if(LAZYLEN(protection_list) || LAZYLEN(current_beams))
 		CleanUpProtection(user)
-	var/obj/item/clothing/suit/armor/ego_gear/despair_nihil/Z = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
-	if(!istype(Z))
-		return ..()
 	var/friend_count = 0
 	var/armor_boost = 50
 	for(var/mob/living/carbon/human/friend in oview(user, 10))
-		if(friend.ckey && friend.stat != DEAD && friend != user)
-			block_duration += 1 SECONDS
+		//if(friend.ckey && friend.stat != DEAD && friend != user)
+		if(friend.stat != DEAD && friend != user)
+			if(friend.has_status_effect(/datum/status_effect/despair_nihil))
+				continue
+			block_duration += 1.5 SECONDS
 			Protect(user, friend)
 			friend_count++
-			if(friend_count > 3)
-				break
 			armor_boost += 10
+			if(friend_count >= 3)
+				break
+	user.apply_status_effect(/datum/status_effect/despair_nihil)
 	reductions = list(armor_boost, armor_boost, armor_boost, 60)
 	if(friend_count > 0)
 		user.playsound_local(get_turf(user), 'sound/abnormalities/despairknight/gift.ogg', 50, 0)
@@ -1153,6 +1157,7 @@ datum/status_effect/display/worthless_greed/on_remove()
 	if(QDELETED(user) || QDELETED(H))
 		return
 	H.playsound_local(get_turf(H), 'sound/abnormalities/despairknight/gift.ogg', 50, 0)
+	H.apply_status_effect(/datum/status_effect/despair_nihil)
 	H.physiology.red_mod *= 0.5
 	H.physiology.white_mod *= 0.5
 	H.physiology.black_mod *= 0.5
@@ -1167,6 +1172,7 @@ datum/status_effect/display/worthless_greed/on_remove()
 	current_beams += new_beam
 
 /obj/item/ego_weapon/shield/despair_nihil/proc/CleanUpProtection(mob/living/carbon/human/user)
+	user.remove_status_effect(/datum/status_effect/despair_nihil)
 	for(var/datum/beam/B in current_beams)
 		current_beams -= B
 		qdel(B)
@@ -1181,6 +1187,7 @@ datum/status_effect/display/worthless_greed/on_remove()
 	if(!H)
 		return
 	protection_list -= H
+	H.remove_status_effect(/datum/status_effect/despair_nihil)
 	H.physiology.red_mod /= 0.5
 	H.physiology.white_mod /= 0.5
 	H.physiology.black_mod /= 0.5
@@ -1220,6 +1227,13 @@ datum/status_effect/display/worthless_greed/on_remove()
 			damage_done *= source.physiology.pale_mod
 	//Since COMSIG_MOB_APPLY_DAMGE doesn't carry over the block var, there will be some jank with Puss in Boot's finisher but ehh who cares
 	current_holder.deal_damage(damage_done, damagetype, attacker, damage_flags, attack_type, def_zone = def_zone)
+
+//We don't want any infinite loop nonsense if 2 people try to protect each other
+/datum/status_effect/despair_nihil
+	id = "worthless_greed"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = -1
+	alert_type = null
 
 /obj/item/ego_weapon/wrath_nihil
 	name = "senseless wrath"
