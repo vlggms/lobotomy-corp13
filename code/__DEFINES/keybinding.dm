@@ -93,3 +93,19 @@
 #define COMSIG_KB_MOB_BLUE_SHEPHERD_COUNTER "keybinding_mob_blue_shepherd_counter"
 #define COMSIG_KB_MOB_FRAGMENT_SONG "keybinding_mob_fragment_song"
 
+
+//Manager
+#define COMSIG_KB_MANAGER_CAMERA "manager_camera"
+#define COMSIG_KB_MANAGER_FOLLOW "manager_follow"
+#define COMSIG_KB_MANAGER_CYCLE "manager_cycle"
+
+#define COMSIG_KB_MANAGER_HEALING "manager_healing_switch"
+#define COMSIG_KB_MANAGER_SANITY "manager_sanity_switch"
+#define COMSIG_KB_MANAGER_DUAL "manager_dual_switch"
+#define COMSIG_KB_MANAGER_RED "manager_red_switch"
+#define COMSIG_KB_MANAGER_WHITE "manager_white_switch"
+#define COMSIG_KB_MANAGER_BLACK "manager_black_switch"
+#define COMSIG_KB_MANAGER_PALE "manager_pale_switch"
+#define COMSIG_KB_MANAGER_QUAD "manager_quad_switch"
+#define COMSIG_KB_MANAGER_SLOW "manager_slow_switch"
+#define COMSIG_KB_MANAGER_KILL "manager_kill_switch"
