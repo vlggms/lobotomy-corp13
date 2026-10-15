@@ -906,12 +906,12 @@
 /obj/item/ego_weapon/greed_nihil/attack(mob/living/target, mob/living/user)
 	if(!CanUseEgo(user) || charging)
 		return
-	if(do_after(user, 4, target))
+	if(do_after(user, CLICK_CD_MELEE * 0.35, target))
 		var/old_stat = target.stat
 		target.visible_message(span_danger("[user] rears up and slams into [target]!"), \
 						span_userdanger("[user] punches you with everything you got!!"), vision_distance = COMBAT_MESSAGE_RANGE, ignored_mobs = user)
 		to_chat(user, span_danger("You throw your entire body into this punch!"))
-		user.changeNext_move(CLICK_CD_MELEE * 0.2)
+		user.changeNext_move(CLICK_CD_MELEE * 0.35)
 		..()
 		force = initial(force)
 		if((target.stat == DEAD && old_stat != DEAD) && !(target.status_flags & GODMODE))
@@ -1041,7 +1041,7 @@
 	. = ..()
 	owner.damage_mult *= 1.2
 
-datum/status_effect/display/worthless_greed/on_remove()
+/datum/status_effect/display/worthless_greed/on_remove()
 	. = ..()
 	owner.damage_mult /= 1.2
 

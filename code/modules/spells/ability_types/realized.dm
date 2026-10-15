@@ -786,7 +786,7 @@
 	. = ..()
 	owner.damage_mult *= 1.3
 
-datum/status_effect/wrath/on_remove()
+/datum/status_effect/wrath/on_remove()
 	. = ..()
 	owner.damage_mult /= 1.3
 

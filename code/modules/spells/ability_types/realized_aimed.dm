@@ -263,7 +263,7 @@
 		addtimer(CALLBACK(H, TYPE_PROC_REF(/atom/movable, say), "ARCANA SLAVE!"))
 	for(var/o = 1 to 50) // Half duration but gets Justice Mod
 		var/list/already_hit = list()
-		if(accumulated_beam_damage >= 150 && beam_stage < 2)
+		if(accumulated_beam_damage >= 180 && beam_stage < 2)
 			beam_stage = 2
 			beam_damage *= 1.5
 			var/matrix/M = matrix()
