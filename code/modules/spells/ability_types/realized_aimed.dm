@@ -108,7 +108,6 @@
 	base_icon_state = "despair"
 	cooldown_time = 20 SECONDS
 
-	var/swords = 1
 	var/max_charges = 2
 	var/charges = 2
 
@@ -121,14 +120,12 @@
 	else
 		remove_ranged_ability()
 	var/turf/target_turf = get_turf(target)
+	var/turf/T = get_turf(user)
 	var/list/OT = get_adjacent_open_turfs(user)
-	for(var/i = 1 to swords)
-		if(OT.len <= 0)
-			OT = get_adjacent_open_turfs(user)
-		var/turf/T = pick(OT)
-		OT -= T
-		var/P = /obj/projectile/ego_bullet/despair_rapier
-		new /obj/effect/projectile_delayed(T, target_turf, user, P, 3)
+	if(OT.len > 0)
+		T = pick(OT)
+	var/P = /obj/projectile/ego_bullet/despair_rapier
+	new /obj/effect/projectile_delayed(T, target_turf, user, P, 3)
 	sleep(3)
 	playsound(target_turf, 'sound/abnormalities/despairknight/attack.ogg', 50, 0, 4)
 
