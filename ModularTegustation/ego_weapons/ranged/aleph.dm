@@ -301,15 +301,13 @@
 			L.apply_status_effect(/datum/status_effect/display/nihil_bind)
 		var/datum/status_effect/stacking/fake_void/V = L.has_status_effect(/datum/status_effect/stacking/fake_void)
 		if(!V)
-			var/datum/status_effect/stacking/fake_void/VV = L.apply_status_effect(/datum/status_effect/stacking/fake_void)
-			if(VV)
-				L.OtherDamageEffect(debuff_stacks, "void")
-				VV.add_stacks(debuff_stacks)
+			L.apply_status_effect(/datum/status_effect/stacking/fake_void, debuff_stacks)
+			L.OtherDamageEffect(debuff_stacks, "void")
 		else
 			var/stack_cap = (debuff_stacks * 5) + 3
 			if(V.stacks < stack_cap)
-				L.OtherDamageEffect(debuff_stacks, "void")
 				V.add_stacks(debuff_stacks)
+				L.OtherDamageEffect(debuff_stacks, "void")
 
 //A fake version of Void Status
 //Decrease damage
@@ -339,7 +337,7 @@
 	if(!owner)
 		return
 	if(stacks_added > 0)
-		var/stack_power = stacks-stacks_added
+		var/stack_power = max(1, stacks-stacks_added)
 		//A very fucked up formula thats meant to prevent the debuff from being too easy to stack with the non fully powered up weapon
 		var/decay_time = 10 * (70 * (stacks_added ** 1.35)) / (0.9 * (stack_power ** 1.52))
 		decay_time = clamp(decay_time, 12 SECONDS, 0.5 SECONDS)
