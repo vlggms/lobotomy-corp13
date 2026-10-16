@@ -134,7 +134,7 @@
 	ammo_on_reload = 1
 	reload_start_sound = 'sound/abnormalities/nihil/filter.ogg'
 	reload_text = "The weapon starts to recharge its mana."
-	var/aoe_range = 2
+	var/aoe_range = 1
 	var/ranged_damage = 120
 	var/ranged_damage_increase = 20
 
@@ -288,7 +288,7 @@
 		if(user.faction_check_mob(L))
 			if(powers[1] == "hearts")
 				continue
-			mult = 0.5
+			mult = 0.3
 		if(L.stat == DEAD)
 			continue
 		L.deal_split_damage(damage_dealt * mult, ranged_damage_type, user, attack_type = (ATTACK_TYPE_RANGED), flags = (DAMAGE_WHITE_HEALABLE))
