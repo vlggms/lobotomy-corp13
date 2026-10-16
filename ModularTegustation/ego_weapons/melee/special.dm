@@ -1136,7 +1136,7 @@
 		if(friend.stat != DEAD && friend != user)
 			if(friend.has_status_effect(/datum/status_effect/despair_nihil))
 				continue
-			block_duration += 1.5 SECONDS
+			block_duration += 1 SECONDS
 			Protect(user, friend)
 			friend_count++
 			armor_boost += 10
