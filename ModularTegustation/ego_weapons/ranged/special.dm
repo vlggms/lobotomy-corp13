@@ -256,7 +256,7 @@
 /obj/item/ego_weapon/ranged/hatred_nihil/proc/HealingAura(mob/user, amt)
 	if(!user)
 		return
-	for(var/mob/living/carbon/human/H in view(1, user))
+	for(var/mob/living/carbon/human/H in view(3, user))
 		if(!user.faction_check_mob(H) || H.is_working)
 			continue
 		if((H.stat == DEAD) || H.status_flags & GODMODE)//if the target was already dead or godmode. We don't want someone to farm charge off of a dead body
