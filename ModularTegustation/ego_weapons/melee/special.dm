@@ -1166,8 +1166,7 @@
 	RegisterSignal(H, COMSIG_LIVING_DEATH, PROC_REF(OnProtectedDeath))
 	RegisterSignal(H, COMSIG_PARENT_QDELETING, PROC_REF(OnProtectedDeath))
 	protection_list += H
-	var/datum/beam/new_beam = user.Beam(H, icon_state="medbeam", time=INFINITY, maxdistance=INFINITY, beam_type=/obj/effect/ebeam/medical)
-	var/newcolor = list(0.1,0.1,0.1, 0.3,0.3,0.3, 0.05,0.05,0.05, 0,0,0)
+	var/datum/beam/new_beam = user.Beam(H, icon_state="despairbeam", time=INFINITY, maxdistance=INFINITY, beam_type=/obj/effect/ebeam/medical)
 	new_beam.visuals.add_atom_colour(newcolor, FIXED_COLOUR_PRIORITY)
 	current_beams += new_beam
 
