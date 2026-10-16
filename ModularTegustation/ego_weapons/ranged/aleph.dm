@@ -110,7 +110,7 @@
 /obj/item/ego_weapon/ranged/nihil
 	name = "nihil"
 	desc = "Having decided to trust its own intuition, the jester spake the names of everyone it had met on that path with each step it took."
-	special = "This weapon does damage in an area after a delay that inflicts a stacking damage down debuff. <br>\
+	special = "This weapon does damage in an area after a delay that inflicts a stacking damage down debuff.<br>\
 	This weapon can become stronger by consuming upto 4 special items."
 	icon_state = "nihil"
 	inhand_icon_state = "nihil"
@@ -136,7 +136,7 @@
 	reload_text = "The weapon starts to recharge its mana."
 	var/aoe_range = 2
 	var/ranged_damage = 120
-	var/ranged_damage_increase = 30
+	var/ranged_damage_increase = 20
 
 	var/list/ranged_damage_type = list(BLACK_DAMAGE)
 	var/debuff_stacks = 1
