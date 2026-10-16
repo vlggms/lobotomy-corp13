@@ -1132,8 +1132,7 @@
 	var/friend_count = 0
 	var/armor_boost = 50
 	for(var/mob/living/carbon/human/friend in oview(user, 10))
-		//if(friend.ckey && friend.stat != DEAD && friend != user)
-		if(friend.stat != DEAD && friend != user)
+		if(friend.ckey && friend.stat != DEAD && friend != user)
 			if(friend.has_status_effect(/datum/status_effect/despair_nihil))
 				continue
 			block_duration += 1 SECONDS
