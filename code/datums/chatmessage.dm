@@ -71,7 +71,6 @@
 
 /datum/chatmessage/Destroy()
 	if (owned_by)
-		UnregisterSignal(owned_by, COMSIG_PARENT_QDELETING)
 		if (owned_by.seen_messages)
 			LAZYREMOVEASSOC(owned_by.seen_messages, message_loc, src)
 		owned_by.images.Remove(message)
@@ -167,9 +166,7 @@
 	var/complete_text = "<span class='center [extra_classes.Join(" ")]' style='color: [tgt_color]'>[owner.say_emphasis(text)]</span>"
 	if(!owned_by) // The client has been nulled after disconnecting, so we need to stop early.
 		return
-	var/mheight = WXH_TO_HEIGHT(owned_by?.MeasureText(complete_text, null, CHAT_MESSAGE_WIDTH))
-	if(!mheight)
-		return
+	var/mheight = WXH_TO_HEIGHT(owned_by.MeasureText(complete_text, null, CHAT_MESSAGE_WIDTH))
 	approx_lines = max(1, mheight / CHAT_MESSAGE_APPROX_LHEIGHT)
 
 	// Translate any existing messages upwards, apply exponential decay factors to timers
