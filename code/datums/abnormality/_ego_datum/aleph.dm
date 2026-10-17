@@ -212,3 +212,18 @@
 /datum/ego_datum/armor/throne
 	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/throne
 	cost = 100
+
+// Queen of hatred - Love and Justice
+/datum/ego_datum/armor/lovejustice
+	item_path = /obj/item/ego_weapon/ranged/lovejustice
+	cost = 100
+
+// Knight of despair - Quenched with Blood
+/datum/ego_datum/armor/quenchedblood
+	item_path = /obj/item/ego_weapon/quenchedblood
+	cost = 100
+
+// Servant of Wrath - Wounded Courage
+/datum/ego_datum/armor/woundedcourage
+	item_path = /obj/item/ego_weapon/woundedcourage
+	cost = 100

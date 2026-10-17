@@ -229,7 +229,7 @@
 	name = "nihil"
 	desc = "The jester retraced the steps of a path everybody would’ve taken. The jester always found itself at the end of that road. \
 	There was no way to know if they had gathered to become the jester, or if the jester had come to resemble them."
-	special = "This armor can become stronger by consuming 4 special items."
+	special = "This armor can become stronger by consuming upto 4 special items."
 	icon_state = "nihil"
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 70, BLACK_DAMAGE = 70, PALE_DAMAGE = 40) // 240 - 300, 15 per upgrade; caps out at 70,80,80,70
 	attribute_requirements = list(
@@ -287,8 +287,8 @@
 
 	switch(current_suit)
 		if("hearts")
-			armor = armor.modifyRating(white = 10, pale = 5)
-			to_chat(user, span_nicegreen("[src] has gained extra resistance to WHITE and PALE damage!"))
+			armor = armor.modifyRating(black = 10, pale = 5)
+			to_chat(user, span_nicegreen("[src] has gained extra resistance to BLACK and PALE damage!"))
 
 		if("spades")
 			armor = armor.modifyRating(pale = 15)
@@ -296,11 +296,11 @@
 
 		if("diamonds")
 			armor = armor.modifyRating(red = 10, pale = 5, fire = 5)
-			to_chat(user, span_nicegreen("[src] has gained extra resistance to RED damage!"))
+			to_chat(user, span_nicegreen("[src] has gained extra resistance to RED and PALE damage!"))
 
 		if("clubs")
-			armor = armor.modifyRating(black = 10, pale = 5)
-			to_chat(user, span_nicegreen("[src] has gained extra resistance to BLACK and PALE damage!"))
+			armor = armor.modifyRating(white = 10, pale = 5)
+			to_chat(user, span_nicegreen("[src] has gained extra resistance to WHITE and PALE damage!"))
 
 /obj/item/clothing/suit/armor/ego_gear/aleph/seasons
 	name = "Seasons Greetings"

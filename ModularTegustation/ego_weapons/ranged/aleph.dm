@@ -110,28 +110,66 @@
 /obj/item/ego_weapon/ranged/nihil
 	name = "nihil"
 	desc = "Having decided to trust its own intuition, the jester spake the names of everyone it had met on that path with each step it took."
+	special = "This weapon does damage in an area after a delay that inflicts a stacking damage down debuff.<br>\
+	This weapon can become stronger by consuming upto 4 special items."
 	icon_state = "nihil"
 	inhand_icon_state = "nihil"
-	force = 28
+	force = 15
+	attack_speed = 0.5
 	damtype = BLACK_DAMAGE
 	projectile_path = /obj/projectile/ego_bullet/nihil
 	weapon_weight = WEAPON_HEAVY
-	pellets = 4
-	variance = 20
 	fire_sound = 'sound/weapons/fixer/generic/energy1.ogg'
 	fire_sound_volume = 50
-	fire_delay = 10
+	max_shots = 4
+	fire_delay = 20
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,
 							TEMPERANCE_ATTRIBUTE = 100,
 							JUSTICE_ATTRIBUTE = 80
 							)
-	var/wrath
-	var/despair
-	var/greed
-	var/hate
+	passive_reload = 4.4 SECONDS
+	reloadtime = 0.5 SECONDS
+	ammo_on_reload = 1
+	reload_start_sound = 'sound/abnormalities/nihil/filter.ogg'
+	reload_text = "The weapon starts to recharge its mana."
+	var/aoe_range = 1
+	var/ranged_damage = 120
+	var/ranged_damage_increase = 20
+
+	var/list/ranged_damage_type = list(BLACK_DAMAGE)
+	var/debuff_stacks = 1
 	var/list/powers = list("hatred", "despair", "greed", "wrath")
+
+/obj/item/ego_weapon/ranged/nihil/examine(mob/user)
+	special = initial(special)
+	if(powers[1] == "hearts")
+		special += "<br>Hearts grant friendly fire immunity to its ranged attack."
+	if(powers[2] == "spades")
+		special += "<br>Spades grant increased area to its ranged attack."
+	if(powers[3] == "diamonds")
+		special += "<br>Diamonds grant a defense crippling debuff to its ranged attack."
+	if(powers[4] == "clubs")
+		special += "<br>Clubs grant a slowing debuff to its ranged attack."
+	. = ..()
+
+/obj/item/ego_weapon/ranged/nihil/GunAttackInfo()
+	var/base_damage = ranged_damage
+	var/damage = round(base_damage * force_multiplier * projectile_damage_multiplier, 0.1)
+	var/damage_string = ""
+	if(LAZYLEN(ranged_damage_type))
+		switch(ranged_damage_type.len)
+			if(1)
+				damage_string = "[ranged_damage_type[1]] damage"
+			if(2)
+				damage_string = "[ranged_damage_type[1]] and [ranged_damage_type[2]] damage combined"
+			if(3)
+				damage_string = "[ranged_damage_type[1]], [ranged_damage_type[2]] and [ranged_damage_type[3]] damage combined"
+			else
+				damage_string = "[ranged_damage_type[1]], [ranged_damage_type[2]], [ranged_damage_type[3]] and [ranged_damage_type[4]] damage combined"
+
+	return span_notice("Its magic deals [damage] [damage_string].[force_multiplier != 1 ? " (+ [(force_multiplier - 1) * 100]%)" : ""]")
 
 /obj/item/ego_weapon/ranged/nihil/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
@@ -167,18 +205,209 @@
 
 	switch(current_suit)
 		if("hearts")
-			to_chat(user,"<span class='nicegreen'>The ace of [current_suit] has removed friendly fire from [src]!</span>")
+			to_chat(user,"<span class='nicegreen'>The ace of [current_suit] granted [src] the capability of no longer hitting allies!</span>")
 
 		if("spades")
-			to_chat(user,"<span class='nicegreen'>The ace of [current_suit] granted [src] the capability of dealing pale damage!</span>")
+			to_chat(user,"<span class='nicegreen'>The ace of [current_suit] granted [src] the capability of dealing pale damage and has extra range!</span>")
+			aoe_range += 1
 
 		if("diamonds")
-			to_chat(user,"<span class='nicegreen'>The ace of [current_suit] granted [src] the capability of dealing red damage!</span>")
-
+			to_chat(user,"<span class='nicegreen'>The ace of [current_suit] granted [src] the capability of dealing red damage and weakening defense!</span>")
 		if("clubs")
-			to_chat(user,"<span class='nicegreen'>The ace of [current_suit] granted [src] the capability of dealing black damage!</span>")
+			to_chat(user,"<span class='nicegreen'>The ace of [current_suit] granted [src] the capability of dealing white damage and slowing targets!</span>")
+	BuildDamageList()
+	ranged_damage += ranged_damage_increase
 	to_chat(user,"<span class='nicegreen'>The ace of [current_suit] fades away as it makes [src] become even more powerful!</span>")
 	return
+
+/obj/item/ego_weapon/ranged/nihil/proc/BuildDamageList()
+	ranged_damage_type = list()
+	if(powers[3] == "diamonds")
+		ranged_damage_type += RED_DAMAGE
+	if(powers[4] == "clubs")
+		ranged_damage_type += WHITE_DAMAGE
+	ranged_damage_type += BLACK_DAMAGE
+	if(powers[2] == "spades")
+		ranged_damage_type += PALE_DAMAGE
+
+/obj/item/ego_weapon/ranged/nihil/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, temporary_damage_multiplier = 1)
+	if(!CanUseEgo(user))
+		return
+
+	//Shooting through walls wouldn't be a good idea
+	if(!(target in view(10, user)))
+		return
+
+	if(HAS_TRAIT(user, TRAIT_PACIFISM) && lethal) // If the user has the pacifist trait, then they won't be able to fire [src] if the [lethal] var is TRUE.
+		to_chat(user, span_warning("[src] is lethal! You don't want to risk harming anyone..."))
+		return
+
+	if(user)
+		SEND_SIGNAL(user, COMSIG_MOB_FIRED_GUN, src, target, params, zone_override)
+
+	SEND_SIGNAL(src, COMSIG_GUN_FIRED, user, target, params, zone_override)
+
+	add_fingerprint(user)
+
+	if(semicd)
+		return
+	DoAOE(user, target)
+	process_chamber(user)
+	semicd = TRUE
+	addtimer(CALLBACK(src, PROC_REF(reset_semicd)), fire_delay)
+
+	if(user)
+		user.update_inv_hands()
+	SSblackbox.record_feedback("tally", "gun_fired", 1, type)
+
+	if(click_cooldown_override)
+		user.changeNext_move(click_cooldown_override)
+	else
+		user.changeNext_move(CLICK_CD_RANGE)
+	user.newtonian_move(get_dir(target, user))
+
+	return TRUE
+
+/obj/item/ego_weapon/ranged/nihil/proc/DoAOE(mob/living/user, mob/living/target)
+	set waitfor = FALSE
+	var/turf/target_turf = get_turf(target)
+	var/damage_dealt = ranged_damage * force_multiplier * get_attack_multiplier(user)
+	playsound(target_turf, 'sound/abnormalities/nihil/attack.ogg', 35, FALSE)
+	new /obj/effect/temp_visual/guardian/phase(target_turf)
+	sleep(4)
+	new /obj/effect/temp_visual/guardian/phase/out(target_turf)
+	sleep(4)
+	var/obj/effect/temp_visual/VO = new /obj/effect/temp_visual/voidout(target_turf)
+	var/matrix/new_matrix = matrix()
+	new_matrix.Scale(0.25 + (0.75 * aoe_range))
+	VO.transform = new_matrix
+	for(var/mob/living/L in range(aoe_range, target_turf))
+		var/mult = 1
+		if(L == user)
+			continue
+		if(user.faction_check_mob(L))
+			if(powers[1] == "hearts")
+				continue
+			mult = 0.3
+		if(L.stat == DEAD)
+			continue
+		L.deal_split_damage(damage_dealt * mult, ranged_damage_type, user, attack_type = (ATTACK_TYPE_RANGED), flags = (DAMAGE_WHITE_HEALABLE))
+		new /obj/effect/temp_visual/eldritch_smoke(get_turf(L))
+		if(user.faction_check_mob(L))
+			continue
+		if(powers[3] == "diamonds")
+			L.apply_status_effect(/datum/status_effect/display/nihil_disarm)
+		if(powers[4] == "clubs")
+			L.apply_status_effect(/datum/status_effect/display/nihil_bind)
+		var/datum/status_effect/stacking/fake_void/V = L.has_status_effect(/datum/status_effect/stacking/fake_void)
+		if(!V)
+			L.apply_status_effect(/datum/status_effect/stacking/fake_void, debuff_stacks)
+			L.OtherDamageEffect(debuff_stacks, "void")
+		else
+			var/stack_cap = (debuff_stacks * 5) + 3
+			if(V.stacks < stack_cap)
+				V.add_stacks(debuff_stacks)
+				L.OtherDamageEffect(debuff_stacks, "void")
+
+//A fake version of Void Status
+//Decrease damage
+/datum/status_effect/stacking/fake_void
+	id = "stacking_fake_void"
+	status_type = STATUS_EFFECT_REFRESH
+	duration = -1
+	stacks = 0
+	stack_decay = 1
+	max_stacks = 25 // Caps out at around 33% less damage
+	tick_interval = 0.5 SECONDS
+	on_remove_on_mob_delete = TRUE
+	alert_type = /atom/movable/screen/alert/status_effect/void
+	consumed_on_threshold = FALSE
+	var/damage_mod = 1
+
+/datum/status_effect/stacking/fake_void/on_apply()
+	. = ..()
+	if(!owner)
+		return
+	//Basically it scales inversely so that way lower amount of stacks can still decrease meaningful amounts of damage without high stacks gutting damage to non existance.
+	damage_mod = 1 - ((stacks**0.8) / 40)
+	owner.damage_mult *= damage_mod
+
+/datum/status_effect/stacking/fake_void/add_stacks(stacks_added)//update your weaknesses
+	. = ..()
+	if(!owner)
+		return
+	if(stacks_added > 0)
+		var/stack_power = max(1, stacks-stacks_added)
+		//A very fucked up formula thats meant to prevent the debuff from being too easy to stack with the non fully powered up weapon
+		var/decay_time = 10 * (70 * (stacks_added ** 1.35)) / (0.9 * (stack_power ** 1.52))
+		decay_time = clamp(decay_time, 12 SECONDS, 0.5 SECONDS)
+		tick_interval = world.time + decay_time
+	owner.damage_mult /= damage_mod
+	damage_mod =  1 - ((stacks**0.8) / 40)
+	owner.damage_mult *= damage_mod
+
+/datum/status_effect/stacking/fake_void/on_remove()
+	. = ..()
+	if(!owner)
+		return
+	owner.damage_mult /= damage_mod
+
+/datum/status_effect/display/nihil_disarm
+	id = "nihil_disarm"
+	status_type = STATUS_EFFECT_REFRESH
+	duration = 5 SECONDS
+	on_remove_on_mob_delete = TRUE
+	display_name = "nihil_disarm"
+	alert_type = null
+
+/datum/status_effect/display/nihil_erosion/on_creation(mob/living/new_owner, buff_empowered)
+	empowered = buff_empowered
+	return ..()
+
+/datum/status_effect/display/nihil_disarm/on_apply()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.physiology.red_mod *= 1.2
+		H.physiology.white_mod *= 1.2
+		H.physiology.black_mod *= 1.2
+		H.physiology.pale_mod *= 1.2
+		return ..()
+	var/mob/living/simple_animal/M = owner
+	M.AddModifier(/datum/dc_change/nihil_erosion)
+	return ..()
+
+/datum/status_effect/display/nihil_disarm/on_remove()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.physiology.red_mod /= 1.2
+		H.physiology.white_mod /= 1.2
+		H.physiology.black_mod /= 1.2
+		H.physiology.pale_mod /= 1.2
+		return ..()
+	var/mob/living/simple_animal/M = owner
+	M.RemoveModifier(/datum/dc_change/nihil_erosion)
+	return ..()
+
+/datum/status_effect/display/nihil_bind
+	id = "nihil_bind"
+	status_type = STATUS_EFFECT_REFRESH
+	duration = 5 SECONDS
+	on_remove_on_mob_delete = TRUE
+	display_name = "nihil_bind"
+	alert_type = null
+
+/datum/status_effect/display/nihil_bind/on_apply()
+	owner.add_movespeed_modifier(/datum/movespeed_modifier/nihil_bind)
+	return ..()
+
+/datum/status_effect/display/nihil_bind/on_remove()
+	owner.remove_movespeed_modifier(/datum/movespeed_modifier/nihil_bind)
+	return ..()
+
+/datum/movespeed_modifier/nihil_bind
+	variable = TRUE
+	multiplicative_slowdown = 1.6
+	flags = IS_ACTUALLY_MULTIPLICATIVE
 
 /obj/item/ego_weapon/ranged/pink
 	name = "pink"
@@ -409,3 +638,90 @@
 		projectile_path = initial(projectile_path)
 		fire_sound = initial(fire_sound)
 		update_projectile_examine()
+
+//Realized version
+/obj/item/ego_weapon/ranged/lovejustice
+	name = "love and justice"
+	desc = "Idk"
+	icon_state = "lovejustice"
+	inhand_icon_state = "lovejustice"
+	special = "This weapon heals humans in a small area on hit. Successfully healing a human slightly lowers Arcana Slave's cooldown."
+	force = 32
+	attack_speed = 1
+	damtype = BLACK_DAMAGE
+	projectile_path = /obj/projectile/ego_bullet/ego_lovejustice
+	weapon_weight = WEAPON_MEDIUM
+	fire_delay = 15
+	max_shots = 15
+	ammo_on_reload = 1
+	passive_reload = 2.5 SECONDS
+	reloadtime = 0.2 SECONDS
+	reload_start_sound = 'sound/abnormalities/hatredqueen/gun.ogg'
+	reload_text = "The weapon starts to recharge its mana."
+	fire_sound = 'sound/abnormalities/hatredqueen/attack.ogg'
+
+	charge = TRUE
+	charge_cost = 10
+	attack_charge_gain = FALSE // we have a unique way of getting charge
+	ability_type = ABILITY_UNIQUE
+	custom_charge_gain = "This weapon gains a charge upon healing a human with its projectile."
+	charge_effect = "Clicking on a target grants them a 'Mark of Villainy'. The mark increases the damage the target takes from this weapon and Arcana Slave."
+	successfull_activation = "You will now mark an enemy!"
+	cancel_activation = "You will no longer mark an enemy."
+	failed_activation = "You don't have enough charge to cast a mark."
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 100,
+							JUSTICE_ATTRIBUTE = 100
+							)
+	var/mark_cooldown
+	var/mark_cooldown_time = 5 SECONDS
+
+/obj/item/ego_weapon/ranged/lovejustice/GunAttackInfo(mob/user)
+	return span_notice("Its magic deal [last_projectile_damage] randomly chosen damage.[force_multiplier != 1 ? " (+ [(force_multiplier - 1) * 100]%)" : ""]")
+
+/obj/item/ego_weapon/ranged/lovejustice/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
+	if(!CanUseEgo(user))
+		return
+
+	if(!currently_charging)
+		return ..()
+	if(mark_cooldown <= world.time)
+		if(isliving(target))
+			var/mob/living/L = target
+			if(user.faction_check_mob(L))
+				to_chat(user,span_warning("[src] is on your side!"))
+				return
+			if(L.stat == DEAD)
+				to_chat(user,span_warning("[src] is dead!"))
+				return
+			currently_charging = FALSE
+			charge_amount -= charge_cost
+			L.apply_status_effect(/datum/status_effect/display/villan_mark)
+			mark_cooldown = world.time + mark_cooldown_time
+			playsound(src, 'sound/abnormalities/hatredqueen/casting.ogg', 65, FALSE, 4)
+			to_chat(user,span_nicegreen("You mark [L] as a villan!"))
+		return
+	to_chat(user,span_warning("You marked someone too recently."))
+
+/obj/item/ego_weapon/ranged/lovejustice/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, temporary_damage_multiplier = 1)
+	if(!CanUseEgo(user))
+		return
+	. = ..()
+	if(!.)
+		return
+	user.do_attack_animation(target, no_effect = TRUE)
+
+/obj/item/ego_weapon/ranged/lovejustice/attack(mob/living/target, mob/living/carbon/human/user)
+	if(target.has_status_effect(/datum/status_effect/display/villan_mark))
+		force *= 1.3
+	. = ..()
+	force = initial(force)
+
+/datum/status_effect/display/villan_mark
+	id = "villan_mark"
+	status_type = STATUS_EFFECT_REFRESH
+	display_name = "villan"
+	duration = 300 //30 seconds
+	alert_type = null
