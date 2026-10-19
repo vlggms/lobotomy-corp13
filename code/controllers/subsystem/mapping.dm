@@ -134,6 +134,9 @@ SUBSYSTEM_DEF(mapping)
 	SSmapping.LoadGroup(errorList, "Abnormality", "map_files/generic", "Abnormality_Z.dmm", default_traits = ZTRAITS_CENTCOM)
 	SSmapping.LoadGroup(errorList, "Test Range", "map_files/generic", "Test_Range.dmm", default_traits = ZTRAITS_CENTCOM)
 
+	//great lake test code
+	SSmapping.LoadGroup(errorList, "Great Lake", "map_files/Enkephalin_Rush/adventure", "great_lake.dmm")
+
 #endif
 	// Add the transit level
 	transit = add_new_zlevel("Transit/Reserved", list(ZTRAIT_RESERVED = TRUE))

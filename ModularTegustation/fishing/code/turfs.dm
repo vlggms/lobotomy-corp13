@@ -43,7 +43,10 @@
 		/obj/structure/lattice,
 		/obj/projectile,
 		/obj/item/food/seaweed,
-		/obj/structure/flora/ash/garden/seaweed
+		/obj/structure/flora/ash/garden/seaweed,
+		/obj/vehicle/sealed/adventure_boat,
+		//mob/living/simple_animal/hostile/aquatic
+
 	))
 
 	var/safe = FALSE

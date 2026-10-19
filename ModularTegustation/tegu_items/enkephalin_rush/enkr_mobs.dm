@@ -519,3 +519,61 @@
 	melee_damage_upper = 25
 	nail_delay = 0.5 SECONDS
 	hammer_aoe = 2
+
+//use /mob/living/simple_animal/hostile/aquatic for whales and ships
+
+//Sailors
+/mob/living/simple_animal/hostile/sailor
+	name = "Sailor"
+	desc = "An odd sailor of no particular association. The gods should hear about this."
+	maxHealth = 20
+	health = 20
+	icon = 'icons/mob/simple_human.dmi'
+	icon_state = "piratemelee"
+	faction = list("neutral")
+	del_on_death = TRUE
+	var/outfit_type = /datum/outfit/job/scavenger
+	var/datum/sailor/datum_reference
+
+/mob/living/simple_animal/hostile/sailor/Initialize()
+	. = ..()
+	addtimer(CALLBACK(src, PROC_REF(GenerateAppearance), 1))
+
+/mob/living/simple_animal/hostile/sailor/proc/GenerateAppearance()
+	appearance = get_flat_human_icon(null, outfit_override = outfit_type)
+	name = initial(name)
+	desc = initial(desc)
+
+/mob/living/simple_animal/hostile/sailor/Destroy()
+	SHOULD_CALL_PARENT(TRUE)
+	if(istype(datum_reference)) // Respawn the mob on death
+		datum_reference.current = null
+		addtimer(CALLBACK (datum_reference, TYPE_PROC_REF(/datum/sailor, RespawnMob)), 30 SECONDS)
+	. = ..()
+
+/mob/living/simple_animal/hostile/sailor/noob
+	name = "Fishhook Office Fixer"
+	desc = "A member of some no-name office specialized in underwater resource gathering. Looks rather wet behind the ears and speaks in odd lingo."
+	threat_level = ZAYIN_LEVEL
+
+/mob/living/simple_animal/hostile/sailor/basic
+	name = "Crawdad Office Sailor"
+	desc = "This fixer represents the U-corp branch from a large office in district 4. They appear to be highly inbred."
+	threat_level = TETH_LEVEL
+
+/mob/living/simple_animal/hostile/sailor/pro
+	name = "Eight Association Sailor"
+	desc = "A representative of the Eight Association, masters of all things nautical."
+	threat_level = WAW_LEVEL
+	/datum/outfit/job/civilian
+
+/mob/living/simple_animal/hostile/sailor/pirate
+	name = "Not-Twinhooks Pirate"
+	desc = "The syndicates of U-corp are known for being particularly cruel and heartless. Members of these syndicates are often referred to as 'pirates'."
+	threat_level = HE_LEVEL
+
+/mob/living/simple_animal/hostile/sailor/pirate_captain
+	name = "Not-Twinhooks Captain"
+	desc = "The syndicates of U-corp are known for being particularly cruel and heartless. Members of these syndicates are often referred to as 'pirates'."
+	icon_state = "pirateranged"
+	threat_level = WAW_LEVEL

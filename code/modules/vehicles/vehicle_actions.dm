@@ -237,3 +237,30 @@
 			vehicle.icon_state = "[initial(vehicle.icon_state)]-grind"
 			addtimer(CALLBACK(vehicle, TYPE_PROC_REF(/obj/vehicle/ridden/scooter/skateboard, grind)), 2)
 		next_ollie = world.time + 5
+
+//Adventure map vehicles
+
+/datum/action/vehicle/sealed/disembark
+	name = "Disembark"
+	desc = "Climb onto some dry land!"
+	button_icon_state = "car_eject"
+
+/datum/action/vehicle/sealed/disembark/Trigger()
+	var/can_move
+	if(..() && istype(vehicle_entered_target))
+		for(var/turf/open/floor/T in range(1, vehicle_target))
+			owner.forceMove(T)
+			can_move = TRUE
+			break
+	if(!can_move)
+		to_chat(owner, "You need to find some solid ground first!")
+
+
+/datum/action/vehicle/sealed/enter
+	name = "Enter"
+	desc = "Enter the lower deck"
+	button_icon_state = "car_eject"
+
+/datum/action/vehicle/sealed/enter/Trigger()
+	var/obj/vehicle/sealed/adventure_boat/B = vehicle_target
+	owner.forceMove(get_turf(B.interior))

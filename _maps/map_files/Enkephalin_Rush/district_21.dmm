@@ -338,6 +338,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/advmap_generator/great_lake,
 /turf/open/floor/wood,
 /area/city)
 "db" = (
@@ -1584,7 +1585,9 @@
 /turf/closed/mineral/random/facility/pallid/briah,
 /area/department_main/command)
 "oZ" = (
-/obj/machinery/door/airlock/external/glass,
+/obj/machinery/door/airlock/external/glass{
+	name = "escape"
+	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -1684,6 +1687,12 @@
 /obj/machinery/telecomms/server/presets/science,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/city/outskirts)
+"ql" = (
+/obj/structure/toilet{
+	pixel_y = 15
+	},
+/turf/open/floor/mineral/titanium/tiled/yellow,
+/area/city)
 "qm" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Control Department"
@@ -2085,6 +2094,10 @@
 /obj/structure/pallid,
 /turf/open/floor/plating/rust,
 /area/department_main/welfare)
+"ur" = (
+/obj/machinery/light/small,
+/turf/open/floor/mineral/titanium/tiled/blue,
+/area/city)
 "us" = (
 /turf/closed/indestructible/reinforced,
 /area/department_main/information)
@@ -2265,7 +2278,9 @@
 	},
 /area/facility_hallway/command)
 "vY" = (
-/obj/machinery/door/airlock/external/glass,
+/obj/machinery/door/airlock/external/glass{
+	name = "escape exterior"
+	},
 /turf/open/floor/plasteel/dark,
 /area/city)
 "wc" = (
@@ -2293,7 +2308,9 @@
 /turf/open/floor/wood,
 /area/city)
 "wv" = (
-/obj/machinery/door/airlock/external/glass,
+/obj/machinery/door/airlock/external/glass{
+	name = "site recovery vessel"
+	},
 /turf/open/floor/pod,
 /area/city)
 "ww" = (
@@ -3110,6 +3127,10 @@
 "Es" = (
 /turf/open/floor/plating,
 /area/facility_hallway/training)
+"Et" = (
+/obj/machinery/door/airlock/centcom,
+/turf/open/floor/pod,
+/area/city)
 "Ex" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/dirt,
@@ -3121,6 +3142,12 @@
 /obj/machinery/telecomms/hub/preset,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/city/outskirts)
+"EE" = (
+/obj/machinery/door/airlock/wood{
+	name = "site recovery vessel"
+	},
+/turf/open/floor/pod,
+/area/city)
 "EH" = (
 /obj/structure/lattice/catwalk/indestructible,
 /obj/structure/railing/indestructible{
@@ -3228,10 +3255,10 @@
 /turf/open/floor/pod,
 /area/city)
 "Fp" = (
-/obj/machinery/door/airlock/wood{
-	name = "forward base corridor"
+/obj/machinery/shower{
+	dir = 8
 	},
-/turf/open/floor/pod,
+/turf/open/floor/mineral/titanium/tiled/blue,
 /area/city)
 "Fu" = (
 /obj/structure/disposalpipe/segment{
@@ -3382,7 +3409,7 @@
 /area/city)
 "GX" = (
 /obj/machinery/door/airlock/highsecurity{
-	name = "Ship Exterior Airlock"
+	name = "site recovery vessel"
 	},
 /turf/open/floor/pod,
 /area/city)
@@ -3486,6 +3513,10 @@
 /obj/structure/sign/departments/control,
 /turf/closed/indestructible/reinforced/ucorp,
 /area/department_main/control)
+"Ig" = (
+/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
+/turf/open/floor/mineral/titanium/tiled/blue,
+/area/city)
 "Io" = (
 /obj/structure/lattice/catwalk/indestructible{
 	alpha = 125;
@@ -3684,6 +3715,15 @@
 	dir = 1
 	},
 /turf/open/floor/pod,
+/area/city)
+"Kn" = (
+/obj/structure/mirror{
+	pixel_y = 32
+	},
+/obj/structure/sink{
+	pixel_y = 20
+	},
+/turf/open/floor/mineral/titanium/tiled/yellow,
 /area/city)
 "Kp" = (
 /obj/structure/lattice/catwalk/indestructible,
@@ -15184,7 +15224,7 @@ nD
 nD
 nD
 nD
-Fp
+qp
 nD
 nD
 nD
@@ -15470,7 +15510,7 @@ si
 si
 si
 si
-qp
+EE
 si
 si
 si
@@ -17369,9 +17409,9 @@ GX
 Ny
 nD
 nD
-DZ
-DZ
-DZ
+nD
+nD
+nD
 DZ
 DZ
 DZ
@@ -17515,9 +17555,9 @@ si
 qA
 jH
 nD
-DZ
-DZ
-kp
+ql
+Ig
+nD
 kp
 kp
 kp
@@ -17659,11 +17699,11 @@ nD
 DY
 tW
 qA
-jH
+si
+Et
+FW
+ur
 nD
-DZ
-DZ
-kp
 kp
 kp
 kp
@@ -17807,9 +17847,9 @@ db
 qA
 jH
 nD
-DZ
-DZ
-kp
+Kn
+Fp
+nD
 kp
 kp
 kp

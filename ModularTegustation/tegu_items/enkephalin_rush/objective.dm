@@ -61,3 +61,33 @@ GLOBAL_VAR(bough_collected)//roundend text
 		message_admins("Loading [away_name] failed!")
 		return
 
+/obj/structure/advmap_generator//causes thousands of runtimes- find a better solution.
+	name = "ladder"
+	desc = "generates adventure maps"
+	icon = 'icons/obj/structures.dmi'
+	icon_state = "ladder01"
+	var/map_file = "_maps/map_files/enkephalin_rush/adventure/great_lake.dmm"//change this when adding district4's map
+	var/datum/space_level/adventure_level
+	var/map_loaded//change this to be roundstart
+	var/map_x = 0
+	var/map_y = 0
+
+/obj/structure/advmap_generator/attack_hand(mob/living/carbon/human/user)
+	user.forceMove(locate(map_x, map_y, 7))//remove this shit
+
+/obj/structure/advmap_generator/great_lake
+	map_file = "_maps/map_files/enkephalin_rush/adventure/great_lake.dmm"
+	desc = "A ladder leading into the lower decks."
+	map_x = 128
+	map_y = 4
+
+/obj/structure/middle_ship
+	name = "Middle Warship"
+	desc = "A massive, flashy and intimidating warship. Electronic dance music loudly blares from its many speakers."
+	icon = 'icons/obj/vehicles.dmi'
+	icon_state = "middle_ship"
+	anchored = TRUE
+
+/obj/structure/middle_ship/attack_hand(mob/living/carbon/human/user)
+	say("Arr! Sailors with short tow ropes ought to steer closer to the poop deck!")
+	to_chat(user, "The Middle's warship is not available to enter yet.")
