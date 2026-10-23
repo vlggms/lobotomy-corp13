@@ -881,13 +881,12 @@
 	desc = "The magical girl, who was no longer a magical girl, ate many things. \
 	Authority, money, fame, and many other forms of pleasure. She ended up eating away anything in her sight."
 	special = "This weapon deals its damage after a short windup or can charge up a powerful charge attack. Also gibs on kill."
-	hitsound = 'sound/weapons/fixer/generic/fist2.ogg'
+	hitsound = 'sound/abnormalities/kog/GreedHit2.ogg'
 	icon_state = "greed"
 	force = 50
 	modified_attack_speed = 0.7
-	attack_verb_continuous = null
-	attack_verb_simple = null
-	hitsound = 'sound/abnormalities/kog/GreedHit2.ogg'
+	attack_verb_continuous = list("mauls", "crunches", "chews")
+	attack_verb_simple = list("maul", "crunch", "chew")
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 120,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -906,14 +905,13 @@
 /obj/item/ego_weapon/greed_nihil/attack(mob/living/target, mob/living/user)
 	if(!CanUseEgo(user) || charging)
 		return
-	if(do_after(user, CLICK_CD_MELEE * 0.35, target))
+	if(do_after(user, CLICK_CD_MELEE * 0.35 * user.next_move_modifier, target))
 		var/old_stat = target.stat
 		target.visible_message(span_danger("[user] rears up and slams into [target]!"), \
-						span_userdanger("[user] punches you with everything you got!!"), vision_distance = COMBAT_MESSAGE_RANGE, ignored_mobs = user)
+						span_userdanger("[user] mauls you with everything they got!!"), vision_distance = COMBAT_MESSAGE_RANGE, ignored_mobs = user)
 		to_chat(user, span_danger("You throw your entire body into this punch!"))
 		user.changeNext_move(CLICK_CD_MELEE * 0.35)
 		..()
-		force = initial(force)
 		if((target.stat == DEAD && old_stat != DEAD) && !(target.status_flags & GODMODE))
 			target.gib()
 			Greed_Check(user)
@@ -1025,7 +1023,7 @@
 	if(!istype(Z))
 		return
 	if(!user.has_status_effect(/datum/status_effect/display/worthless_greed))
-		to_chat(user,span_notice("Greed starts to seep into your heart."))
+		to_chat(user,span_notice("Greed starts to seep into your heart, enpowering your strength."))
 		new /obj/effect/particle_effect/sparks(get_turf(user))
 	user.adjustBruteLoss(-8)
 	user.apply_status_effect(/datum/status_effect/display/worthless_greed)
@@ -1034,7 +1032,7 @@
 	id = "worthless_greed"
 	status_type = STATUS_EFFECT_REFRESH
 	display_name = "greed"
-	duration = 150 //15 seconds
+	duration = 100 // 10 seconds
 	alert_type = null
 
 /datum/status_effect/display/worthless_greed/on_apply()
@@ -1227,7 +1225,7 @@
 
 //We don't want any infinite loop nonsense if 2 people try to protect each other
 /datum/status_effect/despair_nihil
-	id = "worthless_greed"
+	id = "despair_nihil"
 	status_type = STATUS_EFFECT_UNIQUE
 	duration = -1
 	alert_type = null

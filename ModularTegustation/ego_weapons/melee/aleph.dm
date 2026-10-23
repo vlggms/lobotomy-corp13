@@ -242,8 +242,8 @@
 	force = 25
 	modified_attack_speed = 0.3
 	damtype = RED_DAMAGE
-	attack_verb_continuous = list("punchse", "punts")
-	attack_verb_simple = list("punch", "punt")
+	attack_verb_continuous = list("punches", "punts", "crushes", "smashes")
+	attack_verb_simple = list("punch", "punt", "crush", "smash")
 	hitsound = 'sound/weapons/fixer/generic/gen2.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
