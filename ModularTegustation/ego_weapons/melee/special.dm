@@ -880,7 +880,8 @@
 	name = "worthless greed"
 	desc = "The magical girl, who was no longer a magical girl, ate many things. \
 	Authority, money, fame, and many other forms of pleasure. She ended up eating away anything in her sight."
-	special = "This weapon deals its damage after a short windup or can charge up a powerful charge attack. Also gibs on kill."
+	special = "This weapon dashes to the target and deals its damage after a short windup. This weapon can prepair an attack from upto 3 tiles from the target.<br>\
+	Use in hand to prepair a powerful charge attack."
 	hitsound = 'sound/abnormalities/kog/GreedHit2.ogg'
 	icon_state = "greed"
 	force = 50
@@ -905,19 +906,46 @@
 /obj/item/ego_weapon/greed_nihil/attack(mob/living/target, mob/living/user)
 	if(!CanUseEgo(user) || charging)
 		return
-	if(do_after(user, CLICK_CD_MELEE * 0.35 * user.next_move_modifier, target))
+	charging = TRUE
+	if(do_after(user, CLICK_CD_MELEE * 0.4 * user.next_move_modifier, src, 0, extra_checks=CALLBACK(src, PROC_REF(attack_check), user, target)))
+		charging = FALSE
+		if(!target.Adjacent(user))
+			playsound(src, 'sound/weapons/fwoosh.ogg', 300, FALSE, 9)
+			for(var/i in 2 to get_dist(user, target))
+				var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(get_turf(user), user)
+				D.alpha = min(150 + (i-1)*15, 255)
+				animate(D, alpha = 0, time = 4 + (i-1))
+				step_towards(user,target)
+
+			if(!target.Adjacent(user))
+				to_chat(user, "<span class='spider'><b>Your attack was interrupted!</b></span>")
+				return
+			user.Immobilize(1) // We don't really want someone attacking and moving back out over and over
+			to_chat(user, span_danger("You rush towards [target]!"))
 		var/old_stat = target.stat
 		target.visible_message(span_danger("[user] rears up and slams into [target]!"), \
 						span_userdanger("[user] mauls you with everything they got!!"), vision_distance = COMBAT_MESSAGE_RANGE, ignored_mobs = user)
 		to_chat(user, span_danger("You throw your entire body into this punch!"))
-		user.changeNext_move(CLICK_CD_MELEE * 0.35)
+		user.changeNext_move(CLICK_CD_MELEE * 0.3)
 		..()
 		if((target.stat == DEAD && old_stat != DEAD) && !(target.status_flags & GODMODE))
 			target.gib()
 			Greed_Check(user)
 	else
+		charging = FALSE
 		to_chat(user, "<span class='spider'><b>Your attack was interrupted!</b></span>")
 		return
+
+/obj/item/ego_weapon/greed_nihil/proc/attack_check(mob/living/user, mob/living/target)
+	if(!target || !user)
+		return FALSE
+	if(QDELETED(target) || QDELETED(user))
+		return FALSE
+	if((get_dist(user, target) > 4) || (!(can_see(user, target, 4))))
+		return FALSE
+	if(target.stat == DEAD)
+		return FALSE
+	return TRUE
 
 /obj/item/ego_weapon/greed_nihil/attack_self(mob/user) //spin attack with knockback
 	if(!CanUseEgo(user) || charging)
@@ -931,10 +959,15 @@
 	else
 		to_chat(user,span_notice("You decide to not preform a dash."))
 	. = ..()
-	force = initial(force)
 
 /obj/item/ego_weapon/greed_nihil/afterattack(atom/A, mob/living/user, proximity_flag, params)
-	if(!CanUseEgo(user) || !prepair_charge || charging)
+	if(!CanUseEgo(user) || charging)
+		return
+	if(!prepair_charge)
+		if(!isliving(A) || !(A in view(user, 3)))
+			return
+		if(!(A.Adjacent(user)))
+			attack(A, user)
 		return
 	var/turf/target_turf = get_turf(A)
 	if(!istype(target_turf))
@@ -1037,11 +1070,11 @@
 
 /datum/status_effect/display/worthless_greed/on_apply()
 	. = ..()
-	owner.damage_mult *= 1.2
+	owner.damage_mult *= 1.3
 
 /datum/status_effect/display/worthless_greed/on_remove()
 	. = ..()
-	owner.damage_mult /= 1.2
+	owner.damage_mult /= 1.3
 
 /obj/item/ego_weapon/shield/despair_nihil
 	name = "meaningless despair"
