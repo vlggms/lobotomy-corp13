@@ -751,8 +751,8 @@
 	name = "Uncontrolled Wrath"
 	desc = "Remove 30% of your sanity to increase all damage you deal by 30% for 30 seconds. \
 	While under the effects of the buff, Wounded Courage has increased range with its main attack and restores a small bit of sanity on kill with its slam attack."
-	action_icon_state = "justicebalance0"
-	base_icon_state = "justicebalance"
+	action_icon_state = "uncontrolledwrath0"
+	base_icon_state = "uncontrolledwrath"
 	cooldown_time = 45 SECONDS
 
 /obj/effect/proc_holder/ability/wrath/can_cast(mob/user = usr)
@@ -764,7 +764,9 @@
 
 /obj/effect/proc_holder/ability/wrath/Perform(target, mob/user)
 	var/mob/living/carbon/human/H = user
-	H.adjustSanityLoss(H.maxSanity * 0.3)
+	var/sanitytolose = H.maxSanity * 0.3
+	H.adjustSanityLoss(sanitytolose)
+	H.OtherDamageEffect(sanitytolose, "sinking")
 	user.playsound_local(user, 'sound/abnormalities/wrath_servant/enrage.ogg', 75, FALSE, 20, falloff_distance = 10)
 	to_chat(H, span_danger("Your mind goes into a frenzy!"))
 	H.apply_status_effect(/datum/status_effect/wrath)
@@ -777,10 +779,10 @@
 	duration = 30 SECONDS
 
 /atom/movable/screen/alert/status_effect/wrath
-	name = "Incontrolled Wrath"
+	name = "Uncontrolled Wrath"
 	desc = "You deal 30% more damage."
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "JAB"
+	icon_state = "uncontrolledwrath"
 
 /datum/status_effect/wrath/on_apply()
 	. = ..()

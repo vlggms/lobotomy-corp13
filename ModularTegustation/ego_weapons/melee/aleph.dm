@@ -1555,7 +1555,10 @@
 
 /obj/item/ego_weapon/woundedcourage
 	name = "wounded courage"
-	desc = "We... We were true friends... Right?"
+	desc = "When they told me were friends, I believed them.\
+	\nWhen they told me I could trust them, I believed them.\
+	\nWhen they destroyed my home, my world, I couldn't believe them.\
+	\nShe once vowed to never raise her hammer in anger, now, anger is all that remains... "
 	icon_state = "woundedcourage"
 	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
