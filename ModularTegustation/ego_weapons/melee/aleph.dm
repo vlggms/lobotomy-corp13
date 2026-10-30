@@ -239,7 +239,7 @@
 	desc = "The weapon of someone who can swing their weight around like a truck"
 	special = "This weapon has a combo system."
 	icon_state = "gold_rush"
-	force = 25
+	force = 28
 	modified_attack_speed = 0.3
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("punches", "punts", "crushes", "smashes")

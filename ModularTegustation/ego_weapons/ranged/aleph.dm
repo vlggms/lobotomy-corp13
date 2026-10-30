@@ -642,9 +642,13 @@
 //Realized version
 /obj/item/ego_weapon/ranged/lovejustice
 	name = "love and justice"
-	desc = "Idk"
+	desc = ""
 	icon_state = "lovejustice"
 	inhand_icon_state = "lovejustice"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
 	special = "This weapon heals humans in a small area on hit. Successfully healing a human slightly lowers Arcana Slave's cooldown."
 	force = 32
 	attack_speed = 1

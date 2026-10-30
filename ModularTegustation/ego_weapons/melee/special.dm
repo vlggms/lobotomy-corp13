@@ -966,7 +966,7 @@
 	if(!prepair_charge)
 		if(!isliving(A) || !(A in view(user, 3)))
 			return
-		if(!(A.Adjacent(user)))
+		if(!(A.Adjacent(user)) && attack_check(user, A))
 			attack(A, user)
 		return
 	var/turf/target_turf = get_turf(A)
@@ -1065,7 +1065,7 @@
 	id = "worthless_greed"
 	status_type = STATUS_EFFECT_REFRESH
 	display_name = "greed"
-	duration = 100 // 10 seconds
+	duration = 150 // 15 seconds
 	alert_type = null
 
 /datum/status_effect/display/worthless_greed/on_apply()

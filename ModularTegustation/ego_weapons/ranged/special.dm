@@ -32,6 +32,10 @@
 	desc = "If I am on the side of good, then someone has to be on the side of evil. Without someone to play the villain, I can’t exist."
 	icon_state = "hate"
 	inhand_icon_state = "hate"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
 	fire_delay = 7
 	special = "This weapon's projectiles has IFF and heals the user and humans near the user on hit."
 	force = 35
