@@ -642,7 +642,10 @@
 //Realized version
 /obj/item/ego_weapon/ranged/lovejustice
 	name = "love and justice"
-	desc = ""
+	desc = "They told me I was special, that I was Chosen to do great things.\
+	\nI was to be the Hero that everyone looked up to and defeat all that was Evil.\
+	\nBut one day, a Jester asked me, '/when all the Villains of this world are slain, what then will the World need of you?'/\
+	\nShe who vowed to love the World, soon began to hate it with all her heart..."
 	icon_state = "lovejustice"
 	inhand_icon_state = "lovejustice"
 	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
