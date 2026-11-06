@@ -302,6 +302,17 @@ TOGGLE_CHECKBOX(/datum/verbs/menu/settings/sound, toggle_radio_static)()
 /datum/verbs/menu/settings/sound/toggle_radio_static/Get_checked(client/C)
 	return C.prefs.toggles & SOUND_RADIO_STATIC
 
+TOGGLE_CHECKBOX(/datum/verbs/menu/settings/sound, toggle_background_music)()
+	set name = "Hear/Silence Background Music"
+	set category = "Preferences"
+	set desc = "Hear Background Music"
+	usr.client.prefs.toggles ^= SOUND_BGM
+	usr.client.prefs.save_preferences()
+	to_chat(usr, "You will now [(usr.client.prefs.toggles & SOUND_BGM) ? "now" : "no longer"] hear background music.")
+	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Toggle Background Music", "[usr.client.prefs.toggles & SOUND_BGM ? "Enabled" : "Disabled"]"))
+/datum/verbs/menu/settings/sound/toggle_background_music/Get_checked(client/C)
+	return C.prefs.toggles & SOUND_BGM
+
 
 GLOBAL_LIST_INIT(ghost_forms, sortList(list("ghost","ghostking","ghostian2","skeleghost","ghost_red","ghost_black", \
 							"ghost_blue","ghost_yellow","ghost_green","ghost_pink", \

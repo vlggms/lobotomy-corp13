@@ -89,6 +89,7 @@
 	var/obj/effect/mob_spawn/MS = pick(spawnerlist)
 	close_spawn_windows()
 	stop_sound_channel(CHANNEL_LOBBYMUSIC)
+	SSlobotomy_emergency.UpdateMusic(SSlobotomy_emergency.current_score, FALSE, src)
 	QDEL_NULL(mind)
 	MS.spawn_user_as_role(src)
 	qdel(src)
@@ -266,6 +267,7 @@
 		observer.client.init_verbs()
 	observer.update_icon()
 	observer.stop_sound_channel(CHANNEL_LOBBYMUSIC)
+	SSlobotomy_emergency.UpdateMusic(SSlobotomy_emergency.current_score, FALSE, observer)
 	deadchat_broadcast(" has observed.", "<b>[observer.real_name]</b>", follow_target = observer, turf_target = get_turf(observer), message_type = DEADCHAT_DEATHRATTLE)
 	QDEL_NULL(mind)
 	qdel(src)
@@ -530,6 +532,7 @@
 	if(.)
 		new_character.key = key		//Manually transfer the key to log them in,
 		new_character.stop_sound_channel(CHANNEL_LOBBYMUSIC)
+		SSlobotomy_emergency.UpdateMusic(SSlobotomy_emergency.current_score, FALSE, new_character)
 		new_character = null
 		qdel(src)
 
