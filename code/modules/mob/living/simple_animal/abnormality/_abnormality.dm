@@ -230,7 +230,7 @@
 	SHOULD_CALL_PARENT(TRUE)
 	if(istype(datum_reference)) // Respawn the mob on death
 		datum_reference.current = null
-		addtimer(CALLBACK (datum_reference, TYPE_PROC_REF(/datum/abnormality, RespawnAbno)), 30 SECONDS)
+		datum_reference.DisplayCore(name, core_icon, threat_level, is_respawning = TRUE)
 	else if(core_enabled)//Abnormality Cores are spawned if there is no console tied to the abnormality
 		CreateAbnoCore(name, core_icon)//If cores are manually disabled for any reason, they won't generate.
 	. = ..()

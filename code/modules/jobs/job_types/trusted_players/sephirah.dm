@@ -111,7 +111,7 @@ GLOBAL_LIST_INIT(sephirah_names, list(
 			to_chat(src, span_danger("The abnormality was already randomized."))
 			return
 
-		Q.UpdateAnomaly(target_type, "fucked it lets rolled", TRUE)
+		Q.UpdateAnomaly(target_type, "danger rolled", TRUE)
 		SSabnormality_queue.AnnounceLock()
 		SSabnormality_queue.ClearChoices()
 
