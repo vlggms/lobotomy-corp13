@@ -50,14 +50,14 @@ export const AbnormalityQueue = (props, context) => {
           </Flex>
         </Section>
         <Section
-          title="Dangerous Buttons"
+          title="Additional extraction options"
           scrollable>
           <Flex direction="column" mr={7}>
             <Flex.Item grow={1} mb={0.3}>
               <Box
                 bold>
-                Lobotomy Corporation is not responsible for any lynching or
-                Manager death as a result of using of the below buttons.
+                Lobotomy Corporation is not responsible for any compromise in
+                the safety of the Manager as a result of the below actions.
               </Box>
             </Flex.Item>
             <Flex.Item grow={1} mb={0.3}>
@@ -65,18 +65,18 @@ export const AbnormalityQueue = (props, context) => {
                 icon="bomb"
                 fluid
                 bold
-                content={"Lets Roll"}
+                content={"Random"}
                 color="green"
-                onClick={() => act("lets_roll")} />
+                onClick={() => act("random_roll")} />
             </Flex.Item>
             <Flex.Item grow={1} mb={0.3}>
               <Button
                 icon="bomb"
                 fluid
                 bold
-                content={"Fuck It Lets Roll"}
+                content={"Random from storage"}
                 color="yellow"
-                onClick={() => act("fuck_it_lets_roll")} />
+                onClick={() => act("truly_random_roll")} />
             </Flex.Item>
             {!!data.enablehardcore && (
               <Flex.Item grow={1} mb={0.3}>
@@ -84,9 +84,9 @@ export const AbnormalityQueue = (props, context) => {
                   icon="bomb"
                   fluid
                   bold
-                  content={"Hardcore Fuck It Lets Roll"}
+                  content={"Dangerous roll"}
                   color="red"
-                  onClick={() => act("hardcore_fuck_it_lets_roll")} />
+                  onClick={() => act("danger_roll")} />
               </Flex.Item>
             )}
           </Flex>
