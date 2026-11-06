@@ -94,3 +94,34 @@
 /obj/projectile/ego_bullet/ego_feather/fire()
 	playsound(loc, "sound/abnormalities/seasons/summer_change.ogg", 5, TRUE, -1)
 	. = ..()
+
+/obj/projectile/ego_bullet/hatred_nihil
+	name = "magic beam"
+	icon_state = "qoh1"
+	damage_type = BLACK_DAMAGE
+	damage = 30
+	spread = 0
+
+/obj/projectile/ego_bullet/hatred_nihil/Initialize()
+	. = ..()
+	icon_state = "qoh[pick(1,2,3)]"
+
+/obj/projectile/ego_bullet/hatred_nihil/process_hit(turf/T, atom/target, atom/bumped, hit_something = FALSE)
+	var/obj/item/ego_weapon/ranged/hatred_nihil/staff = fired_from
+	if(!isliving(target))
+		return ..()
+	var/mob/living/L = target
+	var/old_stat = L.stat
+	. = ..()
+	if(.) // Hit passed and damage applied
+		if((old_stat == DEAD) || L.status_flags & GODMODE)//if the target was already dead or godmode
+			return
+		var/heal_amt = damage*damage_multiplier*0.15
+		if(isanimal(target))
+			var/mob/living/simple_animal/S = L
+			if(S.damage_coeff.getCoeff(damage_type) > 0)
+				heal_amt *= S.damage_coeff.getCoeff(damtype)
+			else
+				heal_amt = 0
+		if(heal_amt)
+			staff.HealingAura(firer, heal_amt)
