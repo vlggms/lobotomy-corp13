@@ -3,7 +3,7 @@
 	desc = "Meltdowns immunities of certain abnormality levels will be forfeit for the duration of the suppression \
 			and more meltdowns will occur with lower timer on each. Missed or failed meltdowns will trigger a \
 			meltdown on another abnormality within the facility."
-	reward_text = "Managerial bullets will activate in a small area around original target. \
+	reward_text = "Managerial bullet count will be increased by 50%. \
 			Works performed on a melting cell will net more attributes."
 	run_text = "The core suppression of Central Command department has begun. \n\
 			Meltdown immunities are forfeit and qliphoth meltdowns will have lesser timer. \n\
@@ -24,8 +24,10 @@
 /datum/suppression/command/End(silent = FALSE)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_FINISHED)
+	SSlobotomy_corp.bullet_multiplier *= 1.5
+	for(var/obj/machinery/computer/camera_advanced/manager/C in GLOB.lobotomy_devices)
+		C.RechargeMeltdown()
 	SSlobotomy_corp.melt_work_multiplier += 1
-	SSlobotomy_corp.manager_bullet_area = 1 // Bullets will activate in a 3x3 AOE
 	return ..()
 
 /datum/suppression/command/proc/OnQlipMeltdown(datum/source, ordeal = FALSE)
