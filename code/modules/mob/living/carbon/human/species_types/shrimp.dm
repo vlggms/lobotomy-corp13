@@ -23,6 +23,12 @@
 		shrimp_name = pick(GLOB.last_names)
 	return shrimp_name // 95% chance to pick a shrimp name, 5% to pick a human lastname. These guys only use one name
 
+/datum/species/shrimp/check_roundstart_eligible()
+	if(SSevents.holidays && SSevents.holidays[HALLOWEEN])
+		return TRUE
+	return FALSE
+
+
 /mob/living/carbon/human/species/shrimp/attack_ghost(mob/dead/observer/ghost)
 	if(key)
 		to_chat(ghost, span_notice("Somebody is already controlling this crustacean."))

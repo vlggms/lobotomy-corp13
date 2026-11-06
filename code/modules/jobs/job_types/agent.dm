@@ -73,7 +73,8 @@
 
 	if(accessory)
 		var/obj/item/clothing/under/U = outfit_owner.w_uniform
-		U.attach_accessory(new accessory)
+		if(U)
+			U.attach_accessory(new accessory)
 	if(outfit_owner.mind.assigned_role == "Agent")
 		if(ears)
 			if(outfit_owner.ears)

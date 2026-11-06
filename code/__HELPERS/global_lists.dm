@@ -34,6 +34,8 @@
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/moth_antennae, GLOB.moth_antennae_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/moth_markings, GLOB.moth_markings_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/monkey, GLOB.tails_list_monkey)
+	init_sprite_accessory_subtypes(/datum/sprite_accessory/sweeper_tanks, GLOB.sweeper_tanks_list)
+	init_sprite_accessory_subtypes(/datum/sprite_accessory/strong_back, GLOB.strong_back_list)
 	load_trusted_players()
 	load_mentor_players()
 

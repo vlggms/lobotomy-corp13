@@ -331,6 +331,9 @@ There are several things that need to be remembered:
 			belt_overlay.pixel_y += dna.species.offset_features[OFFSET_BELT][2]
 		overlays_standing[BELT_LAYER] = belt_overlay
 
+	if(dna.species.hide_features["HIDE_BELT"] == TRUE)
+		return
+
 	apply_overlay(BELT_LAYER)
 
 
@@ -357,6 +360,8 @@ There are several things that need to be remembered:
 	update_hair()
 	update_mutant_bodyparts()
 
+	if(dna.species.hide_features["HIDE_SUIT"] == TRUE)
+		return
 	apply_overlay(SUIT_LAYER)
 
 
@@ -404,6 +409,10 @@ There are several things that need to be remembered:
 			back_overlay.pixel_x += dna.species.offset_features[OFFSET_BACK][1]
 			back_overlay.pixel_y += dna.species.offset_features[OFFSET_BACK][2]
 			overlays_standing[BACK_LAYER] = back_overlay
+
+		if(dna.species.hide_features["HIDE_BACK"] == TRUE)
+			return
+
 		apply_overlay(BACK_LAYER)
 
 /mob/living/carbon/human/update_inv_legcuffed()

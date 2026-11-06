@@ -25,6 +25,9 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	///Clothing offsets. If a species has a different body than other species, you can offset clothing so they look less weird.
 	var/list/offset_features = list(OFFSET_UNIFORM = list(0,0), OFFSET_ID = list(0,0), OFFSET_GLOVES = list(0,0), OFFSET_GLASSES = list(0,0), OFFSET_EARS = list(0,0), OFFSET_SHOES = list(0,0), OFFSET_S_STORE = list(0,0), OFFSET_FACEMASK = list(0,0), OFFSET_HEAD = list(0,0), OFFSET_FACE = list(0,0), OFFSET_BELT = list(0,0), OFFSET_BACK = list(0,0), OFFSET_SUIT = list(0,0), OFFSET_NECK = list(0,0))
 
+	///LC13 Addition: Allows species to wear certain items without displaying their icons, mainly for QoL with things like backpacks and E.G.O. If adding more, make sure to add checks to the procs under update_human_icons.dm. Defines under mobs.dm
+	var/list/hide_features = list("HIDE_SUIT" = FALSE, "HIDE_BELT" = FALSE, "HIDE_BACK" = FALSE,)
+
 	///This allows races to have specific hair colors. If null, it uses the H's hair/facial hair colors. If "mutcolor", it uses the H's mutant_color. If "fixedmutcolor", it uses fixedmutcolor
 	var/hair_color
 	///The alpha used by the hair. 255 is completely solid, 0 is invisible.
@@ -933,6 +936,10 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					S = GLOB.moth_wings_list[H.dna.features["moth_wings"]]
 				if("moth_antennae")
 					S = GLOB.moth_antennae_list[H.dna.features["moth_antennae"]]
+				if("sweeper_tanks")
+					S = GLOB.sweeper_tanks_list[H.dna.features["sweeper_tanks"]]
+				if("strong_back")
+					S = GLOB.strong_back_list[H.dna.features["strong_back"]]
 				if("caps")
 					S = GLOB.caps_list[H.dna.features["caps"]]
 				if("tail_monkey")
