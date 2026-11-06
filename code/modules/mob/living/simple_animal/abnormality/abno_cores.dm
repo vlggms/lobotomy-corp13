@@ -13,8 +13,13 @@
 	var/threat_level
 	var/ego_list = list()
 	var/extracting = FALSE
+	var/datum/abnormality/datum_reference = null // Was this spawned in a cell?
 
 /obj/structure/abno_core/proc/Release()
+	if(datum_reference)
+		datum_reference.RespawnAbno()
+		qdel(src)
+		return
 	if(!contained_abno)//Is this core properly generated?
 		return
 	new contained_abno(get_turf(src))
@@ -94,9 +99,10 @@
 	message_admins("[key_name(usr)] has spawned [contained_abno].")
 
 	SSblackbox.record_feedback("nested tally", "core_spawn_abnormality", 1, list("Initiated Spawn Abnormality", "[SSabnormality_queue.queued_abnormality]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-
 	qdel(src)
+
+/obj/structure/abno_core/proc/Countdown() // Egg starts opening up, unused outside of cells currently.
+	addtimer(CALLBACK(src, PROC_REF(Release)), release_time)
 
 /obj/machinery/abno_core_extractor
 	name = "abnormality core containment unit"
