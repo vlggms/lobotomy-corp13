@@ -198,7 +198,7 @@
 	for(var/mob/living/L in livinginview(8, src))
 		if(faction_check_mob(L))
 			continue
-		L.deal_damage(slam_damage, BLACK_DAMAGE, null, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
+		L.deal_damage(slam_damage, BLACK_DAMAGE, src, attack_type = (ATTACK_TYPE_MELEE | ATTACK_TYPE_SPECIAL))
 	SLEEP_CHECK_DEATH(2 SECONDS)
 	attacking = FALSE
 	slam_cooldown = world.time + slam_cooldown_time
@@ -315,7 +315,7 @@
 		if(L.stat == DEAD)
 			continue
 		new /obj/effect/temp_visual/judgement(get_turf(L))
-		L.deal_damage(judge_damage, PALE_DAMAGE, null, src, attack_type = (ATTACK_TYPE_SPECIAL))
+		L.deal_damage(judge_damage, PALE_DAMAGE, src, attack_type = (ATTACK_TYPE_SPECIAL))
 	SLEEP_CHECK_DEATH(1 SECONDS)
 	icon_state = icon_living
 	SLEEP_CHECK_DEATH(1 SECONDS)
@@ -685,16 +685,6 @@
 			continue
 		if(bird == last_summoned_bird)
 			continue
-		// Inelegant way to set the 'omw_to_apoc' var, sue me this superboss has been broken for ages
-		var/mob/living/simple_animal/hostile/abnormality/big_bird/chonker = bird
-		var/mob/living/simple_animal/hostile/abnormality/judgement_bird/blind = bird
-		var/mob/living/simple_animal/hostile/abnormality/punishing_bird/annoying = bird
-		if(istype(chonker))
-			chonker.omw_to_apoc = TRUE
-		else if (istype(blind))
-			blind.omw_to_apoc = TRUE
-		else if (istype(annoying))
-			annoying.omw_to_apoc = TRUE
 
 		if(bird.AIStatus != AI_ON)
 			bird.toggle_ai(AI_ON)

@@ -160,6 +160,7 @@ SUBSYSTEM_DEF(lobotomy_events)
 				A.density = FALSE // They ignore you and walk past you.
 				A.toggle_ai(AI_OFF) // This lobotomizes them and they'll only wake up once they get hit with SummonBird()
 				A.docile_confinement = TRUE // Stops them from attacking Apocalypse Bird when inside it
+				A?:omw_to_apoc = TRUE // Stops them from doing attacks while pathfinding to the portal or inside Apocalypse Bird
 				A.can_patrol = FALSE
 				A.ChangeResistances(list(BRUTE = 0, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)) // You can kill the portal but not them.
 			AB_types = list() // So the event can't run again.
