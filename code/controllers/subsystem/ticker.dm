@@ -15,7 +15,7 @@ SUBSYSTEM_DEF(ticker)
 	var/setup_done = FALSE //All game setup done including mode post setup and
 
 	var/hide_mode = FALSE
-	var/datum/game_mode/mode = nulls
+	var/datum/game_mode/mode = null
 
 	var/login_music							//music played in pregame lobby
 	var/round_end_sound						//music/jingle played when the world reboots
