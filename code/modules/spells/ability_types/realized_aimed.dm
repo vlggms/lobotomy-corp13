@@ -102,61 +102,90 @@
 /* Knight of Despair - Quenched with Blood */
 /obj/effect/proc_holder/ability/aimed/despair_swords
 	name = "Blades Whetted with Tears"
-	desc = "An ability that summons 2 swords to attack and slow nearby enemies. \
-		Each sword deals 50 Pale damage plus an addition 5% of the target's max HP as Pale"
+	desc = "An ability with 2 charges. Each use summons a piercing sword that flies out and inflicts a slowing debuff on hit. \
+		Each sword deals 70 Pale damage and can pierce up to 3 enemies."
 	action_icon_state = "despair0"
 	base_icon_state = "despair"
 	cooldown_time = 20 SECONDS
 
-	var/swords = 2
+	var/max_charges = 2
+	var/charges = 2
 
 /obj/effect/proc_holder/ability/aimed/despair_swords/Perform(target, mob/user)
+	set waitfor = FALSE
+	charges--
+	if(charges < 1)
+		charges = max_charges
+		. = ..()
+	else
+		remove_ranged_ability()
 	var/turf/target_turf = get_turf(target)
+	var/turf/T = get_turf(user)
 	var/list/OT = get_adjacent_open_turfs(user)
-	for(var/i = 1 to swords)
-		if(OT.len <= 0)
-			OT = get_adjacent_open_turfs(user)
-		var/turf/T = pick(OT)
-		OT -= T
-		var/obj/projectile/despair_rapier/ego/RP = new(T)
-		RP.starting = T
-		RP.firer = user
-		RP.fired_from = T
-		RP.yo = target_turf.y - T.y
-		RP.xo = target_turf.x - T.x
-		RP.original = target_turf
-		RP.preparePixelProjectile(target_turf, T)
-		addtimer(CALLBACK (RP, TYPE_PROC_REF(/obj/projectile, fire)), 3)
+	if(OT.len > 0)
+		T = pick(OT)
+	var/P = /obj/projectile/ego_bullet/despair_rapier
+	new /obj/effect/projectile_delayed(T, target_turf, user, P, 3)
 	sleep(3)
 	playsound(target_turf, 'sound/abnormalities/despairknight/attack.ogg', 50, 0, 4)
-	return ..()
 
-/obj/projectile/despair_rapier/ego
+/obj/projectile/ego_bullet/despair_rapier
 	name = "Sword that Pierces Despair"
 	desc = "A magic rapier, enchanted by a knight protecting the weak."
-	nodamage = TRUE
-	damage = 0
+	icon_state = "despair"
+	damage_type = PALE_DAMAGE
+	damage = 70
+	hitsound_wall = ""
+	impact_effect_type = null
+	ff_multiplier= 0
 	projectile_piercing = PASSMOB
+	hit_nondense_targets = TRUE
+	var/pierce = 3
 
-/obj/projectile/despair_rapier/ego/on_hit(atom/target, blocked = FALSE)
-	if(ishuman(target))
-		return
-	nodamage = FALSE
-	if(ishostile(target))
-		var/mob/living/simple_animal/hostile/H = target
-		H.TemporarySpeedChange(1, 10 SECONDS)
-		H.deal_damage(50 + (0.05 * H.maxHealth), PALE_DAMAGE, firer, attack_type = (ATTACK_TYPE_RANGED))
-	..()
-	qdel(src)
+/obj/projectile/ego_bullet/despair_rapier/Initialize()
+	. = ..()
+	hitsound = "sound/weapons/ego/rapier[pick(1,2)].ogg"
+	animate(src, alpha = 255, time = 3)
+
+
+/obj/projectile/ego_bullet/despair_rapier/on_hit(atom/target, blocked = FALSE)
+	if(isliving(target))
+		var/mob/living/L = target
+		L.apply_status_effect(/datum/status_effect/despair_slow)
+	. = ..()
+	damage *= 0.7 // Loses 30% of its current damage on hit
+	pierce--
+	if(pierce < 1)
+		qdel(src)
+
+/datum/status_effect/despair_slow
+	id = "despair_slow"
+	status_type = STATUS_EFFECT_REFRESH
+	duration = 8 SECONDS
+	alert_type = null
+
+/datum/status_effect/despair_slow/on_apply()
+	. = ..()
+	owner.add_movespeed_modifier(/datum/movespeed_modifier/despair_slow)
+
+/datum/status_effect/despair_slow/on_remove()
+	. = ..()
+	owner.remove_movespeed_modifier(/datum/movespeed_modifier/despair_slow)
+
+/datum/movespeed_modifier/despair_slow
+	variable = TRUE
+	multiplicative_slowdown = 2
+	flags = IS_ACTUALLY_MULTIPLICATIVE
 
 /* Queen of Hatred - Love and Justice */
 /obj/effect/proc_holder/ability/aimed/arcana_slave
 	name = "Arcana Slave"
 	desc = "An ability that allows you to fire off a large laser after channelling for a while. \
+		The laser will heal you and your allies hit by it while damaging a foe. \
 		Alt-Click to toggle speech. Crtl-Click to set your own speech."
 	action_icon_state = "arcana0"
 	base_icon_state = "arcana"
-	cooldown_time = 1 MINUTES
+	cooldown_time = 75 SECONDS
 	base_action = /datum/action/spell_action/ability/item/ego_arcana_slave
 
 	var/list/spawned_effects = list()
@@ -185,6 +214,7 @@
 /obj/effect/proc_holder/ability/aimed/arcana_slave/proc/Cast(turf/target, mob/user)
 	if(!ishuman(user))
 		return
+	ADD_TRAIT(user, TRAIT_IMMOBILIZED, type)
 	var/mob/living/carbon/human/H = user
 	var/turf/my_turf = get_turf(H)
 	H.face_atom(target)
@@ -226,58 +256,66 @@
 	beamloop.start(user)
 	beamloop.max_loops = 0
 	var/beam_stage = 1
-	var/beam_damage = 8
+	var/beam_damage = 10
 	var/justice = get_attack_multiplier(H)
 	beam_damage *= justice
 	if(speak)
 		addtimer(CALLBACK(H, TYPE_PROC_REF(/atom/movable, say), "ARCANA SLAVE!"))
 	for(var/o = 1 to 50) // Half duration but gets Justice Mod
 		var/list/already_hit = list()
-		if(accumulated_beam_damage >= 225 && beam_stage < 2)
+		if(accumulated_beam_damage >= 180 && beam_stage < 2)
 			beam_stage = 2
 			beam_damage *= 1.5
 			var/matrix/M = matrix()
 			M.Scale(4, 1)
 			current_beam.visuals.transform = M
 			current_beam.visuals.color = COLOR_YELLOW
+		var/heal_amount = 0
+		var/list/guys = list()
 		for(var/turf/TF in hit_line)
 			for(var/mob/living/L in range(beam_stage-1, TF))
 				if(L.status_flags & GODMODE)
 					continue
 				if(L == user) //stop hitting yourself
 					continue
-				if(L in already_hit)
+				if((L in already_hit) || (L in guys))
 					continue
 				if(L.stat == DEAD)
 					continue
-				already_hit += L
 				if(H.faction_check_mob(L))
-					if(L.stat < DEAD) // Small bit of healing to all our living allies.
-						L.adjustBruteLoss(-1*justice)
-						if(L.stat > CONSCIOUS) // But more effective on softcrit/hardcrit allies.
-							L.adjustBruteLoss(-1*justice)
-					if(ishuman(L))
-						var/mob/living/carbon/human/LH = L
-						if(LH.sanity_lost)
-							LH.adjustSanityLoss(-6*justice) // Pretty fast resaning, but this only applies to insanes
+					guys += L
 					continue
-				L.deal_damage(beam_damage, BLACK_DAMAGE, user, attack_type = (ATTACK_TYPE_RANGED | ATTACK_TYPE_SPECIAL))
-				accumulated_beam_damage += beam_damage
-		if(!Channel(H, 8))
+				already_hit += L
+				var/adjusted_beam_damage = beam_damage
+				if(L.has_status_effect(/datum/status_effect/display/villan_mark))
+					adjusted_beam_damage *= 1.3
+				var/damage_done = L.deal_damage(adjusted_beam_damage, BLACK_DAMAGE, user, attack_type = (ATTACK_TYPE_RANGED | ATTACK_TYPE_SPECIAL))
+				accumulated_beam_damage += damage_done
+				heal_amount += damage_done/4
+		if(heal_amount > 0)
+			for(var/mob/living/L in guys)
+				L.adjustBruteLoss(-1*heal_amount)
+				if(ishuman(L))
+					var/mob/living/carbon/human/LH = L
+					LH.adjustSanityLoss(-1*heal_amount)
+			H.adjustBruteLoss(-0.5*heal_amount)
+			H.adjustSanityLoss(-0.5*heal_amount)
+		if(!Channel(H, 4, FALSE))
 			break
 	CleanUp(user)
 
-/obj/effect/proc_holder/ability/aimed/arcana_slave/proc/Channel(mob/user, duration = 0)
+/obj/effect/proc_holder/ability/aimed/arcana_slave/proc/Channel(mob/living/user, duration = 0, popup = TRUE)
 	if(!duration)
 		return FALSE
 	if(!user)
 		return FALSE
-	if(!do_after(user, duration))
+	if(!do_after(user, duration, progress = popup))
 		to_chat(user, "<span class='notice'>You stop channelling the spell!</span>")
 		return FALSE
 	return TRUE
 
-/obj/effect/proc_holder/ability/aimed/arcana_slave/proc/CleanUp(mob/user)
+/obj/effect/proc_holder/ability/aimed/arcana_slave/proc/CleanUp(mob/living/user)
+	REMOVE_TRAIT(user, TRAIT_IMMOBILIZED, type)
 	QDEL_NULL(current_beam)
 	for(var/obj/effect/FX in spawned_effects)
 		if(istype(FX, /obj/effect/qoh_sygil))
@@ -298,6 +336,13 @@
 	button.name = name
 	button.actiontooltipstyle = buttontooltipstyle
 	button.desc = desc
+
+/datum/action/spell_action/ability/item/ego_arcana_slave/proc/AdjustCooldown(amount)
+	if(target && istype(target, /obj/effect/proc_holder/ability/aimed/arcana_slave))
+		var/obj/effect/proc_holder/ability/aimed/arcana_slave/AS = target
+		AS.cooldown += amount
+		AS.update_icon()
+	UpdateButtonIcon()
 
 /atom/movable/screen/movable/action_button/ego_arcana_slave
 
