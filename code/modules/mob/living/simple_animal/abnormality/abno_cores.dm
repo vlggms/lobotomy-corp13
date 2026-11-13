@@ -9,12 +9,33 @@
 	base_pixel_x = -16
 	pixel_x = -16
 	var/mob/living/simple_animal/hostile/abnormality/contained_abno
-	var/release_time = 420 SECONDS//this is going to be reduced by a minute for every risk level
+	var/release_time = 420 SECONDS //this is going to be reduced by a minute for every risk level
 	var/threat_level
 	var/ego_list = list()
 	var/extracting = FALSE
+	var/datum/abnormality/datum_reference = null // Was this spawned in a cell?
+	var/opened = FALSE // An employee decided to release us early
+	var/closed = FALSE // An employee delayed this abnormality's spawn
+	var/obj/effect/bar = null // Progress bar for opening.
+	var/progress = 0 // Used to manipulate/manage progress bar
+	var/respawning = FALSE
+	var/list/core_whitelist = list(
+	/mob/living/simple_animal/hostile/abnormality/training_rabbit,
+	/mob/living/simple_animal/hostile/abnormality/bill,
+	/mob/living/simple_animal/hostile/abnormality/cube,
+	/mob/living/simple_animal/hostile/abnormality/fairy_swarm,
+	/mob/living/simple_animal/hostile/abnormality/shadow
+	)
 
 /obj/structure/abno_core/proc/Release()
+	if(datum_reference)
+		datum_reference.RespawnAbno()
+		if(!respawning)
+			datum_reference.PostSpawnAbno()
+		if(bar)
+			qdel(bar)
+		qdel(src)
+		return
 	if(!contained_abno)//Is this core properly generated?
 		return
 	new contained_abno(get_turf(src))
@@ -94,9 +115,83 @@
 	message_admins("[key_name(usr)] has spawned [contained_abno].")
 
 	SSblackbox.record_feedback("nested tally", "core_spawn_abnormality", 1, list("Initiated Spawn Abnormality", "[SSabnormality_queue.queued_abnormality]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-
 	qdel(src)
+
+/obj/structure/abno_core/proc/Countdown() // Egg starts opening up, unused outside of cells currently.
+	set waitfor = FALSE
+	var/progress_interval = round(release_time * 0.05) // Progress in pixel-sized chunks of time
+	if((datum_reference.abno_path in core_whitelist) && !respawning) // For training dummy and the tutorial abnos to not spawn boxed in
+		release_time = 5 SECONDS // So basically, instant.
+		progress_interval = 1 SECONDS
+	if(!bar)
+		bar = new(get_turf(src))
+	bar.icon = 'icons/effects/progessbar.dmi'
+	bar.icon_state = "prog_bar_0"
+	bar.plane = ABOVE_HUD_PLANE
+	bar.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+	bar.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	bar.alpha = 0
+	animate(bar, pixel_y = 48, alpha = 255, time = 10, easing = SINE_EASING)
+	while(progress <= release_time && !opened)
+		sleep(progress_interval)
+		progress += progress_interval
+		bar.icon_state = "prog_bar_[round(((progress / release_time) * 100), 5)]"
+	if(opened)
+		return
+	Release()
+
+// This code handles player interactions for cores contained in a cell after arrival.
+/obj/structure/abno_core/attack_hand(mob/living/carbon/human/user)
+	if(!datum_reference || opened || respawning)
+		return ..()
+	. = ..()
+	var/list/choice_icons = list()
+	if(closed)
+		choice_icons = list(
+		"key" = image(icon = 'ModularTegustation/Teguicons/teguitems.dmi', icon_state = "key_active")
+	)
+	else
+		choice_icons = list(
+			"key" = image(icon = 'ModularTegustation/Teguicons/teguitems.dmi', icon_state = "key_active"),
+			"lock"  = image(icon = 'ModularTegustation/Teguicons/teguitems.dmi', icon_state = "lock_active"),
+		)
+	choice_icons = sortList(choice_icons)
+	var/choice = show_radial_menu(user, src, choice_icons, custom_check = CALLBACK(src, PROC_REF(CheckMenu), user), radius = 42, require_near = TRUE)
+	if(!choice || !CheckMenu(user))
+		return
+	if(choice == "key")
+		playsound(get_turf(src), 'sound/machines/closet_open.ogg', 100, TRUE, 3)
+		opened = TRUE
+		// So we need to speed up ordeal timelock and next abno spawn here. We subtract whatever time is left on the core and use 30 seconds as a buffer.
+		// Our formula is (release_time - progress) - 30s
+		var/decrement = (release_time - progress)
+		if(decrement >= 30 SECONDS)
+			decrement -= 30 SECONDS
+			SSabnormality_queue.next_abno_spawn -= decrement
+			for(var/i=1,i<=SSlobotomy_corp.ordeal_timelock.len,i++)
+				SSlobotomy_corp.ordeal_timelock[i] -= decrement
+		Release()
+		return
+	else
+		closed = TRUE
+		playsound(get_turf(src), 'sound/machines/door_locked.ogg', 100, TRUE, 3)
+		color = COLOR_RED
+		// Add our extra time to ordeal timelocks and the abnormality queue, this effectively delays round progression.
+		SSabnormality_queue.next_abno_spawn += release_time
+		for(var/i=1,i<=SSlobotomy_corp.ordeal_timelock.len,i++)
+			SSlobotomy_corp.ordeal_timelock[i] += release_time
+		release_time *= 2
+		bar.icon_state = "prog_bar_[round(((progress / release_time) * 100), 5)]"
+
+// Sanity check for radial menu
+/obj/structure/abno_core/proc/CheckMenu(mob/living/carbon/human/user)
+	if(!istype(user))
+		return FALSE
+	if(QDELETED(src))
+		return FALSE
+	if(user.incapacitated())
+		return FALSE
+	return TRUE
 
 /obj/machinery/abno_core_extractor
 	name = "abnormality core containment unit"
