@@ -38,6 +38,10 @@ export const chatReducer = (state = initialState, action) => {
     return {
       ...state,
       ...payload,
+      // LOBOTOMYCORPORATION ADDITION - scroll tracking is live state, not a
+      // saved setting (tg doesn't restore it either). A stale `false` from the
+      // last session made every message count as unread while chat followed.
+      scrollTracking: state.scrollTracking,
     };
   }
   if (type === changeScrollTracking.type) {
