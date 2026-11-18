@@ -1,4 +1,4 @@
-#define ABNORMALITY_DELAY 180 SECONDS
+#define ABNORMALITY_DELAY 120 SECONDS
 
 /*
 * The system was coded as a proof of concept long ago, and might need a good rework.
@@ -37,7 +37,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 	/// Wait time for next abno spawn; This time is further affected by amount of abnos in facility
 	var/next_abno_spawn_time = 5 MINUTES
 	/// Tracks if the current pick is forced
-	var/fucked_it_lets_rolled = FALSE
+	var/danger_rolled = FALSE
 	/// Due to Managers not passing the Litmus Test, divine approval is now necessary for red roll
 	var/hardcore_roll_enabled = FALSE
 	/// the % values of when we give the officers +10 attributes
@@ -71,10 +71,10 @@ SUBSYSTEM_DEF(abnormality_queue)
 	if(istype(choice) && ispath(queued_abnormality))
 		choice.SpawnRoom()
 
-	if(fucked_it_lets_rolled)
+	if(danger_rolled)
 		for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.lobotomy_devices)
 			Q.ChangeLock(FALSE)
-		fucked_it_lets_rolled = FALSE
+		danger_rolled = FALSE
 
 	SelectAvailableLevels()
 
@@ -187,7 +187,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 	return
 
 /datum/controller/subsystem/abnormality_queue/proc/AnnounceLock()
-	fucked_it_lets_rolled = TRUE
+	danger_rolled = TRUE
 	for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.lobotomy_devices)
 		Q.ChangeLock(TRUE)
 	return

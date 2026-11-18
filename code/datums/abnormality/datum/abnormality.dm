@@ -63,24 +63,23 @@
 	* Second, there's no real reason for it to NOT be here unless we SOMEHOW, for SOME REASON, get duplicate abnormalities. Even then I don't know if that'd conflict.
 	*/
 	var/working = FALSE
-	///a list of variable the abno wants to remember after death
+	/// A list of variable the abno wants to remember after death
 	var/list/transferable_var
-	///if the abno spawns with a slime radio or not
+	/// If the abno spawns with a slime radio or not
 	var/abno_radio = FALSE
-	// Object = list(x tile offset, y tile offset)
+	/// Object = list(x tile offset, y tile offset)
 	/// List of connected structures; Used to teleport and delete them when abnormality is swapped or deleted
 	var/list/connected_structures = list()
-	// Abnormality Portrait, updated when abnormality spawns if they have one.
+	/// Abnormality Portrait, updated when abnormality spawns if they have one.
 	var/portrait = "UNKNOWN"
-
-	// final obervation details
+	/// Final obervation details
 	var/observation_ready = FALSE
-
-	//Check for Neutral abnormalities
+	/// Check for Neutral abnormalities
 	var/good_hater = FALSE
-
-	//Exists to make sure some Abnormalities won't breach again after a trumpet level has been reached and a meltdown hasn't happened
+	/// Exists to make sure some Abnormalities won't breach again after a trumpet level has been reached and a meltdown hasn't happened
 	var/emergency_breach = TRUE
+	/// Are we displaying a core in the cell right now
+	var/obj/structure/abno_core/current_core
 
 /datum/abnormality/New(obj/effect/landmark/abnormality_spawn/new_landmark, mob/living/simple_animal/hostile/abnormality/new_type = null)
 	if(!istype(new_landmark))
@@ -91,12 +90,8 @@
 	abno_path = new_type
 	name = initial(abno_path.name)
 	desc = initial(abno_path.desc)
-	RespawnAbno()
-	FillEgoList()
-	ModifyOdds()
-	next_reveal = ((1 / available_work.len) * max_understanding)
-
-	reveal_interval = next_reveal
+	threat_level = initial(abno_path.threat_level)
+	PreSpawnAbno()
 
 /datum/abnormality/Destroy()
 	SSlobotomy_corp.all_abnormality_datums -= src
@@ -113,6 +108,55 @@
 	connected_structures = null
 	return ..()
 
+/datum/abnormality/proc/PreSpawnAbno() // Prepares a delivery abnocore with a unique sprite and flags.
+	DisplayCore(name, null, initial(abno_path.threat_level), is_respawning = FALSE)
+	current_core.release_time = 90 SECONDS // 1.5 minutes for a core to open on its own.
+	current_core.Countdown() // Not called earlier in DisplayCore()
+	current_core.name = "abnormality storage box"
+	current_core.desc = "A box used for abnormality transport."
+	playsound(current_core,'ModularTegustation/Tegusounds/abno_extract.ogg', 50, FALSE, 20)
+	animate(current_core, alpha = 0, pixel_z = 16, time = 0)
+	current_core.pixel_z = 16
+	animate(current_core, alpha = 255, pixel_z = -16, time = 3 SECONDS)
+	current_core.pixel_z = 0
+	current_core.respawning = FALSE
+
+/datum/abnormality/proc/PostSpawnAbno()
+	FillEgoList()
+	ModifyOdds()
+	next_reveal = ((1 / available_work.len) * max_understanding)
+	reveal_interval = next_reveal
+
+/datum/abnormality/proc/DisplayCore(abno_name, abno_core_icon, abno_threat_level, is_respawning)
+	if(!ispath(abno_path))
+		CRASH("Abnormality tried to spawn a core, but abnormality path wasn't valid.")
+	if(!istype(landmark))
+		CRASH("Couldn't spawn a core for [initial(abno_path.name)] due to missing landmark.")
+	var/turf/T = get_turf(landmark)
+	current_core = new /obj/structure/abno_core(T) // This core isn't a "proper" core in that it won't open without RespawnAbno() being called.
+	current_core.name = abno_name + " Core"
+	current_core.desc = "The core of [(abno_name)]"
+	if(abno_core_icon)
+		current_core.icon_state = abno_core_icon
+	current_core.threat_level = abno_threat_level
+	current_core.datum_reference = src
+	if(is_respawning)
+		current_core.release_time = 30 SECONDS // Time to respawn, overridden if PreSpawnAbno() is called
+		current_core.respawning = TRUE  // Respawning flag, overridden if PreSpawnAbno() is called
+		current_core.Countdown()
+	current_core.anchored = TRUE
+	switch(abno_threat_level)
+		if(1)
+			return
+		if(2)
+			current_core.icon = 'ModularTegustation/Teguicons/abno_cores/teth.dmi'
+		if(3)
+			current_core.icon = 'ModularTegustation/Teguicons/abno_cores/he.dmi'
+		if(4)
+			current_core.icon = 'ModularTegustation/Teguicons/abno_cores/waw.dmi'
+		if(5)
+			current_core.icon = 'ModularTegustation/Teguicons/abno_cores/aleph.dmi'
+
 /datum/abnormality/proc/RespawnAbno()
 	if(!ispath(abno_path))
 		CRASH("Abnormality tried to respawn a mob, but abnormality path wasn't valid.")
@@ -120,6 +164,8 @@
 		CRASH("Couldn't respawn an abnormality [initial(abno_path.name)] due to missing landmark.")
 	if(istype(current))
 		return
+	if(current_core)
+		qdel(current_core)
 	var/turf/T = get_turf(landmark)
 	current = new abno_path(T)
 	current.datum_reference = src
