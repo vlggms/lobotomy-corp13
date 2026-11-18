@@ -14,7 +14,7 @@
 
 	var/list/order_list = list( //if you add something to this, please, for the love of god, sort it by price/type. use tabs and not spaces.
 		//Gadgets - More Technical Equipment, Usually active
-		new /datum/data/extraction_cargo("Tracking Implant Kit ", 		/obj/item/storage/box/minertracker,									150, CAT_GADGET) = 1,
+		new /datum/data/extraction_cargo("Crew pinpointer ",            /obj/item/pinpointer/crew/prox                                      150, CAT_GADGET) = 1,
 		new /datum/data/extraction_cargo("Command Projector ",			/obj/item/commandprojector,											150, CAT_GADGET) = 1,
 		new /datum/data/extraction_cargo("'DEEPSCAN' Kit ",				/obj/item/deepscanner,												150, CAT_GADGET) = 1,
 		new /datum/data/extraction_cargo("Qliphoth Field Projector ",	/obj/item/powered_gadget/slowingtrapmk1,							150, CAT_GADGET) = 1,
