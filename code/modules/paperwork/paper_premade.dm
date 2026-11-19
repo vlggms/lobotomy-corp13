@@ -351,20 +351,68 @@
 
 /obj/item/paper/guides/jobs/abnochem_effects_generic
 	name = "Enkephalin-Derived Substance Documentation, supplementary - Yesod"
-	info = {"The basic information of each "generic" EDS is documented below. <br>
+	info = {"<h1><center>The basic information of each "Syrups" EDS is documented below.</center></h1> <br>
 	<br>
-	- Type NT: Orange in color. Heals the user physically, at the cost of increasing their metabolism.<br>
+	- Hearty Syrup: The User's Fortitude is temporarily improved. <br>
+	Costs: 1u Liquid Sloth, 1u Liquid Envy, 1u Water <br>
 	<br>
-	- Type CN: Jade green in color. Harms the user physically, but cleans them of all physical filth.<br>
+	- Bitter Syrup: The User's Prudence is temporarily improved.<br>
+	Costs: 1u Liquid Envy, 1u Liquid Lust, 1u Water <br>
 	<br>
-	- Type CS: Dusty teal in color. Restores the user's mental stability, but renders them weaker to white damage.<br>
+	- Tasteless Syrup: The User's Temperance is temporarily improved.<br>
+	Costs: 1u Liquid Pride, 1u Liquid Wrath, 1u Water <br>
 	<br>
-	- Type AM: Pink in color. The user's Justice is temporarily reduced, while their fortitude and prudence are improved.<br>
+	- Focused Syrup: The User's Justice is temporarily improved.<br>
+	Costs: 1u Liquid Gloom, 1u Liquid Gluttony, 1u Water <br>
 	<br>
-	- Type VL: Red in color. The user's Justice is temporarily improved, but they suffer repeated physical damage.<br>
+	<h1><center>The basic information of each "generic" EDS is documented below.</center></h1> <br>
+	- Type NT: Heals the user physically, at the cost of increasing their metabolism.<br>
+	Costs: 1u Liquid Wrath, 1u Liquid Lust, 1u Liquid Pride <br>
+	<br>
+	- Type CN: Harms the user physically, but cleans them of all physical filth.<br>
+	Costs: 1u Liquid Sloth, 1u Liquid Gluttony, 1u Liquid Wrath <br>
+	<br>
+	- Type CS:  Restores the user's mental stability, but renders them weaker to white damage.<br>
+	Costs: 1u Liquid Gloom, 1u Liquid Pride, u Liquid Lust <br>
+	<br>
+	- Type AM: The user's Justice is temporarily reduced, while their fortitude and prudence are improved.<br>
+	Costs: 1u Liquid Envy, 1u Liquid Gluttony, 1u Liquid Pride <br>
+	<br>
+	- Type VL: The user's Justice is temporarily improved, but they suffer repeated physical damage.<br>
+	Costs: 1u Liquid Lust, 1u Liquid Gloom, 1u Liquid Sloth  <br>
+	<br>
+	- Type RO: The user's Red and White armour is temporarily improved, but at the cost of black armour <br>
+	Costs: 1u Liquid Gluttony, 1u Liquid Envy, 1u Liquid Wrath  <br>
+	<br>
+	- Type WP: Restores the user's mental stability, but they suffer from decreased physical health. <br>
+	Costs: 1u Liquid Gloom, 1u Liquid Envy, 1u Liquid Sloth <br>
+	<br>
+	<h1><center>The basic information of each "High Level" EDS is documented below.</center></h1> <br>
+	<br>
+	- Odisone: The User's Fortitude and Justice are temporarily improved, but at the cost of prudence and temperance reduced.<br>
+	Costs: 	1u Focused Syrup, 1u Type VL <br>
+	<br>
+	- Dycrasone: The user's stats are temporarily improved, but taking too much induces withdrawal symptoms.<br>
+	Costs: 1u Bitter Syrup, 1u Tasteless Syrup <br>
+	<br>
+	- Serelam: The User's Prudence and Temperance are temporarily improved, but their Fortitude and Justice are reduced.<br>
+	Costs: 1u Hearty Syrup, 1u Type RO <br>
+	- Culpus Umidus: The User's prudence is temporarily improved and restores their mental stability, but at the cost of reduced mental stability when leaving user's system.<br>
+	Costs: 1u Tasteless Syrup, 1u Type WP, 1u Water (Catalyst)   <br>
+	<br>
+	- Lesser Nepenthe: If user is insane it causes user to mentally stabilize themselves, but if not insane restores their mental stability at a reduced rate.<br>
+	Costs: 1u Bitter Syrup, 1u Type CS <br>
+	<br>
+	- Piedrabital: The user's physical health is temporarily massively improved, but user can be stunned while its in system.<br>
+	Costs: 1u Hearty Syrup, 1u Type CN <br>
+	<br>
+	- Gaspilleur: Restores the user's mental stability and physical health dramatically, but at the cost of dramatic decrease in stats temporarily.<br>
+	Costs: 1u Focused Syrup, 1u Type NT <br>
+	<br>
+	- Lesser Sange Raul: Restores the user's health dramatically, but at the cost of their blood.<br>
+	Costs: 1u Tasteless Syrup, 1u Type AM <br>
 	<br>
 	These effects may not be the most useful, but they still can have an impact in an emergency situation. Please learn them well.<br>
-	<br>
 	- Yesod"}
 
 /obj/item/paper/guides/jobs/abnochem_effects_zayin
