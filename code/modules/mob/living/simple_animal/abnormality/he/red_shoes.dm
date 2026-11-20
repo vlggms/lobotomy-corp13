@@ -25,7 +25,7 @@
 	work_damage_type = RED_DAMAGE
 	chem_type = /datum/reagent/abnormality/sin/wrath
 	max_boxes = 16
-	del_on_death = FALSE
+	del_on_death = TRUE
 	death_message = "crumples into a pile of bones."
 	attack_sound = 'sound/abnormalities/redshoes/RedShoes_Attack.ogg'
 	melee_damage_lower = 3
@@ -66,6 +66,9 @@
 	work_end_lines = list("%ABNO are clearly not a living organism, but they emit a dismal aura.",
 	"%ABNO may not be a breathing creature, but its distinct atmosphere reminds those near it of a bloodied past.", "The sanguine color of %ABNO looks oddly familiar.", "%ABNO lies still.")
 
+	//For solo breach
+	var/mob/living/simple_animal/hostile/aminion/red_shoe/second_foot
+
 	var/mutable_appearance/breach_icon
 	var/mob/living/possessee
 	var/list/death_lines = list(
@@ -80,6 +83,12 @@
 		"You all need to see how lovely my shoes are!",
 		"They're much prettier with blood on them.",
 	)
+	var/list/finisher_lines = list(
+		"I told you, I won’t give them away.",
+		"They’re much prettier with blood on them.",
+		"Are you already asleep?",
+	)
+	var/finishing = FALSE
 	var/datum/looping_sound/redshoes_ambience/soundloop
 	var/numbermarked = 0//default amount of people that get possessed
 	var/steppy = 0
@@ -92,10 +101,32 @@
 		return
 	if(!possessee)
 		return
+	if(finishing)
+		return
 	if(!prob(say_chance))
 		return
 	var/line = pick(possessee_lines)
 	say(line)
+
+/mob/living/simple_animal/hostile/abnormality/red_shoes/CanAttack(atom/the_target)
+	if(finishing)
+		return FALSE
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/red_shoes/Move()
+	if(finishing)
+		return FALSE
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/red_shoes/Goto(target, delay, minimum_distance)
+	if(finishing)
+		return FALSE
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/red_shoes/DestroySurroundings()
+	if(finishing)
+		return FALSE
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/red_shoes/death()
 	if(possessee)
@@ -109,12 +140,21 @@
 		possessee.status_flags &= ~GODMODE
 		possessee.forceMove(loc)
 		possessee = null
+		REMOVE_TRAIT(H, TRAIT_NOBREATH, type)
+		REMOVE_TRAIT(H, TRAIT_INCAPACITATED, type)
+		REMOVE_TRAIT(H, TRAIT_IMMOBILIZED, type)
+		REMOVE_TRAIT(H, TRAIT_HANDS_BLOCKED, type)
+		H.status_flags &= ~GODMODE
+		H.say(pick(death_lines))
 		H.adjustBruteLoss(500)//the host dies
+		var/obj/item/bodypart/l_foot = H.get_bodypart(BODY_ZONE_L_LEG)//Feet are defined as BODY_ZONE_PRECISE_L_FOOT. Does the dismember proc not affect them?
+		var/obj/item/bodypart/r_foot = H.get_bodypart(BODY_ZONE_R_LEG)
+		if(!HAS_TRAIT(H, TRAIT_NODISMEMBER))
+			playsound(src, 'sound/abnormalities/redshoes/RedShoes_Kill.ogg', 100, 1)
+			l_foot?.dismember()
+			r_foot?.dismember()
 	for(var/mob/living/carbon/human/H in GLOB.mob_living_list)//stops possessing people, prevents runtimes. Panicked players are ghosted so use mob_living_list
 		UnPossess(H)
-	say(pick(death_lines))
-	alpha = 255
-	QDEL_IN(src, 10 SECONDS)
 	QDEL_NULL(soundloop)
 	return ..()
 
@@ -163,7 +203,7 @@
 	if(possessee)//If the first check fails
 		return
 	SLEEP_CHECK_DEATH(30)
-	if(LAZYLEN(GLOB.player_list) < 3)//solo breach if there aren't many players
+	if(LAZYLEN(AllLivingAgents(TRUE)) < 3)//solo breach if there aren't many agents
 		BreachEffect()
 		return
 	numbermarked = (1 + round(LAZYLEN(GLOB.player_list) / 6))
@@ -184,28 +224,52 @@
 	datum_reference.qliphoth_change(2)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/red_shoes/proc/Assimilate(mob/living/carbon/user)
+/mob/living/simple_animal/hostile/abnormality/red_shoes/proc/Assimilate(mob/living/carbon/human/user)
 	if(!(status_flags & GODMODE))
 		return
 	if(possessee)
 		return
+	if(!istype(user))
+		return
 	possessee = user
-	var/mob/living/carbon/human/H = user
-	if(ishuman(H) && (H.sanity_lost))
-		var/obj/item/clothing/suit/armor/ego_gear/EQ = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)//copies all resistances from worn E.G.O
+	if(user.sanity_lost)
+		var/obj/item/clothing/suit/armor/ego_gear/EQ = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)//copies all resistances from worn E.G.O
 		if(EQ)
 			var/list/temp = EQ.armor.getList()
 			for(var/damtype in temp)
 				temp[damtype] = 1 - (temp[damtype] / 100)
 			ChangeResistances(temp)
+
+		//Shouldn't this be its own proc?
+		var/obj/item/held = user.get_active_held_item()
+		var/obj/item/other_held = user.get_inactive_held_item()
+
+		user.dropItemToGround(held)
+		user.dropItemToGround(other_held)
+		//We really, REALLY don't want the agent to die while assimulated
+		for(var/datum/disease/D in user.diseases)
+			qdel(D)
+		var/parasite_slot = user.getorganslot(ORGAN_SLOT_PARASITE_EGG)
+		if(parasite_slot)
+			qdel(parasite_slot)
+		user.status_flags |= GODMODE
+		user.remove_status_effect(/datum/status_effect/panicked_type)
+		//For some god forsaken reason, appearance doesn't give a shit if an overlay was removed unless there's a delay. UNLESS this is use. Thank you BYOND
+		COMPILE_OVERLAYS(user)
+		ADD_TRAIT(user, TRAIT_NOBREATH, type)
+		ADD_TRAIT(user, TRAIT_INCAPACITATED, type)
+		ADD_TRAIT(user, TRAIT_IMMOBILIZED, type)
+		ADD_TRAIT(user, TRAIT_HANDS_BLOCKED, type)
 		user.forceMove(src)
+
 		playsound(src, 'sound/abnormalities/redshoes/RedShoes_Activate.ogg', 50, 1)
 		name = user.name
 		appearance = user.appearance
 		gender = user.gender
 		desc = "[user.name] appears to be grinning from ear to ear. Does [p_they()] normally wear shoes like those?"
-		maxHealth += (user.maxHealth * 4.5)
+		maxHealth = (user.maxHealth * 4.5)
 		revive(full_heal = TRUE, admin_revive = FALSE)
+
 		add_overlay(mutable_appearance('icons/mob/clothing/feet.dmi', "red_shoes", -ABOVE_MOB_LAYER))
 		add_overlay(mutable_appearance('icons/mob/inhands/weapons/ego_righthand.dmi', "sanguine", -ABOVE_MOB_LAYER))
 		cut_overlay(mutable_appearance('icons/effects/32x64.dmi', "panicked", -ABOVE_MOB_LAYER))
@@ -231,9 +295,16 @@
 		icon_living = "redshoes_breach"
 		ChangeResistances(list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.5))
 		sleep(10)
-		new /mob/living/simple_animal/hostile/aminion/red_shoe(get_turf(src))
+		var/mob/living/simple_animal/hostile/aminion/red_shoe/SHOE = new(get_turf(src))
+		second_foot = SHOE
 	datum_reference.qliphoth_change(-2)
 
+/mob/living/simple_animal/hostile/abnormality/red_shoes/CreateAbnoCore()//The simple mob created will leave a core behind when regular conditions are fulfilled ie. when this proc is called
+	if(!second_foot || QDELETED(second_foot))
+		return ..()
+	second_foot.core_enabled = TRUE
+	second_foot = null
+	return
 /mob/living/simple_animal/hostile/abnormality/red_shoes/Found(atom/A)//The solo breach generally sticks together
 	if(istype(A, /mob/living/simple_animal/hostile/aminion/red_shoe))
 		var/mob/living/simple_animal/hostile/aminion/red_shoe/S = A
@@ -249,6 +320,29 @@
 		ChopFeet(H)
 
 /mob/living/simple_animal/hostile/abnormality/red_shoes/proc/ChopFeet(mob/living/carbon/human/H)
+	if(possessee || H.health > 0)
+		if(H.stat == DEAD)
+			return
+		finishing = TRUE
+		H.Stun(4 SECONDS)
+		var/line = pick(finisher_lines)
+		SLEEP_CHECK_DEATH(3)
+		say(line)
+		attack_sound = 'sound/abnormalities/redshoes/RedShoes_Kill.ogg'
+		for(var/i = 1 to 6)
+			if(!targets_from.Adjacent(H) || QDELETED(H) || H.health > 0) // They can still be saved if you move them away
+				finishing = FALSE
+				attack_sound = initial(attack_sound)
+				return
+			SLEEP_CHECK_DEATH(2)
+			H.attack_animal(src)
+			if(i % 2 == 0)
+				adjustBruteLoss(-maxHealth * 0.04) //4% per hit
+			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(H), pick(GLOB.alldirs))
+		attack_sound = initial(attack_sound)
+		finishing = FALSE
+		return
+
 	var/obj/item/bodypart/l_foot = H.get_bodypart(BODY_ZONE_L_LEG)//Feet are defined as BODY_ZONE_PRECISE_L_FOOT. Does the dismember proc not affect them?
 	var/obj/item/bodypart/r_foot = H.get_bodypart(BODY_ZONE_R_LEG)
 	if(HAS_TRAIT(H, TRAIT_NODISMEMBER))
@@ -311,12 +405,7 @@
 	lines_type = /datum/ai_behavior/say_line/insanity_red_possess
 
 /datum/ai_behavior/say_line/insanity_red_possess
-	lines = list(
-		"Where is everyone?",
-		"Guys, look at me! I've got such nice shoes on!",
-		"You all need to see how lovely my shoes are!",
-		"They're much prettier with blood on them.",
-	)
+	lines = null
 
 /datum/ai_controller/insane/red_possess/SelectBehaviors(delta_time)//Selects red shoes as the target
 	if(blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] != null)
@@ -353,7 +442,7 @@
 			return
 	if(!ishuman(living_pawn))
 		return
-	walkspeed -= (max(0.95,((get_attribute_level(living_pawn, JUSTICE_ATTRIBUTE)) * 0.01)))//one-hundreth of a second for every point of justice, capped at 95
+	walkspeed -= (min(0.95,((get_attribute_level(living_pawn, JUSTICE_ATTRIBUTE)) * 0.01)))//one-hundreth of a second for every point of justice, capped at 95
 	addtimer(CALLBACK(src, PROC_REF(Movement), controller), walkspeed SECONDS, TIMER_UNIQUE)
 	if(isturf(target.loc) && living_pawn.Adjacent(target))
 		finish_action(controller, TRUE)
@@ -380,10 +469,9 @@
 /datum/ai_behavior/desire_move/finish_action(datum/ai_controller/controller, succeeded)//When the panicked reach Red Shoes
 	. = ..()
 	var/mob/living/carbon/human/living_pawn = controller.pawn
-	var/obj/item/held = living_pawn.get_active_held_item()
 	var/mob/living/simple_animal/hostile/abnormality/red_shoes/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
 	if(succeeded)
-		living_pawn.dropItemToGround(held)
+		QDEL_NULL(living_pawn.ai_controller)
 		target.Assimilate(living_pawn)//breaches red shoes with target as the argument for user
 	controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = null
 
@@ -410,6 +498,7 @@
 	threat_level = HE_LEVEL
 	score_divider = 2
 	var/steppy = 0
+	var/core_enabled = FALSE
 
 /mob/living/simple_animal/hostile/aminion/red_shoe/AttackingTarget(atom/attacked_target)
 	. = ..()
@@ -430,6 +519,23 @@
 	l_foot?.dismember()
 	r_foot?.dismember()
 
+/mob/living/simple_animal/hostile/aminion/red_shoe/Destroy()
+	if(core_enabled)
+		CreateAbnoCore()
+	..()
+
+/mob/living/simple_animal/hostile/aminion/red_shoe/proc/CreateAbnoCore()//this is at the carbon level
+	var/obj/structure/abno_core/C = new(get_turf(src))
+	C.name = "Red Shoes Core"
+	C.desc = "The core of Red Shoes"
+	C.icon_state = ""//core icon goes here
+	C.contained_abno = /mob/living/simple_animal/hostile/abnormality/red_shoes//release()ing or extract()ing this core will spawn the abnormality, making it a valid core.
+	C.threat_level = 3
+	C.icon = 'ModularTegustation/Teguicons/abno_cores/he.dmi'
+	C.ego_list = list(
+		/datum/ego_datum/weapon/sanguine,
+		/datum/ego_datum/armor/sanguine,
+	)
 
 //*** Pedestal ***//
 /obj/structure/redshoes_cushion
