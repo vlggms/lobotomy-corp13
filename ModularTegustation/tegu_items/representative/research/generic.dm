@@ -13,44 +13,7 @@
 	ItemUnlock(requester.order_list, "Metal Pipe",	/obj/item/ego_weapon/city/rats/pipe, 100)
 	..()
 
-/datum/data/lc13research/refineryspeed
-	research_name = "Refinement Process Efficiency Upgrade I"
-	research_desc = "Contribute some energy to improve the Refinery's processing speed."
-	cost = LOW_RESEARCH_PRICE
-	corp = ALL_REP_RESEARCH
-
-/datum/data/lc13research/refineryspeed/ResearchEffect(obj/structure/representative_console/requester)
-	. = ..()
-	for(var/obj/structure/refinery/ref in GLOB.lobotomy_devices)
-		ref.refine_timer -= initial(ref.refine_timer)/10
-
-/datum/data/lc13research/refineryspeed/lvl2
-	research_name = "Refinement Process Efficiency Upgrade II"
-	research_desc = "Contribute some energy to improve the Refinery's processing speed."
-	cost = LOW_RESEARCH_PRICE
-	corp = ALL_REP_RESEARCH
-	required_research = /datum/data/lc13research/refineryspeed
-
-/datum/data/lc13research/salesspeed
-	research_name = "Sales Process Efficiency Upgrade I"
-	research_desc = "Contribute some energy to improve the sales machines' transfer speed."
-	cost = LOW_RESEARCH_PRICE
-	corp = ALL_REP_RESEARCH
-
-/datum/data/lc13research/salesspeed/ResearchEffect(obj/structure/representative_console/requester)
-	. = ..()
-	for(var/obj/structure/pe_sales/sales in GLOB.lobotomy_devices)
-		sales.power_timer -= initial(sales.power_timer)/10
-		sales.crate_timer -= (initial(sales.power_timer)/10)*sales.crates_per_box
-
-/datum/data/lc13research/salesspeed/lvl2
-	research_name = "Sales Process Efficiency Upgrade II"
-	research_desc = "Contribute some energy to improve the sales machines' transfer speed."
-	cost = LOW_RESEARCH_PRICE
-	corp = ALL_REP_RESEARCH
-	required_research = /datum/data/lc13research/salesspeed
-
-/// MOB SPAWNERS
+//-----MOB SPAWNERS-----
 
 /datum/data/lc13research/mobspawner/zwei
 	research_name = "Zwei Section 6 Team"

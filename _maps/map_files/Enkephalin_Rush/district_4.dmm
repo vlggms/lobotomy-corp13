@@ -2352,11 +2352,6 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/item/refiner_filter/blue,
-/obj/item/refiner_filter/blue,
-/obj/item/refiner_filter/blue,
-/obj/item/refiner_filter/blue,
-/obj/item/refiner_filter/blue,
 /turf/open/floor/pod,
 /area/city/shop)
 "iN" = (
@@ -2436,10 +2431,6 @@
 	},
 /turf/closed/indestructible/rock,
 /area/city)
-"ja" = (
-/obj/effect/landmark/salesspawn,
-/turf/closed/indestructible/opshuttle,
-/area/city/shop)
 "jb" = (
 /obj/machinery/light/broken{
 	dir = 1
@@ -3202,11 +3193,6 @@
 /area/city/shop)
 "lM" = (
 /obj/structure/rack,
-/obj/item/refiner_filter/yellow,
-/obj/item/refiner_filter/yellow,
-/obj/item/refiner_filter/yellow,
-/obj/item/refiner_filter/yellow,
-/obj/item/refiner_filter/yellow,
 /turf/open/floor/pod,
 /area/city/shop)
 "lN" = (
@@ -3875,7 +3861,6 @@
 /turf/open/floor/plating,
 /area/facility_hallway/command)
 "on" = (
-/obj/effect/landmark/refinerspawn,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/closed/mineral/random/facility/briah,
 /area/department_main/extraction)
@@ -6178,11 +6163,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/item/refiner_filter/red,
-/obj/item/refiner_filter/red,
-/obj/item/refiner_filter/red,
-/obj/item/refiner_filter/red,
-/obj/item/refiner_filter/red,
 /turf/open/floor/pod,
 /area/city/shop)
 "ww" = (
@@ -6890,9 +6870,6 @@
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/carpet/donk,
 /area/city/backstreets_alley)
-"zg" = (
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_room)
 "zh" = (
 /obj/machinery/fat_sucker,
 /obj/effect/turf_decal/siding/blue,
@@ -11277,15 +11254,6 @@
 	},
 /turf/open/floor/plating/rust,
 /area/department_main/command)
-"Pc" = (
-/obj/structure/rack,
-/obj/item/refiner_filter/green,
-/obj/item/refiner_filter/green,
-/obj/item/refiner_filter/green,
-/obj/item/refiner_filter/green,
-/obj/item/refiner_filter/green,
-/turf/open/floor/pod,
-/area/city/shop)
 "Pd" = (
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/carpet/royalblue,
@@ -50139,7 +50107,7 @@ Uj
 It
 It
 It
-ja
+gh
 Dx
 cz
 AG
@@ -50396,7 +50364,7 @@ Uj
 It
 It
 It
-ja
+gh
 Dx
 Dx
 Dx
@@ -50653,7 +50621,7 @@ Uj
 It
 It
 hr
-ja
+gh
 KO
 Dx
 Dx
@@ -54255,7 +54223,7 @@ gh
 rk
 cU
 iM
-Pc
+lM
 wv
 lM
 IK
@@ -63716,7 +63684,7 @@ vc
 OK
 Or
 iD
-zg
+MB
 MB
 ML
 sL

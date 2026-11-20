@@ -25,7 +25,7 @@ export const MiningVendor = (props, context) => {
           ) || (
             <Box color="light-gray">
               No registered ID card!<br />
-              Please contact your local HoP!
+              Please contact A Corp!
             </Box>
           )}
         </Section>

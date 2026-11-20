@@ -1,7 +1,7 @@
 
 /obj/machinery/vending/cola
 	name = "\improper Suck My Enegy!"
-	desc = "A softdrink and energy drink vendor provided by S corp."
+	desc = "A softdrink and energy drink vendor provided by a certain company."
 	icon_state = "Cola_Machine"
 	product_slogans = "SUCK IT!"
 	product_ads = "Refreshing!;Hope you're thirsty!;Over 1 million drinks sold!;Please, have a drink!;Drink up!"

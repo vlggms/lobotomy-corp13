@@ -78,6 +78,14 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	var/total_spent = 0
 	// The number we must reach
 	var/box_goal = 0 // Initialized later
+	// The number that determines how many PE boxes lead to a payout
+	var/box_goal_pay_interval = 0
+	// Boxes that lead to a payout
+	var/box_payout = 0
+	// Statistics that players can read
+	var/last_filth_penalty
+	var/last_pe_bonus
+	var/last_payout
 	// Where we reached our goal
 	var/goal_reached = FALSE
 	/// Multiplier to PE earned from working on abnormalities
@@ -130,6 +138,8 @@ SUBSYSTEM_DEF(lobotomy_corp)
 /datum/controller/subsystem/lobotomy_corp/proc/SetGoal()
 	var/player_mod = length(GLOB.player_list) * 0.2
 	box_goal = clamp(round(5000 * player_mod), 3000, 36000)
+	box_goal_pay_interval = box_goal * 0.15
+	box_payout = box_goal_pay_interval
 
 
 /datum/controller/subsystem/lobotomy_corp/proc/InitializeOrdeals()
@@ -239,29 +249,77 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	CheckGoal()
 
 /datum/controller/subsystem/lobotomy_corp/proc/CheckGoal()
-	if(goal_reached || box_goal == 0)
+	if(box_goal == 0)
+		return
+	if(available_box + goal_boxes >= box_payout)
+		var/payment_amt = CalculatePayroll()
+		var/list/typecache_bank = typecacheof(list(/datum/bank_account/department, /datum/bank_account/remote))//similar loop to the market report
+		for(var/i in SSeconomy.bank_accounts_by_id)
+			var/datum/bank_account/current_acc = SSeconomy.bank_accounts_by_id[i]
+			if(typecache_bank[current_acc.type])
+				continue
+			var/datum/bank_account/B = SSeconomy.bank_accounts_by_id["[i]"]
+			if(B)
+				B.adjust_money(payment_amt)
+		for(var/mob/living/carbon/human/H in GLOB.player_list)
+			to_chat(H, span_nicegreen("Payroll has been processed. This is an alpha feature. Click <a href='byond://?src=[REF(src)];payroll_details=1'>here</a> for details."))
+			to_chat(H, span_notice("[payment_amt] ahn has been deposited into your account."))
+			H.playsound_local(H, 'sound/weapons/ego/executive_reload.ogg', 100, FALSE)
+		box_goal_pay_interval = round(box_goal_pay_interval *= 1.05) // Gradually gets higher
+		box_payout += box_goal_pay_interval
+		return
+	if(goal_reached)
 		return
 	if(available_box + goal_boxes >= box_goal)
 		AddLobPoints(4, "Quota Reward")
 		available_box -= box_goal - goal_boxes // Leftover is drained
 		goal_reached = TRUE
-		priority_announce("The energy production goal has been reached.", "Energy Production", sound='sound/misc/notice2.ogg')
-		var/pizzatype_list = subtypesof(/obj/item/food/pizza)
-		pizzatype_list -= /obj/item/food/pizza/arnold // No murder pizza
-		pizzatype_list -= /obj/item/food/pizza/margherita/robo // No robo pizza
-		for(var/mob/living/carbon/human/person in GLOB.mob_living_list)
-			// Yes, this delivers to dead bodies. It's REALLY FUNNY.
-			var/obj/structure/closet/supplypod/centcompod/pod = new()
-			var/pizzatype = pick(pizzatype_list)
-			new pizzatype(pod)
-			pod.explosionSize = list(0,0,0,0)
-			to_chat(person, "<span class='nicegreen'>It's pizza time!</span>")
-			new /obj/effect/pod_landingzone(get_turf(person), pod)
+		priority_announce("The energy production goal has been reached. Have a bonus.", "Energy Production", sound='sound/weapons/ego/executive_reload.ogg')
+		var/payment_amt = round(goal_boxes * 0.5) //this is awarded to every player
+		var/list/typecache_bank = typecacheof(list(/datum/bank_account/department, /datum/bank_account/remote))//similar loop to the market report
+		for(var/i in SSeconomy.bank_accounts_by_id)
+			var/datum/bank_account/current_acc = SSeconomy.bank_accounts_by_id[i]
+			if(typecache_bank[current_acc.type])
+				continue
+			var/datum/bank_account/B = SSeconomy.bank_accounts_by_id["[i]"]
+			if(B)
+				B.adjust_money(payment_amt)
+		for(var/mob/living/carbon/human/H in GLOB.player_list)
+			to_chat(H, span_notice("[payment_amt] ahn has been deposited into your account."))
+		// Add score to our agents for reaching the goal.
 		for(var/mob/M in GLOB.player_list)
 			if(!M.ckey || !M.client)
 				continue
 			SSpersistence.agent_rep_change[M.ckey] += 3
 	return
+
+/datum/controller/subsystem/lobotomy_corp/Topic(href, href_list)
+	. = ..()
+	if(href_list["payroll_details"])
+		var/display_text = "<span class='notice'><b>Payroll has been processed using the following statistics:</b></span>"
+		if(last_filth_penalty > 0)
+			display_text += "\n <span class='nicegreen'>Cleanliness bonus: [last_filth_penalty]</span>"
+		else
+			display_text += "\n <span class='span_red'>Filth penalty: [last_filth_penalty]</span>"
+		display_text += "\n <span class='nicegreen'>Progress bonus: [last_pe_bonus]</span>"
+		display_text += "\n <span class='nicegreen'>Total: [last_payout]</span>"
+		to_chat(usr, display_text)
+
+/datum/controller/subsystem/lobotomy_corp/proc/CalculatePayroll()
+	var/net_station_beauty = 0
+	for(var/area/F in GLOB.the_station_areas)
+		if(F.z != SSmapping.station_start) // The manager's office can be a pigsty, I guess.
+			continue
+		net_station_beauty = (net_station_beauty + (F.totalbeauty - F.beauty_roundstart))
+	var/filth_penalty = clamp(-50, 0, net_station_beauty * 0.01) // Only goes negative
+	if(filth_penalty == 0)
+		filth_penalty = 50 // cleanliness bonus
+	var/pe_bonus = round(box_payout * 0.05)
+	var/payment_amt = 100 + filth_penalty + pe_bonus //this is awarded to every player
+	last_filth_penalty = filth_penalty
+	last_pe_bonus = pe_bonus
+	last_payout = payment_amt
+	return payment_amt
 
 /datum/controller/subsystem/lobotomy_corp/proc/QliphothUpdate(amount = 1)
 	qliphoth_meter += amount

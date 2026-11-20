@@ -17,7 +17,10 @@
 					/obj/item/clothing/under/suit/lobotomy/discipline/alternative = 20,
 					/obj/item/clothing/under/suit/lobotomy/command = 20,
 					/obj/item/clothing/under/suit/lobotomy/extraction = 20,
-					/obj/item/clothing/under/suit/lobotomy/records = 20)
+					/obj/item/clothing/under/suit/lobotomy/records = 20,
+					/obj/item/clothing/neck/cloak/hos/agent = 500,
+					/obj/item/clothing/head/hos/agent = 500,
+					)
 
 	refill_canister = null //Refill it with the clothing of the dead.
 	default_price = PAYCHECK_RESOURCE //Makes vended items cost 0 ahn.
