@@ -263,9 +263,22 @@ GLOBAL_LIST_EMPTY(marked_players)
 			TryAttack()
 			if(QDELETED(src) || stat != CONSCIOUS)
 				return FALSE
-		if(ranged)
-			TakeAim(target)
 		if(!QDELETED(target))
+			if(ranged)
+				/*
+				* ranged cooldown has to be a minimum of 1 second because the npcpool
+				* only procs once per 2 seconds and this cooldown cannot cause it to
+				* proc twice between 2 seconds.
+				*/
+				var/stupidly_complicated_cooldown_calc = world.time - ranged_cooldown
+				if(stupidly_complicated_cooldown_calc > -SSnpcpool.wait)
+					//Our cooldown is less than the next check.
+					if(stupidly_complicated_cooldown_calc < 0)
+						// Try to call this before our next check in 2 SECONDS
+						addtimer(CALLBACK(src, PROC_REF(TakeAim), target), clamp(abs(stupidly_complicated_cooldown_calc) + rand(-1,5), 1, 1.99 SECONDS), TIMER_STOPPABLE)
+					else
+						// Just shootem now.
+						TakeAim(target)
 			if(!targets_from.Adjacent(target))
 				DestroyPathToTarget()
 		if(!MoveToTarget(possible_targets))     //if we lose our target
@@ -1096,33 +1109,20 @@ GLOBAL_LIST_EMPTY(marked_players)
 /mob/living/simple_animal/hostile/proc/TakeAim(atom/shootem)
 	if(!shootem)
 		return FALSE
-	//We can't fire in melee range
-	var/in_range = melee_reach > 1 ? shootem.Adjacent(targets_from) || (get_dist(src, shootem) <= melee_reach && (shootem in view(src, melee_reach))) : shootem.Adjacent(targets_from)
-	if(in_range)
-		return FALSE
-	/*
-	* ranged cooldown has to be a minimum of 1 second because the npcpool
-	* only procs once per 2 seconds and this cooldown cannot cause it to
-	* proc twice between 2 seconds.
-	*/
-	var/stupidly_complicated_cooldown_calc = world.time - ranged_cooldown
-	if(stupidly_complicated_cooldown_calc > -SSnpcpool.wait)
-		//Our cooldown is less than the next check.
-		if(stupidly_complicated_cooldown_calc < 0)
-			// Try to call this before our next check in 2 SECONDS
-			addtimer(CALLBACK(src, PROC_REF(OpenFire), shootem), clamp(abs(stupidly_complicated_cooldown_calc) + rand(-1,5), 1, 1.99 SECONDS), TIMER_STOPPABLE)
-		else
-			// Just shootem now.
-			OpenFire(shootem)
-		return TRUE
-
-//This is called by a callback sometimes so check to make sure we have not violently died.
-/mob/living/simple_animal/hostile/proc/OpenFire(atom/A)
+	if(QDELETED(shootem))
+		return
 	if(QDELETED(src))
 		return
 	if(stat == DEAD)
 		return
+	//We can't fire in melee range
+	var/in_range = melee_reach > 1 ? shootem.Adjacent(targets_from) || (get_dist(src, shootem) <= melee_reach && (shootem in view(src, melee_reach))) : shootem.Adjacent(targets_from)
+	if(in_range)
+		return FALSE
+	OpenFire(shootem)
+	return TRUE
 
+/mob/living/simple_animal/hostile/proc/OpenFire(atom/A)
 	if(CheckFriendlyFire(A))
 		return
 	if(!(simple_mob_flags & SILENCE_RANGED_MESSAGE))
