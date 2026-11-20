@@ -17,6 +17,8 @@ const logger = createLogger('chatRenderer');
 // that is still trackable.
 const SCROLL_TRACKING_TOLERANCE = 24;
 
+// LOBOTOMYCORPORATION EDIT START - no longer used, see mount()
+/*
 const findNearestScrollableParent = startingNode => {
   const body = document.body;
   let node = startingNode;
@@ -31,6 +33,8 @@ const findNearestScrollableParent = startingNode => {
   }
   return window;
 };
+*/
+// LOBOTOMYCORPORATION EDIT END
 
 const createHighlightNode = (text, color) => {
   const node = document.createElement('span');
@@ -108,12 +112,17 @@ class ChatRenderer {
     /** @type {HTMLElement} */
     this.scrollNode = null;
     this.scrollTracking = true;
+    this.lastScrollHeight = 0;
     this.handleScroll = type => {
       const node = this.scrollNode;
+      if (!node) {
+        return;
+      }
       const height = node.scrollHeight;
       const bottom = node.scrollTop + node.offsetHeight;
       const scrollTracking = (
         Math.abs(height - bottom) < SCROLL_TRACKING_TOLERANCE
+        || this.lastScrollHeight === 0
       );
       if (scrollTracking !== this.scrollTracking) {
         this.scrollTracking = scrollTracking;
@@ -143,8 +152,14 @@ class ChatRenderer {
     else {
       this.rootNode = node;
     }
-    // Find scrollable parent
-    this.scrollNode = findNearestScrollableParent(this.rootNode);
+    // LOBOTOMYCORPORATION EDIT START - look up the chat pane by id, as tg
+    // does since #94514. The old scrollbar check ran while the panel was still
+    // 0x0 at startup, found no scrollbar, fell back to `window`, and chat then
+    // never auto-scrolled.
+    // // Find scrollable parent
+    // this.scrollNode = findNearestScrollableParent(this.rootNode);
+    this.scrollNode = document.getElementById('chat-pane');
+    // LOBOTOMYCORPORATION EDIT END
     this.scrollNode.addEventListener('scroll', this.handleScroll);
     setImmediate(() => {
       this.scrollToBottom();
@@ -266,6 +281,10 @@ class ChatRenderer {
         this.queue = [...this.queue, ...batch];
       }
       return;
+    }
+    // Store last scroll position
+    if (this.scrollNode) {
+      this.lastScrollHeight = this.scrollNode.scrollHeight;
     }
     // Insert messages
     const fragment = document.createDocumentFragment();

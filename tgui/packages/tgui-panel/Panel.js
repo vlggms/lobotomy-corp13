@@ -80,7 +80,8 @@ export const Panel = (props, context) => {
         )}
         <Stack.Item grow>
           <Section fill fitted position="relative">
-            <Pane.Content scrollable>
+            {/* LOBOTOMYCORPORATION EDIT - id used by chat/renderer.js mount() (as in tg #94514) */}
+            <Pane.Content scrollable id="chat-pane">
               <ChatPanel lineHeight={settings.lineHeight} />
             </Pane.Content>
             <Notifications>
@@ -115,7 +116,8 @@ const HoboPanel = (props, context) => {
   const settings = useSettings(context);
   return (
     <Pane theme={settings.theme}>
-      <Pane.Content scrollable>
+      {/* LOBOTOMYCORPORATION EDIT - id used by chat/renderer.js mount() (as in tg #94514) */}
+      <Pane.Content scrollable id="chat-pane">
         <Button
           style={{
             position: 'fixed',
