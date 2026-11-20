@@ -25,18 +25,6 @@
 	qdel(src)
 	return
 
-/obj/item/trait_injector/clerk_fear_immunity_injector
-	name = "C-Fear Protection Injector"
-	desc = "Contains fire water that protects clerks from the downsides of witnessing dangerous abnormalities. Use in hand to activate. A small note on the injector states that 'clerk' means anyone with a job under service positions."
-	icon_state = "oddity7_firewater"
-	trait = TRAIT_COMBATFEAR_IMMUNE
-	error_message = "You aren't a clerk."
-	success_message = "You feel emboldened and braver."
-
-/obj/item/trait_injector/clerk_fear_immunity_injector/Initialize()
-	. = ..()
-	roles = GLOB.service_positions
-
 /obj/item/trait_injector/shrimp_injector
 	name = "Shrimp Injector"
 	desc = "The injector contains a pink substance, is this really worth it? Usable by only clerks. Use in hand to activate. A small note on the injector states that 'clerk' means anyone with a job under service positions."

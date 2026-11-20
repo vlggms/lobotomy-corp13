@@ -78,6 +78,10 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	var/total_spent = 0
 	// The number we must reach
 	var/box_goal = 0 // Initialized later
+	// The number that determines how many PE boxes lead to a payout
+	var/box_goal_pay_interval = 0
+	// Boxes that lead to a payout
+	var/box_payout = 0
 	// Where we reached our goal
 	var/goal_reached = FALSE
 	/// Multiplier to PE earned from working on abnormalities
@@ -130,6 +134,8 @@ SUBSYSTEM_DEF(lobotomy_corp)
 /datum/controller/subsystem/lobotomy_corp/proc/SetGoal()
 	var/player_mod = length(GLOB.player_list) * 0.2
 	box_goal = clamp(round(5000 * player_mod), 3000, 36000)
+	box_goal_pay_interval = box_goal * 0.15
+	box_payout = box_goal_pay_interval
 
 
 /datum/controller/subsystem/lobotomy_corp/proc/InitializeOrdeals()
@@ -239,24 +245,43 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	CheckGoal()
 
 /datum/controller/subsystem/lobotomy_corp/proc/CheckGoal()
-	if(goal_reached || box_goal == 0)
+	if(box_goal == 0)
+		return
+	if(available_box + goal_boxes >= box_payout)
+		priority_announce("Payroll has been processed. This is an alpha feature.", "Energy Production", sound='sound/weapons/ego/executive_reload.ogg')
+		var/payment_amt = 100 + round(box_payout * 0.05) //this is awarded to every player
+		var/list/typecache_bank = typecacheof(list(/datum/bank_account/department, /datum/bank_account/remote))//similar loop to the market report
+		for(var/i in SSeconomy.bank_accounts_by_id)
+			var/datum/bank_account/current_acc = SSeconomy.bank_accounts_by_id[i]
+			if(typecache_bank[current_acc.type])
+				continue
+			var/datum/bank_account/B = SSeconomy.bank_accounts_by_id["[i]"]
+			if(B)
+				B.adjust_money(payment_amt)
+		for(var/mob/living/carbon/human/H in GLOB.player_list)
+			to_chat(H, span_notice("[payment_amt] ahn has been deposited into your account."))
+		box_goal_pay_interval = round(box_goal_pay_interval *= 1.05) // Gradually gets higher
+		box_payout += box_goal_pay_interval
+		return
+	if(goal_reached)
 		return
 	if(available_box + goal_boxes >= box_goal)
 		AddLobPoints(4, "Quota Reward")
 		available_box -= box_goal - goal_boxes // Leftover is drained
 		goal_reached = TRUE
-		priority_announce("The energy production goal has been reached.", "Energy Production", sound='sound/misc/notice2.ogg')
-		var/pizzatype_list = subtypesof(/obj/item/food/pizza)
-		pizzatype_list -= /obj/item/food/pizza/arnold // No murder pizza
-		pizzatype_list -= /obj/item/food/pizza/margherita/robo // No robo pizza
-		for(var/mob/living/carbon/human/person in GLOB.mob_living_list)
-			// Yes, this delivers to dead bodies. It's REALLY FUNNY.
-			var/obj/structure/closet/supplypod/centcompod/pod = new()
-			var/pizzatype = pick(pizzatype_list)
-			new pizzatype(pod)
-			pod.explosionSize = list(0,0,0,0)
-			to_chat(person, "<span class='nicegreen'>It's pizza time!</span>")
-			new /obj/effect/pod_landingzone(get_turf(person), pod)
+		priority_announce("The energy production goal has been reached. Have a bonus.", "Energy Production", sound='sound/weapons/ego/executive_reload.ogg')
+		var/payment_amt = round(goal_boxes * 0.5) //this is awarded to every player
+		var/list/typecache_bank = typecacheof(list(/datum/bank_account/department, /datum/bank_account/remote))//similar loop to the market report
+		for(var/i in SSeconomy.bank_accounts_by_id)
+			var/datum/bank_account/current_acc = SSeconomy.bank_accounts_by_id[i]
+			if(typecache_bank[current_acc.type])
+				continue
+			var/datum/bank_account/B = SSeconomy.bank_accounts_by_id["[i]"]
+			if(B)
+				B.adjust_money(payment_amt)
+		for(var/mob/living/carbon/human/H in GLOB.player_list)
+			to_chat(H, span_notice("[payment_amt] ahn has been deposited into your account."))
+		// Add score to our agents for reaching the goal.
 		for(var/mob/M in GLOB.player_list)
 			if(!M.ckey || !M.client)
 				continue

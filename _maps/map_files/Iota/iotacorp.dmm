@@ -8055,27 +8055,11 @@
 /turf/open/floor/facility/dark,
 /area/department_main/discipline)
 "yv" = (
-/obj/item/refiner_filter/yellow{
-	pixel_x = 1;
-	pixel_y = -4
-	},
-/obj/item/refiner_filter/blue{
-	pixel_x = 7;
-	pixel_y = 3
-	},
 /obj/structure/closet/crate{
 	anchored = 1;
 	name = "pe box crate";
 	opened = 1;
 	resistance_flags = 115
-	},
-/obj/item/refiner_filter/blue{
-	pixel_x = 7;
-	pixel_y = 3
-	},
-/obj/item/refiner_filter/yellow{
-	pixel_x = 1;
-	pixel_y = -4
 	},
 /obj/item/rawpe,
 /obj/item/rawpe,

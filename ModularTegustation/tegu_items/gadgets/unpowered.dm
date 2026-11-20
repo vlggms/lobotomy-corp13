@@ -124,18 +124,6 @@
 		else
 			to_chat(user, span_notice("No reagents detected."))
 
-	//abnos spawn slower, for maps that suck lol
-/obj/item/lc13_abnospawn
-	name = "Lobotomy Corporation Radio"
-	desc = "A device that can call L Corp HQ and slow down the Abnormality arrival rate. Use in hand to activate."
-	icon = 'icons/obj/device.dmi'
-	icon_state = "gangtool-yellow"
-
-/obj/item/lc13_abnospawn/attack_self(mob/living/carbon/human/user)
-	to_chat(user, span_nicegreen("You feel that you now have more time."))
-	SSabnormality_queue.next_abno_spawn_time *= 1.5
-	qdel(src)
-
 //Command projector
 /obj/item/commandprojector
 	name = "handheld command projector"
@@ -471,7 +459,7 @@
 //Lobotomizer
 /obj/item/lobotomizer
 	name = "Lobotomizer"
-	desc = "An experimental tool designed to automatically excise damaged parts of one's brain. Due to its █████, the tool gained sentience and is only interested in brains with tumor."
+	desc = "An experimental tool designed to automatically excise damaged parts of one's brain."
 	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
 	icon_state = "lobotomizer"
 	var/lobotomizing = FALSE
@@ -489,7 +477,7 @@
 	lobotomizing = TRUE
 	for(var/i = 1 to 20) //2 minutes to clear severe traumas
 		if(user.is_working) // No, you can't just cheese this process
-			to_chat(user, span_warning("The lobotomizer seems to be more interested in the abnormality."))
+			to_chat(user, span_warning("The lobotomizer stops working."))
 			EndLoop(user)
 			return
 		if(do_after(user, 6 SECONDS, src))
@@ -500,7 +488,7 @@
 			user.emote("scream")
 			user.Jitter(5)
 		else
-			to_chat(user, span_warning("The process was stopped midway, you can feel dissapointment emanating from the lobotomizer."))
+			to_chat(user, span_warning("The process was stopped midway."))
 			EndLoop(user)
 			return
 		if(i == 10) //Cures mild traumas in 1 minute
@@ -657,31 +645,6 @@
 			QDEL_NULL(info_paper)
 			return
 	return FALSE
-
-//EGO Gift Extractor
-/obj/item/ego_gift_extractor
-	name = "EGO gift extractor"
-	desc = "Unpopular due to its excessive energy use, this device extracts gifts from an Abnormality on demand. One-time use."
-	icon = 'icons/obj/items_and_weapons.dmi'
-	icon_state = "nanoimplant"
-
-/obj/item/ego_gift_extractor/attack(mob/living/simple_animal/hostile/abnormality/target, mob/living/carbon/human/user)
-	if(!isabnormalitymob(target))
-		to_chat(user, span_warning("\"[target]\" isn't an Abnormality."))
-		return
-	if(!target.gift_type)
-		to_chat(user, span_notice("\"[target]\" has no gift extractable."))
-		return
-
-	if(!istype(user) || !(user?.mind?.assigned_role in GLOB.security_positions))
-		to_chat(user, span_notice("The Extractor's light flashes red. This tool is meant for Agents and you aren't an Authorized to use this."))
-		return
-
-	var/datum/ego_gifts/target_gift = new target.gift_type
-	user.Apply_Gift(target_gift)
-	to_chat(user, span_nicegreen("[target.gift_message]"))
-	to_chat(user, span_nicegreen("You extract [target]'s gift!"))
-	qdel(src)
 
 /obj/item/reagent_containers/spray/chemsprayer/janitor/clerk
 	name = "clerk chem sprayer"

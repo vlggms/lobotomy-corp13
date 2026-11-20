@@ -206,10 +206,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
-"bJ" = (
-/obj/item/refiner_filter/red,
-/turf/open/floor/carpet/purple,
-/area/department_main/information)
 "bL" = (
 /obj/effect/decal/cleanable/blood/gibs/old,
 /turf/open/floor/wood,
@@ -10043,7 +10039,7 @@ pR
 pR
 NR
 ZZ
-bJ
+YM
 LX
 "}
 (38,1,1) = {"
