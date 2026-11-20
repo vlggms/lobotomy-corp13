@@ -81,6 +81,14 @@
 	qdel(I)
 	qdel(src)
 
+/obj/item/ego_weapon/ranged/hatred/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0, temporary_damage_multiplier = 1)
+	if(!CanUseEgo(user))
+		return
+	. = ..()
+	if(!.)
+		return
+	user.do_attack_animation(target, no_effect = TRUE)
+
 // Magic Bullet armour increases attack speed from 30 to 15
 // Big Iron armour on the other hand increases damage by a factor of 2.5x80, which will give it 40 more damage than the magic bullet armour
 /obj/item/ego_weapon/ranged/magicbullet

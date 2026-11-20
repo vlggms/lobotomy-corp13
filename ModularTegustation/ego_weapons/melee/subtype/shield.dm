@@ -97,6 +97,8 @@
 
 //Starts the block
 /obj/item/ego_weapon/shield/proc/EnableBlock(mob/living/carbon/human/user)
+	if(!user || !istype(user))
+		return
 	block = TRUE
 	block_success = FALSE
 	user.physiology.armor = user.physiology.armor.modifyRating(bomb = 1) //bomb defense must be over 0
