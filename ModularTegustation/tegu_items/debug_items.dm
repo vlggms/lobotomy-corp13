@@ -73,10 +73,6 @@
 	to_chat(target, span_danger("You feel a tiny prick"))
 	ADD_TRAIT(target, TRAIT_WORK_KNOWLEDGE, JOB_TRAIT)
 
-/**
- * Again, similar to /obj/item/trait_injector/clerk_fear_immunity_injector
- * and to everyone's suprise, this one is also un-restricted
- */
 /obj/item/lc_debug/fear_immunity_injector
 	name = "C-Fear Protection Injector"
 	desc = "Contains fire water that protects clerks from the downsides of witnessing dangerous abnormalities. Use in hand to activate."

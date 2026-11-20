@@ -169,7 +169,7 @@
 		if("K Corp Representative")
 			//our corp determines what research and products we get.
 			our_corporation = K_CORP_REP
-			CustomizeOffice(/obj/structure/sign/departments/k_corp, /obj/structure/pe_sales/k_corp)
+			CustomizeOffice(/obj/structure/sign/departments/k_corp, null)
 			//add preloaded items to this list.
 			order_list = list(
 				new /datum/data/extraction_cargo("K Corp Intern Outfit", /obj/item/clothing/under/rank/k_corporation/intern, 100, K_CORP_REP) = 1,
@@ -181,7 +181,7 @@
 
 		if("Main Office Representative")
 			our_corporation = L_CORP_REP
-			CustomizeOffice(/obj/structure/sign/departments/l_corp, /obj/structure/pe_sales/l_corp)
+			CustomizeOffice(/obj/structure/sign/departments/l_corp, null)
 			order_list = list(
 				new /datum/data/extraction_cargo("L Corp Regeneration Augmentation Kit", /obj/item/safety_kit, 400, L_CORP_REP) = 1,
 				new /datum/data/extraction_cargo("L Corp Slowing Trap Generator", /obj/item/powered_gadget/slowingtrapmk1, 400, L_CORP_REP) = 1,
@@ -192,7 +192,7 @@
 
 		if("R Corp Representative")
 			our_corporation = R_CORP_REP
-			CustomizeOffice(/obj/structure/sign/departments/r_corp, /obj/structure/pe_sales/r_corp)
+			CustomizeOffice(/obj/structure/sign/departments/r_corp, null)
 			order_list = list(
 				new /datum/data/extraction_cargo("R Corp Mercenary Outfit", /obj/item/clothing/under/suit/lobotomy/rabbit, 100, R_CORP_REP) = 1,
 				new /datum/data/extraction_cargo("R Corp Ordeal Detector", /obj/item/powered_gadget/detector_gadget/ordeal, 400, R_CORP_REP) = 1,
@@ -202,7 +202,7 @@
 
 		if("W Corp Representative")
 			our_corporation = W_CORP_REP
-			CustomizeOffice(/obj/structure/sign/departments/w_corp, /obj/structure/pe_sales/w_corp)
+			CustomizeOffice(/obj/structure/sign/departments/w_corp, null)
 			order_list = list(
 				new /datum/data/extraction_cargo("W Corp Cleanup Outfit", /obj/item/clothing/under/suit/lobotomy/wcorp, 100, W_CORP_REP) = 1,
 				new /datum/data/extraction_cargo("W Corp Hat", /obj/item/clothing/head/ego_hat/wcorp, 100, W_CORP_REP) = 1,
@@ -212,7 +212,7 @@
 
 		if("N Corp Representative")
 			our_corporation = N_CORP_REP
-			CustomizeOffice(null, /obj/structure/pe_sales/n_corp)
+			CustomizeOffice(null, null)
 			order_list = list()
 
 		if("P Corp Representative")
@@ -226,7 +226,7 @@
 
 		if("J Corp Representative")
 			our_corporation = J_CORP_REP
-			CustomizeOffice(null, /obj/structure/pe_sales/jcorp)
+			CustomizeOffice(null, null)
 			order_list = list(
 				new /datum/data/extraction_cargo("Wooden J Corp Casino Token", /obj/item/coin/casino_token/wood, 25, J_CORP_REP) = 1,
 				new /datum/data/extraction_cargo("Iron J Corp Casino Token", /obj/item/coin/casino_token/iron, 200, J_CORP_REP) = 1,
@@ -287,8 +287,7 @@
 	name = "L-Corp care package"
 
 /obj/item/storage/box/corporation/lcorp/PopulateContents()
-	new /obj/item/ego_gift_extractor(src)
-	new /obj/item/trait_injector/clerk_fear_immunity_injector(src)
+	new /obj/item/safety_kit(src)
 
 /obj/item/storage/box/corporation/rcorp
 	name = "R-Corp care package"

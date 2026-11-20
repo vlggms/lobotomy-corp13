@@ -96,10 +96,6 @@
 	},
 /turf/open/floor/stone,
 /area/city/backstreets_alley)
-"aE" = (
-/obj/structure/pe_sales/l_corp,
-/turf/closed/indestructible/reinforced,
-/area/awaymission/enkr)
 "aI" = (
 /obj/structure/bonfire/prelit,
 /obj/item/organ/eyes/robotic{
@@ -1330,10 +1326,6 @@
 /obj/item/attribute_increase/fixer,
 /turf/open/floor/carpet/purple,
 /area/awaymission/enkr)
-"iG" = (
-/obj/structure/pe_sales/s_corp,
-/turf/closed/indestructible/reinforced,
-/area/awaymission/enkr)
 "iI" = (
 /obj/structure/chair/sofa/left{
 	dir = 8
@@ -2508,14 +2500,6 @@
 /area/awaymission/enkr)
 "qi" = (
 /obj/structure/table/glass,
-/obj/item/refiner_filter/green,
-/obj/item/refiner_filter/green,
-/obj/item/refiner_filter/green,
-/obj/item/refiner_filter/green,
-/obj/item/refiner_filter/blue,
-/obj/item/refiner_filter/blue,
-/obj/item/refiner_filter/blue,
-/obj/item/refiner_filter/blue,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
 /obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
@@ -4773,10 +4757,6 @@
 	},
 /turf/open/floor/plasteel/elevatorshaft,
 /area/awaymission/enkr)
-"EG" = (
-/obj/structure/pe_sales/r_corp,
-/turf/closed/indestructible/reinforced,
-/area/awaymission/enkr)
 "EI" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -5007,14 +4987,6 @@
 /area/awaymission/enkr)
 "Ge" = (
 /obj/structure/table/glass,
-/obj/item/refiner_filter/green,
-/obj/item/refiner_filter/green,
-/obj/item/refiner_filter/green,
-/obj/item/refiner_filter/green,
-/obj/item/refiner_filter/yellow,
-/obj/item/refiner_filter/yellow,
-/obj/item/refiner_filter/yellow,
-/obj/item/refiner_filter/yellow,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
 /obj/item/reagent_containers/hypospray/medipen/safety/lcorp,
@@ -5111,14 +5083,6 @@
 /area/awaymission/enkr)
 "GF" = (
 /obj/structure/table/glass,
-/obj/item/refiner_filter/blue,
-/obj/item/refiner_filter/blue,
-/obj/item/refiner_filter/blue,
-/obj/item/refiner_filter/blue,
-/obj/item/refiner_filter/red,
-/obj/item/refiner_filter/red,
-/obj/item/refiner_filter/red,
-/obj/item/refiner_filter/red,
 /obj/item/paper/fluff/info/refinery,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/facility/halls,
@@ -5673,32 +5637,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/trash/can,
 /turf/open/floor/noslip,
-/area/awaymission/enkr)
-"Kh" = (
-/obj/structure/table/glass,
-/obj/item/refiner_filter/yellow{
-	pixel_x = 1;
-	pixel_y = -4
-	},
-/obj/item/refiner_filter/yellow{
-	pixel_x = 1;
-	pixel_y = -4
-	},
-/obj/item/refiner_filter/yellow{
-	pixel_x = 1;
-	pixel_y = -4
-	},
-/obj/item/refiner_filter/yellow{
-	pixel_x = 1;
-	pixel_y = -4
-	},
-/obj/item/refiner_filter/red,
-/obj/item/refiner_filter/red,
-/obj/item/refiner_filter/red,
-/obj/item/refiner_filter/red,
-/obj/item/paper/fluff/info/refinery,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/facility/halls,
 /area/awaymission/enkr)
 "Ki" = (
 /obj/structure/headpike,
@@ -6618,10 +6556,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/reagent_containers/hypospray/medipen/safety/kcorp,
 /turf/open/floor/plating/dirt,
-/area/awaymission/enkr)
-"PM" = (
-/obj/structure/pe_sales/k_corp,
-/turf/closed/indestructible/reinforced,
 /area/awaymission/enkr)
 "PN" = (
 /obj/effect/turf_decal/siding/thinplating{
@@ -18797,13 +18731,13 @@ Sn
 ha
 Sn
 Sn
-PM
+Sn
 Sn
 Tw
 Ow
 Tw
 Sn
-iG
+Sn
 Sn
 Sn
 ha
@@ -19591,7 +19525,7 @@ Sn
 Sn
 Sn
 Au
-Kh
+GF
 qi
 FH
 FH
@@ -19907,13 +19841,13 @@ Sn
 ha
 Sn
 Sn
-aE
+Sn
 Sn
 Tw
 Ow
 Tw
 Sn
-EG
+Sn
 Sn
 Sn
 ha

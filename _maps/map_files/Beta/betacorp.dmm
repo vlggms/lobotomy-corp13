@@ -2395,7 +2395,6 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/bot,
-/obj/effect/landmark/refinerspawn,
 /turf/open/floor/plasteel/dark,
 /area/department_main/discipline)
 "mk" = (
@@ -2541,22 +2540,6 @@
 "mP" = (
 /obj/effect/turf_decal/siding/purple/corner,
 /obj/structure/table/glass,
-/obj/item/refiner_filter/red{
-	pixel_x = 10;
-	pixel_y = -7
-	},
-/obj/item/refiner_filter/blue{
-	pixel_x = 4;
-	pixel_y = 1
-	},
-/obj/item/refiner_filter/green{
-	pixel_x = -1;
-	pixel_y = -1
-	},
-/obj/item/refiner_filter/yellow{
-	pixel_x = -4;
-	pixel_y = -8
-	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "mU" = (
@@ -4519,10 +4502,6 @@
 /obj/effect/turf_decal/siding/green,
 /turf/open/floor/plasteel/white,
 /area/department_main/safety)
-"vP" = (
-/obj/effect/landmark/salesspawn,
-/turf/closed/indestructible/reinforced,
-/area/department_main/discipline)
 "vR" = (
 /obj/effect/turf_decal/siding{
 	color = "#440000";
@@ -35930,8 +35909,8 @@ fL
 JB
 JB
 rS
-vP
-vP
+rS
+rS
 rS
 rS
 rS
@@ -39014,8 +38993,8 @@ JB
 JB
 JB
 rS
-vP
-vP
+rS
+rS
 rS
 rS
 rS

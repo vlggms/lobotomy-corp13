@@ -436,7 +436,7 @@
 	name = "serpent infestation cure"
 	desc = "A formula that removes O-02-74-1 infestation."
 	icon = 'icons/obj/chromosomes.dmi'
-	icon_state = ""
+	icon_state = "power"
 	color = "gold"
 
 /obj/item/serpentspoison/attack(mob/living/M, mob/user)
