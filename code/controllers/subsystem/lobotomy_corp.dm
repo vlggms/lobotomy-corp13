@@ -84,8 +84,8 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	var/box_work_multiplier = 1
 	/// Multiplier towards attribute points earned for working on melting abnormalities
 	var/melt_work_multiplier = 1
-	/// The area of effect of manager's bullets; -1 is for direct target only
-	var/manager_bullet_area = -1
+	/// The multiplier to the amount of manager bullets
+	var/bullet_multiplier = 1
 	/// When TRUE - abnormalities can be possessed by ghosts
 	var/enable_possession = FALSE
 	/// Amount of abnormalities that agents achieved full understanding on
