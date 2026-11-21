@@ -84,6 +84,7 @@
 	if(!IsCombatMap())
 		var/turf/W = pick(GLOB.department_centers)
 		var/mob/living/simple_animal/hostile/aminion/luna/spawningmonster = new(get_turf(W))
+		spawningmonster.owner = src
 		breached_monster = spawningmonster
 		addtimer(CALLBACK(src, PROC_REF(BreachEnd), user), breach_length)
 
@@ -132,6 +133,8 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/luna/proc/BreachEnd(mob/living/carbon/human/user)
+	if(!breached)
+		return
 	datum_reference.qliphoth_change(3)
 	breached = FALSE
 	icon_state = "dellaluna"
@@ -180,6 +183,7 @@
 	var/canaoe = TRUE
 	var/aoerange = 5
 	var/aoedamage = 30
+	var/mob/living/simple_animal/hostile/abnormality/luna/owner = null
 
 //mob/living/simple_animal/hostile/aminion/luna/Initialize()
 //Cannot figure out how to make this stop
@@ -209,6 +213,15 @@
 
 /mob/living/simple_animal/hostile/aminion/luna/proc/Reset()
 	canaoe = TRUE
+
+/mob/living/simple_animal/hostile/aminion/luna/death(gibbed)
+	if(owner)
+		owner.BreachEnd()
+	..()
+
+/mob/living/simple_animal/hostile/aminion/luna/Destroy()
+	owner = null
+	return ..()
 
 //Lunar
 //Just the classic La Luna buff
