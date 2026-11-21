@@ -3,7 +3,7 @@
 /// These items take advantage of legacy code to make our own items.
 
 /obj/item/safety_bandage/kcorp
-	name = "helapoeisis ampoule"
+	name = "helapoeisis-soaked compress"
 	icon_state = "kcorp"
 	desc = "Bandages soaked in Serum K. Treats wounds very rapidly."
 	special = "Heals brute and organ damage very quickly. Should not be used more than once in a short time period, as there is a high risk of overdose."
@@ -24,7 +24,7 @@
 	desc = "A product of MDM Entreprise, the moonstone. With concentration, this can be used to withstand mental ailments."
 	special = "Heals sanity very quickly. Should not be used more than once in a short time period, as there is a high risk of overdose."
 	list_reagents = list(/datum/reagent/medicine/enkephalin/concentrated = 3)
-	use_sound = 'sound/effects/zzzt.ogg'
+	use_sound = 'sound/effects/curse3.ogg'
 
 /obj/item/safety_bandage/mcorp/try_heal(mob/living/patient, mob/user)
 	if(!ishuman(patient))
