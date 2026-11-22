@@ -105,6 +105,18 @@
 		if("void")
 			effect_name = pick("void", "void_alt")
 			text_color = "#EEEEEE"
+		if(FORTITUDE_ATTRIBUTE)
+			effect_name = "fortitude"
+			text_color = "#CB2642"
+		if(PRUDENCE_ATTRIBUTE)
+			effect_name = "prudence"
+			text_color = "#EFECC0"
+		if(TEMPERANCE_ATTRIBUTE)
+			effect_name = "temperance"
+			text_color = "#814A84"
+		if(JUSTICE_ATTRIBUTE)
+			effect_name = "justice"
+			text_color = "#42CFC6"
 	if(!effect_name)
 		return null
 	effect_name += "[rand(1,2)]"

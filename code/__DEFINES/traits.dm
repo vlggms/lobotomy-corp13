@@ -184,7 +184,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_WEAK_MELEE		"weak_melee"
 #define TRAIT_STRONG_MELEE		"strong_melee"
 #define TRAIT_BETTER_GUNS		"better_guns"
-#define TRAIT_BONUS_EXP			"bonus_exp"
 #define TRAIT_NOEGOWEAPONS		"no_ego_weapons"
 
 /// reduces the use time of syringes, pills, patches and medigels but only when using on someone
