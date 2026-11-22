@@ -40,9 +40,6 @@ GLOBAL_LIST_INIT(attribute_types, list(
 /datum/attribute/proc/get_stat_bonus() // Returns current level of bonus
 	return stat_bonus
 
-/datum/attribute/proc/get_level_limit() // Returns level limit of attribute
-	return level_limit
-
 // Used in show_attributes() human proc
 // Returns current level + initial_stat_value, placed next to information such as modifiers
 // Mainly used by fortitude & prudence
