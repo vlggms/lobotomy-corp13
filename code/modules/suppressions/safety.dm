@@ -1,7 +1,7 @@
 /datum/suppression/safety
 	name = SAFETY_CORE_SUPPRESSION
 	desc = "Regenerators will stop operating normally, all personnel will be healed after each meltdown instead.\n\
-			Sleepers and EMAIS will be non-functional.\n\
+			Sleepers, Hatcheries, and EMAIS will be non-functional.\n\
 			Medi-pens will have a chance to malfunction and require a delay on each activation."
 	reward_text = "All regenerators will receive a permanent +12 boost to healing power."
 	run_text = "The core suppression of Safety department has begun. The regenerators and sleepers will stop operating normally. All personnel will be automatically healed after each meltdown instead."

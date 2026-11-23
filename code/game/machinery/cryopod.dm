@@ -86,7 +86,7 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 	/// The minimum time someone needs to be SSD in order to be cryo'd by another person
 	var/minimum_ssd_time = 10 MINUTES
 	/// Time until despawn when a mob enters a cryopod. You cannot other people in pods unless they're catatonic.
-	var/time_till_despawn = 30 SECONDS
+	var/time_till_despawn = 10 SECONDS
 	/// Cooldown for when it's now safe to try an despawn the player.
 	COOLDOWN_DECLARE(despawn_world_time)
 
