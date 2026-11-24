@@ -5,9 +5,11 @@
 			After clearing Dawn, Noon and Dusk the agents will have to face off against The Claw."
 	goal_text = "Defeat the Midnight of White - The Claw."
 	run_text = "The Ordeals of White have been introduced into the facility's subroutines. There will be one meltdown in-between each ordeal."
+	reward_text = "We will get one step closer to our goal..."
 	annonce_sound = 'sound/effects/combat_suppression_start.ogg'
 	end_sound = 'sound/effects/combat_suppression_end.ogg'
 	after_midnight = TRUE
+	special_core = TRUE
 
 /datum/suppression/keter_day46/Run(run_white = TRUE, silent = FALSE)
 	var/blurb_text = pick(
@@ -26,10 +28,12 @@
 	end_sound = 'sound/effects/combat_suppression_end.ogg'
 	after_midnight = TRUE
 	available = FALSE
+	special_core = TRUE
 	/// List of all cores "inside" of it; On End - ends them, too
 	var/list/running_cores = list()
 	/// List of core names required for this suppression to be available for selection
 	var/list/required_cores = list()
+	var/current_melt = 0
 
 /datum/suppression/combination/New()
 	. = ..()
@@ -54,7 +58,15 @@
 	if(clear_count >= clear_requirement)
 		available = TRUE
 
+/datum/suppression/combination/Run(run_white = FALSE, silent = FALSE)
+	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START, PROC_REF(OnMeltdown))
+
+/datum/suppression/combination/proc/OnMeltdown(datum/source, ordeal = FALSE)
+	current_melt ++
+
 /datum/suppression/combination/End(silent = FALSE)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START)
 	for(var/datum/suppression/S in running_cores)
 		S.End(TRUE)
 	return ..()
@@ -63,9 +75,9 @@
 /datum/suppression/combination/keter_day47
 	name = DAY47_CORE_SUPPRESSION
 	desc = "Effects of core suppressions of Control, Information, Safety and Training departments \
-			will activate for the duration of this test. <br>\
+			will activate one by one throughout the duration of this test. <br>\
 			To complete the challenge - you must defeat the Midnight of White - The Claw."
-	run_text = "Effects of Control, Information, Safety and Training core suppressions are now in effect. Ordeals of White have been introduced in the subroutines."
+	run_text = "The effects of the Control core suppression are now in effect. Ordeals of White have been introduced in the subroutines."
 	required_cores = list(
 		CONTROL_CORE_SUPPRESSION,
 		INFORMATION_CORE_SUPPRESSION,
@@ -87,21 +99,36 @@
 	for(var/i = 1 to length(blurb_list))
 		var/blurb_text = blurb_list[i]
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 10 SECONDS, blurb_text, 1 SECONDS, "white", "black", "center", "CENTER-6,BOTTOM+2"), i * 11 SECONDS)
-	// Create our cores
-	running_cores += new /datum/suppression/control
-	// Less scuffed words in announcements
-	var/datum/suppression/information/I = new
-	I.gibberish_value_increase = 10
-	running_cores += I
-	running_cores += new /datum/suppression/safety
-	// More stat reductions at the start, but gets reverted over time
-	var/datum/suppression/training/T = new
-	T.attribute_debuff_count_starting = -30
-	T.attribute_debuff_count = 5
-	running_cores += T
-	// And then start them all
-	for(var/datum/suppression/S in running_cores)
-		S.Run(FALSE, TRUE)
+	// Starts Control
+	var/datum/suppression/control/C = new
+	running_cores += C
+	C.Run(FALSE, TRUE)
+	SSlobotomy_corp.core_suppression = src
+
+/datum/suppression/combination/keter_day47/OnMeltdown(datum/source, ordeal = FALSE)
+	. = ..()
+	switch(current_melt)
+		if(2) //Dawn
+			priority_announce("The effects of the Info core suppression are now in effect.", name, sound='sound/machines/dun_don_alert.ogg')
+			// Less scuffed words in announcements
+			var/datum/suppression/information/I = new
+			I.gibberish_value = 40
+			I.gibberish_value_increase = 0
+			running_cores += I
+			I.Run(FALSE, TRUE)
+		if(4) //Noon
+			priority_announce("The effects of the Training core suppression are now in effect.", name, sound='sound/machines/dun_don_alert.ogg')
+			// Training Activates
+			var/datum/suppression/training/T = new
+			T.attribute_debuff_count_starting = -25
+			T.attribute_debuff_count = 0
+			running_cores += T
+			T.Run(FALSE, TRUE)
+		if(7) //Dusk with ho healing is a tad much
+			priority_announce("The effects of the Safety core suppression are now in effect.", name, sound='sound/machines/dun_don_alert.ogg')
+			var/datum/suppression/safety/S = new
+			running_cores += S
+			S.Run(FALSE, TRUE)
 
 	// As running all previous ones would set them as main core, we need to reset it
 	SSlobotomy_corp.core_suppression = src
@@ -114,10 +141,11 @@
 // Day 48 - Central Command, Welfare, Disciplinary
 /datum/suppression/combination/keter_day48
 	name = DAY48_CORE_SUPPRESSION
-	desc = "Effects of core suppressions of Central Command, Welfare and Disciplinary departments \
+	desc = "Effects of core suppressions of Central Command and Welfare departments \
 			will activate for the duration of this test. <br>\
+			The Red Mist will make her appearence on the meltdown after the Noon of White.<br>\
 			To complete the challenge - you must defeat the Midnight of White - The Claw."
-	run_text = "Effects of Control, Information, Safety and Training core suppressions are now in effect. Ordeals of White have been introduced in the subroutines."
+	run_text = "Effects of Center Commandand and Welfare core suppressions are now in effect. The Red Mist will return the meltdown after the Noon of White. Ordeals of White have been introduced in the subroutines.."
 	required_cores = list(
 		CONTROL_CORE_SUPPRESSION,
 		INFORMATION_CORE_SUPPRESSION,
@@ -143,23 +171,44 @@
 		var/blurb_text = blurb_list[i]
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 10 SECONDS, blurb_text, 1 SECONDS, "white", "black", "center", "CENTER-6,BOTTOM+2"), i * 11 SECONDS)
 	// Create our cores
-	// Less scuffed words in announcements
 	var/datum/suppression/command/C = new
-	C.meltdown_count_increase = 4
-	C.meltdown_time_multiplier = 0.5
-	C.meltdown_time_reduction = 0.1
+	C.meltdown_count_increase = 2
+	C.meltdown_time_multiplier = 0.8
+	C.meltdown_time_reduction = 0.1 // Maybe having meldowns happening 5x faster while having Welfare jacking up damage taken wouldn't be a good idea
 	running_cores += C
-	// More stat reductions
+	// Some damage types hurt more
 	var/datum/suppression/welfare/W = new
+	//Scales much less or else it and Central combined would be unbeatable after dusk
+	W.damage_mod = 1.5
+	W.mod_increase = 0.25 //Scales up to 2x
+	W.mod_count = 2
+	//Scales up to 4 types later on
+	W.selection_increase = 0
 	running_cores += W
-	// TODO: Red mist spawn
-	// --------------------
-	// And then start them all
 	for(var/datum/suppression/S in running_cores)
 		S.Run(FALSE, TRUE)
 
 	// As running all previous ones would set them as main core, we need to reset it
 	SSlobotomy_corp.core_suppression = src
+
+/datum/suppression/combination/keter_day48/OnMeltdown(datum/source, ordeal = FALSE)
+	. = ..()
+	switch(current_melt)
+		if(4) //Noon
+			SSlobotomy_corp.is_boss_ready = TRUE
+		if(5)
+			SSlobotomy_corp.is_boss_ready = FALSE
+			var/datum/suppression/welfare/W = GetCoreSuppression(/datum/suppression/welfare)
+			W.mod_count = 0//Just like in base LC, Welfare gets disabled during the red mist refight
+			W.selection_limit = 4//You can't pray for it not hitting red for claw!
+			W.selection_increase = 2//Needed to bounce back the scaling after setting it to 0
+			W.OnMeltdown()
+			priority_announce("[SSlobotomy_corp.next_ordeal.name] will trigger on the next meltdown.", "Qliphoth Meltdown", sound='sound/effects/meltdownAlert.ogg')
+			/*var/turf/T = pick(GLOB.department_centers)
+			var/mob/living/simple_animal/hostile/megafauna/red_mist/RM = new(T)
+			// A bit nerfed, like in lob corp
+			RM.maxHealth = round(RM.maxHealth * 0.6)
+			RM.health = RM.maxHealth*/
 
 /datum/suppression/combination/keter_day48/End(silent = FALSE)
 	var/blurb_text = "You will reach tomorrow. You can overcome this regret and atonement."
@@ -170,9 +219,9 @@
 /datum/suppression/combination/keter_day49
 	name = DAY49_CORE_SUPPRESSION
 	desc = "Effects of Records core suppression will be present throughout the entire challenge. <br>\
-			The Arbiter will make their appearence after completing the Noon of White.<br>\
+			The Arbiter will make their appearence on the meltdown after the Noon Noon of White.<br>\
 			To complete the challenge - you must defeat the Midnight of White - The Claw."
-	run_text = "The effects of Records core suppression are now in effect. The Arbiter will return after completing the Noon of White. Ordeals of White have been introduced in the subroutines."
+	run_text = "The effects of Records core suppression are now in effect. The Arbiter will return the meltdown after the Noon of White. Ordeals of White have been introduced in the subroutines."
 	required_cores = list(
 		CONTROL_CORE_SUPPRESSION,
 		INFORMATION_CORE_SUPPRESSION,
@@ -190,7 +239,6 @@
 
 /datum/suppression/combination/keter_day49/Run(run_white = TRUE, silent = FALSE)
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_ORDEAL_END, PROC_REF(OnOrdealEnd))
 	// Ominous blurbs
 	var/list/blurb_list = list(
 		"You won't believe how long I have been painstakingly waiting for you.",
@@ -207,26 +255,47 @@
 	var/datum/suppression/records/R = new
 	R.teleport_interval = 30 SECONDS
 	R.teleport_min_distance = 1
-	R.teleport_max_distance = 3
-	R.teleport_min_mob_count = 0.5
-	R.teleport_max_mob_count = 0.8
+	R.teleport_max_distance = 2
+	R.abno_swap_scale = 20
+
+	R.teleport_interval_scale = 5 SECONDS
+	R.teleport_min_distance_scale = 1
+	R.teleport_max_distance_scale = 1
+	R.teleport_min_mob_scale = 0.1
+	R.teleport_max_mob_scale = 0.1
 	running_cores += R
 	R.Run(FALSE, TRUE)
 
 	SSlobotomy_corp.core_suppression = src
 
+/datum/suppression/combination/keter_day49/OnMeltdown(datum/source, ordeal = FALSE)
+	. = ..()
+	switch(current_melt)
+		if(4) //Noon
+			SSlobotomy_corp.is_boss_ready = TRUE
+		if(5)
+			SSlobotomy_corp.is_boss_ready = FALSE
+			// Make records less AIDS
+			var/datum/suppression/records/R = GetCoreSuppression(/datum/suppression/records)
+			R.teleport_interval = 20 SECONDS
+			var/turf/T = pick(GLOB.department_centers)
+			sound_to_playing_players_on_level('sound/magic/arbiter/repulse.ogg', 100, zlevel = T.z)
+			var/blurb_text = pick(
+				"You cannot escape the Head.",
+				"If you cannot defeat me, you shall be crushed by the Head and its ruthless Claws yet again.",
+				"What do you think you will accomplish on your own, even after breaking out of this prison?",
+				)
+			INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 5 SECONDS, blurb_text, 1 SECONDS, "black", "yellow", "center", "CENTER-6,BOTTOM+2")
+			var/mob/living/simple_animal/hostile/megafauna/arbiter/A = new(T)
+			// A bit nerfed, so you don't suffer like you are in hell, okay?
+			A.maxHealth = round(A.maxHealth * 0.6)
+			A.health = A.maxHealth
+			priority_announce("[SSlobotomy_corp.next_ordeal.name] will trigger on the next meltdown.", "Qliphoth Meltdown", sound='sound/effects/meltdownAlert.ogg')
+
 /datum/suppression/combination/keter_day49/End(silent = FALSE)
-	UnregisterSignal(SSdcs, COMSIG_GLOB_ORDEAL_END)
 	var/blurb_text = "So you refuse to join me, and instead choose to move toward the unpredictable future?"
 	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 10 SECONDS, blurb_text, 1 SECONDS, "white", "black", "center", "CENTER-6,BOTTOM+2")
 	return ..()
-
-/datum/suppression/combination/keter_day49/proc/OnOrdealEnd(datum/source, datum/ordeal/O)
-	SIGNAL_HANDLER
-	if(!istype(O, /datum/ordeal/fixers/white_noon))
-		return
-	// Spawn the arbiter
-	addtimer(CALLBACK(src, PROC_REF(SpawnArbiter)), 10 SECONDS)
 
 /datum/suppression/combination/keter_day49/proc/SpawnArbiter()
 	// Make records less AIDS
@@ -244,16 +313,13 @@
 	// A bit nerfed, so you don't suffer like you are in hell, okay?
 	A.maxHealth = round(A.maxHealth * 0.6)
 	A.health = A.maxHealth
-	// While nerfed in health, its attacks are more rapid
-	A.spikes_cooldown_time = round(A.spikes_cooldown_time * 0.5)
-	A.fairy_cooldown_time = round(A.fairy_cooldown_time * 0.5)
-	A.key_cooldown_time = round(A.key_cooldown_time * 0.5)
 
+//I have no idea what to do with this core?
 // Day 50 - Tree of Light
-/datum/suppression/combination/keter_day50
+/*/datum/suppression/combination/keter_day50
 	name = DAY50_CORE_SUPPRESSION
 	desc = "The facility will experience unusual effects on it, with unknown subset of ordeals present.<br>\
-			To complete the challenge - you must defeat the Eclipse of White."
+			To complete the challenge - you must defeat the Something..."
 	run_text = "The final day on your job has come."
 	required_cores = list(
 		CONTROL_CORE_SUPPRESSION,
@@ -287,4 +353,4 @@
 		)
 	for(var/i = 1 to length(blurb_list))
 		var/blurb_text = blurb_list[i]
-		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 10 SECONDS, blurb_text, 1 SECONDS, "white", "black", "center", "CENTER-6,BOTTOM+2"), i * 11 SECONDS)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 10 SECONDS, blurb_text, 1 SECONDS, "white", "black", "center", "CENTER-6,BOTTOM+2"), i * 11 SECONDS) */

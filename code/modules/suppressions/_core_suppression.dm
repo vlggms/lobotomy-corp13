@@ -17,6 +17,8 @@
 	var/end_sound = null
 	/// If TRUE - will only show up after clearing midnight; Those suppressions are essentially the extra bossfight
 	var/after_midnight = FALSE
+	/// If TRUE - will only show up after clearing midnight and under a time limit; Those suppressions are essentially end game content
+	var/special_core = TRUE
 	/// If TRUE - persistence file will be updated; This is to prevent admins from "accidentally" breaking it
 	var/legitimate = FALSE
 	/// If FALSE - will not appear anywhere under normal circumstances

@@ -7,12 +7,18 @@
 	desc = "All employees will suffer from decreased resistance to randomly chosen damage types, which change on each meltdown."
 	reward_text = "All personnel will be able to avoid death/insanity by instantly healing to certain percentage \
 		of either health or sanity each time they reach that point. \
-		Amount of health/sanity restored decreases with each activation: 60% - 45% - 30% - 15%."
+		Amount of health/sanity restored decreases with each activation: 50% - 25%."
 	run_text = "The core suppression of Welfare department has begun. All personnel will be suffering from decreased damage resistances."
 	/// By how much a chosen damage type modifier will be multiplied exactly
-	var/damage_mod = 2
+	var/damage_mod = 1.5
 	/// How many damage types will be changed
 	var/mod_count = 1
+	/// How much does the damage multiplier gets increased by after an ordeal
+	var/mod_increase = 0.5
+	///By how much does the selection count increases per meltdown
+	var/selection_increase = 1
+	//the selection count for damage types to multiply
+	var/selection_limit = 3
 	var/list/affected_statuses = list()
 	// Multipliers
 	var/list/current_resist = list(
@@ -60,8 +66,8 @@
 	var/current_damage_mod = damage_mod
 	if(ordeal)
 		current_damage_mod = 1.5 // Don't kill everyone too hard during ordeals(Pale Fixer with x3 damage be like...)
-		damage_mod = min(4, damage_mod + 0.5) // With each ordeal passing, normal meltdowns will be more difficult
-		mod_count = min(3, mod_count + 1) // More damage types get rolled
+		damage_mod = min(2.5, damage_mod + mod_increase) // With each ordeal passing, normal meltdowns will be more difficult
+		mod_count = min(selection_limit, mod_count + selection_increase) // More damage types get rolled
 	var/list/temp_list = current_resist.Copy()
 	for(var/R in current_resist) // Reset values
 		current_resist[R] = 1
@@ -154,9 +160,9 @@
 	duration = -1
 	alert_type = null
 	/// How much health/sanity is restored in percentage of max health
-	var/restore_percentage = 0.6
+	var/restore_percentage = 0.5
 	/// How much is reduced from restore_percentage on each activation
-	var/percentage_decrease = 0.15
+	var/percentage_decrease = 0.25
 	/// If restore_percentage reaches this or below - the status effect will be deleted
 	var/minimum_restore_percentage = 0.1
 

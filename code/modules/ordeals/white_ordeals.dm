@@ -2,7 +2,7 @@
 	name = "Fixers"
 	announce_text = "This isn't supposed to happen, but they have come for you. Might want to report this to central command."
 	can_run = FALSE
-	delay = 1 // Goes back-to-back
+	delay = 2 // It will always give exactly 1 normal meltdown in-between ordeals
 	random_delay = FALSE
 	reward_percent = 0.1
 	announce_sound = 'sound/effects/ordeals/white_start.ogg'
@@ -88,7 +88,7 @@
 	end_announce_text = "No one dares to stand against them. As long as they exist, \
 	the tale of the Nest will never reach its close."
 	level = 9
-	delay = 1
+	delay = 2
 	random_delay = FALSE
 	reward_percent = 0.25
 	announce_sound = 'sound/effects/ordeals/white_start.ogg'
