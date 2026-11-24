@@ -134,7 +134,7 @@
 		return
 	if(remaining_healing_time > 0)
 		adjustBruteLoss(-maxHealth*0.01)
-		remaining_healing_time -= 1
+		remaining_healing_time --
 	// Spawn spikes every once in a while
 	if(spikes_cooldown <= world.time)
 		INVOKE_ASYNC(src, PROC_REF(SpawnSpikes))

@@ -571,6 +571,8 @@
  * Projectile crossed: When something enters a projectile's tile, make sure the projectile hits it if it should be hitting it.
  */
 /obj/projectile/Crossed(atom/movable/AM)
+	if(!fired)
+		return
 	. = ..()
 	scan_crossed_hit(AM)
 
@@ -579,8 +581,9 @@
  * Used to not even attempt to Bump() or fail to Cross() anything we already hit.
  */
 /obj/projectile/CanPassThrough(atom/blocker, turf/target, blocker_opinion)
-	return impacted[blocker]? TRUE : ..()
-
+	if(!fired)
+		return TRUE
+	return impacted[blocker] ? TRUE : ..()
 /**
  * Projectile moved:
  *
