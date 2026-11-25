@@ -234,6 +234,11 @@
 			else
 				work_speed *= 0.9 //10% faster work
 	work_speed /= user.physiology.work_speed_mod
+	// Binah spirals out of control too fast if we allow for the work speed penalty from the 1st/2nd/3rd Trumpet to effect her melts
+	if(was_melting in list(MELTDOWN_GRAY, MELTDOWN_GOLD, MELTDOWN_PURPLE, MELTDOWN_CYAN))
+		var/datum/status_effect/trumpetlevel/T = user.has_status_effect(/datum/status_effect/trumpetlevel)
+		if(T)
+			work_speed *= T.work_speed
 	var/success_boxes = 0
 	var/total_boxes = 0
 	var/canceled = FALSE

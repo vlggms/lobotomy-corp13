@@ -307,7 +307,9 @@
 
 	SLEEP_CHECK_DEATH(0.5 SECONDS)
 	playsound(get_turf(src), 'sound/magic/arbiter/pillar_start.ogg', 75, FALSE, 12)
-	new /obj/effect/projectile_delayed(start_loc, target, src, projectile_type, 0.8 SECONDS)
+	var/obj/effect/projectile_delayed/P = new(start_loc, target, src, projectile_type, 0.8 SECONDS)
+	if(P.projectile)
+		P.projectile.preparePixelProjectile(target_loc, src) //We want the pillar to aim at where the target was 0.8 seconds ago
 	SLEEP_CHECK_DEATH(0.8 SECONDS)
 	icon_state = "arbiter_fairy"
 	SLEEP_CHECK_DEATH(1 SECONDS)
