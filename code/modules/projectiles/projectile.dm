@@ -31,6 +31,7 @@
 	//Fired processing vars
 	var/fired = FALSE	//Have we been fired yet
 	var/paused = FALSE	//for suspending the projectile midair
+	var/should_check_start = FALSE //For having projectiles check for targets on its spawn point
 	var/last_projectile_move = 0
 	var/last_process = 0
 	var/time_offset = 0
@@ -719,6 +720,8 @@
 	SEND_SIGNAL(src, COMSIG_PROJECTILE_FIRE)
 	if(hitscan)
 		process_hitscan()
+	if(should_check_start)
+		scan_moved_turf()
 	if(!(datum_flags & DF_ISPROCESSING))
 		START_PROCESSING(SSprojectiles, src)
 	pixel_move(1, FALSE)	//move it now!

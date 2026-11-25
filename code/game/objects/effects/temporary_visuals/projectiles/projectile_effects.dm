@@ -60,6 +60,10 @@
 	owner = owner_key
 
 /obj/effect/projectile_delayed //Object that functions as a handler for delayed projectiles
+	anchored = TRUE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	movement_type = FLYING
+	generic_canpass = FALSE
 	var/obj/projectile/projectile_path
 	var/obj/projectile/projectile = null
 	var/turf/target_turf
@@ -94,6 +98,7 @@
 		projectile.xo = target.x - T.x
 		projectile.original = target
 		projectile.preparePixelProjectile(target, T)
+		projectile.should_check_start = TRUE
 		target_turf = get_turf(target)
 		addtimer(CALLBACK(src, PROC_REF(Fire)), timetofire)
 	else
