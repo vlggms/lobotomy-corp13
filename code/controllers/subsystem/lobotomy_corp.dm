@@ -161,7 +161,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		if(!extra_core && initial(C.after_midnight))
 			cores -= core_type
 			continue
-		if(extra_core && (!initial(C.after_midnight) || !special && C.special_core))
+		if(extra_core && ((!initial(C.after_midnight)) || ((!special) && C.special_core)))
 			cores -= core_type
 			continue
 		// Create to see if it meets requirements and becomes available
@@ -169,7 +169,10 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		if(!C.available)
 			cores -= core_type
 		qdel(C)
-	for(var/i = 1 to max_core_options)
+	var/amount = max_core_options
+	if(extra_core)
+		amount = 8
+	for(var/i = 1 to amount)
 		if(!LAZYLEN(cores))
 			break
 		var/core_type = pick(cores)
@@ -198,7 +201,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	for(var/obj/machinery/computer/abnormality_auxiliary/A in GLOB.lobotomy_devices)
 		A.audible_message("<span class='userdanger'>Special Core Suppression options will be disabled if you don't pick one in a minute!</span>")
 		playsound(get_turf(A), 'sound/machines/dun_don_alert.ogg', 100, TRUE, 14)
-	addtimer(CALLBACK(src, PROC_REF(RemoveWhiteCores), TRUE), (1 MINUTES))
+	addtimer(CALLBACK(src, PROC_REF(RemoveSpecialCores), TRUE), (1 MINUTES))
 
 /datum/controller/subsystem/lobotomy_corp/proc/ResetPotentialSuppressions(announce = FALSE)
 	if(istype(core_suppression) || !LAZYLEN(available_core_suppressions))
@@ -213,14 +216,15 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		priority_announce("Core Suppression hasn't been chosen in 5 minutes window and have been disabled for this shift.", \
 						"Core Suppression", sound = 'sound/machines/dun_don_alert.ogg')
 
-/datum/controller/subsystem/lobotomy_corp/proc/RemoveWhiteCores(announce = FALSE)
+/datum/controller/subsystem/lobotomy_corp/proc/RemoveSpecialCores(announce = FALSE)
 	if(istype(core_suppression) || !LAZYLEN(available_core_suppressions))
 		return
 	for(var/core_type in available_core_suppressions)
-		var/datum/suppression/C = core_type
+		// Create to see if it meets requirements and becomes available
+		var/datum/suppression/C = new core_type()
 		if(C.special_core)
-			available_core_suppressions -= C
-			qdel(C)
+			available_core_suppressions -= core_type
+		qdel(C)
 	for(var/obj/machinery/computer/abnormality_auxiliary/A in GLOB.lobotomy_devices)
 		A.audible_message("<span class='userdanger'>Special Core Suppression options have been disabled for this shift!</span>")
 		playsound(get_turf(A), 'sound/machines/dun_don_alert.ogg', 100, TRUE, 14)

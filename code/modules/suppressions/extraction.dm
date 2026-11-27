@@ -1,7 +1,7 @@
 // It is effectively an ordeal in how it works
 /datum/suppression/extraction
 	name = EXTRACTION_CORE_SUPPRESSION
-	desc = "The illusion of the Arbiter will return to wreak havoc once more. <br>\
+	desc = "The illusion of the Arbiter will return to wreak havoc once more.\n\
 			Special types of meltdowns have to be cleared to weaken the Arbiter; Otherwise you stand no chance."
 	goal_text = "Defeat the Arbiter."
 	run_text = "The core suppression of Extraction department has begun. The Arbiter has returned."
