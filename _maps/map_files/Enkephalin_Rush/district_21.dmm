@@ -2243,10 +2243,6 @@
 /obj/structure/pallid,
 /turf/open/floor/carpet,
 /area/department_main/control)
-"vP" = (
-/obj/effect/landmark/salesspawn,
-/turf/closed/indestructible/reinforced,
-/area/city)
 "vQ" = (
 /obj/machinery/facility_holomap,
 /turf/open/floor/plating/rust,
@@ -2566,11 +2562,6 @@
 	},
 /turf/open/floor/plating/rust,
 /area/department_main/command)
-"za" = (
-/obj/effect/landmark/salesspawn,
-/obj/structure/disposalpipe/segment,
-/turf/closed/indestructible/reinforced,
-/area/city)
 "zb" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/water/deep/polluted,
@@ -14162,7 +14153,7 @@ LH
 yH
 DZ
 DZ
-vP
+nD
 si
 nD
 DZ
@@ -14308,7 +14299,7 @@ cP
 Ny
 DZ
 DZ
-vP
+nD
 lU
 nD
 DZ
@@ -14454,7 +14445,7 @@ aW
 RR
 LH
 LH
-za
+LH
 gZ
 LH
 yH

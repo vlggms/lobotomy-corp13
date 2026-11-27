@@ -11,66 +11,8 @@
 	icon_screen = "extraction_cargo"
 	resistance_flags = INDESTRUCTIBLE
 	var/selected_level = CAT_GADGET
-
+	// TODO - get rid of all this shit. I need to convert this console into an upgrade panel and make one for each department.
 	var/list/order_list = list( //if you add something to this, please, for the love of god, sort it by price/type. use tabs and not spaces.
-		//Gadgets - More Technical Equipment, Usually active
-		new /datum/data/extraction_cargo("Tracking Implant Kit ", 		/obj/item/storage/box/minertracker,									150, CAT_GADGET) = 1,
-		new /datum/data/extraction_cargo("Command Projector ",			/obj/item/commandprojector,											150, CAT_GADGET) = 1,
-		new /datum/data/extraction_cargo("'DEEPSCAN' Kit ",				/obj/item/deepscanner,												150, CAT_GADGET) = 1,
-		new /datum/data/extraction_cargo("Qliphoth Field Projector ",	/obj/item/powered_gadget/slowingtrapmk1,							150, CAT_GADGET) = 1,
-		new /datum/data/extraction_cargo("Regenerator Augmentor ",		/obj/item/safety_kit,												150, CAT_GADGET) = 1,
-		new /datum/data/extraction_cargo("Drain Monitor ",				/obj/item/powered_gadget/detector_gadget/abnormality,				200, CAT_GADGET) = 1,
-		new /datum/data/extraction_cargo("Keen-Sense Rangefinder ",		/obj/item/powered_gadget/detector_gadget/ordeal,					200, CAT_GADGET) = 1,
-		new /datum/data/extraction_cargo("EMAIS	Capacity Upgrade ",		/obj/item/hypo_upgrade/cap_increase,								200, CAT_GADGET) = 1,
-		new /datum/data/extraction_cargo("Prototype Enkephalin Injector ",/obj/item/powered_gadget/enkephalin_injector,						200, CAT_GADGET) = 1,
-		new /datum/data/extraction_cargo("Instant Clerkbot Constructor ",/obj/item/clerkbot_gadget,											250, CAT_GADGET) = 1,
-		//new /datum/data/extraction_cargo("C-Fear Protection Injector ",	/obj/item/trait_injector/clerk_fear_immunity_injector,			300, CAT_GADGET) = 1,
-		new /datum/data/extraction_cargo("Handheld Taser",				/obj/item/powered_gadget/handheld_taser,							300, CAT_GADGET) = 1,
-		new /datum/data/extraction_cargo("Vitals Projector ",			/obj/item/powered_gadget/vitals_projector,							300, CAT_GADGET) = 1,
-		new /datum/data/extraction_cargo("Shrimp Injector ",			/obj/item/trait_injector/shrimp_injector,							300, CAT_GADGET) = 1,
-		new /datum/data/extraction_cargo("EMAIS	Autoinjector ",			/obj/item/reagent_containers/hypospray/emais,						300, CAT_GADGET) = 1,
-		new /datum/data/extraction_cargo("Meson Scanner Goggles ",		/obj/item/clothing/glasses/meson,									500, CAT_GADGET) = 1,
-		new /datum/data/extraction_cargo("Gar Meson Scanner Goggles ",	/obj/item/clothing/glasses/meson/gar,								600, CAT_GADGET) = 1,
-
-		//Equipment - Passive equipment, or less technical stuff.
-		new /datum/data/extraction_cargo("'Seclite' Flashlight ",		/obj/item/flashlight/seclite,										30, CAT_EQUIP) = 1,
-		new /datum/data/extraction_cargo("Hunting Knife ",				/obj/item/kitchen/knife/hunting,									30, CAT_EQUIP) = 1,
-		new /datum/data/extraction_cargo("Throwing Bola ",				/obj/item/restraints/legcuffs/bola,									50, CAT_EQUIP) = 1,
-		new /datum/data/extraction_cargo("EGO Small Arms Belt ",		/obj/item/storage/belt/ego,											50, CAT_EQUIP) = 1,
-		new /datum/data/extraction_cargo("Nitrile Gloves ",				/obj/item/clothing/gloves/color/latex/nitrile,						50, CAT_EQUIP) = 1,
-		new /datum/data/extraction_cargo("Combat Webbing ",				/obj/item/storage/belt/military,									60, CAT_EQUIP) = 1,
-		new /datum/data/extraction_cargo("EZ Light Replacer ",			/obj/item/lightreplacer,											60, CAT_EQUIP) = 1,
-		new /datum/data/extraction_cargo("Toolbox ",					/obj/item/storage/toolbox/mechanical,								60, CAT_EQUIP) = 1,
-		new /datum/data/extraction_cargo("Push Broom ",					/obj/item/pushbroom,												60, CAT_EQUIP) = 1,
-		new /datum/data/extraction_cargo("Fire Extinguisher ",			/obj/item/extinguisher,												60, CAT_EQUIP) = 1,
-		new /datum/data/extraction_cargo("Portable Fire Extinguisher ",	/obj/item/extinguisher/mini,										100, CAT_EQUIP) = 1,
-		new /datum/data/extraction_cargo("Super Power Cell ",			/obj/item/stock_parts/cell/super,									150, CAT_EQUIP) = 1,
-		new /datum/data/extraction_cargo("Megaphone ",					/obj/item/megaphone,												150, CAT_EQUIP) = 1,
-		new /datum/data/extraction_cargo("Binoculars ",					/obj/item/binoculars,												200, CAT_EQUIP) = 1,
-
-		//Medical
-		new /datum/data/extraction_cargo("Stamina Ampoule ",			/obj/item/reagent_containers/hypospray/medipen/safety/rcorp,		40, CAT_MEDICAL) = 1,
-		new /datum/data/extraction_cargo("Health Ampoule ",				/obj/item/reagent_containers/hypospray/medipen/safety/kcorp,		50, CAT_MEDICAL) = 1,
-		new /datum/data/extraction_cargo("Sanity Ampoule ",				/obj/item/reagent_containers/hypospray/medipen/safety/lcorp,		50, CAT_MEDICAL) = 1,
-		new /datum/data/extraction_cargo("Health Bandage ",				/obj/item/safety_bandage/kcorp,										150, CAT_MEDICAL) = 1,
-		new /datum/data/extraction_cargo("Sanity Moonstone ",			/obj/item/safety_bandage/mcorp,										150, CAT_MEDICAL) = 1,
-		new /datum/data/extraction_cargo("Bolus-Soaked Bandages ",		/obj/item/safety_bandage/hcorp,										150, CAT_MEDICAL) = 1,
-		new /datum/data/extraction_cargo("Standard First-Aid Kit ",		/obj/item/storage/firstaid/regular,									250, CAT_MEDICAL) = 1,
-		new /datum/data/extraction_cargo("Naked Nest Cure Vial ",		/obj/item/serpentspoison,											400, CAT_MEDICAL) = 1,
-		new /datum/data/extraction_cargo("Orange Tree Flamer",			/obj/item/ego_weapon/ranged/flammenwerfer,							500, CAT_MEDICAL) = 1,
-		new /datum/data/extraction_cargo("Prosthetic Limb Crate ",		/obj/structure/closet/crate/freezer/surplus_limbs,					500, CAT_MEDICAL) = 1,
-		new /datum/data/extraction_cargo("Assorted Medi-Pen Kit ",		/obj/item/storage/firstaid/revival,									500, CAT_MEDICAL) = 1,
-
-		//Resources - Raw PE, ETC. Abnochem stuff goes here too. This is one use items to further LC13 systems
-		new /datum/data/extraction_cargo("Blue Filter ",				/obj/item/refiner_filter/blue,										5, CAT_RESOURCE) = 1,
-		new /datum/data/extraction_cargo("Green Filter ",				/obj/item/refiner_filter/green,										5, CAT_RESOURCE) = 1,
-		new /datum/data/extraction_cargo("Red Filter ",					/obj/item/refiner_filter/red,										5, CAT_RESOURCE) = 1,
-		new /datum/data/extraction_cargo("Yellow Filter ",				/obj/item/refiner_filter/yellow,									5, CAT_RESOURCE) = 1,
-		new /datum/data/extraction_cargo("Raw PE Box ",					/obj/item/rawpe,													50, CAT_RESOURCE) = 1,
-		new /datum/data/extraction_cargo("Chemical Extraction Upgrade ",/obj/item/work_console_upgrade/chemical_extraction_attachment,		150, CAT_RESOURCE) = 1,
-		new /datum/data/extraction_cargo("AbnoChem Starter Pack ",		/obj/structure/closet/crate/science/abnochem_startercrate,			250, CAT_RESOURCE) = 1,
-		new /datum/data/extraction_cargo("Mysterious Invitation ",		/obj/item/invitation,												1500, CAT_RESOURCE) = 1,
-
 		//Random stuff
 		new /datum/data/extraction_cargo("Bubblegum Gum Packet ",		/obj/item/storage/box/gum/bubblegum,								15, CAT_OTHER) = 1,
 		new /datum/data/extraction_cargo("Cigar ",						/obj/item/clothing/mask/cigarette/cigar/havana,						25, CAT_OTHER) = 1,
@@ -91,8 +33,6 @@
 		new /datum/data/extraction_cargo("Pet Whistle",					/obj/item/pet_whistle,												200, CAT_OTHER) = 1,
 		new /datum/data/extraction_cargo("Margherita Pizza ",			/obj/item/food/pizza/margherita,									300, CAT_OTHER) = 1,
 		new /datum/data/extraction_cargo("Super Gar Glasses ",			/obj/item/clothing/glasses/sunglasses/gar/supergar,					500, CAT_OTHER) = 1,
-		new /datum/data/extraction_cargo("Agent Captain's Cloak ",		/obj/item/clothing/neck/cloak/hos/agent,							500, CAT_OTHER) = 1,
-		new /datum/data/extraction_cargo("Agent Captain's Cap ",		/obj/item/clothing/head/hos/agent,									500, CAT_OTHER) = 1,
 		new /datum/data/extraction_cargo("Plushie Lootbox",				/obj/item/plushgacha,												1000, CAT_OTHER) = 1,
 		new /datum/data/extraction_cargo("Binah Doll ",					/obj/item/toy/plush/binah,											1000, CAT_OTHER) = 1,
 
@@ -165,7 +105,7 @@
 
 			//So we have to adjust the available boxes down but adjust the goal boxes up. Why?
 			//Adjusting the available boxes adjusts the goal. This is just the best way to do it
-			SSlobotomy_corp.AdjustAvailableBoxes(-1 * product_datum.cost)
+			SSlobotomy_corp.AdjustAvailableBoxes(-1 * product_datum.cost) // PE boxes should not be a currency. TODO: Rework this to use LOB points instead. And no consumable items. This should be for faciltiy upgrades. -Cox
 			if(!SSlobotomy_corp.goal_reached)	//Okay, funny bug, if you have your goal eached and add goal boxes, then it adds to available boxes.
 				SSlobotomy_corp.AdjustGoalBoxes(product_datum.cost)		//Normal
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)

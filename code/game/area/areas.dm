@@ -28,6 +28,8 @@
 	var/totalbeauty = 0
 	/// Beauty average per open turf in the area
 	var/beauty = 0
+	/// Beauty at roundstart, to determine beauty only based on player actions.
+	var/beauty_roundstart = 0
 	/// If a room is too big it doesn't have beauty.
 	var/beauty_threshold = 150
 
@@ -190,7 +192,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
  */
 /area/LateInitialize()
 	power_change()		// all machines set to current power level, also updates icon
-	update_beauty()
+	update_beauty(TRUE)
 
 /area/proc/RunGeneration()
 	if(map_generator)
@@ -607,7 +609,9 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 			addtimer(CALLBACK(L.client, TYPE_PROC_REF(/client, ResetAmbiencePlayed)), 600)
 
 ///Divides total beauty in the room by roomsize to allow us to get an average beauty per tile.
-/area/proc/update_beauty()
+/area/proc/update_beauty(roundstart)
+	if(roundstart)
+		beauty_roundstart = totalbeauty
 	if(!areasize)
 		beauty = 0
 		return FALSE

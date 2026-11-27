@@ -68,7 +68,7 @@
 	SSticker.ordeal_info[ordeal_position] = end_time
 	var/total_reward = max(SSlobotomy_corp.box_goal, 3000) * reward_percent
 	priority_announce("The Ordeal has ended. Facility has been rewarded with [reward_percent*100]% PE.", name, sound='sound/vox_fem/..ogg')
-	SSlobotomy_corp.AdjustAvailableBoxes(total_reward)
+	addtimer(CALLBACK(SSlobotomy_corp, TYPE_PROC_REF(/datum/controller/subsystem/lobotomy_corp, AdjustAvailableBoxes), total_reward), 10 SECONDS) // Delays adding PE boxes, so that sounds do not overlap as often.
 	SSlobotomy_corp.current_ordeals -= src
 	if(SSlobotomy_emergency.should_calc_score)
 		SSlobotomy_emergency.UpdateMin()

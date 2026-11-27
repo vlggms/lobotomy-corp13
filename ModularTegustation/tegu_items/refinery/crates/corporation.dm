@@ -25,8 +25,7 @@
 
 	//Injectors and rare extractors, quite desireable as they are quite expensive.
 	veryrareloot =	list(
-		/obj/item/trait_injector/clerk_fear_immunity_injector,
-		/obj/item/ego_gift_extractor,
+		/obj/item/managerbullet,
 	)
 
 //K Corporation

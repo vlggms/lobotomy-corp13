@@ -292,10 +292,6 @@
 	},
 /turf/open/floor/pod/dark,
 /area/shuttle/mining)
-"N" = (
-/obj/effect/landmark/salesspawn,
-/turf/closed/wall/mineral/titanium/survival/pod,
-/area/shuttle/mining)
 "R" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 1;
@@ -396,7 +392,7 @@ u
 X
 d
 n
-N
+u
 i
 i
 a
@@ -413,7 +409,7 @@ u
 z
 d
 G
-N
+u
 i
 W
 D
@@ -447,7 +443,7 @@ u
 z
 d
 G
-N
+u
 i
 o
 V
@@ -464,7 +460,7 @@ u
 v
 d
 h
-N
+u
 i
 i
 l
