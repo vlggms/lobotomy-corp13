@@ -198,7 +198,7 @@
 /datum/suppression/combination/keter_day48/OnMeltdown(datum/source, ordeal = FALSE)
 	. = ..()
 	if(current_melt == 2) //Noon
-			SSlobotomy_corp.is_boss_ready = TRUE
+		SSlobotomy_corp.is_boss_ready = TRUE
 	if(SSlobotomy_corp.is_boss_ready)
 		SSlobotomy_corp.is_boss_ready = FALSE
 		var/datum/suppression/welfare/W = GetCoreSuppression(/datum/suppression/welfare)
