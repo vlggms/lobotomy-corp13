@@ -60,6 +60,8 @@
 	SIGNAL_HANDLER
 	if(!ordeal)
 		return
+	if(!attribute_debuff_count)
+		return
 	for(var/mob/living/carbon/human/H in GLOB.human_list)
 		if(!H.ckey)
 			continue

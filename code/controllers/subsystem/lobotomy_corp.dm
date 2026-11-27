@@ -105,6 +105,8 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	var/restart_timer = null
 	/// If the shuttle is coming or not
 	var/shuttle = FALSE
+	/// Used for day 48 and 49's boss fights
+	var/is_boss_ready = FALSE
 
 /datum/controller/subsystem/lobotomy_corp/Initialize(timeofday)
 	if(SSmaptype.maptype in SSmaptype.combatmaps) // sleep
@@ -145,7 +147,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	return TRUE
 
 // Called when any normal midnight ends
-/datum/controller/subsystem/lobotomy_corp/proc/PickPotentialSuppressions(announce = FALSE, extra_core = FALSE)
+/datum/controller/subsystem/lobotomy_corp/proc/PickPotentialSuppressions(announce = FALSE, extra_core = FALSE, special = FALSE)
 	if(istype(core_suppression))
 		return
 	var/obj/machinery/computer/abnormality_auxiliary/aux_cons = locate() in GLOB.lobotomy_devices
@@ -159,7 +161,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		if(!extra_core && initial(C.after_midnight))
 			cores -= core_type
 			continue
-		if(extra_core && !initial(C.after_midnight))
+		if(extra_core && ((!initial(C.after_midnight)) || ((!special) && C.special_core)))
 			cores -= core_type
 			continue
 		// Create to see if it meets requirements and becomes available
@@ -167,7 +169,10 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		if(!C.available)
 			cores -= core_type
 		qdel(C)
-	for(var/i = 1 to max_core_options)
+	var/amount = max_core_options
+	if(extra_core)
+		amount = 8
+	for(var/i = 1 to amount)
 		if(!LAZYLEN(cores))
 			break
 		var/core_type = pick(cores)
@@ -176,11 +181,13 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	if(!LAZYLEN(available_core_suppressions))
 		return
 	// This solution is hacky and extra dirty I hate it
-	if(extra_core)
+	if(special)
 		addtimer(CALLBACK(src, PROC_REF(WarnBeforeReset)), (4 MINUTES))
 	if(announce)
 		var/announce_text = "[extra_core ? "Extra" : "Sephirah"] Core Suppressions have been made available via auxiliary managerial consoles."
 		var/announce_title = "[extra_core ? "Extra" : "Sephirah"] Core Suppression"
+		if(special)
+			announce_text += " Additionally, Special Core Supressions have been made temporarily available."
 		priority_announce(announce_text, \
 						announce_title, sound = 'sound/machines/dun_don_alert.ogg')
 	for(var/obj/machinery/computer/abnormality_auxiliary/A in GLOB.lobotomy_devices)
@@ -189,22 +196,42 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		A.updateUsrDialog()
 
 /datum/controller/subsystem/lobotomy_corp/proc/WarnBeforeReset()
+	if(istype(core_suppression) || !LAZYLEN(available_core_suppressions))
+		return
 	for(var/obj/machinery/computer/abnormality_auxiliary/A in GLOB.lobotomy_devices)
-		A.audible_message("<span class='userdanger'>Core Suppression options will be disabled if you don't pick one in a minute!</span>")
+		A.audible_message("<span class='userdanger'>Special Core Suppression options will be disabled if you don't pick one in a minute!</span>")
 		playsound(get_turf(A), 'sound/machines/dun_don_alert.ogg', 100, TRUE, 14)
-	addtimer(CALLBACK(src, PROC_REF(ResetPotentialSuppressions), TRUE), (1 MINUTES))
+	addtimer(CALLBACK(src, PROC_REF(RemoveSpecialCores), TRUE), (1 MINUTES))
 
 /datum/controller/subsystem/lobotomy_corp/proc/ResetPotentialSuppressions(announce = FALSE)
 	if(istype(core_suppression) || !LAZYLEN(available_core_suppressions))
 		return
+	available_core_suppressions = list()
 	for(var/obj/machinery/computer/abnormality_auxiliary/A in GLOB.lobotomy_devices)
 		A.audible_message("<span class='userdanger'>Core Suppression options have been disabled for this shift!</span>")
 		playsound(get_turf(A), 'sound/machines/dun_don_alert.ogg', 100, TRUE, 14)
 		A.selected_core_type = null
 		A.updateUsrDialog()
-	available_core_suppressions = list()
 	if(announce)
 		priority_announce("Core Suppression hasn't been chosen in 5 minutes window and have been disabled for this shift.", \
+						"Core Suppression", sound = 'sound/machines/dun_don_alert.ogg')
+
+/datum/controller/subsystem/lobotomy_corp/proc/RemoveSpecialCores(announce = FALSE)
+	if(istype(core_suppression) || !LAZYLEN(available_core_suppressions))
+		return
+	for(var/core_type in available_core_suppressions)
+		// Create to see if it meets requirements and becomes available
+		var/datum/suppression/C = new core_type()
+		if(C.special_core)
+			available_core_suppressions -= core_type
+		qdel(C)
+	for(var/obj/machinery/computer/abnormality_auxiliary/A in GLOB.lobotomy_devices)
+		A.audible_message("<span class='userdanger'>Special Core Suppression options have been disabled for this shift!</span>")
+		playsound(get_turf(A), 'sound/machines/dun_don_alert.ogg', 100, TRUE, 14)
+		A.selected_core_type = null
+		A.updateUsrDialog()
+	if(announce)
+		priority_announce("A Special Core Suppression hasn't been chosen in 5 minutes window and have been disabled for this shift.", \
 						"Core Suppression", sound = 'sound/machines/dun_don_alert.ogg')
 
 /datum/controller/subsystem/lobotomy_corp/proc/NewAbnormality(datum/abnormality/new_abno)
@@ -293,8 +320,9 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	for(var/obj/structure/sign/ordealmonitor/O in GLOB.lobotomy_devices)
 		O.update_icon()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MELTDOWN_START, ran_ordeal)
-	if(ran_ordeal)
+	if(ran_ordeal || is_boss_ready)
 		return
+
 	InitiateMeltdown(qliphoth_meltdown_amount, FALSE)
 	// Less agents will decrease meltdown count, but more - increase it
 	var/agent_mod = 0.4 + (player_count * 0.1)

@@ -98,9 +98,10 @@
 			continue
 		SSpersistence.agent_rep_change[H.ckey] += level
 	/// If it was a midnight and we got to it before time limit
-	if(level == 4 && start_time <= (CONFIG_GET(number/suppression_time_limit) + (GetFacilityUpgradeValue(UPGRADE_MELTDOWN_INCREASE) * 20 MINUTES)))
+	if(level == 4)
 		// Extra cores, and announced!
-		addtimer(CALLBACK(SSlobotomy_corp, TYPE_PROC_REF(/datum/controller/subsystem/lobotomy_corp, PickPotentialSuppressions), TRUE, TRUE), 15 SECONDS)
+		var/special_cores = start_time <= CONFIG_GET(number/suppression_time_limit) + (GetFacilityUpgradeValue(UPGRADE_MELTDOWN_INCREASE) * 20 MINUTES)
+		addtimer(CALLBACK(SSlobotomy_corp, TYPE_PROC_REF(/datum/controller/subsystem/lobotomy_corp, PickPotentialSuppressions), TRUE, TRUE, special_cores), 15 SECONDS)
 	/// If it was a dusk - we end running core suppression
 	else if(level == 3 && istype(SSlobotomy_corp.core_suppression))
 		addtimer(CALLBACK(SSlobotomy_corp.core_suppression, TYPE_PROC_REF(/datum/suppression, End)), 5 SECONDS)

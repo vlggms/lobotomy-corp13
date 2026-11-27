@@ -21,6 +21,14 @@
 	/// Maximum percent of valid mobs to be teleported
 	var/teleport_max_mob_count = 0.2
 
+	/// Scaling Variables
+	var/abno_swap_scale = 20
+	var/teleport_interval_scale = 10 SECONDS
+	var/teleport_min_distance_scale = 1
+	var/teleport_max_distance_scale = 2
+	var/teleport_min_mob_scale = 0.15
+	var/teleport_max_mob_scale = 0.2
+
 /datum/suppression/records/Run(run_white = FALSE, silent = FALSE)
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START, PROC_REF(OnQlipMeltdown))
@@ -80,12 +88,12 @@
 	if(!ordeal)
 		return
 
-	abno_swap_percentage = max(10, abno_swap_percentage + 20)
-	teleport_interval = max(5 SECONDS, teleport_interval - 10 SECONDS)
-	teleport_min_mob_count = max(0.8, teleport_min_mob_count + 0.15)
-	teleport_max_mob_count = max(1, teleport_max_mob_count + 0.2)
-	teleport_min_distance = min(10, teleport_min_distance + 1)
-	teleport_max_distance = min(15, teleport_max_distance + 2)
+	abno_swap_percentage = max(10, abno_swap_percentage + abno_swap_scale)
+	teleport_interval = max(5 SECONDS, teleport_interval - teleport_interval_scale)
+	teleport_min_mob_count = max(0.8, teleport_min_mob_count + teleport_min_mob_scale)
+	teleport_max_mob_count = max(1, teleport_max_mob_count + teleport_max_mob_scale)
+	teleport_min_distance = min(10, teleport_min_distance + teleport_min_distance_scale)
+	teleport_max_distance = min(15, teleport_max_distance + teleport_max_distance_scale)
 
 // Show after-image of swapped abnos
 /datum/suppression/records/proc/OnAbnoSwap(datum/source, datum/abnormality/A1, datum/abnormality/A2)
@@ -115,6 +123,8 @@
 			continue
 		var/mob/living/simple_animal/hostile/abnormality/A = L
 		if(istype(A) && A.IsContained())
+			continue
+		if(L?:can_act == FALSE) // This should capture 99% of instances where something shouldn't teleport
 			continue
 		var/mob/living/carbon/human/H = L
 		if(istype(H) && H.is_working)
