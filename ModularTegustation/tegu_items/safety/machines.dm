@@ -26,8 +26,6 @@
 	var/signal_registered = FALSE // Allows a new hatchery to recieve a signal if one is somehow deleted.
 	var/flick_cooldown_time = 2 SECONDS
 	var/flick_cooldown
-	var/revive_cooldown
-	var/revive_cooldown_time = 20 SECONDS
 	resistance_flags = INDESTRUCTIBLE
 	max_integrity = 1000000
 
@@ -49,6 +47,10 @@
 
 /obj/machinery/hatchery/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/bodypart/head))
+		to_chat(user, span_warning("You start placing [I] into the hatchery."))
+
+		if(!do_after(user, 4 SECONDS, target = I))
+			return.
 		var/obj/item/bodypart/head/newmob = I
 		if(!newmob.brainmob)
 			FailureResponse("ERROR: No signs of life.")
@@ -57,6 +59,10 @@
 		newmob.brainmob.grab_ghost()
 		RevivePreCheck(newmob, null, newmob.brainmob.real_name, newmob.brainmob.ckey, newmob.brainmob.mind, newmob.brainmob.client)
 	if(istype(I, /obj/item/organ/brain))
+		to_chat(user, span_warning("You start placing [I] into the hatchery."))
+
+		if(!do_after(user, 4 SECONDS, target = I))
+			return
 		var/obj/item/organ/brain/newmob = I
 		if(!newmob.brainmob)
 			FailureResponse("ERROR: No signs of life.")
@@ -68,9 +74,6 @@
 /obj/machinery/hatchery/proc/RevivePreCheck(obj/item/I, mob/living/carbon/human/H, realname, ckey, mind, client)
 	if(GetCoreSuppression(/datum/suppression/safety))
 		FailureResponse("ERROR: Machinery is stalled due to anomalous readings.")
-		return
-	if(revive_cooldown > world.time)
-		FailureResponse("ERROR: Someone has been manually revived recently! Please wait a bit before using this again!")
 		return
 	if(!stored_bodies[realname])
 		FailureResponse("ERROR: No stored data for [realname].")
@@ -87,7 +90,6 @@
 			FailureResponse("ERROR : [realname] has been manually revived too many times! Please wait till an ordeal is over to try again!")
 			return FALSE
 	if(revive_body(realname, ckey, TRUE, H))
-		revive_cooldown = world.time + revive_cooldown_time
 		if(I)
 			qdel(I)
 		if(H)
@@ -256,26 +258,38 @@
 		new_body.mind.assigned_role = job
 	if(old_body)
 		var/old_clothes = old_body.get_item_by_slot(ITEM_SLOT_ICLOTHING) // we need to equip a uniform first for everything else to properly equip
-		if(old_clothes)
-			new_body.equip_to_appropriate_slot(old_clothes, FALSE, TRUE) // If we can grab clothes, then we can also grab belts, pockets, and id
-			if(old_body.get_item_by_slot(ITEM_SLOT_BELT))
-				var/obj/item/the_belt = old_body.get_item_by_slot(ITEM_SLOT_BELT)
-				new_body.equip_to_slot_if_possible(the_belt, ITEM_SLOT_BELT, bypass_equip_delay_self = TRUE)
-			if(old_body.get_item_by_slot(ITEM_SLOT_LPOCKET))
-				var/obj/item/left_pocket = old_body.get_item_by_slot(ITEM_SLOT_LPOCKET)
-				new_body.equip_to_slot_if_possible(left_pocket, ITEM_SLOT_LPOCKET, bypass_equip_delay_self = TRUE)
-			if(old_body.get_item_by_slot(ITEM_SLOT_RPOCKET))
-				var/obj/item/right_pocket = old_body.get_item_by_slot(ITEM_SLOT_RPOCKET)
-				new_body.equip_to_slot_if_possible(right_pocket, ITEM_SLOT_RPOCKET, bypass_equip_delay_self = TRUE)
 		var/old_armor = old_body.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+		if(old_clothes)
+			var/obj/item/the_belt = old_body.get_item_by_slot(ITEM_SLOT_BELT)
+			var/obj/item/left_pocket = old_body.get_item_by_slot(ITEM_SLOT_LPOCKET)
+			var/obj/item/right_pocket = old_body.get_item_by_slot(ITEM_SLOT_RPOCKET)
+			var/obj/item/id = old_body.get_item_by_slot(ITEM_SLOT_ID)
+
+			old_body.dropItemToGround(old_clothes, silent = TRUE)
+			new_body.equip_to_appropriate_slot(old_clothes, FALSE, TRUE) // If we can grab clothes, then we can also grab belts, pockets, and id
+
+			//Lets place their stuff back in their inventory
+			if(the_belt)
+				new_body.equip_to_slot_if_possible(the_belt, ITEM_SLOT_BELT, bypass_equip_delay_self = TRUE)
+			if(left_pocket)
+				new_body.equip_to_slot_if_possible(left_pocket, ITEM_SLOT_LPOCKET, bypass_equip_delay_self = TRUE)
+			if(right_pocket)
+				new_body.equip_to_slot_if_possible(right_pocket, ITEM_SLOT_RPOCKET, bypass_equip_delay_self = TRUE)
+			if(id)
+				new_body.equip_to_slot_if_possible(id, ITEM_SLOT_ID, bypass_equip_delay_self = TRUE)
 		if(old_armor)
 			if(istype(old_armor, /obj/item/clothing/suit/armor/ego_gear))
+				var/obj/item/s_store = old_body.s_store
+				old_body.dropItemToGround(old_armor, silent = TRUE)
 				new_body.equip_to_appropriate_slot(old_armor, FALSE, TRUE)
-				if(old_body.s_store)
-					new_body.equip_to_slot_if_possible(old_body.s_store, ITEM_SLOT_SUITSTORE, bypass_equip_delay_self = TRUE)
+				if(s_store)
+					new_body.equip_to_slot_if_possible(s_store, ITEM_SLOT_SUITSTORE, bypass_equip_delay_self = TRUE)
+
 		// Do not use this to grab belts, pockets, id, equip_to_appropriate_slot does not properly handle that.
-		for(var/obj/item/slot_item in old_body.get_all_slots() - list(old_body.w_uniform, old_body.wear_suit, old_body.l_store, old_body.r_store, old_body.s_store, old_body.belt))
-			new_body.equip_to_appropriate_slot(slot_item, FALSE, TRUE)
+		for(var/obj/item/slot_item in old_body.get_all_slots() - list(old_body.w_uniform, old_body.wear_suit, old_body.l_store, old_body.r_store, old_body.s_store, old_body.belt, old_body.wear_id))
+			if(slot_item)
+				old_body.dropItemToGround(slot_item, silent = TRUE)
+				new_body.equip_to_appropriate_slot(slot_item, FALSE, TRUE)
 	else
 		new_body.equipOutfit(/datum/outfit/job/patient)
 
@@ -375,7 +389,7 @@
 
 	to_chat(user, span_warning("You start pulling [M] into the hatchery."))
 
-	if(do_after(user, 2 SECONDS, target = M)) //If you're going to throw someone else, they have to be dead first.
+	if(do_after(user, 4 SECONDS, target = M)) //If you're going to throw someone else, they have to be dead first.
 		if(M.stat != DEAD)
 			FailureResponse("ERROR: Subject not dead.")
 			return
