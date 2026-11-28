@@ -165,6 +165,50 @@
 	flick_overlay(heal_effect, GLOB.clients, 8)
 	return heal_effect
 
+/// Creates an attribute pop up
+/// Amount - the amount of damage
+/// Attribute - The damage type
+/// Scale - How big the text is
+/// Extratext - any extra text stapled on to the end
+/atom/proc/AttributeEffect(amount, attribute, scale = 1, extratext = "")
+	var/effect_name
+	var/text_color = "#FFFFFF"
+	switch(attribute)
+		if(FORTITUDE_ATTRIBUTE)
+			effect_name = "fortitude"
+			text_color = "#CB2642"
+		if(PRUDENCE_ATTRIBUTE)
+			effect_name = "prudence"
+			text_color = "#EFECC0"
+		if(TEMPERANCE_ATTRIBUTE)
+			effect_name = "temperance"
+			text_color = "#814A84"
+		if(JUSTICE_ATTRIBUTE)
+			effect_name = "justice"
+			text_color = "#42CFC6"
+	if(!effect_name)
+		return null
+	var/image/other_effect = image('ModularTegustation/Teguicons/lc13_coloreffect.dmi', get_turf(src), effect_name, EMISSIVE_LAYER)
+	other_effect.pixel_x = rand(-12, 12)
+	other_effect.pixel_y = rand(-9, 0)
+	other_effect.plane = GAME_PLANE
+	other_effect.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+	if(amount)
+		other_effect.pixel_y = rand(-9, 9)
+		other_effect.pixel_x = rand(-16, 8)// Move it a bit more to the side to make way for text
+		if(isnum(amount))
+			other_effect.maptext_x = 22
+			other_effect.maptext_y = 10
+			other_effect.maptext_height = 32
+			other_effect.maptext_width = 32
+			var/style = "font-family: 'Better VCR'; font-size: 5px; -dm-text-outline: 1px black; color: [text_color];"
+			other_effect.maptext = "<span style=\"[style]\">[round(amount, 0.1)][extratext]</span>"
+	if(scale != 1)
+		other_effect.transform *= scale
+	animate(other_effect, pixel_x = other_effect.pixel_x + rand(1, 4), pixel_y = other_effect.pixel_y + 10, alpha = 0, time = rand(12, 18), easing = SINE_EASING)
+	flick_overlay(other_effect, GLOB.clients, 18)
+	return other_effect
+
 //These Are Legacy versions. I ported and expanded the flick versions to be better and more versitle
 /obj/effect/temp_visual/healing
 	icon = 'ModularTegustation/Teguicons/lc13_coloreffect.dmi'

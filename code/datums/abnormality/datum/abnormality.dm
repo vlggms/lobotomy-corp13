@@ -248,16 +248,14 @@
 			attribute_given = clamp(((maximum_attribute_level / (user_attribute_level * 0.25)) * (0.25 + (pe / max_boxes))), 0, 16)
 			if((user_attribute_level + attribute_given + 1) >= maximum_attribute_level) // Already/Will/Should be at maximum.
 				attribute_given = max(0, maximum_attribute_level - user_attribute_level)
-				//This player trait gives you a +1 to each work
-				if(HAS_TRAIT(user, TRAIT_BONUS_EXP))
-					attribute_given ++
-			if(attribute_given == 0)
-				if(was_melting)
-					attribute_given = threat_level * SSlobotomy_corp.melt_work_multiplier
-				else
-					to_chat(user, span_warning("You don't feel like you've learned anything from this!"))
-			if(HAS_TRAIT(user, TRAIT_BONUS_EXP))
-				attribute_given ++
+			if(attribute_given == 0 && was_melting)
+				attribute_given = threat_level * SSlobotomy_corp.melt_work_multiplier
+			if(attribute_given != 0 && user_attribute.level < user_attribute.level_limit) // We sort of don't want this going off if they wouldn't gain any stats
+				to_chat(user, span_notice("You gained [round(attribute_given)] [attribute_type]!"))
+				user.AttributeEffect(round(attribute_given), attribute_type)
+			else
+				to_chat(user, span_warning("You don't feel like you've learned anything from this!"))
+
 			user.adjust_attribute_level(attribute_type, attribute_given)
 
 	if(console?.tutorial) //don't run logging-related code if tutorial console
