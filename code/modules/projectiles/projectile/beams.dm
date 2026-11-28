@@ -293,6 +293,7 @@
 	white_healing = FALSE
 	projectile_piercing = PASSMOB
 	projectile_phasing = (ALL & (~PASSMOB) & (~PASSCLOSEDTURF))
+	hit_nondense_targets = TRUE
 
 	light_color = LIGHT_COLOR_YELLOW
 	beam_type = list("fairy", 'icons/effects/beam.dmi')
