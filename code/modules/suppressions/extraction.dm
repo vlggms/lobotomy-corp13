@@ -76,6 +76,7 @@
 	var/datum/looping_sound/arbiter_pillar_storm/stormloop
 	/// List of pillars that are about to get fired
 	var/list/storm_pillars = list()
+	/// The current Pillar
 	/// If TRUE - will stop repeating the ring effect around arbiter
 	var/stop_storm_effect = FALSE
 	// Ability variables
@@ -133,7 +134,7 @@
 		return
 	if(remaining_healing_time > 0)
 		adjustBruteLoss(-maxHealth*0.01)
-		remaining_healing_time -= 1
+		remaining_healing_time --
 	// Spawn spikes every once in a while
 	if(spikes_cooldown <= world.time)
 		INVOKE_ASYNC(src, PROC_REF(SpawnSpikes))
@@ -184,7 +185,13 @@
 /mob/living/simple_animal/hostile/megafauna/arbiter/AttackingTarget(atom/attacked_target)
 	return OpenFire(attacked_target)
 
-/mob/living/simple_animal/hostile/megafauna/arbiter/OpenFire(target)
+/mob/living/simple_animal/hostile/megafauna/arbiter/OpenFire(atom/target)
+	if(QDELETED(src))
+		return
+	if(stat == DEAD)
+		return
+	if(QDELETED(target))
+		return
 	if(charging)
 		return
 	if(client)
@@ -300,7 +307,9 @@
 
 	SLEEP_CHECK_DEATH(0.5 SECONDS)
 	playsound(get_turf(src), 'sound/magic/arbiter/pillar_start.ogg', 75, FALSE, 12)
-	new /obj/effect/projectile_delayed(start_loc, target, src, projectile_type, 0.8 SECONDS)
+	var/obj/effect/projectile_delayed/P = new(start_loc, target, src, projectile_type, 0.8 SECONDS)
+	if(P.projectile)
+		P.projectile.preparePixelProjectile(target_loc, src) //We want the pillar to aim at where the target was 0.8 seconds ago
 	SLEEP_CHECK_DEATH(0.8 SECONDS)
 	icon_state = "arbiter_fairy"
 	SLEEP_CHECK_DEATH(1 SECONDS)
