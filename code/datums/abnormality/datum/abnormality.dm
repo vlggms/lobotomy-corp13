@@ -252,7 +252,7 @@
 				attribute_given = threat_level * SSlobotomy_corp.melt_work_multiplier
 			if(attribute_given != 0 && user_attribute.level < user_attribute.level_limit) // We sort of don't want this going off if they wouldn't gain any stats
 				to_chat(user, span_notice("You gained [round(attribute_given)] [attribute_type]!"))
-				user.OtherDamageEffect(round(attribute_given), attribute_type)
+				user.AttributeEffect(round(attribute_given), attribute_type)
 			else
 				to_chat(user, span_warning("You don't feel like you've learned anything from this!"))
 

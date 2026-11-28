@@ -30,6 +30,7 @@
 		user.apply_status_effect(given_status_effect)
 		used_by += user
 
+	user.AttributeEffect(given_attribute, max_boost / 10)
 	user.adjust_attribute_buff(given_attribute, max_boost / 10) // always 10 uses
 	used_by[user] += 1
 
