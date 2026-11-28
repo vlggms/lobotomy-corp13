@@ -37,6 +37,8 @@
 		return FALSE
 	var/mob/living/carbon/human/H = M
 	if(slot_flags & slot) // Equipped to right slot, not just in hands
+		if(bypass_equip_delay_self)
+			return ..()
 		if(!CanUseEgo(H))
 			return FALSE
 		if(equip_slowdown > 0 && (M == equipper || !equipper))

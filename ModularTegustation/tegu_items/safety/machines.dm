@@ -22,6 +22,7 @@
 	use_power = NO_POWER_USE
 	var/revival_attribute_penalty = -6
 	var/static/list/stored_bodies = list() // Static vars are the same across all objects. This saves on performance vs making a datum or global
+	var/static/list/player_lives = list()
 	var/signal_registered = FALSE // Allows a new hatchery to recieve a signal if one is somehow deleted.
 	var/flick_cooldown_time = 2 SECONDS
 	var/flick_cooldown
@@ -32,6 +33,7 @@
 	. = ..()
 	if(!length(GLOB.hatcheries))
 		RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(TryPreserveBody)) // only the first hatchery starts storing information on bodies
+		RegisterSignal(SSdcs, COMSIG_GLOB_ORDEAL_END, PROC_REF(RestoreLives)) // only the first hatchery restores lives
 		signal_registered = TRUE
 	GLOB.hatcheries += src
 
@@ -45,6 +47,10 @@
 
 /obj/machinery/hatchery/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/bodypart/head))
+		to_chat(user, span_warning("You start placing [I] into the hatchery."))
+
+		if(!do_after(user, 4 SECONDS, target = I))
+			return.
 		var/obj/item/bodypart/head/newmob = I
 		if(!newmob.brainmob)
 			FailureResponse("ERROR: No signs of life.")
@@ -53,6 +59,10 @@
 		newmob.brainmob.grab_ghost()
 		RevivePreCheck(newmob, null, newmob.brainmob.real_name, newmob.brainmob.ckey, newmob.brainmob.mind, newmob.brainmob.client)
 	if(istype(I, /obj/item/organ/brain))
+		to_chat(user, span_warning("You start placing [I] into the hatchery."))
+
+		if(!do_after(user, 4 SECONDS, target = I))
+			return
 		var/obj/item/organ/brain/newmob = I
 		if(!newmob.brainmob)
 			FailureResponse("ERROR: No signs of life.")
@@ -62,6 +72,9 @@
 		RevivePreCheck(newmob, null, newmob.brainmob.real_name, newmob.brainmob.ckey, newmob.brainmob.mind, newmob.brainmob.client)
 
 /obj/machinery/hatchery/proc/RevivePreCheck(obj/item/I, mob/living/carbon/human/H, realname, ckey, mind, client)
+	if(GetCoreSuppression(/datum/suppression/safety))
+		FailureResponse("ERROR: Machinery is stalled due to anomalous readings.")
+		return
 	if(!stored_bodies[realname])
 		FailureResponse("ERROR: No stored data for [realname].")
 		return
@@ -71,13 +84,24 @@
 	if(!client)
 		FailureResponse("ERROR: [realname] is currently unresponsive, but may return.")
 		return
+
+	if(player_lives[ckey] != null)
+		if(player_lives[ckey] <= 0)
+			FailureResponse("ERROR : [realname] has been manually revived too many times! Please wait till an ordeal is over to try again!")
+			return FALSE
 	if(revive_body(realname, ckey, TRUE, H))
 		if(I)
 			qdel(I)
 		if(H)
-			H.gib(TRUE, TRUE, TRUE)
+			playsound(src, 'sound/effects/blobattack.ogg', 60, TRUE)
+			qdel(H)
 	else
 		FailureResponse("ERROR: Unknown error. Contact an administrator.")
+
+
+/obj/machinery/hatchery/proc/RestoreLives()
+	for(var/ckey in player_lives)
+		player_lives[ckey] = 3
 
 /obj/machinery/hatchery/ui_interact(mob/user)
 	. = ..()
@@ -108,7 +132,7 @@
 			dat += "No data found.<br>"
 	else
 		dat += "<hr>"
-		dat += "Insert subject head or body to initiate incubation sequence.<br>"
+		dat += "Insert subject head, brain, or body to initiate incubation sequence.<br>"
 
 	var/datum/browser/popup = new(user, "body_preservation", "Hatchery Interface", 300, 300)
 	popup.set_content(dat)
@@ -179,7 +203,7 @@
 	if(!stored_bodies[real_name])
 		return FALSE
 
-	if(LAZYLEN(SSlobotomy_corp.current_ordeals) && !nopenalty)
+	if(LAZYLEN(SSlobotomy_corp.current_ordeals))
 		FailureResponse("ERROR : An ordeal is currently in progress.")
 		return FALSE
 
@@ -232,30 +256,50 @@
 	new_body.ckey = ckey
 	if(job)
 		new_body.mind.assigned_role = job
-	var/has_id
 	if(old_body)
-		var/obj/item/storage/box/hatchery/ourbox = new(get_turf(new_body))
-		var/obj/item/card/id/C = old_body.get_idcard(TRUE)
-		if(C)
-			has_id = TRUE
-		var/list/old_items = list()
-		for(var/obj/item/sloties in old_body.get_all_slots())
-			if(istype(sloties, /obj/item/storage/box/hatchery))
-				continue
-			old_items += sloties
-		for(var/obj/item/slotitem in old_items)
-			old_body.dropItemToGround(slotitem, force = TRUE)
-			slotitem.forceMove(ourbox)
-		new_body.put_in_hands(ourbox)
-	new_body.equipOutfit(/datum/outfit/job/patient)
+		var/old_clothes = old_body.get_item_by_slot(ITEM_SLOT_ICLOTHING) // we need to equip a uniform first for everything else to properly equip
+		var/old_armor = old_body.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+		if(old_clothes)
+			var/obj/item/the_belt = old_body.get_item_by_slot(ITEM_SLOT_BELT)
+			var/obj/item/left_pocket = old_body.get_item_by_slot(ITEM_SLOT_LPOCKET)
+			var/obj/item/right_pocket = old_body.get_item_by_slot(ITEM_SLOT_RPOCKET)
+			var/obj/item/id = old_body.get_item_by_slot(ITEM_SLOT_ID)
+
+			old_body.dropItemToGround(old_clothes, silent = TRUE)
+			new_body.equip_to_appropriate_slot(old_clothes, FALSE, TRUE) // If we can grab clothes, then we can also grab belts, pockets, and id
+
+			//Lets place their stuff back in their inventory
+			if(the_belt)
+				new_body.equip_to_slot_if_possible(the_belt, ITEM_SLOT_BELT, bypass_equip_delay_self = TRUE)
+			if(left_pocket)
+				new_body.equip_to_slot_if_possible(left_pocket, ITEM_SLOT_LPOCKET, bypass_equip_delay_self = TRUE)
+			if(right_pocket)
+				new_body.equip_to_slot_if_possible(right_pocket, ITEM_SLOT_RPOCKET, bypass_equip_delay_self = TRUE)
+			if(id)
+				new_body.equip_to_slot_if_possible(id, ITEM_SLOT_ID, bypass_equip_delay_self = TRUE)
+		if(old_armor)
+			if(istype(old_armor, /obj/item/clothing/suit/armor/ego_gear))
+				var/obj/item/s_store = old_body.s_store
+				old_body.dropItemToGround(old_armor, silent = TRUE)
+				new_body.equip_to_appropriate_slot(old_armor, FALSE, TRUE)
+				if(s_store)
+					new_body.equip_to_slot_if_possible(s_store, ITEM_SLOT_SUITSTORE, bypass_equip_delay_self = TRUE)
+
+		// Do not use this to grab belts, pockets, id, equip_to_appropriate_slot does not properly handle that.
+		for(var/obj/item/slot_item in old_body.get_all_slots() - list(old_body.w_uniform, old_body.wear_suit, old_body.l_store, old_body.r_store, old_body.s_store, old_body.belt, old_body.wear_id))
+			if(slot_item)
+				old_body.dropItemToGround(slot_item, silent = TRUE)
+				new_body.equip_to_appropriate_slot(slot_item, FALSE, TRUE)
+	else
+		new_body.equipOutfit(/datum/outfit/job/patient)
 
 	if(!new_body.ckey)
 		log_game("Hatchery: Created a new body for [real_name] without a ckey.")
 		FailureResponse("ERROR: No prior brain activity detected.", real_name)
 		qdel(new_body)
 		return FALSE
-	var/obj/item/card/id/I = new_body.get_idcard()
-	if(!has_id)
+	if(!old_body)
+		var/obj/item/card/id/I = new_body.get_idcard()
 		I.assignment = job
 		I.update_label()
 		I.update_overlays() // Makes ID card reflect current job.
@@ -267,8 +311,6 @@
 			B.bank_cards += I
 		else
 			to_chat(new_body, "<span class='warning'>ERROR - Could not find account information for ID preservation.</span>")
-	else
-		qdel(I)
 
 	var/list/ego_gift_list = list()
 	ego_gift_list = stored_data["ego_gifts"]
@@ -285,6 +327,11 @@
 		var/minimum = thejob.RespawnStats()
 		if(!(stored_data["assigned_role"] in list("Agent", "Agent Intern", "Agent Captain")))
 			nopenalty = TRUE // non-agents never lose attributes
+		else
+			if(nopenalty) // Agents will lose a life if manually revived
+				if(!(ckey in player_lives))
+					player_lives[ckey] = 3
+				player_lives[ckey]--
 		// Manually add penalty, in respect to minimum attribute levels.
 		if(!nopenalty)
 			new_body.adjust_all_attribute_levels(revival_attribute_penalty)
@@ -342,7 +389,7 @@
 
 	to_chat(user, span_warning("You start pulling [M] into the hatchery."))
 
-	if(do_after(user, 2 SECONDS, target = M)) //If you're going to throw someone else, they have to be dead first.
+	if(do_after(user, 4 SECONDS, target = M)) //If you're going to throw someone else, they have to be dead first.
 		if(M.stat != DEAD)
 			FailureResponse("ERROR: Subject not dead.")
 			return
